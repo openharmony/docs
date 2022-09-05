@@ -3329,11 +3329,12 @@ scale(scaleOptions: ScaleOptions): void
 **示例：**
 
 ```js
-var obj : window.ScaleOptions;
-obj.x = 2.0;
-obj.y = 1.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.ScaleOptions = {
+  x : 2.0,
+  y : 1.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.scale(obj);
 ```
 
@@ -3356,12 +3357,13 @@ rotate(rotateOptions: RotateOptions): void
 **示例：**
 
 ```js
-var obj : window.RotateOptions;
-obj.x = 1.0;
-obj.y = 1.0;
-obj.z = 45.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.RotateOptions = {
+  x : 1.0,
+  y : 1.0,
+  z : 45.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.rotate(obj);
 ```
 
@@ -3384,10 +3386,11 @@ translate(translateOptions: TranslateOptions): void
 **示例：**
 
 ```js
-var obj : window.TranslateOptions;
-obj.x = 100.0;
-obj.y = 0.0;
-obj.z = 0.0;
+var obj : window.TranslateOptions = {
+  x : 100.0,
+  y : 0.0,
+  z : 0.0
+}
 windowClass.translate(obj);
 ```
 
@@ -3420,19 +3423,22 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }    
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj); // 设置动画过程中的属性转换
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
-windowClass.showWithAnimation((err, data) => {
+windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
@@ -3951,10 +3957,11 @@ controller.animationForShown = (context : window.TransitionContext) => {
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -3997,16 +4004,19 @@ controller.animationForShown = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```
@@ -4038,16 +4048,19 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```

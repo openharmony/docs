@@ -89,10 +89,14 @@ repo forall -c 'git lfs pull'
 | Hi3861轻量系统解决方案（二进制） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_pegasus.tar.gz.sha256) |
 | Hi3516轻量系统解决方案-LiteOS（二进制） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz.sha256) |
 | Hi3516轻量系统解决方案-Linux（二进制） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz.sha256) |
-| 标准系统Full&nbsp;SDK包（Mac） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz.sha256) |
-| 标准系统Full&nbsp;SDK包（Windows\Linux） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz.sha256) |
-| 标准系统Public&nbsp;SDK包（Mac） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz.sha256) |
-| 标准系统Public&nbsp;SDK包（Windows\Linux） | 3.1.2&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-public.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Mac） | 3.1.7.5 | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Windows\Linux） | 3.1.7.5 | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Mac） | 3.1.7.5 | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Windows\Linux） | 3.1.7.5 | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-public.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Mac） | 3.1.7.7 | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统Full&nbsp;SDK包（Windows\Linux） | 3.1.7.7 | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-full.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-full.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Mac） | 3.1.7.7 | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public&nbsp;SDK包（Windows\Linux） | 3.1.7.7 | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.2/sdk-patch/ohos-sdk-public.tar.gz.sha256) |
 
 
 ## 更新说明

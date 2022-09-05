@@ -2171,7 +2171,130 @@ async function getGroupManager(){
   }
 }
 ```
+### requestIndependentInterrupt<sup>9+</sup>
 
+requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
+
+申请独立焦点，获取独立SessionID，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明               |
+| -------- | ----------------------------- | ---- | -----------------  |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型的枚举。     |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回焦点申请成功/失败状态。 |
+
+**示例：**
+
+```js
+async function requestIndependentInterrupt(){
+  let value = await audioManager.requestIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING);
+  if (value) {
+    console.info('requestIndependentInterrupt interface for result callback: SUCCESS');
+  } else {
+    console.error('Result ERROR');
+  }
+}
+```
+### requestIndependentInterrupt<sup>9+</sup>
+
+requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
+
+申请独立焦点，获取独立SessionID，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型的枚举。  |
+
+**返回值：**
+
+| 类型                                                      | 说明         |
+| --------------------------------------------------------- | ------------ |
+| Promise&lt;boolean&gt; | 返回申请焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function requestIndependentInterrupt(){
+  audioManager.requestIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING).then((value) => {
+    console.info('Promise returned to succeed ');
+  }).catch ((err) => {
+    console.error('Failed to requestIndependentInterrupt');
+  });
+}
+```
+### abandonIndependentInterrupt<sup>9+</sup>
+
+abandonIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
+
+废除独立焦点，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明               |
+| -------- | ----------------------------- | ---- | -----------------  |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型的枚举。     |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回废除焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function abandonIndependentInterrupt(){
+  let value = await audioManager.abandonIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING);
+  if (value) {
+    console.info('abandonIndependentInterrupt interface for result callback: SUCCESS');
+  } else {
+    console.error('Result ERROR');
+  }
+}
+```
+### abandonIndependentInterrupt<sup>9+</sup>
+
+abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
+
+废除独立焦点，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型的枚举。  |
+
+**返回值：**
+
+| 类型                                                      | 说明         |
+| --------------------------------------------------------- | ------------ |
+| Promise&lt;boolean&gt; | 返回废除焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function abandonIndependentInterrupt(){
+  audioManager.abandonIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING).then((value) => {
+    console.info('Promise returned to succeed');
+  }).catch ((err) => {
+    console.error('Failed to abandonIndependentInterrupt');
+  });
+}
+```
 ## AudioGroupManager<sup>9+</sup>
 管理音频组音量。在调用AudioGroupManager的接口前，需要先通过 [getGroupManager](#getgroupmanager9) 创建实例。
 

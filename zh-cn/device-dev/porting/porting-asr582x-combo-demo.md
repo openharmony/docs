@@ -358,7 +358,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 #### GPIO适配
 
-1. 芯片驱动适配文件位于`//drivers/adapter/platform`目录，在gpio目录增加gpio_asr.c和gpio_asr.h文件，在BUILD.gn中增加新增的驱动文件编译条件：
+1. 芯片驱动适配文件位于`//drivers/hdf_core/adapter/platform`目录，在gpio目录增加gpio_asr.c文件，在BUILD.gn中增加新增的驱动文件编译条件：
 
    ```
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {

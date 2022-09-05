@@ -23,11 +23,9 @@ Example URIs:
 - Cross-device communication: **dataability://***device_id***/***com.domainname.dataability.persondata***/***person***/***10*
 - Local-device communication: **dataability:///***com.domainname.dataability.persondata***/***person***/***10*
 
-
 > **NOTE**
->
+> 
 > In the case of local-device communication, **device_id** is empty, and therefore, there are three slashes (/) after **dataability:**.
-
 
 ## Available APIs
 
@@ -140,7 +138,7 @@ Import the basic dependency packages and obtain the URI string for communicating
 
 The basic dependency packages include:
 - @ohos.ability.featureAbility
-- @ohos.data.dataability
+- @ohos.data.dataAbility
 - @ohos.data.rdb
 
 #### Data Ability API Development
@@ -154,7 +152,7 @@ The basic dependency packages include:
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
-   
+
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar

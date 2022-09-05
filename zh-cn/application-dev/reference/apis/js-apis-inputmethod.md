@@ -120,6 +120,7 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
   |target |  [InputmethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
 
 **返回值：**
+
   | 类型                                      | 说明                         |
   | ----------------------------------------- | ---------------------------- |
   | Promise\<boolean> | 回调返回切换后的输入法。 |
@@ -316,6 +317,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
+
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 返回已安装输入法列表。 |
@@ -343,6 +345,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
+
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
 | Promise<Array<[InputMethodProperty](#inputmethodproperty8)>> | 返回已安装输入法列表。 |

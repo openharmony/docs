@@ -193,7 +193,7 @@ media.off('imageChange', () => {
 })
 ```
 
-### createAsset <sup>8+</sup>
+### createAsset<sup>8+</sup>
 
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -263,6 +263,101 @@ media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
 }).catch(function(err){
     console.info("getPublicDirectory failed with error:"+ err);
 });
+```
+
+### deleteAsset<sup>8+</sup>
+
+deleteAsset(uri: string): Promise\<void>
+
+删除媒体文件资源
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名      | 类型                           | 必填   | 说明              |
+| -------- | ---------------------------- | ---- | --------------- |
+| uri | string | 是    | 需要删除的媒体文件资源的uri |
+
+**返回值：**
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise回调返回删除的结果。 |
+
+**示例：**
+
+```js
+async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
+    let fileType = mediaLibrary.MediaType.FILE
+    let option = {
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [fileType.toString()],
+    };
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    const fetchFileResult = await media.getFileAssets(option);
+    let asset = await fetchFileResult.getFirstObject();
+    if (asset == undefined) {
+        console.error('asset not exist')
+        return
+    }
+    media.deleteAsset(asset.uri).then(() => {
+        console.info("deleteAsset successfully");
+    }).catch((err) => {
+        console.info("deleteAsset failed with error:"+ err);
+    });
+}
+```
+
+### deleteAsset<sup>8+</sup>
+deleteAsset(uri: string, callback: AsyncCallback\<void>): void
+
+删除媒体文件资源
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数：**
+
+| 参数名      | 类型                           | 必填   | 说明              |
+| -------- | ---------------------------- | ---- | --------------- |
+| uri | string | 是    | 需要删除的媒体文件资源的uri。 |
+|callback |AsyncCallback\<void>| 是  |回调函数，用于获取删除的结果。|
+
+**示例：**
+
+```js
+async function example() {
+    let fileKeyObj = mediaLibrary.FileKey
+    let fileType = mediaLibrary.MediaType.FILE
+    let option = {
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [fileType.toString()],
+    };
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    const fetchFileResult = await media.getFileAssets(option);
+    let asset = await fetchFileResult.getFirstObject();
+    if (asset == undefined) {
+        console.error('asset not exist')
+        return
+    }
+    media.deleteAsset(asset.uri, (err) => {
+        if (err != undefined) {
+            console.info("deleteAsset successfully");
+        } else {
+            console.info("deleteAsset failed with error:"+ err);
+        }
+    });
+}
 ```
 
 ### getPublicDirectory<sup>8+</sup>
@@ -659,7 +754,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| option   | [MediaSelectOption](#mediaselectoption)  | 是    | 媒体选择选项。                              |
+| option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | 是    | 媒体选择选项。                              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 媒体选择回调，返回选择的媒体URI（dataability://）列表。 |
 
 **示例：**
@@ -694,7 +789,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名    | 类型                                      | 必填   | 说明      |
 | ------ | --------------------------------------- | ---- | ------- |
-| option | [MediaSelectOption](#mediaselectoption) | 是    | 媒体选择选项。 |
+| option | [MediaSelectOption](#mediaselectoptiondeprecated) | 是    | 媒体选择选项。 |
 
 **返回值：**
 
@@ -716,6 +811,152 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
     console.log("An error occurred when selecting media resources.");
 });
 
+```
+### getActivePeers<sup>8+</sup>
+
+getActivePeers(): Promise\<Array\<PeerInfo>>;
+
+获取在线对端设备的信息，使用Promise方式返回异步结果
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**返回值：**
+
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+|  Promise\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+
+**示例：**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getActivePeers().then((devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed info is undefined!')
+        }
+    }).catch((err) => {
+        console.info("get distributed info failed with error:" + err);
+    });
+}
+```
+
+### getActivePeers<sup>8+</sup>
+getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
+
+获取在线对端设备的信息，使用callback方式返回异步结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**返回值：**
+
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
+
+**示例：**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getActivePeers((err, devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed fail, message = ' + err)
+        }
+    })
+}
+```
+
+
+### getAllPeers<sup>8+</sup>
+
+getAllPeers(): Promise\<Array\<PeerInfo>>;
+
+获取所有对端设备的信息，使用Promise方式返回异步结果
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**返回值：**
+
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+|  Promise\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+
+**示例：**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getAllPeers().then((devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed info is undefined!')
+        }
+    }).catch((err) => {
+        console.info("get distributed info failed with error:" + err);
+    });
+}
+```
+
+### getAllPeers<sup>8+</sup>
+getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
+
+获取所有对端设备的信息，使用callback方式返回异步结果。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**返回值：**
+
+| 类型                  | 说明                   |
+| ------------------- | -------------------- |
+| callback: AsyncCallback\<Array\<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
+
+**示例：**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getAllPeers((err, devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed fail, message = ' + err)
+        }
+    })
+}
 ```
 
 ## FileAsset<sup>7+</sup>
@@ -1524,239 +1765,6 @@ async function example() {
     }).catch(function(err){
         console.info("isTrash failed with error:"+ err);
     });
-}
-```
-
-### deleteAsset<sup>8+</sup>
-
-deleteAsset(uri: string): Promise<void>;
-
-删除媒体文件资源
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
-**参数：**
-
-| 参数名      | 类型                           | 必填   | 说明              |
-| -------- | ---------------------------- | ---- | --------------- |
-| uri | string | 是    | 需要删除的媒体文件资源的uri |
-
-**示例：**
-
-```js
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-        console.error('asset not exist')
-        return
-    }
-    media.deleteAsset(asset.uri).then(() => {
-        console.info("deleteAsset successfully");
-    }).catch((err) => {
-        console.info("deleteAsset failed with error:"+ err);
-    });
-}
-```
-
-deleteAsset(uri: string, callback: AsyncCallback<void>): void;
-
-删除媒体文件资源
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
-**参数：**
-
-| 参数名      | 类型                           | 必填   | 说明              |
-| -------- | ---------------------------- | ---- | --------------- |
-| uri | string | 是    | 需要删除的媒体文件资源的uri |
-
-**示例：**
-
-```js
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-        console.error('asset not exist')
-        return
-    }
-    media.deleteAsset(asset.uri, (err) => {
-        if (err != undefined) {
-            console.info("deleteAsset successfully");
-        } else {
-            console.info("deleteAsset failed with error:"+ err);
-        }
-    });
-}
-```
-
-### getActivePeers<sup>8+</sup>
-
-getActivePeers(): Promise<Array<PeerInfo>>;
-
-获取在线对端设备的信息，使用Promise方式返回异步结果
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**返回值：**
-
-| 类型                  | 说明                   |
-| ------------------- | -------------------- |
-|  Promise<Array<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
-
-**示例：**
-
-```js
-async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    media.getActivePeers().then((devicesInfo) => {
-        if (devicesInfo != undefined) {
-            for (let i = 0; i < devicesInfo.length; i++) {
-            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-            }
-        } else {
-            console.info('get distributed info is undefined!')
-        }
-    }).catch((err) => {
-        console.info("get distributed info failed with error:" + err);
-    });
-}
-```
-
-getActivePeers(callback: AsyncCallback<Array<PeerInfo>>): void;
-
-获取在线对端设备的信息，使用callback方式返回异步结果。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**返回值：**
-
-| 类型                  | 说明                   |
-| ------------------- | -------------------- |
-| callback: AsyncCallback<Array<PeerInfo>> | 返回获取的所有在线对端设备的PeerInfo |
-
-**示例：**
-
-```js
-async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    media.getActivePeers((err, devicesInfo) => {
-        if (devicesInfo != undefined) {
-            for (let i = 0; i < devicesInfo.length; i++) {
-                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-            }
-        } else {
-            console.info('get distributed fail, message = ' + err)
-        }
-    })
-}
-```
-
-
-### getAllPeers<sup>8+</sup>
-
-getAllPeers(): Promise<Array<PeerInfo>>;
-
-获取所有对端设备的信息，使用Promise方式返回异步结果
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**返回值：**
-
-| 类型                  | 说明                   |
-| ------------------- | -------------------- |
-|  Promise<Array<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
-
-**示例：**
-
-```js
-async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    media.getAllPeers().then((devicesInfo) => {
-        if (devicesInfo != undefined) {
-            for (let i = 0; i < devicesInfo.length; i++) {
-                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-            }
-        } else {
-            console.info('get distributed info is undefined!')
-        }
-    }).catch((err) => {
-        console.info("get distributed info failed with error:" + err);
-    });
-}
-```
-
-getAllPeers(callback: AsyncCallback<Array<PeerInfo>>): void;
-
-获取所有对端设备的信息，使用callback方式返回异步结果。
-
-**系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.READ_MEDIA
-
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.DistributedCore
-
-**返回值：**
-
-| 类型                  | 说明                   |
-| ------------------- | -------------------- |
-| callback: AsyncCallback<Array<PeerInfo>> | 返回获取的所有对端设备的PeerInfo |
-
-**示例：**
-
-```js
-async function example() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    media.getAllPeers((err, devicesInfo) => {
-        if (devicesInfo != undefined) {
-            for (let i = 0; i < devicesInfo.length; i++) {
-            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
-            }
-        } else {
-            console.info('get distributed fail, message = ' + err)
-        }
-    })
 }
 ```
 
