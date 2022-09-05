@@ -1312,6 +1312,7 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
 | geolocation | [JsGeolocation](#jsgeolocation) | 通知Web组件用户操作行为。|
 
 **示例：**
+
   ```ts
   // xxx.ets
   @Entry
@@ -3129,7 +3130,7 @@ web组件地理位置权限管理对象。
 
 static allowGeolocation(origin: string): void
 
-允许指定来源使用地理位置API。
+允许指定来源使用地理位置接口。
 
 **参数：**
 
@@ -3138,9 +3139,10 @@ static allowGeolocation(origin: string): void
 | origin   | string   | 是   | -     | 指定源的字符串索引。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3150,7 +3152,7 @@ static allowGeolocation(origin: string): void
       Column() {
         Button('allowGeolocation')
           .onClick(() => {
-            web.GeolocationPermissions.allowGeolocation(this.origin);
+            webview.GeolocationPermissions.allowGeolocation(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3171,9 +3173,10 @@ static deleteGeolocation(origin: string): void
 | origin   | string   | 是   | -     | 指定源的字符串索引。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3183,7 +3186,7 @@ static deleteGeolocation(origin: string): void
       Column() {
         Button('deleteGeolocation')
           .onClick(() => {
-            web.GeolocationPermissions.deleteGeolocation(this.origin);
+            webview.GeolocationPermissions.deleteGeolocation(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3198,9 +3201,10 @@ static deleteAllGeolocation(): void
 清除所有来源的地理位置权限状态。
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3209,7 +3213,7 @@ static deleteAllGeolocation(): void
       Column() {
         Button('deleteAllGeolocation')
           .onClick(() => {
-            web.GeolocationPermissions.deleteAllGeolocation();
+            webview.GeolocationPermissions.deleteAllGeolocation();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3228,12 +3232,13 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 | 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
 | -------- | -------- | ---- | ----- | ------------- |
 | origin   | string   | 是   | -     | 指定源的字符串索引。 |
-| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
+| callback | AsyncCallback\<boolean\> | 是 | - | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3243,7 +3248,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
       Column() {
         Button('getAccessibleGeolocationAsync')
           .onClick(() => {
-            web.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
                 console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
                 return;
@@ -3273,12 +3278,13 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
 
 | 类型               | 说明                                  |
 | ------------------ | ------------------------------------ |
-| Promise\<boolean\> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问；获取失败，表示不存在指定源的权限状态。 |
+| Promise\<boolean\> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3288,7 +3294,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
       Column() {
         Button('getAccessibleGeolocationPromise')
           .onClick(() => {
-            web.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
+            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
               console.log('getAccessibleGeolocationPromise result: ' + result);
             }).catch(error => {
               console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
@@ -3304,18 +3310,19 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
 
 static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
 
-以回调方式异步获取已存储地理位置权限状态的所有源。
+以回调方式异步获取已存储地理位置权限状态的所有源信息。
 
 **参数：**
 
 | 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
 | -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源。 |
+| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3324,7 +3331,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
       Column() {
         Button('getStoredGeolocationAsync')
           .onClick(() => {
-            web.GeolocationPermissions.getStoredGeolocation((error, origins) => {
+            webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
                 console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
                 return;
@@ -3343,24 +3350,25 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
 
 static getStoredGeolocation(): Promise\<Array\<string\>\>
 
-以Promise方式异步获取已存储地理位置权限状态的所有源。
+以Promise方式异步获取已存储地理位置权限状态的所有源信息。
 
 **参数：**
 
 | 参数名    | 参数类型 | 必填 | 默认值 | 参数描述       |
 | -------- | -------- | ---- | ----- | ------------- |
-| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源。 |
+| callback | AsyncCallback\<Array\<string\>\> | 是 | - | 返回已存储地理位置权限状态的所有源信息。 |
 
 **返回值：**
 
 | 类型                       | 说明                                  |
 | -------------------------- | ------------------------------------ |
-| Promise\<Array\<string\>\> | Promise实例，用于获取已存储地理位置权限状态的所有源。 |
+| Promise\<Array\<string\>\> | Promise实例，用于获取已存储地理位置权限状态的所有源信息。 |
 
 **示例：**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3369,7 +3377,7 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
       Column() {
         Button('getStoredGeolocationPromise')
           .onClick(() => {
-            web.GeolocationPermissions.getStoredGeolocation().then(origins => {
+            webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
               let origins_str: string = origins.join();
               console.log('getStoredGeolocationPromise origins: ' + origins_str);
             }).catch(error => {
