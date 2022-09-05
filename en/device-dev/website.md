@@ -397,8 +397,7 @@
       - [Vibrator](driver/driver-peripherals-vibrator-des.md)
       - [WLAN](driver/driver-peripherals-external-des.md)
   - Compilation and Building
-    - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
-    - [Building the Standard System](subsystems/subsys-build-standard-large.md)
+    - [Compilation and Building Guide](subsystems/subsys-build-all.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
@@ -465,6 +464,7 @@
     - [Security Overview](subsystems/subsys-security-overview.md)
     - [Development on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
+
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
@@ -495,6 +495,8 @@
     - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
     - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
+    - [Hiview Development](subsystems/subsys-dfx-hiview.md)
+
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -547,11 +549,12 @@
 - Hands-On Tutorials
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
-  - [FAQs Overview](faqs/faqs-overview.md)
-  - [Environment Setup](faqs/faqs-environment-setup.md)
-  - [Compilation and Building](faqs/faqs-building.md)
-  - [Burning](faqs/faqs-burning.md)
-  - [Kernel](faqs/faqs-kernel.md)
-  - [Porting](faqs/faqs-porting.md)
-  - [Startup](faqs/faqs-startup.md)
-  - [System Applications](faqs/faqs-system-applications.md)
+  - FAQs
+    - [FAQs Overview](faqs/faqs-overview.md)
+    - [Environment Setup](faqs/faqs-environment-setup.md)
+    - [Compilation and Building](faqs/faqs-building.md)
+    - [Burning](faqs/faqs-burning.md)
+    - [Kernel](faqs/faqs-kernel.md)
+    - [Porting](faqs/faqs-porting.md)
+    - [Startup](faqs/faqs-startup.md)
+    - [System Applications](faqs/faqs-system-applications.md)
