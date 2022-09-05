@@ -181,7 +181,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 createData(mimeType: string, value: ArrayBuffer): PasteData;
 
-构建一个自定义类型的剪贴板内容对象，mimeType表明了自定义数据value的数据类型
+构建一个自定义类型的剪贴板内容对象
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -189,8 +189,8 @@ createData(mimeType: string, value: ArrayBuffer): PasteData;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 待添加的自定义数据的mimeType类型。 |
-| value | ArrayBuffer | 是 | 待添加的自定义数据内容。 |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
 
 **返回值：**
 
@@ -361,7 +361,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
 
-构建一条自定义数据内容条目，mimeType表明了自定义数据value的数据类型。
+创建一条自定义数据内容条目
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -369,8 +369,8 @@ createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 待添加的自定义数据的mimeType类型。 |
-| value | ArrayBuffer | 是 | 待添加的自定义数据内容。 |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
 
 **返回值：**
 
@@ -414,9 +414,9 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 | 名称  | 说明                    |
 | -----  | ----------------------- |
-| InApp  |InApp表示仅允许同应用内粘贴。  |
-| LocalDevice  |LocalDevice表示仅允许在此设备中粘贴。  |
-| CrossDevice  |CrossDevice表示允许跨设备粘贴在任何应用程序中。  |
+| InApp  |表示仅允许同应用内粘贴。  |
+| LocalDevice  |表示允许在此设备中任何应用内粘贴。  |
+| CrossDevice  |表示允许跨设备在任何应用内粘贴。  |
 
 
 ## PasteDataProperty<sup>7+</sup>
@@ -654,7 +654,7 @@ addTextRecord(text: string): void
 
 向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -678,7 +678,7 @@ addHtmlRecord(htmlText: string): void
 
 向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -703,7 +703,7 @@ addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -731,7 +731,7 @@ addUriRecord(uri: string): void
 
 向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -785,7 +785,7 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 
 ### addRecord<sup>9+</sup>
 
-addRecord(mimeType: string, value: ArrayBuffer): void;
+addRecord(mimeType: string, value: ArrayBuffer): void
 
 向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
@@ -797,8 +797,8 @@ addRecord(mimeType: string, value: ArrayBuffer): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 待添加的自定义数据的mimeType类型。 |
-| value | ArrayBuffer | 是 | 待添加的自定义数据内容。 |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
 
 **示例：**
 
@@ -815,7 +815,7 @@ addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
