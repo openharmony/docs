@@ -19,31 +19,12 @@ None
 | -------- | -------- | -------- | -------- |
 | fontColor | [ResourceColor](../../ui/ts-types.md) | - | Text color. |
 | fontSize | Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | - | Text size. If the value is of the number type, the unit fp is used. |
-| fontStyle | FontStyle | FontStyle.Normal | Font style of the text. |
-| fontWeight | number&nbsp;\|&nbsp;FontWeight&nbsp;\|&nbsp;string | FontWeight.FontWeightNormal | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>For common values of the **FontWeight** type, see **FontWeight** enums. |
-| fontFamily | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | - | Font family of the text. Use commas (,) to separate multiple fonts. The priority the fonts is the sequence in which they are placed. An example value is **Arial, sans-serif**. |
-
-
-- FontStyle enums
-  | Name | Description |
-  | -------- | -------- |
-  | Normal | Standard font style. |
-  | Italic | Italic font style. |
-
-
-- FontWeight enums
-  | Name | Description |
-  | -------- | -------- |
-  | Lighter | The font weight is lighter. |
-  | Normal | The font weight is normal. |
-  | Regular | The font weight is regular. |
-  | Medium | The font weight is medium. |
-  | Bold | The font weight is bold. |
-  | Bolder | The font weight is bolder. |
+| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | FontStyle.Normal | Font style of the text. |
+| fontWeight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | FontWeight.FontWeightNormal | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>For common values of the **FontWeight** type, see **FontWeight** enums. |
+| fontFamily | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource-type) | - | Font family of the text. Use commas (,) to separate multiple fonts. The priority the fonts is the sequence in which they are placed. An example value is **Arial, sans-serif**. |
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

@@ -19,7 +19,7 @@ None
 | Name        | Type     | Default Value                 | Description                    |
 | ------------ | ------------- | ----------------------- | ------------------------ |
 | border       | BorderOptions | -                       | Unified border style.  |
-| borderStyle  | BorderStyle   | BorderStyle.Solid | Border style of an element.|
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle)   | BorderStyle.Solid | Border style of an element.|
 | borderWidth  | Length        | 0                       | Border width of an element.    |
 | borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | Border color of an element.    |
 | borderRadius | Length \| BorderRadiuses<sup>9+</sup>        | 0                       | Border radius of an element.|
@@ -28,10 +28,10 @@ None
 
   | Name| Type                                                    | Default Value           | Mandatory| Description  |
   | -------- | ------------------------------------------------------------ | ----------------- | ---- | ---------- |
-  | width    | [Length](../../ui/ts-types.md) \| EdgeWidth<sup>9+</sup> | 0                 | No  | Border width.|
+  | width    | [Length](../../ui/ts-types.md#length) \| EdgeWidth<sup>9+</sup> | 0                 | No  | Border width.|
   | color    | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 'Black'           | No  | Border color.|
-  | radius   | [Length](../../ui/ts-types.md) \| BorderRadiuses<sup>9+</sup> | 0                 | No  | Border radius.|
-  | style    | BorderStyle \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | No  | Border style.|
+  | radius   | [Length](../../ui/ts-types.md#length) \| BorderRadiuses<sup>9+</sup> | 0                 | No  | Border radius.|
+  | style    | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | No  | Border style.|
 
 
 - EdgeWidth<sup>9+</sup>
@@ -73,17 +73,10 @@ None
 
   | Name   | Type        | Mandatory | Default Value     | Description                 |
   | ------ | ----------- | --------- | ----------------- | --------------------------- |
-  | left   | BorderStyle | No        | BorderStyle.Solid | Style of the left border.   |
-  | right  | BorderStyle | No        | BorderStyle.Solid | Style of the right border.  |
-  | top    | BorderStyle | No        | BorderStyle.Solid | Style of the top border.    |
-  | bottom | BorderStyle | No        | BorderStyle.Solid | Style of the bottom border. |
-- BorderStyle enums
-  
-  | Name| Description|
-  | -------- | -------- |
-  | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
-  | Dashed | Dashed border.|
-  | Solid  | Solid border.|
+  | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | No        | BorderStyle.Solid | Style of the left border.   |
+  | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | No        | BorderStyle.Solid | Style of the right border.  |
+  | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | No        | BorderStyle.Solid | Style of the top border.    |
+  | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | No        | BorderStyle.Solid | Style of the bottom border. |
 
 
 ## Example
