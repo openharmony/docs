@@ -3831,7 +3831,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
 
-### onRemoteRequest
+### onRemoteRequest<sup>8+(deprecated)</sup>
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](##onremoterequestex)替代。
+> <p>开发者同时调用onRemoteRequest和onRemoteRequestEx方法时，仅执行onRemoteRequestEx。</p>
+> <p>开发者同时同步调用onRemoteRequest和异步调用onRemoteRequestEx时，仅执行异步调用的onRemoteRequestEx。</p>
+><p>依旧支持仅同步调用onRemoteRequest的操作。</p>
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 
@@ -3886,7 +3891,75 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
       }
   }
   ```
+### onRemoteRequestEx<sup>9+</sup>
 
+onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+
+sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 对端发送的服务请求码。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 写入结果的MessageParcel对象。 |
+  | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
+
+**返回值：**
+    | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  |   Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象|
+
+
+**示例：**
+
+  ```
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      // 回调函数为同步
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // 回调函数为异步
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
 
 ### getCallingUid
 
