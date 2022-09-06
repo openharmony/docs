@@ -3,7 +3,7 @@
 ## Widget Overview
 A widget is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.
 
-A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive functions such as opening a UI page or sending a message.  
+A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive functions such as opening a UI page or sending a message.
 
 Basic concepts:
 - Widget provider: an atomic service that controls what and how content is displayed in a widget and interacts with users.
@@ -157,8 +157,8 @@ Configure the **config.json** file for the widget.
   | supportDimensions   | Grid styles supported by the widget. Available values are as follows:<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No                      |
   | defaultDimension    | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String    | No                      |
   | updateEnabled       | Whether the widget can be updated periodically. Available values are as follows:<br>**true**: The widget can be updated periodically, depending on the update way you select, either at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** is preferentially recommended.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
-  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.        | String    | Yes (initial value: **0:0**) |
-  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.| Number      | Yes (initial value: **0**)   |
+  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>This parameter has a lower priority than **updateDuration**. If both are specified, the value specified by **updateDuration** is used.| String    | Yes (initial value: **0:0**) |
+  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.<br>This parameter has a higher priority than **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number      | Yes (initial value: **0**)   |
   | formConfigAbility   | Link to a specific page of the application. The value is a URI.                       | String    | Yes (initial value: left empty)    |
   | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                        | String    | Yes (initial value: left empty)    |
   | jsComponentName     | Component name of the widget. The value is a string with a maximum of 127 bytes.        | String    | No                      |
@@ -189,7 +189,6 @@ Configure the **config.json** file for the widget.
              "scheduledUpdateTime": "10:30",
              "supportDimensions": ["2*2"],
              "type": "JS",
-             "updateDuration": 1,
              "updateEnabled": true
           }]
      }]
@@ -208,7 +207,7 @@ Mostly, the widget provider is started only when it needs to obtain information 
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
            // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
-           // The storeFormInfo API is not implemented here. For details about the implementation, see "FA Model Widget" provided in "Samples".
+           // The storeFormInfo API is not implemented here.
            storeFormInfo(formId, formName, tempFlag, want);
 
            let obj = {
@@ -227,7 +226,7 @@ You should override **onDestroy** to delete widget data.
            console.log('FormAbility onDestroy');
 
            // You need to implement the code for deleting the persistent widget instance.
-           // The deleteFormInfo API is not implemented here. For details, see "Widget Host" provided in "Samples".
+           // The deleteFormInfo API is not implemented here.
            deleteFormInfo(formId);
        }
 ```
@@ -348,4 +347,3 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 Now you've got a widget shown below.
 
 ![fa-form-example](figures/fa-form-example.png)
-
