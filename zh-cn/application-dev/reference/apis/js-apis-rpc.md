@@ -3858,7 +3858,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
 
 **示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3920,7 +3920,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
 
 **重载onRemoteRequestEx方法同步处理请求示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3952,7 +3952,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   ```
   **重载onRemoteRequestEx方法异步处理请求示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3987,7 +3987,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   ```
 **同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -4030,7 +4030,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   ```
   **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
 
-  ```
+  ```ets
   int index = 0;
   class MyDeathRecipient {
       onRemoteDied() {
