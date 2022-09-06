@@ -30,7 +30,7 @@
 
   - API差异报告
 
-    - OpenHamrony 3.2 Beta2
+    - OpenHarmony 3.2 Beta2
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
         - [无障碍](release-notes/api-change/v3.2-beta2/js-apidiff-accessibility.md)
