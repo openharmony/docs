@@ -541,11 +541,11 @@ HDF_INIT(g_es8316DriverEntry);
 
 ## **Camera**
 
-### 1.简介
+### 简介
 
 本文以OpenHarmony 3.0为基础，讲解基于HDF(Hardware Driver Foundation)驱动框架开发的Camera驱动框架，包括Camera驱动的架构组成、功能部件的实现和服务节点详细介绍。
 
-### 2.Camera驱动框架图
+### Camera驱动框架图
 
 ​                                                                  OpenHarmony HDF Camera驱动模块架构图
 
@@ -560,9 +560,9 @@ HDF_INIT(g_es8316DriverEntry);
 对于rk3399E/T的Usb Camera来分析，内核使用linux-4.19。Usb Camera依赖linux下的V4L2的uvc，从上面的框架图分析HDF Camera已经实现了兼容linux 的 V4L2 uvc，所以调试过程首先要保证uvc所涉及的USB和Camera的驱动正常。
 
 
-### 3.Camera驱动介绍
+### Camera驱动介绍
 
-#### 3.1 配置信息
+#### 配置信息
 
 arch/arm64/configs/rockchip_linux_defconfig
 
@@ -572,7 +572,7 @@ CONFIG_MEDIA_USB_SUPPORT=y
 CONFIG_USB_VIDEO_CLASS=y
 ```
 
-#### 3.2 节点信息
+#### 节点信息
 
 插入Usb Camera 前
 
@@ -610,7 +610,7 @@ crw-rw---- 1 root root 81,   9 2013-01-18 10:59 dev/video9
 #
 ```
 
-#### 3.3 打开设备节点
+#### 打开设备节点
 
 在Open Harmony OS的代码环境中，编译如下代码为可执行程序，在开发板测执行，无报错说明该节点open success。
 
@@ -640,7 +640,7 @@ int main(void)
 }
 ```
 
-#### 3.4 获取参数
+#### 获取参数
 
 ```c
 #include <stdio.h>
@@ -699,7 +699,7 @@ int main(void)
 		description=Motion-JPEG
 		pixelformat=MJPG
 		reserved=0
-#### 3.4 设置缓冲区队列
+#### 设置缓冲区队列
 
 ```c
 #include <stdio.h>
@@ -770,11 +770,11 @@ int main(void)
 
 通过如上的操作后，基本可以确认linux的V4L2 uvc驱动和外设Usb Camera驱动都是正常的。接下来就该调试Open Harmony OS的HDF Camera了。
 
-#### 3.5 接口介绍
+#### 接口介绍
 
 查看现有Open Harmony OS上的关于camera的可执行程序：ohos_camera_demo、v4l2_main
 
-##### 3.5.1 ohos_camera_demo
+##### ohos_camera_demo
 
 执行结果：输入o后无预览画面，也无LOG报错信息。
 
@@ -805,7 +805,7 @@ Options:
 
 原因分析：ohos_camera_demo目前仅支持MPP，不支持V4L2，故先放弃该demo调试。
 
-##### 3.5.2 v4l2_main
+##### v4l2_main
 
 执行结果：输入u 报错：ERROR:main test:cannot open framebuffer /dev/fb0 file node
 
@@ -1482,7 +1482,7 @@ v4l2_main执行结果：该显示异常，目前先不分析MJPEG格式。
 
 录像uvc.h264在手机端可查看，播放正常。
 
-### 4.附录
+### 附录
 
 ```c
 /**
