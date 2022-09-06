@@ -117,7 +117,7 @@ OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawe
 - 权限管理：支持进程粒度的特权划分和管控，UGO三种权限配置
 ## 目录<a name="section161941989596"></a>
 
-```tex
+```text
 /kernel/liteos_a
 ├── apps                   # 用户态的init和shell应用程序
 ├── arch                   # 体系架构的目录，如arm等
