@@ -136,7 +136,7 @@ LiteOS-M内核移植的具体开发板的工程由社区开发者提供，可以
 
 如何基于Liteos-M内核贡献一款芯片:
 
-[轻量系统芯片移植指导](../porting-minichip-overview.md)
+[轻量系统芯片移植指导](../porting/porting-minichip-overview.md)
 
 [轻量系统芯片移植案例](../porting/porting-bes2600w-on-minisystem-display-demo.md)
 
