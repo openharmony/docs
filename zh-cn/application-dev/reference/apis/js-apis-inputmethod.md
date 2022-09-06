@@ -142,15 +142,15 @@ inputMethod.switchInputMethod({packageName:"com.example.kikakeyboard", methodId:
 
 getCurrentInputMethod(): InputMethodProperty
 
-获取当前输入法扩展，提供同步接口，返回当前输入法扩展。
+获取当前输入法扩展应用，提供同步接口，返回当前输入法属性对象。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
-| 类型                                         | 说明                 |
-| -------------------------------------------- | -------------------- |
-| [InputmethodProperty](#inputmethodproperty8) | 返回当前输入法扩展。 |
+| 类型                                         | 说明                     |
+| -------------------------------------------- | ------------------------ |
+| [InputmethodProperty](#inputmethodproperty8) | 返回当前输入法属性对象。 |
 
 **示例：**
 
