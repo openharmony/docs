@@ -3832,11 +3832,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 
 ### onRemoteRequest<sup>8+(deprecated)</sup>
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](##onremoterequestex)替代。
 
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex)替代。
 
 sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
@@ -3890,18 +3890,19 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
   }
   ```
 ### onRemoteRequestEx<sup>9+</sup>
-> **说明：**
-
-> <p>开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。</p>
-> </b><p>开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。</p>
 
 onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+
+> **说明：**
+>- 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
+>- 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
 
 sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
+
     | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 对端发送的服务请求码。 |
@@ -3910,10 +3911,11 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
 
 **返回值：**
+
     | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
-  |   Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象|
+  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。 |
 
 
 **重载onRemoteRequestEx方法同步处理请求示例：**
@@ -3986,7 +3988,6 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
 **同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
 
   ```
-  int index = 0;
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
