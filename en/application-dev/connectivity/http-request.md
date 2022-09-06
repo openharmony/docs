@@ -10,6 +10,8 @@ The HTTP request function is mainly implemented by the HTTP module.
 
 To use related APIs, you must declare the **ohos.permission.INTERNET** permission.
 
+For details about how to apply for permissions, see [Access Control Development](../security/accesstoken-guidelines.md).
+
 The following table describes the related APIs.
 
 | API                                       | Description                                               |
@@ -65,7 +67,7 @@ httpRequest.request(
             console.info('cookies:' + data.cookies); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
-            // Call the destroy() method to release resources after the call is complete.
+            // Call the destroy method to destroy the request if it is no longer needed.
             httpRequest.destroy();
         }
     }
