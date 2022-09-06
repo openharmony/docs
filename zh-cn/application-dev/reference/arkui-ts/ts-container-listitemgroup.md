@@ -6,10 +6,6 @@
 >
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 
 ## 子组件
 
@@ -18,15 +14,15 @@
 
 ## 接口
 
-ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string}})
+ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string})
 
 **参数：**
 
-  | 参数名 | 参数类型 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- |
-  | header | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
-  | footer | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
-  | space | number&nbsp;\|&nbsp;string | 否 | 列表项间距。 |
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| header | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
+| footer | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
+| space | number&nbsp;\|&nbsp;string | 否 | 列表项间距。 |
 
 ## 属性
 
