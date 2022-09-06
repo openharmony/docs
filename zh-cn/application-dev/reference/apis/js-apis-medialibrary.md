@@ -851,6 +851,7 @@ async function example() {
 ```
 
 ### getActivePeers<sup>8+</sup>
+
 getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 获取在线对端设备的信息，使用callback方式返回异步结果。
@@ -925,6 +926,7 @@ async function example() {
 ```
 
 ### getAllPeers<sup>8+</sup>
+
 getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
