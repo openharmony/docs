@@ -28,7 +28,7 @@ import pasteboard from '@ohos.pasteboard';
 
 ## pasteboard.createPlainTextData
 
-createPlainTextData(text:string): PasteData
+createPlainTextData(text: string): PasteData
 
 构建一个纯文本剪贴板内容对象。
 
@@ -55,7 +55,7 @@ var pasteData = pasteboard.createPlainTextData("content");
 
 ## pasteboard.createHtmlData<sup>7+</sup>
 
-createHtmlData(htmlText:string): PasteData
+createHtmlData(htmlText: string): PasteData
 
 构建一个HTML剪贴板内容对象。
 
@@ -83,7 +83,7 @@ var pasteData = pasteboard.createHtmlData(html);
 
 ## pasteboard.createWantData<sup>7+</sup>
 
-createWantData(want:Want): PasteData
+createWantData(want: Want): PasteData
 
 构建一个Want剪贴板内容对象。
 
@@ -114,7 +114,7 @@ var pasteData = pasteboard.createWantData(object);
 
 ## pasteboard.createUriData<sup>7+</sup>
 
-createUriData(uri:string): PasteData
+createUriData(uri: string): PasteData
 
 构建一个URI剪贴板内容对象。
 
@@ -177,10 +177,38 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 })
 ```
 
+## pasteboard.createData<sup>9+</sup>
+
+createData(mimeType: string, value: ArrayBuffer): PasteData;
+
+构建一个自定义类型的剪贴板内容对象。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteData](#pastedata) |  剪贴板内容对象。 |
+
+**示例：**
+
+  ```js
+  var dataXml = new ArrayBuffer(256)
+  var pasteData = pasteboard.createData('app/xml', dataXml)
+  ```
+
 
 ## pasteboard.createPlainTextRecord<sup>7+</sup>
 
-createPlainTextRecord(text:string): PasteDataRecord
+createPlainTextRecord(text: string): PasteDataRecord
 
 创建一条纯文本内容条目。
 
@@ -207,7 +235,7 @@ var record = pasteboard.createPlainTextRecord("hello");
 
 ## pasteboard.createHtmlTextRecord<sup>7+</sup>
 
-createHtmlTextRecord(htmlText:string): PasteDataRecord
+createHtmlTextRecord(htmlText: string): PasteDataRecord
 
 创建一条HTML内容的条目。
 
@@ -235,7 +263,7 @@ var record = pasteboard.createHtmlTextRecord(html);
 
 ## pasteboard.createWantRecord<sup>7+</sup>
 
-createWantRecord(want:Want): PasteDataRecord
+createWantRecord(want: Want): PasteDataRecord
 
 创建一条Want内容条目。
 
@@ -266,7 +294,7 @@ var record = pasteboard.createWantRecord(object);
 
 ## pasteboard.createUriRecord<sup>7+</sup>
 
-createUriRecord(uri:string): PasteDataRecord
+createUriRecord(uri: string): PasteDataRecord
 
 创建一条URI内容的条目。
 
@@ -293,7 +321,7 @@ var record = pasteboard.createUriRecord("dataability:///com.example.myapplicatio
 
 ## pasteboard.createPixelMapRecord<sup>9+</sup>
 
-createPixelMapRecord(pixelMap:image.PixelMap): PasteDataRecord
+createPixelMapRecord(pixelMap: image.PixelMap): PasteDataRecord
 
 创建一条PixelMap内容的条目。
 
@@ -329,6 +357,35 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 })
 ```
 
+## pasteboard.createRecord<sup>9+</sup>
+
+createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
+
+创建一条自定义数据内容条目。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PasteDataRecord](#pastedatarecord7) | 一条新建的自定义数据内容条目。 |
+
+**示例：**
+
+  ```js
+  var dataXml = new ArrayBuffer(256)
+  var pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+  ```
+
+
 ## pasteboard.getSystemPasteboard
 
 getSystemPasteboard(): SystemPasteboard
@@ -357,8 +414,9 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 | 名称  | 说明                    |
 | -----  | ----------------------- |
-| InApp  |InApp表示仅允许同应用内粘贴。  |
-| LocalDevice  |LocalDevice表示仅允许在此设备中粘贴。  |
+| InApp  |表示仅允许同应用内粘贴。  |
+| LocalDevice  |表示允许在此设备中任何应用内粘贴。  |
+| CrossDevice  |表示允许跨设备在任何应用内粘贴。  |
 
 
 ## PasteDataProperty<sup>7+</sup>
@@ -374,7 +432,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
 | localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”。默认值为true。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CrossDevice。 |
 
 
 ## PasteDataRecord<sup>7+</sup>
@@ -394,6 +452,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
 | pixelMap<sup>9+</sup> | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 
 ### convertToText<sup>7+</sup>
@@ -595,7 +654,7 @@ addTextRecord(text: string): void
 
 向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -619,7 +678,7 @@ addHtmlRecord(htmlText: string): void
 
 向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -644,7 +703,7 @@ addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -672,7 +731,7 @@ addUriRecord(uri: string): void
 
 向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -724,13 +783,39 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 ```
 
 
+### addRecord<sup>9+</sup>
+
+addRecord(mimeType: string, value: ArrayBuffer): void
+
+向当前剪贴板内容中添加一条自定义数据内容条目，同时也会将自定义数据类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
+
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| mimeType | string | 是 | 自定义数据的MIME类型。 |
+| value | ArrayBuffer | 是 | 自定义数据内容。 |
+
+**示例：**
+
+  ```js
+  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
+  var dataXml = new ArrayBuffer(256)
+  pasteData.addRecord('app/xml', dataXml);
+  ```
+
+
 ### addRecord<sup>7+</sup>
 
 addRecord(record: PasteDataRecord): void
 
 向当前剪贴板内容中添加一条条目，同时也会将条目类型添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
-剪贴板内容中添加的条目达到数量上限128后，后续的添加操作无效。
+剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1012,7 +1097,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 ### setPasteData
 
-setPasteData(data:PasteData, callback:AsyncCallback&lt;void&gt;): void
+setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 将数据写入系统剪贴板，使用callback异步回调。
 
@@ -1042,7 +1127,7 @@ systemPasteboard.setPasteData(pasteData, (err, data) => {
 
 ### setPasteData
 
-setPasteData(data:PasteData): Promise&lt;void&gt;
+setPasteData(data: PasteData): Promise&lt;void&gt;
 
 将数据写入系统剪贴板，使用Promise异步回调。
 
@@ -1075,7 +1160,7 @@ systemPasteboard.setPasteData(pasteData).then((data) => {
 
 ### getPasteData
 
-getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
+getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
@@ -1207,7 +1292,7 @@ systemPasteboard.hasPasteData((err, data) => {
 
 ### hasPasteData<sup>7+</sup>
 
-hasPasteData():  Promise&lt;boolean&gt;
+hasPasteData(): Promise&lt;boolean&gt;
 
 判断系统剪贴板中是否有内容，使用Promise异步回调。
 
@@ -1232,7 +1317,7 @@ systemPasteboard.hasPasteData().then((data) => {
 
 ### clear<sup>7+</sup>
 
-clear(callback:  AsyncCallback&lt;void&gt;): void
+clear(callback: AsyncCallback&lt;void&gt;): void
 
 清空系统剪贴板内容，使用callback异步回调。
 
@@ -1259,7 +1344,7 @@ systemPasteboard.clear((err, data) => {
 
 ### clear<sup>7+</sup>
 
-clear():  Promise&lt;void&gt;
+clear(): Promise&lt;void&gt;
 
 清空系统剪贴板内容，使用Promise异步回调。
 
