@@ -1,6 +1,6 @@
 # Ability Development
 ## When to Use
-Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the `module.json` and `app.json` files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop an ability based on the stage model, implement the following logic:
+Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the `module.json5` and `app.json5` files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop an ability based on the stage model, implement the following logic:
 - Create an ability that supports screen viewing and human-machine interaction. You must implement the following scenarios: ability lifecycle callbacks, obtaining ability configuration, requesting permissions, and notifying environment changes.
 - Start an ability. You need to implement ability startup on the same device, on a remote device, or with a specified UI page.
 - Call abilities. For details, see [Call Development](stage-call.md).
@@ -8,7 +8,7 @@ Ability development in the [stage model](stage-brief.md) is significantly differ
 - Continue the ability on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
 
 ### Launch Type
-An ability can be launched in the **standard**, **singleton**, or **specified** mode, as configured by `launchType` in the `module.json` file. Depending on the launch type, the action performed when the ability is started differs, as described below.
+An ability can be launched in the **standard**, **singleton**, or **specified** mode, as configured by `launchType` in the `module.json5` file. Depending on the launch type, the action performed when the ability is started differs, as described below.
 
 | Launch Type    | Description    |Action            |
 | ----------- | -------  |---------------- |
@@ -16,7 +16,7 @@ An ability can be launched in the **standard**, **singleton**, or **specified** 
 | singleton   | Singleton  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, the singleton mode is used. The following is an example of the `module.json` file:
+By default, the singleton mode is used. The following is an example of the `module.json5` file:
 ```json
 {
   "module": {
@@ -87,7 +87,7 @@ To create Page abilities for an application in the stage model, you must impleme
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
 
-        windowStage.loadContent("pages/index").then((data) => {
+        windowStage.loadContent("pages/index").then(() => {
             console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: " + JSON.stringify(error))
@@ -123,7 +123,7 @@ export default class MyAbilityStage extends AbilityStage {
         console.log("MyAbilityStage hap module mainAbilityName" + currentHapModuleInfo.mainAbilityName)
 
         let config = this.context.config
-        console.log("MyAbilityStage config language" + config.language)
+        console.log("MainAbility config language" + config.language)
     }
 }
 ```
@@ -142,14 +142,14 @@ export default class MainAbility extends Ability {
         console.log("MainAbility ability name" + abilityInfo.name)
 
         let config = this.context.config
-        console.log("MyAbilityStage config language" + config.language)
+        console.log("MainAbility config language" + config.language)
     }
 }
 ```
 ### Requesting Permissions
-If an application needs to obtain user privacy information or use system capabilities, for example, obtaining location information or using the camera to take photos or record videos, it must request the respective permission from consumers. During application development, you need to specify the involved sensitive permissions, declare the required permissions in `module.json`, and use the `requestPermissionsFromUser` API to request the permission from consumers in the form of a dialog box. The following uses the permission for calendar access as an example.
+If an application needs to obtain user privacy information or use system capabilities, for example, obtaining location information or using the camera to take photos or record videos, it must request the respective permission from consumers. During application development, you need to specify the involved sensitive permissions, declare the required permissions in `module.json5`, and use the `requestPermissionsFromUser` API to request the permission from consumers in the form of a dialog box. The following uses the permission for calendar access as an example.
 
-Declare the required permission in the `module.json` file.
+Declare the required permission in the `module.json5` file.
 ```json
 "requestPermissions": [
     {
@@ -229,8 +229,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start ability")
 }).catch((error) => {
     console.error("Failed to start ability with error: "+ JSON.stringify(error))
 })
@@ -246,8 +246,8 @@ var want = {
     "bundleName": "com.example.MyApplication",
     "abilityName": "MainAbility"
 };
-context.startAbility(want).then((data) => {
-    console.log("Succeed to start remote ability with data: " + JSON.stringify(data))
+context.startAbility(want).then(() => {
+    console.log("Succeed to start remote ability")
 }).catch((error) => {
     console.error("Failed to start remote ability with error: " + JSON.stringify(error))
 })
