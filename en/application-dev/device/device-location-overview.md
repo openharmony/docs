@@ -37,3 +37,9 @@ Location awareness is offered by the system as a basic service for applications.
 Your application can use the location function only after the user has granted the permission and turned on the function. If the location function is off, the system will not provide the location service for any application.
 
 Since the location information is considered sensitive, your application still needs to obtain the location access permission from the user even if the user has turned on the location function. The system will provide the location service for your application only after it has been granted the permission to access the device location information.
+
+## Samples
+
+The following sample is provided to help you better understand how to develop location services:
+
+-[`Location`: Location (eTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Location)

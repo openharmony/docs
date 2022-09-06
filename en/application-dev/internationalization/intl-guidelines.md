@@ -340,3 +340,11 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md) APIs to format the r
    ```js
    var options = numberFormat.resolvedOptions();
    ```
+
+## Samples
+
+The following sample is provided to help you better understand how to develop internationalization capabilities:
+
+-[`International`: Internationalization (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/International)
+
+-[`International`: Internationalization (eTS) (API8) (Full SDK)](https://gitee.com/openharmony/applications_app_samples/tree/master/common/International)
