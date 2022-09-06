@@ -7,11 +7,6 @@
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 无
@@ -25,17 +20,17 @@ TextPicker(options?: {range: string[] | [Resource](ts-types.md#resource), select
 
 **参数：**
 
-| 参数名      | 参数类型     | 必填   | 默认值   | 参数描述            |
-| -------- | -------- | ---- | ----- | --------------- |
-| range    | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是    | -     | 选择器的数据选择范围。     |
-| selected | number   | 否    | 0 | 选中项在数组中的index值。 |
-| value | string | 否 | 第一个元素值 | 选中项的值，优先级低于selected。 |
+| 参数名      | 参数类型     | 必填   | 参数描述            |
+| -------- | -------- | ---- | --------------- |
+| range    | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是    | 选择器的数据选择范围。     |
+| selected | number   | 否    | 选中项在数组中的index值。<br/>默认值：0 |
+| value | string | 否 | 选中项的值，优先级低于selected。<br/>默认值：第一个元素值 |
 
 ## 属性
 
-| 名称                    | 参数类型         | 默认值 | 描述                       |
-| ----------------------- | ---------------- | ------ | -------------------------- |
-| defaultPickerItemHeight | number \| string | -      | 默认Picker内容项元素高度。 |
+| 名称                    | 参数类型         | 描述                       |
+| ----------------------- | ---------------- | -------------------------- |
+| defaultPickerItemHeight | number \| string | 默认Picker内容项元素高度。 |
 
 
 ## 事件

@@ -6,10 +6,6 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 ## 子组件
 
 无
@@ -20,21 +16,21 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 **参数：**
 
-| 参数名         | 参数类型             | 必填   | 默认值  | 参数描述                                     |
-| ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
-| value       | string           | 否    | -    | 搜索文本值。                                   |
-| placeholder | string           | 否    | -    | 无输入时的提示文本。                               |
-| icon        | string           | 否    | -    | 搜索图标路径，默认使用系统搜索图标，支持的图标格式: svg, jpg和png。 |
-| controller  | SearchController | 否    | -    | 控制器。                                     |
+| 参数名      | 参数类型         | 必填 | 参数描述                                                     |
+| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
+| value       | string           | 否   | 搜索文本值。                                                 |
+| placeholder | string           | 否   | 无输入时的提示文本。                                         |
+| icon        | string           | 否   | 搜索图标路径，默认使用系统搜索图标，支持的图标格式: svg, jpg和png。 |
+| controller  | SearchController | 否   | 控制器。                                                     |
 
 ## 属性
 
-| 名称             | 参数类型                                    | 默认值 | 描述                                       |
-| ---------------- | ------------------------------------------- | ------ | ------------------------------------------ |
-| searchButton     | string                                      | 无     | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
-| placeholderColor | [ResourceColor](ts-types.md#resourcecolor8) | -      | 设置placeholder颜色。                      |
-| placeholderFont  | [Font](ts-types.md#font)                    | -      | 设置placeholder文本样式。                  |
-| textFont         | [Font](ts-types.md#font)                    | -      | 设置搜索框内文本样式。                     |
+| 名称             | 参数类型                                    | 描述                                       |
+| ---------------- | ------------------------------------------- | ------------------------------------------ |
+| searchButton     | string                                      | 搜索框末尾搜索按钮文本值，默认无搜索按钮。 |
+| placeholderColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置placeholder颜色。                      |
+| placeholderFont  | [Font](ts-types.md#font)                    | 设置placeholder文本样式。                  |
+| textFont         | [Font](ts-types.md#font)                    | 设置搜索框内文本样式。                     |
 
 ## 事件
 
@@ -62,9 +58,9 @@ caretPosition(value: number): void
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| value | number | 是    | -    | 从字符串开始到光标所在位置的长度。 |
+| 参数名 | 参数类型 | 必填 | 参数描述                           |
+| ------ | -------- | ---- | ---------------------------------- |
+| value  | number   | 是   | 从字符串开始到光标所在位置的长度。 |
 
 
 ##  示例
