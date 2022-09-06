@@ -67,7 +67,7 @@ httpRequest.request(
             console.info('cookies:' + data.cookies); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
-            // Call the destroy method to destroy the request if it is no longer needed.
+            // Call the destroy() method to destroy the request if it is no longer needed.
             httpRequest.destroy();
         }
     }
