@@ -37,7 +37,7 @@ In the  **target\_config.h**  file of the development board, configure the syste
 
 The directory structure is as follows.
 
-```tex
+```text
 /kernel/liteos_m
 ├── arch                 # Code of the kernel instruction architecture layer
 │   ├── arm              # Code of the ARM32 architecture
