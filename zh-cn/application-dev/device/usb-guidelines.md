@@ -15,21 +15,21 @@ USB类开放能力如下，具体请查阅[API参考文档](../reference/apis/js
 
 **表1** USB类的开放能力接口
 
-| 接口名 | 描述 |
-| -------- | -------- |
-| hasRight(deviceName:string):boolean | 如果“使用者”（如各种App或系统）有权访问设备则返回true；无权访问设备则返回false。 |
-| requestRight(deviceName:string):Promise&lt;boolean&gt; | 请求给定软件包的临时权限以访问设备。 |
-| connectDevice(device:USBDevice):Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。 |
-| getDevices():Array&lt;Readonly&lt;USBDevice&gt;&gt; | 返回USB设备列表。 |
-| setConfiguration(pipe:USBDevicePipe,config:USBConfig):number | 设置设备的配置。 |
-| setInterface(pipe:USBDevicePipe,iface:USBInterface):number | 设置设备的接口。 |
-| claimInterface(pipe:USBDevicePipe,iface:USBInterface,force?:boolean):number | 获取接口。 |
-|bulkTransfer(pipe:USBDevicePipe,endpoint:USBEndpoint,buffer:Uint8Array,timeout?:number):Promise&lt;number&gt; | 批量传输。 |
-| closePipe(pipe:USBDevicePipe):number | 关闭设备消息控制通道。 |
-| releaseInterface(pipe:USBDevicePipe,iface:USBInterface):number | 释放接口。 |
-| getFileDescriptor(pipe:USBDevicePipe):number | 获取文件描述符。 |
-| getRawDescriptor(pipe:USBDevicePipe):Uint8Array | 获取原始的USB描述符。 |
-| controlTransfer(pipe:USBDevicePipe,contrlparam:USBControlParams,timeout?:number):Promise&lt;number&gt; | 控制传输。 |
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| hasRight(deviceName: string): boolean                         | 如果“使用者”（如各种App或系统）有权访问设备则返回true；无权访问设备则返回false。 |
+| requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求给定软件包的临时权限以访问设备。                         |
+| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
+| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 返回USB设备列表。                                            |
+| setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | 设置设备的配置。                                             |
+| setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
+| claimInterface(pipe: USBDevicePipe, iface: USBInterface,force?: boolean): number | 获取接口。                                                   |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt; | 批量传输。                                                   |
+| closePipe(pipe: USBDevicePipe): number                         | 关闭设备消息控制通道。                                       |
+| releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放接口。                                                   |
+| getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
+| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
+| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise&lt;number&gt; | 控制传输。                                                   |
 
 
 ## 开发步骤
@@ -155,4 +155,5 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 ## 相关实例
 针对USB管理开发，有以下相关实例可供参考：
+
 - [`USBManager`：USB管理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/USBManager)
