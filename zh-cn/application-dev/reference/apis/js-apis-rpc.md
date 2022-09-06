@@ -3892,9 +3892,8 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
 ### onRemoteRequestEx<sup>9+</sup>
 > **说明：**
 
-> <p>开发者同时调用onRemoteRequest和onRemoteRequestEx方法时，仅执行onRemoteRequestEx。</p>
-> <p>开发者同时同步调用onRemoteRequest和异步调用onRemoteRequestEx时，仅执行异步调用的onRemoteRequestEx。</p>
-><p>依旧支持仅同步调用onRemoteRequest的操作。</p>
+> <p>开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。</p>
+> </b><p>开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。</p>
 
 onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
 
@@ -3917,7 +3916,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   |   Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象|
 
 
-**同步调用示例：**
+**重载onRemoteRequestEx方法同步处理请求示例：**
 
   ```
   class MyDeathRecipient {
@@ -3949,7 +3948,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       }
   }
   ```
-  **异步调用示例：**
+  **重载onRemoteRequestEx方法异步处理请求示例：**
 
   ```
   class MyDeathRecipient {
@@ -3984,7 +3983,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       }
   }
   ```
-**同时调用onRemoteRequest和onRemoteRequestEx进行同步调用示例：**
+**同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
 
   ```
   int index = 0;
@@ -4028,7 +4027,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
       }
   }
   ```
-  **同时调用同步的onRemoteRequest和异步的onRemoteRequestEx示例：**
+  **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
 
   ```
   int index = 0;
