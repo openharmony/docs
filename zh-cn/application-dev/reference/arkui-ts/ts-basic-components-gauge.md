@@ -46,7 +46,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 名称      | 类型定义             | 描述                                                         |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [ResourceColor](../../ui/ts-types.md#resourcecolor8),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
+| ColorStop | [[ResourceColor](../../ui/ts-types.md#resourcecolor8),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
 
 
 ## 示例
