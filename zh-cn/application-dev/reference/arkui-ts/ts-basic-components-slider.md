@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 无
@@ -23,15 +18,15 @@ Slider(options?:{value?: number, min?: number, max?: number, step?: number, styl
 
 **参数：**
 
-| 参数名                    | 参数类型                                  | 必填   | 默认值                | 参数描述                                   |
-| ---------------------- | ------------------------------------- | ---- | ------------------ | -------------------------------------- |
-| value                  | number                                | 否    | 0                  | 当前进度值。                                 |
-| min                    | number                                | 否    | 0                  | 设置最小值。                                 |
-| max                    | number                                | 否    | 100                | 设置最大值。                                 |
-| step                   | number                                | 否    | 1                  | 设置Slider滑动跳动值，当设置相应的step时，Slider为间歇滑动。 |
-| style                  | SliderStyle                           | 否    | SliderStyle.OutSet | 设置Slider的滑块样式。                         |
-| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis枚举说明) | 否    | Axis.Horizontal    | 设置滑动条滑动方向为水平或竖直方向。                     |
-| reverse<sup>8+</sup>   | boolean                               | 否    | false              | 设置滑动条取值范围是否反向。                         |
+| 参数名                 | 参数类型                          | 必填 | 参数描述                                                     |
+| ---------------------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| value                  | number                            | 否   | 当前进度值。<br/>默认值：0                                   |
+| min                    | number                            | 否   | 设置最小值。<br/>默认值：0                                   |
+| max                    | number                            | 否   | 设置最大值。<br/>默认值：100                                 |
+| step                   | number                            | 否   | 设置滑动条滑动步长。<br/>默认值：1                           |
+| style                  | SliderStyle                       | 否   | 设置滑动条的滑块样式。<br/>默认值：SliderStyle.OutSet        |
+| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否   | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
+| reverse<sup>8+</sup>   | boolean                           | 否   | 设置滑动条取值范围是否反向。<br/>**说明：**设置为false时，水平方向滑动条为从左向右滑动，竖直方向滑动条从上向下滑动，设置为true时，水平方向滑动条为从右向左滑动，竖直方向滑动条从下向上滑动。<br/>默认值：false |
 
 ## SliderStyle枚举说明
 
@@ -44,16 +39,16 @@ Slider(options?:{value?: number, min?: number, max?: number, step?: number, styl
 
 不支持触摸热区设置。
 
-| 名称            | 参数类型    | 默认值   | 描述                |
-| ------------- | ------- | ----- | ----------------- |
-| blockColor    | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑块的颜色。          |
-| trackColor    | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑轨的背景颜色。        |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | -     | 设置滑轨的已滑动颜色。       |
-| showSteps     | boolean | false | 设置当前是否显示步长刻度值。    |
-| showTips      | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
-| trackThickness      | [Length](ts-types.md#length) | - | 设置滑轨的粗细。 |
-| maxLabel | string | - | 设置最大标号时使用。 |
-| minLabel | string | - | 设置最小标号时使用。 |
+| 名称            | 参数类型    | 描述                |
+| ------------- | ------- | ----------------- |
+| blockColor    | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑块的颜色。          |
+| trackColor    | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的背景颜色。        |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的已滑动颜色。       |
+| showSteps     | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false |
+| showTips      | boolean | 设置滑动时是否显示气泡提示百分比。<br/>默认值：false |
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。 |
+| maxLabel | string | 设置最大标签。 |
+| minLabel | string | 设置最小标签。 |
 
 
 ## 事件
