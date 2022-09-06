@@ -1,6 +1,7 @@
 # **标准系统方案之扬帆移植案例**
 
 ​        本文章是基于瑞芯微RK3399芯片的yangfan开发板，进行标准系统相关功能的移植，主要包括产品配置添加，内核启动、升级，音频ADM化，Camera，TP，LCD，WIFI，BT，vibrator、sensor、图形显示模块的适配案例总结，以及相关功能的适配。
+开发板系统移植采用Board仓和SoC代码分离方案，Board仓保存板载驱动的模块，例如音频，Camera，TP，WIFI等驱动模块的适配代码。在SoC仓保存与SoC驱动相关模块，例如I2C，ISP，RGA等驱动模块的适配代码。
 
 ## 产品配置和目录规划
 
@@ -10,15 +11,15 @@
 
 ```
 {
-    "product_name": "yangfan",
-    "device_company": "rockchip",
-    "device_build_path": "device/board/isoftstone/yangfan",
-    "target_cpu": "arm",
-    "type": "standard",
-    "version": "3.0",
-    "board": "yangfan",
-    "enable_ramdisk": true,
-    "build_selinux": true,
+    "product_name": "yangfan",---产品名：yangfan
+    "device_company": "rockchip",---单板厂商：rockchip
+    "device_build_path": "device/board/isoftstone/yangfan",---设备构建路径：device/board/isoftstone/yangfan
+    "target_cpu": "arm",---目标cpu：arm
+    "type": "standard",---配置系统的级别：standard
+    "version": "3.0",---版本：3.0
+    "board": "yangfan",---单板名：yangfan
+    "enable_ramdisk": true,---启用内存虚拟盘：true
+    "build_selinux": true,---构建selinux：true
     "inherit": [ "productdefine/common/inherit/rich.json", "productdefine/common/inherit/chipset_common.json" ],
     "subsystems": [
     {
@@ -39,20 +40,25 @@
         }
       ]
     },
-	...
+    ...
 }
 ```
 
 
 主要的配置内容包括：
 
-1. device_name：配置开发板的名称。
-2. type：配置系统的级别， 这里直接standard即可。
-3. subsystems：系统需要启用的子系统。子系统可以简单理解为一块独立构建的功能块。
+1. "product_name": "yangfan",---产品名：yangfan
+2. "device_company": "rockchip",---单板厂商：rockchip
+3. "device_build_path": "device/board/isoftstone/yangfan",---设备构建路径：device/board/isoftstone/yangfan
+4. "target_cpu": "arm",---目标cpu：arm
+5. "type": "standard",---配置系统的级别：standard
+6. "version": "3.0",---版本：3.0
+7. "board": "yangfan",---单板名：yangfan
+8. "enable_ramdisk": true,---启用内存虚拟盘：true
 
-已定义的子系统可以在`//build/subsystem_config.json`中找到。当然你也可以定制子系统。
+已定义的子系统可以在`//build/subsystem_config.json`中找到。当然也可以定制子系统。
 
-这里建议先拷贝Hi3516DV300开发板的配置文件，删除掉hisilicon_products这个子系统。这个子系统为Hi3516DV300 SOC编译内核，不适合rk3568。
+建议先拷贝Hi3516DV300开发板的配置文件，删除掉hisilicon_products子系统。该子系统为Hi3516DV300 SOC编译内核，不适合RK3568。
 
 ### 目录规划
 
@@ -69,7 +75,7 @@ device
         
         
 ```
-
+产品样例目录规划为：
 ```
 vendor
 └── isoftstone					
@@ -80,34 +86,34 @@ vendor
 
 ### 二级启动
 
-二级启动简单来说就是将之前直接挂载sytem,从system下的init启动，改成先挂载ramdsik,从ramdsik中的init 启动，做些必要的初始化动作，如挂载system,vendor等分区，然后切到system下的init 。
+二级启动简单来说就是将之前直接挂载system，从system下的init启动，改成先挂载ramdsik，从ramdsik中的init 启动，做些必要的初始化动作，如挂载system，vendor等分区，然后切到system下的init 。
 
-Rk3399适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中，主要有以下工作：
+RK3399适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中，主要有以下工作：
 
-1.使能二级启动
+1. 使能二级启动
 
-  在//vendor/yangfan/rk3399.json中使能enable_ramdisk。
+在//vendor/yangfan/rk3399.json中使能enable_ramdisk。
 
   ```
   {
-	"product_name": "yangfan",
-	"device_company": "rockchip",
-	"device_build_path": "device/board/isoftstone/yangfan",
-	"target_cpu": "arm",
-	"type": "standard",
-	"version": "3.0",
-	"board": "yangfan",
-	"enable_ramdisk": true,
-	"build_selinux": true,	  
-	...	  
+      "product_name": "yangfan",
+      "device_company": "rockchip",
+      "device_build_path": "device/board/isoftstone/yangfan",
+      "target_cpu": "arm",
+      "type": "standard",
+      "version": "3.0",
+      "board": "yangfan",
+      "enable_ramdisk": true,
+      "build_selinux": true,
+      ...
   }
   ```
 
-2.把主线编译出来的ramdsik.img 打包到boot_linux.img
+2. 将主线编译出来的ramdsik.img 打包到boot_linux.img
 
 配置：
 
-由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ,因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加:
+由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ，因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加:
 
 ```
 function make_extlinux_conf()
@@ -129,40 +135,53 @@ function make_extlinux_conf()
 
 ### 打包 
 
-增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk,打包boot 镜像时调用, 主要内容:
+增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk，打包boot 镜像时调用，主要内容:
 
 ```
 genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
 ```
 
-调用make-boot.sh 的修改可以参考如下pr:
-
-https://gitee.com/openharmony/build/pulls/569/files
+调用make-boot.sh的修改请参考[RK3568 适配二级启动]( https://gitee.com/openharmony/build/pulls/569/files )。
 
 ### INIT配置
 
-init相关配置请参考[启动子系统的规范要求](https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md)即可
+init相关配置请参考[启动恢复子系统]( https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md )即可
 
 ## **音频**
 
-### 1.简介
+### 简介
 
-本文基于OpenHarmony 3.0为基础，讲解基于HDF(Hardware Driver Foundation)驱动框架开发的Audio驱动框架，包括Audio驱动的架构组成、功能部件的实现和服务节点详细介绍。
+本文以OpenHarmony 3.0为基础，讲解基于HDF(Hardware Driver Foundation)驱动框架开发的Audio驱动框架，包括Audio驱动的架构组成、功能部件的实现和服务节点详细介绍。
 
-### 2.Audio驱动框架图
+![Audio驱动框架图](figures/isoftstone/yangfan-Audio-ADM.png)
 
-![](figures/isoftstone/yangfan-Audio-ADM.png)
+1. ADM（Audio Driver Model)
 
-**ADM（Audio Driver Model）:**音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配HOS系统。
-**Audio Control Dispatch:** 接收lib层的控制指令并将控制指令分发到驱动层。
-**Audio Stream Dispatch:**  向上通过lib层完成数据流的接收，向下完成数据流对驱动层的分发。
-**Card Manager：**多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、Sapm模块。
-**Platform Driver：**驱动适配层。
-**SAPM（Smart Audio Power Manager）：**电源管理模块，对整个ADM电源进行功耗策略优化。
+   音频驱动框架模型，向上服务于多媒体音频子系统，便于系统开发者能够更便捷的根据场景来开发应用。向下服务于具体的设备厂商，对于Codec和DSP设备厂商来说，可根据ADM模块提供的向下统一接口适配各自的驱动代码，就可以实现快速开发和适配HOS系统。
 
-### 3.Audio驱动介绍
+2. Audio Control Dispatch
 
-#### 3.1 代码目录
+   接收lib层的控制指令并将控制指令分发到驱动层。
+
+3. Audio Stream Dispatch
+
+   向上通过lib层完成数据流的接收，向下完成数据流对驱动层的分发。
+
+4. Card Manager
+
+   多声卡管理模块。每个声卡含有Dai、Platform、Codec、Accessory、Dsp、Sapm模块。
+
+5. Platform Driver
+
+   驱动适配层。
+
+6. SAPM（Smart Audio Power Manager）
+
+   电源管理模块，对整个ADM电源进行功耗策略优化。
+
+### Audio驱动介绍
+
+#### 代码目录
 
 ```
 drivers
@@ -189,42 +208,42 @@ drivers
 					└── soc				#Dma驱动
 ```
 
-#### 3.2 Audio流程说明
+#### Audio流程说明
 
-1. ##### 启动流程
+##### 启动流程
 
-   ![](figures/isoftstone/yangfan-Audio-start.png)
+![](figures/isoftstone/yangfan-Audio-start.png)
 
-   1.系统启动时audio模块的Platform、Codec、Accessory、Dsp、Dai各个驱动首先被拉起，各驱动从各自私有配置文件中获取配置信息，并将获取的配置信息保存到各驱动的Data数据结构中。
-   2.各驱动模块调用ADM注册接口将自己添加到各驱动模块的链表中。
-   3.ADM模块读取hdf_audio_driver_0（音频card_0）和hdf_audio_driver_1（音频card_1）配置信息，加载各模块的具体设备。
-   4.ADM模块调用各模块的初始化函数对各模块设备进行初始化。
-   5.将初始化成功的音频设备添加到cardManager链表。
+1. 系统启动时audio模块的Platform、Codec、Accessory、Dsp、Dai各个驱动首先被加载，各驱动从各自私有配置文件中获取配置信息，并将获取的配置信息保存到各驱动的Data数据结构中。
+2. 各驱动模块调用ADM注册接口将自己添加到各驱动模块的链表中。
+3. ADM模块读取hdf_audio_driver_0（音频card_0）和hdf_audio_driver_1（音频card_1）配置信息，加载各模块的具体设备。
+4. ADM模块调用各模块的初始化函数对各模块设备进行初始化。
+5. 将初始化成功的音频设备添加到cardManager链表。
 
-2. ##### 播放流程
+##### 播放流程
 
-   ![](figures/isoftstone/yangfan-Audio-play.png)
+![](figures/isoftstone/yangfan-Audio-play.png)
 
-   1.播放音频，首先Interface Lib层通过播放流服务下发Render Open指令，Render Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
-   2.Interface Lib层通过控制服务下发通路选择指令，Control Dispatch控制服务收到指令后调用Dai模块接口设置通路。
-   3.Interface Lib层通过播放流服务下发硬件参数，Render Stream Dispatch服务收到参数后分别调用各模块参数设置接口，对硬件参数进行设置。
-   4.Interface Lib层通过播放流服务下发播放启动指令，Render Stream Dispatch服务收到指令后分别调用各模块启动接口，对各模块进行启动设置。
-   5.Interface Lib层通过播放流服务下发音频数据，Render Stream Dispatch服务收到数据后调用Platform AudioPcmWrite接口将音频数据传给Dma。
-   6.Interface Lib层通过播放流服务下发播放停止指令，Render Stream Dispatch服务收到指令后分别调用各模块停止接口，对各模块进行停止设置。
-   7.Interface Lib层通过播放流服务下发Render Close指令，Render Stream Dispatch服务收到指令后调用Platform AudioRenderClose接口对已申请资源进行释放。
+1. 播放音频，首先Interface Lib层通过播放流服务下发Render Open指令，Render Stream Dispatch服务收到指令后分别调用各模块的函数接口对指令进行下发。
+2. Interface Lib层通过控制服务下发通路选择指令，Control Dispatch控制服务收到指令后调用Dai模块接口设置通路。
+3. Interface Lib层通过播放流服务下发硬件参数，Render Stream Dispatch服务收到参数后分别调用各模块参数设置接口，对硬件参数进行设置。
+4. Interface Lib层通过播放流服务下发播放启动指令，Render Stream Dispatch服务收到指令后分别调用各模块启动接口，对各模块进行启动设置。
+5. Interface Lib层通过播放流服务下发音频数据，Render Stream Dispatch服务收到数据后调用Platform AudioPcmWrite接口将音频数据传给Dma。
+6. Interface Lib层通过播放流服务下发播放停止指令，Render Stream Dispatch服务收到指令后分别调用各模块停止接口，对各模块进行停止设置。
+7. Interface Lib层通过播放流服务下发Render Close指令，Render Stream Dispatch服务收到指令后调用Platform AudioRenderClose接口对已申请资源进行释放。
 
-3. ##### 控制流程
+##### 控制流程
 
-   ![](figures/isoftstone/yangfan-Audio-commond.png)
+![](figures/isoftstone/yangfan-Audio-commond.png)
 
-1.设置音量，首先Interface Lib层通过控制服务下发获取音量范围指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Get函数接口获取可设置音量范围。
-2.Interface Lib层通过控制服务下发设置音量指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Set函数接口设置音量。
+1. 设置音量，首先Interface Lib层通过控制服务下发获取音量范围指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Get函数接口获取可设置音量范围。
+2. Interface Lib层通过控制服务下发设置音量指令，Control Dispatch控制服务收到指令后进行解析并调用Codec模块Set函数接口设置音量。
 
-#### 3.3 实现说明
+#### 实现说明
 
-1. ##### 驱动注册
+1. 驱动注册
 
-   ​		以codec的注册函数为例，当codec驱动初始化时调用如下codec注册函数，将codec注册到codecController链表中。
+   以codec的注册函数为例，当codec驱动初始化时调用如下codec注册函数，将codec注册到codecController链表中。
 
    ```c
    int32_t AudioRegisterCodec(struct HdfDeviceObject *device, struct CodecData *codecData, struct DaiData *daiData)
@@ -246,9 +265,9 @@ drivers
    }
    ```
 
-2. ##### 数据流数据分发
+2. 数据流数据分发
 
-   ​		当录音或者播放时，上层lib层通过dispatch将数据下发或读取数据，此接口接收到lib层的请求后，将数据进行分发或将数据返回。
+   当录音或者播放时，上层lib层通过dispatch将数据下发或读取数据，此接口接收到lib层的请求后，将数据进行分发或将数据返回。
 
    ```c
    static int32_t StreamDispatch(struct HdfDeviceIoClient *client, int cmdId,
@@ -265,9 +284,9 @@ drivers
    }
    ```
 
-3. ##### 控制功能注册接口
+3. 控制功能注册接口
 
-   ​		音量控制、增益控制、通路控制等控制功能都是通过此接口添加到声卡控制列表。
+   音量控制、增益控制、通路控制等控制功能都是通过此接口添加到声卡控制列表。
 
    ```c
    int32_t AudioAddControls(struct AudioCard *audioCard, const struct AudioKcontrol *controls, int32_t controlMaxNum)
@@ -287,7 +306,7 @@ drivers
    }
    ```
 
-4. ##### 电源管理接口
+4. 电源管理接口
 
    添加组件实现：
 
@@ -384,9 +403,9 @@ drivers
    
    ```
 
-5. ##### 控制流数据分发
+5. 控制流数据分发
 
-   ​		当录音或者播放时，上层lib层通过dispatch将控制指令下发，此接口接收到lib层的控制指令后，将控制指令分发到各驱动模块。
+   当录音或者播放时，上层lib层通过dispatch将控制指令下发，此接口接收到lib层的控制指令后，将控制指令分发到各驱动模块。
 
    ```c
    static int32_t ControlDispatch(struct HdfDeviceIoClient *client, int cmdId,
@@ -408,11 +427,11 @@ drivers
    }
    ```
 
-### 4.Audio服务介绍
+### Audio服务介绍
 
-#### 4.1 服务节点
+#### 服务节点
 
-​		基于ADM框架的audio驱动对HDI层提供三个服务hdf_audio_render、hdf_audio_capture、hdf_audio_control。
+基于ADM框架的audio驱动对HDI层提供三个服务hdf_audio_render、hdf_audio_capture、hdf_audio_control。
 开发板audio驱动服务节点如下：
 
 ```
@@ -423,11 +442,19 @@ crw------- 1 system system 249,   4 1970-01-01 00:21 hdf_audio_control  //音频
 crw------- 1 system system 249,   6 1970-01-01 00:21 hdf_audio_render  //播放数据流务。
 ```
 
-**音频控制流服务：**用来接收上层lib层下发的控制指令包括音量控制、增益控制、通路控制等都是通过控制流服务下发到驱动。
-**音频数据播放流服务：**用来接收上层lib层下发的音频数据和播放相关的参数还有播放的启动、暂停、恢复、停止指令都是由播放数据流下发到驱动。
-**音频数据录音流服务：**用来向上层lib层传输音频数据和接收上层lib层下发的录音相关的参数，还有录音的启动、暂停、恢复、停止指令都是由录音数据流下发到驱动。
+1. 音频控制流服务
 
-#### 4.2 驱动服务
+   用来接收上层lib层下发的控制指令，包括音量控制、增益控制、通路控制，这些控制指令都是通过控制流服务下发到驱动。
+
+2. 音频数据播放流服务
+
+   用来接收上层lib层下发的音频数据和播放相关的参数，还有播放的启动、暂停、恢复、停止指令，这些指令都是由播放数据流下发到驱动。
+
+3. 音频数据录音流服务
+
+   用来向上层lib层传输音频数据和接收上层lib层下发的录音相关的参数，还有录音的启动、暂停、恢复、停止指令，这些指令都是由录音数据流下发到驱动。
+
+#### 驱动服务
 
 每个audio设备包括如下服务：
 
@@ -445,7 +472,7 @@ crw------- 1 system system 249,   6 1970-01-01 00:21 hdf_audio_render  //播放�
 | codec_service_1          | accessory 驱动服务（特指smartPA） |
 | dsp_service_0            | dsp 驱动服务（可选项）            |
 
-#### 4.3 代码路径
+#### 代码路径
 
 ```
 vendor/rockchip/rk3399/hdf_config/khdf
@@ -455,7 +482,7 @@ vendor/rockchip/rk3399/hdf_config/khdf
 └── hdf.hcs							#引用hcs配置文件			
 ```
 
-#### 4.4 配置节点说明
+#### 配置节点说明
 
 以codec驱动为例，在device_info.hcs文件中的audio host节点下添加codec节点信息。
 
@@ -479,7 +506,7 @@ vendor/rockchip/rk3399/hdf_config/khdf
         }
 ```
 
-#### 4.5 实现驱动
+#### 实现驱动
 
 在驱动文件中实现与device_info.hcs配置节点moduleName相同的驱动逻辑。
 
@@ -508,15 +535,15 @@ struct HdfDriverEntry g_es8316DriverEntry = {
 HDF_INIT(g_es8316DriverEntry);
 ```
 
-### 5.总结
+### 总结
 
-​		基于HDF框架的ADM音频框架，为Open Harmony的音频开发提供了统一的架构基础，为各平台音频驱动适配提供了统一的接口。音频驱动可以一平台开发多平台适用提高了开发效率。此文档对ADM框架进行了简单的介绍，希望有助于你开发和应用。
+​		基于HDF框架的ADM音频框架，为Open Harmony的音频开发提供了统一的架构基础，为各平台音频驱动适配提供了统一的接口。音频驱动可以一平台开发多平台适用，提高了开发效率。此文档对ADM框架进行了简单的介绍，希望有助于开发者开发和应用。
 
 ## **Camera**
 
 ### 1.简介
 
-本文基于OpenHarmony 3.0为基础，讲解基于HDF(Hardware Driver Foundation)驱动框架开发的Camera驱动框架，包括Camera驱动的架构组成、功能部件的实现和服务节点详细介绍。
+本文以OpenHarmony 3.0为基础，讲解基于HDF(Hardware Driver Foundation)驱动框架开发的Camera驱动框架，包括Camera驱动的架构组成、功能部件的实现和服务节点详细介绍。
 
 ### 2.Camera驱动框架图
 
@@ -526,11 +553,11 @@ HDF_INIT(g_es8316DriverEntry);
 
 以Camera Host 部分做如下说明：
 
-1. HDI实现层(HDI Implementation)：对上实现OHOS相机标准南向接口。
+1. HDI实现层(HDI Implementation)：对上实现Open Harmony OS相机标准南向接口。
 2. 框架层(PipelineCore)：对接HDI实现层的控制、流的转发，实现数据通路的搭建、管理相机各个硬件设备等功能。
 3. 适配层(Platform Adaption)：屏蔽底层芯片和OS差异，支持多平台适配。
 
-对于rk3399E/T的Usb Camera来分析，内核使用linux-4.19。Usb Camera依赖linux下的V4L2的uvc，从上面的框架图分析HDF Camera已经实现了兼容linux 的 V4L2 uvc，所以调试过程首先要保证uvc所涉及的USB和Camera的驱动OK。
+对于rk3399E/T的Usb Camera来分析，内核使用linux-4.19。Usb Camera依赖linux下的V4L2的uvc，从上面的框架图分析HDF Camera已经实现了兼容linux 的 V4L2 uvc，所以调试过程首先要保证uvc所涉及的USB和Camera的驱动正常。
 
 
 ### 3.Camera驱动介绍
@@ -585,7 +612,7 @@ crw-rw---- 1 root root 81,   9 2013-01-18 10:59 dev/video9
 
 #### 3.3 打开设备节点
 
-在OHOS的代码环境中，编译如下代码为可执行程序，在开发板测执行，无报错说明该节点open success。
+在Open Harmony OS的代码环境中，编译如下代码为可执行程序，在开发板测执行，无报错说明该节点open success。
 
 ```c
 #include <stdio.h>
@@ -659,7 +686,7 @@ int main(void)
 }
 ```
 
-在OHOS的代码环境中，编译如上代码为可执行程序，在开发板测执行。结果显示支持YUYV和MJPEG 2种输出格式。
+在Open Harmony OS的代码环境中，编译如上代码为可执行程序，在开发板测执行。结果显示支持YUYV和MJPEG 2种输出格式。
 
 		index=0
 		flags=0
@@ -695,7 +722,7 @@ int main(void)
 		return -1;
 	}
 
-	// 3. 设置采集格式
+	// 2. 设置采集格式
 	struct v4l2_format vfmt;
 	vfmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	vfmt.fmt.pix.width = 640;
@@ -714,7 +741,7 @@ int main(void)
         return -1;
 	}
 
-    // 4. 申请内核缓冲区队列
+    // 3. 申请内核缓冲区队列
     struct v4l2_requestbuffers reqbuffer;
     reqbuffer.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     reqbuffer.count = 4; // 申请4个缓冲区
@@ -725,27 +752,27 @@ int main(void)
         return -1;
     }
 
-    // 9. 关闭设备
+    // 4. 关闭设备
     close(fd);
     return 0;
 }
 ```
 
-在OHOS的代码环境中，编译如上代码为可执行程序，在开发板测执行。
+在Open Harmony OS的代码环境中，编译如上代码为可执行程序，在开发板测执行。
 
 执行结果：req buffer fail
 
 原因分析：ioctl(fd, VIDIOC_REQBUFS, &reqbuffer); 失败
 
-定位方法1：在内核中加LOG定位VIDIOC_REQBUFS失败的地方。发现所有的ioctl命令下发后都会走drivers/media/v4l2-core/v4l2-ioctl.c中的video_usercopy接口，但还是没有定位到具体的失败原因。
+定位方法1：在内核中加LOG定位VIDIOC_REQBUFS失败的地方。发现所有的ioctl命令下发后都会使用drivers/media/v4l2-core/v4l2-ioctl.c中的video_usercopy接口，但还是没有定位到具体的失败原因。
 
 定位方法2：求助视美泰验证linux-4.19内核debian版本的Usb Camera是否OK。结果：debian版本使用gst-launch-1.0 v4l2src device=/dev/video10 ! image/jpeg, width= 1280, height=720, framerate=30/1 ! jpegparse ! mppjpegdec ! kmssink sync=false命令后HDMI屏幕可以出来正常的预览画面。
 
-通过如上的操作后，基本可以确认linux的V4L2 uvc驱动和外设Usb Camera驱动都是OK的。接下来就该调试OHOS的HDF Camera了。
+通过如上的操作后，基本可以确认linux的V4L2 uvc驱动和外设Usb Camera驱动都是正常的。接下来就该调试Open Harmony OS的HDF Camera了。
 
 #### 3.5 接口介绍
 
-查看现有OHOS上的关于camera的可执行程序：ohos_camera_demo、v4l2_main
+查看现有Open Harmony OS上的关于camera的可执行程序：ohos_camera_demo、v4l2_main
 
 ##### 3.5.1 ohos_camera_demo
 
@@ -813,7 +840,7 @@ ls: dev/fb0: No such file or directory
 ./sys/devices/platform/display-subsystem/graphics/fb0
 ```
 
-需把v4l2_main可执行程序中的dev/fb0改为dev/graphics/fb0即可。此处fb0为framebuffer，作用是在屏幕上显示预览画面。
+需把v4l2_main可执行程序中的dev/fb0改为dev/graphics/fb0。此处fb0为framebuffer，作用是在屏幕上显示预览画面。
 
 修改点：drivers/peripheral
 
@@ -916,20 +943,20 @@ ERROR:main test:V4L2PreviewThread CreatBuffer fail i = 0
 
 原因分析：ioctl(fd, VIDIOC_QUERYBUF, &buf)失败。回过头再看"调试linux L4V2 uvc驱动章节->设置格式申请缓冲区队列"中的报错也是
 
-ioctl(fd, VIDIOC_REQBUFS, &reqbuffer)。由此分析出OHOS上的ioctl VIDIOC_REQBUFS都会报错。再看两次失败的差异点：
+ioctl(fd, VIDIOC_REQBUFS, &reqbuffer)。由此分析出Open Harmony OS上的ioctl VIDIOC_REQBUFS都会报错。再看两次失败的差异点：
 
 内存映射方式不同： V4L2_MEMORY_MMAP和V4L2_MEMORY_USERPTR
 
 从OpenHarmony的issuse得知暂不支持V4L2_MEMORY_MMAP内存映射，映射方式就分析到这里，接下来还是用v4l2_main的V4L2_MEMORY_USERPTR进行调试分析。
 
-https://gitee.com/openharmony/drivers_peripheral/issues/I4EFWP  
+参考：[V4L2设备增加MMAP申请内存的方式](https://gitee.com/openharmony/drivers_peripheral/issues/I4EFWP)和下图
 
-![](figures/isoftstone/yangfan-camera-01.png)
+![](figures/isoftstone/yangfan-ioctl.png)
 
 接着再分析ioctl(fd, VIDIOC_QUERYBUF, &buf)失败，查看VIDIOC_QUERYBUF的定义：videodev2.h
 
 ```c
-#define VIDIOC_QUERYBUF            _IOWR('V',  9, struct v4l2_buffer)
+#define VIDIOC_QUERYBUF_IOWR('V',  9, struct v4l2_buffer)
 ```
 
 此处插入ioctl的定义：int ioctl(int fd, int cmd, …); VIDIOC_QUERYBUF作为cmd的入参，是int类型。也就是一个数字命令码，该命令码通过ioctl发送给内核后，会有与之对应的函数操作，故用户态下发的命令码应和内核接受的命令码一致。下面验证命令码一致性。
@@ -1400,7 +1427,7 @@ index 0842a47c6..8aa60407f 100644
    +#endif
    ```
 
-   再次编译v4l2_main后执行，log无报错。HDMI屏上就出来预览画面。![](figures/isoftstone/yangfan-picture-hdmi.png)
+   再次编译v4l2_main后执行，log无报错。HDMI屏上就显示预览画面。![](figures/isoftstone/yangfan-picture-hdmi.png)
 
    
 
@@ -1590,7 +1617,7 @@ struct v4l2_buffer {
     }
    ```
 #### FAQ问题
-   
+
 ##### 解决触屏横竖反转问题
 
 修改**drivers/framework/model/input/driver/touchscreen/touch_gt911.c**中的**ParsePointData**函数，x和y对调即可
