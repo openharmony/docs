@@ -39,7 +39,7 @@ LiteOS-M已经支持ARM Cortex-M3、ARM Cortex-M4、ARM Cortex-M7、ARM Cortex-M
 
 目录结构如下。
 
-```tex
+```text
 /kernel/liteos_m
 ├── arch                 # 内核指令架构层目录
 │   ├── arm              # arm 架构代码
