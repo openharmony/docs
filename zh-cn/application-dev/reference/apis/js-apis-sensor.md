@@ -1880,11 +1880,11 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
-| 参数名             | 类型                                       | 必填   | 说明                |
-| --------------- | ---------------------------------------- | ---- | ----------------- |
-| locationOptions | [LocationOptions](#locationoptions)      | 是    | 地理位置。             |
-| timeMillis      | number                                   | 是    | 表示获取磁偏角的时间，单位为毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是    | 返回磁场信息。           |
+| 说明                               | 参数名          | 类型                                                         | 必填 |
+| ---------------------------------- | --------------- | ------------------------------------------------------------ | ---- |
+| 地理位置。                         | locationOptions | [LocationOptions](#locationoptions)                          | 是   |
+| 表示获取磁偏角的时间，单位为毫秒。 | timeMillis      | number                                                       | 是   |
+| 返回磁场信息。                     | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   |
 
 **示例：** 
 ```js
@@ -2384,6 +2384,124 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   })
   ```
 
+## sensor.getSensorLists
+
+ getSensorLists(callback: AsyncCallback&lt;sensor&gt;): void
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                   | 必填 | 说明             |
+| -------- | -------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器链表。 |
+
+**示例：** 
+
+```
+sensor.getSensorList(function(err, data)  {
+      if (err) {
+          console.error('getSensorList failed, : code' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+      for (var i=0; i < data.length; i++) {
+          console.info("data[" + i + "]: " + data[i]);
+      }
+  })
+```
+
+## sensor.getSensorLists
+
+ getSensorLists(): Promise< Array&lt;Sensor&gt;>
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 参数名  | 类型                             | 必填 | 说明             |
+| ------- | -------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器链表。 |
+
+**示例：** 
+
+```
+  const promise = sensor.getSensorList();
+      promise.then((data) => {
+          console.info('getSensorList successed');
+          for (var i=0; i < data.length; i++) {
+              console.info("data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+```
+
+##  sensor. getSingleSensor 
+
+getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                   | 必填 | 说明                     |
+| -------- | -------------------------------------- | ---- | ------------------------ |
+| type     | SensorType                             | 是   | 指示传感器类型。         |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回获取到的单个传感器。 |
+
+**示例：** 
+
+```
+sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(err, data)  {
+      if (err) {
+          console.error('getSingleSensor failed, code: ' + err.code + ', message: ' +
+                        err.message);
+          return;
+      }
+       console.info("data: " + data)
+  })
+```
+
+##  sensor. getSingleSensor 
+
+ getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型       | 必填 | 说明             |
+| ------ | ---------- | ---- | ---------------- |
+| type   | SensorType | 是   | 指示传感器类型。 |
+
+**返回值：** 
+
+| 参数名  | 类型                             | 必填 | 说明                     |
+| ------- | -------------------------------- | ---- | ------------------------ |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回获取到的单个传感器。 |
+
+**示例：**
+
+```
+  const promise = sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER);
+      promise.then((data) => {
+          console.info('getSingleSensor successed');
+          console.info("data: " + data)
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+```
+
+
 
 ## SensorType
 
@@ -2425,9 +2543,27 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称        | 参数类型   | 可读   | 可写   | 说明           |
-| --------- | ------ | ---- | ---- | ------------ |
-| timestamp | number | 是    | 是    | 传感器数据上报的时间戳。 |
+| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
+| --------- | -------- | ---- | ---- | ------------------------ |
+| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
+
+## Sensor
+
+指示传感器信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称            | 参数类型 | 可读 | 可写 | 说明                   |
+| --------------- | -------- | ---- | ---- | ---------------------- |
+| sensorName      | string   | 是   | 是   | 传感器名称。           |
+| venderName      | string   | 是   | 是   | 传感器供应商。         |
+| firmwareVersion | string   | 是   | 是   | 传感器固件版本。       |
+| hardwareVersion | string   | 是   | 是   | 传感器硬件版本。       |
+| sensorTypeId    | number   | 是   | 是   | 传感器类型 Id。        |
+| maxRange        | number   | 是   | 是   | 传感器的最大测量范围。 |
+| precision       | number   | 是   | 是   | 传感器精度。           |
+| power           | number   | 是   | 是   | 传感器电源。           |
+
 
 
 ## AccelerometerResponse
