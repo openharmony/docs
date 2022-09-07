@@ -2650,7 +2650,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2678,7 +2678,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2706,7 +2706,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
