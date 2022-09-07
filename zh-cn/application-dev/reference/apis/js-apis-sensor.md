@@ -1880,11 +1880,11 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
-| 说明                               | 参数名          | 类型                                                         | 必填 |
-| ---------------------------------- | --------------- | ------------------------------------------------------------ | ---- |
-| 地理位置。                         | locationOptions | [LocationOptions](#locationoptions)                          | 是   |
-| 表示获取磁偏角的时间，单位为毫秒。 | timeMillis      | number                                                       | 是   |
-| 返回磁场信息。                     | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   |
+| 参数名          | 类型                                                         | 必填 | 说明                               |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
+| timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
 
 **示例：** 
 ```js
@@ -2563,8 +2563,6 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(
 | maxRange        | number   | 是   | 是   | 传感器的最大测量范围。 |
 | precision       | number   | 是   | 是   | 传感器精度。           |
 | power           | number   | 是   | 是   | 传感器电源。           |
-
-
 
 ## AccelerometerResponse
 
