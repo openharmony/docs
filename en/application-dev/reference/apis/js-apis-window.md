@@ -91,11 +91,11 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type| Readable| Writable| Description                                                        |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| statusBarColor                         | string   | No  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
 | statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
+| navigationBarColor                     | string   | No  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
 ## Orientation<sup>9+</sup>
@@ -129,11 +129,11 @@ Describes the callback for a single system bar.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
-| isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
-| region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
+| type            | [WindowType](#windowtype) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
+| isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed.                                        |
+| region          | [Rect](#rect)             | Yes  | No  | Current position and size of the system bar.                                    |
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
 
@@ -146,7 +146,7 @@ Describes the callback for the current system bar.
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information that has been changed.|
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
 
@@ -204,7 +204,7 @@ Describes the window properties.
 | dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
 | isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                                 |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
-| isRoundCorner<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
+| isRoundCorner<sup>7+</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
 | isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
 
 ## ColorSpace<sup>8+</sup>
@@ -1223,7 +1223,8 @@ Obtains the area where this window cannot be displayed, for example, the system 
 **Example**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1701,7 +1702,7 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1727,7 +1728,7 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1789,9 +1790,9 @@ windowClass.off('windowSizeChange');
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Enables listening for changes to the area where the window cannot be displayed.
-> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1815,9 +1816,9 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Disables listening for changes to the area where the window cannot be displayed.
-> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2143,7 +2144,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2171,7 +2172,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 
 **Return value**
 
@@ -3143,7 +3144,7 @@ setShowOnLockScreen(showOnLockScreen: boolean): void
 
 Sets whether to display the window of the application on the lock screen.
 
-**System API**: This is a system API.
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
