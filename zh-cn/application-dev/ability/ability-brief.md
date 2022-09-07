@@ -5,7 +5,7 @@ Ability是应用所具备能力的抽象，也是应用程序的重要组成部�
 Ability框架模型具有两种形态：
 
 - 第一种形态为FA模型。API 8及其更早版本的应用程序只能使用FA模型进行开发。FA模型将Ability分为FA（Feature Ability）和PA（Particle Ability）两种类型，其中FA支持Page Ability，PA支持Service Ability、Data Ability、以及FormAbility。
-- 第二种形态为Stage模型。从API 9开始，Ability框架引入了Stage模型作为第二种应用框架形态，Stage模型将Ability分为Ability和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等一系列ExtensionAbility，以便满足更多的使用场景。
+- 第二种形态为Stage模型。从API 9开始，Ability框架引入了Stage模型作为第二种应用框架形态，Stage模型将Ability分为PageAbility和ExtensionAbility两大类，其中ExtensionAbility又被扩展为ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility等一系列ExtensionAbility，以便满足更多的使用场景。
 
 Stage模型的设计，主要是为了开发者更加方便地开发出分布式环境下的复杂应用。下表给出了两种模型在设计上的差异：
 
@@ -31,4 +31,5 @@ Stage模型的设计，主要是为了开发者更加方便地开发出分布式
 
 ## 相关实例
 针对Ability开发，有以下相关实例可供参考：
+
 - [Page内和Page间导航跳转（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
