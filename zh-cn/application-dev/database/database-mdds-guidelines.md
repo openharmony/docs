@@ -13,13 +13,13 @@
 
 | 接口名称                                                     | 描述                                            |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| createKVManager(config:KVManagerConfig,callback:AsyncCallback&lt;KVManager&gt;):void<br/>createKVManager(config:KVManagerConfig):Promise&lt;KVManager> | 创建一个`KVManager`对象实例，用于管理数据库对象。 |
-| getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options,callback:AsyncCallback&lt;T&gt;):void<br/>getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options):Promise&lt;T&gt; | 指定`Options`和`storeId`，创建并获取`KVStore`数据库。 |
-| put(key:string,value:Uint8Array\|string\|number\|boolean,callback:AsyncCallback&lt;void&gt;):void<br/>put(key:string,value:Uint8Array\|string\|number\|boolean):Promise&lt;void> | 插入和更新数据。                                |
-| delete(key:string,callback:AsyncCallback&lt;void&gt;):void<br/>delete(key:string):Promise&lt;void> | 删除数据。                                      |
-| get(key:string,callback:AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;):void<br/>get(key:string):Promise&lt;Uint8Array\|string\|boolean\|number> | 查询数据。                                      |
-| on(event:'dataChange',type:SubscribeType,observer:Callback&lt;ChangeNotification&gt;):void<br/>on(event:'syncComplete',syncCallback:Callback&lt;Array&lt;[string,number]&gt;&gt;):void | 订阅数据库中数据的变化。                        |
-| sync(deviceIdList:string[],mode:SyncMode,allowedDelayMs?:number):void | 在手动模式下，触发数据库同步。                  |
+| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br/>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | 创建一个`KVManager`对象实例，用于管理数据库对象。 |
+| getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br/>getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | 指定`Options`和`storeId`，创建并获取`KVStore`数据库。 |
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br/>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | 插入和更新数据。                                |
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br/>delete(key: string): Promise&lt;void> | 删除数据。                                      |
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br/>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | 查询数据。                                      |
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br/>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string,number]&gt;&gt;): void | 订阅数据库中数据的变化。                        |
+| sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | 在手动模式下，触发数据库同步。                  |
 
 
 
