@@ -61,9 +61,9 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
 
 2. Register the Service Extension ability.
 
-   Declare the Service Extension ability in the **module.json** file by setting its **type** attribute to **service**.
+   Declare the Service Extension ability in the **module.json5** file by setting its **type** attribute to **service**.
 
-   **module.json configuration example**
+   **module.json5 configuration example**
 
 ```json
 "extensionAbilities":[{
