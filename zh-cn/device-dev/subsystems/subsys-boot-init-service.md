@@ -162,7 +162,21 @@
    | int ServiceSetReady(const char *serviceName) | 设置服务准备 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 |
    | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | 定时启动服务 | 返回值：成功返回0，失败返回-1 <br> 参数: <br> serviceName: 服务名 <br> timeout: 超时时间 |
    | int StopServiceTimer(const char *serviceName)  | 停止服务计时器 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 |
+-  服务控制接口的DAC配置
 
+   服务控制接口配置DAC，需要修改文件https://gitee.com/openharmony/startup_init_lite/blob/master/services/etc/group，在组servicectrl中添加对应的用户id，例如：
+
+   ```java
+   servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
+   ```
+- 注意
+
+  int DoReboot(const char *cmdContent) 接口配置DAC，需要修改文件https://gitee.com/openharmony/startup_init_lite/blob/master/services/etc/group，在组powerctrl中添加对应的用户id，例如：
+
+  ```java
+  powerctrl:x:1051:root,shell,system,update,power_host
+  ```
+  
 ### 开发步骤
    此处以要新增一个名为MySystemApp的系统服务为例进行说明，使用如下配置：
 
