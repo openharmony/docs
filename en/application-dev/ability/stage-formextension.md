@@ -4,7 +4,7 @@
 
 A widget is a set of UI components used to display important information or operations for an application. It provides users with direct access to a desired application service, without requiring them to open the application.
 
-A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive functions such as opening a UI page or sending a message.  
+A widget displays brief information about an application on the UI of another application (host application, currently system applications only) and provides basic interactive functions such as opening a UI page or sending a message.
 
 Basic concepts:
 
@@ -49,10 +49,10 @@ The **FormExtension** class also has a member context, that is, the **FormExtens
 
 **Table 2** FormExtensionContext APIs
 
-| API                                                      | Description                     |
-| :----------------------------------------------------------- | :------------------------ |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<void>): void | Updates a widget. This API uses an asynchronous callback to return the result.   |
-| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise\<void> | Updates a widget. This API uses a promise to return the result.|
+| API                                                      | Description                                                        |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void | Starts an ability. This API uses an asynchronous callback to return the result. (This is a system API and cannot be called by third-party applications.)|
+| startAbility(want: Want): Promise&lt;void&gt;                | Starts an ability. This API uses a promise to return the result. (This is a system API and cannot be called by third-party applications.)|
 
 For details about the **FormProvider** APIs, see [FormProvider](../reference/apis/js-apis-formprovider.md).
 
@@ -86,7 +86,7 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
    export default class FormAbility extends FormExtension {
        onCreate(want) {
            console.log('FormAbility onCreate');
-           // Persistently store widget information for subsequent use, such as during widget instance retrieval or update.
+           // Persistently store widget information for subsequent use, such as widget instance retrieval or update.
            let obj = {
                "title": "titleOnCreate",
                "detail": "detailOnCreate"
@@ -176,8 +176,8 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
   | supportDimensions   | Grid styles supported by the widget. Available values are as follows:<br>**1 * 2**: indicates a grid with one row and two columns.<br>**2 * 2**: indicates a grid with two rows and two columns.<br>**2 * 4**: indicates a grid with two rows and four columns.<br>**4 * 4**: indicates a grid with four rows and four columns.| String array| No                      |
   | defaultDimension    | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String    | No                      |
   | updateEnabled       | Whether the widget can be updated periodically. Available values are as follows:<br>**true**: The widget can be updated periodically, depending on the update way you select, either at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** is recommended.<br>**false**: The widget cannot be updated periodically.| Boolean  | No                      |
-  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.        | String    | Yes (initial value: **0:0**) |
-  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.| Number      | Yes (initial value: **0**)   |
+  | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>This parameter has a lower priority than **updateDuration**. If both are specified, the value specified by **updateDuration** is used.| String    | Yes (initial value: **0:0**) |
+  | updateDuration      | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer ***N***, the interval is calculated by multiplying ***N*** and 30 minutes.<br>This parameter has a higher priority than **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number      | Yes (initial value: **0**)   |
   | formConfigAbility   | Link to a specific page of the application. The value is a URI.                       | String    | Yes (initial value: left empty)    |
   | formVisibleNotify   | Whether the widget is allowed to use the widget visibility notification.                        | String    | Yes (initial value: left empty)    |
   | metaData            | Metadata of the widget. This field contains the array of the **customizeData** field.           | Object      | Yes (initial value: left empty)    |
@@ -200,7 +200,6 @@ To create a widget in the stage model, implement the lifecycle callbacks of **Fo
           "defaultDimension": "2*2",
           "updateEnabled": true,
           "scheduledUpdateTime": "10:30",
-          "updateDuration": 1,
           "formConfigAbility": "ability://ohos.samples.FormApplication.MainAbility"
       }]
   }
@@ -218,8 +217,8 @@ Mostly, the widget provider is started only when it needs to obtain information 
            let formId = want.parameters["ohos.extra.param.key.form_identity"];
            let formName = want.parameters["ohos.extra.param.key.form_name"];
            let tempFlag = want.parameters["ohos.extra.param.key.form_temporary"];
-           // Persistently store widget data for subsequent use, such as widget instance retrieval and update.
-           // The storeFormInfo API is not implemented here. For details about the implementation, see "Samples" below.
+           // Persistently store widget data for subsequent use, such as widget instance retrieval or update.
+           // The storeFormInfo API is not implemented here.
            storeFormInfo(formId, formName, tempFlag, want);
 
            let obj = {
@@ -238,7 +237,7 @@ You should override **onDestroy** to delete widget data.
            console.log('FormAbility onDestroy');
 
            // You need to implement the code for deleting the persistent widget data.
-           // The deleteFormInfo API is not implemented here. For details about the implementation, see "Samples" below.
+           // The deleteFormInfo API is not implemented here.
            deleteFormInfo(formId);
        }
 ```
@@ -277,10 +276,11 @@ onUpdate(formId) {
 
 You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programmed widget.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > Currently, only the JavaScript-based web-like development paradigm can be used to develop the widget UI.
 
-   - hml:
+   - In the HML file:
    ```html
    <div class="container">
        <stack>
@@ -295,7 +295,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
    </div>
    ```
 
-   - css:
+   - In the CSS file:
 
    ```css
 .container {
@@ -336,7 +336,7 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 }
    ```
 
-   - json:
+   - In the JSON file:
    ```json
    {
      "data": {
