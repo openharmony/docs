@@ -46,7 +46,7 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，媒体子系�
 | ohos.multimedia.image | PixelMap | scale(x: number, y: number, callback: AsyncCallback\<void>): void;<br>scale(x: number, y: number): Promise\<void>; | 新增 |
 | ohos.multimedia.image | PixelMap | createAlphaPixelmap(): Promise\<PixelMap>;<br>createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void; | 新增 |
 | ohos.multimedia.image | PixelMap | opacity(rate: number, callback: AsyncCallback\<void>): void;<br>opacity(rate: number): Promise\<void>; | 新增 |
-| ohos.multimedia.image | PixelMap | getDensity():number; | 新增 |
+| ohos.multimedia.image | PixelMap | getDensity(): number; | 新增 |
 | ohos.multimedia.image | SourceOptions | sourceSize?: Size; | 新增 |
 | ohos.multimedia.image | SourceOptions | sourcePixelFormat?: PixelMapFormat; | 新增 |
 | ohos.multimedia.image | SourceOptions | sourceDensity: number; | 新增 |
@@ -55,11 +55,11 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，媒体子系�
 | ohos.multimedia.media | VideoPlayer | on(type: 'availableBitratesCollected', callback: (bitrates: Array\<number>) => void): void | 新增 |
 | ohos.multimedia.media | VideoPlayer | on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void; | 新增 |
 | ohos.multimedia.media | VideoPlayer | selectBitrate(bitrate: number): Promise\<number>;<br>selectBitrate(bitrate: number, callback: AsyncCallback\<number>): void; | 新增 |
-| ohos.multimedia.media | VideoPlayer | videoScaleType ?: VideoScaleType; | 新增 |
-| ohos.multimedia.media | VideoPlayer | audioInterruptMode ?: audio.InterruptMode; | 新增 |
+| ohos.multimedia.media | VideoPlayer | videoScaleType?: VideoScaleType; | 新增 |
+| ohos.multimedia.media | VideoPlayer | audioInterruptMode?: audio.InterruptMode; | 新增 |
 | ohos.multimedia.media | VideoPlayer | fdSrc: AVFileDescriptor; | 新增 |
 | ohos.multimedia.media | AudioPlayer | on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void; | 新增 |
-| ohos.multimedia.media | AudioPlayer | audioInterruptMode ?: audio.InterruptMode; | 新增 |
+| ohos.multimedia.media | AudioPlayer | audioInterruptMode?: audio.InterruptMode; | 新增 |
 | ohos.multimedia.media | AudioPlayer | fdSrc: AVFileDescriptor; | 新增 |
 | ohos.multimedia.media | AVFileDescriptor | length?: number | 新增 |
 | ohos.multimedia.media | AVFileDescriptor | offset?: number | 新增 |
