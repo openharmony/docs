@@ -35,21 +35,21 @@ Describes the attributes of a display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| id | number | Yes| No| ID of the display.|
-| name | string | Yes| No| Name of the display.|
-| alive | boolean | Yes| No| Whether the display is alive.|
-| state | [DisplayState](#displaystate) | Yes| No| State of the display.|
-| refreshRate | number | Yes| No| Refresh rate of the display.|
-| rotation | number | Yes| No| Screen rotation angle of the display.|
-| width | number | Yes| No| Width of the display, in pixels.|
-| height | number | Yes| No| Height of the display, in pixels.|
-| densityDPI | number | Yes| No| Screen density of the display, in DPI.|
-| densityPixels | number | Yes| No| Screen density of the display, in pixels.|
-| scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display.|
-| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction.|
-| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction.|
+| Name          | Type                          | Readable | Writable | Description                                                  |
+| ------------- | ----------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| id            | number                        | Yes      | No       | ID of the display.                                           |
+| name          | string                        | Yes      | No       | Name of the display.                                         |
+| alive         | boolean                       | Yes      | No       | Whether the display is alive.                                |
+| state         | [DisplayState](#displaystate) | Yes      | No       | State of the display.                                        |
+| refreshRate   | number                        | Yes      | No       | Refresh rate of the display.                                 |
+| rotation      | number                        | Yes      | No       | Screen rotation angle of the display.                        |
+| width         | number                        | Yes      | No       | Width of the display, in pixels.                             |
+| height        | number                        | Yes      | No       | Height of the display, in pixels.                            |
+| densityDPI    | number                        | Yes      | No       | Screen density of the display, in DPI.                       |
+| densityPixels | number                        | Yes      | No       | Screen density of the display, in pixels.                    |
+| scaledDensity | number                        | Yes      | No       | Scaling factor for fonts displayed on the display.           |
+| xDPI          | number                        | Yes      | No       | Exact physical dots per inch of the screen in the horizontal direction. |
+| yDPI          | number                        | Yes      | No       | Exact physical dots per inch of the screen in the vertical direction. |
 
 
 ## display.getDefaultDisplay
@@ -61,22 +61,24 @@ Obtains the default display object. This API uses an asynchronous callback to re
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | Yes| Callback used to return the default display object.|
 
 **Example**
-  ```js
-  var displayClass = null;
-  display.getDefaultDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-      displayClass = data;
-  });
-  ```
+
+```js
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+    displayClass = data;
+});
+```
 
 ## display.getDefaultDisplay
 
@@ -88,20 +90,22 @@ Obtains the default display object. This API uses a promise to return the result
 
 **Return value**
 
-  | Type                              | Description                                          |
-  | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
+| Type                              | Description                                          |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise used to return the default display object.|
 
 **Example**
 
-  ```js
-  let promise = display.getDefaultDisplay();
-  promise.then(() => {
-      console.log('getDefaultDisplay success');
-  }).catch((err) => {
-      console.log('getDefaultDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+var displayClass = null;
+let promise = display.getDefaultDisplay();
+promise.then((data) => {
+    displayClass = data;
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+});
+```
 
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
@@ -133,21 +137,21 @@ Obtains all display objects. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-  | Name  | Type                                                | Mandatory| Description                           |
-  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
+| Name  | Type                                                | Mandatory| Description                           |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | Yes  | Callback used to return all the display objects.|
 
 **Example**
 
-  ```js
-  display.getAllDisplay((err, data) => {
-      if (err.code) {
-          console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-          return;
-      }
-      console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data))
-  });
-  ```
+```js
+display.getAllDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
 
 ## display.getAllDisplay
 
@@ -159,20 +163,20 @@ Obtains all display objects. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type                                           | Description                                                   |
-  | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
+| Type                                           | Description                                                   |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise used to return all the display objects.|
 
 **Example**
 
-  ```js
-  let promise = display.getAllDisplay();
-  promise.then(() => {
-      console.log('getAllDisplay success');
-  }).catch((err) => {
-      console.log('getAllDisplay fail: ' + JSON.stringify(err));
-  });
-  ```
+```js
+let promise = display.getAllDisplay();
+promise.then((data) => {
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));    
+});
+```
 
 ## display.on('add'|'remove'|'change')
 
@@ -183,19 +187,20 @@ Subscribes to display changes.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display.|
 
 **Example**
-  ```js
-  var callback = (data) => {
-      console.info('Listening enabled. Data: ' + JSON.stringify(data))
-  }
-  display.on("add", callback);
-  ```
 
+```js
+var callback = (data) => {
+    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+}
+display.on("add", callback);
+```
 
 ## display.off('add'|'remove'|'change')
 
@@ -206,12 +211,14 @@ Unsubscribes from display changes.
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type.<br>- **add**, indicating the display addition event.<br>- **remove**, indicating the display removal event.<br>- **change**, indicating the display change event.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the ID of the display.|
 
 **Example**
+
   ```js
   display.off("remove");
   ```
