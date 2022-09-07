@@ -133,7 +133,7 @@ byteLength(string: string | Buffer | TypeArray | DataView | ArrayBuffer | Shared
 import buffer from '@ohos.buffer';
 
 let str = '\u00bd + \u00bc = \u00be';
-console.log('${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes');
+console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
 // 打印: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
@@ -166,8 +166,9 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
+let res = buf1.compare(buf2);
 
-console.log(buf1.compare(buf2));
+console.log(Number(res).toString());
 // 打印 1
 ```
 
@@ -200,7 +201,7 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
-console.log(buf); // <Buffer 31 32 33 34 61 62 63 64>
+console.log(buf.toString('hex')); // 3132333461626364
 ```
 
 ### from
@@ -228,11 +229,8 @@ from(array: number[]): Buffer
 ```ts
 import buffer from '@ohos.buffer';
 
-let arrayList = new ArrayList();
-
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-console.log(buf);
-// 打印: <Buffer 62 75 66 66 65 72>
+console.log(buf.toString('hex')); // 627566666572
 ```
 
 ### from
@@ -416,10 +414,10 @@ isEncoding(encoding: string): boolean
 ```ts
 import buffer from '@ohos.buffer';
 
-console.log(Buffer.isEncoding('utf-8'));	// 打印: true
-console.log(Buffer.isEncoding('hex'));	// 打印: true
-console.log(Buffer.isEncoding('utf/8'));	// 打印: false
-console.log(Buffer.isEncoding(''));	// 打印: false
+console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
+console.log(buffer.isEncoding('hex').toString());	// 打印: true
+console.log(buffer.isEncoding('utf/8').toString());	// 打印: false
+console.log(buffer.isEncoding('').toString());	// 打印: false
 ```
 
 ### compare
@@ -452,9 +450,9 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 
-console.log(buf1.compare(buf2, 5, 9, 0, 4));	// 打印: 0
-console.log(buf1.compare(buf2, 0, 6, 4));	// 打印: -1
-console.log(buf1.compare(buf2, 5, 6, 5));	// 打印: 1
+console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// 打印: 0
+console.log(buf1.compare(buf2, 0, 6, 4).toString());	// 打印: -1
+console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
 ```
 
 ### copy
@@ -512,7 +510,7 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (let pair of buf.entries()) {
-  console.log(pair);
+  console.log(pair.toString());
 }
 ```
 
@@ -545,8 +543,8 @@ let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
 let buf3 = buffer.from('ABCD');
 
-console.log(buf1.equals(buf2));	// 打印: true
-console.log(buf1.equals(buf3));	// 打印: false
+console.log(buf1.equals(buf2).toString());	// 打印: true
+console.log(buf1.equals(buf3).toString());	// 打印: false
 
 ```
 
@@ -611,8 +609,8 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.includes('this'));	// 打印: true
-console.log(buf.includes('be'));	// 打印: false
+console.log(buf.includes('this').toString());	// 打印: true
+console.log(buf.includes('be').toString());	// 打印: false
 ```
 
 ### indexOf
@@ -643,8 +641,8 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.indexOf('this'));	// 打印: 0
-console.log(buf.indexOf('is'));		// 打印: 2
+console.log(buf.indexOf('this').toString());	// 打印: 0
+console.log(buf.indexOf('is').toString());		// 打印: 2
 ```
 
 ### keys
@@ -668,7 +666,7 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (const key of buf.keys()) {
-  console.log(key);
+  console.log(key.toString());
 }
 ```
 
@@ -700,14 +698,14 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this'));	// 打印: 0
-console.log(buf.lastIndexOf('buffer'));	// 打印: 17
+console.log(buf.lastIndexOf('this').toString());	// 打印: 0
+console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
 ```
 
 
 ### readBigInt64BE
 
-readBigInt64BE(offset: number): number
+readBigInt64BE(offset: number): bigint
 
 从指定的`offset`处读取有符号的大端序64位整数。
 
@@ -723,7 +721,7 @@ readBigInt64BE(offset: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -732,12 +730,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64BE(0));
+console.log(buf.readBigInt64BE(0).toString());
 ```
 
 ### readBigInt64LE
 
-readBigInt64LE(offset: number): number
+readBigInt64LE(offset: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
@@ -753,7 +751,7 @@ readBigInt64LE(offset: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -762,12 +760,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64LE(0));
+console.log(buf.readBigInt64LE(0).toString());
 ```
 
 ### readBigUInt64BE
 
-readBigUInt64BE(offset: number): number
+readBigUInt64BE(offset: number): bigint
 
 从指定的`offset`处读取无符号的大端序64位整数。
 
@@ -783,7 +781,7 @@ readBigUInt64BE(offset: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -792,12 +790,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64BE(0));
+console.log(buf.readBigUInt64BE(0).toString());
 ```
 
 ### readBigUInt64LE
 
-readBigUInt64LE(offset: number): number
+readBigUInt64LE(offset: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
@@ -813,7 +811,7 @@ readBigUInt64LE(offset: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -822,7 +820,7 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64LE(0));
+console.log(buf.readBigUInt64LE(0).toString());
 ```
 
 ### readDoubleBE
@@ -851,7 +849,7 @@ readDoubleBE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleBE(0));
+console.log(buf.readDoubleBE(0).toString());
 ```
 
 ### readDoubleLE
@@ -880,7 +878,7 @@ readDoubleLE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleLE(0));
+console.log(buf.readDoubleLE(0).toString());
 ```
 
 ### readFloatBE
@@ -909,7 +907,7 @@ readFloatBE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatBE(0));
+console.log(buf.readFloatBE(0).toString());
 ```
 
 ### readFloatLE
@@ -938,7 +936,7 @@ readFloatLE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatLE(0));
+console.log(buf.readFloatLE(0).toString());
 ```
 
 ### readInt8
@@ -967,8 +965,8 @@ readInt8(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0));	// 打印: -1
-console.log(buf.readInt8(1));	// 打印: 5
+console.log(buf.readInt8(0).toString());	// 打印: -1
+console.log(buf.readInt8(1).toString());	// 打印: 5
 ```
 
 ### readInt16BE
@@ -996,8 +994,8 @@ readInt16BE(offset: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log(buf.readInt16BE(0));	// 打印: 5
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16BE(0).toString());	// 打印: 5
 ```
 
 ### readInt16LE
@@ -1025,8 +1023,8 @@ readInt16LE(offset: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log(buf.readInt16BE(0));	// 打印: 1280
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16LE(0).toString());	// 打印: 1280
 ```
 
 ### readInt32BE
@@ -1055,7 +1053,7 @@ readInt32BE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32BE(0));	// 打印: 5
+console.log(buf.readInt32BE(0).toString());	// 打印: 5
 ```
 
 ### readInt32LE
@@ -1084,7 +1082,7 @@ readInt32LE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32LE(0));	// 打印: 83886080
+console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
 ```
 
 ### readIntBE
@@ -1114,9 +1112,9 @@ readIntBE(offset: number, byteLength: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from("ab");
+let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
-console.log(num); // 97
+console.log(num.toString()); // 97
 ```
 
 
@@ -1178,8 +1176,8 @@ readUInt8(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, -2]);
-console.log(buf.readUInt8(0));
-console.log(buf.readUInt8(1));
+console.log(buf.readUInt8(0).toString());
+console.log(buf.readUInt8(1).toString());
 ```
 
 ### readUInt16BE
@@ -1423,10 +1421,10 @@ swap16(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap16();
-console.log(buf1);	// 打印: <Buffer 02 01 04 03 06 05 08 07>
+console.log(buf1.toString('hex'));	// 打印: 0201040306050807
 ```
 
 ### swap32
@@ -1450,10 +1448,10 @@ swap32(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap32();
-console.log(buf1);	// 打印: <Buffer 04 03 02 01 08 07 06 05>
+console.log(buf1.toString('hex'));	// 打印: 0403020108070605
 ```
 
 ### swap64
@@ -1477,9 +1475,9 @@ swap64(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 buf1.swap64();
-console.log(buf1);	// 打印: <Buffer 08 07 06 05 04 03 02 01>
+console.log(buf1.toString('hex'));	// 打印: 0807060504030201
 ```
 
 ### toJSON
@@ -1503,9 +1501,8 @@ toJSON(): Object
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
-let buf2 = buffer.from(buf1.toJSON())
-let json = JSON.stringify(buf2);
-console.log(json);
+let obj = buf1.toJSON();
+console.log(JSON.stringify(obj))
 // 打印: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1564,8 +1561,8 @@ values(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (const value of buf.values()) {
-  console.log(value);
+for (let value of buf1.values()) {
+  console.log(value.toString());
 }
 ```
 
@@ -1603,13 +1600,13 @@ let len = buf.write('\u00bd + \u00bc = \u00be', 0);
 console.log(`${len} bytes: ${buf.toString('utf8', 0, len)}`);
 // 打印: 12 bytes: ½ + ¼ = ¾
 
-let buffer = Buffer.alloc(10);
-let length = buffer.write('abcd', 8);
+let buffer1 = buffer.alloc(10);
+let length = buffer1.write('abcd', 8);
 ```
 
 ### writeBigInt64BE
 
-writeBigInt64BE(value: number, offset?: number): number
+writeBigInt64BE(value: bigint, offset?: number): number
 
 从buf的offset偏移写入大端序的64位BigInt型数据value
 
@@ -1619,7 +1616,7 @@ writeBigInt64BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1640,7 +1637,7 @@ buf.writeBigInt64BE(0x0102030405060708n, 0);
 
 ### writeBigInt64LE
 
-writeBigInt64LE(value : number, offset? : number): number
+writeBigInt64LE(value : bigint, offset? : number): number
 
 从buf的offset偏移写入小端序的64位BigInt型数据value
 
@@ -1650,7 +1647,7 @@ writeBigInt64LE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1671,7 +1668,7 @@ buf.writeBigInt64LE(0x0102030405060708n, 0);
 
 ### writeBigUInt64BE
 
-writeBigUInt64BE(value : number, offset? : number): number
+writeBigUInt64BE(value : bigint, offset? : number): number
 
 从buf的offset偏移写入大端序的64位BigUInt型数据value
 
@@ -1681,7 +1678,7 @@ writeBigUInt64BE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1702,7 +1699,7 @@ buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
 
 ### writeBigUInt64LE
 
-writeBigUInt64LE(value : number, offset? : number): number
+writeBigUInt64LE(value : bigint, offset? : number): number
 
 从buf的offset偏移写入小端序的64位BigUInt型数据value
 
@@ -1712,7 +1709,7 @@ writeBigUInt64LE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -2332,7 +2329,7 @@ transcode(source : Buffer | Uint8Array, fromEnc : string, toEnc : string): Buffe
 import buffer from '@ohos.buffer';
 
 let buf = buffer.alloc(50);
-let newBuf = buf.transcode(buffer.from('€'), 'utf8', 'ascii');
+let newBuf = buffer.transcode(buffer.from('€'), 'utf8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```
 
@@ -2368,7 +2365,7 @@ Blob的构造函数。
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob1 = new buffer.Blob(['a', 'b', 'c']);
+let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
@@ -2390,7 +2387,8 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
   let blob = new buffer.Blob(['a', 'b', 'c']);
   let pro = blob.arrayBuffer();
   pro.then(val => {
-      console.log(val)
+    let uintarr = new Uint8Array(val);
+    console.log(uintarr.toString());
   });
   ```
 ### slice
