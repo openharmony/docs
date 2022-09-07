@@ -1894,7 +1894,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
     }
-    console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
@@ -2012,7 +2012,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a callba
   ```js
   sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
       if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' + 
+          console.error('SensorJsAPI--->Failed to register data, error code is:' + err.code + ', message: ' + 
                         err.message);
           return;
       }
@@ -2045,7 +2045,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info(' getGeomagneticDip_promise successed', data);
+          console.info('getGeomagneticDip_promise successed', data);
       }).catch((err) => {
            console.error("Operation failed");
   })
@@ -2263,7 +2263,7 @@ Obtains the device direction based on the rotation matrix. This API uses a callb
 
 | Name           | Type                                      | Mandatory  | Description                |
 | -------------- | ---------------------------------------- | ---- | ------------------ |
-| rotationMatrix | Array&lt;number&gt;                      | Yes   | Rotation matrix.          |
+| rotationMatrix | Array&lt;number&gt;                      | Yes   | Rotation matrix.           |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
@@ -2593,9 +2593,9 @@ Describes the Hall effect sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable  | Writable  | Description                               |
-| ------ | ------ | ---- | ---- | --------------------------------- |
-| status | number | Yes   | Yes   | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field exists around the device, and **1** means the opposite.|
+| Name  | Type| Readable| Writable| Description                                                        |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | Yes  | Yes  | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field does not exist, and a value greater than **0** means the opposite.|
 
 
 ## MagneticFieldResponse
