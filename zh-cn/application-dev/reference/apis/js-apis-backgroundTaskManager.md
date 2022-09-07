@@ -8,7 +8,7 @@
 
 应用中存在用户能够直观感受到的且需要一直在后台运行的业务时（如，后台播放音乐），可以使用长时任务机制。
 
-应用如果需要申请特定的能效资源，例如在被冻结期间仍然能够收到系统公共事件，可以使用能效资源申请机制。
+对于系统特权应用，提供独立的能效资源申请接口。系统特权应用如果需要使用特定的系统资源，例如在被挂起期间仍然能够收到系统公共事件，可以使用能效资源申请接口。
 
 >  **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -299,19 +299,21 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
-## backgroundTaskManager.applyEfficiencyResources<sup>+</sup>
+## backgroundTaskManager.applyEfficiencyResources<sup>9+</sup>
 
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
 
 向系统申请能效资源，使用boolean形式返回结果。
 进程和他所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
-**系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+**系统API**: 此接口为系统接口。
 
 **参数**：
+
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 申请资源的必要信息。包括类型，时间，进程申请或者是应用申请等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
 
 **返回值**
 | 类型             | 说明               |
@@ -319,6 +321,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | boolean | true代表申请成功，false代表申请失败。 |
 
 **示例**：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
@@ -338,11 +341,13 @@ console.info("result of applyEfficiencyResources is: " + res)
 
 resetAllEfficiencyResources(): void
 
-向系统申请释放能效资源, 释放当前应用申请的所有能效资源。
+释放所有已经申请的资源。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+**系统API**: 此接口为系统接口。
 
 **示例**：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
@@ -380,7 +385,7 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 
 ## EfficiencyResourcesRequest<sup>9+</sup>
 
-能效资源申请。
+能效资源申请参数。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -395,14 +400,16 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 
 ## ResourceType<sup>9+</sup>
 
+能效资源类型。
+
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
 | 参数名                     | 参数值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU资源，申请后不被冻结             |
-| COMMON_EVENT            | 2    | 公共事件，申请后冻结状态下不被代理掉  |
-| TIMER                   | 4    | 计时器，申请后冻结状态下不被代理掉    |
+| CPU                     | 1    | CPU资源，申请后不被挂起             |
+| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉  |
+| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉    |
 | WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后冻结状态下不被代理掉  |
-| GPS                     | 32   | GPS相关，申请后冻结状态下不被代理掉z  |
-| AUDIO                   | 64   | 音频资源，申请后冻结状态下不被代理掉 |
+| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉  |
+| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉z  |
+| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉 |
