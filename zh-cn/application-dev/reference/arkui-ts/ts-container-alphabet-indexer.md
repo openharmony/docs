@@ -6,10 +6,6 @@
 >
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 
 ## 子组件
 
@@ -22,10 +18,10 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **参数：**
 
-| 参数名        | 参数类型                | 必填   | 默认值  | 参数描述       |
-| ---------- | ------------------- | ---- | ---- | ---------- |
-| arrayValue | Array&lt;string&gt; | 是    | -    | 字母索引字符串数组。 |
-| selected   | number              | 是    | -    | 初始选中项索引值。     |
+| 参数名        | 参数类型                | 必填   | 参数描述       |
+| ---------- | ------------------- | ---- | ---------- |
+| arrayValue | Array&lt;string&gt; | 是    | 字母索引字符串数组。 |
+| selected   | number              | 是    | 初始选中项索引值。     |
 
 ## 属性
 
@@ -43,7 +39,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | itemSize                | string \| number                    | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
 | alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
 | selected | number | 设置选中项索引值。 |
-| popupPosition | {<br/>x?:[Length](ts-types.md#length)<br/>y?:[Length](ts-types.md#length)<br/>} | 设置弹出窗口相对于索引器条上边框中点的位置。 |
+| popupPosition | [Position](../../ui/ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。 |
 
 ## IndexerAlign枚举说明
 

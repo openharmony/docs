@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含单个子组件。
@@ -19,16 +14,16 @@
 
 ## 接口
 
-ListItem()
+ListItem(value?: string)
 
 
 ## 属性
 
 | 名称                      | 参数类型    | 默认值         | 描述                                       |
 | ----------------------- | ------- | ----------- | ---------------------------------------- |
-| sticky                  | Sticky  | Sticky.None | 设置ListItem吸顶效果，参见Sticky枚举描述。             |
-| editable                | boolean&nbsp;\|&nbsp;EditMode | false       | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动。            |
-| selectable<sup>8+</sup> | boolean | true        | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
+| sticky                  | Sticky  | Sticky.None | 设置ListItem吸顶效果，参见Sticky枚举描述。<br/>默认值：Sticky.None |
+| editable                | boolean&nbsp;\|&nbsp;EditMode | false       | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动。<br/>默认值：false |
+| selectable<sup>8+</sup> | boolean | true        | 当前ListItem元素是否可以被鼠标框选。<br/>默认值：true<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
 
 ## Sticky枚举说明
 

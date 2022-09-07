@@ -1,62 +1,50 @@
 # 页面间转场
 
->  **说明：**
+在全局pageTransition方法内配置页面入场和页面退场时的自定义转场动效。
+
+> **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+| 名称                | 参数                                                         | 参数描述                                                     |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| PageTransitionEnter | { <br/>type?: RouteType,<br/>duration?: number,<br/> curve?: Curve \| string,<br/> delay?:number <br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
+| PageTransitionExit  | {<br/>type?: RouteType,<br/>duration?: number,<br/>curve?: Curve&nbsp;\|&nbsp;string,<br/>delay?: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
 
-页面转场通过在全局pageTransition方法内配置页面入场组件和页面退场组件来自定义页面转场动效。
+## RouteType枚举说明
 
-
-| 名称 | 参数 | 参数描述 |
-| -------- | -------- | -------- |
-| PageTransitionEnter | Object | 页面入场组件，用于自定义当前页面的入场效果，详见动效参数说明。 |
-| PageTransitionExit | Object | 页面退场组件，用于自定义当前页面的退场效果，详见动效参数说明。 |
-
-
-- 动效参数说明
-  | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | type | RouteType | - | 否 | 不配置时表明pop为push时效果的逆播。 |
-  | duration | number | 1000 | 否 | 动画时长，单位为毫秒。 |
-  | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 否 | 动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;说明。 |
-  | delay | number | 0 | 否 | 动画延迟时长，单位为毫秒，默认不延时播放。 |
-
-
-- RouteType枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Pop | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
-  | Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| Pop | 重定向指定页面。PageA跳转到PageB时，PageA为Exit+Push，PageB为Enter+Push。 |
+| Push | 跳转到下一页面。PageB返回至PageA时，PageA为Enter+Pop，PageB为Exit+Pop。 |
+| None | 页面未重定向。 |
 
 
 ## 属性
 
-PageTransitionEnter和PageTransitionExit组件支持的属性：
+| 参数名称 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| slide | SlideEffect | 否 | 设置页面转场时的滑入滑出效果。<br/>默认值：SlideEffect.Right |
+| translate | {<br/>x?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>y?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>z?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。<br/>-&nbsp;x：横向的平移距离。<br/>-&nbsp;y：纵向的平移距离。<br/>-&nbsp;z：竖向的平移距离。 |
+| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string,<br/>centerY?&nbsp;:&nbsp;number&nbsp;\|&nbsp;string<br/>} | 否 | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。<br/>-&nbsp;x：横向放大倍数（或缩小比例）。<br/>-&nbsp;y：纵向放大倍数（或缩小比例）。<br/>-&nbsp;z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。<br/>-&nbsp;中心点为0时，默认的是组件的左上角。 |
+| opacity | number | 否 | 设置入场的起点透明度值或者退场的终点透明度值。<br/>默认值：1 |
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| slide | SlideEffect | SlideEffect.Right | 否 | 设置转场的滑入效果，有效值参见SlideEffect枚举说明。 |
-| translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置页面转场时的平移效果，为入场时起点和退场时终点的值，和slide同时设置时默认生效slide。 |
-| scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置页面转场时的缩放效果，为入场时起点和退场时终点的值。 |
-| opacity | number | 1 | 否 | 设置入场的起点透明度值或者退场的终点透明度值。 |
+## SlideEffect枚举说明
 
-- SlideEffect枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Left | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
-  | Right | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
-  | Top | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
-  | Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| Left | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
+| Right | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
+| Top | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
+| Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
 
 
 ## 事件
 
-PageTransitionEnter和PageTransitionExit组件支持的事件：
-
 | 事件 | 功能描述 |
 | -------- | -------- |
-| onEnter(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。 |
-| onExit(type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。 |
+| onEnter(event: (type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。 |
+| onExit(event: (type:&nbsp;RouteType,&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。 |
 
 
 ## 示例

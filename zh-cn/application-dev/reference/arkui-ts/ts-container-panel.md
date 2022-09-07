@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含子组件。
@@ -19,24 +14,24 @@
 
 ## 接口
 
-Panel(show：boolean)
+Panel(show: boolean)
 
 **参数：**
 
-| 参数名  | 参数类型    | 必填   | 默认值  | 参数描述          |
-| ---- | ------- | ---- | ---- | ------------- |
-| show | boolean | 是    | -    | 控制Panel显示或隐藏。 |
+| 参数名 | 参数类型 | 必填 | 参数描述              |
+| ------ | -------- | ---- | --------------------- |
+| show   | boolean  | 是   | 控制Panel显示或隐藏。 |
 
 ## 属性
 
-| 名称       | 参数类型       | 默认值             | 描述                                                   |
-| ---------- | -------------- | ------------------ | ------------------------------------------------------ |
-| type       | PanelType      | PanelType.Foldable | 设置可滑动面板的类型。                                 |
-| mode       | PanelMode      | -                  | 设置可滑动面板的初始状态。                             |
-| dragBar    | boolean        | true               | 设置是否存在dragbar，true表示存在，false表示不存在。   |
-| fullHeight | number\|string | -                  | 指定PanelMode.Full状态下的高度。                       |
-| halfHeight | number\|string | -                  | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
-| miniHeight | number\|string | -                  | 指定PanelMode.Mini状态下的高度。                       |
+| 名称       | 参数类型       | 描述                                                         |
+| ---------- | -------------- | ------------------------------------------------------------ |
+| type       | PanelType      | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable        |
+| mode       | PanelMode      | 设置可滑动面板的初始状态。                                   |
+| dragBar    | boolean        | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
+| fullHeight | number\|string | 指定PanelMode.Full状态下的高度。                             |
+| halfHeight | number\|string | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。       |
+| miniHeight | number\|string | 指定PanelMode.Mini状态下的高度。                             |
 
 ## PanelType枚举说明
 
