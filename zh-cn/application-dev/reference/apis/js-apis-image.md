@@ -2039,7 +2039,12 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```js
-111
+creator.dequeueImage((err, img) => {
+    if (err) {
+        console.info('dequeueImage succeeded.');
+    }
+    console.info('dequeueImage failed.'));
+});
 ```
 
 ### dequeueImage<sup>9+</sup>
@@ -2059,7 +2064,11 @@ dequeueImage(): Promise\<Image>
 **示例：**
 
 ```js
-111
+creator.dequeueImage().then(img => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.log('dequeueImage failed: ' + error);
+})
 ```
 
 ### dequeueImage<sup>9+</sup>
@@ -2080,7 +2089,12 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-111
+creator.queueImage(img, (err) => {
+    if (err) {
+        console.info('dequeueImage failed: ' + err);
+    }
+    console.info('dequeueImage succeeded');
+})
 ```
 
 ### dequeueImage<sup>9+</sup>
@@ -2106,7 +2120,11 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```js
-111
+creator.queueImage(img).then(() => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.info('dequeueImage failed: ' + error);
+})
 ```
 
 ### on<sup>9+</sup>
@@ -2127,7 +2145,12 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-111
+creator.on('imageRelease', (err) => {
+    if (err) {
+        console.info('on faild' + err);
+    }
+    console.info('on succeeded');
+})
 ```
 
 ### release<sup>9+</sup>
@@ -2147,7 +2170,12 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-111
+creator.release((err) => {
+    if (err) {
+        console.info('release failed: ' + err);
+    }
+    console.info('release succeeded');
+});
 ```
 ### release<sup>9+</sup>
 
@@ -2164,7 +2192,11 @@ release(): Promise\<void>
 **示例：**
 
 ```js
-111
+creator.release().then(() => {
+    console.info('release succeeded');
+}).catch(error => {
+    console.info('release failed');
+})
 ```
 
 ## Image<sup>9+</sup>
