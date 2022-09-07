@@ -38,7 +38,7 @@
         - [ArkUI](release-notes/api-change/v3.2-beta2/js-apidiff-arkui.md)
         - [包管理](release-notes/api-change/v3.2-beta2/js-apidiff-bundle.md)
         - [基础通信](release-notes/api-change/v3.2-beta2/js-apidiff-communicate.md)
-        - [公共基础库](release-notes/api-change/v3.2-beta2/js-apidiff-complier-and-runtime.md)
+        - [公共基础库](release-notes/api-change/v3.2-beta2/js-apidiff-compiler-and-runtime.md)
         - [DFX](release-notes/api-change/v3.2-beta2/js-apidiff-dfx.md)
         - [分布式数据管理](release-notes/api-change/v3.2-beta2/js-apidiff-distributed-data.md)
         - [事件通知](release-notes/api-change/v3.2-beta2/js-apidiff-event-and-notification.md)
