@@ -119,6 +119,25 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 > 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondeviceconnect9)替代。
 
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 监听的事件类型，固定值"deviceConnect"。 |
+  | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 是 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
+
+**示例：**
+
+  ```js
+  continuationManager.on("deviceConnect", (data) => {
+    console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
+    console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
+    console.info('onDeviceConnect deviceName: ' + JSON.stringify(data.name));
+  });
+  ```
+
 ## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
 
 on(type: "deviceDisconnect", callback: Callback\<string>): void;
@@ -126,6 +145,23 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 异步方法，监听设备断开状态，使用Callback形式返回断开的设备信息。
 
 > 从API Version 9开始不再维护，建议使用[on](#continuationmanagerondevicedisconnect9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 监听的事件类型，固定值"deviceDisconnect"。 |
+  | callback | Callback\<string> | 是 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
+
+**示例：**
+
+  ```js
+  continuationManager.on("deviceDisconnect", (data) => {
+    console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
+  });
+  ```
 
 ## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
 
@@ -135,6 +171,25 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 > 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdeviceconnect9)替代。
 
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 取消监听的事件类型，固定值"deviceConnect"。 |
+  | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | 否 | 当用户从设备选择模块中选择设备时调用，返回设备ID、设备类型和设备名称供开发者使用。 |
+
+**示例：**
+
+  ```js
+  continuationManager.off("deviceConnect", (data) => {
+    console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
+    console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
+    console.info('onDeviceConnect deviceName: ' + JSON.stringify(data.name));
+  });
+  ```
+
 ## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
 
 off(type: "deviceDisconnect", callback?: Callback\<string>): void;
@@ -142,6 +197,23 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 异步方法，取消监听设备断开状态，使用Callback形式返回连接的设备信息。
 
 > 从API Version 9开始不再维护，建议使用[off](#continuationmanageroffdevicedisconnect9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 取消监听的事件类型，固定值"deviceDisconnect"。 |
+  | callback | Callback\<string> | 否 | 当用户从设备选择模块中断开设备时调用，返回设备ID供开发者使用。 |
+
+**示例：**
+
+  ```js
+  continuationManager.off("deviceDisconnect", (data) => {
+    console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
+  });
+  ```
 
 ## continuationManager.on("deviceConnect")<sup>9+</sup>
 
