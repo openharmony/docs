@@ -22,21 +22,21 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | getTopWindow(callback:AsyncCallback&lt;Window&gt;):void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | find(id:string,callback:AsyncCallback&lt;Window&gt;):void | 查找`id`所对应的窗口。 |
-| Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面内容。 |
-| Window | moveTo(x:number,y:number,callback:AsyncCallback&lt;void&gt;):void | 移动当前窗口。 |
-| Window | setBackgroundColor(color:string,callback:AsyncCallback&lt;void&gt;):void | 设置窗口的背景色 |
-| Window | setBrightness(brightness:number,callback:AsyncCallback&lt;void&gt;):void | 设置屏幕亮度值。 |
-| Window | resetSize(width:number,height:number,callback:AsyncCallback&lt;void&gt;):void | 改变当前窗口大小。 |
-| Window | setFullScreen(isFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口是否全屏显示。 |
-| Window | setLayoutFullScreen(isLayoutFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口布局是否为全屏布局。 |
-| Window | setSystemBarEnable(names:Array&lt;'status'\|'navigation'&gt;):Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
-| Window | setSystemBarProperties(systemBarProperties:SystemBarProperties,callback:AsyncCallback&lt;void&gt;):void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| window静态方法 | create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | getTopWindow(callback: AsyncCallback&lt;Window&gt;): void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | find(id: string, callback: AsyncCallback&lt;Window&gt;): void | 查找`id`所对应的窗口。 |
+| Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
+| Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
+| Window | setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色 |
+| Window | setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
+| Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
+| Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否全屏显示。 |
+| Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
+| Window | setSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
+| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window | show(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
-| Window | on(type:'touchOutside',callback:Callback&lt;void&gt;):void | 开启本窗口区域外的点击事件的监听。 |
-| Window | destroy(callback: AsyncCallback&lt;void&gt;):void | 销毁当前窗口。 |
+| Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
+| Window | destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
 
 
 ## 设置应用子窗口
@@ -257,4 +257,3 @@
        });
    });
    ```
-
