@@ -20,25 +20,29 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
 **Table 1** Major workScheduler APIs
 
-API                                                   |     Description                           
----------------------------------------------------------|-----------------------------------------
-function startWork(work: WorkInfo): boolean; | Starts a Work Scheduler task.
-function stopWork(work: WorkInfo, needCancel?: boolean): boolean;        | Stops a Work Scheduler task.
-function getWorkStatus(workId: number, callback: AsyncCallback<WorkInfo>): void;| Obtains the status of a Work Scheduler task. This method uses an asynchronous callback to return the result.
-function getWorkStatus(workId: number): Promise<WorkInfo>; | Obtains the status of a Work Scheduler task. This method uses a promise to return the result.
-function obtainAllWorks(callback: AsyncCallback<void>): Array<WorkInfo>;| Obtains Work Scheduler tasks. This method uses an asynchronous callback to return the result.
-function obtainAllWorks(): Promise<Array<WorkInfo>>;| Obtains Work Scheduler tasks. This method uses a promise to return the result.
-function stopAndClearWorks(): boolean;| Stops and clears Work Scheduler tasks.
-function isLastWorkTimeOut(workId: number, callback: AsyncCallback<void>): boolean;| Checks whether the last execution of the specified task has timed out. This method uses an asynchronous callback to return the result. It is applicable to repeated tasks.
-function isLastWorkTimeOut(workId: number): Promise<boolean>;| Checks whether the last execution of the specified task has timed out. This method uses a promise to return the result. It is applicable to repeated tasks.
+ Name                                                         | Description                                                  
+ ------------------------------------------------------------ | ------------------------------------------------------------ 
+ startWork(work: WorkInfo): boolean;                          | Starts a Work Scheduler task.                                
+ stopWork(work: WorkInfo, needCancel?: boolean): boolean;     | Stops a Work Scheduler task.                                 
+ getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void; | Obtains the status of a Work Scheduler task. This API uses an asynchronous callback to return the result. 
+ getWorkStatus(workId: number): Promise\<WorkInfo>;           | Obtains the status of a Work Scheduler task. This API uses a promise to return the result. 
+ obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>; | Obtains Work Scheduler tasks. This API uses an asynchronous callback to return the result. 
+ obtainAllWorks(): Promise<Array\<WorkInfo>>;                 | Obtains Work Scheduler tasks. This API uses a promise to return the result. 
+ stopAndClearWorks(): boolean;                                | Stops and clears Work Scheduler tasks.                       
+ isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean; | Checks whether the last execution of the specified task has timed out. This API uses an asynchronous callback to return the result. It is applicable to repeated tasks. 
+ isLastWorkTimeOut(workId: number): Promise\<boolean>;        | Checks whether the last execution of the specified task has timed out. This API uses a promise to return the result. It is applicable to repeated tasks. 
 
 **Table 2** WorkInfo parameters
 
-API|Description|Type                          
+> **NOTE**
+>
+> For details about the constraints on configuring WorkInfo, see [Work Scheduler Overview](./work-scheduler-overview.md).
+
+Name|Description|Type                           
 ---------------------------------------------------------|-----------------------------------------|---------------------------------------------------------
 workId | Work ID. Mandatory.|number
 bundleName | Name of the Work Scheduler task bundle. Mandatory.|string
-abilityName | Name of the component to be notified by a Work Scheduler callback.|string
+abilityName | Name of the component to be notified by a Work Scheduler callback. Mandatory.|string
 networkType | Network type.| NetworkType
 isCharging | Whether the device is charging.| boolean
 chargerType | Charging type.| ChargingType
@@ -48,20 +52,21 @@ storageRequest|Storage status.|    StorageRequest
 isRepeat|Whether the task is repeated.|    boolean
 repeatCycleTime |Repeat interval.|    number
 repeatCount    |Number of repeat times.| number
+parameters    |Carried parameters.| {[key: string]: any}
 
 **Table 3** Work Scheduler callbacks
 
-API                                                   |     Description                           
----------------------------------------------------------|-----------------------------------------
-function onWorkStart(work: WorkInfo): void; | Triggered when the Work Scheduler task starts.
-function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler task stops.
+ Name                                        | Description                                    
+ ------------------------------------------- | ---------------------------------------------- 
+ onWorkStart(work: WorkInfo): void; | Triggered when the Work Scheduler task starts. 
+ onWorkStop(work: WorkInfo): void;  | Triggered when the Work Scheduler task stops.  
 
 ### How to Develop
 
 **Implementing WorkSchedulerExtensionAbility**
 
     import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-
+    
     export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
         onWorkStart(workInfo) {
             console.log('MyWorkSchedulerExtensionAbility onWorkStart' + JSON.stringify(workInfo));
@@ -74,18 +79,21 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
 
 **Registering a Work Scheduler Task**
 
-
-
     import workScheduler from '@ohos.workScheduler';
-
+    
     let workInfo = {
         workId: 1,
-        batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
     }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
@@ -95,15 +103,20 @@ function onWorkStop(work: WorkInfo): void; | Triggered when the Work Scheduler t
 
 
     import workScheduler from '@ohos.workScheduler';
-
+    
     let workInfo = {
         workId: 1,
-        batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
     }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);

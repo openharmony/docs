@@ -39,6 +39,7 @@
         - [触摸热区设置](ts-universal-attributes-touch-target.md)
         - [多态样式](ts-universal-attributes-polymorphic-style.md)
         - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
+        - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
     - 手势处理
         - [绑定手势方法](ts-gesture-settings.md)
         - 基础手势
@@ -97,10 +98,13 @@
     - [Counter](ts-container-counter.md)
     - [Flex](ts-container-flex.md)
     - [GridContainer](ts-container-gridcontainer.md)
+    - [GridCol](ts-container-gridcol.md)
+    - [GridRow](ts-container-gridrow.md)
     - [Grid](ts-container-grid.md)
     - [GridItem](ts-container-griditem.md)
     - [List](ts-container-list.md)
     - [ListItem](ts-container-listitem.md)
+    - [ListItemGroup](ts-container-listitemgroup.md)
     - [Navigator](ts-container-navigator.md)        
     - [Panel](ts-container-panel.md)
     - [Refresh](ts-container-refresh.md)

@@ -1,8 +1,9 @@
 # Scroll
 
 >  **说明：**
-> - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
+>  - 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
+>  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
 
 
 可滚动的容器组件，当子组件的布局尺寸超过父组件的视口时，内容可以滚动。
@@ -28,32 +29,41 @@ Scroll(scroller?: Scroller)
 | 名称             | 参数类型                                     | 默认值                      | 描述        |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | 设置滚动方法。   |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate枚举说明) | ScrollDirection.Auto     | 设置滚动条状态。  |
-| scrollBarColor | Color                                    | -                        | 设置滚动条的颜色。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
+| edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 
-- ScrollDirection枚举说明
+## ScrollDirection枚举说明
   | 名称         | 描述         |
   | ---------- | ---------- |
   | Horizontal | 仅支持水平方向滚动。 |
   | Vertical   | 仅支持竖直方向滚动。 |
   | None       | 不可滚动。      |
 
+## EdgeEffect枚举说明
+
+| 名称     | 描述                                       |
+| ------ | ---------------------------------------- |
+| Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
+| Fade   | 阴影效果，滑动到边缘后会有圆弧状的阴影。          |
+| None   | 滑动到边缘后无效果。                               |
+
 ## 事件
 
 | 名称                                       | 功能描述                          |
 | ---------------------------------------- | ----------------------------- |
 | onScrollBegin<sup>9+</sup>(dx: number, dy: number)&nbsp;=&gt;&nbsp;{ dxRemain: number, dyRemain: number } | 滚动开始事件回调。<br>参数：<br>- dx：即将发生的水平方向滚动量。<br>- dy：即将发生的竖向方向滚动量。<br>返回值：<br>- dxRemain：水平方向滚动剩余量。<br>- dyRemain：竖直方向滚动剩余量。 |
-| onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
-| onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | 滚动到边缘事件回调。                    |
-| onScrollEnd()&nbsp;=&gt;&nbsp;void       | 滚动停止事件回调。                     |
+| onScroll(event: (xOffset: number, yOffset: number) => void) | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
+| onScrollEdge(event: (side: Edge) => void) | 滚动到边缘事件回调。                    |
+| onScrollEnd(event: () => void)      | 滚动停止事件回调。                     |
 
 >  **说明：**
 > 若通过onScrollBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List和Scroll组件上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List、Scroll、ScrollBar上。
 
 
 ### 导入对象
@@ -90,14 +100,8 @@ scrollEdge(value: Edge): void
 - 参数
   | 参数名   | 参数类型 | 必填   | 默认值  | 参数描述      |
   | ----- | ---- | ---- | ---- | --------- |
-  | value | Edge | 是    | -    | 滚动到的边缘位置。 |
+  | value | [Edge](ts-appendix-enums.md#edge) | 是    | -    | 滚动到的边缘位置。 |
 
-- Edge枚举说明
-
-  | 名称   | 值   | 描述       |
-  | ------ | ---- | ---------- |
-  | Top    | 0    | 滑动到顶部 |
-  | Bottom | 2    | 滑动到底部 |
 
   
 
@@ -111,7 +115,7 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
   | 参数名       | 参数类型    | 必填   | 默认值  | 参数描述                           |
   | --------- | ------- | ---- | ---- | ------------------------------ |
   | next      | boolean | 是    | -    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
-  | direction | Axis    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
+  | direction | [Axis](ts-appendix-enums.md#axis)    | 否    | -    | 设置滚动方向为水平或竖直方向。                |
 
 
 ### currentOffset

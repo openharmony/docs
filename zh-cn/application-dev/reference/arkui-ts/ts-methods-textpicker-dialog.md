@@ -20,7 +20,8 @@ show(options: TextPickerDialogOptions)
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | range | string[] | 是 | - | 选择器的数据选择范围。 |
-  | selected | number | 否 | 第一个元素 | 选中项在数组中的index值。 |
+  | selected | number | 否 | 0 | 选中项在数组中的index值。 |
+  | value       | string           | 否    | -    | 选中项文本值。当设置了selected参数时，该值不生效。如果该值不在range范围内，则默认取range第一个元素。|
   | defaultPickerItemHeight | number | 否 | - | 默认Picker内容项元素高度。 |
   | onAccept | (value: TextPickerResult) => void | 否 | - | 点击弹窗中确定按钮时触发。 |
   | onCancel | () => void | 否 | - | 点击弹窗中取消按钮时触发。 |

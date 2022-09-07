@@ -13,7 +13,7 @@ Linux内核移植主要涉及基于linux内核基线合入三方芯片补丁后�
 
 ### Bootloader
 
-可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。比如为支持Hi3516DV300开发板，OpenHarmony引入的开源[Uboot](https://gitee.com/openharmony/device_hisilicon_third_party_uboot)。
+可以使用芯片厂商自带的Bootloader，或者是开源Uboot等加载内核镜像。比如为支持Hi3516DV300开发板，OpenHarmony引入的开源[Uboot](https://gitee.com/openharmony/third_party_u-boot)。
 
 
 ## 适配编译和烧录启动

@@ -304,7 +304,7 @@ try {
 }
 ```
 
-### closeKVStore<sup>8+</sup> ###
+### closeKVStore<sup>8+</sup>
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCallback&lt;void&gt;): void
 
@@ -350,7 +350,7 @@ const options = {
 ```
 
 
-### closeKVStore<sup>8+</sup> ###
+### closeKVStore<sup>8+</sup>
 
 closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&gt;
 
@@ -404,7 +404,7 @@ const options = {
 ```
 
 
-### deleteKVStore<sup>8+</sup> ###
+### deleteKVStore<sup>8+</sup>
 
 deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -447,7 +447,7 @@ try {
 }
 ```
 
-### deleteKVStore<sup>8+</sup> ###
+### deleteKVStore<sup>8+</sup>
 
 deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 
@@ -501,7 +501,7 @@ try {
 ```
 
 
-### getAllKVStoreId<sup>8+</sup> ###
+### getAllKVStoreId<sup>8+</sup>
 
 getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
@@ -531,7 +531,7 @@ try {
 ```
 
 
-### getAllKVStoreId<sup>8+</sup> ###
+### getAllKVStoreId<sup>8+</sup>
 
 getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
@@ -570,7 +570,7 @@ try {
 ```
 
 
-### on('distributedDataServiceDie')<sup>8+</sup> ###
+### on('distributedDataServiceDie')<sup>8+</sup>
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
@@ -602,7 +602,7 @@ try {
 ```
 
 
-### off('distributedDataServiceDie')<sup>8+</sup> ###
+### off('distributedDataServiceDie')<sup>8+</sup>
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
@@ -706,7 +706,7 @@ KVStore常量。
 | mode<sup>8+</sup>  | number | 表示Schema的模式。  |
 | skip<sup>8+</sup>  | number |  Schema的跳跃大小。  |
 
-### constructor<sup>8+</sup> ###
+### constructor<sup>8+</sup> 
 
 constructor()
 
@@ -726,7 +726,7 @@ constructor()
 | default<sup>8+</sup>  | string | 表示Fieldnode的默认值。 |
 | type<sup>8+</sup>  | number | 表示指定节点对应数据类型的值。 |
 
-### constructor<sup>8+</sup> ###
+### constructor<sup>8+</sup>
 
 constructor(name: string)
 
@@ -740,7 +740,7 @@ constructor(name: string)
 | ------ | -------- | ---- | --------------- |
 | name   | string   | 是   | FieldNode的值。 |
 
-### appendChild<sup>8+</sup> ###
+### appendChild<sup>8+</sup>
 
 appendChild(child: FieldNode): boolean
 
@@ -790,7 +790,7 @@ try {
 在调用KvStoreResultSet的方法前，需要先通过[getKVStore](#getkvstore)构建一个KVStore实例。
 
 
-### getCount<sup>8+</sup> ###
+### getCount<sup>8+</sup>
 
 getCount(): number
 
@@ -823,7 +823,7 @@ try {
 }
 ```
 
-### getPosition<sup>8+</sup> ###
+### getPosition<sup>8+</sup>
 
 getPosition(): number
 
@@ -857,7 +857,7 @@ try {
 ```
 
 
-### moveToFirst<sup>8+</sup> ###
+### moveToFirst<sup>8+</sup>
 
 moveToFirst(): boolean
 
@@ -891,7 +891,7 @@ try {
 ```
 
 
-### moveToLast<sup>8+</sup> ###
+### moveToLast<sup>8+</sup>
 
 moveToLast(): boolean
 
@@ -925,7 +925,7 @@ try {
 ```
 
 
-### moveToNext<sup>8+</sup> ###
+### moveToNext<sup>8+</sup>
 
 moveToNext(): boolean
 
@@ -959,7 +959,7 @@ try {
 ```
 
 
-### moveToPrevious<sup>8+</sup> ###
+### moveToPrevious<sup>8+</sup>
 
 moveToPrevious(): boolean
 
@@ -993,7 +993,7 @@ try {
 ```
 
 
-### move<sup>8+</sup> ###
+### move<sup>8+</sup>
 
 move(offset: number): boolean
 
@@ -1033,7 +1033,7 @@ try {
 ```
 
 
-### moveToPosition<sup>8+</sup> ###
+### moveToPosition<sup>8+</sup>
 
 moveToPosition(position: number): boolean
 
@@ -1073,7 +1073,7 @@ try {
 ```
 
 
-### isFirst<sup>8+</sup> ###
+### isFirst<sup>8+</sup>
 
 isFirst(): boolean
 
@@ -1107,7 +1107,7 @@ try {
 ```
 
 
-### isLast<sup>8+</sup> ###
+### isLast<sup>8+</sup>
 
 isLast(): boolean
 
@@ -1140,7 +1140,7 @@ try {
 }
 ```
 
-### isBeforeFirst<sup>8+</sup> ###
+### isBeforeFirst<sup>8+</sup>
 
 isBeforeFirst(): boolean
 
@@ -1174,7 +1174,7 @@ try {
 ```
 
 
-### isAfterLast<sup>8+</sup> ###
+### isAfterLast<sup>8+</sup>
 
 isAfterLast(): boolean
 
@@ -1208,7 +1208,7 @@ try {
 ```
 
 
-### getEntry<sup>8+</sup> ###
+### getEntry<sup>8+</sup>
 
 getEntry(): Entry
 
@@ -1248,7 +1248,7 @@ try {
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
-### constructor<sup>8+</sup> ###
+### constructor<sup>8+</sup>
 
 constructor() 
 
@@ -1257,7 +1257,7 @@ constructor()
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
 
-### reset<sup>8+</sup> ###
+### reset<sup>8+</sup>
 
 reset(): Query
 
@@ -1288,7 +1288,7 @@ try {
 ```
 
 
-### equalTo<sup>8+</sup> ###
+### equalTo<sup>8+</sup>
 
 equalTo(field: string, value: number|string|boolean): Query
 
@@ -1323,7 +1323,7 @@ try {
 ```
 
 
-### notEqualTo<sup>8+</sup> ###
+### notEqualTo<sup>8+</sup>
 
 notEqualTo(field: string, value: number|string|boolean): Query
 
@@ -1358,7 +1358,7 @@ try {
 ```
 
 
-### greaterThan<sup>8+</sup> ###
+### greaterThan<sup>8+</sup>
 
 greaterThan(field: string, value: number|string|boolean): Query
 
@@ -1393,7 +1393,7 @@ try {
 ```
 
 
-### lessThan<sup>8+</sup> ###
+### lessThan<sup>8+</sup>
 
 lessThan(field: string, value: number|string): Query
 
@@ -1428,7 +1428,7 @@ try {
 ```
 
 
-### greaterThanOrEqualTo<sup>8+</sup> ###
+### greaterThanOrEqualTo<sup>8+</sup>
 
 greaterThanOrEqualTo(field: string, value: number|string): Query
 
@@ -1463,7 +1463,7 @@ try {
 ```
 
 
-### lessThanOrEqualTo<sup>8+</sup> ###
+### lessThanOrEqualTo<sup>8+</sup>
 
 lessThanOrEqualTo(field: string, value: number|string): Query
 
@@ -1498,7 +1498,7 @@ try {
 ```
 
 
-### isNull<sup>8+</sup> ###
+### isNull<sup>8+</sup>
 
 isNull(field: string): Query
 
@@ -1532,7 +1532,7 @@ try {
 ```
 
 
-### inNumber<sup>8+</sup> ###
+### inNumber<sup>8+</sup>
 
 inNumber(field: string, valueList: number[]): Query
 
@@ -1568,7 +1568,7 @@ try {
 ```
 
 
-### inString<sup>8+</sup> ###
+### inString<sup>8+</sup>
 
 inString(field: string, valueList: string[]): Query
 
@@ -1603,7 +1603,7 @@ try {
 ```
 
 
-### notInNumber<sup>8+</sup> ###
+### notInNumber<sup>8+</sup>
 
 notInNumber(field: string, valueList: number[]): Query
 
@@ -1638,7 +1638,7 @@ try {
 ```
 
 
-### notInString<sup>8+</sup> ###
+### notInString<sup>8+</sup>
 
 notInString(field: string, valueList: string[]): Query
 
@@ -1673,7 +1673,7 @@ try {
 ```
 
 
-### like<sup>8+</sup> ###
+### like<sup>8+</sup>
 
 like(field: string, value: string): Query
 
@@ -1708,7 +1708,7 @@ try {
 ```
 
 
-### unlike<sup>8+</sup> ###
+### unlike<sup>8+</sup>
 
 unlike(field: string, value: string): Query
 
@@ -1743,7 +1743,7 @@ try {
 ```
 
 
-### and<sup>8+</sup> ###
+### and<sup>8+</sup>
 
 and(): Query
 
@@ -1773,7 +1773,7 @@ try {
 ```
 
 
-### or<sup>8+</sup> ###
+### or<sup>8+</sup>
 
 or(): Query
 
@@ -1803,7 +1803,7 @@ try {
 ```
 
 
-### orderByAsc<sup>8+</sup> ###
+### orderByAsc<sup>8+</sup>
 
 orderByAsc(field: string): Query
 
@@ -1838,7 +1838,7 @@ try {
 ```
 
 
-### orderByDesc<sup>8+</sup> ###
+### orderByDesc<sup>8+</sup>
 
 orderByDesc(field: string): Query
 
@@ -1873,7 +1873,7 @@ try {
 ```
 
 
-### limit<sup>8+</sup> ###
+### limit<sup>8+</sup>
 
 limit(total: number, offset: number): Query
 
@@ -1911,7 +1911,7 @@ try {
 ```
 
 
-### isNotNull<sup>8+</sup> ###
+### isNotNull<sup>8+</sup>
 
 isNotNull(field: string): Query
 
@@ -1945,7 +1945,7 @@ try {
 ```
 
 
-### beginGroup<sup>8+</sup> ###
+### beginGroup<sup>8+</sup>
 
 beginGroup(): Query
 
@@ -1975,7 +1975,7 @@ try {
 ```
 
 
-### endGroup<sup>8+</sup> ###
+### endGroup<sup>8+</sup>
 
 endGroup(): Query
 
@@ -2005,7 +2005,7 @@ try {
 ```
 
 
-### prefixKey<sup>8+</sup> ###
+### prefixKey<sup>8+</sup>
 
 prefixKey(prefix: string): Query
 
@@ -2040,7 +2040,7 @@ try {
 ```
 
 
-### setSuggestIndex<sup>8+</sup> ###
+### setSuggestIndex<sup>8+</sup>
 
 setSuggestIndex(index: string): Query
 
@@ -2075,7 +2075,7 @@ try {
 ```
 
 
-### deviceId<sup>8+</sup> ###
+### deviceId<sup>8+</sup>
 
 deviceId(deviceId:string):Query
 
@@ -2109,7 +2109,7 @@ try {
 ```
 
 
-### getSqlLike<sup>8+</sup> ###
+### getSqlLike<sup>8+</sup>
 
 getSqlLike():string
 
@@ -2303,7 +2303,9 @@ try {
 
 delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
 
-从数据库中删除符合predicates条件的键值对，并通过callback方式返回，此方法为异步方法。
+从数据库中删除符合predicates条件的键值对，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2337,7 +2339,9 @@ try {
 
 delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
-从数据库中删除符合predicates条件的键值对，并通过Promise方式返回，此方法为异步方法。
+从数据库中删除符合predicates条件的键值对，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2352,7 +2356,7 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise实例，用于异步处理。|
+| Promise&lt;void&gt; |无返回结果的Promise对象。|
 
 **示例：**
 
@@ -2375,6 +2379,219 @@ try {
 	});
 }catch (e) {
 	console.log("An unexpected error occurred. Error:" + e);
+}
+
+```
+
+### backup<sup>9+</sup>
+
+backup(file:string, callback: AsyncCallback&lt;void&gt;):void
+
+以指定名称备份数据库，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| file     | string                    | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当以指定名称备份数据库成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.backup(file, (err, data) => {
+        if (err) {
+            console.info("backup err : " + err);
+        } else {
+            console.info("backup data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### backup<sup>9+</sup>
+
+backup(file:string): Promise&lt;void&gt;
+
+以指定名称备份数据库，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| file   | string   | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.backup(file).then((data) => {
+        console.info("backup data : " + data);
+    }).catch((err) => {
+        console.info("backup err : " + err);
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### restore<sup>9+</sup>
+
+restore(file:string, callback: AsyncCallback&lt;void&gt;):void
+
+从指定的数据库文件恢复数据库，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                  | 必填 | 说明                                                         |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| file     | string                    | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当从指定的数据库文件恢复数据库成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.restore(file, (err, data) => {
+        if (err) {
+            console.info("restore err : " + err);
+        } else {
+            console.info("restore data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### restore<sup>9+</sup>
+
+restore(file:string): Promise&lt;void&gt;
+
+从指定的数据库文件恢复数据库，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| file   | string   | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let kvStore;
+let file = "BK001";
+try {
+    kvStore.restore(file).then((data) => {
+        console.info("restore data : " + data);
+    }).catch((err) => {
+        console.info("restore err : " + err);
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### deleteBackup<sup>9+</sup>
+
+deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;):void
+
+根据指定名称删除备份文件，使用callback异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名   | 参数类型                                           | 必填 | 说明                                                         |
+| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| files    | Array&lt;string&gt;                                | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数，返回删除备份的文件名及其处理结果。                 |
+
+**示例：**
+
+```js
+let kvStore;
+let files = ["BK001", "BK002"];
+try {
+    kvStore.deleteBackup(files, (err, data) => {
+        if (err) {
+            console.info("deleteBackup err : " + err);
+        } else {
+            console.info("deleteBackup data : " + data);
+        }
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
+}
+
+```
+
+### deleteBackup<sup>9+</sup>
+
+deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt;&gt;
+
+根据指定名称删除备份文件，使用Promise异步回调。
+
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| files  | Array&lt;string&gt;   | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                            |
+| -------------------------------------------- | ----------------------------------------------- |
+| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，返回删除备份的文件名及其处理结果。 |
+
+**示例：**
+
+```js
+let kvStore;
+let files = ["BK001", "BK002"];
+try {
+    kvStore.deleteBackup(files).then((data) => {
+        console.info("deleteBackup data : " + data);
+    }).catch((err) => {
+        console.info("deleteBackup err : " + err);
+    })
+} catch (e) {
+    console.log("An unexpected error occurred. Error : " + e);
 }
 
 ```
@@ -2448,12 +2665,21 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 
 ### off('syncComplete')<sup>9+</sup>
@@ -2475,14 +2701,20 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
@@ -2592,7 +2824,9 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-将值写入KvStore数据库，并通过callback方式返回，此方法为异步方法。
+将值写入KvStore数据库，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2631,7 +2865,9 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
-将valuesbucket类型的值写入KvStore数据库，并通过Promise方式返回，此方法为异步方法。
+将valuesbucket类型的值写入KvStore数据库，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2645,7 +2881,7 @@ putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
 | 类型    | 说明       |
 | ------  | -------   |
-| Promise&lt;void&gt; |Promise实例，用于异步处理。|
+| Promise&lt;void&gt; |五返回结果的Promise对象。|
 
 **示例：**
 
@@ -2719,7 +2955,7 @@ try {
 ```
 
 
-### deleteBatch<sup>8+</sup> ###
+### deleteBatch<sup>8+</sup>
 
 deleteBatch(keys: string[]): Promise&lt;void&gt;
 
@@ -2775,7 +3011,7 @@ try {
 ```
 
 
-### startTransaction<sup>8+</sup> ###
+### startTransaction<sup>8+</sup>
 
 startTransaction(callback: AsyncCallback&lt;void&gt;): void
 
@@ -2827,7 +3063,7 @@ try {
 ```
 
 
-### startTransaction<sup>8+</sup> ###
+### startTransaction<sup>8+</sup>
 
 startTransaction(): Promise&lt;void&gt;
 
@@ -2862,7 +3098,7 @@ try {
 ```
 
 
-### commit<sup>8+</sup> ###
+### commit<sup>8+</sup>
 
 commit(callback: AsyncCallback&lt;void&gt;): void
 
@@ -2894,7 +3130,7 @@ try {
 ```
 
 
-### commit<sup>8+</sup> ###
+### commit<sup>8+</sup>
 
 commit(): Promise&lt;void&gt;
 
@@ -2924,7 +3160,7 @@ try {
 ```
 
 
-### rollback<sup>8+</sup> ###
+### rollback<sup>8+</sup>
 
 rollback(callback: AsyncCallback&lt;void&gt;): void
 
@@ -2956,7 +3192,7 @@ try {
 ```
 
 
-### rollback<sup>8+</sup> ###
+### rollback<sup>8+</sup>
 
 rollback(): Promise&lt;void&gt;
 
@@ -2986,7 +3222,7 @@ try {
 ```
 
 
-### enableSync<sup>8+</sup> ###
+### enableSync<sup>8+</sup>
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3019,7 +3255,7 @@ try {
 ```
 
 
-### enableSync<sup>8+</sup> ###
+### enableSync<sup>8+</sup>
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
@@ -3055,7 +3291,7 @@ try {
 ```
 
 
-### setSyncRange<sup>8+</sup> ###
+### setSyncRange<sup>8+</sup>
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void
 
@@ -3087,7 +3323,7 @@ try {
 ```
 
 
-### setSyncRange<sup>8+</sup> ###
+### setSyncRange<sup>8+</sup>
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;
 
@@ -3279,7 +3515,7 @@ try {
 }
 ```
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
@@ -3325,7 +3561,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
@@ -3383,7 +3619,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
@@ -3434,7 +3670,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;
 
@@ -3492,7 +3728,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a> ###
+### getResultSet<sup>8+</sup><a name="singlekvstore_getresultset"></a>
 
 getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -3541,7 +3777,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
@@ -3601,7 +3837,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -3649,7 +3885,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
@@ -3705,11 +3941,13 @@ try {
 }
 ```
 
-### getResultSet<sup>9+</sup> ###
+### getResultSet<sup>9+</sup>
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
-获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过callback方式返回，此方法为异步方法。
+获取与指定Predicate对象匹配的KvStoreResultSet对象，使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3740,11 +3978,13 @@ try {
     console.log('An unexpected error occurred. Error:' + e);
 }
 ```
-### getResultSet<sup>9+</sup> ###
+### getResultSet<sup>9+</sup>
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KvStoreResultSet&gt;
 
-获取与指定Predicate对象匹配的KvStoreResultSet对象，并通过Promise方式返回，此方法为异步方法。
+获取与指定Predicate对象匹配的KvStoreResultSet对象，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3758,7 +3998,7 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;Kv
 
 | 类型    | 说明       |
 | ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |Promise实例，用于获取异步返回结果。|
+|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |无返回结果的Promise对象。|
 
 **示例：**
 
@@ -3780,7 +4020,7 @@ try {
 	console.log('An unexpected error occurred. Error:' + e);
 }
 ```
-### closeResultSet<sup>8+</sup> ###
+### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3814,7 +4054,7 @@ try {
 ```
 
 
-### closeResultSet<sup>8+</sup> ###
+### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
@@ -3851,7 +4091,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
@@ -3897,7 +4137,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
@@ -3952,7 +4192,7 @@ try {
 ```
 
 
-### removeDeviceData<sup>8+</sup> ###
+### removeDeviceData<sup>8+</sup>
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -3994,7 +4234,7 @@ try {
 ```
 
 
-### removeDeviceData<sup>8+</sup> ###
+### removeDeviceData<sup>8+</sup>
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
@@ -4043,7 +4283,7 @@ try {
 ```
 
 
-### on('syncComplete')<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup>
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -4079,7 +4319,7 @@ try {
 ```
 
 
-### off('syncComplete')<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup>
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -4098,18 +4338,24 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
-### on('dataChange')<sup>9+</sup> ###
+### on('dataChange')<sup>9+</sup>
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
@@ -4135,7 +4381,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 ```
 
-### off('dataChange')<sup>9+</sup> ###
+### off('dataChange')<sup>9+</sup>
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
@@ -4154,12 +4400,21 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 ### sync<sup>7+</sup>
 
@@ -4229,7 +4484,7 @@ try {
 }
 ```
 
-### setSyncParam<sup>8+</sup> ###
+### setSyncParam<sup>8+</sup>
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -4259,7 +4514,7 @@ try {
 ```
 
 
-### setSyncParam<sup>8+</sup> ###
+### setSyncParam<sup>8+</sup>
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
@@ -4297,7 +4552,7 @@ try {
 ```
 
 
-### getSecurityLevel<sup>8+</sup> ###
+### getSecurityLevel<sup>8+</sup>
 
 getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 
@@ -4325,7 +4580,7 @@ try {
 ```
 
 
-### getSecurityLevel<sup>8+</sup> ###
+### getSecurityLevel<sup>8+</sup>
 
 getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 
@@ -4365,7 +4620,7 @@ try {
 
 在调用DeviceKVStore的方法前，需要先通过[getKVStore](#getkvstore)构建一个DeviceKVStore实例。
 
-### get<sup>8+</sup> ###
+### get<sup>8+</sup>
 
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
@@ -4400,7 +4655,7 @@ try{
 ```
 
 
-### get<sup>8+</sup> ###
+### get<sup>8+</sup>
 
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
@@ -4444,7 +4699,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
@@ -4492,7 +4747,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
@@ -4551,7 +4806,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
@@ -4603,7 +4858,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(query: Query): Promise&lt;Entry[]&gt;
 
@@ -4661,7 +4916,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
@@ -4714,7 +4969,7 @@ try {
 ```
 
 
-### getEntries<sup>8+</sup> ###
+### getEntries<sup>8+</sup>
 
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
@@ -4774,7 +5029,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a> ###
+### getResultSet<sup>8+</sup><a name="devicekvstore_getresultset"></a>
 
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -4809,7 +5064,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
@@ -4853,7 +5108,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -4905,7 +5160,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(query: Query): Promise&lt;KvStoreResultSet&gt;
 
@@ -4969,7 +5224,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
@@ -5021,7 +5276,7 @@ try {
 ```
 
 
-### getResultSet<sup>8+</sup> ###
+### getResultSet<sup>8+</sup>
 
 getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
@@ -5087,7 +5342,7 @@ try {
 ```
 
 
-### closeResultSet<sup>8+</sup> ###
+### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5122,7 +5377,7 @@ try {
 ```
 
 
-### closeResultSet<sup>8+</sup> ###
+### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet): Promise&lt;void&gt;
 
@@ -5160,7 +5415,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 
@@ -5207,7 +5462,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(query: Query): Promise&lt;number&gt;
 
@@ -5263,7 +5518,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
@@ -5310,7 +5565,7 @@ try {
 ```
 
 
-### getResultSize<sup>8+</sup> ###
+### getResultSize<sup>8+</sup>
 
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
@@ -5366,7 +5621,7 @@ try {
 ```
 
 
-### removeDeviceData<sup>8+</sup> ###
+### removeDeviceData<sup>8+</sup>
 
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -5408,7 +5663,7 @@ try {
 ```
 
 
-### removeDeviceData<sup>8+</sup> ###
+### removeDeviceData<sup>8+</sup>
 
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
@@ -5457,7 +5712,7 @@ try {
 ```
 
 
-### sync<sup>8+</sup> ###
+### sync<sup>8+</sup>
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
@@ -5496,7 +5751,7 @@ try {
 }
 ```
 
-### sync<sup>9+</sup> ###
+### sync<sup>9+</sup>
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
@@ -5538,7 +5793,7 @@ try {
 }
 ```
 
-### on('syncComplete')<sup>8+</sup> ###
+### on('syncComplete')<sup>8+</sup>
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -5574,7 +5829,7 @@ try {
 ```
 
 
-### off('syncComplete')<sup>8+</sup> ###
+### off('syncComplete')<sup>8+</sup>
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
@@ -5593,18 +5848,24 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
-### on('dataChange')<sup>9+</sup> ###
+### on('dataChange')<sup>9+</sup>
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
@@ -5630,7 +5891,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 ```
 
 
-### off('dataChange')<sup>9+</sup> ###
+### off('dataChange')<sup>9+</sup>
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
@@ -5649,12 +5910,21 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 
 ## SyncMode

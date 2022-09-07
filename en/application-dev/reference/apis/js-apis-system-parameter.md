@@ -7,7 +7,7 @@
 ## Modules to Import
 
 ```ts
-import parameter from '@ohos.systemParameter'
+import parameter from '@ohos.systemparameter'
 ```
 
 
@@ -17,7 +17,7 @@ getSync(key: string, def?: string): string
 
 Obtains the value of the attribute with the specified key.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -50,7 +50,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -81,7 +81,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the value of the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -114,7 +114,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 Obtains the value of the attribute with the specified key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -151,7 +151,7 @@ setSync(key: string, value: string): void
 
 Sets a value for the attribute with the specified key.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -177,7 +177,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets a value for the attribute with the specified key. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
@@ -209,14 +209,14 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 Sets a value for the attribute with the specified key. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Startup.SysInfo
+**System capability**: SystemCapability.Startup.SystemInfo
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system attribute.|
-| value| string | Yes | System attribute value to set.|
+| value| string | Yes| System attribute value to set.|
 
 **Return value**
 

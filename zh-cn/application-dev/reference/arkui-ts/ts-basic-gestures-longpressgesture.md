@@ -53,11 +53,11 @@ struct LongPressGestureExample {
     .height(200).width(300).padding(60).border({ width:1 }).margin(30)
     .gesture(
       LongPressGesture({ repeat: true })
-        //长按动作存在会连续触发
+        // 长按动作存在会连续触发
         .onAction((event: GestureEvent) => {
           if (event.repeat) { this.count++ }
         })
-        //长按动作一结束触发
+        // 长按动作一结束触发
         .onActionEnd(() => {
           this.count = 0
         })

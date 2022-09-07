@@ -809,7 +809,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -837,7 +837,7 @@ crop(region: Region): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -909,7 +909,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
 
 **返回值：**
 
@@ -936,7 +936,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。  |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
@@ -1568,7 +1568,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 | 参数名   | 类型                               | 必填 | 说明                               |
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
-| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                     |
+| option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                      |
 | callback | AsyncCallback\<ArrayBuffer>        | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
@@ -2165,7 +2165,7 @@ img.release().then(() =>{
 | 名称            | 默认值 | 描述                                               |
 | --------------- | ------ | -------------------------------------------------- |
 | CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
-| FIT_TARGET_SIZE | 2      | 图像适合目标尺寸的效果。                           |
+| FIT_TARGET_SIZE | 0      | 图像适合目标尺寸的效果。                           |
 
 ## SourceOptions<sup>9+</sup>
 
@@ -2230,7 +2230,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。                                          |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。  |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>

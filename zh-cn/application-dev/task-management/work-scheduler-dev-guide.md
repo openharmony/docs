@@ -50,6 +50,7 @@ storageRequest|存储状态|    StorageRequest
 isRepeat|是否循环任务|    boolean
 repeatCycleTime |循环间隔|    number
 repeatCount    |循环次数| number
+parameters    |携带参数信息| {[key: string]: any}
 
 **表3** 延迟任务回调接口
 
@@ -80,12 +81,17 @@ onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
     
     let workInfo = {
         workId: 1,
-        batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
     }
     var res = workScheduler.startWork(workInfo);
     console.info("workschedulerLog res:" + res);
@@ -98,12 +104,17 @@ onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
     
     let workInfo = {
         workId: 1,
-        batteryLevel:50,
         batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
         isRepeat: false,
         isPersisted: true,
         bundleName: "com.example.myapplication",
-        abilityName: "MyExtension"
+        abilityName: "MyExtension",
+        parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
     }
     var res = workScheduler.stopWork(workInfo, false);
     console.info("workschedulerLog res:" + res);

@@ -14,11 +14,19 @@
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
 ```
 
+## 属性
+
+**系统能力：** SystemCapability.BarrierFree.Accessibility.Core
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明                      |
+| --------- | -------- | ---- | ---- | ------------------------- |
+| context | [AccessibilityExtensionContext](js-apis-accessibility-extension-context.md) | 是 | 否 | 表示辅助扩展能力上下文。 |
+
 ## AccessibilityEvent
 
 辅助事件信息。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -32,7 +40,7 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 表示手势路径信息。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -41,29 +49,11 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 | points       | Array&lt;[GesturePoint](gesturepoint)&gt; | 是    | 是    | 手势。    |
 | durationTime | number                                   | 是    | 是    | 手势总耗时。 |
 
-### constructor
-
-constructor(durationTime: number)
-
-构造函数。
-
-- **参数：**
-
-  | 参数名          | 参数类型   | 必填   | 说明     |
-  | ------------ | ------ | ---- | ------ |
-  | durationTime | number | 是    | 手势总耗时。 |
-
-- **示例：**
-
-  ```typescript
-  let gesturePath = new GesturePath(100);
-  ```
-
 ## GesturePoint
 
 表示手势触摸点。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 ### 属性
 
@@ -72,30 +62,11 @@ constructor(durationTime: number)
 | positionX | number | 是    | 是    | 触摸点X坐标。 |
 | positionY | number | 是    | 是    | 触摸点Y坐标。 |
 
-### constructor
-
-constructor(positionX: number, positionY: number)
-
-构造函数。
-
-- **参数：**
-
-  | 参数名       | 参数类型   | 必填   | 说明      |
-  | --------- | ------ | ---- | ------- |
-  | positionX | number | 是    | 触摸点X坐标。 |
-  | positionY | number | 是    | 触摸点Y坐标。 |
-
-- **示例：**
-
-  ```typescript
-  let gesturePoint = new GesturePoint(100, 200);
-  ```
-
 ## GestureType
 
 手势事件类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称            | 描述           |
 | ------------- | ------------ |
@@ -120,7 +91,7 @@ constructor(positionX: number, positionY: number)
 
 页面刷新类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称                | 描述        |
 | ----------------- | --------- |
@@ -131,7 +102,7 @@ constructor(positionX: number, positionY: number)
 
 触摸浏览事件类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称         | 描述           |
 | ---------- | ------------ |
@@ -205,7 +176,7 @@ onAccessibilityEvent(event: AccessibilityEvent): void {
 
 ## AccessibilityExtensionAbility.onKeyEvent
 
-onKeyEvent(keyEvent: inputEventClient.KeyEvent): boolean;
+onKeyEvent(keyEvent: KeyEvent): boolean;
 
 在物理按键按下时回调此方法，可以在该方法中根据业务判断是否对事件进行拦截。
 
@@ -215,7 +186,7 @@ onKeyEvent(keyEvent: inputEventClient.KeyEvent): boolean;
 
 | 参数名      | 参数类型                                     | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| keyEvent | [KeyEvent](js-apis-inputeventclient.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
+| keyEvent | [KeyEvent](js-apis-keyevent.md#KeyEvent) | 是    | 按键事件回调函数。返回true表示拦截此按键。 |
 
 **示例：**
 

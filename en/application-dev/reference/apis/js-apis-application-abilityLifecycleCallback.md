@@ -1,6 +1,6 @@
 # AbilityLifecycleCallback
 
-The **AbilityLifecycleCallback** module provides callbacks, such as **onAbilityCreate**, **onAbilityWindowStageCreate**, and **onAbilityWindowStageDestroy**, to receive lifecycle state changes in the application context.
+The **AbilityLifecycleCallback** module provides callbacks, such as **onAbilityCreate**, **onWindowStageCreate**, and **onWindowStageDestroy**, to receive lifecycle state changes in the application context.
 
 > **NOTE**
 > 
@@ -30,9 +30,9 @@ Called when an ability is created.
   | ability | [Ability](js-apis-application-ability.md#Ability) | Yes| **Ability** object.| 
 
 
-## AbilityLifecycleCallback.onAbilityWindowStageCreate
+## AbilityLifecycleCallback.onWindowStageCreate
 
-onAbilityWindowStageCreate(ability: Ability): void;
+onWindowStageCreate(ability: Ability, windowStage: window.WindowStage): void;
 
 Called when the window stage of an ability is created.
 
@@ -43,11 +43,44 @@ Called when the window stage of an ability is created.
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | Yes| **Ability** object.|  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|    
 
 
-## AbilityLifecycleCallback.onAbilityWindowStageDestroy
+## AbilityLifecycleCallback.onWindowStageActive
 
-onAbilityWindowStageDestroy(ability: Ability): void;
+onWindowStageActive(ability: Ability, windowStage: window.WindowStage): void;
+
+Called when the window stage of an ability gains focus.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | ability | [Ability](js-apis-application-ability.md#Ability) | Yes| **Ability** object.|  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|    
+
+
+## AbilityLifecycleCallback.onWindowStageInactive
+
+onWindowStageInactive(ability: Ability, windowStage: window.WindowStage): void;
+
+Called when the window stage of an ability loses focus.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | ability | [Ability](js-apis-application-ability.md#Ability) | Yes| **Ability** object.|  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|  
+
+
+## AbilityLifecycleCallback.onWindowStageDestroy
+
+onWindowStageDestroy(ability: Ability, windowStage: window.WindowStage): void;
 
 Called when the window stage of an ability is destroyed.
 
@@ -58,6 +91,7 @@ Called when the window stage of an ability is destroyed.
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
   | ability | [Ability](js-apis-application-ability.md#Ability) | Yes| **Ability** object.|  
+  | windowStage | [WindowStage](js-apis-window.md#windowstage9) | Yes| **WindowStage** object.|  
 
 
 ## AbilityLifecycleCallback.onAbilityDestroy
@@ -132,12 +166,22 @@ Called when an ability is continued on another device.
               onAbilityCreate(ability){
                   console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
               },
-              onAbilityWindowStageCreate(ability){
-                  console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
-              },
-              onAbilityWindowStageDestroy(ability){
-                  console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
-              },
+            onWindowStageCreate(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageActive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageInactive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+            },
+            onWindowStageDestroy(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
+            },
               onAbilityDestroy(ability){
                   console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
               },

@@ -2,9 +2,9 @@
 
 ProcessRunningInfo模块提供对进程运行信息进行设置和查询的能力。
 
-> **说明：**
-> 
-> 本模块首批接口从API Version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-processrunninginformation.md)替代。
+> **说明：** 
+> - 本模块接口从API Version 9 开始废弃，建议使用[ProcessRunningInformation<sup>9+</sup>](js-apis-processrunninginformation.md)替代。
+> - 本模块首批接口从API version 8 开始支持。
 
 ## 使用说明
 
@@ -19,9 +19,9 @@ appManager.getProcessRunningInfos((error,data) => {
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
-  | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
+| 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | pid | number | 是 | 否 | 进程ID。 | 
 | uid | number | 是 | 否 | 用户ID。 | 

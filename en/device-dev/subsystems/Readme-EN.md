@@ -1,11 +1,9 @@
 #  Subsystems
 
 - Compilation and Building
-  - [Building Mini and Small Systems](subsys-build-mini-lite.md)
-  - [Building the Standard System](subsys-build-standard-large.md)
-  - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
-  - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
-  - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
+    - [Compilation and Building Guide](subsys-build-all.md)
+    - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
+    - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
@@ -74,10 +72,15 @@
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
-  - [init Module](subsys-boot-init.md)
+  - init Module
+      - [init Configuration File](subsys-boot-init-cfg.md)
+      - [Job Management](subsys-boot-init-jobs.md)
+      - [Service Management](subsys-boot-init-service.md)
+      - [Parameter Management](subsys-boot-init-sysparam.md)
+      - [Sandbox Management](subsys-boot-init-sandbox.md)
+      - [Plug-in Management](subsys-boot-init-plugin.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
-  - [syspara Module](subsys-boot-syspara.md)
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
 - [Test Case Development](subsys-testguide-test.md)

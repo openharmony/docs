@@ -115,14 +115,15 @@
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.get('startup', 'default');
-       getPromise.then((value) => {
-           console.info("The value of 'startup' is " + value);
-       }).catch((err) => {
-           console.info("Failed to get the value of 'startup'. Cause: " + err);
-       })
+     let getPromise = preferences.get('startup', 'default');
+     getPromise.then((value) => {
+       console.info("The value of 'startup' is " + value);
+     }).catch((err) => {
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+     })
    }).catch((err) => {
-       console.info("Failed to get preferences.")});
+     console.info("Failed to get preferences.")
+   });
    ```
 
 5. 数据持久化。
@@ -138,24 +139,24 @@
    应用订阅数据变化需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
 
    ```js
-    var observer = function (key) {
-        console.info("The key" + key + " changed.");
-    }
-    preferences.on('change', observer);
-    preferences.put('startup', 'auto', function (err) {
-        if (err) {
-            console.info("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
-        console.info("Succeeded in putting the value of 'startup'.");
-        preferences.flush(function (err) {
-            if (err) {
-                console.info("Failed to flush. Cause: " + err);
-                return;
-            }
-            console.info("Succeeded in flushing.");   // observer will be called.
-        })
-    })
+   var observer = function (key) {
+       console.info("The key" + key + " changed.");
+   }
+   preferences.on('change', observer);
+   preferences.put('startup', 'auto', function (err) {
+       if (err) {
+           console.info("Failed to put the value of 'startup'. Cause: " + err);
+           return;
+       }
+       console.info("Succeeded in putting the value of 'startup'.");
+       preferences.flush(function (err) {
+           if (err) {
+               console.info("Failed to flush. Cause: " + err);
+               return;
+           }
+           console.info("Succeeded in flushing."); // observer will be called.
+       })
+   })
    ```
 
 7. 删除指定文件。
@@ -163,14 +164,14 @@
    使用deletePreferences方法从内存中移除指定文件对应的Preferences单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。删除后，数据及文件将不可恢复。
 
    ```js
-    let proDelete = data_preferences.deletePreferences(context, 'mystore');
-    proDelete.then(() => {
-        console.info("Succeeded in deleting.");
-    }).catch((err) => {
-        console.info("Failed to delete. Cause: " + err);
-    })
+   let proDelete = data_preferences.deletePreferences(context, 'mystore');
+   proDelete.then(() => {
+       console.info("Succeeded in deleting.");
+   }).catch((err) => {
+       console.info("Failed to delete. Cause: " + err);
+   })
    ```
 ## 相关实例
 针对首选项开发，有以下相关实例可供参考：
 
-- [`Preferences`：首选项（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/data/Preferences)
+- [`Preferences`：首选项（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)

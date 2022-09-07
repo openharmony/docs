@@ -20,7 +20,7 @@
 
 ## 接口
 
-Gauge(value:{value: number, min?: number, max?: number})
+Gauge(options:{value: number, min?: number, max?: number})
 
 - 参数
     | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
@@ -35,10 +35,18 @@ Gauge(value:{value: number, min?: number, max?: number})
   | 名称 | 参数类型 | 默认值 | 描述 | 
 | -------- | -------- | -------- | -------- |
 | value | number | 0 | 设置当前数据图表的值。 | 
-| startAngle | Angle | -150 | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。 | 
-| endAngle | Angle | 150 | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。 | 
-| colors | Color&nbsp;\|&nbsp;Array&lt;ColorStop&gt; | - | 设置图表的颜色，支持纯色和分段渐变色设置。 | 
+| startAngle | number | -150 | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。 | 
+| endAngle | number | 150 | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。 | 
+| colors | Array&lt;ColorStop&gt; | - | 设置图表的颜色，支持分段颜色设置。 |
 | strokeWidth | Length | - | 设置环形图表的环形厚度。 |
+
+## ColorStop
+
+颜色断点类型，用于描述渐进色颜色断点。
+
+| 名称      | 类型定义             | 描述                                                         |
+| --------- | -------------------- | ------------------------------------------------------------ |
+| ColorStop | [[ResourceColor](../../ui/ts-types.md#resourcecolor8),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，第二个参数为0~1之间的比例值。 |
 
 
 ## 示例

@@ -13,6 +13,8 @@
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
+ **系统API：**  此接口为系统接口，三方应用不支持调用
+
 | 名称           | 类型   | 可读 | 可写 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 是   | 否   | 用户权限名称   |

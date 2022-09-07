@@ -9,15 +9,15 @@ The **\<Flex>** component is used to create a flex layout. In a flex container c
 The available API is as follows:
 
 `Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })`
-The **direction** parameter defines the flex layout direction. The **justifyContent** parameter defines the alignment mode of child components in the flex layout direction. The **alignContent** parameter defines the alignment mode of child components in the vertical direction. The **wrap** parameter defines whether the content can wrap onto multiple lines.
+In the preceding code, the **direction** parameter defines the flex layout direction; the **justifyContent** parameter defines the alignment mode of child components in the flex layout direction; the **alignContent** parameter defines the alignment mode of child components in the vertical direction; the **wrap** parameter defines whether the content can wrap onto multiple lines.
 
 ## Flex Layout Direction
 
 The flex layout has two directions, following two axes. The main axis is the axis along which the child components follow each other. The cross axis is the axis perpendicular to the main axis. The **direction** parameter establishes the main axis. The available options are as follows:
 
-- **FlexDirection.Row** (default value): The main axis runs along the row horizontally, and the child components start from the start edge of the main axis.
+- **FlexDirection.Row** (default value): The main axis runs along the row horizontally, and the child components are laid out from the start edge of the main axis.
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.Row }) {
     Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
@@ -31,9 +31,9 @@ The flex layout has two directions, following two axes. The main axis is the axi
 
   ![en-us_image_0000001218579606](figures/en-us_image_0000001218579606.png)
 
-- **FlexDirection.RowReverse**: The main axis runs along the row horizontally, and the child components start from the end edge of the main axis, in a direction opposite to **FlexDirection.Row**.
+- **FlexDirection.RowReverse**: The main axis runs along the row horizontally, and the child components are laid out from the end edge of the main axis, in a direction opposite to **FlexDirection.Row**.
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.RowReverse }) {
     Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
@@ -47,9 +47,9 @@ The flex layout has two directions, following two axes. The main axis is the axi
 
   ![en-us_image_0000001218739566](figures/en-us_image_0000001218739566.png)
 
-- **FlexDirection.Column**: The main axis runs along the column vertically, and the child components start from the start edge of the main axis.
+- **FlexDirection.Column**: The main axis runs along the column vertically, and the child components are laid out from the start edge of the main axis.
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.Column }) {
     Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
@@ -63,9 +63,9 @@ The flex layout has two directions, following two axes. The main axis is the axi
 
   ![en-us_image_0000001263019457](figures/en-us_image_0000001263019457.png)
 
-- **FlexDirection.ColumnReverse**: The main axis runs along the column vertically, and the child components start from the end edge of the main axis, in a direction opposite to **FlexDirection.Column**.
+- **FlexDirection.ColumnReverse**: The main axis runs along the column vertically, and the child components are laid out from the end edge of the main axis, in a direction opposite to **FlexDirection.Column**.
 
-  ```
+  ```ts
   Flex({ direction: FlexDirection.ColumnReverse }) {
     Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
@@ -86,7 +86,7 @@ By default, child components are laid out on a single line (also called an axis)
 
 - **FlexWrap.NoWrap**: Child components are laid out on a single line. This may cause the child components to shrink to fit the container when the total width of the child components is greater than the width of the container.
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.NoWrap }) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -101,7 +101,7 @@ By default, child components are laid out on a single line (also called an axis)
 
 - **FlexWrap.Wrap**: Child components can break into multiple lines.
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.Wrap }) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -116,7 +116,7 @@ By default, child components are laid out on a single line (also called an axis)
 
 - **FlexWrap.WrapReverse**: Child components can break into multiple lines in the reverse order to the row.
 
-  ```
+  ```ts
   Flex({ wrap: FlexWrap.WrapReverse}) {
     Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
     Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
@@ -139,7 +139,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.Start**: The items are aligned with each other toward the start edge of the container along the main axis.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.Start }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -154,7 +154,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.Center**: The items are aligned with each other toward the center of the container along the main axis. The space between the first component and the main-start is the same as that between the last component and the main-end.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.Center }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -169,7 +169,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.End**: The items are aligned with each other toward the end edge of the container along the main axis.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.End }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -184,7 +184,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.SpaceBetween**: The items are evenly distributed within the container along the main axis. The first item is aligned with the main-start, the last item is aligned with the main-end, and the remaining items are distributed so that the space between any two adjacent items is the same.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -199,7 +199,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.SpaceAround**: The items are evenly distributed within the container along the main axis. The space between the first item and main-start, and that between the last item and cross-main are both half the size of the space between two adjacent items.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -214,7 +214,7 @@ Use the **justifyContent** parameter to set alignment of items on the main axis.
 
 - **FlexAlign.SpaceEvenly**: The items are equally distributed along the main axis. The space between the first item and main-start, the space between the last item and main-end, and the space between two adjacent items are the same.
 
-  ```
+  ```ts
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
     Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
     Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
@@ -234,7 +234,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.Auto**: The items are automatically aligned in the flex container.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Auto }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -249,7 +249,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.Start**: The items are aligned with the start edge of the container along the cross axis.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Start }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -264,7 +264,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.Start**: The items are aligned with the center of the container along the cross axis.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Center }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -279,7 +279,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.End**: The items are aligned with the end edge of the container along the cross axis.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.End }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -294,7 +294,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.Stretch**: The items are stretched along the cross axis. If no constraints are set, the items are stretched to fill the size of the container on the cross axis.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Stretch }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -309,7 +309,7 @@ Use the **alignItems** parameter to set alignment of items on the cross axis. Th
 
 - **ItemAlign.Baseline**: The items are aligned at the baseline of the cross axis.
 
-  ```
+  ```ts
   Flex({ alignItems: ItemAlign.Baseline }) {  
     Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
     Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
@@ -333,7 +333,7 @@ Use the **alignContent** parameter to set how content items are aligned within t
 
 - **FlexAlign.End**: The items are packed to the end of the container.
 
-- **FlexAlign.SpaceBetween**: The items are evenly distributed; the first item is aligned with the main-start while the last one is aligned with the main-end.
+- **FlexAlign.SpaceBetween**: The items are evenly distributed; the first item is aligned with the main-start while the last item is aligned with the main-end.
 
 - **FlexAlign.SpaceAround**: The items are evenly distributed, with the space between the item and the main-start and between the item and the main-end equals half of the space between adjacent items.
 
@@ -344,7 +344,7 @@ Use the **alignContent** parameter to set how content items are aligned within t
 
 In this example, a flex layout is designed to achieve the following effects: The child components are laid out horizontally on a single line, even when the total width of the child components exceeds the width of the container; the child components are horizontally aligned at both ends and vertically aligned toward the center of the container; the space is evenly divided by the child components except for the start and end ones.
 
-```
+```ts
 @Entry
 @Component
 struct FlexExample {

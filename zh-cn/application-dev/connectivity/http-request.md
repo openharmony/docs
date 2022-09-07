@@ -10,6 +10,8 @@ HTTP数据请求功能主要由http模块提供。
 
 使用该功能需要申请ohos.permission.INTERNET权限。
 
+权限申请请参考[访问控制（权限）开发指导](../security/accesstoken-guidelines.md)。
+
 具体接口说明如下表。
 
 | 接口名                                    | 功能描述                            |
@@ -65,7 +67,7 @@ httpRequest.request(
             console.info('cookies:' + data.cookies); // 8+
         } else {
             console.info('error:' + JSON.stringify(err));
-            // 当该请求使用完毕时，调用destroy方法主动销毁。
+            // 该请求不再使用，调用destroy方法主动销毁。
             httpRequest.destroy();
         }
     }
@@ -74,5 +76,5 @@ httpRequest.request(
 
 ## 相关实例
 针对HTTP数据请求，有以下相关实例可供参考：
-- [`Http`：数据请求（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Network/Http)
+- [`Http:`数据请求（eTS）（API9））](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Http)
 - [使用HTTP实现与服务端通信（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

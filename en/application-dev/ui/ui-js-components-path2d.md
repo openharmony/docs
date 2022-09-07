@@ -9,16 +9,14 @@ Create a **&lt;Path2D&gt;** object and use line segments to create different sha
 
 
 
-```
+```html
 <!-- xxx.hml --> 
 <div class="container">
   <canvas ref="canvas"></canvas>
 </div>
 ```
 
-
-
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -35,9 +33,7 @@ canvas{
 }
 ```
 
-
-
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -86,7 +82,7 @@ export default {
 Use **createPath2D** to create a path object and draw only **path1** so that only **path1** is displayed on the canvas. Click the **&lt;text&gt;** component to trigger the **addPath** method. The **path2** object is passed to **path1** as a parameter. After the **stroke** operation is performed on the **path1** object, **path1** and **path2** are displayed on the canvas. Click **Change** to change the value of **setTransform** to** setTransform(2, 0.1, 0.1, 2, 0,0)**. The graph is enlarged and tilted to the left.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas ref="canvas"></canvas>
@@ -98,7 +94,7 @@ Use **createPath2D** to create a path object and draw only **path1** so that onl
 ```
 
 
-```
+```css
 /* xxx.css */
 .container{
   flex-direction: column;
@@ -133,7 +129,7 @@ text{
 ```
 
 
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -167,7 +163,7 @@ export default {
       this.isAdd = "clearPath2"
     }else{
       this.ctx.clearRect(0,0,600,600)
-      this.ctx.stroke(this.path1);
+      this.ctx.stroke(this.path1);      
       this.isAdd = "addPath2"
     }
   },
@@ -176,15 +172,15 @@ export default {
       this.ctx.clearRect(0,0,600,600)
       this.path3 = this.ctx.createPath2D();
       this.path3.arc(150, 150, 100, 0, 6.28)
-      this.path3.setTransform(2, 0.1, 0.1, 2, 0,0);
-      this.ctx.stroke(this.path3);
-      this.isChange =  !this.isChange;
+      this.path3.setTransform(2, 0.1, 0.1, 2, 0,0);      
+      this.ctx.stroke(this.path3);      
+      this.isChange =  !this.isChange;      
       this.textName = "back"
     }else{
       this.ctx.clearRect(0,0,600,600)
       this.path3.setTransform(0.5, -0.1, -0.1, 0.5, 0,0);
       this.ctx.stroke(this.path3);
-      this.isChange =  !this.isChange;
+      this.isChange =  !this.isChange;      
       this.textName = "change"
     }
   },

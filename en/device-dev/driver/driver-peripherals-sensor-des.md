@@ -97,9 +97,10 @@ The sensor driver model provides driver development APIs that do not require fur
 
 
 
+
 The sensor driver model also provides certain driver development APIs that need to be implemented by driver developers. See the table below.
 
-**Table 3** Driver development APIs that need to be implemented by driver developers
+**Table 3** APIs that need to be implemented by driver developers
 
 | API| Description| 
 | ----- | -------- |
@@ -197,7 +198,7 @@ The sensor driver model also provides certain driver development APIs that need 
      }
      struct SensorCfgData *AccelCreateCfgData(const struct DeviceResourceNode *node)
      {
-         ......
+         ...
          /* Continue the next detection if the sensor is not detected. */
          if (drvData->detectFlag) {
              HDF_LOGE("%s: Accel sensor have detected", __func__);
@@ -225,12 +226,12 @@ The sensor driver model also provides certain driver development APIs that need 
              goto INIT_EXIT;
          }
          return drvData->accelCfg;
-         ......
+         ...
      }
      /* The entry function of the acceleration sensor driver is used to initialize the sensor private data structure object, allocate space for the sensor HCS data configuration object, call the entry function for initializing the sensor HCS data configuration, detect whether the sensor device is in position, create a sensor data reporting timer, register the sensor normalization APIs, and register the sensor device. */
      int32_t AccelInitDriver(struct HdfDeviceObject *device)
      {
-         ......
+         ...
          /* Initialize work queue resources. */
          if (InitAccelData(drvData) != HDF_SUCCESS) {
              HDF_LOGE("%s: Init accel config failed", __func__);
@@ -244,7 +245,7 @@ The sensor driver model also provides certain driver development APIs that need 
          }
          /* Register the register group information. */
          drvData->accelCfg->regCfgGroup = &g_regCfgGroup[0];
-         ......
+         ...
          return HDF_SUCCESS;
      }
      /* Release the resources allocated during driver initialization. */
@@ -501,7 +502,7 @@ The sensor driver model also provides certain driver development APIs that need 
        event.sensorId = SENSOR_TAG_ACCELEROMETER;
        event.option = 0;
        event.mode = SENSOR_WORK_MODE_REALTIME;
-       ......
+       ...
        ret = ReportSensorEvent(&event);
        if (ret != HDF_SUCCESS) {
            HDF_LOGE("%s: BMI160 report data failed", __func__);
@@ -543,7 +544,7 @@ void HdfSensorTest::SetUpTestCase()
 {
     g_sensorDev = NewSensorInterfaceInstance();
     if (g_sensorDev == nullptr) {
-        printf("test sensorHdi get Module instance failed\n\r");
+        printf("test sensor get module instance failed\n\r");
     }
 }
 /* Release case resources. */

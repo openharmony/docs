@@ -86,7 +86,7 @@ export class VideoRecorderDemo {
       profile : videoProfile,
       url : this.testFdNumber, // testFdNumber由getFd生成
       orientationHint : 0,
-      location : { latitude : 30, longitude : 130 },
+      location : { latitude : 30, longitude : 130 }
     }
     // 创建videoRecorder对象
     await media.createVideoRecorder().then((recorder) => {

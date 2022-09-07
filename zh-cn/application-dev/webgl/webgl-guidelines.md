@@ -64,7 +64,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 
 3. 编辑JavaScript代码文件，增加2D绘制逻辑代码。index.js示例如下：
    ```
-   //index.js
+   // index.js
    export default {//NAPI交互代码
        data: {
            title: "DEMO BY TEAMOL",
@@ -80,7 +80,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
            // 获取2D上下文
            const ctx = canvas.getContext('2d');
    
-           //执行CPU绘制函数
+           // 执行CPU绘制函数
            // Set line width
            ctx.lineWidth = 10;
            // Wall
@@ -135,9 +135,9 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 
 3. 编辑JavaScript代码文件，增加彩色三角形绘制逻辑代码。index.js示例如下：
    ```
-   //index.js
+   // index.js
    
-   //WebGL相关预定义
+   // WebGL相关预定义
    var gl = {
        DEPTH_BUFFER_BIT: 0x00000100,
        STENCIL_BUFFER_BIT: 0x00000400,
@@ -515,7 +515,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
        // 向缓冲区对象写入数据
        gl.bufferData(gl.ARRAY_BUFFER, verticesColors.buffer, gl.STATIC_DRAW);
    
-       //获取着色器中attribute变量a_Position的地址
+       // 获取着色器中attribute变量a_Position的地址
        var a_Position = gl.getAttribLocation(gl.program, 'a_Position');
        if (a_Position < 0) {
            console.log('Failed to get the storage location of a_Position');
@@ -527,7 +527,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
        // 连接a_Position变量与分配给它的缓冲区对象
        gl.enableVertexAttribArray(a_Position);
    
-       //获取着色器中attribute变量a_Color的地址
+       // 获取着色器中attribute变量a_Color的地址
        var a_Color = gl.getAttribLocation(gl.program, 'a_Color');
        if (a_Color < 0) {
            console.log('Failed to get the storage location of a_Color');
@@ -704,4 +704,4 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 
 针对WebGL开发，有以下相关实例可供参考：
 
-- [`JsWbgGL`：WebGL（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Graphics/JsWebGL)
+- [`JsWbgGL`：WebGL（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL)

@@ -39,7 +39,7 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 **示例：**
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
-  dataAbilityPredicates.equalTo("NAME", "Rose").between("AGE", 16, 30)
+  dataAbilityPredicates.equalTo("NAME", "Rose")
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 

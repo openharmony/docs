@@ -35,7 +35,7 @@ Obtains the localized script for the specified language.
 | string | Localized script for the specified language.|
 
 **Example**
-  ```
+  ```js
   i18n.getDisplayLanguage("zh", "en-GB", true);
   i18n.getDisplayLanguage("zh", "en-GB");
   ```
@@ -62,7 +62,7 @@ Obtains the localized script for the specified country.
 | string | Localized script for the specified country.|
 
 **Example**
-  ```
+  ```js
   i18n.getDisplayCountry("zh-CN", "en-GB", true);
   i18n.getDisplayCountry("zh-CN", "en-GB");
   ```
@@ -87,7 +87,7 @@ Checks whether the localized script for the specified language is displayed from
 | boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   i18n.isRTL("zh-CN");// Since Chinese is not written from right to left, false is returned.
   i18n.isRTL("ar-EG");// Since Arabic is written from right to left, true is returned.
   ```
@@ -107,7 +107,7 @@ Obtains the system language.
 | string | System language ID.|
 
 **Example**
-  ```
+  ```js
   i18n.getSystemLanguage();
   ```
 
@@ -135,7 +135,7 @@ This is a system API.
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   i18n.setSystemLanguage('zh');
   ```
 
@@ -156,7 +156,7 @@ Obtains the list of system languages.
 | Array&lt;string&gt; | List of the IDs of system languages.|
 
 **Example**
-  ```
+  ```js
   i18n.getSystemLanguages();
   ```
 
@@ -182,7 +182,7 @@ Obtains the list of countries and regions supported for the specified language.
 | Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
 
 **Example**
-  ```
+  ```js
   i18n.getSystemCountries('zh');
   ```
 
@@ -201,7 +201,7 @@ Obtains the system region.
 | string | System region ID.|
 
 **Example**
-  ```
+  ```js
   i18n.getSystemRegion();
   ```
 
@@ -229,7 +229,7 @@ This is a system API.
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   i18n.setSystemRegion('CN');
   ```
 
@@ -248,7 +248,7 @@ Obtains the system locale.
 | string | System locale ID.|
 
 **Example**
-  ```
+  ```js
   i18n.getSystemLocale();
   ```
 
@@ -276,7 +276,7 @@ This is a system API.
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   i18n.setSystemLocale('zh-CN');
   ```
 
@@ -303,7 +303,7 @@ Checks whether the system language matches the specified region.
 | boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   i18n.isSuggested('zh', 'CN');
   ```
 
@@ -328,7 +328,7 @@ Obtains a **Calendar** object.
 | [Calendar](#calendar8) | **Calendar** object.|
 
 **Example**
-  ```
+  ```js
   i18n.getCalendar("zh-Hans", "gregory");
   ```
 
@@ -350,7 +350,7 @@ Sets the date for this **Calendar** object.
 | date | Date | Yes   | Date to be set for the **Calendar** object.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("en-US", "gregory");
   var date = new Date(2021, 10, 7, 8, 0, 0, 0);
   calendar.setTime(date);
@@ -371,7 +371,7 @@ Sets the date and time for this **Calendar** object. The value is represented by
 | time | number | Yes   | Number of milliseconds that have elapsed since the Unix epoch.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("en-US", "gregory");
   calendar.setTime(10540800000);
   ```
@@ -396,7 +396,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 | second | number | No   | Second to set. |
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   ```
@@ -416,7 +416,7 @@ Sets the time zone of this **Calendar** object.
 | timezone | string | Yes   | Time zone, for example, **Asia/Shanghai**.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   ```
@@ -436,7 +436,7 @@ Obtains the time zone of this **Calendar** object.
 | string | Time zone of the **Calendar** object.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setTimeZone("Asia/Shanghai");
   calendar.getTimeZone(); // Asia/Shanghai"
@@ -457,7 +457,7 @@ Obtains the start day of a week for this **Calendar** object.
 | number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("en-US", "gregory");
   calendar.getFirstDayOfWeek();
   ```
@@ -477,7 +477,7 @@ Sets the start day of a week for this **Calendar** object.
 | value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setFirstDayOfWeek(0);
   ```
@@ -497,7 +497,7 @@ Obtains the minimum number of days in the first week of a year.
 | number | Minimum number of days in the first week of a year.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.getMinimalDaysInFirstWeek();
   ```
@@ -517,7 +517,7 @@ Sets the minimum number of days in the first week of a year.
 | value | number | No   | Minimum number of days in the first week of a year.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.setMinimalDaysInFirstWeek(3);
   ```
@@ -542,7 +542,7 @@ Obtains the value of the specified field in the **Calendar** object.
 | number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.10.1 08:00:00
   calendar.get("hour_of_day"); // 8
@@ -568,7 +568,7 @@ Obtains the name of the **Calendar** object displayed for the specified locale.
 | string | Name of the **Calendar** object displayed for the specified locale.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("en-US", "buddhist");
   calendar.getDisplayName("zh"); // Obtain the name of the Buddhist calendar in zh.
   ```
@@ -593,7 +593,7 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 | boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
 
 **Example**
-  ```
+  ```js
   var calendar = i18n.getCalendar("zh-Hans");
   calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.11.11 08:00:00
   calendar.isWeekend(); // false
@@ -620,7 +620,7 @@ Parameters
 | options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
 
 **Example**
-  ```
+  ```js
   var phoneNumberFormat= new i18n.PhoneNumberFormat("CN", {"type": "E164"});
   ```
 
@@ -644,7 +644,7 @@ Checks whether the format of the specified phone number is valid.
 | boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
   phonenumberfmt.isValidNumber("15812312312");
   ```
@@ -669,14 +669,14 @@ Formats a phone number.
 | string | Formatted phone number.|
 
 **Example**
-  ```
+  ```js
   var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
-  phonenumberfmt.format("15812312312");
+  phonenumberfmt.isValidNumber("15812312312");
   ```
 
 ### getLocationName<sup>9+</sup>
 
-static getLocationName(number: string, locale: string): string
+getLocationName(number: string, locale: string): string
 
 Obtains the home location of a phone number.
 
@@ -694,11 +694,10 @@ Obtains the home location of a phone number.
 | string | Home location of the phone number.|
 
 **Example**
+  ```js
+  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
+  phonenumberfmt.isValidNumber("15812312312");
   ```
-  var location = i18n.PhoneNumberFormat.getLocationName('15812312345', 'zh-CN');
-  ```
-
-
 
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
@@ -750,7 +749,7 @@ Converts one measurement unit into another and formats the unit based on the spe
 | string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
 
 **Example**
-  ```
+  ```js
   i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
 
@@ -797,7 +796,7 @@ Creates an **IndexUtil** object.
 | [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
 
 **Example**
-  ```
+  ```js
   var indexUtil= i18n.getInstance("zh-CN");
   ```
 
@@ -819,7 +818,7 @@ Obtains the index list for this **locale** object.
 | Array&lt;string&gt; | Index list for this **locale** object.|
 
 **Example**
-  ```
+  ```js
   var indexUtil = i18n.getInstance("zh-CN");
   var indexList = indexUtil.getIndexList();
   ```
@@ -839,7 +838,7 @@ Adds the index of the new **locale** object to the index list.
 | locale | string | Yes   | A string containing locale information, including the language, optional script, and region.|
 
 **Example**
-  ```
+  ```js
   var indexUtil = i18n.getInstance("zh-CN");
   indexUtil.addLocale("en-US");
   ```
@@ -864,7 +863,7 @@ Obtains the index of a text object.
 | string | Index of the **text** object.|
 
 **Example**
-  ```
+  ```js
   var indexUtil= i18n.getInstance("zh-CN");
   indexUtil.getIndex("hi"); // Return h.
   ```
@@ -892,7 +891,7 @@ Checks whether the input character string is composed of digits.
 | boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isdigit = i18n.Character.isDigit("1"); // Return true.
   ```
 
@@ -916,7 +915,7 @@ Checks whether the input character is a space.
 | boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isspacechar = i18n.Character.isSpaceChar("a"); // Return false.
   ```
 
@@ -940,7 +939,7 @@ Checks whether the input character is a white space.
 | boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isspacechar = i18n.Character.isSpaceChar("a"); // Return false.
   ```
 
@@ -964,7 +963,7 @@ Checks whether the input character is of the right to left (RTL) language.
 | boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isrtl = i18n.Character.isRTL("a"); // Return false.
   ```
 
@@ -988,7 +987,7 @@ Checks whether the input character is an ideographic character.
 | boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isideograph = i18n.Character.isIdeograph("a"); // Return false.
   ```
 
@@ -1012,7 +1011,7 @@ Checks whether the input character is a letter.
 | boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isletter = i18n.Character.isLetter("a"); // Return true.
   ```
 
@@ -1036,7 +1035,7 @@ Checks whether the input character is a lowercase letter.
 | boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var islowercase = i18n.Character.isLowerCase("a"); // Return true.
   ```
 
@@ -1060,7 +1059,7 @@ Checks whether the input character is an uppercase letter.
 | boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var isuppercase = i18n.Character.isUpperCase("a"); // Return false.
   ```
 
@@ -1084,7 +1083,7 @@ Obtains the type of the input character string.
 | string | Type of the input character.|
 
 **Example**
-  ```
+  ```js
   var type = i18n.Character.getType("a");
   ```
 
@@ -1108,7 +1107,7 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 | [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   ```
 
@@ -1130,7 +1129,7 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 | text | string | Yes   | Text to be processed by the **BreakIterator** object.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   ```
@@ -1150,7 +1149,7 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 | string | Text being processed by the **BreakIterator** object.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.getLineBreakText(); // Apple is my favorite fruit.
@@ -1171,7 +1170,7 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 | number | Position of the **BreakIterator** object in the text being processed.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.current(); // 0
@@ -1192,7 +1191,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 | number | Offset to the first text boundary of the processed text.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
@@ -1213,7 +1212,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 | number | Offset of the last text boundary of the processed text.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.last(); // 27
@@ -1239,7 +1238,7 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
@@ -1262,7 +1261,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.first(); // 0
@@ -1290,7 +1289,7 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 | number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.following(0); // 6
@@ -1318,7 +1317,7 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 | boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var iterator = i18n.getLineInstance("en");
   iterator.setLineBreakText("Apple is my favorite fruit.");
   iterator.isBoundary(0); // true;
@@ -1340,7 +1339,7 @@ Checks whether the 24-hour clock is used.
 | boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   var is24HourClock = i18n.is24HourClock();
   ```
 
@@ -1366,7 +1365,7 @@ Sets the 24-hour clock.
 | boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   // Set the system time to the 24-hour clock.
   var success = i18n.set24HourClock(true);
   ```
@@ -1394,7 +1393,7 @@ Adds a preferred language to the specified position on the preferred language li
 | boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   // Add zh-CN to the preferred language list.
   var language = 'zh-CN';
   var index = 0;
@@ -1423,7 +1422,7 @@ Deletes a preferred language from the specified position on the preferred langua
 | boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
 
 **Example**
-  ```
+  ```js
   // Delete the first preferred language from the preferred language list.
   var index = 0;
   var success = i18n.removePreferredLanguage(index);
@@ -1444,7 +1443,7 @@ Obtains the list of preferred languages.
 | Array&lt;string&gt; | List of preferred languages.|
 
 **Example**
-  ```
+  ```js
   var preferredLanguageList = i18n.getPreferredLanguageList();
   ```
 
@@ -1463,7 +1462,7 @@ Obtains the first language in the preferred language list.
 | string | First language in the preferred language list.|
 
 **Example**
-  ```
+  ```js
   var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
   ```
 
@@ -1482,7 +1481,7 @@ Obtains the preferred language of an application.
 | string | Preferred language of the application.|
 
 **Example**
-  ```
+  ```js
   var appPreferredLanguage = i18n.getAppPreferredLanguage();
   ```
 
@@ -1506,7 +1505,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 | TimeZone | **TimeZone** object corresponding to the time zone ID.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.getTimeZone();
   ```
 
@@ -1528,7 +1527,7 @@ Obtains the ID of the specified **TimeZone** object.
 | string | Time zone ID corresponding to the **TimeZone** object.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.getTimeZone();
   timezone.getID();
   ```
@@ -1554,7 +1553,7 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 | string | Representation of the **TimeZone** object in the specified locale.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.getTimeZone();
   timezone.getDisplayName("zh-CN", false);
   ```
@@ -1574,7 +1573,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.getTimeZone();
   timezone.getRawOffset();
   ```
@@ -1594,7 +1593,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);
   ```
@@ -1613,7 +1612,7 @@ Obtains the list of time zone IDs supported by the system.
 | Array&lt;string&gt; | List of time zone IDs supported by the system.|
 
 **Example**
-  ```
+  ```js
   var ids = i18n.TimeZone.getAvailableIDs();
   ```
 
@@ -1632,7 +1631,7 @@ Obtains the list of time zone city IDs supported by the system.
 | Array&lt;string&gt; | List of time zone city IDs supported by the system.|
 
 **Example**
-  ```
+  ```js
   var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
   ```
 
@@ -1657,7 +1656,7 @@ Obtains the localized display of a time zone city in the specified locale.
 | string | Localized display of the time zone city in the specified locale.|
 
 **Example**
-  ```
+  ```js
   var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
   ```
 
@@ -1681,7 +1680,7 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 | TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
 
 **Example**
-  ```
+  ```js
   var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
@@ -1708,7 +1707,7 @@ This is a system API.
 | boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
 
 **Example**
-  ```
+  ```js
   var status = i18n.setUsingLocalDigit(true);
   ```
 
@@ -1727,7 +1726,7 @@ Checks whether the local digit switch is turned on.
 | boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
 
 **Example**
-  ```
+  ```js
   var status = i18n.getUsingLocalDigit();
   ```
 

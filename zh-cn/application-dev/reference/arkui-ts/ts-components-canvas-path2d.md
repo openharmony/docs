@@ -20,8 +20,8 @@ addPath(path: Object): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct AddPath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -58,8 +58,8 @@ closePath(): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ClosePath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -103,8 +103,8 @@ moveTo(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct MoveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -148,8 +148,8 @@ lineTo(x: number, y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct LineTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -198,8 +198,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct BezierCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -242,8 +242,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number ,y: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct QuadraticCurveTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -289,8 +289,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct Arc {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -333,8 +333,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct ArcTo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -381,8 +381,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
@@ -425,8 +425,8 @@ rect(x: number, y: number, width: number, height: number): void
 
 - 示例
   ```ts
-// xxx.ets
-@Entry
+  // xxx.ets
+  @Entry
   @Component
   struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)

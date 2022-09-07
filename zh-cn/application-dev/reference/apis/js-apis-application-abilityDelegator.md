@@ -876,3 +876,265 @@ abilityDelegator.finishTest(msg, 0).then(() => {
 });
 ```
 
+### addAbilityStageMonitor<sup>9+</sup>
+
+addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+
+添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（callback形式）
+
+**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor(monitor, (err : any) => {
+    console.info("addAbilityStageMonitor callback");
+});
+```
+
+
+
+### addAbilityStageMonitor<sup>9+</sup>
+
+addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+
+添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。（promise形式）
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | 是   | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+
+**返回值：**
+
+| 类型           | 说明                |
+| -------------- | ------------------- |
+| Promise\<void> | 以Promise形式返回。 |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityStageMonitor(monitor).then(() => {
+    console.info("addAbilityStageMonitor promise");
+});
+```
+
+### removeAbilityStageMonitor<sup>9+</sup>
+
+removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+
+从应用程序内存中删除指定的AbilityStageMonitor对象。（callback形式）
+
+**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
+    console.info("removeAbilityStageMonitor callback");
+});
+```
+
+
+
+### removeAbilityStageMonitor<sup>9+</sup>
+
+removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+
+从应用程序内存中删除指定的AbilityStageMonitor对象。（promise形式）
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | 是   | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+
+**返回值：**
+
+| 类型           | 说明                |
+| -------------- | ------------------- |
+| Promise\<void> | 以Promise形式返回。 |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.removeAbilityStageMonitor(monitor).then(() => {
+    console.info("removeAbilityStageMonitor promise");
+});
+```
+
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void;
+
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
+
+**系统能力：**SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填说明 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| monitor  | [AbilityStageMonitor](#abilitystagemonitor) | 是       | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+| callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。             |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor, (err : any, data : any) => {
+    console.info("waitAbilityStageMonitor callback");
+});
+```
+  
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;
+
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（promise形式）
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | 是   | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+| timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
+
+**返回值：**
+
+| 类型           | 说明                |
+| -------------- | ------------------- |
+| Promise\<AbilityStage> | 成功返回AbilityStage对象，失败返回空。 |
+
+**示例：**
+
+```js
+var abilityDelegator;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor).then((data : any) => {
+    console.info("waitAbilityStageMonitor promise");
+});
+```
+
+### waitAbilityStageMonitor<sup>9+</sup>
+
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void;
+
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。（callback形式）
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| monitor | [AbilityStageMonitor](#abilitystagemonitor) | 是   | [AbilityStageMonitor](#abilitystagemonitor) 实例 |
+| timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
+| callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
+
+**示例：**
+
+```js
+var abilityDelegator;
+var timeout = 100;
+
+function onAbilityCreateCallback(data) {
+    console.info("onAbilityCreateCallback");
+}
+
+var monitor = {
+    moduleName: "moduleName",
+    srcEntrance: "srcEntrance",
+}
+
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.waitAbilityStageMonitor(monitor, timeout, (err : any, data : any) => {
+    console.info("waitAbilityStageMonitor callback");
+});
+```
+
+## AbilityStageMonitor
+
+提供用于匹配满足指定条件的受监视的AbilityStage对象的方法。最近匹配的AbilityStage对象将保存在AbilityStageMonitor对象中。  
+
+系统能力：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                                                         | 类型     | 可读 | 可写 | 说明                                                         |
+| ------------------------------------------------------------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| moduleName<sup>9+</sup>                                                 | string   | 是   | 是   | 要监视的abilityStage的模块名。 |
+| srcEntrance<sup>9+</sup> | string | 是   | 是   | 要监视的abilityStage的源路径。 |
+

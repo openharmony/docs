@@ -15,15 +15,19 @@ In the overall planning of the AI engine framework, northbound SDKs are a part o
 
 -   SDK code directory: //foundation/ai/engine/services/client/algorithm\_sdk
 
-    e.g. //foundation/ai/engine/services/client/algorithm\_sdk/cv
+    Examples:
+    
+    //foundation/ai/engine/services/client/algorithm\_sdk/cv
 
-    e.g. //foundation/ai/engine/services/client/algorithm\_sdk/nlu
+    //foundation/ai/engine/services/client/algorithm\_sdk/nlu
 
 -   Plug-in code directory: //foundation/ai/engine/services/server/plugin
 
-    e.g. //foundation/ai/engine/services/server/plugin/cv
+    Examples:
 
-    e.g. //foundation/ai/engine/services/server/plugin/nlu
+    //foundation/ai/engine/services/server/plugin/cv
+
+    //foundation/ai/engine/services/server/plugin/nlu
 
 
 ## Rule: Store all external APIs provided by plug-ins in the  **interfaces/kits**  directory of the AI subsystem.<a name="section2551029111312"></a>

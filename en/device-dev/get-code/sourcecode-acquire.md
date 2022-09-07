@@ -182,12 +182,12 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 | Hi3516 solution-Linux (binary)| 3.0 | [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.0/hispark_taurus_linux.tar.gz.sha256) |
 | RELEASE-NOTES | 3.0 | [Download](https://gitee.com/openharmony/docs/blob/OpenHarmony-3.0-LTS/en/release-notes/OpenHarmony-v3.0-LTS.md)| - |
 | **Source code of the Latest Release**| **Version Information**| **Site**| **SHA-256 Verification Code**|
-| Full code base (for mini, small, and standard systems)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/code-v3.2-Beta1.tar.gz.sha256)|
-| RK3568 standard system solution (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/standard_rk3568.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256)|
-| Hi3861 solution (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_pegasus.tar.gz.sha256) |
-| Hi3516 solution-LiteOS (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256)|
-| Hi3516 solution-Linux (binary)| 3.2 Beta1 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256)|
-| RELEASE-NOTES | 3.2 Beta1 | [Download](../../release-notes/OpenHarmony-v3.2-beta1.md)| - |
+| Full code base (for mini, small, and standard systems)| 3.2 Beta2 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/code-v3.2-Beta2.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/code-v3.2-Beta2.tar.gz.sha256)|
+| RK3568 standard system solution (binary)| 3.2 Beta2 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/standard_rk3568.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.1.1/standard_rk3568.tar.gz.sha256)|
+| Hi3861 solution (binary)| 3.2 Beta2 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/hispark_pegasus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/hispark_pegasus.tar.gz.sha256) |
+| Hi3516 solution-LiteOS (binary)| 3.2 Beta2 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_LiteOS.tar.gz.sha256)|
+| Hi3516 solution-Linux (binary)| 3.2 Beta2 | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/hispark_taurus_Linux.tar.gz.sha256)|
+| RELEASE-NOTES | 3.2 Beta2 | [Download](../../release-notes/OpenHarmony-v3.2-beta2.md)| - |
 | **Compiler Toolchain**| **Version Information**| **Site**| **SHA-256 Verification Code**|
 | Compiler toolchain| - | [Download](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/)| - |
 
@@ -197,7 +197,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 >
 > The image repository is synchronized at 23:00 (UTC +8:00) every day.
 
-Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
+Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
 
 ```
 repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify

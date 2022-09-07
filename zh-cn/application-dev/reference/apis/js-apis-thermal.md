@@ -42,7 +42,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 | 参数名      | 类型                                | 必填   | 说明                                       |
 | -------- | --------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | 是    | 指定的callback回调方法，用于获取返回值。<br/>callback返回值：热档位信息。 |
+| callback | AsyncCallback&lt;ThermalLevel&gt; | 是    | 指定的callback回调方法，用于获取返回值。<br/>AsyncCallback只返回一个参数，为热档位信息，此时可能会产生告警，可通过`// @ts-ignore`进行抑制。 |
 
 **示例：**
 

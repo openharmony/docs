@@ -10,10 +10,11 @@ In the declarative UI programming paradigm, the UI is a function in the specific
 ## State Variable Decorators
 
 - @State: state attribute of the component. Each time the @State decorated variable changes, the component re-renders and updates the UI.
-
 - @Link: allows a component to depend on some state attributes of its parent component. Each time the data in one component is updated, the state of the other component is updated, and the parent and child components are rendered again.
-
 - @Prop: works in a way similar to that of @Link. The difference is that the changes made by a child component are not synchronized to the parent component.
+> **NOTE**
+>
+> The state variable cannot use an ID as its name, as in **@Prop id:number**.  
 
 
 ## Application State Data

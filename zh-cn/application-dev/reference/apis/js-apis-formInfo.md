@@ -96,7 +96,7 @@ import formInfo from '@ohos.application.formInfo';
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
+| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | 卡片标识。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。   |
 | DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | 卡片规格样式。   |
 | NAME_KEY       | "ohos.extra.param.key.form_name"   | 卡片名称。   |
 | MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | 卡片所属模块名称。   |
@@ -105,3 +105,20 @@ import formInfo from '@ohos.application.formInfo';
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
 | ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | ability名称   |
 | DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | 设备标识。<br/>此接口为系统接口。   |
+| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑包名称的键。<br/>此接口为系统接口。   |
+
+##  FormDimension
+
+定义卡片尺寸枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| Dimension_1_2<sup>9+</sup>      | 1   | 1 x 2 form。   |
+| Dimension_2_2<sup>9+</sup>      | 2   | 2 x 2 form。   |
+| Dimension_2_4<sup>9+</sup>      | 3   | 2 x 4 form。   |
+| Dimension_4_4<sup>9+</sup>      | 4   | 4 x 4 form。   |
+| Dimension_2_1<sup>9+</sup>      | 5   | 2 x 1 form。   |
+
+

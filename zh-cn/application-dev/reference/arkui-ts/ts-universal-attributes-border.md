@@ -20,7 +20,7 @@
 | 名称         | 参数类型      | 默认值                  | 描述                     |
 | ------------ | ------------- | ----------------------- | ------------------------ |
 | border       | BorderOptions | -                       | 统一边框样式设置接口。   |
-| borderStyle  | BorderStyle   | &nbsp;BorderStyle.Solid | 设置元素的边框样式。     |
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle)   | &nbsp;BorderStyle.Solid | 设置元素的边框样式。     |
 | borderWidth  | Length        | 0                       | 设置元素的边框宽度。     |
 | borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | 设置元素的边框颜色。     |
 | borderRadius | Length \| BorderRadiuses<sup>9+</sup>        | 0                       | 设置元素的边框圆角半径。 |
@@ -32,7 +32,7 @@
   | width    | [Length](../../ui/ts-types.md#长度类型) \| EdgeWidth<sup>9+</sup> | 0                 | 否   | 边框宽度。 |
   | color    | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 'Black'           | 否   | 边框颜色。 |
   | radius   | [Length](../../ui/ts-types.md#长度类型) \| BorderRadiuses<sup>9+</sup> | 0                 | 否   | 边框角度。 |
-  | style    | BorderStyle \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | 否   | 边框样式。 |
+  | style    | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | 否   | 边框样式。 |
 
 
 - EdgeWidth<sup>9+</sup>对象说明
@@ -74,19 +74,10 @@
 
   | 名称   | 参数类型    | 必填 | 默认值            | 描述           |
   | ------ | ----------- | ---- | ----------------- | -------------- |
-  | left   | BorderStyle | 否   | BorderStyle.Solid | 左侧边框样式。 |
-  | right  | BorderStyle | 否   | BorderStyle.Solid | 右侧边框样式。 |
-  | top    | BorderStyle | 否   | BorderStyle.Solid | 上侧边框样式。 |
-  | bottom | BorderStyle | 否   | BorderStyle.Solid | 下侧边框样式。 |
-
-- BorderStyle枚举说明
-
-  | 名称   | 描述                                            |
-  | ------ | ----------------------------------------------- |
-  | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 |
-  | Dashed | 显示为一系列短的方形虚线。                      |
-  | Solid  | 显示为一条实线。                                |
-
+  | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 左侧边框样式。 |
+  | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 右侧边框样式。 |
+  | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 上侧边框样式。 |
+  | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 下侧边框样式。 |
 
 ## 示例
 

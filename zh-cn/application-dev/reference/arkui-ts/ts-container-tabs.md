@@ -41,11 +41,11 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| vertical | boolean | false | 是否为纵向Tab，默认为false。 |
-| scrollable | boolean | true | 是否可以通过左右滑动进行页面切换，默认为true。 |
-| barMode | BarMode  | BarMode.Fixed | TabBar布局模式。 |
-| barWidth | number | - | TabBar的宽度值，不设置时使用系统主题中的默认值。 |
-| barHeight | number | -             | TabBar的高度值，不设置时使用系统主题中的默认值。 |
+| vertical          | boolean | false          | 设置为false是为横向Tabs，设置为true时为纵向Tabs。              |
+| scrollable        | boolean | true   | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。       |
+| barMode           | BarMode | BarMode.Fixed                | TabBar布局模式，具体描述见BarMode枚举说明。                     |
+| barWidth          | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的宽度值。     |
+| barHeight         | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的高度值。     |
 | animationDuration | number | 200 | TabContent滑动动画时长。 |
 
 - BarMode枚举说明

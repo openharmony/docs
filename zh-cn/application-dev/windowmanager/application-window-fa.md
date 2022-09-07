@@ -197,7 +197,7 @@
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-   var names = null;
+   var names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));

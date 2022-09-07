@@ -8,16 +8,14 @@ The **&lt;button&gt;** component can be used to set a capsule, circle, text, arc
 
 Create a **&lt;button&gt;** component in the .hml file under **pages/index**.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">       
   <button  type="capsule" value="Capsule button"></button>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container {
   width: 100%;
@@ -37,8 +35,7 @@ Create a **&lt;button&gt;** component in the .hml file under **pages/index**.
 Set the **type** attribute of the **&lt;input&gt;** component to **button**, **date**, or any of the supported values.
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">    
   <button class="circle" type="circle" >+</button>
@@ -47,8 +44,7 @@ Set the **type** attribute of the **&lt;input&gt;** component to **button**, **d
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .container {  
   width: 100%;
@@ -78,7 +74,7 @@ Set the **type** attribute of the **&lt;input&gt;** component to **button**, **d
 ![en-us_image_0000001222967744](figures/en-us_image_0000001222967744.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > - For capsule buttons, border-related styles are not supported.
 > 
 > - For circle buttons, text-related styles are not supported.
@@ -106,18 +102,18 @@ Sample code for declaring the **ohos.permission.INTERNET** permission in the **c
 
 Add the **progress** method to the **&lt;button&gt;** component to display the download progress in real time.
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="button download" type="download" id="download-btn" onclick="setProgress">{{downloadText}}</button>
 </div>
 ```
 
-
-```
+```css
 /* xxx.css */
 .container { 
+  width: 100%;
+  height: 100%;
   background-color: #F1F3F5;  
   flex-direction: column;
   align-items: center;
@@ -130,8 +126,7 @@ Add the **progress** method to the **&lt;button&gt;** component to display the d
 }
 ```
 
-
-```
+```js
 // xxx.js
 import prompt from '@system.prompt';
 export default {
@@ -181,7 +176,7 @@ export default {
 
 ![en-us_image_0000001223287652](figures/en-us_image_0000001223287652.gif)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 >
 > The **setProgress** method supports only buttons of the download type.
 
@@ -191,8 +186,7 @@ export default {
 Switch between the button types for different types of text.
 
 
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <div class="input-item">
@@ -210,8 +204,7 @@ Switch between the button types for different types of text.
 ```
 
 
-
-```
+```css
 /* xxx.css */
 .container {
   flex-direction: column;
@@ -258,8 +251,7 @@ Switch between the button types for different types of text.
 ```
 
 
-
-```
+```js
 // xxx.js
 export default {
   data: {

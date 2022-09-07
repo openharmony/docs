@@ -1,12 +1,11 @@
 # CanvasRenderingContext2D
 
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<RenderingContext>** component is used to draw rectangles, text, images, and other objects on a canvas.
 
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## APIs
 
@@ -259,7 +258,7 @@ struct MiterLimit {
 // xxx.ets
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   
@@ -1282,7 +1281,8 @@ Draws an arc on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Arc {

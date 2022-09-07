@@ -126,7 +126,7 @@ Switches to another input method. This API uses a promise to return the result. 
 ```
 ## InputMethodController
 
-In the following API examples, you must first use **[getInputMethodController](#inputmethodgetinputmethodcontroller)** to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getInputMethodController](#inputmethodgetinputmethodcontroller) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
 
 ### stopInput
 
@@ -174,7 +174,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 ## InputMethodSetting<sup>8+</sup>
 
-In the following API examples, you must first use **[getInputMethodSetting](#inputmethodgetinputmethodcontroller)** to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getInputMethodSetting](#inputmethodgetinputmethodcontroller) to obtain an **InputMethodSetting** instance, and then call the APIs using the obtained instance.
 
 ### listInputMethod
 

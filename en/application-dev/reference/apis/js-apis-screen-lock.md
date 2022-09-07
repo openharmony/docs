@@ -170,6 +170,63 @@ Unlocks the screen. This API uses a promise to return the result.
   });
   ```
 
+
+## screenlock.lockScreen<sup>9+</sup>
+
+lockScreen(callback: AsyncCallback&lt;void&gt;): void
+
+
+Locks the screen. This API uses an asynchronous callback to return the result.
+
+
+**System capability**: SystemCapability.MiscServices.ScreenLock
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation failed, an error message is returned.|
+
+**Example**
+
+  ```js
+  screenlock.lockScreen((err) => {      
+     if (err) {
+          console.error('lockScreen callback error -> ${JSON.stringify(err)}');
+          return;    
+     }
+     console.info('lockScreen callback success');
+  });
+  ```
+
+## screenlock.lockScreen<sup>9+</sup>
+
+lockScreen(): Promise&lt;void&gt;
+
+Locks the screen. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.ScreenLock
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+  ```js
+  screenlock.lockScreen().then(() => {
+      console.log('lockScreen success');
+  }).catch((err) => {
+      console.error('lockScreen fail, promise: err->${JSON.stringify(err)}');
+  });
+  ```
+
+
 ## screenlock.on<sup>9+</sup>
 
 on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' | 'unlockScreen' | 'beginExitAnimation', callback: Callback\<void\>): void
@@ -231,7 +288,7 @@ Subscribes to screen lock status changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **"screenlockEnabled"**: Screen lock is enabled.|
-| callback | Callback\<boolean\> | Yes| Callback used to return the result.|
+| callback | Callback\<boolean\> | Yes| Callback used to return the result. |
 
 **Example**
 

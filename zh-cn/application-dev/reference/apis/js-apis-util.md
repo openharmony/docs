@@ -164,6 +164,84 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
   })
   ```
 
+## util.randomUUID<sup>9+</sup>
+
+randomUUID(entropyCache?: boolean): string
+
+使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 表示此UUID的字符串。 |
+
+**示例：**
+  ```js
+  let uuid = util.randomUUID(true);
+  console.log("RFC 4122 Version 4 UUID:" + uuid);
+  // 输出：
+  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+  ```
+
+## util.randomBinaryUUID<sup>9+</sup>
+
+randomBinaryUUID(entropyCache?: boolean): Uint8Array
+
+使用加密安全随机数生成器生成随机的RFC 4122版本4的 UUID。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Uint8Array | 表示此UUID的Uint8Array值。 |
+
+**示例：**
+  ```js
+  let uuid = util.randomBinaryUUID(true);
+  console.log(uuid);
+  // 输出：
+  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+  ```
+
+## util.parseUUID<sup>9+</sup>
+
+parseUUID(uuid: string): Uint8Array
+
+从字符串中解析UUID，如RFC 4122版本4中所述。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uuid | string | 是 | UUID字符串。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| Uint8Array | 返回表示此UUID的Uint8Array，如果解析失败，则抛出SyntaxError。 |
+
+**示例：**
+  ```js
+  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+  console.log(uuid);
+  // 输出：
+  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+  ```  
+
 ## TextDecoder
 
 ### 属性
@@ -241,6 +319,47 @@ decode(input: Uint8Array, options?: { stream?: false }): string
   result[5] = 0x63;
   console.log("input num:");
   var retStr = textDecoder.decode( result , {stream: false});
+  console.log("retStr = " + retStr);
+  ```
+
+
+### decodeWithStream<sup>9+</sup>
+
+decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
+
+通过输入参数解码后输出对应文本。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| options | Object | 否 | 解码相关选项参数。 |
+
+  **表2** options
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**示例：**
+  ```js
+  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  var result = new Uint8Array(6);
+  result[0] = 0xEF;
+  result[1] = 0xBB;
+  result[2] = 0xBF;
+  result[3] = 0x61;
+  result[4] = 0x62;
+  result[5] = 0x63;
+  console.log("input num:");
+  var retStr = textDecoder.decodeWithStream( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -2545,4 +2664,105 @@ isWeakSet(value: Object): boolean
   ```js
   var that = new util.types();
   var result = that.isWeakSet(new WeakSet());
+  ```
+
+
+### isBigInt64Array<sup>8+</sup>
+
+isBigInt64Array(value: Object): boolean
+
+检查输入的value是否是BigInt64Array类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object | 是 | 待检测对象。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 判断的结果，如果是内置包含的BigInt64Array类型为true，反之为false。 |
+
+**示例：**
+  ```js
+  var that = new util.types();
+  var result = that.isBigInt64Array(new BigInt64Array([]));
+  ```
+
+
+### isBigUint64Array<sup>8+</sup>
+
+isBigUint64Array(value: Object): boolean
+
+检查输入的value是否是BigUint64Array类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object | 是 | 待检测对象。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 判断的结果，如果是内置包含的BigUint64Array类型为true，反之为false。 |
+
+**示例：**
+  ```js
+  var that = new util.types();
+  var result = that.isBigUint64Array(new BigUint64Array([]));
+  ```
+
+
+### isModuleNamespaceObject<sup>8+</sup>
+
+isModuleNamespaceObject(value: Object): boolean
+
+检查输入的value是否是Module Namespace Object类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object | 是 | 待检测对象。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 判断的结果，如果是内置包含的Module Namespace Object类型为true，反之为false。 |
+
+**示例：**
+  ```js
+  import url from '@ohos.url'
+  var that = new util.types();
+  var result = that.isModuleNamespaceObject(url);
+  ```
+
+
+### isSharedArrayBuffer<sup>8+</sup>
+
+isSharedArrayBuffer(value: Object): boolean
+
+检查输入的value是否是SharedArrayBuffer类型。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object | 是 | 待检测对象。 |
+
+**返回值：**
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 判断的结果，如果是内置包含的SharedArrayBuffer类型为true，反之为false。 |
+
+**示例：**
+  ```js
+  var that = new util.types();
+  var result = that.isSharedArrayBuffer(new SharedArrayBuffer([]));
   ```

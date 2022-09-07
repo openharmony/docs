@@ -47,7 +47,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 3. 安装[git客户端](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
   
-   ```
+   ```shell
    git config --global user.name "yourname"
    git config --global user.email "your-email-address"
    git config --global credential.helper store
@@ -57,7 +57,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
    下述命令中的安装路径以"~/bin"为例，请用户自行创建所需目录。
   
-   ```
+   ```shell
    mkdir ~/bin
    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
    chmod a+x ~/bin/repo
@@ -66,7 +66,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 5. 将repo添加到环境变量。
 
-   ```
+   ```shell
    vim ~/.bashrc               # 编辑环境变量
    export PATH=~/bin:$PATH     # 在环境变量的最后添加一行repo路径信息
    source ~/.bashrc            # 应用环境变量
@@ -83,7 +83,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
   
   方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
   
-  ```
+  ```shell
   repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
   repo forall -c 'git lfs pull'
@@ -92,7 +92,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
   方式二：通过repo + https下载。
 
   
-  ```
+  ```shell
   repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
   repo forall -c 'git lfs pull'
@@ -116,26 +116,28 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 先要在本地安装Node.js和hpm命令行工具，安装步骤如下：
 
 1. 安装Node.js。
-   官网下载并在本地安装Node.js.
+
+   官网下载并在本地安装Node.js。
 
    [Node.js](https://nodejs.org/)版本需不低于12.x (包含npm 6.14.4)，推荐安装LTS版本。
 
 2. 通过Node.js自带的npm安装hpm命令行工具。
-     打开CMD，执行以下命令：
+
+   打开CMD，执行以下命令：
      
-   ```
+   ```shell
    npm install -g @ohos/hpm-cli
    ```
 
 3. 安装完成后执行如下命令，显示hpm版本，即安装成功。
   
-   ```
+   ```shell
    hpm -V 或 hpm --version
    ```
 
 4. 如果升级hpm的版本，请执行如下命令：
   
-   ```
+   ```shell
    npm update -g @ohos/hpm-cli
    ```
 
@@ -210,10 +212,10 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
 > 镜像仓库每日23:00（UTC +8:00）同步。
 
-方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
 
+方式一（推荐）：通过repo + ssh下载（需注册公钥，请参考[GitHub帮助中心](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)）。
 
-```
+```shell
 repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -222,7 +224,7 @@ repo forall -c 'git lfs pull'
 方式二：通过repo + https下载。
 
 
-```
+```shell
 repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'

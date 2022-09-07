@@ -4,14 +4,16 @@
 You can use @Preview to decorate a custom component so that it can be previewed in DevEco Studio. This component is created and displayed when the page where it is located is loaded.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> **NOTE**
+>
 > In a source file, at most one custom component can be decorated by @Preview.
 
 
 Example of using @Preview:
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct MyComponent {

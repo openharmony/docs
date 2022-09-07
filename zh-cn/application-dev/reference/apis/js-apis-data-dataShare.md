@@ -91,84 +91,11 @@ dataShare.createDataShareHelper(this.context, uri).then((data) => {
 
 DataShare管理工具实例，可使用此实例访问或管理服务端的数据。在调用DataShareHelper提供的方法前，需要先通过[createDataShareHelper](#datasharecreatedatasharehelper)构建一个实例。
 
-此接口仅可在Stage模型下使用。
-
-### openFile
-
-openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
-
-打开指定路径的文件。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称     | 类型                  | 必填 | 描述                               |
-| -------- | --------------------- | ---- | ---------------------------------- |
-| uri      | string                | 是   | 指示要打开的文件的路径。           |
-| mode     | string                | 是   | 指示文件打开模式，如“r”表示只读访问，“w”表示只写访问（擦除文件中当前的任何数据），“wa”表示附加到任何现有数据的写访问，“rw”表示对任何现有数据的读写访问。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当打开指定路径的文件成功，err为undefined，data为获取到的文件描述符；否则为错误对象。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.openFile(uri, "rwt", (err, data) => {
-    if (err != undefined) {
-        console.info("openFile failed, error message : " + err);
-    }else {
-        console.info("openFile succeed, data : " + data);
-        let fd = data;
-    }
-});
-```
-
-### openFile
-
-openFile(uri: string, mode: string): Promise&lt;number&gt;
-
-打开指定路径的文件。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称 | 类型   | 必填 | 描述                                                         |
-| ---- | ------ | ---- | ------------------------------------------------------------ |
-| uri  | string | 是   | 指示要打开的文件的路径                                       |
-| mode | string | 是   | 指示文件打开模式，如“r”表示只读访问，“w”表示只写访问（擦除文件中当前的任何数据），“wa”表示附加到任何现有数据的写访问，“rw”表示对任何现有数据的读写访问。 |
-
-**返回值：**
-
-| 类型            | 说明             |
-| --------------- | ---------------- |
-| Promise&lt;number&gt; | Promise对象。返回文件描述符。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.openFile(uri, "rwt").then((data) => {
-    console.info("openFile succeed, data : " + data);
-    let fd = data;
-}).catch((err) => {
-	console.info("openFile failed, error message : " + err); 
-})
-```
-
 ### on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 订阅指定URI对应数据的数据变更事件。若用户（订阅者）已注册了观察者，当有其他用户触发了变更通知时（调用了下文中的notifyChange方法），订阅者将会接收到callback通知。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -197,8 +124,6 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 取消订阅指定URI对应的数据资源的变更通知。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -225,8 +150,6 @@ dataShareHelper.off("dataChange", uri, offCallback);
 insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 将单条数据插入数据库。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -262,8 +185,6 @@ dataShareHelper.insert(uri, valueBucket, (err, data) => {
 insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 将单条数据插入数据库。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -303,8 +224,6 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 从数据库中删除一条或多条数据记录。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -338,8 +257,6 @@ dataShareHelper.delete(uri, da, (err, data) => {
 delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;number&gt;
 
 从数据库中删除一条或多条数据记录。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -378,8 +295,6 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 查询数据库中的数据。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -415,8 +330,6 @@ dataShareHelper.query(uri, da, columns, (err, data) => {
 query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 查询数据库中的数据。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -456,8 +369,6 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 更新数据库中的数据记录。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -499,8 +410,6 @@ dataShareHelper.update(uri, da, va, (err, data) => {
 update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
 
 更新数据库中的数据记录。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -546,8 +455,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 将批量数据插入数据库。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -581,8 +488,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 将批量数据插入数据库。使用Promise异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -613,148 +518,11 @@ dataShareHelper.batchInsert(uri, vbs).then((data) => {
 });
 ```
 
-### getType
-
-getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
-
-获取URI所指定的数据的MIME类型。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称     | 类型                   | 必填 | 描述                                          |
-| -------- | ---------------------- | ---- | --------------------------------------------- |
-| uri      | string                 | 是   | 表示指定的数据路径。                      |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当获取URI所指定的数据的MIME类型成功，err为undefined，data为获取到的与URI指定的数据匹配的MIME类型；否则为错误对象。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.getType(uri, (err, data)=>{
-    if (err != undefined) {
-        console.log("getType failed, error message : " + err);
-    }else{
-        console.log("getType succeed, data : " + data);
-        let result = data;
-    }
-});
-```
-
-### getType
-
-getType(uri: string): Promise&lt;string&gt;
-
-获取URI所指定数据的MIME类型。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称 | 类型   | 必填 | 描述                 |
-| ---- | ------ | ---- | -------------------- |
-| uri  | string | 是   | 表示指定的数据路径。 |
-
-**返回值：**
-
-| 类型             | 说明                                |
-| ---------------- | ----------------------------------- |
-| Promise&lt;string&gt; | Promise对象。返回与URI指定的数据匹配的MIME类型。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.getType(uri).then((data) => {
-    console.log("getType succeed, data : " + data);
-}).catch((err) => {
-    console.log("getType failed, error message : " + err);
-});
-```
-
-### getFileTypes
-
-getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
-
-获取支持的文件的MIME类型。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称           | 类型                                                         | 必填 | 描述                                                         |
-| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri            | string                                                       | 是   | 指示要获取的文件的路径。                                     |
-| mimeTypeFilter | string                                                       | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
-| callback       |  AsyncCallback<Array\<string>> | 是   | 回调函数。当获取支持的文件的MIME类型成功，err为undefined，data为获取到的匹配的MIME类型数组；否则为错误对象。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let mimeTypeFilter = "image/*";
-dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
-    if (err != undefined) {
-        console.log("getFileTypes failed, error message : " + err);
-    }else{
-        console.log("getFileTypes succeed, data : " + data);
-    }
-});
-```
-
-### getFileTypes
-
-getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt;&gt;
-
-获取支持的文件的MIME类型。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
-
-**系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**参数：**
-
-| 名称           | 类型   | 必填 | 描述                                                         |
-| -------------- | ------ | ---- | ------------------------------------------------------------ |
-| uri            | string | 是   | 指示要获取的文件的路径。                                     |
-| mimeTypeFilter | string | 是   | 指示要筛选的MIME类型。例如：<br />“\*/\*”：获取支持的所有类型。<br/>“image/\*”：获取主类型image，子类型为任何类型的MIME。<br />”\*/jpg”：获取子类型为jpg，主类型为任何类型的MIME。 |
-
-**返回值：**
-
-| 类型                     | 说明                     |
-| ------------------------ | ------------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回匹配的MIME类型数组。 |
-
-**示例：**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let mimeTypeFilter = "image/*";
-dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
-	console.log("getFileTypes succeed, data : " + data);
-}).catch((err) => {
-	console.log("getFileTypes failed, error message : " + err);
-});
-```
-
 ### normalizeUri
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用callback异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -784,8 +552,6 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 normalizeUri(uri: string): Promise&lt;string&gt;
 
 将给定的DataShare URI转换为规范化URI，规范化URI可供跨设备使用，DataShare  URI仅供本地环境中使用。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -819,8 +585,6 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 将指定的URI转换为非规范化URI。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -849,8 +613,6 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
 将指定的URI转换为非规范化URI。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -884,8 +646,6 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 通知已注册的观察者指定URI对应的数据资源已发生变更。使用callback异步回调。
 
-此接口仅可在Stage模型下使用。
-
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **参数：**
@@ -910,8 +670,6 @@ dataShareHelper.notifyChange(uri, () => {
 notifyChange(uri: string): Promise&lt;void&gt;
 
 通知已注册的观察者指定URI对应的数据资源已发生变更。使用Promise异步回调。
-
-此接口仅可在Stage模型下使用。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 

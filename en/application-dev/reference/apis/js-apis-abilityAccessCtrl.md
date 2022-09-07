@@ -49,7 +49,7 @@ Checks whether an application has been granted the specified permission. This AP
 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | Yes  | ID of the application.             |
+| tokenID   |  number   | Yes  | ID of the application. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).             |
 | permissionName | string | Yes  | Name of the permission to verify.|
 
 **Return value**
@@ -105,7 +105,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 Grants a user granted permission to an application. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -143,7 +143,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 Grants a user granted permission to an application. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Required permissions**: ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -179,7 +179,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 Revokes a user granted permission given to an application. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -217,7 +217,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 Revokes a user granted permission given to an application. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Required permissions**: ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -253,7 +253,7 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 Obtains the flags of the specified permission of a given application. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Required permissions**: ohos.permission.GET_SENSITIVE_PERMISSIONS, ohos.permission.GRANT_SENSITIVE_PERMISSIONS, or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 

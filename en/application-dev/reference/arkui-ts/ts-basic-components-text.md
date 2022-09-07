@@ -24,62 +24,25 @@ Text(content?: string)
 - Parameters
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | content | string | No| '' | Text content. This parameter does not take effect when the child component **\<Span>** is contained.|
+  | content | string | No| '' | Text content. The content and style set for the **\<Text>** component do not take effect when it contains the **\<Span>** child component.|
 
 
 ## Attributes
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| textAlign | TextAlign | TextAlign.Start | Text alignment mode of multiple lines of text.|
-| textOverflow | {overflow: TextOverflow} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/><br>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect.|
-| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/><br>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode.|
+| textAlign | [TextAlign](ts-appendix-enums.md) | TextAlign.Start | Text alignment mode of multiple lines of text.|
+| textOverflow | {overflow: [TextOverflow](ts-appendix-enums.md)} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect. |
+| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode. |
 | lineHeight | Length | - | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
-| decoration | {<br>type: TextDecorationType,<br>color?: Color<br>} | {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} | Style and color of the text decorative line.|
+| decoration | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: Color<br>} | {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} | Style and color of the text decorative line.|
 | baselineOffset | Length | - | Offset of the text baseline.|
-| textCase | TextCase | TextCase.Normal | Text case.|
-| copyOption<sup>9+</sup> | boolean\|CopyOption | false | Whether copy and paste is allowed.|
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | TextCase.Normal | Text case.|
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md) | CopyOptions.None | Whether copy and paste is allowed.|
 
-- TextAlign enums
-  | Name| Description|
-  | -------- | -------- |
-  | Center | The text is center-aligned.|
-  | Start | The text is aligned with the direction in which the text is written.|
-  | End | The text is aligned with the opposite direction in which the text is written.|
-
-- TextOverflow enums
-  | Name| Description|
-  | -------- | -------- |
-  | Clip | Extra text is truncated.|
-  | Ellipsis | An ellipsis (...) is used to represent clipped text.|
-  | None | No truncation or ellipsis is used for extra-long text.|
-
-- TextDecorationType enums
-  | Name| Description|
-  | -------- | -------- |
-  | Underline | Line under the text.|
-  | LineThrough | Line through the text.|
-  | Overline | Line over the text.|
-  | None | No decorative lines.|
-
-- TextCase enums
-  
-  | Name     | Description                |
-  | --------- | -------------------- |
-  | Normal    | The original case of the text is retained.|
-  | LowerCase | All letters in the text are in lowercase.    |
-  | UpperCase | All letters in the text are in uppercase.    |
-  
-- CopyOption<sup>9+</sup> enums
-  
-  | Name| Description|
-  | -------- | -------- |
-  | InApp | Intra-application copy and paste is allowed.|
-  | LocalDevice | Intra-device copy and paste is allowed.|
-  | CrossDevice | Cross-device copy and paste is allowed.|
-
-> **NOTE**<br/>
-> If the **\<Text>** component contains both the text and the **\<Span>** child component, only the content in **\<Span>** is displayed.
+>  **NOTE**
+>
+>  The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
 
 
 ## Example

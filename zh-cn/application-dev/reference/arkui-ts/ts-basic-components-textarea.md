@@ -18,13 +18,13 @@
 
 ## 接口
 
-TextArea(value?:{placeholder?: string| Resource, text?: string| Resource, controller?: TextAreaController})
+TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextAreaController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述           |
   | ----------------------- | ---------------------------------------- | ---- | ---- | -------------- |
-  | placeholder             | string \|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                  | 否    | -    | 无输入时的提示文本。     |
-  | text             | string \|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                  | 否    | -    | 设置提示文本的当前值。     |
+  | placeholder      | [ResourceStr](../../ui/ts-types.md)  | 否    | -    | 无输入时的提示文本。     |
+  | text             | [ResourceStr](../../ui/ts-types.md)  | 否    | -    | 设置输入框当前的文本内容。     |
   | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | -    | 设置TextArea控制器。 |
 
 
@@ -36,17 +36,10 @@ TextArea(value?:{placeholder?: string| Resource, text?: string| Resource, contro
 | ------------------------ | ---------------------------------------- | ----- | ---------------------------------------- |
 | placeholderColor         | Color                                    | -     | 设置placeholder文本颜色。                       |
 | placeholderFont          | {<br/>size?:&nbsp;number,<br/>weight?:number&nbsp;\|&nbsp;[FontWeight](ts-universal-attributes-text-style.md)，<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -     | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效，例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
-| textAlign                | TextAlign                                | Start | 设置文本水平对齐方式。                              |
+| textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | Start | 设置文本水平对齐式。                     |
 | caretColor               | Color                                    | -     | 设置输入框光标颜色。                               |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -     | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-basic-components-text.md) | CopyOptions.CrossDevice | 设置文本是否可复制。 |
-
-- TextAlign枚举说明
-  | 名称     | 描述      |
-  | ------ | ------- |
-  | Start  | 水平对齐首部。 |
-  | Center | 水平居中对齐。 |
-  | End    | 水平对齐尾部。 |
 
 
 ## 事件

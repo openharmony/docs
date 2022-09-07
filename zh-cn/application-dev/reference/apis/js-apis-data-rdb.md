@@ -166,7 +166,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
-同步分布式数据库时指定组网内的远程设备。
+同步分布式数据库时连接到组网内指定的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -191,7 +191,7 @@ predicates.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicates
 
 
-同步分布式数据库时连接到组网内的所有远程设备。
+同步分布式数据库时连接到组网内所有的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -780,7 +780,7 @@ distinct(): RdbPredicates
 **示例：**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 
@@ -1058,10 +1058,10 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 rdbStore.batchInsert("EMPLOYEE", valueBuckets, function(status, insertNum) {
     if (status) {
-        console.log("bathInsert is failed, status = " + status);
+        console.log("batchInsert is failed, status = " + status);
         return;
     }
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 })
 ```
 
@@ -1108,9 +1108,9 @@ const valueBucket3 = {
 var valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 let promise = rdbStore.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
-    console.log("bathInsert is successful, the number of values that were inserted = " + insertNum);
+    console.log("batchInsert is successful, the number of values that were inserted = " + insertNum);
 }).catch((status) => {
-    console.log("bathInsert is failed, status = " + status);
+    console.log("batchInsert is failed, status = " + status);
 })
 ```
 
@@ -1191,6 +1191,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1225,6 +1227,8 @@ rdbStore.update("EMPLOYEE", valueBucket, predicates, function (err, ret) {
 update(table: string, values: ValuesBucket, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1325,6 +1329,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1352,6 +1358,8 @@ rdbStore.delete("EMPLOYEE", predicates, function (err, rows) {
 delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promise&lt;number&gt;
 
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1447,6 +1455,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 根据指定条件查询数据库中的数据，使用callback异步回调。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
 **参数：**
@@ -1478,6 +1488,8 @@ rdbStore.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
 query(table: string, predicates: dataSharePredicates.DataSharePredicates, columns?: Array&lt;string&gt;):Promise&lt;ResultSet&gt;
 
 根据指定条件查询数据库中的数据，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -1529,7 +1541,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EPLOYEE')
 predicates.greaterThan("id", 0)
 rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
     if (err) {
@@ -1567,7 +1579,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EPLOYEE')
 predicates.greaterThan("id", 0)
 let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
 promise.then((resultSet) => {
@@ -2134,7 +2146,7 @@ try {
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
-
+| encrypt | boolean | 否 | 指定数据库是否加密。<br>true:加密。<br>false:非加密。 |
 
 ## ValueType
 

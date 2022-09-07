@@ -1,7 +1,9 @@
 # Component Area Change Event
 
+The area change event is triggered when the component's size, position, or any other attribute that may affect its display area changes.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -12,20 +14,21 @@ None
 
 ## Events
 
-  | Name | Bubble Supported | Description | 
+| Name | Bubble Supported | Description |
 | -------- | -------- | -------- |
-| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No | Triggered when the component area changes. For details about the **Area** type, see **Area** attributes. | 
+| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No | Triggered when the component area changes. For details about the **Area** type, see **Area** attributes. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AreaExample {
   @State value: string = 'Text'
-  @State size: string = ''
+  @State size1: string = ''
 
   build() {
     Column() {
@@ -36,7 +39,7 @@ struct AreaExample {
         })
         .onAreaChange((oldValue: Area, newValue: Area) => {
           console.info(`Ace: on area change, oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
-          this.size = JSON.stringify(newValue)
+          this.size1 = JSON.stringify(newValue)
         })
       Text('new area is: \n' + this.size).margin({ right: 30, left: 30 })
     }

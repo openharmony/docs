@@ -2,8 +2,6 @@
 
 ## Introduction<a name="section11660541593"></a>
 
-**About the Subsystem**
-
 The Distributed Data Management subsystem can persistently store various structured data of a single device and also supports data synchronization and sharing across devices. In this regard, you can seamlessly integrate distributed application data among different devices, ensuring consistent user experience in the same application across these devices.
 
 -   Local data management
@@ -16,9 +14,9 @@ The Distributed Data Management subsystem can persistently store various structu
     This service can synchronize data across devices, so that users can access consistent data on different devices. DDS isolates data based on a triplet of the account, app, and database. DDS synchronizes data between trusted devices to provide the cross-device data access capability.
 
 
-**Architecture of the Subsystem**
+## Architecture
 
-**Figure  1**  Architecture<a name="fig4460722185514"></a>  
+**Figure  1**  Architecture of the Distributed Data Management subsystem<a name="fig4460722185514"></a>  
 
 
 ![](figures/en-us_image_0000001115748088.png)
@@ -51,7 +49,7 @@ third_party/                # Open-source software
 
     -   **Result set**
 
-        A set of query results used to access the data. You can access the required data in a result set in flexible modes.
+        A set of query results used to access data. You can access the required data in a result set in flexible modes.
 
     -   **SQLite database**
 

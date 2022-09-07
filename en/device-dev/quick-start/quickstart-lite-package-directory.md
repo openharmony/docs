@@ -4,7 +4,7 @@
 - Running a Hello World Program
     - Hi3861 Development Board
         - [Setting Up the Hi3861 Development Board Environment](quickstart-lite-steps-hi3861-setting.md)
-        - [Writing a Hello World Program](quickstart-lite-steps-hi3861-application-framework.md)
+        - [Writing a Hello World Program](quickstart-lite-steps-hi3861-helloworld.md)
         - [Building](quickstart-lite-steps-hi3861-building.md)
         - [Burning](quickstart-lite-steps-hi3861-burn.md)
         - [Networking](quickstart-lite-steps-hi3861-netconfig.md)
@@ -12,7 +12,7 @@
         - [Running](quickstart-lite-steps-hi3861-running.md)
     - Hi3516 Development Board
         - [Setting Up the Hi3516 Development Board Environment](quickstart-lite-steps-hi3516-setting.md)
-        - [Writing a Hello World Program](quickstart-lite-steps-hi3516-application-framework.md)
+        - [Writing a Hello World Program](quickstart-lite-steps-hi3516-helloworld.md)
         - [Building](quickstart-lite-steps-hi3516-building.md)
         - [Burning](quickstart-lite-steps-hi3516-burn.md)
         - [Running](quickstart-lite-steps-hi3516-running.md)
@@ -24,5 +24,5 @@
     - Introduction to Development Boards
         - [Introduction to the Hi3861 Development Board](quickstart-lite-introduction-hi3861.md)
         - [Introduction to the Hi3516 Development Board](quickstart-lite-introduction-hi3516.md)
-    - [Getting Started with Mini and Small Systems (IDE Mode)](quickstart-lite-ide-directory.md)
     - [Reference](quickstart-lite-reference.md)
+    - [Burning Code by Using HiTool](quickstart-lite-hitool.md)

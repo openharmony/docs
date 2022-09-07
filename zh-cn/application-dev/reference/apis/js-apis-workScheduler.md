@@ -40,12 +40,17 @@ startWork(work: WorkInfo): boolean
 ```js
   let workInfo = {
       workId: 1,
-      batteryLevel:50,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension"
+      abilityName: "MyExtension",
+      parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
   }
   var res = workScheduler.startWork(workInfo);
   console.info("workschedulerLog res:" + res);
@@ -76,12 +81,17 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 ```js
   let workInfo = {
       workId: 1,
-      batteryLevel:50,
       batteryStatus:workScheduler.BatteryStatus.BATTERY_STATUS_LOW,
       isRepeat: false,
       isPersisted: true,
       bundleName: "com.example.myapplication",
-      abilityName: "MyExtension"
+      abilityName: "MyExtension",
+      parameters: {
+          mykey0: 1,
+          mykey1: "string value",
+          mykey2: true,
+          mykey3: 1.5
+      }
      }
   var res = workScheduler.stopWork(workInfo, false);
   console.info("workschedulerLog res:" + res);
@@ -299,6 +309,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
+| parameters      | {[key: string]: any}              | 否    | 携带参数信息           |
 
 ## NetworkType
 触发工作的网络类型。

@@ -99,4 +99,4 @@ Describes the configuration information about the context.
 
 | Name     | Type                       | Description                                                        |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-featureAbility.md) | Called when initialization is performed during ability startup.|
+| context  | [AbilityStageContext](js-apis-abilitystagecontext.md) | Called when initialization is performed during ability startup.|

@@ -76,8 +76,8 @@ SideBarContainer( type?: SideBarContainerType )
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon : Resource = $r("app.media.user")
-  selectedIcon: Resource = $r("app.media.userFull")
+  normalIcon : Resource = $r("app.media.icon")
+  selectedIcon: Resource = $r("app.media.icon")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 
@@ -100,18 +100,17 @@ struct SideBarContainerExample {
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
-      RowSplit() {
-        Column(){
-          Text('Split page one').fontSize(30)
-        }.justifyContent(FlexAlign.Center)
-        Column(){
-          Text('Split page two').fontSize(30)
-        }.justifyContent(FlexAlign.Center)
-      }.width('100%')
+
+
+      Column() {
+        Text('SideBarContainer content text1').fontSize(25)
+        Text('SideBarContainer content text2').fontSize(25)
+      }
+      .margin({ top: 50, left: 20, right: 30 })
     }
-    .sideBarWidth(240)
-    .minSideBarWidth(210)
-    .maxSideBarWidth(260)
+    .sideBarWidth(150)
+    .minSideBarWidth(50)
+    .maxSideBarWidth(300)
     .onChange((value: boolean) => {
       console.info('status:' + value)
     })

@@ -15,7 +15,7 @@
 
 ## 接口
 
-RichText\(content:string\)
+RichText(content:string)
 
 - 参数
 
@@ -29,8 +29,8 @@ RichText\(content:string\)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| onStart() => void | 加载网页时触发。 |
-| onComplete() => void | 网页加载结束时触发。 |
+| onStart(callback: () => void)    | 加载网页时触发。   |
+| onComplete(callback: () => void) | 网页加载结束时触发。 |
 
 ## 支持标签
 

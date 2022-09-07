@@ -16,7 +16,7 @@ show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
 
-- options参数
+- DatePickerDialogOptions参数说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | start | Date | 否 | Date('1970-1-1') | 指定选择器的起始日期。 |

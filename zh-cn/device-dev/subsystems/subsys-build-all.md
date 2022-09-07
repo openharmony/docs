@@ -76,6 +76,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   apt-get update -y 
   apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9.2 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
   apt-get install -y grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools  pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5 libncurses5-dev libncursesw5 libstdc++6  gcc-arm-none-eabi vim ssh locales doxygen
+  apt-get install -y libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
   # python需要安装以下模块，repo文件在上一章节约束与限制的源码获取中得到。
   chmod +x /usr/bin/repo 
   pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple requests setuptools pymongo kconfiglib pycryptodome ecdsa ohos-build pyyaml prompt_toolkit==1.0.14 redis json2html yagmail python-jenkins 
@@ -96,7 +97,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 
 ## 配置规则
 
-为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，子系统、产品、部件、芯片解决方案、模块和特性需遵循一定的规则，具体配置规则见如下链接：
+为了实现芯片解决方案、产品解决方案与OpenHarmony是解耦的、可插拔的，子系统、产品、部件、芯片解决方案、模块、特性和系统能力需遵循一定的规则，具体配置规则见如下链接：
 
 - [产品配置规则](subsys-build-product.md#产品配置规则)
 - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
@@ -104,6 +105,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
 - [模块配置规则](subsys-build-module.md#模块配置规则)
 - [芯片解决方案配置规则](subsys-build-chip_solution.md#芯片解决方案配置规则)
 - [特性配置规则](subsys-build-feature.md#特性配置规则)
+- [系统能力配置规则](subsys-build-syscap.md#如何按需配置部件的系统能力)
 
 ## 编译构建使用指导
 

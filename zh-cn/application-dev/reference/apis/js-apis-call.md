@@ -2745,7 +2745,7 @@ promise.then(data => {
 | 参数名                   | 类型                               | 必填 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | extras                   | boolean                            | 否   | 根据extras的值判断是否为视频通话，默认为语音通话。<br/>- true：视频通话。<br/>- false：语音通话。 |
-| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。此接口为系统接口。                                   |
+| accountId <sup>8+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>此接口为系统接口。                                   |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                             |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                 |
 | dialType <sup>8+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                 |
@@ -2813,6 +2813,7 @@ IP多媒体系统调用模式。
 | DEVICE_SPEAKER       | 1    | 扬声器设备 |
 | DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
 | DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
+| DEVICE_MIC           | 4    | 麦克风设备 |
 
 ## CallRestrictionType<sup>8+</sup>
 

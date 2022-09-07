@@ -36,6 +36,6 @@
 3. 开始和结束预览。
      
    ```
-   stateCallback->camera_->TriggerLoopingCapture(*fc); // start previewing
-   stateCallback->camera_->StopLoopingCapture(); // stop previewing
+   stateCallback->camera_->TriggerLoopingCapture(*fc); // 开始预览
+   stateCallback->camera_->StopLoopingCapture(); // 停止预览
    ```

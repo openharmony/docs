@@ -417,25 +417,25 @@ DAC模块适配包含以下四个步骤：
                 // 指针为空
                 HDF_LOGE("%s: invalid drs ops fail!", __func__);
                 return;
-        }
-        // 获取devNum节点的数据
-        ret = drsOps->GetUint16(node, "devNum", (uint16_t *)&devNum, 0);
-        if (ret != HDF_SUCCESS) {
-            //获取失败
-            HDF_LOGE("%s: read devNum fail!", __func__);
-            return;
-        }
-        // 获取DAC设备号
-        device = DacDeviceGet(devNum);
-        // 判断DAC设备号以及数据是否为空
-        if (device != NULL && device->priv == node) {
-            // 为空释放DAC设备号
-            DacDevicePut(device);
-            // 移除DAC设备号
-            DacDeviceRemove(device);
-            virtual = (struct VirtualDacDevice *)device;
-            // 释放虚拟指针
-            OsalMemFree(virtual);
+            }
+            // 获取devNum节点的数据
+            ret = drsOps->GetUint16(node, "devNum", (uint16_t *)&devNum, 0);
+            if (ret != HDF_SUCCESS) {
+                //获取失败
+                HDF_LOGE("%s: read devNum fail!", __func__);
+                return;
+            }
+            // 获取DAC设备号
+            device = DacDeviceGet(devNum);
+            // 判断DAC设备号以及数据是否为空
+            if (device != NULL && device->priv == node) {
+                // 为空释放DAC设备号
+                DacDevicePut(device);
+                // 移除DAC设备号
+                DacDeviceRemove(device);
+                virtual = (struct VirtualDacDevice *)device;
+                // 释放虚拟指针
+                OsalMemFree(virtual);
             }
             return;
         }
@@ -446,15 +446,15 @@ DAC模块适配包含以下四个步骤：
             const struct DeviceResourceNode *childNode = NULL;
             // 入参指针判空
             if (device == NULL || device->property == NULL) {
-            // 入参指针为空
-            HDF_LOGE("%s: device or property is NULL", __func__);
-            return;
+                // 入参指针为空
+                HDF_LOGE("%s: device or property is NULL", __func__);
+                return;
             }
             
             DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
                 // 通过节点移除DAC
                 VirtualDacRemoveByNode(childNode);
-                }
+            }
         }
         ```
 

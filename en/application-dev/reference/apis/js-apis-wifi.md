@@ -1,5 +1,5 @@
 # WLAN
-The WLAN module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
+The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with other devices over WLAN.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -159,7 +159,7 @@ Represents WLAN hotspot information.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| Hotspot service set identifier (SSID), in UTF-8 format.|
+| ssid | string | Read only| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| Basic service set identifier (BSSID) of the hotspot.|
 | capabilities | string | Read only| Hotspot capabilities.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| WLAN security type.|
@@ -207,7 +207,7 @@ Represents a WLAN information element.
 
 ## WifiChannelWidth<sup>9+</sup>
 
-Enumerates the Wi-Fi channel widths.
+Enumerates the WLAN channel widths.
 
 **System capability**: SystemCapability.Communication.WiFi.STA
 
@@ -269,7 +269,7 @@ Represents the WLAN configuration.
 | ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | preSharedKey | string | Read only| PSK of the hotspot.|
-| isHiddenSsid | boolean | Read only| Whether to hide the network.|
+| isHiddenSsid | boolean | Read only| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| Security type.|
 | creatorUid | number | Read only| User ID, which is available only to system applications.|
 | disableReason | number | Read only| Reason for disabling WLAN. This parameter is available only to system applications.|
@@ -502,7 +502,7 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
-removeCandidateConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
+removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 Removes the configuration of a candidate network. This API uses a promise to return the result.
 
@@ -513,17 +513,17 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 **Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+  | networkId | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
   | **Type**| **Description**|
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+  | Promise&lt;void&gt; | Promise used to return the result.|
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
 
-removeCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&gt;): void
+removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the configuration of a candidate network. This API uses an asynchronous callback to return the result.
 
@@ -534,8 +534,8 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 **Parameters**
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+  | networkId | number | Yes| ID of the network configuration to remove.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
@@ -625,7 +625,7 @@ This is a system API.
 
 disconnect(): boolean
 
-Connects to the specified network.
+Disconnects from the specified network.
 This is a system API.
 
 **Required permissions**:
@@ -721,7 +721,7 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable/Writable| Description|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| SSID, in UTF-8 format.|
+| ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Read only| BSSID of the hotspot.|
 | networkId | number | Read only| Network configuration ID, which is available only to system applications.|
 | rssi | number | Read only| RSSI of the hotspot, in dBm.|
@@ -754,7 +754,7 @@ Enumerates the WLAN connection states.
 | CONNECTED | 4 | A WLAN connection is established.|
 | DISCONNECTING | 5 | The WLAN connection is being disconnected.|
 | DISCONNECTED | 6 | The WLAN connection is disconnected.|
-| UNKNOWN | 7 | Failed to set up a WLAN connection.|
+| UNKNOWN | 7 | Failed to set up the WLAN connection.|
 
 
 ## SuppState
@@ -775,7 +775,7 @@ Enumerates the supplicant states.
 | FOUR_WAY_HANDSHAKE | 7 | A four-way handshake is being performed for the supplicant.|
 | GROUP_HANDSHAKE | 8 | A group handshake is being performed for the supplicant.|
 | COMPLETED | 9 | The authentication is complete.|
-| UNINITIALIZED | 10 | The supplicant failed to set up a connection.|
+| UNINITIALIZED | 10 | The supplicant failed to set up the connection.|
 | INVALID | 11 | Invalid value.|
 
 
@@ -809,7 +809,7 @@ This is a system API.
 **Return value**
   | **Type**| **Description**|
   | -------- | -------- |
-  | number | Feature value.|
+  | number | Feature value. |
 
 **Feature IDs**
 
@@ -1031,7 +1031,7 @@ This is a system API.
 
 removeDevice(id: number): boolean
 
-Removes the configuration of a network.
+Removes the specified network configuration.
 This is a system API.
 
 **Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
@@ -1147,10 +1147,10 @@ Represents the hotspot configuration.
 
 | **Name**| **Type**| **Readable/Writable**| **Description**|
 | -------- | -------- | -------- | -------- |
-| ssid | string | Read only| SSID, in UTF-8 format.|
+| ssid | string | Read only| SSID of the hotspot, in UTF-8 format.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Read only| Security type.|
 | band | number | Read only| Hotspot band. The value **1** stands for 2.4 GHz, the value **2** for 5 GHz, and the value **3** for dual band.|
-| preSharedKey | string | Read only| SPK of the hotspot.|
+| preSharedKey | string | Read only| PSK of the hotspot.|
 | maxConn | number | Read only| Maximum number of connections allowed.|
 
 
@@ -1295,7 +1295,7 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 
 getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 
-Obtains the peer device list in a P2P connection. This API uses a promise to return the result.
+Obtains the peer device list in the P2P connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
@@ -1311,7 +1311,7 @@ Obtains the peer device list in a P2P connection. This API uses a promise to ret
 
 getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 
-Obtains the peer device list in a P2P connection. This API uses an asynchronous callback to return the result.
+Obtains the peer device list in the P2P connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 
@@ -1357,7 +1357,7 @@ Enumerates the P2P device states.
 
 getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 
-Obtains the local device information in a P2P connection. This API uses a promise to return the result.
+Obtains the local device information in the P2P connection. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
@@ -1373,7 +1373,7 @@ Obtains the local device information in a P2P connection. This API uses a promis
 
 getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 
-Obtains the local device information in a P2P connection. This API uses an asynchronous callback to return the result.
+Obtains the local device information in the P2P connection. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
@@ -1409,7 +1409,7 @@ Creates a P2P group.
 
 ## WifiP2PConfig<sup>8+</sup>
 
-Represents P2P configuration.
+Represents P2P group configuration.
 
 **System capability**: SystemCapability.Communication.WiFi.P2P
 
@@ -1465,7 +1465,7 @@ Sets up a P2P connection.
 
   | **Name**| **Type**| Mandatory| **Description**|
   | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Connection configuration.|
+  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
 
 **Return value**
   | Type| Description|
@@ -1602,7 +1602,7 @@ Deletes a persistent group.
 
   | **Name**| **Type**| Mandatory| **Description**|
   | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of a group to delete.|
+  | netId | number | Yes| ID of the group to delete.|
 
 **Return value**
   | Type| Description|
@@ -1611,11 +1611,11 @@ Deletes a persistent group.
 
 
 ## wifi.getP2pGroups<sup>9+</sup>
-This is a system API.
 
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 Obtains information about all P2P groups. This API uses a promise to return the result.
+This is a system API.
 
 **Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.LOCATION
 

@@ -8,6 +8,8 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ![image-20220326064841782](figures/image-20220326064841782.png)
 
+开发者可以在[SysCap列表](../reference/syscap-list.md)中查询OpenHarmony的能力集。
+
 
 
 ### 支持能力集，联想能力集与要求能力集
@@ -39,6 +41,12 @@ SDK 提供全量的 API 给 IDE，IDE 通过开发者的项目支持的设备，
 
 ## SysCap开发指导
 
+### PCID获取
+
+PCID，全称 Product Compatibility ID，包含当前设备支持的 syscap 信息。获取所有设备 PCID 的认证中心正在建设中，目前需要找对应设备的厂商获取该设备的 PCID。
+
+
+
 ### PCID导入
 
 DevEco Studio 工程支持 PCID 的导入。导入的 PCID 文件解码后输出的 syscap 会被写入 syscap.json 文件中。
@@ -55,34 +63,30 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 对于联想能力集，开发者通过添加更多的系统能力，在 IDE 中可以使用更多的 API，但要注意这些 API 可能在设备上不支持，使用前需要判断。
 对于要求能力集，开发者修改时要十分慎重，修改不当会导致应用无法分发到目标设备上。
 
-```
+```json
 /* syscap.json */
 {
-	devices: {
-		general: [            /*每一个典型设备对应一个syscap支持能力集，可配置多个典型设备*/
+	"devices": {
+		"general": [            /*每一个典型设备对应一个syscap支持能力集，可配置多个典型设备*/
 			"default",
-			"car,
-			...
+			"car"
 		],
-		custom: [             /*厂家自定义设备*/
+		"custom": [             /*厂家自定义设备*/
 			{
 				"某自定义设备": [
-					"SystemCapability.Communication.SoftBus.Core",
-					...
+					"SystemCapability.Communication.SoftBus.Core"
 				]
-			},
-			...
+			}
 		]
 	},
-	development: {             /*addedSysCaps内的sycap集合与devices中配置的各设备支持的syscap集合的并集共同构成联想能力集*/
-		addedSysCaps: [
-			"SystemCapability.Location.Location.Lite",
-			...
+	"development": {             /*addedSysCaps内的sycap集合与devices中配置的各设备支持的syscap集合的并集共同构成联想能力集*/
+		"addedSysCaps": [
+			"SystemCapability.Location.Location.Lite"
 		]
 	},
-	production: {              /*用于生成rpcid，慎重添加，可能导致应用无法分发到目标设备上*/
-		addedSysCaps: [],      //devices中配置的各设备支持的syscap集合的交集，添加addedSysCaps集合再除去removedSysCaps集合，共同构成要求能力集
-		removedSysCaps: []     //当该要求能力集为某设备的子集时，应用才可被分发到该设备上
+	"production": {              /*用于生成rpcid，慎重添加，可能导致应用无法分发到目标设备上*/
+		"addedSysCaps": [],      //devices中配置的各设备支持的syscap集合的交集，添加addedSysCaps集合再除去removedSysCaps集合，共同构成要求能力集
+		"removedSysCaps": []     //当该要求能力集为某设备的子集时，应用才可被分发到该设备上
 	}
 }
 ```
@@ -91,7 +95,7 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 
 ### 单设备应用开发
 
-默认应用的联想能力集、要求系统能力集和设备的支持系统能力集相等，开发者修改要求能力集需要慎重。
+默认应用的联想能力集，要求系统能力集和设备的支持系统能力集相等，开发者修改要求能力集需要慎重。
 
 ![image-20220326065124911](figures/image-20220326065124911.png)
 

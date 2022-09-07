@@ -389,7 +389,7 @@ var pres = process.getEnvironmentVar("PATH")
 
 ## process.runCmd
 
-runCmd(command: string, options?: { timeout : number, killSignal : number | string, maxBuffer : number }): ChildProcess
+runCmd(command: string, options?: { timeout?: number, killSignal?: number | string, maxBuffer?: number }): ChildProcess
 
 通过runcmd可以fork一个新的进程来运行一段shell，并返回ChildProcess对象。
 

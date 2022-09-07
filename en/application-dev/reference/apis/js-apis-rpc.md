@@ -1,6 +1,6 @@
 # RPC
 
-This module implements communication between processes, including inter-process communication (IPC) on a single device and Remote Procedure Call (RPC) between processes of difference devices. IPC is implemented based on the Binder driver, and RPC is based on the software bus driver.
+The **RPC** module implements communication between processes, including inter-process communication (IPC) on a single device and Remote Procedure Call (RPC) between processes on difference devices. IPC is implemented based on the Binder driver, and RPC is based on the DSoftBus driver.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -866,14 +866,14 @@ Reads the Char value from this **MessageParcel** object.
 
 writeString(val: string): boolean
 
-Writes a String value to this **MessageParcel** object.
+Writes a string to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | val | string | Yes| String value to write. The length of the value must be less than 40960 bytes.|
+  | val | string | Yes| String to write. The length of the string must be less than 40960 bytes.|
 
 **Return value**
     | Type| Description|
@@ -893,14 +893,14 @@ Writes a String value to this **MessageParcel** object.
 
 readString(): string
 
-Reads the String value from this **MessageParcel** object.
+Reads a string from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | string | String value read.|
+  | string | String read.|
 
 **Example**
 
@@ -1012,14 +1012,14 @@ Reads member variables from this **MessageParcel** object.
 
 writeByteArray(byteArray: number[]): boolean
 
-Writes a ByteArray to this **MessageParcel** object.
+Writes a byte array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | byteArray | number[] | Yes| ByteArray to write.|
+  | byteArray | number[] | Yes| Byte array to write.|
 
 **Return value**
     | Type| Description|
@@ -1040,14 +1040,14 @@ Writes a ByteArray to this **MessageParcel** object.
 
 readByteArray(dataIn: number[]) : void
 
-Reads the ByteArray from this **MessageParcel** object.
+Reads a byte array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | Yes| ByteArray to read.|
+  | dataIn | number[] | Yes| Byte array to read.|
 
 **Example**
 
@@ -1065,14 +1065,14 @@ Reads the ByteArray from this **MessageParcel** object.
 
 readByteArray(): number[]
 
-Reads the ByteArray from this **MessageParcel** object.
+Reads the byte array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | number[] | ByteArray read.|
+  | number[] | Byte array read.|
 
 **Example**
 
@@ -1090,14 +1090,14 @@ Reads the ByteArray from this **MessageParcel** object.
 
 writeShortArray(shortArray: number[]): boolean
 
-Writes a ShortArray to this **MessageParcel** object.
+Writes a short array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | shortArray | number[] | Yes| ShortArray to write.|
+  | shortArray | number[] | Yes| Short array to write.|
 
 **Return value**
     | Type| Description|
@@ -1117,14 +1117,14 @@ Writes a ShortArray to this **MessageParcel** object.
 
 readShortArray(dataIn: number[]) : void
 
-Reads a ShortArray from this **MessageParcel** object.
+Reads a short array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | Yes| ShortArray to read.|
+  | dataIn | number[] | Yes| Short array to read.|
 
 **Example**
 
@@ -1141,14 +1141,14 @@ Reads a ShortArray from this **MessageParcel** object.
 
 readShortArray(): number[]
 
-Reads the ShortArray from this **MessageParcel** object.
+Reads the short array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | number[] | ShortArray read.|
+  | number[] | Short array read.|
 
 **Example**
 
@@ -1165,14 +1165,14 @@ Reads the ShortArray from this **MessageParcel** object.
 
 writeIntArray(intArray: number[]): boolean
 
-Writes an IntArray to this **MessageParcel** object.
+Writes an integer array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | intArray | number[] | Yes| IntArray to write.|
+  | intArray | number[] | Yes| Integer array to write.|
 
 **Return value**
     | Type| Description|
@@ -1192,14 +1192,14 @@ Writes an IntArray to this **MessageParcel** object.
 
 readIntArray(dataIn: number[]) : void
 
-Reads an IntArray from this **MessageParcel** object.
+Reads an integer array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | Yes| IntArray to read.|
+  | dataIn | number[] | Yes| Integer array to read.|
 
 **Example**
 
@@ -1216,14 +1216,14 @@ Reads an IntArray from this **MessageParcel** object.
 
 readIntArray(): number[]
 
-Reads the IntArray from this **MessageParcel** object.
+Reads the integer array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | number[] | IntArray read.|
+  | number[] | Integer array read.|
 
 **Example**
 
@@ -1240,14 +1240,14 @@ Reads the IntArray from this **MessageParcel** object.
 
 writeLongArray(longArray: number[]): boolean
 
-Writes a LongArray to this **MessageParcel** object.
+Writes a long array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | longArray | number[] | Yes| LongArray to write.|
+  | longArray | number[] | Yes| Long array to write.|
 
 **Return value**
     | Type| Description|
@@ -1267,14 +1267,14 @@ Writes a LongArray to this **MessageParcel** object.
 
 readLongArray(dataIn: number[]) : void
 
-Reads a LongArray from this **MessageParcel** object.
+Reads a long array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | Yes| LongArray to read.|
+  | dataIn | number[] | Yes| Long array to read.|
 
 **Example**
 
@@ -1291,14 +1291,14 @@ Reads a LongArray from this **MessageParcel** object.
 
 readLongArray(): number[]
 
-Reads the LongArray from this **MessageParcel** object.
+Reads the long array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | number[] | LongArray read.|
+  | number[] | Long array read.|
 
 **Example**
 
@@ -1466,14 +1466,14 @@ Reads the DoubleArray from this **MessageParcel** object.
 
 writeBooleanArray(booleanArray: boolean[]): boolean
 
-Writes a BooleanArray to this **MessageParcel** object.
+Writes a Boolean array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | booleanArray | boolean[] | Yes| BooleanArray to write.|
+  | booleanArray | boolean[] | Yes| Boolean array to write.|
 
 **Return value**
     | Type| Description|
@@ -1493,14 +1493,14 @@ Writes a BooleanArray to this **MessageParcel** object.
 
 readBooleanArray(dataIn: boolean[]) : void
 
-Reads a BooleanArray from this **MessageParcel** object.
+Reads a Boolean array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | boolean[] | Yes| BooleanArray to read.|
+  | dataIn | boolean[] | Yes| Boolean array to read.|
 
 **Example**
 
@@ -1517,14 +1517,14 @@ Reads a BooleanArray from this **MessageParcel** object.
 
 readBooleanArray(): boolean[]
 
-Reads the BooleanArray from this **MessageParcel** object.
+Reads the Boolean array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | boolean[] | BooleanArray read.|
+  | boolean[] | Boolean array read.|
 
 
   ```
@@ -1540,14 +1540,14 @@ Reads the BooleanArray from this **MessageParcel** object.
 
 writeCharArray(charArray: number[]): boolean
 
-Writes a CharArray to this **MessageParcel** object.
+Writes a character array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | charArray | number[] | Yes| CharArray to write.|
+  | charArray | number[] | Yes| Character array to write.|
 
 **Return value**
     | Type| Description|
@@ -1567,14 +1567,14 @@ Writes a CharArray to this **MessageParcel** object.
 
 readCharArray(dataIn: number[]) : void
 
-Reads a CharArray from this **MessageParcel** object.
+Reads a character array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | number[] | Yes| CharArray to read.|
+  | dataIn | number[] | Yes| Character array to read.|
 
 **Example**
 
@@ -1591,14 +1591,14 @@ Reads a CharArray from this **MessageParcel** object.
 
 readCharArray(): number[]
 
-Reads the CharArray from this **MessageParcel** object.
+Reads the character array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | number[] | CharArray read.|
+  | number[] | Character array read.|
 
 **Example**
 
@@ -1615,14 +1615,14 @@ Reads the CharArray from this **MessageParcel** object.
 
 writeStringArray(stringArray: string[]): boolean
 
-Writes a StringArray to this **MessageParcel** object.
+Writes a string array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | stringArray | string[] | Yes| StringArray to write. The length of a single element in the array must be less than 40960 bytes.|
+  | stringArray | string[] | Yes| String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
     | Type| Description|
@@ -1642,14 +1642,14 @@ Writes a StringArray to this **MessageParcel** object.
 
 readStringArray(dataIn: string[]) : void
 
-Reads a StringArray from this **MessageParcel** object.
+Reads a string array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | dataIn | string[] | Yes| StringArray to read.|
+  | dataIn | string[] | Yes| String array to read.|
 
 **Example**
 
@@ -1666,14 +1666,14 @@ Reads a StringArray from this **MessageParcel** object.
 
 readStringArray(): string[]
 
-Reads the StringArray from this **MessageParcel** object.
+Reads the string array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Return value**
     | Type| Description|
   | -------- | -------- |
-  | string[] | StringArray read.|
+  | string[] | String array read.|
 
 **Example**
 
@@ -1788,14 +1788,14 @@ Reads the exception information from this **MessageParcel** object.
 
 writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
-Writes a SequenceableArray to this **MessageParcel** object.
+Writes a sequenceable array to this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | sequenceableArray | Sequenceable[] | Yes| SequenceableArray to write.|
+  | sequenceableArray | Sequenceable[] | Yes| Sequenceable array to write.|
 
 **Return value**
     | Type| Description|
@@ -1837,14 +1837,14 @@ Writes a SequenceableArray to this **MessageParcel** object.
 
 readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
-Reads a SequenceableArray from this **MessageParcel** object.
+Reads a sequenceable array from this **MessageParcel** object.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Parameters**
     | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | sequenceableArray | Sequenceable[] | Yes| SequenceableArray to read.|
+  | sequenceableArray | Sequenceable[] | Yes| Sequenceable array to read.|
 
 **Example**
 
@@ -2504,7 +2504,7 @@ Obtains the interface.
 ### sendRequest<sup>(deprecated)</sup>
 
 > **NOTE**<br/>
-> This API is deprecated since API Version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9).
+> This API is deprecated since API version 8. You are advised to use [sendRequestAsync<sup>9+</sup>](#sendrequestasync9).
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 

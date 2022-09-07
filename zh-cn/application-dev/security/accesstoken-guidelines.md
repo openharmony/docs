@@ -1,4 +1,4 @@
-# 访问控制开发指导
+# 访问控制（权限）开发指导
 
 ## 场景介绍
 
@@ -35,7 +35,8 @@
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。               |
+| ability   | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** FA模型            |
+| abilities | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** Stage模型            |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
 
 ### FA模型
@@ -46,30 +47,30 @@
 
 ```json
 {
-    "module" : {
-        "reqPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ]
-    }
+  "module" : {
+    "reqPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"inuse"
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "ability": [
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -81,30 +82,30 @@
 
 ```json
 {
-    "module" : {
-        "requestPermissions":[
-           {
-                "name" : "ohos.permission.PERMISSION1",
-                "reason": "$string:reason",
-                "usedScene": {
+  "module" : {
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.PERMISSION1",
+        "reason": "$string:reason",
+        "usedScene": {
                      "abilities": [
                          "FormAbility"
                      ],
                      "when":"inuse"
-                }
-            },
-           {
-                "name" : "ohos.permission.PERMISSION2",
-                "reason": "$string:reason",
-                "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"always"
-                }
-            }
-        ],
-    }
+        }
+      },
+      {
+        "name" : "ohos.permission.PERMISSION2",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+        "when":"always"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -118,11 +119,11 @@
 
 ```json
 {
-    "acls": {
-        "allowed-acls": [
-            "ohos.permission.PERMISSION2"
-        ]
-    },
+  "acls": {
+    "allowed-acls": [
+      "ohos.permission.PERMISSION2"
+    ]
+  },
 }
 ```
 
@@ -153,12 +154,12 @@
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     //requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
     context.requestPermissionsFromUser(array).then(function(data) {
-        console.log("data type:" + typeof(data));
-        console.log("data:" + data);
-        console.log("data permissions:" + data.permissions);
-        console.log("data result:" + data.authResults);
+      console.log("data type:" + typeof(data));
+      console.log("data:" + data);
+      console.log("data permissions:" + data.permissions);
+      console.log("data result:" + data.authResults);
     }, (err) => {
-        console.error('Failed to start ability', err.code);
+      console.error('Failed to start ability', err.code);
     });
   }
 
@@ -170,5 +171,5 @@
 
 针对访问控制，有以下相关实例可供参考：
 
-- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Safety/AbilityAccessCtrl)
+- [`AbilityAccessCtrl`：访问权限控制（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Safety/AbilityAccessCtrl)
 - [为应用添加运行时权限（eTS）（API 9）](https://gitee.com/openharmony/codelabs/tree/master/Ability/AccessPermission)

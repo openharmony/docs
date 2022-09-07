@@ -35,15 +35,15 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-| Name| Type                                  | Mandatory| Description                                                        |
-| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+  | Name| Type                                  | Mandatory| Description                                                        |
+  | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+  | want   | [Want](js-apis-application-Want.md) | Yes  | Information related to the extension, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
-| Type                                                        | Description                                                       |
-| ------------------------------------------------------------ | ----------------------------------------------------------- |
-| [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
+  | Type                                                        | Description                                                       |
+  | ------------------------------------------------------------ | ----------------------------------------------------------- |
+  | [formBindingData.FormBindingData](js-apis-formbindingdata.md#formbindingdata) | A **formBindingData.FormBindingData** object containing the data to be displayed on the widget.|
 
 **Example**
 
@@ -72,9 +72,9 @@ Called to notify the widget provider that a temporary widget has been converted 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                    |
-| ------ | ------ | ---- | ------------------------ |
-| formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
+  | Name| Type  | Mandatory| Description                    |
+  | ------ | ------ | ---- | ------------------------ |
+  | formId | string | Yes  | ID of the widget that requests to be converted to a normal one.|
 
 **Example**
 
@@ -96,9 +96,9 @@ Called to notify the widget provider that a widget has been updated. After obtai
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget that requests to be updated.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | formId | string | Yes  | ID of the widget that requests to be updated.|
 
 **Example**
 
@@ -127,9 +127,9 @@ Called to notify the widget provider of the change of visibility.
 
 **Parameters**
 
-| Name   | Type                     | Mandatory| Description                        |
-| --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
+  | Name   | Type                     | Mandatory| Description                        |
+  | --------- | ------------------------- | ---- | ---------------------------- |
+  | newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
 
 **Example**
 
@@ -162,10 +162,10 @@ Called to instruct the widget provider to receive and process the widget event.
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                  |
-| ------- | ------ | ---- | ---------------------- |
-| formId  | string | Yes  | ID of the widget that requests the event.|
-| message | string | Yes  | Event message.            |
+  | Name | Type  | Mandatory| Description                  |
+  | ------- | ------ | ---- | ---------------------- |
+  | formId  | string | Yes  | ID of the widget that requests the event.|
+  | message | string | Yes  | Event message.            |
 
 **Example**
 
@@ -187,9 +187,9 @@ Called to notify the widget provider that a **Form** instance (widget) has been 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description              |
-| ------ | ------ | ---- | ------------------ |
-| formId | string | Yes  | ID of the widget to be destroyed.|
+  | Name| Type  | Mandatory| Description              |
+  | ------ | ------ | ---- | ------------------ |
+  | formId | string | Yes  | ID of the widget to be destroyed.|
 
 **Example**
 
@@ -211,9 +211,9 @@ Called when the configuration of the environment where the ability is running is
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| config | [Configuration](js-apis-configuration.md) | Yes| New configuration.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | config | [Configuration](js-apis-configuration.md) | Yes| New configuration.| 
 
 **Example**
     
@@ -235,9 +235,9 @@ Called when the widget provider receives the status query result of a widget. By
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | want | [Want](js-apis-application-Want.md) | No| Description of the widget state, including the bundle name, ability name, module name, widget name, and widget dimension.| 
 
 **Example**
     
@@ -247,6 +247,43 @@ Called when the widget provider receives the status query result of a widget. By
       onAcquireFormState(want) {
           console.log('FormExtension onAcquireFormState, want:' + want);
           return formInfo.FormState.UNKNOWN;
+      }
+  }
+  ```
+
+## FormExtension.onShare
+
+onShare?(formId: string): {[key: string]: any};
+
+Called by the widget provider to receive shared widget data.
+
+This is a system API.
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | formId | string | Yes  | ID of a widget.|
+
+**Return value**
+
+  | Type                                                        | Description                                                       |
+  | ------------------------------------------------------------ | ----------------------------------------------------------- |
+  | {[key: string]: any} | Data to be shared by the widget, in the form of key-value pairs.|
+
+**Example**
+    
+  ```js
+  class MyFormExtension extends FormExtension {
+      onShare(formId) {
+          console.log('FormExtension onShare, formId:' + formId);
+          let wantParams = {
+            "temperature":"20",
+            "time":"2022-8-8 09:59",
+          };
+          return wantParams;
       }
   }
   ```

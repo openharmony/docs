@@ -9,7 +9,7 @@ Service configuration allows you to configure services on demand to create diffe
 
   For details, see [Description of service Fields](#table14737791471).
 
-- init service startup control (for standard system or higher)
+- init service startup control (for standard system or higher)<a name = "section56901555918">
 
   The init process classifies services into three types based on service configurations and starts the services in different phases.
 
@@ -17,7 +17,7 @@ Service configuration allows you to configure services on demand to create diffe
   - **normal**: common services in the system. This type of services are started in the post-init phase. This is the default service type.
   - **condition**: services that are started by running the startup command. You can add the **start xxxx** command to **jobs** to start the corresponding service.
 
-- init service command execution (for standard system or higher)
+- init service command execution (for standard system or higher)<a name="section56901555919"></a>
 
   The init module provides the service command execution function, which allows services to execute different commands in different phases.
 
@@ -41,7 +41,7 @@ Service configuration allows you to configure services on demand to create diffe
   
   With the parallel startup and command execution capabilities, processes can be started concurrently.
   
-- init service on-demand startup
+- init service on-demand startup<a name="section56901555920">
 
   If on-demand startup is enabled, the init process starts a service only when it is required. The **ondemand** attribute is used to determine whether to enable on-demand startup for a service.
 
@@ -114,240 +114,24 @@ The service management module is available only for the mini system and standard
 By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, and then set and start the service.
 
 ### Parameters
-   **Table 1** Description of service fields
-<table border="0" cellpadding="0" cellspacing="0" width="737" style="border-collapse: collapse;table-layout:fixed;width:554pt;border-spacing: 0px;font-variant-ligatures: normal; font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px; text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial">
-            <tbody>
-                <tr height="24" style="height:18.0pt">
-                    <th height="24" class="xl6521805" width="126" style="height:18.0pt;width:95pt">
-                        Name
-                    </th>
-                    <th class="xl6521805" width="196" style="border-left:none;width:147pt">
-                        Description
-                    </th>
-                    <th class="xl6521805" width="242" style="border-left:none;width:182pt">
-                        Remarks
-                    </th>
-                    <th class="xl6521805" width="173" style="border-left:none;width:130pt">
-                        Supported System Type
-                    </th>
-                </tr>
-                <tr height="111" style="mso-height-source:userset;height:83.25pt">
-                    <td height="111" class="xl6621805" width="126" style="height:83.25pt;border-top: none;width:95pt">
-                        name
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Name of the current service. (Mandatory)
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string. The value cannot be empty and can contain a maximum of 32 bytes.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="185" style="mso-height-source:userset;height:138.75pt">
-                    <td height="185" class="xl6621805" width="126" style="height:138.75pt;border-top: none;width:95pt">
-                        path
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Full path (including parameters) of the executable file for the current service. This is an array. (Mandatory)
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        The first element is the path of the executable file, and the maximum number of elements is 20.<br>
-                        Each element is a string that contains a maximum of 64 bytes.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="71" style="mso-height-source:userset;height:53.25pt">
-                    <td height="71" class="xl6621805" width="126" style="height:53.25pt;border-top: none;width:95pt">
-                        uid
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        User ID (UID) of the current service process.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: int or string.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="93" style="mso-height-source:userset;height:69.75pt">
-                    <td height="93" class="xl6621805" width="126" style="height:69.75pt;border-top: none;width:95pt">
-                        gid
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Group ID (GID) of the current service process.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: int, int[], string, or string array.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="218" style="mso-height-source:userset;height:163.5pt">
-                    <td height="218" class="xl6621805" width="126" style="height:163.5pt;border-top: none;width:95pt">
-                        once
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Whether the current service process is a one-off process.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        <strong>1</strong>: The current service process is a one-off process. If the process exits, the init process does not restart it.<br>
-                        <strong>0</strong>: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="182" style="mso-height-source:userset;height:136.5pt">
-                    <td height="182" class="xl6621805" width="126" style="height:136.5pt;border-top: none;width:95pt">
-                        importance
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Current service priority.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Standard system: The service priority ranges from -20 to 19. A value beyond the range is invalid.<br>
-                        Small system: The value <strong>0</strong> indicates an unimportant process and a value greater than <strong>0</strong> indicates an important process.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="219" style="mso-height-source:userset;height:164.25pt">
-                    <td height="219" class="xl6621805" width="126" style="height:164.25pt;border-top: none;width:95pt">
-                        caps
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="405" style="mso-height-source:userset;height:303.75pt">
-                    <td height="405" class="xl6621805" width="126" style="height:303.75pt;border-top: none;width:95pt">
-                        critical
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Standard system:<br>Type: int array, for example, <strong>"critical": [M, N, T]</strong>.<br>- <strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br>- <strong>N</strong>: number of times the service is started.<br>- <strong>T</strong>: period of time, in seconds.<br> Both <strong>M</strong> and <strong>N</strong> are greater than <strong>0</strong>.<br>
-                        Small and standard systems:<br>Type: int, for example, <strong>"critical": M</strong>.<br><strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br> By default, <strong>N</strong> is <strong>4</strong> and <strong>T</strong> is <strong>20</strong>.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td>
-                </tr>
-                <tr height="173" style="mso-height-source:userset;height:129.75pt">
-                    <td height="173" class="xl6621805" width="126" style="height:129.75pt;border-top: none;width:95pt">
-                        cpucore
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Number of CPU cores bound to the service.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: int array, for example, <strong>"cpucore": [N1, N2, ...]</strong>. <strong>N1</strong> and <strong>N2</strong> indicate the indices of the CPU cores to be bound. For a single-core device, <strong>cpucore</strong> is <strong>0</strong>.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td>
-                </tr>
-                <tr height="116" style="mso-height-source:userset;height:87.0pt">
-                    <td height="116" class="xl6621805" width="126" style="height:87.0pt;border-top: none;width:95pt">
-                        d-caps
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Distributed service capability (for standard system or higher)
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string array, for example, <strong>"d-caps": ["OHOS_DMS"]</strong>.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td>
-                </tr>
-                <tr height="182" style="mso-height-source:userset;height:136.5pt">
-                    <td height="182" class="xl6621805" width="126" style="height:136.5pt;border-top: none;width:95pt">
-                        apl
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Ability privilege level (for standard system or higher).
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, <strong>"apl": "system_core"</strong>. The value can be <strong>system_core</strong> (default), <strong>normal</strong>, or <strong>system_basic</strong>.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td>
-                </tr>
-                <tr height="193" style="mso-height-source:userset;height:144.75pt">
-                    <td height="193" class="xl6621805" width="126" style="height:144.75pt;border-top: none;width:95pt">
-                        start-mode
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Service startup mode (for standard system or higher).
-                    </td>
-                    <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: string, for example, <strong>"start-mode": "condition"</strong>. The value can be <strong>boot</strong>, <strong>normal</strong>, or <strong>condition</strong>. For details, see init Service Startup Control.</a>
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td>
-                </tr>
-                <tr height="147" style="mso-height-source:userset;height:110.25pt">
-                    <td height="147" class="xl6621805" width="126" style="height:110.25pt;border-top: none;width:95pt">
-                        ondemand
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Whether on-demand startup is enabled.
-                    </td>
-                    <td class="xl6721805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        Type: bool, for example, <strong>"ondemand": true</strong>. This feature is available only for the small system running the Linux kernel. For details, see init Service On-Demand Startup.</a>
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="72" style="mso-height-source:userset;height:54.0pt">
-                    <td height="72" class="xl6621805" width="126" style="height:54.0pt;border-top:none; width:95pt">
-                        disable
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Reserved.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        None.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Small and standard systems
-                    </td>
-                </tr>
-                <tr height="106" style="mso-height-source:userset;height:79.5pt">
-                    <td height="106" class="xl6621805" width="126" style="height:79.5pt;border-top: none;width:95pt">
-                        sandbox
-                    </td>
-                    <td class="xl6621805" width="196" style="border-top:none;border-left:none; width:147pt">
-                        Whether the sandbox function is enabled.
-                    </td>
-                    <td class="xl6621805" width="242" style="border-top:none;border-left:none; width:182pt">
-                        <strong>1</strong> (default): Enable the sandbox function.<br>
-                        <strong>0</strong>: Disable the sandbox function.
-                    </td>
-                    <td class="xl6621805" width="173" style="border-top:none;border-left:none; width:130pt">
-                        Standard system
-                    </td><!--[endif]-->
-                </tr>
-            </tbody>
-    </table>
+   **Table 1** Description of service fields<a name="table14737791471"></a>
+   | Name| Meaning| Description| Supported System Type|
+   | ---------- |-------- | --------| --------|
+   | name          | Name of the current service. (Mandatory)|  Type: string. The value cannot be empty and can contain a maximum of 32 bytes.| Small and standard systems |
+   | path          | Full path (including parameters) of the executable file for the current service. This is an array. (Mandatory)| The first element is the path of the executable file, and the maximum number of elements is 20.<br> Each element is a string that contains a maximum of 64 bytes.| Small and standard systems|
+   | uid           | User ID (UID) of the current service process.| Type: int or string.| Small and standard systems|
+   | gid           | Group ID (GID) of the current service process.| Type: int, int[], string, or string array.| Small and standard systems|
+   | once          | Whether the current service process is a one-off process.| <strong>1</strong>: The current service process is a one-off process. If the process exits, the init process does not restart it.<br><strong>0</strong>: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.| Small and standard systems|
+   | importance    | Standard system: service priority<br>Small system: service importance| <br>Standard system: The service priority ranges from -20 to 19. A value beyond the range is invalid.<br>Small system: The value <strong>0</strong> indicates an unimportant process and a value greater than <strong>0</strong> indicates an important process.| Small and standard systems|
+   | caps          | Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission.| Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name.| Small and standard systems|
+   | critical      | Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.| <br>Standard system:<br>Type: int array, for example, <strong>"critical": [M, N, T]</strong>.<br>- <strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br>- <strong>N</strong>: number of times the service is started.<br>- <strong>T</strong>: period of time, in seconds.<br> Both <strong>M</strong> and <strong>N</strong> are greater than <strong>0</strong>.<br> Small and standard systems:<br>Type: int, for example, <strong>"critical": M</strong>.<br><strong>M</strong>: enable flag (<strong>0</strong>: disable; <strong>1</strong>: enable).<br> By default, <strong>N</strong> is <strong>4</strong> and <strong>T</strong> is <strong>20</strong>.| Standard system|
+   | cpucore      | Number of CPU cores bound to the service.| Type: int array, for example, <strong>"cpucore": [N1, N2, ...]</strong>. <strong>N1</strong> and <strong>N2</strong> indicate the indices of the CPU cores to be bound. For a single-core device, <strong>cpucore</strong> is <strong>0</strong>.| Standard system|
+   | d-caps       | Distributed service capability.| Type: string array, for example, <strong>"d-caps": ["OHOS_DMS"]</strong>.| Standard system|
+   | apl          | Ability privilege level.| Type: string, for example, <strong>"apl": "system_core"</strong>.<br> The value can be <strong>system_core</strong> (default), <strong>normal</strong>, or <strong>system_basic</strong>.| Standard system|
+   | start-mode   | Service startup mode.| Type: string, for example, **"start-mode": "condition"**.<br>The value can be <strong>boot</strong>, <strong>normal</strong>, or <strong>condition</strong>. For details, see [init service startup control](#section56901555918).| Standard system|
+   | ondemand     | Whether on-demand startup is enabled.| Type: bool, for example, **"ondemand": true**. For small systems, this feature is available only on the Linux kernel.<br>For details, see [init Service On-Demand Startup](#section56901555920).| Small and standard systems|
+   | disable | Reserved.| None.| Small and standard systems|
+   | sandbox | Whether the sandbox function is enabled.| <strong>1</strong> (default): Enable the sandbox function.<br><strong>0</strong>: Disable the sandbox function.| Standard system|
 
    **Table 2** Description of socket fields
    | Name| Description|
@@ -362,10 +146,10 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | option | Socket option. This field is passed when **setsockopt** is called. Currently, the available options include <strong>SOCKET_OPTION_PASSCRED</strong>, <strong>SOCKET_OPTION_RCVBUFFORCE</strong>, <strong>SOCK_CLOEXEC</strong>, and <strong>SOCK_NONBLOCK</strong>.|
 
 ### Available APIs
-  **Table 3** FD proxy APIs
+  **Table 3** FD proxy APIs<a name="table14737791479"></a>
    | API    | Function| Description |
    | ---------- |  ----------  |--------|
-   | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the proxy FD from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned fd array.|
+   | int *ServiceGetFd(const char *serviceName, size_t *outfdCount) | Obtains the proxy FD from the init process.| Return value: Returns the pointer to the fd array if the operation is successful; returns **NULL** otherwise. (Note: Manual release is required.)<br>Arguments:<br> **serviceName**: service name.<br>**outfdCount**: length of the returned FD array.|
    | int ServiceSaveFd(const char *serviceName, int *fds, int fdCount) | Requests the init process for FD proxy.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the FD array for FD proxy.<br>**fdCount**: length of the FD array
    | int ServiceSaveFdWithPoll(const char *serviceName, int *fds, int fdCount)  | Requests FD proxy in poll mode.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **fds**: pointer to the FD array.<br> **fdCount**: length of the FD array.
 
@@ -374,7 +158,7 @@ By parsing the <strong>*.cfg</strong> file, you can obtain **service** fields, a
    | :----------  |  :----------  |:--------|
    | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | Configures service parameters.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.<br> **extArgv**: parameter array.<br> **extArgc**: number of parameters.|
    | int ServiceControl(const char *serviceName, int action)  | Controls the service behavior.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.|
-   | int ServiceWaitForStatus(const char *serviceName, ServiceStatus status, int waitTimeout) | Waiting for service status| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br>**serviceName**: service name.<br> **status**: service status.<br> **waitTimeout**: waiting timeout interval.|
+   | int ServiceWaitForStatus(const char *serviceName, ServiceStatus status, int waitTimeout) | waiting for the service status.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br>**serviceName**: service name.<br> **status**: service status.<br> **waitTimeout**: waiting timeout interval.|
    | int ServiceSetReady(const char *serviceName) | Sets a service as being ready.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.|
    | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.<br> timeout: timeout interval.|
    | int StopServiceTimer(const char *serviceName)  | Stops a service timer.| Return value: Returns **0** if the operation is successful; returns **-1** otherwise.<br> Arguments:<br> **serviceName**: service name.|

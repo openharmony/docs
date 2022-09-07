@@ -1,4 +1,4 @@
-#  	应用帐号管理
+# 应用帐号管理
 
 本模块不仅用于对应用帐号的添加、删除、查询、修改和授权，且提供帐号将数据写入磁盘和数据同步的能力。
 
@@ -154,7 +154,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
   }
 
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.addAccountImplicitly("LiSi", "readAge", {}, {
+  appAccountManager.addAccountImplicitly("com.example.ohos.accountjsdemo", "getSocialData", {}, {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
   });
@@ -321,7 +321,8 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
       console.log("enableAppAccess err: "  + JSON.stringify(err));
@@ -334,7 +335,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 检查指定应用帐号是否允许应用数据同步，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -361,7 +362,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 检查指定应用帐号是否允许应用数据同步，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -510,7 +511,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用callback回调异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -537,7 +538,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 设置指定的应用程序帐号是否允许应用程序数据同步，使用Promise方式异步返回结果。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC，仅系统应用可用。
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -585,7 +586,8 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 **示例：**
 
   ```js
-  app_account_instance.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
       console.log("setAssociatedData err: " + JSON.stringify(err));
   });
   ```
@@ -795,6 +797,35 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
   });
   ```
 
+### getAssociatedDataSync<sup>9+</sup>
+
+getAssociatedDataSync(name: string, key: string): string;
+
+获取与此应用程序帐号关联的数据，使用同步方式返回结果。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明        |
+| ---- | ------ | ---- | --------- |
+| name | string | 是    | 应用帐号名称。   |
+| key  | string | 是    | 要获取的数据的键。 |
+
+**返回值：**
+
+| 类型                    | 说明                    |
+| :-------------------- | :-------------------- |
+| string | 用于获取同步接口的返回结果。 |
+
+**示例：**
+
+  ```js
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  var backData = appAccountManager.getAssociatedDataSync("ZhangSan", "k001");
+  console.info("getAssociatedDataSync backData:" + JSON.stringify(backData));
+  ```
+
 ### getAllAccessibleAccounts
 
 getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
@@ -868,7 +899,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   const selfBundle = "com.example.actsgetallaaccounts";
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
   	console.debug("getAllAccounts err:" + JSON.stringify(err));
@@ -929,7 +960,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   }
@@ -959,7 +990,7 @@ off(type: 'change', callback?: Callback<Array\<AppAccountInfo>>): void
 **示例：**
 
   ```js
-  const appAccountManager = account.createAppAccountManager();
+  const appAccountManager = account_appAccount.createAppAccountManager();
   function changeOnCallback(data){
   	console.debug("receive change data:" + JSON.stringify(data));
   	appAccountManager.off('change', function(){
@@ -1010,7 +1041,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
   }
 
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "readAge", {}, {
+  appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -1037,7 +1068,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
        console.log('getOAuthToken token: ' + data);
   });
@@ -1069,7 +1100,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge").then((data) => {
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err) => {
       console.log("getOAuthToken err: "  + JSON.stringify(err));
@@ -1097,7 +1128,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx", (err) => {
+  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -1128,7 +1159,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx").then(() => {
+  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -1157,7 +1188,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx", (err) => {
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", "xxxxx", (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -1189,7 +1220,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx").then(() => {
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", "xxxxx").then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err) => {
       console.log("deleteOAuthToken err: "  + JSON.stringify(err));
@@ -1218,7 +1249,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err) => {
+  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -1250,7 +1281,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then(() => {
+  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1278,7 +1309,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err, data) => {
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   });
@@ -1310,7 +1341,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then((data) => {
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo").then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1369,7 +1400,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
   appAccountManager.getAllOAuthTokens("LiSi", "com.example.ohos.accountjsdemo").then((data) => {
-       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
+      console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
   });
@@ -1395,7 +1426,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "getSocialData", (err, data) => {
        console.log('getOAuthList err: ' + JSON.stringify(err));
        console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -1426,7 +1457,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge").then((data) => {
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("getOAuthList err: "  + JSON.stringify(err));
@@ -1462,9 +1493,9 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
         }
         var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                       [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                       [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-        callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     });
   });
   ```
@@ -1498,9 +1529,9 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
           var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                         [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                         [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-          callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
           console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
@@ -1702,7 +1733,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", (err, data) => {
+  var labels = ["student"];
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", labels, (err, data) => {
       console.log('checkAccountLabels: ' + JSON.stringify(data));
       console.log("checkAccountLabels err: "  + JSON.stringify(err));
   });
@@ -1734,7 +1766,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo").then((data) => {
+  var labels = ["student"];
+  appAccountManager.checkAccountLabels("zhangsan", "com.example.ohos.accountjsdemo", labels).then((data) => {
        console.log('checkAccountLabels: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("checkAccountLabels err: "  + JSON.stringify(err));
@@ -1967,8 +2000,8 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 | 参数名     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
 | owner   | string | 是    | 认证器的所有者包名。 |
-| iconId  | string | 是    | 认证器的图标标识。  |
-| labelId | string | 是    | 认证器的标签标识。  |
+| iconId  | number | 是    | 认证器的图标标识。  |
+| labelId | number | 是    | 认证器的标签标识。  |
 
 ## SelectAccountsOptions<sup>9+</sup>
 
@@ -2082,9 +2115,9 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
       var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                     [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                     [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-      callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -2137,7 +2170,7 @@ onRequestContinued?: () =&gt; void
   const appAccountManager = account_appAccount.createAppAccountManager();
   var sessionId = "1234";
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      callback.OnRequestContinued();
+      callback.onRequestContinued();
   }).catch((err) => {
       console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
   });
@@ -2264,7 +2297,7 @@ getRemoteObject(): rpc.RemoteObject;
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
 
-      verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthenticatorCallback) {
+      verifyCredential(name, options, callback) {
           callback.onRequestRedirected({
               bundleName: "com.example.ohos.accountjsdemo",
               abilityName: "com.example.ohos.accountjsdemo.VerifyAbility",
@@ -2274,11 +2307,11 @@ getRemoteObject(): rpc.RemoteObject;
           });
       }
 
-      setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback) {
+      setProperties(options, callback) {
           callback.onResult(account_appAccount.ResultCode.SUCCESS, {});
       }
 
-      checkAccountLabels(name: string, labels: Array<string>, callback: AuthenticatorCallback) {
+      checkAccountLabels(name, labels, callback) {
           var result = {[account_appAccount.Constants.KEY_BOOLEAN_RESULT]: false};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }

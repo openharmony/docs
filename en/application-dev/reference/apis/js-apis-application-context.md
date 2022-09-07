@@ -19,7 +19,7 @@ import AbilityContext from '@ohos.application.Ability'
       let context = this.context.createBundleContext(test);
     }
   }
- ```
+```
 
 ## Attributes
 
@@ -53,15 +53,15 @@ Creates a context for a given application.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Application bundle name.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Application bundle name.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Context | Context created.|
+  | Type| Description|
+  | -------- | -------- |
+  | Context | Context created.|
 
 **Example**
 
@@ -87,15 +87,15 @@ Creates a context for a given HAP.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| moduleName | string | Yes| HAP name in the application.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | moduleName | string | Yes| HAP name in the application.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Context | Context created.|
+  | Type| Description|
+  | -------- | -------- |
+  | Context | Context created.|
 
 **Example**
 
@@ -123,16 +123,16 @@ Creates a context for a given HAP in an application.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Application bundle name.|
-| moduleName | string | Yes| HAP name in the application.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Application bundle name.|
+  | moduleName | string | Yes| HAP name in the application.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Context | Context created.|
+  | Type| Description|
+  | -------- | -------- |
+  | Context | Context created.|
 
 **Example**
 

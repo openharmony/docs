@@ -52,6 +52,7 @@
             - [Introduction to the Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
         - [Reference](quick-start/quickstart-lite-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-lite-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
   - Getting Started with Standard System (IDE Mode, Recommended)
     - [Standard System Overview](quick-start/quickstart-ide-standard-overview.md)
@@ -97,9 +98,11 @@
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
         - [Reference](quick-start/quickstart-standard-reference.md)
+        - [Burning Code by Using HiTool](quick-start/quickstart-standard-hitool.md)
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
-  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
 
+  - [Obtaining Source Code](get-code/sourcecode-acquire.md)
+  
 - Compatibility and Security
 
   - [Privacy Protection](security/security-privacy-protection.md)
@@ -394,8 +397,7 @@
       - [Vibrator](driver/driver-peripherals-vibrator-des.md)
       - [WLAN](driver/driver-peripherals-external-des.md)
   - Compilation and Building
-    - [Building Mini and Small Systems](subsystems/subsys-build-mini-lite.md)
-    - [Building the Standard System](subsystems/subsys-build-standard-large.md)
+    - [Compilation and Building Guide](subsystems/subsys-build-all.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
@@ -462,14 +464,20 @@
     - [Security Overview](subsystems/subsys-security-overview.md)
     - [Development on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
+
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
-    - [init Module](subsystems/subsys-boot-init.md)
+    - init Module
+      - [init Configuration File](subsystems/subsys-boot-init-cfg.md)
+      - [Job Management](subsystems/subsys-boot-init-jobs.md)
+      - [Service Management](subsystems/subsys-boot-init-service.md)
+      - [Parameter Management](subsystems/subsys-boot-init-sysparam.md)
+      - [Sandbox Management](subsystems/subsys-boot-init-sandbox.md)
+      - [Plug-in Management](subsystems/subsys-boot-init-plugin.md)
     - [appspawn Module](subsystems/subsys-boot-appspawn.md)
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
-    - [syspara Module](subsystems/subsys-boot-syspara.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
   - DFX
@@ -487,6 +495,8 @@
     - [HiDumper Development](subsystems/subsys-dfx-hidumper.md)
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
     - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
+    - [Hiview Development](subsystems/subsys-dfx-hiview.md)
+
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -539,11 +549,12 @@
 - Hands-On Tutorials
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - References
-  - [FAQs Overview](faqs/faqs-overview.md)
-  - [Environment Setup](faqs/faqs-environment-setup.md)
-  - [Compilation and Building](faqs/faqs-building.md)
-  - [Burning](faqs/faqs-burning.md)
-  - [Kernel](faqs/faqs-kernel.md)
-  - [Porting](faqs/faqs-porting.md)
-  - [Startup](faqs/faqs-startup.md)
-  - [System Applications](faqs/faqs-system-applications.md)
+  - FAQs
+    - [FAQs Overview](faqs/faqs-overview.md)
+    - [Environment Setup](faqs/faqs-environment-setup.md)
+    - [Compilation and Building](faqs/faqs-building.md)
+    - [Burning](faqs/faqs-burning.md)
+    - [Kernel](faqs/faqs-kernel.md)
+    - [Porting](faqs/faqs-porting.md)
+    - [Startup](faqs/faqs-startup.md)
+    - [System Applications](faqs/faqs-system-applications.md)

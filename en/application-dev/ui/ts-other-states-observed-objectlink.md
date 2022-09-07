@@ -43,7 +43,8 @@ In the preceding example, full synchronization is performed for a data object. I
 ### Example 1
 
   
-```
+```ts
+// When the data of the ClassA object in the parent component ViewB's class object ClassB is synchronized with that of the child component ViewA, use @ObjectLink to synchronize the changes in the value of c are synchronized to the parent component.
 @Observed
 class ClassA {
   public name : string;
@@ -79,7 +80,7 @@ struct ViewA {
         .width(100)
         .margin(2)
         .onClick(() => {
-          this.a = new ClassA(0); // ERROR, this.a is immutable
+          this.a = new ClassA(0); // Error: Variable a decorated by @ObjectLink is immutable.
         })
     }
   }
@@ -120,8 +121,8 @@ struct ViewB {
 
 ### Example 2
 
-  
-```
+```ts
+// When the data of class object ClassA in the parent component ViewB is synchronized with that of the child component ViewA, use @ObjectLink and @Observed to synchronize data changes to the parent component and its other child components.
 var nextID: number = 0;
 @Observed
 class ClassA {
@@ -145,7 +146,7 @@ struct ViewA {
         .onClick(() => {
           this.a.c += 1;
         })
-    }
+    }.margin({ top: 10 })
   }
 }
 
@@ -164,14 +165,17 @@ struct ViewB {
       ViewA({label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1]})
 
       Button(`ViewB: reset array`)
+        .margin({ top: 10 })
         .onClick(() => {
             this.arrA = [ new ClassA(0), new ClassA(0) ];
         })
       Button(`ViewB: push`)
+      	.margin({ top: 10 })
         .onClick(() => {
             this.arrA.push(new ClassA(0))
         })
       Button(`ViewB: shift`)
+      	.margin({ top: 10 })
         .onClick(() => {
             this.arrA.shift()
         })

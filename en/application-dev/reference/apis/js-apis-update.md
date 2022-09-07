@@ -7,7 +7,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 - The SD card update depends on the update packages and SD cards.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
-> **NOTE**
+> **Note:**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -29,9 +29,9 @@ Obtains an **OnlineUpdater** object.
 
 **Parameters**
 
-| Name        | Type                         | Mandatory  | Description  |
-| ----------- | --------------------------- | ---- | ---- |
-| upgradeInfo | [UpgradeInfo](#upgradeinfo)                 | Yes   | **UpgradeInfo** object.|
+| Name        | Type                         | Mandatory  | Description    |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeInfo | [UpgradeInfo](#upgradeinfo) | Yes   | **UpgradeInfo** object.|
 
 **Return value**
 
@@ -41,7 +41,7 @@ Obtains an **OnlineUpdater** object.
 
 **Example**
 
-```
+```ts
 try {
   var upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
@@ -67,13 +67,13 @@ Obtains a **Restorer** object for restoring factory settings.
 
 **Return value**
 
-| Type                 | Description  |
-| ------------------- | ---- |
+| Type                   | Description    |
+| --------------------- | ------ |
 | [Restorer](#restorer) | **Restorer** object for restoring factory settings.|
 
 **Example**
 
-```
+```ts
 try {
   let restorer = update.getRestorer();
 } catch(error) {
@@ -91,13 +91,13 @@ Obtains a **LocalUpdater** object.
 
 **Return value**
 
-| Type                 | Description  |
-| ------------------- | ---- |
+| Type                           | Description    |
+| ----------------------------- | ------ |
 | [LocalUpdater](#localupdater) | **LocalUpdater** object.|
 
 **Example**
 
-```
+```ts
 try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
@@ -119,13 +119,13 @@ Checks whether a new version is available. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name     | Type                                      | Mandatory  | Description            |
+| -------- | ---------------------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[CheckResult](#checkresult)> | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.checkNewVersion((err, result) => {
   console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
 });
@@ -143,13 +143,13 @@ Checks whether a new version is available. This API uses a promise to return the
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                                   | Description                 |
+| ------------------------------------- | ------------------- |
 | Promise\<[CheckResult](#checkresult)> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.checkNewVersion().then(result => {
   console.log(`checkNewVersion isExistNewVersion: ${result.isExistNewVersion}`);
   // Version digest information
@@ -171,13 +171,13 @@ Obtains information about the new version. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name     | Type                                      | Mandatory  | Description             |
+| -------- | ---------------------------------------- | ---- | --------------- |
 | callback | AsyncCallback\<[NewVersionInfo](#newversioninfo)> | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getNewVersionInfo((err, info) => {
   console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info?.versionComponents[0].innerVersion}`);
@@ -196,13 +196,13 @@ Obtains information about the new version. This API uses a promise to return the
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
 | Promise\<[NewVersionInfo](#newversioninfo)> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getNewVersionInfo().then(info => {
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
   console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
@@ -223,15 +223,15 @@ Obtains the description file of the new version. This API uses an asynchronous c
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
-| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
+| Name               | Type                                      | Mandatory  | Description            |
+| ------------------ | ---------------------------------------- | ---- | -------------- |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.        |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.        |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -261,20 +261,20 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| Name               | Type                                      | Mandatory  | Description    |
+| ------------------ | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
 | descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
 | Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -305,13 +305,13 @@ Obtains information about the current version. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name     | Type                                      | Mandatory  | Description              |
+| -------- | ---------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[CurrentVersionInfo](#currentversioninfo)> | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getCurrentVersionInfo((err, info) => {
   console.log(`info osVersion = ${info?.osVersion}`);
   console.log(`info deviceName = ${info?.deviceName}`);
@@ -331,13 +331,13 @@ Obtains information about the current version. This API uses a promise to return
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                                      | Description                 |
+| ---------------------------------------- | ------------------- |
 | Promise\<[CurrentVersionInfo](#currentversioninfo)> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getCurrentVersionInfo().then(info => {
   console.log(`info osVersion = ${info.osVersion}`);
   console.log(`info deviceName = ${info.deviceName}`);
@@ -359,14 +359,14 @@ Obtains the description file of the current version. This API uses an asynchrono
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
-| callback | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
+| Name               | Type                                      | Mandatory  | Description             |
+| ------------------ | ---------------------------------------- | ---- | --------------- |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.         |
+| callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 // Options of the description file
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // Standard format
@@ -391,19 +391,19 @@ Obtains the description file of the current version. This API uses a promise to 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name               | Type                                      | Mandatory  | Description    |
+| ------------------ | ---------------------------------------- | ---- | ------ |
 | descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.|
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
 | Promise\<Array\<[ComponentDescription](#componentdescription)>> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 // Options of the description file
 var descriptionOptions = {
   format: DescriptionFormat.STANDARD, // Standard format
@@ -429,13 +429,13 @@ Obtains information about the update task. This API uses an asynchronous callbac
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name     | Type                                   | Mandatory  | Description              |
+| -------- | ------------------------------------- | ---- | ---------------- |
 | callback | AsyncCallback\<[TaskInfo](#taskinfo)> | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getTaskInfo((err, info) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
 });
@@ -453,13 +453,13 @@ Obtains information about the update task. This API uses a promise to return the
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type                             | Description                 |
+| ------------------------------- | ------------------- |
 | Promise\<[TaskInfo](#taskinfo)> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getTaskInfo().then(info => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch(err => {
@@ -479,15 +479,15 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| downloadOptions | [DownloadOptions](#downloadoptions) | Yes   | Download options.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name              | Type                                     | Mandatory  | Description                                |
+| ----------------- | --------------------------------------- | ---- | ---------------------------------- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -515,20 +515,20 @@ Downloads the new version. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| downloadOptions | [DownloadOptions](#downloadoptions) | Yes   | Download options.|
+| downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.  |
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -558,15 +558,15 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name                  | Type                                      | Mandatory  | Description                                  |
+| --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
+| resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
+| callback              | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -593,20 +593,20 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| Name                  | Type                                      | Mandatory  | Description    |
+| --------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.|
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -635,15 +635,15 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name                 | Type                                      | Mandatory  | Description                                  |
+| -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
+| pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
+| callback             | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -670,20 +670,20 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
+| Name                 | Type                                      | Mandatory  | Description    |
+| -------------------- | ---------------------------------------- | ---- | ------ |
+| versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.|
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -712,15 +712,15 @@ Updates the version. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| upgradeOptions | [UpgradeOptions](#upgradeoptions) | Yes   | Update options.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name              | Type                                     | Mandatory  | Description                                  |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -747,20 +747,20 @@ Updates the version. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| upgradeOptions | [UpgradeOptions](#upgradeoptions) | Yes   | Update options.|
+| upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.  |
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -789,15 +789,15 @@ Clears errors. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| clearOptions | [ClearOptions](#clearoptions) | Yes   | Clear options.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name              | Type                                     | Mandatory  | Description                                  |
+| ----------------- | --------------------------------------- | ---- | ------------------------------------ |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
+| clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
+| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -824,20 +824,20 @@ Clears errors. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
+| Name              | Type                                     | Mandatory  | Description    |
+| ----------------- | --------------------------------------- | ---- | ------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.|
-| clearOptions | [ClearOptions](#clearoptions) | Yes   | Update options.|
+| clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Update options.  |
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 // Version digest information
 var versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
@@ -866,13 +866,13 @@ Obtains the update policy. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description        |
-| -------- | ---------------------------------------- | ---- | ---------- |
+| Name     | Type                                      | Mandatory  | Description             |
+| -------- | ---------------------------------------- | ---- | --------------- |
 | callback | AsyncCallback\<[UpgradePolicy](#upgradepolicy)> | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getUpgradePolicy((err, policy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
@@ -891,13 +891,13 @@ Obtains the update policy. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                     | Description               |
-| --------------------------------------- | ----------------- |
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
 | Promise\<[UpgradePolicy](#upgradepolicy)> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 updater.getUpgradePolicy().then(policy => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
@@ -918,14 +918,14 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description        |
-| -------- | ---------------------------------------- | ---- | ---------- |
-| policy | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| Name     | Type                             | Mandatory  | Description           |
+| -------- | ------------------------------- | ---- | ------------- |
+| policy   | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.         |
+| callback | AsyncCallback\<void>            | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -948,19 +948,19 @@ Sets the update policy. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name   | Type                           | Mandatory  | Description    |
-| ------ | ----------------------------- | ---- | ------ |
+| Name   | Type                             | Mandatory  | Description  |
+| ------ | ------------------------------- | ---- | ---- |
 | policy | [UpgradePolicy](#upgradepolicy) | Yes   | Update policy.|
 
 **Return value**
 
-| Type              | Description             |
-| ---------------- | --------------- |
+| Type            | Description                 |
+| -------------- | ------------------- |
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 let policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
@@ -985,13 +985,13 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name     | Type                  | Mandatory  | Description                                    |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 updater.terminateUpgrade((err) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
@@ -1009,13 +1009,13 @@ Terminates the update. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch(err => {
@@ -1033,14 +1033,14 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | Yes   | Event information.|
-| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
 **Example**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1060,14 +1060,14 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | Yes   | Event information.|
-| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | No   | Event callback.|
 
 **Example**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1084,7 +1084,7 @@ updater.off(eventClassifyInfo, (eventInfo) => {
 
 factoryReset(callback: AsyncCallback\<void>): void
 
-Restores factory settings. This API uses an asynchronous callback to return the result.
+Restore the device to its factory settings. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1092,13 +1092,13 @@ Restores factory settings. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name     | Type                  | Mandatory  | Description                                    |
+| -------- | -------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 restorer.factoryReset((err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
 });
@@ -1108,7 +1108,7 @@ restorer.factoryReset((err) => {
 
 factoryReset(): Promise\<void>
 
-Restores factory settings. This API uses a promise to return the result.
+Restore the device to its factory settings. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1116,13 +1116,13 @@ Restores factory settings. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch(err => {
@@ -1144,15 +1144,15 @@ Verifies the update package. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.|
-| certsFile | string | Yes   | Path of the certificate file.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+| Name        | Type                         | Mandatory  | Description              |
+| ----------- | --------------------------- | ---- | ---------------- |
+| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.            |
+| certsFile   | string                      | Yes   | Path of the certificate file.          |
+| callback    | AsyncCallback\<void>        | Yes   | Callback used to return the result.|
 
 **Example**
 
-```
+```ts
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1175,20 +1175,20 @@ Verifies the update package. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.|
-| certsFile | string | Yes   | Path of the certificate file.|
+| Name        | Type                         | Mandatory  | Description    |
+| ----------- | --------------------------- | ---- | ------ |
+| upgradeFile | [UpgradeFile](#upgradefile) | Yes   | Update file.  |
+| certsFile   | string                      | Yes   | Path of the certificate file.|
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                    |
+| -------------- | ---------------------- |
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
 
-```
+```ts
 var upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1211,14 +1211,14 @@ Installs the update package. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.|
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| Name        | Type                                | Mandatory  | Description                                     |
+| ----------- | ---------------------------------- | ---- | --------------------------------------- |
+| upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
+| callback    | AsyncCallback\<void>               | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
-```
+```ts
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1241,13 +1241,13 @@ Installs the update package. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                      | Description              |
-| ---------------------------------------- | ---------------- |
+| Type            | Description                        |
+| -------------- | -------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
 **Example**
 
-```
+```ts
 var upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
@@ -1268,14 +1268,14 @@ Enables listening for update events. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | Yes   | Event information.|
-| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
 **Example**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1297,14 +1297,14 @@ Disables listening for update events. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name     | Type                                      | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo) | Yes   | Event information.|
-| taskCallback |  [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
+| Name              | Type                                      | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| eventClassifyInfo | [EventClassifyInfo](#eventclassifyinfo)  | Yes   | Event information.|
+| taskCallback      | [UpgradeTaskCallback](#upgradetaskcallback) | Yes   | Event callback.|
 
 **Example**
 
-```
+```ts
 var eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
@@ -1323,10 +1323,10 @@ Represents update information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| upgradeApp          | string                      | Yes   | Application package name. |
-| businessType        | [BusinessType](#businesstype) | Yes   | Update service type.   |
+| Name          | Type                         | Mandatory  | Description    |
+| ------------ | ----------------------------- | ---- | ------ |
+| upgradeApp   | string                        | Yes   | Application package name. |
+| businessType | [BusinessType](#businesstype) | Yes   | Update service type.|
 
 ## BusinessType
 
@@ -1334,10 +1334,10 @@ Enumerates update service types.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| vendor              | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
-| subType             | [BusinessSubType](#businesssubtype) | Yes   | Update service sub-type.   |
+| Name     | Type                               | Mandatory  | Description  |
+| ------- | ----------------------------------- | ---- | ---- |
+| vendor  | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
+| subType | [BusinessSubType](#businesssubtype) | Yes   | Type  |
 
 ## CheckResult
 
@@ -1345,10 +1345,10 @@ Represents the package check result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| isExistNewVersion              | bool   | Yes   | Whether a new version is available. |
-| newVersionInfo             | [NewVersionInfo](#newversioninfo) | No   | Information about the new version.   |
+| Name               | Type                             | Mandatory  | Description    |
+| ----------------- | --------------------------------- | ---- | ------ |
+| isExistNewVersion | bool                              | Yes   | Whether a new version is available.|
+| newVersionInfo    | [NewVersionInfo](#newversioninfo) | No   | Information about the new version. |
 
 ## NewVersionInfo
 
@@ -1356,10 +1356,10 @@ Represents information about the new version.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| versionDigestInfo              | [VersionDigestInfo](#versiondigestinfo)   | Yes   | Version digest information. |
-| versionComponents             | Array\<[VersionComponent](#versioncomponent)>  | Yes   | Version components.   |
+| Name               | Type                                    | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
 
 ## VersionDigestInfo
 
@@ -1367,9 +1367,9 @@ Represents version digest information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| versionDigest              | string   | Yes   | Version digest information. |
+| Name           | Type  | Mandatory  | Description  |
+| ------------- | ------ | ---- | ---- |
+| versionDigest | string | Yes   | Version digest information.|
 
 ## VersionComponent
 
@@ -1377,16 +1377,16 @@ Represents a version component.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| componentId              | number   | Yes   | Component ID. |
-| componentType              | [ComponentType](#componentyype)   | Yes   | Component type. |
-| upgradeAction              | [UpgradeAction](#upgradeaction)   | Yes   | Update mode. |
-| displayVersion              | string   | Yes   | Display version number. |
-| innerVersion              | string   | Yes   | Internal version number. |
-| size              | number   | Yes   | Update package size. |
-| effectiveMode              | [EffectiveMode](#effectivemode)   | Yes   | Effective mode. |
-| descriptionInfo              | [DescriptionInfo](#descriptioninfo)   | Yes   | Information about the version description file. |
+| Parameter             | Type                               | Mandatory  | Description      |
+| --------------- | ----------------------------------- | ---- | -------- |
+| componentId     | string                              | Yes   | Component ID.    |
+| componentType   | [ComponentType](#componenttype)     | Yes   | Component type.    |
+| upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Update mode.    |
+| displayVersion  | string                              | Yes   | Display version number.   |
+| innerVersion    | string                              | Yes   | Internal version number.     |
+| size            | number                              | Yes   | Update package size.   |
+| effectiveMode   | [EffectiveMode](#effectivemode)     | Yes   | Effective mode.    |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the version description file.|
 
 ## DescriptionOptions
 
@@ -1394,10 +1394,10 @@ Represents options of the description file.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| format              | [DescriptionFormat](#descriptionformat)   | Yes   | Format of the description file. |
-| language              |  string  | Yes   | Language of the description file. |
+| Name      | Type                                   | Mandatory  | Description    |
+| -------- | --------------------------------------- | ---- | ------ |
+| format   | [DescriptionFormat](#descriptionformat) | Yes   | Format of the description file.|
+| language | string                                  | Yes   | Language of the description file.|
 
 ## ComponentDescription
 
@@ -1405,10 +1405,10 @@ Represents a component description file.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| componentId              |  string  | Yes   | Component ID. |
-| descriptionInfo              |  [DescriptionInfo](#descriptioninfo)  | Yes   | Information about the description file. |
+| Name             | Type                               | Mandatory  | Description    |
+| --------------- | ----------------------------------- | ---- | ------ |
+| componentId     | string                              | Yes   | Component ID.  |
+| descriptionInfo | [DescriptionInfo](#descriptioninfo) | Yes   | Information about the description file.|
 
 ## DescriptionInfo
 
@@ -1416,10 +1416,10 @@ Represents information about the version description file.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| descriptionType              | [DescriptionType](#descriptiontype)   | Yes   | Type of the description file. |
-| content              |  string  | Yes   | Content of the description file. |
+| Name             | Type                               | Mandatory  | Description    |
+| --------------- | ----------------------------------- | ---- | ------ |
+| descriptionType | [DescriptionType](#descriptiontype) | Yes   | Type of the description file.|
+| content         | string                              | Yes   | Content of the description file.|
 
 ## CurrentVersionInfo
 
@@ -1427,11 +1427,11 @@ Represents information about the current version.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| osVersion              | string   | Yes   | System version number. |
-| deviceName              | string   | Yes   | Device name. |
-| versionComponents              | Array\<[VersionComponent](#vesioncomponent)>   | No   | Version components. |
+| Name               | Type                                    | Mandatory  | Description   |
+| ----------------- | ---------------------------------------- | ---- | ----- |
+| osVersion         | string                                   | Yes   | System version number.|
+| deviceName        | string                                   | Yes   | Device name.  |
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | No   | Version components. |
 
 ## DownloadOptions
 
@@ -1439,10 +1439,10 @@ Represents download options.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| allowNetwork              | [NetType](#nettype)   | Yes   | Network type. |
-| order              | [Order](#order)   | Yes   | Update command. |
+| Name          | Type               | Mandatory  | Description  |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
+| order        | [Order](#order)     | Yes   | Update command.|
 
 ## ResumeDownloadOptions
 
@@ -1450,9 +1450,9 @@ Represents options for resuming download.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Parameter                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| allowNetwork              | [NetType](#nettype)   | Yes   | Network type. |
+| Name          | Type               | Mandatory  | Description  |
+| ------------ | ------------------- | ---- | ---- |
+| allowNetwork | [NetType](#nettype) | Yes   | Network type.|
 
 ## PauseDownloadOptions
 
@@ -1460,9 +1460,9 @@ Represents options for pausing download.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| isAllowAutoResume              | bool   | Yes   | Whether to allow automatic resuming of download. |
+| Name               | Type| Mandatory  | Description      |
+| ----------------- | ---- | ---- | -------- |
+| isAllowAutoResume | bool | Yes   | Whether to allow automatic resuming of download.|
 
 ## UpgradeOptions
 
@@ -1470,9 +1470,9 @@ Represents update options.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| order              | [Order](#order)   | Yes   | Update command. |
+| Name   | Type           | Mandatory  | Description  |
+| ----- | --------------- | ---- | ---- |
+| order | [Order](#order) | Yes   | Update command.|
 
 ## ClearOptions
 
@@ -1480,9 +1480,9 @@ Represents options for clearing errors.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| status              | [UpgradeStatus](#upgradestatus)   | Yes   | Error status. |
+| Name    | Type                           | Mandatory  | Description  |
+| ------ | ------------------------------- | ---- | ---- |
+| status | [UpgradeStatus](#upgradestatus) | Yes   | Error status.|
 
 ## UpgradePolicy
 
@@ -1490,11 +1490,11 @@ Represents an update policy.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| downloadStrategy        | bool                        | Yes   | Automatic download policy. |
-| autoUpgradeStrategy         | bool | Yes   | Automatic update policy.   |
-| autoUpgradePeriods | Array\<[UpgradePeriod](#upgradeperiod)>              | Yes   | Automatic update period.|
+| Name                 | Type                                   | Mandatory  | Description     |
+| ------------------- | --------------------------------------- | ---- | ------- |
+| downloadStrategy    | bool                                    | Yes   | Automatic download policy. |
+| autoUpgradeStrategy | bool                                    | Yes   | Automatic update policy. |
+| autoUpgradePeriods  | Array\<[UpgradePeriod](#upgradeperiod)> | Yes   | Automatic update period.|
 
 ## UpgradePeriod
 
@@ -1502,10 +1502,10 @@ Represents a period for automatic update.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| start        | number                        | Yes   | Start time. |
-| end         | number | Yes   | End time.   |
+| Name   | Type  | Mandatory  | Description  |
+| ----- | ------ | ---- | ---- |
+| start | number | Yes   | Start time.|
+| end   | number | Yes   | End time.|
 
 ## TaskInfo
 
@@ -1513,21 +1513,21 @@ Represents task information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| existTask        | bool                        | Yes   | Whether a task exists. |
-| taskBody         | [TaskBody](#taskinfo) | Yes   | Task data.   |
+| Name       | Type                 | Mandatory  | Description    |
+| --------- | --------------------- | ---- | ------ |
+| existTask | bool                  | Yes   | Whether a task exists.|
+| taskBody  | [TaskBody](#taskinfo) | Yes   | Task data.  |
 
 ## EventInfo
 
-Represents event information.
+Represents event type information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Parameter                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| eventId        |   [EventId](#eventid)    | Yes   | Event ID. |
-| taskBody         | [TaskBody](#taskinfo) | Yes   | Task data.   |
+| Name      | Type                 | Mandatory  | Description  |
+| -------- | --------------------- | ---- | ---- |
+| eventId  | [EventId](#eventid)   | Yes   | Event ID.|
+| taskBody | [TaskBody](#taskinfo) | Yes   | Task data.|
 
 ## TaskBody
 
@@ -1535,15 +1535,15 @@ Represents task data.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| versionDigestInfo        |   [VersionDigestInfo](#versiondigestinfo)    | Yes   | Version digest information. |
-| status         | [UpgradeStatus](#upgradestatus) | Yes   | Update status.   |
-| subStatus         | number | No   | Sub-status.   |
-| progress         | number | Yes   | Progress.   |
-| installMode         | number | Yes   | Installation mode.   |
-| errorMessages         |  Array\<[ErrorMessage](#errormessage)>  | No   | Error message.   |
-| versionComponents         | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.   |
+| Name               | Type                                    | Mandatory  | Description  |
+| ----------------- | ---------------------------------------- | ---- | ---- |
+| versionDigestInfo | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.|
+| status            | [UpgradeStatus](#upgradestatus)          | Yes   | Update status.|
+| subStatus         | number                                   | No   | Sub-status. |
+| progress          | number                                   | Yes   | Progress.  |
+| installMode       | number                                   | Yes   | Installation mode.|
+| errorMessages     | Array\<[ErrorMessage](#errormessage)>    | No   | Error message.|
+| versionComponents | Array\<[VersionComponent](#versioncomponent)> | Yes   | Version components.|
 
 ## ErrorMessage
 
@@ -1551,10 +1551,10 @@ Represents an error message.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| errorCode        |   number   | Yes   | Error code. |
-| errorMessage         | string | Yes   | Error description.   |
+| Name          | Type  | Mandatory  | Description  |
+| ------------ | ------ | ---- | ---- |
+| errorCode    | number | Yes   | Error code. |
+| errorMessage | string | Yes   | Error description.|
 
 ## EventClassifyInfo
 
@@ -1562,10 +1562,10 @@ Represents event type information.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| eventClassify        |   [EventClassify](#eventclassify)   | Yes   | Event type. |
-| extraInfo         | string | Yes   | Additional information.   |
+| Name           | Type                           | Mandatory  | Description  |
+| ------------- | ------------------------------- | ---- | ---- |
+| eventClassify | [EventClassify](#eventclassify) | Yes   | Event type.|
+| extraInfo     | string                          | Yes   | Additional information.|
 
 ## UpgradeFile
 
@@ -1573,22 +1573,22 @@ Represents an update file.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                 | Type                       | Mandatory  | Description     |
-| ------------------- | --------------------------- | ---- | ------- |
-| fileType        |   [ComponentType](#componenttype)   | Yes   | File type. |
-| filePath         | string | Yes   | File path.   |
+| Name      | Type                           | Mandatory  | Description  |
+| -------- | ------------------------------- | ---- | ---- |
+| fileType | [ComponentType](#componenttype) | Yes   | File type.|
+| filePath | string                          | Yes   | File path.|
 
 ## UpgradeTaskCallback
 
 ### (eventInfo: [EventInfo](#eventinfo)): void
 
-Event callback.
+Represents an event callback.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Parameter             | Type                                    | Mandatory  | Description  |
-| --------------- | ---------------------------------------- | ---- | ---- |
-| eventInfo          | [EventInfo](#eventinfo)     | Yes   | Event information.|
+| Name       | Type                   | Mandatory  | Description  |
+| --------- | ----------------------- | ---- | ---- |
+| eventInfo | [EventInfo](#eventinfo) | Yes   | Event information.|
 
 ## BusinessVendor
 
@@ -1596,9 +1596,9 @@ Device vendor.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| PUBLIC   | "public" | Open source. |
+| Name   | Default Value     | Description  |
+| ------ | -------- | ---- |
+| PUBLIC | "public" | Open source.  |
 
 ## BusinessSubType
 
@@ -1606,9 +1606,9 @@ Represents an update type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| FIRMWARE   | 1 | Firmware. |
+| Name     | Default Value | Description  |
+| -------- | ---- | ---- |
+| FIRMWARE | 1    | Firmware.  |
 
 ## ComponentType
 
@@ -1616,9 +1616,9 @@ Represents a component type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| OTA   | 1 | Firmware. |
+| Name | Default Value | Description  |
+| ---- | ---- | ---- |
+| OTA  | 1    | Firmware.  |
 
 ## UpgradeAction
 
@@ -1626,10 +1626,10 @@ Represents an update mode.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| UPGRADE   | "upgrade" | Differential package. |
-| RECOVERY   | "recovery" | Recovery package. |
+| Name     | Default Value       | Description  |
+| -------- | ---------- | ---- |
+| UPGRADE  | "upgrade"  | Differential package. |
+| RECOVERY | "recovery" | Recovery package. |
 
 ## EffectiveMode
 
@@ -1637,11 +1637,11 @@ Represents an effective mode.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| COLD   | 1 | Cold update. |
-| LIVE   | 2 | Live update. |
-| LIVE_AND_COLD   | 3 | Hybrid live and cold update. |
+| Name          | Default Value | Description  |
+| ------------- | ---- | ---- |
+| COLD          | 1    | Cold update. |
+| LIVE          | 2    | Live update. |
+| LIVE_AND_COLD | 3    | Hybrid live and cold update.|
 
 ## DescriptionType
 
@@ -1649,10 +1649,10 @@ Represents a description file type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| CONTENT   | 0 | Content. |
-| URI   | 1 | Link. |
+| Name    | Default Value | Description  |
+| ------- | ---- | ---- |
+| CONTENT | 0    | Content.  |
+| URI     | 1    | Link.  |
 
 ## DescriptionFormat
 
@@ -1660,10 +1660,10 @@ Represents a description file format.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| STANDARD   | 0 | Standard format. |
-| SIMPLIFIED   | 1 | Simple format. |
+| Name       | Default Value | Description  |
+| ---------- | ---- | ---- |
+| STANDARD   | 0    | Standard format.|
+| SIMPLIFIED | 1    | Simple format.|
 
 ## NetType
 
@@ -1671,13 +1671,13 @@ Enumerates network types.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| CELLULAR   | 1 | Data network. |
-| METERED_WIFI   | 2 | Wi-Fi hotspot. |
-| NOT_METERED_WIFI   | 4 | Non Wi-Fi hotspot. |
-| WIFI   | 6 | WIFI  |
-| CELLULAR_AND_WIFI   | 7 | Data network and Wi-Fi. |
+| Name              | Default Value | Description       |
+| ----------------- | ---- | --------- |
+| CELLULAR          | 1    | Data network.     |
+| METERED_WIFI      | 2    | Wi-Fi hotspot.   |
+| NOT_METERED_WIFI  | 4    | Non Wi-Fi hotspot.  |
+| WIFI              | 6    | Wi-Fi.     |
+| CELLULAR_AND_WIFI | 7    | Data network and Wi-Fi.|
 
 ## Order
 
@@ -1685,13 +1685,13 @@ Represents an update command.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| DOWNLOAD   | 1 | Download. |
-| INSTALL   | 2 | Install. |
-| DOWNLOAD_AND_INSTALL   | 3 | Download and install. |
-| APPLY   | 4 | Apply. |
-| INSTALL_AND_APPLY   | 6 | Install and apply. |
+| Name                 | Default Value | Description   |
+| -------------------- | ---- | ----- |
+| DOWNLOAD             | 1    | Download.   |
+| INSTALL              | 2    | Install.   |
+| DOWNLOAD_AND_INSTALL | 3    | Download and install.|
+| APPLY                | 4    | Apply.   |
+| INSTALL_AND_APPLY    | 6    | Install and apply.|
 
 ## UpgradeStatus
 
@@ -1699,18 +1699,18 @@ Enumerates update states.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| WAITING_DOWNLOAD   | 20 | Waiting for download. |
-| DOWNLOADING   | 21 | Downloading. |
-| DOWNLOAD_PAUSED   | 22 | Download paused. |
-| DOWNLOAD_FAIL   | 23 | Download failed. |
-| WAITING_INSTALL   | 30 | Waiting for installation. |
-| UPDATING   | 31 | Updating. |
-| WAITING_APPLY   | 40 | Waiting for applying the update. |
-| APPLYING   | 21 | Applying the update. |
-| UPGRADE_SUCCESS   | 50 | Update succeeded. |
-| UPGRADE_FAIL   | 51 | Update failed. |
+| Name             | Default Value | Description  |
+| ---------------- | ---- | ---- |
+| WAITING_DOWNLOAD | 20   | Waiting for download. |
+| DOWNLOADING      | 21   | Downloading. |
+| DOWNLOAD_PAUSED  | 22   | Download paused.|
+| DOWNLOAD_FAIL    | 23   | Download failed.|
+| WAITING_INSTALL  | 30   | Waiting for installation. |
+| UPDATING         | 31   | Updating. |
+| WAITING_APPLY    | 40   | Waiting for applying the update. |
+| APPLYING         | 21   | Applying the update. |
+| UPGRADE_SUCCESS  | 50   | Update succeeded.|
+| UPGRADE_FAIL     | 51   | Update failed.|
 
 ## EventClassify
 
@@ -1718,9 +1718,9 @@ Represents an event type.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| TASK   | 0x01000000 | Task event. |
+| Name | Default Value       | Description  |
+| ---- | ---------- | ---- |
+| TASK | 0x01000000 | Task event.|
 
 ## EventId
 
@@ -1728,22 +1728,22 @@ Enumerates event IDs.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Name                | Default Value | Description      |
-| ------------------- | ---- | -------- |
-| EVENT_TASK_BASE   | 0x01000000 | Indicates a task event. |
-| EVENT_TASK_RECEIVE   | 0x01000001 | Indicates that a task is received. |
-| EVENT_TASK_CANCEL   | 0x01000010 | Indicates that a task is cancelled. |
-| EVENT_DOWNLOAD_WAIT   | 0x01000011 | Indicates the state of waiting for the download. |
-| EVENT_DOWNLOAD_START   | 0x01000100 | Indicates that the download starts. |
-| EVENT_DOWNLOAD_UPDATE   | 0x01000101 | Indicates the download progress update. |
-| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Indicates that the download is paused. |
-| EVENT_DOWNLOAD_RESUME   | 0x01000111 | Indicates that the download is resumed. |
-| EVENT_DOWNLOAD_SUCCESS   | 0x01001000 | Indicates that the download succeeded. |
-| EVENT_DOWNLOAD_FAIL   | 0x01001001 | Indicates that the download failed. |
-| EVENT_UPGRADE_WAIT   | 0x01001010 | Indicates the state of waiting for the update. |
-| EVENT_UPGRADE_START   | 0x01001011 | Indicates that the update starts. |
-| EVENT_UPGRADE_UPDATE   | 0x01001100 | Indicates that the update is in progress. |
-| EVENT_APPLY_WAIT   | 0x01001101 | Indicates the state of waiting for applying the update. |
-| EVENT_APPLY_START   | 0x01001110 | Indicates the state of applying the update. |
-| EVENT_UPGRADE_SUCCESS   | 0x01001111 | Indicates that the update succeeded. |
-| EVENT_UPGRADE_FAIL   | 0x01010000 | Indicates that the update failed. |
+| Name                   | Default Value       | Description    |
+| ---------------------- | ---------- | ------ |
+| EVENT_TASK_BASE        | 0x01000000 | Indicates a task event.  |
+| EVENT_TASK_RECEIVE     | 0x01000001 | Indicates that a task is received.  |
+| EVENT_TASK_CANCEL      | 0x01000010 | Indicates that a task is cancelled.  |
+| EVENT_DOWNLOAD_WAIT    | 0x01000011 | Indicates the state of waiting for the download.   |
+| EVENT_DOWNLOAD_START   | 0x01000100 | Indicates that the download starts.  |
+| EVENT_DOWNLOAD_UPDATE  | 0x01000101 | Indicates the download progress update.|
+| EVENT_DOWNLOAD_PAUSE   | 0x01000110 | Indicates that the download is paused.  |
+| EVENT_DOWNLOAD_RESUME  | 0x01000111 | Indicates that the download is resumed.  |
+| EVENT_DOWNLOAD_SUCCESS | 0x01001000 | Indicates that the download succeeded.  |
+| EVENT_DOWNLOAD_FAIL    | 0x01001001 | Indicates that the download failed.  |
+| EVENT_UPGRADE_WAIT     | 0x01001010 | Indicates the state of waiting for the update.   |
+| EVENT_UPGRADE_START    | 0x01001011 | Indicates that the update starts.  |
+| EVENT_UPGRADE_UPDATE   | 0x01001100 | Indicates that the update is in progress.   |
+| EVENT_APPLY_WAIT       | 0x01001101 | Indicates the state of waiting for applying the update.   |
+| EVENT_APPLY_START      | 0x01001110 | Indicates the state of applying the update.  |
+| EVENT_UPGRADE_SUCCESS  | 0x01001111 | Indicates that the update succeeded.  |
+| EVENT_UPGRADE_FAIL     | 0x01010000 | Indicates that the update failed.  |

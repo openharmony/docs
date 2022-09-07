@@ -490,7 +490,7 @@ plainArray.forEach((value, index) => {
 
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript对象，并返回该对象。
+返回一个包含key-value键值对的迭代器对象，其中key是number类型。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -509,7 +509,7 @@ plainArray.add(2, "sffdfhf");
 
 // 使用方法一：
 for (let item of plainArray) { 
-  console.log("index:" + item[0]);
+  console.log("key:" + item[0]);
   console.log("value:" + item[1]);
 }
 
@@ -517,7 +517,7 @@ for (let item of plainArray) {
 let iter = plainArray[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log("index:" + temp[0]);
+  console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
 }

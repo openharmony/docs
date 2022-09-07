@@ -2,7 +2,7 @@
 
 The **AbilityContext** module, inherited from **Context**, implements the context for abilities.
 
-This module provides APIs for accessing ability-specific resources. You can use the APIs to start and terminate an ability, obtain the caller interface, and request permissions from users by displaying a pop-up window.
+This module provides APIs for accessing ability-specific resources. You can use the APIs to start and terminate an ability, obtain the caller interface, and request permissions from users by displaying a dialog box.
 
 > **NOTE**
 > 
@@ -40,13 +40,11 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -71,13 +69,11 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md)  | Yes| Information about the **Want** used for starting an ability.|
+| want | [Want](js-apis-application-Want.md)  | Yes| Information about the target ability.|
 | options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
@@ -106,13 +102,11 @@ Starts an ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
 | options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -153,7 +147,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
+| want |[Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
 
@@ -181,7 +175,7 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
+| want |[Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
 | options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-featureAbility.md#abilityresult)&gt; | Yes| Callback used to return the result.|
 
@@ -214,7 +208,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
 | options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 
@@ -239,7 +233,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 ## AbilityContext.startAbilityForResultWithAccount
 
-startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback<AbilityResult>): void;
+startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
 
 Starts an ability. This API uses an asynchronous callback to return the result when the account of the ability is destroyed.
 
@@ -253,8 +247,8 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<AbilityResult\> | Yes| Callback used to return the result.|
 
 **Example**
@@ -289,8 +283,8 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-application-StartOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -312,7 +306,7 @@ Starts an ability with start options specified. This API uses an asynchronous ca
   ```
 
 
-  ## AbilityContext.startAbilityForResultWithAccount
+## AbilityContext.startAbilityForResultWithAccount
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
@@ -328,8 +322,8 @@ Starts an ability with start options specified. This API uses a promise to retur
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -358,7 +352,271 @@ Starts an ability with start options specified. This API uses a promise to retur
         console.log('---------- startAbilityForResultWithAccount fail, err:  -----------', err);
     })
   ```
+## AbilityContext.startServiceExtensionAbility
 
+startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+
+Starts a new Service Extension ability. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.startServiceExtensionAbility(want, (err) => {
+    console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
+  });
+  ```
+
+## AbilityContext.startServiceExtensionAbility
+
+startServiceExtensionAbility(want: Want): Promise\<void>;
+
+Starts a new Service Extension ability. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.startServiceExtensionAbility(want)
+    .then((data) => {
+        console.log('---------- startServiceExtensionAbility success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
+    })
+  ```
+## AbilityContext.startServiceExtensionAbilityWithAccount
+
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+
+Starts a new Service Extension ability with the account ID specified. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startServiceExtensionAbilityWithAccount(want,accountId, (err) => {
+    console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+## AbilityContext.startServiceExtensionAbilityWithAccount
+
+startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+
+Starts a new Service Extension ability with the account ID specified. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.startServiceExtensionAbilityWithAccount(want,accountId)
+    .then((data) => {
+        console.log('---------- startServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+    })
+  ```
+## AbilityContext.stopServiceExtensionAbility
+
+stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
+
+Stops a Service Extension ability in the same application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.stopServiceExtensionAbility(want, (err) => {
+    console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
+  });
+  ```
+
+## AbilityContext.stopServiceExtensionAbility
+
+stopServiceExtensionAbility(want: Want): Promise\<void>;
+
+Stops a Service Extension ability in the same application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  this.context.stopServiceExtensionAbility(want)
+    .then((data) => {
+        console.log('---------- stopServiceExtensionAbility success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
+    })
+  ```
+
+## AbilityContext.stopServiceExtensionAbilityWithAccount
+
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
+
+Stops a Service Extension ability in the same application with the account ID specified. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.stopServiceExtensionAbilityWithAccount(want,accountId, (err) => {
+    console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+  });
+  ```
+
+## AbilityContext.stopServiceExtensionAbilityWithAccount
+
+stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<void>;
+
+Stops a Service Extension ability in the same application with the account ID specified. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Example**
+
+  ```js
+  var want = {
+    "deviceId": "",
+    "bundleName": "com.extreme.test",
+    "abilityName": "MainAbility"
+  };
+  var accountId = 100;
+  this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
+    .then((data) => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    })
+    .catch((err) => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
+    })
+  ```
 
 ## AbilityContext.terminateSelf
 
@@ -412,7 +670,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-Terminates this ability. This API uses an asynchronous callback to return the information to the caller of **startAbilityForResult**.
+Terminates this ability. This API uses an asynchronous callback to return the ability result information. It is used together with **startAbilityForResult**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -426,11 +684,17 @@ Terminates this ability. This API uses an asynchronous callback to return the in
 **Example**
 
   ```js
-  this.context.terminateSelfWithResult(
-     {
-          want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
-          resultCode: 100
-      }, (error) => {
+  var want = {
+    "bundleName": "com.extreme.myapplication",
+    "abilityName": "SecondAbility"
+  }
+  var resultCode = 100;
+  // AbilityResult information returned to the caller.
+  var abilityResult = {
+    want,
+    resultCode
+  }
+  this.context.terminateSelfWithResult(abilityResult, (error) => {
           console.log("terminateSelfWithResult is called = " + error.code)
       }
   );
@@ -441,7 +705,7 @@ Terminates this ability. This API uses an asynchronous callback to return the in
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
-Terminates this ability. This API uses a promise to return information to the caller of **startAbilityForResult**.
+Terminates this ability. This API uses a promise to return the ability result information. It is used together with **startAbilityForResult**.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -460,11 +724,17 @@ Terminates this ability. This API uses a promise to return information to the ca
 **Example**
 
   ```js
-  this.context.terminateSelfWithResult(
-  {
-      want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
-      resultCode: 100
-  }).then((result) => {
+  var want = {
+    "bundleName": "com.extreme.myapplication",
+    "abilityName": "SecondAbility"
+  }
+  var resultCode = 100;
+  // AbilityResult information returned to the caller.
+  var abilityResult = {
+    want,
+    resultCode
+  }
+  this.context.terminateSelfWithResult(abilityResult).then((result) => {
       console.log("terminateSelfWithResult")
   }
   )
@@ -484,8 +754,8 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | No| Remote object instance.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | No| Parameters for the connection.|
 
 **Return value**
 
@@ -515,7 +785,7 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template to connect this ability to
 
 connectAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect this ability to another ability.
+Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect this ability to another ability with the account ID specified.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -527,8 +797,8 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [ConnectOptions](js-apis-featureAbility.md#connectoptions) | No| Parameters for the connection.|
 
 **Return value**
@@ -618,7 +888,7 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-Obtains the caller interface of the specified ability, and if the specified ability is not started, starts the ability in the background.
+Starts an ability in the foreground or background and obtains the caller interface for communication with the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -626,7 +896,7 @@ Obtains the caller interface of the specified ability, and if the specified abil
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including the ability name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -637,22 +907,40 @@ Obtains the caller interface of the specified ability, and if the specified abil
 **Example**
     
   ```js
-  import Ability from '@ohos.application.Ability';
-  var caller;
-  export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-          this.context.startAbilityByCall({
-              bundleName: "com.example.myservice",
-              abilityName: "MainAbility",
-              deviceId: ""
-          }).then((obj) => {
-              caller = obj;
-              console.log('Caller GetCaller Get ' + caller);
-          }).catch((e) => {
-              console.log('Caller GetCaller error ' + e);
-          });
+  let caller = undefined;
+
+  // Start an ability in the background without passing parameters.
+  var wantBackground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: ""
+  };
+  this.context.startAbilityByCall(wantBackground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
+
+  // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
+  var wantForeground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: "",
+      parameters: {
+        "ohos.aafwk.param.callAbilityToForeground": true
       }
-  }
+  };
+  this.context.startAbilityByCall(wantForeground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
   ```
 
 ## AbilityContext.startAbilityWithAccount
@@ -671,8 +959,8 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Example**
@@ -706,8 +994,8 @@ Starts an ability with the account ID and start options specified. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -745,8 +1033,8 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the **Want** used for starting an ability.|
-| accountId | number | Yes| ID of the account.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [StartOptions](js-apis-application-StartOptions.md) | No| Parameters used for starting the ability.|
 
 **Example**
@@ -774,7 +1062,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
-Requests permissions from the user by displaying a pop-up window. This API uses an asynchronous callback to return the result.
+Requests permissions from the user by displaying a dialog box. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -783,7 +1071,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the permission request result.|
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
     
@@ -800,7 +1088,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-Requests permissions from the user by displaying a pop-up window. This API uses a promise to return the result.
+Requests permissions from the user by displaying a dialog box. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -814,7 +1102,7 @@ Requests permissions from the user by displaying a pop-up window. This API uses 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the permission request result.|
+| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result.|
 
 **Example**
     
@@ -1006,7 +1294,7 @@ Checks whether this ability is in the terminating state.
 
 | Type| Description|
 | -------- | -------- |
-| bool | The value **true** means that the ability is in terminating state, and **false** means the opposite.|
+| boolean| The value **true** means that the ability is in the terminating state, and **false** means the opposite.|
 
 **Example**
 

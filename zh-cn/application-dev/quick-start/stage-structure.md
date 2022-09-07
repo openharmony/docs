@@ -2,7 +2,7 @@
 
 # 应用包结构配置文件的说明
 
-在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用的包结构进行声明。
+在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json5和app.json配置文件中对应用的包结构进行声明。
 
 ## 配置文件内部结构
 
@@ -27,8 +27,8 @@ app.json示例：
         "versionCode": 1,
         "versionName": "1.0",
         "minCompatibleVersionCode": 1,
-        "apiCompatibleVersion": 7,
-        "apiTargetVersion": 8,
+        "minAPIVersion": 7,
+        "targetAPIVersion": 8,
         "apiReleaseType": "Release",
         "debug": false,
         "icon": "$media:app_icon",
@@ -57,9 +57,9 @@ app.json示例：
 | vendor                         | 该标签是对应用开发厂商的描述。该标签的值是字符串类型（最大255个字节）。 | 字符串   | 该标签可以缺省，缺省为空。                  |
 | versionCode                    | 该标签标识应用的版本号，该标签值为32位非负整数。此数字仅用于确定某个版本是否比另一个版本更新，数值越大表示版本越高。开发者可以将该值设置为任何正整数，但是必须确保应用的新版本都使用比旧版本更大的值。该标签不可缺省，versionCode 值应小于2的31方。 | 数值     | 该标签不可缺省                              |
 | versionName                    | 该标签标识版本号的文字描述，用于向用户展示。<br />该标签仅由数字和点构成，推荐采用“A.B.C.D”四段式的形式。四段式推荐的含义如下所示。<br/>第一段 :主版本号/Major，范围0-99，重大修改的版本，如实现新的大功能或重大变化。<br/>第二段 :次版本号/Minor，范围0-99，表示实现较突出的特点，如新功能添加和大问题修复。<br/>第三段 :特性版本号/Feature，范围0-99，标识规划的新版本特性。<br/>第四段 :修订版本号/Patch，范围0-999，表示维护版本，修复bug。 | 字符串   | 该标签不可缺省                              |
-| minCompatibleVersionCode       | 该标签标识该app pack能够兼容的最低历史版本号。               | 数值     | 该标签可缺省。缺省值等于versionCode标签值。 |
-| minAPIVersion                  | 该标签标识应用运行需要的API最小版本。                        | 数值     | 该标签不可缺省。                            |
-| targetAPIVersion               | 该标签标识应用运行需要的API目标版本。                        | 整形     | 该标签不可缺省。                            |
+| minCompatibleVersionCode       | 该标签标识该app能够兼容的最低历史版本号，用于跨设备兼容性判断。    | 数值     | 该标签可缺省。缺省值等于versionCode标签值。|
+| minAPIVersion                  | 该标签标识应用运行需要的API最小版本。   | 整形     | 该标签可缺省，缺省值为bundle-profile.json5中的compatibleSdkVersion。|
+| targetAPIVersion               | 该标签标识应用运行需要的API目标版本。   | 整形     | 该标签可缺省，缺省值为bundle-profile.json5中的compileSdkVersion。|
 | apiReleaseType                 | 该标签标识应用运行需要的API目标版本的类型，采用字符串类型表示。取值为“CanaryN”、“BetaN”或者“Release”，其中，N代表大于零的整数。<br />Canary :受限发布的版本。<br/>Beta :公开发布的Beta版本。<br/>Release :公开发布的正式版本。 | 字符串   | 该标签可缺省，缺省为“Release”。             |
 | distributedNotificationEnabled | 该标签标记该应用是否开启分布式通知。                         | 布尔值   | 该标签可缺省，缺省值为true。                |
 | entityType                     | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）。 | 字符串   | 该标签可以缺省，缺省为unspecified。         |
@@ -73,7 +73,7 @@ app.json示例：
 
 ### module对象内部结构
 
-module.json示例:
+module.json5示例:
 
 ```json
 {
@@ -176,7 +176,7 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | type                 | 该标签标识当前hap的类型。类型有三种，分别是entry、feature和har。 | 字符串     | 该标签不可缺省。                                             |
 | srcEntrance          | 该标签标识hap所对应的入口js代码路径，标签值为字符串（最长为127字节）。 | 字符串     | 该标签可缺省。                                               |
 | description          | 该标签标识hap包的描述信息，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。                                   |
-| process              | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为hap的名称。                                    |
+| process              | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为app标签下的bundleName。                        |
 | mainElement          | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | OpenHarmony应用下，该标签可缺省。                            |
 | deviceTypes          | 该标签标识hap可以运行在哪类设备上，标签值采用字符串数组的表示，系统预定义的设备类型见表4。<br />与syscap不同的是，deviceTypes是以设备类型为粒度，而syscap是以设备能力(例如蓝牙、wifi)为粒度。 | 字符串数组 | 该标签不可缺省，可以为空值。                                 |
 | deliveryWithInstall  | 该标签标识当前hap是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 该标签不可缺省。                                             |
@@ -186,10 +186,10 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | pages                | 该标签是一个profile资源，用于列举JS Component中每个页面信息。pages使用参考pages示例。 | 对象       | 在有ability的场景下，该标签不可缺省。                        |
 | metadata             | 该标签标识Hap的自定义元信息，标签值为数组类型，该标签下的配置只对当前module、或者ability、或者extensionAbility生效。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | abilities            | 描述元能力的配置信息，标签值为数组类型，该标签下的配置只对当前ability生效。abilities参考[abilities对象内部结构](#abilities对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionAbility对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definePermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
-| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestPermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
-| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testRunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
+| extensionAbilities   | 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbility生效。extensionAbilities参考[extensionAbility对象的内部结构说明](#extensionability对象的内部结构说明)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| definePermissions    | 标识hap定义的权限，仅支持系统应用配置，三方应用配置不生效。该应用的调用者必须申请这些权限才能正常调用该应用。definePermissions参考[definePermissions对象内部结构](#definepermissions对象内部结构) | 对象       | 该标签可缺省，缺省值为空，表示调用者无需任何权限即可调用该应用。 |
+| requestPermissions   | 该标签标识应用运行时需向系统申请的权限集合，标签值为数组类型。requestPermissions参考[requestPermissions对象内部结构](#requestpermissions对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。                                   |
+| testRunner           | 此标签用于支持对测试框架的配置，参考[testRunner对象内部结构说明](#testrunner对象内部结构)说明。 | 对象       | 可缺省，缺省值为空                                           |
 
 表4 deviceTypes对象的系统预定义设备
 
@@ -305,10 +305,10 @@ abilities描述ability的配置信息，标签值为数组类型。
 |priority|标识ability的优先级，仅支持系统应用配置，三方应用配置不生效。隐式查询时，优先级越高，ability在返回列表越靠前。该标签取值为integer类型，取值范围0-10。数值越大，优先级越高。 |数值 | 该标签可缺省，缺省值为0。 |
 |maxWindowRatio|标识该ability支持的最大的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最大的宽高比。|
 |minWindowRatio|标识该ability支持的最小的宽高比。| 数值    |该标签可缺省，缺省值为平台支持的最小的宽高比。|
-|maxWindowWidth|标识该ability支持的最大的窗口宽度，宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
-|minWindowWidth|标识该ability支持的最小的窗口宽度, 宽度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
-|maxWindowHeight|标识该ability支持的最大的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
-|minWindowHeight|标识该ability支持的最小的窗口高度, 高度单位为pixl。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
+|maxWindowWidth|标识该ability支持的最大的窗口宽度，宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口宽度。|
+|minWindowWidth|标识该ability支持的最小的窗口宽度, 宽度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口宽度。|
+|maxWindowHeight|标识该ability支持的最大的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最大的窗口高度。|
+|minWindowHeight|标识该ability支持的最小的窗口高度, 高度单位为vp。| 数值    |该标签可缺省，缺省值为平台支持的最小的窗口高度。|
 | excludeFromMissions    | 该标签标识ability是否在最近任务列表中显示，仅支持系统应用配置，三方应用配置不生效。为布尔类型，true表示不在任务列表中显示，false表示在任务列表中显示。 | 布尔值       | 该标签可缺省，缺省值为false。|
 
 abilities示例
@@ -453,7 +453,7 @@ skills示例
 | uri         | 该标签标识ability提供的数据uri，为字符数组类型（最大长度255），用反向域名的格式表示。该标签在type为dataShare类型的extensionAbility时，不可缺省。 | 字符串     | 该标签可缺省，缺省值为空。    |
 | skills      | 该标签标识ability能够接收的意图的特征集，为数组格式。<br />配置规则 : entry包可以配置多个具有入口能力的skills标签（配置了action.system.home和entity.system.home）的ability，其中第一个配置了skills标签的ability中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 <br />skills内部结构参考[skills对象内部结构](#skills对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。    |
 | metadata    | 该标签标识extensionAbility的元信息。metadata内部结构参考[metadata对象内部结构](#metadata对象内部结构)。 | 对象       | 该标签可缺省，缺省值为空。    |
-| visible     | 该标签标识extensionAbility是否可以被其它应用调用，为布尔类型。true表示可以被其它应用调用， false表示不可以被其它应用调用。 |            | 该标签可缺省，缺省值为false。 |
+| visible     | 该标签标识extensionAbility是否可以被其它应用调用，为布尔类型。true表示可以被其它应用调用， false表示不可以被其它应用调用。 | 布尔值     | 该标签可缺省，缺省值为false。 |
 
 extensionAbility示例 :
 
@@ -495,15 +495,15 @@ extensionAbility示例 :
 
 表10 definePermissions定义权限字段说明
 
-| 属性名称               | 含义                                                         | 数据类型 | 是否可缺省               |
-| ---------------------- | ------------------------------------------------------------ | -------- | ------------------------ |
-| name                   | 标识权限的名称。                                             | 字符串   | 不可缺省                 |
-| grantMode              | 标识权限的授予方式，授予模式如下：<br />system_grant：安装后系统自动授予该权限。<br />user_grant：使用动态申请，用户授权后才可使用 | 字符串   | 可缺省，缺省值为空。     |
-| availableLevel         | 标识权限限制门限，可选值为"system_core"、"system_basic"、"normal"。该标签有缺省值，缺省值为normal。权限范围如下：<br />system_core：系统核心权限。<br />system_basic：系统基础权限。<br />normal：普通权限。所有应用允许申请的权限。 | 字符串   | 可缺省，缺省值为"normal" |
-| provisionEnable        | 标识权限是否支持证书方式申请权限，包括高级别的权限，true标识需要开发者可以通过provision证书acls方式申请权限。 | 布尔值   | 可缺省，缺省值为true     |
-| distributedSceneEnable | 标识权限是否支持分布式场景下使用该权限。                     | 布尔值   | 可缺省，缺省值为false    |
-| label                  | 标识权限的简短描述，配置为对描述内容的资源索引。             | 字符串   | 可缺省，缺省值为空       |
-| description            | 标识权限的详细描述，可以是表示描述内容的字符串，也可以是对描述内容的资源索引。 | 字符串   | 可缺省，缺省值为空       |
+| 属性名称               | 含义                                                         | 数据类型 | 是否可缺省                     |
+| ---------------------- | ------------------------------------------------------------ | -------- | ------------------------------ |
+| name                   | 标识权限的名称。                                             | 字符串   | 不可缺省                       |
+| grantMode              | 标识权限的授予方式，授予模式如下：<br />system_grant：安装后系统自动授予该权限。<br />user_grant：使用动态申请，用户授权后才可使用 | 字符串   | 可缺省，缺省值为system_grant。 |
+| availableLevel         | 标识权限限制门限，可选值为"system_core"、"system_basic"、"normal"。该标签有缺省值，缺省值为normal。权限范围如下：<br />system_core：系统核心权限。<br />system_basic：系统基础权限。<br />normal：普通权限。所有应用允许申请的权限。 | 字符串   | 可缺省，缺省值为"normal"       |
+| provisionEnable        | 标识权限是否支持证书方式申请权限，包括高级别的权限，true标识需要开发者可以通过provision证书acls方式申请权限。 | 布尔值   | 可缺省，缺省值为true           |
+| distributedSceneEnable | 标识权限是否支持分布式场景下使用该权限。                     | 布尔值   | 可缺省，缺省值为false          |
+| label                  | 标识权限的简短描述，配置为对描述内容的资源索引。             | 字符串   | 可缺省，缺省值为空             |
+| description            | 标识权限的详细描述，可以是表示描述内容的字符串，也可以是对描述内容的资源索引。 | 字符串   | 可缺省，缺省值为空             |
 
 #### requestPermissions对象内部结构
 
@@ -511,11 +511,11 @@ extensionAbility示例 :
 
 表11 requestPermissions权限申请字段说明
 
-| 属性名称  | 含义                                                         | **类型**                        | **取值范围**                                                | **默认值**             | **规则约束**                                                 |
-| --------- | ------------------------------------------------------------ | ------------------------------- | ----------------------------------------------------------- | ---------------------- | ------------------------------------------------------------ |
-| name      | 必须，填写需要使用的权限名称。                               | 字符串                          | 自定义                                                      | 无                     | 未填写时，解析失败。                                         |
-| reason    | 可选，当申请的权限为user_grant权限时此字段必填。描述申请权限的原因。 | 字符串                          | 使用string类资源引用。格式为`$string: ***`。                | 空                     | user_grant权限必填，否则不允许在应用市场上架。需做多语种适配。 |
-| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景和时机。场景类型有 :ability、when（调用时机）。可配置多个ability。 | ability :字符串数组when :字符串 | ability :ability的名称when :inuse（使用时）、always（始终） | ability :空when :inuse | user_grant权限必填ability，可选填when。                      |
+| 属性名称  | 含义                                                         | **类型**                                 | **取值范围**                                                 | **默认值**           | **规则约束**                                                 |
+| --------- | ------------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------ | -------------------- | ------------------------------------------------------------ |
+| name      | 必须，填写需要使用的权限名称。                               | 字符串                                   | 自定义                                                       | 无                   | 未填写时，解析失败。                                         |
+| reason    | 可选，当申请的权限为user_grant权限时此字段必填。描述申请权限的原因。 | 字符串                                   | 使用string类资源引用。格式为`$string: ***`。                 | 空                   | user_grant权限必填，否则不允许在应用市场上架。需做多语种适配。 |
+| usedScene | 可选，当申请的权限为user_grant权限时此字段必填。描述权限使用的场景和时机。场景类型有 :ability、when（调用时机）。可配置多个ability。 | abilities:ability字符串数组，when:字符串 | abilities:ability的名称，when:inuse（使用时）、always（始终） | abilities:空 when:空 | user_grant权限必填abilities，可选填when。                    |
 
 requestPermissions示例 :
 
@@ -546,20 +546,22 @@ forms标签标识卡片的配置，form卡片是可以嵌入桌面上并接收�
 
 表12 forms对象的内部结构说明
 
-| 属性名称          | 含义                                                         | 数据类型   | 是否可缺省                    |
-| ----------------- | ------------------------------------------------------------ | ---------- | ----------------------------- |
-| name              | 标识卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                            |
-| description       | 标识卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。            |
-| src               | 该标签标识JS卡片对应的UI代码。建议开发者通过自适应布局显示不同规格卡片，如果不同规格卡片布局相差较大，建议通过不同卡片来区分。 | 字符串     | 可缺省，缺省为空。            |
-| window            | 该标签标识JS卡片的自适应能力。window结构参考表12。           | 对象       | 可缺省，缺省为空。            |
-| isDefault         | 标识该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。 true :默认卡片。 false :非默认卡片。 | 布尔值     | 否                            |
-| colorMode         | 标识卡片的主题样式，取值范围如下 : auto :自适应。 dark :深色主题。 light :浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。      |
-| supportDimensions | 标识卡片支持的外观规格，取值范围 : 1 * 2 :表示1行2列的二宫格。 2 * 1 :表示2行1列的二宫格。 2 * 2 :表示2行2列的四宫格。 2 * 4 :表示2行4列的八宫格。 4 * 4 :表示4行4列的十六宫格。 | 字符串数组 | 否                            |
-| defaultDimension  | 标识卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                            |
-| updateDuration    | 该标签标识卡片定时刷新的更新频率，单位为30分钟，取值为30的倍数值。卡片的最高频率为每30分钟刷新一次，和定点刷新二选一，二者都配置的情况下，定时优先。 | 数值       | 可缺省，缺省为空。            |
-| metadata          | 该标签标识卡片的自定义信息。metadata内部结构参考表5。        | 对象       | 可缺省，缺省为空。            |
-| formConfigAbility | 该标签标识卡片调整的Ability名称。标签值为字符串类型（最长127字符）。该标签值必须满足下面的格式 :<br/>ability://单个ability名字<br/>单个ability名字必须为本应用的ability。 | 字符串     | 可缺省，缺省为空。            |
-| formVisibleNotify | 该标签标识卡片是否被允许使用卡片可见性通知。标签值为true或false | 布尔值     | 该标签可缺省，默认值为false。 |
+| 属性名称            | 含义                                                         | 数据类型   | 是否可缺省                    |
+| ------------------- | ------------------------------------------------------------ | ---------- | ----------------------------- |
+| name                | 标识卡片的类名。字符串最大长度为127字节。                    | 字符串     | 否                            |
+| description         | 标识卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串     | 可缺省，缺省为空。            |
+| src                 | 该标签标识JS卡片对应的UI代码。建议开发者通过自适应布局显示不同规格卡片，如果不同规格卡片布局相差较大，建议通过不同卡片来区分。 | 字符串     | 可缺省，缺省为空。            |
+| window              | 该标签标识JS卡片的自适应能力。window结构参考表12。           | 对象       | 可缺省，缺省为空。            |
+| isDefault           | 标识该卡片是否为默认卡片，每个Ability有且只有一个默认卡片。 true :默认卡片。 false :非默认卡片。 | 布尔值     | 否                            |
+| colorMode           | 标识卡片的主题样式，取值范围如下 : auto :自适应。 dark :深色主题。 light :浅色主题。 | 字符串     | 可缺省，缺省值为“auto”。      |
+| supportDimensions   | 标识卡片支持的外观规格，取值范围 : 1 * 2 :表示1行2列的二宫格。 2 * 1 :表示2行1列的二宫格。 2 * 2 :表示2行2列的四宫格。 2 * 4 :表示2行4列的八宫格。 4 * 4 :表示4行4列的十六宫格。 | 字符串数组 | 否                            |
+| defaultDimension    | 标识卡片的默认外观规格，取值必须在该卡片supportDimensions配置的列表中。 | 字符串     | 否                            |
+| updateEnabled       | 该标签标识该卡片是否支持实时刷新，true标识卡片支持实时刷新，false标识不支持。 | 布尔值     | 否                            |
+| scheduledUpdateTime | 该标签标识卡片定点刷新的时间，采用24小时计数，精确到分钟。   | 字符串     | 是                            |
+| updateDuration      | 该标签标识卡片定时刷新的更新频率，单位为30分钟，取值为30的倍数值。卡片的最高频率为每30分钟刷新一次，和定点刷新二选一，二者都配置的情况下，定时优先。 | 数值       | 可缺省，缺省为空。            |
+| metadata            | 该标签标识卡片的自定义信息。metadata内部结构参考表5。        | 对象       | 可缺省，缺省为空。            |
+| formConfigAbility   | 该标签标识卡片调整的Ability名称。标签值为字符串类型（最长127字符）。该标签值必须满足下面的格式 :<br/>ability://单个ability名字<br/>单个ability名字必须为本应用的ability。 | 字符串     | 可缺省，缺省为空。            |
+| formVisibleNotify   | 该标签标识卡片是否被允许使用卡片可见性通知。标签值为true或false | 布尔值     | 该标签可缺省，默认值为false。 |
 
 表13 window内部结构说明
 
@@ -591,6 +593,8 @@ form示例 :
             "scheduledUpdateTime": "10:30",
             "updateDuration": 1,
             "defaultDimension": "2*2",
+            "updateEnabled": true,
+            "scheduledUpdateTime": "21:33",
             "supportDimensions": [
                 "2*2"
             ],
@@ -606,7 +610,7 @@ form示例 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息
+在module.json5的extension组件下面定义metadata信息
 
 ```json
 {
@@ -654,7 +658,7 @@ metadata中指定shortcut信息，其中 :
 }
 ```
 
-在module.json的module下面定义metadata信息，如下 :
+在module.json5的module下面定义metadata信息，如下 :
 
 ```json
 {
@@ -714,7 +718,7 @@ metadata中指定commonEvent信息，其中 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息，如下 :
+在module.json5的extension组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [
@@ -804,7 +808,7 @@ distroFilter示例 :
 ]
 ```
 
-在module.json的extensionAbilities组件下面定义metadata信息，如下 :
+在module.json5的extensionAbilities组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [

@@ -138,6 +138,7 @@
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
+  - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@system.cipher (加密算法)](js-apis-system-cipher.md)
 - 数据管理
 
@@ -183,6 +184,8 @@
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
   - [@ohos.nfc.tag (标准NFC-Tag)](js-apis-nfcTag.md)
+  - [@ohos.nfc.tag (标准NFC-Tag Nfc 技术)](js-apis-nfctech.md)
+  - [@ohos.nfc.tag (标准NFC-Tag TagSession)](js-apis-tagSession.md)
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
   - [@ohos.wifi (WLAN)](js-apis-wifi.md)
   - [@ohos.wifiext (WLAN)](js-apis-wifiext.md)

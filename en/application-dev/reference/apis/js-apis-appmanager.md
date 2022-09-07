@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -46,9 +46,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the application is undergoing a stability test, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -72,9 +72,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -96,9 +96,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;boolean&gt; | No| Callback used to return whether the application is running on a RAM constrained device. If the application is running on a RAM constrained device, **true** will be returned; otherwise, **false** will be returned.|
 
 **Example**
     
@@ -119,9 +119,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-  | Type| Description| 
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Size of the application memory.| 
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Size of the application memory.|
 
 **Example**
     
@@ -143,9 +143,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number&gt; | No| Size of the application memory.|
 
 **Example**
     
@@ -155,7 +155,11 @@ Obtains the memory size of this application. This API uses an asynchronous callb
             console.log('startAbility result success:' + JSON.stringify(data));
         })
   ```
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9) instead.
 
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
@@ -181,7 +185,11 @@ Obtains information about the running processes. This API uses a promise to retu
         });
   ```
 
-## appManager.getProcessRunningInfos<sup>8+</sup>
+## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
+
+> **NOTE**
+>
+> This API is deprecated since API version 9. You are advised to use [appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1) instead.
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
@@ -206,11 +214,62 @@ Obtains information about the running processes. This API uses an asynchronous c
         })
   ```
 
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
+
+Obtains information about the running processes. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<ProcessRunningInformation>> | Promise used to return the process information.|
+
+**Example**
+    
+  ```js
+        app.getProcessRunningInformation().then((data) => {
+            console.log('success:' + JSON.stringify(data));
+        }).catch((error) => {
+            console.log('failed:' + JSON.stringify(error));
+        });
+  ```
+
+## appManager.getProcessRunningInformation<sup>9+</sup>
+
+getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInformation>>): void;
+
+Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | No| Callback used to return the process information.|
+
+**Example**
+    
+  ```js
+        app.getProcessRunningInformation((err, data) => {
+            console.log('startAbility result failed :' + JSON.stringify(err));
+            console.log('startAbility result success:' + JSON.stringify(data));
+        })
+  ```
+
 ## appManager.registerApplicationStateObserver<sup>8+</sup>
 
 registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
-Registers the application state observer.
+Registers an observer to listen for the state of all applications.
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -222,7 +281,7 @@ Registers the application state observer.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| observer | ApplicationStateObserver | No| Numeric code of the observer.|
+| observer | [ApplicationStateObserver](#applicationstateobserver) | No| Numeric code of the observer.|
 
 **Example**
     
@@ -245,6 +304,48 @@ Registers the application state observer.
   console.log('-------- observerCode: ---------', observerCode);
 
   ```
+
+## appManager.registerApplicationStateObserver<sup>9+</sup>
+
+registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array<string>): number;
+
+Registers an observer to listen for the state of a specified application.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| observer | [ApplicationStateObserver](#applicationstateobserver) | No| Numeric code of the observer.|
+| bundleNameList | Array<string> | No| **bundleName** array to be registered for listening. The maximum value is 128.|
+
+**Example**
+    
+  ```js
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  var bundleNameList = ['bundleName1', 'bundleName2'];
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver, bundleNameList);
+  console.log('-------- observerCode: ---------', observerCode);
+
+  ```
 ## appManager.unregisterApplicationStateObserver<sup>8+</sup>
 
 unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\<void>): void;
@@ -258,7 +359,7 @@ Deregisters the application state observer. This API uses an asynchronous callba
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
- 
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | observerId | number | No| Numeric code of the observer.|
@@ -319,7 +420,7 @@ Deregisters the application state observer. This API uses a promise to return th
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
-Obtains applications that run in the foreground. This API uses an asynchronous callback to return the result.
+Obtains applications that are running in the foreground. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -350,7 +451,7 @@ Obtains applications that run in the foreground. This API uses an asynchronous c
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>;
 
-Obtains applications that run in the foreground. This API uses a promise to return the result.
+Obtains applications that are running in the foreground. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -380,7 +481,7 @@ Obtains applications that run in the foreground. This API uses a promise to retu
 
 killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
-Kills the process by bundle name and account ID. This API uses a promise to return the result.
+Kills a process by bundle name and account ID. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS and ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -390,10 +491,10 @@ Kills the process by bundle name and account ID. This API uses a promise to retu
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.| 
-  | accountId | number | Yes| Account ID.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of an application.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Example**
 
@@ -414,7 +515,7 @@ app.killProcessWithAccount(bundleName, accountId)
 
 killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCallback\<void\>): void
 
-Kills the process by bundle name and account ID. This API uses an asynchronous callback to return the result.
+Kills a process by bundle name and account ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -424,11 +525,11 @@ Kills the process by bundle name and account ID. This API uses an asynchronous c
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | bundleName | string | Yes| Bundle name of an application.| 
-  | accountId | number | Yes| Account ID.| 
-  | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| bundleName | string | Yes| Bundle name of an application.|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -708,7 +809,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | bundleName<sup>8+</sup>              | string   | Yes  | No | Bundle name of an application.                 |
 | abilityName<sup>8+</sup>             | string   | Yes  | No  | Ability name.              |
 | uid<sup>8+</sup>                     | number   | Yes  | No  | User ID.                 |
-| state<sup>8+</sup>                   | number   | Yes  | No  | Application information.               |
+| state<sup>8+</sup>                   | number   | Yes  | No  | Ability state.               |
 | moduleName<sup>9+</sup> | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
 | abilityType<sup>8+</sup> | string   | Yes  | No  | Ability type.   |
 
@@ -736,3 +837,16 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | uid<sup>9+</sup>   | Read only    | number               | No  | User ID.|
 | processName<sup>9+</sup>  | Read only    | string               | No  | Process name.|
 | bundleNames<sup>9+</sup>          | Read only    | Array\<string>              | No  | **bundleName** array in the running processes.|
+
+## ApplicationStateObserver
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+| Name                    | Type    | Readable| Writable| Description                      |
+| ----------------------- | ---------| ---- | ---- | ------------------------- |
+| [onForegroundApplicationChanged<sup>8+</sup>](#applicationstateobserveronforegroundapplicationchanged8)         | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the foreground or background state of an application changes.                   |
+| [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | Yes  | No | Callback invoked when the ability state changes.                 |
+| [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is created.                 |
+| [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | Yes  | No  | Callback invoked when a process is destroyed.                 |

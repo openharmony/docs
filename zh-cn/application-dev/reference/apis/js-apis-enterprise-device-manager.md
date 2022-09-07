@@ -18,7 +18,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -57,7 +57,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Callback形式返回是否激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -97,7 +97,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 以异步方法根据给定的包名和类名激活设备管理员应用，使用Promise形式返回是否激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -141,7 +141,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -174,7 +174,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<boolean>): vo
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Callback形式返回是否去激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -208,7 +208,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
 以异步方法根据给定的包名和类名将设备普通管理员应用去激活，使用Promise形式返回是否去激活成功。
 
-**需要权限：** ohos.permission.MANAGE_ADMIN
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

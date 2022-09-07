@@ -6,9 +6,9 @@ The TypeScript-based declarative development paradigm provides a wide array of b
 
 ## HelloWorld Example
 
-
-```
+```ts
 // An example of displaying Hello World. After you click the button, Hello UI is displayed.
+// xxx.ets
 @Entry
 @Component
 struct Hello {
@@ -23,7 +23,7 @@ struct Hello {
             Button() {
                 Text('Click me')
                 .fontColor(Color.Red)
-            }.onClick(() =&gt; {
+            }.onClick(() => {
                 this.myText = 'UI'
             })
             .width(500)

@@ -18,13 +18,13 @@
 
 ## 接口
 
-TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, controller?: TextInputController})
+TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
 
 - 参数
   | 参数名                     | 参数类型                                     | 必填   | 默认值  | 参数描述            |
   | ----------------------- | ---------------------------------------- | ---- | ---- | --------------- |
-  | placeholder             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                   | 否    | -    | 无输入时的提示文本。      |
-  | text             | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)                                   | 否    | -    | 设置提示文本的当前值。      |
+  | placeholder   | [ResourceStr](../../ui/ts-types.md)       | 否    | -    | 无输入时的提示文本。      |
+  | text          | [ResourceStr](../../ui/ts-types.md)       | 否    | -    | 设置输入框当前的文本内容。     |
   | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | -    | 设置TextInput控制器。 |
 
 
@@ -35,12 +35,12 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
 | 名称                       | 参数类型                                     | 默认值               | 描述                                       |
 | ------------------------ | ---------------------------------------- | ----------------- | ---------------------------------------- |
 | type                     | InputType                                | InputType.Normal  | 设置输入框类型。                                 |
-| placeholderColor         | Color                                    | -                 | 设置placeholder颜色。                         |
+| placeholderColor         | [ResourceColor](../../ui/ts-types.md)     | -                 | 设置placeholder颜色。|
 | placeholderFont          | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | -                 | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
 | enterKeyType             | EnterKeyType                             | EnterKeyType.Done | 设置输入法回车键类型。                              |
-| caretColor               | Color                                    | -                 | 设置输入框光标颜色。                               |
+| caretColor               | [ResourceColor](../../ui/ts-types.md)    | -                 | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | -                 | 设置文本的最大输入字符数。                            |
-| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)<br/>} | -                 | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
+| inputFilter<sup>8+</sup>      | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | -     | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-basic-components-text.md) | CopyOptions.CrossDevice | 设置文本是否可复制。 |
 | showPasswordIcon<sup>9+</sup> | boolean | true | 密码输入模式时，密码框末尾的图标是否显示。 |
 | style<sup>9+</sup> | TextInputStyle | Default | TextInput风格。 |
@@ -48,31 +48,31 @@ TextInput(value?:{placeholder?: string | Resource, text?: string | Resource, con
 - EnterKeyType枚举说明
   | 名称                  | 描述        |
   | ------------------- | --------- |
-  | EnterKeyType.Go     | 显示Go文本。   |
-  | EnterKeyType.Search | 显示为搜索样式。  |
-  | EnterKeyType.Send   | 显示为发送样式。  |
-  | EnterKeyType.Next   | 显示为下一个样式。 |
-  | EnterKeyType.Done   | 标准样式。     |
+  | Go     | 显示Go文本。   |
+  | Search | 显示为搜索样式。  |
+  | Send   | 显示为发送样式。  |
+  | Next   | 显示为下一个样式。 |
+  | Done   | 标准样式。     |
 
 - InputType枚举说明
   | 名称                 | 描述            |
   | ------------------ | ------------- |
-  | InputType.Normal   | 基本输入模式。       |
-  | InputType.Password | 密码输入模式。       |
-  | InputType.Email    | e-mail地址输入模式。 |
-  | InputType.Number   | 纯数字输入模式。      |
+  | Normal   | 基本输入模式。       |
+  | Password | 密码输入模式。       |
+  | Email    | e-mail地址输入模式。 |
+  | Number   | 纯数字输入模式。      |
 
 - TextInputStyle枚举说明
   | 名称                 | 描述            |
   | ------------------ | ------------- |
-  | Default   | 默认风格。       |
-  | Inline | 内联输入风格。文字选中时底板与输入框同高。光标宽1.5vp，高24.0vp。      |
+  | Default   | 默认风格，光标宽1.5vp，光标高度和字体大小高度相关，字体越大光标越高。       |
+  | Inline | 内联输入风格。文字选中时底板与输入框同高。      |
 
 ## 事件
 
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
-| onChange(value:&nbsp;string)&nbsp;=&gt;&nbsp;void | 输入发生变化时，触发回调。                            |
+| onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入发生变化时，触发回调。              |
 | onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void) | 回车键或者软键盘回车键触发该回调，参数为当前软键盘回车键类型。          |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | 输入状态变化时，触发回调。                            |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | 输入状态变化时，触发回调。                            |

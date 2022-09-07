@@ -1,6 +1,7 @@
 # I18n开发指导
 
-本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。
+本模块提供系统相关的或者增强的国际化能力，包括区域管理、电话号码处理、日历等，相关接口为ECMA 402标准中未定义的补充接口。更多接口和使用方式请见[I18N](../reference/apis/js-apis-i18n.md)。
+
 [Intl](intl-guidelines.md)模块提供了ECMA 402标准定义的基础国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
 ## 获取系统语言区域信息
@@ -85,7 +86,7 @@
 
 ## 获取日历信息
 
-调用日历[Calendar](../reference/apis/js-apis-intl.md)相关接口来获取日历的相关信息，例如获取日历的本地化显示、一周起始日、一年中第一周的最小天数等。
+调用日历[Calendar](../reference/apis/js-apis-i18n.md#calendar8)相关接口来获取日历的相关信息，例如获取日历的本地化显示、一周起始日、一年中第一周的最小天数等。
 
 ### 接口说明
 
@@ -111,7 +112,7 @@
    调用getCalendar方法获取指定locale和type的时区对象（i18n为导入的模块）。其中，type表示合法的日历类型，目前合法的日历类型包括："buddhist", "chinese", "coptic", "ethiopic", "hebrew", "gregory", "indian", "islamic_civil", "islamic_tbla", "islamic_umalqura", "japanese", "persian"。当type没有给出时，采用区域默认的日历类型。
    
    ```js
-   var calendar = i18n.getCalendar("zh-CN", "gregory);
+   var calendar = i18n.getCalendar("zh-CN", "gregory");
    ```
 
 2. 设置日历对象的时间。
@@ -177,7 +178,7 @@
 
 ## 电话号码格式化
 
-调用电话号码格式化[PhoneNumberFormat](../reference/apis/js-apis-intl.md)的接口，实现对针对不同国家电话号码的格式化以及判断电话号码格式是否正确的功能。
+调用电话号码格式化[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8)的接口，实现对针对不同国家电话号码的格式化以及判断电话号码格式是否正确的功能。
 
 ### 接口说明
 
@@ -194,7 +195,7 @@
    调用PhoneNumberFormat的构造函数来实例化电话号码格式化对象，需要传入电话号码的国家代码及格式化选项。其中，格式化选项是可选的，包括style选项，该选项的取值包括："E164", "INTERNATIONAL", "NATIONAL", "RFC3966"。
    
    ```js
-   var phoneNumberFormat = new i18n.PhoneNubmerFormat("CN", {type: "E164"});
+   var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. 判断电话号码格式是否正确。
@@ -227,7 +228,7 @@
 
 1. 度量衡单位转换。
 
-   调用[unitConvert](../reference/apis/js-apis-intl.md)方法实现度量衡单位转换，并进行格式化显示的功能。
+   调用[unitConvert](../reference/apis/js-apis-i18n.md#unitconvert8)方法实现度量衡单位转换，并进行格式化显示的功能。
 
    ```js
    var fromUnit = {unit: "cup", measureSystem: "US"};
@@ -240,7 +241,7 @@
 
 ## 字母表索引
 
-调用字母表索引[IndexUtil](../reference/apis/js-apis-intl.md)的接口可以获取不同Locale的字母表索引，以及实现计算字符串所属索引的功能。
+调用字母表索引[IndexUtil](../reference/apis/js-apis-i18n.md#indexutil8)的接口可以获取不同Locale的字母表索引，以及实现计算字符串所属索引的功能。
 
 ### 接口说明
 
@@ -259,7 +260,7 @@
 
    
    ```js
-   var indexUtil = getInstance("zh-CN");
+   var indexUtil = i18n.getInstance("zh-CN");
    ```
 
 2. 获取索引列表。
@@ -289,7 +290,7 @@
 
 ## 获取文本断点位置
 
-当文本比较长无法在一行进行显示时，调用文本断点[BreakIterator8](../reference/apis/js-apis-intl.md)的接口，来获取文本可以断行的位置。
+当文本比较长无法在一行进行显示时，调用文本断点[BreakIterator8](../reference/apis/js-apis-i18n.md#breakiterator8)的接口，来获取文本可以断行的位置。
 
 ### 接口说明
 

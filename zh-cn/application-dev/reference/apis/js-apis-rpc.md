@@ -16,7 +16,7 @@ import rpc from '@ohos.rpc';
 
 ## MessageParcel
 
-该类提供读写基础类型及数组、IPC对象、接口描述符和自定义序列化对象的方法。
+在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
 
 ### create
@@ -28,7 +28,8 @@ create(): MessageParcel
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | MessageParcel | 返回创建的MessageParcel对象。 |
 
@@ -65,12 +66,13 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | 是 | 要序列化并写入MessageParcel的远程对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
@@ -111,7 +113,8 @@ readRemoteObject(): IRemoteObject
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
 
@@ -148,17 +151,18 @@ readRemoteObject(): IRemoteObject
 
 writeInterfaceToken(token: string): boolean
 
-将接口描述符写入MessageParcel对象。
+将接口描述符写入MessageParcel对象，远端对象可使用该信息校验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | string | 是 | 字符串类型描述符。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
@@ -175,12 +179,13 @@ writeInterfaceToken(token: string): boolean
 
 readInterfaceToken(): string
 
-从MessageParcel中读取接口描述符。接口描述符按写入MessageParcel的顺序读取。
+从MessageParcel中读取接口描述符，接口描述符按写入MessageParcel的顺序读取，本地对象可使用该信息检验本次通信。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回读取到的接口描述符。 |
 
@@ -206,7 +211,8 @@ getSize(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 获取的MessageParcel的数据大小。以字节为单位。 |
 
@@ -228,7 +234,8 @@ getCapacity(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 获取的MessageParcel的容量大小。以字节为单位。 |
 
@@ -250,12 +257,14 @@ setSize(size: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | size | number | 是 | MessageParcel实例的数据大小。以字节为单位。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 设置成功返回true，否则返回false。 |
 
@@ -277,12 +286,14 @@ setCapacity(size: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | size | number | 是 | MessageParcel实例的存储容量。以字节为单位。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 设置成功返回true，否则返回false。 |
 
@@ -304,7 +315,8 @@ getWritableBytes(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 获取到的MessageParcel的可写字节空间。以字节为单位。 |
 
@@ -330,7 +342,8 @@ getReadableBytes(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 获取到的MessageParcel的可读字节空间。以字节为单位。 |
 
@@ -356,7 +369,8 @@ getReadPosition(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回MessageParcel实例中的当前读取位置。 |
 
@@ -378,7 +392,8 @@ getWritePosition(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回MessageParcel实例中的当前写入位置。 |
 
@@ -401,12 +416,14 @@ rewindRead(pos: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pos | number | 是 | 开始读取数据的目标位置。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果读取位置发生更改，则返回true；否则返回false。 |
 
@@ -433,12 +450,14 @@ rewindWrite(pos: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | pos | number | 是 | 开始写入数据的目标位置。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果写入位置更改，则返回true；否则返回false。 |
 
@@ -463,12 +482,14 @@ writeByte(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的字节值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回成功，否则返回false。 |
 
@@ -490,7 +511,8 @@ readByte(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回字节值。 |
 
@@ -514,12 +536,14 @@ writeShort(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的短整数值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -541,7 +565,8 @@ readShort(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回短整数值。 |
 
@@ -565,12 +590,14 @@ writeInt(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的整数值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回成功，否则返回false。 |
 
@@ -592,7 +619,8 @@ readInt(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回整数值。 |
 
@@ -616,12 +644,14 @@ writeLong(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的长整数值 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -643,7 +673,8 @@ readLong(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回长整数值。 |
 
@@ -667,12 +698,14 @@ writeFloat(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的浮点值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -694,7 +727,8 @@ readFloat(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回浮点值。 |
 
@@ -718,12 +752,14 @@ writeDouble(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的双精度浮点值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -745,7 +781,8 @@ readDouble(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回双精度浮点值。 |
 
@@ -769,12 +806,14 @@ writeBoolean(val: boolean): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | boolean | 是 | 要写入的布尔值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -796,7 +835,8 @@ readBoolean(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 返回读取到的布尔值。 |
 
@@ -820,12 +860,14 @@ writeChar(val: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | number | 是 | 要写入的单个字符值。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -847,7 +889,8 @@ readChar(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回单个字符值。 |
 
@@ -871,12 +914,14 @@ writeString(val: string): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | string | 是 | 要写入的字符串值，其长度应小于40960字节。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -898,7 +943,8 @@ readString(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回字符串值。 |
 
@@ -922,12 +968,14 @@ writeSequenceable(val: Sequenceable): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | val | [Sequenceable](#sequenceable) | 是 | 要写入的可序列对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -968,12 +1016,14 @@ readSequenceable(dataIn: Sequenceable) : boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | [Sequenceable](#sequenceable) | 是 | 需要从MessageParcel读取成员变量的对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果反序列成功，则返回true；否则返回false。 |
 
@@ -1017,12 +1067,14 @@ writeByteArray(byteArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | byteArray | number[] | 是 | 要写入的字节数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -1045,7 +1097,8 @@ readByteArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的字节数组。 |
 
@@ -1070,7 +1123,8 @@ readByteArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回字节数组。 |
 
@@ -1095,12 +1149,14 @@ writeShortArray(shortArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | shortArray | number[] | 是 | 要写入的短整数数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -1122,7 +1178,8 @@ readShortArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的短整数数组。 |
 
@@ -1146,7 +1203,8 @@ readShortArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回短整数数组。 |
 
@@ -1170,12 +1228,14 @@ writeIntArray(intArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | intArray | number[] | 是 | 要写入的整数数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -1197,7 +1257,8 @@ readIntArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的整数数组。 |
 
@@ -1221,7 +1282,8 @@ readIntArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回整数数组。 |
 
@@ -1245,12 +1307,14 @@ writeLongArray(longArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | longArray | number[] | 是 | 要写入的长整数数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -1272,7 +1336,8 @@ readLongArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的长整数数组。 |
 
@@ -1296,7 +1361,8 @@ readLongArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回长整数数组。 |
 
@@ -1320,12 +1386,14 @@ writeFloatArray(floatArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | floatArray | number[] | 是 | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -1347,7 +1415,8 @@ readFloatArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
@@ -1372,7 +1441,8 @@ readFloatArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回浮点数组。 |
 
@@ -1396,12 +1466,14 @@ writeDoubleArray(doubleArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | doubleArray | number[] | 是 | 要写入的双精度浮点数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入返回true，否则返回false。 |
 
@@ -1423,7 +1495,8 @@ readDoubleArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的双精度浮点数组。 |
 
@@ -1447,7 +1520,8 @@ readDoubleArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回双精度浮点数组。 |
 
@@ -1471,12 +1545,14 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | booleanArray | boolean[] | 是 | 要写入的布尔数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -1498,7 +1574,8 @@ readBooleanArray(dataIn: boolean[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | boolean[] | 是 | 要读取的布尔数组。 |
 
@@ -1522,7 +1599,8 @@ readBooleanArray(): boolean[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean[] | 返回布尔数组。 |
 
@@ -1545,12 +1623,14 @@ writeCharArray(charArray: number[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | charArray | number[] | 是 | 要写入的单个字符数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -1572,7 +1652,8 @@ readCharArray(dataIn: number[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | number[] | 是 | 要读取的单个字符数组。 |
 
@@ -1596,7 +1677,8 @@ readCharArray(): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回单个字符数组。 |
 
@@ -1620,12 +1702,14 @@ writeStringArray(stringArray: string[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | stringArray | string[] | 是 | 要写入的字符串数组，数组单个元素的长度应小于40960字节。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -1647,7 +1731,8 @@ readStringArray(dataIn: string[]) : void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | string[] | 是 | 要读取的字符串数组。 |
 
@@ -1671,7 +1756,8 @@ readStringArray(): string[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string[] | 返回字符串数组。 |
 
@@ -1793,12 +1879,14 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | 是 | 要写入的可序列化对象数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 写入成功返回true，否则返回false。 |
 
@@ -1842,7 +1930,8 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | sequenceableArray | Sequenceable[] | 是 | 要读取的可序列化对象数组。 |
 
@@ -1888,12 +1977,14 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | objectArray | IRemoteObject[] | 是 | 要写入MessageParcel的IRemoteObject对象数组。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果IRemoteObject对象数组成功写入MessageParcel，则返回true；如果对象为null或数组写入MessageParcel失败，则返回false。 |
 
@@ -1939,7 +2030,8 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | objects | IRemoteObject[] | 是 | 从MessageParcel读取的IRemoteObject对象数组。 |
 
@@ -1986,7 +2078,8 @@ readRemoteObjectArray(): IRemoteObject[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | IRemoteObject[] | 返回IRemoteObject对象数组。 |
 
@@ -2034,7 +2127,8 @@ static closeFileDescriptor(fd: number): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | fd | number | 是 | 要关闭的文件描述符。 |
 
@@ -2057,12 +2151,14 @@ static dupFileDescriptor(fd: number) :number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | fd | number | 是 | 表示已存在的文件描述符。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回新的文件描述符。 |
 
@@ -2085,7 +2181,8 @@ containFileDescriptors(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果此MessageParcel对象包含文件描述符，则返回true；否则返回false。 |
 
@@ -2113,12 +2210,14 @@ writeFileDescriptor(fd: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | fd | number | 是 | 文件描述符。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
@@ -2143,7 +2242,8 @@ readFileDescriptor(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回文件描述符。 |
 
@@ -2169,12 +2269,14 @@ writeAshmem(ashmem: Ashmem): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | 是 | 要写入MessageParcel的匿名共享对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果匿名共享对象成功写入此MessageParcel，则返回true；否则返回false。 |
 
@@ -2197,7 +2299,8 @@ readAshmem(): Ashmem
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Ashmem | 返回匿名共享对象。 |
 
@@ -2222,7 +2325,8 @@ getRawDataCapacity(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回MessageParcel可以容纳的最大原始数据量，即128&nbsp;Mb。 |
 
@@ -2244,13 +2348,15 @@ writeRawData(rawData: number[], size: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | rawData | number[] | 是 | 要写入的原始数据。 |
   | size | number | 是 | 发送的原始数据大小，以字节为单位。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
@@ -2273,12 +2379,14 @@ readRawData(size: number): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | size | number | 是 | 要读取的原始数据的大小。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回原始数据（以字节为单位）。 |
 
@@ -2307,12 +2415,14 @@ marshalling(dataOut: MessageParcel): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataOut | [MessageParcel](#messageparcel) | 是 | 可序列对象将被封送到的MessageParcel对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果封送成功，则返回true；否则返回false。 |
 
@@ -2356,12 +2466,14 @@ unmarshalling(dataIn: MessageParcel) : boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | dataIn | [MessageParcel](#messageparcel) | 是 | 已将可序列对象封送到其中的MessageParcel对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果可序列化成功，则返回true；否则返回false。 |
 
@@ -2410,7 +2522,8 @@ asObject(): IRemoteObject
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | 如果调用者是[RemoteObject](#ashmem8)对象，则直接返回本身；如果调用者是[RemoteProxy](#remoteproxy)对象，则返回它的持有者[IRemoteObject](#iremoteobject)。 |
 
@@ -2491,12 +2604,14 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | descriptor | string | 是 | 接口描述符的字符串。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
@@ -2513,7 +2628,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2521,7 +2637,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 返回一个布尔值，true表示成功，false表示失败。|
 
@@ -2538,7 +2655,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2546,7 +2664,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -2559,7 +2678,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2567,7 +2687,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -2580,7 +2701,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2598,13 +2720,15 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注册的回调。 |
   | flags | number | 是 | 死亡通知标志。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果回调注册成功，则返回true；否则返回false。 |
 
@@ -2618,13 +2742,15 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注销的回调。 |
   | flags | number | 是 | 死亡通知标志。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果回调成功注销，则返回true；否则返回false。 |
 
@@ -2638,7 +2764,8 @@ getInterfaceDescriptor(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回接口描述符。 |
 
@@ -2652,7 +2779,8 @@ isObjectDead(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果对象已死亡，则返回true；否则返回false。 |
 
@@ -2686,7 +2814,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2694,7 +2823,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 返回一个布尔值，true表示成功，false表示失败。|
 
@@ -2751,7 +2881,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2759,7 +2890,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -2818,7 +2950,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2826,7 +2959,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -2885,7 +3019,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -2946,12 +3081,14 @@ queryLocalInterface(interface: string): IRemoteBroker
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | interface | string | 是 | 需要查询的接口描述符。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
 
@@ -2991,13 +3128,15 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是 | 收件人表示要注册的回调。 |
   | flags | number | 是 | 死亡通知标志。保留参数。设置为0。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果回调注册成功，则返回true；否则返回false。 |
 
@@ -3042,13 +3181,15 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是 | 要注销的死亡回调。 |
   | flags | number | 是 | 死亡通知标志。保留参数。设置为0。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果回调成功注销，则返回true；否则返回false。 |
 
@@ -3094,7 +3235,8 @@ getInterfaceDescriptor(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 当前的接口描述符。 |
 
@@ -3134,7 +3276,8 @@ isObjectDead(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果对应的RemoteObject已经死亡，返回true，否则返回false。 |
 
@@ -3188,7 +3331,8 @@ MessageOption构造函数。
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | syncFlags | number | 否 | 同步调用或异步调用标志。默认同步调用。 |
   | waitTime | number | 否 | 调用rpc最长等待时间。默认&nbsp;TF_WAIT_TIME。 |
@@ -3203,7 +3347,8 @@ getFlags(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 调用成功返回同步调用或异步调用标志。 |
 
@@ -3217,7 +3362,8 @@ setFlags(flags: number): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | flags | number | 是 | 同步调用或异步调用标志。 |
 
@@ -3231,7 +3377,8 @@ getWaitTime(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | rpc最长等待时间。 |
 
@@ -3245,7 +3392,8 @@ setWaitTime(waitTime: number): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | waitTime | number | 是 | rpc调用最长等待时间。 |
 
@@ -3264,7 +3412,8 @@ static getContextObject(): IRemoteObject
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | [IRemoteObject](#iremoteobject) | 返回系统能力管理者。 |
 
@@ -3285,7 +3434,8 @@ static getCallingPid(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回调用者的PID。 |
 
@@ -3311,7 +3461,8 @@ static getCallingUid(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回调用者的UID。 |
 
@@ -3363,7 +3514,8 @@ static getCallingDeviceID(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回调用者进程所在的设备ID。 |
 
@@ -3389,7 +3541,8 @@ static getLocalDeviceID(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回本地设备的ID。 |
 
@@ -3415,7 +3568,8 @@ static isLocalCalling(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果调用是在同一设备上进行的，则返回true，否则返回false。 |
 
@@ -3441,13 +3595,15 @@ static flushCommands(object : IRemoteObject): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | 是 | 指定的RemoteProxy。 |
 
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 如果操作成功，返回0；如果输入对象为空或RemoteObject，或者操作失败，返回错误代码。 |
 
@@ -3488,7 +3644,8 @@ static resetCallingIdentity(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回包含远程用户的UID和PID的字符串。 |
 
@@ -3514,12 +3671,14 @@ static setCallingIdentity(identity : string): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | identity | string | 是 | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
@@ -3556,7 +3715,8 @@ RemoteObject构造函数。
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | descriptor | string | 是 | 接口描述符。 |
 
@@ -3573,7 +3733,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -3581,7 +3742,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 返回一个布尔值，true表示成功，false表示失败。|
 
@@ -3640,7 +3802,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -3648,7 +3811,8 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -3709,7 +3873,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -3717,7 +3882,8 @@ sendRequestAsync(code : number, data : MessageParcel, reply : MessageParcel, opt
   | options | [MessageOption](#messageoption) | 是 | 本次请求的同异步模式，默认同步调用。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;SendRequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。|
 
@@ -3777,7 +3943,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 本次请求调用的消息码，由通信双方确定。如果接口由IDL工具生成，则消息代码由IDL自动生成。 |
   | data | [MessageParcel](#messageparcel) | 是 | 保存待发送数据的&nbsp;MessageParcel对象。 |
@@ -3831,16 +3998,20 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
 
-### onRemoteRequest
+### onRemoteRequest<sup>8+(deprecated)</sup>
+
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex)替代。
 
 sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 对端发送的服务请求码。 |
   | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
@@ -3848,14 +4019,15 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
   | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果操作成功，则返回true；否则返回false。 |
 
 
 **示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -3886,8 +4058,191 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
       }
   }
   ```
+### onRemoteRequestEx<sup>9+</sup>
+
+onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+
+> **说明：**
+>- 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
+>- 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
+
+sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+    | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 对端发送的服务请求码。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 写入结果的MessageParcel对象。 |
+  | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
+
+**返回值：**
+
+    | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。 |
 
 
+**重载onRemoteRequestEx方法同步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+  }
+  ```
+  **重载onRemoteRequestEx方法异步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
+**同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // 同时调用仅会执行onRemoteRequestEx
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          
+          return true;
+      }
+  }
+  ```
+  **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
+
+  ```ets
+  int index = 0;
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // 同时调用仅会执行onRemoteRequestEx
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
 ### getCallingUid
 
 getCallingUid(): number
@@ -3897,7 +4252,8 @@ getCallingUid(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回通信对端的进程Uid。 |
 
@@ -3938,7 +4294,8 @@ getCallingPid(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回通信对端的进程Pid。 |
 
@@ -3979,12 +4336,14 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | descriptor | string | 是 | 需要查询的接口描述符。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | IRemoteBroker | 如果接口描述符对应的远端对象存在，则返回该远端对象，否则返回Null。 |
 
@@ -4025,7 +4384,8 @@ getInterfaceDescriptor(): string
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | string | 返回接口描述符。 |
 
@@ -4067,7 +4427,8 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | localInterface | IRemoteBroker | 是 | 将与描述符绑定的IRemoteBroker对象。 |
   | descriptor | string | 是 | 用于与IRemoteBroker对象绑定的描述符。 |
@@ -4128,13 +4489,15 @@ static createAshmem(name: string, size: number): Ashmem
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | name | string | 是 | 名称，用于查询Ashmem信息。 |
   | size | number | 是 | Ashmem的大小，以字节为单位。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
@@ -4157,12 +4520,14 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | ashmem | Ashmem | 是 | 已存在的Ashmem对象。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | Ashmem | 返回创建的Ashmem对象。 |
 
@@ -4218,7 +4583,8 @@ getAshmemSize(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number | 返回Ashmem对象的内存大小。 |
 
@@ -4240,12 +4606,14 @@ mapAshmem(mapType: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | mapType | number | 是 | 指定映射的内存区域的保护等级。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
@@ -4267,7 +4635,8 @@ mapReadAndWriteAshmem(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
@@ -4289,7 +4658,8 @@ mapReadOnlyAshmem(): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果映射成功，则返回true；否则返回false。 |
 
@@ -4311,12 +4681,14 @@ setProtection(protectionType: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | protectionType | number | 是 | 要设置的保护类型。 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果设置成功，则返回true；否则返回false。 |
 
@@ -4338,14 +4710,16 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | buf | number[] | 是 | 写入Ashmem对象的数据。 |
   | size | number | 是 | 要写入的数据大小。 |
   | offset | number | 是 | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 如果数据写入成功，则返回true；在其他情况下，如数据写入越界或未获得写入权限，则返回false。 |
 
@@ -4370,13 +4744,15 @@ readFromAshmem(size: number, offset: number): number[]
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-    | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | size | number | 是 | 要读取的数据的大小。 |
   | offset | number | 是 | 要读取的数据在此Ashmem对象关联的内存区间的起始位置 |
 
 **返回值：**
-    | 类型 | 说明 |
+
+  | 类型 | 说明 |
   | -------- | -------- |
   | number[] | 返回读取的数据。 |
 

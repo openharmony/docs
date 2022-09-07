@@ -19,14 +19,14 @@
 
 ## 接口
 
-ScrollBar(value: ScrollBarOptions)
+ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: BarState })
 
 - ScrollBarOptions的参数描述
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | scroller | [Scroller](ts-container-scroll.md#scroller) | 是 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
   | direction | ScrollBarDirection | 否 | ScrollBarDirection.Vertical | 滚动条的方向，控制可滚动组件对应方向的滚动。 |
-  | state | BarState | 否 | BarState.Auto | 滚动条状态。 |
+  | state | [BarState](ts-appendix-enums.md#barstate) | 否 | BarState.Auto | 滚动条状态。 |
 
   >  **说明：**
   > ScrollBar组件负责定义可滚动区域的行为样式，ScrollBar的子节点负责定义滚动条的行为样式。
@@ -37,14 +37,7 @@ ScrollBar(value: ScrollBarOptions)
   | 名称 | 描述 | 
   | -------- | -------- |
   | Vertical | 纵向滚动条。 | 
-  | Horizontal | 横向滚动条。 | 
-
-- BarState枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | On | 常驻显示。 | 
-  | Off | 不显示。 | 
-  | Auto | 按需显示(触摸时显示，无操作2s后消失)。 | 
+  | Horizontal | 横向滚动条。 |
 
 
 ## 示例

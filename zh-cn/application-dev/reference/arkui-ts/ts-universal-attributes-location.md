@@ -16,19 +16,11 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment枚举说明) | Center | 设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。 |
-| direction | Direction | Auto | 设置元素水平方向的布局，可选值参照Direction枚举说明。 |
+| align | [Alignment](ts-appendix-enums.md#alignment) | Center | 设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。 |
+| direction | [Direction](ts-appendix-enums.md#direction) | Auto | 设置元素水平方向的布局，可选值参照Direction枚举说明。 |
 | position | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | - | 使用绝对定位，设置元素锚点相对于父容器顶部起点偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
 | markAnchor | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 设置元素在位置定位时的锚点，以元素顶部起点作为基准点进行偏移。 |
 | offset | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 相对布局完成位置坐标偏移量，设置该属性，不影响父容器布局，仅在绘制时进行位置调整。 |
-
-
-- Direction枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Ltr | 元素从左到右布局。 |
-  | Rtl | 元素从右到左布局。 |
-  | Auto | 使用系统默认布局方向。 |
 
 
 ## 示例

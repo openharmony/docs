@@ -16,18 +16,11 @@
 - transition入参说明
   | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | type | TransitionType                                               | TransitionType.All | 否 | 默认包括组件新增和删除。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;不指定Type时说明插入删除使用同一种效果。 |
+  | type | [TransitionType](ts-appendix-enums.md#transitiontype)  | TransitionType.All | 否 | 默认包括组件新增和删除。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;不指定Type时说明插入删除使用同一种效果。 |
   | opacity | number | 1 | 否 | 设置组件转场时的透明度效果，为插入时起点和删除时终点的值。 |
-  | translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。 |
-  | scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>**说明：**<br/>>&nbsp;中心点为0时，默认的是组件的左上角<br/>>&nbsp;centerX、centerY设置百分比时，是基于自身布局的尺寸缩放的 |
-  | rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | - | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>**说明：**<br/>>&nbsp;中心点为0时，默认的是组件的左上角 |
-
-- TransitionType枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | All | 指定当前的Transition动效生效在组件的所有变化场景。 |
-  | Insert | 指定当前的Transition动效生效在组件的插入场景。 |
-  | Delete | 指定当前的Transition动效生效在组件的删除场景。 |
+  | translate | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的平移效果，为插入时起点和删除时终点的值。<br/>-x：横向的平移距离。<br/>-y：纵向的平移距离。<br/>-z：竖向的平移距离。 |
+  | scale | {<br/>x?&nbsp;:&nbsp;number,<br/>y?&nbsp;:&nbsp;number,<br/>z?&nbsp;:&nbsp;number,<br/>centerX?&nbsp;:&nbsp;number,<br/>centerY?&nbsp;:&nbsp;number<br/>} | - | 否 | 设置组件转场时的缩放效果，为插入时起点和删除时终点的值。<br/>-x：横向放大倍数（或缩小比例）。<br/>-y：纵向放大倍数（或缩小比例）。<br/>-z：竖向放大倍数（或缩小比例）。<br/>-&nbsp;centerX、centerY缩放中心点。<br/>-&nbsp;中心点为0时，默认的是组件的左上角。<br/> |
+  | rotate | {<br/>x?:&nbsp;number,<br/>y?:&nbsp;number,<br/>z?:&nbsp;number,<br/>angle?:&nbsp;Angle,<br/>centerX?:&nbsp;Length,<br/>centerY?:&nbsp;Length<br/>} | - | 否 | 设置组件转场时的旋转效果，为插入时起点和删除时终点的值。<br/>-x：横向的旋转向量。<br/>-y：纵向的旋转向量。<br/>-z：竖向的旋转向量。<br/>-&nbsp;centerX,centerY指旋转中心点。<br/>-&nbsp;中心点为（0，0）时，默认的是组件的左上角。 |
 
 
 ## 示例
@@ -39,7 +32,7 @@
 @Entry
 @Component
 struct TransitionExample {
-  @State btn1: boolean = false
+  @State btn: boolean = false
   @State show: string = "show"
 
   build() {
@@ -47,15 +40,15 @@ struct TransitionExample {
       Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({bottom:50})
         .onClick(() => {
           animateTo({ duration: 1000 }, () => {
-            this.btn1 = !this.btn1
-            if(this.btn1){
+            this.btn = !this.btn
+            if(this.btn){
               this.show = "hide"
             }else{
               this.show = "show"
             }
           })
         })
-      if (this.btn1) {
+      if (this.btn) {
         // 插入和删除配置为不同的过渡效果
         Button() {
           Image($r('app.media.bg1')).width("80%").height(300)

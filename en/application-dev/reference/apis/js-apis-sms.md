@@ -678,7 +678,7 @@ This is a system API.
 | Name  | Type                                                       | Mandatory| Description                                     |
 | -------- | ----------------------------------------------------------- | ---- | ----------------------------------------- |
 | slotId   | number                                                      | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage8)\>> | Yes  | Callback used to return the result.                               |
+| callback | AsyncCallback<Array<[SimShortMessage](#simshortmessage7)\>> | Yes  | Callback used to return the result.                               |
 
 **Example**
 
@@ -712,7 +712,7 @@ This is a system API.
 
 | Type                                                   | Description                              |
 | ------------------------------------------------------- | ---------------------------------- |
-| PromiseArray<[SimShortMessage](#simshortmessage8)\>&gt; | Promise used to return the result.|
+| PromiseArray<[SimShortMessage](#simshortmessage7)\>&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -742,7 +742,7 @@ This is a system API.
 
 | Name  | Type                                | Mandatory| Description        |
 | -------- | ------------------------------------ | ---- | ------------ |
-| options  | [CBConfigOptions](#cbconfigoptions8) | Yes  | Cell broadcast configuration options.|
+| options  | [CBConfigOptions](#cbconfigoptions7) | Yes  | Cell broadcast configuration options.|
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback used to return the result.  |
 
 **Example**
@@ -776,7 +776,7 @@ This is a system API.
 
 | Name | Type                                | Mandatory| Description        |
 | ------- | ------------------------------------ | ---- | ------------ |
-| options | [CBConfigOptions](#cbconfigoptions8) | Yes  | Cell broadcast configuration options.|
+| options | [CBConfigOptions](#cbconfigoptions7) | Yes  | Cell broadcast configuration options.|
 
 **Return value**
 
@@ -818,7 +818,7 @@ This is a system API.
 | slotId    | number                                                       | Yes  | SIM card slot ID. <br>- **0**: card slot 1<br>- **1**: card slot 2|
 | message   | string                                                       | Yes  | SMS message.                                     |
 | force7bit | boolean                                                      | Yes  | Whether to use 7-bit coding.                         |
-| callback  | AsyncCallback&lt;[SmsSegmentsInfo](#<smssegmentsinfo8)&gt; | Yes  | Callback used to return the result.                                 |
+| callback  | | Yes  | Callback used to return the result.                                 |
 
 **Example**
 
@@ -852,7 +852,7 @@ This is a system API.
 
 | Type                                                   | Description                         |
 | ------------------------------------------------------- | ----------------------------- |
-| Promise&lt;[SmsSegmentsInfo](#<smssegmentsinfo8)&gt; | Promise used to return the result.|
+| | Promise used to return the result.|
 
 **Example**
 
@@ -1331,6 +1331,25 @@ This is a system API.
 | date       | number                             | Yes  | Date.    |
 | readStatus | number                             | Yes  | Read status.|
 
+
+## MmsReadRecInd<sup>8+</sup>
+
+Defines the MMS message reading index.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.SmsMms
+
+| Name    | Type                              | Mandatory| Description    |
+| ---------- | ---------------------------------- | ---- | -------- |
+| version    | [MmsVersionType](#mmsversiontype8) | Yes  | Version    |
+| messageId  | string                             | Yes  | Message ID.  |
+| to         | Array<[MmsAddress](#mmsaddress8)\> | Yes  | Destination.  |
+| from       | [MmsAddress](#mmsaddress8)         | Yes  | Source.    |
+| readStatus | number                             | Yes  | Read state.|
+| date       | number                             | No  | Date.    |
+
+
 ## MmsAttachment<sup>8+</sup>
 
 Defines the attachment of an MMS message.
@@ -1466,7 +1485,7 @@ This is a system API.
 | MMS_YES | 128  | YES  |
 | MMS_NO  | 129  | NO   |
 
-## CBConfigOptions<sup>8+</sup>
+## CBConfigOptions<sup>7+</sup>
 
 Defines the cell broadcast configuration options.
 
@@ -1557,7 +1576,7 @@ This is a system API.
 | pdu       | string                                 | Yes  | Protocol data unit.  |
 | smsc      | string                                 | Yes  | Short message service center.|
 
-## SimShortMessage<sup>8+</sup>
+## SimShortMessage<sup>7+</sup>
 
 Defines a SIM message.
 

@@ -590,7 +590,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
 
     testIntTransaction(data: number, callback: testIntTransactionCallback): void
     {
-        let _option = new rpc.MessageOption(rpc.MessageOption.TF_SYNC);
+        let _option = new rpc.MessageOption();
         let _data = new rpc.MessageParcel();
         let _reply = new rpc.MessageParcel();
         _data.writeInt(data);
@@ -612,7 +612,7 @@ export default class IdlTestServiceProxy implements IIdlTestService {
 
     testStringTransaction(data: string, callback: testStringTransactionCallback): void
     {
-        let _option = new rpc.MessageOption(rpc.MessageOption.TF_SYNC);
+        let _option = new rpc.MessageOption();
         let _data = new rpc.MessageParcel();
         let _reply = new rpc.MessageParcel();
         _data.writeString(data);

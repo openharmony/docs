@@ -21,7 +21,7 @@
   | curve | Curve&nbsp;\|&nbsp;Curves | Linear | 动画曲线。 |
   | delay | number | 0 | 单位为ms(毫秒)，默认不延时播放。 |
   | iterations | number | 1 | 默认播放一次，设置为-1时表示无限次播放。 |
-  | playMode | PlayMode | Normal | 设置动画播放模式，默认播放完成后重头开始播放。 |
+  | playMode | [PlayMode](ts-appendix-enums.md#playmode) | Normal | 设置动画播放模式，默认播放完成后重头开始播放。 |
 
 
 - 接口

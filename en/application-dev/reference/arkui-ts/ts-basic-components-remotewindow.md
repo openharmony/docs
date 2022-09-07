@@ -31,6 +31,7 @@ Implements a target window, which is used to remotely control the animation.
 | bundleName  | string | Process corresponding to the animation window.|
 | abilityName | string | Ability corresponding to the animation window.|
 | windowBounds | [RRect](#rrect) | Actual size of the animation window.|
+| missionId  | number | Mission ID. |
 
 ## RRect
 Implements a rounded rectangle.
@@ -63,10 +64,10 @@ struct RemoteWindowExample {
   build() {
     Column() {
       RemoteWindow(this.target)
-      	.translate({x:100, y:200})
-      	.scale({x:0.5, y:0.5})
-      .opacity(0.8)
-      	.position({x:px2vp(this.target?.windowBounds.left), y:px2vp(this.target?.windowBounds.top)})
+      	.translate({ x: 100, y: 200 })
+      	.scale({ x: 0.5, y: 0.5 })
+        .opacity(0.8)
+      	.position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
       	.width(px2vp(this.target?.windowBounds.width))
       	.height(px2vp(this.target?.windowBounds.height))
      }

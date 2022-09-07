@@ -24,10 +24,10 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                        | 必填 | 描述                                        |
-| -------- | ---- | ---- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | 是   | 否   |[NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
-| callback | 是   | 否   |AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                            |
+| 名称     | 类型                                        | 必填 | 描述                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------- |
+| request  | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                            |
 
 **示例：**
 
@@ -60,6 +60,12 @@ publish(request: NotificationRequest): Promise\<void\>
 发布通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
+
+**参数：**
+
+| 名称     | 类型                                        | 必填 | 描述                                        |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------- |
+| request  | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
 
 **示例：**
 
@@ -96,11 +102,11 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                        | 必填 | 描述                                        |
-| -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | 是   | 否   |[NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
-| userId   | 是   | 否   |number                                      | 是   | 接收通知用户的Id。                           |
-| callback | 是   | 否   |AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
+| 名称     | 类型                                        | 必填 | 描述                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------- |
+| request  | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| userId   | number                                      | 是   | 接收通知用户的Id。                           |
+| callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
 **示例：**
 
@@ -140,10 +146,10 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                        | 必填 | 描述                                        |
-| -------- | ---- | ---- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | 是   | 否   |[NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
-| userId   | 是   | 否   |number                                      | 是   | 接收通知用户的Id。                           |
+| 名称     |  类型                                        | 必填 | 描述                                        |
+| -------- | ----------------------------------------- | ---- | ------------------------------------------- |
+| request  | [NotificationRequest](#notificationrequest) | 是   | 设置要发布通知内容的NotificationRequest对象。 |
+| userId   | number                                      | 是   | 接收通知用户的Id。                           |
 
 **示例：**
 
@@ -178,11 +184,11 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | --- | ---- | --------------------- | ---- | -------------------- |
-| id       | 是   | 否   | number                | 是   | 通知ID。               |
-| label    | 是   | 否   | string                | 是   | 通知标签。             |
-| callback | 是   | 否   | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| id       | number                | 是   | 通知ID。               |
+| label    | string                | 是   | 通知标签。             |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -206,10 +212,10 @@ cancel(id: number, label?: string): Promise\<void\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型   | 必填 | 描述     |
-| ----- | --- | ---- | ------ | ---- | -------- |
-| id    | 是   | 否   | number | 是   | 通知ID。   |
-| label | 是   | 否   | string | 否   | 通知标签。 |
+| 名称  | 类型   | 必填 | 描述     |
+| ----- | ------ | ---- | -------- |
+| id    | number | 是   | 通知ID。   |
+| label | string | 否   | 通知标签。 |
 
 **示例：**
 
@@ -231,10 +237,10 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| id       | 是   | 否  | number                | 是   | 通知ID。               |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| id       | number                | 是   | 通知ID。               |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -258,9 +264,9 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -306,10 +312,10 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| slot     | 是   | 否  | [NotificationSlot](#notificationslot)       | 是   | 要创建的通知通道对象。 |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| slot     | [NotificationSlot](#notificationslot)       | 是   | 要创建的通知通道对象。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -341,9 +347,9 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **参数：**
 
-| 名称 | 可读 | 可写 | 类型             | 必填 | 描述                 |
-| ---- | ---- | --- | ---------------- | ---- | -------------------- |
-| slot | 是   | 否  | [NotificationSlot](#notificationslot) | 是   | 要创建的通知通道对象。 |
+| 名称 | 类型             | 必填 | 描述                 |
+| ---- | ---------------- | ---- | -------------------- |
+| slot | [NotificationSlot](#notificationslot) | 是   | 要创建的通知通道对象。 |
 
 **示例：**
 
@@ -369,10 +375,10 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------- | ---- | ---------------------- |
-| type     | 是   | 否  | [SlotType](#slottype)              | 是   | 要创建的通知通道的类型。 |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。   |
+| 名称     | 类型                  | 必填 | 描述                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| type     | [SlotType](#slottype)              | 是   | 要创建的通知通道的类型。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。   |
 
 **示例：**
 
@@ -396,9 +402,9 @@ addSlot(type: SlotType): Promise\<void\>
 
 **参数：**
 
-| 名称 | 可读 | 可写 | 类型     | 必填 | 描述                   |
-| ---- | ---- | --- | -------- | ---- | ---------------------- |
-| type | 是   | 否  | [SlotType](#slottype) | 是   | 要创建的通知通道的类型。 |
+| 名称 | 类型     | 必填 | 描述                   |
+| ---- | -------- | ---- | ---------------------- |
+| type | [SlotType](#slottype) | 是   | 要创建的通知通道的类型。 |
 
 **示例：**
 
@@ -424,10 +430,10 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                      | 必填 | 描述                     |
-| -------- | ---- | --- | ------------------------- | ---- | ------------------------ |
-| slots    | 是   | 否  | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
-| callback | 是   | 否  | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
+| 名称     | 类型                      | 必填 | 描述                     |
+| -------- | ------------------------- | ---- | ------------------------ |
+| slots    | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| callback | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
 
 **示例：**
 
@@ -463,9 +469,9 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **参数：**
 
-| 名称  | 可读 | 可写 | 类型                      | 必填 | 描述                     |
-| ----- | ---- | --- | ------------------------- | ---- | ------------------------ |
-| slots | 是   | 否  | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
+| 名称  | 类型                      | 必填 | 描述                     |
+| ----- | ------------------------- | ---- | ------------------------ |
+| slots | Array\<[NotificationSlot](#notificationslot)\> | 是   | 要创建的通知通道对象数组。 |
 
 **示例：**
 
@@ -495,10 +501,10 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                                                        |
-| -------- | ---- | --- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | 是   | 否  | [SlotType](#slottype)                          | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | 是   | 否  | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。                                        |
+| 名称     | 类型                              | 必填 | 描述                                                        |
+| -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
+| slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| callback | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。                                        |
 
 **示例：**
 
@@ -523,9 +529,9 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型     | 必填 | 描述                                                        |
-| -------- | ---- | --- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | 是   | 否  | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| 名称     | 类型     | 必填 | 描述                                                        |
+| -------- | -------- | ---- | ----------------------------------------------------------- |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
 
 **返回值：**
 
@@ -554,9 +560,9 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<[NotificationSlot](#notificationslot)\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                              | 必填 | 描述                 |
+| -------- | --------------------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -604,10 +610,10 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                                                        |
-| -------- | ---- | --- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | 是   | 否  | [SlotType](#slottype)              | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。                                        |
+| 名称     | 类型                  | 必填 | 描述                                                        |
+| -------- | --------------------- | ---- | ----------------------------------------------------------- |
+| slotType | [SlotType](#slottype)              | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。                                        |
 
 **示例：**
 
@@ -632,9 +638,9 @@ removeSlot(slotType: SlotType): Promise\<void\>
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型     | 必填 | 描述                                                        |
-| -------- | ---- | --- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | 是   | 否  | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
+| 名称     | 类型     | 必填 | 描述                                                        |
+| -------- | -------- | ---- | ----------------------------------------------------------- |
+| slotType | [SlotType](#slottype) | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
 
 **示例：**
 
@@ -657,9 +663,9 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
 
 **示例：**
 
@@ -704,11 +710,11 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                      | 必填 | 描述             |
-| ---------- | ---- | --- | ------------------------- | ---- | ---------------- |
-| subscriber | 是   | 否  | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。     |
-| info       | 是   | 否  | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 订阅信息。         |
-| callback   | 是   | 否  | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
+| 名称       | 类型                      | 必填 | 描述             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 是   | 订阅信息。         |
+| callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
 **示例：**
 
@@ -745,10 +751,10 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                   | 必填 | 描述             |
-| ---------- | ---- | --- | ---------------------- | ---- | ---------------- |
-| subscriber | 是   | 否  | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。     |
-| callback   | 是   | 否  | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
+| 名称       | 类型                   | 必填 | 描述             |
+| ---------- | ---------------------- | ---- | ---------------- |
+| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。     |
+| callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **示例：**
 
@@ -781,10 +787,10 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                      | 必填 | 描述         |
-| ---------- | ---- | --- | ------------------------- | ---- | ------------ |
-| subscriber | 是   | 否  | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。 |
-| info       | 是   | 否  | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 订阅信息。     |
+| 名称       | 类型                      | 必填 | 描述         |
+| ---------- | ------------------------- | ---- | ------------ |
+| subscriber | [NotificationSubscriber](#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| info       | [NotificationSubscribeInfo](#notificationsubscribeinfo) | 否   | 订阅信息。     |
 
 **示例：**
 
@@ -816,10 +822,10 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                   | 必填 | 描述                 |
-| ---------- | ---- | --- | ---------------------- | ---- | -------------------- |
-| subscriber | 是   | 否  | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。         |
-| callback   | 是   | 否  | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
+| 名称       | 类型                   | 必填 | 描述                 |
+| ---------- | ---------------------- | ---- | -------------------- |
+| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。         |
+| callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **示例：**
 
@@ -852,9 +858,9 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 **参数：**
 
-| 名称       | 可读 | 可写 | 类型                   | 必填 | 描述         |
-| ---------- | ---- | --- | ---------------------- | ---- | ------------ |
-| subscriber | 是   | 否  | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。 |
+| 名称       | 类型                   | 必填 | 描述         |
+| ---------- | ---------------------- | ---- | ------------ |
+| subscriber | [NotificationSubscriber](#notificationsubscriber) | 是   | 通知订阅对象。 |
 
 **示例：**
 
@@ -886,11 +892,11 @@ enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallbac
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
-| enable   | 是   | 否  | boolean               | 是   | 使能状态。             |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
+| enable   | boolean               | 是   | 使能状态。             |
+| callback | AsyncCallback\<void\> | 是   | 设定通知使能回调函数。 |
 
 **示例：**
 
@@ -920,10 +926,10 @@ enableNotification(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
-| enable | 是   | 否  | boolean      | 是   | 使能状态。   |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| enable | boolean      | 是   | 使能状态。   |
 
 **示例：**
 
@@ -952,10 +958,10 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                     |
-| -------- | ---- | --- | --------------------- | ---- | ------------------------ |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。               |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                     |
+| -------- | --------------------- | ---- | ------------------------ |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。               |
+| callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
 
 **示例：**
 
@@ -985,9 +991,9 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
 
 **返回值：**
 
@@ -1022,9 +1028,9 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                     |
-| -------- | ---- | --- | --------------------- | ---- | ------------------------ |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                     |
+| -------- | --------------------- | ---- | ------------------------ |
+| callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
 
 **示例：**
 
@@ -1052,9 +1058,9 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
 
 **返回值：**
 
@@ -1086,11 +1092,11 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
-| enable   | 是   | 否  | boolean               | 是   | 使能状态。             |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
+| enable   | boolean               | 是   | 使能状态。             |
+| callback | AsyncCallback\<void\> | 是   | 设定角标使能回调函数。 |
 
 **示例：**
 
@@ -1120,10 +1126,10 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
-| enable | 是   | 否  | boolean      | 是   | 使能状态。   |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| enable | boolean      | 是   | 使能状态。   |
 
 **示例：**
 
@@ -1152,10 +1158,10 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                     |
-| -------- | ---- | --- | --------------------- | ---- | ------------------------ |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。               |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 获取角标使能状态回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                     |
+| -------- | --------------------- | ---- | ------------------------ |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。               |
+| callback | AsyncCallback\<void\> | 是   | 获取角标使能状态回调函数。 |
 
 **示例：**
 
@@ -1185,9 +1191,9 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
 
 **返回值：**
 
@@ -1222,11 +1228,11 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
-| slot     | 是   | 否  | [NotificationSlot](#notificationslot)      | 是   | 通知通道。             |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。           |
+| slot     | [NotificationSlot](#notificationslot)      | 是   | 通知通道。             |
+| callback | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
 
 **示例：**
 
@@ -1259,10 +1265,10 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
-| slot   | 是   | 否  | [NotificationSlot](#notificationslot) | 是   | 使能状态。   |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| slot   | [NotificationSlot](#notificationslot) | 是   | 使能状态。   |
 
 **示例：**
 
@@ -1294,10 +1300,10 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                     | 必填 | 描述                 |
-| -------- | ---- | --- | ---------------------------------------- | ---- | -------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)                             | 是   | 指定包信息。           |
-| callback | 是   | 否  | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | 是   | 获取通知通道回调函数。 |
+| 名称     | 类型                                     | 必填 | 描述                 |
+| -------- | ---------------------------------------- | ---- | -------------------- |
+| bundle   | [BundleOption](#bundleoption)                             | 是   | 指定包信息。           |
+| callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | 是   | 获取通知通道回调函数。 |
 
 **示例：**
 
@@ -1327,9 +1333,9 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
 
 **返回值：**
 
@@ -1364,10 +1370,10 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                      | 必填 | 描述                   |
-| -------- | ---- | --- | ------------------------- | ---- | ---------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)              | 是   | 指定包信息。             |
-| callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取通知通道数回调函数。 |
+| 名称     | 类型                      | 必填 | 描述                   |
+| -------- | ------------------------- | ---- | ---------------------- |
+| bundle   | [BundleOption](#bundleoption)              | 是   | 指定包信息。             |
+| callback | AsyncCallback\<number\> | 是   | 获取通知通道数回调函数。 |
 
 **示例：**
 
@@ -1397,9 +1403,9 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 是   | 指定包信息。 |
 
 **返回值：**
 
@@ -1422,7 +1428,7 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCallback\<void\>): void
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 删除指定通知（Callback形式）。
 
@@ -1434,11 +1440,12 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, callback: AsyncCa
 
 **参数：**
 
-| 名称            | 可读 | 可写 | 类型                                | 必填 | 描述                 |
-| --------------- | ---- | --- | ----------------------------------- | ---- | -------------------- |
-| bundle          | 是   | 否  | [BundleOption](#bundleoption)       | 是   | 指定包信息。           |
-| notificationKey | 是   | 否  | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
-| callback        | 是   | 否  | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
+| 名称            | 类型                                | 必填 | 描述                 |
+| --------------- |   ----------------------------------| ---- | -------------------- |
+| bundle          | [BundleOption](#bundleoption)       | 是   | 指定包信息。           |
+| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
+| reason          | [RemoveReason](#removereason9)      | 是   | 通知删除原因。         |
+| callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
 **示例：**
 
@@ -1453,14 +1460,15 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey, removeCallback);
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
+remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
 删除指定通知（Promise形式）。
 
@@ -1472,10 +1480,11 @@ remove(bundle: BundleOption, notificationKey: NotificationKey): Promise\<void\>
 
 **参数：**
 
-| 名称            | 可读 | 可写 | 类型            | 必填 | 描述       |
-| --------------- | ---- | --- | --------------- | ---- | ---------- |
-| bundle          | 是   | 否  | [BundleOption](#bundleoption)    | 是   | 指定包信息。 |
-| notificationKey | 是   | 否  | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
+| 名称            | 类型            | 必填 | 描述       |
+| --------------- | --------------- | ---- | ---------- |
+| bundle          | [BundleOption](#bundleoption)    | 是   | 指定包信息。 |
+| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
+| reason          | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 
 **示例：**
 
@@ -1487,7 +1496,8 @@ var notificationKey = {
     id: 0,
     label: "label",
 }
-Notification.remove(bundle, notificationKey).then(() => {
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(bundle, notificationKey, reason).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -1496,7 +1506,7 @@ Notification.remove(bundle, notificationKey).then(() => {
 
 ## Notification.remove
 
-remove(hashCode: string, callback: AsyncCallback\<void\>): void
+remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
 删除指定通知（Callback形式）。
 
@@ -1508,10 +1518,11 @@ remove(hashCode: string, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| hashCode | 是   | 否  | string                | 是   | 通知唯一ID。           |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| hashCode | string                | 是   | 通知唯一ID。           |
+| reason   | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
+| callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
 **示例：**
 
@@ -1521,15 +1532,15 @@ var hashCode = 'hashCode'
 function removeCallback(err) {
 	console.info("==========================>removeCallback=======================>");
 }
-
-Notification.remove(hashCode, removeCallback);
+var reason = Notification.RemoveReason.CANCEL_REASON_REMOVE;
+Notification.remove(hashCode, reason, removeCallback);
 ```
 
 
 
 ## Notification.remove
 
-remove(hashCode: string): Promise\<void\>
+remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 删除指定通知（Promise形式）。
 
@@ -1541,16 +1552,17 @@ remove(hashCode: string): Promise\<void\>
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型       | 必填 | 描述       |
-| -------- | ---- | --- | ---------- | ---- | ---------- |
-| hashCode | 是   | 否  | string | 是   | 通知唯一ID。 |
+| 名称     | 类型       | 必填 | 描述       |
+| -------- | ---------- | ---- | ---------- |
+| hashCode | string | 是   | 通知唯一ID。 |
+| reason   | [RemoveReason](#removereason9) | 是   | 通知删除原因。         |
 
 **示例：**
 
 ```js
 var hashCode = 'hashCode'
-
-Notification.remove(hashCode).then(() => {
+var reason = Notification.RemoveReason.CLICK_REASON_REMOVE;
+Notification.remove(hashCode, reason).then(() => {
 	console.info("==========================>removeCallback=======================>");
 });
 ```
@@ -1571,10 +1583,10 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                         |
-| -------- | ---- | --- | --------------------- | ---- | ---------------------------- |
-| bundle   | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。                   |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除指定包的所有通知回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                         |
+| -------- | --------------------- | ---- | ---------------------------- |
+| bundle   | [BundleOption](#bundleoption)          | 是   | 指定包信息。                   |
+| callback | AsyncCallback\<void\> | 是   | 删除指定包的所有通知回调函数。 |
 
 **示例：**
 
@@ -1604,9 +1616,9 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                 |
-| -------- | ---- | --- | --------------------- | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                 |
+| -------- | --------------------- | ---- | -------------------- |
+| callback | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
 
 **示例：**
 
@@ -1634,9 +1646,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| bundle | 是   | 否  | [BundleOption](#bundleoption) | 否   | 指定包信息。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](#bundleoption) | 否   | 指定包信息。 |
 
 **示例：**
 
@@ -1660,10 +1672,10 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| userId | 是   | 否  | number | 是   | 接收通知用户的Id。 |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| userId | number | 是   | 接收通知用户的Id。 |
+| callback | AsyncCallback\<void\> | 是   | 删除所有通知回调函数。 |
 
 **示例：**
 
@@ -1691,9 +1703,9 @@ removeAll(userId: number): Promise\<void>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型         | 必填 | 描述       |
-| ------ | ---- | --- | ------------ | ---- | ---------- |
-| userId | 是   | 否  | number | 是   | 接收通知用户的Id。 |
+| 名称   | 类型         | 必填 | 描述       |
+| ------ | ------------ | ---- | ---------- |
+| userId | number | 是   | 接收通知用户的Id。 |
 
 **示例：**
 
@@ -1722,9 +1734,9 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                                         | 必填 | 描述                 |
-| -------- | ---- | --- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | 是   | 否  | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
+| 名称     | 类型                                                         | 必填 | 描述                 |
+| -------- | ------------------------------------------------------------ | ---- | -------------------- |
+| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
 
 **示例：**
 
@@ -1748,7 +1760,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。removeGroupByBundle
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 **返回值：**
 
@@ -1776,9 +1788,9 @@ getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                   | 必填 | 描述                   |
-| -------- | ---- | --- | ---------------------- | ---- | ---------------------- |
-| callback | 是   | 否  | AsyncCallback\<number\> | 是   | 获取活动通知数回调函数。 |
+| 名称     | 类型                   | 必填 | 描述                   |
+| -------- | ---------------------- | ---- | ---------------------- |
+| callback | AsyncCallback\<number\> | 是   | 获取活动通知数回调函数。 |
 
 **示例：**
 
@@ -1826,9 +1838,9 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                                                         | 必填 | 描述                           |
-| -------- | ---- | --- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | 是   | 否  | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取当前应用的活动通知回调函数。 |
+| 名称     | 类型                                                         | 必填 | 描述                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取当前应用的活动通知回调函数。 |
 
 **示例：**
 
@@ -1876,10 +1888,10 @@ cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
 **参数：**
 
-| 名称      | 可读 | 可写 | 类型                  | 必填 | 描述                         |
-| --------- | ---- | --- | --------------------- | ---- | ---------------------------- |
-| groupName | 是   | 否  | string                | 是   | 指定通知组名称。               |
-| callback  | 是   | 否  | AsyncCallback\<void\> | 是   | 取消本应用指定组通知回调函数。 |
+| 名称      | 类型                  | 必填 | 描述                         |
+| --------- | --------------------- | ---- | ---------------------------- |
+| groupName | string                | 是   | 指定通知组名称。               |
+| callback  | AsyncCallback\<void\> | 是   | 取消本应用指定组通知回调函数。 |
 
 **示例：**
 
@@ -1905,9 +1917,9 @@ cancelGroup(groupName: string): Promise\<void\>
 
 **参数：**
 
-| 名称      | 可读 | 可写 | 类型   | 必填 | 描述           |
-| --------- | ---- | --- | ------ | ---- | -------------- |
-| groupName | 是   | 否  | string | 是   | 指定通知组名称。 |
+| 名称      | 类型   | 必填 | 描述           |
+| --------- | ------ | ---- | -------------- |
+| groupName | string | 是   | 指定通知组名称。 |
 
 **示例：**
 
@@ -1934,11 +1946,11 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **参数：**
 
-| 名称      | 可读 | 可写 | 类型                  | 必填 | 描述                         |
-| --------- | ---- | --- | --------------------- | ---- | ---------------------------- |
-| bundle    | 是   | 否  | [BundleOption](#bundleoption)          | 是   | 指定包信息。                   |
-| groupName | 是   | 否  | string                | 是   | 指定通知组名称。               |
-| callback  | 是   | 否  | AsyncCallback\<void\> | 是   | 删除本应用指定组通知回调函数。 |
+| 名称      | 类型                  | 必填 | 描述                         |
+| --------- | --------------------- | ---- | ---------------------------- |
+| bundle    | [BundleOption](#bundleoption)          | 是   | 指定包信息。                   |
+| groupName | string                | 是   | 指定通知组名称。               |
+| callback  | AsyncCallback\<void\> | 是   | 删除本应用指定组通知回调函数。 |
 
 **示例：**
 
@@ -1969,10 +1981,10 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **参数：**
 
-| 名称      | 可读 | 可写 | 类型         | 必填 | 描述           |
-| --------- | ---- | --- | ------------ | ---- | -------------- |
-| bundle    | 是   | 否  | [BundleOption](#bundleoption) | 是   | 指定包信息。     |
-| groupName | 是   | 否  | string       | 是   | 指定通知组名称。 |
+| 名称      | 类型         | 必填 | 描述           |
+| --------- | ------------ | ---- | -------------- |
+| bundle    | [BundleOption](#bundleoption) | 是   | 指定包信息。     |
+| groupName | string       | 是   | 指定通知组名称。 |
 
 **示例：**
 
@@ -2000,10 +2012,10 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------- | ---- | ---------------------- |
-| date     | 是   | 否  | [DoNotDisturbDate](#donotdisturbdate8)      | 是   | 免打扰时间选项。         |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设置免打扰时间回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| date     | [DoNotDisturbDate](#donotdisturbdate8)      | 是   | 免打扰时间选项。         |
+| callback | AsyncCallback\<void\> | 是   | 设置免打扰时间回调函数。 |
 
 **示例：**
 
@@ -2037,9 +2049,9 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **参数：**
 
-| 名称 | 可读 | 可写 | 类型             | 必填 | 描述           |
-| ---- | ---- | --- | ---------------- | ---- | -------------- |
-| date | 是   | 否  | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
+| 名称 | 类型             | 必填 | 描述           |
+| ---- | ---------------- | ---- | -------------- |
+| date | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
 
 **示例：**
 
@@ -2069,11 +2081,11 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                  | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------- | ---- | ---------------------- |
-| date     | 是   | 否  | [DoNotDisturbDate](#donotdisturbdate8)      | 是   | 免打扰时间选项。         |
-| userId   | 是   | 否  | number                | 是   | 设置免打扰事件的用户ID。 |
-| callback | 是   | 否  | AsyncCallback\<void\> | 是   | 设置免打扰时间回调函数。 |
+| 名称     | 类型                  | 必填 | 描述                   |
+| -------- | --------------------- | ---- | ---------------------- |
+| date     | [DoNotDisturbDate](#donotdisturbdate8)      | 是   | 免打扰时间选项。         |
+| userId   | number                | 是   | 设置免打扰事件的用户ID。 |
+| callback | AsyncCallback\<void\> | 是   | 设置免打扰时间回调函数。 |
 
 **示例：**
 
@@ -2109,10 +2121,10 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **参数：**
 
-| 名称   | 可读 | 可写 | 类型             | 必填 | 描述           |
-| ------ | ---- | --- | ---------------- | ---- | -------------- |
-| date   | 是   | 否  | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
-| userId | 是   | 否  | number           | 是   | 设置免打扰事件的用户ID。 |
+| 名称   | 类型             | 必填 | 描述           |
+| ------ | ---------------- | ---- | -------------- |
+| date   | [DoNotDisturbDate](#donotdisturbdate8) | 是   | 免打扰时间选项。 |
+| userId | number           | 是   | 设置免打扰事件的用户ID。 |
 
 **示例：**
 
@@ -2145,9 +2157,9 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------------------- | ---- | ---------------------- |
-| callback | 是   | 否  | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | 是   | 查询免打扰时间回调函数。 |
+| 名称     | 类型                              | 必填 | 描述                   |
+| -------- | --------------------------------- | ---- | ---------------------- |
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | 是   | 查询免打扰时间回调函数。 |
 
 **示例：**
 
@@ -2202,10 +2214,10 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------------------- | ---- | ---------------------- |
-| callback | 是   | 否  | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | 是   | 查询免打扰时间回调函数。 |
-| userId   | 是   | 否  | number                            | 是   | 设置免打扰事件的用户ID。 |
+| 名称     | 类型                              | 必填 | 描述                   |
+| -------- | --------------------------------- | ---- | ---------------------- |
+| callback | AsyncCallback\<[DoNotDisturbDate](#donotdisturbdate8)\> | 是   | 查询免打扰时间回调函数。 |
+| userId   | number                            | 是   | 设置免打扰事件的用户ID。 |
 
 **示例：**
 
@@ -2235,9 +2247,9 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                              | 必填 | 描述                   |
-| -------- | ---- | --- | --------------------------------- | ---- | ---------------------- |
-| userId   | 是   | 否  | number                            | 是   | 设置免打扰事件的用户ID。 |
+| 名称     | 类型                              | 必填 | 描述                   |
+| -------- | --------------------------------- | ---- | ---------------------- |
+| userId   | number                            | 是   | 设置免打扰事件的用户ID。 |
 
 **返回值：**
 
@@ -2270,9 +2282,9 @@ supportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
 **参数：**
 
-| 名称     | 可读 | 可写 | 类型                     | 必填 | 描述                             |
-| -------- | ---- | --- | ------------------------ | ---- | -------------------------------- |
-| callback | 是   | 否  | AsyncCallback\<boolean\> | 是   | 查询是否支持勿扰模式功能回调函数。 |
+| 名称     | 类型                     | 必填 | 描述                             |
+| -------- | ------------------------ | ---- | -------------------------------- |
+| callback | AsyncCallback\<boolean\> | 是   | 查询是否支持勿扰模式功能回调函数。 |
 
 **示例：**
 
@@ -2836,10 +2848,13 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**参数：**
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
 
 | 参数名               | 类型          | 必填 | 说明                     |
 | -------------------- | ------------- | ---- | ------------------------ |
@@ -2871,10 +2886,13 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **系统能力**：SystemCapability.Notification.Notification
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**参数：**
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**参数：**
 
 | 参数名               | 类型   | 必填 | 说明               |
 | -------------------- | ------ | ---- | ------------------ |
@@ -3035,9 +3053,9 @@ Notification.isNotificationSlotEnabled(
 ```
 
 
-## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
+setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置是否将通知同步到未安装应用程序的设备(callback形式)。
 
@@ -3047,13 +3065,13 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callb
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户Id。   |
-| enable   | boolean         | 是   | 是否将通知同步到未安装应用程序的设备。true：是。false：否。 |
-| callback | AsyncCallback\<void\>         | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
+| enable | boolean | 是   | 是否启用。<br>true：启用。<br>false：禁用。   |
+| callback | AsyncCallback\<void\>    | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
 
 **示例：**
 
@@ -3061,17 +3079,17 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean, callb
 let userId = 100;
 let enable = true;
 
-function setSyncNotificationEnabledForUninstallAppCallback(err) {
-    console.log('setSyncNotificationEnabledForUninstallAppCallback');
+function setSyncNotificationEnabledWithoutAppCallback(err) {
+    console.log('setSyncNotificationEnabledWithoutAppCallback');
 }
 
-Notification.setSyncNotificationEnabledForUninstallApp(userId, enable, setSyncNotificationEnabledForUninstallAppCallback);
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.setSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Promise\<void>
+setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
 
 设置是否将通知同步到未安装应用程序的设备(Promise形式)。
 
@@ -3086,7 +3104,13 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Prom
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户Id。   |
-| enable   | boolean         | 是   | 是否将通知同步到未安装应用程序的设备。true：是。false：否。 |
+| enable | boolean | 是   | 是否启用。<br>true：启用。<br>false：禁用。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<void\> | 以Promise形式返回设置是否将通知同步到未安装应用程序的设备的结果。 |
 
 **示例：**
 
@@ -3094,21 +3118,21 @@ setSyncNotificationEnabledForUninstallApp(userId: number, enable: boolean): Prom
 let userId = 100;
 let enable = true;
 
-Notification.setSyncNotificationEnabledForUninstallApp(userId, enable)
+Notification.setSyncNotificationEnabledWithoutApp(userId, enable)
     .then((data) => {
-        console.log('setSyncNotificationEnabledForUninstallApp, data:', data);
+        console.log('setSyncNotificationEnabledWithoutApp');
     })
     .catch((err) => {
-        console.log('setSyncNotificationEnabledForUninstallApp, err:', err);
+        console.log('setSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
 
-## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallback\<boolean>): void
+getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
 
-获取是否同步通知到未安装应用程序的设备的结果(callback形式)。
+获取是否同步通知到未安装应用程序的设备(callback形式)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3121,26 +3145,30 @@ getSyncNotificationEnabledForUninstallApp(userId: number, callback: AsyncCallbac
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户Id。   |
-| callback | AsyncCallback\<boolean\>    | 是   | 获取是否同步通知到未安装应用程序的设备的结果的回调函数。true：是。false：否。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。<br>true: 是。<br>false: 否。 |
 
 **示例：**
 
 ```js
 let userId = 100;
 
-function getSyncNotificationEnabledForUninstallAppCallback(err, data) {
-    console.log('getSyncNotificationEnabledForUninstallAppCallback, data: ', data);
+function getSyncNotificationEnabledWithoutAppCallback(data, err) {
+    if (err) {
+        console.log('getSyncNotificationEnabledWithoutAppCallback, err' + err);
+    } else {
+        console.log('getSyncNotificationEnabledWithoutAppCallback, data' + data);
+    }
 }
 
-Notification.getSyncNotificationEnabledForUninstallApp(userId, getSyncNotificationEnabledForUninstallAppCallback);
+Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
-## Notification.getSyncNotificationEnabledForUninstallApp<sup>9+</sup>
+## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
 
-getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
+getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
-获取是否同步通知到未安装应用程序的设备的结果(Promise形式)。
+获取是否同步通知到未安装应用程序的设备(Promise形式)。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3158,19 +3186,19 @@ getSyncNotificationEnabledForUninstallApp(userId: number): Promise\<boolean>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取是否同步通知到未安装应用程序的设备的结果。true：是。false：否。 |
+| Promise\<boolean\> | 以Promise形式返回获取是否同步通知到未安装应用程序的设备的结果。<br>true: 是。<br>false: 否。 |
 
 **示例：**
 
 ```js
 let userId = 100;
 
-Notification.getSyncNotificationEnabledForUninstallApp(userId)
+Notification.getSyncNotificationEnabledWithoutApp(userId)
     .then((data) => {
-        console.log('getSyncNotificationEnabledForUninstallApp, data: ', data);
+        console.log('getSyncNotificationEnabledWithoutApp, data:', data);
     })
     .catch((err) => {
-        console.log('getSyncNotificationEnabledForUninstallApp, err: ', err);
+        console.log('getSyncNotificationEnabledWithoutApp, err:', err);
     });
 ```
 
@@ -3487,13 +3515,13 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称            | 可读 | 可写 | 类型                                              | 必填 | 描述     |
-| --------------- | ---- | --- | ------------------------------------------------- | ---- | -------- |
-| request         | 是  | 否  | [NotificationRequest](#notificationrequest)       | 是   | 通知内容。 |
-| sortingMap      | 是  | 否  | [NotificationSortingMap](#notificationsortingmap) | 否   | 排序信息。 |
-| reason          | 是  | 否  | number                                            | 否   | 删除原因。 |
-| sound           | 是  | 否  | string                                            | 否   | 通知声音。 |
-| vibrationValues | 是  | 否  | Array\<number\>                                   | 否   | 通知震动。 |
+| 名称            | 可读 | 可写 | 类型                                              | 描述     |
+| --------------- | ---- | --- | ------------------------------------------------- | -------- |
+| request         | 是  | 否  | [NotificationRequest](#notificationrequest)       | 通知内容。 |
+| sortingMap      | 是  | 否  | [NotificationSortingMap](#notificationsortingmap) | 排序信息。 |
+| reason          | 是  | 否  | number                                            | 删除原因。 |
+| sound           | 是  | 否  | string                                            | 通知声音。 |
+| vibrationValues | 是  | 否  | Array\<number\>                                   | 通知震动。 |
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>
@@ -3502,11 +3530,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称   | 可读 | 可写 | 类型    | 必填 | 描述             |
-| ------ | ---- | --- | ------- | ---- | ---------------- |
-| bundle | 是  | 否  | string  | 是   | 应用的包名。       |
-| uid    | 是  | 否  | number  | 是   | 应用的uid。        |
-| enable | 是  | 否  | boolean | 是   | 应用通知使能状态。 |
+| 名称   | 可读 | 可写 | 类型    | 描述             |
+| ------ | ---- | --- | ------- | ---------------- |
+| bundle | 是  | 否  | string  | 应用的包名。       |
+| uid    | 是  | 否  | number  | 应用的uid。        |
+| enable | 是  | 否  | boolean | 应用通知使能状态。 |
 
 
 ## DoNotDisturbDate<sup>8+</sup>
@@ -3566,10 +3594,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称   | 可读 | 可写 | 类型   | 必填 | 描述   |
-| ------ | ---- | --- | ------ | ---- | ------ |
-| bundle | 是  | 是  | string | 是   | 包名。   |
-| uid    | 是  | 是  | number | 否   | 用户id。 |
+| 名称   | 可读 | 可写 | 类型   | 描述   |
+| ------ | ---- | --- | ------ | ------ |
+| bundle | 是  | 是  | string | 包名。   |
+| uid    | 是  | 是  | number | 用户id。 |
 
 
 
@@ -3577,10 +3605,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称  | 可读 | 可写 | 类型   | 必填 | 描述     |
-| ----- | ---- | --- | ------ | ---- | -------- |
-| id    | 是  | 是  | number | 是   | 通知ID。   |
-| label | 是  | 是  | string | 否   | 通知标签。 |
+| 名称  | 可读 | 可写 | 类型   | 描述     |
+| ----- | ---- | --- | ------ | -------- |
+| id    | 是  | 是  | number | 通知ID。   |
+| label | 是  | 是  | string | 通知标签。 |
 
 
 ## SlotType
@@ -3600,78 +3628,78 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称      | 可读 | 可写 | 类型                                            | 必填 | 描述                      |
-| --------- | --- | ---- | ----------------------------------------------- | ---- | ------------------------- |
-| title     | 是  | 是  | string                                          | 是   | 按钮标题。                  |
-| wantAgent | 是  | 是  | WantAgent                                       | 是   | 点击按钮时触发的WantAgent。 |
-| extras    | 是  | 是  | { [key: string]: any }                          | 否   | 按钮扩展信息。              |
-| userInput<sup>8+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 否   | 用户输入对象实例。          |
+| 名称      | 可读 | 可写 | 类型                                            | 描述                      |
+| --------- | --- | ---- | ----------------------------------------------- | ------------------------- |
+| title     | 是  | 是  | string                                          | 按钮标题。                  |
+| wantAgent | 是  | 是  | WantAgent                                       | 点击按钮时触发的WantAgent。 |
+| extras    | 是  | 是  | { [key: string]: any }                          | 按钮扩展信息。              |
+| userInput<sup>8+</sup> | 是  | 是  | [NotificationUserInput](#notificationuserinput8) | 用户输入对象实例。          |
 
 
 ## NotificationBasicContent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 可读 | 可写 | 类型   | 必填 | 描述                               |
-| -------------- | ---- | ---- | ------ | ---- | ---------------------------------- |
-| title          | 是   | 是   | string | 是   | 通知标题。                         |
-| text           | 是   | 是   | string | 是   | 通知内容。                         |
-| additionalText | 是   | 是   | string | 否   | 通知次要内容，是对通知内容的补充。 |
+| 名称           | 可读 | 可写 | 类型   | 描述                               |
+| -------------- | ---- | ---- | ------ | ---------------------------------- |
+| title          | 是   | 是   | string | 通知标题。                         |
+| text           | 是   | 是   | string | 通知内容。                         |
+| additionalText | 是   | 是   | string | 通知次要内容，是对通知内容的补充。 |
 
 
 ## NotificationLongTextContent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 可读 | 可写 | 类型   | 必填 | 描述                             |
-| -------------- | ---- | --- | ------ | ---- | -------------------------------- |
-| title          | 是  | 是  | string | 是   | 通知标题。                         |
-| text           | 是  | 是  | string | 是   | 通知内容。                         |
-| additionalText | 是  | 是  | string | 否   | 通知次要内容，是对通知内容的补充。 |
-| longText       | 是  | 是  | string | 是   | 通知的长文本。                     |
-| briefText      | 是  | 是  | string | 是   | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | 是  | 是  | string | 是   | 通知展开时的标题。                 |
+| 名称           | 可读 | 可写 | 类型   | 描述                             |
+| -------------- | ---- | --- | ------ | -------------------------------- |
+| title          | 是  | 是  | string | 通知标题。                         |
+| text           | 是  | 是  | string | 通知内容。                         |
+| additionalText | 是  | 是  | string | 通知次要内容，是对通知内容的补充。 |
+| longText       | 是  | 是  | string | 通知的长文本。                     |
+| briefText      | 是  | 是  | string | 通知概要内容，是对通知内容的总结。 |
+| expandedTitle  | 是  | 是  | string | 通知展开时的标题。                 |
 
 
 ## NotificationMultiLineContent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 可读 | 可写 | 类型            | 必填 | 描述                             |
-| -------------- | --- | --- | --------------- | ---- | -------------------------------- |
-| title          | 是  | 是  | string          | 是   | 通知标题。                         |
-| text           | 是  | 是  | string          | 是   | 通知内容。                         |
-| additionalText | 是  | 是  | string          | 否   | 通知次要内容，是对通知内容的补充。 |
-| briefText      | 是  | 是  | string          | 是   | 通知概要内容，是对通知内容的总结。 |
-| longTitle      | 是  | 是  | string          | 是   | 通知展开时的标题。                 |
-| lines          | 是  | 是  | Array\<string\> | 是   | 通知的多行文本。                   |
+| 名称           | 可读 | 可写 | 类型            | 描述                             |
+| -------------- | --- | --- | --------------- | -------------------------------- |
+| title          | 是  | 是  | string          | 通知标题。                         |
+| text           | 是  | 是  | string          | 通知内容。                         |
+| additionalText | 是  | 是  | string          | 通知次要内容，是对通知内容的补充。 |
+| briefText      | 是  | 是  | string          | 通知概要内容，是对通知内容的总结。 |
+| longTitle      | 是  | 是  | string          | 通知展开时的标题。                 |
+| lines          | 是  | 是  | Array\<string\> | 通知的多行文本。                   |
 
 
 ## NotificationPictureContent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称           | 可读 | 可写 | 类型           | 必填 | 描述                             |
-| -------------- | ---- | --- | -------------- | ---- | -------------------------------- |
-| title          | 是  | 是  | string         | 是   | 通知标题。                         |
-| text           | 是  | 是  | string         | 是   | 通知内容。                         |
-| additionalText | 是  | 是  | string         | 否   | 通知次要内容，是对通知内容的补充。 |
-| briefText      | 是  | 是  | string         | 是   | 通知概要内容，是对通知内容的总结。 |
-| expandedTitle  | 是  | 是  | string         | 是   | 通知展开时的标题。                 |
-| picture        | 是  | 是  | image.PixelMap | 是   | 通知的图片内容。                   |
+| 名称           | 可读 | 可写 | 类型           | 描述                             |
+| -------------- | ---- | --- | -------------- | -------------------------------- |
+| title          | 是  | 是  | string         | 通知标题。                         |
+| text           | 是  | 是  | string         | 通知内容。                         |
+| additionalText | 是  | 是  | string         | 通知次要内容，是对通知内容的补充。 |
+| briefText      | 是  | 是  | string         | 通知概要内容，是对通知内容的总结。 |
+| expandedTitle  | 是  | 是  | string         | 通知展开时的标题。                 |
+| picture        | 是  | 是  | image.PixelMap | 通知的图片内容。                   |
 
 
 ## NotificationContent
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称        | 可读 | 可写 | 类型                                                         | 必填 | 描述               |
-| ----------- | ---- | --- | ------------------------------------------------------------ | ---- | ------------------ |
-| contentType | 是  | 是  | [ContentType](#contenttype)                                  | 是   | 通知内容类型。       |
-| normal      | 是  | 是  | [NotificationBasicContent](#notificationbasiccontent)        | 否   | 基本类型通知内容。   |
-| longText    | 是  | 是  | [NotificationLongTextContent](#notificationlongtextcontent)  | 否   | 长文本类型通知内容。 |
-| multiLine   | 是  | 是  | [NotificationMultiLineContent](#notificationmultilinecontent) | 否   | 多行类型通知内容。   |
-| picture     | 是  | 是  | [NotificationPictureContent](#notificationpicturecontent)    | 否   | 图片类型通知内容。   |
+| 名称        | 可读 | 可写 | 类型                                                         | 描述               |
+| ----------- | ---- | --- | ------------------------------------------------------------ | ------------------ |
+| contentType | 是  | 是  | [ContentType](#contenttype)                                  | 通知内容类型。       |
+| normal      | 是  | 是  | [NotificationBasicContent](#notificationbasiccontent)        | 基本类型通知内容。   |
+| longText    | 是  | 是  | [NotificationLongTextContent](#notificationlongtextcontent)  | 长文本类型通知内容。 |
+| multiLine   | 是  | 是  | [NotificationMultiLineContent](#notificationmultilinecontent) | 多行类型通知内容。   |
+| picture     | 是  | 是  | [NotificationPictureContent](#notificationpicturecontent)    | 图片类型通知内容。   |
 
 
 ## NotificationFlagStatus<sup>8+</sup>
@@ -3691,87 +3719,87 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称             | 可读 | 可写 | 类型                    | 必填 | 描述                               |
-| ---------------- | ---- | ---- | ---------------------- | ---- | --------------------------------- |
-| soundEnabled     | 是   | 否   | NotificationFlagStatus | 否   | 是否启用声音提示。                  |
-| vibrationEnabled | 是   | 否   | NotificationFlagStatus | 否   | 是否启用振动提醒功能。               |
+| 名称             | 可读 | 可写 | 类型                    | 描述                               |
+| ---------------- | ---- | ---- | ---------------------- | --------------------------------- |
+| soundEnabled     | 是   | 否   | NotificationFlagStatus | 是否启用声音提示。                  |
+| vibrationEnabled | 是   | 否   | NotificationFlagStatus | 是否启用振动提醒功能。               |
 
 
 ## NotificationRequest
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称                  | 可读 | 可写 | 类型                                          | 必填 | 描述                       |
-| --------------------- | ---- | --- | --------------------------------------------- | ---- | -------------------------- |
-| content               | 是  | 是  | [NotificationContent](#notificationcontent)   | 是   | 通知内容。                   |
-| id                    | 是  | 是  | number                                        | 否   | 通知ID。                     |
-| slotType              | 是  | 是  | [SlotType](#slottype)                                      | 否   | 通道类型。                   |
-| isOngoing             | 是  | 是  | boolean                                       | 否   | 是否进行时通知。             |
-| isUnremovable         | 是  | 是  | boolean                                       | 否   | 是否可移除。                 |
-| deliveryTime          | 是  | 是  | number                                        | 否   | 通知发送时间。               |
-| tapDismissed          | 是  | 是  | boolean                                       | 否   | 通知是否自动清除。           |
-| autoDeletedTime       | 是  | 是  | number                                        | 否   | 自动清除的时间。             |
-| wantAgent             | 是  | 是  | WantAgent                                     | 否   | 点击跳转的WantAgent。        |
-| extraInfo             | 是  | 是  | {[key: string]: any}                          | 否   | 扩展参数。                   |
-| color                 | 是  | 是  | number                                        | 否   | 通知背景颜色。               |
-| colorEnabled          | 是  | 是  | boolean                                       | 否   | 通知背景颜色是否使能。       |
-| isAlertOnce           | 是  | 是  | boolean                                       | 否   | 设置是否仅有一次此通知警报。 |
-| isStopwatch           | 是  | 是  | boolean                                       | 否   | 是否显示已用时间。           |
-| isCountDown           | 是  | 是  | boolean                                       | 否   | 是否显示倒计时时间。         |
-| isFloatingIcon        | 是  | 是  | boolean                                       | 否   | 是否显示状态栏图标。         |
-| label                 | 是  | 是  | string                                        | 否   | 通知标签。                   |
-| badgeIconStyle        | 是  | 是  | number                                        | 否   | 通知角标类型。               |
-| showDeliveryTime      | 是  | 是  | boolean                                       | 否   | 是否显示分发时间。           |
-| actionButtons         | 是  | 是  | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 否   | 通知按钮，最多两个按钮。     |
-| smallIcon             | 是  | 是  | PixelMap                                      | 否   | 通知小图标。                 |
-| largeIcon             | 是  | 是  | PixelMap                                      | 否   | 通知大图标。                 |
-| creatorBundleName     | 是  | 否  | string                                        | 否   | 创建通知的包名。             |
-| creatorUid            | 是  | 否  | number                                        | 否   | 创建通知的UID。              |
-| creatorPid            | 是  | 否  | number                                        | 否   | 创建通知的PID。              |
-| creatorUserId<sup>8+</sup>| 是  | 否  | number                                    | 否   | 创建通知的UserId。           |
-| hashCode              | 是  | 否  | string                                        | 否   | 通知唯一标识。               |
-| classification        | 是  | 是  | string                                        | 否   | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| groupName<sup>8+</sup>| 是  | 是  | string                                        | 否   | 组通知名称。                 |
-| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate8) | 否   | 通知模板。                   |
-| isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 否   | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| source<sup>8+</sup>   | 是  | 否  | number                                        | 否   | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
-| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 否   | 分布式通知的选项。          |
-| deviceId<sup>8+</sup> | 是  | 否  | string                                        | 否   | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
-| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 否   | 获取NotificationFlags。          |
-| removalWantAgent<sup>9+</sup> | 是  | 是  | WantAgent                    | 否   | 当移除通知时，通知将被重定向到的WantAgent实例。          |
-| badgeNumber<sup>9+</sup> | 是  | 是  | number                    | 否   | 应用程序图标上显示的通知数。          |
+| 名称                  | 可读 | 可写 | 类型                                          | 描述                       |
+| --------------------- | ---- | --- | --------------------------------------------- | -------------------------- |
+| content               | 是  | 是  | [NotificationContent](#notificationcontent)   | 通知内容。                   |
+| id                    | 是  | 是  | number                                        | 通知ID。                     |
+| slotType              | 是  | 是  | [SlotType](#slottype)                         | 通道类型。                   |
+| isOngoing             | 是  | 是  | boolean                                       | 是否进行时通知。             |
+| isUnremovable         | 是  | 是  | boolean                                       | 是否可移除。                 |
+| deliveryTime          | 是  | 是  | number                                        | 通知发送时间。               |
+| tapDismissed          | 是  | 是  | boolean                                       | 通知是否自动清除。           |
+| autoDeletedTime       | 是  | 是  | number                                        | 自动清除的时间。             |
+| wantAgent             | 是  | 是  | WantAgent                                     | 点击跳转的WantAgent。        |
+| extraInfo             | 是  | 是  | {[key: string]: any}                          | 扩展参数。                   |
+| color                 | 是  | 是  | number                                        | 通知背景颜色。               |
+| colorEnabled          | 是  | 是  | boolean                                       | 通知背景颜色是否使能。       |
+| isAlertOnce           | 是  | 是  | boolean                                       | 设置是否仅有一次此通知警报。 |
+| isStopwatch           | 是  | 是  | boolean                                       | 是否显示已用时间。           |
+| isCountDown           | 是  | 是  | boolean                                       | 是否显示倒计时时间。         |
+| isFloatingIcon        | 是  | 是  | boolean                                       | 是否显示状态栏图标。         |
+| label                 | 是  | 是  | string                                        | 通知标签。                   |
+| badgeIconStyle        | 是  | 是  | number                                        | 通知角标类型。               |
+| showDeliveryTime      | 是  | 是  | boolean                                       | 是否显示分发时间。           |
+| actionButtons         | 是  | 是  | Array\<[NotificationActionButton](#notificationactionbutton)\>             | 通知按钮，最多两个按钮。     |
+| smallIcon             | 是  | 是  | PixelMap                                      | 通知小图标。                 |
+| largeIcon             | 是  | 是  | PixelMap                                      | 通知大图标。                 |
+| creatorBundleName     | 是  | 否  | string                                        | 创建通知的包名。             |
+| creatorUid            | 是  | 否  | number                                        | 创建通知的UID。              |
+| creatorPid            | 是  | 否  | number                                        | 创建通知的PID。              |
+| creatorUserId<sup>8+</sup>| 是  | 否  | number                                    | 创建通知的UserId。           |
+| hashCode              | 是  | 否  | string                                        | 通知唯一标识。               |
+| classification        | 是  | 是  | string                                        | 通知分类。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| groupName<sup>8+</sup>| 是  | 是  | string                                        | 组通知名称。                 |
+| template<sup>8+</sup> | 是  | 是  | [NotificationTemplate](#notificationtemplate8) | 通知模板。                   |
+| isRemoveAllowed<sup>8+</sup> | 是  | 否  | boolean                                | 通知是否能被移除。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| source<sup>8+</sup>   | 是  | 否  | number                                        | 通知源。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                   |
+| distributedOption<sup>8+</sup>   | 是  | 是  | [DistributedOptions](#distributedoptions8)                 | 分布式通知的选项。          |
+| deviceId<sup>8+</sup> | 是  | 否  | string                                        | 通知源的deviceId。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。          |
+| notificationFlags<sup>8+</sup> | 是  | 否  | [NotificationFlags](#notificationflags8)                    | 获取NotificationFlags。          |
+| removalWantAgent<sup>9+</sup> | 是  | 是  | WantAgent                    | 当移除通知时，通知将被重定向到的WantAgent实例。          |
+| badgeNumber<sup>9+</sup> | 是  | 是  | number                    | 应用程序图标上显示的通知数。          |
 
 
 ## DistributedOptions<sup>8+</sup>
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称                   | 可读 | 可写 | 类型            | 必填 | 描述                               |
-| ---------------------- | ---- | ---- | -------------- | ---- | ---------------------------------- |
-| isDistributed          | 是   | 是   | boolean        | 否   | 是否为分布式通知。                  |
-| supportDisplayDevices  | 是   | 是   | Array\<string> | 是   | 可以同步通知到的设备类型。           |
-| supportOperateDevices  | 是   | 是   | Array\<string> | 否   | 可以打开通知的设备。                |
-| remindType             | 是   | 否   | number         | 否   | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
+| 名称                   | 可读 | 可写 | 类型            | 描述                               |
+| ---------------------- | ---- | ---- | -------------- | ---------------------------------- |
+| isDistributed          | 是   | 是   | boolean        | 是否为分布式通知。                  |
+| supportDisplayDevices  | 是   | 是   | Array\<string> | 可以同步通知到的设备类型。           |
+| supportOperateDevices  | 是   | 是   | Array\<string> | 可以打开通知的设备。                |
+| remindType             | 是   | 否   | number         | 通知的提醒方式。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                    |
 
 
 ## NotificationSlot
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称                 | 可读 | 可写 | 类型                  | 必填 | 描述                                       |
-| -------------------- | ---- | --- | --------------------- | ---- | ------------------------------------------ |
-| type                 | 是  | 是  | [SlotType](#slottype) | 是   | 通道类型。                                   |
-| level                | 是  | 是  | number                | 否   | 通知级别，不设置则根据通知渠道类型有默认值。 |
-| desc                 | 是  | 是  | string                | 否   | 通知渠道描述信息。                           |
-| badgeFlag            | 是  | 是  | boolean               | 否   | 是否显示角标。                               |
-| bypassDnd            | 是  | 是  | boolean               | 否   | 置是否在系统中绕过免打扰模式。               |
-| lockscreenVisibility | 是  | 是  | boolean               | 否   | 在锁定屏幕上显示通知的模式。                 |
-| vibrationEnabled     | 是  | 是  | boolean               | 否   | 是否可振动。                                 |
-| sound                | 是  | 是  | string                | 否   | 通知提示音。                                 |
-| lightEnabled         | 是  | 是  | boolean               | 否   | 是否闪灯。                                   |
-| lightColor           | 是  | 是  | number                | 否   | 通知灯颜色。                                 |
-| vibrationValues      | 是  | 是  | Array\<number\>       | 否   | 通知振动样式。                               |
-| enabled<sup>9+</sup> | 是  | 否  | boolean               | 否   | 此通知插槽中的启停状态。                      |
+| 名称                 | 可读 | 可写 | 类型                  | 描述                                       |
+| -------------------- | ---- | --- | --------------------- | ------------------------------------------ |
+| type                 | 是  | 是  | [SlotType](#slottype) | 通道类型。                                   |
+| level                | 是  | 是  | number                | 通知级别，不设置则根据通知渠道类型有默认值。 |
+| desc                 | 是  | 是  | string                | 通知渠道描述信息。                           |
+| badgeFlag            | 是  | 是  | boolean               | 是否显示角标。                               |
+| bypassDnd            | 是  | 是  | boolean               | 置是否在系统中绕过免打扰模式。               |
+| lockscreenVisibility | 是  | 是  | number                | 在锁定屏幕上显示通知的模式。                 |
+| vibrationEnabled     | 是  | 是  | boolean               | 是否可振动。                                 |
+| sound                | 是  | 是  | string                | 通知提示音。                                 |
+| lightEnabled         | 是  | 是  | boolean               | 是否闪灯。                                   |
+| lightColor           | 是  | 是  | number                | 通知灯颜色。                                 |
+| vibrationValues      | 是  | 是  | Array\<number\>       | 通知振动样式。                               |
+| enabled<sup>9+</sup> | 是  | 否  | boolean               | 此通知插槽中的启停状态。                      |
 
 
 ## NotificationSorting
@@ -3780,11 +3808,11 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称     | 可读 | 可写 | 类型                                  | 必填 | 描述         |
-| -------- | ---- | --- | ------------------------------------- | ---- | ------------ |
-| slot     | 是  | 否  | [NotificationSlot](#notificationslot) | 是   | 通知通道内容。 |
-| hashCode | 是  | 否  | string                                | 是   | 通知唯一标识。 |
-| ranking  | 是  | 否  | number                                | 是   | 通知排序序号。 |
+| 名称     | 可读 | 可写 | 类型                                  | 描述         |
+| -------- | ---- | --- | ------------------------------------- | ------------ |
+| slot     | 是  | 否  | [NotificationSlot](#notificationslot) | 通知通道内容。 |
+| hashCode | 是  | 否  | string                                | 通知唯一标识。 |
+| ranking  | 是  | 否  | number                                | 通知排序序号。 |
 
 
 ## NotificationSortingMap
@@ -3793,10 +3821,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称           | 可读 | 可写 | 类型                                                         | 必填 | 描述             |
-| -------------- | ---- | --- | ------------------------------------------------------------ | ---- | ---------------- |
-| sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 是   | 通知排序信息数组。 |
-| sortedHashCode | 是  | 否  | Array\<string\>                                              | 是   | 通知唯一标识数组。 |
+| 名称           | 可读 | 可写 | 类型                                                         | 描述             |
+| -------------- | ---- | --- | ------------------------------------------------------------ | ---------------- |
+| sortings       | 是  | 否  | {[key: string]: [NotificationSorting](#notificationsorting)} | 通知排序信息数组。 |
+| sortedHashCode | 是  | 否  | Array\<string\>                                              | 通知唯一标识数组。 |
 
 
 ## NotificationSubscribeInfo
@@ -3805,10 +3833,10 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 可读 | 可写 | 类型            | 必填 | 描述                            |
-| ----------- | --- | ---- | --------------- | ---- | ------------------------------- |
-| bundleNames | 是  | 是  | Array\<string\> | 否   | 指定订阅哪些包名的APP发来的通知。 |
-| userId      | 是  | 是  | number          | 否   | 指定订阅哪个用户下发来的通知。    |
+| 名称        | 可读 | 可写 | 类型            | 描述                            |
+| ----------- | --- | ---- | --------------- | ------------------------------- |
+| bundleNames | 是  | 是  | Array\<string\> | 指定订阅哪些包名的APP发来的通知。 |
+| userId      | 是  | 是  | number          | 指定订阅哪个用户下发来的通知。    |
 
 
 ## NotificationTemplate<sup>8+</sup>
@@ -3825,9 +3853,9 @@ Notification.subscribe(subscriber, subscribeCallback);
 
 **系统能力**：SystemCapability.Notification.Notification
 
-| 名称     | 可读 | 可写 | 类型   | 必填 | 描述                          |
-| -------- | --- | ---- | ------ | ---- | ----------------------------- |
-| inputKey | 是  | 是  | string | 是   | 用户输入时用于标识此输入的key。 |
+| 名称     | 可读 | 可写 | 类型   | 描述                          |
+| -------- | --- | ---- | ------ | ----------------------------- |
+| inputKey | 是  | 是  | string | 用户输入时用于标识此输入的key。 |
 
 
 ## DeviceRemindType<sup>8+</sup>
@@ -3855,3 +3883,14 @@ Notification.subscribe(subscriber, subscribeCallback);
 | TYPE_NORMAL          | 0   | 一般通知。            |
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
+
+## RemoveReason<sup>9+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+| 名称                 | 值  | 描述                  |
+| -------------------- | --- | -------------------- |
+| CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
+| CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |

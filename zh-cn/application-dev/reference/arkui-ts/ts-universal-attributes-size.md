@@ -22,7 +22,7 @@
 | padding | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}&nbsp;\|&nbsp;Length | 0 | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。 |
 | margin | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}<br/>\|&nbsp;Length | 0 | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。 |
 | constraintSize | {<br/>minWidth?:&nbsp;Length,<br/>maxWidth?:&nbsp;Length,<br/>minHeight?:&nbsp;Length,<br/>maxHeight?:&nbsp;Length<br/>} | {<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。 |
-| layoutWeight | number | 0 | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex布局中生效。 |
+| layoutWeight | number&nbsp;\|&nbsp;string | 0 | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置，表示自适应占满剩余空间。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex布局中生效。 |
 
 
 ## 示例
@@ -49,7 +49,7 @@ struct SizeExample {
         Text('layoutWeight(1)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xFFEFD5).textAlign(TextAlign.Center)
           .layoutWeight(1)
-        // 权重0
+        // 权重2
         Text('layoutWeight(2)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
           .layoutWeight(2)

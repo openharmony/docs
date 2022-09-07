@@ -109,50 +109,45 @@ HCTest and the C language are used to develop test cases. HCTest is enhanced and
    │ └──build_lite
    │ │ └── BUILD.gn
    ```
-
-
+   
 2. Write the test case in the **src** directory.
 
    (1) Include the test framework header file.
 
-     ```
-     #include "hctest.h"
-     ```
+   ```
+   #include "hctest.h"
+   ```
 
    (2) Use the **LITE_TEST_SUIT** macro to define names of the subsystem, module, and test suite.
 
-     ```
-     /**
-     * @brief  register a test suite named "IntTestSuite"  
-     * @param  test subsystem name  
-     * @param  example module name  
-     * @param  IntTestSuite test suite name  
-     */
-     LITE_TEST_SUIT(test, example, IntTestSuite);
-     ```
-
+   ```
+   /**
+   * @brief  register a test suite named "IntTestSuite"  
+   * @param  test subsystem name  
+   * @param  example module name  
+   * @param  IntTestSuite test suite name  
+   */
+   LITE_TEST_SUIT(test, example, IntTestSuite);
+   ```
    (3) Define Setup and TearDown.
 
-      Format: Test suite name+Setup, Test suite name+TearDown.
-	  The Setup and TearDown functions must exist, but function bodies can be empty.  
-         
+   ​      Format: Test suite name+Setup, Test suite name+TearDown.
+
+   ​      The Setup and TearDown functions must exist, but function bodies can be empty.    
+
    (4) Use the **LITE_TEST_CASE** macro to write the test case.
 
-      Three parameters are involved: test suite name, test case name, and test case properties (including type, granularity, and level).
-	
-	  ```
-	  LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
-	  {
-	  // Do something.
-	   };
-     ```
-	
-   (5) Use the **RUN_TEST_SUITE** macro to register the test suite.  
-
-      ```
-	  RUN_TEST_SUITE(IntTestSuite);
-	   ```
-
+   ​      Three parameters are involved: test suite name, test case name, and test case properties (including type, granularity, and level).
+    ```
+    LITE_TEST_CASE(IntTestSuite, TestCase001, Function | MediumTest | Level1) 
+     {
+     // Do something.
+      };
+    ```
+   (5) Use the **RUN_TEST_SUITE** macro to register the test suite.      
+    ```
+    RUN_TEST_SUITE(IntTestSuite);
+    ```
 3. Create the configuration file (**BUILD.gn**) of the test module.
 
    Create a **BUILD.gn** (example) file in each test module directory, and specify the name of the built static library and its dependent header files and libraries. 

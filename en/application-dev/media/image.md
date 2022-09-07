@@ -115,6 +115,7 @@ pixelmap.release(()=>{
     done();
 })
 
+let path = '/data/local/tmp/test.jpg';
 // Create an image source (uri).
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
 
@@ -145,7 +146,7 @@ imagePackerApi.release();
 ### Decoding Scenario
 
 ```js
-/data/local/tmp/test.jpg // Set the path for creating an image source.
+let path = '/data/local/tmp/test.jpg'; // Set the path for creating an image source.
 
 // Create an image source using a path.
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
@@ -222,7 +223,7 @@ catch(error => {
 ### Encoding Scenario
 
 ```js
-/data/local/tmp/test.png // Set the path for creating an image source.
+let path = '/data/local/tmp/test.png' // Set the path for creating an image source.
 
 // Set the image source.
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.png'
@@ -267,7 +268,7 @@ imageSourceApi.getImageInfo(imageInfo => {
 })
 
 // Update incremental data.
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 

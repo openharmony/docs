@@ -6,13 +6,10 @@
 
 The OpenHarmony application framework has two models: Feature Ability (FA) model and stage model. Correspondingly, there are two sets of context mechanisms. **application/BaseContext** is a common context base class. It uses the **stageMode** attribute to specify whether the context is used for the stage model.
 
-- FA model
-  
+- FA model 
+  Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
 
-   Only the methods in **app/Context** can be used for the context in the FA model. Both the application-level context and ability-level context are instances of this type. If an ability-level method is invoked in the application-level context, an error occurs. Therefore, you must pay attention to the actual meaning of the **Context** instance.
-  
 - Stage model 
-  
   The stage model has the following types of contexts: **application/Context**, **application/ApplicationContext**, **application/AbilityStageContext**, **application/ExtensionContext**, **application/AbilityContext**, and **application/FormExtensionContext**. For details about these contexts and how to use them, see [Context in the Stage Model](#context-in-the-stage-model).
 
 ![contextIntroduction](figures/contextIntroduction.png)
@@ -108,11 +105,21 @@ export default class MyAbilityStage extends AbilityStage {
             onAbilityCreate(ability){
                 console.log("AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));        
             },
-            onAbilityWindowStageCreate(ability){
-                console.log("AbilityLifecycleCallback onAbilityWindowStageCreate ability:" + JSON.stringify(ability));           
+            onWindowStageCreate(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageCreate windowStage:" + JSON.stringify(windowStage));           
             },
-            onAbilityWindowStageDestroy(ability){
-                console.log("AbilityLifecycleCallback onAbilityWindowStageDestroy ability:" + JSON.stringify(ability));
+            onWindowStageActive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability)); 
+                console.log("AbilityLifecycleCallback onWindowStageActive windowStage:" + JSON.stringify(windowStage));           
+            },
+            onWindowStageInactive(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageInactive windowStage:" + JSON.stringify(windowStage));  
+            },
+            onWindowStageDestroy(ability, windowStage){
+                console.log("AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+                console.log("AbilityLifecycleCallback onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));  
             },
             onAbilityDestroy(ability){
                 console.log("AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));             
@@ -225,6 +232,74 @@ export default class MainAbility extends Ability {
 ### application/FormExtensionContext
 
 For details, see [FormExtensionContext](../reference/apis/js-apis-formextensioncontext.md).
+
+### Obtaining the Context on an eTS Page
+
+In the stage model, in the `onWindowStageCreate` lifecycle of an ability, you can call `SetUIContent` of `WindowStage` to load an eTS page. In some scenarios, you need to obtain the context on the page to call related APIs.
+
+**How to Obtain**
+
+Use the API described in the table below to obtain the context associated with an eTS page.
+
+| API                                  | Description                          |
+| :------------------------------------ | :--------------------------- |
+| getContext(component: Object): Object | Obtains the `Context` object associated with a component on the page.|
+
+**Example**
+
+```ts
+// MainAbility.ts
+import Ability from '@ohos.application.Ability'
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate")
+    }
+
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy")
+    }
+
+    onWindowStageCreate(windowStage) {
+        // Load the index page and pass the current Context object.
+        windowStage.setUIContent(this.context, "pages/index", null)
+    }
+
+    onWindowStageDestroy() {}
+
+    onForeground() {}
+
+    onBackground() {}
+};
+```
+
+```ts
+// pages/index.ets
+import context from '@ohos.application.context'
+
+type Context = context.Context
+
+@Entry
+@Component
+struct Index {
+    build() {
+        Row() {
+            Column() {
+                Text('GetContext')
+                    .fontSize(50)
+                    .fontWeight(FontWeight.Bold)
+                    .onClick(() => {
+                        // Obtain the Context object associated with the current component.
+                        var context : Context = getContext(this) as Context
+                        console.info("CacheDir:" + context.cacheDir)
+                    })
+            }
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
+```
 
 ## Common Incorrect Usage
 

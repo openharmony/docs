@@ -81,4 +81,17 @@
   sudo ln -s /bin/bash /bin/sh
   ```
 
-  
+
+### 编译构建过程中，提示“some services are not authenticated. Listed as follow”
+
+- **现象描述：** 编译失败：“some services are not authenticated. Listed as follow”。
+
+- **可能原因：** 报错中列举出来的进程.cfg配置文件中，定义了uid为root或system，而该进程并不在产品定义的高权限进程允许范围内。
+
+- **解决办法：**
+
+  1. 降低进程的权限等级。修改.cfg配置文件中的uid定义，非必需的场景下，不要定义uid为root或system。
+
+     *如果由于实现业务功能需要，进程必须要有root或system权限，只有在联系安全专家评审，通过安全审视后，方可修改产品的高权限进程管控列表，配置文件路径为"`vendor/{公司名称}/{产品名称}/security_config/high_privilege_process_list.json`"。*
+
+     *示例：rk3586的高权限进程配置文件位于`//vendor/hihope/rk3568/security_config/high_privilege_process_list.json`*

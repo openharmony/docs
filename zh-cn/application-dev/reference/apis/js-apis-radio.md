@@ -17,7 +17,7 @@ import radio from '@ohos.telephony.radio'
 
 getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
 
-获取当前接入的CS域和PS域无线接入技术，使用callback方式作为异步方法。
+获取当前接入的CS域和PS域无线接入技术。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -44,7 +44,7 @@ radio.getRadioTech(slotId, (err, data) =>{
 
 getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
 
-获取当前接入的CS域和PS域无线接入技术，使用Promise方式作为异步方法。
+获取当前接入的CS域和PS域无线接入技术。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -70,7 +70,7 @@ let promise = radio.getRadioTech(slotId);
 promise.then(data => {
     console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
+    console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -79,7 +79,7 @@ promise.then(data => {
 
 getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
-获取网络状态，使用callback方式作为异步方法。
+获取网络状态。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -104,7 +104,7 @@ radio.getNetworkState((err, data) =>{
 
 getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
-获取网络状态，使用callback方式作为异步方法。
+获取网络状态。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -131,7 +131,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
-获取网络状态，使用Promise方式作为异步方法。
+获取网络状态。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -157,7 +157,7 @@ let promise = radio.getNetworkState(slotId);
 promise.then(data => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -166,7 +166,7 @@ promise.then(data => {
 
 getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectionMode\>\): void
 
-获取当前选网模式，使用callback方式作为异步方法。
+获取当前选网模式。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -191,7 +191,7 @@ radio.getNetworkSelectionMode(slotId, (err, data) => {
 
 getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
-获取当前选网模式，使用Promise方式作为异步方法。
+获取当前选网模式。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -215,7 +215,7 @@ let promise = radio.getNetworkSelectionMode(slotId);
 promise.then(data => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -224,7 +224,7 @@ promise.then(data => {
 
 getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取注册网络所在国家的ISO国家码，使用callback方式作为异步方法。
+获取注册网络所在国家的ISO国家码。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -249,7 +249,7 @@ radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
 
 getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
-获取注册网络所在国家的ISO国家码，使用Promise方式作为异步方法。
+获取注册网络所在国家的ISO国家码。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -273,7 +273,7 @@ let promise = radio.getISOCountryCodeForNetwork(slotId);
 promise.then(data => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -282,7 +282,7 @@ promise.then(data => {
 
 getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
-获取主卡所在卡槽的索引号，使用callback方式作为异步方法。
+获取主卡所在卡槽的索引号。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -305,7 +305,7 @@ radio.getPrimarySlotId((err, data) => {
 
 getPrimarySlotId\(\): Promise\<number\>
 
-获取主卡所在卡槽的索引号，使用Promise方式作为异步方法。
+获取主卡所在卡槽的索引号。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -322,7 +322,7 @@ let promise = radio.getPrimarySlotId();
 promise.then(data => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -331,7 +331,7 @@ promise.then(data => {
 
 getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
 
-获取指定SIM卡槽对应的注册网络信号强度信息列表，使用callback方式作为异步方法。
+获取指定SIM卡槽对应的注册网络信号强度信息列表。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -356,7 +356,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
-获取指定SIM卡槽对应的注册网络信号强度信息列表，使用Promise方式作为异步方法。
+获取指定SIM卡槽对应的注册网络信号强度信息列表。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -380,7 +380,7 @@ let promise = radio.getSignalInformation(slotId);
 promise.then(data => {
     console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -418,7 +418,7 @@ console.log("Result: "+ result);
 
 isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
-判断主卡的Radio是否打开，使用callback方式作为异步方法。
+判断主卡的Radio是否打开。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -443,7 +443,7 @@ radio.isRadioOn((err, data) => {
 
 isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
-判断指定卡槽位的Radio是否打开，使用callback方式作为异步方法。
+判断指定卡槽位的Radio是否打开。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -470,7 +470,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 isRadioOn\(slotId?: number\): Promise<boolean\>
 
-判断Radio是否打开，使用Promise方式作为异步方法。
+判断Radio是否打开。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -496,7 +496,7 @@ let promise = radio.isRadioOn(slotId);
 promise.then(data => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isRadioOn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -505,7 +505,7 @@ promise.then(data => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
-获取运营商名称，使用callback方式作为异步方法。
+获取运营商名称。使用callback异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -514,7 +514,7 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。返回运营商名称，例如：中国移动。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数，返回运营商名称，例如：中国移动。 |
 
 **示例：**
 
@@ -530,7 +530,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 getOperatorName\(slotId: number\): Promise<string\>
 
-获取运营商名称，使用Promise方式作为异步方法。
+获取运营商名称。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -554,7 +554,7 @@ let promise = radio.getOperatorName(slotId);
 promise.then(data => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOperatorName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -562,7 +562,7 @@ promise.then(data => {
 
 setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
-设置主卡所在卡槽的索引号，使用callback方式作为异步方法。
+设置主卡所在卡槽的索引号。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -591,7 +591,7 @@ radio.setPrimarySlotId(slotId, (err, data) => {
 
 setPrimarySlotId\(slotId: number\): Promise\<void\>
 
-设置主卡所在卡槽的索引号，使用Promise方式作为异步方法。
+设置主卡所在卡槽的索引号。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -619,7 +619,7 @@ let promise = radio.setPrimarySlotId(slotId);
 promise.then(data => {
     console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -627,7 +627,7 @@ promise.then(data => {
 
 getIMEI(callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
+获取设备的指定卡槽的IMEI。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -654,7 +654,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的IMEI，使用callback方式作为异步方法。
+获取设备的指定卡槽的IMEI。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -683,7 +683,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI(slotId?: number): Promise<string\>
 
-获取设备的指定卡槽的IMEI，使用Promise方式作为异步方法。
+获取设备的指定卡槽的IMEI。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -711,7 +711,7 @@ let promise = radio.getIMEI(slotId);
 promise.then(data => {
     console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getIMEI fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getIMEI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -719,7 +719,7 @@ promise.then(data => {
 
 getMEID(callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
+获取设备的指定卡槽的MEID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -746,7 +746,7 @@ radio.getMEID((err, data) => {
 
 getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的MEID，使用callback方式作为异步方法。
+获取设备的指定卡槽的MEID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -775,7 +775,7 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID(slotId?: number): Promise<string\>
 
-获取设备的指定卡槽的MEID，使用Promise方式作为异步方法。
+获取设备的指定卡槽的MEID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -803,7 +803,7 @@ let promise = radio.getMEID(slotId);
 promise.then(data => {
     console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getMEID fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getMEID failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -811,7 +811,7 @@ promise.then(data => {
 
 getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
+获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -838,7 +838,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
-获取设备的指定卡槽的唯一设备ID，使用callback方式作为异步方法。
+获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -867,7 +867,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId(slotId?: number): Promise<string\>
 
-获取设备的指定卡槽的唯一设备ID，使用Promise方式作为异步方法。
+获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -895,7 +895,7 @@ let promise = radio.getUniqueDeviceId(slotId);
 promise.then(data => {
     console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getUniqueDeviceId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getUniqueDeviceId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -903,7 +903,7 @@ promise.then(data => {
 
 sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
-发送更新小区位置请求，使用callback方式作为异步方法。
+发送更新小区位置请求。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -927,7 +927,7 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
 
-发送更新小区位置请求，使用callback方式作为异步方法。
+发送更新小区位置请求。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -953,7 +953,7 @@ radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
 
 sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
-发送更新小区位置请求，使用Promise方式作为异步方法。
+发送更新小区位置请求。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -979,7 +979,7 @@ let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendUpdateCellLocationRequest fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -987,7 +987,7 @@ promise.then(data => {
 
 getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
-获取小区信息，使用callback方式作为异步方法。
+获取小区信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -999,7 +999,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数，返回小区信息。 |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
 
 **示例：**
 
@@ -1014,7 +1014,7 @@ radio.getCellInformation((err, data) => {
 
 getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
 
-获取小区信息，使用callback方式作为异步方法。
+获取小区信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1027,7 +1027,7 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数，返回小区信息。               |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
 
 **示例：**
 
@@ -1043,7 +1043,7 @@ radio.getCellInformation(slotId, (err, data) => {
 
 getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
-获取小区信息，使用Promise方式作为异步方法。
+获取小区信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1071,7 +1071,7 @@ let promise = radio.getCellInformation(slotId);
 promise.then(data => {
     console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getCellInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1079,7 +1079,7 @@ promise.then(data => {
 
 setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback<void\>\): void
 
-设置网络选择模式，使用callback方式作为异步方法。
+设置网络选择模式。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1118,7 +1118,7 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions, (err, data) => {
 
 setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
-设置网络选择模式，使用Promise方式作为异步方法。
+设置网络选择模式。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1157,7 +1157,7 @@ let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
 promise.then(data => {
     console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1165,7 +1165,7 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-获取网络搜索信息，使用callback方式作为异步方法。
+获取网络搜索信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1178,7 +1178,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。返回网络搜索信息。           |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
 
 **示例：**
 
@@ -1192,7 +1192,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 getNetworkSearchInformation\(slotId: number\): Promise<void\>
 
-获取网络搜索信息，使用Promise方式作为异步方法。
+获取网络搜索信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1219,7 +1219,7 @@ let promise = radio.getNetworkSearchInformation(0);
 promise.then(data => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSearchInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1227,7 +1227,7 @@ promise.then(data => {
 
 getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
-获取Nr选项模式 ，使用callback方式作为异步方法。
+获取Nr选项模式 。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1252,7 +1252,7 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
-获取Nr选项模式 ，使用callback方式作为异步方法。
+获取Nr选项模式 。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1279,7 +1279,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
-获取Nr选项模式 ，使用Promise方式作为异步方法。
+获取Nr选项模式 。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1305,7 +1305,7 @@ let promise = radio.getNrOptionMode(slotId);
 promise.then(data => {
     console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getNrOptionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNrOptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1313,7 +1313,7 @@ promise.then(data => {
 
 turnOnRadio(callback: AsyncCallback<void\>): void
 
-打开Radio，使用callback方式作为异步方法。
+打开Radio。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1340,7 +1340,7 @@ radio.turnOnRadio((err, data) => {
 
 turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
-打开Radio，使用callback方式作为异步方法。
+打开Radio。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1369,7 +1369,7 @@ radio.turnOnRadio(slotId, (err, data) => {
 
 turnOnRadio(slotId?: number): Promise<void\>
 
-打开Radio，使用Promise方式作为异步方法。
+打开Radio。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1397,7 +1397,7 @@ let promise = radio.turnOnRadio(slotId);
 promise.then(data => {
     console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOnRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1405,7 +1405,7 @@ promise.then(data => {
 
 turnOffRadio(callback: AsyncCallback<void\>): void
 
-关闭Radio，使用callback方式作为异步方法。
+关闭Radio。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1432,7 +1432,7 @@ radio.turnOffRadio((err, data) => {
 
 turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
-关闭Radio，使用callback方式作为异步方法。
+关闭Radio。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1461,7 +1461,7 @@ radio.turnOffRadio(slotId, (err, data) => {
 
 turnOffRadio(slotId?: number): Promise<void\>
 
-关闭Radio，使用Promise方式作为异步方法。
+关闭Radio。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1489,7 +1489,7 @@ let promise = radio.turnOffRadio(slotId);
 promise.then(data => {
     console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOffRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1497,7 +1497,7 @@ promise.then(data => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
 
-设置首选网络，使用callback方式作为异步方法。
+设置首选网络。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1510,7 +1510,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | 参数名      | 类型                                           | 必填 | 说明                                   |
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式                       |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
 | callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
 
 **示例：**
@@ -1525,7 +1525,7 @@ radio.setPreferredNetwork(0, 1, (err, data) => {
 
 setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
 
-设置首选网络，使用Promise方式作为异步方法。
+设置首选网络。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1538,7 +1538,7 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 | 参数名      | 类型                                           | 必填 | 说明                                   |
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式                       |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
 
 **返回值：**
 
@@ -1553,7 +1553,7 @@ let promise = radio.setPreferredNetwork(0, 1);
 promise.then(data => {
     console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1561,7 +1561,7 @@ promise.then(data => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
 
-获取首选网络，使用callback方式作为异步方法。
+获取首选网络。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1588,7 +1588,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 getPreferredNetwork(slotId: number): Promise<void\>
 
-获取首选网络，使用Promise方式作为异步方法。
+获取首选网络。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1615,7 +1615,7 @@ let promise = radio.getPreferredNetwork(0);
 promise.then(data => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1623,7 +1623,7 @@ promise.then(data => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
 
-获取特定IMS服务类型的IMS注册状态信息，使用callback方式作为异步方法。
+获取特定IMS服务类型的IMS注册状态信息。使用callback异步回调。
 
 此接口为系统接口。
 
@@ -1651,7 +1651,7 @@ radio.getImsRegInfo(0, 1, (err, data) => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
-获取特定IMS服务类型的IMS注册状态信息，使用Promise方式作为异步方法。
+获取特定IMS服务类型的IMS注册状态信息。使用Promise异步回调。
 
 此接口为系统接口。
 
@@ -1679,7 +1679,7 @@ let promise = radio.getImsRegInfo(0, 1);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1756,7 +1756,7 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 | RADIO_TECHNOLOGY_HSPA     | 4    | 无线接入技术HSPA（High Speed Packet Access）。               |
 | RADIO_TECHNOLOGY_HSPAP    | 5    | 无线接入技术HSPAP（High Speed packet access (HSPA+) ）。     |
 | RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
-| RADIO_TECHNOLOGY_EVDO     | 7    | 无线接入技术EVDO（Evolution、Data Only）。                   |
+| RADIO_TECHNOLOGY_EVDO     | 7    | 无线接入技术EVDO（Evolution Data Only）。                   |
 | RADIO_TECHNOLOGY_EHRPD    | 8    | 无线接入技术EHRPD（Evolved High Rate Package Data）。        |
 | RADIO_TECHNOLOGY_LTE      | 9    | 无线接入技术LTE（Long Term Evolution）。                     |
 | RADIO_TECHNOLOGY_LTE_CA   | 10   | 无线接入技术LTE_CA（Long Term Evolution_Carrier Aggregation）。 |
@@ -1916,7 +1916,7 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 ## CdmaCellInformation<sup>8+</sup>
 
-Cdma小区信息。
+CDMA小区信息。
 
 此接口为系统接口。
 
@@ -1932,7 +1932,7 @@ Cdma小区信息。
 
 ## GsmCellInformation<sup>8+</sup>
 
-Gsm小区信息。
+GSM小区信息。
 
 此接口为系统接口。
 
@@ -1949,7 +1949,7 @@ Gsm小区信息。
 
 ## LteCellInformation<sup>8+</sup>
 
-Lte小区信息。
+LTE小区信息。
 
 此接口为系统接口。
 
@@ -1968,7 +1968,7 @@ Lte小区信息。
 
 ## NrCellInformation<sup>8+</sup>
 
-Nr小区信息。
+NR小区信息。
 
 此接口为系统接口。
 
@@ -1985,7 +1985,7 @@ Nr小区信息。
 
 ## TdscdmaCellInformation<sup>8+</sup>
 
-Tdscdma小区信息。
+TD-SCDMA小区信息。
 
 此接口为系统接口。
 
@@ -2002,7 +2002,7 @@ Tdscdma小区信息。
 
 ## WcdmaCellInformation<sup>8+</sup>
 
-Wcdma小区信息。
+WCDMA小区信息。
 
 此接口为系统接口。
 
@@ -2019,7 +2019,7 @@ Wcdma小区信息。
 
 ## NrOptionMode<sup>8+</sup>
 
-Nr的选择模式。
+NR的选择模式。
 
 此接口为系统接口。
 
@@ -2027,10 +2027,10 @@ Nr的选择模式。
 
 | 名称                 | 值   | 说明                               |
 | -------------------- | ---- | ---------------------------------- |
-| NR_OPTION_UNKNOWN    | 0    | 未知的Nr选择模式。                 |
-| NR_OPTION_NSA_ONLY   | 1    | 仅非独立组网的Nr选择模式。         |
-| NR_OPTION_SA_ONLY    | 2    | 仅独立组网的Nr选择模式。           |
-| NR_OPTION_NSA_AND_SA | 3    | 非独立组网和独立组网的Nr选择模式。 |
+| NR_OPTION_UNKNOWN    | 0    | 未知的NR选择模式。                 |
+| NR_OPTION_NSA_ONLY   | 1    | 仅非独立组网的NR选择模式。         |
+| NR_OPTION_SA_ONLY    | 2    | 仅独立组网的NR选择模式。           |
+| NR_OPTION_NSA_AND_SA | 3    | 非独立组网和独立组网的NR选择模式。 |
 
 ## NetworkSearchResult
 

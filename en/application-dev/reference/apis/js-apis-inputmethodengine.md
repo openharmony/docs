@@ -1,19 +1,22 @@
 # Input Method Engine
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The **inputMethodEngine** module streamlines the interaction between applications and input methods. By calling APIs of this module, applications can accept text input through the input methods, be bound to input method services, request the keyboard to display or hide, listen for the input method status, and much more.
+
+> **NOTE**
 >
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import inputMethodEngine from '@ohos.inputmethodengine';
 ```
 
 ## inputMethodEngine
 
-Defines constant values.
+Provides the constants.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -50,7 +53,7 @@ getInputMethodEngine(): InputMethodEngine
 
 Obtains an **InputMethodEngine** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -60,9 +63,9 @@ Obtains an **InputMethodEngine** instance.
 
 **Example**
 
-```js
-var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
-```
+  ```js
+  var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
+  ```
 
 ## inputMethodEngine.createKeyboardDelegate<a name="createKeyboardDelegate"></a>
 
@@ -70,7 +73,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 Obtains a **KeyboardDelegate** instance.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
@@ -80,9 +83,9 @@ Obtains a **KeyboardDelegate** instance.
 
 **Example**
 
-```js
-var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
-```
+  ```js
+  var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
+  ```
 
 ## InputMethodEngine<a name="InputMethodEngine"></a>
 
@@ -94,7 +97,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 Listens for the input method binding event. This API uses a callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -105,12 +108,12 @@ Listens for the input method binding event. This API uses a callback to return t
 
 **Example**
 
-```js
-InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
-    KeyboardController = kbController;
-    TextInputClient = textInputClient;
-});
-```
+  ```js
+  InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
+      KeyboardController = kbController;
+      TextInputClient = textInputClient;
+  });
+  ```
 
 ### off('inputStart')
 
@@ -118,7 +121,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 Cancels listening for the input method binding event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -127,11 +130,13 @@ Cancels listening for the input method binding event.
 | type | string                                                       | Yes  | Listening type.<br>Set it to **'inputStart'**, which indicates listening for the input method binding event.|
 | callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | No| Callback used to return the result.|
 
+
+
 **Example**
 
-```js
-InputMethodEngine.off('inputStart');
-```
+  ```js
+  InputMethodEngine.off('inputStart');
+  ```
 
 ### on('keyboardShow'|'keyboardHide')
 
@@ -139,22 +144,22 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 Listens for an input method event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** means to listen for displaying of the input method.<br>- The value **'keyboardHide'** means to listen for hiding of the input method.|
+| type     | string | Yes  | Listening type.<br>-&nbsp;The value **'keyboardShow'** means to listen for displaying of the input method.<br>-&nbsp;The value **'keyboardHide'** means to listen for hiding of the input method.|
 | callback | void   | No  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
-InputMethodEngine.on('keyboardShow', (err) => {
-    console.info('keyboardShow');
-});
-```
+  ```js
+  InputMethodEngine.on('keyboardShow', (err) => {
+      console.info('keyboardShow');
+  });
+  ```
 
 ### off('keyboardShow'|'keyboardHide')
 
@@ -162,20 +167,21 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 Cancels listening for an input method event.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Listening type.<br>- The value **'keyboardShow'** means to listen for displaying of the input method.<br>- The value **'keyboardHide'** means to listen for hiding of the input method.|
+| type     | string | Yes  | Listening type.<br>-&nbsp;The value **'keyboardShow'** means to listen for displaying of the input method.<br>-&nbsp;The value **'keyboardHide'** means to listen for hiding of the input method.|
 | callback | void   | No  | Callback used to return the result.                                                  |
 
 **Example**
 
-```js
-InputMethodEngine.off('keyboardShow');
-```
+  ```js
+  InputMethodEngine.off('keyboardShow');
+  ```
+
 
 ## KeyboardDelegate<a name="KeyboardDelegate"></a>
 
@@ -187,22 +193,24 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 Listens for a hard keyboard even. This API uses a callback to return the key information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type   | string         | Yes  | Listening type.<br>- The value **'keyDown'** means to listen for pressing of a key.<br>- The value **'keyUp'** means to listen for releasing of a key.|
+| type   | string         | Yes  | Listening type.<br>-&nbsp;The value **'keyDown'** means to listen for pressing of a key.<br>-&nbsp;The value **'keyUp'** means to listen for releasing of a key.|
 | callback | [KeyEvent](#KeyEvent) | Yes| Callback used to return the key information.|
+
+
 
 **Example**
 
-```js
-KeyboardDelegate.on('keyDown', (event) => {
-    console.info('keyDown');
-});
-```
+  ```js
+  KeyboardDelegate.on('keyDown', (event) => {
+      console.info('keyDown');
+  });
+  ```
 
 ### off('keyDown'|'keyUp')
 
@@ -210,20 +218,20 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 Cancels listening for a hard keyboard even.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                | Yes  | Listening type.<br>- The value **'keyDown'** means to listen for pressing of a key.<br>- The value **'keyUp'** means to listen for releasing of a key.|
+| type     | string                | Yes  | Listening type.<br>-&nbsp;The value **'keyDown'** means to listen for pressing of a key.<br>-&nbsp;The value **'keyUp'** means to listen for releasing of a key.|
 | callback | [KeyEvent](#KeyEvent) | No  | Callback used to return the key information.                                          |
 
 **Example**
 
-```js
-KeyboardDelegate.off('keyDown');
-```
+  ```js
+  KeyboardDelegate.off('keyDown');
+  ```
 
 ### on('cursorContextChange')
 
@@ -231,21 +239,25 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 Listens for cursor context changes. This API uses a callback to return the cursor information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+  **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Listening type.<br>Set it to **'cursorContextChange'**, which indicates listening for cursor context changes.|
 | callback | number | Yes  | Callback used to return the cursor information.                                          |
 
-**Example**
+
+
+  **Example**
 
 ```js
+
 KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
     console.info('cursorContextChange');
 });
+
 ```
 
 ### off('cursorContextChange')
@@ -254,42 +266,46 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 Cancels listening for cursor context changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
-| Name  | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| type     | string       | Yes  | Listening type.<br>Set it to **'cursorContextChange'**, which indicates listening for cursor context changes.|
-| callback | number | No| Callback used to return the cursor information.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>Set it to **'cursorContextChange'**, which indicates listening for cursor context changes.|
+| callback | number | No  | Callback used to return the cursor information.                                          |
 
-**Example**
+
+  **Example**
 
 ```js
-KeyboardDelegate.off('cursorContextChange');
-```
 
+KeyboardDelegate.off('cursorContextChange');
+
+```
 ### on('selectionChange')
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
 Listens for text selection changes. This API uses a callback to return the text selection information.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Listening type.<br>Set it to **'selectionChange'**, which indicates listening for text selection changes.|
 | callback | number | Yes  | Callback used to return the text selection information.                                      |
 
-**Example**
+  **Example**
 
 ```js
+
 KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
     console.info('selectionChange');
 });
+
 ```
 
 ### off('selectionChange')
@@ -298,19 +314,21 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 Cancels listening for text selection changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
-| Name  | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| type     | string                  | Yes  | Listening type.<br>Set it to **'selectionChange'**, which indicates listening for text selection changes.|
-| callback | number | No| Callback used to return the text selection information.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>Set it to **'selectionChange'**, which indicates listening for text selection changes.|
+| callback | number | No  | Callback used to return the text selection information.                                      |
 
-**Example**
+  **Example**
 
 ```js
+
 KeyboardDelegate.off('selectionChange');
+
 ```
 
 
@@ -320,21 +338,23 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 Listens for text changes. This API uses a callback to return the current text content.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
-| Name  | Type                           | Mandatory| Description                                                        |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                  | Yes  | Listening type.<br>Set it to **'textChange'**, which indicates listening for text changes.|
-| callback | string | Yes| Callback used to return the current text content.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>Set it to **'textChange'**, which indicates listening for text changes.|
+| callback | string | Yes  | Callback used to return the current text content.                                      |
 
-**Example**
+  **Example**
 
 ```js
+
 KeyboardDelegate.on('textChange', (text) => {
     console.info('textChange');
 });
+
 ```
 
 ### off('textChange')
@@ -343,16 +363,16 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 Cancels listening for text changes.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
-| Name  | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| type     | string                  | Yes  | Listening type.<br>Set it to **'textChange'**, which indicates listening for text changes.|
-| callback | string | No| Callback used to return the current text content.|
+| Name  | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Listening type.<br>Set it to **'textChange'**, which indicates listening for text changes.|
+| callback | string | No  | Callback used to return the current text content.                                      |
 
-**Example**
+  **Example**
 
 ```js
 KeyboardDelegate.off('textChange');
@@ -368,7 +388,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -388,18 +408,17 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 hideKeyboard(): Promise&lt;void&gt;
 
-Hides the keyboard. This API uses a promise to return the result.
+Hides the keyboard. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type            | Description:    |
+| Type            | Description    |
 | ---------------- | -------- |
 | Promise&lt;void> | Promise used to return the result.|
 
 **Example**
-
 
 ```js
  KeyboardController.hideKeyboard();
@@ -415,30 +434,30 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | length | number | Yes| Text length.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Text returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the text.|
 
 **Example**
 
-```js
- TextInputClient.getForward(5,(text) =>{
-   console.info("text = " + text);
- });
-```
+  ```js
+   TextInputClient.getForward(5,(text) =>{
+     console.info("text = " + text);
+   });
+  ```
 
 ### getForward
 
 getForward(length:number): Promise&lt;string&gt;
 
-Obtains the specific-length text before the cursor. This API uses a promise to return the result.
+Obtains the specific-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -450,14 +469,14 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  Text returned.               |
+| Promise&lt;string&gt; |  Promise used to return the text.               |
 
 **Example**
 
-```js
- var text = TextInputClient.getForward(5);
- console.info("text = " + text);
-```
+  ```js
+   var text = TextInputClient.getForward(5);
+   console.info("text = " + text);
+  ```
 
 ### getBackward
 
@@ -465,30 +484,30 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the specific-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | length | number | Yes| Text length.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Text returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the text.|
 
 **Example**
 
-```js
- TextInputClient.getBackward(5,(text)=>{
-   console.info("text = " + text);
-});
-```
+  ```js
+   TextInputClient.getBackward(5,(text)=>{
+     console.info("text = " + text);
+  });
+  ```
 
 ### getBackward
 
 getBackward(length:number): Promise&lt;string&gt;
 
-Obtains the specific-length text after the cursor. This API uses a promise to return the result.
+Obtains the specific-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -500,14 +519,14 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  Text returned.               |
+| Promise&lt;string&gt; |  Promise used to return the text.               |
 
 **Example**
 
-```js
- var text = TextInputClient.getBackward(5);
- console.info("text = " + text);
-```
+  ```js
+   var text = TextInputClient.getBackward(5);
+   console.info("text = " + text);
+  ```
 
 ### deleteForward
 
@@ -515,47 +534,46 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | length | number | Yes| Text length.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns whether the operation is successful.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
-```js
-TextInputClient.deleteForward(5,(isSuccess)=>{
-  console.info("isSuccess = " + isSuccess);
-});
-```
-
+  ```js
+  TextInputClient.deleteForward(5,(isSuccess)=>{
+    console.info("isSuccess = " + isSuccess);
+  });
+  ```
 ### deleteForward
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text before the cursor. This API uses a promise to return the result.
+Deletes the fixed-length text before the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
+| Name| Type  | Mandatory| Description      |
+| ------ | ------ | ---- | ---------- |
+| length | number | Yes  | Text length.|
 
 **Return value** 
 
-| Type                           | Description                                                        |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Returns whether the operation is successful.               |
+| Type                  | Description          |
+| ---------------------- | -------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
 
 **Example**
 
 ```js
- var isSuccess = TextInputClient.deleteForward(5);
+var isSuccess = TextInputClient.deleteForward(5);
  console.info("isSuccess = " + isSuccess);
 ```
 
@@ -565,33 +583,34 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| length | number | Yes| Text length.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns whether the operation is successful.|
+| Name  | Type                        | Mandatory| Description          |
+| -------- | ---------------------------- | ---- | -------------- |
+| length   | number                       | Yes  | Text length.    |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
 
-**Example**
+  **Example**
 
 ```js
+
  TextInputClient.deleteBackward(5, (isSuccess)=>{
  console.info("isSuccess = " + isSuccess);
 });
+
 ```
 
 ### deleteBackward
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
+Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
-
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | length | number | Yes| Text length.|
@@ -600,45 +619,48 @@ Deletes the fixed-length text after the cursor. This API uses a promise to retur
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Returns whether the operation is successful.               |
+| Promise&lt;boolean&gt; |  Promise used to return the result.               |
 
 **Example**
 
 ```js
-var isSuccess = TextInputClient.deleteBackward(5);
-console.info("isSuccess = " + isSuccess);
-```
 
+ var isSuccess = TextInputClient.deleteBackward(5);
+ console.info("isSuccess = " + isSuccess);
+
+```
 ### sendKeyFunction
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 Sets the Enter key to send the text to its target. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-**Parameters**
+  **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | action | number | Yes| Edit box attribute.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns whether the operation is successful.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
-**Example**
+  **Example**
 
 ```js
+
  TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT,(isSuccess)=>{
   console.info("isSuccess = " + isSuccess);
 });
+
 ```
 
 ### sendKeyFunction
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
-Sets the Enter key to send the text to its target. This API uses a promise to return the result.
+Sets the Enter key to send the text to its target. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -650,14 +672,14 @@ Sets the Enter key to send the text to its target. This API uses a promise to re
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Returns whether the operation is successful.               |
+| Promise&lt;boolean&gt; |  Promise used to return the result.               |
 
 **Example**
 
-```js
-var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
-console.info("isSuccess = " + isSuccess);
-```
+  ```js
+  var isSuccess = TextInputClient.sendKeyFunction(inputMethod.ENTER_KEY_TYPE_NEXT);
+  console.info("isSuccess = " + isSuccess);
+  ```
 
 ### insertText
 
@@ -665,30 +687,32 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 Inserts text. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | text | string | Yes| Text to insert.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns whether the operation is successful.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
 ```js
+
 TextInputClient.insertText("test", (isSuccess)=>{
   console.info("isSuccess = " + isSuccess);
 });
+
 ```
 
 ### insertText
 
 insertText(text:string): Promise&lt;boolean&gt;
 
-Inserts text. This API uses a promise to return the result.
+Inserts text. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -696,18 +720,18 @@ Inserts text. This API uses a promise to return the result.
 | -------- | -------- | -------- | -------- |
 | text | string | Yes| Text to insert.|
 
-**Return value**   
+**Return value** 
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  Returns whether the operation is successful.               |
+| Promise&lt;boolean&gt; |  Promise used to return the result.               |
 
 **Example**
 
-```js
-var isSuccess = TextInputClient.insertText("test");
-console.info("isSuccess = " + isSuccess);
-```
+  ```js
+  var isSuccess = TextInputClient.insertText("test");
+  console.info("isSuccess = " + isSuccess);
+  ```
 
 ### getEditorAttribute
 
@@ -715,7 +739,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 Obtains the attribute of the edit box. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
@@ -725,36 +749,36 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 **Example**
 
-```js
-  TextInputClient.getEditorAttribute((EditorAttribute)=>{
-  });
-```
+  ```js
+    TextInputClient.getEditorAttribute((EditorAttribute)=>{
+    });
+  ```
 
 ### getEditorAttribute
 
 getEditorAttribute(): EditorAttribute
 
-Obtains the attribute of the edit box. This API uses a promise to return the result.
+Obtains the attribute of the edit box. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
 | Type                           | Description                                                        |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  Returns the attribute of the edit box.          |
+| Promise&lt;[EditorAttribute](#EditorAttribute)&gt; | Promise used to return the attribute of the edit box. |
 
 **Example**
 
-```js
-var EditorAttribute = TextInputClient.getEditorAttribute();
-```
+   ```js
+   var EditorAttribute = TextInputClient.getEditorAttribute();
+   ```
 
 ## EditorAttribute<a name="EditorAttribute"></a>
 
 Describes the attribute of the edit box.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name        | Type| Readable| Writable| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
@@ -765,7 +789,7 @@ Describes the attribute of the edit box.
 
 Describes the attribute of a key.
 
-**System capability**: SystemCapability.Miscservices.InputMethodFramework
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |

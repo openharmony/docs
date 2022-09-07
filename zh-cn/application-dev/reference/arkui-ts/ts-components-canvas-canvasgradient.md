@@ -47,11 +47,11 @@ addColorStop(offset: number, color: string): void
       .width('100%')
       .height('100%')
     }}
-```
+  ```
 
 
 
 
-![zh-cn_image_0000001194032516](figures/zh-cn_image_0000001194032516.png)
+  ![zh-cn_image_0000001194032516](figures/zh-cn_image_0000001194032516.png)
 
  

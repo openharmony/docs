@@ -85,6 +85,7 @@ zh-cn/device-dev/subsystems/subsys-security-sigverify.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-rightmanagement.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-communicationverify.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-security-devicesecuritylevel.md @duangavin123_admin
+zh-cn/device-dev/subsystems/subsys-security-huks-guide.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-appspawn.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-bootstrap.md @Austin23
 zh-cn/device-dev/subsystems/subsys-boot-faqs.md @Austin23
@@ -218,7 +219,7 @@ zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-intl.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @HelloCrease
@@ -349,3 +350,6 @@ zh-cn/application-dev/napi/drawing-guidelines.md @ge-yafang
 zh-cn/application-dev/napi/rawfile-guidelines.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-buffer.md @zengyawen
 zh-cn/application-dev/reference/js-service-widget-ui @HelloCrease
+zh-cn/application-dev/website.md @zengyawen
+zh-cn/application-dev/faqs/ @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen

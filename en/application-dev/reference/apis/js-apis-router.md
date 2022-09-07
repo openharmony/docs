@@ -5,7 +5,7 @@ The **Router** module provides APIs to access pages through URLs. You can use th
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
+>
 > - Page routing APIs can be invoked only after page rendering is complete. Do not call these APIs in **onInit** and **onReady** when the page is still in the rendering phase.
 
 ## Modules to Import
@@ -23,9 +23,9 @@ Navigates to a specified page in the application.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name | Type                           | Mandatory| Description              |
-| ------- | ------------------------------- | ---- | ------------------ |
-| options | [RouterOptions](#routeroptions) | Yes  | Page routing parameters.|
+| Name    | Type                             | Mandatory  | Description       |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters.|
 
 
 **Example**
@@ -49,10 +49,10 @@ Navigates to a specified page in the application.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name           | Type                           | Mandatory| Description                |
-| ----------------- | ------------------------------- | ---- | -------------------- |
-| options           | [RouterOptions](#routeroptions) | Yes  | Page routing parameters.  |
-| mode<sup>9+</sup> | [RouterMode](#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                             | Mandatory  | Description        |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | Yes   | Page routing parameters. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 
 **Example**
@@ -77,6 +77,7 @@ Replaces the current page with another one in the application and destroys the c
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name | Type                           | Mandatory| Description              |
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | Yes  | Description of the new page.|
@@ -101,10 +102,10 @@ Replaces the current page with another one in the application and destroys the c
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name           | Type                           | Mandatory| Description                |
-| ----------------- | ------------------------------- | ---- | -------------------- |
-| options           | [RouterOptions](#routeroptions) | Yes  | Description of the new page.  |
-| mode<sup>9+</sup> | [RouterMode](#routermode9)      | Yes  | Routing mode.|
+| Name    | Type                             | Mandatory  | Description        |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | Yes   | Description of the new page. |
+| mode    | [RouterMode](#routermode9)      | Yes   | Routing mode.|
 
 **Example**
 
@@ -128,7 +129,7 @@ Returns to the previous page or a specified page.
 **Parameters**
 | Name | Type                           | Mandatory| Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.|
+| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the previous page is returned, and the page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -159,8 +160,8 @@ Obtains the number of pages in the current stack.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Return value**
-| Type  | Description                              |
-| ------ | ---------------------------------- |
+| Type    | Description                |
+| ------ | ------------------ |
 | string | Number of pages in the stack. The maximum value is **32**.|
 
 **Example**
@@ -179,8 +180,8 @@ Obtains state information about the current page.
 
 **Return value**
 
-| Type                       | Description          |
-| --------------------------- | -------------- |
+| Type                         | Description     |
+| --------------------------- | ------- |
 | [RouterState](#routerstate) | Page routing state.|
 **Example**
 
@@ -197,11 +198,11 @@ Describes the page routing state.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Type  | Description                                                        |
-| ----- | ------ | ------------------------------------------------------------ |
+| Name   | Type    | Description                                |
+| ----- | ------ | ---------------------------------- |
 | index | number | Index of the current page in the stack. The index starts from 1 from the bottom to the top of the stack.|
-| name  | string | Name of the current page, that is, the file name.                          |
-| path  | string | Path of the current page.                                        |
+| name  | string | Name of the current page, that is, the file name.                 |
+| path  | string | Path of the current page.                        |
 
 ## router.enableAlertBeforeBackPage
 
@@ -212,9 +213,9 @@ Enables the display of a confirm dialog box before returning to the previous pag
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-| Name | Type                                     | Mandatory| Description              |
-| ------- | ----------------------------------------- | ---- | ------------------ |
-| options | [EnableAlertOptions](#enablealertoptions) | Yes  | Description of the dialog box.|
+| Name    | Type                                      | Mandatory  | Description       |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [EnableAlertOptions](#enablealertoptions) | Yes   | Description of the dialog box.|
 
 **Example**
 
@@ -229,9 +230,9 @@ Describes the confirm dialog box.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name   | Type  | Mandatory| Description            |
-| ------- | ------ | ---- | ---------------- |
-| message | string | Yes  | Content displayed in the confirm dialog box.|
+| Name     | Type    | Mandatory  | Description      |
+| ------- | ------ | ---- | -------- |
+| message | string | Yes   | Content displayed in the confirm dialog box.|
 
 ## router.disableAlertBeforeBackPage
 
@@ -256,8 +257,8 @@ Obtains the parameters passed from the page that initiates redirection to the cu
 
 **Return value**
 
-| Type  | Description                              |
-| ------ | ---------------------------------- |
+| Type    | Description               |
+| ------ | ----------------- |
 | Object | Parameters passed from the page that initiates redirection to the current page.|
 
 **Example**
@@ -272,14 +273,13 @@ Describes the page routing options.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Lite
 
-| Name  | Type  | Mandatory| Description                                                        |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | Yes  | URI of the destination page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- Particular path. If the URI is a slash (/), the home page is displayed. |
-| params | Object | No  | Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
+| Name    | Type    | Mandatory  | Description                                      |
+| ------ | ------ | ---- | ---------------------------------------- |
+| url    | string | Yes   | URI of the destination page, in either of the following formats:<br>- Absolute path of the page. The value is available in the pages list in the **config.json** file, for example:<br>- pages/index/index<br>- pages/detail/detail<br>- Particular path. If the URI is a slash (/), the home page is displayed.|
+| params | Object | No   | Data that needs to be passed to the destination page during redirection. After the destination page is displayed, it can use the passed data, for example, **this.data1** (**data1** is a key in **params**). If there is the same key (for example, **data1**) on the destination page, the passed **data1** value will replace the original value on the destination page.|
 
 
   > **NOTE**
-  >
   > The page routing stack supports a maximum of 32 pages.
 
 ## RouterMode<sup>9+</sup>
@@ -288,9 +288,9 @@ Enumerates the routing modes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                                                        |
-| -------- | ------------------------------------------------------------ |
-| Standard | Standard mode.                                                  |
+| Name      | Description                                      |
+| -------- | ---------------------------------------- |
+| Standard | Standard mode.                                   |
 | Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved as a new page to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in standard mode.|
 
 ## Examples

@@ -273,7 +273,7 @@ struct MiterLimit {
 // xxx.ets
 @Entry
 @Component
-struct Font {
+struct Fonts {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -728,7 +728,7 @@ Fills a rectangle on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct FillRect {
@@ -773,7 +773,8 @@ Draws an outlined rectangle on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct StrokeRect {
@@ -818,7 +819,7 @@ Clears the content in a rectangle on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct ClearRect {
@@ -864,7 +865,7 @@ Draws filled text on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct FillText {
@@ -908,7 +909,8 @@ Draws a text stroke on the canvas.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct StrokeText {
@@ -961,7 +963,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct MeasureText {
@@ -1004,7 +1006,8 @@ Strokes a path.
 
 - Example
 
-  ```
+  ```ts
+  // xxx.ets
   @Entry
   @Component
   struct Stroke {
@@ -1044,7 +1047,7 @@ Creates a drawing path.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct BeginPath {
@@ -1092,7 +1095,7 @@ Moves a drawing path to a target position on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct MoveTo {
@@ -1138,7 +1141,7 @@ Connects the current point to a target position using a straight line.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct LineTo {
@@ -1178,7 +1181,7 @@ Draws a closed path.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct ClosePath {
@@ -1226,7 +1229,7 @@ Creates a pattern for image filling based on a specified source image and repeti
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CreatePattern {
@@ -1276,7 +1279,7 @@ Draws a cubic bezier curve on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct BezierCurveTo {
@@ -1324,7 +1327,7 @@ Draws a quadratic curve on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct QuadraticCurveTo {
@@ -1374,7 +1377,7 @@ Draws an arc on the canvas.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Arc {
@@ -1422,7 +1425,7 @@ Draws an arc based on the radius and points on the arc.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct ArcTo {
@@ -1474,7 +1477,7 @@ Draws an ellipse in the specified rectangular region.
 
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1521,7 +1524,7 @@ Creates a rectangle.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -1559,7 +1562,7 @@ Fills the area inside a closed path.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Fill {
@@ -1597,7 +1600,7 @@ Sets the current path to a clipping path.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Clip {
@@ -1643,7 +1646,7 @@ Rotates a canvas clockwise around its coordinate axes.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Rotate {
@@ -1687,7 +1690,7 @@ Scales a canvas based on scale factors.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Scale {
@@ -1743,7 +1746,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Transform {
@@ -1797,7 +1800,7 @@ Resets the existing transformation matrix and creates a new transformation matri
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct SetTransform {
@@ -1844,7 +1847,7 @@ Moves the origin of the coordinate system.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Translate {
@@ -1901,7 +1904,7 @@ Draws an image.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct Index {
@@ -2002,7 +2005,7 @@ Puts the [ImageData](ts-components-canvas-imagebitmap.md) onto a rectangular are
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct PutImageData {
@@ -2046,7 +2049,7 @@ Restores the saved drawing context.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -2081,7 +2084,7 @@ Saves the current drawing context.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CanvasExample {
@@ -2124,7 +2127,7 @@ Creates a linear gradient.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CreateLinearGradient {
@@ -2177,7 +2180,7 @@ Creates a linear gradient.
 - Example
 
   ```ts
-// xxx.ets
+  // xxx.ets
   @Entry
   @Component
   struct CreateRadialGradient {

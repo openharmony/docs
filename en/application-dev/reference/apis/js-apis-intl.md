@@ -536,7 +536,7 @@ Parameters
 
 **Example**
   ```
-  var pluralRules= new Intl.PluraRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  var pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 

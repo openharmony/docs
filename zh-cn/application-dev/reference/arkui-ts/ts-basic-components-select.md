@@ -16,7 +16,7 @@
 
 Select(options: Array\<SelectOption\>)
 
-- SelectOption参数
+**SelectOption对象说明：**
 
   | 参数名   | 参数类型                                | 必填   | 默认值  | 参数描述    |
   | ----- | ----------------------------------- | ---- | ---- | ------- |
@@ -42,7 +42,7 @@ Select(options: Array\<SelectOption\>)
 
 | 名称                                       | 功能描述                                   |
 | ---------------------------------------- | -------------------------------------- |
-| onSelect(callback: (index: number, value?:string) => void） | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
+| onSelect(callback: (index: number, value?:string) => void) | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
 
 ##  示例
 

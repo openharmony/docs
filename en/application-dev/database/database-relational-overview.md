@@ -2,6 +2,8 @@
 
 The relational database (RDB) manages data based on relational models. With the underlying SQLite database, the RDB provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB offers a series of methods for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
 
+You do not need to care about the implementation of the database locking mechanism.
+
 ## Basic concepts
 
 - **RDB**

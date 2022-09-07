@@ -60,11 +60,11 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 let videoPlayer
 
 media.createVideoPlayer((error, video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
-       console.info(`video createVideoPlayer fail, error:${error.message}`);
+       console.info(`video createVideoPlayer fail, error:${error}`);
    }
 });
 ```
@@ -89,14 +89,14 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 let videoPlayer
 
 media.createVideoPlayer().then((video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
        console.info('video createVideoPlayer fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -142,11 +142,11 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 let videoRecorder
 
 media.createVideoRecorder((error, video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
-       console.info(`video createVideoRecorder fail, error:${error.message}`);
+       console.info(`video createVideoRecorder fail, error:${error}`);
    }
 });
 ```
@@ -172,14 +172,14 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 let videoRecorder
 
 media.createVideoRecorder().then((video) => {
-    if (typeof(video) != 'undefined') {
+    if (video != null) {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
        console.info('video createVideoRecorder fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -277,7 +277,7 @@ Codec MIME类型枚举。
 | 名称                            | 类型                                | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                              | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**需要权限：** ohos.permission.READ_MEDIA；如果需要使用网络素材，还需要申请ohos.permission.INTERNET。 |
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#interruptmode9) | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; lengt = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA |
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#interruptmode9) | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA |
 | loop                            | boolean                             | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | audioInterruptMode<sup>9+</sup> | [InterruptMode](#interruptmode9)    | 是   | 是   | 音频焦点模型。                                               |
 | currentTime                     | number                              | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
@@ -369,7 +369,7 @@ seek(timeMs: number): void
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -442,12 +442,12 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -478,13 +478,13 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`audio catchCallback, error:${error.message}`);
+   console.info(`audio catchCallback, error:${error}`);
 });
 
 for (let i = 0; i < arrayDescription.length; i++) {
@@ -553,7 +553,7 @@ audioPlayer.on('reset', () => {               //设置'reset'事件回调
     audioPlayer = undefined;
 });
 audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
-    if (typeof(seekDoneTime) == "undefined") {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -569,9 +569,7 @@ audioPlayer.on('finish', () => {               //设置'finish'事件回调
     audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
 audioPlayer.on('error', (error) => {           //设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 
 // 用户选择视频设置fd(本地播放)
@@ -608,7 +606,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -636,9 +634,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 audioPlayer.on('error', (error) => {      //设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);      //打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);      //打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`);//打印错误类型详细描述
+    console.info(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
@@ -695,7 +691,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**需要权限：** ohos.permission.READ_MEDIA；如果需要使用网络素材，还需要申请ohos.permission.INTERNET。 |
-| fdSrc<sup>9+</sup> | [AVFileDescriptor](#interruptmode9) | 是 | 是 | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; lengt = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA |
+| fdSrc<sup>9+</sup> | [AVFileDescriptor](#interruptmode9) | 是 | 是 | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/>**注意事项**：<br/>**需要权限：** ohos.permission.READ_MEDIA |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | 是   | 是   | 视频缩放模式。       |
 | audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
@@ -726,7 +722,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setDisplaySurface success!');
     } else {
         console.info('setDisplaySurface fail!');
@@ -762,7 +758,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -784,7 +780,7 @@ prepare(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.prepare((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('prepare success!');
     } else {
         console.info('prepare fail!');
@@ -812,7 +808,7 @@ prepare(): Promise\<void>
 videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -834,7 +830,7 @@ play(callback: AsyncCallback\<void>): void;
 
 ```js
 videoPlayer.play((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('play success!');
     } else {
         console.info('play fail!');
@@ -862,7 +858,7 @@ play(): Promise\<void>;
 videoPlayer.play().then(() => {
     console.info('play success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -884,7 +880,7 @@ pause(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.pause((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('pause success!');
     } else {
         console.info('pause fail!');
@@ -912,7 +908,7 @@ pause(): Promise\<void>
 videoPlayer.pause().then(() => {
     console.info('pause success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -934,7 +930,7 @@ stop(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.stop((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('stop success!');
     } else {
         console.info('stop fail!');
@@ -962,7 +958,7 @@ stop(): Promise\<void>
 videoPlayer.stop().then(() => {
     console.info('stop success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -984,7 +980,7 @@ reset(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.reset((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('reset success!');
     } else {
         console.info('reset fail!');
@@ -1012,7 +1008,7 @@ reset(): Promise\<void>
 videoPlayer.reset().then(() => {
     console.info('reset success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1036,7 +1032,7 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 ```js
 let seekTime = 5000;
 videoPlayer.seek(seekTime, (err, result) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -1067,7 +1063,7 @@ import media from '@ohos.multimedia.media'
 let seekTime = 5000;
 let seekMode = media.SeekMode.SEEK_NEXT_SYNC;
 videoPlayer.seek(seekTime, seekMode, (err, result) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -1103,13 +1099,13 @@ let seekTime = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime表示seek完成后的时间点
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 
 videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1133,7 +1129,7 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 ```js
 let vol = 0.5;
 videoPlayer.setVolume(vol, (err, result) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setVolume success!');
     } else {
         console.info('setVolume fail!');
@@ -1168,7 +1164,7 @@ let vol = 0.5;
 videoPlayer.setVolume(vol).then() => {
     console.info('setVolume success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1190,7 +1186,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.release((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('release success!');
     } else {
         console.info('release fail!');
@@ -1218,7 +1214,7 @@ release(): Promise\<void>
 videoPlayer.release().then() => {
     console.info('release success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1248,12 +1244,12 @@ function printfDescription(obj) {
 }
 
 videoPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist) != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`video getTrackDescription fail, error:${error.message}`);
+        console.log(`video getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1285,13 +1281,13 @@ function printfDescription(obj) {
 
 let arrayDescription;
 videoPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
@@ -1320,7 +1316,7 @@ import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
 videoPlayer.setSpeed(speed, (err, result) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setSpeed success!');
     } else {
         console.info('setSpeed fail!');
@@ -1357,7 +1353,7 @@ let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed).then() => {
     console.info('setSpeed success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1381,7 +1377,7 @@ selectBitrate(bitrate:number, callback: AsyncCallback\<number>): void
 ```js
 let bitrate = 1024000;
 videoPlayer.selectBitrate(bitrate, (err, result) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('selectBitrate success!');
     } else {
         console.info('selectBitrate fail!');
@@ -1416,7 +1412,7 @@ let bitrate = 1024000;
 videoPlayer.selectBitrate(bitrate).then() => {
     console.info('selectBitrate success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1533,9 +1529,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 videoPlayer.on('error', (error) => {      // 设置'error'事件回调
-    console.info(`video error called, errName is ${error.name}`);      // 打印错误类型名称
-    console.info(`video error called, errCode is ${error.code}`);      // 打印错误码
-    console.info(`video error called, errMessage is ${error.message}`);// 打印错误类型详细描述
+    console.info(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
@@ -1639,12 +1633,12 @@ function printfItemDescription(obj, key) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1824,9 +1818,7 @@ let audioRecorderConfig = {
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('error', (error) => {                                             // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
     console.log('prepare success');
@@ -1872,9 +1864,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 audioRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
+    console.info(`audio error called, error: ${error}`); 
 });
 audioRecorder.prepare();                                                  // prepare不设置参数，触发'error'事件
 ```
@@ -1995,7 +1985,7 @@ let eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('prepare', () => {
     videoRecorder.prepare(videoConfig, (err) => {
-        if (typeof (err) == 'undefined') {
+        if (err == null) {
             console.info('prepare success');
         } else {
             console.info('prepare failed and error is ' + err.message);
@@ -2004,7 +1994,7 @@ eventEmitter.on('prepare', () => {
 });
 
 media.createVideoRecorder((err, recorder) => {
-    if (typeof (err) == 'undefined' && typeof (recorder) != 'undefined') {
+    if (err == null && recorder != null) {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
         eventEmitter.emit('prepare');                                        // prepare事件触发
@@ -2064,7 +2054,7 @@ let videoConfig = {
 // promise
 let videoRecorder = null;
 media.createVideoRecorder().then((recorder) => {
-    if (typeof (recorder) != 'undefined') {
+    if (recorder != null) {
         videoRecorder = recorder;
         console.info('createVideoRecorder success');
     } else {
@@ -2105,7 +2095,7 @@ getInputSurface(callback: AsyncCallback\<string>): void;
 // asyncallback
 let surfaceID = null;                                               // 传递给外界的surfaceID
 videoRecorder.getInputSurface((err, surfaceId) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('getInputSurface success');
         surfaceID = surfaceId;
     } else {
@@ -2166,7 +2156,7 @@ start(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.start((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('start videorecorder success');
     } else {
         console.info('start videorecorder failed and error is ' + err.message);
@@ -2222,7 +2212,7 @@ pause(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.pause((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('pause videorecorder success');
     } else {
         console.info('pause videorecorder failed and error is ' + err.message);
@@ -2276,7 +2266,7 @@ resume(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.resume((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('resume videorecorder success');
     } else {
         console.info('resume videorecorder failed and error is ' + err.message);
@@ -2330,7 +2320,7 @@ stop(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.stop((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('stop videorecorder success');
     } else {
         console.info('stop videorecorder failed and error is ' + err.message);
@@ -2384,7 +2374,7 @@ release(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.release((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('release videorecorder success');
     } else {
         console.info('release videorecorder failed and error is ' + err.message);
@@ -2438,7 +2428,7 @@ reset(callback: AsyncCallback\<void>): void;
 ```js
 // asyncallback
 videoRecorder.reset((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('reset videorecorder success');
     } else {
         console.info('reset videorecorder failed and error is ' + err.message);
@@ -2492,10 +2482,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
-    console.info(`audio error called, errName is ${error.name}`);       // 打印错误类型名称
-    console.info(`audio error called, errCode is ${error.code}`);       // 打印错误码
-    console.info(`audio error called, errMessage is ${error.message}`); // 打印错误类型详细描述
-});
+    console.info(`audio error called, error: ${error}`); 
 // 当获取videoRecordState接口出错时通过此订阅事件上报
 ```
 

@@ -1,7 +1,7 @@
 # Watchdog
 
 
-## **Overview**
+## Overview
 
 A watchdog, also called a watchdog timer, is a hardware timing device used to facilitate automatic correction of temporary hardware faults or recover from system malfunctions. 
 
@@ -12,7 +12,7 @@ In the Hardware Driver Foundation (HDF), the watchdog uses the independent servi
   ![image](figures/independent-service-mode.png "Watchdog independent service mode")
 
 
-## **Available APIs**
+## Available APIs
 
 **WatchdogMethod**:
 

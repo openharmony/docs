@@ -389,7 +389,7 @@ promise.then(data => {
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -470,7 +470,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 isRadioOn\(slotId?: number\): Promise<boolean\>
 
-Checks whether the radio service is enabled. This API uses a promise to return the result.
+Checks whether the radio service is enabled on the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -505,7 +505,7 @@ promise.then(data => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the carrier name. This API uses an asynchronous callback to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -530,7 +530,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 getOperatorName\(slotId: number\): Promise<string\>
 
-Obtains the carrier name. This API uses a promise to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -905,8 +905,6 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
-
-
 This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
@@ -927,13 +925,45 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(\): Promise<void\>
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
 
-Sends a cell location update request. This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
+
+Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -944,7 +974,8 @@ This is a system API.
 **Example**
 
 ```js
-let promise = radio.sendUpdateCellLocationRequest();
+let slotId = 0;
+let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -983,7 +1014,7 @@ radio.getCellInformation((err, data) => {
 
 getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
 
-Obtains cell information. This API uses an asynchronous callback to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1012,7 +1043,7 @@ radio.getCellInformation(slotId, (err, data) => {
 
 getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
-Obtains cell information. This API uses a promise to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1134,7 +1165,7 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
 
 This is a system API.
 
@@ -1161,7 +1192,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 getNetworkSearchInformation\(slotId: number\): Promise<void\>
 
-Obtains network search information. This API uses a promise to return the result.
+Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1221,7 +1252,7 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1248,7 +1279,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
-Obtains the NR option mode. This API uses a promise to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1466,7 +1497,7 @@ promise.then(data => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
 
-Sets the preferred network. This API uses an asynchronous callback to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1494,7 +1525,7 @@ radio.setPreferredNetwork(0, 1, (err, data) => {
 
 setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
 
-Sets the preferred network. This API uses a promise to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1530,7 +1561,7 @@ promise.then(data => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
 
-Obtains the preferred network. This API uses an asynchronous callback to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1557,7 +1588,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 getPreferredNetwork(slotId: number): Promise<void\>
 
-Obtains the preferred network. This API uses a promise to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1585,6 +1616,128 @@ promise.then(data => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                  |
+| -------- | ------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                     | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)         | Yes  | IMS service type.                         |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.getImsRegInfo(0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.getImsRegInfo<sup>9+</sup>
+
+getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses a promise to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name | Type                              | Mandatory| Description                                  |
+| ------- | ---------------------------------- | ---- | -------------------------------------- |
+| slotId  | number                             | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType | [ImsServiceType](#imsservicetype9) | Yes  | IMS service type.                         |
+
+**Return value**
+
+| Type                                 | Description                   |
+| ------------------------------------- | ----------------------- |
+| Promise\<[ImsRegInfo](#imsreginfo9)\> | Promise used to return the result.|
+
+**Example**
+
+```js
+let promise = radio.getImsRegInfo(0, 1);
+promise.then(data => {
+    console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## radio.on('imsRegStateChange')<sup>9+</sup>
+
+on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+
+Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.               |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | Yes  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.on('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.off('imsRegStateChange')<sup>9+</sup>
+
+off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+
+Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                | Mandatory| Description                                  |
+| -------- | ------------------------------------ | ---- | -------------------------------------- |
+| type     | string                               | Yes  | IMS registration status changes.    |
+| slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+radio.off('imsRegStateChange', 0, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1755,11 +1908,11 @@ This is a system API.
 
 | Name             | Type                                                        | Description                                                        |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| networkType       | [NetworkType](#networkType)                                  | Network type of the cell.                                    |
+| networkType       | [NetworkType](#networktype)                                  | Network type of the cell.                                    |
 | isCamped          | boolean                                                      | Status of the cell.                                        |
 | timeStamp         | number                                                       | Timestamp when cell information is obtained.                                |
 | signalInformation | [SignalInformation](#signalinformation)                      | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation) \| [GsmCellInformation](#gsmcellinformation) \| [LteCellInformation](#ltecellinformation) \| [NrCellInformation](#nrcellinformation) \| [TdscdmaCellInformation](#tdscdmacellinformation) | CDMA cell information \| GSM cell information \| LTE cell information \| NR cell information \| TD-SCDMA cell information |
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) | CDMA cell information \|GSM cell information \|LTE cell information \|NR cell information \|TD-SCDMA cell information|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -1883,6 +2036,8 @@ This is a system API.
 
 Defines the network search result.
 
+This is a system API.
+
 **System capability**: SystemCapability.Telephony.CoreService
 
 | Name                  | Type                                             | Description          |
@@ -1934,3 +2089,59 @@ This is a system API.
 | selectMode         | [NetworkSelectionMode](#networkselectionmode) | Network selection mode.                       |
 | networkInformation | [NetworkInformation](#networkinformation)    | Network information.                           |
 | resumeSelection    | boolean                                       | Whether to resume selection.                            |
+
+## ImsRegState<sup>9+</sup>
+
+Enumerates IMS registration states.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name            | Value  | Description    |
+| ---------------- | ---- | -------- |
+| IMS_UNREGISTERED | 0    | Not registered.|
+| IMS_REGISTERED   | 1    | Registered.|
+
+## ImsRegTech<sup>9+</sup>
+
+Enumerates IMS registration technologies.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                   | Value  | Description           |
+| ----------------------- | ---- | --------------- |
+| REGISTRATION_TECH_NONE  | 0    | None.   |
+| REGISTRATION_TECH_LTE   | 1    | LTE.  |
+| REGISTRATION_TECH_IWLAN | 2    | I-WLAN.|
+| REGISTRATION_TECH_NR    | 3    | NR.   |
+
+## ImsRegInfo<sup>9+</sup>
+
+Defines the IMS registration information.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name       | Type                        | Description         |
+| ----------- | ---------------------------- | ------------- |
+| imsRegState | [ImsRegState](#imsregstate9) | IMS registration state.|
+| imsRegTech  | [ImsRegTech](#imsregtech9)   | IMS registration technology.|
+
+## ImsServiceType<sup>9+</sup>
+
+Enumerates IMS service types.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name      | Value  | Description      |
+| ---------- | ---- | ---------- |
+| TYPE_VOICE | 0    | Voice service.|
+| TYPE_VIDEO | 1    | Video service.|
+| TYPE_UT    | 2    | UT service.  |
+| TYPE_SMS   | 3    | SMS service.|

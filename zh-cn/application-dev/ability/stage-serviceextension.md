@@ -24,7 +24,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 
 ## 开发步骤
 
-1. 需要在应用配置文件module.json中进行注册，注册类型type需要设置为service。module.json配置样例如下所示：
+1. 需要在应用配置文件module.json5中进行注册，注册类型type需要设置为service。module.json5配置样例如下所示：
 
 
    ```json
@@ -75,4 +75,4 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
 ## 相关实例
 
 针对ServiceExtensionAbility开发，有以下相关实例可供参考：
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)
+- [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/ServiceExtAbility)

@@ -24,7 +24,7 @@
 
   | 参数名         | 参数类型       | 必填   | 默认值     | 参数描述                              |
   | ----------- | ---------- | ---- | ------- | --------------------------------- |
-  | type        | ButtonType | 否    | Capsule | 描述按钮风格。                           |
+  | type        | ButtonType | 否    | ButtonType.Capsule | 描述按钮风格。                           |
   | stateEffect | boolean    | 否    | true    | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
 
@@ -44,7 +44,7 @@
 
 | 名称          | 参数类型       | 默认值     | 描述                                |
 | ----------- | ---------- | ------- | --------------------------------- |
-| type        | ButtonType | Capsule | 设置Button样式。                       |
+| type        | ButtonType | ButtonType.Capsule | 设置Button样式。                       |
 | stateEffect | boolean    | true    | 状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
 - ButtonType枚举说明

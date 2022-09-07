@@ -15,7 +15,7 @@
 
 ## 接口
 
-Refresh\(value: \{refreshing: boolean, offset?: Length, friction?: number | string\}\)
+Refresh\(value: \{ refreshing: boolean, offset?: Length, friction?: number | string \}\)
 
 - 参数
 
@@ -58,7 +58,7 @@ struct RefreshExample {
 
   build() {
     Column() {
-      Refresh({refreshing: $$this.isRefreshing, offset: 120, friction: 100}) {
+      Refresh({ refreshing: $$this.isRefreshing, offset: 120, friction: 100 }) {
         Text('Pull Down and refresh: ' + this.counter)
           .fontSize(30)
           .margin(10)

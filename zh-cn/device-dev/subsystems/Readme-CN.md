@@ -4,6 +4,20 @@
     - [编译构建指导](subsys-build-all.md)
     - [构建系统编码规范与最佳实践](subsys-build-gn-coding-style-and-best-practice.md)
     - [编译构建Kconfig可视化配置指导](subsys-build-gn-kconfig-visual-config-guide.md)
+    - 编译构建相关操作
+      - [产品配置规则](subsys-build-product.md#产品配置规则)
+      - [子系统配置规则](subsys-build-subsystem.md#子系统配置规则)
+      - [部件配置规则](subsys-build-component.md#部件配置规则)
+      - [模块配置规则](subsys-build-module.md#模块配置规则)
+      - [芯片解决方案配置规则](subsys-build-chip_solution.md#芯片解决方案配置规则)
+      - [特性配置规则](subsys-build-feature.md#特性配置规则)
+      - [系统能力配置规则](subsys-build-syscap.md#如何按需配置部件的系统能力)
+      - [关于deps、external_deps的使用](subsys-build-reference.md#关于deps、external_deps的使用)
+      - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
+      - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
+      - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)
+      - [HAP编译构建指导](subsys-build-gn-hap-compilation-guide.md)
+      - [ 常见问题](subsys-build-FAQ.md)
 - [分布式远程启动](subsys-remote-start.md)
 - 图形图像
     - [图形图像概述](subsys-graphics-overview.md)
@@ -70,6 +84,7 @@
     - [应用权限管理开发指导](subsys-security-rightmanagement.md)
     - [IPC通信鉴权开发指导](subsys-security-communicationverify.md)
     - [设备安全等级管理开发指导](subsys-security-devicesecuritylevel.md)
+    - [OpenHarmony通用密钥库系统开发指导](subsys-security-huks-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
     - init启动引导组件

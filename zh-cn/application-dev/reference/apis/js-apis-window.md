@@ -94,11 +94,11 @@ import window from '@ohos.window';
 
 | 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 是   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| statusBarColor                         | string   | 否   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。                                   |
 | statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。                                             |
-| navigationBarColor                     | string   | 是   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 否   | 导航栏图标是否为高亮状态。                                   |
+| navigationBarColor                     | string   | 否   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 是   | 导航栏图标是否为高亮状态。                                   |
 | navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
 
 ## Orientation<sup>9+</sup>
@@ -147,11 +147,11 @@ import window from '@ohos.window';
 
 | 名称            | 参数类型                  | 可读 | 可写 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | 是   | 是   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
-| isEnable        | boolean                   | 是   | 是   | 当前系统栏是否显示。                                         |
-| region          | [Rect](#rect)             | 是   | 是   | 当前系统栏的位置及大小。                                     |
-| backgroundColor | string                    | 是   | 是   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| contentColor    | string                    | 是   | 是   | 系统栏文字颜色。                                             |
+| type            | [WindowType](#windowtype) | 是   | 否   | 当前属性改变的系统栏类型，仅支持类型为导航栏、状态栏的系统栏。 |
+| isEnable        | boolean                   | 是   | 否   | 当前系统栏是否显示。                                         |
+| region          | [Rect](#rect)             | 是   | 否   | 当前系统栏的位置及大小。                                     |
+| backgroundColor | string                    | 是   | 否   | 系统栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
+| contentColor    | string                    | 是   | 否   | 系统栏文字颜色。                                             |
 
 ## SystemBarTintState<sup>8+</sup>
 
@@ -164,7 +164,7 @@ import window from '@ohos.window';
 | 名称       | 参数类型                                            | 可读 | 可写 | 说明                         |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | 是   | 否   | 当前物理屏幕id。             |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 是   | 当前已改变的所有系统栏信息。 |
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 否   | 当前已改变的所有系统栏信息。 |
 
 ## Rect<sup>7+</sup>
 
@@ -224,6 +224,7 @@ import window from '@ohos.window';
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。                                      |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持 |
 | isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。                                  |
+| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0.0。                                                  |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -1408,7 +1409,8 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1554,13 +1556,14 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 **示例：**
 
 ```js
-var names = ["status", "navigation"];
+// 此处以不显示导航栏、状态栏为例
+var names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
-        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1587,12 +1590,13 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var names = ["status", "navigation"];
+// 此处以不显示导航栏、状态栏为例
+var names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -2270,6 +2274,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
@@ -2322,6 +2331,11 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 **示例：**
 
 ```js
+class MyDeathRecipient {
+    onRemoteDied() {
+        console.log("server died");
+    }
+}
 class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor) {
         super(descriptor);
@@ -3315,11 +3329,12 @@ scale(scaleOptions: ScaleOptions): void
 **示例：**
 
 ```js
-var obj : window.ScaleOptions;
-obj.x = 2.0;
-obj.y = 1.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.ScaleOptions = {
+  x : 2.0,
+  y : 1.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.scale(obj);
 ```
 
@@ -3342,12 +3357,13 @@ rotate(rotateOptions: RotateOptions): void
 **示例：**
 
 ```js
-var obj : window.RotateOptions;
-obj.x = 1.0;
-obj.y = 1.0;
-obj.z = 45.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.RotateOptions = {
+  x : 1.0,
+  y : 1.0,
+  z : 45.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.rotate(obj);
 ```
 
@@ -3370,10 +3386,11 @@ translate(translateOptions: TranslateOptions): void
 **示例：**
 
 ```js
-var obj : window.TranslateOptions;
-obj.x = 100.0;
-obj.y = 0.0;
-obj.z = 0.0;
+var obj : window.TranslateOptions = {
+  x : 100.0,
+  y : 0.0,
+  z : 0.0
+}
 windowClass.translate(obj);
 ```
 
@@ -3406,19 +3423,22 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }    
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj); // 设置动画过程中的属性转换
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
-windowClass.showWithAnimation((err, data) => {
+windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
@@ -3937,10 +3957,11 @@ controller.animationForShown = (context : window.TransitionContext) => {
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -3983,16 +4004,19 @@ controller.animationForShown = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```
@@ -4024,16 +4048,19 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         delay: 0, // 动画延迟
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```

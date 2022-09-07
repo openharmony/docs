@@ -15,7 +15,7 @@ If OpenHarmony devices and applications need to be used globally, they must meet
 
 ## Architecture<a name="section1558604311012"></a>
 
-**Figure  1**  Architecture of the globalization subsystem<a name="fig1687592425010"></a>
+**Figure 1** Architecture of the globalization subsystem<a name="fig1687592425010"></a>
 
 
 ![](figures/architecture-of-the-globalization-subsystem.png "architecture-of-the-globalization-subsystem")

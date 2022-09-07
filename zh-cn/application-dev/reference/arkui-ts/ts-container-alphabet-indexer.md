@@ -17,29 +17,30 @@
 
 ## 接口
 
-AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
+AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | arrayValue | Array&lt;string&gt; | 是 | - | 字母索引字符串数组。 |
-  | selected | number | 是 | - | 选中项编号。 |
+  | selected   | number              | 是    | -    | 初始选中项索引值。     |
 
 
 ## 属性
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| selectedColor | Color | 选中文本文字颜色。 |
-| popupColor | Color | 弹出提示文本字体颜色。 |
-| selectedBackgroundColor | Color | 选中文本背景颜色。 |
-| popupBackground | Color | 弹窗索引背景色。 |
-| usingPopup | boolean | 是否使用弹出索引提示。 |
-| selectedFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 选中文本文字样式。 |
-| popupFont | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 弹出提示文本字体样式。 |
-| font | {<br/>size?:&nbsp;number,<br/>weight?:&nbsp;FontWeight,<br/>family?:&nbsp;string,<br/>style?:&nbsp;FontStyle<br/>} | 字母索引条默认文本字体样式。 |
-| itemSize | Length | 字母索引条字母区域大小，字母区域为正方形，设置正方形边长。 |
-| alignStyle | IndexerAlign | 字母索引条对齐样式，支持左侧对齐样式与右侧对齐样式，影响弹窗弹出位置。 |
+| 名称                  | 参数类型     | 描述                                                              |
+| ----------------------- | --------------- | ----------------------------------------------------------- |
+| color                   | [ResourceColor](../../ui/ts-types.md)       | 设置文字颜色。                           |
+| selectedColor           | [ResourceColor](../../ui/ts-types.md)     | 设置选中项文字颜色。                           |
+| popupColor              | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗文字颜色。                         |
+| selectedBackgroundColor | [ResourceColor](../../ui/ts-types.md)        | 设置选中项背景颜色。                           |
+| popupBackground         | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗背景色。                            |
+| usingPopup              | boolean                                  | 设置是否使用提示弹窗。                         |
+| selectedFont            | [Font](../../ui/ts-types.md) | 设置选中项文字样式。                           |
+| popupFont               | [Font](../../ui/ts-types.md) | 设置提示弹窗字体样式。                         |
+| font                    | [Font](../../ui/ts-types.md) | 设置字母索引条默认字体样式。                      |
+| itemSize                | Length                                   | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
+| alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
 
 - IndexerAlign枚举说明
   | 名称 | 描述 |
@@ -52,10 +53,10 @@ AlphabetIndexer(value: {arrayValue : Array&lt;string&gt;, selected : number})
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onSelected(index:&nbsp;number)&nbsp;=&gt;&nbsp;void<sup>(deprecated) </sup>| 索引条选中回调。 |
-| onSelect(index:&nbsp;number)&nbsp;=&gt;&nbsp;void<sup>8+</sup> | 索引条选中回调。 |
-| onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示窗口显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹出窗口中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
-| onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示窗口选中回调。 |
+| onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 索引条选中回调,返回值为当前选中索引。                                 |
+| onSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 索引条选中回调,返回值为当前选中索引。                                 |
+| onRequestPopupData(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;Array&lt;string&gt;)<sup>8+</sup> | 选中字母索引后，请求索引提示弹窗显示内容回调。<br/>返回值：索引对应的字符串数组，此字符串数组在弹窗中竖排显示，字符串列表最多显示5个，超出部分可以滑动显示。 |
+| onPopupSelect(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 字母索引提示弹窗字符串列表选中回调。                            |
 
 
 ## 示例

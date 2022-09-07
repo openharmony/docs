@@ -22,24 +22,24 @@ For details about the APIs, see [AudioCapturer in Audio Management](../reference
 
    ```js
       var audioStreamInfo = {
-           samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-           channels: audio.AudioChannel.CHANNEL_1,
-           sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-           encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-       }
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
       
-       var audioCapturerInfo = {
-           source: audio.SourceType.SOURCE_TYPE_MIC,
-           capturerFlags: 1
-       }
+      var audioCapturerInfo = {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 1
+      }
       
-       var audioCapturerOptions = {
-           streamInfo: audioStreamInfo,
-           capturerInfo: audioCapturerInfo
-       }
+      var audioCapturerOptions = {
+        streamInfo: audioStreamInfo,
+        capturerInfo: audioCapturerInfo
+      }
       
-       let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
-       var state = audioRenderer.state;
+      let audioCapturer = await audio.createAudioCapturer(audioCapturerOptions);
+      var state = audioRenderer.state;
    ```
 
 2. (Optional) Use **on('stateChange')** to subscribe to audio renderer state changes.
@@ -49,26 +49,26 @@ If an application needs to perform some operations when the audio renderer state
     audioCapturer.on('stateChange',(state) => {
     console.info('AudioCapturerLog: Changed State to : ' + state)
     switch (state) {
-     case audio.AudioState.STATE_PREPARED:
-         console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
-         console.info('Audio State is : Prepared');
-         break;
-     case audio.AudioState.STATE_RUNNING:
-         console.info('--------CHANGE IN AUDIO STATE----------RUNNING--------------');
-         console.info('Audio State is : Running');
-         break;
-     case audio.AudioState.STATE_STOPPED:
-         console.info('--------CHANGE IN AUDIO STATE----------STOPPED--------------');
-         console.info('Audio State is : stopped');
-         break;
-     case audio.AudioState.STATE_RELEASED:
-         console.info('--------CHANGE IN AUDIO STATE----------RELEASED--------------');
-         console.info('Audio State is : released');
-         break;
-     default:
-         console.info('--------CHANGE IN AUDIO STATE----------INVALID--------------');
-         console.info('Audio State is : invalid');
-         break;
+      case audio.AudioState.STATE_PREPARED:
+        console.info('--------CHANGE IN AUDIO STATE----------PREPARED--------------');
+        console.info('Audio State is : Prepared');
+        break;
+      case audio.AudioState.STATE_RUNNING:
+        console.info('--------CHANGE IN AUDIO STATE----------RUNNING--------------');
+        console.info('Audio State is : Running');
+        break;
+      case audio.AudioState.STATE_STOPPED:
+        console.info('--------CHANGE IN AUDIO STATE----------STOPPED--------------');
+        console.info('Audio State is : stopped');
+        break;
+      case audio.AudioState.STATE_RELEASED:
+        console.info('--------CHANGE IN AUDIO STATE----------RELEASED--------------');
+        console.info('Audio State is : released');
+        break;
+      default:
+        console.info('--------CHANGE IN AUDIO STATE----------INVALID--------------');
+        console.info('Audio State is : invalid');
+        break;
      }
     });
    ```
@@ -80,9 +80,9 @@ If an application needs to perform some operations when the audio renderer state
    ```js
    await audioCapturer.start();
    if (audioCapturer.state == audio.AudioState.STATE_RUNNING) {
-       console.info('AudioRecLog: Capturer started');
+     console.info('AudioRecLog: Capturer started');
    } else {
-       console.info('AudioRecLog: Capturer start failed');
+     console.info('AudioRecLog: Capturer start failed');
    }
    ```
 
@@ -103,29 +103,29 @@ If an application needs to perform some operations when the audio renderer state
    const path = '/data/data/.pulse_dir/capture_js.wav';
    let fd = fileio.openSync(path, 0o102, 0o777);
    if (fd !== null) {
-       console.info('AudioRecLog: file fd created');
+     console.info('AudioRecLog: file fd created');
    }
    else{
-       console.info('AudioRecLog: file fd create : FAILED');
-       return;
+     console.info('AudioRecLog: file fd create : FAILED');
+     return;
    }
       
    fd = fileio.openSync(path, 0o2002, 0o666);
    if (fd !== null) {
-       console.info('AudioRecLog: file fd opened in append mode');
+     console.info('AudioRecLog: file fd opened in append mode');
    }
       
    var numBuffersToCapture = 150;
    while (numBuffersToCapture) {
-       var buffer = await audioCapturer.read(bufferSize, true);
-       if (typeof(buffer) == undefined) {
-           console.info('read buffer failed');
-       } else {
-           var number = fileio.writeSync(fd, buffer);
-           console.info('AudioRecLog: data written: ' + number);
-       }
+     var buffer = await audioCapturer.read(bufferSize, true);
+     if (typeof(buffer) == undefined) {
+       console.info('read buffer failed');
+     } else {
+       var number = fileio.writeSync(fd, buffer);
+       console.info('AudioRecLog: data written: ' + number);
+     }
       
-       numBuffersToCapture--;
+     numBuffersToCapture--;
    }
    ```
 
@@ -134,9 +134,9 @@ If an application needs to perform some operations when the audio renderer state
    ```
    await audioCapturer.stop();
    if (audioCapturer.state == audio.AudioState.STATE_STOPPED) {
-       console.info('AudioRecLog: Capturer stopped');
+     console.info('AudioRecLog: Capturer stopped');
    } else {
-       console.info('AudioRecLog: Capturer stop failed');
+     console.info('AudioRecLog: Capturer stop failed');
    }
    ```
 
@@ -145,8 +145,8 @@ If an application needs to perform some operations when the audio renderer state
    ```js
    await audioCapturer.release();
    if (audioCapturer.state == audio.AudioState.STATE_RELEASED) {
-       console.info('AudioRecLog: Capturer released');
+     console.info('AudioRecLog: Capturer released');
    } else {
-       console.info('AudioRecLog: Capturer release failed');
+     console.info('AudioRecLog: Capturer release failed');
    }
    ```

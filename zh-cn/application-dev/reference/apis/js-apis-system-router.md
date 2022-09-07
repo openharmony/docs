@@ -374,12 +374,12 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 参数类型                     | 必填   | 说明                        |
-| -------- | ------------------------ | ---- | ------------------------- |
-| message  | string                   | 是    | 询问对话框内容。                  |
-| success  | (errMsg: string) => void | 否    | 弹出对话框时调用，errMsg表示返回信息。    |
-| fail     | (errMsg: string) => void | 否    | 接口调用失败的回调函数，errMsg表示返回信息。 |
-| complete | () => void               | 否    | 接口调用结束的回调函数。              |
+| 名称     | 参数类型                 | 必填 | 说明                                               |
+| -------- | ------------------------ | ---- | -------------------------------------------------- |
+| message  | string                   | 是   | 询问对话框内容。                                   |
+| success  | (errMsg: string) => void | 否   | 用户选择对话框确认按钮时触发，errMsg表示返回信息。 |
+| cancel   | (errMsg: string) => void | 否   | 用户选择对话框取消按钮时触发，errMsg表示返回信息。 |
+| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -387,11 +387,11 @@ export default {
 
 **系统能力：**  以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 参数类型                     | 必填   | 说明                        |
-| -------- | ------------------------ | ---- | ------------------------- |
-| success  | (errMsg: string) => void | 否    | 弹出对话框时调用，errMsg表示返回信息。    |
-| fail     | (errMsg: string) => void | 否    | 接口调用失败的回调函数，errMsg表示返回信息。 |
-| complete | () => void               | 否    | 接口调用结束的回调函数。              |
+| 名称     | 参数类型                 | 必填 | 说明                                               |
+| -------- | ------------------------ | ---- | -------------------------------------------------- |
+| success  | (errMsg: string) => void | 否   | 关闭询问对话框能力成功时触发，errMsg表示返回信息。 |
+| cancel   | (errMsg: string) => void | 否   | 关闭询问对话框能力失败时触发，errMsg表示返回信息。 |
+| complete | () => void               | 否   | 接口调用结束的回调函数。                           |
 
 ## ParamsInterface
 

@@ -62,7 +62,7 @@ The interfaces shown in the figure are described as follows:
 
 -   **Communications interfaces**
     -   I2C: Since only a small amount of touch data is reported by the touchscreen, I2C is used to transmit the reported data. For details about the I2C protocol and interfaces, see  [I2C](driver-platform-i2c-des.md#section5361140416).
-    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#section193356154511).
+    -   SPI: In addition to touch reporting data coordinates, some vendors need to obtain basic capacitance data. Therefore, Serial Peripheral Interface \(SPI\) is used to transmit such huge amount of data. For details about the SPI protocol and interfaces, see  [SPI](driver-platform-spi-des.md#overview).
 
 
 ## How to Develop<a name="section65745222184"></a>

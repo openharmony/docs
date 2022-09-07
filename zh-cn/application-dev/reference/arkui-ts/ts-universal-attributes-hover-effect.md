@@ -15,15 +15,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| hoverEffect | HoverEffect | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
-
-- HoverEffect 枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Auto | 使用组件的系统默认悬浮效果。 |
-  | Scale | 放大缩小效果。 |
-  | Highlight | 背景淡入淡出的强调效果。 |
-  | None | 不设置效果。 |
+| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8) | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
 
 
 ## 示例

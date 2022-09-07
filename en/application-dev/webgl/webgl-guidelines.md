@@ -65,7 +65,7 @@ To draw a 2D image without using WebGL, that is, to implement CPU rather than GP
 
 3. Edit the **index.js** file to add the 2D drawing logic code. The following is an example of the file content:
    ```
-   //index.js
+   // index.js
    export default { // Native API interaction code
        data: {
            title: "DEMO BY TEAMOL",
@@ -136,7 +136,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
 
 3. Edit the JavaScript code file to add the logic code for drawing a color triangle. The following is an example of the file content:
    ```
-   //index.js
+   // index.js
    
    // WebGL-related predefinition
    var gl = {
@@ -696,13 +696,6 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    }
    ```
 
-
 **Figure 2** Effect of clicking the button to draw a color triangle
 
 ![en-us_image_0000001192429306](figures/en-us_image_0000001192429306.gif)
-
-## Samples
-
-The following sample is provided to help you better understand how to develop WebGL:
-
-- [`JsWbgGL`: WebGL (JS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/Graphics/JsWebGL)

@@ -1,6 +1,6 @@
 # User File Access and Management
 
-The fileManager module provides APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
+The **fileManager** module provides APIs for accessing and managing user files. It interworks with the underlying file management services to implement media library and external card management, and provides capabilities for applications to query and create user files.
 
 >**NOTE**<br/>
 >
@@ -35,12 +35,10 @@ Obtains information about the root album or directory in asynchronous mode. This
 **Example**
 
   ```js
-  filemanager.getRoot().then((fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  filemanager.getRoot().then((fileInfos) => {
+    for (var i = 0; i < fileInfos.length; i++) {
+        console.log("files:"+JSON.stringify(fileInfos));
+    }
   }).catch((err) => {
       console.log(err)
   });
@@ -69,14 +67,11 @@ Obtains information about the root album or directory in asynchronous mode. This
       "name":"local"
     }
   };
-  filemanager.getRoot(options, (err, fileInfo)=>{
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      } 
+  filemanager.getRoot(options, (err, fileInfos)=>{
+    for (var i = 0; i < fileInfos.length; i++) {
+        console.log("files:"+JSON.stringify(fileInfos));
+    }
   });
-  
   ```
 
 ## filemanager.listFile
@@ -111,18 +106,17 @@ Obtains information about the second-level album or files in asynchronous mode. 
 **Example**
 
   ```js
-  // Obtain all files in the directory.
-  // Call listFile() and getRoot() to obtain the file URI.
-  let media_path = ""
-  filemanager.listFile(media_path, "file")
-  .then((fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // Obtain all files in the directory. You can use getRoot to obtain the directory URI.
+  filemanager.getRoot().then((fileInfos) => {
+    let file = fileInfos.find(item => item.name == "file_folder");
+    let path = file.path;
+    filemanager.listFile(path, "file").then((files) => {
+        console.log("files:" + JSON.stringify(files));
+      }).catch((err) => {
+        console.log("failed to get files" + err);
+      });
   }).catch((err) => {
-      console.log("Failed to get file"+err);
+      console.log("failed to get root" + err);
   });
   ```
 
@@ -153,33 +147,18 @@ Obtains information about the second-level album or files in asynchronous mode. 
 
 **Example**
 
-  ```js
-  // Call listFile() and getRoot() to obtain the file path.
-  let fileInfos = filemanager.getRoot(); 
-  let media_path  = "";
-  for (let i = 0; i < fileInfos.length; i++) {
-	if (fileInfos[i].name == "image_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "audio_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "video_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "file_folder") {
-	  media_path = fileInfos[i].path;
-	}
-  }
-
-  filemanager.listFile(media_path, "file")
-  .then((fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log("file:"+JSON.stringify(fileInfo));
-        }
-    }
-  }).catch((err) => {
-    console.log("Failed to get file"+err);
-  });
-  ```
+```js
+// Obtain all files in the directory. You can use getRoot to obtain the directory URI.
+filemanager.getRoot().then((fileInfos) => {
+  let file = fileInfos.find(item => item.name == "image_album");
+  let path = file.path;
+  filemanager.listFile(path, "image",function(err, files){
+    console.log("files:" + JSON.stringify(files));
+  })
+}).catch((err) => {
+    console.log("failed to get root" + err);
+});
+```
 
 ## filemanager.createFile
 

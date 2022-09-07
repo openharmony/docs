@@ -78,7 +78,7 @@ The following steps show how to configure and modify the toolchains for cross-co
 
 ## Library Test
 
-The test procedure for the yxml library is similar to that for the double-conversion library. For details, see the procedure described in [Porting a Library Built Using CMake](../porting/porting-thirdparty-cmake.md). The following describes how to use the test cases of the yxml library.
+The test procedure for the yxml library is similar to that for the double-conversion library. For details, see the procedure described in [Porting a Library Built Using CMake](../porting/porting-thirdparty-cmake.md#library-test). The following describes how to use the test cases of the yxml library.
 
 **Table 3** Directory structure of the test directory
 
@@ -119,13 +119,13 @@ The following operations are performed based on the assumption that the OpenHarm
 
 2.  Copy the content in the **_\*_.xml**  file to shell.
 
-    Taking the **pi01.xml** file in the [test](#table115941423164318) directory as an example, copy the following content to shell and press **Enter**:
+    Taking the **pi01.xml** file in the **test** directory as an example, copy the following content to shell and press **Enter**:
 
    ```
    <?SomePI abc?><a/>
    ```
 
-3.  Check whether the output in the shell is the same as that of the **_\*_.out** file in the [test](#table115941423164318) directory.
+3.  Check whether the output in the shell is the same as that of the **_\*_.out** file in the **test** directory described in Table 3.
 
     The output is as follows:
 
@@ -143,52 +143,52 @@ The following operations are performed based on the assumption that the OpenHarm
 
 ## Adding the Compiled yxml Library to the OpenHarmony Project
 
-The procedure for adding the yxml library is almost the same as that for adding the double-conversion library, except that the implementation of **build.gn** and **config.gni** files. For details, see the procedure described in  [Porting a Library Built Using CMake](porting-thirdparty-cmake.md#section1651053153715).
+The procedure for adding the yxml library is almost the same as that for adding the double-conversion library, except that the implementation of **build.gn** and **config.gni** files. For details, see the procedure described in [Adding the Compiled double-conversion Library to the OpenHarmony Project](../porting/porting-thirdparty-cmake.md#adding-the-compiled-double-conversion-library-to-the-openharmony-project).
 
 -   The implementation of the newly added **BUILD.gn** file in the yxml library is as follows:
 
-```
-import("config.gni")
-group("yxml") {
-    if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-        deps = [":make"]
-    }
-}
-if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
-    action("make") {
-        script = "//third_party/yxml/build_thirdparty.py"
-        outputs = ["$target_out_dir/log_yxml.txt"]
-        exec_path = rebase_path(rebase_path("./yxml", root_build_dir))
-        command = "make clean && $MAKE_COMMAND"
-        args = [
-            "--path=$exec_path",
-            "--command=${command}"
-        ]
-    }
-}
-```
+  ```
+  import("config.gni")
+  group("yxml") {
+      if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+          deps = [":make"]
+      }
+  }
+  if (ohos_build_thirdparty_migrated_from_fuchisa == true) {
+      action("make") {
+          script = "//third_party/yxml/build_thirdparty.py"
+          outputs = ["$target_out_dir/log_yxml.txt"]
+          exec_path = rebase_path(rebase_path("./yxml", root_build_dir))
+          command = "make clean && $MAKE_COMMAND"
+          args = [
+              "--path=$exec_path",
+              "--command=${command}"
+          ]
+      }
+  }
+  ```
 
 -   The configuration of the newly added  **config.gni**  file in the yxml library is as follows:
 
-```
-TEST_ENABLE = "YES"
+  ```
+  TEST_ENABLE = "YES"
 
-if (TEST_ENABLE == "YES") {
+  if (TEST_ENABLE == "YES") {
     MAKE_COMMAND = "make test OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
-} else {
-    MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
-}
-```
+  } else {
+      MAKE_COMMAND = "make OHOS_SYSROOT_PATH=${root_out_dir}sysroot/"
+  }
+  ```
 
--   The following table lists the directory structure of the OpenHarmony project.
+- The following table lists the directory structure of the OpenHarmony project.
 
-**Table 4** Directory structure of the ported library
+  **Table 4** Directory structure of the ported library
 
-| Directory                                       | Description                                                  |
-| ----------------------------------------------- | ------------------------------------------------------------ |
-| OpenHarmony/third_party/yxml/BUILD.gn           | GN file for adding the third-party library to the OpenHarmony project. |
-| OpenHarmony/third_party/yxml/build_thirdparty.py | Script file for GN to call the **shell** command to convert compilation from GN to Makefile. |
-| OpenHarmony/third_party/yxml/config.gni         | Third-party library compilation configuration file, which can be modified to determine whether the test cases will be used during the building. |
-| OpenHarmony/third_party/yxml/yxml/              | Directory of the third-party library to be ported.           |
+  | Directory                                       | Description                                                  |
+  | ----------------------------------------------- | ------------------------------------------------------------ |
+  | OpenHarmony/third_party/yxml/BUILD.gn           | GN file for adding the third-party library to the OpenHarmony project. |
+  | OpenHarmony/third_party/yxml/build_thirdparty.py | Script file for GN to call the **shell** command to convert compilation from GN to Makefile. |
+  | OpenHarmony/third_party/yxml/config.gni         | Third-party library compilation configuration file, which can be modified to determine whether the test cases will be used during the building. |
+  | OpenHarmony/third_party/yxml/yxml/              | Directory of the third-party library to be ported.           |
 
-
+ <!--no_check--> 

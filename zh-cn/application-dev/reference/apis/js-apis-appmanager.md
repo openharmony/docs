@@ -157,12 +157,11 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
-
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
+
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -187,6 +186,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
 > **说明：**
+>
 > 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
@@ -305,7 +305,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
 
 ## appManager.registerApplicationStateObserver<sup>9+</sup>
 
-registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array<string>): number;
+registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 注册指定应用程序状态观测器。
 
@@ -813,7 +813,7 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 
 ## ProcessData
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
@@ -827,14 +827,14 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 
 ## ProcessRunningInfo
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
 | ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| pid<sup>9+</sup>     | 只读     | number               | 否   | 进程ID。                                |
-| uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
-| processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
-| bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
+| pid<sup>8+</sup>     | 只读     | number               | 否   | 进程ID。                                |
+| uid<sup>8+</sup>   | 只读     | number               | 否   | 用户ID。 |
+| processName<sup>8+</sup>  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames<sup>8+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 |
 
 ## ApplicationStateObserver
 

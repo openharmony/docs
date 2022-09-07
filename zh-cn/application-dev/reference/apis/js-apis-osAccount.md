@@ -440,12 +440,10 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  var createIocalId;
-  osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    createIocalId = osAccountInfo.localId;
-  });
-  accountManager.removeOsAccount(createIocalId, (err)=>{
-    console.log("removeOsAccount err:" + JSON.stringify(err));
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
+    accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
+      console.log("removeOsAccount err:" + JSON.stringify(err));
+    });
   });
   ```
 
@@ -477,15 +475,12 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  var createIocalId;
-  osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    createIocalId = osAccountInfo.localId;
-  });
-  createIocalId = osAccount.localId;
-  accountManager.removeOsAccount(createIocalId).then(() => {
-    console.log('removeOsAccount Success');
-  }).catch(() => {
-    console.log("removeOsAccount err: "  + JSON.stringify(err));
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+    accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
+      console.log('removeOsAccount Success');
+    }).catch(() => {
+      console.log("removeOsAccount err: "  + JSON.stringify(err));
+    });
   });
   ```
 
@@ -1097,7 +1092,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+  accountManager.createOsAccount("testName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     console.log("createOsAccount err:" + JSON.stringify(err));
     console.log("createOsAccount osAccountInfo:" + JSON.stringify(osAccountInfo));
   });
@@ -1132,7 +1127,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL).then((accountInfo) => {
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
     console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
   }).catch((err) => {
     console.log("createOsAccount err: "  + JSON.stringify(err));
@@ -1164,7 +1159,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
   ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
+  accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
     console.log("createOsAccountForDomain err:" + JSON.stringify(err));
     console.log("createOsAccountForDomain osAccountInfo:" + JSON.stringify(osAccountInfo));
   });
@@ -1200,7 +1195,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
   ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
+  accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
     console.log("createOsAccountForDomain, account info: " + JSON.stringify(accountInfo));
   }).catch((err) => {
     console.log("createOsAccountForDomain err: "  + JSON.stringify(err));
@@ -1523,7 +1518,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
   "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
   "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
   "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
-  osAccountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
+  accountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
     console.log("setOsAccountProfilePhoto err:" + JSON.stringify(err));
   });
   ```
@@ -1765,8 +1760,9 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 **示例：**
 
   ```js
+  const accountManager = account_osAccount.getAccountManager();
   var testUid = 1000000;
-  osAccountManager.getBundleIdFromUid(testUid,(err,bundleId)=>{
+  accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
     console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
     console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleId));
   });
@@ -1796,10 +1792,13 @@ getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 **示例：**
 
   ```js
+  const accountManager = account_osAccount.getAccountManager();
   var testUid = 1000000;
-  var bundleIdInfo = await osAccountManager.getBundleIdFromUid(testUid).catch((err)=>{
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));})
-  console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleIdInfo));
+  accountManager.getBundleIdFromUid(testUid).then((result) => {
+    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(result));
+  }).catch((err)=>{
+    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
+  });
   ```
 
 ### isMainOsAccount<sup>9+</sup>
@@ -1823,7 +1822,8 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 **示例：**
 
   ```js
-  osAccountManager.isMainOsAccount((err,result)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.isMainOsAccount((err,result)=>{
     console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
     console.info("isMainOsAccount result:" + JSON.stringify(result));
   });
@@ -1849,10 +1849,12 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 **示例：**
 
   ```js
-  var result = await osAccountManager.isMainOsAccount().catch((err)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.isMainOsAccount().then((result) => {
+    console.info("isMainOsAccount result:" + JSON.stringify(result));
+  }).catch((err)=>{
     console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
   });
-  console.info("isMainOsAccount result:" + JSON.stringify(result));
   ```
 ### queryOsAccountConstraintSourceTypes<sup>9+</sup>
 
@@ -1877,7 +1879,8 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callbac
 **示例：**
 
   ```js
-  osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
     console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
     console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
   });
@@ -1911,14 +1914,19 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 **示例：**
 
   ```js
-  var sourceTypeInfos = await osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").catch((err)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));})
-  console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").then((result) => {
+    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(result));
+  }).catch((err)=>{
+    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
+  });
   ```
 
 ## UserAuth<sup>8+</sup>
 
 用户认证类。
+
+此接口为系统接口，三方应用不支持调用。
 
 ### constructor<sup>8+</sup>
 
@@ -1926,12 +1934,13 @@ constructor()
 
 创建用户认证的实例。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：** 
   ```js
-  let userAuth = new osAccount.UserAuth();
-  console.info('====>test for examples constructor success');
+  let userAuth = new account_osAccount.UserAuth();
   ```
 
 
@@ -1953,10 +1962,9 @@ getVersion(): number;
 
 **示例：** 
   ```js
-  let userAuth = new osAccount.UserAuth();
-  console.info('====>test for examples constructor success');
-  var version = userAuth.getVersion();
-  console.info('====>test for examples version is : ' + JSON.stringify(version));
+  let userAuth = new account_osAccount.UserAuth();
+  let version = userAuth.getVersion();
+  console.log("getVersion version = " + version);
   ```
 
 ### getAvailableStatus<sup>8+</sup>
@@ -1975,23 +1983,22 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 参数名           | 类型                                           | 必填 | 说明                       |
 | --------------- | -----------------------------------------------| ---- | ------------------------- |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)             | 是   | 指示用于认证的凭据类型。     |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>) | 是   | 表示身份验证结果的信任级别。 |
+| authType        | [AuthType](#authtype8)             | 是   | 指示用于认证的凭据类型。     |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | 是   | 表示身份验证结果的信任级别。 |
 
 **返回值：**
 
 | 类型   | 说明                                       |
 | :----- | :---------------------------------------- |
-| number | 返回验证[结果](#ResultCode<sup>8+</sup>)。 | 
+| number | 返回验证[结果](#resultcode8)。 | 
 
 **示例：** 
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  console.info('====>test for examples constructor success');
-  let availableStatus = userAuth.getAvailableStatus(authType, authTrustLevel);
-  console.info('====>test for examples AvailabeStatus is : ' + JSON.stringify(availableStatus));
+  let userAuth = new account_osAccount.UserAuth();
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let status = userAuth.getAvailableStatus(authType, authTrustLevel);
+  console.log("getAvailableStatus status = " + status);
   ```
 
 ### getProperty<sup>8+</sup>
@@ -2010,26 +2017,30 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 参数名    | 类型                                                                    | 必填 | 说明                                |
 | -------- | ----------------------------------------------------------------------- | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
-| callback | AsyncCallback&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | 是   | 回调结果，返回的是调用者属性。        |
+| request  | [GetPropertyRequest](#getpropertyrequest8)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
+| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调结果，返回的是调用者属性。        |
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let keys = new Array();
-  keys[0] = osAccount.GetPropertyType.AUTH_SUB_TYPE;
-  keys[1] = osAccount.GetPropertyType.REMAIN_TIMES;
-  keys[2] = osAccount.GetPropertyType.FREEZING_TIME;
-  let getPropertyRequest = {authType, keys};
-  userAuth.getProperty(getPropertyRequest,function (propReq) {
-      console.log("====>test for examples getallAuthInfo AsyncCallback = " + JSON.stringify(propReq));
-  })
+  let userAuth = new account_osAccount.UserAuth();
+  let keys = [
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.REMAIN_TIMES,
+    account_osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    keys: keys
+  };
+  userAuth.getProperty(request, (err, result) => {
+    console.log("getProperty err = " + JSON.stringify(err));
+    console.log("getProperty result = " + JSON.stringify(result));
+  });
   ```
 
 ### getProperty<sup>8+</sup>
 
-getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
+getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 基于指定的请求信息获取属性，使用Promise方式异步返回结果。
 
@@ -2043,31 +2054,36 @@ getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
 
 | 参数名    | 类型                                                   | 必填 | 说明                                |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>) | 是   | 请求信息，包括认证类型和属性类型列表。 |
+| request  | [GetPropertyRequest](#getpropertyrequest8) | 是   | 请求信息，包括认证类型和属性类型列表。 |
 
 **返回值：**
 
 | 类型                                                              | 说明                                                 |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let keys = new Array();
-  keys[0] = osAccount.GetPropertyType.AUTH_SUB_TYPE;
-  keys[1] = osAccount.GetPropertyType.REMAIN_TIMES;
-  keys[2] = osAccount.GetPropertyType.FREEZING_TIME;
-  let getPropertyRequest = {authType, keys};
-  userAuth.getProperty(getPropertyRequest).then((propReq) => {
-      console.log("====>test for examples getallAuthInfo AsyncCallback = " + JSON.stringify(propReq));
+  let userAuth = new account_osAccount.UserAuth();
+  let keys = [
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.REMAIN_TIMES,
+    account_osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    keys: keys
+  };
+  userAuth.getProperty(request).then((result) => {
+    console.log("getProperty result = " + JSON.stringify(result));
+  }).catch((err) => {
+    console.log("getProperty error = " + JSON.stringify(err));
   });
   ```
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
 
 设置可用于初始化算法的属性，使用callback回调异步返回结果。
 
@@ -2081,24 +2097,26 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
 
 | 参数名    | 类型                                                  | 必填 | 说明                                                                    |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
-| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#ResultCode<sup>8+</sup>)，指示属性设置是否成功。 |
+| request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
+| callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let key = osAccount.SetPropertyType.INIT_ALGORITHM;
-  let setInfo = new Uint8Array();
-  let setPropertyRequest = {authType, key, setInfo};
-  userAuth.setProperty(setPropertyRequest,function (setProp) {
-      console.log("====>test for examples setProperty AsyncCallback = " + JSON.stringify(setProp));
+  let userAuth = new account_osAccount.UserAuth();
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+    setInfo: new Uint8Array([0])
+  };
+  userAuth.setProperty(request, (err, result) => {
+      console.log("setProperty error = " + JSON.stringify(err));
+      console.log("setProperty result = " + JSON.stringify(result));
   });
   ```
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise<number>;
+setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 设置可用于初始化算法的属性，使用Promise方式异步返回结果。
 
@@ -2112,23 +2130,26 @@ setProperty(request: SetPropertyRequest): Promise<number>;
 
 | 参数名    | 类型                                                   | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>) | 是   | 请求信息，包括身份验证类型和要设置的密钥值。 |
+| request  | [SetPropertyRequest](#setpropertyrequest8) | 是   | 请求信息，包括身份验证类型和要设置的密钥值。 |
 
 **返回值：**
 
 | 类型                  | 说明                                                                                           |
 | :-------------------- | :-------------------------------------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#ResultCode<sup>8+</sup>)，指示属性设置是否成功。 |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let key = osAccount.SetPropertyType.INIT_ALGORITHM;
-  let setInfo = new Uint8Array();
-  let setPropertyRequest = {authType, key, setInfo};
-  userAuth.setProperty(setPropertyRequest).then((setProp) => {
-      console.log("====>test for examples setProperty AsyncCallback = " + JSON.stringify(setProp));
+  let userAuth = new account_osAccount.UserAuth();
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+    setInfo: new Uint8Array([0])
+  };
+  userAuth.setProperty(request).then((result) => {
+    console.log("setProperty result = " + JSON.stringify(result));
+  }).catch((err) => {
+    console.log("setProperty error = " + JSON.stringify(err));
   });
   ```
 
@@ -2149,9 +2170,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 参数名           | 类型                                                 | 必填 | 说明                                |
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                                           | 是  | 指示挑战值，挑战值为一个随机数，用于提升安全性。|
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | 是  | 指示认证类型。                        |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | 是  | 指示认证结果的信任级别。               |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | 是  | 回调结果，返回的是结果和所获取的信息。  |
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调结果，返回的是结果和所获取的信息。  |
 
 
 **返回值：**
@@ -2162,22 +2183,15 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      }
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  userAuth.auth(challenge, authType, authTrustLevel, {
+    onResult: function(result,extraInfo){
+        console.log("auth result = " + result);
+        console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
   });
   ```
 
@@ -2199,9 +2213,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | userId          | number                                               | 是  | 指示用户身份。                        |
 | challenge       | Uint8Array                                           | 是  | 指示挑战值，挑战值为一个随机数，用于提升安全性。                          |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | 是  | 指示认证类型。                        |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | 是  | 指示认证结果的信任级别。               |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | 是  | 回调结果，返回的是结果和所获取的信息。  |
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调结果，返回的是结果和所获取的信息。  |
 
 
 **返回值：**
@@ -2212,23 +2226,16 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
+  let userAuth = new account_osAccount.UserAuth();
   let userID = 100;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.authUser(userID, challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples authUser result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples authUser extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples authUser onResult = ' + JSON.stringify(onresult));
-      }
+    onResult: function(result,extraInfo){
+        console.log("authUser result = " + result);
+        console.log("authUser extraInfo = " + JSON.stringify(extraInfo));
+    }
   });
   ```
 
@@ -2254,20 +2261,28 @@ cancelAuth(contextID: Uint8Array): number;
 
 | 类型   | 说明                                                       |
 | :----- | :-------------------------------------------------------- |
-| number | 返回一个[数字](#ResultCode<sup>8+</sup>)，指示取消是否成功。 |
+| number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let contextID = null;
-  let cancelAuthresult = null;
-  cancelAuthresult = userAuth.cancelAuth(contextID);
-  console.log("====>test for examples cancelAuthresult result = " + JSON.stringify(cancelAuthresult));
+  let userAuth = new account_osAccount.UserAuth();
+  let pinAuth = new account_osAccount.PINAuth();
+  let challenge = new Uint8Array([0]);
+  let contextID = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result);
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
+  let result = userAuth.cancelAuth(contextID);
+  console.log("cancelAuth result = " + result);
   ```
 
 ## PINAuth<sup>8+</sup>
 
 Pin码认证功能基类。
+
+此接口为系统接口，三方应用不支持调用。
 
 ### constructor<sup>8+</sup>
 
@@ -2275,12 +2290,13 @@ constructor()
 
 创建Pin码认证的实例。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：** 
   ```js
-  var pinAuth = new osAccount.PINAuth();
-  console.info('====>test for examples constructor success');
+  let pinAuth = new account_osAccount.PINAuth();
   ```
 
 ### registerInputer
@@ -2299,7 +2315,7 @@ registerInputer(inputer: IInputer): boolean;
 
 | 参数名    | 类型                                 | 必填 | 说明               |
 | ----------| ----------------------------------- | --- | ------------------ |
-| inputer   | [IInputer](#IInputer<sup>8+</sup>)  | 是  | 指示密码输入框回调。 |
+| inputer   | [IInputer](#iinputer8)  | 是  | 指示密码输入框回调。 |
 
 **返回值：**
 
@@ -2309,20 +2325,14 @@ registerInputer(inputer: IInputer): boolean;
 
 **示例：**
   ```js
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          if (GetAuthSubType == 0) {
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
+  let pinAuth = new account_osAccount.PINAuth();
+  let password = new Uint8Array([0, 0, 0, 0, 0];
+  let result = pinAuth.registerInputer({
+      onGetData: (pinSubType, callback) => {
+        callback.onSetData(pinSubType, password);
       }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  });
+  console.log("registerInputer result = " + result);
   ```
 
 ### unregisterInputer
@@ -2339,7 +2349,7 @@ unregisterInputer(): void;
 
 **示例：**
   ```js
-  var pinAuth = new osAccount.PinAuth();
+  let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
 
@@ -2347,18 +2357,21 @@ unregisterInputer(): void;
 
 获取用户身份管理类。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### constructor<sup>8+</sup>
 
 constructor()
 
 创建用户认证的实例。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力**：SystemCapability.Account.OsAccount
 
 **示例：** 
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  console.info('====>test for examples constructor success');
+  let userIDM = new account_osAccount.UserIdentityManager();
   ```
 
 ### openSession<sup>8+</sup>
@@ -2381,19 +2394,10 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var challenge;
-  userIDM.openSession(function(err, data){
-      try{
-          console.log("====>test for examples before get challenge");
-          console.log("====>test for examples + " + data);
-          challenge = data;
-          console.log("====>test for examples end ");
-          console.log("====>test for examples after get challenge");
-      }
-      catch(e) {
-          console.info('====>test for examples openSession error = ' + JSON.stringify(e));
-      }
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession((err, challenge) => {
+      console.log("openSession error = " + JSON.stringify(err));
+      console.log("openSession challenge = " + JSON.stringify(challenge));
   });
   ```
 
@@ -2417,23 +2421,12 @@ openSession(): Promise&lt;Uint8Array&gt;;
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var challenge;
-  userIDM.openSession().then((data) => {
-      try{
-          console.log("====>test for examples before get challenge");
-          console.log("====>test for examples + " + data);
-          challenge = data;
-          console.log("====>test for examples end ");
-          console.log("====>test for examples after get challenge");
-      }
-      catch(err) {
-          console.info('====>test for examples faceDemo openSession error1 = ' + JSON.stringify(err));
-      }
-  })
-  .catch((err) => {
-      console.info('====>test for examples faceDemo openSession error2 = ' + JSON.stringify(err));
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession().then((challenge) => {
+      console.info("openSession challenge = " + JSON.stringify(challenge));
+  }).catch((err) => {
+      console.info("openSession error = " + JSON.stringify(err));
+  });
   ```
 
 ### addCredential<sup>8+</sup>
@@ -2452,31 +2445,32 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 | 参数名           | 类型                                             | 必填 | 说明                            |
 | --------------- | ------------------------------------------------ | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)   | 是  | 指示凭据信息。                      |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)       | 是  | 回调结果，返回的是结果和获取信息。  |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)   | 是  | 指示凭据信息。                      |
+| callback        | [IIdmCallback](#iidmcallback8)       | 是  | 回调结果，返回的是结果和获取信息。  |
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.addCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.info('====>test for examples aaaaaaaaaaaaa');
-          console.info("====>test for examples addCredential result = " + result);
-          console.info("====>test for examples addCredential extraInfo = " + JSON.stringify(extraInfo));
-          console.log(result)
-          onresult.addCredresult= result;
-          if(extraInfo != undefined) {
-              onresult.credentialId = extraInfo.credentialId
-          } else {
-              onresult.credentialId = null;
-          }
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let pinAuth = new account_osAccount.PINAuth();
+  pinAuth.registerInputer({
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
+    }
+  });
+  let credentialInfo = {
+    credType: account_osAccount.AuthType.PIN,
+    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+    token: null
+  };
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession((err, challenge) => {
+    userIDM.addCredential(credentialInfo, {
+      onResult: (result, extraInfo) => {
+        console.log("updateCredential result = " + result);
+        console.log("updateCredential extraInfo = " + extraInfo);
       }
-  })
+    });
+  });
   ```
 
 ### updateCredential<sup>8+</sup>
@@ -2495,30 +2489,41 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 
 | 参数名           | 类型                                              | 必填 | 说明                            |
 | --------------- | ------------------------------------------------- | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)    | 是  | 指示凭据信息。                    |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)        | 是  | 回调结果，返回的是结果和获取信息。  |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)    | 是  | 指示凭据信息。                    |
+| callback        | [IIdmCallback](#iidmcallback8)        | 是  | 回调结果，返回的是结果和获取信息。  |
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples faceDemo updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples faceDemo updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let userAuth = new account_osAccount.UserAuth();
+  let pinAuth = new account_osAccount.PINAuth();
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let credentialInfo = {
+    credType: account_osAccount.AuthType.PIN,
+    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+    token: null
+  };
+  pinAuth.registerInputer({
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
+    }
+  });
+  userIDM.openSession((err, challenge) => {
+    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL_1, {
+      onResult: (result, extraInfo) => {
+        if (result != account_osAccount.ResultCode.SUCCESS) {
+          return;
+        }
+        credentialInfo.token = extraInfo.token;
+        userIDM.updateCredential(credentialInfo, {
+          onResult: (result, extraInfo) => {
+              console.log("updateCredential result = " + result);
+              console.log("updateCredential extraInfo = " + extraInfo);
           }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
+        });
       }
-  })
+    });
+  });
   ```
 
 ### closeSession<sup>8+</sup>
@@ -2535,7 +2540,7 @@ closeSession(): void;
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
+  let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
   ```
 
@@ -2561,11 +2566,11 @@ cancel(challenge: Uint8Array): number;
 
 | 类型   | 说明                                                       |
 | :----- | :-------------------------------------------------------- |
-| number | 返回一个[数字](#ResultCode<sup>8+</sup>)，指示取消是否成功。 |
+| number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
+  let userIDM = new account_osAccount.UserIdentityManager();
   let challenge = 1;
   let cancelresult = userIDM.cancel(challenge);
   ```
@@ -2587,28 +2592,18 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | 参数名    | 类型                                       | 必填 | 说明                      |
 | -------- | ------------------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                                 | 是  | 身份验证令牌。             |
-| callback | [IIdmCallback](#IIdmCallback<sup>8+</sup>) | 是  | 回调结果，返回的是删除结果。|
+| callback | [IIdmCallback](#iidmcallback8) | 是  | 回调结果，返回的是删除结果。|
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let onresult = {
-      delUserresult: null,
-      CredentialId: null,
-  }
-  let token = null;
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let token = new Uint8Array([0]);
   userIDM.delUser(token, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples  delUser result = " + result)
-          onresult.delUserresult = result
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicdelUser delUser = ' + JSON.stringify(onresult));
-      }
-  })
+    onResult: (result, extraInfo) => {
+      console.log("delUser result = " + result);
+      console.log("delUser extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
   ```
 
 ### delCred<sup>8+</sup>
@@ -2629,35 +2624,24 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | --------------- | ----------------------------------------------- | --- | ---------------------------|
 | credentialId    | Uint8Array                                      | 是  | 凭证索引。                  |
 | token           | Uint8Array                                      | 是  | 身份验证令牌。              |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)      | 是  | 回调结果，返回的是删除结果。 |
+| callback        | [IIdmCallback](#iidmcallback8)      | 是  | 回调结果，返回的是删除结果。 |
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let onresult = {
-      delUserresult: null,
-      CredentialId: null,
-  }
-  let credentialId = 1;
-  let token = null;
-  userIDM.delCred(credentialId, token,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples delCred result = " + result)
-          onresult.delCredresult = result
-          console.log("====>test for examples delCred extraInfo = " + extraInfo)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.log("====>test for examples delCred onresult = " + JSON.stringify(onresult));
-      }
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let credentialId = new Uint8Array([0]);
+  let token = new Uint8Array([0]);
+  userIDM.delCred(credentialId, token, {
+    onResult: (result, extraInfo) => {
+        console.log("delCred result = " + result);
+        console.log("delCred extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
   ```
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;, authType?: AuthType): void;
+getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 获取认证信息，使用callback回调异步返回结果。
 
@@ -2665,22 +2649,50 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;, authTy
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_IDM
 
 **参数：**
 
 | 参数名    | 类型                                               | 必填 | 说明                                                |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
-| authType | [AuthType](#AuthType<sup>8+</sup>) | 否   | 认证类型。                                          |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
+
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var authType = osAccount.AuthType.PIN;
-  userIDM.getAuthInfo(authType, function (authInfo) {
-      console.log("====>test for examples getAuthInfo AsyncCallback = " + JSON.stringify(authInfo))
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo((err, result) => {
+    console.log("getAuthInfo err = " + JSON.stringify(err));
+    console.log("getAuthInfo result = " + JSON.stringify(result));
+  });
+  ```
+
+### getAuthInfo<sup>8+</sup>
+
+getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+
+获取指定类型的认证信息，使用callback回调异步返回结果。
+
+此接口为系统接口，三方应用不支持调用。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明                                                |
+| -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
+| authType | [AuthType](#authtype8) | 是   | 认证类型。                                          |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
+
+**示例：**
+  ```js
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo(account_osAccount.AuthType.PIN, (err, result) => {
+    console.log("getAuthInfo err = " + JSON.stringify(err));
+    console.log("getAuthInfo result = " + JSON.stringify(result));
+  });
   ```
 
 ### getAuthInfo<sup>8+</sup>
@@ -2693,36 +2705,41 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_IDM
 
 **参数：**
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)  | 否   | 认证类型。|
+| authType | [AuthType](#authtype8)  | 否   | 认证类型。|
 
 **返回值：**
 
 | 类型                                         | 说明                                                                       |
 | :------------------------------------------- | :------------------------------------------------------------------------ |
-| Promise&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var authType = osAccount.AuthType.PIN;
-  userIDM.getAuthInfo(authType).then((authInfo) => {
-      console.log("====>test for examples getAuthInfo AsyncCallback = " + JSON.stringify(authInfo))
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result) => {
+    console.log("getAuthInfo result = " + JSON.stringify(result))
+  }).catch((err) => {
+    console.log("getAuthInfo error = " + JSON.stringify(err));
+  });
   ```
 
 ## IInputData<sup>8+</sup>
 
 密码数据回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onSetData<sup>8+</sup>
 
 onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+
+此接口为系统接口，三方应用不支持调用。
 
 通知设置数据。
 
@@ -2732,42 +2749,37 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 
 | 参数名      | 类型                                     | 必填 | 说明                                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是   | 用于认证的凭据子类型。                            |
+| pinSubType | [AuthSubType](#authsubtype8) | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
 **示例：**
   ```js
-  console.log("====>test for examples onCreate start ");
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  console.log("====>test for examples GetAuthSubType " + GetAuthSubType);
-  console.log("====>test for examples AuthSubType " + AuthSubType);
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          console.log("====>test for examples by GetAuthSubType " +GetAuthSubType );
-          if (GetAuthSubType == 0) {
-              console.log("====>test for examples GetAuthSubType == 0 ");
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              console.log("====>test for examples GetAuthSubType == 1 ");
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
-      }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let passwordNumber = new Uint8Array([1, 2, 3, 4]);
+  let inputer = {
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
+        } else {
+          callback.onSetData(pinSubType, password);
+        }
+    }
+  };
   ```
 
 ## IInputer<sup>8+</sup>
 
 密码输入框回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onGetData<sup>8+</sup>
 
-onGetData: (callback: IInputData) => void;
+onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 
 通知获取数据。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2775,41 +2787,39 @@ onGetData: (callback: IInputData) => void;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| callback   | [IInputData](#IInputData<sup>8+</sup>)  | 是   | 指示密码数据回调。|
+| callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
 
 **示例：**
   ```js
-  console.log("====>test for examples onCreate start ");
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  console.log("====>test for examples GetAuthSubType " + GetAuthSubType);
-  console.log("====>test for examples AuthSubType " + AuthSubType);
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          console.log("====>test for examples by GetAuthSubType " +GetAuthSubType );
-          if (GetAuthSubType == 0) {
-              console.log("====>test for examples GetAuthSubType == 0 ");
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              console.log("====>test for examples GetAuthSubType == 1 ");
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
-      }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let passwordNumber = new Uint8Array([1, 2, 3, 4]);
+  let inputer = {
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
+        } else {
+          callback.onSetData(pinSubType, password);
+        }
+    }
+  };
+  let pinAuth = new account_osAccount.PINAuth();
+  let result = pinAuth.registerInputer(inputer);
+  console.log("registerInputer result: " + result);
   ```
 
 ## IUserAuthCallback<sup>8+</sup>
 
 用户认证回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onResult<sup>8+</sup>
 
 onResult: (result: number, extraInfo: AuthResult) => void;
 
 身份认证结果代码通过回调返回。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2818,27 +2828,16 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                 |
 | --------- | --------------------------------------- | ---- | ------------------- |
 | result    | number                                   | 是   | 表示身份认证结果代码。|
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
+| extraInfo | [AuthResult](#authresult8)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      }
-  });
+  let authCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result);
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ### onAcquireInfo?<sup>8+</sup>
@@ -2861,45 +2860,28 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **示例：**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  let onacquireinfo = {
-      authmodule : null,
-      authacquire : null,
-      authextr : null
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result)
-          onresult.authresult = result
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      },
-      onAcquireInfo:function (modulea,acquire,extr){
-          console.info('====>test for examples publicauth auth onAcquireInfo in');
-          onacquireinfo.authmodule = modulea;
-          onacquireinfo.authacquire = acquire;
-          onacquireinfo.authextr = extr;
-          console.log("====>test for examples auth module = " + JSON.stringify(modulea));
-          console.info('====>test for examples publicauth auth onAcquireInfo = ' + JSON.stringify(onacquireinfo));
-      }
-  });
+  let authCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result)
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    },
+    onAcquireInfo: (module, acquire, extraInfo) => {
+      console.log("auth module = " + module);
+      console.log("auth acquire = " + acquire);
+      console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ## IIdmCallback<sup>8+</sup>
 
 身份管理回调。
 
+此接口为系统接口，三方应用不支持调用。
+
 ### onResult<sup>8+</sup>
 
-onResult: (result: number, extraInfo: AuthResult) => void;
+onResult: (result: number, extraInfo: RequestResult) => void;
 
 身份认证结果代码通过回调返回。
 
@@ -2912,29 +2894,16 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | 参数名     | 类型                                    | 必填 | 说明                     |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | 是   | 针对不同情况传递具体信息。|
+| extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
-      }
-  })
+  var idmCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("callback result = " + result)
+      console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ### onAcquireInfo?<sup>8+</sup>
@@ -2957,79 +2926,66 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **示例：**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  let onacquireinfo = {
-      updateCredmodule : null,
-      updateCredacquire : null,
-      updateCredextr : null
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
-      },
-      onAcquireInfo:function (modulea,acquire,extr){
-          console.info('====>test for examples publicupdateCred updateCredential  onAcquireInfo in ');
-          onacquireinfo.updateCredmodule = modulea
-          onacquireinfo.updateCredacquire = acquire
-          onacquireinfo.updateCredextr = extr
-          console.info('====>test for examples updateCredential onacquireinfo = ' + JSON.stringify(onacquireinfo));
-          console.log("====>test for examples updateCredential module = " + modulea)
-      }
-  })
+  let idmCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("callback result = " + result)
+      console.log("callback onResult = " + JSON.stringify(extraInfo));
+    },
+    onAcquireInfo: (module, acquire, extraInfo) => {
+      console.log("callback module = " + module);
+      console.log("callback acquire = " + acquire);
+      console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ## GetPropertyRequest<sup>8+</sup>
 
 提供获取属性请求的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名    | 类型                                                          | 必填   | 说明                   |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)                            | 是    | 身份验证凭据类型。        |
-| keys     | Array&lt;[GetPropertyType](#GetPropertyType<sup>8+</sup>)&gt; | 是    | 指示要获取的属性类型数组。 |
+| authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
 提供设置属性请求的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名    | 类型                                             | 必填   | 说明                 |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)               | 是    | 身份验证凭据类型。     |
-| keys     | [SetPropertyType](#SetPropertyType<sup>8+</sup>) | 是    | 指示要设置的属性类型。 |
+| authType | [AuthType](#authtype8)               | 是    | 身份验证凭据类型。     |
+| key     | [SetPropertyType](#setpropertytype8) | 是    | 指示要设置的属性类型。 |
 | setInfo  | Uint8Array                                       | 是    | 指示要设置的信息。     |
 
 ## ExecutorProperty<sup>8+</sup>
 
 提供执行器的属性。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | 是    | 指示结果。         |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示认证凭据子类型。|
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
 | remainTimes  | number                                   | 否    | 指示剩余时间。     |
 | freezingTime | number                                   | 否    | 指示冻结时间。     |
 
 ## AuthResult<sup>8+</sup>
 
 指示认证结果的信息。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3043,17 +2999,21 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 指示凭证信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
-| credType     | [AuthType](#AuthType<sup>8+</sup>)       | 是    | 指示凭据类型。     |
-| credSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示凭据子类型。   |
+| credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
+| credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
 | token        | Uint8Array                               | 是    | 指示认证令牌。     |
 
 ## RequestResult<sup>8+</sup>
 
 指示请求结果的信息。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3065,18 +3025,22 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 指示已注册凭据的信息。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数名        | 类型                                     | 必填   | 说明              |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | 是    | 指示凭据索引。       |
-| authType     | [AuthType](#AuthType<sup>8+</sup>)       | 是    | 指示认证凭据类型。   |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | 是    | 指示认证凭据子类型。 |
+| authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
 | templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
 
 ## GetPropertyType<sup>8+</sup>
 
 枚举，指示要获取的属性类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3090,6 +3054,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示要设置的属性类型。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数           | 默认值 | 说明        |
@@ -3099,6 +3065,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## AuthType<sup>8+</sup>
 
 枚举，指示身份验证的凭据类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3110,6 +3078,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## AuthSubType<sup>8+</sup>
 
 枚举，指示用于认证的凭据子类型。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3125,6 +3095,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示认证结果的受信任级别。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数  | 默认值 | 说明        |
@@ -3138,6 +3110,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，表示获取信息的模块。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数       | 默认值 | 说明                     |
@@ -3147,6 +3121,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## ResultCode<sup>8+</sup>
 
 枚举，指示身份验证结果代码。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
@@ -3168,6 +3144,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 枚举，指示人脸验证过程中提示代码。
 
+此接口为系统接口，三方应用不支持调用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
 | 参数                          | 默认值 | 说明                                     |
@@ -3187,6 +3165,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 ## ingerprintTips<sup>8+</sup>
 
 枚举，指示指纹身份验证过程中提示代码。
+
+此接口为系统接口，三方应用不支持调用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 

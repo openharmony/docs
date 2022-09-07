@@ -1,5 +1,7 @@
 # Page Routing
 
+The **Router** module provides APIs to access pages through URIs.
+
 > **NOTE**
 >
 > - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.router`](js-apis-router.md) instead.
@@ -372,12 +374,12 @@ Defines the **EnableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                    | Mandatory  | Description                       |
-| -------- | ------------------------ | ---- | ------------------------- |
-| message  | string                   | Yes   | Content displayed in the confirm dialog box.                 |
-| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
-| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
-| complete | () => void               | No   | Called when the API call is complete.             |
+| Name    | Type                | Mandatory| Description                                              |
+| -------- | ------------------------ | ---- | -------------------------------------------------- |
+| message  | string                   | Yes  | Content displayed in the confirm dialog box.                                  |
+| success  | (errMsg: string) => void | No  | Called when the **OK** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
+| cancel   | (errMsg: string) => void | No  | Called when the **Cancel** button in the confirm dialog box is clicked. **errMsg** indicates the returned information.|
+| complete | () => void               | No  | Called when the API call is complete.                          |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
 
@@ -385,11 +387,11 @@ Define the **DisableAlertBeforeBackPage** parameters.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                    | Mandatory  | Description                       |
-| -------- | ------------------------ | ---- | ------------------------- |
-| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
-| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
-| complete | () => void               | No   | Called when the API call is complete.             |
+| Name    | Type                | Mandatory| Description                                              |
+| -------- | ------------------------ | ---- | -------------------------------------------------- |
+| success  | (errMsg: string) => void | No  | Called when the dialog box is closed. **errMsg** indicates the returned information.|
+| cancel   | (errMsg: string) => void | No  | Called when the dialog box fails to be closed. **errMsg** indicates the returned information.|
+| complete | () => void               | No  | Called when the API call is complete.                          |
 
 ## ParamsInterface
 

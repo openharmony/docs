@@ -189,6 +189,7 @@ Obtains the application's widget information that meets a filter criterion on th
 **Example**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };
@@ -224,6 +225,7 @@ Obtains the application's widget information on the device. This API uses a prom
 **Example**
 
 ```js
+import formInfo from '@ohos.application.formInfo';
 const filter : formInfo.FormInfoFilter = {
     moduleName : "entry"
 };
@@ -236,13 +238,13 @@ formProvider.getFormsInfo(filter).then((data) => {
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback\<string>): void;
 
 Requests to publish a widget carrying data to the widget host. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -276,13 +278,13 @@ SystemCapability.Ability.Form
 
 ## requestPublishForm<sup>9+</sup>
 
-requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): &lt;void&gt;;
+requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 Requests to publish a widget to the widget host. This API uses an asynchronous callback to return the result.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -317,9 +319,9 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 
 Requests to publish a widget to the widget host. This API uses a promise to return the result.
 
-**System capability**
+**System capability**: SystemCapability.Ability.Form
 
-SystemCapability.Ability.Form
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -359,6 +361,8 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void;
 Checks whether a widget can be published to the widget host. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -401,6 +405,8 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;;
 Checks whether a widget can be published to the widget host. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.Form
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
 

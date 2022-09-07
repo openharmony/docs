@@ -1327,7 +1327,7 @@ This is a system API.
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br> <br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
+| callback | AsyncCallback&lt;[CallWaitingStatus](#callwaitingstatus7)\> | Yes  | Callback used to return the result.<br><br>- **0**: Call waiting is disabled.<br>- **1**: Call waiting is enabled.|
 
 **Example**
 
@@ -2743,13 +2743,13 @@ Defines the dialup options.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name    | Type                              | Mandatory| Description                                                        |
-| ---------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| extras     | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
-| accountId  | number                             | No  | Account ID. This API is supported since API version 8. It is a system API.         |
-| videoState | [VideoStateType](#videostatetype7) | No  | Video state type. This API is supported since API version 8. It is a system API.   |
-| dialScene  | [DialScene](#dialscene8)           | No  | Dialup scenario. This API is supported since API version 8. It is a system API.       |
-| dialType   | [DialType](#dialtype8)             | No  | Dialup type. This API is supported since API version 8. It is a system API.       |
+| Name                  | Type                              | Mandatory| Description                                                        |
+| ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| extras                   | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
+| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.         |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                            |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                |
 
 ## CallState
 

@@ -34,8 +34,7 @@
 5. 配置设备接口
 
    ```cpp
-   ret = g_usbClient.ClaimInterface(pip, interface, true);
-   interface为deviceList中device的interface。
+   ret = g_usbClient.ClaimInterface(pip, interface, true); //interface为deviceList中device的interface。
    ```
 
 6. 数据传输
