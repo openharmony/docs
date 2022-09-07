@@ -13,7 +13,13 @@
 ```js
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
 
-let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
+enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
+    if (error) {
+        console.log("error code:" + error.code + " error message:" + error.message);
+        return;
+    }
+    let deviceMgr = mgr;
+});
 ```
 
 ## DeviceSettingsManager.setDateTime
