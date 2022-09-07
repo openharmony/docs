@@ -4200,7 +4200,6 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
   **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
 
   ```ets
-  int index = 0;
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
