@@ -2000,7 +2000,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 | 类型                           | 说明                                    |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imageCreator9) | 如果操作成功，则返回ImageCreator实例。 |    
+| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |    
 
 **示例：**
 
