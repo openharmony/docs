@@ -1695,12 +1695,12 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3)
-    pointer.setPoint(0,0,{X:230,Y:480})
-    pointer.setPoint(0,1,{X:250,Y:380})
-    pointer.setPoint(0,2,{X:270,Y:280})
-    pointer.setPoint(1,0,{X:230,Y:680})
-    pointer.setPoint(1,1,{X:240,Y:580})
-    pointer.setPoint(1,2,{X:250,Y:480})
+    pointers.setPoint(0,0,{X:230,Y:480})
+    pointers.setPoint(0,1,{X:250,Y:380})
+    pointers.setPoint(0,2,{X:270,Y:280})
+    pointers.setPoint(1,0,{X:230,Y:680})
+    pointers.setPoint(1,1,{X:240,Y:580})
+    pointers.setPoint(1,2,{X:250,Y:480})
     await driver.injectMultiPointerAction(pointers)
 }
 ```
@@ -2128,12 +2128,12 @@ setPoint(finger: number, step: number, point: Point): void
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3)
-    pointer.setPoint(0,0,{X:230,Y:480})
-    pointer.setPoint(0,1,{X:250,Y:380})
-    pointer.setPoint(0,2,{X:270,Y:280})
-    pointer.setPoint(1,0,{X:230,Y:680})
-    pointer.setPoint(1,1,{X:240,Y:580})
-    pointer.setPoint(1,2,{X:250,Y:480})
+    pointers.setPoint(0,0,{X:230,Y:480})
+    pointers.setPoint(0,1,{X:250,Y:380})
+    pointers.setPoint(0,2,{X:270,Y:280})
+    pointers.setPoint(1,0,{X:230,Y:680})
+    pointers.setPoint(1,1,{X:240,Y:580})
+    pointers.setPoint(1,2,{X:250,Y:480})
 }
 ```
 
