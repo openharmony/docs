@@ -178,7 +178,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 ## screenlock.lockScreen<sup>9+</sup>
 
-lockScreen(callback: AsyncCallback&lt;void&gt;): void
+lockScreen(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 锁定屏幕，使用callback作为异步方法。
@@ -186,7 +186,7 @@ lockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -208,13 +208,13 @@ lockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 ## screenlock.lockScreen<sup>9+</sup>
 
-lockScreen(): Promise&lt;void&gt;
+lockScreen(): Promise&lt;boolean&gt;
 
 锁定屏幕，使用Promise作为异步方法。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **返回值**：
 
@@ -241,7 +241,7 @@ on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginS
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -266,7 +266,7 @@ on(type: 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<number\>)
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -290,7 +290,7 @@ on(type: 'screenlockEnabled', callback: Callback\<boolean\>): void
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -316,7 +316,7 @@ off(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'begin
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -341,7 +341,7 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback\<b
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
@@ -367,7 +367,7 @@ sendScreenLockEvent(event: String, parameter: number): Promise\<boolean\>
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数**：
 
