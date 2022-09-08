@@ -2460,7 +2460,6 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
  sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
      if (error) {
          console.error('getSingleSensor failed');
-         expect(false).assertTrue();
      } else {
          console.info("getSingleSensor " + JSON.stringify(data));
      }
