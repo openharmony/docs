@@ -948,7 +948,8 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
+var sourceOptions = { sourceDensity: 120 };
+let imageSource = image.createImageSource('test.png', sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1001,7 +1002,8 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(fd);
+var sourceOptions = { sourceDensity: 120 };
+let imageSource = image.createImageSource(-2, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1118,7 +1120,7 @@ const imageSourceApi = image.CreateIncrementalSource(buf);
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，wbmp，bmp，gif，webp，heif等。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW。 |
 
 ### getImageInfo
 
@@ -1545,7 +1547,7 @@ const imagePackerApi = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例，当前支持格式有：jpeg webp。
 
 ### 属性
 
@@ -2457,7 +2459,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。  |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp。  |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
 | bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
 
