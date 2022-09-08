@@ -18,9 +18,9 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 ### 接口说明
 | 接口名                                                                                          | 接口描述 |
 | ---------------------------------------------------------------------------------------------- | ----------- |
-| commonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback) | 创建订阅者对象(callback) |
-| commonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo)                          | 创建订阅者对象(promise)  |
-| commonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback)              | 订阅公共事件 |
+| createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback) | 创建订阅者对象(callback) |
+| createSubscriber(subscribeInfo: CommonEventSubscribeInfo)                          | 创建订阅者对象(promise)  |
+| subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback)              | 订阅公共事件 |
 
 ### 开发步骤
 1. 导入CommonEvent模块。
@@ -82,8 +82,8 @@ if (this.subscriber != null) {
 ### 接口说明
 | 接口名                              | 接口描述 |
 | ---------------------------------- | ------ |
-| commonEvent.publish(event: string, callback: AsyncCallback) | 发布公共事件 |
-| commonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback) | 指定发布信息并发布公共事件 |
+| publish(event: string, callback: AsyncCallback) | 发布公共事件 |
+| publish(event: string, options: CommonEventPublishData, callback: AsyncCallback) | 指定发布信息并发布公共事件 |
 
 ### 开发步骤
 #### 发布公共事件开发步骤
@@ -144,7 +144,7 @@ commonEvent.publish("event", options, (err) => {
 ### 接口说明
 | 接口名                              | 接口描述 |
 | ---------------------------------- | ------ |
-| commonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback) | 取消订阅公共事件 |
+| unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback) | 取消订阅公共事件 |
 
 ### 开发步骤
 1. 导入CommonEvent模块。
