@@ -2,7 +2,7 @@
 
 
 > **说明：**
-> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.991 Beta4**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.993**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download)获取下载链接。
 
 
 ## 创建JS工程
@@ -224,7 +224,7 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**Signing Configs**界面勾选“**Automatically generate signature**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
 
    ![06](figures/06.png)
 
