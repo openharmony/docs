@@ -2000,7 +2000,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 
 | 类型                           | 说明                                    |
 | ------------------------------ | --------------------------------------- |
-| [ImageCreator](#imageCreator9) | 如果操作成功，则返回ImageReceiver实例。 |    
+| [ImageCreator](#imageCreator9) | 如果操作成功，则返回ImageCreator实例。 |    
 
 **示例：**
 
@@ -2338,6 +2338,7 @@ img.release().then(() =>{
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
+| density<sup>9+</sup> | number | 是   | 是   | 图片密度。 |
 
 ## Size
 
@@ -2434,6 +2435,7 @@ PixelMap的初始化选项。
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度。   |
 
 ## Region<sup>7+</sup>
 
@@ -2457,7 +2459,7 @@ PixelMap的初始化选项。
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。  |
 | quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
