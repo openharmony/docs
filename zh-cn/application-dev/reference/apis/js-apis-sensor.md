@@ -2385,7 +2385,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 ## sensor.getSensorLists<sup>9+</sup>
 
- getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>):  void
+ getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>): void
 
 获取设备上的所有传感器信息。
 
@@ -2399,7 +2399,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **示例：** 
 
-```
+```js
 sensor.getSensorList((error, data) => {
     if (error) {
         console.error('getSensorList failed');
@@ -2428,7 +2428,7 @@ sensor.getSensorList((error, data) => {
 
 **示例：** 
 
-```
+```js
 sensor.getSensorList().then((data) => {
     console.info("getSensorList promise in" + data.length);
     for (var i = 0; i < data.length; i++) {
@@ -2456,7 +2456,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **示例：** 
 
-```
+```js
  sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
      if (error) {
          console.error('getSingleSensor failed');
@@ -2488,7 +2488,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **示例：**
 
-```
+```js
 sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
     console.info("getSingleSensor " + JSON.stringify(data));
 }, (error)=>{
@@ -2552,7 +2552,7 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((dat
 | venderName      | string   | 是   | 是   | 传感器供应商。         |
 | firmwareVersion | string   | 是   | 是   | 传感器固件版本。       |
 | hardwareVersion | string   | 是   | 是   | 传感器硬件版本。       |
-| sensorTypeId    | number   | 是   | 是   | 传感器类型 Id。        |
+| sensorTypeId    | number   | 是   | 是   | 传感器类型id。         |
 | maxRange        | number   | 是   | 是   | 传感器的最大测量范围。 |
 | precision       | number   | 是   | 是   | 传感器精度。           |
 | power           | number   | 是   | 是   | 传感器电源。           |
