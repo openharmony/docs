@@ -13,3 +13,13 @@ ImageBitmap对象可以存储canvas渲染的像素数据。
 | -------- | -------- | -------- |
 | width | number | ImageBitmap的像素宽度。 | 
 | height | number | ImageBitmap的像素高度。 | 
+
+
+## 方法
+
+
+### close
+
+close()
+
+释放ImageBitmap对象相关联的所有图形资源。该接口为空接口。
