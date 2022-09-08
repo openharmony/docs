@@ -2385,7 +2385,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 ## sensor.getSensorLists<sup>9+</sup>
 
- getSensorLists(callback: AsyncCallback&lt;sensor&gt;): void
+ getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>):  void
 
 获取设备上的所有传感器信息。
 
@@ -2393,9 +2393,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **参数：** 
 
-| 参数名   | 类型                                   | 必填 | 说明             |
-| -------- | -------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器列表。 |
+| 参数名   | 类型                                          | 必填 | 说明             |
+| -------- | --------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
@@ -2408,8 +2408,8 @@ sensor.getSensorList((error, data) => {
         for (var i = 0; i < data.length; i++) {
             console.info("getSensorList " + JSON.stringify(data[i]));
         }
-            }
-    });
+    }
+});
 ```
 
 ## sensor.getSensorLists<sup>9+</sup>
@@ -2422,15 +2422,15 @@ sensor.getSensorList((error, data) => {
 
 **返回值：** 
 
-| 参数名  | 类型                             | 必填 | 说明             |
-| ------- | -------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器列表。 |
+| 参数名  | 类型                                    | 必填 | 说明             |
+| ------- | --------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
 ```
 sensor.getSensorList().then((data) => {
-    console.info("getSensorList promise in-----------" + data.length);
+    console.info("getSensorList promise in" + data.length);
     for (var i = 0; i < data.length; i++) {
         console.info("getSensorList " + JSON.stringify(data[i]));
      }
@@ -2540,7 +2540,7 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((dat
 | --------- | -------- | ---- | ---- | ------------------------ |
 | timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
 
-## Sensor<sup>9+</sup>
+## Sensor
 
 指示传感器信息。
 
