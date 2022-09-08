@@ -21,28 +21,31 @@ showToast(options: ShowToastOptions): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名     | 类型                                    | 必填   | 说明      |
 | ------- | ------------------------------------- | ---- | ------- |
 | options | [ShowToastOptions](#showtoastoptions) | 是    | 文本弹窗选项。 |
 
 **示例：**
-  ```js
+
+```js
 prompt.showToast({            
   message: 'Message Info',
     duration: 2000,      
 });
-  ```
+```
+
 ## ShowToastOptions
 
 文本提示框的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full。
 
-| 名称       | 类型                                       | 必填     | 说明                                       |
-| -------- | ---------------------------------------- | ------ | ---------------------------------------- |
-| message  | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是      | 显示的文本信息。                                 |
-| duration | number                                   | 否      | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
-| bottom   | string\| number                                   | 否 | 设置弹窗边框距离屏幕底部的位置。                                        |
+| 名称       | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| message  | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是    | 显示的文本信息。                                 |
+| duration | number                                   | 否    | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
+| bottom   | string\| number                          | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
 ## prompt.showDialog
 
@@ -50,9 +53,10 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 创建并显示对话框，对话框响应后同步返回结果。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名     | 类型                                      | 必填   | 说明     |
 | ------- | --------------------------------------- | ---- | ------ |
 | options | [ShowDialogOptions](#showdialogoptions) | 是    | 对话框选项。 |
@@ -65,7 +69,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 **示例：**
 
-  ```js
+```js
 prompt.showDialog({
   title: 'Title Info',
   message: 'Message Info',
@@ -86,7 +90,7 @@ prompt.showDialog({
   .catch(err => {
     console.info('showDialog error: ' + err);
   })
-  ```
+```
 
 ## prompt.showDialog
 
@@ -94,17 +98,18 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 创建并显示对话框，对话框响应结果异步返回。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名      | 类型                                       | 必填   | 说明           |
 | -------- | ---------------------------------------- | ---- | ------------ |
 | options  | [ShowDialogOptions](#showdialogoptions)  | 是    | 页面显示对话框信息描述。 |
 | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | 是    | 对话框响应结果回调。   |
 
 **示例：**
-  ```js
+
+```js
 prompt.showDialog({
   title: 'showDialog Title Info',
   message: 'Message Info',
@@ -125,13 +130,13 @@ prompt.showDialog({
   }
   console.info('showDialog success callback, click button: ' + data.index);
 });
-  ```
+```
 
 ## ShowDialogOptions
 
 对话框的选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                       | 必填   | 说明                                       |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
@@ -143,7 +148,7 @@ prompt.showDialog({
 
 对话框的响应结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型     | 说明                  |
 | ----- | ------ | ------------------- |
@@ -159,6 +164,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
 **参数：**
+
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [ActionMenuOptions](#actionmenuoptions)  | 是    | 操作菜单选项。   |
@@ -166,7 +172,8 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 
 **示例：**
-  ```js
+
+```js
 prompt.showActionMenu({
   title: 'Title Info',
   buttons: [
@@ -186,7 +193,7 @@ prompt.showActionMenu({
   }
   console.info('showActionMenu success callback, click button: ' + data.index);
 })
-  ```
+```
 
 ## prompt.showActionMenu
 
@@ -197,17 +204,20 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名     | 类型                                      | 必填   | 说明      |
 | ------- | --------------------------------------- | ---- | ------- |
 | options | [ActionMenuOptions](#actionmenuoptions) | 是    | 操作菜单选项。 |
 
 **返回值：**
+
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
 | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | 菜单响应结果。 |
 
 **示例：**
-  ```js
+
+```js
 prompt.showActionMenu({
   title: 'showActionMenu Title Info',
   buttons: [
@@ -227,7 +237,7 @@ prompt.showActionMenu({
   .catch(err => {
     console.info('showActionMenu error: ' + err);
   })
-  ```
+```
 ## ActionMenuOptions
 
 操作菜单的选项。
