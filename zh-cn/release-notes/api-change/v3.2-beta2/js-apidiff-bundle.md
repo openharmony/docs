@@ -25,7 +25,7 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，包管理子�
 | ohos.bundle | bundle | getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;<br>getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string>>; | 新增 |
 | ohos.bundle | bundle | getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;<br>getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string>>; | 新增 |
 | ohos.bundle | bundle | getDispatcherVersion(callback: AsyncCallback\<DispatchInfo>): void;<br>getDispatcherVersion(): Promise\<DispatchInfo>; | 新增 |
-| ohos.bundle | bundle | getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag, callback: AsyncCallback\<pack.BundlePackInfo>): void;<br>getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag): Promise\<pack.BundlePackInfo>; | 新增 |
+| ohos.bundle | bundle | getBundlePackInfo(bundleName: string, bundlePackFlag: pack.BundlePackFlag, callback: AsyncCallback\<pack.BundlePackInfo>): void;<br>getBundlePackInfo(bundleName: string, bundlePackFlag: pack.BundlePackFlag): Promise\<pack.BundlePackInfo>; | 新增 |
 | ohos.bundle | SupportWindowMode | FLOATING = 2 | 新增 |
 | ohos.bundle | SupportWindowMode | SPLIT = 1 | 新增 |
 | ohos.bundle | SupportWindowMode | FULL_SCREEN = 0 | 新增 |
@@ -41,10 +41,10 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，包管理子�
 | ohos.bundle | DisplayOrientation | LANDSCAPE_INVERTED | 新增 |
 | ohos.bundle | BundleFlag | GET_APPLICATION_INFO_WITH_CERTIFICATE_FINGERPRINT = 0x00000400 | 新增 |
 | ohos.bundle | BundleFlag | GET_BUNDLE_WITH_HASH_VALUE = 0x00000030 | 新增 |
-| ohos.bundle.defaultAppManager | defaultAppManager | resetDefaultApplication(type: string, userId?: number) : Promise\<void>;<br>resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;<br>resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void; | 新增 |
-| ohos.bundle.defaultAppManager | defaultAppManager | setDefaultApplication(type: string, elementName: ElementName, userId?: number) : Promise\<void>;<br>setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;<br>setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void; | 新增 |
-| ohos.bundle.defaultAppManager | defaultAppManager | getDefaultApplication(type: string, userId?: number) : Promise\<BundleInfo>;<br>getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>) : void;<br>getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void; | 新增 |
-| ohos.bundle.defaultAppManager | defaultAppManager | isDefaultApplication(type: string) : Promise\<boolean>;<br>isDefaultApplication(type: string, callback: AsyncCallback\<boolean>) : void; | 新增 |
+| ohos.bundle.defaultAppManager | defaultAppManager | resetDefaultApplication(type: string, userId?: number): Promise\<void>;<br>resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>): void;<br>resetDefaultApplication(type: string, callback: AsyncCallback\<void>): void; | 新增 |
+| ohos.bundle.defaultAppManager | defaultAppManager | setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>;<br>setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>): void;<br>setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>): void; | 新增 |
+| ohos.bundle.defaultAppManager | defaultAppManager | getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>;<br>getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>): void;<br>getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>): void; | 新增 |
+| ohos.bundle.defaultAppManager | defaultAppManager | isDefaultApplication(type: string): Promise\<boolean>;<br>isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void; | 新增 |
 | ohos.bundle.defaultAppManager | ApplicationType | PPT = "PPT" | 新增 |
 | ohos.bundle.defaultAppManager | ApplicationType | EXCEL = "EXCEL" | 新增 |
 | ohos.bundle.defaultAppManager | ApplicationType | WORD = "WORD" | 新增 |
