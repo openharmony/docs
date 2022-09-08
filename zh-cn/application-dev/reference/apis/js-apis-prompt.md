@@ -41,8 +41,8 @@ prompt.showToast({
 | 名称       | 类型                                       | 必填     | 说明                                       |
 | -------- | ---------------------------------------- | ------ | ---------------------------------------- |
 | message  | string\| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | 是      | 显示的文本信息。                                 |
-| duration | number                                   | 否      | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
-| bottom   | string\| number                                   | 否 | 设置弹窗边框距离屏幕底部的位置。                                        |
+| duration | number                                   | 否      | 默认值1500ms，取值区间：1500ms-10000ms，若小于1500ms则取默认值, 若大于10000ms，则取上限值10000ms。|
+| bottom   | string                                   | number | 否                                        |
 
 ## prompt.showDialog
 
