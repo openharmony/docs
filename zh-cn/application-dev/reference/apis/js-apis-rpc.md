@@ -4003,7 +4003,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 > **说明：**
-> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex)替代。
+> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex9)替代。
 
 sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
@@ -4072,7 +4072,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
 
 **参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 |
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | code | number | 是 | 对端发送的服务请求码。 |
   | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
@@ -4081,7 +4081,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里同步或�
 
 **返回值：**
 
-    | 类型 | 说明 |
+  | 类型 | 说明 |
   | -------- | -------- |
   | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
   | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。 |
