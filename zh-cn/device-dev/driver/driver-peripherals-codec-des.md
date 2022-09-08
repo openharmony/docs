@@ -180,18 +180,18 @@ vendor/hihope/rk3568/hdf_config/uhdf/
     在device_info.hcs的codec_host中增加codec_omx_service配置，具体配置如下：
     ```c
     codec :: host {
-            hostName = "codec_host";
-            priority = 50;
-            gid = ["codec_host", "uhdf_driver", "vendor_mpp_driver"];
-            codec_omx_device :: device {
-                device0 :: deviceNode {
-                    policy = 2;                                      // 自动加载，非延迟加载
-                    priority = 100;                                  // 优先级
-                    moduleName = "libcodec_hdi_omx_server.z.so";     // 驱动的动态库
-                    serviceName = "codec_hdi_omx_service";           // 配置驱动的服务名
-                    deviceMatchAttr = "codec_component_capabilities";// 属性配置
-                }
+        hostName = "codec_host";
+        priority = 50;
+        gid = ["codec_host", "uhdf_driver", "vendor_mpp_driver"];
+        codec_omx_device :: device {
+            device0 :: deviceNode {
+                policy = 2;                                       // 自动加载，非延迟加载
+                priority = 100;                                   // 优先级
+                moduleName = "libcodec_hdi_omx_server.z.so";      // 驱动的动态库
+                serviceName = "codec_hdi_omx_service";            // 配置驱动的服务名
+                deviceMatchAttr = "codec_component_capabilities"; // 属性配置
             }
+        }
     }
     ```
 
