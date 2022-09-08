@@ -117,8 +117,8 @@ group("wifi") {
      
    ```
    { 
-       subsystem": "communication", 
-       components": [ 
+       "subsystem": "communication", 
+       "components": [ 
            { "component": "wifi_lite", "features":[] }
        ] 
    },
