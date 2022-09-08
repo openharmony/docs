@@ -2395,7 +2395,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 | 参数名   | 类型                                   | 必填 | 说明             |
 | -------- | -------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器链表。 |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器列表。 |
 
 **示例：** 
 
