@@ -256,7 +256,7 @@ Subscribes to display changes.
 
 ```js
 var callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
 }
 display.on("add", callback);
 ```
