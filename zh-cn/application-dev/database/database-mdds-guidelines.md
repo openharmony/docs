@@ -33,8 +33,42 @@
    ```js
    import distributedData from '@ohos.data.distributedData';
    ```
+2. 请求权限（同步操作时进行该步骤）。
 
-2. 根据配置构造分布式数据库管理类实例。
+   需要在`config.json`文件里进行配置请求权限（FA模型），示例代码如下：
+
+    ```json
+     {
+       "module": {
+           "reqPermissions": [
+               {
+                  "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+               }
+           ]
+       }
+     }
+    ```
+   Stage模型下的权限请求请参见[权限声明-Stage模型](../security/accesstoken-guidelines.md#stage模型)。
+
+   这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
+
+    ```js
+    import featureAbility from '@ohos.ability.featureAbility';
+	
+    function grantPermission() {
+        console.info('grantPermission');
+        let context = featureAbility.getContext();
+        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+            console.info(`result.requestCode=${result.requestCode}`)
+    
+        })
+        console.info('end grantPermission');
+    }
+    
+    grantPermission();
+    ```
+
+3. 根据配置构造分布式数据库管理类实例。
 
    1. 根据应用上下文创建`kvManagerConfig`对象。
    2. 创建分布式数据库管理器实例。
@@ -63,7 +97,7 @@
    }
    ```
 
-3. 获取/创建分布式数据库。
+4. 获取/创建分布式数据库。
 
    1. 声明需要创建的分布式数据库ID描述。
    2. 创建分布式数据库，建议关闭自动同步功能（`autoSync:false`），需要同步时主动调用`sync`接口。
@@ -97,7 +131,7 @@
    >
    > 组网设备间同步数据的场景，建议在应用启动时打开分布式数据库，获取数据库的句柄。在该句柄（如示例中的`kvStore`）的生命周期内无需重复创建数据库，可直接使用句柄对数据库进行数据的插入等操作。
    
-4. 订阅分布式数据变化。
+5. 订阅分布式数据变化。
 
    以下为订阅单版本分布式数据库数据变化通知的代码示例:
    ```js
@@ -106,7 +140,7 @@
    });
    ```
 
-5. 将数据写入分布式数据库。
+6. 将数据写入分布式数据库。
 
    1. 构造需要写入分布式数据库的`Key`（键）和`Value`（值）。
    2. 将键值数据写入分布式数据库。
@@ -129,7 +163,7 @@
    }
    ```
 
-6. 查询分布式数据库数据。
+7. 查询分布式数据库数据。
 
    1. 构造需要从单版本分布式数据库中查询的`Key`（键）。
    2. 从单版本分布式数据库中获取数据。
@@ -154,7 +188,7 @@
    }
    ```
 
-7. 同步数据到其他设备。
+8. 同步数据到其他设备。
 
    选择同一组网环境下的设备以及同步模式，进行数据同步。
 
