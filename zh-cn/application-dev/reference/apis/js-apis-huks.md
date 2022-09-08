@@ -983,7 +983,7 @@ async function attestKey() {
   let options = {
     properties: properties
   };
-  generateKey(aliasString);
+  await generateKey(aliasString);
   huks.attestKey(aliasString, options)
     .then((data) => {
       console.log(`test attestKey data: ${JSON.stringify(data)}`);
