@@ -2402,11 +2402,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 ```
 sensor.getSensorList((error, data) => {
     if (error) {
-        console.info('SensorJsTest_110 failed');
+        console.error('getSensorList failed');
     } else {
         console.info("getSensorList callback in" + data.length);
         for (var i = 0; i < data.length; i++) {
-            console.info("SensorJsTest_110 " + JSON.stringify(data[i]));
+            console.info("getSensorList " + JSON.stringify(data[i]));
         }
             }
     });
