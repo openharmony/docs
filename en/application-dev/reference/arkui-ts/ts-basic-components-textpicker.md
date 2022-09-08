@@ -1,12 +1,10 @@
 # TextPicker
 
+The **TextPicker** component allows users to scroll to select text.
 
-The **\<TextPicker>** component allows users to select text from a list of options.
-
-
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -21,34 +19,33 @@ Not supported
 
 ## APIs
 
-TextPicker(value: {range: string[] | Resource, value?: string, selected?: number})
+TextPicker(options: {range: string[]|Resource, selected?: number, value?: string})
 
 Creates a text picker based on the selection range specified by **range**.
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[]\|&nbsp;[Resource](../../ui/ts-types.md) | Yes | - | Data selection range of the picker. |
-  | value | string | No | - | Search text. |
-  | selected | number | No | Index of the first item | Index of the selected item in the array. |
+  | range | string[] \| [Resource](../../ui/ts-types.md#resource-type)| Yes| - | Data selection range of the picker.|
+  | selected | number | No| 0 | Index of the selected item in the range.        |
+  | value | string | No| Value of the first item| Value of the selected item. The priority of this parameter is lower than that of **selected**.|
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| defaultPickerItemHeight | Length | - | Default height of an item in the picker. |
+| defaultPickerItemHeight | Length | - | Default height of an item in the picker.|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: string, index: number) =&gt; void) | Triggered when an item in the picker is selected.<br/>- **value**: text of the selected item.<br/>- **index**: index of the selected item. |
+| onChange(callback: (value: string, index: number) =&gt; void) | Triggered when an item in the picker is selected.<br>- **value**: value of the selected item.<br>- **index**: index of the selected item.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
