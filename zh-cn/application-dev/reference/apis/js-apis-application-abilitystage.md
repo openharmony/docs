@@ -124,4 +124,4 @@ context: AbilityStageContext;
 
 | 属性名      | 类型                        | 说明                                                         |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
-| context  | [AbilityStageContext](js-apis-featureAbility.md) | 在启动能力阶段进行初始化时回调。 |
+| context  | [AbilityStageContext](js-apis-abilitystagecontext.md) | 在启动能力阶段进行初始化时回调。 |
