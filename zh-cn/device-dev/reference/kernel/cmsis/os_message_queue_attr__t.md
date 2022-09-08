@@ -52,7 +52,7 @@ void* osMessageQueueAttr_t::cb_mem
 
 **描述:**
 
-消息队列静态控制块指针
+用户指定内存的控制块指针
 
 
 ### cb_size
@@ -64,7 +64,7 @@ uint32_t osMessageQueueAttr_t::cb_size
 
 **描述:**
 
-消息队列静态控制块大小，单位: 字节
+用户指定内存的控制块大小，单位: 字节
 
 
 ### mq_mem
@@ -76,7 +76,7 @@ void* osMessageQueueAttr_t::mq_mem
 
 **描述:**
 
-消息队列静态内存指针
+用户指定内存作为消息队列空间的指针
 
 
 ### mq_size
@@ -88,7 +88,7 @@ uint32_t osMessageQueueAttr_t::mq_size
 
 **描述:**
 
-消息队列静态内存大小，单位: 字节
+用户指定内存的大小，单位: 字节
 
 
 ### name
