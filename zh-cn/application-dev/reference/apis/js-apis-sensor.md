@@ -2432,7 +2432,7 @@ sensor.getSensorList((error, data) => {
 sensor.getSensorList().then((data) => {
     console.info("getSensorList promise in-----------" + data.length);
     for (var i = 0; i < data.length; i++) {
-        console.info("SensorJsTest_109 " + JSON.stringify(data[i]));
+        console.info("getSensorList " + JSON.stringify(data[i]));
      }
 }, (error)=>{
     console.error('getSensorList failed');
@@ -2459,7 +2459,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 ```
  sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
      if (error) {
-         console.info('SensorJsTest_111 failed');
+         console.error('getSingleSensor failed');
          expect(false).assertTrue();
      } else {
          console.info("getSingleSensor " + JSON.stringify(data));
