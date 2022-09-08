@@ -1003,7 +1003,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 ```js
 var sourceOptions = { sourceDensity: 120 };
-let imageSource = image.createImageSource(-2, sourceOptions);
+let imageSource = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -2328,7 +2328,7 @@ img.release().then(() =>{
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                    |
+| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4                    |
 | region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
@@ -2363,13 +2363,13 @@ img.release().then(() =>{
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888。 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
-| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888。   |
-| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8。   |
-| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16。  |
-| NV21<sup>9+</sup>      | 8      | 格式为NV21。      |
-| NV12<sup>9+</sup>      | 9      | 格式为NV12。      |
+| RGBA_8888              | 3      | 格式为RGBA_8888 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888 |
+| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888   |
+| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8   |
+| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
+| NV21<sup>9+</sup>      | 8      | 格式为NV21      |
+| NV12<sup>9+</sup>      | 9      | 格式为NV12      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2381,8 +2381,8 @@ img.release().then(() =>{
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
+| PREMUL   | 2      | RGB前乘alpha          |
+| UNPREMUL | 3      | RGB不前乘alpha        |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -2459,9 +2459,9 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp。  |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp  |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2488,13 +2488,13 @@ PixelMap的初始化选项。
 | IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。               |
 | GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。               |
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。     |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec.。|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景，例如Directly photographed。     |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400。     |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8。     |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S     |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E     |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00     |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec.|
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景，例如Directly photographed     |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400     |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8     |
 
 
 ## ImageFormat<sup>9+</sup>
@@ -2519,7 +2519,7 @@ PixelMap的初始化选项。
 | YUV_Y | 1      | 亮度信息。  |
 | YUV_U | 2      | 色度信息。  |
 | YUV_V | 3      | 色度信息。  |
-| JPEG  | 4      | Jpeg 类型。 |
+| JPEG  | 4      | JPEG 类型。 |
 
 ## Component<sup>9+</sup>
 
