@@ -18,7 +18,7 @@
 | [name](#name) | 内存池名称。 | 
 | [attr_bits](#attr_bits) | 内存池属性位。 | 
 | [cb_mem](#cb_mem) | 用户指定的控制块指针。 | 
-| [cb_size](#cb_size) | 用户指定的控制块大小，单位:&nbsp;字节 | 
+| [cb_size](#cb_size) | 用户指定的控制块大小，单位:&nbsp;字节。 | 
 | [mp_mem](#mp_mem) | 用户指定的内存池指针。 | 
 | [mp_size](#mp_size) | 用户指定的内存池存储空间的大小，单位:&nbsp;字节。 | 
 
@@ -52,7 +52,7 @@ void* osMemoryPoolAttr_t::cb_mem
 
 **描述:**
 
-内存池静态控制块指针
+用户指定的控制块指针
 
 
 ### cb_size
@@ -64,7 +64,7 @@ uint32_t osMemoryPoolAttr_t::cb_size
 
 **描述:**
 
-内存池静态控制块大小，单位: 字节
+用户指定的控制块大小，单位: 字节
 
 
 ### mp_mem
@@ -76,7 +76,7 @@ void* osMemoryPoolAttr_t::mp_mem
 
 **描述:**
 
-内存池静态存储空间指针
+用户指定的内存池指针
 
 
 ### mp_size
@@ -88,7 +88,7 @@ uint32_t osMemoryPoolAttr_t::mp_size
 
 **描述:**
 
-内存池静态存储空间大小，单位: 字节
+用户指定的内存池存储空间的大小，单位: 字节
 
 
 ### name
