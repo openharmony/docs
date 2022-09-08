@@ -88,7 +88,6 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -2384,7 +2383,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   })
   ```
 
-## sensor.getSensorLists
+## sensor.getSensorLists<sup>9+</sup>
 
  getSensorLists(callback: AsyncCallback&lt;sensor&gt;): void
 
@@ -2401,19 +2400,19 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **示例：** 
 
 ```
-sensor.getSensorList(function(err, data)  {
-      if (err) {
-          console.error('getSensorList failed, : code' + err.code + ', message: ' +
-                        err.message);
-          return;
-      }
-      for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
-      }
-  })
+sensor.getSensorList((error, data) => {
+    if (error) {
+        console.info('SensorJsTest_110 failed');
+    } else {
+        console.info("getSensorList callback in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("SensorJsTest_110 " + JSON.stringify(data[i]));
+        }
+            }
+    });
 ```
 
-## sensor.getSensorLists
+## sensor.getSensorLists<sup>9+</sup>
 
  getSensorLists(): Promise< Array&lt;Sensor&gt;>
 
@@ -2425,23 +2424,22 @@ sensor.getSensorList(function(err, data)  {
 
 | 参数名  | 类型                             | 必填 | 说明             |
 | ------- | -------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器链表。 |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器列表。 |
 
 **示例：** 
 
 ```
-  const promise = sensor.getSensorList();
-      promise.then((data) => {
-          console.info('getSensorList successed');
-          for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
-      }).catch((err) => {
-          console.info('promise failed');
-  })
+sensor.getSensorList().then((data) => {
+    console.info("getSensorList promise in-----------" + data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.info("SensorJsTest_109 " + JSON.stringify(data[i]));
+     }
+}, (error)=>{
+    console.error('getSensorList failed');
+});
 ```
 
-##  sensor. getSingleSensor 
+##  sensor. getSingleSensor <sup>9+</sup>
 
 getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
@@ -2451,25 +2449,25 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                   | 必填 | 说明                     |
-| -------- | -------------------------------------- | ---- | ------------------------ |
-| type     | SensorType                             | 是   | 指示传感器类型。         |
-| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回获取到的单个传感器。 |
+| 参数名   | 类型                                   | 必填 | 说明             |
+| -------- | -------------------------------------- | ---- | ---------------- |
+| type     | SensorType                             | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
 
 **示例：** 
 
 ```
-sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(err, data)  {
-      if (err) {
-          console.error('getSingleSensor failed, code: ' + err.code + ', message: ' +
-                        err.message);
-          return;
-      }
-       console.info("data: " + data)
-  })
+ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+     if (error) {
+         console.info('SensorJsTest_111 failed');
+         expect(false).assertTrue();
+     } else {
+         console.info("getSingleSensor " + JSON.stringify(data));
+     }
+});
 ```
 
-##  sensor. getSingleSensor 
+##  sensor. getSingleSensor <sup>9+</sup>
 
  getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
 
@@ -2479,29 +2477,25 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(
 
 **参数：** 
 
-| 参数名 | 类型       | 必填 | 说明             |
-| ------ | ---------- | ---- | ---------------- |
-| type   | SensorType | 是   | 指示传感器类型。 |
+| 参数名 | 类型       | 必填 | 说明         |
+| ------ | ---------- | ---- | ------------ |
+| type   | SensorType | 是   | 传感器类型。 |
 
 **返回值：** 
 
-| 参数名  | 类型                             | 必填 | 说明                     |
-| ------- | -------------------------------- | ---- | ------------------------ |
-| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回获取到的单个传感器。 |
+| 参数名  | 类型                             | 必填 | 说明             |
+| ------- | -------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
 ```
-  const promise = sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER);
-      promise.then((data) => {
-          console.info('getSingleSensor successed');
-          console.info("data: " + data)
-      }).catch((err) => {
-          console.info('promise failed');
-  })
+sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+    console.info("getSingleSensor " + JSON.stringify(data));
+}, (error)=>{
+    console.error('getSingleSensor failed');
+});
 ```
-
-
 
 ## SensorType
 
@@ -2547,7 +2541,7 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(
 | --------- | -------- | ---- | ---- | ------------------------ |
 | timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
 
-## Sensor
+## Sensor<sup>9+</sup>
 
 指示传感器信息。
 
