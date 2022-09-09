@@ -1,6 +1,6 @@
 # Ability Development
 ## When to Use
-Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the `module.json` and `app.json` files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop an ability based on the stage model, implement the following logic:
+Ability development in the [stage model](stage-brief.md) is significantly different from that in the FA model. The stage model requires you to declare the application package structure in the `module.json5` and `app.json5` files during application development. For details about the configuration file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md). To develop an ability based on the stage model, implement the following logic:
 - Create an ability that supports screen viewing and human-machine interaction. You must implement the following scenarios: ability lifecycle callbacks, obtaining ability configuration, requesting permissions, and notifying environment changes.
 - Start an ability. You need to implement ability startup on the same device, on a remote device, or with a specified UI page.
 - Call abilities. For details, see [Call Development](stage-call.md).
@@ -8,7 +8,7 @@ Ability development in the [stage model](stage-brief.md) is significantly differ
 - Continue the ability on another device. For details, see [Ability Continuation Development](stage-ability-continuation.md).
 
 ### Launch Type
-An ability can be launched in the **standard**, **singleton**, or **specified** mode, as configured by `launchType` in the `module.json` file. Depending on the launch type, the action performed when the ability is started differs, as described below.
+An ability can be launched in the **standard**, **singleton**, or **specified** mode, as configured by `launchType` in the `module.json5` file. Depending on the launch type, the action performed when the ability is started differs, as described below.
 
 | Launch Type    | Description    |Action            |
 | ----------- | -------  |---------------- |
@@ -16,7 +16,7 @@ An ability can be launched in the **standard**, **singleton**, or **specified** 
 | singleton   | Singleton  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
-By default, the singleton mode is used. The following is an example of the `module.json` file:
+By default, the singleton mode is used. The following is an example of the `module.json5` file:
 ```json
 {
   "module": {
@@ -42,6 +42,7 @@ The table below describes the APIs provided by the `AbilityStage` class, which h
 The table below describes the APIs provided by the `Ability` class. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
 
 **Table 2** Ability APIs
+
 |API|Description|
 |:------|:------|
 |onCreate(want: Want, param: AbilityConstant.LaunchParam): void|Called when an ability is created.|
@@ -107,7 +108,10 @@ To create Page abilities for an application in the stage model, you must impleme
    }
    ```
 ### Obtaining AbilityStage and Ability Configurations
-Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details. The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
+Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details.
+
+The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
+
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
 export default class MyAbilityStage extends AbilityStage {
@@ -145,9 +149,9 @@ export default class MainAbility extends Ability {
 }
 ```
 ### Requesting Permissions
-If an application needs to obtain user privacy information or use system capabilities, for example, obtaining location information or using the camera to take photos or record videos, it must request the respective permission from consumers. During application development, you need to specify the involved sensitive permissions, declare the required permissions in `module.json`, and use the `requestPermissionsFromUser` API to request the permission from consumers in the form of a dialog box. The following uses the permission for calendar access as an example.
+If an application needs to obtain user privacy information or use system capabilities, for example, obtaining location information or using the camera to take photos or record videos, it must request the respective permission from consumers. During application development, you need to specify the involved sensitive permissions, declare the required permissions in `module.json5`, and use the `requestPermissionsFromUser` API to request the permission from consumers in the form of a dialog box. The following uses the permission for calendar access as an example.
 
-Declare the required permission in the `module.json` file.
+Declare the required permission in the `module.json5` file.
 ```json
 "requestPermissions": [
     {
@@ -269,7 +273,7 @@ function getRemoteDeviceId() {
 ```
 Request the permission `ohos.permission.DISTRIBUTED_DATASYNC` from consumers. This permission is used for data synchronization. For details about the sample code for requesting the permission, see [Requesting Permissions](##requesting-permissions).
 ### Starting an Ability with the Specified Page
-If the launch type of an ability is set to `singleton` and the ability has been started, the `onNewWant` callback rather than the `onCreate` callback is triggered when the ability is started again. You can pass start options through the `want`. For example, to start an ability with the specified page, use the `uri` or `parameters` parameter in the `want` to pass the page information. Currently, the ability in the stage model cannot directly use the `router` capability. You must pass the start options to the custom component and invoke the `router` method to display the specified page during the custom component lifecycle management. The sample code is as follows:
+If the launch type of an ability is set to `singleton` and the ability has been started, the `onNewWant` callback is triggered when the ability is started again. You can pass start options through the `want`. For example, to start an ability with the specified page, use the `uri` or `parameters` parameter in the `want` to pass the page information. Currently, the ability in the stage model cannot directly use the `router` capability. You must pass the start options to the custom component and invoke the `router` method to display the specified page during the custom component lifecycle management. The sample code is as follows:
 
 When using `startAbility` to start an ability again, use the `uri` parameter in the `want` to pass the page information.
 ```ts

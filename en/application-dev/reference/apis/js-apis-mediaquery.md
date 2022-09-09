@@ -26,6 +26,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | condition | string | Yes   | Matching condition of a media event. For details, see [Syntax of Media Query Conditions](../../ui/ui-ts-layout-mediaquery.md#syntax-of-media-query-conditions).|
@@ -37,7 +38,7 @@ Sets the media query criteria and returns the corresponding listening handle.
 
 **Example**
   ```js
-listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
+let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
   ```
 
 
@@ -66,7 +67,7 @@ Registers a callback with the corresponding query condition by using the handle.
 **Parameters**
 | Name     | Type                              | Mandatory  | Description              |
 | -------- | -------------------------------- | ---- | ---------------- |
-| type     | string                           | Yes   | Must enter the string **'change'**.|
+| type     | string                           | Yes   | Must enter the string **change**.|
 | callback | Callback&lt;MediaQueryResult&gt; | Yes   | Callback registered with media query.      |
 
 **Example**
@@ -88,7 +89,7 @@ Deregisters a callback with the corresponding query condition by using the handl
 | callback | Callback&lt;MediaQueryResult&gt; | No   | Callback to be deregistered. If the default value is used, all callbacks of the handle are deregistered.|
 
 **Example**
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); // Listen for landscape events.
@@ -117,10 +118,9 @@ Deregisters a callback with the corresponding query condition by using the handl
 
 ### Example
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
 
-let portraitFunc = null
 
 @Entry
 @Component
@@ -140,7 +140,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    let portraitFunc = this.onPortrait.bind(this) // Bind the current JS instance.
     this.listener.on('change', portraitFunc)
   }
 

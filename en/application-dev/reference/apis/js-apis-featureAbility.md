@@ -138,10 +138,10 @@ Starts an ability. This API uses a callback to return the execution result when 
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
-   {
+    {
         want:
         {
             action: "action.system.home",
@@ -154,6 +154,9 @@ featureAbility.startAbilityForResult(
             uri:""
         },
     },
+    (err, data) => {
+        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+    }
 )
 ```
 
@@ -180,7 +183,7 @@ Starts an ability. This API uses a promise to return the execution result when t
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.startAbilityForResult(
     {
@@ -284,7 +287,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import wantConstant from '@ohos.ability.wantConstant'
 featureAbility.terminateSelfWithResult(
     {
@@ -335,7 +338,7 @@ Checks whether the main window of this ability has the focus. This API uses a ca
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus()
 ```
 
@@ -358,7 +361,7 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
     console.info("==========================>hasWindowFocus=======================>");
 });
@@ -383,7 +386,7 @@ Obtains the **Want** object sent from this ability. This API uses a callback to 
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant()
 ```
 
@@ -406,7 +409,7 @@ Obtains the **Want** object sent from this ability. This API uses a promise to r
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
 		console.info("==========================>getWantCallBack=======================>");
 });
@@ -429,7 +432,7 @@ Obtains the application context.
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
 context.getBundleName()
 ```
@@ -453,7 +456,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf()
 ```
 
@@ -476,7 +479,7 @@ Destroys this Page ability, with the result code and data sent to the caller. Th
 **Example**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {		    console.info("==========================>terminateSelfCallBack=======================>");
 });
 ```
@@ -926,6 +929,8 @@ Enumerates operation types of the Data ability.
 | action                           | Read-only    | string               | No  | Action option.                                        |
 | parameters                       | Read-only    | {[key: string]: any} | No  | List of parameters in the **Want** object.                                        |
 | entities                         | Read-only    | Array\<string>       | No  | List of entities.                                      |
+| extensionAbilityType<sup>9+</sup> |  Read-only   | bundle.ExtensionAbilityType | No  | Type of the Extension ability.                |
+| extensionAbilityName<sup>9+<sup> | Read-only     | string               | No   | Description of the Extension ability name in the **Want** object.                                   |
 
 ## flags
 
