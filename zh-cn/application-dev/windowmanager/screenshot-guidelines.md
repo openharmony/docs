@@ -16,7 +16,7 @@
 import screenshot from '@ohos.screenshot' // 导入模块
 
 // 设置屏幕截图参数
-var ScreenshotOptions = {
+let screenshotOps = {
 	"screenRect": {
 		"left": 200,
 		"top": 100,
@@ -28,8 +28,7 @@ var ScreenshotOptions = {
 	"rotation": 0
 };
 
-let image; // image用来保存屏幕截图
-screenshot.save(ScreenshotOptions).then((image) => {
+screenshot.save(screenshotOps).then((image) => {
 	console.log('screenshot.save success, screenshot image :' + JSON.stringify(image));
 }, (err) => {
     console.log('screenshot.save failed, error : ' + JSON.stringify(err));
