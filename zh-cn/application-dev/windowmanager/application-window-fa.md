@@ -55,7 +55,7 @@
    ```js
    import window from '@ohos.window';
    
-   var windowClass = null;
+   let windowClass = null;
    // 1.方式一：创建子窗口。
    window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
        if (err.code) {
@@ -162,13 +162,16 @@
 
 1. 获取主窗口对象。
 
-   沉浸式能力需要在成功获取应用主窗口对象的前提下进行。使用`window.getTopWindow`接口来获取得到主窗口。
-
-   
+   > **说明：** 
+   >
+   > 沉浸式能力需要在成功获取应用主窗口对象的前提下进行。
+   >
+   > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getTopWindow`接口来获取得到主窗口。
+  
    ```js
    import window from '@ohos.window';
    
-   var mainWindowClass = null;
+   let mainWindowClass = null;
    // 1.获取主窗口
    window.getTopWindow((err, data) => {
      if (err.code) {
@@ -188,7 +191,7 @@
 
    ```js
    // 2.实现沉浸式效果。方式一：设置窗口全屏显示。
-   var isFullScreen = true;
+   let isFullScreen = true;
    mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -197,7 +200,7 @@
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-   var names = [];
+   let names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -207,7 +210,7 @@
    });
    // 2.实现沉浸式效果。
    //方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
-   var isLayoutFullScreen = true;
+   let isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -215,7 +218,7 @@
      }
      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
    });
-   var SystemBarProperties = {
+   let sysBarProps = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
      //以下两个属性从API Version7开始支持
@@ -225,7 +228,7 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+   mainWindowClass.setSystemBarProperties(sysBarProps, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
