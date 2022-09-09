@@ -2468,7 +2468,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
- getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
+ getSingleSensor(type: SensorType): Promise&lt;Sensor&gt;
 
 获取指定类型的传感器信息。
 
