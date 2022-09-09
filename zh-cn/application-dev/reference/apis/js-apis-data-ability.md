@@ -13,12 +13,9 @@ DataAbility 谓词用于构造关系型数据库的谓词，提供用于实现�
 import dataAbility from '@ohos.data.dataAbility';
 ```
 
-
 ## dataAbility.createRdbPredicates
 
-
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
-
 
 从DataAbilityPredicates对象创建RdbPredicates对象。
 
@@ -45,17 +42,13 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 
-
 ## DataAbilityPredicates
 
 提供用于实现不同查询方法的谓词。
 
-
 ### equalTo
 
-
 equalTo(field: string, value: ValueType): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为ValueType且值等于指定值的字段。
 
@@ -80,12 +73,9 @@ equalTo(field: string, value: ValueType): DataAbilityPredicates
   dataAbilityPredicates.equalTo("NAME", "lisi")
   ```
 
-
 ### notEqualTo
 
-
 notEqualTo(field: string, value: ValueType): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为ValueType且值不等于指定值的字段。
 
@@ -110,12 +100,9 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
   dataAbilityPredicates.notEqualTo("NAME", "lisi")
   ```
 
-
 ### beginWrap
 
-
 beginWrap(): DataAbilityPredicates
-
 
 向谓词添加左括号。
 
@@ -138,12 +125,9 @@ beginWrap(): DataAbilityPredicates
       .endWrap()
   ```
 
-
 ### endWrap
 
-
 endWrap(): DataAbilityPredicates
-
 
 向谓词添加右括号。
 
@@ -166,12 +150,9 @@ endWrap(): DataAbilityPredicates
       .endWrap()
   ```
 
-
 ### or
 
-
 or(): DataAbilityPredicates
-
 
 将或条件添加到谓词中。
 
@@ -191,12 +172,9 @@ or(): DataAbilityPredicates
       .equalTo("NAME", "Rose")
   ```
 
-
 ### and
 
-
 and(): DataAbilityPredicates
-
 
 将和条件添加到谓词中。
 
@@ -216,12 +194,9 @@ and(): DataAbilityPredicates
       .equalTo("SALARY", 200.5)
   ```
 
-
 ### contains
 
-
 contains(field: string, value: string): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为string且value包含指定值的字段。
 
@@ -246,12 +221,9 @@ contains(field: string, value: string): DataAbilityPredicates
   dataAbilityPredicates.contains("NAME", "os")
   ```
 
-
 ### beginsWith
 
-
 beginsWith(field: string, value: string): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为string且值以指定字符串开头的字段。
 
@@ -276,12 +248,9 @@ beginsWith(field: string, value: string): DataAbilityPredicates
   dataAbilityPredicates.beginsWith("NAME", "os")
   ```
 
-
 ### endsWith
 
-
 endsWith(field: string, value: string): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为string且值以指定字符串结尾的字段。
 
@@ -306,12 +275,9 @@ endsWith(field: string, value: string): DataAbilityPredicates
   dataAbilityPredicates.endsWith("NAME", "se")
   ```
 
-
 ### isNull
 
-
 isNull(field: string): DataAbilityPredicates
-
 
 配置谓词以匹配值为null的字段。
 
@@ -335,12 +301,9 @@ isNull(field: string): DataAbilityPredicates
   dataAbilityPredicates.isNull("NAME")
   ```
 
-
 ### isNotNull
 
-
 isNotNull(field: string): DataAbilityPredicates
-
 
 配置谓词以匹配值不为null的指定字段。
 
@@ -364,12 +327,9 @@ isNotNull(field: string): DataAbilityPredicates
   dataAbilityPredicates.isNotNull("NAME")
   ```
 
-
 ### like
 
-
 like(field: string, value: string): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为string且值类似于指定字符串的字段。
 
@@ -398,7 +358,6 @@ like(field: string, value: string): DataAbilityPredicates
 
 glob(field: string, value: string): DataAbilityPredicates
 
-
 配置谓词以匹配数据类型为string的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
@@ -425,7 +384,6 @@ glob(field: string, value: string): DataAbilityPredicates
 ### between
 
 between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为ValueType且value在指定范围内的指定字段。
 
@@ -455,7 +413,6 @@ between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
 notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
-
 配置谓词以匹配数据类型为ValueType且value超出给定范围的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
@@ -484,7 +441,6 @@ notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicate
 
 greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
-
 配置谓词以匹配数据类型为ValueType且值大于指定值的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
@@ -511,7 +467,6 @@ greaterThan(field: string, value: ValueType): DataAbilityPredicates
 ### lessThan
 
 lessThan(field: string, value: ValueType): DataAbilityPredicates
-
 
 配置谓词以匹配数据类型为valueType且value小于指定值的字段。
 
@@ -562,7 +517,6 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
   ```js
   dataAbilityPredicates.greaterThanOrEqualTo("AGE", 18)
   ```
-
 
 ### lessThanOrEqualTo
 
