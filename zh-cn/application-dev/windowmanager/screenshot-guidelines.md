@@ -16,7 +16,7 @@
 import screenshot from '@ohos.screenshot' // 导入模块
 
 // 设置屏幕截图参数
-var screenshotOps = {
+let screenshotOps = {
 	"screenRect": {
 		"left": 200,
 		"top": 100,
