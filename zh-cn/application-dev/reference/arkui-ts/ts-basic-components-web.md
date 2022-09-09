@@ -3102,6 +3102,38 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
   })
   ```
 
+### getUrl<sup>9+</sup>
+
+getUrl(): string
+
+获取当前页面的url地址。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| string | 当前页面的url地址。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getUrl')
+          .onClick(() => {
+            console.log("url: " + this.controller.getUrl());
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## HitTestValue<sup>9+</sup>
 提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue9)。
 
