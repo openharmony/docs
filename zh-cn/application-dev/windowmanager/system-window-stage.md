@@ -47,8 +47,6 @@
 import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
 import window from '@ohos.window';
 
-let windowClass = null;
-
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
         console.log("[Demo] MainAbility onCreate")
