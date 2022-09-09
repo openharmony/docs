@@ -21,6 +21,7 @@ getAccountManager(): AccountManager
 **系统能力：** SystemCapability.Account.OsAccount
 
 **返回值：**
+
 | 类型                              | 说明                     |
 | --------------------------------- | ------------------------ |
 | [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
