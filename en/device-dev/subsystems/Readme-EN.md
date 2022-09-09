@@ -77,7 +77,6 @@
   - [init Module](subsys-boot-init.md)
   - [appspawn Module](subsys-boot-appspawn.md)
    - [bootstrap Module](subsys-boot-bootstrap.md)
-  - [syspara Module](subsys-boot-syspara.md)
   - [FAQs](subsys-boot-faqs.md)
   - [Reference](subsys-boot-ref.md)
 - [Test Case Development](subsys-testguide-test.md)
@@ -98,7 +97,7 @@
   - [FaultLogger Development](subsys-dfx-faultlogger.md)
 - R&D Tools
   - [bytrace](subsys-toolchain-bytrace-guide.md)
-  - [hdc\_std](subsys-toolchain-hdc-guide.md)
+  - [hdc_std](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
 - [XTS Test Case Development](subsys-xts-guide.md)
 

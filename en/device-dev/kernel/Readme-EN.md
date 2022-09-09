@@ -19,13 +19,13 @@
             - [Software Timer](kernel-mini-basic-soft.md)
         - Extended Components
             - [C++ Support](kernel-mini-extend-support.md)
-            - [PUP](kernel-mini-extend-cpup.md)
+            - [CPUP](kernel-mini-extend-cpup.md)
             - [Dynamic Loading](kernel-mini-extend-dynamic-loading.md)
-            - [File System](kernel-mini-extend-file.md)
+            - File System
                 - [FAT](kernel-mini-extend-file-fat.md)
                 - [LittleFS](kernel-mini-extend-file-lit.md)
         - Kernel Debugging
-            - [Memory Debugging](kernel-mini-memory-debug.md)
+            - Memory Debugging
                 - [Memory Information Statistics](kernel-mini-memory-debug-mes.md)
                 - [Memory Leak Check](kernel-mini-memory-debug-det.md)
                 - [Memory Corruption Check](kernel-mini-memory-debug-cet.md)
@@ -52,25 +52,25 @@
             - Memory Management
                 - [Heap Memory Management](kernel-small-basic-memory-heap.md)
                 - [Physical Memory Management](kernel-small-basic-memory-physical.md)
-				- [Virtual Memory Management](kernel-small-basic-memory-virtual.md)
-				- [Virtual-to-Physical Mapping](kernel-small-basic-inner-reflect.md)
+                - [Virtual Memory Management](kernel-small-basic-memory-virtual.md)
+                - [Virtual-to-Physical Mapping](kernel-small-basic-inner-reflect.md)
             - Kernel Communication Mechanisms
               - [Event](kernel-small-basic-trans-event.md)
-			  - [Semaphore](kernel-small-basic-trans-semaphore.md)
-			  - [Mutex](kernel-small-basic-trans-mutex.md)
+              - [Semaphore](kernel-small-basic-trans-semaphore.md)
+              - [Mutex](kernel-small-basic-trans-mutex.md)
               - [Queue](kernel-small-basic-trans-queue.md)
               - [RW Lock](kernel-small-basic-trans-rwlock.md)
               - [Futex](kernel-small-basic-trans-user-mutex.md)
               - [Signal](kernel-small-basic-trans-user-signal.md)
             - [Time Management](kernel-small-basic-time.md)
-			- [Software Timer](kernel-small-basic-softtimer.md)
-			- [Atomic Operation](kernel-small-basic-atomic.md)
+            - [Software Timer](kernel-small-basic-softtimer.md)
+            - [Atomic Operation](kernel-small-basic-atomic.md)
         - Extension Components
             - [System Call](kernel-small-bundles-system.md)
             - [Dynamic Loading and Linking](kernel-small-bundles-linking.md)
             - [Virtual Dynamic Shared Object](kernel-small-bundles-share.md)
             - [LiteIPC](kernel-small-bundles-ipc.md)
-            - [File Systems](kernel-small-bundles-fs.md)
+            - File Systems
                 - [Virtual File System](kernel-small-bundles-fs-virtual.md)
                 - Supported File Systems
                     - [FAT](kernel-small-bundles-fs-support-fat.md)
