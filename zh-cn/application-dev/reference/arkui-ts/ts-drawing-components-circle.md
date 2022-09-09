@@ -3,12 +3,8 @@
  用于绘制圆形的组件。 
 
 >  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -26,6 +22,10 @@ Circle(options?: {width?: string | number, height?: string | number})
   | width | string \| number | 否 | 0 | 宽度。 |
   | height | string \| number | 否 | 0 | 高度。 |
 
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| width | string&nbsp;\|&nbsp;number | 是 | - | 宽度。 |
+| height | string&nbsp;\|&nbsp;number | 是 | - | 高度。 |
 
 ## 属性
 
