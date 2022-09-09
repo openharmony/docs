@@ -88,7 +88,6 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-
 **需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -1880,11 +1879,11 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
-| 参数名             | 类型                                       | 必填   | 说明                |
-| --------------- | ---------------------------------------- | ---- | ----------------- |
-| locationOptions | [LocationOptions](#locationoptions)      | 是    | 地理位置。             |
-| timeMillis      | number                                   | 是    | 表示获取磁偏角的时间，单位为毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是    | 返回磁场信息。           |
+| 参数名          | 类型                                                         | 必填 | 说明                               |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
+| timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
 
 **示例：** 
 ```js
@@ -2384,6 +2383,118 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   })
   ```
 
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>): void
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                          | 必填 | 说明             |
+| -------- | --------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorList((error, data) => {
+    if (error) {
+        console.error('getSensorList failed');
+    } else {
+        console.info("getSensorList callback in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("getSensorList " + JSON.stringify(data[i]));
+        }
+    }
+});
+```
+
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(): Promise< Array&lt;Sensor&gt;>
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 参数名  | 类型                                    | 必填 | 说明             |
+| ------- | --------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorList().then((data) => {
+    console.info("getSensorList promise in" + data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.info("getSensorList " + JSON.stringify(data[i]));
+     }
+}, (error)=>{
+    console.error('getSensorList failed');
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                   | 必填 | 说明             |
+| -------- | -------------------------------------- | ---- | ---------------- |
+| type     | SensorType                             | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
+
+**示例：** 
+
+```js
+ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+     if (error) {
+         console.error('getSingleSensor failed');
+     } else {
+         console.info("getSingleSensor " + JSON.stringify(data));
+     }
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+ getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型       | 必填 | 说明         |
+| ------ | ---------- | ---- | ------------ |
+| type   | SensorType | 是   | 传感器类型。 |
+
+**返回值：** 
+
+| 参数名  | 类型                             | 必填 | 说明             |
+| ------- | -------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
+
+**示例：**
+
+```js
+sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+    console.info("getSingleSensor " + JSON.stringify(data));
+}, (error)=>{
+    console.error('getSingleSensor failed');
+});
+```
 
 ## SensorType
 
@@ -2425,10 +2536,26 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称        | 参数类型   | 可读   | 可写   | 说明           |
-| --------- | ------ | ---- | ---- | ------------ |
-| timestamp | number | 是    | 是    | 传感器数据上报的时间戳。 |
+| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
+| --------- | -------- | ---- | ---- | ------------------------ |
+| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
 
+## Sensor
+
+指示传感器信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称            | 参数类型 | 说明                   |
+| --------------- | -------- | ---------------------- |
+| sensorName      | string   | 传感器名称。           |
+| venderName      | string   | 传感器供应商。         |
+| firmwareVersion | string   | 传感器固件版本。       |
+| hardwareVersion | string   | 传感器硬件版本。       |
+| sensorTypeId    | number   | 传感器类型id。         |
+| maxRange        | number   | 传感器的最大测量范围。 |
+| precision       | number   | 传感器精度。           |
+| power           | number   | 传感器电源。           |
 
 ## AccelerometerResponse
 
