@@ -282,13 +282,113 @@ promise.then(data => {
 });
 ```
 
+### on<sup>9+</sup>
+
+on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNameList: Array&lt;string&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void;
+
+订阅指定tokenId列表与权限列表的权限状态变更事件，使用callback回调异步返回结果。
+
+此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名             | 类型                   | 必填 | 说明                                                          |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
+| tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。        |
+| permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化。               |
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
+
+**示例：**
+
+```js
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+function OnPermissionStateChanged(data){
+    console.debug("receive permission state change, data:" + JSON.stringify(data));
+}
+let atManager = abilityAccessCtrl.createAtManager();
+let type: 'permissionStateChange' = 'permissionStateChange';
+let tokenIDList: Array&lt;number&gt; = [];
+let permissionNameList: Array&lt;string&gt; = [];
+try{
+    atManager.on(type, tokenIDList, permissionNameList, OnPermissionStateChanged);
+}
+catch(err){
+    console.error("on err:" + JSON.stringify(err));
+}
+```
+
+### off<sup>9+</sup>
+
+off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNameList: Array&lt;string&gt;, callback?: Callback&lt;PermissionStateChangeInfo&gt;): void;
+
+取消订阅指定tokenId列表与权限列表的权限状态变更事件，使用callback回调异步返回结果。
+
+此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名             | 类型                   | 必填 | 说明                                                          |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
+| tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
+| permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
+| callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+
+**示例：**
+
+```js
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+
+let atManager = abilityAccessCtrl.createAtManager();
+let type: 'permissionStateChange' = 'permissionStateChange';
+let tokenIDList: Array&lt;number&gt; = [];
+let permissionNameList: Array&lt;string&gt; = [];
+try{
+    atManager.off(type, tokenIDList, permissionNameList);
+}
+catch(err){
+    console.error("off err:" + JSON.stringify(err));
+}
+```
+
 ### GrantStatus
 
 表示授权状态的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
-| 名称                          | 默认值                  | 描述                    |
-| ----------------------------- | ---------------------- | -----------------------  |
-| PERMISSION_DENIED             | -1                     | 表示未授权。             |
-| PERMISSION_GRANTED            | 0                      | 表示已授权。             |
+| 名称               | 默认值 | 描述        |
+| ------------------ | ----- | ----------- |
+| PERMISSION_DENIED  | -1    | 表示未授权。 |
+| PERMISSION_GRANTED | 0     | 表示已授权。 |
+
+### PermissionStateChangeType<sup>9+</sup>
+
+表示权限状态变化操作类型的枚举。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称                     | 默认值 | 描述              |
+| ----------------------- | ------ | ----------------- |
+| PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
+| PERMISSION_GRANTED      | 1      | 表示权限授予操作。 |
+
+### PermissionStateChangeInfo<sup>9+</sup>
+
+ **系统能力:** SystemCapability.Security.AccessToken
+
+| 名称           | 类型                       | 可读 | 可写 | 说明                |
+| -------------- | ------------------------- | ---- | ---- | ------------------ |
+| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限变化类型        |
+| tokenID        | number                    | 是   | 否   | 调用方的应用身份标识 |
+| permissionName | string                    | 是   | 否   | 状态发生变化的权限名 |
