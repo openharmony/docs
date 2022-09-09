@@ -1490,10 +1490,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onContextMenuShow((event) => {
+          .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
-            return false;
+            return true;
         })
       }
     }
