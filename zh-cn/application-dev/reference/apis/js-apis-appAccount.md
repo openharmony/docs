@@ -2102,6 +2102,7 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 参数名    | 类型                   | 必填   | 说明     |
 | ------ | -------------------- | ---- | ------ |
 | code   | number               | 是    | 鉴权结果码。 |
@@ -2132,6 +2133,7 @@ onRequestRedirected: (request: Want) =&gt; void
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
 | request | Want | 是    | 用于跳转的请求信息。 |
@@ -2189,6 +2191,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | authType         | string                | 是    | 应用帐号的鉴权类型。      |
@@ -2205,6 +2208,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 接口名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name             | string                | 是    | 应用帐号的名称。        |
@@ -2222,6 +2226,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: Authe
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 接口名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                   | 是    | 应用帐号的名称。              |
@@ -2237,6 +2242,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthenticatorCallback): v
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 接口名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | options   | [SetPropertiesOptions](#setpropertiesoptions9)  | 是    | 设置属性的可选项。            |
@@ -2251,6 +2257,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: Authenti
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 接口名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
@@ -2266,6 +2273,7 @@ isAccountRemovable(name: string, callback: AuthenticatorCallback): void;
 **系统能力：** SystemCapability.Account.AppAccount
 
 **参数：**
+
 | 接口名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
 | name      | string                | 是    | 应用帐号的名称。              |
