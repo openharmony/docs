@@ -5,26 +5,22 @@
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 事件
 
-| 名称                                       | 支持冒泡 | 功能描述                              |
-| ---------------------------------------- | ---- | --------------------------------- |
-| onClick(callback:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该方法调用，event参数见ClickEvent介绍。 |
+| 名称                                                         | 支持冒泡 | 功能描述                                            |
+| ------------------------------------------------------------ | -------- | --------------------------------------------------- |
+| onClick(event:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否       | 点击动作触发该方法调用，event参数见ClickEvent介绍。 |
 
 ## ClickEvent对象说明
-| 属性名称                | 类型                               | 描述                  |
-| ------------------- | -------------------------------- | ------------------- |
-| screenX             | number                           | 点击点相对于设备屏幕左边沿的X坐标。  |
-| screenY             | number                           | 点击点相对于设备屏幕上边沿的Y坐标。  |
-| x                   | number                           | 点击点相对于被点击元素左边沿的X坐标。 |
-| y                   | number                           | 点击点相对于被点击元素上边沿的Y坐标。 |
-| target<sup>8+</sup> | [EventTarget](#eventtarget8对象说明) | 被点击元素对象。            |
-| timestamp           | number                           | 事件时间戳。              |
+| 属性名称               | 类型                                 | 描述                                  |
+| ---------------------- | ------------------------------------ | ------------------------------------- |
+| screenX                | number                               | 点击点相对于设备屏幕左边沿的X坐标。   |
+| screenY                | number                               | 点击点相对于设备屏幕上边沿的Y坐标。   |
+| x                      | number                               | 点击点相对于被点击元素左边沿的X坐标。 |
+| y                      | number                               | 点击点相对于被点击元素上边沿的Y坐标。 |
+| target<sup>8+</sup>    | [EventTarget](#eventtarget8对象说明) | 被点击元素对象。                      |
+| timestamp<sup>8+</sup> | number                               | 事件时间戳。                          |
+| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md) | 事件输入设备。                        |
 
 ## EventTarget<sup>8+</sup>对象说明
 | 名称   | 参数类型               | 描述         |
