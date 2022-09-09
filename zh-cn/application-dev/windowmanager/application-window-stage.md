@@ -73,7 +73,7 @@ import Ability from '@ohos.application.Ability'
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         // 1.获取应用主窗口。
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -82,7 +82,7 @@ class MainAbility extends Ability {
             windowClass = data;
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
             // 2.设置主窗口属性。以设置"是否可触"属性为例。
-            var isTouchable = true;
+            let isTouchable = true;
             windowClass.setTouchable(isTouchable, (err, data) => {
                 if (err.code) {
                     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
@@ -132,7 +132,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1.创建应用子窗口。
-           var sub_windowClass = null;
+           let sub_windowClass = null;
            windowStage.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
@@ -222,7 +222,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1.获取应用主窗口。
-           var windowClass = null;
+           let windowClass = null;
            windowStage.getMainWindow((err, data) => {
                if (err.code) {
                    console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -232,7 +232,7 @@ class MainAbility extends Ability {
                console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
    
                // 2.实现沉浸式效果。方式一：设置应用主窗口为全屏显示。
-               var isFullScreen = true;
+               let isFullScreen = true;
                windowClass.setFullScreen(isFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -241,7 +241,7 @@ class MainAbility extends Ability {
                    console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
                });
                // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-               var names = [];
+               let names = [];
                windowClass.setSystemBarEnable(names, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -250,7 +250,7 @@ class MainAbility extends Ability {
                    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
                });
                // 2.实现沉浸式效果。方式三：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
-               var isLayoutFullScreen = true;
+               let isLayoutFullScreen = true;
                windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -258,7 +258,7 @@ class MainAbility extends Ability {
                    }
                    console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
                });
-               var SystemBarProperties = {
+               let sysBarProps = {
                    statusBarColor: '#ff00ff',
                    navigationBarColor: '#00ff00',
                    // 以下两个属性从API Version 7开始支持
@@ -268,7 +268,7 @@ class MainAbility extends Ability {
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
                };
-               windowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+               windowClass.setSystemBarProperties(sysBarProps, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
                        return;
@@ -350,7 +350,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
-           var windowClass = null;
+           let windowClass = null;
            window.create(this.context, "floatWindow", window.WindowType.TYPE_FLOAT, (err, data) => {
                if (err.code) {
                    console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
