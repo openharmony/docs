@@ -46,10 +46,10 @@ Swiper(value:{controller?: SwiperController})
 | displayMode                 | SwiperDisplayMode                        | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
 | cachedCount<sup>8+</sup>    | number                                   | Number of child components to be cached.<br>Default value: **1**                             |
 | disableSwipe<sup>8+</sup>   | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**                             |
-| curve<sup>8+</sup>          | [Curve](ts-animatorproperty.md#Curve) \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve enums](ts-animatorproperty.md#curve-enums). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
-| indicatorStyle<sup>8+</sup> | {<br>left?:&nbsp;Length,<br>top?:&nbsp;Length,<br>right?:&nbsp;Length,<br>bottom?:&nbsp;Length,<br>size?:&nbsp;Length,<br>color?:&nbsp;Color,<br>selectedColor?:&nbsp;Color<br>} | Style of the navigation dots indicator.<br>- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>- **size**: diameter of the navigation dots indicator.<br>- **color**: color of the navigation dots indicator.<br>- **selectedColor**: color of the selected navigation dot.|
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve) \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease** |
+| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | Style of the navigation dots indicator.<br>- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>- **size**: diameter of the navigation dots indicator.<br>- **color**: color of the navigation dots indicator.<br>- **selectedColor**: color of the selected navigation dot.|
 | displayCount<sup>8+</sup>   | number\|string                                               | Number of elements to display.<br>Default value: **1**                                          |
-| effectMode<sup>8+</sup>     | EdgeEffect                               | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
+| effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                               | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
 
 ## SwiperDisplayMode
 
@@ -98,7 +98,7 @@ Stops this animation.
 
 ### onChange
 
-onChange(&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void
+onChange(event: (index: number) => void)
 
 Triggered when the index of the currently displayed component changes.
 
