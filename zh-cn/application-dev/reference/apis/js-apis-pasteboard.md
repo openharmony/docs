@@ -141,7 +141,7 @@ var pasteData = pasteboard.createUriData("dataability:///com.example.myapplicati
 
 ## pasteboard.createPixelMapData<sup>9+</sup>
 
-createPixelMapData((pixelMap: image.PixelMap): PasteData
+createPixelMapData(pixelMap: image.PixelMap): PasteData
 
 构建一个PixelMap剪贴板内容对象。
 
