@@ -97,7 +97,18 @@
   下图展示了应用的进程模型。
 
   ![stageprocessmodel](figures/stageprocessmodel.png)
+
+
+
+## 应用包结构
+
+Stage模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section56487581904)。
+
+对Stage模型的应用包结构的配置说明，请参考[应用包结构说明（stage模型）](../quick-start/stage-structure.md)。
+
+
 ## 相关实例
+
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
 - [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
 - [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)
