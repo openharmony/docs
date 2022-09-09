@@ -67,7 +67,7 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 | 名称    | 类型                             | 必填 | 说明                                                                        |
 | ------- | ---------------------------------| ---- | --------------------------------------------------------------------------- |
-| options |  [TimerOptions](#TimerOptions)   | 是   | 创建系统定时器，包括定时器类型，是否循环触发，间隔时间，WantAgent通知机制。 |
+| options |  [TimerOptions](#timeroptions)   | 是   | 创建系统定时器，包括定时器类型，是否循环触发，间隔时间，WantAgent通知机制。 |
 
 **返回值：**
 
