@@ -16,8 +16,8 @@
 
 | 接口名 | 描述 |
 | -------- | -------- |
-|getRdbStore(config:StoreConfig,version:number):Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。<br/>-config：与此RDB存储相关的数据库配置。<br/>-version：数据库版本。 |
-| deleteRdbStore(name:string):Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，使用Promise异步回调。<br/>-name：数据库名称。 |
+|getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt; | 获得一个相关的RdbStore，操作关系型数据库，用户可以根据自己的需求配置RdbStore的参数，然后通过RdbStore调用相关接口可以执行相关的数据操作，使用Promise异步回调。<br/>-config：与此RDB存储相关的数据库配置。<br/>-version：数据库版本。 |
+| deleteRdbStore(name: string): Promise&lt;void&gt; | 使用指定的数据库文件配置删除数据库，使用Promise异步回调。<br/>-name：数据库名称。 |
 
 ### 数据库的增删改查
 
@@ -31,7 +31,7 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | insert(name:string,values:ValuesBucket):Promise&lt;number&gt; | 向目标表中插入一行数据，使用Promise异步回调。<br>如果操作成功，返回行ID；否则返回-1。<br/>-name：指定的目标表名。<br/>-values：表示要插入到表中的数据行。 |
+  | RdbStore | insert(name: string, values: ValuesBucket): Promise&lt;number&gt; | 向目标表中插入一行数据，使用Promise异步回调。<br>如果操作成功，返回行ID；否则返回-1。<br/>-name：指定的目标表名。<br/>-values：表示要插入到表中的数据行。 |
   
 - **更新**
   
@@ -41,7 +41,7 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | update(values:ValuesBucket,rdbPredicates:RdbPredicates):Promise\<number> | 根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。<br>返回受影响的行数。<br/>-values：以ValuesBucket存储的要更新的数据。<br/>-rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
+  | RdbStore | update(values: ValuesBucket, rdbPredicates: RdbPredicates): Promise\<number> | 根据RdbPredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。<br>返回受影响的行数。<br/>-values：以ValuesBucket存储的要更新的数据。<br/>-rdbPredicates：表示RdbPredicates的实例对象指定的更新条件。 |
   
 - **删除** 
   
@@ -51,7 +51,7 @@
   
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | delete(rdbPredicates:RdbPredicates):Promise\<number> | 根据rdbPredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。<br>返回受影响的行数。<br/>-rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
+  | RdbStore | delete(rdbPredicates: RdbPredicates): Promise\<number> | 根据rdbPredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。<br>返回受影响的行数。<br/>-rdbPredicates：RdbPredicates的实例对象指定的删除条件。 |
   
 - **查询** 
 
@@ -64,8 +64,8 @@
 
   | 类名 | 接口名 | 描述 |
   | -------- | -------- | -------- |
-  | RdbStore | query(rdbPredicates:RdbPredicates,columns:Array):Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，使用Promise异步回调。<br/>-rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
-  | RdbStore | querySql(sql:string,bindArgs?:Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。<br/>-sql：指定要查询的SQL语句。<br/>-bindArgs：SQL语句中参数的值。 |
+  | RdbStore | query(rdbPredicates: RdbPredicates, columns: Array): Promise&lt;ResultSet&gt; | 根据指定条件查询数据库中的数据，使用Promise异步回调。<br/>-rdbPredicates：表示RdbPredicates的实例对象指定的查询条件。<br/>-columns：表示要查询的列。如果值为空，则查询应用于所有列。 |
+  | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | 根据指定SQL语句查询数据库中的数据，使用Promise异步回调。<br/>-sql：指定要查询的SQL语句。<br/>-bindArgs：SQL语句中参数的值。 |
 
 ### 数据库谓词的使用
 
@@ -77,11 +77,11 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| RdbPredicates | equalTo(field:string,value:ValueType):RdbPredicates | 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | notEqualTo(field:string,value:ValueType):RdbPredicates | 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回与指定字段匹配的谓词。 |
-| RdbPredicates | or():RdbPredicates | 将或条件添加到谓词中。<br/>-RdbPredicates：返回带有或条件的谓词。 |
-| RdbPredicates | and():RdbPredicates | 向谓词添加和条件。<br/>-RdbPredicates：返回带有和条件的谓词。 |
-| RdbPredicates | contains(field:string,value:string):RdbPredicats | 配置谓词以匹配数据字段为String且value包含指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回带有包含条件的谓词。 |
+| RdbPredicates | equalTo(field: string, value: ValueType): RdbPredicates | 配置谓词以匹配数据字段为ValueType且值等于指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | notEqualTo(field: string, value: ValueType): RdbPredicates | 配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回与指定字段匹配的谓词。 |
+| RdbPredicates | or(): RdbPredicates | 将或条件添加到谓词中。<br/>-RdbPredicates：返回带有或条件的谓词。 |
+| RdbPredicates | and(): RdbPredicates | 向谓词添加和条件。<br/>-RdbPredicates：返回带有和条件的谓词。 |
+| RdbPredicates | contains(field: string, value: string): RdbPredicats | 配置谓词以匹配数据字段为String且value包含指定值的字段。<br/>-field：数据库表中的列名。<br/>-value：指示要与谓词匹配的值。<br/>-RdbPredicates：返回带有包含条件的谓词。 |
 
 
 ### 查询结果集的使用
@@ -97,12 +97,12 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ResultSet | goToFirstRow():boolean | 将结果集移动到第一行。 |
-| ResultSet | getString(columnIndex:number):string | 获取当前行指定列的值，以String类型返回。 |
-| ResultSet | getBlob(columnIndex:number):Uint8Array | 获取当前行指定列的值，以字节数组形式返回。 |
-| ResultSet | getDouble(columnIndex:number):number | 获取当前行指定列的值，以double型返回。 |
-| ResultSet | getLong(columnIndex:number):number     | 获取当前行指定列的值，以Long形式返回。     |
-| ResultSet | close():void | 关闭结果集。 |
+| ResultSet | goToFirstRow(): boolean | 将结果集移动到第一行。 |
+| ResultSet | getString(columnIndex:number): string | 获取当前行指定列的值，以String类型返回。 |
+| ResultSet | getBlob(columnIndex:number): Uint8Array | 获取当前行指定列的值，以字节数组形式返回。 |
+| ResultSet | getDouble(columnIndex:number): number | 获取当前行指定列的值，以double型返回。 |
+| ResultSet | getLong(columnIndex:number): number     | 获取当前行指定列的值，以Long形式返回。     |
+| ResultSet | close(): void | 关闭结果集。 |
 
 
 

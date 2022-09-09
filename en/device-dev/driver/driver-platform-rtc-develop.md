@@ -63,7 +63,7 @@ The RTC module adaptation involves the following steps:
 3. Instantiate the RTC controller object.
    - Initialize **RtcHost**.
    - Instantiate **RtcMethod** in the **RtcHost** object.
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+      > ![icon-note.gif](../public_sys-resources/icon-note.gif) **NOTE**<br>
       > For details about the functions in **RtcMethod**, see [Available APIs](#available-apis).
 
 4. Debug the driver.

@@ -3,7 +3,7 @@
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-The Bluetooth module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
+The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth Low Energy (BLE) scan and advertising.
 
 
 ## Modules to Import
@@ -11,18 +11,6 @@ The Bluetooth module provides classic Bluetooth capabilities and Bluetooth Low E
 ```js
 import bluetooth from '@ohos.bluetooth';
 ```
-
-
-## Required Permissions
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.LOCATION
-
 
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
@@ -320,7 +308,7 @@ let remoteDeviceClass = bluetooth.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 
 getPairedDevices(): Array&lt;string&gt;
 
-Obtains the Bluetooth pairing list.
+Obtains the paired devices.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -330,7 +318,7 @@ Obtains the Bluetooth pairing list.
 
 | Type                 | Description           |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | List of the addresses of the paired Bluetooth devices.|
+| Array&lt;string&gt; | Addresses of the paired Bluetooth devices.|
 
 **Example**
 
@@ -354,7 +342,7 @@ Sets the Bluetooth scan mode so that the device can be discovered by a remote de
 | Name     | Type                   | Mandatory  | Description                          |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | Yes   | Bluetooth scan mode to set.                     |
-| duration | number                | Yes   | Duration (in seconds) in which the device can be discovered. The value **0** indicates unlimited time.|
+| duration | number                | Yes   | Duration (in ms) in which the device can be discovered. The value **0** indicates unlimited time.|
 
 **Return value**
 
@@ -609,7 +597,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth pairing state change events.
+Subscribes to the Bluetooth bond state change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -619,8 +607,8 @@ Subscribes to the Bluetooth pairing state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | Yes   | Callback invoked to return the pairing state. You need to implement this callback.   |
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.|
+| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | Yes   | Callback invoked to return the bond state. You need to implement this callback.   |
 
 **Return value**
 
@@ -629,7 +617,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
+function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the bond state.
     console.info('pair state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -640,7 +628,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth pairing state change events.
+Unsubscribes from the Bluetooth bond state change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -650,8 +638,8 @@ Unsubscribes from the Bluetooth pairing state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event.    |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | No   | Callback used to report the change of the Bluetooth pairing state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.    |
+| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | No   | Callback used to report the change of the Bluetooth bond state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
 
 **Return value**
 
@@ -1295,7 +1283,7 @@ Obtains the connection state of the profile.
 |                                                   |                         |
 | ------------------------------------------------- | ----------------------- |
 | Type                                              | Description                    |
-| [ProfileConnectionState](#profileconnectionState) | Profile connection state obtained. |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
 
 
 ## A2dpSourceProfile
@@ -1894,7 +1882,7 @@ Subscribes to the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.|
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | Yes   | Callback invoked to return a characteristic read request from the GATT client.           |
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.           |
 
 **Return value**
 
@@ -1971,7 +1959,7 @@ Subscribes to the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                    |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.|
-| callback | Callback&lt;[CharacteristicWriteReq](#descriptorwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | Yes   | Callback invoked to return a characteristic write request from the GATT client.            |
 
 **Return value**
 
@@ -2192,6 +2180,7 @@ let gattServer = bluetooth.BLE.createGattServer();
 gattServer.off("descriptorWrite");
 ```
 
+
 ### on('connectStateChange')
 
 on(type: "connectStateChange", callback: Callback&lt;BLEConnectChangedState&gt;): void
@@ -2410,7 +2399,7 @@ device.getServices().then(result => {
 
 readCharacteristicValue(characteristic: BLECharacteristic, callback: AsyncCallback&lt;BLECharacteristic&gt;): void
 
-Reads the characteristic value of the specific service of the peer BLE device. This API uses an asynchronous callback to return the result.
+Reads the characteristic value of the specific service of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2511,7 +2500,7 @@ device.readCharacteristicValue(characteristic);
 
 readDescriptorValue(descriptor: BLEDescriptor, callback: AsyncCallback&lt;BLEDescriptor&gt;): void
 
-Reads the descriptor contained in the specific characteristic of the peer BLE device. This API uses an asynchronous callback to return the result.
+Reads the descriptor contained in the specific characteristic of the remote BLE device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -2683,7 +2672,7 @@ if (retWriteDesc) {
 
 setBLEMtuSize(mtu: number): boolean
 
-Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This method can be used only after a connection is set up by calling [connect](#connect).
+Sets the maximum transmission unit (MTU) that can be transmitted between the GATT client and its remote BLE device. This API can be used only after a connection is set up by calling [connect](#connect).
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -3355,6 +3344,18 @@ Defines the pairing request parameters.
 | pinCode  | string | Yes   | No   | Key for the device pairing.  |
 
 
+## BondStateParam<sup>8+</sup><a name="BondStateParam"></a>
+
+Defines the bond state parameters.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string      | Yes   | No   | ID of the device.|
+| state    | BondState   | Yes   | No   | State of the device.|
+
+
 ## StateChangeParam<sup>8+</sup><a name="StateChangeParam"></a>
 
 Defines the profile state change parameters.
@@ -3512,7 +3513,7 @@ Enumerates the A2DP playing states.
 
 ## ProfileId<sup>8+</sup><a name="ProfileId"></a>
 
-Enumerates the Bluetooth profile IDs.
+Enumerates the Bluetooth profiles.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

@@ -1,7 +1,6 @@
 # RotationGesture
 
 >  **说明：**
->
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -25,11 +24,6 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 | onActionEnd(event: (event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。         |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)          | Rotation手势识别成功，接收到触摸取消事件触发回调。 |
 
-## GestureEvent对象中与Rotation手势相关的属性
-
-| 属性名称  | 属性类型   | 描述    |
-| ----- | ------ | ----- |
-| angle | number | 旋转角度。 |
 
 ## 示例
 

@@ -45,7 +45,7 @@ showToast(options: ShowToastOptions): void
 | 名称       | 类型             | 必填   | 说明                                       |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | message  | string         | 是    | 显示的文本信息。                                 |
-| duration | number         | 否    | 默认值1500ms，建议区间：1500ms-10000ms，若小于1500ms则取默认值。 |
+| duration | number         | 否    | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
 | bottom   | &lt;length&gt; | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
 
 ## prompt.showDialog

@@ -5,10 +5,13 @@
 
 To reference an application resource in a project, use the `"$r('app.type.name')"` format. **app** indicates the resource defined in the **resources** directory of the application. **type** indicates the resource type (or the location where the resource is stored). The value can be **color**, **float**, **string**, **plural**, or **media**. **name** indicates the resource name, which you set when defining the resource.
 
-When referencing resources in the **rawfile** sub-directory, use the `"$rawfile('filename')"` format. Currently, **$rawfile** allows only the **\<Image>** component to reference image resources. **filename** indicates the relative path of a file in the **rawfile** directory, and the file name must contain the file name extension. Note that the relative path cannot start with a slash (/).
+When referencing resources in the **rawfile** sub-directory, use the ```"$rawfile('filename')"``` format. **filename** indicates the relative path of a file in the **rawfile** directory, and the file name must contain the file name extension. Note that the relative path cannot start with a slash (/).
 
 > **NOTE**
+>
 > Resource descriptors accept only strings, such as `'app.type.name'`, and cannot be combined.
+>
+>  `$r` returns a **Resource** object. To obtain the corresponding string, use [getString](../reference/apis/js-apis-resource-manager.md#getstring). 
 
   In the **.ets** file, you can use the resources defined in the **resources** directory.
 
@@ -47,7 +50,7 @@ Image($rawfile('newDir/newTest.png')) // Reference an image in the rawfile direc
 System resources include colors, rounded corners, fonts, spacing, character strings, and images. By using system resources, you can develop different applications with the same visual style.
 
 
-To reference a system resource, use the "$r('sys.type.resource_id')" format. Wherein: sys indicates a system resource; type indicates the resource type, which can be color, float, string, or media; resource_id indicates the resource ID, which is determined when the system resource is provided. For details about available system resource IDs.
+To reference a system resource, use the ```"$r('sys.type.resource_id')"``` format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
 
 ```ts
 Text('Hello')

@@ -29,7 +29,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
@@ -37,8 +37,13 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 **示例：**
 
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
@@ -59,7 +64,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。 |
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 
@@ -72,8 +77,13 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 **示例：**
 
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
@@ -92,13 +102,18 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
 ```js
-data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Delete RdbStore failed, err: " + err)
         return
@@ -118,7 +133,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | name | string | 是 | 数据库名称。 |
 
 **返回值**：
@@ -128,7 +143,12 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 ```js
-let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Delete RdbStore successfully.")
 }).catch((err) => {
