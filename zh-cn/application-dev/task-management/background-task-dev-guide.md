@@ -265,7 +265,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 import rpc from "@ohos.rpc";
 
-function startBackgroundRunning() {
+function startContinuousTask() {
     let wantAgentInfo = {
         // 点击通知后，将要执行的动作列表
         wants: [
@@ -293,7 +293,7 @@ function startBackgroundRunning() {
     });
 }
 
-function stopBackgroundRunning() {
+function stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
@@ -302,10 +302,10 @@ function stopBackgroundRunning() {
 }
 
 async function processAsyncJobs() {
-    // 此处添加执行具体长时任务的代码。
+    // 此处执行具体的长时任务。
 
     // 长时任务执行完，调用取消接口，释放资源。
-    stopBackgroundRunning();
+    stopContinuousTask();
 }
 
 let mMyStub;
@@ -323,11 +323,11 @@ class MyStub extends rpc.RemoteObject {
         // code 的具体含义用户自定义
         if (code === 1) {
             // 接收到申请长时任务的请求码
-            startBackgroundRunning();
+            startContinuousTask();
             // 此处执行具体长时任务
         } else if (code === 2) {
             // 接收到取消长时任务的请求码
-            stopBackgroundRunning();
+            stopContinuousTask();
         } else {
             console.log('ServiceAbility unknown request code');
         }
@@ -340,7 +340,7 @@ export default {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
         // 在执行后台长时任前，调用申请接口。
-        startBackgroundRunning();
+        startContinuousTask();
         processAsyncJobs();
     },
     onStop() {
