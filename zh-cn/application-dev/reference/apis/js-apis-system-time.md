@@ -4,7 +4,6 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->- 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -83,7 +82,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 ## systemTime.getCurrentTime<sup>8+</sup>
 
-getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自 Unix 纪元以来经过的时间，使用callback形式返回结果。
 
@@ -100,6 +99,34 @@ getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
 
   ```js
   systemTime.getCurrentTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getCurrentTime<sup>8+</sup>
+
+getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
+
+获取自 Unix 纪元以来经过的时间，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。         |
+
+**示例：**
+
+  ```js
+  systemTime.getCurrentTime((error, data) => {
       if (error) {
           console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
           return;
@@ -142,7 +169,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
 
-getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback形式返回结果。
 
@@ -166,7 +193,35 @@ getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
       console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
   });
   ```
+  
 
+## systemTime.getRealActiveTime<sup>8+</sup>
+
+getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
+
+获取自系统启动以来经过的时间，不包括深度睡眠时间，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
+
+**示例：**
+
+  ```js
+  systemTime.getRealActiveTime((error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealActiveTimebecause ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
+  });
+  ```
+  
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
 
@@ -201,7 +256,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
 
@@ -226,6 +281,33 @@ getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
   });
   ```
 
+
+## systemTime.getRealTime<sup>8+</sup>
+
+getRealTime(callback: AsyncCallback&lt;number&gt;): void
+
+获取自系统启动以来经过的时间，包括深度睡眠时间，使用callback形式返回结果。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
+
+**示例：**
+
+  ```js
+  systemTime.getRealTime((error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
+  });
+  ```
 
 ## systemTime.getRealTime<sup>8+</sup>
 
