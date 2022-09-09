@@ -2468,7 +2468,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
- getSingleSensor(type: SensorType): Promise&lt;Sensor&gt;
+ getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
 
 获取指定类型的传感器信息。
 
@@ -2546,16 +2546,16 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((dat
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 参数类型 | 可读 | 可写 | 说明                   |
-| --------------- | -------- | ---- | ---- | ---------------------- |
-| sensorName      | string   | 是   | 是   | 传感器名称。           |
-| venderName      | string   | 是   | 是   | 传感器供应商。         |
-| firmwareVersion | string   | 是   | 是   | 传感器固件版本。       |
-| hardwareVersion | string   | 是   | 是   | 传感器硬件版本。       |
-| sensorTypeId    | number   | 是   | 是   | 传感器类型id。         |
-| maxRange        | number   | 是   | 是   | 传感器的最大测量范围。 |
-| precision       | number   | 是   | 是   | 传感器精度。           |
-| power           | number   | 是   | 是   | 传感器电源。           |
+| 名称            | 参数类型 | 说明                   |
+| --------------- | -------- | ---------------------- |
+| sensorName      | string   | 传感器名称。           |
+| venderName      | string   | 传感器供应商。         |
+| firmwareVersion | string   | 传感器固件版本。       |
+| hardwareVersion | string   | 传感器硬件版本。       |
+| sensorTypeId    | number   | 传感器类型id。         |
+| maxRange        | number   | 传感器的最大测量范围。 |
+| precision       | number   | 传感器精度。           |
+| power           | number   | 传感器电源。           |
 
 ## AccelerometerResponse
 
