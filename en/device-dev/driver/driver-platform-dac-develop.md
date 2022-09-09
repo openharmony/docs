@@ -1,15 +1,14 @@
 # DAC 
 
+## Overview
 
-## Overview<a name="1"></a>
-
-### DAC<a name="2"></a>
+### DAC
 
 A digit-to-analog converter (DAC) is a device that converts a digital signal into an analog signal in electronics.
 
-### Basic Concepts<a name="3"></a>
-
 The DAC module supports development of digital-to-analog conversion. The DAC module provides the output channel for the process control computer system. It connects to the executor to implement automatic control of the production process. It is also an important module in the analog-to-digital converter using feedback technologies.
+
+### Basic Concepts
 
 - Resolution
 
@@ -23,47 +22,43 @@ The DAC module supports development of digital-to-analog conversion. The DAC mod
 
   The conversion speed is determined by the setup time. The setup time is the period from the time the input suddenly changes from all 0s to all 1s to the time the output voltage remains within the FSR ± ½LSB (or FSR ± x%FSR). It is the maximum response time of the DAC, and hence used to measure the conversion speed.
 
-  The full scale range (FSR) is the maximum range of the output signal amplitude of a DAC. Different DACs have different FSRs, which can be limited by positive and negative currents or voltages.
+  - The full scale range (FSR) is the maximum range of the output signal amplitude of a DAC. Different DACs have different FSRs, which can be limited by positive and negative currents or voltages.
 
-  The least significant byte (LSB) refers to bit 0 (the least significant bit) in a binary number.
+  - The least significant byte (LSB) refers to bit 0 (the least significant bit) in a binary number.
 
-### Working Principles<a name="4"></a>
+### Working Principles
 
-In the Hardware Driver Foundation (HDF), the DAC module uses the unified service mode for API adaptation. In this mode, a device service is used as the DAC manager to handle access requests from the devices of the same type in a unified manner. The unified service mode applies to the scenario where there are many device objects of the same type. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services. The figure below shows the unified service mode.
+In the Hardware Driver Foundation (HDF), the DAC module uses the unified service mode for API adaptation. In this mode, a device service is used as the DAC manager to handle access requests from the devices of the same type in a unified manner. The unified service mode applies to the scenario where there are many device objects of the same type. If the independent service mode is used in this case, more device nodes need to be configured and more memory resources will be consumed. The figure below shows the unified service mode.
 
 The DAC module is divided into the following layers:
-- The interface layer provides APIs for opening or closing a device and writing data.
-- The core layer provides the capabilities of binding, initializing, and releasing devices.
-- The adaptation layer implements other functions.
 
->![](../public_sys-resources/icon-note.gif) **NOTE**<br>
->The core layer can call the functions of the interface layer and uses the hook to call functions of the adaptation layer. In this way, the adaptation layer can indirectly call the functions of the interface layer, but the interface layer cannot call the functions of the adaptation layer.
+- Interface layer: provides APIs for opening or closing a device and writing data.
+- Core layer: provides the capabilities of binding, initializing, and releasing devices.
+- Adaptation layer: implements other functions.
 
-**Figure 1** Unified service mode<a name="fig14423182615525"></a>
+![](../public_sys-resources/icon-note.gif) **NOTE**<br/>The core layer can call the APIs of the interface layer and uses hooks to call APIs of the adaptation layer. In this way, the adaptation layer can indirectly call the APIs of the interface layer, but the interface layer cannot call the APIs of the adaptation layer.
+
+**Figure 1** Unified service mode
 
 ![](figures/unified-service-mode.png "DAC unified service mode")
 
+### Constraints
 
+Currently, the DAC module supports only the kernels (LiteOS) of mini and small systems.
 
+## Development Guidelines
 
-
-### Constraints<a name="5"></a>
-
- Currently, the DAC module supports only the kernels (LiteOS) of mini and small systems.
-
-## Development Guidelines<a name="6"></a>
-
-### When to Use<a name="7"></a>
+### When to Use
 
 The DAC module is used for digital-to-analog conversion, audio output, and motor control. The DAC driver is used when the digital signals input by the DAC module are converted into analog signals to output.
 
-### Available APIs<a name="8"></a>
+### Available APIs
 
-The **DacMethod** is used to call the DAC driver functions.
+The **DacMethod** structure is used to call the DAC driver APIs.
 
-**DacMethod** definition:
+**DacMethod**:
 
-```
+```c++
 struct DacMethod {
     // Hook used to write data.
     int32_t (*write)(struct DacDevice *device, uint32_t channel, uint32_t val);
@@ -76,39 +71,39 @@ struct DacMethod {
 
 **Table 1** Description of the DacMethod structure
 
-<a name="table27410339187"></a>
-
 | Function| Input Parameter                                                        | Output Parameter| Return Value            | Description          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ | -------------- |
-| write    | **device**: pointer to the DAC controller at the core layer.<br>**channel**: channel ID, which is of the uint32_t type.<br>val: data to write, which is of the uint32_t type.| -  | HDF_STATUS| Writes the target digit-to-analog (DA) value.|
-| start    | **device**: pointer to the DAC controller at the core layer.                       | -  | HDF_STATUS| Starts a DAC device.   |
-| stop     | **device**: pointer to the DAC controller at the core layer.                       | -  | HDF_STATUS| Stops a device.   |
+| write    | **device**: structure pointer to the DAC controller at the core layer.<br>**channel**: channel ID, which is of the uint32_t type.<br>**val**: data to write, which is of the uint32_t type.| -  | HDF_STATUS| Writes the target digit-to-analog (DA) value.|
+| start    | **device**: structure pointer to the DAC controller at the core layer.                       | -  | HDF_STATUS| Starts a DAC device.   |
+| stop     | **device**: structure pointer to the DAC controller at the core layer.                       | -  | HDF_STATUS| Stops a DAC device. |
 
-
-
-### How to Develop<a name="9"></a>
+### How to Develop
 
 The DAC module adaptation procedure is as follows:
 
-- Instantiate the driver entry.
-- Configure attribute files.
-- Instantiate the APIs of the core layer.
-- Debug the driver.
+1. Instantiate the driver entry.
+2. Configure attribute files.
+3. Instantiate the core layer APIs.
+4. Debug the driver.
+
+### Development Example
+
+The following presents the information required for implementing device functions.
 
 1.  Instantiate the driver entry.
 
-    Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers are collected to form a segment address space similar to an array for the upper layer to invoke.
+    The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
     
-    Generally, the HDF calls the **Init()** function to load the driver. If **Init()** fails to be called, the HDF calls **Release()** to release driver resources and exit.
+    Generally, the HDF calls the **Init()** function to load the driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
     
-    ```
+    ```c++
     static struct HdfDriverEntry g_dacDriverEntry = {
         .moduleVersion = 1,
         .Init = VirtualDacInit,
         .Release = VirtualDacRelease,
         .moduleName = "virtual_dac_driver",// (Mandatory) The value must be the same as that in the .hcs file.
         };
-        HDF_INIT(g_dacDriverEntry); // Call HDF_INIT to register the driver entry with the HDF.
+        HDF_INIT(g_dacDriverEntry);         // Call HDF_INIT to register the driver entry with the HDF.
     ```
     
 2. Configure attribute files.
@@ -119,23 +114,23 @@ The DAC module adaptation procedure is as follows:
 
      In the unified service mode, the first device node in the **device_info.hcs** file must be the DAC manager. The parameters must be set as follows:
 
-     | Member         | Value                                                          |
-     | --------------- | ------------------------------------------------------------ |
-     | policy          | **0**, which indicates that no service is published.|
-     | priority        | Driver startup priority. The value range is 0 to 200. A larger value indicates a lower priority. If the priorities are the same, the device loading sequence is not ensured.|
-     | permission      | Driver permission.|
-     | moduleName      | The value is **HDF_PLATFORM_DAC_MANAGER**.|
-     | serviceName     | The value is **HDF_PLATFORM_DAC_MANAGER**.|
-     | deviceMatchAttr | Reserved.|
+     | Parameter          | Value                                                                 |
+     | --------------- | ------------------------------------------------------------------- |
+     | policy          | **0**, which indicates that no service is published.                                               |
+     | priority        | Driver startup priority. The value range is 0 to 200. A larger value indicates a lower priority. For the drivers with the same priority, the device loads them randomly.|
+     | permission      | Driver permission.                                                            |
+     | moduleName      | **HDF_PLATFORM_DAC_MANAGER**                                      |
+     | serviceName     | **HDF_PLATFORM_DAC_MANAGER**                                      |
+     | deviceMatchAttr | Reserved.                                                      |
 
      Configure DAC controller information from the second node. This node specifies a type of DAC controllers rather than a specific DAC controller. In this example, there is only one DAC device. If there are multiple DAC devices, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **dac_config** file.
 
-       **device_info.hcs** configuration reference
+        **device_info.hcs** configuration example:
 
-        ```
+        ```hcs
         root {
             device_dac :: device {
-                // device0 is the DAC manager.
+                // device0 is a DAC manager.
                 device0 :: deviceNode {
                     policy = 0;
                     priority = 52;
@@ -144,7 +139,7 @@ The DAC module adaptation procedure is as follows:
                     moduleName = "HDF_PLATFORM_DAC_MANAGER";
                 }
             }
-            // dac_virtual is the DAC controller.
+            // dac_virtual is a DAC controller.
             dac_virtual :: deviceNode {
                 policy = 0;
                 priority = 56;
@@ -157,34 +152,35 @@ The DAC module adaptation procedure is as follows:
         ```
 
     - Configure the **dac_test_config.hcs** file.
-    Add a file, for example, **vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/dac_test_config.hcs** and configure driver parameters.
 
-        ```
+      Add a file, for example, **vendor/vendor_hisilicon/hispark_taurus/hdf_config/hdf_test/dac_test_config.hcs** and configure driver parameters.
+
+        ```hcs
         root {
             platform {
             dac_config {
                     match_attr = "virtual_dac"; // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.   
                     template dac_device {
-                        deviceNum = 0; // Device number.    
-                        validChannel = 0x1; // Valid channel 1.
-                        rate = 20000; // Transmission speed.
+                        deviceNum = 0;          // Device number.    
+                        validChannel = 0x1;     // Valid channel 1.
+                        rate = 20000;           // Transmission speed.
                     }
                     device_0 :: dac_device {
-                        deviceNum = 0; // Device number.
-                        validChannel = 0x2; // Valid channel 2.
+                        deviceNum = 0;          // Device number.
+                        validChannel = 0x2;     // Valid channel 2.
                     }
                 }
             }
         }
         ```
 
-3.  Instantiate the APIs of the core layer. 
+3.  Instantiate the core layer APIs.
     
-    - Initialize the **DacDevice** object.
+    - Initializing the **DacDevice** object
     
         Initialize the **DacDevice** member in the **VirtualDacParseAndInit** function.
 
-        ```
+        ```c++
         // Custom structure of the virtual driver
         struct VirtualDacDevice {
         // DAC device structure
@@ -201,28 +197,28 @@ The DAC module adaptation procedure is as follows:
         {
             // Define the return values.
             int32_t ret;
-            // Virtual pointer to the DAC device
+            // Pointer to the virtual DAC device
             struct VirtualDacDevice *virtual = NULL;
             (void)device;
-            // Allocate space for the virtual pointer.
+            // Allocate space for this pointer.
             virtual = (struct VirtualDacDevice *)OsalMemCalloc(sizeof(*virtual));
         if (virtual == NULL) {
             // If the value is null, return an error code.
             HDF_LOGE("%s: Malloc virtual fail!", __func__);
             return HDF_ERR_MALLOC_FAIL;
         }
-        // Read the configuration of the attribute file.
+        // Read the content of the attribute file.
         ret = VirtualDacReadDrs(virtual, node);
         if (ret != HDF_SUCCESS) {
             // Failed to read the file.
             HDF_LOGE("%s: Read drs fail! ret:%d", __func__, ret);
-            // Release the virtual space.
+            // Release the space for the virtual DAC device.
             OsalMemFree(virtual);
             // Set the pointer to 0.
             virtual = NULL;
             return ret;
         }
-        // Initialize the virtual pointer.
+        // Initialize the pointer to the virtual DAC device.
         VirtualDacDeviceInit(virtual);
         // Initialize the priv object in DacDevice.
         virtual->device.priv = (void *)node;
@@ -235,9 +231,9 @@ The DAC module adaptation procedure is as follows:
         if (ret != HDF_SUCCESS) {
             // Failed to add the device.
             HDF_LOGE("%s: add Dac controller failed! ret = %d", __func__, ret);
-            // Release the virtual space.
+            // Release the space for the virtual DAC device.
             OsalMemFree(virtual);
-            // Set the virtual pointer to null.
+            // Set this pointer to null.
             virtual = NULL;
             return ret;
         }
@@ -245,73 +241,69 @@ The DAC module adaptation procedure is as follows:
         return HDF_SUCCESS;
        }
        ```
-
-      
     
-    - Custom structure reference
+    - Defining a custom structure
     
-      The custom structure holds parameters and data for the driver. Define the custom structure based on the function parameters of the device. The HDF reads the values in the **dac_config.hcs** file using the **DacTestReadConfig()** function and initializes the structure members using **DeviceResourceIface()**. Some important values, such as the device number and bus number, are also passed to the **DacDevice** object at the core layer.
+      The custom structure holds parameters and data for the driver. Define the custom structure based on the function parameters of the device. The **DacTestReadConfig()** provided by the HDF reads the values in the **dac_config.hcs** file, and **DeviceResourceIface()** initializes the custom structure and passes some important parameters, such as the device number and bus number, to the **DacDevice** object at the core layer.
     
-      ```
+      ```c++
       struct VirtualDacDevice {
           struct DacDevice device;// (Mandatory) Control object at the core layer. For details, see the description below.
-          uint32_t deviceNum; // (Mandatory) Device number.
-          uint32_t validChannel; // (Mandatory) Valid channel.
+          uint32_t deviceNum;      // (Mandatory) Device number.
+          uint32_t validChannel;   // (Mandatory) Valid channel.
           uint32_t rate;           // (Mandatory) Sampling rate.
       };
       
-      // DacDevice is the core layer controller structure. Its members are assigned with values in the Init() function.
+      // DacDevice is the core layer controller structure. The Init() function assigns values to the members of DacDevice.
       struct DacDevice {
           const struct DacMethod *ops;
-          OsalSpinlock spin; // Spinlock.
-          uint32_t devNum; // Device number.
-          uint32_t chanNum; // Device channel number.
+          OsalSpinlock spin;      // Spinlock.
+          uint32_t devNum;        // Device number.
+          uint32_t chanNum;       // Device channel number.
           const struct DacLockMethod *lockOps;
           void *priv;
       };
       ```
     
-    - Instantiate the **DacDevice** in **DacMethod**.
-    
+    - Instantiating **DacDevice** in **DacMethod**.
     
         The **VirtualDacWrite**, **VirtualDacStop**, and **VirtualDacStart** functions are instantiated in **dac_virtual.c**.
         
-        ```
+        ```c++
         static const struct DacMethod g_method = {
             .write = VirtualDacWrite, // Write data to a DAC device. 
-            .stop = VirtualDacStop, // Stop a DAC device.
+            .stop = VirtualDacStop,   // Stop a DAC device.
             .start = VirtualDacStart, // Start a DAC device.
         };
         ```
         
-        >![](../public_sys-resources/icon-note.gif) **NOTE**<br>
-        >For details about **DacMethod**, see [Available APIs](#available-apis).
-    
+        ![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
+         For details about **DacMethod**, see [Available APIs](#available-apis).
     
     - **Init** function
     
-        Input parameters:
+        **Input parameter**:
     
-       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+        **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
     
-        Return value:
+        **Return value**:
     
-        HDF_STATUS (The table below lists some status. For details about other status, see HDF_STATUS in the /drivers/framework/include/utils/hdf_base.h file.)
+        **HDF_STATUS**<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
     
-        | State              | Description      |
-        | ---------------------- | -------------- |
+        | Status               | Description      |
+        | ---------------------- | ------------- |
         | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
-        | HDF_ERR_INVALID_PARAM  | Invalid parameter.      |
+        | HDF_ERR_INVALID_PARAM  | Invalid parameter.     |
         | HDF_ERR_MALLOC_FAIL    | Failed to allocate memory.  |
-        | HDF_ERR_IO             | I/O error.      |
-        | HDF_SUCCESS            | Transmission successful.      |
-        | HDF_FAILURE            | Transmission failed.      |
+        | HDF_ERR_IO             | I/O error.    |
+        | HDF_SUCCESS            | Transmission successful.     |
+        | HDF_FAILURE            | Transmission failed.     |
     
-        Function description:
+        **Function description**:
     
       Initializes the custom structure object and **DacDevice**, and calls the **AdcDeviceAdd** function at the core layer.
     
-      ```
+      ```c++
       static int32_t VirtualDacParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
       {
           // Define return value parameters.
@@ -355,7 +347,7 @@ The DAC module adaptation procedure is as follows:
           if (virtual != NULL) {
               // Release the memory.
               OsalMemFree(virtual);
-              // Set the pointer to null.
+              // Set this pointer to null.
               virtual = NULL;
           }
       
@@ -389,32 +381,36 @@ The DAC module adaptation procedure is as follows:
       }
       ```
     
-    -  **Release** function
+    -   **Release** function
         
-          Input parameters:
+          **Input parameter**:
         
-         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
+          **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
         
-          Return value
+          **Return value**:
         
-          This function returns no value.
+          No value is returned.
         
-          Function description:
+          **Function description**:
         
-          Releases memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
-      
-        ```
+        Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
+
+         >![](../public_sys-resources/icon-note.gif) **NOTE**
+         >
+         >All forced conversion operations for obtaining the corresponding object can be successful only when **Init()** has the corresponding value assignment operations.
+    
+        ```c++
         static void VirtualDacRemoveByNode(const struct DeviceResourceNode *node)
         {
             // Define return value parameters.
             int32_t ret;
             // Define the DAC device number.
             int16_t devNum;
-            // Pointer of the DacDevice structure.
+            // Pointer to the DacDevice structure.
             struct DacDevice *device = NULL;
-            // Pointer of the VirtualDacDevice structure. 
+            // Pointer to the VirtualDacDevice structure. 
             struct VirtualDacDevice *virtual = NULL;
-            // Pointer of the DeviceResourceIface structure.
+            // Pointer to the DeviceResourceIface structure.
             struct DeviceResourceIface *drsOps = NULL;
             // Obtain device resources through the instance entry.
             drsOps = DeviceResourceGetIfaceInstance(HDF_CONFIG_SOURCE);
@@ -423,47 +419,47 @@ The DAC module adaptation procedure is as follows:
                 // The pointer is null.
                 HDF_LOGE("%s: invalid drs ops fail!", __func__);
                 return;
-        }
-        // Obtain data of the devNum node.
-        ret = drsOps->GetUint16(node, "devNum", (uint16_t *)&devNum, 0);
-        if (ret != HDF_SUCCESS) {
-            // Failed to obtain node data.
-            HDF_LOGE("%s: read devNum fail!", __func__);
-            return;
-        }
-        // Obtain the DAC device number.
-        device = DacDeviceGet(devNum);
-        // Check whether the DAC device number and data are null.
-        if (device != NULL && device->priv == node) {
-            // Release the DAC device number if the device data is null.
-            DacDevicePut(device);
-            // Remove the DAC device number.
-            DacDeviceRemove(device);
-            virtual = (struct VirtualDacDevice *)device;
-            // Release the virtual pointer.
-            OsalMemFree(virtual);
+            }
+            // Obtain data of the devNum node.
+            ret = drsOps->GetUint16(node, "devNum", (uint16_t *)&devNum, 0);
+            if (ret != HDF_SUCCESS) {
+                // Failed to obtain node data.
+                HDF_LOGE("%s: read devNum fail!", __func__);
+                return;
+            }
+            // Obtain the DAC device number.
+            device = DacDeviceGet(devNum);
+            // Check whether the DAC device number and data are null.
+            if (device != NULL && device->priv == node) {
+                // Release the DAC device number if the device data is null.
+                DacDevicePut(device);
+                // Remove the DAC device number.
+                DacDeviceRemove(device);
+                virtual = (struct VirtualDacDevice *)device;
+                // Release the virtual pointer.
+                OsalMemFree(virtual);
             }
             return;
         }
-    
+        
         static void VirtualDacRelease(struct HdfDeviceObject *device)
         {
-            // Define the child node structure pointer of the DeviceResourceNode.
+            // Define the child node structure pointer to the DeviceResourceNode.
             const struct DeviceResourceNode *childNode = NULL;
             // Check whether the input parameter pointer is null.
             if (device == NULL || device->property == NULL) {
-            // The input parameter pointer is null.
-            HDF_LOGE("%s: device or property is NULL", __func__);
-            return;
+                // The input parameter pointer is null.
+                HDF_LOGE("%s: device or property is NULL", __func__);
+                return;
             }
             
             DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
                 // Remove the DAC through the node.
                 VirtualDacRemoveByNode(childNode);
-                }
+            }
         }
         ```
 
 4. Debug the driver.
 
-   (Optional) Verify the basic functions of the new driver, for example, whether the test cases are successful after the driver is loaded.
+   (Optional) Verify the basic functions of the new driver, for example, check whether the test cases are successful after the driver is loaded.
