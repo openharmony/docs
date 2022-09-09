@@ -2326,7 +2326,7 @@ registerInputer(inputer: IInputer): boolean;
 **示例：**
   ```js
   let pinAuth = new account_osAccount.PINAuth();
-  let password = new Uint8Array([0, 0, 0, 0, 0];
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
   let result = pinAuth.registerInputer({
       onGetData: (pinSubType, callback) => {
         callback.onSetData(pinSubType, password);
@@ -2509,7 +2509,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     }
   });
   userIDM.openSession((err, challenge) => {
-    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL_1, {
+    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL1, {
       onResult: (result, extraInfo) => {
         if (result != account_osAccount.ResultCode.SUCCESS) {
           return;
@@ -2571,8 +2571,9 @@ cancel(challenge: Uint8Array): number;
 **示例：**
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
-  let challenge = 1;
-  let cancelresult = userIDM.cancel(challenge);
+  let challenge = new Uint8Array([0]);
+  let result = userIDM.cancel(challenge);
+  console.log("cancel result: " + result);
   ```
 
 ### delUser<sup>8+</sup>
@@ -2649,7 +2650,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2677,7 +2678,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2705,7 +2706,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 

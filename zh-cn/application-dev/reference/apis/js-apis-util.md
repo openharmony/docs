@@ -120,17 +120,6 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | -------- | -------- |
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
-**示例：**
-  ```js
-  function aysnFun() {
-    return 0;
-  }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
-  newPromiseObj().then(res => {
-    console.log(res);
-  })
-  ```
-
 ## util.promisify<sup>9+</sup>
 
 promisify(original: (err: Object, value: Object) =&gt; void): Function
@@ -211,7 +200,7 @@ randomBinaryUUID(entropyCache?: boolean): Uint8Array
 **示例：**
   ```js
   let uuid = util.randomBinaryUUID(true);
-  console.log(uuid);
+  console.log(JSON.stringify(uuid));
   // 输出：
   // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
   ```
@@ -237,7 +226,7 @@ parseUUID(uuid: string): Uint8Array
 **示例：**
   ```js
   let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-  console.log(uuid);
+  console.log(JSON.stringify(uuid));
   // 输出：
   // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
   ```  
@@ -2764,5 +2753,5 @@ isSharedArrayBuffer(value: Object): boolean
 **示例：**
   ```js
   var that = new util.types();
-  var result = that.isSharedArrayBuffer(new SharedArrayBuffer([]));
+  var result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```

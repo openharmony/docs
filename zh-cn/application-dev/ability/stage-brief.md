@@ -49,6 +49,8 @@
 
 ​        为了实现多设备形态上的裁剪和多窗口的可扩展性，OpenHarmony对组件管理和窗口管理进行了解耦。Stage模型定义Ability组件的生命周期，只包含创建、销毁、前后台等状态，而将与界面相关内容强相关的获焦、失焦状态放在WindowStage之中，从而实现Ability与窗口之间的弱耦合；在服务侧，窗口管理服务依赖于组件管理服务，前者通知后者前后台变化，这样组件管理服务仅感知前后台变化，不感知焦点变化。
 
+​	需要注意的是，在Ability中存在两个与WindowStage相关的生命周期状态onWindowStageCreate和onWindowStageDestroy，这两个生命周期状态的变化仅存在于具有窗口显示能力的设备中。前者表示WindowStage已经创建完成，开发者可以通过执行loadContent的操作设置Ability需要加载的页面；后者在WindowStage销毁后调用，从而便于开发者对资源进行释放。
+
 
 ## Ability组件实例与任务
 

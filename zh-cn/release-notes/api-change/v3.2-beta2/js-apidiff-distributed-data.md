@@ -9,7 +9,7 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，分布式数�
 | ohos.data.dataShare | DataShareHelper | notifyChange(uri: string, callback: AsyncCallback\<void>): void;<br>notifyChange(uri: string): Promise\<void>; | 新增 |
 | ohos.data.dataShare | DataShareHelper | denormalizeUri(uri: string, callback: AsyncCallback\<string>): void;<br>denormalizeUri(uri: string): Promise\<string>; | 新增 |
 | ohos.data.dataShare | DataShareHelper | normalizeUri(uri: string, callback: AsyncCallback\<string>): void;<br>normalizeUri(uri: string): Promise\<string>; | 新增 |
-| ohos.data.dataShare | DataShareHelper | getFileTypes(uri: string,  mimeTypeFilter:string, callback: AsyncCallback\<Array\<string>>): void;<br>getFileTypes(uri: string,  mimeTypeFilter: string): Promise\<Array\<string>>; | 新增 |
+| ohos.data.dataShare | DataShareHelper | getFileTypes(uri: string,  mimeTypeFilter: string, callback: AsyncCallback\<Array\<string>>): void;<br>getFileTypes(uri: string,  mimeTypeFilter: string): Promise\<Array\<string>>; | 新增 |
 | ohos.data.dataShare | DataShareHelper | getType(uri: string, callback: AsyncCallback\<string>): void;<br>getType(uri: string): Promise\<string>; | 新增 |
 | ohos.data.dataShare | DataShareHelper | batchInsert(uri: string, values: Array\<ValuesBucket>, callback: AsyncCallback\<number>): void;<br>batchInsert(uri: string, values: Array\<ValuesBucket>): Promise\<number>; | 新增 |
 | ohos.data.dataShare | DataShareHelper | update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback\<number>): void;<br>update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise\<number>; | 新增 |
@@ -75,7 +75,7 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，分布式数�
 | ohos.data.DataShareResultSet | DataType | TYPE_NULL = 0 | 新增 |
 | ohos.data.distributedData | DeviceKVStore | off(event:'dataChange', listener?: Callback\<ChangeNotification>): void; | 新增 |
 | ohos.data.distributedData | DeviceKVStore | on(event: 'dataChange', type: SubscribeType, listener: Callback\<ChangeNotification>): void; | 新增 |
-| ohos.data.distributedData | SingleKVStore | off(event:'dataChange', listener?: Callback\<ChangeNotification>): void; | 新增 |
+| ohos.data.distributedData | SingleKVStore | off(event: 'dataChange', listener?: Callback\<ChangeNotification>): void; | 新增 |
 | ohos.data.distributedData | SingleKVStore | on(event: 'dataChange', type: SubscribeType, listener: Callback\<ChangeNotification>): void; | 新增 |
 | ohos.data.distributedData | KVStore | off(event: 'syncComplete', syncCallback?: Callback\<Array\<[string, number]>>): void; | 新增 |
 | ohos.data.distributedData | KVManagerConfig | context: Context; | 新增 |
@@ -85,7 +85,7 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，分布式数�
 | ohos.data.distributedDataObject | SaveSuccessResponse | deviceId: string; | 新增 |
 | ohos.data.distributedDataObject | SaveSuccessResponse | version: number; | 新增 |
 | ohos.data.distributedDataObject | SaveSuccessResponse | sessionId: string; | 新增 |
-| ohos.data.rdb | RdbStore | restore(srcName:string, callback: AsyncCallback\<void>):void;<br>restore(srcName:string): Promise\<void>; | 新增 |
-| ohos.data.rdb | RdbStore | backup(destName:string, callback: AsyncCallback\<void>):void;<br>backup(destName:string): Promise\<void>; | 新增 |
+| ohos.data.rdb | RdbStore | restore(srcName: string, callback: AsyncCallback\<void>): void;<br>restore(srcName: string): Promise\<void>; | 新增 |
+| ohos.data.rdb | RdbStore | backup(destName: string, callback: AsyncCallback\<void>): void;<br>backup(destName: string): Promise\<void>; | 新增 |
 
 

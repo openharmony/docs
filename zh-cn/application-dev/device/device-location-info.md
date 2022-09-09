@@ -20,7 +20,7 @@
 | off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void | 关闭位置变化订阅，并删除对应的定位请求。                     |
 | on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | 订阅位置服务状态变化。                                       |
 | off(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | 取消订阅位置服务状态变化。                                   |
-| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLoactionsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | 订阅缓存GNSS位置上报。                                       |
+| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | 订阅缓存GNSS位置上报。                                       |
 | off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void; | 取消订阅缓存GNSS位置上报。                                   |
 | on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void; | 订阅卫星状态信息更新事件。                                   |
 | off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void; | 取消订阅卫星状态信息更新事件。                               |

@@ -25,7 +25,7 @@ None
 | saturate | number | 1.0 | Adds the saturation effect to the current component. The saturation is the ratio of the chromatic component to the achromatic component (gray) in a color. When the input value is **1**, the source image is displayed. When the input value is greater than **1**, a higher percentage of the chromatic component indicates a higher saturation. When the input value is less than **1**, a higher percentage of the achromatic component indicates a lower saturation. The unit is percentage. |
 | contrast | number | 1.0 | Adds the contrast effect to the current component. The input parameter is a contrast value. If the value is **1**, the source image is displayed. If the value is greater than **1**, a larger value indicates a higher contrast and a clearer image. If the value is less than **1**, a smaller value indicates a lower contrast is. If the value is **0**, the image becomes all gray. The unit is percentage. |
 | invert | number | 0 | Inverts the input image. The input parameter is an image inversion ratio. The value **1** indicates complete inversion. The value **0** indicates that the image does not change. The unit is percentage. |
-| colorBlend <sup>8+</sup> | Color \| string \| [Resource](../../ui/ts-types.md) | - | Adds the color blend effect to the current component. The input parameter is the blended color. |
+| colorBlend<sup>8+</sup> | Color \| string \| [Resource](../../ui/ts-types.md#resource-type) | - | Adds the color blend effect to the current component. The input parameter is the blended color. |
 | sepia | number | 0 | Converts the image color to sepia. The input parameter is an image inversion ratio. The value **1** indicates the image is completely sepia. The value **0** indicates that the image does not change. The unit is percentage. |
 | hueRotate | number \| string | '0deg' | Adds the hue rotation effect to the current component. The input parameter is a rotation angle. If the input value is **0deg**, the image does not change (because the default rotation angle is **0deg**). The input parameter does not have the maximum value. If the value exceeds **360deg**, the image is rotated for one more circle. In other words, the value **370deg** has the same effect as **10deg**.|
 
@@ -40,7 +40,7 @@ You can preview how this component looks on a real device. The preview is not ye
 @Component
 struct ImageEffectsExample {
   build() {
-Column({space: 10}) {
+    Column({space: 10}) {
       // Blur the font.
       Text('font blur').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Text('text').blur(3).width('90%').height(40)

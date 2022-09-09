@@ -36,9 +36,16 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
@@ -47,6 +54,28 @@ data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+// 获取context后调用getRdbStore
+const STORE_CONFIG = { name: "RdbTest.db"}
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+    if (err) {
+        console.info("Get RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Get RdbStore successfully.")
+})
+```
 ## data_rdb.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;RdbStore&gt;
@@ -71,9 +100,38 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
+promise.then(async (rdbStore) => {
+    console.log("Get RdbStore successfully.")
+}).catch((err) => {
+    console.log("Get RdbStore failed, err: " + err)
+})
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+// 获取context后调用getRdbStore
+const STORE_CONFIG = { name: "RdbTest.db" }
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
@@ -97,8 +155,38 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
+
+FA模型示例：
+
 ```js
-data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
+    if (err) {
+        console.info("Delete RdbStore failed, err: " + err)
+        return
+    }
+    console.log("Delete RdbStore successfully.")
+})
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+// 获取context后调用deleteRdbStore
+data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Delete RdbStore failed, err: " + err)
         return
@@ -127,8 +215,16 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 指定Promise回调函数。 |
 
 **示例：**
+
+FA模型示例：
+
 ```js
-let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Delete RdbStore successfully.")
 }).catch((err) => {
@@ -136,6 +232,26 @@ promise.then(()=>{
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+// 获取context后调用deleteRdbStore
+let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
+promise.then(()=>{
+    console.log("Delete RdbStore successfully.")
+}).catch((err) => {
+    console.info("Delete RdbStore failed, err: " + err)
+})
+```
 
 ## RdbPredicates
 
@@ -2146,7 +2262,7 @@ try {
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 数据库文件名。 |
-
+| encrypt | boolean | 否 | 指定数据库是否加密。<br>true:加密。<br>false:非加密。 |
 
 ## ValueType
 

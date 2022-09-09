@@ -165,7 +165,6 @@ export default {
          console.log(`operation complete!`);
         }
      });        
-    });    
   }
 }
 

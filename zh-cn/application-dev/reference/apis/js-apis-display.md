@@ -256,7 +256,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 ```js
 var callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
 }
 display.on("add", callback);
 ```

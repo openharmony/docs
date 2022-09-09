@@ -277,7 +277,8 @@ cancelAuth(contextID : Uint8Array) : number
 
   // contextId可通过auth接口获取，此处直接定义
   let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-  let cancelCode = auth.cancel(contextId);
+  let auth = new userIAM_userAuth.UserAuth();
+  let cancelCode = auth.cancelAuth(contextId);
   if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
       console.info("cancel auth success");
   } else {
@@ -539,13 +540,14 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 **示例：**
   ```js
-  authenticator.execute("FACE_ONLY", "S2", (code)=>{
-      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
+      if (code === userIAM_userAuth.ResultCode.SUCCESS) {
           console.info("auth success");
           return;
       }
       console.error("auth fail, code = " + code);
-  })
+  });
   ```
 
 
@@ -575,14 +577,14 @@ execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 
 **示例：**
 
-```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((code)=>{
-    console.error("auth fail, code = " + code);
-});
-```
+  ```js
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+      console.info("auth success");
+  }).catch((error)=>{
+      console.error("auth fail, code = " + error);
+  });
+  ```
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 

@@ -20,24 +20,20 @@
 
 ## TouchEvent对象说明
 
-- 属性
-  | 属性名称                | 类型                                       | 描述           |
+  | 名称                | 类型                                       | 描述           |
   | ------------------- | ---------------------------------------- | ------------ |
   | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
   | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
   | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-  | timestamp           | number                                   | 距离开机时间的时间戳，单位为毫秒。      |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 被触摸元素对象。     |
-
-
-- 接口
-  | 接口名称                   | 功能描述    |
-  | ---------------------- | ------- |
-  | stopPropagation()：void | 阻塞事件冒泡。 |
+  | stopPropagation      | () => void | 阻塞事件冒泡。 |
+  | timestamp<sup>8+</sup> | number | 事件时间戳。 |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
+  | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | 事件输入设备。 |
 
 
 ## TouchObject对象说明
-| 属性名称    | 类型                          | 描述                  |
+
+| 名称    | 类型                          | 描述                  |
 | ------- | --------------------------- | ------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。            |
 | id      | number                      | 手指唯一标识符。            |

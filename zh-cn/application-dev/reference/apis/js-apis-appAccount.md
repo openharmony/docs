@@ -1523,6 +1523,8 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 **示例：**
 
   ```js
+  import featureAbility from '@ohos.ability.featureAbility';
+
   const appAccountManager = account_appAccount.createAppAccountManager();
   featureAbility.getWant().then((want) => {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];

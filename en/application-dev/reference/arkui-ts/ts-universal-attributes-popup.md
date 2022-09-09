@@ -17,7 +17,7 @@ None
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| bindPopup | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to a component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
+| bindPopup | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to the component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
 
 
 - PopupOptions
@@ -25,6 +25,7 @@ None
   | -------- | -------- | -------- | -------- | -------- |
   | message | string | Yes| - | Content of the popup message.|
   | placementOnTop | boolean | No| false | Whether to display the popup above the component. The default value is **false**.|
+  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
   | primaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Primary button.<br>**value**: text of the primary button in the popup.<br>**action**: callback for clicking the primary button.|
   | secondaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Secondary button.<br>**value**: text of the secondary button in the popup.<br>**action**: callback for clicking the secondary button.|
   | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
@@ -33,28 +34,13 @@ None
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | builder | () =&gt; any | Yes| - | Builder of the popup content.|
-  | placement | Placement | No| Placement.Bottom | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.|
+  | placement | [Placement](ts-appendix-enums.md#placement8) | No| Placement.Bottom | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.|
+  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
   | maskColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup mask.|
   | popupColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup.|
-  | enableArrow | boolean | No| true | Whether to display an arrow.<br>Since API version 9, if the location set for the arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.|
+  | enableArrow | boolean | No| true | Whether to display an arrow.<br>Since API version 9, if the location set for the popup arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.|
   | autoCancel | boolean | No| true | Whether to automatically close the popup when an operation is performed on the page.|
   | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
-
-- Placement<sup>8+</sup> enums
-  | Name| Description|
-  | -------- | -------- |
-  | Left | The popup is on the left of the component, vertically aligned with the component on the left.|
-  | Right | The popup is on the right of the component, vertically aligned with the component on the right.|
-  | Top | The popup is at the top of the component, horizontally aligned with the component at the top.|
-  | Bottom | The popup is at the bottom of the component, horizontally aligned with the component at the bottom.|
-  | TopLeft | The popup is at the top of the component and, since API version 9, aligned with the left of the component.|
-  | TopRight | The popup is at the top of the component and, since API version 9, aligned with the right of the component.|
-  | BottomLeft | The popup is at the bottom of the component and, since API version 9, aligned with the left of the component.|
-  | BottomRight | The popup is at the bottom of the component and, since API version 9, aligned with the right of the component.|
-  | LeftTop<sup>9+</sup> | The popup is on the left of the component and aligned with the top of the component.|
-  | LeftBottom<sup>9+</sup> | The popup is on the left of the component and aligned with the bottom of the component.|
-  | RightTop<sup>9+</sup> | The popup is on the right of the component and aligned with the top of the component.|
-  | RightBottom<sup>9+</sup> | The popup is on the right of the component and aligned with the bottom of the component.|
 
 
 ## Example
