@@ -20,8 +20,7 @@
 
 ## KeyEvent对象说明
 
-- 属性
-  | 属性名称                                  | 类型                          | 描述                         |
+  | 名称                                  | 类型                          | 描述                         |
   | ------------------------------------- | --------------------------- | -------------------------- |
   | type                                  | [KeyType](ts-appendix-enums.md#keytype)     | 按键的类型。                     |
   | [keyCode](../apis/js-apis-keycode.md) | number                      | 按键的键码。                     |
@@ -30,12 +29,7 @@
   | deviceId                              | number                      | 触发当前按键的输入设备ID。             |
   | metaKey                               | number                      | 按键发生时元键的状态，1表示按压态，0表示未按压态。 |
   | timestamp                             | number                      | 按键发生时的时间戳。                 |
-
-
-- 接口
-  | 接口名称                         | 功能描述      |
-  | ---------------------------- | --------- |
-  | stopPropagation():&nbsp;void | 阻塞事件冒泡传递。 |
+  | stopPropagation                       | () => void                  | 阻塞事件冒泡传递。 |
 
 
 ## 示例
