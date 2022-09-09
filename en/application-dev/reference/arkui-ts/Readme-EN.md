@@ -146,3 +146,4 @@
         - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
     - [Menu](ts-methods-menu.md)
 - [Built-in Enums](ts-appendix-enums.md)
+- [Types](ts-types.md)
