@@ -138,6 +138,7 @@
   - [@ohos.configPolicy](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager](js-apis-enterprise-device-manager.md)
   - [@ohos.EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)
+  - enterpriseDeviceManager/[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
   
 - Security
 
