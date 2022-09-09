@@ -291,6 +291,7 @@ enableFlag(id: HiTraceId, flag: HiTraceFlag): void
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | id  | [HiTraceId](#hitraceid) | 是 | 需要置位指定跟踪标志的HiTraceId实例。 |
