@@ -117,6 +117,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。 |
@@ -142,6 +143,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 以Promise形式返回激活的数据网络列表。 |
@@ -285,6 +287,7 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
@@ -312,6 +315,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
@@ -343,6 +347,7 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
@@ -370,6 +375,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | netHandle | [NetHandle](#nethandle) | 是 | 数据网络的句柄，参考[NetHandle](#nethandle)。 |
