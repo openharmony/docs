@@ -39,7 +39,7 @@ import settings from '@ohos.settings';
 | ----------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。                                 |
 | SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。该值的范围从0到255。                               |
-| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>值为1，表示启用自动调整；<br/>值为0，表示不启用自动调整。 |
+| AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整；<br/>值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。 |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。           |
 | MANUAL_SCREEN_BRIGHTNESS_MODE | number | 是   | 是   | 使用屏幕亮度手动调整时的AUTO_SCREEN_BRIGHTNESS值。           |
 | SCREEN_OFF_TIMEOUT            | string | 是   | 是   | 设备在一段时间不活动后进入睡眠状态的等待时间（单位：ms）。   |
@@ -90,7 +90,7 @@ import settings from '@ohos.settings';
 | ------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEFAULT_INPUT_METHOD                 | string | 是   | 是   | 默认输入法及其ID。                                           |
 | ACTIVATED_INPUT_METHOD_SUB_MODE      | string | 是   | 是   | 默认输入法键盘类型及其ID。                                   |
-| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，其中包含已激活输入法的ID。ID由冒号':'分隔，输入法的键盘类型由分号';'分隔。示例格式是 ima0: keyboardType0; keyboardType1; ima1: ima2: keyboardTypes0。imaID 的类型是 ElementName，keyboard的类型是 int。 |
+| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，其中包含已激活的输入法的ID。ID由冒号':'分隔，输入法的键盘类型由分号';'分隔。用ima代表输入法ID，keyboardType代表键盘类型，示例格式是ima0:keyboardType0;keyboardType1;ima1:ima2: keyboardTypes0。 |
 | SELECTOR_VISIBILITY_FOR_INPUT_METHOD | string | 是   | 是   | 输入法选择器是否可见。<br>值为1，表示输入法选择器可见；<br/>值为0，表示输入法选择器不可见。 |
 | AUTO_CAPS_TEXT_INPUT                 | string | 是   | 是   | 是否为文本编辑器启用自动大写。<br>值为0，表示不启用自动大写；<br/>值为1，表示启用自动大写。 |
 | AUTO_PUNCTUATE_TEXT_INPUT            | string | 是   | 是   | 是否为文本编辑器启用自动标点符号。自动标点符号使文本编辑器能够将两个空格转换为句点'.'和空格。<br>值为0，表示不启用自动标点符号；<br/>值为1，表示启用自动标点符号。 |
@@ -143,7 +143,7 @@ import settings from '@ohos.settings';
 | DEFAULT_RINGTONE             | string | 是   | 是   | 系统默认铃声的存储区域。                                     |
 | SOUND_EFFECTS_STATUS         | string | 是   | 是   | 声音功能是否可用。<br>值为0表示不可用； <br/>值为1表示可用   |
 | VIBRATE_STATUS               | string | 是   | 是   | 设备是否为事件振动。该参数在系统内部使用。 <br>值为1，表示设备会因事件而振动； <br/>值为0，表示设备不因事件振动。 |
-| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。该参数为boolean类型。                  |
+| HAPTIC_FEEDBACK_STATUS       | string | 是   | 是   | 设备是否启用触觉反馈。<br/>值为true，表示启用触觉反馈；<br/>值为false，表示不启用触觉反馈。 |
 
 ## TTS
 
@@ -174,10 +174,10 @@ import settings from '@ohos.settings';
 | BLUETOOTH_DISCOVER_ABILITY_STATUS | string | 是   | 是   | 设备是否可以被其他设备通过蓝牙发现或连接。<br>值为0表示设备不可以被连接或发现；<br/>值为1表示设备可以被连接但不可以被发现；<br/>值为2表示设备可以被连接和发现。 |
 | BLUETOOTH_DISCOVER_TIMEOUT        | string | 是   | 是   | 可以通过蓝牙发现设备的持续时间（以秒为单位）。<br>这段时间之后，设备不可以被蓝牙搜寻到。 |
 | AIRPLANE_MODE_RADIOS              | string | 是   | 是   | 启用飞行模式时要禁用的无线电信号列表。 <br>多个无线电信号用逗号 (,) 分隔。取值包括以下常量：BLUETOOTH_RADIO、 CELL_RADIO、 NFC_RADIO、 WIFI_RADIO。 |
-| BLUETOOTH_RADIO                   | string | 是   | 是   | 常量，用来表示蓝牙在飞行模式下禁用。                         |
-| CELL_RADIO                        | string | 是   | 是   | 常量，用来表示蜂窝无线电在飞行模式下禁用。                   |
-| NFC_RADIO                         | string | 是   | 是   | 常量，用来表示NFC在飞行模式下禁用。                          |
-| WIFI_RADIO                        | string | 是   | 是   | 常量，用来表示Wi-Fi在飞行模式下禁用。                        |
+| BLUETOOTH_RADIO                   | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蓝牙在飞行模式下禁用。 |
+| CELL_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示蜂窝无线电在飞行模式下禁用。 |
+| NFC_RADIO                         | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示NFC在飞行模式下禁用。 |
+| WIFI_RADIO                        | string | 是   | 否   | 常量，作为AIRPLANE_MODE_RADIOS的取值时表示Wi-Fi在飞行模式下禁用。 |
 | BLUETOOTH_STATUS                  | string | 是   | 是   | 蓝牙是否可用。 <br>值为true表示蓝牙可用；<br/>值为false表示蓝牙不可用。 |
 | OWNER_LOCKDOWN_WIFI_CFG           | string | 是   | 是   | 是否应锁定由设备所有者的应用程序创建的Wi-Fi配置。<br>值为true表示Wi-Fi配置应该被锁定；<br/>值为false表示不应该被锁定。 |
 | WIFI_DHCP_MAX_RETRY_COUNT         | string | 是   | 是   | 尝试从DHCP服务器获取 IP 地址的最大次数。                     |
@@ -494,7 +494,7 @@ getUriSync(name: string): string
 
 getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: string): string
 
-获取数据项的值。
+获取数据项的值。此方法相较getValue为同步方法。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -527,7 +527,8 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 
 setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string): boolean
 
-设置数据项的值。
+设置数据项的值。此方法相较setValue为同步方法。
+
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
 **需要权限**：ohos.permission.MANAGE_SECUER_SETINGS。
