@@ -24,7 +24,7 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数：**
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回true表示屏幕已锁屏，返回false表示屏幕未锁屏。 | 
 
@@ -79,7 +79,7 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示屏幕处于安全模式下，返回false表示屏幕当前不在安全模式下。 | 
 
@@ -134,7 +134,7 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
 
@@ -161,7 +161,7 @@ unlockScreen(): Promise&lt;void&gt;
 
 **返回值**：
 
-    | 类型 | 说明 | 
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
 
@@ -190,7 +190,7 @@ lockScreen(callback: AsyncCallback&lt;boolean&gt;): void
 
 **参数**：
 
-    | 参数名 | 类型 | 必填 | 说明 | 
+  | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，失败时返回错误信息。 | 
 
@@ -218,7 +218,7 @@ lockScreen(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-    | 类型 | 说明 | 
+  | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;void&gt; | 以Promise形式返回结果。 | 
 
