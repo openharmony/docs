@@ -16,6 +16,7 @@
 
 
 **表1** 分布式数据对象实例创建接口
+
 | 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作。 <br>-&nbsp;source：设置distributedObject的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式对象。 |
@@ -25,6 +26,7 @@
 创建一个随机的sessionId，可将其设置为一个分布式数据对象的sessionId。
 
 **表2** 分布式数据对象sessionId创建接口
+
 | 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | ohos.data.distributedDataObject| genSessionId(): string | 创建一个sessionId，可作为分布式数据对象的sessionId。 |
@@ -34,6 +36,7 @@
 设置分布式数据对象的sessionId，sessionId是一次（多设备）协同的唯一标识，同步的多个数据对象需要关联同一个sessionId。
 
 **表3** 分布式数据对象sessionId设置接口
+
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId。<br>&nbsp;sessionId：分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
@@ -54,6 +57,7 @@
 订阅数据对象上下线需要指定Callback作为回调方法，订阅的数据对象上线/下线后，对端的数据对象会收到Callback回调。
 
 **表5** 分布式数据对象数据上下线订阅接口
+
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | DistributedDataObject| on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }>): void | 订阅数据对象上下线。 |
@@ -72,6 +76,7 @@
 - 成功恢复数据之后。
 
 **表6** 分布式数据对象保存和撤回保存接口
+
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
 | DistributedDataObject | save(deviceId: string): Promise&lt;SaveSuccessResponse&gt; | 保存数据对象。 |
@@ -267,8 +272,10 @@
     ```js
     local_object.setSessionId("");
     ```
+
 ## 相关实例
 
 针对分布式数据对象，有以下相关实例可供参考：
+
 - [`DistributedNote`：分布式备忘录（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedNote)
 - [`DistributedObjectDms`：分布式跑马灯（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedObjectDms)
