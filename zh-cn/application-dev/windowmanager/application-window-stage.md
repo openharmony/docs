@@ -66,7 +66,6 @@
 3. 为主窗口加载对应的目标页面。
    通过`loadContent`接口加载主窗口的目标页面。
 
-
 ```ts
 import Ability from '@ohos.application.Ability'
 
@@ -124,7 +123,6 @@ class MainAbility extends Ability {
 
 4. 销毁子窗口。
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroy`接口销毁子窗口。
-
    
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -214,7 +212,6 @@ class MainAbility extends Ability {
 
 3. 加载显示沉浸式窗口的具体内容。
    通过`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
-
    
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -309,7 +306,6 @@ class MainAbility extends Ability {
 
    > **说明：**
    > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/background-task-overview.md)。
-
    
    ```json
    {
