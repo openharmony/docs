@@ -88,9 +88,7 @@ lite_component("file") {
    {
    "subsystem": "utils",
    "components": [
-       { "component": "file", "features":[] },
-       { "component": "kv_store", "features":[] },
-       { "component": "os_dump", "features":[] }
+       { "component": "file", "features":[] }
      ]
    },
    ```
