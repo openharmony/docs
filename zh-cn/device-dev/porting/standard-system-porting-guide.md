@@ -30,10 +30,10 @@
       {
         "subsystem": "ace",
         "components": [
-          { "component": "ace_engine_lite", "features":[""] }
+          { "component": "ace_engine_lite", "features":[] }
         ]
-      }，
-	    …
+      },
+	...
     ]
 }
 
