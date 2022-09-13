@@ -169,5 +169,5 @@
    <br>&emsp;&emsp;通过命令冷启动应用， 应用拉起失败。
 
    &emsp;**解决方法**
-    <br>&emsp;&emsp;1. 需要设置 param set appspawn.cold.boot true生效。
+    <br>&emsp;&emsp;1. 需要设置 param set startup.appspawn.cold.boot 1生效。
     <br>&emsp;&emsp;2. 确认冷启动命令是否正确。
