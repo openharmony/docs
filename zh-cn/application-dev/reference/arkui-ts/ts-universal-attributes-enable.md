@@ -1,6 +1,6 @@
 # 禁用控制
 
-组件是否可交互，可交互状态下响应[通用事件](ts-universal-events-click.md)。
+组件是否可交互，可交互状态下响应[点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[拖拽事件](ts-universal-events-drag-drop.md)、[按键事件](ts-universal-events-key.md)、[焦点事件](ts-universal-focus-event.md)和[鼠标事件](ts-universal-mouse-key.md)。
 
 >  **说明：**
 >
