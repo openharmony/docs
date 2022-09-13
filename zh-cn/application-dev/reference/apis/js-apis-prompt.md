@@ -140,7 +140,7 @@ prompt.showDialog({
 
 | 名称      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| title   | string\ | 否    | 标题文本。                                    |
+| title   | string | 否    | 标题文本。                                    |
 | message | string  | 否    | 内容文本。                                    |
 | buttons | Array   | 否    | 对话框中按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-3个按钮。其中第一个为positiveButton；第二个为negativeButton；第三个为neutralButton。 |
 
