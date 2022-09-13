@@ -216,8 +216,8 @@
   - [@ohos.pasteboard](js-apis-pasteboard.md)
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
-  - [@ohos.systemTimer](js-apis-system-timer.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
+  - [@ohos.systemTimer](js-apis-system-timer.md)
   - [Timer](js-apis-timer.md)
   
 - Device Management
