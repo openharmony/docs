@@ -3,8 +3,8 @@
 The **\<Flex>** component allows for elastic layout of child components.
 
 > **NOTE**
-> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - The **\<Flex>** component adapts the layout of flex items to comply with the **flexShrink** and **flexGrow** settings. This may affect the performance. Therefore, you are advised to use **[Column](ts-container-column.md)** or **[Row](ts-container-row.md)** instead under scenarios where consistently high performance is required.
+> 
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -19,50 +19,24 @@ This component can contain child components.
 
 ## APIs
 
-Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
+Flex(value?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })
 
 Creates a standard **\<Flex>** component.
 
-**Parameters**
-
-| Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
-| -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
-| direction      | FlexDirection                            | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
-| wrap           | FlexWrap                                 | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
-| justifyContent | FlexAlign                                | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
-| alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign-enums)| No   | ItemAlign.Stretch | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
-| alignContent   | FlexAlign                                | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
-
-## FlexDirection
-| Name           | Description              |
-| ------------- | ---------------- |
-| Row           | The child components are arranged in the same direction as the main axis runs along the rows. |
-| RowReverse    | The child components are arranged opposite to the **Row** direction. |
-| Column        | The child components are arranged in the same direction as the main axis runs down the columns. |
-| ColumnReverse | The child components are arranged opposite to the **Column** direction.|
-
-## FlexWrap enums
-| Name       | Description                                             |
-| ----------- | ------------------------------------------------- |
-| NoWrap      | The child components in the **\<Flex>** component are arranged in a single line, and they cannot overflow.  |
-| Wrap        | The child components in the **\<Flex>** component are arranged in multiple lines, and they may overflow.    |
-| WrapReverse | The child components in the **\<Flex>** component are reversely arranged in multiple lines, and they may overflow.|
-
-## FlexAlign enums
-| Name        | Description                                                        |
-| ------------ | ------------------------------------------------------------ |
-| Start        | The child components are aligned with the start edge of the main axis. The first component is aligned with the main-start, and subsequent components are aligned with the previous one.|
-| Center       | The child components are aligned in the center of the main axis. The space between the first component and the main-start is the same as that between the last component and the main-end.|
-| End          | The child components are aligned with the end edge of the main axis. The last component is aligned with the main-end, and other components are aligned with the next one.|
-| SpaceBetween | The child components are evenly distributed along the main axis. The space between any two adjacent components is the same. The first component is aligned with the main-start, the last component is aligned with the main-end, and the remaining components are distributed so that the space between any two adjacent components is the same. |
-| SpaceAround  | The child components are evenly distributed along the main axis. The space between any two adjacent components is the same. The space between the first component and main-start, and that between the last component and cross-main are both half the size of the space between two adjacent components. |
-| SpaceEvenly  | The child components are equally distributed along the main axis. The space between the first component and main-start, the space between the last component and main-end, and the space between two adjacent components are the same.|
+- Parameters
+  | Name           | Type                                    | Mandatory  | Default Value              | Description                                    |
+  | -------------- | ---------------------------------------- | ---- | ----------------- | ---------------------------------------- |
+  | direction      | [FlexDirection](ts-appendix-enums.md#flexdirection) | No   | FlexDirection.Row | Direction in which child components are arranged in the **\<Flex>** component, that is, the direction of the main axis.                |
+  | wrap           | [FlexWrap](ts-appendix-enums.md#flexwrap)  | No   | FlexWrap.NoWrap   | Whether the **\<Flex>** component has a single line or multiple lines.                    |
+  | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in the **\<Flex>** component along the main axis.                     |
+  | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No   | ItemAlign.Stretch | Alignment mode of the child components in the **\<Flex>** component along the cross axis.                    |
+  | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No   | FlexAlign.Start   | Alignment mode of the child components in a multi-line **<Flex>** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.|
 
 
 ## Example
 
-```
-// Example 01
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FlexExample1 {
@@ -124,8 +98,8 @@ struct FlexExample1 {
 
 ![en-us_image_0000001256978365](figures/en-us_image_0000001256978365.gif)
 
-```
-// Example 02
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FlexExample2 {
@@ -170,8 +144,8 @@ struct FlexExample2 {
 
 ![en-us_image_0000001211898500](figures/en-us_image_0000001211898500.png)
 
-```
-// Example 03
+```ts
+// xxx.ets
 @Component
 struct JustifyContentFlex {
   @Prop justifyContent : number
@@ -219,8 +193,8 @@ struct FlexExample3 {
 
 ![en-us_image_0000001212218462](figures/en-us_image_0000001212218462.gif)
 
-```
-// Example 04
+```ts
+// xxx.ets
 @Component
 struct AlignItemsFlex {
   @Prop alignItems : number
@@ -270,8 +244,8 @@ struct FlexExample4 {
 
 ![en-us_image_0000001212378426](figures/en-us_image_0000001212378426.gif)
 
-```
-// Example 05
+```ts
+// xxx.ets
 @Component
 struct AlignContentFlex {
   @Prop alignContent: number

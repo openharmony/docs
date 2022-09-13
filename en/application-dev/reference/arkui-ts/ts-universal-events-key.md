@@ -16,46 +16,31 @@ None
 
 | Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when the a key event occurs on the bound component in focus. For details about **event**, see [KeyEvent](#keyevent). |
+| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when a key event occurs. For details about **event**, see [KeyEvent](#keyevent). |
 
 
 ## KeyEvent
 
 - Attributes
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | type | [KeyType](#keytype-enums) | Type of a key. |
-  | keyCode | number | Key code. |
-  | keyText | string | Key value. |
-  | keySource | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
-  | deviceId | number | ID of the input device that triggers the key event. |
-  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. |
-  | timestamp | number | Timestamp when the key is pressed. |
+  | Name                                         | Type                   | Description                  |
+  | ------------------------------------- | --------------------------- | -------------------------- |
+  | type                                  | [KeyType](ts-appendix-enums.md#keytype)   | Type of a key.                 |
+  | [keyCode](../apis/js-apis-keycode.md) | number                      | Key code.                      |
+  | keyText                               | string                      | Key value.                     |
+  | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | Type of the input device that triggers the key event. |
+  | deviceId                              | number                        | ID of the input device that triggers the key event. |
+  | metaKey                               | number                        | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. |
+  | timestamp                             | number                        | Timestamp when the key is pressed. |
+
 
 - APIs
   | Name | Description |
   | -------- | -------- |
   | stopPropagation(): void | Stops the event from bubbling upwards or downwards. |
 
-## KeyType Enums
-
-| Name | Description |
-| -------- | -------- |
-| Down | The key is pressed. |
-| Up | The key is released. |
-
-
-## KeySource Enums
-| Name | Description |
-| -------- | -------- |
-| Unknown  | Unknown input device. |
-| Keyboard | The input device is a keyboard. |
-
-
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

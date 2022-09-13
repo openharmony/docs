@@ -1,8 +1,9 @@
 # Show/Hide Event
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -12,16 +13,17 @@ None
 
 ## Events
 
-  | Name | Bubble Supported | Description | 
+| Name | Bubble Supported | Description |
 | -------- | -------- | -------- |
-| onAppear(callback: () =&gt; void) | No | Called when the component is displayed. | 
-| onDisappear(callback: () =&gt; void) | No | Called when the component disappears. | 
+| onAppear(callback: () =&gt; void) | No | Called when the component is displayed. |
+| onDisappear(callback: () =&gt; void) | No | Called when the component disappears. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 import prompt from '@system.prompt'
 
 @Entry

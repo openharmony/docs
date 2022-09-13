@@ -11,12 +11,12 @@
 None
 
 
-## Attributes
+## APIs
 
 
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| bindPopup | show: boolean,<br/>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to a component.<br/>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br/>**popup**: parameters of the current popup. |
+| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions\|&nbsp;CustomPopupOptions<sup>8+</sup> | - | Binds the popup to the component.<br/>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br/>**popup**: parameters of the current popup. |
 
 ## PopupOptions
 
@@ -26,18 +26,18 @@ None
 | placementOnTop | boolean | No | false | Whether to display the popup above the component. The default value is **false**. |
 | primaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | First button.<br/>**value**: text of the primary button in the popup.<br/>**action**: callback function for clicking the primary button. |
 | secondaryButton | {<br/>value: string,<br/>action: () =&gt; void<br/>} | No | - | Second button.<br/>**value**: text of the secondary button in the popup.<br/>**action**: callback function for clicking the secondary button. |
-| onStateChange | (isVisible: boolean) =&gt; void | No | - | Callback for the popup status change event.<br>**isVisible**: visibility of the popup. |
+| onStateChange | (event:{isVisible:&nbsp;boolean })&nbsp;=&gt;&nbsp;void | No | - | Callback for the popup status change event.<br>**isVisible**: visibility of the popup. |
 
 ## CustomPopupOptions<sup>8+</sup>
 | Name          | Type                                           | Mandatory | Default Value | Description |
 | ------------- | ---------------------------------------------- | ---- | ---------------- | ------------------------------------------------------------ |
-| builder       | () =&gt; any                                   | Yes  | -                | Builder of the tooltip content. |
-| placement     | [Placement](ts-appendix-enums.md)   | No   | Placement.Bottom | Preferred position of the tooltip component. If the set position is insufficient for holding the component, it will be automatically adjusted. |
-| maskColor     | [Color](ts-appendix-enums.md#color)            | No   | -                | Color of the tooltip mask. |
-| popupColor    | [Color](ts-appendix-enums.md#color)            | No   | -                | Color of the tooltip. |
+| builder       | [CustomBuilder](ts-types.md#custombuilder8)                                   | Yes  | -                | Builder of the tooltip content. |
+| placement     | [Placement](ts-appendix-enums.md#placement8)   | No   | Placement.Bottom | Preferred position of the tooltip component. If the set position is insufficient for holding the component, it will be automatically adjusted. |
+| maskColor     | [ResourceColor](ts-types.md#resourcecolor)           | No   | -                | Color of the tooltip mask. |
+| popupColor    | [ResourceColor](ts-types.md#resourcecolor)            | No   | -                | Color of the tooltip. |
 | enableArrow   | boolean                                        | No   | true             | Whether to display arrows. Arrows are displayed only for tooltips in the up and down directions. |
 | autoCancel    | boolean                                        | No   | true             | Whether to automatically close the tooltip when an operation is performed on the page. |
-| onStateChange | (isVisible: boolean) =&gt; void                | No   | -                | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. |
+| onStateChange |(event:{isVisible:&nbsp;boolean })&nbsp;=&gt;&nbsp;void                | No   | -                | Callback for the popup status change event. The parameter **isVisible** indicates the visibility of the popup. |
 
 
 

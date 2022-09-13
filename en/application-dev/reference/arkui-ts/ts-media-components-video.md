@@ -1,10 +1,11 @@
 # Video
 
+The **\<Video>** component provides a video player.
+
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-The **\<Video>** component provides a video player.
 
 ## Required Permissions
 
@@ -26,31 +27,30 @@ Not supported
 
 ## APIs
 
-Video(value: VideoOptions)
+Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
 
-- VideoOptions attributes
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | src | string \| [Resource](../../ui/ts-types.md) | No| - | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).|
-  | currentProgressRate | number \| PlaybackSpeed<sup>8+</sup> | No| 1.0 \| PlaybackSpeed.<br>Speed_Forward_1_00_X | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**. |
-  | previewUri | string \| PixelMap<sup>8+</sup> \| [Resource](../../ui/ts-types.md) | No| - | Path of the preview image.|
-  | controller | [VideoController](#videocontroller) | No| - | Controller.|
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| src | string \| [Resource](ts-types.md#resource) | No| - | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).|
+| currentProgressRate | number \| PlaybackSpeed<sup>8+</sup>  | No| 1.0 \| PlaybackSpeed.<br>Speed_Forward_1_00_X | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**. |
+| previewUri | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md#resource) | No| - | Path of the preview image.|
+| controller | [VideoController](#videocontroller) | No| - | Controller.|
 
-
-- PlaybackSpeed<sup>8+</sup>
-  | Name                 | Description           |
-  | -------------------- | --------------------- |
-  | Speed_Forward_0_75_X | 0.75x playback speed. |
-  | Speed_Forward_1_00_X | 1x playback speed.    |
-  | Speed_Forward_1_25_X | 1.25x playback speed. |
-  | Speed_Forward_1_75_X | 1.75x playback speed. |
-  | Speed_Forward_2_00_X | 2x playback speed.    |
+## PlaybackSpeed<sup>8+</sup>
+| Name                 | Description           |
+| -------------------- | --------------------- |
+| Speed_Forward_0_75_X | 0.75x playback speed. |
+| Speed_Forward_1_00_X | 1x playback speed.    |
+| Speed_Forward_1_25_X | 1.25x playback speed. |
+| Speed_Forward_1_75_X | 1.75x playback speed. |
+| Speed_Forward_2_00_X | 2x playback speed.    |
 
 ## Attributes
 
 | Name      | Type                                     | Default Value | Description                                        |
 | --------- | ---------------------------------------- | ------------- | -------------------------------------------------- |
-| muted     | boolean                                  | false         | Whether the video is muted.                        |
+| muted     | boolean                                  | false         | Whether to mute the video.                         |
 | autoPlay  | boolean                                  | false         | Whether to enable auto play.                       |
 | controls  | boolean                                  | true          | Whether to display the video playback control bar. |
 | objectFit | [ImageFit](ts-basic-components-image.md) | Cover         | Video scale type.                                  |
@@ -61,14 +61,14 @@ Video(value: VideoOptions)
 
 | Name| Description|
 | -------- | -------- |
-| onStart() =&gt; void | Triggered when the video is played.|
-| onPause() =&gt; void | Triggered when the video playback is paused.|
-| onFinish() =&gt; void | Triggered when the video playback is finished.|
-| onError() =&gt; void | Triggered when the video playback fails.|
-| onPrepared(event?: { duration: number }) =&gt; void | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
-| onSeeking(event?: { time: number }) =&gt; void | Triggered to report the time (in seconds) when the progress bar is being dragged.|
-| onSeeked(event?: { time: number }) =&gt; void | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.|
-| onUpdate(event?: { time: number }) =&gt; void | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.|
+| onStart(event:() =&gt; void) | Triggered when the video is played.|
+| onPause(event:() =&gt; void) | Triggered when the video playback is paused.|
+| onFinish(event:() =&gt; void) | Triggered when the video playback is finished.|
+| onError(event:() =&gt; void) | Triggered when the video playback fails.|
+| onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
+| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.|
+| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.|
+| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.|
 
 
 ## VideoController
@@ -107,11 +107,11 @@ setCurrentTime(value: number)
 
 Sets the video playback position.
 
-- Parameters
+**Parameters**
 
-  | Name  | Type   | Mandatory | Default Value | Description                |
-  | ----- | ------ | --------- | ------------- | ------------------------ |
-  | value | number | Yes       | -             | Video playback position. |
+| Name  | Type   | Mandatory | Default Value | Description                |
+| ----- | ------ | --------- | ------------- | ------------------------ |
+| value | number | Yes       | -             | Video playback position. |
 
 ### requestFullscreen
 
@@ -119,7 +119,7 @@ requestFullscreen(value: boolean)
 
 Requests full-screen mode.
 
-- Parameters
+**Parameters**
 
 | Name  | Type   | Mandatory | Default Value | Description                                  |
 | ----- | ------ | --------- | ------------- | -------------------------------------------- |
@@ -137,21 +137,22 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 Sets the video playback position with the specified seek mode.
 
-- Parameters
+**Parameters**
 
-  | Name     | Type     | Mandatory | Default Value | Description              |
-  | -------- | -------- | --------- | ------------- | -----------------------  |
-  | value    | number   | Yes       | -             | Video playback position. |
-  | seekMode | SeekMode | Yes       | -             | Seek mode.               |
+| Name     | Type     | Mandatory | Default Value | Description              |
+| -------- | -------- | --------- | ------------- | -----------------------  |
+| value    | number   | Yes       | -             | Video playback position. |
+| seekMode | SeekMode | Yes       | -             | Seek mode.               |
 
-- SeekMode<sup>8+</sup>
+## SeekMode<sup>8+</sup>
 
-  | Name             | Description                                                               |
-  | ---------------- | ------------------------------------------------------------------------- |
-  | PreviousKeyframe | Seeks to the nearest previous keyframe.                                   |
-  | NextKeyframe     | Seeks to the nearest next keyframe.                                       |
-  | ClosestKeyframe  | Seeks to the nearest keyframe.                                            |
-  | Accurate         | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
+| Name             | Description                                                               |
+| ---------------- | ------------------------------------------------------------------------- |
+| PreviousKeyframe | Seeks to the nearest previous keyframe.                                   |
+| NextKeyframe     | Seeks to the nearest next keyframe.                                       |
+| ClosestKeyframe  | Seeks to the nearest keyframe.                                            |
+| Accurate         | Seeks to a specific frame, regardless of whether the frame is a keyframe. |
+
 
 ## Example
 

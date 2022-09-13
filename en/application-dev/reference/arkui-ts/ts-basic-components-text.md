@@ -19,60 +19,33 @@ This component can contain the [\<Span>](ts-basic-components-span.md) child comp
 
 ## APIs
 
-Text(content?: ResourceStr)
+Text(content?: string | Resource)
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | content | [ResourceStr](../../ui/ts-types.md) | No| '' | Text content. This parameter does not take effect when the child component **\<Span>** is contained.|
+**Parameters**
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](ts-types.md#resource) | No| Text content. The content and style set for the **\<Text>** component do not take effect when it contains the **\<Span>** child component.<br>Default value: ' ' |
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| textAlign | TextAlign | TextAlign.Start | Text alignment mode of multiple lines of text.|
-| textOverflow | {overflow: TextOverflow} | {overflow: TextOverflow.Clip} | Display mode when the text is too long.<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect. |
-| maxLines | number | Infinity | Maximum number of lines in the text.<br>**NOTE**<br/><br>By default, text is automatically folded. If this parameter is specified, the text does not exceed the specified number of lines. If there is extra text, you can use `textOverflow` to specify the truncation mode.|
-| lineHeight | string \| number \| [Resource](../../ui/ts-types.md) | - | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.|
-| decoration | {<br/>type: TextDecorationType,<br/>color? [ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type: TextDecorationType.None,<br/>color£ºColor.Black<br/>} | Style and color of the text decorative line.|
-| baselineOffset | [Length](../../ui/ts-types.md) | - | Offset of the text baseline.|
-| textCase | TextCase | TextCase.Normal | Text case.|
 
-TextAlign enums
-| Name| Description|
-| -------- | -------- |
-| Center | The text is center-aligned.|
-| Start | The text is aligned with the direction in which the text is written.|
-| End | The text is aligned with the opposite direction in which the text is written.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | Text alignment mode of multiple lines of text.<br/>Default value: **TextAlign.Start** |
+| textOverflow | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br/>Default value: **{overflow:&nbsp;TextOverflow.Clip}**<br>**NOTE**<br/>Text is truncated at the transition between words. To truncate text in the middle of a word, add **\u200B** between characters. |
+| maxLines | number | Maximum number of lines in the text.<br>Default value: **Infinity** |
+| lineHeight     | string \| number \| [Resource](ts-types.md#resource) | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used. |
+| decoration     | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor8)<br>} | Style and color of the text decorative line.<br/>Default value: **{<br/>type: TextDecorationType.None,<br/>color: Color.Black<br/>}** |
+| baselineOffset | number \| string         | Offset of the text baseline.                             |
+| letterSpacing       | number \| string                 | Letter spacing.                                |
+| minFontSize       | number \| string \| [Resource](ts-types.md#resource) | Minimum font size.                                |
+| maxFontSize       | number \| string \| [Resource](ts-types.md#resource) | Maximum font size.                                |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br/>Default value: **TextCase.Normal** |
 
-## TextOverflow enums
-| Name| Description|
-| -------- | -------- |
-| Clip | Extra text is truncated.|
-| Ellipsis | An ellipsis (...) is used to represent clipped text.|
-| None | No truncation or ellipsis is used for extra-long text.|
-
-## TextDecorationType enums
-| Name| Description|
-| -------- | -------- |
-| Underline | Line under the text.|
-| LineThrough | Line through the text.|
-| Overline | Line over the text.|
-| None | No decorative lines.|
-
-## TextCase enums
-
-| Name     | Description                |
-| --------- | -------------------- |
-| Normal    | The original case of the text is retained.|
-| LowerCase | All letters in the text are in lowercase.    |
-| UpperCase | All letters in the text are in uppercase.    |
-
-
-> **NOTE**
+>  **NOTE**
 >
-> If the **\<Text>** component contains both the text and the **\<Span>** child component, only the content in **\<Span>** is displayed.
+>  The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
 
 
 ## Example
