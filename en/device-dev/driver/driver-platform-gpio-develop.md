@@ -79,7 +79,7 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
    The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf\_device\_desc.h**), and the value of **moduleName** must be the same as that in **device\_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
    Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
 
-     GPIO driver entry example:
+   GPIO driver entry example:
    
    ```
    struct HdfDriverEntry g_gpioDriverEntry = {
@@ -108,9 +108,9 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
           priority = 50;
           device_gpio :: device {
               device0 :: deviceNode {
-              policy = 0;        // No service is published.
-              priority = 10;     // Driver startup priority.
-              permission = 0644; // Permission to create device nodes for the driver.
+              policy = 0;                                 // No service is published.
+              priority = 10;                              // Driver startup priority.
+              permission = 0644;                          // Permission to create device nodes for the driver.
               moduleName = "hisi_pl061_driver";           // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
               deviceMatchAttr = "hisilicon_hi35xx_pl061"; // (Mandatory) Private data of the controller. The value must be the same as the controller information in gpio_config.hcs.
                                                           // Add private information about all controllers in this file.
@@ -128,12 +128,12 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
           gpio_config {
           controller_0x120d0000 {
               match_attr = "hisilicon_hi35xx_pl061"; // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
-              groupNum = 12;        // (Mandatory) GPIO group number.
-              bitNum = 8;           // (Mandatory) Number of GPIO pins in each group.
-              regBase = 0x120d0000; // (Mandatory) Physical base address.
-              regStep = 0x1000;     // (Mandatory) Register offset step.
-              irqStart = 48;        // (Mandatory) Enable interrupts.
-              irqShare = 0;         // (Mandatory) Whether to share an interrupt.
+              groupNum = 12;                         // (Mandatory) GPIO group number.
+              bitNum = 8;                            // (Mandatory) Number of GPIO pins in each group.
+              regBase = 0x120d0000;                  // (Mandatory) Physical base address.
+              regStep = 0x1000;                      // (Mandatory) Register offset step.
+              irqStart = 48;                         // (Mandatory) Enable interrupts.
+              irqShare = 0;                          // (Mandatory) Whether to share an interrupt.
           }
           }
       }
@@ -201,13 +201,13 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
 
    - **Init** function
 
-      Input parameter:
+      **Input parameter**:
 
       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
 
-      Return value:
+      **Return value**:
 
-      HDF_STATUS<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
+      **HDF_STATUS**<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
 
         **Table 2** HDF_STATUS
       
@@ -220,7 +220,7 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
       | HDF_SUCCESS | Initialization successful.|
       | HDF_FAILURE | Initialization failed.|
 
-      Function description:
+      **Function description**:
 
       Initializes the custom structure object and **GpioCntlr**, calls the **GpioCntlrAdd** function at the core layer, and (optional) connects to the virtual file system (VFS).
 
@@ -241,11 +241,11 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
         ...
         ret = Pl061GpioInitCntlrMem(pl061); // Allocate memory.
         ...
-        pl061->cntlr.count = pl061->groupNum x pl061->bitNum;// (Mandatory) Calculate the number of pins.
-        pl061->cntlr.priv = (void *)device->property; // (Mandatory) Store device attributes.
-        pl061->cntlr.ops = &g_method;           // (Mandatory) Attach the GpioMethod instance.
-        pl061->cntlr.device = device;           // (Mandatory) Prerequisites for conversion between HdfDeviceObject and GpioCntlr.
-        ret = GpioCntlrAdd(&pl061->cntlr);      // (Mandatory) Call this function to fill the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
+        pl061->cntlr.count = pl061->groupNum * pl061->bitNum;// (Mandatory) Calculate the number of pins.
+        pl061->cntlr.priv = (void *)device->property;        // (Mandatory) Store device attributes.
+        pl061->cntlr.ops = &g_method;                        // (Mandatory) Attach the GpioMethod instance.
+        pl061->cntlr.device = device;                        // (Mandatory) Prerequisites for conversion between HdfDeviceObject and GpioCntlr.
+        ret = GpioCntlrAdd(&pl061->cntlr);                   // (Mandatory) Call this function to fill the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
         ...
         Pl061GpioDebugCntlr(pl061);
         #ifdef PL061_GPIO_USER_SUPPORT          // (Optional) Access the user-level VFS if it is supported.
@@ -258,19 +258,22 @@ The following uses **gpio_hi35xx.c** as an example to present the information re
       ```
    - **Release** function
 
-      Input parameter:
+      **Input parameter**:
 
       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs configuration file information.
 
-      Return value:
+      **Return value**:
 
       No value is returned.
 
-      Function description:
+      **Function description**:
 
-      Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources. All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the value assignment operations.
+      Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
 
-      
+      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+      > All forced conversion operations for obtaining the corresponding object can be successful only when **Init()** has the corresponding value assignment operations.
+
+        
       ```
       static void Pl061GpioRelease(struct HdfDeviceObject *device)
       {
