@@ -72,28 +72,23 @@ FA模型下的示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbility {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = featureAbility.getContext()
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
-    }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Created KVManager");
-      kvManager = manager;
-    });
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+  context: context,
+  bundleName: 'com.example.datamanagertest',
+  userInfo: {
+    userId: '0',
+    userType: distributedData.UserType.SAME_USER_ID
   }
 }
+distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+  if (err) {
+    console.log("Failed to create KVManager: " + JSON.stringify(err));
+    return;
+  }
+  console.log("Created KVManager");
+  kvManager = manager;
+});
 ```
 
 ## distributedData.createKVManager
@@ -148,26 +143,21 @@ FA模型下的示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbility {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = featureAbility.getContext()
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
-    }
-    distributedData.createKVManager(kvManagerConfig).then((manager) => {
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    }).catch((err) => {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-    });
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+  context: context,
+  bundleName: 'com.example.datamanagertest',
+  userInfo: {
+    userId: '0',
+    userType: distributedData.UserType.SAME_USER_ID
   }
 }
+distributedData.createKVManager(kvManagerConfig).then((manager) => {
+  console.log("Succeeded in creating KVManager");
+  kvManager = manager;
+}).catch((err) => {
+  console.log("Failed to create KVManager: " + JSON.stringify(err));
+});
 ```
 
 ## KVManagerConfig
