@@ -403,10 +403,10 @@ skills示例
                             "pathRegex":"/query/.*",
                             "path":"path",
                             "type": "text/*"
-                        },
+                        }
                     ]
                 }
-            ],
+            ]
         }
     ],
     "extensionAbilities": [
@@ -426,12 +426,12 @@ skills示例
                             "pathRegex":"/query/.*",
                             "path":"path",
                             "type": "text/*"
-                        },
+                        }
                     ]
                 }
-            ],
+            ]
         }
-    ],
+    ]
 }
 ```
 
