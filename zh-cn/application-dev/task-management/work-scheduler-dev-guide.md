@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-应用要执行对实时性要求不高的任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。
+应用要执行对实时性要求不高的任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。延迟任务调度约束见[延迟任务调度概述](./work-scheduler-overview.md)。
 
 
 ## 接口说明
@@ -36,28 +36,28 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>;| 获取上次任务是否�
 
 > **说明：** WorkInfo设置参数约束见[延迟任务调度概述](./work-scheduler-overview.md)
 
-接口名|描述|类型                           
+参数名| 类型 |描述                       
 ---------------------------------------------------------|-----------------------------------------|---------------------------------------------------------
-workId | 延迟任务Id（必填）|number
-bundleName | 延迟任务包名（必填）|string
-abilityName | 延迟任务回调通知的组件名（必填）|string
-networkType | 网络类型 | NetworkType
-isCharging | 是否充电 | boolean
-chargerType | 充电类型 | ChargingType
-batteryLevel | 电量| number
-batteryStatus| 电池状态|    BatteryStatus
-storageRequest|存储状态|    StorageRequest
-isRepeat|是否循环任务|    boolean
-repeatCycleTime |循环间隔|    number
-repeatCount    |循环次数| number
-parameters    |携带参数信息| {[key: string]: any}
+workId| number | 延迟任务Id（必填）
+bundleName| string | 延迟任务包名（必填）
+abilityName| string | 延迟任务回调通知的组件名（必填）
+networkType  | [NetworkType](../reference/apis/js-apis-workScheduler.md/#networktype) | 网络类型
+isCharging| boolean | 是否充电 
+chargerType| [ChargingType](../reference/apis/js-apis-workScheduler.md/#chargingtype) | 充电类型
+batteryLevel| number | 电量
+batteryStatus| [BatteryStatus](../reference/apis/js-apis-workScheduler.md/#batterystatus) | 电池状态
+storageRequest| [StorageRequest](../reference/apis/js-apis-workScheduler.md/#storagerequest) |存储状态
+isRepeat| boolean |是否循环任务
+repeatCycleTime| number |循环间隔
+repeatCount | number|循环次数
+parameters | {[key: string]: any} |携带参数信息
 
 **表3** 延迟任务回调接口
 
 接口名                                                    |     接口描述                            
 ---------------------------------------------------------|-----------------------------------------
-onWorkStart(work: WorkInfo): void; | 延迟调度任务开始回调
-onWorkStop(work: WorkInfo): void; | 延迟调度任务结束回调
+onWorkStart(work: WorkInfo): void | 延迟调度任务开始回调
+onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
 
 ### 开发步骤
 
