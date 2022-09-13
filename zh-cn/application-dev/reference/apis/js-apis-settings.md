@@ -71,7 +71,7 @@ import settings from '@ohos.settings';
 | DEVICE_NAME                      | string | 是   | 是   | 设备名称。                                                   |
 | USB_STORAGE_STATUS               | string | 是   | 是   | 是否启用USB大容量存储。<br>值为true，表示启用USB大容量存储；<br/>值为false，表示不启用USB大容量存储。 |
 | DEBUGGER_WAITING                 | string | 是   | 是   | 设备在启动应用程序进行调试时是否等待调试器进行调试。<br>值为1，表示设备等待调试器；<br/>值为0，表示系统不会等待调试器，因此应用程序会正常运行。 |
-| DEBUG_APP_PACKAGE                | string | 是   | 是   | 要调试的应用程序的捆绑包名称。                               |
+| DEBUG_APP_PACKAGE                | string | 是   | 是   | 要调试的应用程序的bundle name。                              |
 | ACCESSIBILITY_STATUS             | string | 是   | 是   | 是否启用辅助功能。<br>值为1，表示启用辅助功能；<br/>值为0，表示不启用辅助功能。 |
 | ACTIVATED_ACCESSIBILITY_SERVICES | string | 是   | 是   | 已激活的辅助功能的列表。                                     |
 | GEOLOCATION_ORIGINS_ALLOWED      | string | 是   | 是   | 浏览器可以使用的默认地理位置。多个地理位置由空格分隔。       |
@@ -90,7 +90,7 @@ import settings from '@ohos.settings';
 | ------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEFAULT_INPUT_METHOD                 | string | 是   | 是   | 默认输入法及其ID。                                           |
 | ACTIVATED_INPUT_METHOD_SUB_MODE      | string | 是   | 是   | 默认输入法键盘类型及其ID。                                   |
-| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，其中包含已激活的输入法的ID。ID由冒号':'分隔，输入法的键盘类型由分号';'分隔。用ima代表输入法ID，keyboardType代表键盘类型，示例格式是ima0:keyboardType0;keyboardType1;ima1:ima2: keyboardTypes0。 |
+| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，其中包含已激活的输入法的ID和输入法键盘类型组成。输入法ID后添加冒号':'连接，输入法的键盘类型后添加分号';'连接。用ima代表输入法ID，keyboardType代表键盘类型，示例格式是ima0:keyboardType0;keyboardType1;ima1:ima2:keyboardTypes0。 |
 | SELECTOR_VISIBILITY_FOR_INPUT_METHOD | string | 是   | 是   | 输入法选择器是否可见。<br>值为1，表示输入法选择器可见；<br/>值为0，表示输入法选择器不可见。 |
 | AUTO_CAPS_TEXT_INPUT                 | string | 是   | 是   | 是否为文本编辑器启用自动大写。<br>值为0，表示不启用自动大写；<br/>值为1，表示启用自动大写。 |
 | AUTO_PUNCTUATE_TEXT_INPUT            | string | 是   | 是   | 是否为文本编辑器启用自动标点符号。自动标点符号使文本编辑器能够将两个空格转换为句点'.'和空格。<br>值为0，表示不启用自动标点符号；<br/>值为1，表示启用自动标点符号。 |
@@ -250,12 +250,14 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 | ----------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | dataAbilityHelper | [DataAbilityHelper](js-apis-dataAbilityHelper.md) | 是   | 数据管理辅助类。                                             |
 | name              | string                                            | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据库中字符串的值。                     |
+| callback          | AsyncCallback\<object>                            | 是   | 使用callback方式获取数据项的值。                             |
 
 **示例**：
 
 ```js
- settings.getValue(dataAbilityHelper, name, (err, value) => {
+ let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+ let helper = featureAbility.acquireDataAbilityHelper(uri);
+ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
    if (err) {
      console.error(`Failed to get the setting. ${err.message} `);
      return;
@@ -288,7 +290,9 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 **示例**：
 
 ```js
- settings.getValue(dataAbilityHelper, name).then((value) => {
+ let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+ let helper = featureAbility.acquireDataAbilityHelper(uri);
+ settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
    console.log(`promise:value -> ${JOSN.stringify(value)}`)
  });
 ```
@@ -531,7 +535,7 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 
 如果数据库中已经存在该数据项，则setValueSync方法将更新该数据项的值；如果数据库中尚未存在该数据项，则setValueSync方法将向数据库中插入该数据项。
 
-**需要权限**：ohos.permission.MANAGE_SECUER_SETINGS。
+**需要权限**：ohos.permission.MANAGE_SECUER_SETTINGS，仅系统应用可用。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
