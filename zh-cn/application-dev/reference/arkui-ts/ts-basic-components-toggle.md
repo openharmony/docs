@@ -30,17 +30,17 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 - ToggleType枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
-  | Checkbox | 提供单选框样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> }<br/>>&nbsp;默认大小：width：24vp, height：24vp。 |
+  | Checkbox | 提供单选框样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 14 vp,<br>&nbsp;right: 6 vp,<br>&nbsp;bottom: 14 vp,<br>&nbsp;left: 6 vp<br> } |
   | Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。       |
-  | Switch   | 提供开关样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 12 vp,<br/>&nbsp;right: 12 vp,<br/>&nbsp;bottom: 12 vp,<br/>&nbsp;left: 12 vp<br/> } <br/>>&nbsp;默认大小：width：36vp, height：20vp。 |
+  | Switch   | 提供开关样式。<br>>&nbsp;**说明：**<br/>>&nbsp;[通用属性padding](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: 12 vp,<br/>&nbsp;right: 12 vp,<br/>&nbsp;bottom: 12 vp,<br/>&nbsp;left: 12 vp<br/> } |
 
 
 ## 属性
 
 | 名称 | 参数 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | 蓝色(#0A59F7) | 设置组件打开状态的背景颜色。 |
-| switchPointColor | [ResourceColor](../../ui/ts-types.md) | 白色(#FFFFFF) | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
+| selectedColor | [ResourceColor](../../ui/ts-types.md) | - | 设置组件打开状态的背景颜色。 |
+| switchPointColor | [ResourceColor](../../ui/ts-types.md) | - | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
 
 
 ## 事件
