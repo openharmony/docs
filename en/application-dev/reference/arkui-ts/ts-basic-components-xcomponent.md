@@ -1,11 +1,10 @@
 # XComponent
 
-The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
+  > **NOTE**
+  >
+  > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-> **NOTE**
->
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
+  The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
 
 ## Required Permissions
 
@@ -13,11 +12,11 @@ The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data in
 
 ## Child Components
 
- Not supported
+  Not supported
 
 ## APIs
 
-XComponent\(value: {id: string, type: string, libraryname?: string, controller?: XComponentController}\)
+  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
@@ -60,7 +59,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 ### getXComponentSurfaceId
 
-getXComponentSurfaceId(): string
+getXComponentSurfaceId()
 
 Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used for @ohos interfaces, such as camera-related interfaces.
 
@@ -72,9 +71,10 @@ Obtains the ID of the surface held by the **\<XComponent>**. The ID can be used 
 | ------ | ----------------------- |
 | string | ID of the surface held by the **\<XComponent>**.|
 
+
 ### setXComponentSurfaceSize
 
-setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
+setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number})
 
 Sets the width and height of the surface held by the **\<XComponent>**.
 
@@ -87,9 +87,10 @@ Sets the width and height of the surface held by the **\<XComponent>**.
 | surfaceWidth  | number | Yes   | Width of the surface held by the **\<XComponent>**.|
 | surfaceHeight | number | Yes   | Height of the surface held by the **\<XComponent>**.|
 
+
 ### getXComponentContext
 
-getXComponentContext(): Object
+getXComponentContext()
 
 Obtains the context of an **\<XComponent>** object.
 
@@ -98,6 +99,7 @@ Obtains the context of an **\<XComponent>** object.
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | Object | Context of the **\<XComponent>** object. The APIs contained in the context are defined by developers.|
+
 
 ## Example
 
