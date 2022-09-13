@@ -49,20 +49,20 @@ export default class MyAbilityStage extends AbilityStage {
     console.log("MyAbilityStage onCreate")
     let context = this.context
     const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+        context: context,
+        bundleName: 'com.example.datamanagertest',
+        userInfo: {
+            userId: '0',
+            userType: distributedData.UserType.SAME_USER_ID
+        }
     }
     distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Succeeded in creating KVManager");
-      kvManager = manager;
+        if (err) {
+            console.log("Failed to create KVManager: " + JSON.stringify(err));
+            return;
+        }
+        console.log("Succeeded in creating KVManager");
+        kvManager = manager;
     });
   }
 }
@@ -72,7 +72,6 @@ FA模型下的示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-console.log("MyAbilityStage onCreate")
 let context = featureAbility.getContext()
 const kvManagerConfig = {
     context: context,
@@ -119,27 +118,31 @@ Stage模型下的示例：
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let context = this.context
+        const kvManagerConfig = {
+            context: context,
+            bundleName: 'com.example.datamanagertest',
+            userInfo: {
+                userId: '0',
+                userType: distributedData.UserType.SAME_USER_ID
+            }
+        }
+        distributedData.createKVManager(kvManagerConfig).then((manager) => {
+            console.log("Succeeded in creating KVManager");
+            kvManager = manager;
+        }).catch((err) => {
+            console.log("Failed to create KVManager: " + JSON.stringify(err));
+        });
     }
-    distributedData.createKVManager(kvManagerConfig);
-  }
-}
+}   
 ```
 
 FA模型下的示例：
 ```js
 import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-console.log("MyAbilityStage onCreate")
 let context = featureAbility.getContext()
 const kvManagerConfig = {
     context: context,
@@ -149,7 +152,12 @@ const kvManagerConfig = {
         userType: distributedData.UserType.SAME_USER_ID
     }
 }
-distributedData.createKVManager(kvManagerConfig);
+distributedData.createKVManager(kvManagerConfig).then((manager) => {
+    console.log("Succeeded in creating KVManager");
+    kvManager = manager;
+}).catch((err) => {
+    console.log("Failed to create KVManager: " + JSON.stringify(err));
+});
 ```
 
 ## KVManagerConfig
