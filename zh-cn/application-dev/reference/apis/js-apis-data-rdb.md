@@ -1724,9 +1724,10 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
+rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+    function(err, resultSet){
     if (err) {
         console.info("Failed to remoteQuery, err: " + err)
         return
@@ -1762,7 +1763,7 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
 let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
 promise.then((resultSet) => {
