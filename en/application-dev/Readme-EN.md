@@ -15,6 +15,7 @@
     - Development Fundamentals
         - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
         - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
+        - [Resource File Categories](quick-start/basic-resource-file-categories.md)
         - [SysCap](quick-start/syscap.md)
 - Development
     - [Ability Development](ability/Readme-EN.md)
@@ -42,6 +43,9 @@
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
     - [Component Reference (JavaScript-based Web-like Development Paradigm)](reference/arkui-js/Readme-EN.md)
     - APIs
-      -   [JS and TS APIs](reference/apis/Readme-EN.md)
+        - [JS and TS APIs](reference/apis/Readme-EN.md)
+        - Native APIs
+          -   [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
+          -   [Node_API](reference/native-lib/third_party_napi/napi.md)
 - Contribution
     - [How to Contribute](../contribute/documentation-contribution.md)
