@@ -1,25 +1,22 @@
 # PanGesture
 
+用于触发拖动手势事件，滑动的最小距离为5vp时拖动手势识别成功。
+
 >  **说明：**
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 接口
 
-PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOptions](#pangestureoptions))
+PanGesture(value?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOptions](#pangestureoptions))
 
 **参数：**
 
-  | 参数名称 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | 否 | 1 | 触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。 |
-  | direction | PanDirection | 否 | PanDirection.All | 触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。 |
-  | distance | number | 否 | 5.0 | 最小拖动识别距离，单位为vp。<br/>**说明：**<br/>> tab滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
+| 参数名称  | 参数类型     | 必填 | 参数描述                                                     |
+| --------- | ------------ | ---- | ------------------------------------------------------------ |
+| fingers   | number       | 否   | 触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
+| direction | PanDirection | 否   | 触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
+| distance  | number       | 否   | 最小拖动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>> tab滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
 
 ## PanDirection枚举说明
 
@@ -58,10 +55,10 @@ PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distan
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(callback:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 |
-| onActionUpdate(callback:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 |
-| onActionEnd(callback:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
-| onActionCancel(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 |
+| onActionStart(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功回调。 |
+| onActionUpdate(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势移动过程中回调。 |
+| onActionEnd(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，手指抬起后触发回调。 |
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pan手势识别成功，接收到触摸取消事件触发回调。 |
 
 
 ## 示例

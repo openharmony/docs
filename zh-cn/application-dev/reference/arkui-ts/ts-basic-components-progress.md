@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 无
@@ -25,12 +20,12 @@ Progress(options: {value: number, total?: number, style?: ProgressStyle, type?: 
 
 **参数：** 
 
-| 参数名                     | 参数类型      | 必填 | 默认值               | 参数描述                                            |
-| -------------------------- | ------------- | ---- | -------------------- | --------------------------------------------------- |
-| value                      | number        | 是   | -                    | 指定当前进度值。                                    |
-| total                      | number        | 否   | 100                  | 指定进度总长。                                      |
-| type<sup>8+</sup>          | ProgressType  | 否   | ProgressType.Linear  | 指定进度条类型。                                    |
-| style<sup>deprecated</sup> | ProgressStyle | 否   | ProgressStyle.Linear | 指定进度条样式。<br/>该参数从API Version8开始废弃。 |
+| 参数名                     | 参数类型      | 必填 | 参数描述                                                     |
+| -------------------------- | ------------- | ---- | ------------------------------------------------------------ |
+| value                      | number        | 是   | 指定当前进度值。                                             |
+| total                      | number        | 否   | 指定进度总长。<br/>默认值：100                               |
+| type<sup>8+</sup>          | ProgressType  | 否   | 指定进度条类型。<br/>默认值：ProgressType.Linear             |
+| style<sup>deprecated</sup> | ProgressStyle | 否   | 指定进度条类型。<br/>该参数从API Version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType枚举说明
 
@@ -54,11 +49,11 @@ Progress(options: {value: number, total?: number, style?: ProgressStyle, type?: 
 
 ## 属性
 
-| 名称               | 参数类型                                                     | 默认值 | 描述                                                         |
-| ------------------ | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| value              | number                                                       | -      | 设置当前进度值。                                             |
-| color              | [ResourceColor](ts-types.md#resourcecolor8)                  | -      | 设置进度条前景色。                                           |
-| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | -      | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
+| 名称               | 参数类型                                                     | 描述                                                         |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| value              | number                                                       | 设置当前进度值。                                             |
+| color              | [ResourceColor](ts-types.md#resourcecolor8)                  | 设置进度条前景色。                                           |
+| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | 定义组件的样式。<br/>strokeWidth:&nbsp;设置进度条宽度。<br/>scaleCount:&nbsp;设置环形进度条总刻度数。<br/>scaleWidth:&nbsp;设置环形进度条刻度粗细。<br/>刻度粗细大于进度条宽度时，刻度粗细为系统默认粗细。 |
 
 
 ## 示例
