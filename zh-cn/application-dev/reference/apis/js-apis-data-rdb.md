@@ -1724,9 +1724,10 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
+rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+    function(err, resultSet){
     if (err) {
         console.info("Failed to remoteQuery, err: " + err)
         return
@@ -1762,9 +1763,9 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```js
-let predicates = new data_rdb.RdbPredicates('EPLOYEE')
+let predicates = new data_rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
-let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
+let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
 promise.then((resultSet) => {
     console.info("ResultSet column names: " + resultSet.columnNames)
     console.info("ResultSet column count: " + resultSet.columnCount)
@@ -1908,15 +1909,20 @@ beginTransaction():void
 **示例：**
 
 ```js
-rdbStore.beginTransaction()
-const valueBucket = {
-    "name": "lisi",
-    "age": 18,
-    "salary": 100.5,
-    "blobType": new Uint8Array([1, 2, 3]),
-}
-await rdbStore.insert("test", valueBucket)
-rdbStore.commit()
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+const STORE_CONFIG = { name: "RdbTest.db"}
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+    rdbStore.beginTransaction()
+	const valueBucket = {
+		"name": "lisi",
+		"age": 18,
+		"salary": 100.5,
+		"blobType": new Uint8Array([1, 2, 3]),
+	}
+	await rdbStore.insert("test", valueBucket)
+	rdbStore.commit()
+})
 ```
 
 ### commit<sup>8+</sup>
@@ -1930,16 +1936,20 @@ commit():void
 **示例：**
 
 ```js
-rdbStore.beginTransaction()
-const valueBucket = {
-    "name": "lisi",
-    "age": 18,
-    "salary": 100.5,
-    "blobType": new Uint8Array([1, 2, 3]),
-}
-
-await rdbStore.insert("test", valueBucket)
-rdbStore.commit()
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+const STORE_CONFIG = { name: "RdbTest.db"}
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+    rdbStore.beginTransaction()
+	const valueBucket = {
+		"name": "lisi",
+		"age": 18,
+		"salary": 100.5,
+		"blobType": new Uint8Array([1, 2, 3]),
+	}
+	await rdbStore.insert("test", valueBucket)
+	rdbStore.commit()
+})
 ```
 
 ### rollBack<sup>8+</sup>
@@ -1953,20 +1963,25 @@ rollBack():void
 **示例：**
 
 ```js
-try {
-    rdbStore.beginTransaction()
-    const valueBucket = {
-        "id": 1,
-        "name": "lisi",
-        "age": 18,
-        "salary": 100.5,
-        "blobType": new Uint8Array([1, 2, 3]),
-    }
-    await rdbStore.insert("test", valueBucket)
-    rdbStore.commit()
-} catch (e) {
-    rdbStore.rollBack()
-}
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+const STORE_CONFIG = { name: "RdbTest.db"}
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, async function (err, rdbStore) {
+    try {
+		rdbStore.beginTransaction()
+		const valueBucket = {
+			"id": 1,
+			"name": "lisi",
+			"age": 18,
+			"salary": 100.5,
+			"blobType": new Uint8Array([1, 2, 3]),
+		}
+		await rdbStore.insert("test", valueBucket)
+		rdbStore.commit()
+	} catch (e) {
+		rdbStore.rollBack()
+	}
+})
 ```
 
 ### backup<sup>9+</sup>
