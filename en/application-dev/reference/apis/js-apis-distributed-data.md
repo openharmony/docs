@@ -582,8 +582,8 @@ Subscribes to service status changes.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return service status changes.|
+| event  | string | Yes   | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return a service status change event.|
 
 **Example**
 
@@ -614,8 +614,8 @@ Unsubscribes from service status changes.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return service status changes.|
+| event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return a service status change event.|
 
 
 **Example**
@@ -2383,7 +2383,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data change notifications of the specified type.
+Subscribes to data changes of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2391,9 +2391,9 @@ Subscribes to data change notifications of the specified type.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return data changes.|
+| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
+| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return a data change event.|
 
 **Example**
 
@@ -2409,7 +2409,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2417,8 +2417,8 @@ Subscribes to data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return the data synchronization result.    |
+| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.      |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback invoked to return the a synchronization complete event.    |
 
 **Example**
 
@@ -2433,7 +2433,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change notifications.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2441,8 +2441,8 @@ Unsubscribes from data change notifications.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return data changes.|
+| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
 
 **Example**
 
@@ -2469,7 +2469,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from data change events. This API returns the result synchronously.
+Unsubscribes from synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2477,8 +2477,8 @@ Unsubscribes from data change events. This API returns the result synchronously.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates completion of a data synchronization.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
+| event  |string  | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.      |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a synchronization complete event.   |
 
 **Example**
 
@@ -4062,7 +4062,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4070,8 +4070,8 @@ Subscribes to data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback used to return the synchronization result.   |
+| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return a synchronization complete event.   |
 
 **Example**
 
@@ -4106,8 +4106,8 @@ Unsubscribes from data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates completion of a data synchronization.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
+| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a data synchronization complete event.   |
 
 **Example**
 
@@ -4142,9 +4142,9 @@ Subscribes to data changes of the specified type. This API returns the result sy
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
+| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
 | type  |[SubscribeType](#subscribetype) | Yes   |Subscription type.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the result.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return a data change event.|
 
 **Example**
 
@@ -4160,7 +4160,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change events. This API returns the result synchronously.
+Unsubscribes from data changes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4168,8 +4168,8 @@ Unsubscribes from data change events. This API returns the result synchronously.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the result.|
+| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
 
 **Example**
 
@@ -5572,7 +5572,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5580,8 +5580,8 @@ Subscribes to data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates the data synchronization complete event.|
-| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback used to return the synchronization result. |
+| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback invoked to return a synchronization complete event. |
 
 **Example**
 
@@ -5616,8 +5616,8 @@ Unsubscribes from synchronization complete events. This API returns the result s
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates the data synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
+| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates the a synchronization complete event.|
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return a synchronization complete event. |
 
 **Example**
 
@@ -5652,9 +5652,9 @@ Subscribes to data changes of the specified type. This API returns the result sy
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Subscription type.    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return data changes.|
+| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
+| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return a data change event.|
 
 **Example**
 
@@ -5670,7 +5670,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change events. This API returns the result synchronously.
+Unsubscribes from data changes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5678,8 +5678,8 @@ Unsubscribes from data change events. This API returns the result synchronously.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return data changes.|
+| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a data change event.|
 
 **Example**
 
