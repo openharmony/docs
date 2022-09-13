@@ -100,43 +100,40 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
 
 - 系统参数配置selinux策略
 
-    a、添加selinux标签
+  - 添加selinux标签
 
-    为系统参数添加selinux标签，首先需要先在文件parameter.te中定义标签，例如：
+    为系统参数添加selinux标签，首先需要在文件/base/security/selinux/sepolicy/base/public/parameter.te中定义标签，例如：
 
     ```java
     type servicectrl_param, parameter_attr
     ```
 
-    标签定义完成后，在文件parameter_contexts中添加标签，这里以ohos.servicectrl.开始的系统参数为例：
+    标签定义完成后，在文件/base/security/selinux/sepolicy/base/public/parameter_contexts中添加和标签关联的系统参数前缀，这里以前缀ohos.servicectrl.为例：
 
     ```java
     ohos.servicectrl.           u:object_r:servicectrl_param:s0
     ```
 
-    b、如果需要给init授权，允许map等操作，可以在对应子系统中加init.te，并补充下面内容：
+  - 给init授权，允许map等操作，在文件/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te中补充下面内容：
 
     ```java
     allow servicectrl_param tmpfs:filesystem associate;
-    ```
-
-    ```java
     allow init servicectrl_param:file { map open read relabelto relabelfrom };
     ```
 
-    c、设置写权限，这里允许init samgr hdf_devmgr 进行系统参数写。
+  - 设置写权限，这里允许init samgr hdf_devmgr 进行系统参数写：
 
     ```java
     allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
     ```
 
-    d、设置读权限：
+  - 设置读权限，如果只允许部分进程访问可单独对该进程授权：
 
     ```java
     allow { xxx } servicectrl_param:file { map open read };
     ```
 
-    如果全部允许，也可以设置：
+  - 如果全部允许，则设置为：
 
     ```java
     allow { domain -limit_domain } servicectrl_param:file { map open read };
@@ -149,10 +146,6 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
    一个私有，用来控制系统参数设置
 
    一个公有，允许所有服务进行访问
-
--  注意：
-
-   当前不允许hap包访问ohos.boot.sn属性
 
 -  默认参数加载
 
@@ -169,7 +162,7 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
 
 #### 系统参数标签文件大小配置
 
-如果标签对应的系统参数个数多，超过5条时，需要配置系统参数标签文件的大小，默认大小（512），配置文件 https://gitee.com/openharmony/startup_init_lite/blob/master/services/etc/param/ohos.para.size
+如果标签对应的系统参数个数多，超过5条时，需要配置系统参数标签文件的大小，默认大小（512），配置文件为/base/startup/init/services/etc/param/ohos.para.size
 
 配置规则：
 

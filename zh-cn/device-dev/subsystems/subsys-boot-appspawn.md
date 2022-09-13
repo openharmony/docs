@@ -66,7 +66,7 @@
 
   支持通过aa命令冷启动应用。
     ```
-    param set appspawn.cold.boot true // 打开冷启动开关
+    param set startup.appspawn.cold.boot 1 // 打开冷启动开关
     aa start -d 12345 -a $name -b $package -C
     参考：
     aa start -d 12345 -a ohos.acts.startup.sysparam.function.MainAbility -b ohos.acts.startup.sysparam.function -C

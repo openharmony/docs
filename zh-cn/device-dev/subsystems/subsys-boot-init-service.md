@@ -164,19 +164,20 @@
    | int StopServiceTimer(const char *serviceName)  | 停止服务计时器 | 返回值：成功返回0，失败返回-1 <br> 参数：<br> serviceName: 服务名 |
 -  服务控制接口的DAC配置
 
-   服务控制接口配置DAC，需要修改文件https://gitee.com/openharmony/startup_init_lite/blob/master/services/etc/group，在组servicectrl中添加对应的用户id，例如：
+   服务控制接口配置DAC，需要修改/base/startup/init/services/etc/group文件，在组servicectrl中添加对应的用户id，例如：
 
    ```java
    servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
    ```
-- 注意
 
-  int DoReboot(const char *cmdContent) 接口配置DAC，需要修改文件https://gitee.com/openharmony/startup_init_lite/blob/master/services/etc/group，在组powerctrl中添加对应的用户id，例如：
+-  服务控制接口的selinux配置
 
-  ```java
-  powerctrl:x:1051:root,shell,system,update,power_host
-  ```
-  
+   服务控制接口配置selinux，需要在init.te文件中添加该服务接口所需要的selinux权限，例如为init、samgr、hdf_devmgr等服务配置系统参数写权限：
+
+   ```java
+   allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+   ```
+
 ### 开发步骤
    此处以要新增一个名为MySystemApp的系统服务为例进行说明，使用如下配置：
 
