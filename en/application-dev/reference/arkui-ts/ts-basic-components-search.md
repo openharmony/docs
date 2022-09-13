@@ -1,10 +1,10 @@
 #  Search
 
+The **\<Search>** component provides an input area for users to search.
+
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-The **\<Search>** component provides an input area for users to search.
 
 ## Required Permissions
 
@@ -18,34 +18,34 @@ Not supported
 
 Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
 
-- Parameters
+**Parameters**
 
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value  | string | No| - | Text input in the search text box. |
-  | placeholder  | string | No  | - | Text displayed when there is no input. |
-  | icon | string | No| - | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png. |
-  | controller | SearchController | No| - | Controller. |
+| Name        | Type            | Mandatory  | Default Value | Description                                    |
+| ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
+| value       | string           | No   | -    | Text input in the search text box.                                  |
+| placeholder | string           | No   | -    | Text displayed when there is no input.                              |
+| icon        | string           | No   | -    | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
+| controller  | SearchController | No   | -    | Controller.                                    |
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| searchButton | string | –| Text on the search button located next to the search text box. By default, there is no search button. |
-| placeholderColor | [ResourceColor](../../ui/ts-types.md) | - | Placeholder text color. |
-| placeholderFont | [Font](../../ui/ts-types.md) | - | Placeholder text style. |
-| textFont | [Font](../../ui/ts-types.md) | - | Text font for the search text box. |
+| Name                     | Type                                    | Default Value | Description                   |
+| ----------------------- | ---------------------------------------- | ---- | --------------------- |
+| searchButton            | string                                   | –   | Text on the search button located next to the search text box. By default, there is no search button.|
+| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor8)    | -    | Placeholder text color.     |
+| placeholderFont         | [Font](ts-types.md#font)             | -    | Placeholder text style.   |
+| textFont                | [Font](ts-types.md#font)                 | -    | Text font for the search text box.          |
 
 ## Events
 
-| Name | Description |
-| -------- | -------- |
-| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or tap the search button on a soft keyboard.<br> - **value**: current text input. |
-| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br> - **value**: current text input. |
-| onCopy(callback: (value: string) => void) | Triggered when data is copied to the pasteboard.<br> - **value**: text copied. |
-| onCut(callback: (value: string) => void) | Triggered when data is cut from the pasteboard.<br> - **value**: text cut. |
-| onPaste(callback: (value: string) => void) | Triggered when data is pasted from the pasteboard.<br> - **value**: text pasted. |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> -**value**: current text input.|
+| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br> -**value**: current text input. |
+| onCopy(callback: (value: string) => void) | Triggered when data is copied to the pasteboard.<br> -**value**: text copied.     |
+| onCut(callback: (value: string) => void) | Triggered when data is cut from the pasteboard.<br> -**value**: text cut.     |
+| onPaste(callback: (value: string) => void) | Triggered when data is pasted from the pasteboard.<br> -**value**: text pasted.     |
 
 ## SearchController
 
@@ -61,11 +61,11 @@ caretPosition(value: number): void
 
 Sets the position of the caret.
 
-- Parameters
+**Parameters**
 
-  | Name | Type | Mandatory | Default Value | Description |
-  | ---- | ------ | ---- | ---- | --------------------- |
-  | value | number | Yes   | - | Length from the start of the text string to the position where the caret is located. |
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| value | number | Yes   | -    | Length from the start of the character string to the position where the caret is located.|
 
 
 
@@ -76,29 +76,30 @@ Sets the position of the caret.
 @Entry
 @Component
 struct SearchExample {
-  @State changevalue: string = ''
-  @State submitvalue: string = ''
+  @State changeValue: string = ''
+  @State submitValue: string = ''
   controller: SearchController = new SearchController()
 
   build() {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text(this.submitvalue)
-      Text(this.changevalue)
-      Search({value: '', placeholder: 'Type to search', controller: this.controller})
+      Text(this.submitValue)
+      Text(this.changeValue)
+      Search({value: this.changeValue, placeholder: 'Type to search', controller: this.controller})
         .searchButton('Search')
         .width(400)
         .height(35)
         .backgroundColor(Color.White)
         .placeholderColor(Color.Grey)
-        .placeholderFont({ size: 50, weight: 10, family: 'serif', style: FontStyle.Normal })
+        .placeholderFont({ size: 26, weight: 10, family: 'serif', style: FontStyle.Normal })
         .onSubmit((value: string) => {
-          this.submitvalue = value
+          this.submitValue = value
         })
         .onChange((value: string) => {
-          this.changevalue = value
+          this.changeValue = value
         })
-        .margin({ top: 30 })
+        .margin({ top: 30, left:10, right:10 })
     }
   }
 }
 ```
+![search](figures/search.png)

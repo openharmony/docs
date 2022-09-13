@@ -5,24 +5,19 @@
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 属性
 
 
-| 名称                         | 参数类型                                                     | 默认值 | 描述                                                         |
-| ---------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
-| bindMenu                     | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | -      | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
-| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<br>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8) | -      | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。 |
+| 名称                         | 参数类型                                                     | 描述                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| bindMenu                     | Array<MenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 给组件绑定菜单，点击后弹出菜单。弹出菜单项支持文本和自定义两种功能。 |
+| bindContextMenu<sup>8+</sup> | content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<br>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8) | 给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。 |
 
 ## MenuItem
 
-| 名称     | 类型                      | 描述          |
-| ------ | ----------------------- | ----------- |
-| value  | string                  | 菜单项文本。      |
+| 名称   | 类型                    | 描述                   |
+| ------ | ----------------------- | ---------------------- |
+| value  | string                  | 菜单项文本。           |
 | action | ()&nbsp;=&gt;&nbsp;void | 点击菜单项的事件回调。 |
 
 

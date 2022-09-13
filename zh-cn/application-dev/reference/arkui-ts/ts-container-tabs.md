@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 包含子组件[TabContent](ts-container-tabcontent.md)。
@@ -19,7 +14,7 @@
 
 ## 接口说明
 
-Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
 **参数：**
 

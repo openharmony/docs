@@ -85,11 +85,11 @@ The following is an example:
 
 ```css
 /* Page style xxx.css */
-/\* Set the style for all <div> components. \*/
+/* Set the style for all <div> components. */
 div {
   flex-direction: column;
 }
-/* Set the style for the component whose class is title. */
+/* Set the style for the component whose class is title.*/
 .title {
   font-size: 30px;
 }
@@ -101,13 +101,13 @@ div {
 .title, .content {
   padding: 5px;
 }
-/\* Set the style for all texts of components whose class is container.\*/
+/* Set the style for all texts of components whose class is container.*/
 .container text {
   color: \#007dff;
 }
-/\* Set the style for direct descendant texts of components whose class is container.\*/
+/* Set the style for direct descendant texts of components whose class is container.*/
 .container &gt; text {
-  color: \#fa2a2d;
+  color: #fa2a2d;
 }
 ```
 
@@ -128,7 +128,7 @@ When multiple selectors point to the same element, their priorities are as follo
 
 A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example, :disabled can be used to select the element whose disabled attribute is true.
 
-In addition to a single pseudo-class, a combination of pseudo-classes is supported. For example, **:focus:checked** selects the element whose focus and checked attributes are both set to true. The following table lists the supported single pseudo-class in descending order of priority.
+In addition to a single pseudo-class, a combination of pseudo-classes is supported. For example, :focus:checked selects the element whose focus and checked attributes are both set to true. The following table lists the supported single pseudo-class in descending order of priority.
 
 
 | Pseudo-class | Available Components | Description |
