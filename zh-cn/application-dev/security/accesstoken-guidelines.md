@@ -123,7 +123,7 @@
     "allowed-acls": [
       "ohos.permission.PERMISSION2"
     ]
-  },
+  }
 }
 ```
 
