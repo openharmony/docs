@@ -1,4 +1,4 @@
-# Access Control Overview
+# Access Control (Permission) Overview
 
 AccessTokenManager (ATM) implements unified app permission management based on access tokens on OpenHarmony.
 
@@ -13,6 +13,18 @@ Without the required permissions, an app cannot access or perform operations on 
 
 Currently, ATM verifies app permissions based on the token identity (Token ID). A token ID identifies an app. The ATM manages app permissions based on the app's token ID.
 
+## Basic Principles for Permission Management
+
+Observe the following principles for permission management:
+
+- Provide clear description about the app functions and scenarios for each permission required by the app so that users can clearly know why and when these permissions are required. Do not induce or mislead users' authorization. The permissions on an app must comply with the description provided in the app.
+- Use the principle of least authority for user permissions. Allow only necessary permissions for service functions.
+- When an app is started for the first time, avoid frequently displaying dialog boxes to request permissions. Allow the app to apply for permissions only when it needs to use the corresponding service functions.
+- If a user rejects to authorize a permission, the user can still use functions irrelevant to this permission and can register and access the app.
+- Provide no more message if a user rejects the authorization required by a function. Provide onscreen instructions to direct the user to grant the permission in **Settings** if the user triggers this function again or needs to use this function.
+
+- All the permissions granted to apps must come from the [Permission List](permission-list.md). Custom permissions are not allowed for apps currently.
+
 ## Permission Workflow
 
 Determine the permissions required for an app to access data or perform an operation. Declare the required permissions in the app installation package.
@@ -25,7 +37,7 @@ The figure below shows the permission workflow.
 
 ![](figures/permission-workflow.png)
 
-1. You can refer to the following figure to determine whether an app can apply for a permission.
+1. You can refer to the figure below to determine whether an app can apply for a permission.
 
 ![](figures/permission-application-process.png)
 
@@ -34,38 +46,6 @@ The figure below shows the permission workflow.
 2. The permission authorization modes include user_grant (permission granted by the user) and system_grant (permission granted by the system). For details, see [Permission Authorization Modes](#permission-authorization-mode).
 
 3. A low-level app can have a high-level permission by using the Access Control List (ACL). For details, see [ACL](#acl).
-
-## When to Use
-
-### Basic Principles
-
-Observe the following principles for permission management:
-
-- Provide clear description about the app functions and scenarios for each permission required by the app so that users can clearly know why and when these permissions are required. Do not induce or mislead users' authorization. The permissions on an app must comply with the description provided in the app.
-- Use the principle of least authority for user permissions. Allow only necessary permissions for service functions.
-- When an app is started for the first time, avoid frequently displaying dialog boxes to request permissions. Allow the app to apply for permissions only when it needs to use the corresponding service functions.
-- If a user rejects to authorize a permission, the user can still use functions irrelevant to this permission and can register and access the app.
-- Provide no more message if a user rejects the authorization required by a function. Provide onscreen instructions to direct the user to grant the permission in **Settings** if the user triggers this function again or needs to use this function.
-
-- All the permissions granted to apps must come from the [Permission List](permission-list.md). Custom permissions are not allowed for apps currently.
-
-### Example Scenarios
-
-The following describes two common scenarios.
-
-- **Video playback apps**
-
-    Video playback apps need to use multimedia functions and read and write media files stored on storage devices. Therefore, the apps must have at least the following permissions:
-
-    * ohos.permission.READ_MEDIA (allowing the apps to read external media files)
-
-    * ohos.permission.WRITE_MEDIA (allowing the apps to read and write external media files)
-
-- **Photography apps**
-
-    Photography apps need to use the camera function. Before accessing the camera service, the apps must have the following permission:
-
-    ohos.permission.CAMERA (allowing the apps to use the camera to take photos and record videos)
 
 ## Permission Levels
 
@@ -85,7 +65,28 @@ The table below describes the APLs.
 
 By default, apps are of the normal APL.
 
-For the app of the system_basic or system_core APL, declare the app APL in the **apl** field in the app's profile, and use the profile signing tool to generate a certificate when developing the app installation package. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+For the app of the system_basic or system_core APL, declare the APL in the **apl** field of **bundle-info** in the app's profile when developing the application installation package.
+
+Then, use the [hapsigner](hapsigntool-overview.md) tool to generate a certificate or use DevEco Studio to [have your app automatically signed](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465#section161281722111).
+
+> **CAUTION**<br>The method of declaring the app's APL in its profile applies only to the application or service in debug phase. For a commercial app, apply for a release certificate and profile in the corresponding app market.
+
+The following is an example.
+
+This example shows only the modification of the **apl** field. Set other fields based on service requirements. For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
+
+```json
+{
+	"bundle-info" : {
+		"developer-id": "OpenHarmony",
+		"development-certificate": "Base64 string",
+		"distribution-certificate": "Base64 string",
+		"bundle-name": "com.OpenHarmony.app.test",
+		"apl": "system_basic",
+        "app-feature": "hos_normal_app"
+	},
+}
+```
 
 ### Levels of Permissions
 
@@ -101,13 +102,13 @@ The permissions open to apps vary with the permission level. The permission leve
 
     The system_basic permission allows access to resources related to basic operating system services. The basic services are basic functions provided or preconfigured by the system, such as system setting and identity authentication. Access to these resources may have considerable risks to user privacy and other apps.
 
-    The permissions of this level are available only to the apps of the system_basic APL.
+    The permissions of this level are available only to apps of the system_basic or system_core APL.
 
 - **system_core**
 
     The system_core permission allows access to core resources of the operating system. These resources are the underlying core services of the system. If these resources are corrupted, the OS cannot run properly.
     
-    The permissions of this type are not open to any app currently.
+    The permissions of this type are not open to third-party apps currently.
 
 ## Permission Authorization Modes
 
@@ -177,8 +178,22 @@ If the permission required by an app has higher level than the app's APL, you ca
 
 In addition to the preceding [authorization processes](#authorization-processes), you must declare the ACL.
 
-In other words, in addition to declaring the required permissions in the **config.json** file, you must [declare the ACL](accesstoken-guidelines.md#declaring-the-acl) in the app's profile. The subsequent steps of authorization are the same.
+In other words, in addition to declaring the required permissions in the app's configuration file, you must [declare the ACL](accesstoken-guidelines.md#declaring-the-acl) in the app's profile. The subsequent steps of authorization are the same.
 
 **NOTICE**
 
-Declare the target ACL in the **acls** field of the app's profile in the app installation package, and generate a certificate using the profile signing tool. For details about the signing process, see [Hapsigner Guide](hapsigntool-guidelines.md).
+When developing an app installation package, you must declare the allowed ACLs in the **acls** field in the app's profile. Then, use the [hapsigner](hapsigntool-overview.md) tool to generate a certificate.
+
+> **CAUTION**<br>The method of declaring the app's APL in its profile applies only to the application or service in debug phase. For a commercial app, apply for a release certificate and profile in the corresponding app market.
+
+```json
+{
+    "acls": {
+        "allowed-acls": [
+            "ohos.permission.PERMISSION"
+        ]
+    },
+}
+```
+
+For details about the fields in the profile, see [HarmonyAppProvision Configuration File](../quick-start/app-provision-structure.md).
