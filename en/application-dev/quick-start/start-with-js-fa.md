@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> For best possible results, use [DevEco Studio V3.0.0.991 Beta4](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+> For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
 
 
 ## Creating a JavaScript Project
@@ -226,7 +226,7 @@ You can implement page redirection through the [page router](../ui/ui-js-buildin
 
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
-2. Choose **File** > **Project Structure...** > **Project** > **Signing Configs**, and select **Automatically generate signing**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
+2. Choose **File** > **Project Structure...** > **Project** > **Signing Configs**, and select **Automatically generate signature**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
 
    ![06](figures/06.png)
 
