@@ -90,7 +90,7 @@ import settings from '@ohos.settings';
 | ------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | DEFAULT_INPUT_METHOD                 | string | 是   | 是   | 默认输入法及其ID。                                           |
 | ACTIVATED_INPUT_METHOD_SUB_MODE      | string | 是   | 是   | 默认输入法键盘类型及其ID。                                   |
-| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，其中包含已激活的输入法的ID和输入法键盘类型组成。输入法ID后添加冒号':'连接，输入法的键盘类型后添加分号';'连接。用ima代表输入法ID，keyboardType代表键盘类型，示例格式是ima0:keyboardType0;keyboardType1;ima1:ima2:keyboardTypes0。 |
+| ACTIVATED_INPUT_METHODS              | string | 是   | 是   | 已激活的输入法的列表。<br>该列表是一个字符串，由已激活的输入法的ID和输入法键盘类型组成。输入法ID后添加冒号':'连接，输入法的键盘类型后添加分号';'连接。用ima代表输入法ID，keyboardType代表键盘类型，示例格式是ima0:keyboardType0;keyboardType1;ima1:ima2:keyboardTypes0。 |
 | SELECTOR_VISIBILITY_FOR_INPUT_METHOD | string | 是   | 是   | 输入法选择器是否可见。<br>值为1，表示输入法选择器可见；<br/>值为0，表示输入法选择器不可见。 |
 | AUTO_CAPS_TEXT_INPUT                 | string | 是   | 是   | 是否为文本编辑器启用自动大写。<br>值为0，表示不启用自动大写；<br/>值为1，表示启用自动大写。 |
 | AUTO_PUNCTUATE_TEXT_INPUT            | string | 是   | 是   | 是否为文本编辑器启用自动标点符号。自动标点符号使文本编辑器能够将两个空格转换为句点'.'和空格。<br>值为0，表示不启用自动标点符号；<br/>值为1，表示启用自动标点符号。 |
