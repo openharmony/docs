@@ -7,8 +7,8 @@
 
 提供具有网页显示能力的Web组件。
 
-## 权限列表
-访问在线网页时需添加网络权限：ohos.permission.INTERNET。
+## 需要权限
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 子组件
 
@@ -30,6 +30,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 | controller | [WebController](#webcontroller) | 否    | 控制器。    |
 
 **示例：**
+
   加载在线网页
   ```ts
   // xxx.ets
