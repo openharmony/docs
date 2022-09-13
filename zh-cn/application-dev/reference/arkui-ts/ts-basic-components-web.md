@@ -7,8 +7,8 @@
 
 提供具有网页显示能力的Web组件。
 
-## 权限列表
-访问在线网页时需添加网络权限：ohos.permission.INTERNET。
+## 需要权限
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 子组件
 
@@ -17,6 +17,10 @@
 ## 接口
 
 Web(options: { src: ResourceStr, controller: WebController })
+
+> **说明：**
+>
+> 不支持转场动画。
 
 **参数：**
 
@@ -27,6 +31,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 
 **示例：**
 
+  加载在线网页
   ```ts
   // xxx.ets
   @Entry
@@ -41,9 +46,30 @@ Web(options: { src: ResourceStr, controller: WebController })
   }
   ```
 
-> **说明：**
->
-> 不支持转场动画。
+  加载本地网页
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 
 ## 属性
 
@@ -579,10 +605,16 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
         Web({ src: 'www.example.com', controller: this.controller })
           .onAlert((event) => {
             AlertDialog.show({
-              title: 'title',
+              title: 'onAlert',
               message: 'text',
-              confirm: {
-                value: 'onAlert',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
                 action: () => {
                   event.result.handleConfirm()
                 }
@@ -602,7 +634,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-刷新或关闭场景下，在即将离开当前页面时触发此回调。
+刷新或关闭场景下，在即将离开当前页面时触发此回调。刷新当前页面应先通过点击等方式获取焦点，才会触发此回调。
 
 **参数：**
 
@@ -633,8 +665,26 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url);
             console.log("event.message:" + event.message);
-            console.log("event.result:" + event.result);
-            return false;
+            AlertDialog.show({
+              title: 'onBeforeUnload',
+              message: 'text',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
           })
       }
     }
@@ -678,10 +728,16 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
             console.log("event.message:" + event.message);
             console.log("event.result:" + event.result);
             AlertDialog.show({
-              title: 'title',
+              title: 'onConfirm',
               message: 'text',
-              confirm: {
-                value: 'onConfirm',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
                 action: () => {
                   event.result.handleConfirm()
                 }
@@ -723,16 +779,36 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+  
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onPrompt((event) => {
-          console.log("url:" + event.url);
-          console.log("message:" + event.message);
-          console.log("value:" + event.value);
-          console.log("result:" + event.result);
-          return true;
-        })
+          .onPrompt((event) => {
+            console.log("url:" + event.url);
+            console.log("message:" + event.message);
+            console.log("value:" + event.value);
+            AlertDialog.show({
+              title: 'onPrompt',
+              message: 'text',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
+          })
+      }
     }
   }
   ```
@@ -1052,7 +1128,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 | 参数名         | 参数类型    | 参数描述                              |
 | ----------- | ------- | --------------------------------- |
 | url         | string  | 访问的url。                           |
-| isRefreshed | boolean | true表示该页面是被重新加载的，false表示该页面是新加载的。 |
+| isRefreshed | boolean | true表示该页面是被重新加载的（调用[refresh](#refresh)接口），false表示该页面是新加载的。 |
 
 **示例：**
 
@@ -1067,7 +1143,7 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
-            console.log('url:' + event.url + ' isReload:' + event.refreshed);
+            console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
           })
       }
     }
@@ -1108,7 +1184,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 ### onShowFileSelector<sup>9+</sup>
 
-onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => void)
+onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
 
 调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
 
@@ -1118,6 +1194,12 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 | ------------ | ---------------------------------------- | ----------------- |
 | result       | [FileSelectorResult](#fileselectorresult9) | 用于通知Web组件文件选择的结果。 |
 | fileSelector | [FileSelectorParam](#fileselectorparam9) | 文件选择器的相关信息。       |
+
+**返回值：**
+
+| 类型      | 说明                                  |
+| ------- | ----------------------------------- |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当返回值为false时，触发Web默认弹窗。 |
 
 **示例：**
 
@@ -1197,7 +1279,7 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 
 ### onInterceptRequest<sup>9+</sup>
 
-onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
+onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
 当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
 
@@ -1284,25 +1366,32 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
     httpAuth: boolean = false;
-
+  
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onHttpAuthRequest((event) => {
             AlertDialog.show({
-              title: 'title',
+              title: 'onHttpAuthRequest',
               message: 'text',
-              confirm: {
-                value: 'onConfirm',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.cancel();
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
                 action: () => {
                   this.httpAuth = event.handler.isHttpAuthInfoSaved();
                   if (this.httpAuth == false) {
-                    web.WebDataBase.saveHttpAuthCredentials(
+                    web_webview.WebDataBase.saveHttpAuthCredentials(
                       event.host,
                       event.realm,
                       "2222",
@@ -1349,14 +1438,20 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
             AlertDialog.show({
               title: 'title',
               message: 'text',
-              confirm: {
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.request.deny();
+                }
+              },
+              secondaryButton: {
                 value: 'onConfirm',
                 action: () => {
                   event.request.grant(event.request.getAccessibleResource());
                 }
               },
               cancel: () => {
-               event.request.deny();
+                event.request.deny();
               }
             })
           })
@@ -1398,6 +1493,7 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
         .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
+            return false;
         })
       }
     }
@@ -2297,13 +2393,16 @@ backOrForward(step: number): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    @State step: number = -2;
+  
     build() {
       Column() {
         Button('backOrForward')
-        .onClick(() => {
-          this.controller.backOrForward();
-        })
+          .onClick(() => {
+            this.controller.backOrForward(this.step);
+          })
         Web({ src: 'www.example.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -3038,7 +3137,7 @@ createWebMessagePorts(): Array\<WebMessagePort\>
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
     build() {
       Column() {
         Button('createWebMessagePorts')
@@ -3073,7 +3172,7 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
     build() {
       Column() {
         Button('postMessage')
@@ -3082,7 +3181,7 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
             var msgEvent = new WebMessageEvent();
             msgEvent.setData("__init_ports__");
             msgEvent.setPorts(sendPortArray);
-            this.controller.postMessage(msgEvent, uri:"*");
+            this.controller.postMessage({message: msgEvent, uri: "*"});
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3100,6 +3199,38 @@ postMessage(options: { message: WebMessageEvent, uri: string}): void
       }
     }
   })
+  ```
+
+### getUrl<sup>9+</sup>
+
+getUrl(): string
+
+获取当前页面的url地址。
+
+**返回值：**
+
+| 类型                              | 说明            |
+| ------------------------------- | ------------- |
+| string | 当前页面的url地址。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getUrl')
+          .onClick(() => {
+            console.log("url: " + this.controller.getUrl());
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
   ```
 
 ## HitTestValue<sup>9+</sup>
@@ -3226,7 +3357,7 @@ getCookie(url: string): string
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3267,7 +3398,7 @@ setCookie(url: string, value: string): boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3277,7 +3408,7 @@ setCookie(url: string, value: string): boolean
       Column() {
         Button('setCookie')
           .onClick(() => {
-            let result = webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            let result = web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3301,7 +3432,7 @@ saveCookieSync(): boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3311,7 +3442,7 @@ saveCookieSync(): boolean
       Column() {
         Button('saveCookieSync')
           .onClick(() => {
-            let result = webview.WebCookieManager.saveCookieSync();
+            let result = web_webview.WebCookieManager.saveCookieSync();
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3335,6 +3466,7 @@ saveCookieAsync(): Promise\<boolean>
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3344,7 +3476,7 @@ saveCookieAsync(): Promise\<boolean>
       Column() {
         Button('saveCookieAsync')
           .onClick(() => {
-            webview.WebCookieManager.saveCookieAsync()
+            web_webview.WebCookieManager.saveCookieAsync()
               .then (function(result) {
                 console.log("result: " + result);
               })
@@ -3373,6 +3505,7 @@ saveCookieAsync(callback: AsyncCallback\<boolean>): void
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3382,7 +3515,7 @@ saveCookieAsync(callback: AsyncCallback\<boolean>): void
       Column() {
         Button('saveCookieAsync')
           .onClick(() => {
-            webview.WebCookieManager.saveCookieAsync(function(result) {
+            web_webview.WebCookieManager.saveCookieAsync(function(result) {
               console.log("result: " + result);
             });
           })
@@ -3407,7 +3540,7 @@ isCookieAllowed(): boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3417,7 +3550,7 @@ isCookieAllowed(): boolean
       Column() {
         Button('isCookieAllowed')
           .onClick(() => {
-            let result = webview.WebCookieManager.isCookieAllowed();
+            let result = web_webview.WebCookieManager.isCookieAllowed();
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3441,7 +3574,7 @@ putAcceptCookieEnabled(accept: boolean): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3451,7 +3584,7 @@ putAcceptCookieEnabled(accept: boolean): void
       Column() {
         Button('putAcceptCookieEnabled')
           .onClick(() => {
-            webview.WebCookieManager.putAcceptCookieEnabled(false);
+            web_webview.WebCookieManager.putAcceptCookieEnabled(false);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3474,7 +3607,7 @@ isThirdCookieAllowed(): boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3484,7 +3617,7 @@ isThirdCookieAllowed(): boolean
       Column() {
         Button('isThirdPartyCookieAllowed')
           .onClick(() => {
-            let result = webview.WebCookieManager.isThirdPartyCookieAllowed();
+            let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed();
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3508,7 +3641,7 @@ putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3518,7 +3651,7 @@ putAcceptThirdPartyCookieEnabled(accept: boolean): void
       Column() {
         Button('putAcceptThirdPartyCookieEnabled')
           .onClick(() => {
-            webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
+            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3541,7 +3674,7 @@ existCookie(): boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3551,7 +3684,7 @@ existCookie(): boolean
       Column() {
         Button('existCookie')
           .onClick(() => {
-            let result = webview.WebCookieManager.existCookie();
+            let result = web_webview.WebCookieManager.existCookie();
             console.log("result: " + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3569,7 +3702,7 @@ deleteEntireCookie(): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3579,7 +3712,7 @@ deleteEntireCookie(): void
       Column() {
         Button('deleteEntireCookie')
           .onClick(() => {
-            webview.WebCookieManager.deleteEntireCookie();
+            web_webview.WebCookieManager.deleteEntireCookie();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3596,7 +3729,7 @@ deleteSessionCookie(): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview'
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3633,7 +3766,7 @@ static existHttpAuthCredentials(): boolean
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3643,7 +3776,7 @@ static existHttpAuthCredentials(): boolean
       Column() {
         Button('existHttpAuthCredentials')
           .onClick(() => {
-            let result = web.WebDataBase.existHttpAuthCredentials();
+            let result = web_webview.WebDataBase.existHttpAuthCredentials();
             console.log('result: ' + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3662,7 +3795,7 @@ static deleteHttpAuthCredentials(): void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3672,7 +3805,7 @@ static deleteHttpAuthCredentials(): void
       Column() {
         Button('deleteHttpAuthCredentials')
           .onClick(() => {
-            web.WebDataBase.deleteHttpAuthCredentials();
+            web_webview.WebDataBase.deleteHttpAuthCredentials();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3703,7 +3836,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3715,7 +3848,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            this.username_password = web.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
+            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
             ForEach(this.username_password, (item) => {
               console.log('username_password: ' + item);
@@ -3746,7 +3879,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3757,7 +3890,7 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
       Column() {
         Button('saveHttpAuthCredentials')
           .onClick(() => {
-            web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3785,7 +3918,7 @@ static allowGeolocation(origin: string): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3795,7 +3928,7 @@ static allowGeolocation(origin: string): void
       Column() {
         Button('allowGeolocation')
           .onClick(() => {
-            webview.GeolocationPermissions.allowGeolocation(this.origin);
+            web_webview.GeolocationPermissions.allowGeolocation(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3819,7 +3952,7 @@ static deleteGeolocation(origin: string): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3829,7 +3962,7 @@ static deleteGeolocation(origin: string): void
       Column() {
         Button('deleteGeolocation')
           .onClick(() => {
-            webview.GeolocationPermissions.deleteGeolocation(this.origin);
+            web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3847,7 +3980,7 @@ static deleteAllGeolocation(): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3856,7 +3989,7 @@ static deleteAllGeolocation(): void
       Column() {
         Button('deleteAllGeolocation')
           .onClick(() => {
-            webview.GeolocationPermissions.deleteAllGeolocation();
+            web_webview.GeolocationPermissions.deleteAllGeolocation();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -3881,7 +4014,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3891,7 +4024,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
       Column() {
         Button('getAccessibleGeolocationAsync')
           .onClick(() => {
-            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
               if (error) {
                 console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
                 return;
@@ -3927,7 +4060,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3937,7 +4070,7 @@ static getAccessibleGeolocation(origin: string): Promise\<boolean\>
       Column() {
         Button('getAccessibleGeolocationPromise')
           .onClick(() => {
-            webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
+            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
               console.log('getAccessibleGeolocationPromise result: ' + result);
             }).catch(error => {
               console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
@@ -3965,7 +4098,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -3974,7 +4107,7 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
       Column() {
         Button('getStoredGeolocationAsync')
           .onClick(() => {
-            webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
+            web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
                 console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
                 return;
@@ -4011,7 +4144,7 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
 
   ```ts
   // xxx.ets
-  import webview from '@ohos.web.webview';
+  import web_webview from '@ohos.web.webview';
   @Entry
   @Component
   struct WebComponent {
@@ -4020,7 +4153,7 @@ static getStoredGeolocation(): Promise\<Array\<string\>\>
       Column() {
         Button('getStoredGeolocationPromise')
           .onClick(() => {
-            webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
+            web_webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
               let origins_str: string = origins.join();
               console.log('getStoredGeolocationPromise origins: ' + origins_str);
             }).catch(error => {
@@ -4044,7 +4177,7 @@ static deleteAllData(): void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4053,7 +4186,7 @@ static deleteAllData(): void
       Column() {
         Button('deleteAllData')
           .onClick(() => {
-            web.WebStorage.deleteAllData();
+            web_webview.WebStorage.deleteAllData();
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -4077,7 +4210,7 @@ static deleteOrigin(origin : string): void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4087,7 +4220,7 @@ static deleteOrigin(origin : string): void
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            web.WebStorage.deleteOrigin(this.origin);
+            web_webview.WebStorage.deleteOrigin(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -4097,7 +4230,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
+static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4111,7 +4244,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4121,7 +4254,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
       Column() {
         Button('getOrigins')
           .onClick(() => {
-            web.WebStorage.getOrigins((error, origins) => {
+            web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
@@ -4141,7 +4274,7 @@ static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<[WebStorageOrigin]>>
+static getOrigins() : Promise<Array<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4155,7 +4288,7 @@ static getOrigins() : Promise<Array<[WebStorageOrigin]>>
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4165,7 +4298,7 @@ static getOrigins() : Promise<Array<[WebStorageOrigin]>>
       Column() {
         Button('getOrigins')
           .onClick(() => {
-            web.WebStorage.getOrigins()
+            web_webview.WebStorage.getOrigins()
               .then(origins => {
                 for (let i = 0; i < origins.length; i++) {
                   console.log('origin: ' + origins[i].origin);
@@ -4200,7 +4333,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4210,7 +4343,7 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginQuota(this.origin, (error, quota) => {
+            web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
@@ -4246,7 +4379,7 @@ static getOriginQuota(origin : string) : Promise\<number>
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4256,7 +4389,7 @@ static getOriginQuota(origin : string) : Promise\<number>
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginQuota(this.origin)
+            web_webview.WebStorage.getOriginQuota(this.origin)
               .then(quota => {
                 console.log('quota: ' + quota);
               })
@@ -4287,7 +4420,7 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4297,12 +4430,12 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
       Column() {
         Button('getOriginUsage')
           .onClick(() => {
-            web.WebStorage.getOriginUsage(this.origin, (error, usage) => {
+            web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
               }
-              consloe.log('usage: ' + usage);
+              console.log('usage: ' + usage);
             })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -4333,7 +4466,7 @@ static getOriginUsage(origin : string) : Promise\<number>
 
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4343,7 +4476,7 @@ static getOriginUsage(origin : string) : Promise\<number>
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginUsage(this.origin)
+            web_webview.WebStorage.getOriginUsage(this.origin)
               .then(usage => {
                 console.log('usage: ' + usage);
               })
@@ -4604,7 +4737,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<str
 
   ```ts
   // xxx.ets
-  import WebAsyncController from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4613,7 +4746,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<str
       Column() {
         Button('saveWebArchive')
           .onClick(() => {
-            let webAsyncController = new WebAsyncController(this.controller);
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
             webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
               if (filename != null) {
                 console.info(`save web archive success: ${filename}`)
@@ -4649,7 +4782,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 
   ```ts
   // xxx.ets
-  import WebAsyncController from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -4658,7 +4791,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise<string>
       Column() {
         Button('saveWebArchive')
           .onClick(() => {
-            let webAsyncController = new WebAsyncController(this.controller);
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
             webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
               .then(filename => {
                 if (filename != null) {
@@ -4700,7 +4833,7 @@ postMessageEvent(message: WebMessageEvent): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
 
     build() {
       Column() {
@@ -4708,7 +4841,7 @@ postMessageEvent(message: WebMessageEvent): void
           .onClick(() => {
             var msg = new WebMessageEvent();
             msg.setData("post message from ets to html5");
-            this.port[0].postMessageEvent(msg);
+            this.ports[0].postMessageEvent(msg);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4735,13 +4868,13 @@ onMessageEvent(callback: (result: string) => void): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
 
     build() {
       Column() {
         Button('onMessageEvent')
           .onClick(() => {
-            this.port[0].onMessageEvent((result: string) => {
+            this.ports[0].onMessageEvent((result: string) => {
               console.log("received message from html5, on message:" + result);
             })
           })
@@ -4807,7 +4940,7 @@ setData(data: string): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
 
     build() {
       Column() {
@@ -4815,7 +4948,7 @@ setData(data: string): void
           .onClick(() => {
             var msg = new WebMessageEvent();
             msg.setData("post message from ets to HTML5");
-            this.port[0].postMessageEvent(msg);
+            this.ports[0].postMessageEvent(msg);
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4840,7 +4973,7 @@ getPorts(): Array\<WebMessagePort\>
   @Entry
   @Component
   struct WebComponent {
-    ports: WebMessagePorts[] = null;
+    ports: WebMessagePort[] = null;
     build() {
       Column() {
         Button('getPorts')
@@ -4875,8 +5008,8 @@ setPorts(ports: Array\<WebMessagePort\>): void
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-    ports: WebMessagePorts[] = null;
-
+    ports: WebMessagePort[] = null;
+  
     build() {
       Column() {
         Button('setPorts')
@@ -4885,7 +5018,7 @@ setPorts(ports: Array\<WebMessagePort\>): void
             var msgEvent = new WebMessageEvent();
             msgEvent.setData("__init_ports__");
             msgEvent.setPorts(sendPortArray);
-            this.controller.postMessage(msgEvent, uri:"*");
+            this.controller.postMessage({message: msgEvent, uri: "*"});
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }

@@ -34,14 +34,14 @@ TextPicker(options: {range: string[]|Resource, selected?: number, value?: string
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| defaultPickerItemHeight | Length | - | 默认Picker内容项元素高度。 |
+| defaultPickerItemHeight | number \| string | - | 默认Picker内容项元素高度。 |
 
 
 ## 事件
 
 | 名称 | 描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;string,&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 滑动选中TextPicker文本内容后，触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的下标。 |
+| onChange(callback:&nbsp;(value:&nbsp;string,&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 滑动选中TextPicker文本内容后，触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。 |
 
 
 ## 示例

@@ -16,7 +16,7 @@
 无
 
 
-## 接口说明
+## 接口
 
 TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 

@@ -24,7 +24,7 @@ None
 - Attributes
   | Name               | Type                                      | Description          |
   | ------------------- | ---------------------------------------- | ------------ |
-  | type                | TouchType                                | Type of the touch event.    |
+  | type                | [TouchType](ts-appendix-enums.md#touchtype)                                | Type of the touch event.    |
   | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.     |
   | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.|
   | timestamp           | number                                   | Timestamp of the event.      |
@@ -40,22 +40,12 @@ None
 ## TouchObject
 | Name   | Type                         | Description                 |
 | ------- | --------------------------- | ------------------- |
-| type    | [TouchType](#touchtype-enums) | Type of the touch event.           |
+| type    | [TouchType](ts-appendix-enums.md#touchtype) | Type of the touch event.           |
 | id      | number                      | Unique identifier of a finger.           |
 | screenX | number                      | X-coordinate of the touch point relative to the left edge of the screen. |
 | screenY | number                      | Y-coordinate of the touch point relative to the upper edge of the device screen. |
 | x       | number                      | X-coordinate of the touch point relative to the left edge of the element being touched. |
 | y       | number                      | Y-coordinate of the touch point relative to the upper edge of the element being touched. |
-
-
-## TouchType Enums
-| Name    | Description             |
-| ------ | --------------- |
-| Down   | A finger is pressed.       |
-| Up     | A finger is lifted.       |
-| Move   | A finger moves on the screen in pressed state.|
-| Cancel | A touch event is canceled.     |
-
 
 ## Example
 

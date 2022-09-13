@@ -20,21 +20,16 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
   | -------- | -------- | -------- | -------- | -------- |
   | fingers | number | 否 | 1 | 触发长按的最少手指数，最小为1指，&nbsp;最大取值为10指。 |
   | repeat | boolean | 否 | false | 是否连续触发事件回调。 |
-  | duration | number | 否 | 500 | 最小触发长按的时间，单位为毫秒（ms）。 |
+  | duration | number | 否 | 500 | 触发长按的最短时间，单位为毫秒（ms）。 |
 
 
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 |
-| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。 |
+| onAction((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 |
+| onActionEnd((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。 |
-
-- GestureEvent对象中与LongPress手势相关的属性
-  | 属性名称 | 属性类型 | 描述 |
-  | -------- | -------- | -------- |
-  | repeat | boolean | 事件是否为重复触发事件。 |
 
 
 ## 示例

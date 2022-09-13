@@ -47,14 +47,12 @@
 import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
 import window from '@ohos.window';
 
-var windowClass = null;
-
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // 1.创建音量条窗口。
-        var windowClass = null;
+        let windowClass = null;
         window.create(this.context, "volume", window.WindowType.TYPE_VOLUME_OVERLAY, (err, data) => {
             if (err.code) {
                 console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));

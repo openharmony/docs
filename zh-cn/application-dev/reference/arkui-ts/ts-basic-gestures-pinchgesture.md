@@ -26,17 +26,10 @@ PinchGesture(options?: { fingers?: number, distance?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
-| onActionUpdate((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
-| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
+| onActionStart((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
+| onActionUpdate((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
+| onActionEnd((event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 |
-
-- GestureEvent对象中与Pinch手势相关的属性
-  | 属性名称 | 属性类型 | 描述 |
-  | -------- | -------- | -------- |
-  | scale | number | 缩放比例，用于PinchGesture手势触发场景。 |
-  | pinchCenterX | number | 捏合手势中心点X轴坐标，单位为px。 |
-  | pinchCenterY | number | 捏合手势中心点Y轴坐标，单位为px。 |
 
 
 ## 示例

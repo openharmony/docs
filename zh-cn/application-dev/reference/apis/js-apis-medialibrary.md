@@ -33,7 +33,8 @@ getMediaLibrary(context: Context): MediaLibrary
 **示例：（从API Version 9开始）**
 
 ```ts
-var media = mediaLibrary.getMediaLibrary(this.context);
+const context = getContext(this);
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 
 **示例：（API Version 8）**
@@ -41,8 +42,8 @@ var media = mediaLibrary.getMediaLibrary(this.context);
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var context = featureAbility.getContext()
-var media = mediaLibrary.getMediaLibrary(context);
+let context = featureAbility.getContext()
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 ## mediaLibrary.getMediaLibrary
 
@@ -65,7 +66,7 @@ getMediaLibrary(): MediaLibrary
 **示例：**
 
 ```js
-var media = mediaLibrary.getMediaLibrary();
+let media = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary

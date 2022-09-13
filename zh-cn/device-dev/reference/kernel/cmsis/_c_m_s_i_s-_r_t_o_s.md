@@ -917,7 +917,7 @@ osStatus_t osKernelGetInfo (osVersion_t * version, char * id_buf, uint32_t id_si
 | -------- | -------- |
 | version | 指向获取版本信息缓冲区的指针。 | 
 | id_buf | 指向获取内核版本缓冲区的指针。 | 
-| id_size | 用于获取内核版本缓冲区的大小。 | 
+| id_size | 用于获取内核版本缓冲区的大小，单位字节。 | 
 
 **返回:**
 
@@ -1245,7 +1245,7 @@ uint32_t osMemoryPoolGetBlockSize (osMemoryPoolId_t mp_id)
 
 **返回:**
 
-成功，返回块大小。
+成功，返回块大小，单位字节。
 
 0，表示参数错误。
 

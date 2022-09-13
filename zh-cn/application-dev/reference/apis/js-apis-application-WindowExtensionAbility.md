@@ -31,6 +31,8 @@ onConnect(want: Want): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
@@ -55,6 +57,8 @@ onDisconnect(want: Want): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 当前Ability的Want类型信息，包括ability名称、bundle名称等。 |
@@ -72,7 +76,6 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 }
 ```
 
-
 ## WindowExtensionAbility.onWindowReady
 
 onWindowReady(window: Window): void
@@ -80,6 +83,8 @@ onWindowReady(window: Window): void
 当窗口被创建时回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

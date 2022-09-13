@@ -45,8 +45,8 @@ getNativeHeapAllocatedSize(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
 | bigint | 返回native heap内存的已分配内存，单位为kB。 |
@@ -68,12 +68,11 @@ getNativeHeapFreeSize(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
 | bigint | 返回native heap内存的空闲内存，单位为kB。 |
-
 
 **示例：**
   ```js
@@ -89,12 +88,11 @@ getPss(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                      |
 | ------ | ------------------------- |
 | bigint | 返回应用进程PSS内存大小，单位为kB。 |
-
 
 **示例：**
   ```js
@@ -110,8 +108,8 @@ getSharedDirty(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的共享脏内存大小，单位为kB。 |
@@ -130,8 +128,8 @@ getPrivateDirty(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
@@ -152,8 +150,8 @@ getCpuUsage(): number
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | number | 获取进程的cpu占用率。 |
@@ -245,6 +243,7 @@ getServiceDump(serviceid : number) : string
 | serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
 
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | string | 返回dump的service信息文件的绝对路径。 |
