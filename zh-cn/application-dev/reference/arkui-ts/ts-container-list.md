@@ -40,10 +40,10 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 | chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
 | multiSelectable<sup>8+</sup> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | lanes<sup>9+</sup> | number \|<br>{<br/>minLength: Length,<br/>maxLength: Length<br/>} | 1 | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局，规则如下：<br/>- lanes为指定的数量时，根据指定的数量与List组件的交叉轴宽度来决定每列的宽度；<br/>- lane设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的宽度符合最小宽度限制。例如在列模式下，设置了{minLength: 40vp，maxLength: 60vp}，则当List组件宽度为70vp时，ListItem为一列，并且根据alignListItem属性做靠左、居中或者靠右布局；当List组件宽度变化至80vp时，符合两倍的minLength，则ListItem自适应为两列。 |
-| alignListItem<sup>9+</sup> | [ListItemAlign](#ListItemAlign<sup>9+</sup>) | ListItemAlign.Center | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。 |
-| sticky<sup>9+</sup> | [StickyStyle](#StickyStyle<sup>9+</sup>) | StickyStyle.None | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底，参见StickyStyle的枚举说明。|
+| alignListItem<sup>9+</sup> | [ListItemAlign](#listitemalign) | ListItemAlign.Center | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。 |
+| sticky<sup>9+</sup> | [StickyStyle](#stickystyle) | StickyStyle.None | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底，参见StickyStyle的枚举说明。|
 
-### ListItemAlign<sup>9+</sup>
+## ListItemAlign<sup>9+</sup>枚举说明
 
   | 名称   | 描述                                   |
   | ------ | -------------------------------------- |
@@ -51,7 +51,7 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
   | Center | ListItem在List中，交叉轴方向居中对齐。 |
   | End    | ListItem在List中，交叉轴方向尾部对齐。 |
 
-### StickyStyle<sup>9+</sup>
+## StickyStyle<sup>9+</sup>枚举说明
 
   | 名称   | 描述                                   |
   | ------ | -------------------------------------- |
@@ -62,7 +62,26 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
   sticky属性可以设置为 StickyStyle.Header | StickyStyle.Footer 以同时支持header吸顶和footer吸底。
 
 
-### ScrollState
+
+## 事件
+
+| 名称 | 功能描述 |
+| -------- | -------- |
+| onItemDelete(event: (index: number) => boolean) | 列表项删除时触发。                |
+| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发，返回值scrollOffset为滑动偏移量，[scrollState](#scrollstate)为当前滑动状态。 |
+| onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发，返回值分别为滑动起始位置索引值与滑动结束位置索引值。 |
+| onReachStart(event: () => void) | 列表到达起始位置时触发。 |
+| onReachEnd(event: () => void) | 列表到底末尾位置时触发。 |
+| onScrollStop(event: () => void) | 列表滑动停止时触发。 |
+| onItemMove(event: (from: number, to: number) => boolean) | 列表元素发生移动时触发，返回值from、to分别为移动前索引值与移动后索引值。 |
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽列表元素时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为被拖拽列表元素索引值。 |
+| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入列表元素范围内时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)。 |
+| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在列表元素范围内移动时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置。 |
+| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开列表元素时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽离开的列表元素索引值。 |
+| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置，isSuccess为是否成功释放。 |
+
+
+## ScrollState枚举说明
 
 | 名称     | 描述                     |
 | ------ | ------------------------- |
@@ -84,27 +103,7 @@ List(value:{space?: number | string, initialIndex?: number, scroller?: Scroller}
 > - editMode属性设置为true。
 >
 > - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
-> 
-
-
-## 事件
-
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onItemDelete(event: (index: number) => boolean) | 列表项删除时触发。                |
-| onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发，返回值scrollOffset为滑动偏移量，[scrollState](#ScrollState)为当前滑动状态。 |
-| onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发，返回值分别为滑动起始位置索引值与滑动结束位置索引值。 |
-| onReachStart(event: () => void) | 列表到达起始位置时触发。 |
-| onReachEnd(event: () => void) | 列表到底末尾位置时触发。 |
-| onScrollStop(event: () => void) | 列表滑动停止时触发。 |
-| onItemMove(event: (from: number, to: number) => boolean) | 列表元素发生移动时触发，返回值from、to分别为移动前索引值与移动后索引值。 |
-| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽列表元素时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为被拖拽列表元素索引值。 |
-| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入列表元素范围内时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)。 |
-| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在列表元素范围内移动时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置。 |
-| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开列表元素时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽离开的列表元素索引值。 |
-| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的列表元素可作为拖拽释放目标，当在列表元素内停止拖拽时触发，返回值event见[ItemDragInfo对象说明](ts-container-grid.md#ItemDragInfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置，isSuccess为是否成功释放。 |
-
-
+>
 
 ## 示例
 
