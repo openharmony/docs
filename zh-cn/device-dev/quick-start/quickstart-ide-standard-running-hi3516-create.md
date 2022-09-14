@@ -150,7 +150,7 @@ vendor/hisilicon
 
 4. 修改产品配置文件。
 
-   在vendor\hisilicon\Hi3516DV300\config.json中添加对应的hello部件，直接添加到原有部件后即可。
+   在vendor/hisilicon/Hi3516DV300/config.json中添加对应的hello部件，直接添加到原有部件后即可。
      
    ```
        "usb:usb_manager_native":{},
