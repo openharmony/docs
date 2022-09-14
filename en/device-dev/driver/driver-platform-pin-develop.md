@@ -20,10 +20,9 @@ Pin, as a software concept, provides APIs for uniformly managing the pins from d
 
 ### Working Principles
 
-In the HDF, the pin module does not support the user mode and therefore does not need to publish services. It uses the service-free mode in interface adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS that does not distinguish the user mode and the kernel mode. The **DevHandle**, a void pointer, directly points to the kernel mode address of the device object.
+In the HDF, the pin module does not support the user mode and therefore does not need to publish services. The pin module uses the service-free mode (as shown in Figure 1) in interface adaptation. The service-free mode applies to the devices that do not provide user-mode APIs or the OS that does not distinguish the user mode and the kernel mode. The **DevHandle**, a void pointer, directly points to the kernel mode address of the device object.
 
 The pin module is divided into the following layers:
-
 - Interface layer: provides APIs for obtaining a pin, setting or obtaining the pull type, pull strength, and functions of a pin, and releasing a pin.
 - Core layer: provides the capabilities of matching pin resources and adding, removing, and managing pin controllers. The core layer interacts with the adaptation layer by using hooks.
 - Adaptation layer: instantiates hooks to implement specific functions.
@@ -44,8 +43,7 @@ The pin module is used to manage pin resources. When the devices from SoC vendor
 
 ### Available APIs
 
-The **PinCntlrMethod** APIs are used to call the functions of the pin driver.
-**PinCntlrMethod** definition:
+The **PinCntlrMethod** structure defines callbacks to be invoked to call the functions of the pin driver.
 
 ```c
 struct PinCntlrMethod {
@@ -58,7 +56,7 @@ struct PinCntlrMethod {
 };
 ```
 
-**Table 1** APIs for the members in the PinCntlrMethod structure
+**Table 1** Callbacks in the PinCntlrMethod structure
 
 | API    | Input Parameter                                       | Output Parameter                                  | Return Value| Description|
 | ------------ | ------------------------------------------- | ------ | ---- | ---- |
@@ -73,18 +71,22 @@ struct PinCntlrMethod {
 
 The pin module adaptation procedure is as follows:
 
-- Instantiate the driver entry.
-- Configure attribute files.
-- Instantiate the core layer APIs.
-- Debug the driver.
+1. Instantiate the driver entry.
+2. Configure attribute files.
+3. Instantiate the core layer APIs.
+4. Debug the driver.
+
+### Development Example
 
 1. Instantiate the driver entry.
 
    - Instantiate the **HdfDriverEntry** structure.
+
      Instantiate the driver entry. The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**.
 
    - Call **HDF_INIT** to register the **HdfDriverEntry** instance with the HDF.
-     Generally, the HDF calls the **Init()** function to load the driver. If **Init()** fails to be called, the HDF calls **Release()** to release driver resources and exit.
+
+     Generally, the HDF calls the **Init** function to load the driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
 
         ```c
         static struct HdfDriverEntry g_hi35xxPinDriverEntry = {
@@ -92,13 +94,15 @@ The pin module adaptation procedure is as follows:
             .Bind = Hi35xxPinBind,
             .Init = Hi35xxPinInit,
             .Release = Hi35xxPinRelease,
-            .moduleName = "hi35xx_pin_driver",// (Mandatory) The value must be the same as that of moduleName in the .hcs file.
+            .moduleName = "hi35xx_pin_driver",  // (Mandatory) The value must be the same as that of moduleName in the .hcs file.
         };
-        HDF_INIT(g_hi35xxPinDriverEntry);// Call HDF_INIT to register the driver entry with the HDF.
+        HDF_INIT(g_hi35xxPinDriverEntry);      // Call HDF_INIT to register the driver entry with the HDF.
         ```
 
 2. Configure attribute files.
+
    - Add the device node description to the **vendor/hisilicon/hispark_taurus/hdf_config/device_info/device_info.hcs** file.
+
         ```c
         root {
             device_info { 
@@ -106,8 +110,8 @@ The pin module adaptation procedure is as follows:
                     hostName = "platform_host";
                     priority = 50;
                     device_pin :: device {
-                        device0:: deviceNode {   // Set an HDF device node for each pin controller.
-                            policy = 0;			  // 2: visible in user mode; 1: visible in kernel mode; 0: no service required.
+                        device0:: deviceNode {    // Set an HDF device node for each pin controller.
+                            policy = 0;	          // Policy for publishing services.
                             priority = 10;        // Driver startup priority.
                             permission = 0644;    // Permission to create device nodes for the driver.
                             /* (Mandatory) Driver name, which must be the same as the moduleName in the driver entry. */
@@ -122,13 +126,14 @@ The pin module adaptation procedure is as follows:
                             moduleName = "hi35xx_pin_driver";
                             deviceMatchAttr = "hisilicon_hi35xx_pin_1";
                         }
-                        ......
+                        ...
                     }
                 }
             }
         }
         ```
    - Add the **pin_config.hcs** file.
+
      Configure the device attributes in the **device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pin/pin_config.hcs** file. The parameters are set as follows:
         ```c
         root {
@@ -137,12 +142,12 @@ The pin module adaptation procedure is as follows:
                     template pin_controller {    // (Mandatory) Template configuration. In the template, you can configure the common parameters shared by device nodes.
                         number = 0;              // (Mandatory) Controller ID.
                         regStartBasePhy = 0;     // (Mandatory) Start physical base address of the register.
-                        regSize = 0;           // (Mandatory) Register bit width.
+                        regSize = 0;             // (Mandatory) Register bit width.
                         PinCount = 0;            // (Mandatory) Number of pins.
                         match_attr = "";
                         template pin_desc {
                             pinName = "";        // (Mandatory) Name of the pin. 
-                            init = 0;           // (Mandatory) Default value of the register.
+                            init = 0;            // (Mandatory) Default value of the register.
                             F0 = "";             // (Mandatory) Function 0.
                             F1 = "";             // Function 1.
                             F2 = "";             // Function 2.
@@ -164,16 +169,18 @@ The pin module adaptation procedure is as follows:
                             F1 = "SFC_CLK";
                             F2 = "SFC_BOOT_MODE";
                         }
-                        ...... // Correspond to the pins of the pin controller. Add pins according to actual situation.
+                        ... // Correspond to the pins of the pin controller. Add pins according to actual situation.
                     }
-                    ...// Each pin controller corresponds to a controller node. If there are multiple pin controllers, add the corresponding controller nodes one by one.
+                    ... // Each pin controller corresponds to a controller node. If there are multiple pin controllers, add the corresponding controller nodes one by one.
                 }
             }
         }
         ```
 
 3. Instantiate the pin controller object.
+
    - Initialize the **PinCntlr** object.
+
      Call **Hi35xxPinCntlrInit** to initialize the **PinCntlr** members.
 
         ```c
@@ -209,14 +216,14 @@ The pin module adaptation procedure is as follows:
             uint32_t pinCount;
         };
         
-        // PinCntlr is the controller structure at the core layer. Its members are assigned with values by using the Init() function.
+        // PinCntlr is the controller structure at the core layer. The Init function assigns values to PinCntlr.
         struct PinCntlr {
             struct IDeviceIoService service;
             struct HdfDeviceObject *device;
             struct PinCntlrMethod *method;
-            struct DListHead node; // Node in the linked list.
+            struct DListHead node;  // Node in the linked list.
             OsalSpinlock spin;      // Spinlock.
-            uint16_t number;       // ID of the pin controller.
+            uint16_t number;        // ID of the pin controller.
             uint16_t pinCount;      // Number of pins.
             struct PinDesc *pins;
             void *priv;             // Private data.
@@ -268,29 +275,31 @@ The pin module adaptation procedure is as follows:
         }
         ```
 
-   - Instantiate the callback structure **PinCntlrMethod** in **PinCntlr**. Other members are initialized by using the **Init()** function.
+   - Instantiate the callback structure **PinCntlrMethod** in **PinCntlr**. Other members are initialized by using the **Init** function.
 
         ```c
         // The members of the PinCntlrMethod structure are all callbacks. Vendors need to implement the corresponding functions according to Table 1.
         static struct PinCntlrMethod g_method = {
             .SetPinPull = Hi35xxPinSetPull,              // Set the pull type.
-            .GetPinPull = Hi35xxPinGetPull,             // Obtains the pull type.
+            .GetPinPull = Hi35xxPinGetPull,              // Obtain the pull type.
             .SetPinStrength = Hi35xxPinSetStrength,      // Set the pull strength.
-            .GetPinStrength = Hi35xxPinGetStrength,      // Obtains the pull strength.
+            .GetPinStrength = Hi35xxPinGetStrength,      // Obtain the pull strength.
             .SetPinFunc = Hi35xxPinSetFunc,              // Set the pin functions.
             .GetPinFunc = Hi35xxPinGetFunc,              // Obtain the pin functions.
         };
         ```
 
-   - **Init()** function
+   - **Init** function
 
-        Input parameters:
+        **Input parameter**:
+
         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
 
-        Return value:
-        **HDF\_STATUS** (The following table lists some states. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.)
+        **Return value**:
+
+        **HDF\_STATUS** <br>The table below describes some status. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.
    
-        | **State**          | **Description**  |
+        | **Status**        | **Description**  |
         | ---------------------- | -------------- |
         | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
         | HDF_ERR_MALLOC_FAIL    | Failed to allocate memory.  |
@@ -299,8 +308,9 @@ The pin module adaptation procedure is as follows:
         | HDF_SUCCESS            | Initialization successful.    |
         | HDF_FAILURE            | Initialization failed.    |
        
-        Function description:
-        Initializes the custom structure object and **PinCntlr** members, and connects to the pin controller by calling the **PinCntlrAdd()** function.
+        **Function description**:
+
+        Initializes the custom structure object and **PinCntlr** members, and connects to the pin controller by calling the **PinCntlrAdd** function.
         
         ```c
         static int32_t Hi35xxPinReadFunc(struct Hi35xxPinDesc *desc, const struct DeviceResourceNode *node, struct DeviceResourceIface *drsOps)
@@ -322,7 +332,7 @@ The pin module adaptation procedure is as follows:
             }
 
             funcNum++;
-            ......
+            ...
             return HDF_SUCCESS;
         }
 
@@ -341,7 +351,7 @@ The pin module adaptation procedure is as follows:
                 HDF_LOGE("%s: read pinName failed", __func__);
                 return ret;
             }
-            ......
+            ...
             ret = Hi35xxPinReadFunc(&hi35xx->desc[index], node, drsOps);
             if (ret != HDF_SUCCESS) {
                 HDF_LOGE("%s:Pin read Func failed", __func__);
@@ -349,20 +359,20 @@ The pin module adaptation procedure is as follows:
             }
             hi35xx->cntlr.pins[index].pinName = hi35xx->desc[index].pinName;
             hi35xx->cntlr.pins[index].priv = (void *)node;
-            ......
+            ...
             return HDF_SUCCESS;
         }
 
         static int32_t Hi35xxPinInit(struct HdfDeviceObject *device)
         {
-            ......
+            ...
             struct Hi35xxPinCntlr *hi35xx = NULL;
-            ......
+            ...
             ret = Hi35xxPinCntlrInit(device, hi35xx);    // Initialize the pin controller.
-            ......
+            ...
             DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) { // Traverses each child node of the pin controller.
-                ret = Hi35xxPinParsePinNode(childNode, hi35xx, index); // Parsing the child nodes.
-                ......
+                ret = Hi35xxPinParsePinNode(childNode, hi35xx, index);      // Parse child nodes.
+                ...
             }
 
             hi35xx->cntlr.method = &g_method;   // Instantiate method.
@@ -375,19 +385,19 @@ The pin module adaptation procedure is as follows:
         }
         ```
 
-   - **Release()** function
+   - **Release** function
 
-        Input parameters:
+        **Input parameter**:
 
         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
    
-        Return value:
+        **Return value**:
    
-        –
+        No value is returned.
    
-        Function description:
+        **Function description**:
    
-        Releases memory and deletes the controller. This function assigns a value to the **Release** API in the driver entry structure. If the HDF fails to call the **Init()** function to initialize the driver, the **Release()** function can be called to release driver resources.
+        Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, **Release** can be called to release driver resources.
 
         ```c
         static void Hi35xxPinRelease(struct HdfDeviceObject *device)
@@ -426,4 +436,5 @@ The pin module adaptation procedure is as follows:
         }
         ```
 4. Debug the driver.
+
    (Optional) Verify basic functionalities of new drivers. For example, verify the information returned when the driver is loaded and whether data is successfully transmitted.

@@ -492,6 +492,7 @@
      - 外设驱动使用
        - [Audio](driver/driver-peripherals-audio-des.md)
        - [Camera](driver/driver-peripherals-camera-des.md)
+       - [Codec](driver/driver-peripherals-codec-des.md)
        - [Face_auth](driver/driver-peripherals-face_auth-des.md)
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)

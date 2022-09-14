@@ -501,7 +501,7 @@ Example of the **requestPermissions** attribute structure:
     "usedScene": {
         "abilities": [
             "AudioAbility",
-            "VedioAbility",
+            "VideoAbility",
         ],
         "when": "inuse"
     }

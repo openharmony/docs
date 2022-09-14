@@ -491,7 +491,7 @@ plainArray.forEach((value, index) => {
 
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Obtains an iterator object that contains key-value pairs, where the key is of the number type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -510,7 +510,7 @@ plainArray.add(2, "sffdfhf");
 
 // Method 1:
 for (let item of plainArray) { 
-  console.log("index:" + item[0]);
+  console.log("key:" + item[0]);
   console.log("value:" + item[1]);
 }
 
@@ -518,7 +518,7 @@ for (let item of plainArray) {
 let iter = plainArray[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log("index:" + temp[0]);
+  console.log("key:" + temp[0]);
   console.log("value:" + temp[1]);
   temp = iter.next().value;
 }

@@ -1,12 +1,11 @@
 # Gauge
 
 
+The **\<Gauge>** component is used to display data in a ring chart.
+
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<Gauge>** component is used to display data in a ring chart.
 
 
 ## Required Permissions
@@ -21,10 +20,10 @@ Not supported
 
 ## APIs
 
-Gauge(value:{value: number, min?: number, max?: number})
+Gauge(options:{value: number, min?: number, max?: number})
 
 - Parameters
-  | Name| Type| Mandatory| Default Value| Description|
+    | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes| - | Current data value.|
   | min | number | No| 0 | Minimum value of the current data segment.|
@@ -38,8 +37,16 @@ Gauge(value:{value: number, min?: number, max?: number})
 | value | number | 0 | Value of the chart.|
 | startAngle | number | -150 | Start angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.|
 | endAngle | number | 150 | End angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.|
-| colors | Array&lt;any&gt; | - | Colors of the chart. Solid colors and gradients are supported.|
+| colors | Array&lt;ColorStop&gt; | - | Colors of the chart. Colors can be set for individual segments.|
 | strokeWidth | Length | - | Stroke width of the chart.|
+
+## ColorStop
+
+Describes a gradient stop.
+
+| Name     | Type            | Description                                                        |
+| --------- | -------------------- | ------------------------------------------------------------ |
+| ColorStop | [[ResourceColor](../../ui/ts-types.md#resourcecolor8), number] | Type of the gradient stop. The first parameter specifies the color, and the second parameter specifies the offset, which ranges from 0 to 1.|
 
 
 ## Example

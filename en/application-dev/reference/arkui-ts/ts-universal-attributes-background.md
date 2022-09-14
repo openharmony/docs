@@ -18,27 +18,19 @@ None
 | Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
 | backgroundColor | [ResourceColor](../../ui/ts-types.md) | - | Background color of a component. |
-| backgroundImage | src: [ResourceStr](../../ui/ts-types.md),<br/>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat-enums) | - | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
-| backgroundImageSize | {<br/>width?: Length,<br/>height?: Length<br/>} \| ImageSize | Auto | Width and height of the background image. When the input is a **{width: Length, height: Length}** object, if only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged. |
-| backgroundImagePosition | {<br/>x?: Length,<br/>y?: Length<br/>} \| [Alignment](ts-appendix-enums.md#alignment-enums) | {<br/>x: 0,<br/>y: 0<br/>} | Position of the background image in the component. |
-
-
-- ImageSize enums
-  | Name | Description |
-  | -------- | -------- |
-  | Cover | Default value. The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries. |
-  | Contain | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries. |
-  | Auto | The original image aspect ratio is retained. |
+| backgroundImage | src: [ResourceStr](../../ui/ts-types.md),<br/>repeat?: [ImageRepeat](ts-appendix-enums.md#imagerepeat) | - | **src**: image address, which can be the address of an Internet or a local image. (SVG images are not supported.)<br/>**repeat**: whether the background image is repeatedly used. By default, the background image is not repeatedly used. |
+| backgroundImageSize | {<br/>width?: Length,<br/>height?: Length<br/>} \| [ImageSize](ts-appendix-enums.md#imagesize) | Auto | Width and height of the background image. When the input is a **{width: Length, height: Length}** object, if only one attribute is set, the other attribute is the set value multiplied by the original aspect ratio of the image. By default, the original image aspect ratio remains unchanged. |
+| backgroundImagePosition | {<br/>x?: Length,<br/>y?: Length<br/>} \| [Alignment](ts-appendix-enums.md#alignment) | {<br/>x: 0,<br/>y: 0<br/>} | Position of the background image in the component. |
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct BackgroundExample {
+
   build() {
     Column({ space: 5 }) {
       Text('background color').fontSize(9).width('90%').fontColor(0xCCCCCC)

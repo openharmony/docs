@@ -2185,7 +2185,7 @@ requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolea
 
 | 参数名    | 类型                          | 必填 | 说明               |
 | -------- | ----------------------------- | ---- | -----------------  |
-| focusType | [FocusType](#focustype)      | 是   | 焦点类型的枚举。     |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型。     |
 | callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回焦点申请成功/失败状态。 |
 
 **示例：**
@@ -2214,7 +2214,7 @@ requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| focusType | [FocusType](#focustype)    | 是   | 焦点类型的枚举。  |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型。  |
 
 **返回值：**
 
@@ -2247,7 +2247,7 @@ abandonIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolea
 
 | 参数名    | 类型                          | 必填 | 说明               |
 | -------- | ----------------------------- | ---- | -----------------  |
-| focusType | [FocusType](#focustype)      | 是   | 焦点类型的枚举。     |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型。     |
 | callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回废除焦点成功/失败状态。 |
 
 **示例：**
@@ -2276,7 +2276,7 @@ abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| focusType | [FocusType](#focustype)    | 是   | 焦点类型的枚举。  |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型。  |
 
 **返回值：**
 
@@ -3183,7 +3183,7 @@ audioManager.getRoutingManager((err,AudioRoutingManager)=>{
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -3221,7 +3221,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 **系统接口：** 该接口为系统接口
 
-选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3262,7 +3262,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3306,7 +3306,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 

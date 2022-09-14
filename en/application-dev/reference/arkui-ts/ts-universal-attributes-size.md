@@ -50,7 +50,7 @@ struct SizeExample {
         Text('layoutWeight(1)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xFFEFD5).textAlign(TextAlign.Center)
           .layoutWeight(1)
-        // Weight 0
+        // Weight 2
         Text('layoutWeight(2)')
           .size({ width: '30%', height: 110 }).backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
           .layoutWeight(2)

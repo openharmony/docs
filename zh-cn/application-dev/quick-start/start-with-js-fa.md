@@ -2,7 +2,7 @@
 
 
 > **说明：**
-> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.991 Beta4**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)获取下载链接。
+> 为确保运行效果，本文以使用**DevEco Studio V3.0.0.993**版本为例，点击[此处](https://developer.harmonyos.com/cn/develop/deveco-studio#download)获取下载链接。
 
 
 ## 创建JS工程
@@ -49,7 +49,6 @@
 1. 使用文本组件。
 
    工程同步完成后，在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.hml**”文件，设置Text组件内容。“**index.hml**”文件的示例如下：
-
    
    ```html
    <!-- index.hml -->
@@ -63,7 +62,6 @@
 2. 添加按钮，并绑定onclick方法。
 
    在默认页面基础上，我们添加一个button类型的input组件，作为按钮响应用户点击，从而实现跳转到另一个页面。“**index.hml**”文件的示例代码如下：
-
    
    ```html
    <!-- index.hml -->
@@ -80,7 +78,6 @@
 3. 设置页面样式。
 
    在“**Project**”窗口，点击“**entry &gt; src &gt; main &gt; js &gt; MainAbility &gt; pages&gt; index**”，打开“**index.css**”文件，可以对页面中文本、按钮设置宽高、字体大小、间距等样式。“**index.css**”文件的示例如下：
-
    
    ```css
    /* index.css */
@@ -129,7 +126,6 @@
 2. 添加文本及按钮。
 
    参照第一个页面，在第二个页面添加文本、按钮及点击按钮绑定页面返回等。“**second.hml**”文件的示例如下：
-
    
    ```html
    <!-- second.hml -->
@@ -184,7 +180,6 @@
 1. 第一个页面跳转到第二个页面。
 
    在第一个页面中，跳转按钮绑定onclick方法，点击按钮时跳转到第二页。“**index.js**”示例如下：
-
    
    ```js
    // index.js
@@ -202,7 +197,6 @@
 2. 第二个页面返回到第一个页面。
 
    在第二个页面中，返回按钮绑定back方法，点击按钮时返回到第一页。“**second.js**”示例如下：
-
    
    ```js
    // second.js
@@ -224,7 +218,7 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**Signing Configs**界面勾选“**Automatically generate signing**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**Signing Configs**界面勾选“**Automatically generate signature**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
 
    ![06](figures/06.png)
 

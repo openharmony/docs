@@ -14,13 +14,13 @@
 
 ## 接口
 
-Canvas(context: CanvasRenderingContext2D)
+Canvas(context?: CanvasRenderingContext2D)
 
-- 参数
+**参数：**
 
   | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
   | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 是    | -    | 见CanvasRenderingContext2D对象。 |
+  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
 
 ## 属性
 
@@ -32,7 +32,7 @@ Canvas(context: CanvasRenderingContext2D)
 
 | 名称                            | 参数   | 描述                   |
 | ----------------------------- | ---- | -------------------- |
-| onReady(callback: () => void) | 无    | 画布组件的事件回调，可以在此时进行绘制。 |
+| onReady(event: () => void) | 无    | 画布组件的事件回调，可以在此时进行绘制。 |
 
 ## 示例
 
