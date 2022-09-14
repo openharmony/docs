@@ -32,6 +32,7 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
 支持以下四种方式：\#ff0000、\#ffff0000、rgb(255, 0, 0)、rgba(255, 0, 0, 1)，需要指定至少两种颜色。
 
 **参数：** 
+
 | 名称        | 类型                                       | 默认值                          | 必填   | 描述                                       |
 | --------- | ---------------------------------------- | ---------------------------- | ---- | ---------------------------------------- |
 | direction | to&nbsp;&lt;side-or-corner&gt;&nbsp;&nbsp;&lt;side-or-corner&gt;&nbsp;=&nbsp;[left&nbsp;\|&nbsp;right]&nbsp;\|&nbsp;[top&nbsp;\|&nbsp;bottom] | to&nbsp;bottom&nbsp;(由上到下渐变) | 否    | 指定过渡方向，如：to&nbsp;left&nbsp;(从右向左渐变)&nbsp;&nbsp;；或者<br/>to&nbsp;bottom&nbsp;right&nbsp;(从左上角到右下角)。 |
