@@ -188,17 +188,10 @@
       - [Agent-Powered Scheduled Reminder Development](notification/background-agent-scheduled-reminder-guide.md)
     - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
-    - Window
-      - [Window Overview](windowmanager/window-overview.md)
-      - [Application Window Development (Stage Mode)](windowmanager/application-window-stage.md)
-      - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
-      - [System Window Development (Stage Model Only)](windowmanager/system-window-stage.md)
-    - Display
-      - [Display Overview](windowmanager/display-overview.md)
-      - [Display Development](windowmanager/display-guidelines.md)
-    - Screenshot
-      - [Screenshot Overview](windowmanager/screenshot-overview.md)
-      - [Screenshot Development](windowmanager/screenshot-guidelines.md)
+    - [Window Overview](windowmanager/window-overview.md)
+    - [Application Window Development (Stage Mode)](windowmanager/application-window-stage.md)
+    - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
+    - [System Window Development (Stage Model Only)](windowmanager/system-window-stage.md)
   - WebGL
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
