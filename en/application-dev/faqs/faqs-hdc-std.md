@@ -6,11 +6,11 @@
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
-Clearing logs: hdc_std shell hilog -r
+- Clearing logs: hdc_std shell hilog -r
 
-Increasing the buffer size to 20 MB: hdc_std shell hilog -G 20M
+- Increasing the buffer size to 20 MB: hdc_std shell hilog -G 20M
 
-Capturing logs: hdc_std shell hilog &gt; log.txt
+- Capturing logs: hdc_std shell hilog &gt; log.txt
 
 ## What Should I Do to Avoid Log Flow Control?
 
@@ -30,7 +30,7 @@ After performing the preceding operations, restart the DevEco Studio.
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
-HiLog(https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md) is recommended for an application to print logs. For details about domain setting, see [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md#hilogisloggable).
+[HiLog](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md) is recommended for an application to print logs. For details about domain setting, see [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md#hilogisloggable).
 
 ## What Is the Maximum Length of a Log Record When HiLog Is Used? Is It Configurable?
 
