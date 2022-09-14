@@ -14,9 +14,7 @@
 
 ## AnimationOptions对象说明
 
-### 属性
-
-| 属性名称 | 属性类型 | 描述 |
+| 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | duration | number | 动画持续时间，单位为毫秒。<br/>默认值：1000 |
 | tempo | number | 动画的播放速度，值越大动画播放越快，值越小播放越慢，为0时无动画效果。<br/>默认值：1.0 |
@@ -24,12 +22,8 @@
 | delay | number | 单位为ms(毫秒)，默认不延时播放。<br/>默认值：0 |
 | iterations | number | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 | playMode | [PlayMode](ts-appendix-enums.md#playmode) | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal |
+| onFinish   | ()&nbsp;=&gt;&nbsp;void   | 动效播放完成回调。 |
 
-### 接口
-
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onFinish()&nbsp;=&gt;&nbsp;void | 动效播放完成回调。 |
 
 
 ## 示例

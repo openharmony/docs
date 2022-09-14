@@ -148,10 +148,10 @@
 
 | 名称   | 类型                           | 必填 | 说明                                                         |
 | ------ | ------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | number                         | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。             |
-| weight | number                         | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
-| family | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
-| style  | string \| Resource             | 否   | 设置文本的字体样式。                                         |
+| size   | [Length](#length)       | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。             |
+| weight | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string                          | 否   | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| family | string \| [Resource](#resource) | 否   | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
+| style  | [FontStyle](../reference/arkui-ts/ts-appendix-enums.md#fontstyle)       | 否   | 设置文本的字体样式。                          |
 
 ## Area<sup>8+</sup>
 
@@ -159,10 +159,10 @@
 
 | 名称           | 类型      | 说明                                              |
 | -------------- | -------- | ------------------------------------------------- |
-| width          | Length   | 目标元素的宽度，作为返回值时，类型为number，单位vp。  |
-| height         | Length   | 目标元素的高度，作为返回值时，类型为number，单位vp。  |
-| position       | Position | 目标元素左上角相对父元素左上角的位置。                |
-| globalPosition | Position | 目标元素左上角相对页面左上角的位置。                  |
+| width          | [Length](#length)    | 目标元素的宽度，作为返回值时，类型为number，单位vp。  |
+| height         | [Length](#length)    | 目标元素的高度，作为返回值时，类型为number，单位vp。  |
+| position       | [Position](#position8) | 目标元素左上角相对父元素左上角的位置。                |
+| globalPosition | [Position](#position8) | 目标元素左上角相对页面左上角的位置。                  |
 
 
 ## Position<sup>8+</sup>
