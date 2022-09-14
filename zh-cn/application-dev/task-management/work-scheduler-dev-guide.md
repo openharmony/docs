@@ -46,7 +46,7 @@ isCharging| boolean | 是否充电
 chargerType| ChargingType | 充电类型
 batteryLevel| number | 电量
 batteryStatus| BatteryStatus | 电池状态
-storageRequest| StorageRequest |存储状态
+storageRequest| [StorageRequest](../reference/apis/js-apis-workScheduler.md/#storagerequest) |存储状态
 isRepeat| boolean |是否循环任务
 repeatCycleTime| number |循环间隔
 repeatCount | number|循环次数
