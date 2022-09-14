@@ -18,14 +18,6 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
-  | 名称                    | 类型   | 可读 | 可写 | 说明       |
-  | ----------------------- | ------ | ---- | ---- | ---------- |
-  | id                      | number | 是   | 否   | 资源id值。    |
-  | type                    | number | 是   | 否   | 资源类型。    |
-  | params                  | any[]  | 是   | 否   | 资源可选参数  |
-  | bundleName<sup>9+</sup> | string | 是   | 否   | 资源包名称。  |
-  | moduleName<sup>9+</sup> | string | 是   | 否   | 资源模块名称。|
-
 ## Length
 
 长度类型，用于描述尺寸单位。
@@ -148,7 +140,7 @@
 | ------ | ------------- | ---- | ----------- |
 | width  | Length        |  否  | 边框宽度。   |
 | color  | ResourceColor |  否  | 边框颜色。   |
-| radius | Length        |  否  | 边框角度。   |
+| radius | Length        |  否  | 边框圆角半径。   |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)   |  否  | 边框样式。   |
 
 ## CustomBuilder<sup>8+</sup>
