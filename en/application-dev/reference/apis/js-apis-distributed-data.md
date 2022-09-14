@@ -512,8 +512,8 @@ Subscribes to service status changes.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return service status changes.|
+| event  | string | Yes   | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback used to return a service status change event.|
 
 **Example**
 
@@ -536,7 +536,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from the service status changes.
+Unsubscribes from service status changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -544,8 +544,8 @@ Unsubscribes from the service status changes.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return service status changes.|
+| event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return a service status change event.|
 
 
 **Example**
@@ -744,7 +744,7 @@ try {
         console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const count = resultSet.getCount();
     console.log("getCount succeed:" + count);
@@ -777,7 +777,7 @@ try {
         console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const position = resultSet.getPosition();
     console.log("getPosition succeed:" + position);
@@ -2232,7 +2232,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void
 
-Subscribes to data change notifications of the specified type.
+Subscribes to data changes of the specified type.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2240,9 +2240,9 @@ Subscribes to data change notifications of the specified type.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates data changes.      |
-| type  |[SubscribeType](#subscribetype) | Yes   |Type of data changes.    |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data changes.|
+| event  |string  | Yes   |Event to subscribe to. The value is **dataChange**, which indicates a data change event.      |
+| type  |[SubscribeType](#subscribetype) | Yes   |Type of data change.    |
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return a data change event.|
 
 **Example**
 
@@ -2258,7 +2258,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2266,8 +2266,8 @@ Subscribes to data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.      |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return the data synchronization result.    |
+| event  |string | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.      |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes   |Callback used to return a synchronization complete event.    |
 
 **Example**
 
@@ -2282,7 +2282,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
-Unsubscribes from data change notifications.
+Unsubscribes from data changes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2290,19 +2290,28 @@ Unsubscribes from data change notifications.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates data changes.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return the data changes.|
+| event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a service status change event.|
 
 **Example**
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 
 
@@ -3708,7 +3717,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3716,8 +3725,8 @@ Subscribes to the data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates completion of a data synchronization.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return the synchronization result.   |
+| event  |string   | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | Yes   |Callback invoked to return a synchronization complete event.   |
 
 **Example**
 
@@ -3744,7 +3753,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the data synchronization complete events.
+Unsubscribes from synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3752,21 +3761,27 @@ Unsubscribes from the data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates completion of a data synchronization.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return the synchronization result.   |
+| event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a synchronization complete event.   |
 
 **Example**
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
@@ -3785,7 +3800,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes   |IDs of the devices to be synchronized. These devices must be in the same networking environment.  |
+| deviceIdList  |string[]  | Yes   |IDs of the devices in the same networking environment to be synchronized. |
 | mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
 | allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
@@ -5067,7 +5082,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the data synchronization complete events.
+Subscribes to synchronization complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5075,8 +5090,8 @@ Subscribes to the data synchronization complete events.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates the data synchronization complete event.|
-| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback used to return the synchronization result. |
+| event    |string      | Yes   |Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback            |Callback<Array&lt;[string, number]&gt;> | Yes   |Callback invoked to return a synchronization complete event. |
 
 **Example**
 
@@ -5103,7 +5118,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization complete events. This API uses a synchronous callback to return the result.
+Unsubscribes from synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5111,21 +5126,27 @@ Unsubscribes from the synchronization complete events. This API uses a synchrono
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates the data synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return the synchronization result. |
+| event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return a synchronization complete event. |
 
 **Example**
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
