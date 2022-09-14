@@ -22,7 +22,7 @@ List(value?: {initialIndex?: number, space?: number | string, scroller?: Scrolle
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-- | initialIndex | number | 否 | 0 | 设置当前List初次加载时视口起始位置显示的item，即显示第一个item，如设置的序号超过了最后一个item的序号，则设置不生效。 |
+  | initialIndex | number | 否 | 0 | 设置当前List初次加载时视口起始位置显示的item，即显示第一个item，如设置的序号超过了最后一个item的序号，则设置不生效。 |
   | space | number&nbsp;\|&nbsp;string  | 否 | 0 | 列表项间距。 |
   | scroller | [Scroller](ts-container-scroll.md#scroller) | 否 | - | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
