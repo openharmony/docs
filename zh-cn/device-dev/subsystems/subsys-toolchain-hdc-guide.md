@@ -60,12 +60,12 @@ option涉及以下命令：
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
-  |  0 | LOG_OFF  |
-  |  1 | LOG_FATAL|
-  |  2 | LOG_WARN |
-  |  3 | LOG_INFO |
-  |  4 | LOG_DEBUG|
-  |  5 | LOG_ALL  |
+  | 0 | LOG_OFF  |
+  | 1 | LOG_FATAL|
+  | 2 | LOG_WARN |
+  | 3 | LOG_INFO |
+  | 4 | LOG_DEBUG|
+  | 5 | LOG_ALL  |
 
   使用方法：
 
