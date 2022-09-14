@@ -3,31 +3,93 @@
 
 ## 概述
 
-OTA（Over the Air）提供对设备远程升级的能力，可以让您的设备（如IP摄像头等），轻松支持远程升级能力。目前轻量和小型系统仅支持全量包升级，暂不支持差分包升级。全量包升级是将新系统全部内容做成升级包，进行升级；差分包升级是将新老系统的差异内容做成升级包，进行升级。
+
+### 简介
+
+随着设备系统日新月异，用户如何及时获取系统的更新，体验新版本带来的新的体验，以及提升系统的稳定和安全性成为了每个厂商都面临的严峻问题。
+
+OTA（Over the Air）提供对设备远程升级的能力。升级子系统对用户屏蔽了底层芯片的差异，对外提供了统一的升级接口。基于接口进行二次开发后，可以让厂商的设备（如IP摄像头等）轻松支持远程升级能力。目前轻量和小型系统仅支持全量包升级，暂不支持差分包升级。
 
 
-## 约束与限制
+### 基本概念
+
+- 全量包升级：将新系统全部内容做成升级包，进行升级。
+
+- 差分包升级：将新老系统的差异内容做成升级包，进行升级。
+
+- 冷升级：设备完成升级包下载后，进入 updater 模式开始升级，结束后设备自动重启到正常系统，完成系统更新。
+
+- 热升级：相较与冷升级，OpenHarmony 升级服务子系统的热升级是在设备正常使用的情况下，在后台完成升级包的下载，静默升级。当前热升级场景包括系统AB热升级，参数升级，cota定制升级，补丁升级等。
+
+- 全量升级包：将所有目标版本的镜像均通过全量镜像的方式打包获得的升级包。
+
+- 差分升级包：对源版本和目标版本差分，获得两个版本镜像之间的差异，以这种方式打包制作升级包。
+
+- 变分区升级包：分区表变更的升级包
+
+
+### 实现原理
+
+OTA 的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成 OTA 升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
+
+<a href="#p53">AB 热升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
+
+
+### 约束与限制
 
 - 支持基于Hi3861/Hi3518EV300/Hi3516DV300芯片的开源套件。
 
 - 对Hi3518EV300/Hi3516DV300开源套件，设备需要支持SD卡（VFAT格式）。
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > **说明：**
   > 生成升级包需要在linux系统下面执行。
 
 
-## 生成公私钥对
+## 环境准备
 
-1. 准备工作：在Windows上，下载安装[OpenSSL工具](http://slproweb.com/products/Win32OpenSSL.html)，并配置环境变量。
+- 在Windows上，下载安装OpenSSL工具，并配置环境变量。
+- 准备升级包制作工具
+- 编译出版本镜像文件
+- 制作升级包需要 Linux 系统环境
+- AB 热升级只适用于标准系统支持 AB 分区启动的设备
 
-2. 使用OpenSSL工具生成公私钥对。
 
-3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下：
-   轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生产的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+## OTA 升级指导
 
-4. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
+
+### 开发流程
+
+<a href="#p1">1. 使用OpenSSL工具生成公私钥对</a>
+
+<a href="#p2">2. 使用升级包制作工具制作升级包</a>
+
+&ensp;&ensp;<a href="#p21">2.1 轻量与小型系统升级包</a>
+
+&ensp;&ensp;<a href="#p22">2.2 标准系统升级包</a>
+
+<a href="#p3">3. 将升级包上传到厂商的OTA服务器</a>
+
+<a href="#p4">4. 厂商应用从OTA服务器下载升级包</a>
+
+<a href="#p5">5. 厂商应用集成OTA能力</a>
+
+&ensp;&ensp;<a href="#p51">5.1 API 应用默认场景</a>
+
+&ensp;&ensp;<a href="#p52">5.2 API 应用定制场景</a>
+
+&ensp;&ensp;<a href="#p53">5.2 AB 热升级场景</a>
+
+
+### 开发步骤
+
+
+#### <a id="p1">生成公私钥对</a>
+1. 使用OpenSSL工具生成公私钥对。
+
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生产的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+
+5. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
 
-     
    ```
    static unsigned char g_pub_key[PUBKEY_LEN] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
@@ -36,10 +98,10 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    ```
 
 
-## 生成升级包
+#### <a id="p2">升级包制作</a>
 
 
-### 轻量与小型系统升级包制作
+##### <a id="p21">轻量与小型系统升级包制作</a>
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
      
@@ -135,7 +197,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    - -nl2：打开非“标准系统”模式开关
 
 
-### 标准系统升级包制作
+##### <a id="p22">标准系统升级包制作</a>
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
@@ -216,7 +278,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
      
    ```
-   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem
+   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key2048.pem
    ```
 
    - ./target_package/：指定target_package路径。
@@ -229,7 +291,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
      
    ```
-   python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key3072.pem
+   python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key2048.pem
    ```
 
    - ./target_package/：指定target_package路径。
@@ -243,7 +305,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 
      
    ```
-   python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key3072.pem  -pf ./partition_file.xml
+   python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key2048.pem  -pf ./partition_file.xml
    ```
 
    - ./target_package/：指定target_package路径。
@@ -252,19 +314,19 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
    - -pf ./partition_file.xml：指定分区表文件路径。
 
 
-## 上传升级包
+#### <a id="p3">上传升级包</a>
 
 将升级包上传到厂商的OTA服务器。
 
 
-## 下载升级包
+#### <a id="p4">下载升级包</a>
 
 1. 厂商应用从OTA服务器下载升级包。
 
 2. 对Hi3518EV300/Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
 
 
-## 厂商应用集成OTA能力
+#### <a id="p51">厂商应用集成OTA能力</a>
 
 1. 轻量与小型系统
 
@@ -276,12 +338,12 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
 
 
-## API应用场景-默认场景
+#### <a id="p5">API 应用默认场景（冷升级）</a>
 
 升级包是按照上文“生成公私钥对”和“生成升级包”章节制作的。
 
 
-### 开发指导
+###### 开发指导
 
 1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化OTA模块。
 
@@ -290,7 +352,7 @@ OTA（Over the Air）提供对设备远程升级的能力，可以让您的设�
 3. 写入完成后，调用HotaRestart接口重启系统，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-### 示例代码
+###### 示例代码
 
   使用OpenHarmony的“升级包格式和校验方法“进行升级。
   
@@ -345,12 +407,12 @@ int main(int argc, char **argv)
 ```
 
 
-## API应用场景-定制场景
+#### <a id="p52">API 应用定制场景（冷升级）</a>
 
 升级包不是按照上文“生成公私钥对”和“生成升级包”章节制作的，是通过其它方式制作的。
 
 
-### 开发指导
+###### 开发指导
 
 1. 应用侧通过下载，获取当前设备升级包后，调用HotaInit接口初始化。
 
@@ -365,7 +427,7 @@ int main(int argc, char **argv)
 6. 调用HotaRestart接口，进行重启，升级过程中，使用HotaCancel接口可以取消升级。
 
 
-### 示例代码
+###### 示例代码
 
   使用非OpenHarmony的“升级包格式和校验方法“进行升级。
   
@@ -437,7 +499,7 @@ int main(int argc, char **argv)
 ```
 
 
-## 系统升级
+###### 系统升级
 
 厂商应用调用OTA模块的API，OTA模块执行升级包的签名验证、版本防回滚、烧写落盘功能，升级完成后自动重启系统。
 
@@ -453,3 +515,76 @@ const char *get_local_version(void)
     defined(CONFIG_TARGET_HI3518EV300)
 #define LOCAL_VERSION "ohos default 1.0" /* increase: default release version */
 ```
+
+
+##### <a id="p53">AB 热升级指导</a>
+
+
+###### 开发流程
+
+1. 应用侧下载获取当前设备升级包
+2. update_service 通过 SAMGR 将 sys_installer 拉起
+3. 由 sys_installer 模块完成静默热安装
+4. 下一次重启时激活新版本
+
+
+###### 开发步骤
+
+**JS API 通过 update_service 模块处理AB热升级相关流程**
+
+- 升级包安装进度显示接口：
+```
+on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
+```
+
+- 设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
+```
+upgrade（apply）
+```
+
+
+**update_service 通过 SAMGR 将 sys_installer 拉起**
+
+- 拉起sys_installer服务，并建立IPC连接：
+```
+int SysInstallerInit(void * callback)
+```
+
+- 安装指定路径的AB升级包：
+```
+int StartUpdatePackageZip(string path)
+```
+
+- 设置进度回调：
+```
+int SetUpdateProgressCallback(void * callback)
+```
+
+- 获取sys_installer的升级包安装状态（0 未开始,1 安装中,2，安装结束）:
+```
+int GetUpdateStatus()
+```
+
+
+**使用 HDI 接口南向激活新版本**
+
+| 方法 | 功能 |
+| ------------ | ------------ |
+| int GetCurrentSlot() | 获取当前启动的slot，来决策待升级的分区 |
+| int SetActiveBootSlot(int slot) | 在升级结束后，将已升级好的slot进行切换，重启完成新版本更新 |
+| int setSlotUnbootable(int slot) | 在升级开始时，将待升级的分区slot设置成unbootable状态 |
+| int32 GetSlotNum(void) | 获取slot个数，1位非AB，2为AB分区，用例兼容AB和非AB的流程判断 |
+
+
+###### 常见问题
+
+1. 升级包下载，安装过程出现异常
+<br>系统保持当前版本继续运行，在下一个搜包周期重新完成版本升级过程
+
+2. 升级包完成非启动分区的包安装，在激活过程中出现异常
+<br>需要进行异常回滚，并将无法启动的分区设置为 unbootable，下次则不从该分区启动
+
+
+###### 调测验证
+
+设备能在正常使用的情况下，在后台从服务器下载升级包，完成静默升级，并按照厂商设置的策略重启激活版本。
