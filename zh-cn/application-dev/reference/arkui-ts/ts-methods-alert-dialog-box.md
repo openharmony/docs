@@ -10,9 +10,9 @@
 
 | 名称 | 参数类型 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| show | options:&nbsp;{&nbsp;paramObject1&nbsp;\|&nbsp;paramObject2} | - | 定义并显示AlertDialog组件。 |
+| show | value:&nbsp;{&nbsp;AlertDialogParamWithConfirm&nbsp;\|&nbsp;AlertDialogParamWithButtons} | - | 定义并显示AlertDialog组件。 |
 
-- paramObject1参数
+## AlertDialogParamWithConfirm对象说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | title | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
@@ -24,7 +24,7 @@
   | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。 |
 
-- paramObject2参数
+## AlertDialogParamWithButtons对象说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
   | title | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
