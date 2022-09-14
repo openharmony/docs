@@ -16,7 +16,7 @@
 
 TimePicker(options?: {selected?: Date})
 
-默认以00：00至23：59的时间区间创建滑动选择器。
+默认以00:00至23:59的时间区间创建滑动选择器。
 
 **参数：**
 
@@ -34,14 +34,14 @@ TimePicker(options?: {selected?: Date})
 
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
+| 名称                                       | 功能描述        |
+| ---------------------------------------- | ----------- |
 | onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void) | 选择时间时触发该事件。 |
 
 ### TimePickerResult对象说明
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| hour | number | 选中时间的时。 |
+| 名称     | 参数类型   | 描述      |
+| ------ | ------ | ------- |
+| hour   | number | 选中时间的时。 |
 | minute | number | 选中时间的分。 |
 
 

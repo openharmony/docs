@@ -13,7 +13,13 @@
 ```js
 import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
 
-let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
+enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
+    if (error) {
+        console.log("error code:" + error.code + " error message:" + error.message);
+        return;
+    }
+    let deviceMgr = mgr;
+});
 ```
 
 ## DeviceSettingsManager.setDateTime
@@ -37,17 +43,22 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback<void>): void
 **示例：**
 
 ```js
+import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+
 let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
-deviceSettingsMgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
+enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
     if (error) {
-        console.log(error);
-    } else {
-        console.log(value);
+        console.log("error code:" + error.code + " error message:" + error.message);
+        return;
     }
+    mgr.setDateTime(wantTemp, 1526003846000, (error) => {
+        if (error) {
+            console.log("error code:" + error.code + " error message:" + error.message);
+        }
+    });
 });
 ```
 
@@ -78,14 +89,18 @@ setDateTime(admin: Want, time: number): Promise<void>
 **示例：**
 
 ```js
+import enterpriseDeviceManager from '@ohos.enterpriseDeviceManager'
+
 let wantTemp = {
     bundleName: "bundleName",
     abilityName: "abilityName",
 };
-let deviceSettingsMgr = enterpriseDeviceManager.getDeviceSettingsManager();
-deviceSettingsMgr.setDateTime(wantTemp, 1526003846000).then((value) => {
-    console.log(value);
+enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
+    mgr.setDateTime(wantTemp, 1526003846000).then(() => {
+    }).catch((error) => {
+        console.log("error code:" + error.code + " error message:" + error.message);
+    })
 }).catch((error) => {
-    console.log(error);
+    console.log("error code:" + error.code + " error message:" + error.message);
 })
 ```

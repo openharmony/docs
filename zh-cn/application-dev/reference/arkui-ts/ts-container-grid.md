@@ -40,7 +40,7 @@ Grid(scroller?: Scroller)
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color              | -                        | 设置滚动条的颜色。 |
 | scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
 | cachedCount | number                                   | 1                        | 设置预加载的GridItem的数量。 |
-| editMode <sup>8+</sup>                   | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
+| editMode <sup>8+</sup>                   | boolean | false | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
 | layoutDirection<sup>8+</sup>             | GridDirection  | GridDirection.Row     | 设置布局的主轴方向。 |
 | maxCount<sup>8+</sup> | number  | 1     | 当layoutDirection是Row/RowReverse时，表示可显示的最大行数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大列数。 |
 | minCount<sup>8+</sup> | number  | 1     | 当layoutDirection是Row/RowReverse时，表示可显示的最小行数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小列数。 |

@@ -598,7 +598,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -627,7 +627,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

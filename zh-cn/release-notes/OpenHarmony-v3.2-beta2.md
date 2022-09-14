@@ -35,8 +35,8 @@
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta2 | NA |
-| Public SDK | Ohos_sdk_public 3.2.5.5 (API Version 9 Beta2) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Public SDK | Ohos_sdk_public 3.2.5.5 (API Version 9 Beta2)<br>Ohos_sdk_public 3.2.5.6 (API Version 9 Beta2) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2)<br/>Ohos_sdk_full 3.2.5.6 (API Version 9 Beta2) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
 | HUAWEI DevEco Studio（可选） | 3.0 Beta4 | OpenHarmony应用开发推荐使用。 |
 | HUAWEI DevEco Device Tool（可选） | 3.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
@@ -115,10 +115,14 @@
 | Hi3516轻量系统解决方案-LiteOS（二进制） | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256) |
 | Hi3516轻量系统解决方案-Linux（二进制）  | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256) |
 | RK3568标准系统解决方案（二进制）        | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz.sha256) |
-| 标准系统Full SDK包（Mac）               | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz.sha256) |
-| 标准系统Full SDK包（Windows\Linux）     | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256) |
-| 标准系统Public SDK包（Mac）             | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256) |
-| 标准系统Public SDK包（Windows\Linux）   | 3.2 Beta2    | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2.5.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2.5.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2.5.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.5.5      | [站点](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 标准系统Full SDK包（Mac）               | 3.2.5.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz.sha256) |
+| 标准系统Full SDK包（Windows\Linux）     | 3.2.5.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）             | 3.2.5.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows\Linux）   | 3.2.5.6      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz.sha256) |
 
 
 ## 更新说明

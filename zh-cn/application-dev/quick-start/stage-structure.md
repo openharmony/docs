@@ -526,7 +526,7 @@ requestPermissions示例 :
     "usedScene": {
         "abilities": [
             "AudioAbility",
-            "VedioAbility",
+            "VideoAbility",
         ],
         "when": "inuse"
     }

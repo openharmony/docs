@@ -22,21 +22,21 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| window静态方法 | create(id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | getTopWindow(callback:AsyncCallback&lt;Window&gt;):void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
-| window静态方法 | find(id:string,callback:AsyncCallback&lt;Window&gt;):void | 查找`id`所对应的窗口。 |
-| Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面内容。 |
-| Window | moveTo(x:number,y:number,callback:AsyncCallback&lt;void&gt;):void | 移动当前窗口。 |
-| Window | setBackgroundColor(color:string,callback:AsyncCallback&lt;void&gt;):void | 设置窗口的背景色 |
-| Window | setBrightness(brightness:number,callback:AsyncCallback&lt;void&gt;):void | 设置屏幕亮度值。 |
-| Window | resetSize(width:number,height:number,callback:AsyncCallback&lt;void&gt;):void | 改变当前窗口大小。 |
-| Window | setFullScreen(isFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口是否全屏显示。 |
-| Window | setLayoutFullScreen(isLayoutFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口布局是否为全屏布局。 |
-| Window | setSystemBarEnable(names:Array&lt;'status'\|'navigation'&gt;):Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
-| Window | setSystemBarProperties(systemBarProperties:SystemBarProperties,callback:AsyncCallback&lt;void&gt;):void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| window静态方法 | create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | getTopWindow(callback: AsyncCallback&lt;Window&gt;): void | 获取当前应用内最后显示的窗口。<br/>此接口仅可在`FA`模型下使用。 |
+| window静态方法 | find(id: string, callback: AsyncCallback&lt;Window&gt;): void | 查找`id`所对应的窗口。 |
+| Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面内容。 |
+| Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口。 |
+| Window | setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色 |
+| Window | setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
+| Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
+| Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否全屏显示。 |
+| Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
+| Window | setSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
+| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window | show(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
-| Window | on(type:'touchOutside',callback:Callback&lt;void&gt;):void | 开启本窗口区域外的点击事件的监听。 |
-| Window | destroy(callback: AsyncCallback&lt;void&gt;):void | 销毁当前窗口。 |
+| Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
+| Window | destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
 
 
 ## 设置应用子窗口
@@ -55,7 +55,7 @@
    ```js
    import window from '@ohos.window';
    
-   var windowClass = null;
+   let windowClass = null;
    // 1.方式一：创建子窗口。
    window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
        if (err.code) {
@@ -88,7 +88,6 @@
 2. 设置子窗口属性。
 
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
-
    
    ```js
    // 2.移动子窗口位置。
@@ -112,7 +111,6 @@
 3. 加载显示子窗口的具体内容。
 
    使用`loadContent`和`show`接口加载显示子窗口的具体内容。
-
    
    ```js
    // 3.为子窗口加载对应的目标页面。
@@ -136,7 +134,6 @@
 4. 销毁子窗口。
 
    当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroy`接口销毁子窗口。
-
    
    ```js
    // 4.销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口，此处以监听窗口区域外的点击事件实现子窗口的销毁。
@@ -162,13 +159,16 @@
 
 1. 获取主窗口对象。
 
-   沉浸式能力需要在成功获取应用主窗口对象的前提下进行。使用`window.getTopWindow`接口来获取得到主窗口。
-
+   > **说明：** 
+   >
+   > 沉浸式能力需要在成功获取应用主窗口对象的前提下进行。
+   >
+   > 确保应用内最后显示的窗口为主窗口，然后再使用`window.getTopWindow`接口来获取得到主窗口。
    
    ```js
    import window from '@ohos.window';
    
-   var mainWindowClass = null;
+   let mainWindowClass = null;
    // 1.获取主窗口
    window.getTopWindow((err, data) => {
      if (err.code) {
@@ -188,7 +188,7 @@
 
    ```js
    // 2.实现沉浸式效果。方式一：设置窗口全屏显示。
-   var isFullScreen = true;
+   let isFullScreen = true;
    mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -197,7 +197,7 @@
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
    // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-   var names = [];
+   let names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -207,7 +207,7 @@
    });
    // 2.实现沉浸式效果。
    // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
-   var isLayoutFullScreen = true;
+   let isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -215,7 +215,7 @@
      }
      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
    });
-   var SystemBarProperties = {
+   let sysBarProps = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
      // 以下两个属性从API Version7开始支持
@@ -225,7 +225,7 @@
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+   mainWindowClass.setSystemBarProperties(sysBarProps, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
@@ -237,7 +237,6 @@
 3. 加载显示沉浸式窗口的具体内容。
 
    使用`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
-
    
    ```js
    // 3.为沉浸式窗口加载对应的目标页面。
@@ -257,4 +256,3 @@
        });
    });
    ```
-

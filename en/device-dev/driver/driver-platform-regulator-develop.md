@@ -16,7 +16,7 @@ The regulator module is divided into the following layers:
 - Core layer: provides the capabilities of binding, initializing, and releasing devices.
 - Adaptation layer: implements other functions.
 
-![](../public_sys-resources/icon-note.gif)NOTE<br/>The core layer can call the APIs of the interface layer and uses hooks to call APIs of the adaptation layer. In this way, the adaptation layer can indirectly call the APIs of the interface layer, but the interface layer cannot call the APIs of the adaptation layer.
+![](../public_sys-resources/icon-note.gif) **NOTE**<br/>The core layer can call the APIs of the interface layer and uses hooks to call APIs of the adaptation layer. In this way, the adaptation layer can indirectly call the APIs of the interface layer, but the interface layer cannot call the APIs of the adaptation layer.
 
 **Figure 1** Unified service mode
 
@@ -28,12 +28,13 @@ The regulator module is divided into the following layers:
 
 Currently, the regulator module supports only the kernels (LiteOS) of mini and small systems.
 
+## Development Guidelines
 
 ### When to Use
 
 The regulator module controls the voltage and current supplies of some devices in the system.
 
-## Available APIs
+### Available APIs
 
 The functions in **RegulatorMethod** are used to call the corresponding regulator driver functions:
 
@@ -72,8 +73,7 @@ struct RegulatorMethod {
 | getCurrent   | **node**: structure pointer to the regulator node at the core layer.<br>**regCurrent**: pointer to the output current, which is of the uint32_t type.| HDF_STATUS| Obtains the current.        |
 | getStatus    | **node**: structure pointer to the regulator node at the core layer.<br>**status**: pointer to the output status, which is of the uint32_t type.| HDF_STATUS| Obtains the device status.    |
 
-
-## How to Develop
+### How to Develop
 
 The regulator module adaptation procedure is as follows:
 
@@ -86,9 +86,11 @@ The regulator module adaptation procedure is as follows:
 
 1.  Instantiate the driver entry.
 
-    The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+    The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**.
+
+    In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
     
-    Generally, the HDF calls the **Init()** function to load the driver. If **Init()** fails to be called, the HDF calls **Release** to release driver resources and exit.
+    Generally, the HDF calls the **Init** function to load the driver. If **Init** fails to be called, the HDF calls **Release** to release driver resources and exit.
     
     ```
     struct HdfDriverEntry g_regulatorDriverEntry = {
@@ -116,7 +118,7 @@ The regulator module adaptation procedure is as follows:
      | permission      | Driver permission.                                                    |
      | moduleName      | **HDF_PLATFORM_REGULATOR_MANAGER**                       |
      | serviceName     | **HDF_PLATFORM_REGULATOR_MANAGER**                        |
-     | deviceMatchAttr | This parameter is reserved.                          |
+     | deviceMatchAttr | Reserved.                                            |
 
      Configure regulator controller information from the second node. This node specifies a type of regulator controllers rather than a specific regulator controller. In this example, there is only one regulator device. If there are multiple regulator devices, you need to add the **deviceNode** information to the **device_info** file and add the corresponding device attributes to the **regulator\_config** file.
 
@@ -131,7 +133,7 @@ The regulator module adaptation procedure is as follows:
            device_regulator :: device {
                device0:: deviceNode {   // Set an HDF device node for each regulator controller.
                    policy = 1;	         // Policy for the driver to publish services.
-                   priority = 50;       // Driver startup priority.
+                   priority = 50;	     // Driver startup priority.
                    permission = 0644;   // Permission to create device nodes for the driver.
                    /* (Mandatory) Driver name, which must be the same as the moduleName in the driver entry. */
                    moduleName = "HDF_PLATFORM_REGULATOR_MANAGER";		
@@ -198,7 +200,7 @@ The regulator module adaptation procedure is as follows:
       }
       ```
 
-3. Instantiate the APIs of the core layer. 
+3. Instantiate the core layer APIs.
 
    Initialize the **RegulatorNode** object at the core layer, including defining a custom structure (to pass parameters and data) and implementing the **HdfDriverEntry** member functions (**Bind**, **Init**, and **Release**) to instantiate **RegulatorMethod** in **RegulatorNode** (so that the underlying driver functions can be called).
 
@@ -206,8 +208,6 @@ The regulator module adaptation procedure is as follows:
 
        The **RegulatorNode** structure holds parameters and data for the driver. The HDF obtains the values in **regulator_config.hcs** using **DeviceResourceIface**.
 
-       
-       
        ```
        // RegulatorNode is the core layer controller structure. The Init function assigns values to the members of RegulatorNode.
        struct RegulatorNode {
@@ -219,17 +219,17 @@ The regulator module adaptation procedure is as follows:
        };
        
        struct RegulatorDesc {
-           const char *name;               /* Regulator name. */
-           const char *parentName;         /* Regulator parent node name. */
+           const char *name;                           /* Regulator name. */
+           const char *parentName;                     /* Regulator parent node name. */
            struct RegulatorConstraints constraints;    /* Regulator constraint information. */
-           uint32_t minUv;                  /* Minimum output voltage. */
-           uint32_t maxUv;                  /* Maximum output voltage. */
-           uint32_t minUa;                  /* Minimum output current. */
-           uint32_t maxUa;                  /* Maximum output current. */
-           uint32_t status;                  /* Regulator status, which can be on or off. */
+           uint32_t minUv;                             /* Minimum output voltage. */
+           uint32_t maxUv;                             /* Maximum output voltage. */
+           uint32_t minUa;                             /* Minimum output current. */
+           uint32_t maxUa;                             /* Maximum output current. */
+           uint32_t status;                            /* Regulator status, which can be on or off. */
            int useCount;
-           int consumerRegNums;             /* Number of regulator consumers. */
-           RegulatorStatusChangecb cb;      /* Variable used to notify the regulator status changes. */
+           int consumerRegNums;                        /* Number of the regulator consumers. */
+           RegulatorStatusChangecb cb;                 /* Variable used to notify the regulator status changes. */
        };
        
        struct RegulatorConstraints {
@@ -259,81 +259,81 @@ The regulator module adaptation procedure is as follows:
      };
      ```
      
-
-
+     
+     
    - **Init** function
-
-      Input parameter:
-
-      **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
-      
-      Return value:
-      
-      **HDF\_STATUS**
-      
-      The table below lists some states. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.
-
-      **Table 2** HDF_STATUS
-      
-      | State              | Description         |
-      | ---------------------- | -------------- |
-      | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
-      | HDF_ERR_MALLOC_FAIL    | Failed to allocate memory.  |
-      | HDF_ERR_INVALID_PARAM  | Invalid parameter.      |
-      | HDF_ERR_IO             | I/O error.      |
-      | HDF_SUCCESS            | Initialization successful.    |
-      | HDF_FAILURE            | Initialization failed.    |
-
-      Function description:
-      
-      Initializes the custom structure and **RegulatorNode** members, and adds the regulator controller by calling the **RegulatorNodeAdd** function at the core layer.
-
-
-      ```c
-      static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
-      {
-          int32_t ret;
-          const struct DeviceResourceNode *childNode = NULL;
-          ...
-          DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
-          ret = VirtualRegulatorParseAndInit(device, childNode);// (Mandatory) The implementation is as follows:
-          ...
-          }
-          ...
-      }
    
-      static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
-      {
-          int32_t ret;
-          struct RegulatorNode *regNode = NULL;
-          (void)device;
-   
-          regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode));// Load the .hcs file.
-          ...
-          ret = VirtualRegulatorReadHcs(regNode, node);// Read .hcs information.
-          ...
-          regNode->priv = (void *)node;     // Instantiate the node.
-          regNode->ops = &g_method;     // Instantiate OPS.
-   
-          ret = RegulatorNodeAdd(regNode);     // Add the node.
-          ...
-      }
-      ```
+     **Input parameter**:
+     
+     **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
+     
+     **Return value**:
+     
+     **HDF\_STATUS** 
+     
+     The table below describes some status. For more details, see **HDF\_STATUS** in **/drivers/framework/include/utils/hdf\_base.h**.
+     
+     **Table 2** Description of HDF_STATUS
+	  
+     | Status             | Description         |
+     | ---------------------- | -------------- |
+     | HDF_ERR_INVALID_OBJECT | Invalid controller object.|
+     | HDF_ERR_MALLOC_FAIL    | Failed to allocate memory.  |
+     | HDF_ERR_INVALID_PARAM  | Invalid parameter.      |
+     | HDF_ERR_IO             | I/O error.      |
+     | HDF_SUCCESS            | Initialization successful.    |
+     | HDF_FAILURE            | Initialization failed.    |
+     
+     **Function description**:
+     
+     Initializes the custom structure and **RegulatorNode** members, and adds the regulator controller by calling the **RegulatorNodeAdd** function at the core layer.
+     
 
+     ```c
+       static int32_t VirtualRegulatorInit(struct HdfDeviceObject *device)
+       {
+           int32_t ret;
+           const struct DeviceResourceNode *childNode = NULL;
+           ...
+           DEV_RES_NODE_FOR_EACH_CHILD_NODE(device->property, childNode) {
+           ret = VirtualRegulatorParseAndInit(device, childNode);// (Mandatory) The implementation is as follows:
+           ...
+           }
+           ...
+       }
+        
+       static int32_t VirtualRegulatorParseAndInit(struct HdfDeviceObject *device, const struct DeviceResourceNode *node)
+       {
+           int32_t ret;
+           struct RegulatorNode *regNode = NULL;
+           (void)device;
+        
+           regNode = (struct RegulatorNode *)OsalMemCalloc(sizeof(*regNode));// Load the .hcs file.
+           ...
+           ret = VirtualRegulatorReadHcs(regNode, node);                     // Read .hcs information.
+           ...
+           regNode->priv = (void *)node; ;                                   // Instantiate the node.
+           regNode->ops = &g_method;                                         // Instantiate OPS.
+        
+           ret = RegulatorNodeAdd(regNode);                                  // Add the node.
+           ...
+       }
+     ```
+     
    -   **Release** function
        
-        Input parameter:
+        **Input parameter**:
        
         **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
        
-        Return value:
+        **Return value**:
        
-        No value is return.
+         No value is returned.
        
-        Function description:
+        **Function description**:
        
         Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
-     
+       
        ```c
        static void VirtualRegulatorRelease(struct HdfDeviceObject *device)
        {
@@ -341,7 +341,7 @@ The regulator module adaptation procedure is as follows:
            RegulatorNodeRemoveAll();// (Mandatory) Call the function at the core layer to release regulator controller devices and services.
        }
        ```
-
+   
 4. Debug the driver.
 
    (Optional) Verify the basic functions of the new driver, for example, check whether the test cases are successful after the driver is loaded.

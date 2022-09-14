@@ -23,9 +23,9 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
-| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
-| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
+| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
+| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
+| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 |
 
 

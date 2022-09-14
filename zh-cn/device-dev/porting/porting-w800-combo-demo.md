@@ -49,7 +49,7 @@
      "kernel_version": "3.0.0",                --- 内核版本：3.0.0
      "subsystems": []                          --- 子系统
    }
-```
+   ```
 填入的信息与规划的目录相对应，其中`device_company`和`board`用于关联出`device/board/<device_company>/`目录。
 
 ### 单板配置
@@ -403,7 +403,8 @@ OHOS Which product do you need?  neptune_iotlink_demo
     {
       "subsystem": "kernel",
       "components": [
-        { "component": "liteos_m", "features":[]
+        { 
+          "component": "liteos_m", "features":[] 
         }
       ]
    },
@@ -419,11 +420,11 @@ OHOS Which product do you need?  neptune_iotlink_demo
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化
    if(ret == osOK)
    {
-    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task); --- 创建init线程
-    if(threadId!=NULL)
-    {
-        osKernelStart();                                          --- 线程调度
-    }
+     threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task); --- 创建init线程
+     if(threadId!=NULL)
+     {
+       osKernelStart();                                          --- 线程调度
+     }
    }
    ```
 

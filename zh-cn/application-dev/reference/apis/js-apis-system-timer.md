@@ -24,12 +24,9 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型              | 必填 | 说明                                                                                    |
-| -------- | ------------------| ---- | --------------------------------------------------------------------------------------- |
-| options  | TimerOptions      | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
-| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                  |
-| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                           |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起鸿蒙应用MainAbility,暂不支持拉起SA)     |
+| 名称    | 类型                             | 必填 | 说明                                                                        |
+| ------- | ---------------------------------| ---- | --------------------------------------------------------------------------- |
+| options |  [TimerOptions](#timeroptions)   | 是   | 创建系统定时器，包括定时器类型，是否循环触发，间隔时间，WantAgent通知机制。 |
 
 **返回值：**
 
@@ -68,12 +65,9 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名   | 类型              | 必填 | 说明                                                                                    |
-| -------- | ------------------| ---- | --------------------------------------------------------------------------------------- |
-| options  | TimerOptions      | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
-| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                  |
-| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                           |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起鸿蒙应用MainAbility,暂不支持拉起SA)     |
+| 名称    | 类型                             | 必填 | 说明                                                                        |
+| ------- | ---------------------------------| ---- | --------------------------------------------------------------------------- |
+| options |  [TimerOptions](#timeroptions)   | 是   | 创建系统定时器，包括定时器类型，是否循环触发，间隔时间，WantAgent通知机制。 |
 
 **返回值：**
 
@@ -317,3 +311,17 @@ export default {
     }
 }
   ```
+  
+ ## TimerOptions
+
+createTimer的初始化选项。
+
+**系统能力：** SystemCapability.MiscServices.Time
+
+| 参数名   | 类型              | 必填 | 说明                                                                                            |
+| -------- | ------------------| ---- | ----------------------------------------------------------------------------------------------- |
+| type     | number            | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
+| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                          |
+| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                                   |
+| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起应用MainAbility,暂不支持拉起ServiceAbility)     |
+

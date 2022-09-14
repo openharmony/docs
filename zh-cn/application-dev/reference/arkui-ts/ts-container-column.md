@@ -14,13 +14,13 @@
 
 ## 接口
 
-Column(value?:{space?: string | number})
+Column(value?:{space?: string&nbsp;|&nbsp;number})
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string \| number | 否 | 纵向布局元素间距。<br/>默认值：0 |
+| space | string&nbsp;\|&nbsp;number | 否 | 纵向布局元素间距。<br/>默认值：0 |
 
 ## 属性
 

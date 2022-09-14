@@ -25,26 +25,26 @@ AbilityComponent需设置且只能设置width、height，且width、height不支
 
 ## 接口
 
-AbilityComponent(value: (want: Want))
+AbilityComponent(want: Want)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](../../reference/apis/js-apis-application-Want.md) | 是 | 默认加载的Ability描述。 |
+| want | [Want](../apis/js-apis-application-Want.md) | 是 | 默认加载的Ability描述。 |
 
 
 ## 事件
 
 ### onConnect
 
-onConnect(callback: () => void)
+onConnect(callback:()&nbsp;=&gt;&nbsp;void)
 
 AbilityComponent环境启动完成时的回调，之后可使用AbilityComponent的方法。
 
 ### onDisconnect
 
-onDisconnect(callback: () => void)
+onDisconnect(callback:()&nbsp;=&gt;&nbsp;void)
 
 AbilityComponent环境销毁时的回调。
 

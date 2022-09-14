@@ -23,16 +23,10 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event: (event?: GestureEvent) =>&nbsp;void) | Rotation手势识别成功回调。 |
-| onActionUpdate(event: (event?: GestureEvent) => void) | Rotation手势移动过程中回调。 |
-| onActionEnd(event: (event?: GestureEvent) => void) | Rotation手势识别成功，手指抬起后触发回调。 |
+| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功回调。 |
+| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Rotation手势移动过程中回调。 |
+| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Rotation手势识别成功，接收到触摸取消事件触发回调。 |
-
-**GestureEvent对象中与Rotation手势相关的属性**
-
-| 属性名称 | 属性类型 | 描述 |
-| -------- | -------- | -------- |
-| angle | number | 旋转角度。 |
 
 
 ## 示例

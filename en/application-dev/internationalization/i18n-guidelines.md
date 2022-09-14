@@ -1,7 +1,6 @@
 # Internationalization Development (I18N)
 
-This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N interfaces that are not defined in ECMA 402.
-The [Intl](intl-guidelines.md) module provides basic I18N capabilities through the standard I18N interfaces defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For more details about APIs and their usage, see [I18N](../reference/apis/js-apis-i18n.md).
 
 ## Obtaining System Language and Region Information
 
@@ -90,7 +89,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 ## Obtaining Calendar Information
 
-[Calendar](../reference/apis/js-apis-intl.md) APIs are used to obtain calendar information, for example, the localized display of the calendar, the first day of a week, and the minimum count of days in the first week of a year.
+[Calendar](../reference/apis/js-apis-i18n.md#calendar8) APIs are used to obtain calendar information, for example, the localized display of the calendar, the first day of a week, and the minimum count of days in the first week of a year.
 
 
 ### Available APIs
@@ -119,7 +118,7 @@ You can use APIs provided in the following table to obtain the system language a
 
    
     ```js
-   var calendar = i18n.getCalendar("zh-CN", "gregory);
+   var calendar = i18n.getCalendar("zh-CN", "gregory");
    ```
 
 2. Set the time for the **Calendar** object.
@@ -192,7 +191,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 ## Formatting a Phone Number
 
-[PhoneNumberFormat](../reference/apis/js-apis-intl.md) APIs are used to format phone numbers in different countries and check whether the phone number formats are correct.
+[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) APIs are used to format phone numbers in different countries and check whether the phone number formats are correct.
 
 
 ### Available APIs
@@ -245,7 +244,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 ### How to Develop
 
 1. Convert a measurement unit.
-   Call the [unitConvert](../reference/apis/js-apis-intl.md) method to convert a measurement unit and format the display result.
+   Call the [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert8) method to convert a measurement unit and format the display result.
 
    
     ```js
@@ -260,7 +259,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ## Alphabet Index
 
-[IndexUtil](../reference/apis/js-apis-intl.md) APIs are used to obtain the alphabet indexes of different locales and calculate the index to which a string belongs.
+[IndexUtil](../reference/apis/js-apis-i18n.md#indexutil8) APIs are used to obtain the alphabet indexes of different locales and calculate the index to which a string belongs.
 
 
 ### Available APIs
@@ -281,7 +280,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
    
     ```js
-   var indexUtil = getInstance("zh-CN");
+   var indexUtil = i18n.getInstance("zh-CN");
    ```
 
 2. Obtain the index list.
@@ -312,7 +311,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ## Obtaining Line Breaks of Text
 
-When a text is displayed in more than one line, [BreakIterator](../reference/apis/js-apis-intl.md) APIs are used to obtain the line break positions of the text.
+When a text is displayed in more than one line, [BreakIterator8](../reference/apis/js-apis-i18n.md#breakiterator8) APIs are used to obtain the line break positions of the text.
 
 
 ### Available APIs

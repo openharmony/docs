@@ -25,6 +25,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | 是    | 指定语言。            |
@@ -32,6 +33,7 @@ getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): st
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
 
 **返回值：** 
+
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 指定语言的本地化显示文本。 |
@@ -52,6 +54,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名          | 类型      | 必填   | 说明               |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | 是    | 指定国家。            |
@@ -59,6 +62,7 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
 
 **返回值：** 
+
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 指定国家的本地化显示文本。 |
@@ -79,11 +83,13 @@ isRTL(locale: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 说明      |
 | ------ | ------ | ------- |
 | locale | string | 指定区域ID。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | true表示该locale从右至左显示语言；false表示该locale从左至右显示语言。 |
@@ -104,6 +110,7 @@ getSystemLanguage(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统语言ID。 |
@@ -127,11 +134,13 @@ setSystemLanguage(language: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型     | 说明    |
 | -------- | ------ | ----- |
 | language | string | 语言ID。 |
 
 **返回值：** 
+
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
 | boolean | 返回true，表示系统语言设置成功；返回false，表示系统语言设置失败。 |
@@ -142,7 +151,7 @@ setSystemLanguage(language: string): boolean
   ```
 
 
-## i18n.getSystemLanguages
+## i18n.getSystemLanguages<sup>9+</sup>
 
 getSystemLanguages(): Array&lt;string&gt;
 
@@ -153,6 +162,7 @@ getSystemLanguages(): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                  | 说明           |
 | ------------------- | ------------ |
 | Array&lt;string&gt; | 系统支持的语言ID列表。 |
@@ -163,7 +173,7 @@ getSystemLanguages(): Array&lt;string&gt;
   ```
 
 
-## i18n.getSystemCountries
+## i18n.getSystemCountries<sup>9+</sup>
 
 getSystemCountries(language: string): Array&lt;string&gt;
 
@@ -174,11 +184,13 @@ getSystemCountries(language: string): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型     | 说明    |
 | -------- | ------ | ----- |
 | language | string | 语言ID。 |
 
 **返回值：** 
+
 | 类型                  | 说明           |
 | ------------------- | ------------ |
 | Array&lt;string&gt; | 系统支持的区域ID列表。 |
@@ -198,6 +210,7 @@ getSystemRegion(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统地区ID。 |
@@ -221,11 +234,13 @@ setSystemRegion(region: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 说明    |
 | ------ | ------ | ----- |
 | region | string | 地区ID。 |
 
 **返回值：** 
+
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
 | boolean | 返回true，表示系统区域设置成功；返回false，表示系统区域设置失败。 |
@@ -245,6 +260,7 @@ getSystemLocale(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明      |
 | ------ | ------- |
 | string | 系统区域ID。 |
@@ -268,11 +284,13 @@ setSystemLocale(locale: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 说明              |
 | ------ | ------ | --------------- |
 | locale | string | 指定区域ID，例如zh-CN。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示系统Locale设置成功；返回false，表示系统Locale设置失败。 |
@@ -283,7 +301,7 @@ setSystemLocale(locale: string): boolean
   ```
 
 
-## i18n.isSuggested
+## i18n.isSuggested<sup>9+</sup>
 
 isSuggested(language: string, region?: string): boolean
 
@@ -294,12 +312,14 @@ isSuggested(language: string, region?: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型     | 必填   | 说明            |
 | -------- | ------ | ---- | ------------- |
 | language | string | 是    | 合法的语言ID，例如zh。 |
 | region   | string | 否    | 合法的地区ID，例如CN  |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
@@ -319,12 +339,14 @@ getCalendar(locale: string, type? : string): Calendar
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | 合法的locale值，例如zh-Hans-CN。                 |
 | type   | string | 否    | 合法的日历类型，目前合法的类型有buddhist,&nbsp;chinese,&nbsp;coptic,&nbsp;ethiopic,&nbsp;hebrew,&nbsp;gregory,&nbsp;indian,&nbsp;islamic_civil,&nbsp;islamic_tbla,&nbsp;islamic_umalqura,&nbsp;japanese,&nbsp;persian。当type没有给出时，采用区域默认的日历类型。 |
 
 **返回值：** 
+
 | 类型                     | 说明    |
 | ---------------------- | ----- |
 | [Calendar](#calendar8) | 日历对象。 |
@@ -347,6 +369,7 @@ setTime(date: Date): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
 | date | Date | 是    | 将要设置的日历对象的内部时间日期。 |
@@ -368,6 +391,7 @@ setTime(time: number): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
 | time | number | 是    | time为从1970.1.1&nbsp;00:00:00&nbsp;GMT逝去的毫秒数。 |
@@ -388,6 +412,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | year   | number | 是    | 设置的年。  |
@@ -413,6 +438,7 @@ setTimeZone(timezone: string): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型     | 必填   | 说明                        |
 | -------- | ------ | ---- | ------------------------- |
 | timezone | string | 是    | 设置的时区id，如“Asia/Shanghai”。 |
@@ -433,6 +459,7 @@ getTimeZone(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 日历对象的时区id。 |
@@ -454,6 +481,7 @@ getFirstDayOfWeek(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                    |
 | ------ | --------------------- |
 | number | 获取一周的起始日，1代表周日，7代表周六。 |
@@ -474,6 +502,7 @@ setFirstDayOfWeek(value: number): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
 | value | number | 否    | 设置一周的起始日，1代表周日，7代表周六。 |
@@ -494,6 +523,7 @@ getMinimalDaysInFirstWeek(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明           |
 | ------ | ------------ |
 | number | 一年中第一周的最小天数。 |
@@ -514,6 +544,7 @@ setMinimalDaysInFirstWeek(value: number): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明           |
 | ----- | ------ | ---- | ------------ |
 | value | number | 否    | 一年中第一周的最小天数。 |
@@ -534,11 +565,13 @@ get(field: string): number
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | field | string | 是    | 通过field来获取日历对象相应的值。目前支持的field值有&nbsp;era,&nbsp;year,&nbsp;month,&nbsp;week_of_year,&nbsp;week_of_month,&nbsp;date,&nbsp;day_of_year,&nbsp;day_of_week,&nbsp;day_of_week_in_month,&nbsp;hour,&nbsp;hour_of_day,&nbsp;minute,&nbsp;second,&nbsp;millisecond,&nbsp;zone_offset,&nbsp;dst_offset,&nbsp;year_woy,&nbsp;dow_local,&nbsp;extended_year,&nbsp;julian_day,&nbsp;milliseconds_in_day,&nbsp;is_leap_month。 |
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 与field相关联的值，如当前Calendar对象的内部日期的年份为1990，get("year")返回1990。 |
@@ -560,11 +593,13 @@ getDisplayName(locale: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | locale指定获取哪个区域下该calendar的名字，如buddhist在en-US上显示的名称为“Buddhist&nbsp;Calendar”。 |
 
 **返回值：** 
+
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | string | 日历在locale所指示的区域的名字。 |
@@ -585,11 +620,13 @@ isWeekend(date?: Date): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
 | date | Date | 否    | 判断日期在日历中是否是周末。如果date没有给出，判断calendar当前日期是否为周末。 |
 
 **返回值：** 
+
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
 | boolean | 当所判断的日期为周末时，返回&nbsp;true，否则返回false。 |
@@ -615,11 +652,12 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-参数：
+**参数：** 
+
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | 否    | 电话号码格式化对象的相关选项。  |
 
 **示例：** 
   ```js
@@ -636,11 +674,13 @@ isValidNumber(number: string): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明        |
 | ------ | ------ | ---- | --------- |
 | number | string | 是    | 待判断的电话号码。 |
 
 **返回值：** 
+
 | 类型      | 说明                                    |
 | ------- | ------------------------------------- |
 | boolean | 返回true表示电话号码的格式正确，返回false表示电话号码的格式错误。 |
@@ -661,11 +701,13 @@ format(number: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明         |
 | ------ | ------ | ---- | ---------- |
 | number | string | 是    | 待格式化的电话号码。 |
 
 **返回值：** 
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的电话号码。 |
@@ -686,12 +728,14 @@ getLocationName(number: string, locale: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | string | 是    | 电话号码 |
 | locale | string | 是    | 区域ID |
 
 **返回值：** 
+
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 电话号码归属地。 |
@@ -703,7 +747,7 @@ getLocationName(number: string, locale: string): string
   ```
 
 
-## PhoneNumberFormatOptions<sup>8+</sup>
+## PhoneNumberFormatOptions<sup>9+</sup>
 
 表示电话号码格式化对象可设置的属性。
 
@@ -726,18 +770,24 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## Util<sup>8+</sup>
+## Util<sup>(deprecated)</sup>
 
 
-### unitConvert<sup>8+</sup>
+### unitConvert<sup>(deprecated)</sup>
 
 static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
+> **说明：** 
+> 从API version 9开始废弃。建议使用[unitConvert](#unitconvert9)代替。
+>
+> 从 API version 8开始支持。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型                     | 必填   | 说明                                       |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
 | fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
@@ -747,38 +797,10 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
 
 **返回值：** 
+
 | 类型     | 说明                      |
 | ------ | ----------------------- |
 | string | 按照toUnit的单位格式化后，得到的字符串。 |
-
-**示例：** 
-  ```js
-  i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
-  ```
-
-
-### getDateOrder<sup>9+</sup>
-
-static getDateOrder(locale: string): string
-
-获取某一区域的日期的年、月、日排列顺序。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-| 参数名    | 类型     | 必填   | 说明                        |
-| ------ | ------ | ---- | ------------------------- |
-| locale | string | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。 |
-
-**返回值：** 
-| 类型     | 说明                  |
-| ------ | ------------------- |
-| string | 返回某一区域的日期的年、月、日排列顺序 |
-
-**示例：** 
-  ```js
-  i18n.Util.getDateOrder("zh-CN");
-  ```
 
 
 ## getInstance<sup>8+</sup>
@@ -790,11 +812,13 @@ getInstance(locale?:string): IndexUtil
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | 否    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
 
 **返回值：** 
+
 | 类型                       | 说明                    |
 | ------------------------ | --------------------- |
 | [IndexUtil](#indexutil8) | locale对应的IndexUtil对象。 |
@@ -817,6 +841,7 @@ getIndexList(): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                  | 说明                 |
 | ------------------- | ------------------ |
 | Array&lt;string&gt; | 返回当前locale对应的索引列表。 |
@@ -837,6 +862,7 @@ addLocale(locale: string): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                           |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -857,11 +883,13 @@ getIndex(text: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
 | text | string | 是    | 待计算索引值的输入文本。 |
 
 **返回值：** 
+
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 输入文本对应的索引值。 |
@@ -873,223 +901,241 @@ getIndex(text: string): string
   ```
 
 
-## Character<sup>8+</sup>
+## Character<sup>(deprecated)</sup>
 
 
-### isDigit<sup>8+</sup>
+### isDigit<sup>(deprecated)</sup>
 
 static isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
+> **说明：** 
+> 从API version 9开始废弃。建议使用[isDigit](#isdigit9)代替。
+>
+> 从 API version 8开始支持。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
 | boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
 
-**示例：** 
-  ```js
-  var isdigit = i18n.Character.isDigit("1");  // 返回true
-  ```
 
-
-### isSpaceChar<sup>8+</sup>
+### isSpaceChar<sup>(deprecated)</sup>
 
 static isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isSpaceChar](#isspacechar9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
 | boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
 
-**示例：** 
-  ```js
-  var isspacechar = i18n.Character.isSpaceChar("a");  // 返回false
-  ```
 
-
-### isWhitespace<sup>8+</sup>
+### isWhitespace<sup>(deprecated)</sup>
 
 static isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isWhitespace](#iswhitespace9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                     |
 | ------- | -------------------------------------- |
 | boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
 
-**示例：** 
-  ```js
-  var iswhitespace = i18n.Character.isWhitespace("a");  // 返回false
-  ```
 
-
-### isRTL<sup>8+</sup>
+### isRTL<sup>(deprecated)</sup>
 
 static isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isRTL](#isrtl9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
 
-**示例：** 
-  ```js
-  var isrtl = i18n.Character.isRTL("a");  // 返回false
-  ```
 
-
-### isIdeograph<sup>8+</sup>
+### isIdeograph<sup>(deprecated)</sup>
 
 static isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isIdeograph](#isideograph9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
 
-**示例：** 
-  ```js
-  var isideograph = i18n.Character.isIdeograph("a");  // 返回false
-  ```
 
-
-### isLetter<sup>8+</sup>
+### isLetter<sup>(deprecated)</sup>
 
 static isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isLetter](#isletter9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                   |
 | ------- | ------------------------------------ |
 | boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
 
-**示例：** 
-  ```js
-  var isletter = i18n.Character.isLetter("a");  // 返回true
-  ```
 
-
-### isLowerCase<sup>8+</sup>
+### isLowerCase<sup>(deprecated)</sup>
 
 static isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isLowerCase](#islowercase9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
 
-**示例：** 
-  ```js
-  var islowercase = i18n.Character.isLowerCase("a");  // 返回true
-  ```
 
-
-### isUpperCase<sup>8+</sup>
+### isUpperCase<sup>(deprecated)</sup>
 
 static isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[isUpperCase](#isuppercase9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
 
-**示例：** 
-  ```js
-  var isuppercase = i18n.Character.isUpperCase("a");  // 返回false
-  ```
 
-
-### getType<sup>8+</sup>
+### getType<sup>(deprecated)</sup>
 
 static getType(char: string): string
 
 获取输入字符串的一般类别值。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[getType](#gettype9)代替。
+>
+> 从 API version 8开始支持
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
 | char | string | 是    | 输入字符。 |
 
 **返回值：** 
+
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 输入字符的一般类别值。 |
-
-**示例：** 
-  ```js
-  var type = i18n.Character.getType("a");
-  ```
 
 
 ## i18n.getLineInstance<sup>8+</sup>
@@ -1101,11 +1147,13 @@ getLineInstance(locale: string): BreakIterator
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | 是    | 合法的locale值，例如zh-Hans-CN。生成的[BreakIterator](#breakiterator8)将按照locale所指定的区域的规则来进行断句。 |
 
 **返回值：** 
+
 | 类型                               | 说明          |
 | -------------------------------- | ----------- |
 | [BreakIterator](#breakiterator8) | 用于进行断句的处理器。 |
@@ -1128,6 +1176,7 @@ setLineBreakText(text: string): void
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明                      |
 | ---- | ------ | ---- | ----------------------- |
 | text | string | 是    | 指定BreakIterator进行断句的文本。 |
@@ -1148,6 +1197,7 @@ getLineBreakText(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                     |
 | ------ | ---------------------- |
 | string | BreakIterator对象正在处理的文本 |
@@ -1169,6 +1219,7 @@ current(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                          |
 | ------ | --------------------------- |
 | number | BreakIterator在当前所处理的文本中的位置。 |
@@ -1190,6 +1241,7 @@ first(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                |
 | ------ | ----------------- |
 | number | 被处理文本的第一个分割点的偏移量。 |
@@ -1211,6 +1263,7 @@ last(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                 |
 | ------ | ------------------ |
 | number | 被处理的文本的最后一个分割点的偏移量 |
@@ -1232,11 +1285,13 @@ next(index?: number): number
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | index | number | 否    | [BreakIterator](#breakiterator8)将要移动的分割点数，正数代表向后移动，负数代表向前移动。若index没有给出，则按照index=1处理。 |
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回移动了index个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
@@ -1260,6 +1315,7 @@ previous(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回移动到前一个分割点后，当前[BreakIterator](#breakiterator8)在文本中的位置。若移动index个分割点后超出了所处理的文本的长度范围，返回-1。 |
@@ -1283,11 +1339,13 @@ following(offset: number): number
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------ | ------ | ---- | ---------------------------------------- |
 | offset | number | 是    | 将[BreakIterator](#breakiterator8)对象的位置设置到由offset所指定的位置的下一个分割点。 |
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 返回[BreakIterator](#breakiterator8)移动后的位置，如果由offset所指定的位置的下一个分割点超出了文本的范围则返回-1。 |
@@ -1311,11 +1369,13 @@ isBoundary(offset: number): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明          |
 | ------ | ------ | ---- | ----------- |
 | offset | number | 是    | 指定需要进行判断的位置 |
 
 **返回值：** 
+
 | 类型      | 说明                              |
 | ------- | ------------------------------- |
 | boolean | 如果是一个分割点返回true,&nbsp;否则返回false。 |
@@ -1338,6 +1398,7 @@ is24HourClock(): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
@@ -1359,11 +1420,13 @@ set24HourClock(option: boolean): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
 | option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
 
 **返回值：** 
+
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
@@ -1386,12 +1449,14 @@ addPreferredLanguage(language: string, index?: number): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名      | 类型     | 必填   | 说明         |
 | -------- | ------ | ---- | ---------- |
 | language | string | 是    | 待添加的偏好语言。  |
 | index    | number | 否    | 偏好语言的添加位置。 |
 
 **返回值：** 
+
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
@@ -1416,11 +1481,13 @@ removePreferredLanguage(index: number): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                    |
 | ----- | ------ | ---- | --------------------- |
 | index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
 
 **返回值：** 
+
 | 类型      | 说明                            |
 | ------- | ----------------------------- |
 | boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
@@ -1442,6 +1509,7 @@ getPreferredLanguageList(): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                  | 说明        |
 | ------------------- | --------- |
 | Array&lt;string&gt; | 系统偏好语言列表。 |
@@ -1461,6 +1529,7 @@ getFirstPreferredLanguage(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明             |
 | ------ | -------------- |
 | string | 偏好语言列表中的第一个语言。 |
@@ -1480,6 +1549,7 @@ getAppPreferredLanguage(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 应用的偏好语言。 |
@@ -1499,11 +1569,13 @@ getTimeZone(zoneID?: string): TimeZone
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
 | zondID | string | 否    | 时区ID。 |
 
 **返回值：** 
+
 | 类型       | 说明           |
 | -------- | ------------ |
 | TimeZone | 时区ID对应的时区对象。 |
@@ -1526,6 +1598,7 @@ getID(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明           |
 | ------ | ------------ |
 | string | 时区对象对应的时区ID。 |
@@ -1546,12 +1619,14 @@ getDisplayName(locale?: string, isDST?: boolean): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型      | 必填   | 说明                   |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | 否    | 区域ID。                |
 | isDST  | boolean | 否    | 表示获取时区对象的表示时是否考虑夏令时。 |
 
 **返回值：** 
+
 | 类型     | 说明            |
 | ------ | ------------- |
 | string | 时区对象在指定区域的表示。 |
@@ -1572,6 +1647,7 @@ getRawOffset(): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                  |
 | ------ | ------------------- |
 | number | 时区对象表示的时区与UTC时区的偏差。 |
@@ -1592,6 +1668,7 @@ getOffset(date?: number): number
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明                      |
 | ------ | ----------------------- |
 | number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
@@ -1612,6 +1689,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                  | 说明          |
 | ------------------- | ----------- |
 | Array&lt;string&gt; | 系统支持的时区ID列表 |
@@ -1631,6 +1709,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                  | 说明            |
 | ------------------- | ------------- |
 | Array&lt;string&gt; | 系统支持的时区城市ID列表 |
@@ -1650,12 +1729,14 @@ static getCityDisplayName(cityID: string, locale: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID |
 | locale | string | 是    | 区域ID   |
 
 **返回值：** 
+
 | 类型     | 说明                 |
 | ------ | ------------------ |
 | string | 时区城市在locale下的本地化显示 |
@@ -1675,11 +1756,13 @@ static getTimezoneFromCity(cityID: string): TimeZone
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | cityID | string | 是    | 时区城市ID |
 
 **返回值：** 
+
 | 类型       | 说明          |
 | -------- | ----------- |
 | TimeZone | 时区城市对应的时区对象 |
@@ -1703,11 +1786,13 @@ setUsingLocalDigit(flag: boolean): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型      | 必填   | 说明                              |
 | ---- | ------- | ---- | ------------------------------- |
 | flag | boolean | 是    | true表示打开本地数字开关，false表示关闭本地数字开关。 |
 
 **返回值：** 
+
 | 类型      | 说明                                  |
 | ------- | ----------------------------------- |
 | boolean | true表示本地数字开关设置成功，false表示本地数字开关设置失败。 |
@@ -1727,6 +1812,7 @@ getUsingLocalDigit(): boolean
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
@@ -1749,6 +1835,7 @@ static getAvailableIDs(): string[]
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型       | 说明         |
 | -------- | ---------- |
 | string[] | 音译支持的ID列表。 |
@@ -1768,11 +1855,13 @@ static getInstance(id: string): Transliterator
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明       |
 | ---- | ------ | ---- | -------- |
 | id   | string | 是    | 音译支持的ID。 |
 
 **返回值：** 
+
 | 类型                                 | 说明    |
 | ---------------------------------- | ----- |
 | [Transliterator](#transliterator9) | 音译对象。 |
@@ -1792,11 +1881,13 @@ transform(text: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明     |
 | ---- | ------ | ---- | ------ |
 | text | string | 是    | 输入字符串。 |
 
 **返回值：** 
+
 | 类型     | 说明       |
 | ------ | -------- |
 | string | 转换后的字符串。 |
@@ -1805,4 +1896,300 @@ transform(text: string): string
   ```ts
   var transliterator = i18n.Transliterator.getInstance("Any-Latn");
   transliterator.transform("中国");
+  ```
+
+
+## Unicode<sup>9+</sup>
+
+
+### isDigit<sup>9+</sup>
+
+static isDigit(char: string): boolean
+
+判断字符串char是否是数字。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
+
+**示例：** 
+  ```js
+  var isdigit = i18n.Unicode.isDigit("1");  // 返回true
+  ```
+
+
+### isSpaceChar<sup>9+</sup>
+
+static isSpaceChar(char: string): boolean
+
+判断字符串char是否是空格符。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
+
+**示例：** 
+  ```js
+  var isspacechar = i18n.Unicode.isSpaceChar("a");  // 返回false
+  ```
+
+
+### isWhitespace<sup>9+</sup>
+
+static isWhitespace(char: string): boolean
+
+判断字符串char是否是空白符。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
+
+**示例：** 
+  ```js
+  var iswhitespace = i18n.Unicode.isWhitespace("a");  // 返回false
+  ```
+
+
+### isRTL<sup>9+</sup>
+
+static isRTL(char: string): boolean
+
+判断字符串char是否是从右到左语言的字符。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
+
+**示例：** 
+  ```js
+  var isrtl = i18n.Unicode.isRTL("a");  // 返回false
+  ```
+
+
+### isIdeograph<sup>9+</sup>
+
+static isIdeograph(char: string): boolean
+
+判断字符串char是否是表意文字。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
+
+**示例：** 
+  ```js
+  var isideograph = i18n.Unicode.isIdeograph("a");  // 返回false
+  ```
+
+
+### isLetter<sup>9+</sup>
+
+static isLetter(char: string): boolean
+
+判断字符串char是否是字母。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
+
+**示例：** 
+  ```js
+  var isletter = i18n.Unicode.isLetter("a");  // 返回true
+  ```
+
+
+### isLowerCase<sup>9+</sup>
+
+static isLowerCase(char: string): boolean
+
+判断字符串char是否是小写字母。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
+
+**示例：** 
+  ```js
+  var islowercase = i18n.Unicode.isLowerCase("a");  // 返回true
+  ```
+
+
+### isUpperCase<sup>9+</sup>
+
+static isUpperCase(char: string): boolean
+
+判断字符串char是否是大写字母。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
+
+**示例：** 
+  ```js
+  var isuppercase = i18n.Unicode.isUpperCase("a");  // 返回false
+  ```
+
+
+### getType<sup>9+</sup>
+
+static getType(char: string): string
+
+获取输入字符串的一般类别值。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型     | 说明          |
+| ------ | ----------- |
+| string | 输入字符的一般类别值。 |
+
+**示例：** 
+  ```js
+  var type = i18n.Unicode.getType("a");
+  ```
+
+
+## I18NUtil<sup>9+</sup>
+
+
+### unitConvert<sup>9+</sup>
+
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+
+将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
+| toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
+| value    | number                 | 是    | 要被转换的单位的数量值。                             |
+| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+
+**返回值：** 
+
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| string | 按照toUnit的单位格式化后，得到的字符串。 |
+
+**示例：** 
+  ```js
+  i18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  ```
+
+
+### getDateOrder<sup>9+</sup>
+
+static getDateOrder(locale: string): string
+
+获取某一区域的日期的年、月、日排列顺序。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型     | 必填   | 说明                        |
+| ------ | ------ | ---- | ------------------------- |
+| locale | string | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。 |
+
+**返回值：** 
+
+| 类型     | 说明                  |
+| ------ | ------------------- |
+| string | 返回某一区域的日期的年、月、日排列顺序 |
+
+**示例：** 
+  ```js
+  i18n.I18NUtil.getDateOrder("zh-CN");
   ```

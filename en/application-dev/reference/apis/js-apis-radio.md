@@ -389,7 +389,7 @@ promise.then(data => {
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -470,7 +470,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 isRadioOn\(slotId?: number\): Promise<boolean\>
 
-Checks whether the radio service is enabled. This API uses a promise to return the result.
+Checks whether the radio service is enabled on the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -505,7 +505,7 @@ promise.then(data => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the carrier name. This API uses an asynchronous callback to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -530,7 +530,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 getOperatorName\(slotId: number\): Promise<string\>
 
-Obtains the carrier name. This API uses a promise to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -905,8 +905,6 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
-
-
 This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
@@ -927,13 +925,45 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(\): Promise<void\>
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
 
-Sends a cell location update request. This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
+
+Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+
+This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -944,7 +974,8 @@ This is a system API.
 **Example**
 
 ```js
-let promise = radio.sendUpdateCellLocationRequest();
+let slotId = 0;
+let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -983,7 +1014,7 @@ radio.getCellInformation((err, data) => {
 
 getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
 
-Obtains cell information. This API uses an asynchronous callback to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1012,7 +1043,7 @@ radio.getCellInformation(slotId, (err, data) => {
 
 getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
-Obtains cell information. This API uses a promise to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1134,7 +1165,7 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
 
 This is a system API.
 
@@ -1161,7 +1192,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 getNetworkSearchInformation\(slotId: number\): Promise<void\>
 
-Obtains network search information. This API uses a promise to return the result.
+Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1221,7 +1252,7 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1248,7 +1279,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
-Obtains the NR option mode. This API uses a promise to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1466,7 +1497,7 @@ promise.then(data => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
 
-Sets the preferred network. This API uses an asynchronous callback to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1494,7 +1525,7 @@ radio.setPreferredNetwork(0, 1, (err, data) => {
 
 setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
 
-Sets the preferred network. This API uses a promise to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1530,7 +1561,7 @@ promise.then(data => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
 
-Obtains the preferred network. This API uses an asynchronous callback to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1557,7 +1588,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 getPreferredNetwork(slotId: number): Promise<void\>
 
-Obtains the preferred network. This API uses a promise to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1592,7 +1623,7 @@ promise.then(data => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
 
-Obtains the IMS registration status of the specified IMS service type. This API uses an asynchronous callback to return the result.
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1620,7 +1651,7 @@ radio.getImsRegInfo(0, 1, (err, data) => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
-Obtains the IMS registration status of the specified IMS service type. This API uses a promise to return the result.
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses a promise to return the result.
 
 This is a system API.
 
@@ -1656,7 +1687,7 @@ promise.then(data => {
 
 on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
 
-Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
@@ -1685,7 +1716,7 @@ radio.on('imsRegStateChange', 0, 1, (err, data) => {
 
 off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
 
-Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 This is a system API.
 
