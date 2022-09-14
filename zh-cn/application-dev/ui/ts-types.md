@@ -18,14 +18,6 @@
 
   filename：工程中resources/rawfile目录下的文件名称。
 
-  | 名称                    | 类型   | 可读 | 可写 | 说明       |
-  | ----------------------- | ------ | ---- | ---- | ---------- |
-  | id                      | number | 是   | 否   | 资源id值。    |
-  | type                    | number | 是   | 否   | 资源类型。    |
-  | params                  | any[]  | 是   | 否   | 资源可选参数  |
-  | bundleName<sup>9+</sup> | string | 是   | 否   | 资源包名称。  |
-  | moduleName<sup>9+</sup> | string | 是   | 否   | 资源模块名称。|
-
 ## Length
 
 长度类型，用于描述尺寸单位。
@@ -84,10 +76,10 @@
 
   | 名称        | 类型     | 必填 | 说明                 |
   | ----------- | ------  | ---- |--------------------- |
-  | topLeft     | Length   |  否  | 组件上边框宽度。      |
-  | topRight    | Length   |  否  | 组件右边框宽度。      |
-  | bottomLeft  | Length   |  否  | 组件下边框宽度。      |
-  | bottomRight | Length   |  否  | 组件左边框宽度。      |
+  | topLeft     | Length   |  否  | 组件左上角圆角半径。      |
+  | topRight    | Length   |  否  | 组件右上角圆角半径。      |
+  | bottomLeft  | Length   |  否  | 组件左下角圆角半径。      |
+  | bottomRight | Length   |  否  | 组件右下角圆角半径。      |
 
 ## EdgeColors<sup>9+</sup>
 
@@ -203,7 +195,7 @@
 | ------ | ----------------------- | ---- | ----------- |
 | width  | Length  \| EdgeWidths<sup>9+</sup>  |  否  | 边框宽度。   |
 | color  | ResourceColor \| EdgeColors<sup>9+</sup> |  否  | 边框颜色。   |
-| radius | Length \| BorderRadiuses<sup>9+</sup>  |  否  | 边框角度。   |
+| radius | Length \| BorderRadiuses<sup>9+</sup>  |  否  | 边框圆角半径。   |
 | style  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> |  否  | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
