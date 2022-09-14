@@ -52,7 +52,7 @@ await cameraManager.getCameras((err, cameras) => {
     cameraArray = cameras
 })
 
-for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
+for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex++) {
     console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          //获取相机ID
     console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              //获取相机位置
     console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      //获取相机类型
