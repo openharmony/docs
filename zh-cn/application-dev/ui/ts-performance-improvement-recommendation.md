@@ -260,13 +260,15 @@ struct MyComponent {
 ```
 
 ## 减少应用滑动白块
-应用通过增大List/Grid控件的cachedCount参数，可以调整UI的加载范围。cachedCount含义是屏幕外，预加载item的个数。<br>如果有网络图片请求，可以在滑动到屏幕显示之前，提前下载好内容，从而减少滑动白块。<br>
+应用通过增大List/Grid控件的cachedCount参数，调整UI的加载范围。cachedCount表示屏幕外List/Grid预加载item的个数。  
+如果需要请求网络图片，可以在item滑动到屏幕显示之前，提前下载好内容，从而减少滑动白块。  
 如下是使用cachedCount参数的例子：
+
 ```ts
 @Entry
 @Component
 struct MyComponent {
-  private source: MyDataSource = new MyDataSource()
+  private source: MyDataSource = new MyDataSource();
   build() {
     List() {
       LazyForEach (this.source, item => {
@@ -278,11 +280,11 @@ struct MyComponent {
             })
         }
       })
-    }.cachedCount(3)  // 扩大数值可以看到上面appear日志范围会变大
+    }.cachedCount(3)  // 扩大数值appear日志范围会变大
   }
 }
 class MyDataSource implements IDataSource {
-  data: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+  data: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
   public totalCount(): number {
     return this.data.length
   }
@@ -295,6 +297,6 @@ class MyDataSource implements IDataSource {
   }
 }
 ```
-**负面影响：**<br>
+**使用说明：**<br>
 cachedCount的增加会增大UI的cpu、内存开销。<br>
 使用时需要根据实际情况，综合性能和用户体验进行调整。
