@@ -23,10 +23,10 @@ ListItem()
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| sticky | [Sticky](#sticky)| Sticky.None | 设置ListItem吸顶效果。 |
-| editable  | boolean&nbsp;\|&nbsp;[EditMode](#editMode) | false       | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动。    |
+| sticky | [Sticky](#sticky枚举说明)| Sticky.None | 设置ListItem吸顶效果。 |
+| editable  | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | false       | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动。    |
 | selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect),<br/>} | - | 用于设置ListItem的划出组件。<br/>start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>edgeEffect:&nbsp;滑动效果。<br/> |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | - | 用于设置ListItem的划出组件。<br/>start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>edgeEffect:&nbsp;滑动效果。<br/> |
 
 ## Sticky枚举说明
   | 名称 | 描述 | 
