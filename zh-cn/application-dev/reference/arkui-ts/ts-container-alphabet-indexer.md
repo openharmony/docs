@@ -43,7 +43,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | itemSize                | string \| number                    | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
 | alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
 | selected | number | 设置选中项索引值。 |
-| popupPosition | {<br/>x?:[Length](ts-types.md#length)<br/>y?:[Length](ts-types.md#length)<br/>} | 设置弹出窗口相对于索引器条上边框中点的位置。 |
+| popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。 |
 
 ## IndexerAlign枚举说明
 
