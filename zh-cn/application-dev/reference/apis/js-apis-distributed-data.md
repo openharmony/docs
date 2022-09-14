@@ -560,7 +560,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知。
+订阅服务状态变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -592,7 +592,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-取消订阅服务状态变更通知。
+取消订阅服务状态变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -2368,7 +2368,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-订阅指定类型的数据变更通知。
+订阅指定类型的数据变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2394,7 +2394,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2418,7 +2418,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-取消订阅数据变更通知。
+取消订阅数据变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2454,7 +2454,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅数据变更通知，此方法为同步方法。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4047,7 +4047,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4083,7 +4083,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5557,7 +5557,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5593,7 +5593,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知，该方法为同步方法。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
