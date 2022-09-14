@@ -22,11 +22,6 @@ Circle(options?: {width?: string | number, height?: string | number})
   | width | string \| number | 否 | 0 | 宽度。 |
   | height | string \| number | 否 | 0 | 高度。 |
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| width | string&nbsp;\|&nbsp;number | 是 | - | 宽度。 |
-| height | string&nbsp;\|&nbsp;number | 是 | - | 高度。 |
-
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：

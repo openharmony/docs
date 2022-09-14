@@ -94,7 +94,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: string): GrantStatus
 ```js
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let data = verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = AtManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 console.log(`data->${JSON.stringify(data)}`);
 ```
 

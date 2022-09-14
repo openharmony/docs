@@ -30,17 +30,19 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | 名称                  | 参数类型     | 描述                                                              |
 | ----------------------- | --------------- | ----------------------------------------------------------- |
-| color                   | [ResourceColor](../../ui/ts-types.md)       | 设置文字颜色。                           |
-| selectedColor           | [ResourceColor](../../ui/ts-types.md)     | 设置选中项文字颜色。                           |
-| popupColor              | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗文字颜色。                         |
-| selectedBackgroundColor | [ResourceColor](../../ui/ts-types.md)        | 设置选中项背景颜色。                           |
-| popupBackground         | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗背景色。                            |
+| color                   | [ResourceColor](../../ui/ts-types.md#resourcecolor8)       | 设置文字颜色。                           |
+| selectedColor           | [ResourceColor](../../ui/ts-types.md#resourcecolor8)     | 设置选中项文字颜色。                           |
+| popupColor              | [ResourceColor](../../ui/ts-types.md#resourcecolor8)        | 设置提示弹窗文字颜色。                         |
+| selectedBackgroundColor | [ResourceColor](../../ui/ts-types.md#resourcecolor8)       | 设置选中项背景颜色。                           |
+| popupBackground         | [ResourceColor](../../ui/ts-types.md#resourcecolor8)        | 设置提示弹窗背景色。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。                         |
-| selectedFont            | [Font](../../ui/ts-types.md) | 设置选中项文字样式。                           |
-| popupFont               | [Font](../../ui/ts-types.md) | 设置提示弹窗字体样式。                         |
-| font                    | [Font](../../ui/ts-types.md) | 设置字母索引条默认字体样式。                      |
-| itemSize                | Length                                   | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
+| selectedFont            | [Font](../../ui/ts-types.md#font) | 设置选中项文字样式。                           |
+| popupFont               | [Font](../../ui/ts-types.md#font) | 设置提示弹窗字体样式。                         |
+| font                    | [Font](../../ui/ts-types.md#font) | 设置字母索引条默认字体样式。                      |
+| itemSize                | string \| number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
 | alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
+| selected | number | 设置选中项索引值。 |
+| popupPosition | [Position](../../ui/ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。 |
 
 - IndexerAlign枚举说明
   | 名称 | 描述 |

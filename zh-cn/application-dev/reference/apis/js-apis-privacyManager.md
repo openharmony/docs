@@ -42,6 +42,12 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
+import bundle from '@ohos.bundle';
+import privacyManager from '@ohos.privacyManager';
+
+let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
+let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+
 var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
 privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
@@ -72,8 +78,14 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
+import bundle from '@ohos.bundle';
+import privacyManager from '@ohos.privacyManager';
+
+let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
+let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+
 var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
-privacyManager.privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
+privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
@@ -105,10 +117,10 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 ```js
 let request = {
     "tokenId": 1,
-    "isRemote": 1,
+    "isRemote": false,
     "deviceId": "device",
     "bundleName": "bundle",
-    "permissionNames": 1,
+    "permissionNames": [],
     "beginTime": 0,
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
@@ -140,10 +152,10 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 ```js
 let request = {
     "tokenId": 1,
-    "isRemote": 1,
+    "isRemote": false,
     "deviceId": "device",
     "bundleName": "bundle",
-    "permissionNames": 1,
+    "permissionNames": [],
     "beginTime": 0,
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
