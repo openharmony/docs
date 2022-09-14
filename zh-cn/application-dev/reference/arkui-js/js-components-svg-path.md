@@ -1,7 +1,7 @@
 # path
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 绘制路径。
@@ -13,12 +13,12 @@
 
 ## 子组件
 
-支持animate、animateMotion、animateTransform。
+支持[animate](js-components-svg-animate.md)、[animateMotion](js-components-svg-animatemotion.md)、[animateTransform](js-components-svg-animatetransform.md)。
 
 
 ## 属性
 
-支持Svg组件[通用属性](../arkui-js/js-components-svg-common-attributes.md)和以下属性，设置的通用属性会传递给子组件。
+支持Svg组件[通用属性](js-components-svg-common-attributes.md)和以下属性，设置的通用属性会传递给子组件。
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -28,7 +28,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
     <svg width="400" height="400">
