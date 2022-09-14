@@ -3,12 +3,8 @@
 显示一段文本的组件。
 
 >  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -18,34 +14,35 @@
 
 ## 接口
 
-Text(content?: ResourceStr)
+Text(content?: string | Resource)
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | content | [ResourceStr](../../ui/ts-types.md#resourcestr8) | 否 | '' | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
+**参数：**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](../../ui/ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 
 ## 属性
 
-Text组件除以下属性外同时包含[文本样式设置](ts-universal-attributes-text-style.md)的属性。
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | TextAlign.Start | 设置多行文本的文本对齐方式。 |
-| textOverflow | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | {overflow:&nbsp;TextOverflow.Clip} | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。<br />需配合`maxLines`使用，单独设置不生效。 |
-| maxLines | number | Infinity | 设置文本的最大行数。<br />**说明：**<br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。 |
-| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
-| baselineOffset | number \| string         | -         | 设置文本基线的偏移量。                              |
-| letterSpacing       | [Length](../../ui/ts-types.md)                 | -                          | 设置文本字符间距。                                 |
-| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最小显示字号。                                 |
-| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | -     | 设置文本最大显示字号。                                 |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | TextCase.Normal | 设置文本大小写。 |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | CopyOptions.None | 组件支持设置文本是否可复制粘贴。 |
-  
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 设置多行文本的文本对齐方式。<br/>默认值：TextAlign.Start |
+| textOverflow | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 设置文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip}<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。<br />需配合`maxLines`使用，单独设置不生效。 |
+| maxLines | number | 设置文本的最大行数。<br />默认值：Infinity<br/>**说明：**<br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。 |
+| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
+| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| baselineOffset | number&nbsp;\|&nbsp;string | 设置文本基线的偏移量。                              |
+| letterSpacing       | number&nbsp;\|&nbsp;string | 设置文本字符间距。                                 |
+| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | 设置文本最小显示字号。                                 |
+| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | 设置文本最大显示字号。                                 |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br />默认值：TextCase.Normal |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本是否可复制粘贴。<br />默认值：CopyOptions.None |
+
 >  **说明：**
-> 不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
+>
+>  不支持Text内同时存在文本内容和Span子组件。如果同时存在，只显示Span内的内容。
 
 
 ## 示例
