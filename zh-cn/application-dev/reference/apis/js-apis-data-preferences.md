@@ -44,9 +44,15 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
 var preferences = null;
-data_preferences.getPreferences(this.context, 'mystore', function (err, object) {
+data_preferences.getPreferences(context, 'mystore', function (err, object) {
     if (err) {
         console.info("Failed to get preferences. Cause: " + err);
         return;
@@ -56,6 +62,28 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, object) 
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+var preferences = null;
+data_preferences.getPreferences(context, 'mystore', function (err, object) {
+    if (err) {
+        console.info("Failed to get preferences. Cause: " + err);
+        return;
+    }
+    preferences = object;
+    console.info("Succeeded in getting preferences.");
+})
+```
 
 ## data_preferences.getPreferences
 
@@ -80,9 +108,15 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
 var preferences = null;
-let promise = data_preferences.getPreferences(this.context, 'mystore')
+let promise = data_preferences.getPreferences(context, 'mystore')
 promise.then((object) => {
     preferences = object;
     console.info("Succeeded in getting preferences.");
@@ -91,6 +125,27 @@ promise.then((object) => {
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+var preferences = null;
+let promise = data_preferences.getPreferences(context, 'mystore')
+promise.then((object) => {
+    preferences = object;
+    console.info("Succeeded in getting preferences.");
+}).catch((err) => {
+    console.info("Failed to get preferences. Cause: " + err);
+})
+```
 
 ## data_preferences.deletePreferences
 
@@ -114,8 +169,14 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **示例：**
 
+FA模型示例：
+
 ```js
-data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+data_preferences.deletePreferences(context, 'mystore', function (err) {
     if (err) {
         console.info("Failed to delete preferences. Cause: " + err);
         return
@@ -124,6 +185,26 @@ data_preferences.deletePreferences(this.context, 'mystore', function (err) {
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+data_preferences.deletePreferences(context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to delete preferences. Cause: " + err);
+        return
+    }
+    console.info("Succeeded in deleting preferences." );
+})
+```
 
 ## data_preferences.deletePreferences
 
@@ -152,8 +233,14 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 
+FA模型示例：
+
 ```js
-let promise = data_preferences.deletePreferences(this.context, 'mystore')
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+let promise = data_preferences.deletePreferences(context, 'mystore')
 promise.then(() => {
     console.info("Succeeded in deleting preferences.");
 }).catch((err) => {
@@ -161,6 +248,25 @@ promise.then(() => {
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+let promise = data_preferences.deletePreferences(context, 'mystore')
+promise.then(() => {
+    console.info("Succeeded in deleting preferences.");
+}).catch((err) => {
+    console.info("Failed to delete preferences. Cause: " + err);
+})
+```
 
 ## data_preferences.removePreferencesFromCache
 
@@ -182,8 +288,14 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 **示例：**
 
+FA模型示例：
+
 ```js
-data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
     if (err) {
         console.info("Failed to remove preferences. Cause: " + err);
         return;
@@ -192,6 +304,26 @@ data_preferences.removePreferencesFromCache(this.context, 'mystore', function (e
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to remove preferences. Cause: " + err);
+        return;
+    }
+    console.info("Succeeded in removing preferences.");
+})
+```
 
 ## data_preferences.removePreferencesFromCache
 
@@ -218,8 +350,14 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 
+FA模型示例：
+
 ```js
-let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+let promise = data_preferences.removePreferencesFromCache(context, 'mystore')
 promise.then(() => {
     console.info("Succeeded in removing preferences.");
 }).catch((err) => {
@@ -227,6 +365,25 @@ promise.then(() => {
 })
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import Ability from '@ohos.application.Ability'
+var context
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context
+    }
+}
+
+let promise = data_preferences.removePreferencesFromCache(context, 'mystore')
+promise.then(() => {
+    console.info("Succeeded in removing preferences.");
+}).catch((err) => {
+    console.info("Failed to remove preferences. Cause: " + err);
+})
+```
 
 ## Preferences
 
