@@ -381,6 +381,53 @@ context.getDisplayOrientation().then((data) => {
 });
 ```
 
+## Context.getExternalCacheDir
+
+getExternalCacheDir(callback: AsyncCallback\<string>): void
+
+获取应用程序的外部缓存目录（callback形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 名称       | 类型                     | 必填   | 描述                 |
+| -------- | ---------------------- | ---- | ------------------ |
+| callback | AsyncCallback\<string> | 是    | 返回应用程序的缓存目录的绝对路径。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getExternalCacheDir()
+```
+
+## Context.getExternalCacheDir
+
+getExternalCacheDir(): Promise\<string>;
+
+获取应用程序的外部缓存目录（Promise形式）。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型               | 说明               |
+| ---------------- | ---------------- |
+| Promise\<string> | 返回应用程序的缓存目录的绝对路径。 |
+
+**示例：**
+
+```js
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext();
+context.getExternalCacheDir().then((data) => {
+    console.info("=======================>getExternalCacheDirCallback====================>");
+    console.info("====>data====>" + JSON.stringify(data));
+});
+```
+
 ## Context.setDisplayOrientation<sup>7+</sup>
 
 setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCallback\<void>): void
