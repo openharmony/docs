@@ -297,6 +297,5 @@ class MyDataSource implements IDataSource {
   }
 }
 ```
-**使用说明：**<br>
-cachedCount的增加会增大UI的cpu、内存开销。<br>
-使用时需要根据实际情况，综合性能和用户体验进行调整。
+**使用说明：**
+cachedCount的增加会增大UI的cpu、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
