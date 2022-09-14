@@ -7,11 +7,6 @@
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含[Span](ts-basic-components-span.md)子组件。
@@ -23,24 +18,24 @@ Text(content?: string | Resource)
 
 **参数：**
 
-| 参数名  | 参数类型                                   | 必填 | 默认值 | 参数描述                                                     |
-| ------- | ------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| content | string \| [Resource](ts-types.md#resource) | 否   | ''     | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。 |
+| 参数名  | 参数类型                                   | 必填 | 参数描述                                                     |
+| ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| content | string \| [Resource](ts-types.md#resource) | 否   | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 
 ## 属性
 
-| 名称             | 参数类型                                     | 默认值                                      | 描述                                       |
-| -------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| textAlign      | [TextAlign](ts-appendix-enums.md#textalign)       | TextAlign.Start                          | 设置多行文本的文本对齐方式。                           |
-| textOverflow   | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)}            | {overflow:&nbsp;TextOverflow.Clip}       | 设置文本超长时的显示方式。<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
-| maxLines       | number                                   | Infinity                                 | 设置文本的最大行数。                               |
-| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | - | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration     | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | {<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。                           |
-| baselineOffset | number \| string | -         | 设置文本基线的偏移量。                              |
-| letterSpacing       | number \| string | -                          | 设置文本字符间距。                                 |
-| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -     | 设置文本最小显示字号。                                 |
-| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | -     | 设置文本最大显示字号。                                 |
-| textCase       | [TextCase](ts-appendix-enums.md#textcase)          | TextCase.Normal                          | 设置文本大小写。                                 |
+| 名称             | 参数类型                                     | 描述                                       |
+| -------------- | ---------------------------------------- | ---------------------------------------- |
+| textAlign      | [TextAlign](ts-appendix-enums.md#textalign)       | 设置多行文本的文本对齐方式。<br/>默认值：TextAlign.Start   |
+| textOverflow   | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)}            | 设置文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip}<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。 |
+| maxLines       | number                                   | 设置文本的最大行数。<br/>默认值：Infinity              |
+| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
+| decoration     | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| baselineOffset | number \| string | 设置文本基线的偏移量。                              |
+| letterSpacing       | number \| string | 设置文本字符间距。                                 |
+| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置文本最小显示字号。                                 |
+| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置文本最大显示字号。                                 |
+| textCase       | [TextCase](ts-appendix-enums.md#textcase)          | 设置文本大小写。<br/>默认值：TextCase.Normal         |
 
 
 >  **说明：**
