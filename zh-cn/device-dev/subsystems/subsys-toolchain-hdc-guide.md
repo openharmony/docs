@@ -232,10 +232,10 @@ hdc_std list targets -v
 
 客户端远程访问服务器
 
-1.- **kill** 
+1 **kill** 
   关闭sever。
 
-2.- **-s [ip:]port -m** 
+2 **-s [ip:]port -m** 
   启动server。
 
   使用方法：
@@ -244,7 +244,7 @@ hdc_std list targets -v
 hdc_std -s severIP:8710 -m
 ```
 
-3.- **-s [ip:]port command**
+3 **-s [ip:]port command**
   指定server执行指令。
 
   使用方法：
