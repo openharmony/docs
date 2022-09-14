@@ -66,7 +66,8 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-   | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | 是 | 要序列化并写入MessageParcel的远程对象。 |
 
@@ -156,7 +157,8 @@ writeInterfaceToken(token: string): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-   | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | string | 是 | 字符串类型描述符。 |
 
