@@ -8,17 +8,7 @@
 
 ## 权限列表
 
-使用网络视频时，需要在config或者module.json对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
-
-```js
-"abilities":[
-  {
-    ...
-    "permissions": ["ohos.permission.INTERNET"],
-    ...
-  }
-]
-```
+使用网络视频时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 
 ## 子组件

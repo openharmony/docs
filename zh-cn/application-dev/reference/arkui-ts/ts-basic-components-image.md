@@ -6,19 +6,9 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限说明
+## 需要权限
 
-使用网络图片时，需要在config.json（FA模型）或者module.json5（Stage模型）对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
-
-```
-"abilities": [
-  {
-    ...
-    "permissions": ["ohos.permission.INTERNET"],
-    ...
-  }
-] 
-```
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 
 ## 子组件
@@ -42,21 +32,21 @@ Image(src: string | PixelMap | Resource)
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称                  | 参数类型                                                | 默认值                   | 描述                                                         |
-| --------------------- | ------------------------------------------------------- | ------------------------ | ------------------------------------------------------------ |
-| alt                   | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                 |
-| objectFit             | [ImageFit](ts-appendix-enums.md#imagefit)                           | ImageFit.Cover           | 设置图片的缩放类型。                                         |
-| objectRepeat          | [ImageRepeat](ts-appendix-enums.md#imagerepeat)         | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
-| interpolation         | [ImageInterpolation](#imageinterpolation)               | ImageInterpolation.None  | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
-| renderMode            | [ImageRenderMode](#imagerendermode)                     | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
-| sourceSize            | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
-| matchTextDirection     | boolean | false        | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。                 |
-| fitOriginalSize        | boolean | true        | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。                 |
-| fillColor              | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | -    | 仅对svg图源生效，设置后会替换svg图片的fill颜色。                 |
-| autoResize             | boolean | true        | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。           |
-| syncLoad<sup>8+</sup> | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9)  | CopyOptions.None | 设置图片是否可复制（SVG图片不支持复制）。<br/>当设置copyOption为非CopyOptions.None时，支持快捷组合键'CTRL+C'进行复制。 |
-| colorFilter<sup>9+</sup> | [ColorFilter](../../ui/ts-types.md#colorfilter9) | - | 给图像设置颜色滤镜效果。 |
+| 名称                       | 参数类型                                     | 默认值                      | 描述                                       |
+| ------------------------ | ---------------------------------------- | ------------------------ | ---------------------------------------- |
+| alt                      | string \| [Resource](../../ui/ts-types.md#resource类型) | -                        | 加载时显示的占位图，支持本地图片和网络图片。                   |
+| objectFit                | [ImageFit](ts-appendix-enums.md#imagefit) | ImageFit.Cover           | 设置图片的缩放类型。                               |
+| objectRepeat             | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | NoRepeat                 | 设置图片的重复样式。<br/>> **说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| interpolation            | [ImageInterpolation](#imageinterpolation) | ImageInterpolation.None  | 设置图片的插值效果，即减轻低清晰度图片在放大显示的时候出现的锯齿问题，仅针对图片放大插值。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。<br/>>&nbsp;-&nbsp;PixelMap资源不支持该属性。 |
+| renderMode               | [ImageRenderMode](#imagerendermode)      | ImageRenderMode.Original | 设置图片渲染的模式。<br/>>&nbsp;**说明：**<br/>>&nbsp;-&nbsp;svg类型图源不支持该属性。 |
+| sourceSize               | {<br/>width:&nbsp;number,<br/>height:&nbsp;number<br/>} | -                        | 设置图片裁剪尺寸，将原始图片解码成pixelMap，指定尺寸的图片，单位为px。<br/>>&nbsp;**说明：**<br/>>&nbsp;PixelMap资源不支持该属性。 |
+| matchTextDirection       | boolean                                  | false                    | 设置图片是否跟随系统语言方向，在RTL语言环境下显示镜像翻转显示效果。      |
+| fitOriginalSize          | boolean                                  | true                     | 图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。                |
+| fillColor                | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | -                        | 仅对svg图源生效，设置后会替换svg图片的fill颜色。            |
+| autoResize               | boolean                                  | true                     | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。 |
+| syncLoad<sup>8+</sup>    | boolean                                  | false                    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | CopyOptions.None         | 设置图片是否可复制（SVG图片不支持复制）。<br/>当设置copyOption为非CopyOptions.None时，支持快捷组合键'CTRL+C'进行复制。 |
+| colorFilter<sup>9+</sup> | [ColorFilter](../../ui/ts-types.md#colorfilter9) | -                        | 给图像设置颜色滤镜效果。                             |
 
 >  **说明：**
 >  使用快捷组合键对Image组件复制的前提是，该组件必须处于获焦状态。将Image组件的属性focusable设置为true，即可使用TAB键将焦点切换到Image组件上，再将Image组件的focusOnTouch属性设置为true，即可实现点击获焦。
