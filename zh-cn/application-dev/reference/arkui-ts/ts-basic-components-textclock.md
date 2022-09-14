@@ -42,7 +42,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 ## TextClockController
 
-TextClock容器组件的控制器，可以将此对象绑定到TextClock组件，再通过它控制文本时钟的启动与停止。
+TextClock容器组件的控制器，可以将此对象绑定到TextClock组件，再通过它控制文本时钟的启动与停止。一个TextClock组件仅支持绑定一个控制器。
 
 ### 导入对象
 
