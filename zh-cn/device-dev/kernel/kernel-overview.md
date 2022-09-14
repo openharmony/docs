@@ -27,9 +27,9 @@
 
 - 负责本机操作系统和另外一个设备上操作系统通信的“网络”。
 
-同理，OpenHarmony内核采用了包含Linux， LiteOS-A，LiteOS-M在内的多内核结构，支持多种内核，可按不同产品规格进行选择使用，包括Linux， LiteOS-A，LiteOS-M。以上几个组成单元是这几个内核均具备的，只是实现方式有所不同。并且，多个内核通过KAL（Kernel Abstraction Layer）模块，向上提供统一的标准接口。
+OpenHarmony采用了多内核结构，支持Linux和LiteOS，开发者可按不同产品规格进行选择使用。linux和LiteOS均具备上述组成单元，只是实现方式有所不同。多个内核通过KAL（Kernel Abstraction Layer）模块，向上提供统一的标准接口。
 
-内核子系统是位于OpenHarmony的下层。需要特别注意的是，由于OpenHarmony面向多种设备类型，这些设备有着不同的CPU能力，存储大小等。为了更好的适配这些不同的设备类型，内核子系统支持针对不同资源等级设备选用适合的OS内核，内核抽象层（KAL，Kernel Abstract Layer）通过屏蔽内核间差异，对上层提供基础的内核能力。
+内核子系统位于OpenHarmony下层。需要特别注意的是，由于OpenHarmony面向多种设备类型，这些设备有着不同的CPU能力，存储大小等。为了更好的适配这些不同的设备类型，内核子系统支持针对不同资源等级的设备选用适合的OS内核，内核抽象层（KAL，Kernel Abstract Layer）通过屏蔽内核间差异，对上层提供基础的内核能力。
 
   **图2** OpenHarmony架构图 
 
@@ -50,7 +50,7 @@ OpenHarmony按照支持的设备可分为如下几种系统类型：
 - 标准系统（standard system）
   面向应用处理器例如Arm Cortex-A的设备，支持的设备最小内存为128MiB，可以提供增强的交互能力、3D GPU以及硬件合成能力、更多控件以及动效更丰富的图形能力、完整的应用框架。可支撑的产品如高端的冰箱显示屏。
 
-OpenHarmony针对不同量级的系统，使用了不同形态的内核，分别为LiteOS和Linux。轻量系统、小型系统可以选用LiteOS；小型系统和标准系统可以选用Linux。其对应关系如下表：
+OpenHarmony针对不同量级的系统，使用了不同形态的内核。轻量系统、小型系统可以选用LiteOS；小型系统和标准系统可以选用Linux。其对应关系如下表：
 
   **表1** 系统关系对应表
 
@@ -85,7 +85,7 @@ LiteOS-M使用指导请参见LiteOS-M[内核概述](kernel-mini-overview.md)的�
 
 OpenHarmony 轻量级内核是基于IoT领域轻量级物联网操作系统Huawei LiteOS内核演进发展的新一代内核，包含LiteOS-M和LiteOS-A两类内核。LiteOS-M内核主要应用于轻量系统，面向的MCU（Microprocessor Unit）一般是百K级内存，可支持MPU（Memory Protection Unit）隔离，业界类似的内核有FreeRTOS或ThreadX等；LiteOS-A内核主要应用于小型系统，面向设备一般是M级内存，可支持MMU（Memory Management Unit）隔离，业界类似的内核有Zircon或Darwin等。
 
-为适应IoT产业的高速发展，OpenHarmony 轻量级内核不断优化和扩展，能够带给应用开发者友好的开发体验和统一开放的生态系统能力。轻量级内核LiteOS-A重要的新特性如下：
+为适应IoT产业的高速发展，OpenHarmony 轻量级内核不断优化和扩展，能够带给开发者友好的开发体验和统一开放的生态系统能力。轻量级内核LiteOS-A重要的新特性如下：
 
 - 新增了丰富的内核机制：
   - 新增虚拟内存、系统调用、多核、轻量级IPC（Inter-Process Communication，进程间通信）、DAC（Discretionary Access Control，自主访问控制）等机制，丰富了内核能力；
