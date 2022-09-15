@@ -14,7 +14,7 @@
 
 ## 接口
 
-Blank(min?:  number&nbsp;|&nbsp;string)
+Blank(min?: number&nbsp;|&nbsp;string)
 
 **参数：**
 

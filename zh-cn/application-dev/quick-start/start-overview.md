@@ -45,7 +45,7 @@ FA模型和Stage模型的工程目录结构存在差异，Stage模型只支持�
 
 ## 工具准备
 
-1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta)。
+1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download)。
 
 2. 请参考[配置OpenHarmony SDK](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443)，完成**DevEco Studio**的安装和开发环境配置。
 

@@ -343,15 +343,22 @@ for (var i = 0; i < strLen; ++i) {
 }
 var that = new xml.XmlPullParser(arrayBuffer);
 var arrTag = {};
-arrTag[0] = '132';
-var i = 1;
+var str = "";
+var i = 0;
 function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
+    str += arrTag[i];
     i++;
-    return true;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
 }
 var options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
+// 解析:
+// key代表了当前事件类型，value为当前解析的深度。你可以根据EVENTTYPE来知道具体的解析事件。例如本示例结果key: value代表含义为:
+// 0(START_DOCUMENT):0(起始深度为0), 2(START_TAG):1(解析到开始标签node, 对应深度为1), 10(WHITESPACE):1(解析到空白标签空格, 对应深度为1), 2(START_TAG):2(解析到开始标签title, 对应深度为1), ...
 ```
 
 

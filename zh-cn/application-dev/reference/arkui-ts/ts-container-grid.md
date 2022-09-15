@@ -8,11 +8,6 @@
 
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 包含[GridItem](ts-container-griditem.md)子组件。
@@ -37,27 +32,36 @@ Grid(scroller?: Scroller)
 | columnsGap | Length | 0 | 用于设置列与列的间距。 |
 | rowsGap | Length | 0 | 用于设置行与行的间距。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color              | -                        | 设置滚动条的颜色。 |
-| scrollBarWidth | Length                                   | -                        | 设置滚动条的宽度。 |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)             | -                        | 设置滚动条的颜色。 |
+| scrollBarWidth | number&nbsp;\|&nbsp;string                                | -                        | 设置滚动条的宽度。 |
 | cachedCount | number                                   | 1                        | 设置预加载的GridItem的数量。 |
-| editMode <sup>8+</sup>                   | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
-| layoutDirection<sup>8+</sup>             | GridDirection  | GridDirection.Row     | 设置布局的主轴方向。 |
+| editMode <sup>8+</sup>                   | boolean | false | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
+| layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明)  | GridDirection.Row     | 设置布局的主轴方向。 |
 | maxCount<sup>8+</sup> | number  | 1     | 当layoutDirection是Row/RowReverse时，表示可显示的最大行数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大列数。 |
 | minCount<sup>8+</sup> | number  | 1     | 当layoutDirection是Row/RowReverse时，表示可显示的最小行数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小列数。 |
 | cellLength<sup>8+</sup> | number  | 0     | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。 |
 | multiSelectable<sup>8+</sup> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | supportAnimation<sup>8+</sup> | boolean | false | 是否支持动画。 |
 
+## GridDirection<sup>8+</sup>枚举说明
+
+| 名称   | 描述                                   |
+  | ------ | -------------------------------------- |
+| Row  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
+| Column | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
+| RowReverse    | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
+| ColumnReverse   | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
+
 ## 事件
 
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onScrollIndex(event: (first: number) => void) | 当前网格显示的起始位置item发生变化时触发，返回值为当前显示的网格起始位置的索引值。 |
-| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发，返回值event见ItemDragInfo对象说明，itemIndex为被拖拽网格元素索引值。 |
-| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发，返回值event见ItemDragInfo对象说明。 |
-| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置。 |
-| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽离开的网格元素索引值。 |
-| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发，返回值event见ItemDragInfo对象说明，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置，isSuccess为是否成功释放。 |
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发，返回值event见[ItemDragInfo对象说明](#itemdraginfo对象说明)，itemIndex为被拖拽网格元素索引值。 |
+| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发，返回值event见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
+| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发，返回值event见[ItemDragInfo对象说明](#itemdraginfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置。 |
+| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发，返回值event见[ItemDragInfo对象说明](#itemdraginfo对象说明)，itemIndex为拖拽离开的网格元素索引值。 |
+| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发，返回值event见[ItemDragInfo对象说明](#itemdraginfo对象说明)，itemIndex为拖拽起始位置，insertIndex为拖拽插入位置，isSuccess为是否成功释放。 |
 
 ## ItemDragInfo对象说明
 

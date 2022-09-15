@@ -23,6 +23,7 @@ enableHotspot(): boolean;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | 操作结果， true: 成功， false: 失败。 |
@@ -39,6 +40,7 @@ disableHotspot(): boolean;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | 操作结果， true: 成功， false: 失败。 |
@@ -55,6 +57,7 @@ getSupportedPowerModel(): Promise&lt;Array&lt;PowerModel&gt;&gt;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise对象。表示功率模式。 |
@@ -84,6 +87,7 @@ getSupportedPowerModel(callback: AsyncCallback&lt;Array&lt;PowerModel&gt;&gt;): 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示支持的功率模式。如果error为非0，表示处理出现错误。 |
@@ -100,6 +104,7 @@ getPowerModel(): Promise&lt;PowerModel&gt;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[PowerModel](#powermodel)&gt; | Promise对象。表示功率模式。 |
@@ -116,6 +121,7 @@ getPowerModel(callback: AsyncCallback&lt;PowerModel&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示功率模式。如果error为非0，表示处理出现错误。 |
@@ -132,11 +138,13 @@ setPowerModel(model: PowerModel) : boolean;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Extension
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | model | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | 是 | 功率模式。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | 操作结果， true: 成功， false: 失败。 |

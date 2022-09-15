@@ -89,9 +89,9 @@ Enumerates the device states.
 
 | Name     | Default Value | Description             |
 | ------- | ---- | --------------- |
-| ONLINE  | 0    | The device is online.          |
-| READY   | 1    | The device is ready, and the device information has been synchronized.|
-| OFFLINE | 2    | The device is offline.          |
+| ONLINE  | 0    | The device is physically online.          |
+| READY   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
+| OFFLINE | 2    | The device is physically offline.          |
 | CHANGE  | 3    | The device information is changed.        |
 
 ## SubscribeInfo

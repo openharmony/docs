@@ -23,16 +23,19 @@ createDistributedObject(source: object): DistributedObject
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | source | object | 是 | 设置distributedObject的属性。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [DistributedObject](#distributedobject) | 创建完成的分布式对象。 |
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 // 创建对象，对象包含4个属性类型，string,number,boolean和Object
@@ -49,11 +52,13 @@ genSessionId(): string
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | string | 随机创建的sessionId。 |
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 var sessionId = distributedObject.genSessionId();
@@ -118,7 +123,6 @@ g_object.setSessionId(distributedObject.genSessionId());
 g_object.setSessionId("");
 ```
 
-
 ### on('change')
 
 on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
@@ -128,12 +132,14 @@ on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;stri
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
   | callback | Callback<{ sessionId: string, fields: Array&lt;string&gt; }> | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
@@ -157,6 +163,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
@@ -164,6 +171,7 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
@@ -182,12 +190,14 @@ on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, st
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
   | callback | Callback<{ sessionId: string, networkId: string, status: 'online' \| 'offline' }> | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备，即deviceId； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 globalThis.statusCallback = (sessionId, networkId, status) => {
@@ -201,12 +211,12 @@ g_object.on("status", globalThis.statusCallback);
 
 off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, status: 'online' | 'offline' }>): void
 
-
 当不再进行对象上下线监听时，使用此接口删除对象的上下线监听。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
@@ -214,6 +224,7 @@ off(type: 'status', callback?: Callback<{ sessionId: string, deviceId: string, s
 
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject'; 
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
@@ -243,12 +254,14 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 保存数据的deviceId，当deviceId为"local"，代表存储在本地设备。 |
   | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | 是 | 回调函数。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。 |
 
 **示例：**
+
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
@@ -279,6 +292,7 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 保存数据的设备号，当deviceId默认为"local"，标识需要保存对象的设备。 |
@@ -317,6 +331,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 否 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |

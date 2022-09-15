@@ -7,19 +7,9 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限说明
+## 需要权限
 
-使用网络图片时，需要在config.json（FA模型）或者module.json5（Stage模型）对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
-
-```
-"abilities": [
-  {
-    ...
-    "permissions": ["ohos.permission.INTERNET"],
-    ...
-  }
-] 
-```
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 
 ## 子组件
@@ -86,7 +76,7 @@ Image(src: string | PixelMap | Resource)
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
 | onComplete(callback:&nbsp;(event?:&nbsp;{&nbsp;width:&nbsp;number,&nbsp;height:&nbsp;number,&nbsp;componentWidth:&nbsp;number,<br>&nbsp;componentHeight:&nbsp;number,&nbsp;loadingStatus:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片成功加载时触发该回调，返回成功加载的图片尺寸。<br>- width：图片的宽，单位为像素。<br/>- height：图片的高，单位为像素。<br/>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/>- loadingStatus：图片加载成功的状态。<br/> |
-| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/> |
+| onError(callback:&nbsp;(event?:&nbsp;{&nbsp;componentWidth:&nbsp;number,&nbsp;componentHeight:&nbsp;number&nbsp;, message<sup>9+</sup>: string })&nbsp;=&gt;&nbsp;void) | 图片加载出现异常时触发该回调。<br>- componentWidth：组件的宽，单位为像素。<br/>- componentHeight：组件的高，单位为像素。<br/> |
 | onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 当加载的源文件为带动效的svg图片时，当svg动效播放完成时会触发这个回调，如果动效为无限循环动效，则不会触发这个回调。 |
 
 ## 示例

@@ -1,6 +1,7 @@
 # Thermal Manager
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 This module provides thermal level-related callback and query APIs to obtain the information required for thermal control.
@@ -42,7 +43,7 @@ Subscribes to thermal level changes.
 
 | Name     | Type                               | Mandatory  | Description                                      |
 | -------- | --------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes   | Callback used to obtain the return value.<br>Return value: thermal level|
+| callback | AsyncCallback&lt;ThermalLevel&gt; | Yes   | Callback used to obtain the return value.<br>The return value contains only one parameter, that is, thermal level. If an alarm is generated, you can use `// @ts-ignore` to suppress the alarm.|
 
 **Example**
 

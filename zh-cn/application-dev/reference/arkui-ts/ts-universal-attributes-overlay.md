@@ -16,7 +16,7 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| overlay | title:&nbsp;string,<br/>options:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment枚举说明),<br/>offset?:&nbsp;{x:&nbsp;number,&nbsp;y:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。 |
+| overlay | value:&nbsp;string,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。 |
 
 
 ## 示例

@@ -335,8 +335,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
-| 名称                             | 默认值 | 描述       |
-| --------------------------- ----| ------ | ---------- |
+| 名称                            | 默认值  | 描述                                              |
+| ------------------------------- | ------ | ------------------------------------------------- |
 | NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | 无 <br/>此接口为系统接口，三方应用不支持调用。        |
 | OUTPUT_DEVICES_FLAG             | 1      | 输出设备。 |
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。 |
@@ -488,6 +488,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## FocusType<sup>9+</sup>
 
 表示焦点类型的枚举。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：**: SystemCapability.Multimedia.Audio.Core
 
@@ -2169,7 +2171,130 @@ async function getGroupManager(){
   }
 }
 ```
+### requestIndependentInterrupt<sup>9+</sup>
 
+requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
+
+申请独立焦点，获取独立SessionID，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明               |
+| -------- | ----------------------------- | ---- | -----------------  |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型。     |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回焦点申请成功/失败状态。 |
+
+**示例：**
+
+```js
+async function requestIndependentInterrupt(){
+  let value = await audioManager.requestIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING);
+  if (value) {
+    console.info('requestIndependentInterrupt interface for result callback: SUCCESS');
+  } else {
+    console.error('Result ERROR');
+  }
+}
+```
+### requestIndependentInterrupt<sup>9+</sup>
+
+requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
+
+申请独立焦点，获取独立SessionID，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型。  |
+
+**返回值：**
+
+| 类型                                                      | 说明         |
+| --------------------------------------------------------- | ------------ |
+| Promise&lt;boolean&gt; | 返回申请焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function requestIndependentInterrupt(){
+  audioManager.requestIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING).then((value) => {
+    console.info('Promise returned to succeed ');
+  }).catch ((err) => {
+    console.error('Failed to requestIndependentInterrupt');
+  });
+}
+```
+### abandonIndependentInterrupt<sup>9+</sup>
+
+abandonIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
+
+废除独立焦点，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                          | 必填 | 说明               |
+| -------- | ----------------------------- | ---- | -----------------  |
+| focusType | [FocusType](#focustype)      | 是   | 焦点类型。     |
+| callback  | AsyncCallback&lt;boolean&gt; | 是   | 回调，返回废除焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function abandonIndependentInterrupt(){
+  let value = await audioManager.abandonIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING);
+  if (value) {
+    console.info('abandonIndependentInterrupt interface for result callback: SUCCESS');
+  } else {
+    console.error('Result ERROR');
+  }
+}
+```
+### abandonIndependentInterrupt<sup>9+</sup>
+
+abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
+
+废除独立焦点，使用promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| focusType | [FocusType](#focustype)    | 是   | 焦点类型。  |
+
+**返回值：**
+
+| 类型                                                      | 说明         |
+| --------------------------------------------------------- | ------------ |
+| Promise&lt;boolean&gt; | 返回废除焦点成功/失败状态。 |
+
+**示例：**
+
+```js
+async function abandonIndependentInterrupt(){
+  audioManager.abandonIndependentInterrupt(audio.FocusType.FOCUS_TYPE_RECORDING).then((value) => {
+    console.info('Promise returned to succeed');
+  }).catch ((err) => {
+    console.error('Failed to abandonIndependentInterrupt');
+  });
+}
+```
 ## AudioGroupManager<sup>9+</sup>
 管理音频组音量。在调用AudioGroupManager的接口前，需要先通过 [getGroupManager](#getgroupmanager9) 创建实例。
 
@@ -2864,7 +2989,7 @@ audio.getStreamManager((err, data) => {
 
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(`## CapChange on is called for element ${i} ##');
+    console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
@@ -2916,7 +3041,6 @@ audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
 ```
-
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -3059,7 +3183,7 @@ audioManager.getRoutingManager((err,AudioRoutingManager)=>{
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -3097,7 +3221,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 **系统接口：** 该接口为系统接口
 
-选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3138,7 +3262,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。该接口为系统应用接口。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3182,7 +3306,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **系统接口：** 该接口为系统接口
 
-根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。该接口为系统应用接口。
+根据过滤条件，选择音频输出设备，当前只能选择一个输出设备，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3829,7 +3953,7 @@ var audioStreamInfo = {
 
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
@@ -3849,7 +3973,7 @@ audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.error.(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();
@@ -4317,7 +4441,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -4329,7 +4453,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                    |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                    |
 
 **示例：**
 
@@ -4364,7 +4488,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -4376,7 +4500,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | (position: number) => {} | 是   | 触发事件时调用的回调。                      |
+| callback | Callback<number>         | 是   | 触发事件时调用的回调。                      |
 
 **示例：**
 
@@ -4943,7 +5067,7 @@ audioCapturer.getBufferSize().then((data) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: 'markReach', frame: number, callback: (position: number) => {}): void
+on(type: "markReach", frame: number, callback: Callback<number>): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -4955,7 +5079,7 @@ on(type: 'markReach', frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
@@ -4989,7 +5113,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: (position: number) => {}): void
+on(type: "periodReach", frame: number, callback: Callback<number>): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -5001,7 +5125,7 @@ on(type: "periodReach", frame: number, callback: (position: number) => {}): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | (position: number) => {} | 是   | 使用callback方式异步返回被触发事件的回调    |
+| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
 
 **示例：**
 

@@ -72,7 +72,13 @@
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
-  - [init Module](subsys-boot-init.md)
+  - init Module
+      - [init Configuration File](subsys-boot-init-cfg.md)
+      - [Job Management](subsys-boot-init-jobs.md)
+      - [Service Management](subsys-boot-init-service.md)
+      - [Parameter Management](subsys-boot-init-sysparam.md)
+      - [Sandbox Management](subsys-boot-init-sandbox.md)
+      - [Plug-in Management](subsys-boot-init-plugin.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
   - [FAQs](subsys-boot-faqs.md)

@@ -1,4 +1,4 @@
-# Access Control Overview
+# Access Control (Permission) Overview
 
 AccessTokenManager (ATM) implements unified app permission management based on access tokens on OpenHarmony.
 
@@ -108,7 +108,7 @@ The permissions open to apps vary with the permission level. The permission leve
 
     The system_core permission allows access to core resources of the operating system. These resources are the underlying core services of the system. If these resources are corrupted, the OS cannot run properly.
     
-    The permissions of this type are not open to any app currently.
+    The permissions of this type are not open to third-party apps currently.
 
 ## Permission Authorization Modes
 

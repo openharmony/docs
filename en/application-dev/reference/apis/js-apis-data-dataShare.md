@@ -2,9 +2,13 @@
 
 The **DataShare** module allows an application to manage its own data and share data with other applications on the same device.
 
->**NOTE**
+> **NOTE**
 >
->The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
+>
+> The APIs of this module can be used only in the stage model.
 
 
 ## Modules to Import
@@ -87,84 +91,11 @@ dataShare.createDataShareHelper(this.context, uri).then((data) => {
 
 Provides a **DataShareHelper** instance to access or manage data on the server. Before calling an API provided by **DataShareHelper**, you must create a **DataShareHelper** instance using [createDataShareHelper](#datasharecreatedatasharehelper).
 
-This API can be used only in the stage model.
-
-### openFile
-
-openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void
-
-Opens a file. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name    | Type                 | Mandatory| Description                              |
-| -------- | --------------------- | ---- | ---------------------------------- |
-| uri      | string                | Yes  | URI of the file to open.          |
-| mode     | string                | Yes  | File open mode.<br>**r** means to open a file for reading; **w** means to open a file for writing (erasing any data in the file); **wa** means to open a file in append mode for writing at the end of the file; **rw** means to open a file for both reading and writing.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the file descriptor. Otherwise, **err** is an error object.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.openFile(uri, "rwt", (err, data) => {
-    if (err != undefined) {
-        console.info("openFile failed, error message : " + err);
-    }else {
-        console.info("openFile succeed, data : " + data);
-        let fd = data;
-    }
-});
-```
-
-### openFile
-
-openFile(uri: string, mode: string): Promise&lt;number&gt;
-
-Opens a file. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                                        |
-| ---- | ------ | ---- | ------------------------------------------------------------ |
-| uri  | string | Yes  | URI of the file to open.                                      |
-| mode | string | Yes  | File open mode.<br>**r** means to open a file for reading; **w** means to open a file for writing (erasing any data in the file); **wa** means to open a file in append mode for writing at the end of the file; **rw** means to open a file for both reading and writing.|
-
-**Return value**
-
-| Type           | Description            |
-| --------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.openFile(uri, "rwt").then((data) => {
-    console.info("openFile succeed, data : " + data);
-    let fd = data;
-}).catch((err) => {
-	console.info("openFile failed, error message : " + err); 
-})
-```
-
 ### on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Subscribes to changes of the specified data. After an observer is registered, the subscriber will receive a notification when the change notification is triggered (the **notifyChange()** method is called). This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -174,7 +105,7 @@ This API can be used only in the stage model.
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event type to subscribe to. The value is **dataChange**, which indicates data change events.|
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Called when the change notification is triggered. In this case, **err** is **undefined**. Otherwise, it is not called or **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the data is changed, the value of **err** is **undefined**. Otherwise, this callback is not invoked or the value of **err** is an error object.|
 
 **Example**
 
@@ -192,8 +123,6 @@ dataShareHelper.on("dataChange", uri, onCallback);
 off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 Unsubscribes from the changes of the specified data. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -221,8 +150,6 @@ dataShareHelper.off("dataChange", uri, offCallback);
 insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 Inserts a single data record into the database. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -258,8 +185,6 @@ dataShareHelper.insert(uri, valueBucket, (err, data) => {
 insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 Inserts a single data record into the database. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -299,8 +224,6 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 Deletes one or more data records from the database. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -334,8 +257,6 @@ dataShareHelper.delete(uri, da, (err, data) => {
 delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;number&gt;
 
 Deletes one or more data records from the database. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -374,8 +295,6 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 Queries data in the database. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -411,8 +330,6 @@ dataShareHelper.query(uri, da, columns, (err, data) => {
 query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;): Promise&lt;DataShareResultSet&gt;
 
 Queries data in the database. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -452,8 +369,6 @@ dataShareHelper.query(uri, da, columns).then((data) => {
 update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void
 
 Updates data in the database. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -495,8 +410,6 @@ dataShareHelper.update(uri, da, va, (err, data) => {
 update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise&lt;number&gt;
 
 Updates data in the database. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -542,8 +455,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 Batch inserts data into the database. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -577,8 +488,6 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 Batch inserts data into the database. This API uses a promise to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -609,148 +518,11 @@ dataShareHelper.batchInsert(uri, vbs).then((data) => {
 });
 ```
 
-### getType
-
-getType(uri: string, callback: AsyncCallback&lt;string&gt;): void
-
-Obtains the Multipurpose Internet Mail Extensions (MIME) type of the specified data. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name    | Type                  | Mandatory| Description                                         |
-| -------- | ---------------------- | ---- | --------------------------------------------- |
-| uri      | string                 | Yes  | URI of the data.                     |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME type obtained. Otherwise, **err** is an error object.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.getType(uri, (err, data)=>{
-    if (err != undefined) {
-        console.log("getType failed, error message : " + err);
-    }else{
-        console.log("getType succeed, data : " + data);
-        let result = data;
-    }
-});
-```
-
-### getType
-
-getType(uri: string): Promise&lt;string&gt;
-
-Obtains the MIME type of the specified data. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                |
-| ---- | ------ | ---- | -------------------- |
-| uri  | string | Yes  | URI of the data.|
-
-**Return value**
-
-| Type            | Description                               |
-| ---------------- | ----------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the MIME type obtained.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShareHelper.getType(uri).then((data) => {
-    console.log("getType succeed, data : " + data);
-}).catch((err) => {
-    console.log("getType failed, error message : " + err);
-});
-```
-
-### getFileTypes
-
-getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
-
-Obtains the supported MIME types. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name          | Type                                                        | Mandatory| Description                                                        |
-| -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri            | string                                                       | Yes  | URI of the file.                                    |
-| mimeTypeFilter | string                                                       | Yes  | MIME types to match. Example:<br>**\*/\***: Obtain all supported types.<br>**image/\***: Obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: Obtain the MIMEs with the subtype of **jpg**.|
-| callback       |  AsyncCallback<Array\<string>> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the MIME types obtained. Otherwise, **err** is an error object.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let mimeTypeFilter = "image/*";
-dataShareHelper.getFileTypes(uri, mimeTypeFilter, (err,data) => {
-    if (err != undefined) {
-        console.log("getFileTypes failed, error message : " + err);
-    }else{
-        console.log("getFileTypes succeed, data : " + data);
-    }
-});
-```
-
-### getFileTypes
-
-getFileTypes(uri: string, mimeTypeFilter: string): Promise&lt;Array&lt;string&gt;&gt;
-
-Obtains the supported MIME types. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
-
-**System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
-
-**Parameters**
-
-| Name          | Type  | Mandatory| Description                                                        |
-| -------------- | ------ | ---- | ------------------------------------------------------------ |
-| uri            | string | Yes  | URI of the file.                                    |
-| mimeTypeFilter | string | Yes  | MIME types to match. Example:<br>**\*/\***: Obtain all supported types.<br>**image/\***: Obtain the MIMEs with the main type of **image**.<br>**\*/jpg**: Obtain the MIMEs with the subtype of **jpg**.|
-
-**Return value**
-
-| Type                    | Description                    |
-| ------------------------ | ------------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the MIME types obtained.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability'
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let mimeTypeFilter = "image/*";
-dataShareHelper.getFileTypes(uri, mimeTypeFilter).then((data) => {
-	console.log("getFileTypes succeed, data : " + data);
-}).catch((err) => {
-	console.log("getFileTypes failed, error message : " + err);
-});
-```
-
 ### normalizeUri
 
 normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses an asynchronous callback to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -780,8 +552,6 @@ dataShareHelper.normalizeUri(uri, (err, data) => {
 normalizeUri(uri: string): Promise&lt;string&gt;
 
 Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the local device, but the normalized URI can be used across devices. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -815,8 +585,6 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 Denormalizes a URI. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -845,8 +613,6 @@ dataShareHelper.denormalizeUri(uri, (err, data) => {
 denormalizeUri(uri: string): Promise&lt;string&gt;
 
 Denormalizes a URI. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -880,8 +646,6 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Notifies the registered observer of data changes. This API uses an asynchronous callback to return the result.
 
-This API can be used only in the stage model.
-
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 **Parameters**
@@ -906,8 +670,6 @@ dataShareHelper.notifyChange(uri, () => {
 notifyChange(uri: string): Promise&lt;void&gt;
 
 Notifies the registered observer of data changes. This API uses a promise to return the result.
-
-This API can be used only in the stage model.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 

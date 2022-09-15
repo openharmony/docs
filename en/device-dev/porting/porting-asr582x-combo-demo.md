@@ -358,7 +358,7 @@ In addition, you need to add the hardware configuration description file of the 
 
 #### GPIO Adaptation
 
-1. The chip driver adaptation file is stored in the `//drivers/adapter/platform` directory. Add the `gpio_asr.c` and `gpio_asr.h` files to the `gpio` directory, and add the compilation conditions of the new driver file to `BUILD.gn`.
+1. The chip driver adaptation file is stored in the `//drivers/hdf_core/adapter/platform` directory. Add the `gpio_asr.c` file to the `gpio` directory, and add the compilation conditions of the new driver file to `BUILD.gn`.
 
    ```
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {
@@ -473,7 +473,7 @@ The compilation option entry of the subsystem is in the `config.json` file of th
 
 The source code of the lwIP component is stored in `//third_party/lwip`. The kernel in OpenHarmony is customized in `//kernel/liteos_m/components/net/lwip-2.1`, including the redefinition of some interfaces and structures.
 
-For details about the porting process, see [lwIP Module Adaptation](porting-chip-board-lwip.md ).
+For details about the porting process, see [lwIP Module Adaptation](porting-chip-board-lwip.md).
 
 In this example, the path for setting lwip in the `config.json` file is as follows:
 

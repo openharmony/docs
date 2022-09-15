@@ -16,7 +16,7 @@
 
 TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: TextInputController})
 
-**参数:**
+**参数：**
 
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
@@ -27,13 +27,13 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## 属性
 
-除支持通用属性外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal |
+| type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal        |
 | placeholderColor         | [ResourceColor](../../ui/ts-types.md)     | 设置placeholder颜色。|
-| placeholderFont          | {<br/>size?:&nbsp;Length,<br/>weight?:&nbsp;number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?:&nbsp;string,<br/>style?:&nbsp;[FontStyle](ts-universal-attributes-text-style.md)<br/>} | 设置placeholder文本样式：<br/>-&nbsp;size:&nbsp;设置文本尺寸，Length为number类型时，使用fp单位。<br/>-&nbsp;weight:&nbsp;设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>-&nbsp;family:&nbsp;设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。<br/>-&nbsp;style:&nbsp;设置文本的字体样式。 |
+| placeholderFont          | [Font](../../ui/ts-types.md#font) | 设置placeholder文本样式。 |
 | enterKeyType             | EnterKeyType                             | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done    |
 | caretColor               | [ResourceColor](../../ui/ts-types.md)    | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
@@ -81,15 +81,15 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发回调。<br/>value：剪切的文本内容。 |
 | onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发回调。<br/>value：粘贴的文本内容。 |
 
-### TextInputController<sup>8+</sup>
+## TextInputController<sup>8+</sup>
 
 TextInput组件的控制器。
 
-#### 导入对象
+### 导入对象
 ```
 controller: TextInputController = new TextInputController()
 ```
-#### caretPosition
+### caretPosition
 
 caretPosition(value:&nbsp;number): void
 

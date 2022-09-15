@@ -17,19 +17,19 @@ AdcMethod定义：
 
 ```
 struct AdcMethod {
-    int32_t (*read)(struct AdcDevice *device, uint32_t channel, uint32_t *val);
-    int32_t (*start)(struct AdcDevice *device);
-    int32_t (*stop)(struct AdcDevice *device);
+  int32_t (*read)(struct AdcDevice *device, uint32_t channel, uint32_t *val);
+  int32_t (*start)(struct AdcDevice *device);
+  int32_t (*stop)(struct AdcDevice *device);
 };
 ```
 
   **表1** AdcMethod结构体成员的回调函数功能说明
 
-| 函数成员 | 入参 | 出参 | 返回值 | 功能 |
+| 函数成员 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| read | device：结构体指针，核心层ADC控制器<br/>channel：uint32_t，传入的通道号 | val：uint32_t指针，要传出的信号数据 | HDF_STATUS相关状态 | 读取ADC采样的信号数据 |
-| stop | device：结构体指针，核心层ADC控制器 | 无 | HDF_STATUS相关状态 | 关闭ADC设备 |
-| start | device：结构体指针，核心层ADC控制器 | 无 | HDF_STATUS相关状态 | 开启ADC设备 |
+| read | device：结构体指针，核心层ADC控制器<br/>channel：uint32_t，传入的通道号 | val：uint32_t指针，要传出的信号数据 | HDF_STATUS相关状态 | 读取ADC采样的信号数据 | 
+| stop | device：结构体指针，核心层ADC控制器 | 无 | HDF_STATUS相关状态 | 关闭ADC设备 | 
+| start | device：结构体指针，核心层ADC控制器 | 无 | HDF_STATUS相关状态 | 开启ADC设备 | 
 
 
 ## 开发步骤
@@ -74,19 +74,19 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
    
    ```
    static struct HdfDriverEntry g_hi35xxAdcDriverEntry = {
-       .moduleVersion = 1,
-       .Init = Hi35xxAdcInit,
-       .Release = Hi35xxAdcRelease,
-       .moduleName = "hi35xx_adc_driver",       //【必要且与HCS文件里面的名字匹配】
+    .moduleVersion = 1,
+    .Init = Hi35xxAdcInit,
+    .Release = Hi35xxAdcRelease,
+    .moduleName = "hi35xx_adc_driver",       //【必要且与HCS文件里面的名字匹配】
    };
    HDF_INIT(g_hi35xxAdcDriverEntry);         // 调用HDF_INIT将驱动入口注册到HDF框架中
    
    // 核心层adc_core.c管理器服务的驱动入口
    struct HdfDriverEntry g_adcManagerEntry = {
-       .moduleVersion = 1,
-       .Init     = AdcManagerInit,
-       .Release  = AdcManagerRelease,
-       .moduleName = "HDF_PLATFORM_ADC_MANAGER",// 这与device_info文件中device0对应
+    .moduleVersion = 1,
+    .Init     = AdcManagerInit,
+    .Release  = AdcManagerRelease,
+    .moduleName = "HDF_PLATFORM_ADC_MANAGER",// 这与device_info文件中device0对应
    };
    HDF_INIT(g_adcManagerEntry);
    ```
@@ -142,27 +142,27 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
      
       ```
       root {
-          platform {
-              adc_config_hi35xx {
-              match_attr = "hisilicon_hi35xx_adc";
-              template adc_device {
-                  regBasePhy = 0x120e0000;// 寄存器物理基地址
-                  regSize = 0x34;         // 寄存器位宽
-                  deviceNum = 0;          // 设备号
-                  validChannel = 0x1;     // 有效通道
-                  dataWidth = 10;         // 信号接收的数据位宽
-                  scanMode = 1;           // 扫描模式
-                  delta = 0;              // delta参数
-                  deglitch = 0;            
-                  glitchSample = 5000;     
-                  rate = 20000;            
-              }
-              device_0 :: adc_device {
-                  deviceNum = 0;
-                  validChannel = 0x2;
-              }
-              }
+      platform {
+          adc_config_hi35xx {
+          match_attr = "hisilicon_hi35xx_adc";
+          template adc_device {
+              regBasePhy = 0x120e0000;// 寄存器物理基地址
+              regSize = 0x34;         // 寄存器位宽
+              deviceNum = 0;          // 设备号
+              validChannel = 0x1;     // 有效通道
+              dataWidth = 10;         // 信号接收的数据位宽
+              scanMode = 1;           // 扫描模式
+              delta = 0;              // delta参数
+              deglitch = 0;            
+              glitchSample = 5000;     
+              rate = 20000;            
           }
+          device_0 :: adc_device {
+              deviceNum = 0;
+              validChannel = 0x2;
+          }
+          }
+      }
       }
       ```
 
@@ -172,7 +172,7 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
 
      从驱动的角度看，自定义结构体是参数和数据的载体，而且adc_config.hcs文件中的数值会被HDF读入并通过DeviceResourceIface来初始化结构体成员，其中一些重要数值也会传递给核心层AdcDevice对象，例如设备号、总线号等。
 
-     
+      
       ```
       struct Hi35xxAdcDevice {
           struct AdcDevice device;        //【必要】是核心层控制对象，具体描述见下面。
@@ -223,14 +223,14 @@ ADC模块适配必选的三个环节是配置属性文件，实例化驱动入�
 
       HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS定义）。
 
-      | 状态(值) | 问题描述 |
+        | 状态(值) | 问题描述 | 
       | -------- | -------- |
-      | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
-      | HDF_ERR_INVALID_PARAM | 参数非法 |
-      | HDF_ERR_MALLOC_FAIL | 内存分配失败 |
-      | HDF_ERR_IO | I/O错误 |
-      | HDF_SUCCESS | 传输成功 |
-      | HDF_FAILURE | 传输失败 |
+      | HDF_ERR_INVALID_OBJECT | 控制器对象非法 | 
+      | HDF_ERR_INVALID_PARAM | 参数非法 | 
+      | HDF_ERR_MALLOC_FAIL | 内存分配失败 | 
+      | HDF_ERR_IO | I/O错误 | 
+      | HDF_SUCCESS | 传输成功 | 
+      | HDF_FAILURE | 传输失败 | 
 
       函数说明：
 

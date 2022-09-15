@@ -239,7 +239,7 @@ var versionDigestInfo = {
 
 // 描述文件选项
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // 标准格式
+  format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 }
 
@@ -282,7 +282,7 @@ var versionDigestInfo = {
 
 // 描述文件选项
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // 标准格式
+  format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 }
 
@@ -369,7 +369,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 ```ts
 // 描述文件选项
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // 标准格式
+  format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 }
 
@@ -406,7 +406,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 ```ts
 // 描述文件选项
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // 标准格式
+  format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 }
 
@@ -1580,7 +1580,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 
 ## UpgradeTaskCallback
 
-### (eventInfo: [EventInfo](#eventinfo)): void
+(eventInfo: EventInfo): void
 
 事件回调。
 

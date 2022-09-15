@@ -7,7 +7,7 @@
 <!-- comp.hml -->
 <div class="item">  
    <text class="text-style" onclick="childClicked">点击这里查看隐藏文本</text> 
-   <text class="text-style" if="{{showObj}}">hello world</text> 
+   <text class="text-style" if="{{ showObj }}">hello world</text> 
 </div>
 ```
 

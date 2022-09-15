@@ -5,7 +5,7 @@
 >
 > To use eTS, your DevEco Studio must be V3.0.0.900 Beta3 or later.
 >
-> For best possible results, use [DevEco Studio V3.0.0.991 Beta4](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+> For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
 
 
 ## Creating an eTS Project
@@ -14,7 +14,7 @@
 
    ![01](figures/01.png)
 
-2. On the project configuration page, set **Compile SDK** to **9**, **Model** to **Stage**, **Language** to **eTS** and retain the default values for other parameters.
+2. On the project configuration page, set **Compile SDK** to **9**, **Model** to **Stage**, and retain the default values for other parameters.
 
    ![07](figures/07.png)
 
@@ -132,7 +132,6 @@
       ![09](figures/09.png)
 
       > **NOTE**
-      >
       > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
    - Configure the route for the second page: In the **Project** window, choose **entry** > **src** > **main** > **resources** > **base** > **profile**. In the **main_pages.json** file, set **pages/second** under **src**. The sample code is as follows:
      
@@ -286,7 +285,7 @@ You can implement page redirection through the page router, which finds the targ
 
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
-2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signing**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
+2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signaure**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
 
    ![06](figures/06.png)
 

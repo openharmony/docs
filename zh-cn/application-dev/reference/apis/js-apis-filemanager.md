@@ -22,6 +22,7 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | options | Object | 否 | 支持如下选项：<br/>-&nbsp;dev，[DevInfo](#devinfo)类型，不填默认dev = {name: "local"}, 当前仅支持设备'local' |
@@ -83,6 +84,7 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | path | string | 是 | 待查询目录uri |
@@ -169,6 +171,7 @@ createFile(path : string, filename : string, options? : {dev? : DevInfo})  :   P
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | --- | --- | --- | -- |
   | filename | string | 是 | 待创建的文件名 |

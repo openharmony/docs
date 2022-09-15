@@ -33,14 +33,8 @@ var observer = {
         console.log('onUnhandledException, errorMsg: ', errorMsg)
     }
 }
-errorManager.registerErrorObserver(observer)
-    .then((data) => {
-        console.log('----------- registerErrorObserver success ----------', data);
-    })
-    .catch((err) => {
-        console.log('----------- registerErrorObserver fail ----------', err);
-    })
-
+const registerErrorObserverNumber=errorManager.registerErrorObserver(observer)
+console.info(registerErrorObserverNumber)
 ```
 
 ## ErrorManager.unregisterErrorObserver

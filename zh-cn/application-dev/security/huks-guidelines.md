@@ -171,6 +171,7 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 /* 以生成RSA512密钥为例 */
 var srcKeyAlias = 'hukRsaKeyAlias';
 var srcKeyAliasSecond = 'huksRsaKeyAliasSecond';
+var exportKey;
 
 async function testImportExport() {
     /* 集成生成密钥参数集 */
@@ -1070,9 +1071,10 @@ async function testSignVerify() {
     }).catch((err) => {
         console.info('test update err information: ' + err);
     });
-    rsaVerifyOptions.inData = finishRsaSignData;
+    rsaSignOptionsSecond.inData = new Uint8Array(new Array());
     await huks.finish(rsaSignHandle, rsaSignOptionsSecond).then((data) => {
         console.info(`test finish data: ${JSON.stringify(data)}`);
+        finishRsaSignData = data.outData;
     }).catch((err) => {
         console.info('test finish err information: ' + JSON.stringify(err));
     });
@@ -1424,6 +1426,7 @@ function hkdfStringToUint8Array(str) {
 
 var deriveHkdfInData = "deriveHkdfTestIndata";
 var srcKeyAlias = "deriveHkdfKeyAlias";
+var handle;
 var HuksKeyDeriveKeySize = 32;
 
 async function testDerive() {
@@ -1454,7 +1457,7 @@ async function testDerive() {
     await huks.generateKey(srcKeyAlias, huksOptions).then((data) => {
         console.info('test generateKey data = ' + JSON.stringify(data));
     }).catch((err) => {
-        console.info(`test init err: " + ${JSON.stringify(data)}`);
+        console.info(`test init err: " + ${JSON.stringify(err)}`);
     });
 
     /* 调整init时的参数集 */
@@ -1496,7 +1499,7 @@ async function testDerive() {
     }
     finishProperties[6] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-        value: stringToUint8Array(srcKeyAlias),
+        value: hkdfStringToUint8Array(srcKeyAlias),
     }
     finishProperties[7] = {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -1797,9 +1800,9 @@ async function attestId() {
     };
 
     generateKey(aliasString);
-    setTimeout(()=>huks.attestKey(aliasString, options, function (err, data) {
+    huks.attestKey(aliasString, options, function (err, data) {
         printLog(`key attest result : ${JSON.stringify(data)}`);
-    }), 1000);
+    });
 }
 ```
 
@@ -1920,9 +1923,9 @@ async function attestKey() {
         properties: properties
     };
     generateKey(aliasString);
-    setTimeout(()=>huks.attestKey(aliasString, options, function (err, data) {
+    huks.attestKey(aliasString, options, function (err, data) {
         printLog(`key attest result : ${JSON.stringify(data)}`);
-    }), 1000);
+    });
 }
 ```
 

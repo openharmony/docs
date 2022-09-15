@@ -1,8 +1,8 @@
-# Sensor Usage Example<a name="EN-US_TOPIC_0000001092792985"></a>
+# Sensor Usage Example
 
-The following sample code uses the sensor whose  **sensorTypeId**  is  **0**  as an example. The code for other sensor types is similar.
+The following sample code uses the sensor whose **sensorTypeId** is **0** as an example. The code for other sensor types is similar.
 
-```
+```c
 #include "sensor_agent.h"
 #include "sensor_agent_type.h"
 #include "stdio.h"

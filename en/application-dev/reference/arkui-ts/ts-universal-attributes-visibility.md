@@ -17,15 +17,7 @@ None
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | Whether the component is visible. Note that even if a component is hidden, it needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../ui/ts-rending-control-syntax-if-else.md) instead under scenarios where consistently high performance is required. |
-
-
-- Visibility enums
-  | Name| Description|
-  | -------- | -------- |
-  | Hidden | The component is hidden, and a placeholder is used for it in the layout.|
-  | Visible | The component is visible.|
-  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it.|
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Visibility.Visible | Whether the component is visible. Note that even if a component is hidden, it needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../ui/ts-rending-control-syntax-if-else.md) instead under scenarios where consistently high performance is required. |
 
 
 ## Example

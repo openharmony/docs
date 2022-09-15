@@ -6,7 +6,7 @@ The common event and notification module provides debugging tools to facilitate 
 
 ### publish
 
-* Functionality
+* Function
 
   Publishes a common event.
 
@@ -16,14 +16,14 @@ The common event and notification module provides debugging tools to facilitate 
 
   The table below describes the available options.
 
-  | Option        | Description                                  |
+  | Option       | Description                                |
   | ------------ | ------------------------------------------ |
-  | -e/--event   | Indicates the name of the common event to publish. Mandatory.                    |
-  | -s/--sticky  | Indicates that the common event to publish is sticky. Optional. By default, non-sticky events are published.|
-  | -o/--ordered | Indicates that the common event to publish is ordered. Optional. By default, non-ordered events are published.  |
-  | -c/--code    | Indicates the result code of the common event. Optional.                  |
-  | -d/--data    | Indicates the data carried in the common event. Optional.                |
-  | -h/--help    | Indicates the help Information                                  |
+  | -e/--event   | Indicates the name of the common event to publish. Mandatory.                                                  |
+  | -s/--sticky  | Indicates that the common event to publish is sticky. Optional. By default, non-sticky events are published.   |
+  | -o/--ordered | Indicates that the common event to publish is ordered. Optional. By default, non-ordered events are published. |
+  | -c/--code    | Indicates the result code of the common event. Optional.                                                       |
+  | -d/--data    | Indicates the data carried in the common event. Optional.                                                      |
+  | -h/--help    | Indicates the help Information                                                                                 |
 
 * Example
 
@@ -43,7 +43,7 @@ The common event and notification module provides debugging tools to facilitate 
 
 ### dump
 
-* Functionality
+* Function
 
   Displays information about common events.
 
@@ -53,11 +53,11 @@ The common event and notification module provides debugging tools to facilitate 
 
   The table below describes the available options.
 
-  | Option      | Description                                    |
+  | Option     | Description                                  |
   | ---------- | -------------------------------------------- |
-  | -a/--all   | Displays information about all common events that have been sent since system startup.|
-  | -e/--event | Displays information about a specific event.                  |
-  | -h/--help  | Displays the help information.                                    |
+  | -a/--all   | Displays information about all common events that have been sent since system startup. |
+  | -e/--event | Displays information about a specific event.                                           |
+  | -h/--help  | Displays the help information.                                                         |
 
 * Example
 
@@ -69,7 +69,7 @@ The common event and notification module provides debugging tools to facilitate 
 
 ### help
 
-* Functionality
+* Function
 
   Displays the help information.
 
@@ -87,7 +87,7 @@ The common event and notification module provides debugging tools to facilitate 
 
 ### dump
 
-* Functionality
+* Function
 
   Displays information about notifications.
 
@@ -97,19 +97,19 @@ The common event and notification module provides debugging tools to facilitate 
 
   The table below describes the available options.
 
-  | Option            | Description                                |
+  | Option            | Description                             |
   | ---------------- | ---------------------------------------- |
-  | -A/--active      | Displays information about all active notifications.                  |
-  | -R/--recent      | Displays information about the recent notifications.                      |
-  | -D/--distributed | Displays information about distributed notifications from other devices.        |
-  | --setRecentCount | Indicates the number of the cached recent notifications to be displayed. Optional.|
-  | -h/--help        | Displays the help information.                                |
+  | -A/--active      | Displays information about all active notifications.                               |
+  | -R/--recent      | Displays information about the recent notifications.                               |
+  | -D/--distributed | Displays information about distributed notifications from other devices.           |
+  | --setRecentCount | Indicates the number of the cached recent notifications to be displayed. Optional. |
+  | -h/--help        | Displays the help information.                                                     |
 
 * Example
 
   `anm dump -A`
 
-  Displays information about all active notifications.
+  Display information about all active notifications.
 
    ![anm-dump-A](figures/anm-dump-A.png)
 
@@ -117,11 +117,11 @@ The common event and notification module provides debugging tools to facilitate 
 
   `anm dump --setRecentCount  10`
 
-  Set the number of the cached recent notifications to be displayed to 10.
+  Set the number of the cached recent notifications to be displayed to **10**.
 
 ### help
 
-* Functionality
+* Function
 
   Displays the help information.
 

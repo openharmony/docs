@@ -157,12 +157,11 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
   ```
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
-
 getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 获取有关运行进程的信息。
+
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -186,12 +185,11 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-> **说明：**
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
-
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
 获取有关运行进程的信息。
+
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -706,9 +704,14 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const foregroundApplicationInfo = ApplicationStateObserver.onForegroundApplicationChanged();
-console.log('-------- foregroundApplicationInfo: ---------', foregroundApplicationInfo);
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
+
 ```
 
 ## ApplicationStateObserver.onAbilityStateChanged<sup>8+</sup>
@@ -730,9 +733,13 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const abilityStateChangedInfo = ApplicationStateObserver.onAbilityStateChanged();
-console.log('-------- abilityStateChangedInfo: ---------', abilityStateChangedInfo);
+  var applicationStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## ApplicationStateObserver.onProcessCreated<sup>8+</sup>
@@ -754,9 +761,13 @@ onProcessCreated(processData: ProcessData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const processCreatedInfo = ApplicationStateObserver.onProcessCreated();
-console.log('-------- processCreatedInfo: ---------', processCreatedInfo);
+  var applicationStateObserver = {
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## ApplicationStateObserver.onProcessDied<sup>8+</sup>
@@ -778,9 +789,13 @@ onProcessDied(processData: ProcessData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const processDiedInfo = ApplicationStateObserver.onProcessDied();
-console.log('-------- processDiedInfo: ---------', processDiedInfo);
+  var applicationStateObserver = {
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## AppStateData

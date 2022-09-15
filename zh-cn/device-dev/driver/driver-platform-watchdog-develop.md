@@ -1,9 +1,9 @@
-# WatchDog
+# Watchdog
 
 
 ## 概述
 
-看门狗（Watchdog），又叫看门狗计时器（Watchdog timer），是一种硬件的计时设备。在HDF框架中，Watchdog接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
+看门狗（Watchdog），又叫看门狗计时器（Watchdog timer），是一种硬件的计时设备。在HDF框架中，Watchdog接口适配模式采用独立服务模式，在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDF设备管理器的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用。
 
   **图1** Watchdog独立服务模式结构图
 
@@ -32,17 +32,18 @@ struct WatchdogMethod {
 
 | 成员函数 | 入参 | 出参 | 返回值 | 功能 | 
 | -------- | -------- | -------- | -------- | -------- |
-| getStatus | wdt:&nbsp;结构体指针，核心层WDG控制器 | status:&nbsp;int32_t指针，表示狗的状态（打开或关闭） | HDF_STATUS相关状态 | 获取看门狗所处的状态 | 
-| start | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 打开开门狗 | 
-| stop | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 关闭开门狗 | 
-| setTimeout | wdt:&nbsp;结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，时间传入值; | 无 | HDF_STATUS相关状态 | 设置超时时间值，单位秒，需要保证看门狗实际运行的时间符合该值 | 
-| getTimeout | wdt:&nbsp;结构体指针，核心层WDG控制器 | seconds:&nbsp;uint32_t，传出的时间值 | HDF_STATUS相关状态 | 回读设置的超时时间值 | 
-| feed | wdt:&nbsp;结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 喂狗 | 
-
+| getStatus | wdt：结构体指针，核心层WDG控制器 | status：int32_t指针，表示狗的状态（打开或关闭） | HDF_STATUS相关状态 | 获取看门狗所处的状态 |
+| start | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 打开看门狗 |
+| stop | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 关闭看门狗 |
+| setTimeout | wdt：结构体指针，核心层WDG控制器；seconds：时间传入值 | 无 | HDF_STATUS相关状态 | 设置看门狗超时时间，单位秒，需要保证看门狗实际运行的时间符合该值 |
+| getTimeout | wdt：结构体指针，核心层WDG控制器 | seconds：uint32_t指针，传出的时间值 | HDF_STATUS相关状态 | 回读设置的超时时间值 |
+| feed | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 喂狗 |
+| getPriv | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 获取看门狗驱动的私有数据 |
+| releasePriv | wdt：结构体指针，核心层WDG控制器 | 无 | HDF_STATUS相关状态 | 释放看门狗驱动的私有数据 |
 
 ## 开发步骤
 
-Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱动入口，以及实例化核心层接口函数。
+Watchdog模块适配HDF框架的四个环节是实例化驱动入口，配置属性文件，实例化Watchdog控制器对象以及驱动调试。
 
 1. **实例化驱动入口：**
    - 实例化HdfDriverEntry结构体成员。
@@ -177,7 +178,7 @@ Watchdog模块适配HDF框架的三个环节是配置属性文件，实例化驱
 
       HDF_STATUS相关状态 （下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）。
 
-        **表2** Init函数和Bind函数入参和返回值
+        **表2** Init函数和Bind函数返回值和描述
       
       | 状态(值) | 问题描述 | 
       | -------- | -------- |

@@ -270,7 +270,7 @@ OpenHarmony支持如下几种系统类型：
 
 2.  src目录下用例编写样例。
 
-    1.引用测试框架
+    1. 引用测试框架
 
     ```
     #include "hctest.h"

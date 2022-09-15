@@ -64,7 +64,7 @@ let promise = sim.isSimActive(0);
 promise.then(data => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`isSimActive fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`isSimActive failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -113,7 +113,7 @@ let promise = sim.getDefaultVoiceSlotId();
 promise.then(data => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -167,7 +167,7 @@ let promise = sim.hasOperatorPrivileges(0);
 promise.then(data => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasOperatorPrivileges fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasOperatorPrivileges failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -222,7 +222,7 @@ let promise = sim.getISOCountryCodeForSim(0);
 promise.then(data => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -278,7 +278,7 @@ let promise = sim.getSimOperatorNumeric(0);
 promise.then(data => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimOperatorNumeric fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimOperatorNumeric failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -334,7 +334,7 @@ let promise = sim.getSimSpn(0);
 promise.then(data => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimSpn fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimSpn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -390,7 +390,7 @@ let promise = sim.getSimState(0);
 promise.then(data => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -445,7 +445,7 @@ let promise = sim.getCardType(0);
 promise.then(data => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getCardType fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getCardType failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -501,7 +501,7 @@ let promise = sim.hasSimCard(0);
 promise.then(data => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`hasSimCard fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`hasSimCard failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -564,7 +564,7 @@ let promise = sim.getSimAccountInfo(0);
 promise.then(data => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimAccountInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimAccountInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -620,7 +620,7 @@ let promise = sim.getActiveSimAccountInfoList();
 promise.then(data => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getActiveSimAccountInfoList fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getActiveSimAccountInfoList failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -683,7 +683,7 @@ let promise = sim.setDefaultVoiceSlotId(0);
 promise.then(data => {
     console.log(`setDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setDefaultVoiceSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setDefaultVoiceSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -749,7 +749,7 @@ let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setShowName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -812,7 +812,7 @@ let promise = sim.getShowName(0);
 promise.then(data => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -879,7 +879,7 @@ let promise = sim.setShowNumber(0, number);
 promise.then(data => {
     console.log(`setShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setShowNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -942,7 +942,7 @@ let promise = sim.getShowNumber(0);
 promise.then(data => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getShowNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getShowNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1005,7 +1005,7 @@ let promise = sim.activateSim(0);
 promise.then(data => {
     console.log(`activateSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`activateSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`activateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1068,7 +1068,7 @@ let promise = sim.deactivateSim(0);
 promise.then(data => {
     console.log(`deactivateSim success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`deactivateSim fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`deactivateSim failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1090,7 +1090,7 @@ This is a system API.
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
 | callback | AsyncCallback\<[LockStatusResponse](#lockstatusresponse7)\> | Yes  | Callback used to return the result.                                                  |
-| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>lockType: [LockType](#locktype8)<br>password: string<br>state: [LockState](#lockstate8) |
+| options  | [LockInfo](#lockinfo8)                                      | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
 
 **Example**
 
@@ -1123,7 +1123,7 @@ This is a system API.
 | Name | Type                  | Mandatory| Description                                                        |
 | ------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | slotId  | number                 | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>lockType: [LockType](#locktype8)<br>password: string<br>state: [LockState](#lockstate8) |
+| options | [LockInfo](#lockinfo8) | Yes  | Lock information.<br>- **lockType**: [LockType](#locktype8)<br>- **password**: string<br>- **state**: [LockState](#lockstate8) |
 
 **Return value**
 
@@ -1143,7 +1143,7 @@ let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
     console.log(`setLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1204,7 +1204,7 @@ let promise = sim.getLockState(0, 1);
 promise.then(data => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getLockState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getLockState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1271,7 +1271,7 @@ let promise = sim.alterPin(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1338,7 +1338,7 @@ let promise = sim.alterPin2(0, "1234", "0000");
 promise.then(data => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`alterPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`alterPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1405,7 +1405,7 @@ let promise = sim.unlockPin(0, pin);
 promise.then(data => {
     console.log(`unlockPin success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1476,7 +1476,7 @@ let promise = sim.unlockPuk(0, newPin, puk);
 promise.then(data => {
     console.log(`unlockPuk success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1543,7 +1543,7 @@ let promise = sim.unlockPin2(0,pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPin2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPin2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1614,7 +1614,7 @@ let promise = sim.unlockPuk2(0, newPin2, puk2);
 promise.then(data => {
     console.log(`unlockPuk2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockPuk2 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockPuk2 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1697,7 +1697,7 @@ let promise = sim.getSimIccId(0);
 promise.then(data => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimIccId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimIccId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1760,7 +1760,7 @@ let promise = sim.getVoiceMailIdentifier(0);
 promise.then(data => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getVoiceMailIdentifier fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getVoiceMailIdentifier failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1823,7 +1823,7 @@ let promise = sim.getVoiceMailNumber(0);
 promise.then(data => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getVoiceMailNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getVoiceMailNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1890,7 +1890,7 @@ let promise = sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com");
 promise.then(data => {
     console.log(`setVoiceMailInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setVoiceMailInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setVoiceMailInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1953,7 +1953,7 @@ let promise = sim.getSimTelephoneNumber(0);
 promise.then(data => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimTelephoneNumber fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimTelephoneNumber failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2016,7 +2016,7 @@ let promise = sim.getSimGid1(0);
 promise.then(data => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getSimGid1 fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getSimGid1 failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2079,7 +2079,7 @@ let promise = sim.getIMSI(0);
 promise.then(data => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getIMSI fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getIMSI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2142,7 +2142,7 @@ let promise = sim.getOperatorConfigs(0);
 promise.then(data => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOperatorConfigs fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOperatorConfigs failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2163,7 +2163,7 @@ This is a system API.
 | Name  | Type                                                        | Mandatory| Description                                                      |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type     | [ContactType](#contacttype8)                                                  | Yes  | Contact type.<br>1 : GENERAL_CONTACT<br>2 : FIXED_DIALING |
+| type     | [ContactType](#contacttype8)                                                  | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | callback | AsyncCallback<Array<[DiallingNumbersInfo](#diallingnumbersinfo8)\>> | Yes  | Callback used to return the result.                                                |
 
 **Example**
@@ -2192,7 +2192,7 @@ This is a system API.
 | Name| Type       | Mandatory| Description                                                      |
 | ------ | ----------- | ---- | ---------------------------------------------------------- |
 | slotId | number      | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type   | [ContactType](#contacttype8)  | Yes  | Contact type.<br>1 : GENERAL_CONTACT<br>2 : FIXED_DIALING |
+| type   | [ContactType](#contacttype8)  | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 
 **Return value**
 
@@ -2207,7 +2207,7 @@ let promise = sim.queryIccDiallingNumbers(0, 1);
 promise.then(data => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`queryIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`queryIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2228,7 +2228,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
@@ -2264,7 +2264,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -2286,7 +2286,7 @@ let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`addIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`addIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2307,7 +2307,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
@@ -2343,7 +2343,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -2365,7 +2365,7 @@ let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`delIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`delIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2386,7 +2386,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 | callback        | AsyncCallback<void\>                         | Yes  | Callback used to return the result.                                                  |
 
@@ -2422,7 +2422,7 @@ This is a system API.
 | Name         | Type                                        | Mandatory| Description                                                      |
 | --------------- | -------------------------------------------- | ---- | ---------------------------------------------------------- |
 | slotId          | number                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                    |
-| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>**1**: GENERAL_CONTACT<br>**2**: FIXED_DIALING |
+| type            | [ContactType](#contacttype8)                 | Yes  | Contact type.<br>- **1**: GENERAL_CONTACT<br>- **2**: FIXED_DIALING |
 | diallingNumbers | [DiallingNumbersInfo](#diallingnumbersinfo8) | Yes  | Contact number information.                                              |
 
 **Return value**
@@ -2444,7 +2444,7 @@ let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
 promise.then(data => {
     console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`updateIccDiallingNumbers fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`updateIccDiallingNumbers failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2509,7 +2509,7 @@ let promise = sim.sendEnvelopeCmd(0, "ls");
 promise.then(data => {
     console.log(`sendEnvelopeCmd success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendEnvelopeCmd fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendEnvelopeCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2574,7 +2574,7 @@ let promise = sim.sendTerminalResponseCmd(0, "ls");
 promise.then(data => {
     console.log(`sendTerminalResponseCmd success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendTerminalResponseCmd fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendTerminalResponseCmd failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2647,7 +2647,7 @@ let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {
     console.log(`unlockSimLock success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`unlockSimLock fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`unlockSimLock failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2706,7 +2706,7 @@ let promise = sim.getOpKey(0);
 promise.then(data => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOpKey fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2765,7 +2765,7 @@ let promise = sim.getOpName(0);
 promise.then(data => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOpName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOpName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

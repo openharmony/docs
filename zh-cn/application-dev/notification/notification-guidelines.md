@@ -28,7 +28,7 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 ## 接口说明
 
-部分接口仅系统应用才可以调用，且需要具备权限：SystemCapability.Notification.Notification ，接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同，具体API说明详见[接口文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-notification.md)。
+部分接口仅系统应用才可以调用，且需要具备权限：SystemCapability.Notification.Notification ，接口返回值有两种返回形式：callback和promise，下表中为callback形式接口，promise和callback只是返回值方式不一样，功能相同，具体API说明详见[接口文档](../reference/apis/js-apis-notification.md)。
 
 **表1** 通知使能开关接口功能介绍 
 
@@ -136,7 +136,7 @@ var subscriber = {
 应用发布通知的使能开关默认是关闭的，所以应用发布通知前需要用户允许后才能发送。应用可以通过Notification.requestEnableNotification弹窗提醒用户允许发送通知。
 
 ```js
-Notification.requestEnableNotification() .then((data) => {
+Notification.requestEnableNotification().then((data) => {
 	console.info('===>requestEnableNotification success');
 }).catch((err) => {
 	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
@@ -166,7 +166,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
@@ -235,7 +235,7 @@ var notificationRequest = {
 }
 
 //通知发送
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));

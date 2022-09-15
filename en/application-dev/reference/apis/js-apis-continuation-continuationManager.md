@@ -112,32 +112,36 @@ Registers the continuation management service and obtains a token. This API uses
   ```
 
 ## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceconnect) instead.
 
 on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceconnect9) instead.
+
 ## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondevicedisconnect) instead.
 
 on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondevicedisconnect9) instead.
+
 ## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceconnect) instead.
 
 off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 Unsubscribes from device connection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceconnect9) instead.
+
 ## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdevicedisconnect) instead.
 
 off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 Unsubscribes from device disconnection events. This API uses an asynchronous callback to return the result.
+
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdevicedisconnect9) instead.
 
 ## continuationManager.on("deviceConnect")<sup>9+</sup>
 

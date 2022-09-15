@@ -18,7 +18,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 Enables a device administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -27,8 +27,8 @@ Enables a device administrator application based on the specified bundle name an
 | Name           | Type                                 | Mandatory  | Description                |
 | -------------- | ----------------------------------- | ---- | ------------------ |
 | admin          | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.           |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | Yes   | Enterprise information of the device administrator application.      |
-| type           | [AdminType](#AdminType)             | Yes   | Type of the device administrator to enable.        |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.      |
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.        |
 | callback       | AsyncCallback\<boolean>             | Yes   | Callback used to return the result.|
 
 **Example**
@@ -57,7 +57,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 Enables a device administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -66,8 +66,8 @@ Enables a device administrator application based on the specified bundle name an
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
 | admin          | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.                     |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | Yes   | Enterprise information of the device administrator application.                |
-| type           | [AdminType](#AdminType)             | Yes   | Type of the device administrator to enable.                  |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.                  |
 | userId         | number                              | Yes   | User ID The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 | callback       | AsyncCallback\<boolean>             | Yes   | Callback used to return the result.          |
 
@@ -97,7 +97,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 Enables a device administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -106,8 +106,8 @@ Enables a device administrator application based on the specified bundle name an
 | Name           | Type                                 | Mandatory  | Description                          |
 | -------------- | ----------------------------------- | ---- | ---------------------------- |
 | admin          | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.                     |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | Yes   | Enterprise information of the device administrator application.                |
-| type           | [AdminType](#AdminType)             | Yes   | Type of the device administrator to enable.                  |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
+| type           | [AdminType](#admintype)             | Yes   | Type of the device administrator to enable.                  |
 | userId         | number                              | No   | User ID The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 **Return value**
@@ -141,7 +141,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<boolean>): void
 
 Disables a device common administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -174,7 +174,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<boolean>): vo
 
 Disables a device common administrator application based on the specified bundle name and class name. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -208,7 +208,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<boolean>
 
 Disables a device common administrator application based on the specified bundle name and class name. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.MANAGE_ADMIN
+**Required permissions**: ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -467,7 +467,7 @@ Obtains a **DeviceSettingsManager** object. This API uses an asynchronous callba
 
 | Name     | Type                                     | Mandatory  | Description                                 |
 | -------- | --------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback<DeviceSettingsManager&gt; | Yes   | Callback used to return the **DeviceSettingsManager** object obtained.|
+| callback | AsyncCallback<[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | Yes   | Callback used to return the **DeviceSettingsManager** object obtained.|
 
 **Example**
 
@@ -503,7 +503,7 @@ Obtains a **DeviceSettingsManager** object. This API uses a promise to return th
 
 | Type                                  | Description                                |
 | ------------------------------------ | ---------------------------------- |
-| Promise&lt;DeviceSettingsManager&gt; | Promise used to return the **DeviceSettingsManager** object obtained.|
+| Promise&lt;[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)&gt; | Promise used to return the **DeviceSettingsManager** object obtained.|
 
 **Example**
 
@@ -536,7 +536,7 @@ Sets the enterprise information of a device administrator application. This API 
 | Name           | Type                                 | Mandatory  | Description                    |
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.               |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | Yes   | Enterprise information of the device administrator application.          |
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.          |
 | callback       | AsyncCallback\<boolean&gt;          | Yes   | Callback used to return the result.|
 
 **Example**
@@ -571,7 +571,7 @@ Sets the enterprise information of a device administrator application. This API 
 | Name           | Type                                 | Mandatory  | Description          |
 | -------------- | ----------------------------------- | ---- | ------------ |
 | admin          | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.     |
-| enterpriseInfo | [EnterpriseInfo](#EnterpriseInfo)   | Yes   | Enterprise information of the device administrator application.|
+| enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.|
 
 **Return value**
 
@@ -611,7 +611,7 @@ Obtains the enterprise information of a device administrator application. This A
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | admin    | [Want](js-apis-application-Want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Yes   | Callback used to return the enterprise information of the device administrator application.|
+| callback | AsyncCallback&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Yes   | Callback used to return the enterprise information of the device administrator application.|
 
 **Example**
 
@@ -648,7 +648,7 @@ Obtains the enterprise information of a device administrator application. This A
 
 | Type                                      | Description                       |
 | ---------------------------------------- | ------------------------- |
-| Promise&lt;[EnterpriseInfo](#EnterpriseInfo)&gt; | Promise used to return the enterprise information of the device administrator application.|
+| Promise&lt;[EnterpriseInfo](#enterpriseinfo)&gt; | Promise used to return the enterprise information of the device administrator application.|
 
 **Example**
 

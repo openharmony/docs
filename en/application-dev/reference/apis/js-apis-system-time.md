@@ -1,9 +1,10 @@
-# Setting the System Time
+# System Time and Time Zone
 
-This module provides the time, time zone, and timing services. Use the time and time zone services to set and obtain the system time and time zone, and use the timing service to manage and use the system time and time zone to implement alarms or other timing functions.
+The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
-> **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
+> **NOTE**
+>- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -25,15 +26,15 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| time | number | Yes| Timestamp to set, in milliseconds.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+| Name  | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| time     | number                    | Yes  | Timestamp to set, in milliseconds. |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
   ```js
-// Set the system time to 2021-01-20 02:36:25.
+  // Set the system time to 2021-01-20 02:36:25.
   var time = 1611081385000;
   systemTime.setTime(time, (error, data) => {
       if (error) {
@@ -57,26 +58,26 @@ Sets the system time. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| time | number | Yes| Timestamp to set, in milliseconds.|
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| time   | number | Yes  | Timestamp to set, in milliseconds. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type               | Description                |
+| ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
 
   ```js
-// Set the system time to 2021-01-20 02:36:25.
-var time = 1611081385000;
-systemTime.setTime(time).then((data) => {
-    console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
-}).catch((error) => {
-    console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
-});
+  // Set the system time to 2021-01-20 02:36:25.
+  var time = 1611081385000;
+  systemTime.setTime(time).then((data) => {
+      console.log(`systemTime.setTime success data : ` + JSON.stringify(data));
+  }).catch((error) => {
+      console.error(`failed to systemTime.setTime because ` + JSON.stringify(error));
+  });
   ```
 
 
@@ -90,10 +91,10 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.        |
 
 **Example**
 
@@ -118,14 +119,14 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the time.|
 
 **Example**
@@ -149,10 +150,10 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
 
 **Example**
 
@@ -177,14 +178,14 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the time.|
 
 **Example**
@@ -208,10 +209,10 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the time.|
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
 **Example**
 
@@ -236,14 +237,14 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| isNano | boolean | No| Whether nanoseconds or milliseconds will be returned. If the value is **true**, nanoseconds will be returned. Otherwise, milliseconds will be returned.|
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description                                                        |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the time.|
 
 **Example**
@@ -269,10 +270,10 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| date | Date | Yes| Target date to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+| Name  | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| date     | Date                      | Yes  | Target date to set.                                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -300,14 +301,14 @@ Sets the system date. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| date | Date | Yes| Target date to set.|
+| Name| Type| Mandatory| Description      |
+| ------ | ---- | ---- | ---------- |
+| date   | Date | Yes  | Target date to set.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type               | Description                |
+| ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
@@ -332,9 +333,9 @@ Obtains the current system date. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Date&gt; | Yes| Callback used to return the current system date.|
+| Name  | Type                     | Mandatory| Description                        |
+| -------- | ------------------------- | ---- | ---------------------------- |
+| callback | AsyncCallback&lt;Date&gt; | Yes  | Callback used to return the current system date.|
 
 **Example**
 
@@ -359,8 +360,8 @@ Obtains the current system date. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type               | Description                                     |
+| ------------------- | ----------------------------------------- |
 | Promise&lt;Date&gt; | Promise used to return the current system date.|
 
 **Example**
@@ -386,10 +387,10 @@ Sets the system time zone. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| timezone | string | Yes| System time zone to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to process the received return value.|
+| Name  | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| timezone | string                    | Yes  | System time zone to set.                                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -416,14 +417,14 @@ Sets the system time zone. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| timezone | string | Yes| System time zone to set.|
+| Name  | Type  | Mandatory| Description      |
+| -------- | ------ | ---- | ---------- |
+| timezone | string | Yes  | System time zone to set.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type               | Description                |
+| ------------------- | -------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
@@ -447,9 +448,9 @@ Obtains the system time zone. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the system time zone.|
+| Name  | Type                       | Mandatory| Description                    |
+| -------- | --------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the system time zone.|
 
 **Example**
 
@@ -474,8 +475,8 @@ Obtains the system time zone. This API uses a promise to return the result.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description                                 |
+| --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the system time zone.|
 
 **Example**
