@@ -816,7 +816,7 @@ getAssociatedDataSync(name: string, key: string): string;
 
 | 类型                    | 说明                    |
 | :-------------------- | :-------------------- |
-| string | 用于获取同步接口的返回结果。 |
+| string | 目标关联数据的取值。 |
 
 **示例：**
 
