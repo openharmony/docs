@@ -276,7 +276,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ```
 
 ## WorkInfo
-提供工作的具体信息。
+提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.WorkScheduler
 
