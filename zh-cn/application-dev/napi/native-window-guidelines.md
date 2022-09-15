@@ -101,7 +101,13 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，包括从`Surface`构建
     OH_NativeXComponent_Callback &callback_;
     callback_->OnSurfaceCreated = OnSufaceCreatedCB;
     callback_->OnSurfaceChanged = OnSufaceChangedCB;
-    callback_->OnSurfaceDestoryed = OnSufaceDestoryedCB;
+    callback_->OnSurfaceDestroyed = OnSufaceDestroyedCB;
     callback_->DispatchTouchEvent = DispatchTouchEventCB;
     OH_NativeXComponent_RegisterCallback(nativeXComponent, callback_)
     ```
+
+## 相关实例
+
+针对NativeWindow的使用，有以下相关实例可供参考：
+
+- [使用NativeWindow接口获取Buffer](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/hello_native_window/hello_native_window.cpp)
