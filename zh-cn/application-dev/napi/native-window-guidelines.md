@@ -86,7 +86,7 @@ NativeWindow是`OpenHarmony`**本地平台化窗口**，包括从`Surface`构建
         SkImageInfo imageInfo = ...
         bitmap.setInfo(imageInfo, bufferHandle->stride);
         bitmap.setPixels(bufferHandle->virAddr);
-        //创建 Skia Canvas 并将内容写入naitve window
+        //创建 Skia Canvas 并将内容写入native window
         ...
 
         //写入完成后，通过OH_NativeWindwo_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上
