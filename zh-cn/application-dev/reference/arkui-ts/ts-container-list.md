@@ -34,7 +34,7 @@ List(value?: {initialIndex?: number, space?: number | string, scroller?: Scrolle
 | listDirection | [Axis](ts-appendix-enums.md#axis) | Axis.Vertical | 设置List组件排列方向参照Axis枚举说明。 |
 | divider                      | {<br/>strokeWidth:&nbsp;Length,<br/>color?:[ResourceColor](../../ui/ts-types.md),<br/>startMargin?:&nbsp;Length,<br/>endMargin?:&nbsp;Length<br/>} | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
-| cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。 |
+| cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。具体使用可参考[减少应用白块说明](../../ui/ts-performance-improvement-recommendation.md#减少应用滑动白块)。 |
 | editMode | boolean | false | 声明当前List组件是否处于可编辑模式。 |
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
 | chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的ListItem或ListItemGroup间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。其中ListItemGroup以一个整体参与链式联动动效，ListItemGroup内的ListITem不参与链式联动动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
