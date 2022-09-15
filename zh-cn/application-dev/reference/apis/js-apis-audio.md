@@ -3953,7 +3953,7 @@ var audioStreamInfo = {
 
 var audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
+  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
@@ -3973,7 +3973,7 @@ audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.error.(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();

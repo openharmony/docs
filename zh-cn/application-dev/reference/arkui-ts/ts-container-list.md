@@ -37,7 +37,7 @@ List(value?: {initialIndex?: number, space?: number | string, scroller?: Scrolle
 | cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。 |
 | editMode | boolean | false | 声明当前List组件是否处于可编辑模式。 |
 | edgeEffect | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。 |
-| chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
+| chainAnimation | boolean | false | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的ListItem或ListItemGroup间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。其中ListItemGroup以一个整体参与链式联动动效，ListItemGroup内的ListITem不参与链式联动动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
 | multiSelectable<sup>8+</sup> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | lanes<sup>9+</sup> | number \|<br>{<br/>minLength: Length,<br/>maxLength: Length<br/>} | 1 | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局，规则如下：<br/>- lanes为指定的数量时，根据指定的数量与List组件的交叉轴宽度来决定每列的宽度；<br/>- lane设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的宽度符合最小宽度限制。例如在列模式下，设置了{minLength: 40vp，maxLength: 60vp}，则当List组件宽度为70vp时，ListItem为一列，并且根据alignListItem属性做靠左、居中或者靠右布局；当List组件宽度变化至80vp时，符合两倍的minLength，则ListItem自适应为两列。 |
 | alignListItem<sup>9+</sup> | [ListItemAlign](#listitemalign9枚举说明) | ListItemAlign.Center | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。 |
@@ -67,9 +67,9 @@ List(value?: {initialIndex?: number, space?: number | string, scroller?: Scrolle
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onItemDelete(event: (index: number) => boolean) | 列表项删除时触发。                |
+| onItemDelete(event: (index: number) => boolean) | 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。  |
 | onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void) | 列表滑动时触发，返回值scrollOffset为滑动偏移量，[scrollState](#scrollstate枚举说明)为当前滑动状态。 |
-| onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发，返回值分别为滑动起始位置索引值与滑动结束位置索引值。 |
+| onScrollIndex(event: (start: number, end: number) => void) | 列表滑动时触发，返回值分别为滑动起始位置索引值与滑动结束位置索引值。计算索引值时，ListItemGroup作为一个整体占一个索引值，不计算ListItemGroup内部ListItem的索引值。 |
 | onReachStart(event: () => void) | 列表到达起始位置时触发。 |
 | onReachEnd(event: () => void) | 列表到底末尾位置时触发。 |
 | onScrollStop(event: () => void) | 列表滑动停止时触发。 |
