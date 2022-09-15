@@ -667,6 +667,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备连接类型。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
 | 名称                            | 默认值 | 描述                   |
@@ -2202,7 +2204,7 @@ async function requestIndependentInterrupt(){
 ```
 ### requestIndependentInterrupt<sup>9+</sup>
 
-requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
+requestIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 申请独立焦点，获取独立SessionID，使用promise方式异步返回结果。
 
@@ -2264,7 +2266,7 @@ async function abandonIndependentInterrupt(){
 ```
 ### abandonIndependentInterrupt<sup>9+</sup>
 
-abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
+abandonIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 废除独立焦点，使用promise方式异步返回结果。
 
