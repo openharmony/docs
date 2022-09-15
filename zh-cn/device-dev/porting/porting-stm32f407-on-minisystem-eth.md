@@ -158,7 +158,7 @@ orsource "../../device/soc/*/Kconfig.liteos_m.series"
 orsource "../../device/soc/*/Kconfig.liteos_m.soc"
 ```
 
-3. 在`//device/borad/talkweb`下参考如下目录结构创建相应的Kconfig文件：
+3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
 ```
 .
