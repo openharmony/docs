@@ -784,7 +784,7 @@ onProcessDied(processData: ProcessData): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| processData | ProcessData | 否 | 进程信息。 |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
 
 **示例：**
     
@@ -792,6 +792,34 @@ onProcessDied(processData: ProcessData): void;
   var applicationStateObserver = {
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
+```
+
+## ApplicationStateObserver.onProcessStateChanged<sup>9+</sup>
+
+ onProcessStateChanged(processData: ProcessData): void;
+
+当进程状态更改时调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| processData | [ProcessData](#processdata) | 否 | 进程信息。 |
+
+**示例：**
+    
+```js
+  var applicationStateObserver = {
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -837,8 +865,8 @@ onProcessDied(processData: ProcessData): void;
 | pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
 | bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
 | uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
-
-
+| isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
+| isKeepAlive<sup>8+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
 
 ## ProcessRunningInfo
 
@@ -876,3 +904,31 @@ onProcessDied(processData: ProcessData): void;
 | uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
 | processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
 | bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 
+
+## ApplicationState<sup>9+</sup>
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+| 名称                 | 值  | 描述                               |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 1   |   当应用在创建中的时候处于的状态。         |
+| STATE_FOREGROUND          | 2   |      当应用切换到前台的时候处于的状态。            |
+| STATE_ACTIVE  | 3   |         当应用在获焦的时候处于的状态。     |
+| STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
+
+## ProcessState<sup>9+</sup>
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+| 名称                 | 值  | 描述                               |
+| -------------------- | --- | --------------------------------- |
+| STATE_CREATE    | 1   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 2   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 3   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 4   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 5   |         当进程在销毁的时候处于的状态。         |
