@@ -54,60 +54,6 @@ getAudioManager(): AudioManager
 var audioManager = audio.getAudioManager();
 ```
 
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
-
-获取音频流管理器实例。使用callback方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
-**参数：**
-
-| 参数名   | 类型                                                       | 必填 | 说明             |
-| -------- | --------------------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | 是   | 返回音频流管理器实例。 |
-
-**示例：**
-
-```js
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    let audioStreamManager = data;
-  }
-});
-```
-
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(): Promise<AudioStreamManager\>
-
-获取音频流管理器实例。使用Promise方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
-**返回值：**
-
-| 类型                                                | 说明             |
-| ---------------------------------------------------- | ---------------- |
-| Promise<[AudioStreamManager](#audiostreammanager9)> | 返回音频流管理器实例。 |
-
-**示例：**
-
-```js
-var audioStreamManager;
-audio.getStreamManager().then((data) => {
-  audioStreamManager = data;
-  console.info('getStreamManager: Success!');
-}).catch((err) => {
-  console.error(`getStreamManager: ERROR : ${err}`);
-});
-
-```
-
 ## audio.createAudioRenderer<sup>8+</sup>
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
@@ -2173,6 +2119,61 @@ async function getGroupManager(){
   }
 }
 ```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
+
+获取音频流管理器实例。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明             |
+| -------- | --------------------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | 是   | 返回音频流管理器实例。 |
+
+**示例：**
+
+```js
+audio.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    let audioStreamManager = data;
+  }
+});
+```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(): Promise<AudioStreamManager\>
+
+获取音频流管理器实例。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                                | 说明             |
+| ---------------------------------------------------- | ---------------- |
+| Promise<[AudioStreamManager](#audiostreammanager9)> | 返回音频流管理器实例。 |
+
+**示例：**
+
+```js
+var audioStreamManager;
+audio.getStreamManager().then((data) => {
+  audioStreamManager = data;
+  console.info('getStreamManager: Success!');
+}).catch((err) => {
+  console.error(`getStreamManager: ERROR : ${err}`);
+});
+
+```
+
 ### requestIndependentInterrupt<sup>9+</sup>
 
 requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
