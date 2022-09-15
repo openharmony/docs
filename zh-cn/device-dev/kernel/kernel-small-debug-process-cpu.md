@@ -135,7 +135,7 @@ UINT32 ItCpupTest(VOID)
 
     usleep(100);
 
-    /* 获取当前系统历史cpu占用率 */
+    /* 获取当前系统历史CPU占用率 */
     cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S); 
     printf("the history system cpu usage in all time：%u.%u\n",
            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
