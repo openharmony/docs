@@ -591,7 +591,7 @@ audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
-开始订阅音频播放[seek()](#seek)时间更新事件。
+开始订阅音频播放时间更新事件。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -599,20 +599,20 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：[seek()](#audioplayer_seek)调用完成，触发该事件。 |
-| callback | Callback\<number> | 是   | 播放事件回调方法。回调方法入参为成功seek的时间。             |
+| type     | string            | 是   | 播放事件回调类型，支持的事件包括：'timeUpdate'。<br>- 'timeUpdate'：音频播放时间戳更新，开始播放后自动触发该事件。 |
+| callback | Callback\<number> | 是   | 播放事件回调方法。回调方法入参为更新后的时间戳。             |
 
 **示例：**
 
 ```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
-    if (seekDoneTime == null) {
-        console.info('audio seek fail');
+audioPlayer.on('timeUpdate', (newTime) => {    //设置'timeUpdate'事件回调
+    if (newTime == null) {
+        console.info('audio timeUpadate fail');
         return;
     }
-    console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
+    console.log('audio timeUpadate success. seekDoneTime: ' + newTime);
 });
-audioPlayer.seek(30000);    //seek到30000ms的位置
+audioPlayer.play();    //开始播放后，自动触发时间戳更新事件
 ```
 
 ### on('error')
