@@ -278,7 +278,7 @@ clear(): boolean
 
 ### 示例1（在一个Ability创建的LocalStorage)
 
-loadContent接口说明请参考[loadContent](../reference/apis/js-apis-window.md#loadcontent9-1)。
+LocalStorage通过loadContent接口加载，接口详见[loadContent](../reference/apis/js-apis-window.md#loadcontent9-1)。
 
 ```ts
 import Ability from '@ohos.application.Ability'
