@@ -1758,7 +1758,7 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8);
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
@@ -1995,7 +1995,7 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式。             |
+| format   | number | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -2017,7 +2017,7 @@ var creator = image.createImageCreator(8192, 8, 4, 8);
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
@@ -2028,9 +2028,9 @@ var creator = image.createImageCreator(8192, 8, 4, 8);
 
 dequeueImage(callback: AsyncCallback\<Image>): void
 
-从free队列中获取buffer，用于绘制UI内容，并使用callback返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容，并使用callback返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
@@ -2053,9 +2053,9 @@ creator.dequeueImage((err, img) => {
 
 dequeueImage(): Promise\<Image>
 
-从free队列中获取buffer，用于绘制UI内容，并使用promise返回结果。
+从空闲队列中获取buffer图片，用于绘制UI内容，并使用promise返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **返回值：**
 
@@ -2073,13 +2073,13 @@ creator.dequeueImage().then(img => {
 })
 ```
 
-### dequeueImage<sup>9+</sup>
+### queueImage<sup>9+</sup>
 
 queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
-将绘制好的buffer放入Dirty队列，供消费者使用，并使用callback返回结果。
+将绘制好的图片放入Dirty队列，并使用callback返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
@@ -2099,13 +2099,13 @@ creator.queueImage(img, (err) => {
 })
 ```
 
-### dequeueImage<sup>9+</sup>
+### queueImage<sup>9+</sup>
 
 queueImage(interface: Image): Promise\<void>
 
-将绘制好的buffer放入Dirty队列，供消费者使用，并使用promise返回结果。
+将绘制好的图片放入Dirty队列，并使用promise返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
@@ -2135,13 +2135,13 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 
 监听imageRelease事件，并使用callback返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
 | 名称          | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
-| type          | 'imageRelease'           | 是   | 监听事件类型。 |
+| type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -2161,7 +2161,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放当前图像，并使用callback返回结果。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
@@ -2183,7 +2183,9 @@ creator.release((err) => {
 
 release(): Promise\<void>
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageCreator
+释放当前图像，并使用promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **返回值：**
 
@@ -2207,7 +2209,7 @@ creator.release().then(() => {
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
@@ -2322,7 +2324,7 @@ img.release().then(() =>{
 
 表示图片指定区域内的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -2335,18 +2337,18 @@ img.release().then(() =>{
 
 表示图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
-| density<sup>9+</sup> | number | 是   | 是   | 图片密度。 |
+| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
 
 ## Size
 
 表示图片尺寸。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -2357,7 +2359,7 @@ img.release().then(() =>{
 
 枚举，图片像素格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   | 默认值 | 描述              |
 | ---------------------- | ------ | ----------------- |
@@ -2375,7 +2377,7 @@ img.release().then(() =>{
 
 枚举，图像的透明度类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 默认值 | 描述                    |
 | -------- | ------ | ----------------------- |
@@ -2388,7 +2390,7 @@ img.release().then(() =>{
 
 枚举，图像的缩放模式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称            | 默认值 | 描述                                               |
 | --------------- | ------ | -------------------------------------------------- |
@@ -2399,7 +2401,7 @@ img.release().then(() =>{
 
 ImageSource的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 类型                               | 可读 | 可写 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
@@ -2412,7 +2414,7 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
@@ -2426,7 +2428,7 @@ PixelMap的初始化选项。
 
 图像解码设置选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -2437,13 +2439,13 @@ PixelMap的初始化选项。
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
-| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
 
 ## Region<sup>7+</sup>
 
 表示区域信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -2455,7 +2457,7 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
@@ -2467,7 +2469,7 @@ PixelMap的初始化选项。
 
 表示查询图片属性的索引。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称         | 类型   | 可读 | 可写 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -2478,7 +2480,7 @@ PixelMap的初始化选项。
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 默认值                  | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
@@ -2501,7 +2503,7 @@ PixelMap的初始化选项。
 
 枚举，图片格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称         | 默认值 | 描述                 |
 | ------------ | ------ | -------------------- |
@@ -2512,7 +2514,7 @@ PixelMap的初始化选项。
 
 枚举，图像的组件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称  | 默认值 | 描述        |
 | ----- | ------ | ----------- |
@@ -2525,7 +2527,7 @@ PixelMap的初始化选项。
 
 描述图像颜色分量。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称          | 类型                             | 可读 | 可写 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
