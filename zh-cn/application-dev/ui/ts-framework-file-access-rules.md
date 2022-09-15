@@ -3,9 +3,9 @@
 应用代码文件可通过如下方式访问：
 
 
-- 使用相对路径引用代码文件，比如：上一级目录：../common/utils/utils.ets，当前目录：./common/utils/utils.ets。
+- 使用相对路径引用代码文件，比如：上一级目录：../common/utils/utils，当前目录：./common/utils/utils。
 
-- 使用当前模块根路径引用代码文件，比如：common/utils/utils.ets。
+- 使用当前模块根路径引用代码文件，比如：common/utils/utils。
 
 - 公共代码文件推荐放在**common**目录下。
 
@@ -13,7 +13,7 @@
 ## 示例
 
 ```
-import { FoodData, FoodList } from "../common/utils/utils.ets";
+import { FoodData, FoodList } from "../common/utils/utils";
 
 @Entry
 @Component

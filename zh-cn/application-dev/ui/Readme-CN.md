@@ -1,7 +1,7 @@
 # UI开发
 
 - [方舟开发框架（ArkUI）概述](arkui-overview.md)
-- 基于TS扩展的声明式开发范式
+- UI开发（基于eTS的声明式开发范式）
     - [概述](ui-ts-overview.md)
     - 框架说明
         - 文件组织
@@ -71,7 +71,7 @@
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
     - [性能提升的推荐方案](ts-performance-improvement-recommendation.md)
-- 基于JS扩展的类Web开发范式
+- UI开发（兼容JS的类Web开发范式）
     - [概述](ui-js-overview.md)
     - 框架说明
         - [文件组织](js-framework-file.md)
