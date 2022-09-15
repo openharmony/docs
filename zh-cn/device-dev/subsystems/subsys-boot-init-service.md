@@ -70,7 +70,7 @@
 
   进程启动时，支持在配置文件中配置服务进程的绑核、优先级、MAC信息以及AccessToken信息。
 
-  - init提供修改\*.cfg配置文件，为服务进程提供cpu绑核功能。
+  - init提供修改\*.cfg配置文件，为服务进程提供CPU绑核功能。
   - init提供修改\*.cfg配置文件，为服务进程提供优先级设置。
   - init提供修改\*.cfg配置文件，为服务提供MAC信息设置，即服务的SELinux标签（需要selinux支持）。
   - init提供修改\*.cfg配置文件，为服务提供设置AccessToken, 为系统服务进程设置其分布式Capability能力（仅标准系统以上提供）。
@@ -125,7 +125,7 @@
    | importance    | 小型系统和标准系统 | <br>标准系统：当前服务优先级<br>小型系统：标记服务重要性 | <br>标准系统中: 服务优先级取值范围 [-20， 19]，超出为无效设置。<br>小型系统中：0 : 不重启系统；非0 : 重启系统 |
    | caps          | 小型系统和标准系统 | 当前服务所需的capability值，根据安全子系统已支持的capability，评估所需的capability，遵循最小权限原则配置。| 类型：数字或者字符串数组，在配置数字时，按linux标准的capability进行配置。字符串时，使用标准定义的宏的名字进行配置。 |
    | critical      | 标准系统 | 为服务提供抑制机制，服务在配置时间 T 内，频繁重启次数超过设置次数 N 重启系统。 | <br>标准系统中： 类型：int[]，如："critical" : [M, N, T]，<br>其中M：使能标志位（0：不使能；1：使能）， N：频繁拉起服务次数， T：时间(单位：秒)。M > 0; N > 0。 <br> 小型系统中 & 标准系统中：类型：int，如："critical" : M，<br>其中 M：使能标志位（0：不使能；1：使能）。 默认拉起服务次数：4次， 时间：20秒 。|
-   | cpucore      | 标准系统 | 服务需要的绑定的cpu核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。 |
+   | cpucore      | 标准系统 | 服务需要的绑定的CPU核心数 | 类型：int型数组， 如"cpucore" : [N1, N2, ...], N1， N2均为需要绑定的cpu核索引， 如单核设备 cpucore : [0]。 |
    | d-caps       | 标准系统 | 服务分布式能力。| 类型：字符串数组， 如 "d-caps" : ["OHOS_DMS"]。 |
    | apl          | 标准系统 | 服务能力特权级别。 | 类型：字符串， 如 "apl" : "system_core"。<br> 目前支持"system_core"（默认值）, "normal", "system_basic"。 |
    | start-mode   | 标准系统 | 服务的启动模式。 | 类型：字符串， 如 "start-mode" : "condition"。<br>目前支持"boot", "normal", "condition"。具体说明参考：[init服务启动控制](#section56901555918)。 |
