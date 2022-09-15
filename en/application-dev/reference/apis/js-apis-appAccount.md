@@ -1,4 +1,4 @@
-#  	App Account Management
+# App Account Management
 
 The **appAccount** module provides APIs for app account management. You can use the APIs to add, delete, query, modify, and authorize app accounts, write data to disks, and synchronize data.
 
@@ -154,7 +154,7 @@ Implicitly adds an app account based on the specified account owner, authenticat
   }
 
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.addAccountImplicitly("LiSi", "readAge", {}, {
+  appAccountManager.addAccountImplicitly("com.example.ohos.accountjsdemo", "getSocialData", {}, {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
   });
@@ -321,7 +321,8 @@ Enables an app account to access an app with the given bundle name. This API use
 **Example**
 
   ```js
-  app_account_instance.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.enableAppAccess("ZhangSan", "com.example.ohos.accountjsdemo").then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
       console.log("enableAppAccess err: "  + JSON.stringify(err));
@@ -334,7 +335,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 Checks whether an app account allows app data synchronization. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -361,7 +362,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 Checks whether an app account allows app data synchronization. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -510,7 +511,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 Sets whether to enable app data synchronization for an app account. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -537,7 +538,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 Sets whether to enable app data synchronization for an app account. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
+**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -585,7 +586,8 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 **Example**
 
   ```js
-  app_account_instance.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
+  const appAccountManager = account_appAccount.createAppAccountManager();
+  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
       console.log("setAssociatedData err: " + JSON.stringify(err));
   });
   ```
@@ -1010,7 +1012,7 @@ Authenticates an app account to obtain an Open Authorization (OAuth) token. This
   }
 
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "readAge", {}, {
+  appAccountManager.authenticate("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -1037,7 +1039,7 @@ Obtains the OAuth token of an app account based on the specified authentication 
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
        console.log('getOAuthToken token: ' + data);
   });
@@ -1069,7 +1071,7 @@ Obtains the OAuth token of an app account based on the specified authentication 
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge").then((data) => {
+  appAccountManager.getOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err) => {
       console.log("getOAuthToken err: "  + JSON.stringify(err));
@@ -1097,7 +1099,7 @@ Sets an OAuth token for an app account. This API uses an asynchronous callback t
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx", (err) => {
+  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -1128,7 +1130,7 @@ Sets an OAuth token for an app account. This API uses a promise to return the re
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthToken("LiSi", "readAge", "xxxx").then(() => {
+  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -1157,7 +1159,7 @@ Deletes the specified OAuth token for an app account. This API uses an asynchron
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx", (err) => {
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", "xxxxx", (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -1189,7 +1191,7 @@ Deletes the specified OAuth token for an app account. This API uses a promise to
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "readAge", "xxxxx").then(() => {
+  appAccountManager.deleteOAuthToken("LiSi", "com.example.ohos.accountjsdemo", "getSocialData", "xxxxx").then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err) => {
       console.log("deleteOAuthToken err: "  + JSON.stringify(err));
@@ -1218,7 +1220,7 @@ Sets the visibility of an OAuth token to an app. This API uses an asynchronous c
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err) => {
+  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -1250,7 +1252,7 @@ Sets the visibility of an OAuth token to an app. This API uses a promise to retu
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.setOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then(() => {
+  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1278,7 +1280,7 @@ Checks whether an OAuth token is visible to an app. This API uses an asynchronou
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true, (err, data) => {
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo", (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   });
@@ -1310,7 +1312,7 @@ Checks whether an OAuth token is visible to an app. This API uses a promise to r
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "readAge", "com.example.ohos.accountjsdemo", true).then((data) => {
+  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.ohos.accountjsdemo").then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -1395,7 +1397,7 @@ Obtains a list of authorized OAuth tokens of an app account. This API uses an as
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge", (err, data) => {
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "getSocialData", (err, data) => {
        console.log('getOAuthList err: ' + JSON.stringify(err));
        console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -1426,7 +1428,7 @@ Obtains a list of authorized OAuth tokens of an app account. This API uses a pro
 
   ```js
   const appAccountManager = account_appAccount.createAppAccountManager();
-  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "readAge").then((data) => {
+  appAccountManager.getOAuthList("com.example.ohos.accountjsdemo", "getSocialData").then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err) => {
       console.log("getOAuthList err: "  + JSON.stringify(err));
@@ -1462,7 +1464,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
         }
         var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                       [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                       [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
         callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
     });
@@ -1498,7 +1500,7 @@ Obtains the authenticator callback for an authentication session. This API uses 
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
           var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                         [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                         [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
           callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
@@ -1944,7 +1946,7 @@ Defines app account information.
 | Name  | Type    | Mandatory  | Description         |
 | ----- | ------ | ---- | ----------- |
 | owner | string | Yes   | Owner of the app account. The value is the bundle name of the app.|
-| name  | string | Yes   | Name of the target app account.   |
+| name  | string | Yes   | Name of the app account.   |
 
 ## OAuthTokenInfo<sup>8+</sup>
 
@@ -1967,8 +1969,8 @@ Defines OAuth authenticator information.
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
 | owner   | string | Yes   | Owner of the authenticator. The value is the bundle name of the app.|
-| iconId  | string | Yes   | ID of the authenticator icon. |
-| labelId | string | Yes   | ID of the authenticator label. |
+| iconId  | number | Yes   | ID of the authenticator icon. |
+| labelId | number | Yes   | ID of the authenticator label. |
 
 ## SelectAccountsOptions<sup>9+</sup>
 
@@ -2082,7 +2084,7 @@ Called to return the result of an authentication request.
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
       var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
                     [account_appAccount.Constants.KEY_OWNER]: "com.example.ohos.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "readAge",
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                     [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
       callback.OnResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
@@ -2167,7 +2169,7 @@ Implicitly adds an app account based on the specified authentication type and op
 
 authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
 
-Authenticates an app account to obtain the OAuth access token. This API uses an asynchronous callback to return the result.
+Authenticates an app account to obtain the OAuth token. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
