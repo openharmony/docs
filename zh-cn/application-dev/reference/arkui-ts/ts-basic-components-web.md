@@ -1413,20 +1413,16 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
   ```
 ### onSslErrorEventReceive<sup>9+</sup>
 
-onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError}) => boolean)
+onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
 
-通知发生SSL错误。
+通知用户加载资源时发生SSL错误。
 
 **参数：**
+
 | 参数名     | 参数类型                           | 参数描述             |
 | ------- | ------------------------------------ | ---------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。   |
 | error   | [SslError](sslerror枚举说明)          | 错误码。 |
-
-**返回值：**
-| 类型      | 说明                    |
-| ------- | --------------------- |
-| boolean | 返回false表示此次处理，否则成功。 |
 
   **示例：**
   ```ts
@@ -1452,6 +1448,71 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
               },
               cancel: () => {
                 event.handler.handleCancel();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
+### onClientAuthenticationRequest<sup>9+</sup>
+
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+
+通知发生SSL错误。
+
+**参数：**
+
+| 参数名   | 参数类型                             | 参数描述             |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。|
+| host    | string          | 请求证书的服务器的主机名。 |
+| port    | number          | 请求证书的服务器的端口号。 |
+| keyTypes| Array<string>   | 可接受的非对称秘钥类型。   |
+| issuers | Array<string>   | 与私钥配证书可接受的颁发者。|
+
+  **示例：**
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'onClientAuthenticationRequest',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  let priKeyFile: string = "/system/etc/ssl/certs/priKey.xxx";
+                  let certChianFile: string = "/system/etc/ssl/certs/certChian.xxx";
+                  event.handler.confirm(priKeyFile, certChianFile);
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                    event.handler.cancel();
+                  }
+                }
+              },
+              thirdButton: {
+                value: 'ignore',
+                action: () => {
+                    event.handler.ignore();
+                  }
+                }
+              },
+              cancel: () => {
+                event.handler.cancel();
               }
             })
             return true;
@@ -2069,20 +2130,47 @@ isHttpAuthInfoSaved(): boolean
 
 ## SslErrorHandler<sup>9+</sup>
 
-Web组件返回的SSL错误通知用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerrorEventreceive9)。
+Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerrorEventreceive9)。
 
 ### handleCancel<sup>9+</sup>
 
 handleCancel(): void
 
-通知Web组件用户取消次请求。
+通知Web组件取消此请求。
 
 ### handleConfirm<sup>9+</sup>
 
 handleConfirm(): void
 
-通知Web组件用户继续使用SSL证书。
+通知Web组件继续使用SSL证书。
 
+## ClientAuthenticationHandler<sup>9+</sup>
+
+Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onClientAuthenticationRequest9)。
+
+### confirm<sup>9+</sup>
+
+confirm(priKeyFile : string, certChainFile : string): void
+
+通知Web组件使用指定的私钥和客户端证书链。
+**参数：**
+
+| 参数名         | 参数类型 | 必填  | 默认值  | 参数描述        |
+| --------      | ------   | ----  | ----   | ----------     |
+| priKeyFile    | string   | 是    | -      | 存放私钥的文件，包含路径和文件名。|
+| certChainFile | string   | 是    | -      | 存放证书链的文件，包含路径和文件名。|
+
+### cancel<sup>9+</sup>
+
+cancel(): void
+
+通知Web组件取消此请求，同时，保存用户策略，相同host和port的服务器请求采用相同策略，不重复上报客户端证书请求事件。
+
+### ignore<sup>9+</sup>
+
+ignore(): void
+
+通知Web组件忽略本次请求。
 
 ## PermissionRequest<sup>9+</sup>
 
@@ -3143,6 +3231,60 @@ clearHistory(): void
         Button('clearHistory')
           .onClick(() => {
             this.controller.clearHistory();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearSslCache
+
+clearSslCache(): void
+
+清除记录的SSL证书错误事件用户操作首选项。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearSslCache')
+          .onClick(() => {
+            this.controller.clearSslCache();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearClientAuthenticationCache
+
+clearClientAuthenticationCache(): void
+
+清除记录的客户端证书请求事件用户操作首选项。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearClientAuthenticationCache')
+          .onClick(() => {
+            this.controller.clearClientAuthenticationCache();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
