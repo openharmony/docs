@@ -301,7 +301,7 @@ var strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
+var arrayBuffer = new ArrayBuffer(strXml.length);
 var bufView = new Uint8Array(arrayBuffer);
 var strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
@@ -335,7 +335,7 @@ var strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
+var arrayBuffer = new ArrayBuffer(strXml.length);
 var bufView = new Uint8Array(arrayBuffer);
 var strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
