@@ -2393,9 +2393,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **参数：** 
 
-| 参数名   | 类型                                          | 必填 | 说明             |
-| -------- | --------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
+| 参数名   | 类型                                                       | 必填 | 说明             |
+| -------- | ---------------------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor<sup>9+</sup>)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
@@ -2422,9 +2422,9 @@ sensor.getSensorList((error, data) => {
 
 **返回值：** 
 
-| 参数名  | 类型                                    | 必填 | 说明             |
-| ------- | --------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor)&gt;> | 是   | 返回传感器列表。 |
+| 参数名  | 类型                                                 | 必填 | 说明             |
+| ------- | ---------------------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor<sup>9+</sup>)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
@@ -2441,7 +2441,7 @@ sensor.getSensorList().then((data) => {
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
-getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
+getSingleSensor(type:SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 获取指定类型的传感器信息。
 
@@ -2449,12 +2449,12 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                   | 必填 | 说明             |
-| -------- | -------------------------------------- | ---- | ---------------- |
-| type     | SensorType                             | 是   | 传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
+| 参数名   | 类型                                                 | 必填 | 说明             |
+| -------- | ---------------------------------------------------- | ---- | ---------------- |
+| type     | SensorType                                           | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor>](#sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
 
-**示例：** 
+**示例：**
 
 ```js
  sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
@@ -2468,7 +2468,7 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
- getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
+ getSingleSensor(type: SensorType): Promise&lt;Sensor&gt;
 
 获取指定类型的传感器信息。
 
@@ -2482,9 +2482,9 @@ getSingleSensor(type：SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **返回值：** 
 
-| 参数名  | 类型                             | 必填 | 说明             |
-| ------- | -------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#sensor)&gt; | 是   | 返回传感器信息。 |
+| 参数名  | 类型                                          | 必填 | 说明             |
+| ------- | --------------------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
@@ -2540,7 +2540,7 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((dat
 | --------- | -------- | ---- | ---- | ------------------------ |
 | timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
 
-## Sensor
+## Sensor<sup>9+</sup>
 
 指示传感器信息。
 
