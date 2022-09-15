@@ -4,7 +4,6 @@ OpenHarmony provides a comprehensive auto-test framework for designing test case
 This document describes how to use the OpenHarmony test framework.
 ## Setting Up the Environment
 The test framework depends on the Python running environment. Before using the test framework, set up the environment as follows:
- - [Setting Up the Environment](subsys-testguide-envbuild.md)
  - [Obtaining Source Code](../get-code/sourcecode-acquire.md)
 
 
@@ -419,21 +418,22 @@ The following provides templates for different languages for your reference.
 
     1. Add comment information for the file header.
     	
-	```
+    	```
     	# Copyright (c) 2021 XXXX Device Co., Ltd.
     	```
 
     2. Import the build template.
     	
-	```
+    	```
     	import("//build/test.gni")
     	```
 
     3. Specify the file output path.
-    	
-	```
+    
+    	```
     	module_output_path = "subsystem_examples/calculator"
     	```
+    	
     	> **NOTE**<br>
     	> The output path is ***Part name*/*Module name***.
     
@@ -470,15 +470,15 @@ The following provides templates for different languages for your reference.
     	}
     	```
 
-	> **NOTE**<br>
-    	> Set the test type based on actual requirements. The following test types are available:
-    	> - **ohos_unittest**: unit test
-    	> - **ohos_moduletest**: module test
-    	> - **ohos_systemtest**: system test
-    	> - **ohos_performancetest**: performance test
-    	> - **ohos_securitytest**: security test
-    	> - **ohos_reliabilitytest**: reliability test
-    	> - **ohos_distributedtest**: distributed test
+    	> **NOTE**<br>
+    	> Set the test type based on actual requirements. The following test types are available:<br>
+    	> - **ohos_unittest**: unit test<br>
+    	> - **ohos_moduletest**: module test<br>
+    	> - **ohos_systemtest**: system test<br>
+    	> - **ohos_performancetest**: performance test<br>
+    	> - **ohos_securitytest**: security test<br>
+    	> - **ohos_reliabilitytest**: reliability test<br>
+    	> - **ohos_distributedtest**: distributed test<br>
 
     7. Group the test case files by test type.
     
@@ -490,7 +490,7 @@ The following provides templates for different languages for your reference.
     	```
     	> **NOTE**<br>
     	> Grouping test cases by test type allows you to execute a specific type of test cases when required.
-    
+
 - **Test case build file example (JavaScript)**
 
     ```
@@ -530,6 +530,7 @@ The following provides templates for different languages for your reference.
     	```
     	module_output_path = "subsystem_examples/app_info"
     	```
+
     	> **NOTE**<br>
     	> The output path is ***Part name*/*Module name***.
     	
@@ -539,9 +540,10 @@ The following provides templates for different languages for your reference.
     	ohos_js_unittest("GetAppInfoJsTest") {
     	}
     	```
-    	> **NOTE**
-    	>- Use the **ohos\_js\_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
-    	>- The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
+    
+    	> **NOTE**<br>
+    	> - Use the **ohos\_js\_unittest** template to define the JavaScript test suite. Pay attention to the difference between JavaScript and C++.
+    	> - The file generated for the JavaScript test suite must be in .hap format and named after the test suite name defined here. The test suite name must end with **JsTest**.
     
     5. Configure the **config.json** file and signature file, which are mandatory.
     
@@ -623,6 +625,7 @@ The following provides templates for different languages for your reference.
     	  deps = [ ":GetAppInfoJsTest" ]
     	}
     	```
+    	
     	> **NOTE**<br>
     	> Grouping test cases by test type allows you to execute a specific type of test cases when required.
     
@@ -673,7 +676,7 @@ Perform the following steps:
 	  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 	}
 	```
-	>**NOTE**
+	>**NOTE**<br>
 	>- **target_name** indicates the test suite name defined in the **BUILD.gn** file in the **test** directory.**preparer** indicates the action to perform before the test suite is executed.
 	>- **src="res"** indicates that the test resources are in the **resource** directory under the **test** directory. **src="out"** indicates that the test resources are in the **out/release/$(*part*)** directory.
 
@@ -748,7 +751,7 @@ After the build is complete, the test cases are automatically saved in **out/his
 2. Copy **developertest** and **xdevice** from the Linux environment to the **Test** directory on Windows, and copy the test cases to the **testcase** directory.
 	
 	> **NOTE**<br>
-    	> Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
+	> Port the test framework and test cases from the Linux environment to the Windows environment for subsequent execution.
 	
 3. Modify the **user_config.xml** file.
 	```
@@ -761,9 +764,10 @@ After the build is complete, the test cases are automatically saved in **out/his
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
+	
     	> **NOTE**<br>
     	> `<testcase>` indicates whether to build test cases. `<dir>` indicates the path for searching for test cases.
-
+   
 #### Executing Test Cases
 1. Start the test framework.
 	```
@@ -796,16 +800,18 @@ To enable test cases to be executed on a remote Linux server or a Linux VM, map 
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
+	
     	> **NOTE**<br>
     	> The IP address and port number are default values.
-
+   
 2. On the HDC client, run the following command:
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
+	
     	> **NOTE**<br>
     	> Enter the IP address of the device to test.
-
+ 
 #### Executing Test Cases
 1. Start the test framework.
 	```
