@@ -278,6 +278,8 @@ clear(): boolean
 
 ### 示例1（在一个Ability创建的LocalStorage)
 
+LocalStorage通过loadContent接口加载，接口详见[loadContent](../reference/apis/js-apis-window.md#loadcontent9-1)。
+
 ```ts
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
@@ -291,6 +293,7 @@ export default class MainAbility extends Ability {
     console.log("[Demo MainAbility onDestroy]")  
   }    
   onWindowStageCreate(windowStage) {
+  // storage作为参数传递给loadContent接口。
     windowStage.loadContent("pages/index",this.storage)    
   }    
   onWindowStageDestroy() {
