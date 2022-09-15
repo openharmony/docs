@@ -1,4 +1,4 @@
-# Security Overview
+# Overview
 
 
 The OpenHarmony security subsystem provides security capabilities that make your applications and devices more secure and help you manage permissions. This subsystem has the following modules:
@@ -20,6 +20,10 @@ The OpenHarmony security subsystem provides security capabilities that make your
 
   The Device Security Level Management (DSLM) module is introduced to manage the security levels of OpenHarmony devices. When different types of user data are hopped or processed in OpenHarmony distributed services, the DSLM APIs can be called to obtain the security levels of related devices for subsequent processing.
 
+- HUKS
+
+  The OpenHarmony Universal Keystore (HUKS) provides system-level key management capabilities, ensuring secure management and use of keys throughout their entire lifecycle (generation, storage, use, and destruction). Applications can call the APIs provided by the HUKS module to perform operations on keys. In addition, the keys in plaintext must be used in a trusted execution environment (TEE).
+
 
 ## Basic Concepts
 
@@ -35,7 +39,7 @@ Before developing an application that depends on the signature verification comp
 
 - Profile
 
-  The profile in this document refers to HarmonyAppProvision, which is in JSON format.
+  The profile in this document refers to HarmonyAppProvision. HarmonyAppProvision is in JSON format.
 
 - Debug application
 
