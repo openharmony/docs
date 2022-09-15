@@ -2314,6 +2314,8 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2346,6 +2348,8 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2375,6 +2379,8 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 
 获取指定流的音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2401,6 +2407,8 @@ audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2430,6 +2438,8 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最小音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2456,6 +2466,8 @@ audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最小音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2485,6 +2497,8 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最大音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2511,6 +2525,8 @@ audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最大音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2544,6 +2560,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2576,6 +2594,8 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2605,6 +2625,8 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 
 获取指定音量流是否被静音，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2631,6 +2653,8 @@ audioGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否被静音，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3530,13 +3554,11 @@ promise.then(function (value) {
 
 **系统接口：** 该接口为系统接口
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
-
 | 名称          | 类型                                     | 必填  | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。<br> 系统能力：SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  否  | 音频流唯一id。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
+| uid          | number                                   |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
 
@@ -4443,7 +4465,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -4490,7 +4512,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -5069,7 +5091,7 @@ audioCapturer.getBufferSize().then((data) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -5115,7 +5137,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
 
