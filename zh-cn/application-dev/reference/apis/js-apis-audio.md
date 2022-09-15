@@ -1898,6 +1898,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
@@ -1932,6 +1933,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
@@ -1956,6 +1958,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene((err, value) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
@@ -1983,6 +1986,7 @@ getAudioScene\(\): Promise<AudioScene\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
@@ -2009,6 +2013,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2069,6 +2074,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2110,6 +2116,7 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2137,7 +2144,8 @@ getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
 **示例：**
 
 ```js
-audio.getStreamManager((err, data) => {
+var audioManager = audio.getAudioManager();
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2164,8 +2172,9 @@ getStreamManager(): Promise<AudioStreamManager\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 var audioStreamManager;
-audio.getStreamManager().then((data) => {
+audioManager.getStreamManager().then((data) => {
   audioStreamManager = data;
   console.info('getStreamManager: Success!');
 }).catch((err) => {
