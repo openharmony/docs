@@ -1422,28 +1422,35 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 | 参数名     | 参数类型                           | 参数描述             |
 | ------- | ------------------------------------ | ---------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。   |
-| error   | [SslError](sslerror枚举说明)          | 错误码。 |
+| error   | [SslError](#sslerror枚举说明)          | 错误码。 |
 
-  **示例：**
+**示例：**
+
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
-
+  
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .onHttpAuthRequest((event) => {
+          .onSslErrorEventReceive((event) => {
             AlertDialog.show({
-              title: 'title',
+              title: 'onSslErrorEventReceive',
               message: 'text',
-              confirm: {
-                value: 'onConfirm',
+              primaryButton: {
+                value: 'confirm',
                 action: () => {
-                    event.handler.handleConfirm();
-                  }
+                  event.handler.handleConfirm();
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel();
                 }
               },
               cancel: () => {
@@ -1492,8 +1499,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  let priKeyFile: string = "/system/etc/ssl/certs/priKey.xxx";
-                  let certChianFile: string = "/system/etc/ssl/certs/certChian.xxx";
+                  let priKeyFile: string = "/system/etc/ssl/certs/examplePriKey.pk8";
+                  let certChianFile: string = "/system/etc/ssl/certs/exampleCertChian.pem";
                   event.handler.confirm(priKeyFile, certChianFile);
                 }
               },
@@ -1504,15 +1511,8 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
                   }
                 }
               },
-              thirdButton: {
-                value: 'ignore',
-                action: () => {
-                    event.handler.ignore();
-                  }
-                }
-              },
               cancel: () => {
-                event.handler.cancel();
+                event.handler.ignore();
               }
             })
             return true;
@@ -4915,12 +4915,12 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
-| 名称           | 描述               |
-| -------------- | ----------------- |
-| Invalid        | 一般错误。         |
-| HostMismatch   | 主机名不匹配。 |
-| DataInvalid    | 证书日志无效。    |
-| Untrusted      | 证书颁发机构不受信任。  |
+| 名称           | 描述                 |
+| -------------- | -----------------   |
+| Invalid        | 一般错误。           |
+| HostMismatch   | 主机名不匹配。        |
+| DateInvalid    | 证书日期无效。        |
+| Untrusted      | 证书颁发机构不受信任。 |
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
