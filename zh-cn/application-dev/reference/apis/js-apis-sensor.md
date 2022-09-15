@@ -2449,10 +2449,10 @@ getSingleSensor(type:SensorType, callback: AsyncCallback&lt;sensor&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                                 | 必填 | 说明             |
-| -------- | ---------------------------------------------------- | ---- | ---------------- |
-| type     | SensorType                                           | 是   | 传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor>](#sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
+| 参数名   | 类型                                                | 必填 | 说明             |
+| -------- | --------------------------------------------------- | ---- | ---------------- |
+| type     | SensorType                                          | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
