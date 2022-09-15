@@ -34,7 +34,7 @@ Grid(scroller?: Scroller)
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)             | -                        | 设置滚动条的颜色。 |
 | scrollBarWidth | number&nbsp;\|&nbsp;string                                | -                        | 设置滚动条的宽度。 |
-| cachedCount | number                                   | 1                        | 设置预加载的GridItem的数量。 |
+| cachedCount | number                                   | 1                        | 设置预加载的GridItem的数量。具体使用可参考[减少应用白块说明](../../ui/ts-performance-improvement-recommendation.md#减少应用滑动白块)。 |
 | editMode <sup>8+</sup>                   | boolean | false | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。 |
 | layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明)  | GridDirection.Row     | 设置布局的主轴方向。 |
 | maxCount<sup>8+</sup> | number  | 1     | 当layoutDirection是Row/RowReverse时，表示可显示的最大行数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大列数。 |
