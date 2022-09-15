@@ -141,7 +141,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 ## bundle.getApplicationInfoSync<sup>9+</sup>
 
-getApplicationInfoSync(bundleName: string, bundleFlags: string, userId: number): ApplicationInfo;
+getApplicationInfoSync(bundleName: string, bundleFlags: number, userId: number): ApplicationInfo;
 
 以同步方法根据给定的包名获取ApplicationInfo，返回ApplicationInfo对象。
 
