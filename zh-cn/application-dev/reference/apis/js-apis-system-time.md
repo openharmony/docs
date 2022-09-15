@@ -92,7 +92,7 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
+| isNano   | boolean                     | 是   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。         |
 
 **示例：**
@@ -120,7 +120,6 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自&nbsp;Unix&nbsp;纪元以来经过的时间。         |
 
 **示例：**
@@ -148,7 +147,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                                                     - true：纳秒数。 <br>- false：毫秒数。 <br> |
 
 **返回值：**
 
@@ -179,7 +178,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| isNano   | boolean                     | 是   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
 
 **示例：**
@@ -207,7 +206,6 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，但不包括度睡眠时间。 |
 
 **示例：**
@@ -235,7 +233,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                                                     - true：纳秒数。 <br>- false：毫秒数。 <br> |
 
 **返回值：**
 
@@ -266,7 +264,7 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| isNano   | boolean                     | 是   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br>- false：毫秒数。 <br> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
 
 **示例：**
@@ -294,7 +292,6 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | 否   | 返回结果是否为纳秒数。                                                                                                                                                              - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，返回自系统启动以来经过的时间，包括深度睡眠时间。   |
 
 **示例：**
@@ -321,7 +318,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                                            - true：纳秒数。 <br/>- false：毫秒数。 <br/> |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。                                                                                                                                                                                     - true：纳秒数。 <br>- false：毫秒数。 <br> |
 
 **返回值：**
 
