@@ -2494,7 +2494,7 @@ PixelMap的初始化选项。
 | GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E     |
 | DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00     |
 | EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec.|
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景，例如Directly photographed     |
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。     |
 | ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400     |
 | F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8     |
 
