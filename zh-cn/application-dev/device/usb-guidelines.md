@@ -39,7 +39,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 1. 获取设备列表。
    ```js
-   // 导入usb接口api包。
+   // 导入USB接口api包。
    import usb from '@ohos.usb';
    // 获取设备列表。
    var deviceList = usb.getDevices();
