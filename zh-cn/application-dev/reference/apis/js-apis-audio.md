@@ -2690,7 +2690,7 @@ audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ## AudioStreamManager<sup>9+</sup>
 
-管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#audiogetstreammanager9)获取AudioStreamManager实例。
+管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#getstreammanager9)获取AudioStreamManager实例。
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
