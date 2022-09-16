@@ -27,7 +27,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 | 参数名       | 参数类型    | 必填   | 默认值  | 参数描述                  |
 | --------- | ------- | ---- | ---- | --------------------- |
 | start     | boolean | 是    | -    | 控制是否进入播放状态。           |
-| step      | number  | 否    | 6    | 滚动动画文本滚动步长。           |
+| step      | number  | 否    | 6    | 滚动动画文本滚动步长，单位vp。           |
 | loop      | number  | 否    | -1   | 设置重复滚动的次数，小于等于零时无限循环。 |
 | fromStart | boolean | 否    | true | 设置文本从头开始滚动或反向滚动。      |
 | src       | string  | 是    | -    | 需要滚动的文本。              |
@@ -89,7 +89,7 @@ struct MarqueeExample {
         Button('start')
           .onClick(() => {
             this.start = true
-             })
+          })
           .width(200)
           .height(60)
           .margin({bottom:20})
