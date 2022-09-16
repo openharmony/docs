@@ -52,7 +52,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
   );
   ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
@@ -304,7 +304,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 
 ### AMBIENT_TEMPERATURE
 
-on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -318,6 +318,7 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambie
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
@@ -335,6 +336,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。 |
@@ -361,6 +363,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
@@ -421,6 +424,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。         |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
@@ -438,6 +442,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。   |
@@ -445,6 +450,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
@@ -527,7 +533,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
   );
   ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
@@ -647,6 +653,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。   |
@@ -662,7 +669,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
   );
   ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -925,6 +932,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。   |
@@ -976,6 +984,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。       |
@@ -1064,12 +1073,14 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。 |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是    | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
 **示例：** 
+
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
       console.info(' Illumination: ' + data.intensity);
@@ -1126,7 +1137,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
   );
   ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1437,7 +1448,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1515,7 +1526,7 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -2385,7 +2396,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 ## sensor.getSensorLists<sup>9+</sup>
 
- getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>): void
+ getSensorLists(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
 
 获取设备上的所有传感器信息。
 
@@ -2441,7 +2452,7 @@ sensor.getSensorList().then((data) => {
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
-getSingleSensor(type:SensorType, callback: AsyncCallback&lt;sensor&gt;): void
+getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 获取指定类型的传感器信息。
 

@@ -292,6 +292,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## VibrateEffect<sup>9+</sup>
 
+马达振动效果。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 类型                                         | 说明                           |
@@ -303,6 +305,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 马达振动时长。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
 | 名称     | 默认值 | 说明                           |
 | -------- | ------ | ------------------------------ |
 | type     | "time" | 按照指定持续时间触发马达振动。 |
@@ -311,6 +315,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 ## VibratePreset<sup>9+</sup>
 
 马达预置振动类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称     | 默认值   | 说明                           |
 | -------- | -------- | ------------------------------ |
@@ -322,6 +328,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 马达振动属性。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
 | 名称  | 默认值 | 说明           |
 | ----- | ------ | -------------- |
 | id    | 0      | 振动器id。     |
@@ -330,6 +338,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 ## Usage<sup>9+</sup>
 
 振动使用场景。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称             | 类型   | 说明                           |
 | ---------------- | ------ | ------------------------------ |
