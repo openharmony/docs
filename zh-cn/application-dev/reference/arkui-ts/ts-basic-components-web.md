@@ -1420,9 +1420,9 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 **参数：**
 
 | 参数名     | 参数类型                           | 参数描述             |
-| ------- | ------------------------------------ | ---------------- |
-| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。   |
-| error   | [SslError](#sslerror枚举说明)          | 错误码。 |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror枚举说明)         | 错误码。 |
 
 **示例：**
 
@@ -1468,17 +1468,17 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 
 onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
 
-通知发生SSL错误。
+通知用户收到SSL客户端证书请求事件。
 
 **参数：**
 
 | 参数名   | 参数类型                             | 参数描述             |
 | ------- | ------------------------------------ | ----------------    |
 | handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。|
-| host    | string          | 请求证书的服务器的主机名。 |
-| port    | number          | 请求证书的服务器的端口号。 |
-| keyTypes| Array<string>   | 可接受的非对称秘钥类型。   |
-| issuers | Array<string>   | 与私钥配证书可接受的颁发者。|
+| host    | string          | 请求证书服务器的主机名。 |
+| port    | number          | 请求证书服务器的端口号。 |
+| keyTypes| Array<string>   | 可接受的非对称秘钥类型。 |
+| issuers | Array<string>   | 与私钥匹配的证书可接受颁发者。|
 
   **示例：**
   ```ts
@@ -2143,7 +2143,7 @@ handleConfirm(): void
 
 ## ClientAuthenticationHandler<sup>9+</sup>
 
-Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onClientAuthenticationRequest9)。
+Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onclientauthenticationrequest9)。
 
 ### confirm<sup>9+</sup>
 
