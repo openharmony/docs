@@ -1,16 +1,11 @@
 # Gauge
 
-
->  **说明：**
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 数据量规图表组件，用于将数据展示为环形图表。
 
 
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -22,23 +17,25 @@
 
 Gauge(options:{value: number, min?: number, max?: number})
 
-- 参数
-    | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | 是 | - | 当前数据值。 | 
-  | min | number | 否 | 0 | 当前数据段最小值。 | 
-  | max | number | 否 | 100 | 当前数据段最大值。 | 
+**参数：**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | number | 是 | 当前数据值。 |
+| min | number | 否 | 当前数据段最小值。<br/>默认值：0 |
+| max | number | 否 | 当前数据段最大值。<br/>默认值：100 |
 
 ## 属性
 
-  | 名称 | 参数类型 | 默认值 | 描述 | 
-| -------- | -------- | -------- | -------- |
-| value | number | 0 | 设置当前数据图表的值。 | 
-| startAngle | number | -150 | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。 | 
-| endAngle | number | 150 | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。 | 
-| colors | Array&lt;ColorStop&gt; | - | 设置图表的颜色，支持分段颜色设置。 |
-| strokeWidth | Length | - | 设置环形图表的环形厚度。 |
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| value | number | 设置当前数据图表的值。<br/>默认值：0 |
+| startAngle | number | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：-150 |
+| endAngle | number | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：150 |
+| colors | Array&lt;ColorStop&gt; | 设置图表的颜色，支持分段颜色设置。 |
+| strokeWidth | Length | 设置环形图表的环形厚度。 |
 
 ## ColorStop
 
@@ -51,7 +48,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 ## 示例
 
-  
+
 ```ts
 // xxx.ets
 @Entry
