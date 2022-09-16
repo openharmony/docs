@@ -55,12 +55,12 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-**参数：** 
+**参数：**
 
-| 参数名    | 类型                                               | 必填 | 说明           |
-| --------- | -------------------------------------------------- | ---- | :------------- |
-| effect    | [VibrateEffect](#vibrateeffect<sup>9+</sup>)       | 是   | 马达振动效果。 |
-| attribute | [VibrateAttribute](#vibrateattribute<sup>9+</sup>) | 是   | 马达振动属性。 |
+| 参数名    | 类型                                   | 必填 | 说明           |
+| --------- | -------------------------------------- | ---- | :------------- |
+| effect    | [VibrateEffect](#vibrateffect9)        | 是   | 马达振动效果。 |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。 |
 
 **返回值：** 
 
@@ -183,11 +183,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 **参数：** 
 
-| 参数名    | 类型                                               | 必填 | 说明                                                       |
-| --------- | -------------------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#VibrateEffect<sup>9+</sup>)       | 是   | 马达振动效果。                                             |
-| attribute | [VibrateAttribute](#vibrateattribute<sup>9+</sup>) | 是   | 马达振动属性。                                             |
-| callback  | AsyncCallback&lt;void&gt;                          | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| 参数名    | 类型                                   | 必填 | 说明                                                       |
+| --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
+| effect    | [VibrateEffect](#VibrateEffect9)       | 是   | 马达振动效果。                                             |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
+| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
 示例：
 
@@ -296,10 +296,10 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
-| 类型                                         | 说明                           |
-| -------------------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime<sup>9+</sup>)     | 按照指定持续时间触发马达振动。 |
-| [VibratePreset](#vibratepreset<sup>9+</sup>) | 按照预置振动类型触发马达振动。 |
+| 类型                             | 说明                           |
+| -------------------------------- | ------------------------------ |
+| [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
+| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 

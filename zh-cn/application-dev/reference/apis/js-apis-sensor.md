@@ -2404,20 +2404,20 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **参数：** 
 
-| 参数名   | 类型                                                       | 必填 | 说明             |
-| -------- | ---------------------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#Sensor<sup>9+</sup>)&gt;> | 是   | 返回传感器列表。 |
+| 参数名   | 类型                                           | 必填 | 说明             |
+| -------- | ---------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
 ```js
-sensor.getSensorList((error, data) => {
+sensor.getSensorLists((error, data) => {
     if (error) {
-        console.error('getSensorList failed');
+        console.error('getSensorLists failed');
     } else {
-        console.info("getSensorList callback in" + data.length);
+        console.info("getSensorLists callback in" + data.length);
         for (var i = 0; i < data.length; i++) {
-            console.info("getSensorList " + JSON.stringify(data[i]));
+            console.info("getSensorLists " + JSON.stringify(data[i]));
         }
     }
 });
@@ -2433,20 +2433,20 @@ sensor.getSensorList((error, data) => {
 
 **返回值：** 
 
-| 参数名  | 类型                                                 | 必填 | 说明             |
-| ------- | ---------------------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#Sensor<sup>9+</sup>)&gt;> | 是   | 返回传感器列表。 |
+| 参数名  | 类型                                     | 必填 | 说明             |
+| ------- | ---------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
 
 **示例：** 
 
 ```js
-sensor.getSensorList().then((data) => {
-    console.info("getSensorList promise in" + data.length);
+sensor.getSensorLists().then((data) => {
+    console.info("getSensorLists promise in" + data.length);
     for (var i = 0; i < data.length; i++) {
-        console.info("getSensorList " + JSON.stringify(data[i]));
+        console.info("getSensorLists " + JSON.stringify(data[i]));
      }
 }, (error)=>{
-    console.error('getSensorList failed');
+    console.error('getSensorLists failed');
 });
 ```
 
@@ -2460,10 +2460,10 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **参数：** 
 
-| 参数名   | 类型                                                | 必填 | 说明             |
-| -------- | --------------------------------------------------- | ---- | ---------------- |
-| type     | SensorType                                          | 是   | 传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor](#Sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
+| 参数名   | 类型                                    | 必填 | 说明             |
+| -------- | --------------------------------------- | ---- | ---------------- |
+| type     | SensorType                              | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
@@ -2493,9 +2493,9 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **返回值：** 
 
-| 参数名  | 类型                                          | 必填 | 说明             |
-| ------- | --------------------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#Sensor<sup>9+</sup>)&gt; | 是   | 返回传感器信息。 |
+| 参数名  | 类型                              | 必填 | 说明             |
+| ------- | --------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
