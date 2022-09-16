@@ -67,7 +67,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Promisse\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
+| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
 
 **Example**
 

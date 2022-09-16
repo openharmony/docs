@@ -825,7 +825,7 @@ on(type: 'change', callback: Callback&lt;{ key : string }&gt;): void
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Failed to Gget preferences.");
+        console.info("Failed to get preferences.");
         return;
     }
     var observer = function (key) {
@@ -871,7 +871,7 @@ off(type: 'change', callback?: Callback&lt;{ key : string }&gt;): void
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Failed to Gget preferences.");
+        console.info("Failed to get preferences.");
         return;
     }
     var observer = function (key) {

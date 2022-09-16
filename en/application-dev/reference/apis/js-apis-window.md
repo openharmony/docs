@@ -3122,7 +3122,7 @@ let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
 promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 

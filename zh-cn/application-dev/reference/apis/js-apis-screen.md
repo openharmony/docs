@@ -112,7 +112,7 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 
 ```js
 var callback = (data) => {
-    console.info('Unegister the callback for screen changes. Data: ' + JSON.stringify(data))
+    console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
 };
 screen.off("connect", callback);
 ```
