@@ -40,7 +40,7 @@ List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?
 | chainAnimation | boolean | 设置当前List是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：List内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>默认值：false<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
 | multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | lanes<sup>9+</sup> | number \| [LengthConstrain](../../ui/ts-types.md#lengthconstrain) | 以列模式为例（listDirection为Axis.Vertical）:<br/>lanes用于决定List组件在交叉轴方向按几列布局。<br/>默认值：1<br/>规则如下：<br/>- lanes为指定的数量时，根据指定的数量与List组件的交叉轴宽度来决定每列的宽度；<br/>- lane设置了{minLength，maxLength}时，根据List组件的宽度自适应决定lanes数量（即列数），保证缩放过程中lane的宽度符合{minLength，maxLength}的限制。其中，minLength条件会被优先满足，即优先保证符合ListItem的宽度符合最小宽度限制。例如在列模式下，设置了{minLength: 40vp，maxLength: 60vp}，则当List组件宽度为70vp时，ListItem为一列，并且根据alignListItem属性做靠左、居中或者靠右布局；当List组件宽度变化至80vp时，符合两倍的minLength，则ListItem自适应为两列。 |
-| alignListItem<sup>9+</sup> | ListItemAlign | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为居中。<br/>默认值：ListItemAlign.Center |
+| alignListItem<sup>9+</sup> | ListItemAlign | List交叉轴方向宽度大于ListItem交叉轴宽度 * lanes时，ListItem在List交叉轴方向的布局方式，默认为首部对齐。<br/>默认值：ListItemAlign.Start |
 | sticky<sup>9+</sup> | StickyStyle | 配合[ListItemGroup](ts-container-listitemgroup.md)组件使用，设置ListItemGroup中header和footer是否要吸顶或吸底。<br/>默认值：StickyStyle.None<br/>**说明：**<br/>sticky属性可以设置为 StickyStyle.Header \| StickyStyle.Footer 以同时支持header吸顶和footer吸底。 |
 
 ## ListItemAlign<sup>9+</sup>枚举说明
