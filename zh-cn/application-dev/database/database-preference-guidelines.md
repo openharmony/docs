@@ -94,7 +94,7 @@
    ```js
    // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
-   var context = featureAbility.getContext()
+   let context = featureAbility.getContext()
 
    let promise = data_preferences.getPreferences(context, 'mystore');
    ```
@@ -104,8 +104,8 @@
    ```ts
    // 获取context
    import Ability from '@ohos.application.Ability'
-   var context
-   class MainAbility extends Ability{
+   let context = null
+   export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage){
            context = this.context
        }
@@ -161,11 +161,12 @@
    应用订阅数据变更需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
 
    ```js
-   var observer = function (key) {
+   let observer = function (key) {
        console.info("The key" + key + " changed.");
    }
    preferences.on('change', observer);
-   preferences.put('startup', 'auto', function (err) {
+   // 数据产生变更，由'auto'变为'manual'。
+   preferences.put('startup', 'manual', function (err) {
        if (err) {
            console.info("Failed to put the value of 'startup'. Cause: " + err);
            return;
