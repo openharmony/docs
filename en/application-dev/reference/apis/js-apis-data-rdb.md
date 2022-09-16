@@ -1529,9 +1529,9 @@ Queries data from the RDB store of a remote device based on specified conditions
 **Example**
 
 ```js
-let predicates = new rdb.RdbPredicates('EPLOYEE')
+let predicates = new rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
-rdbStore.remoteQuery("deviceId", "EPLOYEE", predicates, function(err, resultSet){
+rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates, function(err, resultSet){
     if (err) {
         console.info("Failed to remoteQuery, err: " + err)
         return
@@ -1567,7 +1567,7 @@ Queries data from the RDB store of a remote device based on specified conditions
 **Example**
 
 ```js
-let predicates = new rdb.RdbPredicates('EPLOYEE')
+let predicates = new rdb.RdbPredicates('EMPLOYEE')
 predicates.greaterThan("id", 0)
 let promise = rdbStore.remoteQuery("deviceId", "EMPLOYEE", predicates)
 promise.then((resultSet) => {
