@@ -656,7 +656,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 从API Version9开始该接口不再维护，请用[sensor.once.LINEAR_ACCELEROMETER](#LINEAR_ACCELEROMETER9)
 
-**需要权限**：ohos.permission.ACCELERATION ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELERATION，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
