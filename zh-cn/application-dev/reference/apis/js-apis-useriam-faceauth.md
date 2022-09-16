@@ -66,7 +66,7 @@ setSurfaceId(surfaceId: string): ResultCode;
   import userIAM_faceAuth from '@ohos.userIAM.faceAuth';
 
   let faceAuthManager = new userIAM_faceAuth.FaceAuthManager()
-  faceAuthManager.setSurfaceId(surfaceIdString);
+  faceAuthManager.setSurfaceId("0");
   ```
 
 ## ResultCode
