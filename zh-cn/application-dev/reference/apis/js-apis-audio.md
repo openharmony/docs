@@ -636,7 +636,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
 | mappingId<sup>9+</sup>     | number                     | 是   | 否   | 组映射id。 |
 | groupName<sup>9+</sup>     | number                     | 是   | 否   | 组名。 |
-| ConnectType<sup>9+</sup>   | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
+| type<sup>9+</sup>          | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
 
 ## VolumeGroupInfos<sup>9+</sup>
 
