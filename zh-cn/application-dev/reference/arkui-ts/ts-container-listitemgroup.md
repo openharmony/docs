@@ -17,7 +17,7 @@
 
 ## 接口
 
-ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string}})
+ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?: number | string})
 
 **参数：**
 

@@ -1,12 +1,10 @@
 # ListItem
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 用来展示列表具体item，宽度默认充满List组件，必须配合List来使用。
 
-
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,24 +14,25 @@
 
 ## 接口
 
-ListItem()
-
+ListItem(value?: string)
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| sticky | [Sticky](#sticky枚举说明)| Sticky.None | 设置ListItem吸顶效果。 |
-| editable  | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | false       | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动。    |
-| selectable<sup>8+</sup> | boolean | true | 当前ListItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层List容器的鼠标框选开启时，ListItem的框选才生效。 |
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | - | 用于设置ListItem的划出组件。<br/>start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>edgeEffect:&nbsp;滑动效果。<br/> |
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| sticky | [Sticky](#sticky枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None |
+| editable  | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>默认值：false |
+| selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/> |
 
 ## Sticky枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | None | 无吸顶效果。 | 
-  | Normal | 当前item吸顶。 | 
-  | Opacity | 当前item吸顶显示透明度变化效果。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| None | 无吸顶效果。 |
+| Normal | 当前item吸顶。 |
+| Opacity | 当前item吸顶显示透明度变化效果。 |
 
 ## EditMode枚举说明
 
@@ -44,10 +43,10 @@ ListItem()
 | Movable | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Spring | ListItem划动距离超过划出组件大小后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
-  | None | ListItem划动距离不能超过划出组件大小。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| Spring | ListItem划动距离超过划出组件大小后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
+| None | ListItem划动距离不能超过划出组件大小。 |
 
 ## 事件
 
