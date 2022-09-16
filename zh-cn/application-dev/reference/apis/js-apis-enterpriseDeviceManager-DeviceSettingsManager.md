@@ -24,7 +24,7 @@ enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
 
 ## DeviceSettingsManager.setDateTime
 
-setDateTime(admin: Want, time: number, callback: AsyncCallback<void>): void
+setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 设置系统时间。使用callback异步回调。
 
@@ -64,7 +64,7 @@ enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
 
 ## DeviceSettingsManager.setDateTime
 
-setDateTime(admin: Want, time: number): Promise<void>
+setDateTime(admin: Want, time: number): Promise\<void>
 
 设置系统时间。使用Promise异步回调。
 
