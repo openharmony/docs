@@ -1499,9 +1499,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  let priKeyFile: string = "/system/etc/ssl/certs/examplePriKey.pk8";
-                  let certChianFile: string = "/system/etc/ssl/certs/exampleCertChian.pem";
-                  event.handler.confirm(priKeyFile, certChianFile);
+                  event.handler.confirm("/system/etc/ssl/certs/user.pk8", "/system/etc/ssl/certs/chain-user.pem");
                 }
               },
               secondaryButton: {
