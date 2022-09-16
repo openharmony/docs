@@ -265,7 +265,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 import rpc from "@ohos.rpc";
 
-function startBackgroundRunning() {
+function startContinuousTask() {
     let wantAgentInfo = {
         // List of operations to be executed after the notification is clicked.
         wants: [
@@ -293,12 +293,19 @@ function startBackgroundRunning() {
     });
 }
 
-function stopBackgroundRunning() {
+function stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
         console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
+}
+
+async function processAsyncJobs() {
+    // Execute the continuous task.
+
+    // After the continuous task is complete, call the API to release resources.
+    stopContinuousTask();
 }
 
 let mMyStub;
@@ -315,11 +322,11 @@ class MyStub extends rpc.RemoteObject {
         console.log('ServiceAbility onRemoteRequest called');
         // The meaning of code is user-defined.
         if (code === 1) {
-            // Received the request code for requesting a continuous task.
+            // Receive the request code for requesting a continuous task.
             startContinuousTask();
             // Execute the continuous task.
         } else if (code === 2) {
-            // Received the request code for canceling the continuous task.
+            // Receive the request code for canceling the continuous task.
             stopContinuousTask();
         } else {
             console.log('ServiceAbility unknown request code');
@@ -332,9 +339,9 @@ export default {
     onStart(want) {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
-        startBackgroundRunning();
-        // Execute a specific continuous task in the background.
-        stopBackgroundRunning();
+        // Call the API to start the task.
+        startContinuousTask();
+        processAsyncJobs();
     },
     onStop() {
         console.info('ServiceAbility onStop');
