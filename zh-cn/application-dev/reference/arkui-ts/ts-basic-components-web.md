@@ -1499,7 +1499,7 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
               primaryButton: {
                 value: 'confirm',
                 action: () => {
-                  event.handler.confirm("/system/etc/ssl/certs/user.pk8", "/system/etc/ssl/certs/chain-user.pem");
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
                 }
               },
               secondaryButton: {
