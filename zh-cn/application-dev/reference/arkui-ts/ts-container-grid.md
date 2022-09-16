@@ -27,8 +27,8 @@ Grid(scroller?: Scroller)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>默认值：'1fr' |
-| rowsTemplate | string | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>默认值：'1fr' |
+| columnsTemplate | string | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。并支持[auto-fill](#auto-fill说明)。<br/>默认值：'1fr' |
+| rowsTemplate | string | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。并支持[auto-fill](#auto-fill说明)。<br/>默认值：'1fr' |
 | columnsGap | Length | 设置列与列的间距。<br/>默认值：0 |
 | rowsGap | Length | 设置行与行的间距。<br/>默认值：0 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
@@ -64,6 +64,16 @@ Grid(scroller?: Scroller)
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
+
+## auto-fill说明
+
+Grid的columnsTemplate、rowsTemplate属性的auto-fill仅支持以下格式：
+
+```css
+repeat(auto-fill, track-size)
+```
+
+其中repeat、auto-fill为关键字。track-size为行高或者列宽，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效行高或者列宽。
 
 ## ItemDragInfo对象说明
 
@@ -135,3 +145,50 @@ struct GridExample {
 ```
 
 ![zh-cn_image_0000001219744183](figures/zh-cn_image_0000001219744183.gif)
+
+**auto-fill示例**
+
+```ts
+// grid-autofill.ets
+@Entry
+@Component
+struct Index {
+  @State gridItemWidth: string = "100%"
+  @State gridItemHeight: string = "100%"
+  @State gridWidth: string = "100%"
+  @State gridHeight: string = "100%"
+  @State itemList: string[] = []
+  build() {
+    Column() {
+      Grid() {
+        ForEach(this.itemList, (item) => {
+          GridItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .width('100%')
+              .textAlign(TextAlign.Center)
+          }
+          .width(this.gridItemWidth)
+          .height(this.gridItemHeight)
+          .backgroundColor(0xF9CF93)
+        }, item => item)
+      }
+      .columnsGap(1)
+      .rowsGap(1)
+      .border({ width: 4, color: 0xffdb7093, style: BorderStyle.Dashed, radius: 5 })
+      .width(this.gridWidth)
+      .height(this.gridHeight)
+      .columnsTemplate("15% repeat(auto-fill, 10% 50px 20%) 50px")
+      .rowsTemplate("150px repeat(auto-fill, 20% 25%)")
+    }.margin(5)
+  }
+
+  aboutToAppear() {
+    for(var i = 1; i < 50; i++) {
+      this.itemList.push(i.toString())
+    }
+  }
+}
+```
+
+![grid-autofill](figures/grid-autofill.png)
