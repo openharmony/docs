@@ -77,10 +77,10 @@ vibrator.vibrate({
 }, {
    	id: 0,
     usage: 'alarm'
-}).then((result)=>{
+}).then(()=>{
     console.log("Promise returned to indicate a successful vibration");
 }).catch((error)=>{
-    console.log("error.code"+error.code+"error.message"+error.message);
+    console.log("error.code" + error.code + "error.message" + error.message);
 })
 ```
 
@@ -105,7 +105,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
   ```js
   vibrator.vibrate(1000,function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate a successful vibration.");
       }
@@ -138,7 +138,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
+      console.log("error.code" + error.code + "error.message" + error.message);
   });
   ```
 
@@ -164,7 +164,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
   ```js
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate a successful vibration.");
       }
@@ -200,7 +200,7 @@ vibrator.vibrate({
     usage: 'alarm'
 }, (error)=>{
     if(error){
-        console.log(TAG + " fail, error.code:"+error.code+",error.message:"+error.message);
+        console.log("vibrate fail, error.code:" + error.code + ",error.message:" +                           error.message);
     }else{
         console.log("Callback returned to indicate a successful vibration.");
     }
@@ -234,7 +234,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
+      console.log("error.code" + error.code + "error.message" + error.message);
   });
   ```
 
@@ -260,7 +260,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
   ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate successful.");
       }
