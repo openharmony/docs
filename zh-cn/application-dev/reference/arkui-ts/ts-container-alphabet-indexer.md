@@ -6,10 +6,6 @@
 >
 >  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 
 ## 子组件
 
@@ -22,10 +18,10 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 **参数：**
 
-| 参数名        | 参数类型                | 必填   | 默认值  | 参数描述       |
-| ---------- | ------------------- | ---- | ---- | ---------- |
-| arrayValue | Array&lt;string&gt; | 是    | -    | 字母索引字符串数组。 |
-| selected   | number              | 是    | -    | 初始选中项索引值。     |
+| 参数名        | 参数类型                | 必填   | 参数描述       |
+| ---------- | ------------------- | ---- | ---------- |
+| arrayValue | Array&lt;string&gt; | 是    | 字母索引字符串数组。 |
+| selected   | number              | 是    | 初始选中项索引值。     |
 
 ## 属性
 

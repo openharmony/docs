@@ -9,11 +9,6 @@
 >  - 该组件回弹的前提是要有滚动。内容小于一屏时，没有回弹效果。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 包含[ListItem](ts-container-listitem.md)子组件。
@@ -25,24 +20,24 @@ List(value?:{space?: number | string, initialIndex?: number, scroller?: Scroller
 
 **参数：**
 
-| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述                                     |
-| ------------ | ------ | ---- | ---- | ---------------------------------------- |
-| space        | number&nbsp;\|&nbsp;string | 否    | 0    | 列表项间距。                                   |
-| initialIndex | number | 否    | 0    | 设置当前List初次加载时视口起始位置显示的item，即显示第一个item，如设置的序号超过了最后一个item的序号，则设置不生效。 |
-| scroller  | [Scroller](ts-container-scroll.md#scroller) | 否    | -          | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+| 参数名          | 参数类型   | 必填   | 参数描述                                     |
+| ------------ | ------ | ---- | ---------------------------------------- |
+| space        | number&nbsp;\|&nbsp;string | 否    | 列表项间距。<br/>默认值：0                         |
+| initialIndex | number | 否    | 设置当前List初次加载时视口起始位置显示的item的索引值。如果设置的值超过了当前List最后一个item的索引值，则设置不生效。<br/>默认值：0 |
+| scroller  | [Scroller](ts-container-scroll.md#scroller) | 否    | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
 ## 属性
 
-| 名称                           | 参数类型                                     | 默认值               | 描述                                       |
-| ---------------------------- | ---------------------------------------- | ----------------- | ---------------------------------------- |
-| listDirection                | [Axis](ts-appendix-enums.md#axis)    | Vertical          | 设置List组件排列方向参照Axis枚举说明。                  |
-| divider                      | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?: [ResourceColor](ts-types.md#resourcecolor8),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | -                 | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | 设置滚动条状态。  |
-| cachedCount | number                                   | 1                        | 设置预加载的ListItem的数量。 |
-| editMode                     | boolean                                  | false             | 声明当前List组件是否处于可编辑模式。                     |
-| edgeEffect                   | [EdgeEffect](ts-appendix-enums.md#edgeeffect)      | EdgeEffect.Spring | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。         |
-| chainAnimation               | boolean                                  | false             | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。 |
-| multiSelectable<sup>8+</sup> | boolean                                  | false             | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
+| 名称                           | 参数类型                                     | 描述                                       |
+| ---------------------------- | ---------------------------------------- | ---------------------------------------- |
+| listDirection                | [Axis](ts-appendix-enums.md#axis)    | 设置List组件排列方向参照Axis枚举说明。<br/>默认值：Vertical |
+| divider                      | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?: [ResourceColor](ts-types.md#resourcecolor8),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线与列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线与列表侧边结束端的距离。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
+| cachedCount | number                                   | 设置预加载的ListItem的数量。具体使用可参考[减少应用白块说明](../../ui/ts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1 |
+| editMode                     | boolean                                  | 声明当前List组件是否处于可编辑模式。<br/>默认值：false       |
+| edgeEffect                   | [EdgeEffect](ts-appendix-enums.md#edgeeffect)      | 滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
+| chainAnimation               | boolean                                  | 用于设置当前list是否启用链式联动动效，开启后列表滑动以及顶部和底部拖拽时会有链式联动的效果。链式联动效果：list内的list-item间隔一定距离，在基本的滑动交互行为下，主动对象驱动从动对象进行联动，驱动效果遵循弹簧物理动效。<br/>-&nbsp;false：不启用链式联动。<br/>-&nbsp;true：启用链式联动。<br/>默认值：false |
+| multiSelectable<sup>8+</sup> | boolean                                  | 是否开启鼠标框选。<br/>>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 
 
 ## 事件

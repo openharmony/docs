@@ -12,9 +12,9 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 | 参数名称 | 参数类型 | 必填 | 参数描述                                                     |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| fingers  | number   | 否   | 触发长按的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
+| fingers  | number   | 否   | 触发长按的最少手指数，最小取值为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | repeat   | boolean  | 否   | 是否连续触发事件回调。<br/>默认值：false                     |
-| duration | number   | 否   | 最小触发长按的时间，单位为毫秒（ms）。<br/>默认值：500       |
+| duration | number   | 否   | 触发长按的最小时间，单位为毫秒（ms）。<br/>默认值：500       |
 
 ## 事件
 
