@@ -23,7 +23,7 @@ When the system is powered on, the kernel loads and starts services and applicat
 The Startup subsystem consists of the following modules:
 
 - init module<br>
-  This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in [Table 2](../subsystems/subsys-boot-init.md) and starts the key system service processes in sequence with corresponding permissions granted.
+  This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in Table 2 in [Job Management](../subsystems/subsys-boot-init-jobs.md) and starts the key system service processes in sequence with corresponding permissions granted.
 
 - ueventd module<br>
   This module listens for **netlink** events about hot swap of kernel device drivers and dynamically manages the **dev** node of the corresponding device based on the event type.
