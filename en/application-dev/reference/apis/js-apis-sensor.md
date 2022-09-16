@@ -89,7 +89,6 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
 
 Subscribes to data changes of the linear acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-
 **Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
 **System capability**: SystemCapability.Sensors.Sensor
@@ -1811,7 +1810,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Rotates a rotation vector so that it can represent the coordinate system in different ways. This API uses a callback to return the result.
+Rotates a rotation vector so that it can represent the coordinate system in different ways. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1876,16 +1875,16 @@ const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
-Obtains the geomagnetic field of a geographic location. This API uses a callback to return the result.
+Obtains the geomagnetic field of a geographic location. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
-| Name            | Type                                      | Mandatory  | Description               |
-| --------------- | ---------------------------------------- | ---- | ----------------- |
-| locationOptions | [LocationOptions](#locationoptions)      | Yes   | Geographic location.            |
-| timeMillis      | number                                   | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes   | Callback used to return the geomagnetic field.          |
+| Name         | Type                                                        | Mandatory| Description                              |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | Yes  | Geographic location.                        |
+| timeMillis      | number                                                       | Yes  | Time for obtaining the magnetic declination, in milliseconds.|
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
 
 **Example**
 ```js
@@ -1934,7 +1933,7 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 
 getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This API uses a callback to return the result.
+Obtains the altitude at which the device is located based on the sea-level atmospheric pressure and the current atmospheric pressure. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1996,7 +1995,7 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the magnetic dip based on the inclination matrix. This API uses a callback to return the result.
+Obtains the magnetic dip based on the inclination matrix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2055,7 +2054,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains the angle change between two rotation matrices. This API uses a callback to return the result.
+Obtains the angle change between two rotation matrices. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2123,7 +2122,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Converts a rotation vector into a rotation matrix. This API uses a callback to return the result.
+Converts a rotation vector into a rotation matrix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2189,7 +2188,7 @@ Converts a rotation vector into a rotation matrix. This API uses a promise to re
 
 createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Converts a rotation vector into a quaternion. This API uses a callback to return the result.
+Converts a rotation vector into a quaternion. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2255,7 +2254,7 @@ Converts a rotation vector into a quaternion. This API uses a promise to return 
 
 getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
-Obtains the device direction based on the rotation matrix. This API uses a callback to return the result.
+Obtains the device direction based on the rotation matrix. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2322,7 +2321,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
 
-Creates a rotation matrix based on the gravity vector and geomagnetic vector. This API uses a callback to return the result.
+Creates a rotation matrix based on the gravity vector and geomagnetic vector. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2385,6 +2384,118 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   })
   ```
 
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(callback: AsyncCallback<Array&lt;sensor&gt;>): void
+
+Obtains information about all sensors on the device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name  | Type                                         | Mandatory| Description            |
+| -------- | --------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor)&gt;> | Yes  | Callback used to return the sensor list.|
+
+**Example**
+
+```js
+sensor.getSensorList((error, data) => {
+    if (error) {
+        console.error('getSensorList failed');
+    } else {
+        console.info("getSensorList callback in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("getSensorList " + JSON.stringify(data[i]));
+        }
+    }
+});
+```
+
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(): Promise< Array&lt;Sensor&gt;>
+
+Obtains information about all sensors on the device. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Return value**
+
+| Name | Type                                   | Mandatory| Description            |
+| ------- | --------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor)&gt;> | Yes  | Promise used to return the sensor list.|
+
+**Example**
+
+```js
+sensor.getSensorList().then((data) => {
+    console.info("getSensorList promise in" + data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.info("getSensorList " + JSON.stringify(data[i]));
+     }
+}, (error)=>{
+    console.error('getSensorList failed');
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+getSingleSensor(type: SensorType, callback: AsyncCallback&lt;sensor&gt;): void
+
+Obtains information about the sensor of a specific type. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description            |
+| -------- | -------------------------------------- | ---- | ---------------- |
+| type     | SensorType                             | Yes  | Sensor type.    |
+| callback | AsyncCallback&lt;[Sensor](#sensor)&gt; | Yes  | Callback used to return the sensor information.|
+
+**Example**
+
+```js
+ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+     if (error) {
+         console.error('getSingleSensor failed');
+     } else {
+         console.info("getSingleSensor " + JSON.stringify(data));
+     }
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+ getSingleSensor(type: SensorType,): Promise&lt;Sensor&gt;
+
+Obtains information about the sensor of a specific type. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description        |
+| ------ | ---------- | ---- | ------------ |
+| type   | SensorType | Yes  | Sensor type.|
+
+**Return value**
+
+| Name | Type                            | Mandatory| Description            |
+| ------- | -------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor)&gt; | Yes  | Promise used to return the sensor information.|
+
+**Example**
+
+```js
+sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+    console.info("getSingleSensor " + JSON.stringify(data));
+}, (error)=>{
+    console.error('getSingleSensor failed');
+});
+```
 
 ## SensorType
 
@@ -2426,10 +2537,26 @@ Describes the timestamp of the sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name       | Type  | Readable  | Writable  | Description          |
-| --------- | ------ | ---- | ---- | ------------ |
-| timestamp | number | Yes   | Yes   | Timestamp when the sensor reports data.|
+| Name     | Type| Readable| Writable| Description                    |
+| --------- | -------- | ---- | ---- | ------------------------ |
+| timestamp | number   | Yes  | Yes  | Timestamp when the sensor reports data.|
 
+## Sensor
+
+Describes the sensor information.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+| Name           | Type| Description                  |
+| --------------- | -------- | ---------------------- |
+| sensorName      | string   | Sensor name.          |
+| venderName      | string   | Vendor of the sensor.        |
+| firmwareVersion | string   | Firmware version of the sensor.      |
+| hardwareVersion | string   | Hardware version of the sensor.      |
+| sensorTypeId    | number   | Sensor type ID.        |
+| maxRange        | number   | Maximum measurement range of the sensor.|
+| precision       | number   | Precision of the sensor.          |
+| power           | number   | Power supply of the sensor.          |
 
 ## AccelerometerResponse
 
