@@ -59,7 +59,7 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 | 参数名    | 类型                                   | 必填 | 说明           |
 | --------- | -------------------------------------- | ---- | :------------- |
-| effect    | [VibrateEffect](#vibrateffect9)        | 是   | 马达振动效果。 |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。 |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。 |
 
 **返回值：** 
@@ -185,7 +185,7 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 | 参数名    | 类型                                   | 必填 | 说明                                                       |
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#VibrateEffect9)       | 是   | 马达振动效果。                                             |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。                                             |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
 | callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
