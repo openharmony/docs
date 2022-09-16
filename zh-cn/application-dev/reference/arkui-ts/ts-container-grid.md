@@ -43,6 +43,15 @@ Grid(scroller?: Scroller)
 | multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>默认值：false<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。<br/>默认值：false |
 
+## GridDirection<sup>8+</sup>枚举说明
+
+| 名称   | 描述                                   |
+  | ------ | -------------------------------------- |
+| Row  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
+| Column | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
+| RowReverse    | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
+| ColumnReverse   | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：

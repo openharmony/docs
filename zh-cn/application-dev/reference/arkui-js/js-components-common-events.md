@@ -141,6 +141,7 @@ setData(key: string, value: object): boolean
 | value | object | 是    | 要存储的数据。 |
 
 **返回值：** 
+
 | 类型      | 说明                       |
 | ------- | ------------------------ |
 | boolean | 执行结果，true表示成功，false表示失败。 |
@@ -173,6 +174,7 @@ getData(key: string): object
 | key  | string | 是    | 数据键值。 |
 
 **返回值：** 
+
 | 类型     | 说明     |
 | ------ | ------ |
 | object | 获取的数据。 |
@@ -204,6 +206,7 @@ clearData(key?: string): boolean
 | key  | string | 否    | 数据键值。 |
 
 **返回值：** 
+
 | 类型      | 说明                       |
 | ------- | ------------------------ |
 | boolean | 执行结果，true表示成功，false表示失败。 |
@@ -230,6 +233,7 @@ setDragImage(pixelmap: PixelMap, offsetX: number,offsetY: number): boolean
 | offsetY  | number   | 是    | 相对于图片的纵向偏移量。                            |
 
 **返回值：** 
+
 | 类型   | 说明                       |
 | ---- | ------------------------ |
 | boolean | 执行结果，true表示成功，false表示失败。 |

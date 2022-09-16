@@ -2746,7 +2746,7 @@ Defines the dialup options.
 | Name                  | Type                              | Mandatory| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | extras                   | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call|
-| accountId <sup>8+</sup>  | number                             | No  | Account ID. This is a system API.                                  |
+| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.         |
 | videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                            |
 | dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                |
 | dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                |

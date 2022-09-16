@@ -41,15 +41,15 @@ vendor
 
     ```
     {
-    "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
-    "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-    "type": "small",                      --- 构建系统的类型，mini/small/standard
-    "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
-    "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
-    "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
-    "kernel_type": "liteos_a",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-    "kernel_version": "",                 --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-    "subsystems": [ ]                     --- 选择所需要编译构建的子系统
+      "product_name": "bearpi_hm_micro",    --- 用于hb set进行选择时，显示的产品名称
+      "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
+      "type": "small",                      --- 构建系统的类型，mini/small/standard
+      "ohos_version": "OpenHarmony 3.0",    --- OpenHarmony系统版本
+      "device_company": "bearpi",           --- 单板厂商名，用于编译时找到/device/board/bearpi目录
+      "board": "bearpi_hm_micro",           --- 单板名，用于编译时找到/device/board/bearpi/bearpi_hm_micro目录
+      "kernel_type": "liteos_a",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+      "kernel_version": "",                 --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+      "subsystems": [ ]                     --- 选择所需要编译构建的子系统
     }
     ```
 

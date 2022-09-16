@@ -25,56 +25,25 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 ## WindowExtensionAbility.onConnect
 
-onConnect(want: Want): rpc.RemoteObject
+onConnect(want: Want): void
 
 当窗口扩展组件第一次连接ability时回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md) | 是 | 当前ability的Want类型信息，包括ability名称、bundle名称等。 |
 
-**返回值：** 
-| 类型                                            | 说明                 |
-| ----------------------------------------------- | -------------------- |
-| [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | 窗口功能的代理对象。 |
-
 **示例：** 
 
 ```ts
-import rpc from '@ohos.rpc';
-
-class StubTest extends rpc.RemoteObject {
-    constructor(des) {
-        super(des);
-    }
-    onRemoteRequest(code, data, reply, option) {
-        return true;
-    }
-    queryLocalInterface(descriptor) {
-        return null;
-    }
-    getInterfaceDescriptor() {
-        return "";
-    }
-    sendRequest(code, data, reply, options) {
-        return null;
-    }
-    getCallingPid() {
-        return 1;
-    }
-    getCallingUid() {
-        return 1;
-    }
-    attachLocalInterface(localInterface, descriptor){}
-}
-
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
-  onConnect(want): rpc.RemoteObject {
+  onConnect(want) {
     console.info('WindowExtAbility onConnect ' + want.abilityName);
-    return new StubTest("test");
   }
 
 }
@@ -87,6 +56,8 @@ onDisconnect(want: Want): void
 当所有连接到窗口扩展组件的ability断开连接时回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -105,7 +76,6 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 }
 ```
 
-
 ## WindowExtensionAbility.onWindowReady
 
 onWindowReady(window: Window): void
@@ -113,6 +83,8 @@ onWindowReady(window: Window): void
 当窗口被创建时回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

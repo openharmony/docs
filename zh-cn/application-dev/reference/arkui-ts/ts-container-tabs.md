@@ -1,15 +1,10 @@
 # Tabs
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 一种可以通过页签进行内容视图切换的容器组件，每个页签对应一个内容视图。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -17,45 +12,49 @@
 包含子组件[TabContent](ts-container-tabcontent.md)。
 
 
-## 接口说明
+## 接口
 
 Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | barPosition | BarPosition | 否 | BarPosition.Start | 指定页签位置来创建Tabs容器组件。 |
-  | index | number | 否 | 0 | 指定初次初始页签索引。 |
-  | controller | [TabsController](#tabscontroller) | 否 | - | 设置Tabs控制器。 |
+**参数：**
 
-- BarPosition枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 |
-  | End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| barPosition | BarPosition | 否 | 指定页签位置来创建Tabs容器组件。<br/>默认值：BarPosition.Start |
+| index | number | 否 | 指定初次初始页签索引。<br/>默认值：0 |
+| controller | [TabsController](#tabscontroller) | 否 | 设置Tabs控制器。 |
+
+## BarPosition枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 |
+| End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
 
 
 ## 属性
 
-不支持触摸热区设置。
+不支持[触摸热区设置](ts-universal-attributes-touch-target.md)，除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| vertical          | boolean | false          | 设置为false是为横向Tabs，设置为true时为纵向Tabs。              |
-| scrollable        | boolean | true   | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。       |
-| barMode           | BarMode | BarMode.Fixed                | TabBar布局模式，具体描述见BarMode枚举说明。                     |
-| barWidth          | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的宽度值。     |
-| barHeight         | number&nbsp;\|&nbsp;string<sup>8+</sup>  | -    | TabBar的高度值。     |
-| animationDuration | number | 200 | TabContent滑动动画时长。 |
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| vertical          | boolean | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
+| scrollable        | boolean | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
+| barMode           | BarMode | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
+| barWidth          | number&nbsp;\|&nbsp;string<sup>8+</sup>  | TabBar的宽度值。     |
+| barHeight         | number&nbsp;\|&nbsp;string<sup>8+</sup>  | TabBar的高度值。     |
+| animationDuration | number | TabContent滑动动画时长。<br/>默认值：200 |
 
-- BarMode枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Scrollable | TabBar使用实际布局宽度,&nbsp;超过总长度后可滑动。 |
-  | Fixed | 所有TabBar平均分配宽度。 |
+## BarMode枚举说明
 
+| 名称 | 描述 |
+| -------- | -------- |
+| Scrollable | TabBar使用实际布局宽度,&nbsp;超过总长度后可滑动。 |
+| Fixed | 所有TabBar平均分配宽度。 |
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |
@@ -78,10 +77,11 @@ changeIndex(value: number): void
 
 控制Tabs切换到指定页签。
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | 是 | - | 页签在Tabs里的索引值，索引值从0开始。 |
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | number | 是 | 页签在Tabs里的索引值，索引值从0开始。 |
 
 
 ## 示例

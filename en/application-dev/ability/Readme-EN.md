@@ -17,5 +17,7 @@
 - Other
   - [WantAgent Development](wantagent.md)
   - [Ability Assistant Usage](ability-assistant-guidelines.md)
+  - [ContinuationManager Development](continuationmanager.md)
   - [Test Framework Usage](ability-delegator.md)
+  
 

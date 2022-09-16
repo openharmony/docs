@@ -26,7 +26,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| Embed | 侧边栏嵌入到组件内，侧边栏和内容区并列显示。 |
+| Embed | 侧边栏嵌入到组件内，和内容区并列显示。 |
 | Overlay | 侧边栏浮在内容区上面。 |
 
 ## 属性
@@ -36,9 +36,9 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
 | controlButton | ButtonStyle                                                | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
-| sideBarWidth | number | 设置侧边栏的宽度。<br/>默认值：200vp |
-| minSideBarWidth | number | 设置侧边栏最小宽度。<br/>默认值：200vp |
-| maxSideBarWidth | number | 设置侧边栏最大宽度。<br/>默认值：280vp |
+| sideBarWidth | number | 设置侧边栏的宽度。<br/>默认值：200，单位vp |
+| minSideBarWidth | number | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
+| maxSideBarWidth | number | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true |
 | sideBarPosition<sup>9+</sup> | SideBarPosition | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
 
@@ -46,11 +46,18 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| left | number | 否 | 设置侧边栏控制按钮与容器左界限的间距。<br/>默认值：16 |
-| top | number | 否 | 设置侧边栏控制按钮与容器上界限的间距。<br/>默认值：48 |
-| width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：32 |
-| height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：32 |
+| left | number | 否 | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16，单位vp |
+| top | number | 否 | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48，单位vp |
+| width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：32，单位vp |
+| height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：32，单位vp |
 | icons | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br/>hidden:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) ,<br/>switching?:&nbsp;string \| PixelMap \| [Resource](../../ui/ts-types.md) <br/>} | 否 | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 |
+
+## SideBarPosition<sup>9+</sup>枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| Start | 侧边栏位于容器左侧。 |
+| End | 侧边栏位于容器右侧。 |
 
 ## SideBarPosition<sup>9+</sup>枚举说明
 
@@ -63,7 +70,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback: (value: boolean) =&gt; void) | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> value的true表示显示，false表示隐藏。|
+| onChange(callback: (value: boolean) =&gt; void) | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> true表示显示，false表示隐藏。 |
 
 
 ## 示例

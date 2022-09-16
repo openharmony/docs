@@ -17,7 +17,7 @@
 
 ## 子组件
 
-tspan。
+[tspan](js-components-svg-tspan.md)。
 
 
 ## 属性
@@ -26,19 +26,19 @@ tspan。
 支持以下表格中的属性。
 
 
-| 名称             | 类型                                 | 默认值   | 必填   | 描述                                       |
-| -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
-| id             | string                             | -     | 否    | 组件的唯一标识。                                 |
-| path           | string                             | 0     | 是    | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath |
-| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0     | 否    | 设置文本沿path绘制的起始偏移。                        |
-| font-size      | &lt;length&gt;                     | 30px  | 否    | 设置文本的尺寸。                                 |
-| fill           | &lt;color&gt;                      | black | 否    | 字体填充颜色                                   |
-| by             | number                             | -     | 否    | 相对被指定动画的属性偏移值，from默认为原属性值。               |
-| opacity        | number                             | 1     | 否    | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。 |
-| fill-opacity   | number                             | 1.0   | 否    | 字体填充透明度                                  |
-| stroke         | &lt;color&gt;                      | black | 否    | 绘制字体边框并指定颜色                              |
-| stroke-width   | number                             | 1px   | 否    | 字体边框宽度                                   |
-| stroke-opacity | number                             | 1.0   | 否    | 字体边框透明度                                  |
+| 名称           | 类型                               | 默认值 | 描述                                                         |
+| -------------- | ---------------------------------- | ------ | ------------------------------------------------------------ |
+| id             | string                             | -      | 组件的唯一标识。                                             |
+| path           | string                             | 0      | 设置路径的形状。<br/>字母指令表示的意义如下：<br/>-&nbsp;M&nbsp;=&nbsp;moveto<br/>-&nbsp;L&nbsp;=&nbsp;lineto<br/>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br/>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br/>-&nbsp;C&nbsp;=&nbsp;curveto<br/>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br/>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br/>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br/>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br/>-&nbsp;Z&nbsp;=&nbsp;closepath<br/>默认值：0 |
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | 0      | 设置文本沿path绘制的起始偏移。<br/>默认值：0                 |
+| font-size      | &lt;length&gt;                     | 30px   | 设置文本的尺寸。<br/>默认值：30px                            |
+| fill           | &lt;color&gt;                      | black  | 字体填充颜色。<br/>默认值：black                             |
+| by             | number                             | -      | 相对被指定动画的属性偏移值，from默认为原属性值。             |
+| opacity        | number                             | 1      | 元素的透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。支持属性动画。<br/>默认值：0 |
+| fill-opacity   | number                             | 1.0    | 字体填充透明度。<br/>默认值：1.0                             |
+| stroke         | &lt;color&gt;                      | black  | 绘制字体边框并指定颜色。<br/>默认值：balck                   |
+| stroke-width   | number                             | 1px    | 字体边框宽度。<br/>默认值：1px                               |
+| stroke-opacity | number                             | 1.0    | 字体边框透明度。<br/>默认值：1.0                             |
 
 
 ## 示例

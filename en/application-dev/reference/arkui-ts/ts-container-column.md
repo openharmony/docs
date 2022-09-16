@@ -20,32 +20,25 @@ This component can contain child components.
 
 ## APIs
 
-Column(value:{space?: Length})
+Column(value?:{space?: Length})
 
 
 - Parameters
-    | Name  | Type   | Mandatory | Default Value | Description                              |
-    | ----- | ------ | --------- | ------------- | ---------------------------------------- |
-    | space | Length | No        | 0             | Space between any two adjacent child components in the vertical layout. |
+  | Name| Type| Mandatory| Default Value| Description|
+  | -------- | -------- | -------- | -------- | -------- |
+  | space | Length | No| 0 | Space between two adjacent child components in the vertical layout.|
 
 
 ## Attributes
 
-| Name                        | Type                              | Default Value          | Description                              |
-| --------------------------- | --------------------------------- | ---------------------- | ---------------------------------------- |
-| alignItems                  | HorizontalAlign                   | HorizontalAlign.Center | Alignment mode of child components in the horizontal direction. |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start        | Alignment mode of child components in the vertical direction. |
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | HorizontalAlign.Center | Alignment mode of the child components in the horizontal direction.|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the vertical direction.|
 
-- HorizontalAlign enums
-    | Name   | Description                              |
-    | ------ | ---------------------------------------- |
-    | Start  | Aligned with the start edge in the same direction as the language in use. |
-    | Center | Aligned to the center. This is the default alignment mode. |
-    | End    | Aligned with the end edge in the same direction as the language in use. |
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
@@ -88,4 +81,4 @@ struct ColumnExample {
 }
 ```
 
-![](figures/Column.png)
+![Column](figures/Column.png)

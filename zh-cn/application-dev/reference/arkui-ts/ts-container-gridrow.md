@@ -13,24 +13,26 @@
 
 
 ## 接口
-GridRow(options?: {columns?: number | GridRowColumnOption, gutter?: Length | GetterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
+GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | GutterOption, breakpoints?: BreakPoints, direction?: GridRowDirection})
 
 **参数：**
 | 参数名 |类型|必填|说明|
 |-----|-----|----|----|
-|gutter|Length \| GetterOption|   否  |栅格布局间距，x代表水平方向。|
+|gutter|Length \| GutterOption|   否  |栅格布局间距，x代表水平方向。|
 |columns| number \| GridRowColumnOption |  否  |设置布局列数。|
 |breakpoints|BreakPoints|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
 |direction|GridRowDirection|   否  |栅格布局排列方向。|
 
-## GetterOption
+## GutterOption
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | 否   | 水平getter option。    |
-| y  | Length \| GridRowSizeOption | 否   | 竖直getter option。      |
+| x  | Length \| GridRowSizeOption | 否   | 水平gutter option。    |
+| y  | Length \| GridRowSizeOption | 否   | 竖直gutter option。      |
 
 ## GridRowColumnOption
+
+栅格在不同宽度设备类型下，栅格列数。
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
@@ -40,6 +42,19 @@ GridRow(options?: {columns?: number | GridRowColumnOption, gutter?: Length | Get
 | lg  | number | 否    | 大宽度类型设备。      |
 | xl  | number | 否    | 特大宽度类型设备。    |
 | xxl | number | 否    | 超大宽度类型设备。    |
+
+## GridRowSizeOption
+
+栅格在不同宽度设备类型下，gutter的大小。
+
+| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| xs  | Length | 否    | 最小宽度类型设备。    |
+| sm  | Length | 否    | 小宽度类型设备。      |
+| md  | Length | 否    | 中等宽度类型设备。    |
+| lg  | Length | 否    | 大宽度类型设备。      |
+| xl  | Length | 否    | 特大宽度类型设备。    |
+| xxl | Length | 否    | 超大宽度类型设备。    |
 
 ## BreakPoints
 

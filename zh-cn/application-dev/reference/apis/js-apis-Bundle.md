@@ -139,6 +139,80 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
  })
 ```
 
+## bundle.getApplicationInfoSync<sup>9+</sup>
+
+getApplicationInfoSync(bundleName: string, bundleFlags: number, userId: number): ApplicationInfo;
+
+以同步方法根据给定的包名获取ApplicationInfo，返回ApplicationInfo对象。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 要查询的包名。                                               |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
+
+**返回值：**
+
+| 类型                                                 | 说明                |
+| ---------------------------------------------------- | ------------------- |
+| [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | ApplicationInfo对象 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+let userId = 100;
+var applicationInfo = bundle.getApplicationInfoSync(bundleName, bundleFlags, userId);
+console.info('Operation successful. Name:' + applicationInfo.name);
+```
+
+## bundle.getApplicationInfoSync<sup>9+</sup>
+
+getApplicationInfoSync(bundleName: string, bundleFlags: number) : ApplicationInfo;
+
+以同步方法根据给定的包名获取ApplicationInfo，返回ApplicationInfo对象。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 要查询的包名。                                               |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+
+**返回值：**
+
+| 类型                                                 | 说明                |
+| ---------------------------------------------------- | ------------------- |
+| [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | ApplicationInfo对象 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+var applicationInfo = bundle.getApplicationInfoSync(bundleName, bundleFlags);
+console.info('Operation successful. Name:' + applicationInfo.name);
+```
+
 ## bundle.getAllBundleInfo
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
@@ -368,6 +442,82 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     }
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
+```
+
+## bundle.getBundleInfoSync<sup>9+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number, options: BundleOptions): BundleInfo;
+
+以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型                            | 必填 | 描述                                                         |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                          | 是   | 要查询的包名。                                               |
+| bundleFlags | number                          | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| options     | [BundleOptions](#bundleoptions) | 是   | 指定包的选项。                                               |
+
+**返回值：**
+
+| 类型                                       | 说明           |
+| ------------------------------------------ | -------------- |
+| [BundleInfo](js-apis-bundle-BundleInfo.md) | BundleInfo对象 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+let options = {
+  "userId" : 100
+};
+var bundleInfo = bundle.getBundleInfoSync(bundleName, bundleFlags, options);
+console.info('Operation successful. Name:' + bundleInfo.name);
+```
+
+## bundle.getBundleInfoSync<sup>9+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo;
+
+以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+
+**需要权限：**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 或 ohos.permission.GET_BUNDLE_INFO
+
+**系统能力：**
+
+SystemCapability.BundleManager.BundleFramework
+
+**参数：**
+
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | 是   | 要查询的包名。                                               |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+
+**返回值：**
+
+| 类型                                       | 说明           |
+| ------------------------------------------ | -------------- |
+| [BundleInfo](js-apis-bundle-BundleInfo.md) | BundleInfo对象 |
+
+**示例：**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+var bundleInfo = bundle.getBundleInfoSync(bundleName, bundleFlags);
+console.info('Operation successful. Name:' + bundleInfo.name);
 ```
 
 ## bundle.getBundleInstaller

@@ -31,23 +31,23 @@
 
 | 实例名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| WindowStage | getMainWindow(callback:AsyncCallback&lt;Window&gt;):void | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
-| WindowStage | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前`WindowStage`的主窗口加载具体页面。<br/>此接口仅可在`Stage`模型下使用。 |
-| WindowStage | createSubWindow(name:string,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。 |
-| window静态方法 | create(ctx:Context,id:string,type:WindowType,callback:AsyncCallback&lt;Window&gt;):void | 创建子窗口。<br/>-`ctx`：为应用上下文信息。<br/>-`type`：为创建的窗口类型。 |
-| Window | loadContent(path:string,callback:AsyncCallback&lt;void&gt;):void | 为当前窗口加载具体页面。 |
-| Window | setBackgroundColor(color:string,callback:AsyncCallback&lt;void&gt;):void | 设置窗口的背景色。 |
-| Window | setBrightness(brightness:number,callback:AsyncCallback&lt;void&gt;):void | 设置屏幕亮度值。 |
-| Window | setTouchable(isTouchable:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口是否为可触状态。 |
-| Window | moveTo(x:number,y:number,callback:AsyncCallback&lt;void&gt;):void | 移动当前窗口位置。 |
-| Window | resetSize(width:number,height:number,callback:AsyncCallback&lt;void&gt;):void | 改变当前窗口大小。 |
-| Window | setFullScreen(isFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口是否全屏显示。 |
-| Window | setLayoutFullScreen(isLayoutFullScreen:boolean,callback:AsyncCallback&lt;void&gt;):void | 设置窗口布局是否为全屏布局。 |
-| Window | setSystemBarEnable(names:Array&lt;'status'\|'navigation'&gt;):Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
-| Window | setSystemBarProperties(systemBarProperties:SystemBarProperties,callback:AsyncCallback&lt;void&gt;):void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
+| WindowStage | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void | 获取`WindowStage`实例下的主窗口。<br/>此接口仅可在`Stage`模型下使用。 |
+| WindowStage | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前`WindowStage`的主窗口加载具体页面。<br/>此接口仅可在`Stage`模型下使用。 |
+| WindowStage | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>此接口仅可在`Stage`模型下使用。 |
+| window静态方法 | create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | 创建子窗口。<br/>-`ctx`：为应用上下文信息。<br/>-`type`：为创建的窗口类型。 |
+| Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | 为当前窗口加载具体页面。 |
+| Window | setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | 设置窗口的背景色。 |
+| Window | setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | 设置屏幕亮度值。 |
+| Window | setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否为可触状态。 |
+| Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | 移动当前窗口位置。 |
+| Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | 改变当前窗口大小。 |
+| Window | setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口是否全屏显示。 |
+| Window | setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void | 设置窗口布局是否为全屏布局。 |
+| Window | setSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | 设置导航栏、状态栏是否显示。 |
+| Window | setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | 设置窗口内导航栏、状态栏属性。<br/>`systemBarProperties`：导航栏、状态栏的属性集合。 |
 | Window | show(callback: AsyncCallback\<void>): void | 显示当前窗口。 |
-| Window | on(type:'touchOutside',callback:Callback&lt;void&gt;):void | 开启本窗口区域外的点击事件的监听。 |
-| Window | destroy(callback: AsyncCallback&lt;void&gt;):void | 销毁当前窗口。 |
+| Window | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | 开启本窗口区域外的点击事件的监听。 |
+| Window | destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前窗口。 |
 
 
 ## 设置应用主窗口
@@ -66,14 +66,13 @@
 3. 为主窗口加载对应的目标页面。
    通过`loadContent`接口加载主窗口的目标页面。
 
-
 ```ts
 import Ability from '@ohos.application.Ability'
 
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         // 1.获取应用主窗口。
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -82,7 +81,7 @@ class MainAbility extends Ability {
             windowClass = data;
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
             // 2.设置主窗口属性。以设置"是否可触"属性为例。
-            var isTouchable = true;
+            let isTouchable = true;
             windowClass.setTouchable(isTouchable, (err, data) => {
                 if (err.code) {
                     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
@@ -124,7 +123,6 @@ class MainAbility extends Ability {
 
 4. 销毁子窗口。
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroy`接口销毁子窗口。
-
    
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -132,7 +130,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1.创建应用子窗口。
-           var sub_windowClass = null;
+           let sub_windowClass = null;
            windowStage.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
@@ -210,11 +208,10 @@ class MainAbility extends Ability {
 2. 实现沉浸式效果。有以下三种方式：
    - 方式一：调用`setFullScreen`接口，设置应用主窗口为全屏显示，此时导航栏、状态栏将隐藏，从而达到沉浸式效果。
    - 方式二：调用`setSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
-   - 方式三：调用`setLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemPropertites`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
+   - 方式三：调用`setLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
 3. 加载显示沉浸式窗口的具体内容。
    通过`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
-
    
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -222,7 +219,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1.获取应用主窗口。
-           var windowClass = null;
+           let windowClass = null;
            windowStage.getMainWindow((err, data) => {
                if (err.code) {
                    console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -232,7 +229,7 @@ class MainAbility extends Ability {
                console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
    
                // 2.实现沉浸式效果。方式一：设置应用主窗口为全屏显示。
-               var isFullScreen = true;
+               let isFullScreen = true;
                windowClass.setFullScreen(isFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -241,7 +238,7 @@ class MainAbility extends Ability {
                    console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
                });
                // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
-               var names = [];
+               let names = [];
                windowClass.setSystemBarEnable(names, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -250,7 +247,7 @@ class MainAbility extends Ability {
                    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
                });
                // 2.实现沉浸式效果。方式三：设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
-               var isLayoutFullScreen = true;
+               let isLayoutFullScreen = true;
                windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -258,7 +255,7 @@ class MainAbility extends Ability {
                    }
                    console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
                });
-               var SystemBarProperties = {
+               let sysBarProps = {
                    statusBarColor: '#ff00ff',
                    navigationBarColor: '#00ff00',
                    // 以下两个属性从API Version 7开始支持
@@ -268,7 +265,7 @@ class MainAbility extends Ability {
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
                };
-               windowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+               windowClass.setSystemBarProperties(sysBarProps, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
                        return;
@@ -309,7 +306,6 @@ class MainAbility extends Ability {
 
    > **说明：**
    > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/background-task-overview.md)。
-
    
    ```json
    {
@@ -350,7 +346,7 @@ class MainAbility extends Ability {
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 2. 创建悬浮窗。
-           var windowClass = null;
+           let windowClass = null;
            window.create(this.context, "floatWindow", window.WindowType.TYPE_FLOAT, (err, data) => {
                if (err.code) {
                    console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
@@ -407,4 +403,5 @@ class MainAbility extends Ability {
 ## 相关实例
 
 针对window开发（Stage模型），有以下相关实例可供参考：
+
 - [`Window`：窗口（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)

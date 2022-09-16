@@ -1,11 +1,11 @@
 # Polyline
 
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<Polyline>** component is used to draw a polyline.
 
-
-The **<Polyline\>** component is used to draw a polyline.
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -15,38 +15,51 @@ None
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Polyline(options?: {width: Length, height: Length})
+Polyline(options?: {width?: string | number, height?: string | number})
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | Options of the polyline to draw. For details, see the **options** parameters. | 
-
-- options parameters
-  | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width of the polyline. | 
-  | height | Length | Yes | - | Height of the polyline. | 
+  | width | string \| number | No| 0 | Width of the polyline. |
+  | height | string \| number | No| 0 | Height of the polyline. |
 
 
 ## Attributes
 
-| Name | Type | Default Value | Mandatory | Description | 
-| -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | No | Width of the rectangle where the polyline is located. | 
-| height | Length | 0 | No | Height of the rectangle where the polyline is located. | 
-| points | Array&lt;Point&gt; | - | Yes | List of coordinates that the polyline passes through. | 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| points | Array&lt;Point&gt; | [] | No| List of coordinates that the polyline passes through.|
+| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Color of the fill area.|
+| fillOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Opacity of the fill area.|
+| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Stroke color.|
+| strokeDashArray | Array&lt;Length&gt; | [] | No| Stroke dashes.|
+| strokeDashOffset | number \| string | 0 | No| Offset of the start point for drawing the stroke.|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | No| Cap style of the stroke.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | No| Join style of the stroke.|
+| strokeMiterLimit | number \| string | 4 | No| Limit value when the sharp angle is drawn as a miter.|
+| strokeOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Stroke opacity.|
+| strokeWidth | Length | 1 | No| Stroke width.|
+| antiAlias | boolean | true | No| Whether anti-aliasing is enabled.|
+
+## Point
+
+Describes the coordinates of a point.
+
+| Name     | Type            | Description                                                        |
+| --------- | -------------------- | ------------------------------------------------------------ |
+| Point | [number, number] | Coordinates of a point. The first parameter is the x-coordinate, and the second parameter is the y-coordinate (relative coordinate).|
 
 ## Example
 
-  
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct PolylineExample {

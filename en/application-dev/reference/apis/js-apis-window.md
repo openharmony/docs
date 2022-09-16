@@ -94,11 +94,11 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type| Readable| Writable| Description                                                        |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| statusBarColor                         | string   | No  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
 | statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
+| navigationBarColor                     | string   | No  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
 ## Orientation<sup>9+</sup>
@@ -147,11 +147,11 @@ Describes the callback for a single system bar.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
-| isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
-| region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
+| type            | [WindowType](#windowtype) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
+| isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed.                                        |
+| region          | [Rect](#rect)             | Yes  | No  | Current position and size of the system bar.                                    |
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
 
@@ -164,7 +164,7 @@ Describes the callback for the current system bar.
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information that has been changed.|
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
 
@@ -224,6 +224,7 @@ Describes the window properties.
 | isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
 | isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
 | isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
+| id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is `0.0`.                                                 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -246,8 +247,8 @@ Describes the scale parameters.
 
 | Name  | Type| Readable| Writable| Description                                              |
 | ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | No  | Yes  | Scale factor of the x-axis. The default value is `1.0`.                      |
-| y      | number   | No  | Yes  | Scale factor of the y-axis. The default value is `1.0`.                      |
+| x      | number   | No  | Yes  | Scale factor along the x-axis. The default value is `1.0`.                      |
+| y      | number   | No  | Yes  | Scale factor along the y-axis. The default value is `1.0`.                      |
 | pivotX | number   | No  | Yes  | X coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is `0.5`.|
 | pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value ranges from 0.0 to 1.0, and the default value is `0.5`.|
 
@@ -1238,9 +1239,9 @@ Sets the type of this window. This API uses an asynchronous callback to return t
 
 **System API**: This is a system API.
 
-> **NOTE**<br>This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1272,9 +1273,9 @@ Sets the type of this window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-> **NOTE**<br>This API is supported since API version 7 and deprecated since API version 9.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1404,7 +1405,8 @@ Obtains the area where this window cannot be displayed, for example, the system 
 **Example**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1882,7 +1884,7 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1908,7 +1910,7 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1970,9 +1972,9 @@ windowClass.off('windowSizeChange');
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Enables listening for changes to the area where the window cannot be displayed.
-> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9. Use [on('avoidAreaChange')](#onavoidareachange9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1996,9 +1998,9 @@ windowClass.on('systemAvoidAreaChange', (data) => {
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
 Disables listening for changes to the area where the window cannot be displayed.
-> **NOTE**<br> This API is supported since API version 7 and deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
+> **NOTE**
 >
->  
+>  This API is supported since API version 7 and deprecated since API version 9. Use [off('avoidAreaChange')](#offavoidareachange9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2164,7 +2166,7 @@ Subscribes to screenshot events.
 
 | Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
+| type     | string              | Yes  | Event type. The value is fixed at `screenshot`, indicating the screenshot event.|
 | callback | Callback&lt;void&gt; | Yes  | Callback invoked when a screenshot event occurs.                              |
 
 **Example**
@@ -2187,7 +2189,7 @@ Unsubscribes from screenshot events.
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
+| type     | string                 | Yes  | Event type. The value is fixed at `screenshot`, indicating the screenshot event.|
 | callback | Callback&lt;void&gt; | No  | Callback invoked when a screenshot event occurs.|
 
 **Example**
@@ -2215,7 +2217,7 @@ Subscribes to click events of the target window in the modal window mode.
 
 | Name  | Type                | Mandatory| Description                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
+| type     | string              | Yes  | Event type. The value is fixed at `dialogTargetTouch`, indicating the click event of the target window in the modal window mode.|
 | callback | Callback&lt;void&gt;| Yes  | Callback invoked when the click event occurs in the target window of the modal window mode.|
 
 **Example**
@@ -2238,7 +2240,7 @@ Unsubscribes from click events of the target window in the modal window mode.
 
 | Name  | Type                   | Mandatory| Description                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
+| type     | string                 | Yes  | Event type. The value is fixed at `dialogTargetTouch`, indicating the click event of the target window in the modal window mode.|
 | callback | Callback&lt;void&gt;      | No  | Callback invoked when the click event occurs in the target window of the modal window mode.|
 
 **Example**
@@ -2527,7 +2529,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -2555,7 +2557,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 
 **Return value**
 
@@ -3120,7 +3122,7 @@ let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
 promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -3257,8 +3259,8 @@ Sets the shadow for the window borders.
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | Yes  | Radius of the blur for the borders. The value is greater than or equal to 0. The value `0` means that the shadow is disabled for the window borders.|
-| color   | string | No  | Color of the shadow. The value is a hexadecimal color and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| radius  | number | Yes  | Radius of the shadow. The value is greater than or equal to 0. The value `0` means that the shadow is disabled for the window borders.|
+| color   | string | No  | Color of the shadow. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | offsetX | number | No  | Offset of the shadow along the x-axis, in pixels.                   |
 | offsetY | number | No  | Offset of the shadow along the y-axis, in pixels.                   |
 
@@ -3331,11 +3333,12 @@ Sets the scale parameters for this window.
 **Example**
 
 ```js
-var obj : window.ScaleOptions;
-obj.x = 2.0;
-obj.y = 1.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.ScaleOptions = {
+  x : 2.0,
+  y : 1.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.scale(obj);
 ```
 
@@ -3358,12 +3361,13 @@ Sets the rotation parameters for this window.
 **Example**
 
 ```js
-var obj : window.RotateOptions;
-obj.x = 1.0;
-obj.y = 1.0;
-obj.z = 45.0;
-obj.pivotX = 0.5;
-obj.pivotY = 0.5;
+var obj : window.RotateOptions = {
+  x : 1.0,
+  y : 1.0,
+  z : 45.0,
+  pivotX = 0.5;
+  pivotY = 0.5;
+}
 windowClass.rotate(obj);
 ```
 
@@ -3386,10 +3390,11 @@ Sets the translation parameters for this window.
 **Example**
 
 ```js
-var obj : window.TranslateOptions;
-obj.x = 100.0;
-obj.y = 0.0;
-obj.z = 0.0;
+var obj : window.TranslateOptions = {
+  x : 100.0,
+  y : 0.0,
+  z : 0.0
+}
 windowClass.translate(obj);
 ```
 
@@ -3421,20 +3426,23 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         curve: Curve.EaseInOut, // Animation curve.
         delay: 0, // Animation delay.
         iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation mode.
+        playMode: PlayMode.Normal // Animation playback mode.
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }    
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj); // Set the transition animation.
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
-windowClass.showWithAnimation((err, data) => {
+windowClass.hideWithAnimation((err, data) => {
     if (err.code) {
         console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
         return;
@@ -3915,21 +3923,23 @@ class myAbility extends Ability {
 
 Provides the context for the transition animation.
 
-**System API**: This is a system API.
+### Attributes
 
-### toWindow<sup>9+</sup>
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name    | Type         | Readable| Writable| Description            |
-| -------- | ----------------- | ---- | ---- | ---------------- |
-| toWindow | [Window](#window) | Yes  | Yes  | Target window to display the animation.|
+| Name                 | Type         | Readable| Writable| Description            |
+| --------------------- | ----------------- | ---- | ---- | ---------------- |
+| toWindow<sup>9+</sup> | [Window](#window) | Yes  | Yes  | Target window to display the animation.|
 
 ### completeTransition<sup>9+</sup>
 
 completeTransition(isCompleted: boolean): void
 
-Completes the transition. This API must be called after [animateTo()](../arkui-ts/ts-explicit-animation.md) is executed.
+Completes the transition. This API can be called only after [animateTo()](../arkui-ts/ts-explicit-animation.md) is executed.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3951,12 +3961,13 @@ controller.animationForShown = (context : window.TransitionContext) => {
         curve: Curve.EaseInOut, // Animation curve.
         delay: 0, // Animation delay.
         iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation mode.
+        playMode: PlayMode.Normal // Animation playback mode.
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -3970,13 +3981,13 @@ controller.animationForShown = (context : window.TransitionContext) => {
 
 Implements the transition animation controller.
 
-**System API**: This is a system API.
-
 ### animationForShown<sup>9+</sup>
 
 animationForShown(context: TransitionContext): void
 
-Customizes the animation when the window is shown.
+Customizes the animation for the scenario when the window is shown.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3998,17 +4009,20 @@ controller.animationForShown = (context : window.TransitionContext) => {
         curve: Curve.EaseInOut, // Animation curve.
         delay: 0, // Animation delay.
         iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation mode.
+        playMode: PlayMode.Normal // Animation playback mode.
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```
@@ -4017,7 +4031,9 @@ controller.animationForShown = (context : window.TransitionContext) => {
 
 animationForHidden(context: TransitionContext): void
 
-Customizes the animation when the window is hidden.
+Customizes the animation for the scenario when the window is hidden.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4039,17 +4055,20 @@ controller.animationForHidden = (context : window.TransitionContext) => {
         curve: Curve.EaseInOut, // Animation curve.
         delay: 0, // Animation delay.
         iterations: 1, // Number of playback times.
-        playMode: PlayMode.Normal // Animation mode.
+        playMode: PlayMode.Normal // Animation playback mode.
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
       }, () => {
-		var obj : window.TranslateOptions;
-		obj.x = 100.0;
-		obj.y = 0.0;
-		obj.z = 0.0;
+        var obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        }
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
     )
-    context.completeTransition(true)
     console.info('complete transition end');
 }
 ```

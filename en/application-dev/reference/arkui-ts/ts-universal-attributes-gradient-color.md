@@ -2,7 +2,7 @@
 
 Create a more gorgeous look for a component by applying a gradient color effect to it.
 
-> **NOTE**
+>  **NOTE**
 >
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -15,37 +15,21 @@ None
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| linearGradient | {<br/>angle?: [Angle](../../ui/ts-types.md),<br/>direction?:GradientDirection,<br/>colors: Array<[ColorStop](../../ui/ts-types.md)><br/>repeating?: boolean<br/>} | - | Linear gradient.<br/>**angle**: angle of the linear gradient.<br/>**direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br/>**colors**: description of the gradient colors.<br/>**repeating**: whether the colors are repeated. |
-| sweepGradient | {<br/>center: Point,<br/>start?: angle,<br/>end?: angle,<br/>colors: Array<[ColorStop](../../ui/ts-types.md)><br/>repeating?: boolean<br/>} | - | Angle gradient.<br/>**center**: center point of the angle gradient.<br/>**start**: start point of the angle gradient.<br/>**end**: end point of the angle gradient.<br/>**colors**: description of the gradient colors.<br/>**repeating**: whether the colors are repeated. |
-| radialGradient | {<br/>center: Point,<br/>radius: Length,<br/>colors: Array<[ColorStop](../../ui/ts-types.md)><br/>repeating: boolean<br/>} | - | Radial gradient.<br/>**center**: center point of the radial gradient.<br/>**radius**: radius of the radial gradient.<br/>**colors**: description of the gradient colors.<br/>**repeating**: whether the colors are repeated. |
-
-- GradientDirection
-
-  Enumerates the gradient directions.
-
-  | Name | Description |
-  | -------- | -------- |
-  | Left | The gradient direction is from right to left. |
-  | Top | The gradient direction is from bottom to top. |
-  | Right | The gradient direction is from left to right. |
-  | Bottom | The gradient direction is from top to bottom. |
-  | LeftTop | The gradient direction is upper left. |
-  | LeftBottom | The gradient direction is lower left. |
-  | RightTop | The gradient direction is upper right. |
-  | RightBottom | The gradient direction is lower right. |
-  | None | No gradient. |
+| linearGradient | {<br>angle?: [Angle](../../ui/ts-types.md),<br>direction?: [GradientDirection](ts-appendix-enums.md#gradientdirection),<br>colors: Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br>repeating?: boolean<br>} | - | Linear gradient.<br>**angle**: angle of the linear gradient.<br>**direction**: direction of the linear gradient. It does not take effect when **angle** is set.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
+| sweepGradient | {<br>center: Point,<br>start?: angle,<br>end?: angle,<br>colors: Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br>repeating?: boolean<br>} | - | Angle gradient.<br>**center**: center point of the angle gradient.<br>**start**: start point of the angle gradient.<br>**end**: end point of the angle gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
+| radialGradient | {<br>center: Point,<br>radius: Length,<br>colors: Array&lt;[ColorStop](../../ui/ts-types.md)&gt;<br>repeating: boolean<br>} | - | Radial gradient.<br>**center**: center point of the radial gradient.<br>**radius**: radius of the radial gradient.<br>**colors**: description of the gradient colors.<br>**repeating**: whether the colors are repeated.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ColorGradientExample {
+  
   build() {
     Column({ space: 5 }) {
       Text('linearGradient').fontSize(12).width('90%').fontColor(0xCCCCCC)

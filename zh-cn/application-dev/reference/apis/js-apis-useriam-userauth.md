@@ -277,7 +277,8 @@ cancelAuth(contextID : Uint8Array) : number
 
   // contextId可通过auth接口获取，此处直接定义
   let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-  let cancelCode = auth.cancel(contextId);
+  let auth = new userIAM_userAuth.UserAuth();
+  let cancelCode = auth.cancelAuth(contextId);
   if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
       console.info("cancel auth success");
   } else {
@@ -493,6 +494,7 @@ getAuthenticator(): Authenticator
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **返回值：**
+
 | 类型                                      | 说明         |
 | ----------------------------------------- | ------------ |
 | [Authenticator](#authenticatordeprecated) | 认证器对象。 |
@@ -539,13 +541,14 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 **示例：**
   ```js
-  authenticator.execute("FACE_ONLY", "S2", (code)=>{
-      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
+      if (code === userIAM_userAuth.ResultCode.SUCCESS) {
           console.info("auth success");
           return;
       }
       console.error("auth fail, code = " + code);
-  })
+  });
   ```
 
 
@@ -563,26 +566,28 @@ execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
 | level  | SecureLevel | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
 
 **返回值：**
+
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | 返回携带一个number的Promise。number&nbsp;为认证结果，参见[AuthenticationResult](#authenticationresultdeprecated)。 |
 
 **示例：**
 
-```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((code)=>{
-    console.error("auth fail, code = " + code);
-});
-```
+  ```js
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+      console.info("auth success");
+  }).catch((error)=>{
+      console.error("auth fail, code = " + error);
+  });
+  ```
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 

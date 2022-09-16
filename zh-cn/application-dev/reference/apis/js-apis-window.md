@@ -3118,7 +3118,7 @@ let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
 promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -3919,21 +3919,23 @@ class myAbility extends Ability {
 
 属性转换的上下文信息。
 
-**系统接口：** 此接口为系统接口。
+### 属性
 
-### toWindow<sup>9+</sup>
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称     | 参数类型          | 可读 | 可写 | 说明             |
-| -------- | ----------------- | ---- | ---- | ---------------- |
-| toWindow | [Window](#window) | 是   | 是   | 动画的目标窗口。 |
+| 名称                  | 参数类型          | 可读 | 可写 | 说明             |
+| --------------------- | ----------------- | ---- | ---- | ---------------- |
+| toWindow<sup>9+</sup> | [Window](#window) | 是   | 是   | 动画的目标窗口。 |
 
 ### completeTransition<sup>9+</sup>
 
 completeTransition(isCompleted: boolean): void
 
 设置属性转换的最终完成状态。该函数需要在动画函数[animateTo()](../arkui-ts/ts-explicit-animation.md)执行后设置。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
@@ -3975,13 +3977,13 @@ controller.animationForShown = (context : window.TransitionContext) => {
 
 属性转换控制器。
 
-**系统接口：** 此接口为系统接口。
-
 ### animationForShown<sup>9+</sup>
 
 animationForShown(context: TransitionContext): void
 
 窗口显示时的自定义动画配置。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4026,6 +4028,8 @@ controller.animationForShown = (context : window.TransitionContext) => {
 animationForHidden(context: TransitionContext): void
 
 窗口隐藏时的自定义动画配置。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

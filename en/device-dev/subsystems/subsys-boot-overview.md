@@ -23,7 +23,7 @@ When the system is powered on, the kernel loads and starts services and applicat
 The Startup subsystem consists of the following modules:
 
 - init module<br>
-  This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in [Table 2](../subsystems/subsys-boot-init.md) and starts the key system service processes in sequence with corresponding permissions granted.
+  This module corresponds to the init process, which is the first user-mode process started after the kernel is initialized. After the init process starts, it reads and parses the **init.cfg** file. Based on the parsing result, the init module executes the commands listed in Table 2 in [Job Management](../subsystems/subsys-boot-init-jobs.md) and starts the key system service processes in sequence with corresponding permissions granted.
 
 - ueventd module<br>
   This module listens for **netlink** events about hot swap of kernel device drivers and dynamically manages the **dev** node of the corresponding device based on the event type.
@@ -57,9 +57,7 @@ The Startup subsystem consists of the following modules:
 
 - When porting a new chip platform, you need to add the **/vendor/etc/init/init.{hardware}.cfg** file that contains the platform-level initialization configuration. This file is used to implement platform-level initialization, for example, installing the ko driver and configuring information on the related **/proc** nodes.
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-
-  > The configuration file **init.cfg** must be in JSON format.
+  > **NOTE**: The configuration file **init.cfg** must be in JSON format.
 
 - bootstrap module: The zInit code must be configured in the link script.
 
@@ -188,9 +186,7 @@ On each development board, you need to partition the memory to store the precedi
 
       This example assumes the **system** partition as the required partition on the Hi3516D V300 platform to illustrate the boot process. During this process, the init process reads the required fstab information, creates a block device node, and mounts it to the required partition. The following provides the key code snippets and log information as reference for debugging.
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-
-      > The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
+      > **NOTE**: The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
 
       1. Obtain required device information.
           ```
