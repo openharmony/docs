@@ -4513,7 +4513,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 **参数：**
 
 | 名称      | 类型                                                  | 必填 | 说明                                  |
-| -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------ |
 | type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
 | callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
 
