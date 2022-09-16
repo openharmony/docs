@@ -1422,7 +1422,7 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
 | 参数名     | 参数类型                           | 参数描述             |
 | ------- | ------------------------------------ | ----------------    |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
-| error   | [SslError](#sslerror枚举说明)         | 错误码。 |
+| error   | [SslError](#sslerror9枚举说明)        | 错误码。 |
 
 **示例：**
 
@@ -4908,13 +4908,13 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Map           | 地理地址。                    |
 | Unknown       | 未知内容。                    |
 
-## SslError枚举说明
+## SslError<sup>9+</sup>枚举说明
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
-| 名称           | 描述                 |
-| -------------- | -----------------   |
-| Invalid        | 一般错误。           |
+| 名称           | 描述                  |
+| -------------- | -----------------    |
+| Invalid        | 一般错误。            |
 | HostMismatch   | 主机名不匹配。        |
 | DateInvalid    | 证书日期无效。        |
 | Untrusted      | 证书颁发机构不受信任。 |
