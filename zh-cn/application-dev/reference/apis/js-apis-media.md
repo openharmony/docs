@@ -2484,6 +2484,7 @@ on(type: 'error', callback: ErrorCallback): void
 videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
     console.info(`audio error called, error: ${error}`); 
 // 当获取videoRecordState接口出错时通过此订阅事件上报
+});
 ```
 
 ## VideoRecordState<sup>9+</sup>
