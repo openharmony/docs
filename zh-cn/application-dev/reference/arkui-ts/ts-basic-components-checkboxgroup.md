@@ -6,25 +6,21 @@
 >
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 ## 子组件
 
 无
 
 ## 接口
 
-CheckboxGroup( option?: {group?: string} )
+CheckboxGroup( options?: {group?: string} )
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，相同group的Checkbox和CheckboxGroup为同一群组。
 
 **参数：**
 
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述  |
-| ----- | ------ | ---- | ---- | ----- |
-| group | string | 否    | -    | 群组名称。 |
+| 参数名 | 参数类型 | 必填 | 参数描述   |
+| ------ | -------- | ---- | ---------- |
+| group  | string   | 否   | 群组名称。 |
 
 ## 属性
 
@@ -50,7 +46,7 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 | 名称   | 参数类型            | 描述           |
 | ------ | ------------------- | -------------- |
 | name   | Array&lt;string&gt; | checkBox名称。 |
-| status | selectStatus        | 选中状态。     |
+| status | SelectStatus        | 选中状态。     |
 
 ## SelectStatus枚举说明
 

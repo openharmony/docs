@@ -23,7 +23,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
   | customStyle | boolean | 否 | false | 弹窗容器样式是否自定义。 |
   | gridCount<sup>8+</sup> | number | 否 | - | 弹窗宽度占栅格宽度的个数。 |
   
-- DialogAlignment枚举说明
+## DialogAlignment枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
   | Top | 垂直顶部对齐。 |

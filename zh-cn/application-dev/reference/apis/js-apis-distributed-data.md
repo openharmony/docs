@@ -596,16 +596,15 @@ KVStore数据库类型枚举。
 
 数据库的安全级别枚举。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | 表示数据库不设置安全级别。   |
-| S0  | 1 | 表示数据库的安全级别为公共级别。 |
-| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
+| NO_LEVEL  | 0 | 表示数据库不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| S0  | 1 | 表示数据库的安全级别为公共级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 
 
 ## Constants

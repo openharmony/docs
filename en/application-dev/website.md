@@ -11,7 +11,6 @@
   - Development Fundamentals
     - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
     - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
-    - [Resource File Categories](quick-start/basic-resource-file-categories.md)
     - [SysCap](quick-start/syscap.md)
 - Development
   - Ability Development
@@ -43,12 +42,11 @@
           - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
         - ["js" Tag](ui/ts-framework-js-tag.md)
         - Resource Access
-          - [Accessing Application Resources](ui/ts-application-resource-access.md)
-          - [Accessing System Resources](ui/ts-system-resource-access.md)
-          - [Media Resource Types](ui/ts-media-resource-type.md)
+          - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
+          - [Accessing Application Resources](ui/ts-resource-access.md)
         - [Pixel Units](ui/ts-pixel-units.md)
-        - [Types](ui/ts-types.md)
       - Declarative Syntax
+
         - [Overview](ui/ts-syntax-intro.md)
         - General UI Description Specifications
           - [Basic Concepts](ui/ts-general-ui-concepts.md)
@@ -180,22 +178,15 @@
       - [Custom Components](ui/ui-js-custom-components.md)
   - Common Event and Notification
     - [Common Event and Notification Overview](notification/notification-brief.md)
-    - Common Event
-      - [Common Event Development](notification/common-event.md)
-    - Notification
-      - [Notification Development](notification/notification.md)
-    - Debugging Tools
+    - [Common Event Development](notification/common-event.md)
+    - [Notification Development](notification/notification-guidelines.md)
+    - Agent-Powered Scheduled Reminder
+      - [Agent-Powered Scheduled Reminder Overview](notification/background-agent-scheduled-reminder-overview.md)
+      - [Agent-Powered Scheduled Reminder Development](notification/background-agent-scheduled-reminder-guide.md)
       - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
-    - Window
-      - [Window Overview](windowmanager/window-overview.md)
-      - [Window Development](windowmanager/window-guidelines.md)
-    - Display
-      - [Display Overview](windowmanager/display-overview.md)
-      - [Display Development](windowmanager/display-guidelines.md)
-    - Screenshot
-      - [Screenshot Overview](windowmanager/screenshot-overview.md)
-      - [Screenshot Development](windowmanager/screenshot-guidelines.md)
+    - [Window Overview](windowmanager/window-overview.md)
+    - [Window Development](windowmanager/window-guidelines.md)
   - WebGL
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
@@ -212,6 +203,10 @@
     - Image
       - [Image Development](media/image.md)
   - Security
+    - Access Control
+      - [Access Control Overview](security/accesstoken-overview.md)
+      - [Access Control Development](security/accesstoken-guidelines.md)
+      - [Permission List](security/permission-list.md)
     - User Authentication
       - [User Authentication Overview](security/userauth-overview.md)
       - [User Authentication Development](security/userauth-guidelines.md)
@@ -220,9 +215,6 @@
       - [HUKS Development](security/huks-guidelines.md)
     - hapsigner
       - [hapsigner Guide](security/hapsigntool-guidelines.md)
-    - Access Control
-      - [Access Control Overview](security/accesstoken-overview.md)
-      - [Access Control Development](security/accesstoken-guidelines.md)
   - Connectivity
     - Network Management
       - [Network Management Overview](connectivity/net-mgmt-overview.md)
@@ -250,15 +242,13 @@
     - Distributed Data Object
       - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
       - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
-  - Agent-Powered Scheduled Reminders
-    - [Agent-Powered Scheduled Reminder Overview](background-agent-scheduled-reminder/background-agent-scheduled-reminder-overview.md)
-    - [Agent-Powered Scheduled Reminder Development](background-agent-scheduled-reminder/background-agent-scheduled-reminder-guide.md)
-  - Background Task Management
-    - [Background Task Management Overview](background-task-management/background-task-overview.md)
-    - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
-  - Work Scheduler
-    - [Work Scheduler Overview](work-scheduler/work-scheduler-overview.md)
-    - [Work Scheduler Development](work-scheduler/work-scheduler-dev-guide.md)
+  - Task Management
+    - Background Task Management
+      - [Background Task Management Overview](background-task-management/background-task-overview.md)
+      - [Background Task Management Development](background-task-management/background-task-dev-guide.md)
+    - Work Scheduler
+      - [Work Scheduler Overview](task-management/work-scheduler-overview.md)
+      - [Work Scheduler Development](task-management/work-scheduler-dev-guide.md)
   - Device
     - USB Service
       - [USB Service Overview](device/usb-overview.md)
@@ -292,7 +282,10 @@
     - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
   - Native APIs
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
-- Tools  
+    - [Drawing Development](napi/drawing-guidelines.md)
+    - [Raw File Development](napi/rawfile-guidelines.md)
+    - [NativeWindow Development](napi/native-window-guidelines.md)
+- Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials  
   - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
@@ -562,8 +555,8 @@
       - [@ohos.application.formError](reference/apis/js-apis-formerror.md)
       - [@ohos.application.formHost](reference/apis/js-apis-formhost.md)
       - [@ohos.application.formInfo](reference/apis/js-apis-formInfo.md)
-      - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
       - [@ohos.application.formProvider](reference/apis/js-apis-formprovider.md)
+      - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
       - [@ohos.ability.particleAbility](reference/apis/js-apis-particleAbility.md)
       - [@ohos.application.ServiceExtensionAbility](reference/apis/js-apis-service-extension-ability.md)
       - [@ohos.application.StartOptions](reference/apis/js-apis-application-StartOptions.md)
@@ -575,19 +568,23 @@
       - [AbilityContext](reference/apis/js-apis-ability-context.md)
       - [abilityDelegator](reference/apis/js-apis-application-abilityDelegator.md)
       - [abilityDelegatorArgs](reference/apis/js-apis-application-abilityDelegatorArgs.md)
+      - [AbilityManager](reference/apis/js-apis-abilityManager.md)
       - [abilityMonitor](reference/apis/js-apis-application-abilityMonitor.md)
       - [AbilityRunningInfo](reference/apis/js-apis-abilityrunninginfo.md)
       - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
       - [Context](reference/apis/js-apis-application-context.md)
+      - [ExtensionAbilityContext](reference/apis/js-apis-extension-ability-context.md)
+      - [ExtensionAbilityInfo](reference/apis/js-apis-extensionAbilityInfo.md)
       - [ExtensionContext](reference/apis/js-apis-extension-context.md)
       - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
       - [FormExtensionContext](reference/apis/js-apis-formextensioncontext.md)
+      - [MissionInfo](reference/apis/js-apis-application-missionInfo.md)
       - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
       - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
       - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
+      - [ServiceExtAbilityContext](reference/apis/js-apis-serviceExtAbilityContext.md)
       - [ServiceExtensionContext](reference/apis/js-apis-service-extension-context.md)
       - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
-      - [AbilityStageContext](reference/apis/js-apis-abilityStageContext.md)
     - Common Event and Notification    
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
@@ -598,6 +595,14 @@
       - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
       - [@ohos.bundleState ](reference/apis/js-apis-deviceUsageStatistics.md)
       - [@ohos.zlib](reference/apis/js-apis-zlib.md)
+      - [AbilityInfo](reference/apis/js-apis-bundle-AbilityInfo.md)
+      - [ApplicationInfo](reference/apis/js-apis-bundle-ApplicationInfo.md)
+      - [BundleInfo](reference/apis/js-apis-bundle-BundleInfo.md)
+      - [CustomizeData](reference/apis/js-apis-bundle-CustomizeData.md)
+      - [ExtensionAbilityInfo](reference/apis/js-apis-bundle-ExtensionAbilityInfo.md)
+      - [HapModuleInfo](reference/apis/js-apis-bundle-HapModuleInfo.md)
+      - [Metadata](reference/apis/js-apis-bundle-Metadata.md)
+      - [ModuleInfo](reference/apis/js-apis-bundle-ModuleInfo.md)
     - UI Page    
       - [@ohos.animator](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
@@ -611,7 +616,6 @@
       - [webgl2](reference/apis/js-apis-webgl2.md)
     - Media      
         - [@ohos.multimedia.audio](reference/apis/js-apis-audio.md)
-        - [@ohos.multimedia.camera](reference/apis/js-apis-camera.md)
         - [@ohos.multimedia.image](reference/apis/js-apis-image.md)
         - [@ohos.multimedia.media](reference/apis/js-apis-media.md)
         - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
@@ -635,7 +639,6 @@
         - [@ohos.data.distributedData](reference/apis/js-apis-distributed-data.md)
         - [@ohos.data.distributedDataObject](reference/apis/js-apis-data-distributedobject.md)
         - [@ohos.data.rdb](reference/apis/js-apis-data-rdb.md)
-        - [@ohos.settings](reference/apis/js-apis-settings.md)
         - [@ohos.data.storage](reference/apis/js-apis-data-storage.md)
         - [resultSet](reference/apis/js-apis-data-resultset.md)
     - File Management      
@@ -643,6 +646,7 @@
         - [@ohos.environment](reference/apis/js-apis-environment.md)
         - [@ohos.fileio](reference/apis/js-apis-fileio.md)
         - [@ohos.fileManager](reference/apis/js-apis-filemanager.md)
+      - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
         - [@ohos.statfs](reference/apis/js-apis-statfs.md)
         - [@ohos.storageStatistics](reference/apis/js-apis-storage-statistics.md)
         - [@ohos.volumeManager](reference/apis/js-apis-volumemanager.md)
@@ -657,12 +661,15 @@
     - Network Management
         - [@ohos.net.connection](reference/apis/js-apis-net-connection.md)
         - [@ohos.net.http](reference/apis/js-apis-http.md)
-        - [@ohos.request](reference/apis/js-apis-request.md)
         - [@ohos.net.socket](reference/apis/js-apis-socket.md)
         - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md) 
+        - [@ohos.request](reference/apis/js-apis-request.md)
     - Connectivity      
         - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
         - [@ohos.connectedTag](reference/apis/js-apis-connectedTag.md)
+      - [@ohos.nfc.cardEmulation](reference/apis/js-apis-cardEmulation.md)
+      - [@ohos.nfc.controller](reference/apis/js-apis-nfcController.md)
+      - [@ohos.nfc.tag](reference/apis/js-apis-nfcTag.md)
         - [@ohos.rpc](reference/apis/js-apis-rpc.md)
         - [@ohos.wifi](reference/apis/js-apis-wifi.md)
         - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
@@ -681,6 +688,7 @@
         - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
         - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
         - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
+        - [console](reference/apis/js-apis-logs.md)
         - [Timer](reference/apis/js-apis-timer.md)
     - Device Management      
         - [@ohos.batteryInfo ](reference/apis/js-apis-battery-info.md)
@@ -695,6 +703,7 @@
         - [@ohos.power](reference/apis/js-apis-power.md)
         - [@ohos.runningLock](reference/apis/js-apis-runninglock.md)
         - [@ohos.sensor](reference/apis/js-apis-sensor.md)
+        - [@ohos.settings](reference/apis/js-apis-settings.md)
         - [@ohos.systemParameter](reference/apis/js-apis-system-parameter.md)
         - [@ohos.thermal](reference/apis/js-apis-thermal.md)
         - [@ohos.update](reference/apis/js-apis-update.md)
@@ -751,4 +760,3 @@
         - [@system.sensor](reference/apis/js-apis-system-sensor.md)
         - [@system.storage](reference/apis/js-apis-system-storage.md)
         - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
-        - [console](reference/apis/js-apis-logs.md)
