@@ -545,7 +545,7 @@ Unsubscribes from service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback used to return a service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event.|
 
 
 **Example**
@@ -2291,7 +2291,7 @@ Unsubscribes from data changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback used to return a service status change event.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the service status change event.|
 
 **Example**
 
@@ -3762,7 +3762,7 @@ Unsubscribes from synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback used to return a synchronization complete event.   |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
 
 **Example**
 
@@ -3800,7 +3800,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIdList  |string[]  | Yes   |IDs of the devices in the same networking environment to be synchronized. |
+| deviceIdList  |string[]  | Yes   |IDs of the devices in the same networking environment to be synchronized.|
 | mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
 | allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
 
@@ -5127,7 +5127,7 @@ Unsubscribes from synchronization complete events. This API returns the result s
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback used to return a synchronization complete event. |
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback for the synchronization complete event. |
 
 **Example**
 
