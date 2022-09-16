@@ -76,3 +76,5 @@ struct ImageEffectsExample {
   }
 }
 ```
+
+<img src="figures/image-effect.png" alt="image-effect"  />
