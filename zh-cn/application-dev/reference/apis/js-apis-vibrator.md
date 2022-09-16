@@ -292,6 +292,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## VibrateEffect<sup>9+</sup>
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
 | 类型                                         | 说明                           |
 | -------------------------------------------- | ------------------------------ |
 | [VibrateTime](#vibratetime<sup>9+</sup>)     | 按照指定持续时间触发马达振动。 |
