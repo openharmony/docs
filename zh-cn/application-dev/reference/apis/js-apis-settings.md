@@ -303,6 +303,8 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 
 将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Applications.settings.Core
 
 **参数**：
@@ -332,6 +334,8 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -392,7 +396,7 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 
 ## settings.enableAirplaneMode
 
-enableAirplaneMode(enable: boolean): Promise<void>
+enableAirplaneMode(enable: boolean): Promise\<void>
 
 启用或禁用飞行模式。使用Promise异步回调。
 
