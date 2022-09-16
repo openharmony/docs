@@ -1,19 +1,13 @@
 # TabContent
 
+The **\<TabContent>** component is used only in the **\<Tabs>** component. It corresponds to the content view of a switched tab page.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<TabContent\>** component is used only in the **<Tabs\>** component. It corresponds to the content view of a switched tab page.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Child Components
+## Child Component
 
 This component supports only one child component.
 
@@ -25,22 +19,22 @@ TabContent()
 
 ## Attributes
 
-Touch target configuration is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| tabBar | string \| {<br/>icon?: string,<br/>text?: string<br/>}<br/>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | - | Content displayed on the tab bar.<br/>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 or later).<br/>**NOTE**<br/>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>> **NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.|
 
-> **NOTE**
-> - The **<TabContent\>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **<Tabs\>** component.
-> 
-> - The **<TabContent\>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **<Tabs\>** component and the **<TabBar\>** component.
+>  **NOTE**
+> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
+> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+> - The **\<TabContent>** component does not support setting of the [touch target](ts-universal-attributes-touch-target.md).
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabContentExample  {
