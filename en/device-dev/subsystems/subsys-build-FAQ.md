@@ -56,18 +56,16 @@
 
 - **Possible Causes**
 
-  Permission is required to access files in the RISC-V compiler directory.
+  You do not have the permission to access files in the RISC-V compiler directory.
 
 - **Solution**
 
   1. Run the following command to locate **gcc_riscv32**:
 
-     ```shell
-     which riscv32-unknown-elf-gcc
-     ```
+  ```shell
+  which riscv32-unknown-elf-gcc
+  ```
 
-     
-  
   2. Run the **chmod** command to change the directory permission to **755**.
 
 ### "No module named 'Crypto'" Displayed During the Build Process
