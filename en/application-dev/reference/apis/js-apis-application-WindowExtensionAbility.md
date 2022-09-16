@@ -25,56 +25,25 @@ import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 
 ## WindowExtensionAbility.onConnect
 
-onConnect(want: Want): rpc.RemoteObject
+onConnect(want: Want): void
 
 Called when this Window Extension ability is connected to an ability for the first time.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name. |
-
-**Return value**
-| Type                                           | Description                |
-| ----------------------------------------------- | -------------------- |
-| [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Proxy of this Window Extension ability.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 **Example**
 
 ```ts
-import rpc from '@ohos.rpc';
-
-class StubTest extends rpc.RemoteObject {
-    constructor(des) {
-        super(des);
-    }
-    onRemoteRequest(code, data, reply, option) {
-        return true;
-    }
-    queryLocalInterface(descriptor) {
-        return null;
-    }
-    getInterfaceDescriptor() {
-        return "";
-    }
-    sendRequest(code, data, reply, options) {
-        return null;
-    }
-    getCallingPid() {
-        return 1;
-    }
-    getCallingUid() {
-        return 1;
-    }
-    attachLocalInterface(localInterface, descriptor){}
-}
-
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
-  onConnect(want): rpc.RemoteObject {
+  onConnect(want) {
     console.info('WindowExtAbility onConnect ' + want.abilityName);
-    return new StubTest("test");
   }
 
 }
@@ -88,9 +57,11 @@ Called when this Window Extension ability is disconnected from all connected abi
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name. |
+| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 
 **Example**
@@ -105,7 +76,6 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 }
 ```
 
-
 ## WindowExtensionAbility.onWindowReady
 
 onWindowReady(window: Window): void
@@ -113,6 +83,8 @@ onWindowReady(window: Window): void
 Called when a window is ready.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
