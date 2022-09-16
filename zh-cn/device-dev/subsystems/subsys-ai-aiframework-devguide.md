@@ -253,7 +253,7 @@ SDK头文件的功能实现是基于对SDK的调用映射到对客户端的调�
 | DataInfo | 算法数据入参(inputInfo)、<br/>接口调用结果出参(outputInfo)。 | **unsigned&nbsp;char&nbsp;\*data**：数据主体 <br/>**int&nbsp;length**：数据(data)长度  |
 
 
-具体开发过程可参考[唤醒词识别SDK开发示例](../subsystems/subsys-aiframework-demo-sdk.md)。
+具体开发过程可参考[唤醒词识别SDK开发示例](#唤醒词识别SDK的开发示例)。
 
 ### 开发插件
 AI引擎框架规定了一套算法插件接入规范，各插件需实现规定接口以实现获取插件版本信息、算法推理类型、同步执行算法、异步执行算法、加载算法插件、卸载算法插件、设置算法配置信息、获取指定算法配置信息等功能。（同步算法实现SyncProcess接口，异步算法实现AsyncProcess接口）。
@@ -323,7 +323,7 @@ Response类的属性如下表所示。
 | result_ | 类型：DataInfo<br/>作用：存放异步算法推理结果。 | .data&nbsp;=&nbsp;nullptr<br/>.length&nbsp;=&nbsp;0 |
 
 
-具体开发过程可参考[唤醒词识别插件开发示例](../subsystems/subsys-aiframework-demo-plugin.md)。
+具体开发过程可参考[唤醒词识别插件开发示例](#唤醒词识别插件的开发示例)。
 
 ### 开发配置文件
 
@@ -336,7 +336,7 @@ Response类的属性如下表所示。
 
 3. 代码路径//foundation/ai/engine/services/server/plugin_manager/include/中的aie_plugin_info.h文件添加唤醒词识别的算法名称及其在ALGORITHM_TYPE_ID_LIST中的序号。
 
-具体开发过程可参考[唤醒词识别配置文件开发示例](../subsystems/subsys-aiframework-demo-conf.md)。
+具体开发过程可参考[唤醒词识别配置文件开发示例](#唤醒词识别配置文件的开发示例)。
 
 ## 开发实例
 
