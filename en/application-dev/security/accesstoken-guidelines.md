@@ -1,14 +1,14 @@
-# Access Control Development
+# Access Control (Permission) Development
 
 ## When to Use
 
 In this example, the app requires the **ohos.permission.PERMISSION1** and **ohos.permission.PERMISSION2** permissions to implement core functions.
 
 - The ability privilege level (APL) of the app is normal.
-- The level of **ohos.permission.PERMISSION1** is normal, and the authorization mode is system_grant.
-- The level of **ohos.permission.PERMISSION2** is system_basic, and the authorization mode is user_grant.
+- The level of **ohos.permission.PERMISSION1** is **normal**, and the authorization mode is **system_grant**.
+- The level of **ohos.permission.PERMISSION2** is **system_basic**, and the authorization mode is **user_grant**.
 
-> **Precautions**
+> **Caution**
 >
 > In this scenario, the required permissions include a user_grant permission. You can check whether the caller has the required permission through permission verification.
 >
@@ -35,7 +35,7 @@ Declare the permissions required by the app one by one in the **config.json** fi
 | name      | Name of the permission.                                                  |
 | reason    | Reason for requesting the permission. This field is mandatory for a user_grant permission.|
 | usedScene | Scenario of the permission. This field is mandatory for a user_grant permission.|
-| abilities | Abilities that use the permission. The value is an array.              |
+| ability | Abilities that use the permission. The value is an array.              |
 | when      | Time when the permission is used. The value can be **inuse** (the permission can be used only in the foreground) or **always** (the permission can be used in foreground and background).|
 
 **Example**
@@ -43,12 +43,12 @@ Declare the permissions required by the app one by one in the **config.json** fi
 ```json
 {
     "module" : {
-        "requestPermissions":[
+        "reqPermissions":[
            {
                 "name" : "ohos.permission.PERMISSION1",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"inuse"
@@ -58,7 +58,7 @@ Declare the permissions required by the app one by one in the **config.json** fi
                 "name" : "ohos.permission.PERMISSION2",
                 "reason": "$string:reason",
                 "usedScene": {
-                     "abilities": [
+                     "ability": [
                          "FormAbility"
                      ],
                      "when":"always"
@@ -111,7 +111,7 @@ Therefore, before allowing the app to call the API protected by the **ohos.permi
 
 If the verification result indicates that the app has the permission, the app can access the target API. Otherwise, the app needs to request user authorization and then proceeds based on the authorization result. For details, see [Access Control Overview](accesstoken-overview.md).
 
-> **Precautions**
+> **Caution**
 >
 > The permissions authorized by user are not permanent, because the user may revoke the authorization at any time. Therefore, even if the user has granted the requested permission to an app, the app's permission must be verified before the app calls an API protected by the permission.
 
@@ -124,21 +124,18 @@ The procedure is as follows:
 3. Proceed based on the permission verification result.
 
 ```js
-  // OnWindowStageCreate lifecycle of the ability
-  onWindowStageCreate() {
-    var context = this.context
+import featureAbility from '@ohos.ability.featureAbility';
+
+onStart() {
+    var context = featureAbility.getContext()
     let array:Array<string> = ["ohos.permission.PERMISSION2"];
     // requestPermissionsFromUser determines whether to invoke a pop-up window based on the permission authorization status.
-    context.requestPermissionsFromUser(array).then(function(data) {
-        console.log("data type:" + typeof(data));
-        console.log("data:" + data);
-        console.log("data permissions:" + data.permissions);
-        console.log("data result:" + data.authResults);
-    }, (err) => {
-        console.error('Failed to start ability', err.code);
-    });
+    context.requestPermissionsFromUser(array, 1, (err, data)=>{
+        console.info("====>requestdata====>" + JSON.stringify(data));
+        console.info("====>requesterrcode====>" + JSON.stringify(err.code));
   }
-
+}
 ```
 > **NOTE**<br>
 > For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).
+
