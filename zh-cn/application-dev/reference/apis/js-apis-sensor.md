@@ -1486,9 +1486,9 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.LINEAR_ACCELEROMETER](#LINEAR_ACCELEROMETER)
+从API Version9开始该接口不再维护，请使用[sensor.off.LINEAR_ACCELEROMETER](#LINEAR_ACCELEROMETER9)
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
