@@ -63,17 +63,18 @@ Worker构造函数。
 **示例：**
 
 ```js
+import worker from '@ohos.worker';
 // worker线程创建
 
 // FA模型-目录同级
-const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
+const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker"});
 // FA模型-目录不同级（以workers目录放置pages目录前一级为例）
-const workerInstance = new worker.Worker("../workers/worker.js", {name:"first worker"});
+const workerFAModel02 = new worker.Worker("../workers/worker.js", {name:"first worker"});
 
 // Stage模型-目录同级
-const workerInstance = new worker.Worker('entry/ets/workers/worker.ts');
+const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts');
 // Stage模型-目录不同级（以workers目录放置pages目录后一级为例）
-const workerInstance = new worker.Worker('entry/ets/pages/workers/worker.ts');
+const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
 // scriptURL——"entry/ets/workers/worker.ts"的解释：
 // entry: 为module.json5中module中name属性的值；
@@ -143,8 +144,9 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+
 workerInstance.postMessage("hello world");
-const workerInstance= new worker.Worker("workers/worker.js");
+
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -289,7 +291,7 @@ workerInstance.onerror = function(e) {
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Worker对象的onmessage属性表示宿主线程接收到来自其创建的Worker通过parentPort.postMessage接口发送的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -315,7 +317,7 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Worker对象的onmessageerror属性表示当Worker对象接收到一条无法被序列化的消息时被调用的事件处理程序，处理程序在宿主线程中执行。
 
@@ -502,7 +504,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过worker.postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -534,7 +536,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
@@ -779,3 +781,7 @@ build-profile.json5 配置:
     }
   }
 ```
+
+## 注意事项
+Worker存在数量限制，当前支持最多同时存在7个Worker。
+当Worker数量超出限制，会出现Error "Too many workers, the number of workers exceeds the maximum."。
