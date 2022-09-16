@@ -339,8 +339,8 @@ function OnPermissionStateChanged(data){
 }
 let atManager = abilityAccessCtrl.createAtManager();
 let type: 'permissionStateChange' = 'permissionStateChange';
-let tokenIDList: Array&lt;number&gt; = [];
-let permissionNameList: Array&lt;string&gt; = [];
+let tokenIDList: Array<number> = [];
+let permissionNameList: Array<string> = [];
 try{
     atManager.on(type, tokenIDList, permissionNameList, OnPermissionStateChanged);
 }
@@ -377,8 +377,8 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let type: 'permissionStateChange' = 'permissionStateChange';
-let tokenIDList: Array&lt;number&gt; = [];
-let permissionNameList: Array&lt;string&gt; = [];
+let tokenIDList: Array<number> = [];
+let permissionNameList: Array<string> = [];
 try{
     atManager.off(type, tokenIDList, permissionNameList);
 }
