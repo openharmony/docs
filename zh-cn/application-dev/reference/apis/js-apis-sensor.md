@@ -530,7 +530,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 从API Version9开始该接口不再维护，请使用[sensor.on.HEART_BEAT_RATE](#HEART_BEAT_RATE9)
 
-**需要权限**： ohos.permission.HEALTH_DATA 
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -656,7 +656,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 从API Version9开始该接口不再维护，请用[sensor.once.LINEAR_ACCELEROMETER](#LINEAR_ACCELEROMETER9)
 
-**需要权限**： ohos.permission.ACCELERATION ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELERATION ，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1115,7 +1115,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 从API Version9开始该接口不再维护，请使用[sensor.once.HEART_BEAT_RATE](#HEART_BEAT_RATE)
 
-**需要权限**： ohos.permission.HEART_RATE  
+**需要权限**：ohos.permission.HEART_RATE  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1180,7 +1180,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER, 该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1208,7 +1208,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER, 该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1337,7 +1337,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE, 该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1365,7 +1365,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE, 该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1419,7 +1419,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 从API Version9开始该接口不再维护，请使用[sensor.off.HEART_BEAT_RATE](#HEART_BEAT_RATE)
 
-**需要权限**： ohos.permission.HEALTH_DATA 
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
