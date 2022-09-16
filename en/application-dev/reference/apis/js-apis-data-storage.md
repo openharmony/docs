@@ -55,7 +55,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 let storage = data_storage.getStorageSync(path + '/mystore');
@@ -88,7 +88,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 data_storage.getStorage(path + '/mystore', function (err, storage) {
@@ -131,7 +131,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 let getPromise = data_storage.getStorage(path + '/mystore');
@@ -167,7 +167,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 data_storage.deleteStorageSync(path + '/mystore');
@@ -198,7 +198,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 data_storage.deleteStorage(path + '/mystore', function (err) {
@@ -239,7 +239,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 let promisedelSt = data_storage.deleteStorage(path + '/mystore');
@@ -274,7 +274,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 data_storage.removeStorageFromCacheSync(path + '/mystore');
@@ -305,7 +305,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 data_storage.removeStorageFromCache(path + '/mystore', function (err) {
@@ -347,7 +347,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 });  
 
 let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')

@@ -1,8 +1,9 @@
 # Scroll
 
 >  **NOTE**
-> - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> - When a **\<List>** is nested in this component, you are advised to specify the width and height of the **\<List>** under scenarios where consistently high performance is required. If the width and height are not specified, this component will load all content of the **\<List>**.
+>  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - When nesting a **\<List>** within this component, specify the width and height for the **\<List>** under scenarios where consistently high performance is required. If the width and height are not specified, this component will load all content of the **\<List>**.
+>  - This component can produce a bounce effect only when there is more than one screen of content.
 
 
 The **\<Scroll>** component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
@@ -28,32 +29,41 @@ Scroll(scroller?: Scroller)
 | Name            | Type                                    | Default Value                     | Description       |
 | -------------- | ---------------------------------------- | ------------------------ | --------- |
 | scrollable     | ScrollDirection                          | ScrollDirection.Vertical | Scroll method.  |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate-enums)| ScrollDirection.Auto     | Scrollbar status. |
-| scrollBarColor | Color                                    | -                        | Color of the scrollbar.|
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | BarState.Off     | Scrollbar status. |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | -                  | Color of the scrollbar.|
 | scrollBarWidth | Length                                   | -                        | Width of the scrollbar.|
+| edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | Scroll effect. For details, see **EdgeEffect**.|
 
-- ScrollDirection enums
+## ScrollDirection enums
   | Name        | Description        |
   | ---------- | ---------- |
   | Horizontal | Only horizontal scrolling is supported.|
   | Vertical   | Only vertical scrolling is supported.|
   | None       | Scrolling is disabled.     |
 
+## EdgeEffect
+
+| Name    | Description                                      |
+| ------ | ---------------------------------------- |
+| Spring | Spring effect. When at one of the edges, the component can move beyond the bounds through touches, and produces a bounce effect when the user releases their finger.|
+| Fade   | Fade effect. When at one of the edges, the component produces a fade effect.         |
+| None   | No effect when the component is at one of the edges.                              |
+
 ## Events
 
 | Name                                      | Description                         |
 | ---------------------------------------- | ----------------------------- |
 | onScrollBegin<sup>9+</sup>(dx: number, dy: number)&nbsp;=&gt;&nbsp;{ dxRemain: number, dyRemain: number } | Invoked when scrolling starts.<br>Parameters:<br>- **dx**: amount to scroll by in the horizontal direction.<br>- **dy**: amount to scroll by in the vertical direction.<br>Return value:<br>- **dxRemain**: remaining amount to scroll by in the horizontal direction.<br>- **dyRemain**: remaining amount to scroll by in the vertical direction.|
-| onScroll(xOffset:&nbsp;number,&nbsp;yOffset:&nbsp;number)&nbsp;=&gt;&nbsp;void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.|
-| onScrollEdge(side:&nbsp;Edge)&nbsp;=&gt;&nbsp;void | Invoked when scrolling reaches the edge.                   |
-| onScrollEnd()&nbsp;=&gt;&nbsp;void       | Invoked when scrolling stops.                    |
+| onScroll(event: (xOffset: number, yOffset: number) => void) | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.|
+| onScrollEdge(event: (side: Edge) => void) | Invoked when scrolling reaches the edge.                   |
+| onScrollEnd(event: () => void)      | Invoked when scrolling stops.                    |
 
 >  **NOTE**
 > If the **onScrollBegin** event and **scrollBy** API are used to implement nested scrolling, you must set **edgeEffect** of the scrolling child node to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, the **edgeEffect** attribute of the **\<List>** must be set to **EdgeEffect.None**.
 
 ## Scroller
 
-Controller of the scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. Currently, this component can be bound to the **\<List>** and **\<Scroll>** components.
+Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. Currently, this component can be bound to the **\<Scroll>** and **\<ScrollBar>** components.
 
 
 ### Objects to Import
@@ -90,14 +100,8 @@ Scrolls to the edge of the container.
 - Parameters
   | Name  | Type| Mandatory  | Default Value | Description     |
   | ----- | ---- | ---- | ---- | --------- |
-  | value | Edge | Yes   | -    | Edge position to scroll to.|
+  | value | [Edge](ts-appendix-enums.md#edge) | Yes   | -    | Edge position to scroll to.|
 
-- Edge enums
-
-  | Name  | Value  | Description      |
-  | ------ | ---- | ---------- |
-  | Top    | 0    | Top edge.|
-  | Bottom | 2    | Bottom edge.|
 
   
 
@@ -111,7 +115,7 @@ Scrolls to the next or previous page.
   | Name      | Type   | Mandatory  | Default Value | Description                          |
   | --------- | ------- | ---- | ---- | ------------------------------ |
   | next      | boolean | Yes   | -    | Whether to turn to the next page. The value **true** means to scroll to the next page, and **false** means to scroll to the previous page.|
-  | direction | Axis    | No   | -    | Scrolling direction: horizontal or vertical.               |
+  | direction | [Axis](ts-appendix-enums.md#axis)    | No   | -    | Scrolling direction: horizontal or vertical.               |
 
 
 ### currentOffset
@@ -123,9 +127,9 @@ Obtains the scrolling offset.
 
 
 - Return value
-  | Type                                                    | Description                                                  |
-  | ------------------------------------------------------- | ------------------------------------------------------------ |
-  | {<br>xOffset:&nbsp;number,<br>yOffset:&nbsp;number<br>} | **xOffset**: horizontal scrolling offset.<br>**yOffset**: vertical scrolling offset. |
+  | Type                                      | Description                                      |
+  | ---------------------------------------- | ---------------------------------------- |
+  | {<br>xOffset:&nbsp;number,<br>yOffset:&nbsp;number<br>} | **xOffset**: horizontal scrolling offset.<br>**yOffset**: vertical scrolling offset.|
 
 
 ### scrollToIndex

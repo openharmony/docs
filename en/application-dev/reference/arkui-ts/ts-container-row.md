@@ -1,6 +1,7 @@
 # Row
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -19,32 +20,26 @@ Supported
 
 ## APIs
 
-Row(value:{space?: Length})
+Row(value?:{space?: Length})
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No| 0 | Space between two adjacent child components in the horizontal layout. | 
+  | space | Length | No| 0 | Space between two adjacent child components in the horizontal layout.|
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| alignItems | VerticalAlign | VerticalAlign.Center | Alignment mode of the child components in the vertical direction. |
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the horizontal direction. |
-
-- VerticalAlign enums
-  | Name | Description | 
-  | -------- | -------- |
-  | Top | Top aligned. | 
-  | Center | Center aligned. This is the default alignment mode. | 
-  | Bottom | Bottom aligned. |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | VerticalAlign.Center | Alignment mode of the child components in the vertical direction.|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | FlexAlign.Start | Alignment mode of the child components in the horizontal direction.|
 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RowExample {
@@ -84,4 +79,4 @@ struct RowExample {
 }
 ```
 
-![en_image_0000001174422908](figures/row.png)
+![en-us_image_0000001174422908](figures/row.png)

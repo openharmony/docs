@@ -10,15 +10,15 @@
 ## 属性
 
 
-| 名称 | 参数说明 | 描述 |
-| -------- | -------- | -------- |
-| width | [Length](../../ui/ts-types.md#length)                        | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。 |
-| height | [Length](../../ui/ts-types.md#length) | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。 |
-| size | {<br/>width?:&nbsp;[Length](../../ui/ts-types.md#length),<br/>height?:&nbsp;[Length](../../ui/ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>-&nbsp;width：设置组件的宽度<br/>-&nbsp;height：设置组件的高度 |
-| padding | [Padding](../../ui/ts-types.md#Padding)&nbsp;\|&nbsp;[Length](../../ui/ts-types.md#length) | 设置内边距属性。<br/>参数为[Length](../../ui/ts-types.md#length)类型时，四个方向内边距同时生效。<br/>默认值：0 |
-| margin | [Margin](../../ui/ts-types.md#Margin)&nbsp;\|&nbsp;[Length](../../ui/ts-types.md#length) | 设置外边距属性。<br/>参数为[Length](../../ui/ts-types.md#length)类型时，四个方向外边距同时生效。<br/>默认值：0 |
-| constraintSize | {<br/>minWidth?:&nbsp;[Length](../../ui/ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](../../ui/ts-types.md#length),<br/>minHeight?:&nbsp;[Length](../../ui/ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](../../ui/ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。<br/>-&nbsp;minWidth：设置组件的最小宽度<br/>-&nbsp;maxWidth：设置组件的最大宽度<br/>-&nbsp;minHeight：设置组件的最小高度<br/>-&nbsp;maxHeight：设置组件的最大高度<br/>默认值：<br/>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} |
-| layoutWeight | number&nbsp;\|&nbsp;string | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：**<br/>仅在Row/Column/Flex布局中生效。 |
+| 名称 | 参数说明 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- |
+| width | Length | - | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。 |
+| height | Length | - | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。 |
+| size | {<br/>width?:&nbsp;Length,<br/>height?:&nbsp;Length<br/>} | - | 设置高宽尺寸。 |
+| padding | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}&nbsp;\|&nbsp;Length | 0 | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。 |
+| margin | {<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>left?:&nbsp;Length<br/>}<br/>\|&nbsp;Length | 0 | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。 |
+| constraintSize | {<br/>minWidth?:&nbsp;Length,<br/>maxWidth?:&nbsp;Length,<br/>minHeight?:&nbsp;Length,<br/>maxHeight?:&nbsp;Length<br/>} | {<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。 |
+| layoutWeight | number&nbsp;\|&nbsp;string | 0 | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置，表示自适应占满剩余空间。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;仅在Row/Column/Flex布局中生效。 |
 
 
 ## 示例

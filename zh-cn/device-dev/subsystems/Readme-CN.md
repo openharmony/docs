@@ -106,6 +106,7 @@
     - [HiTrace开发指导](subsys-dfx-hitrace.md)
     - [HiCollie开发指导](subsys-dfx-hicollie.md)
     - HiSysEvent开发指导
+        - [HiSysEvent概述](subsys-dfx-hisysevent-overview.md)
         - [HiSysEvent打点配置指导](subsys-dfx-hisysevent-logging-config.md)
         - [HiSysEvent打点指导](subsys-dfx-hisysevent-logging.md)
         - [HiSysEvent订阅指导](subsys-dfx-hisysevent-listening.md)

@@ -123,17 +123,6 @@ Processes an asynchronous function and returns a promise version.
 | -------- | -------- |
 | Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
 
-**Example**
-  ```js
-  function aysnFun() {
-    return 0;
-  }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
-  newPromiseObj().then(res => {
-    console.log(res);
-  })
-  ```
-
 ## util.promisify<sup>9+</sup>
 
 promisify(original: (err: Object, value: Object) =&gt; void): Function

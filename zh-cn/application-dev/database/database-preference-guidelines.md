@@ -55,15 +55,15 @@
 | ----------- | ----------------------- | ------------------------------------------- |
 | Preferences | flush(): Promise\<void> | 将Preferences实例通过异步线程回写入文件中。 |
 
-### 订阅数据变化
+### 订阅数据变更
 
-订阅数据变更者类，订阅的Key的值发生变更后，在执行flush方法后，会触发callback回调。
+订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，会触发callback回调。
 
 **表5** 首选项变化订阅接口
 
 | 类名        | 接口名                                                       | 描述           |
 | ----------- | ------------------------------------------------------------ | -------------- |
-| Preferences | on(type: 'change', callback: Callback<{ key : string }>): void | 订阅数据变化。 |
+| Preferences | on(type: 'change', callback: Callback<{ key : string }>): void | 订阅数据变更。 |
 | Preferences | off(type: 'change', callback: Callback<{ key : string }>): void | 注销订阅。     |
 
 ### 删除数据文件
@@ -88,8 +88,30 @@
 2. 获取Preferences实例。
 
    读取指定文件，将数据加载到Preferences实例，用于数据操作。
+   
+   FA模型示例：
+
    ```js
-   let promise = data_preferences.getPreferences(this.context, 'mystore');
+   // 获取context
+   import featureAbility from '@ohos.ability.featureAbility'
+   var context = featureAbility.getContext()
+
+   let promise = data_preferences.getPreferences(context, 'mystore');
+   ```
+
+   Stage模型示例：
+
+   ```ts
+   // 获取context
+   import Ability from '@ohos.application.Ability'
+   var context
+   class MainAbility extends Ability{
+       onWindowStageCreate(windowStage){
+           context = this.context
+       }
+   }
+
+   let promise = data_preferences.getPreferences(context, 'mystore');
    ```
 
 3. 存入数据。
@@ -134,9 +156,9 @@
    preferences.flush();
    ```
 
-6. 订阅数据变化。
+6. 订阅数据变更。
 
-   应用订阅数据变化需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
+   应用订阅数据变更需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
 
    ```js
    var observer = function (key) {
@@ -171,7 +193,9 @@
        console.info("Failed to delete. Cause: " + err);
    })
    ```
+
 ## 相关实例
+
 针对首选项开发，有以下相关实例可供参考：
 
 - [`Preferences`：首选项（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Preferences)

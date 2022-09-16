@@ -643,9 +643,8 @@ off(method: string): void;
 | 名称 | 参数类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
- 
 
- ## CalleeCallBack
+## CalleeCallBack
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 

@@ -671,7 +671,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
 
 disconnect(): boolean
 
-连接到指定网络。
+断开连接的网络。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1707,6 +1707,8 @@ deletePersistentGroup(netId: number): boolean
 
 删除永久组。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
@@ -1727,11 +1729,11 @@ deletePersistentGroup(netId: number): boolean
 
 ## wifi.getP2pGroups<sup>9+</sup>
 
-**系统接口：** 此接口为系统接口。
-
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 获取创建的所有P2P群组信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION
 
@@ -1768,6 +1770,8 @@ getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
 获取创建的所有P2P群组信息，使用callback方式作为异步方法。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION
 

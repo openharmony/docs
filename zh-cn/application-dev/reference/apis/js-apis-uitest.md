@@ -140,7 +140,7 @@ let by = BY.type('button') //使用静态构造器BY创建by对象，指定目�
 
 ### clickable
 
-clickable(b?: bool): By
+clickable(b?: boolean): By
 
 指定目标控件的可点击状态属性，返回By对象自身。
 
@@ -150,7 +150,7 @@ clickable(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                             |
 | ------ | ---- | ---- | -------------------------------- |
-| b      | bool | 否   | 指定控件可点击状态，默认为true。 |
+| b      | boolean | 否   | 指定控件可点击状态，默认为true。 |
 
 **返回值：**
 
@@ -166,7 +166,7 @@ let by = BY.clickable(true) //使用静态构造器BY创建by对象，指定目�
 
 ### longClickable<sup>9+</sup>
 
-longClickable(b?: bool): By
+longClickable(b?: boolean): By
 
 指定目标控件的可长按点击状态属性，返回By对象自身。
 
@@ -176,7 +176,7 @@ longClickable(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                                 |
 | ------ | ---- | ---- | ------------------------------------ |
-| b      | bool | 否   | 指定控件可长按点击状态，默认为true。 |
+| b      | boolean | 否   | 指定控件可长按点击状态，默认为true。 |
 
 **返回值：**
 
@@ -193,7 +193,7 @@ let by = BY.longClickable(true) //使用静态构造器BY创建by对象，指定
 
 ### scrollable
 
-scrollable(b?: bool): By
+scrollable(b?: boolean): By
 
 指定目标控件的可滑动状态属性，返回By对象自身。
 
@@ -203,7 +203,7 @@ scrollable(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                         |
 | ------ | ---- | ---- | ---------------------------- |
-| b      | bool | 否   | 控件可滑动状态，默认为true。 |
+| b      | boolean | 否   | 控件可滑动状态，默认为true。 |
 
 **返回值：**
 
@@ -219,7 +219,7 @@ let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目
 
 ### enabled
 
-enabled(b?: bool): By
+enabled(b?: boolean): By
 
 指定目标控件的使能状态属性，返回By对象自身。
 
@@ -229,7 +229,7 @@ enabled(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                           |
 | ------ | ---- | ---- | ------------------------------ |
-| b      | bool | 否   | 指定控件使能状态，默认为true。 |
+| b      | boolean | 否   | 指定控件使能状态，默认为true。 |
 
 **返回值：**
 
@@ -245,7 +245,7 @@ let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标
 
 ### focused
 
-focused(b?: bool): By
+focused(b?: boolean): By
 
 指定目标控件的获焦状态属性，返回By对象自身。
 
@@ -255,7 +255,7 @@ focused(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
-| b      | bool | 否   | 控件获焦状态，默认为true。 |
+| b      | boolean | 否   | 控件获焦状态，默认为true。 |
 
 **返回值：**
 
@@ -271,7 +271,7 @@ let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标
 
 ### selected
 
-selected(b?: bool): By
+selected(b?: boolean): By
 
 指定目标控件的被选中状态属性，返回By对象自身。
 
@@ -281,7 +281,7 @@ selected(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                             |
 | ------ | ---- | ---- | -------------------------------- |
-| b      | bool | 否   | 指定控件被选中状态，默认为true。 |
+| b      | boolean | 否   | 指定控件被选中状态，默认为true。 |
 
 **返回值：**
 
@@ -297,7 +297,7 @@ let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目�
 
 ### checked<sup>9+</sup>
 
-checked(b?: bool): By
+checked(b?: boolean): By
 
 指定目标控件的被勾选状态属性，返回By对象自身。
 
@@ -307,7 +307,7 @@ checked(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                              |
 | ------ | ---- | ---- | --------------------------------- |
-| b      | bool | 否   | 指定控件被勾选状态，默认为false。 |
+| b      | boolean | 否   | 指定控件被勾选状态，默认为false。 |
 
 **返回值：**
 
@@ -323,7 +323,7 @@ let by = BY.checked(true) //使用静态构造器BY创建by对象，指定目标
 
 ### checkable<sup>9+</sup>
 
-checkable(b?: bool): By
+checkable(b?: boolean): By
 
 指定目标控件能否被勾选状态属性，返回By对象自身。
 
@@ -333,7 +333,7 @@ checkable(b?: bool): By
 
 | 参数名 | 类型 | 必填 | 说明                                  |
 | ------ | ---- | ---- | ------------------------------------- |
-| b      | bool | 否   | 指定控件能否被勾选状态，默认为false。 |
+| b      | boolean | 否   | 指定控件能否被勾选状态，默认为false。 |
 
 **返回值：**
 
@@ -628,7 +628,7 @@ async function demo() {
 
 ### isClickable
 
-isClickable(): Promise\<bool>
+isClickable(): Promise\<boolean>
 
 获取控件对象可点击状态。
 
@@ -638,7 +638,7 @@ isClickable(): Promise\<bool>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象可点击状态。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可点击状态。 |
 
 **示例：**
 
@@ -657,7 +657,7 @@ async function demo() {
 
 ### isLongClickable<sup>9+</sup>
 
-isLongClickable(): Promise\<bool> 
+isLongClickable(): Promise\<boolean> 
 
 获取控件对象可长按点击状态。
 
@@ -667,7 +667,7 @@ isLongClickable(): Promise\<bool>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象能否长按点击状态。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否长按点击状态。 |
 
 **示例：**
 
@@ -686,7 +686,7 @@ async function demo() {
 
 ### isChecked<sup>9+</sup>
 
-isChecked(): Promise\<bool>
+isChecked(): Promise\<boolean>
 
 获取控件对象被勾选状态。
 
@@ -696,7 +696,7 @@ isChecked(): Promise\<bool>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象被勾选状态。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被勾选状态。 |
 
 **示例：**
 
@@ -715,7 +715,7 @@ async function demo() {
 
 ### isCheckable<sup>9+</sup>
 
-isCheckable(): Promise\<bool>
+isCheckable(): Promise\<boolean>
 
 获取控件对象能否被勾选的属性。
 
@@ -725,7 +725,7 @@ isCheckable(): Promise\<bool>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象能否被勾选的属性。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否被勾选的属性。 |
 
 **示例：**
 
@@ -744,7 +744,7 @@ async function demo() {
 
 ### isScrollable
 
-isScrollable(): Promise\<bool>
+isScrollable(): Promise\<boolean>
 
 获取控件对象可滑动状态。
 
@@ -754,7 +754,7 @@ isScrollable(): Promise\<bool>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象可滑动状态。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态。 |
 
 **示例：**
 
@@ -774,7 +774,7 @@ async function demo() {
 
 ### isEnabled
 
-isEnabled(): Promise\<bool>
+isEnabled(): Promise\<boolean>
 
 获取控件使能状态。
 
@@ -784,7 +784,7 @@ isEnabled(): Promise\<bool>
 
 | 类型           | 说明                            |
 | -------------- | ------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件使能状态。 |
+| Promise\<boolean> | 以Promise形式返回控件使能状态。 |
 
 **示例：**
 
@@ -804,7 +804,7 @@ async function demo() {
 
 ### isFocused
 
-isFocused(): Promise\<bool>
+isFocused(): Promise\<boolean>
 
 判断控件对象是否获焦。
 
@@ -814,7 +814,7 @@ isFocused(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回控件对象是否获焦。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否获焦。 |
 
 **示例：**
 
@@ -833,7 +833,7 @@ async function demo() {
 
 ### isSelected
 
-isSelected(): Promise\<bool>
+isSelected(): Promise\<boolean>
 
 获取控件对象被选中状态。
 
@@ -843,7 +843,7 @@ isSelected(): Promise\<bool>
 
 | 类型           | 说明                 |
 | -------------- | -------------------- |
-| Promise\<bool> | 控件对象被选中的状态 |
+| Promise\<boolean> | 控件对象被选中的状态 |
 
 **示例：**
 
@@ -1437,7 +1437,7 @@ async function demo() {
 
 ### screenCap
 
-screenCap(savePath: string): Promise\<bool>
+screenCap(savePath: string): Promise\<boolean>
 
 UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
 
@@ -1453,7 +1453,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 | 类型           | 说明                                   |
 | -------------- | -------------------------------------- |
-| Promise\<bool> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
 
 **示例：**
 
@@ -1512,7 +1512,7 @@ async function demo() {
 
 ### setDisplayRotationEnabled<sup>9+</sup>
 
-setDisplayRotationEnabled(enabled: bool): Promise\<void>
+setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
 
@@ -1522,7 +1522,7 @@ setDisplayRotationEnabled(enabled: bool): Promise\<void>
 
 | 参数名  | 类型 | 必填 | 说明                 |
 | ------- | ---- | ---- | -------------------- |
-| enabled | bool | 是   | 能否旋转屏幕的标识。 |
+| enabled | boolean | 是   | 能否旋转屏幕的标识。 |
 
 **示例：**
 
@@ -1615,7 +1615,7 @@ async function demo() {
 
 ### waitForIdle<sup>9+</sup>
 
-waitForIdle(idleTime: number, timeout: number): Promise\<bool>
+waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 判断当前界面的所有控件是否已经空闲。
 
@@ -1632,7 +1632,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<bool>
 
 | 类型           | 说明                                                |
 | -------------- | --------------------------------------------------- |
-| Promise\<bool> | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
+| Promise\<boolean> | 以Promise的形式返回当前界面的所有控件是否已经空闲。 |
 
 **示例：**
 
@@ -1671,7 +1671,7 @@ async function demo() {
 
 ### injectMultiPointerAction<sup>9+</sup>
 
-injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool>
+injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
 向设备注入多指操作。
 
@@ -1688,19 +1688,19 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 类型           | 说明                                      |
 | -------------- | ----------------------------------------- |
-| Promise\<bool> | 以Promise的形式返回植入操作是否成功完成。 |
+| Promise\<boolean> | 以Promise的形式返回植入操作是否成功完成。 |
 
 **示例：**
 
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3)
-    pointer.setPoint(0,0,{X:230,Y:480})
-    pointer.setPoint(0,1,{X:250,Y:380})
-    pointer.setPoint(0,2,{X:270,Y:280})
-    pointer.setPoint(1,0,{X:230,Y:680})
-    pointer.setPoint(1,1,{X:240,Y:580})
-    pointer.setPoint(1,2,{X:250,Y:480})
+    pointers.setPoint(0,0,{X:230,Y:480})
+    pointers.setPoint(0,1,{X:250,Y:380})
+    pointers.setPoint(0,2,{X:270,Y:280})
+    pointers.setPoint(1,0,{X:230,Y:680})
+    pointers.setPoint(1,1,{X:240,Y:580})
+    pointers.setPoint(1,2,{X:250,Y:480})
     await driver.injectMultiPointerAction(pointers)
 }
 ```
@@ -1720,8 +1720,8 @@ UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性�
 | ---------- | -------- | ---- | ---- | ---- | -------------------------- |
 | bundleName | string   | 否   | 是   | 否   | 窗口对应的包名。           |
 | title      | string   | 否   | 是   | 否   | 窗口的标题。               |
-| focused    | bool     | 否   | 是   | 否   | 窗口是否获焦。             |
-| actived    | bool     | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
+| focused    | boolean     | 否   | 是   | 否   | 窗口是否获焦。             |
+| actived    | boolean     | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
 
 ### getBundleName<sup>9+</sup>
 
@@ -1821,7 +1821,7 @@ async function demo() {
 
 ### isFocused<sup>9+</sup>
 
-isFocused(): Promise\<bool>
+isFocused(): Promise\<boolean>
 
 判断窗口是否获焦。
 
@@ -1831,7 +1831,7 @@ isFocused(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回窗口对象是否获焦。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否获焦。 |
 
 **示例：**
 
@@ -1845,7 +1845,7 @@ async function demo() {
 
 ### isActived<sup>9+</sup>
 
-isActived(): Promise\<bool>
+isActived(): Promise\<boolean>
 
 判断窗口是否为用户交互窗口。
 
@@ -1855,7 +1855,7 @@ isActived(): Promise\<bool>
 
 | 类型           | 说明                                          |
 | -------------- | --------------------------------------------- |
-| Promise\<bool> | 以Promise形式返回窗口对象是否为用户交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户交互窗口。 |
 
 **示例：**
 
@@ -1869,7 +1869,7 @@ async function demo() {
 
 ### focus<sup>9+</sup>
 
-focus(): Promise\<bool>
+focus(): Promise\<boolean>
 
 让窗口获焦。
 
@@ -1879,7 +1879,7 @@ focus(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -1893,7 +1893,7 @@ async function demo() {
 
 ### moveTo<sup>9+</sup>
 
-moveTo(x: number, y: number): Promise\<bool>
+moveTo(x: number, y: number): Promise\<boolean>
 
 将窗口移动到目标点。适用于支持移动的窗口。
 
@@ -1910,7 +1910,7 @@ moveTo(x: number, y: number): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -1924,7 +1924,7 @@ async function demo() {
 
 ### resize<sup>9+</sup>
 
-resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
+resize(wide: number, height: number, direction: ResizeDirection): Promise\<boolean>
 
 根据传入的宽、高和调整方向来调整窗口的大小。适用于支持大小调整的窗口。
 
@@ -1942,7 +1942,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -1956,7 +1956,7 @@ async function demo() {
 
 ### split<sup>9+</sup>
 
-split(): Promise\<bool>
+split(): Promise\<boolean>
 
 将窗口模式切换成分屏模式。适用于支持切屏操作的窗口。
 
@@ -1966,7 +1966,7 @@ split(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -1980,7 +1980,7 @@ async function demo() {
 
 ### maximize<sup>9+</sup>
 
-maximize(): Promise\<bool>
+maximize(): Promise\<boolean>
 
 将窗口最大化。适用于支持窗口最大化操作的窗口。
 
@@ -1990,7 +1990,7 @@ maximize(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -2004,7 +2004,7 @@ async function demo() {
 
 ### minimize<sup>9+</sup>
 
-minimize(): Promise\<bool>
+minimize(): Promise\<boolean>
 
 将窗口最小化。适用于支持窗口最小化操作的窗口。
 
@@ -2014,7 +2014,7 @@ minimize(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -2028,7 +2028,7 @@ async function demo() {
 
 ### resume<sup>9+</sup>
 
-resume(): Promise\<bool>
+resume(): Promise\<boolean>
 
 将窗口恢复到之前的窗口模式。
 
@@ -2038,7 +2038,7 @@ resume(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -2052,7 +2052,7 @@ async function demo() {
 
 ### close<sup>9+</sup>
 
-close(): Promise\<bool>
+close(): Promise\<boolean>
 
 将窗口关闭。
 
@@ -2062,7 +2062,7 @@ close(): Promise\<bool>
 
 | 类型           | 说明                                |
 | -------------- | ----------------------------------- |
-| Promise\<bool> | 以Promise形式返回操作是否成功完成。 |
+| Promise\<boolean> | 以Promise形式返回操作是否成功完成。 |
 
 **示例：**
 
@@ -2128,12 +2128,12 @@ setPoint(finger: number, step: number, point: Point): void
 ```js
 async function demo() {
     let pointers = PointerMatrix.create(2,3)
-    pointer.setPoint(0,0,{X:230,Y:480})
-    pointer.setPoint(0,1,{X:250,Y:380})
-    pointer.setPoint(0,2,{X:270,Y:280})
-    pointer.setPoint(1,0,{X:230,Y:680})
-    pointer.setPoint(1,1,{X:240,Y:580})
-    pointer.setPoint(1,2,{X:250,Y:480})
+    pointers.setPoint(0,0,{X:230,Y:480})
+    pointers.setPoint(0,1,{X:250,Y:380})
+    pointers.setPoint(0,2,{X:270,Y:280})
+    pointers.setPoint(1,0,{X:230,Y:680})
+    pointers.setPoint(1,1,{X:240,Y:580})
+    pointers.setPoint(1,2,{X:250,Y:480})
 }
 ```
 

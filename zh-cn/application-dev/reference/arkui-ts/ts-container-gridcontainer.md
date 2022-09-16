@@ -19,7 +19,7 @@
 
 ## 接口
 
-GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
+GridContainer(value?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})
 
 - 参数
   | 参数名 | 类型 | 必填 | 默认值 | 说明 |

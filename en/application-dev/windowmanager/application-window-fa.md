@@ -182,7 +182,7 @@ To create a better video watching and gaming experience, you can use the immersi
 
    - Method 1: Call `setFullScreen` to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
    - Method 2: Call `setSystemBarEnable` to hide the navigation bar and status bar.
-   - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemPropertites` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
+   - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemProperties` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
    ```js
    // 2. Use method 1 to implement the immersive effect.

@@ -3,7 +3,7 @@ The **WindowAnimationManager** module provides APIs to listen for application st
 
 >  **NOTE**
 >
->  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The APIs provided by this module are system APIs.
 
@@ -350,7 +350,7 @@ var controller = {
 ```
 
 ## WindowAnimationTarget
-Implements animation in a window.
+Defines a window to display animation.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
