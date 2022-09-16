@@ -1,13 +1,12 @@
 # LongPressGesture
 
 >  **说明：**
->
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 接口
 
-LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: number })
+LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
 
 **参数：**
 
@@ -19,17 +18,12 @@ LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: numb
 
 ## 事件
 
-| 名称                                       | 功能描述                           |
-| ---------------------------------------- | ------------------------------ |
-| onAction((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。             |
-| onActionEnd((event?:&nbsp;GestureEvent)&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。     |
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。 |
+| 名称                                                         | 功能描述                                            |
+| ------------------------------------------------------------ | --------------------------------------------------- |
+| onAction(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。                         |
+| onActionEnd(event:&nbsp;(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，手指抬起后触发回调。         |
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)          | LongPress手势识别成功，接收到触摸取消事件触发回调。 |
 
-## GestureEvent对象中与LongPress手势相关的属性
-
-| 属性名称   | 属性类型    | 描述           |
-| ------ | ------- | ------------ |
-| repeat | boolean | 事件是否为重复触发事件。 |
 
 ## 示例
 

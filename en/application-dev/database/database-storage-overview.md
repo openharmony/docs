@@ -1,31 +1,32 @@
-# Lightweight Data Store Overview<a name="EN-US_TOPIC_0000001230752103"></a>
+# Lightweight Data Store Overview
 
-Lightweight data store is applicable to access and persistence operations on the data in key-value pairs. When an application accesses a lightweight  **Storage**  instance, data in the  **Storage**  instance will be cached in the memory for faster access. The cached data can also be written back to the text file for persistent storage. Since file read and write consume system resources, you are advised to minimize the frequency of reading and writing persistent files.
+The lightweight data store is applicable to access and persistence of data in the key-value structure.
 
-## Basic Concepts<a name="section1055404171115"></a>
+After an application obtains a lightweight store instance, the data in the instance will be cached in the memory for faster access. The cached data can also be written back to the text file for persistent storage. Since file read and write consume system resources, you are advised to minimize the frequency of reading and writing persistent files.
 
--   **Key-Value data structure**
+You do not need to care about the implementation of the database lock mechanism.
 
-    A type of data structure. The key is the unique identifier for a piece of data, and the value is the specific data being identified.
+## Basic Concepts
 
--   **Non-relational database**
+- **Key-value structure**
 
-    A database not in compliance with the atomicity, consistency, isolation, and durability \(ACID\) database management properties of relational data transactions. The data in a non-relational database is independent.
+  A type of data structure. The key is the unique identifier for a piece of data, and the value is the specific data being identified.
 
+- **Non-relational database**
 
-## Working Principles<a name="section682631371115"></a>
+  A database not in compliance with the atomicity, consistency, isolation, and durability (ACID) properties of relational data transactions. The data in a non-relational database is independent.
 
-1.  When an application loads data from a specified  **Storage**  file to a  **Storage**  instance, the system stores the instance in the memory through a static container. Each file of an application or process has only one  **Storage**  instance in the memory, till the application removes the instance from the memory or deletes the  **Storage**  file.
-2.  When obtaining a  **Storage**  instance, the application can read data from or write data to the instance. The data in the  **Storage**  instance can be flushed to its  **Storage**  file by calling the  **flush**  or  **flushSync**  method.
+## Working Principles
 
-**Figure  1**  How lightweight data store works<a name="fig1657785713509"></a>  
+1. An application can load data from a specified **Storage** file to a **Storage** instance. The system stores the instance in the memory through a static container. Each file of an application or process has only one **Storage** instance in the memory, till the application removes the instance from the memory or deletes the **Storage** file.
+2. When obtaining a **Storage** instance, the application can read data from or write data to the instance. The data in the **Storage** instance can be flushed to its **Storage** file by calling the **flush** or **flushSync** method.
 
+**Figure 1** Working mechanism
 
 ![](figures/en-us_image_0000001199139454.png)
 
-## Constraints<a name="section17243172883219"></a>
+## Constraints
 
--   **Storage**  instances are loaded to the memory. To minimize non-memory overhead, the number of data records stored in a  **Storage**  instance cannot exceed 10,000. Delete the instances that are no longer used in a timely manner.
--   The key in the key-value pairs is of the string type. It cannot be empty or exceed 80 characters.
--   If the value in the key-value pairs is of the string type, it can be empty or contain a maximum of 8192 characters.
-
+- **Storage** instances are loaded to the memory. To minimize non-memory overhead, the number of data records stored in a **Storage** instance cannot exceed 10,000. Delete the instances that are no longer used in a timely manner.
+- The key in the key-value pairs is of the string type. It cannot be empty or exceed 80 bytes.
+- The value of the string type can be empty, but cannot exceed 8192 bytes if not empty.

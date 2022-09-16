@@ -1,24 +1,14 @@
 # Video
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 视频播放组件。
 
-## 权限列表
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-使用网络视频时，需要在config或者module.json对应的"abilities"中添加网络使用权限ohos.permission.INTERNET。
+## 需要权限
 
-```
-"abilities":[
-  {
-    ...
-    "permissions": ["ohos.permission.INTERNET"],
-    ...
-  }
-]
-```
-
+使用网络视频时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 子组件
 
@@ -27,16 +17,16 @@
 
 ## 接口
 
- Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
+Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
 
 **参数：**
 
-| 参数名              | 参数类型                                                     | 必填 | 默认值                                                  | 参数描述                                                     |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                   | 否   | -                                                       | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。 |
-| currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup>               | 否   | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
-| previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | -                                                       | 预览图片的路径。                                             |
-| controller          | [VideoController](#videocontroller)                          | 否   | -                                                       | 控制器。                                                     |
+| 参数名                 | 参数类型                                     | 必填   | 默认值                                      | 参数描述                                     |
+| ------------------- | ---------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
+| src                 | string \| [Resource](ts-types.md#resource) | 否    | -                                        | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见[Data Ability说明](../../ability/fa-dataability.md)。 |
+| currentProgressRate | number&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否    | 1.0&nbsp;\|&nbsp;PlaybackSpeed.<br>Speed_Forward_1_00_X | 视频播放倍速。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/> |
+| previewUri          | string&nbsp;\|&nbsp;PixelMap<sup>8+</sup>&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | -                                        | 预览图片的路径。                                 |
+| controller          | [VideoController](#videocontroller)      | 否    | -                                        | 控制器。                                     |
 
 ## PlaybackSpeed<sup>8+</sup>类型接口说明
 
@@ -68,10 +58,10 @@
 | onPause(event:()&nbsp;=&gt;&nbsp;void)                       | 暂停时触发该事件。                                           |
 | onFinish(event:()&nbsp;=&gt;&nbsp;void)                      | 播放结束时触发该事件。                                       |
 | onError(event:()&nbsp;=&gt;&nbsp;void)                       | 播放失败时触发该事件。                                       |
-| onPrepared(callBack:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为s。<br/>- duration: 视频的时长。 |
-| onSeeking(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
-| onSeeked(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
-| onUpdate(callBack:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
+| onPrepared(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为s。<br/>- duration: 视频的时长。 |
+| onSeeking(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
+| onSeeked(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
+| onUpdate(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
 
 
 ## VideoController

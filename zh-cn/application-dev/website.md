@@ -185,15 +185,8 @@
       - [后台提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
-    - 窗口
-      - [窗口开发概述](windowmanager/window-overview.md)
-      - [窗口开发指导](windowmanager/window-guidelines.md)
-    - 屏幕属性
-      - [屏幕属性开发概述](windowmanager/display-overview.md)
-      - [屏幕属性开发指导](windowmanager/display-guidelines.md)
-    - 屏幕截图
-      - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
-      - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+    - [窗口开发概述](windowmanager/window-overview.md)
+    - [窗口开发指导](windowmanager/window-guidelines.md)
   - WebGL
     - [WebGL开发概述](webgl/webgl-overview.md)
     - [WebGL开发指导](webgl/webgl-guidelines.md)

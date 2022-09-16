@@ -1,8 +1,12 @@
-# Distributed Data Service Overview<a name="EN-US_TOPIC_0000001183067628"></a>
+# Distributed Data Service Overview
 
-The distributed data service \(DDS\) implements distributed database collaboration across devices for applications. Applications save data to distributed databases by calling the DDS APIs. The DDS isolates data of different applications based on a triplet of account, application, and database to ensure secure data access. The DDS synchronizes application data between trusted devices to provide users with consistent data access experience on different devices.
+The distributed data service (DDS) implements distributed database collaboration across devices for applications. 
 
-## Basic Concepts<a name="section17506141102520"></a>
+Applications save data to distributed databases by calling the DDS APIs. The DDS isolates data of different applications based on a triplet of account, application, and database to ensure secure data access. The DDS synchronizes application data between trusted devices to provide users with consistent data access experience on different devices.
+
+You do not need to care about the implementation of the database locking mechanism.
+
+## Basic Concepts
 
 -   **KV data model**
 
@@ -54,7 +58,7 @@ The distributed data service \(DDS\) implements distributed database collaborati
     The DDS provides the database backup capability. You can set  **backup**  to  **true**  to enable daily backup. If a distributed database is damaged, the DDS deletes the database and restores the most recent data from the backup database. If no backup database is available, the DDS creates one. The DDS can also back up encrypted databases.
 
 
-## Working Principles<a name="section315111581616"></a>
+## Working Principles
 
 The DDS supports distributed management of application database data in the OpenHarmony system. Data can be synchronized between multiple devices with the same account, delivering a consistent user experience across devices. The DDS consists of the following:
 
@@ -86,7 +90,7 @@ Applications call the DDS APIs to create, access, and subscribe to distributed d
 
 ![](figures/en-us_image_0000001183386164.png)
 
-## Constraints<a name="section95382010203311"></a>
+## Constraints
 
 -   The DDS supports the KV data model only. It does not support foreign keys or triggers of the relational database.
 -   The KV data model specifications supported by the DDS are as follows:

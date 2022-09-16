@@ -45,7 +45,7 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 
 ## TextTimerController
 
-TextTimer组件的控制器，用于控制文本计时器。
+TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器。
 
 ### 导入对象
 

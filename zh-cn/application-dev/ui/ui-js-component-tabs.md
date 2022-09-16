@@ -8,21 +8,22 @@ Tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 在pages/index目录下的hml文件中创建一个Tabs组件。
 
 ```
-<!-- index.hml -->
-<div class="container" >
-  <tabs> <tab-bar>
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content>
-      <div class="text">
-        <text>content1</text>
-      </div>
-      <div class="text">
-        <text>content2</text>
-      </div>
-    </tab-content>
-  </tabs>
+<!-- xxx.hml -->
+<div class="container">
+    <tabs>
+        <tab-bar>
+            <text>item1</text>
+            <text>item2</text>
+        </tab-bar>
+        <tab-content>
+            <div class="text">
+                <text>content1</text>
+            </div>
+            <div class="text">
+                <text>content2</text>
+            </div>
+        </tab-content>
+    </tabs>
 </div>
 ```
 

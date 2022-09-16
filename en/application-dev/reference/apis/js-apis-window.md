@@ -10,7 +10,6 @@ This module provides the following common window-related functions:
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
 
 ```js
@@ -35,10 +34,10 @@ Enumerates the types of the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value  | Description              |
-| ----------- | ---- | ------------------ |
-| TYPE_SYSTEM | 0    | Default area of the system.|
-| TYPE_CUTOUT | 1    | Notch.  |
+| Name                              | Value | Description             |
+|----------------------------------|-----| ----------------- |
+| TYPE_SYSTEM                      | 0   | Default area of the system.|
+| TYPE_CUTOUT                      | 1   | Notch. |
 
 ## WindowMode<sup>7+</sup>
 
@@ -64,11 +63,11 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type| Readable| Writable| Description                                                        |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| statusBarColor                         | string   | No  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
 | statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
+| navigationBarColor                     | string   | No  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
 ## SystemBarRegionTint<sup>8+</sup>
@@ -81,11 +80,11 @@ Describes the callback for a single system bar.
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
-| isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
-| region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
+| type            | [WindowType](#windowtype) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
+| isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed.                                        |
+| region          | [Rect](#rect)             | Yes  | No  | Current position and size of the system bar.                                    |
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
 
@@ -98,7 +97,7 @@ Describes the callback for the current system bar.
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information that has been changed.|
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
 
@@ -126,6 +125,7 @@ Describes the area where the window cannot be displayed.
 | rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
 | bottomRect | [Rect](#rect) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
+
 ## Size<sup>7+</sup>
 
 Describes the window size.
@@ -143,20 +143,20 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                           | Type                 | Readable| Writable| Description                                        |
-| ------------------------------- | ------------------------- | ---- | ---- | -------------------------------------------- |
-| windowRect<sup>7+</sup>         | [Rect](#rect)             | Yes  | Yes  | Window size.                                  |
-| type<sup>7+</sup>               | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                  |
-| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                     |
-| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.             |
-| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                |
-| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                |
-| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness. |
-| dimBehindValue<sup>7+</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.|
-| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                 |
-| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                     |
-| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`.               |
-| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                        |
+| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| windowRect<sup>7+</sup>               | [Rect](#rect)             | Yes  | Yes  | Window size.                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                                  |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                                     |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.                             |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness.                 |
+| dimBehindValue<sup>7+</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness. |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                                 |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
+| isRoundCorner<sup>7+</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -245,7 +245,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.|
+| ctx      | [Context](js-apis-Context.md)          | Yes  | Current application context.|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
@@ -430,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.                |
+| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -937,8 +937,8 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
@@ -965,20 +965,21 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                                        |
-| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+| Name| Type                              | Mandatory| Description                                                        |
+| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
 | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 
 **Return value**
 
-| Type                                  | Description                               |
-| -------------------------------------- | ----------------------------------- |
+| Type                                     | Description                               |
+|-----------------------------------------| ----------------------------------- |
 | Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise used to return the area.|
 
 **Example**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1315,7 +1316,7 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1341,7 +1342,7 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1408,9 +1409,9 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description                                                        |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
 | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
@@ -1431,10 +1432,10 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description                                                        |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                            |
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                           |
 
 **Example**
 
@@ -1658,7 +1659,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1686,7 +1687,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 
 **Return value**
 
@@ -1772,8 +1773,9 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
 
-> **NOTE**: This API cannot be used.
-
+> **NOTE**
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1802,8 +1804,9 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 Sets the dimness of the window that is not on top. This API uses a promise to return the result.
 
-> **NOTE**: This API cannot be used.
-
+> **NOTE**
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1956,8 +1959,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
 
-> **NOTE**: This API cannot be used.
-
+> **NOTE**
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1986,8 +1990,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 Sets whether the area outside the subwindow is touchable. This API uses a promise to return the result.
 
-> **NOTE**: This API cannot be used.
-
+> **NOTE**
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
