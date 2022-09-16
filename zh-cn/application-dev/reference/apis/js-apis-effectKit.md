@@ -67,7 +67,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promisse\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise对象。返回创建的ColorPicker实例。 |
 
 **示例：**
 

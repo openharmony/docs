@@ -45,8 +45,8 @@ This document provides an ability with two pages. For more information about abi
 
 ## Tool Preparation
 
-1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta).
+1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio#download).
 
 2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
 
-When you are done, follow the instructions in [Getting Started with eTS in Stage Model](start-with-ets-stage.md), [Getting Started with eTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](../quick-start/start-with-js-fa.md).
+When you are done, follow the instructions in [Getting Started with eTS in Stage Model](start-with-ets-stage.md), [Getting Started with eTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](start-with-js-fa.md).

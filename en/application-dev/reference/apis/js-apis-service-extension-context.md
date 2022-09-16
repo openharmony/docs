@@ -2,7 +2,7 @@
 
 The **ServiceExtensionContext** module, inherited from **ExtensionContext**, provides context for Service Extension abilities.
 
-You can use the APIs of this module to start, terminate, connection, and disconnect abilities.
+You can use the APIs of this module to start, terminate, connect, and disconnect abilities.
 
 > **NOTE**
 > 

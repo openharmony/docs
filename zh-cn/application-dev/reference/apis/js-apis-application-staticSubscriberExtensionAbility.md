@@ -26,7 +26,7 @@ onReceiveEvent(event: CommonEventData): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | event | CommonEventData | 是 | 静态订阅者通用事件回调。 | 
+  | event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | 是 | 静态订阅者通用事件回调。 | 
 
 **示例：**
     

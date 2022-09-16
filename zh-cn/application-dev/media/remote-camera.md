@@ -13,7 +13,7 @@
 
 打开设置->WLAN,将需要连接分布式相机的两台设备连入同一局域网。
 
-打开计算器，点击右上角小图表，出现新的窗口，按提示输入验证码，连接成功。
+打开计算器，点击右上角小图标，出现新的窗口，按提示输入验证码，连接成功。
 
 ### 创建实例
 
@@ -52,7 +52,7 @@ await cameraManager.getCameras((err, cameras) => {
     cameraArray = cameras
 })
 
-for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
+for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex++) {
     console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          //获取相机ID
     console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              //获取相机位置
     console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      //获取相机类型

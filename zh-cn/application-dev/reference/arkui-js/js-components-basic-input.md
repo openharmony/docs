@@ -64,7 +64,8 @@
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
 - 当input类型为text、email、date、time、number、password时，支持如下事件：
-  | 名称                        | 参数                                       | 描述                                       |
+  
+  | 名称                      | 参数                                       | 描述                                       |
   | ------------------------- | ---------------------------------------- | ---------------------------------------- |
   | change                    | {<br>&nbsp;value: inputValue<br>&nbsp;}  | 输入框输入内容发生变化时触发该事件，返回用户当前输入值。<br/>改变value属性值不会触发该回调。 |
   | enterkeyclick             | {<br>&nbsp;value: enterKey<br>&nbsp;}    | 软键盘enter键点击后触发该事件，返回enter按钮的类型，enterKey类型为number，可选值为：<br/>-&nbsp;2：设置enterkeytype属性为go时生效。<br/>-&nbsp;3：设置enterkeytype属性为search时生效。<br/>-&nbsp;4：设置enterkeytype属性为send时生效。<br/>-&nbsp;5：设置enterkeytype属性为next时生效。<br/>-&nbsp;6：不设置enterkeytype或者设置enterkeytype属性为default、done时生效。 |
@@ -75,6 +76,7 @@
   | selectchange<sup>6+</sup> | {<br>start:&nbsp;number,<br>end:&nbsp;number<br>&nbsp;} | 文本选择变化时触发事件。                             |
 
 - 当input类型为checkbox、radio时，支持如下事件：
+  
   | 名称     | 参数                                       | 描述                                       |
   | ------ | ---------------------------------------- | ---------------------------------------- |
   | change | {<br>&nbsp;checked:true&nbsp;\|&nbsp;false&nbsp;<br>} | checkbox多选框或radio单选框的checked状态发生变化时触发该事件。 |

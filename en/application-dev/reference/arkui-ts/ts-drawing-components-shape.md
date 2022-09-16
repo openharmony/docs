@@ -1,17 +1,17 @@
 # Shape
 
-
-> **NOTE**<br>
+>  **NOTE**
+> 
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **<Shape\>** component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
+The **\<Shape>** component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
 
 
-1. Drawing components use **<Shape\>** as their parent component to implement the effect similar to SVG.
+1. Drawing components use **\<Shape>** as their parent to implement the effect similar to SVG.
 
 
-2. The **<Shape\>** component is used independently to draw a specific shape.
+2. The **\<Shape>** component is used independently to draw a specific shape.
 
 
 ## Required Permissions
@@ -21,47 +21,43 @@ None
 
 ## Child Components
 
-The **&lt;Shape&gt;** component can contain child components.
+This component can contain child components.
 
 
 ## APIs
 
-Shape(value:{target?: PixelMap})
+Shape(value?: PixelMap)
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name| Type| Mandatory| Default Value| Description| 
   | -------- | -------- | -------- | -------- | -------- |
-  | target | PixelMap | No | null | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target. | 
+  | value | PixelMap | No| - | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.| 
 
 
 ## Attributes
 
-| Name | Type | Default Value | Mandatory | Description | 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| viewPort | {<br/>x: Length,<br/>y: Length,<br/>width: Length,<br/>height: Length<br/>} | - | Yes | View port of the shape. | 
-| fill | Color | Black | No | Fill color. | 
-| stroke | Color | - | No | Stroke color. | 
-| strokeDashArray | Array&lt;Length&gt; | [] | No | Stroke dash. | 
-| strokeDashOffset | Length | 0 | No | Offset of the start point for drawing the stroke. | 
-| strokeLineCap | LineCapStyle | LineCapStyle.Butt | No | Cap style of the stroke. | 
-| strokeLineJoin | LineJoinStyle | LineJoinStyle.Miter | No | Join style of the stroke. | 
-| strokeMiterLimit | number | 4 | No | Limit value when the sharp angle is drawn as a miter. | 
-| strokeOpacity | number | 1 | No | Stroke opacity. | 
-| strokeWidth | Length | 1 | No | Stroke width. | 
-| antiAlias | boolean | true | No | Whether anti-aliasing is enabled. | 
-
-- LineJoinStyle enums
-  | Name | Description | 
-  | -------- | -------- |
-  | Bevel | Bevel is used to connect paths. | 
-  | Miter | Miter is used to connect paths. | 
-  | Round | Round is used to connect paths. | 
-
+| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | No| View port of the shape.|
+| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Color of the fill area.|
+| fillOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Opacity of the fill area.|
+| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Stroke color.|
+| strokeDashArray | Array&lt;Length&gt; | [] | No| Stroke dash.|
+| strokeDashOffset | number \| string | 0 | No| Offset of the start point for drawing the stroke.|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | No| Cap style of the stroke.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | No| Join style of the stroke.|
+| strokeMiterLimit | number \| string | 4 | No| Limit value when the sharp angle is drawn as a miter.|
+| strokeOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Stroke opacity.|
+| strokeWidth | number \| string | 1 | No| Stroke width.|
+| antiAlias | boolean | true | No| Whether anti-aliasing is enabled.|
+| mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | No| Mesh effect. The first parameter is an array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap. The second parameter is the number of columns in the mesh matrix. The third parameter is the number of rows in the mesh matrix.|
 
 ## Example
 
-  
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct ShapeExample {
@@ -70,7 +66,7 @@ struct ShapeExample {
       Text('basic').fontSize(30).fontColor(0xCCCCCC).width(320)
       // Draw a 300 x 50 rectangle with strokes at (-2, -2). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, the join style is rounded, and anti-aliasing is enabled (default).
       // Draw a 300 x 50 ellipse with strokes at (-2, 58). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, the join style is rounded, and anti-aliasing is enabled (default).
-      // Draw a 300 x 10 path at (-2, 118). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, and the join style is rounded, and anti-aliasing is enabled (default).
+      // Draw a 300 x 10 path at (-2, 118). The fill color is 0x317Af7, the stroke color is black, the stroke width is 4, the stroke dash is 20, the offset is 10 to the left, the cap style is rounded, the join style is rounded, and anti-aliasing is enabled (default).
       Shape() {
         Rect().width(300).height(50)
         Ellipse().width(300).height(50).offset({ x: 0, y: 60 })
@@ -90,7 +86,7 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }.viewPort({ x: 0, y: -5, width: 300, height: 20 }).stroke(0xEE8443).strokeWidth(10).strokeDashArray([20])
-      // Draw a 300 x 10 path at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke gap is 20, and the offset is 10 to the left.
+      // Draw a 300 x 10 path at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke dash is 20, and the offset is 10 to the left.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }

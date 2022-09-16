@@ -5,7 +5,7 @@
 
 - Windows: Windows 10 (64-bit)
 
-- Ubuntu: Ubuntu 18.04 or later; recommended memory: 16 GB or higher.
+- Ubuntu: Ubuntu 18.04 to 21.10; recommended memory: 16 GB or larger.
 
 - User name: cannot contain Chinese characters
 
@@ -16,7 +16,7 @@
 
 To install the necessary libraries and tools, perform the following steps.
 
-In Ubuntu:
+On Ubuntu:
 
 1. Run the following **apt-get** command:
    
@@ -24,14 +24,16 @@ In Ubuntu:
    sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales
    ```
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. Specifically:
-   > 
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
+   > The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. Where:
+   >
    > - Python 3.8 or a later version is required. This section uses Python 3.8 as an example.
-   > 
-   > - Java 8 or later is required. This section uses Java 8 as an example.
-
+   >
+> - Java 8 or later is required. This section uses Java 8 as an example.
+   
 2. Set Python 3.8 as the default Python version.
+
    Check the location of Python 3.8:
 
    
@@ -39,7 +41,7 @@ In Ubuntu:
    which python3.8
    ```
 
-     Change python and python3 to python3.8.
+   Change python and python3 to python3.8.
    
    ```
    sudo update-alternatives --install /usr/bin/python python {python3.8 path} 1    #{Python3.8 path} is the location of Python 3.8 obtained in the previous step.
@@ -51,7 +53,8 @@ In Ubuntu:
 
 To remotely access the Ubuntu environment through Windows to perform operations such as burning, you need to install DevEco Device Tool on both Windows and Ubuntu.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > DevEco Device Tool is a one-stop integrated development environment (IDE) provided for developers of OpenHarmony-powered smart devices. It allows code editing, compiling, burning, and debugging. This document describes how to use DevEco Device Tool to remotely connect to the Ubuntu environment for burning and running.
 
 
@@ -61,8 +64,10 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 2. Decompress the DevEco Device Tool package, double-click the installer, and then click **Next**.
 
-3. Set the installation path of DevEco Device Tool and click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+3. Set the installation path of DevEco Device Tool to a path that does not contain any Chinese characters, and then click **Next**. You are advised to install DevEco Device Tool in a non-system drive.
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If you have installed DevEco Device Tool 3.0 Beta2 or earlier, the earlier version will be uninstalled before you install a new version. If the following error message is displayed during the uninstallation, click **Ignore** to continue the installation. This error does not affect the installation of the new version.
    > 
    > ![en-us_image_0000001239275843](figures/en-us_image_0000001239275843.png)
@@ -70,22 +75,28 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ![en-us_image_0000001270076961](figures/en-us_image_0000001270076961.png)
 
 4. When prompted, select the tools to be automatically installed.
+
    1. On the **VSCode installation confirm** page, select **Install VScode 1.62.2 automatically** and click **Next**.
+
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       >
        > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
 
        ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
-   2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
-       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-       > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
 
+   2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
+
+       > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+       >
+   > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
+       
        ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
 
-5. In the dialog box shown below, click **Next** to download and install the tools..
+5. In the dialog box shown below, click **Next**.
 
-   ![en-us_image_0000001239634067](figures/en-us_image_0000001239634067.png)
+   ![en-us_image_0000001259180828](figures/en-us_image_0000001259180828.png)
 
-6. Read the user agreement and privacy statement carefully, select I accept the licenses, and click **Next**.
+6. Read the user agreement and privacy statement carefully, select **I accept the licenses**, and click **Next**.
 
    ![en-us_image_0000001307019009](figures/en-us_image_0000001307019009.png)
 
@@ -100,7 +111,14 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 ### Installing DevEco Device Tool for Ubuntu
 
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> If the Ubuntu system has not been set up yet, set it up on a virtual machine running Windows. For details, see [Ubuntu Installation Guide](https://developer.huawei.com/consumer/cn/training/course/video/C101639987816176315). Then, [configure the Ubuntu basic environment](https://developer.huawei.com/consumer/cn/training/course/video/C101639988048536240).
+
+
 1. Make sure the Ubuntu shell environment is **bash**.
+
    1. Run the following command and check whether the command output is **bash**. If the command output is not **bash**, go to step 2.
       
        ```
@@ -108,6 +126,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
        ```
 
        ![en-us_image_0000001226764302](figures/en-us_image_0000001226764302.png)
+
    2. Start the command-line tool, run the following command, enter your password, and select **No** to set **Ubuntu shell** to **bash**.
       
        ```
@@ -116,9 +135,10 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
        ![en-us_image_0000001243641075](figures/en-us_image_0000001243641075.png)
 
-2. Download the [DevEco Device Tool 3.0 Release Linux version](https://device.harmonyos.com/cn/ide#download).
+2. Download the [DevEco Device Tool 3.0 Release](https://device.harmonyos.com/cn/ide#download) Linux edition.
 
 3. Decompress the DevEco Device Tool software package and assign permission on the folder obtained from the decompression.
+
    1. Go to the directory where the DevEco Device Tool software package is stored and run the following command to decompress the software package. In the command, change **devicetool-linux-tool-3.0.0.401.zip** to the actual software package name.
       
        ```
@@ -135,25 +155,25 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ```
    sudo ./devicetool-linux-tool-3.0.0.401.sh
    ```
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > During the installation, the setup wizard automatically checks whether Python 3.8 or 3.9 is installed. If Python 3.8 or 3.9 is not installed, the setup wizard displays the "Do you want to continue?" message; enter **Y** to allow the setup wizard to automatically install Python.
-   > 
-   > During the installation, the page for agreeing to the user agreement and privacy statement is displayed. Read and agree to the user agreement and privacy statement.
-   > 
-   > If this page is not displayed and the installation exits, run the apt-get install whiptail command, then the installation command.
 
-   Wait until the "Deveco Device Tool successfully installed." message is displayed.
+5. On the page for agreeing to the user agreement and privacy statement, read and agree to the user agreement and privacy statement. 
+
+   ![en-us_image_0000001322167645](figures/en-us_image_0000001322167645.png)
+
+   Wait until the "DevEco Device Tool successfully installed." message is displayed.
 
    ![en-us_image_0000001198722374](figures/en-us_image_0000001198722374.png)
 
 
-## Configuring Windows to Remotely Access the Ubuntu Development Environment
+## Configuring Windows to Remotely Access the Ubuntu Build Environment
 
 
 ### Installing the SSH Service and Obtaining the IP Address for Remote Access
 
 1. In Ubuntu, open the Terminal tool and run the following command to install the SSH service:
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
 
    
@@ -193,7 +213,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
    ![en-us_image_0000001215878922](figures/en-us_image_0000001215878922.png)
 
-2. In the **Enter SSH Connection Command** text box, enter **ssh *ssh _username_\@_ip_address_***, where *ip_address* indicates the IP address of the remote computer to be connected and *username* indicates the account name used for logging in to the remote computer.
+2. In the **Enter SSH Connection Command** text box, enter **ssh *username*\@*ip_address***, where *ip_address* indicates the IP address of the remote computer to be connected and *username* indicates the account name used for logging in to the remote computer.
 
    ![en-us_image_0000001215879750](figures/en-us_image_0000001215879750.png)
 
@@ -206,9 +226,11 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    ![en-us_image_0000001215720398](figures/en-us_image_0000001215720398.png)
 
 5. In the displayed dialog box, select **Linux**, select **Continue**, and enter the password for logging in to the remote computer.
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   > To eliminate the need for frequently entering the password for logging in to the remote computer, set an SSH public key.
-   
+   >
+   > To eliminate the need for frequently entering the password for logging in to the remote computer, [set an SSH public key](https://device.harmonyos.com/cn/docs/documentation/guide/ide-registering-public-key-0000001247162706).
+
    ![en-us_image_0000001215897530](figures/en-us_image_0000001215897530.png)
 
    After the connection is successful, the plug-in is automatically installed in the .vscode-server folder on the remote computer. After the installation is complete, reload Visual Studio Code in Windows as prompted. Then you can develop, compile, and burn source code in DevEco Device Tool on Windows.
@@ -228,7 +250,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 3. Install the git client and git-lfs. (Skip this step if these tools have been installed in Installing Required Libraries and Tools. )
 
    Update the software source:
-     
+   
    ```
    sudo apt-get update
    ```
@@ -248,15 +270,16 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    ```
 
 5. Run the following commands to install the **repo** tool:
-   
+
    In this example, **~/bin** is used as an example installation directory. You can change the directory as needed.
-   
+  
    ```
    mkdir ~/bin
    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
    chmod a+x ~/bin/repo
    pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
    ```
+
 6. Add the path of the **repo** tool to environment variables.
 
    ```
@@ -265,15 +288,17 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
    source ~/.bashrc            # Apply environment variables.
    ```
 
-### Procedure
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
+### How to Obtain
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
 
 - **Obtaining OpenHarmony master code**
 
   Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
-    
+  
   ```
   repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
   repo sync -c
@@ -296,20 +321,21 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 ### Running prebuilts
 
-Go to the root directory of the source code and run the following script to install the compiler and binary tool:
+  Go to the root directory of the source code and run the following script to install the compiler and binary tool:
 
 ```
 bash build/prebuilts_download.sh
 ```
 
 
-## Installing the Compilation Tool
+## Installing the Compilation Tools
 
-hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the following steps: For details about the functions of the OpenHarmony compilation and building module, see [Compilation and Building Guidelines](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-build.md).
+hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the following steps. For details about the functions of the OpenHarmony compilation and building module, see [Compilation and Building Guide](../subsystems/subsys-build-all.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-> To install a proxy, see [Configuring the Proxy](../quick-start/quickstart-standard-reference.md#section6204129143012).
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
+> To install a proxy, see [Configuring the Proxy](../quick-start/quickstart-standard-reference.md#configuring-the-proxy).
 
 
 1. Run the following command to install hb and update it to the latest version:
@@ -358,8 +384,8 @@ hb is a compilation tool of OpenHarmony. To install hb in Ubuntu, perform the fo
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
 > - Run the following command to uninstall hb:
 >    
->   ```
->   pip3 uninstall ohos-build
->   ```
+>     ```
+>     pip3 uninstall ohos-build
+>     ```
 > 
 > - If any issue occurs during the hb installation, see [FAQs](../quick-start/quickstart-standard-faq-hb.md) to troubleshoot.

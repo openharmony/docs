@@ -34,8 +34,7 @@ int32_t et = g_usbClient.OpenDevice(device, pip);
 5.  Configure the USB interface.
 
 ```cpp
-ret = g_usbClient.ClaimInterface(pip, interface, true);
-**interface** indicates an interface of the USB device in **deviceList**.
+ret = g_usbClient.ClaimInterface(pip, interface, true); // **interface** indicates an interface of the USB device in **deviceList**.
 ```
 
 6.  Transfer data.

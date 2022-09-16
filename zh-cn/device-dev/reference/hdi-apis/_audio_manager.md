@@ -122,7 +122,7 @@ bool(* AudioManager::ReleaseAudioManagerObject) (struct AudioManager *object)
 
 **返回：**
 
-成功返回ture，失败返回false
+成功返回true，失败返回false
 
 
 ### UnloadAdapter

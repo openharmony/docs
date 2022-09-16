@@ -6,10 +6,7 @@
         - Basic Kernel
             - [Interrupt Management](kernel-mini-basic-interrupt.md)
             - [Task Management](kernel-mini-basic-task.md)
-            - Memory Management
-                - [Basic Concepts](kernel-mini-basic-memory-basic.md)
-                - [Static Memory](kernel-mini-basic-memory-static.md)
-                - [Dynamic Memory](kernel-mini-basic-memory-dynamic.md)
+            - [Memory Management](kernel-mini-basic-memory.md)
             - Kernel Communication Mechanisms
                 - [Event](kernel-mini-basic-ipc-event.md)
                 - [Mutex](kernel-mini-basic-ipc-mutex.md)
@@ -22,22 +19,15 @@
             - [PUP](kernel-mini-extend-cpup.md)
             - [Dynamic Loading](kernel-mini-extend-dynamic-loading.md)
             - [File System](kernel-mini-extend-file.md)
-                - [FAT](kernel-mini-extend-file-fat.md)
-                - [LittleFS](kernel-mini-extend-file-lit.md)
         - Kernel Debugging
             - [Memory Debugging](kernel-mini-memory-debug.md)
-                - [Memory Information Statistics](kernel-mini-memory-debug-mes.md)
-                - [Memory Leak Check](kernel-mini-memory-debug-det.md)
-                - [Memory Corruption Check](kernel-mini-memory-debug-cet.md)
             - [Exception Debugging](kernel-mini-memory-exception.md)
             - [Trace](kernel-mini-memory-trace.md)
             - [LMS](kernel-mini-memory-lms.md)
         - Appendix
             - [Kernel Coding Specification](kernel-mini-appx-code.md)
             - [Doubly Linked List](kernel-mini-appx-data-list.md)
-            - Standard Libraries
-                - [CMSIS Support](kernel-mini-appx-lib-cmsis.md)
-                - [POSIX support](kernel-mini-appx-lib-posix.md)
+            - [Standard Libraries](kernel-mini-appx-lib.md)
     - Small-System Kernel
         - [Kernel Overview](kernel-small-overview.md)
         - Kernel Startup
@@ -52,32 +42,27 @@
             - Memory Management
                 - [Heap Memory Management](kernel-small-basic-memory-heap.md)
                 - [Physical Memory Management](kernel-small-basic-memory-physical.md)
-				- [Virtual Memory Management](kernel-small-basic-memory-virtual.md)
-				- [Virtual-to-Physical Mapping](kernel-small-basic-inner-reflect.md)
+		        - [Virtual Memory Management](kernel-small-basic-memory-virtual.md)
+		        - [Virtual-to-Physical Mapping](kernel-small-basic-inner-reflect.md)
             - Kernel Communication Mechanisms
-              - [Event](kernel-small-basic-trans-event.md)
-			  - [Semaphore](kernel-small-basic-trans-semaphore.md)
-			  - [Mutex](kernel-small-basic-trans-mutex.md)
-              - [Queue](kernel-small-basic-trans-queue.md)
-              - [RW Lock](kernel-small-basic-trans-rwlock.md)
-              - [Futex](kernel-small-basic-trans-user-mutex.md)
-              - [Signal](kernel-small-basic-trans-user-signal.md)
+               - [Event](kernel-small-basic-trans-event.md)
+	           - [Semaphore](kernel-small-basic-trans-semaphore.md)
+	           - [Mutex](kernel-small-basic-trans-mutex.md)
+               - [Queue](kernel-small-basic-trans-queue.md)
+               - [RW Lock](kernel-small-basic-trans-rwlock.md)
+               - [Futex](kernel-small-basic-trans-user-mutex.md)
+               - [Signal](kernel-small-basic-trans-user-signal.md)
             - [Time Management](kernel-small-basic-time.md)
-			- [Software Timer](kernel-small-basic-softtimer.md)
-			- [Atomic Operation](kernel-small-basic-atomic.md)
+	        - [Software Timer](kernel-small-basic-softtimer.md)
+	        - [Atomic Operation](kernel-small-basic-atomic.md)
         - Extension Components
             - [System Call](kernel-small-bundles-system.md)
             - [Dynamic Loading and Linking](kernel-small-bundles-linking.md)
             - [Virtual Dynamic Shared Object](kernel-small-bundles-share.md)
             - [LiteIPC](kernel-small-bundles-ipc.md)
-            - [File Systems](kernel-small-bundles-fs.md)
+            - File Systems
                 - [Virtual File System](kernel-small-bundles-fs-virtual.md)
-                - Supported File Systems
-                    - [FAT](kernel-small-bundles-fs-support-fat.md)
-                    - [JFFS2](kernel-small-bundles-fs-support-jffs2.md)
-                    - [NFS](kernel-small-bundles-fs-support-nfs.md)
-                    - [Ramfs](kernel-small-bundles-fs-support-ramfs.md)
-                    - [Procfs](kernel-small-bundles-fs-support-procfs.md)
+                - [Supported File Systems](kernel-small-bundles-fs-support.md)
                 - [File System Adaptation](kernel-small-bundles-fs-new.md)
         - Debugging and Tools
             - Shell
@@ -155,15 +140,7 @@
                 - [Memory Information Statistics](kernel-small-debug-memory-info.md)
                 - [Memory Leak Check](kernel-small-debug-memory-leak.md)
                 - [Memory Corruption Check](kernel-small-debug-memory-corrupt.md)
-            - User-Mode Memory Debugging
-                - [Basic Concepts](kernel-small-debug-user-concept.md)
-                - [Working Principles](kernel-small-debug-user-function.md)
-                - Usage
-                    - [Available APIs](kernel-small-debug-user-guide-api.md)
-                    - [How to Use](kernel-small-debug-user-guide-use.md)
-                        - [Calling APIs](kernel-small-debug-user-guide-use-api.md)
-                        - [Using the CLI](kernel-small-debug-user-guide-use-cli.md)
-                - [Typical Memory Problems](kernel-small-debug-user-faqs.md)
+            - [User-Mode Memory Debugging](kernel-small-debug-user.md)
             - Other Kernel Debugging Methods
                 - [Dying Gasp](kernel-small-debug-trace-other-lastwords.md)
                 - [Common Fault Locating Methods](kernel-small-debug-trace-other-faqs.md)
@@ -176,8 +153,8 @@
         - [Linux Kernel Overview](kernel-standard-overview.md)
         - [Applying Patches on Development Boards](kernel-standard-patch.md)
         - [Compiling and Building the Linux Kernel](kernel-standard-build.md)
-        - [Enhanced Kernel Features](kernel-standard-enhanced-features.md)
+        - Enhanced Kernel Features
           - [Enhanced Swap](kernel-standard-mm-eswap.md)
-          - [Task Scheduling](kernel-standard-sched.md)
+          - Task Scheduling
             - [Related Thread Group](kernel-standard-sched-rtg.md)
             - [Lightweight CPU Isolation](kernel-standard-sched-cpuisolation.md)  

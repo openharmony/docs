@@ -3,7 +3,6 @@
 
 ## Using the build.sh Script to Build Source Code
 
-
 1. Go to the root directory of the source code and run the build command.
    
    ```
@@ -11,8 +10,9 @@
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   > _name_ indicates the product name, for example, **hispark_taurus_standard** and **rk3568**.
-
+   >
+> *name* indicates the product name, for example, **Hi3516DV300** and **rk3568**.
+   
 2. Check the build result. After the build is complete, the following information is displayed in the log:
    
    ```
@@ -20,12 +20,13 @@
    =====build name successful.
    ```
 
-     Files generated during the build are stored in the **out/{device_name}/** directory, and the generated image is stored in the **out/{device_name}/packages/phone/images/** directory.
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
-   > For details about other modular compilation operations, see [Building a Standard System](../subsystems/subsys-build-standard-large.md).
+     Files generated during the build are stored in the **out/{*device_name*}/** directory, and the generated image is stored in the **out/{*device_name*}/packages/phone/images/** directory.
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   >
+   > For details about other modular compilation operations, see [Compilation and Building Guide](../subsystems/subsys-build-all.md).
 
 
-## Configuring the Proxy<a name="section6204129143010"></a>
+## Configuring the Proxy
 
 
 ### Setting Up the Python Proxy

@@ -2,7 +2,6 @@
 
 - JS服务卡片UI框架说明
     - [文件组织](js-service-widget-file.md)
-    - [配置文件](js-service-widget-config-file.md)
     - 语法
         - [HML语法参考](js-service-widget-syntax-hml.md)
         - [CSS语法参考](js-service-widget-syntax-css.md)

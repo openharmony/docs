@@ -12,7 +12,7 @@ HiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 
 | 接口名                                                                       | 返回值    | 描述         |
 | ---------------------------------------------------------------------------- | --------- | ------------ |
-| hiTraceMeter.startTrace(name: string, taskId: number, expectedTime?: number) | void      | 标记一个预跟踪耗时任务的开始。如果有多个相同name的任务需要跟踪或者对同一个任务要跟踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。如果具有相同name的任务是串行执行的，则taskId可以相同。 |
+| hiTraceMeter.startTrace(name: string, taskId: number) | void      | 标记一个预跟踪耗时任务的开始。如果有多个相同name的任务需要跟踪或者对同一个任务要跟踪多次，并且任务同时被执行，则每次调用startTrace的taskId不相同。如果具有相同name的任务是串行执行的，则taskId可以相同。 |
 | hiTraceMeter.finishTrace(name: string, taskId: number)                       | void      | name和taskId必须与流程开始的hiTraceMeter.startTrace对应参数值保持一致。 |
 | hiTraceMeter.traceByValue(name: string, value: number)                       | void      | 用来标记一个预跟踪的数值变量，该变量的数值会不断变化。|
 
@@ -32,10 +32,6 @@ HiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
        onInit() {
            this.title = this.$t('strings.world');
 
-           // 从startTrace到finishTrace流程的耗时期望为5ms
-           hiTraceMeter.startTrace("business", 1);
-           hiTraceMeter.startTrace("business", 1, 5); 
-           
            // 跟踪并行执行的同名任务
            hiTraceMeter.startTrace("business", 1);
            // 业务流程

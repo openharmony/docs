@@ -1,7 +1,11 @@
 # PanGesture
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+**PanGesture** is used to trigger a pan gesture, which requires a minimum 5 vp movement distance of a finger on the screen.
+
+>  **NOTE**
+>
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
@@ -10,65 +14,66 @@ None
 
 ## APIs
 
-PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOption](#pangestureoptions))
+PanGesture(options?: { fingers?: number, direction?: PanDirection, distance?: number } | [PanGestureOptions](#pangestureoptions))
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a slide gesture. The value ranges from 1 to 10. |
-  | direction | PanDirection | No | All | Slide direction. The enumerated value supports the AND (&amp;) and OR (\|) operations. |
-  | distance | number | No | 5.0 | Minimum slide recognition distance, in vp. |
+  | fingers | number | No| 1 | Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.|
+  | direction | PanDirection | No| All | Pan direction. The enumerated value supports the AND (&amp;) and OR (\|)|operations.|
+  | distance | number | No| 5.0 | Minimum pan distance to trigger the gesture, in vp.<br>**NOTE**<br>If a pan gesture and tab swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.|
 
 - PanDirection enums
-  | Name | Description |
+  | Name| Description|
   | -------- | -------- |
-  | All | All directions. |
-  | Horizontal | Horizontal slide. |
-  | Vertical | Vertical slide. |
-  | Left | Slide to the left. |
-  | Right | Slide to the right. |
-  | Up | Slide up. |
-  | Down | Slide down. |
-  | None | Slide disabled. |
+  | All | All directions.|
+  | Horizontal | Horizontal panning.|
+  | Vertical | Vertical panning.|
+  | Left | Panning to the left.|
+  | Right | Panning to the right.|
+  | Up | Panning up.|
+  | Down | Panning down.|
+  | None | Panning disabled.|
 
 
 ### PanGestureOptions
 
-The attributes of the slide gesture recognizer can be dynamically modified using the **PanGestureOptions** AP. This avoids modifying attributes through status variables, which will cause the UI to be refreshed.
+The attributes of the pan gesture recognizer can be dynamically modified using the **PanGestureOptions** API. This avoids modifying attributes through state variables, which will cause the UI to be refreshed.
 
 PanGestureOptions(options?: { fingers?: number, direction?: PanDirection, distance?: number })
 
 - Parameters
-  For details, see **PanGesture**.
-
+  
+For details, see **PanGesture**.
+  
 - APIs
-  | Name | Description |
+  | Name| Description|
   | -------- | -------- |
-  | setDirection(value: PanDirection) | Sets the direction. |
-  | setDistance(value: number) | Sets the distance. |
-  | setFingers(value: number) | Sets the number of fingers. |
+  | setDirection(value: PanDirection) | Sets the direction.|
+  | setDistance(value: number) | Sets the distance.|
+  | setFingers(value: number) | Sets the number of fingers.|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onActionStart(callback: (event?: GestureEvent) =&gt; void) | Callback for the pan gestures reorganization event. |
-| onActionUpdate(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when a pan gesture is recognized. |
-| onActionEnd(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift. |
-| onActionCancel(callback: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized. |
+| onActionStart(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when a pan gesture is recognized.|
+| onActionUpdate(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when the pan gesture status is updated.|
+| onActionEnd(callback: (event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pan gesture is lift.|
+| onActionCancel(callback: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pan gesture is recognized.|
 
-- GestureEvent attributes related to the pan gesture  
-  | Name | Type | Description |
+- GestureEvent attributes related to the pan gesture
+  | Name| Type| Description|
   | -------- | -------- | -------- |
-  | offsetX | number | Offset of the gesture event, in vp. |
-  | offsetY | number | Offset of the gesture event, in vp. |
+  | offsetX | number | Offset of the gesture event, in vp.|
+  | offsetY | number | Offset of the gesture event, in vp.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PanGestureExample {

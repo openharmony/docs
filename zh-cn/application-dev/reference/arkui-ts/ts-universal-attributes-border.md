@@ -9,75 +9,60 @@
 >  从API Version 9开始，父节点的border显示在子节点内容之上。
 
 
-## 权限列表
-
-无
-
-
 ## 属性
 
 
-| 名称         | 参数类型      | 默认值                  | 描述                     |
-| ------------ | ------------- | ----------------------- | ------------------------ |
-| border       | BorderOptions | -                       | 统一边框样式设置接口。   |
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle)   | &nbsp;BorderStyle.Solid | 设置元素的边框样式。     |
-| borderWidth  | Length        | 0                       | 设置元素的边框宽度。     |
-| borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | 设置元素的边框颜色。     |
-| borderRadius | Length \| BorderRadiuses<sup>9+</sup>        | 0                       | 设置元素的边框圆角半径。 |
+| 名称         | 参数类型                                                     | 描述                                                         |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| border       | {<br/>width?:&nbsp;[Length](../../ui/ts-types.md#长度类型)&nbsp;\|&nbsp;EdgeWidth<sup>9+</sup>,<br/>color?: &nbsp;[ResourceColor](../../ui/ts-types.md)&nbsp;\|&nbsp;EdgeColor<sup>9+</sup>,<br/>radius?: &nbsp;[Length](../../ui/ts-types.md#长度类型)&nbsp;\|&nbsp;BorderRadiuses<sup>9+</sup>,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;EdgeStyle<sup>9+</sup><br/>} | 统一边框样式设置接口。<br/>-&nbsp;width：设置边框宽度。<br/>-&nbsp;color：设置边框颜色。<br/>-&nbsp;radius：设置边框圆角半径。<br/>-&nbsp;style：设置边框样式。 |
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyle<sup>9+</sup> | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid           |
+| borderWidth  | [Length](../../ui/ts-types.md) \| EdgeWidth<sup>9+</sup>     | 设置元素的边框宽度。                                         |
+| borderColor  | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 设置元素的边框颜色。                                         |
+| borderRadius | [Length](../../ui/ts-types.md) \| BorderRadiuses<sup>9+</sup> | 设置元素的边框圆角半径。                                     |
 
-- BorderOptions属性说明
+## EdgeWidth<sup>9+</sup>对象说明
 
-  | 参数名称 | 参数类型                                                     | 默认值            | 必填 | 参数描述   |
-  | -------- | ------------------------------------------------------------ | ----------------- | ---- | ---------- |
-  | width    | [Length](../../ui/ts-types.md#长度类型) \| EdgeWidth<sup>9+</sup> | 0                 | 否   | 边框宽度。 |
-  | color    | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 'Black'           | 否   | 边框颜色。 |
-  | radius   | [Length](../../ui/ts-types.md#长度类型) \| BorderRadiuses<sup>9+</sup> | 0                 | 否   | 边框角度。 |
-  | style    | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | 否   | 边框样式。 |
+引入该对象时，至少传入一个参数。
 
+| 名称   | 参数类型                              | 必填 | 描述           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| left   | [Length](../../ui/ts-types.md#length) | 否   | 左侧边框宽度。 |
+| right  | [Length](../../ui/ts-types.md#length) | 否   | 右侧边框宽度。 |
+| top    | [Length](../../ui/ts-types.md#length) | 否   | 上侧边框宽度。 |
+| bottom | [Length](../../ui/ts-types.md#length) | 否   | 下侧边框宽度。 |
 
-- EdgeWidth<sup>9+</sup>对象说明
+## EdgeColor<sup>9+</sup>对象说明
 
-  引入该对象时，至少传入一个参数。
+引入该对象时，至少传入一个参数。
 
-  | 名称   | 参数类型 | 必填 | 默认值 | 描述           |
-  | ------ | -------- | ---- | ------ | -------------- |
-  | left   | length   | 否   | 0      | 左侧边框宽度。 |
-  | right  | length   | 否   | 0      | 右侧边框宽度。 |
-  | top    | length   | 否   | 0      | 上侧边框宽度。 |
-  | bottom | length   | 否   | 0      | 下侧边框宽度。 |
+| 名称   | 参数类型                              | 必填 | 描述           |
+| ------ | ------------------------------------- | ---- | -------------- |
+| left   | [ResourceColor](../../ui/ts-types.md) | 否   | 左侧边框颜色。 |
+| right  | [ResourceColor](../../ui/ts-types.md) | 否   | 右侧边框颜色。 |
+| top    | [ResourceColor](../../ui/ts-types.md) | 否   | 上侧边框颜色。 |
+| bottom | [ResourceColor](../../ui/ts-types.md) | 否   | 下侧边框颜色。 |
 
-- EdgeColor<sup>9+</sup>对象说明
+## BorderRadiuses<sup>9+</sup>对象说明
 
-  引入该对象时，至少传入一个参数。
+引用该对象时，至少传入一个参数。
 
-  | 名称   | 参数类型                              | 必填 | 默认值  | 描述           |
-  | ------ | ------------------------------------- | ---- | ------- | -------------- |
-  | left   | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 左侧边框颜色。 |
-  | right  | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 右侧边框颜色。 |
-  | top    | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 上侧边框颜色。 |
-  | bottom | [ResourceColor](../../ui/ts-types.md) | 否   | 'Black' | 下侧边框颜色。 |
+| 名称        | 参数类型                              | 必填 | 描述             |
+| ----------- | ------------------------------------- | ---- | ---------------- |
+| topLeft     | [Length](../../ui/ts-types.md#length) | 否   | 左上角圆角半径。 |
+| topRight    | [Length](../../ui/ts-types.md#length) | 否   | 右上角圆角半径。 |
+| bottomLeft  | [Length](../../ui/ts-types.md#length) | 否   | 左下角圆角半径。 |
+| bottomRight | [Length](../../ui/ts-types.md#length) | 否   | 右下角圆角半径。 |
 
-- BorderRadiuses<sup>9+</sup>对象说明
+## EdgeStyle<sup>9+</sup>对象说明
 
-  引用该对象时，至少传入一个参数。
+引入该对象时，至少传入一个参数。
 
-  | 名称        | 参数类型 | 必填 | 默认值 | 描述             |
-  | ----------- | -------- | ---- | ------ | ---------------- |
-  | topLeft     | length   | 否   | 0      | 左上角圆角半径。 |
-  | topRight    | length   | 否   | 0      | 右上角圆角半径。 |
-  | bottomLeft  | length   | 否   | 0      | 左下角圆角半径。 |
-  | bottomRight | length   | 否   | 0      | 右下角圆角半径。 |
-
-- EdgeStyle<sup>9+</sup>对象说明
-
-  引入该对象时，至少传入一个参数。
-
-  | 名称   | 参数类型    | 必填 | 默认值            | 描述           |
-  | ------ | ----------- | ---- | ----------------- | -------------- |
-  | left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 左侧边框样式。 |
-  | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 右侧边框样式。 |
-  | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 上侧边框样式。 |
-  | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | BorderStyle.Solid | 下侧边框样式。 |
+| 名称   | 参数类型                                        | 必填 | 描述           |
+| ------ | ----------------------------------------------- | ---- | -------------- |
+| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | 左侧边框样式。 |
+| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | 右侧边框样式。 |
+| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | 上侧边框样式。 |
+| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否   | 下侧边框样式。 |
 
 ## 示例
 

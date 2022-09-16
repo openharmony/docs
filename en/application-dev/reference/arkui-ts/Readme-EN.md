@@ -38,6 +38,7 @@
         - [Component ID](ts-universal-attributes-component-id.md)
         - [Touch Target](ts-universal-attributes-touch-target.md)
         - [Polymorphic Style](ts-universal-attributes-polymorphic-style.md)
+        - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - Gesture Processing
         - [Gesture Binding Methods](ts-gesture-settings.md)
         - Basic Gestures

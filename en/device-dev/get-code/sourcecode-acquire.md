@@ -36,7 +36,7 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 2.  Register an SSH public key for access to Gitee.
 3.  Install the [git client](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading), and configure basic user information.
 
-    ```
+    ```shell
     git config --global user.name "yourname"
     git config --global user.email "your-email-address"
     git config --global credential.helper store
@@ -46,7 +46,7 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 
    In this example, **~/bin** is used as an example installation directory. You can change the directory as needed.
   
-   ```
+   ```shell
    mkdir ~/bin
    curl https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 -o ~/bin/repo 
    chmod a+x ~/bin/repo
@@ -55,7 +55,7 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 
 5. Add the path of the **repo** tool to environment variables.
 
-   ```
+   ```shell
    vim ~/.bashrc               # Edit environment variables.
    export PATH=~/bin:$PATH     # Add the path of the **repo** tool to the end of environment variables.
    source ~/.bashrc            # Apply environment variables.
@@ -73,7 +73,7 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 
     Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to Gitee.\)
 
-    ```
+    ```shell
     repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify
     repo sync -c
     repo forall -c 'git lfs pull'
@@ -81,7 +81,7 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 
     Method 2: Use the **repo** tool to download the source code over HTTPS.
 
-    ```
+    ```shell
     repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
     repo sync -c
     repo forall -c 'git lfs pull'
@@ -112,19 +112,19 @@ You must install **Node.js** and HPM on your local PC. The installation procedur
 
     Open the CMD window and run the following command:
 
-    ```
+    ```shell
     npm install -g @ohos/hpm-cli
     ```
 
 3.  Run the following command to check whether the installation is successful. If the HPM version is displayed, the installation is successful.
 
-    ```
+    ```shell
     hpm -V or hpm --version
     ```
 
 4.  Run the following command to upgrade the HPM version:
 
-    ```
+    ```shell
     npm update -g @ohos/hpm-cli
     ```
 
@@ -199,7 +199,7 @@ The table below provides only the sites for downloading the latest OpenHarmony L
 
 Method 1 \(recommended\): Use the **repo** tool to download the source code over SSH. \(You must have registered an SSH public key for access to GitHub. For details, see [Adding a new SSH key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).\)
 
-```
+```shell
 repo init -u git@github.com:openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'
@@ -207,7 +207,7 @@ repo forall -c 'git lfs pull'
 
 Method 2: Use the **repo** tool to download the source code over HTTPS.
 
-```
+```shell
 repo init -u https://github.com/openharmony/manifest.git -b master --no-repo-verify
 repo sync -c
 repo forall -c 'git lfs pull'

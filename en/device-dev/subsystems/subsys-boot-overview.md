@@ -57,9 +57,7 @@ The Startup subsystem consists of the following modules:
 
 - When porting a new chip platform, you need to add the **/vendor/etc/init/init.{hardware}.cfg** file that contains the platform-level initialization configuration. This file is used to implement platform-level initialization, for example, installing the ko driver and configuring information on the related **/proc** nodes.
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-
-  > The configuration file **init.cfg** must be in JSON format.
+  > **NOTE**: The configuration file **init.cfg** must be in JSON format.
 
 - bootstrap module: The zInit code must be configured in the link script.
 
@@ -188,9 +186,7 @@ On each development board, you need to partition the memory to store the precedi
 
       This example assumes the **system** partition as the required partition on the Hi3516D V300 platform to illustrate the boot process. During this process, the init process reads the required fstab information, creates a block device node, and mounts it to the required partition. The following provides the key code snippets and log information as reference for debugging.
 
-      > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-
-      > The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
+      > **NOTE**: The code snippets below are exhibited in the logical sequence. They are not neighboring to each other in the source code.
 
       1. Obtain required device information.
           ```
