@@ -200,7 +200,7 @@ vibrator.vibrate({
     usage: 'alarm'
 }, (error)=>{
     if(error){
-        console.log("vibrate fail, error.code:" + error.code + ",error.message:" +        error.message);
+        console.log("vibrate fail, error.code:" + error.code + ",error.message:" + error.message);
     }else{
         console.log("Callback returned to indicate a successful vibration.");
     }
