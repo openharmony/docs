@@ -13,7 +13,7 @@ The **DataShare** module allows an application to manage its own data and share 
 |query?(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void|Queries data from the database.|
 |delete?(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void|Deletes data from the database.|
 
-For more details, see [DataShareExtensionAbility](../reference/apis/js-apis-application-DataShareExtensionAbility.md).
+For more information, see [DataShareExtensionAbility](../reference/apis/js-apis-application-DataShareExtensionAbility.md).
 
 **Table 2** APIs of the data consumer
 
@@ -25,11 +25,11 @@ For more details, see [DataShareExtensionAbility](../reference/apis/js-apis-appl
 | query(uri: string, predicates: DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data from the database.              |
 | delete(uri: string, predicates: DataSharePredicates, callback: AsyncCallback&lt;number&gt;): void | Deletes one or more data records from the database.|
 
-For more details, see [DataShareHelper](../reference/apis/js-apis-data-dataShare.md).
+For more information, see [DataShareHelper](../reference/apis/js-apis-data-dataShare.md).
 
 ## When to Use
 
-There are two roles in **DataShare**.
+There are two roles in **DataShare**:
 
 - Data provider: adds, deletes, modifies, and queries data, opens files, and shares data.
 - Data consumer: accesses the data provided by the provider using **DataShareHelper**.
@@ -41,10 +41,10 @@ Examples are given below.
 1. Import the dependencies.
 
    ```ts
-   import Extension from '@ohos.application.DataShareExtensionAbility'
+   import Extension from '@ohos.application.DataShareExtensionAbility';
    import rdb from '@ohos.data.rdb';
-   import fileIo from '@ohos.fileio'
-   import dataSharePredicates from '@ohos.data.dataSharePredicates'
+   import fileIo from '@ohos.fileio';
+   import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
 
 2. Override **DataShareExtensionAbility** APIs based on actual requirements. For example, if the data provider provides only data query, override only the **query()** API.
@@ -80,7 +80,7 @@ Examples are given below.
        }
    
    	// Override the query() API.
-       query(uri, predicates, columns,  callback) {
+       query(uri, predicates, columns, callback) {
            if (predicates == null || predicates == undefined) {
                console.info('invalid predicates');
            }
@@ -144,48 +144,49 @@ Examples are given below.
    let dseUri = ("datashare:///com.samples.datasharetest.DataShare");
    ```
    
-2. Create a **DataShareHelper** instance.
+3. Create a **DataShareHelper** instance.
 
    ```ts
    let dsHelper;
    let abilityContext;
+   
    export default class MainAbility extends Ability {
    	onWindowStageCreate(windowStage) {
    		abilityContext = this.context;
-   		dataShare.createDataShareHelper(abilityContext, dseUri, (err,data)=>{
+   		dataShare.createDataShareHelper(abilityContext, dseUri, (err, data)=>{
    			dsHelper = data;
    		});
    	}
    }
    ```
    
-3. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
+4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
 
    ```ts
    // Construct a piece of data.
-   var valuesBucket = {"name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1,2,3])};
-   var updateBucket = {"name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1,2,3])};
-   let da =  new dataSharePredicates.DataSharePredicates();
-   var valArray =new Array("*");
+   var valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
+   var updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
+   let da = new dataSharePredicates.DataSharePredicates();
+   var valArray = new Array("*");
    let people = new Array(
-   	{"name": "LiSi", "age": 41, "Binary": ar},
-   	{"name": "WangWu", "age": 21, "Binary": arr},
-   	{"name": "ZhaoLiu", "age": 61, "Binary": arr});
+     { "name": "LiSi", "age": 41, "Binary": ar },
+     { "name": "WangWu", "age": 21, "Binary": arr },
+     { "name": "ZhaoLiu", "age": 61, "Binary": arr });
    // Insert a piece of data.
-   dsHelper.insert(dseUri, valuesBucket, (err,data) => {
-       console.log("dsHelper insert result: " + data);
+   dsHelper.insert(dseUri, valuesBucket, (err, data) => {
+     console.log("dsHelper insert result: " + data);
    });
    // Delete data.
-   dsHelper.delete(dseUri, da, (err,data) => {
-       console.log("dsHelper delete result: " + data);
+   dsHelper.delete(dseUri, da, (err, data) => {
+     console.log("dsHelper delete result: " + data);
    });
    // Update data.
-   dsHelper.update(dseUri, da, updateBucket, (err,data) => {
-       console.log("dsHelper update result: " + data);
+   dsHelper.update(dseUri, da, updateBucket, (err, data) => {
+     console.log("dsHelper update result: " + data);
    });
    // Query data.
-   dsHelper.query(dseUri, da, valArray, (err,data) => {
-       console.log("dsHelper query result: " + data);
+   dsHelper.query(dseUri, da, valArray, (err, data) => {
+     console.log("dsHelper query result: " + data);
    });
    ```
    
