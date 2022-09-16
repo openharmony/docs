@@ -55,12 +55,12 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-**参数：** 
+**参数：**
 
-| 参数名    | 类型                                  | 必填 | 说明           |
-| --------- | ------------------------------------- | ---- | :------------- |
-| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。 |
-| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。 |
+| 参数名    | 类型                                   | 必填 | 说明           |
+| --------- | -------------------------------------- | ---- | :------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。 |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。 |
 
 **返回值：** 
 
@@ -77,10 +77,10 @@ vibrator.vibrate({
 }, {
    	id: 0,
     usage: 'alarm'
-}).then((result)=>{
+}).then(()=>{
     console.log("Promise returned to indicate a successful vibration");
 }).catch((error)=>{
-    console.log("error.code"+error.code+"error.message"+error.message);
+    console.log("error.code" + error.code + "error.message" + error.message);
 })
 ```
 
@@ -105,7 +105,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
   ```js
   vibrator.vibrate(1000,function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate a successful vibration.");
       }
@@ -138,7 +138,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
+      console.log("error.code" + error.code + "error.message" + error.message);
   });
   ```
 
@@ -164,7 +164,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
   ```js
   vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate a successful vibration.");
       }
@@ -183,11 +183,11 @@ vibrate(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallb
 
 **参数：** 
 
-| 参数名    | 类型                                  | 必填 | 说明                                                       |
-| --------- | ------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果。                                             |
-| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                             |
-| callback  | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+| 参数名    | 类型                                   | 必填 | 说明                                                       |
+| --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。                                             |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
+| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
 
 示例：
 
@@ -200,7 +200,7 @@ vibrator.vibrate({
     usage: 'alarm'
 }, (error)=>{
     if(error){
-        console.log(TAG + " fail, error.code:"+error.code+",error.message:"+error.message);
+        console.log("vibrate fail, error.code:" + error.code + ",error.message:" + error.message);
     }else{
         console.log("Callback returned to indicate a successful vibration.");
     }
@@ -234,7 +234,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
       console.log("Promise returned to indicate a successful vibration.");
   }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
+      console.log("error.code" + error.code + "error.message" + error.message);
   });
   ```
 
@@ -260,7 +260,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
   ```js
   vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
       if(error){
-          console.log("error.code"+error.code+"error.message"+error.message);
+          console.log("error.code" + error.code + "error.message" + error.message);
       }else{
           console.log("Callback returned to indicate successful.");
       }
@@ -292,14 +292,20 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 ## VibrateEffect<sup>9+</sup>
 
-| 类型                            | 说明                           |
-| ------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime)     | 按照指定持续时间触发马达振动。 |
-| [VibratePreset](#vibratepreset) | 按照预置振动类型触发马达振动。 |
+马达振动效果。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
+| 类型                             | 说明                           |
+| -------------------------------- | ------------------------------ |
+| [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
+| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
 马达振动时长。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称     | 默认值 | 说明                           |
 | -------- | ------ | ------------------------------ |
@@ -309,6 +315,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 ## VibratePreset<sup>9+</sup>
 
 马达预置振动类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称     | 默认值   | 说明                           |
 | -------- | -------- | ------------------------------ |
@@ -320,6 +328,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 马达振动属性。
 
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
 | 名称  | 默认值 | 说明           |
 | ----- | ------ | -------------- |
 | id    | 0      | 振动器id。     |
@@ -328,6 +338,8 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 ## Usage<sup>9+</sup>
 
 振动使用场景。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
 
 | 名称             | 类型   | 说明                           |
 | ---------------- | ------ | ------------------------------ |
