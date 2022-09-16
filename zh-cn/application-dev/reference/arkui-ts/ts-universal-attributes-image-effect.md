@@ -4,11 +4,6 @@
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 属性
 
 
@@ -73,3 +68,5 @@ struct ImageEffectsExample {
   }
 }
 ```
+
+<img src="figures/image-effect.png" alt="image-effect"  />

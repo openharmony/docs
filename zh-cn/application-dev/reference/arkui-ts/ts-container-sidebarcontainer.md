@@ -7,11 +7,6 @@
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含子组件。
@@ -23,9 +18,9 @@ SideBarContainer( type?: SideBarContainerType )
 
 **参数:**
 
-| 参数名  | 参数类型                 | 必填   | 默认值                        | 参数描述        |
-| ---- | -------------------- | ---- | -------------------------- | ----------- |
-| type | SideBarContainerType | 否    | SideBarContainerType.Embed | 设置侧边栏的显示类型。 |
+| 参数名 | 参数类型             | 必填 | 参数描述                                                     |
+| ------ | -------------------- | ---- | ------------------------------------------------------------ |
+| type   | SideBarContainerType | 否   | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
 ## SideBarContainerType枚举说明
 
@@ -36,32 +31,32 @@ SideBarContainer( type?: SideBarContainerType )
 
 ## 属性
 
-| 名称                | 参数类型        | 默认值  | 描述            |
-| ----------------- | ----------- | ---- | ------------- |
-| showSideBar       | boolean     | true | 设置是否显示侧边栏。    |
-| controlButton     | ButtonStyle | -    | 设置侧边栏控制按钮的属性。 |
-| showControlButton | boolean     | true | 设置是否显示控制按钮。   |
-| sideBarWidth      | number      | 200  | 设置侧边栏的宽度。     |
-| minSideBarWidth   | number      | 200  | 设置侧边栏最小宽度。    |
-| maxSideBarWidth   | number      | 280  | 设置侧边栏最大宽度。    |
+| 名称              | 参数类型    | 描述                                         |
+| ----------------- | ----------- | -------------------------------------------- |
+| showSideBar       | boolean     | 设置是否显示侧边栏。<br/>默认值：true        |
+| controlButton     | ButtonStyle | 设置侧边栏控制按钮的属性。                   |
+| showControlButton | boolean     | 设置是否显示控制按钮。<br/>默认值：true      |
+| sideBarWidth      | number      | 设置侧边栏的宽度。<br/>默认值：200，单位vp   |
+| minSideBarWidth   | number      | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
+| maxSideBarWidth   | number      | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
 
 ## ButtonStyle对象说明
 
-| 名称   | 参数类型                                                     | 必填 | 默认值 | 描述                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| left   | number                                                       | 否   | 16     | 设置侧边栏控制按钮距离容器左界限的间距。                     |
-| top    | number                                                       | 否   | 48     | 设置侧边栏控制按钮距离容器上界限的间距。                     |
-| width  | number                                                       | 否   | 32     | 设置侧边栏控制按钮的宽度。                                   |
-| height | number                                                       | 否   | 32     | 设置侧边栏控制按钮的高度。                                   |
-| icons  | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) ,<br/>hidden:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) ,<br/>switching?:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) <br/>} | 否   | -      | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 |
+| 名称   | 参数类型                                                     | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| left   | number                                                       | 否   | 设置侧边栏控制按钮距离容器左界限的间距。<br/>默认值：16，单位vp |
+| top    | number                                                       | 否   | 设置侧边栏控制按钮距离容器上界限的间距。<br/>默认值：48，单位vp |
+| width  | number                                                       | 否   | 设置侧边栏控制按钮的宽度。<br/>默认值：32，单位vp            |
+| height | number                                                       | 否   | 设置侧边栏控制按钮的高度。<br/>默认值：32，单位vp            |
+| icons  | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) ,<br/>hidden:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) ,<br/>switching?:&nbsp;string \| PixelMap \| [Resource](arkui-ts/ts-types.md#resource) <br/>} | 否   | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 |
 
 
 
 ## 事件
 
-| 名称                                  | 功能描述                                                     |
-| ------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: boolen) =&gt; void | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> true表示显示，false表示隐藏。 |
+| 名称                                   | 功能描述                                                     |
+| -------------------------------------- | ------------------------------------------------------------ |
+| onChange(callback: boolean) =&gt; void | 当侧边栏的状态在显示和隐藏之间切换时触发回调。<p> true表示显示，false表示隐藏。 |
 
 
 ## 示例
