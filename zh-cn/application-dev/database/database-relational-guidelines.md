@@ -200,24 +200,21 @@
    FA模型示例：
 
     ```js
-    
     import data_rdb from '@ohos.data.rdb'
     // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
    var context = featureAbility.getContext()
-   
+
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
+
    const STORE_CONFIG = { name: "RdbTest.db" }
    data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(CREATE_TABLE_TEST)
       console.info('create table done.')
    })
-    
     ```
     Stage模型示例：
      ```js
-    
     import data_rdb from '@ohos.data.rdb'
     // 获取context
    import Ability from '@ohos.application.Ability'
@@ -227,15 +224,14 @@
              context = this.context
        }
    }
-   
+
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-   
+
    const STORE_CONFIG = { name: "rdbstore.db" }
    data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
        rdbStore.executeSql(CREATE_TABLE_TEST)
        console.info('create table done.')
    })
-   
     ```
 
 2. 插入数据。
@@ -424,4 +420,4 @@
 ## 相关实例
 针对关系型数据库开发，有以下相关实例可供参考：
 - [`DistributedRdb`：分布式关系型数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedRdb)
-- [关系型数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)d
+- [关系型数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)
