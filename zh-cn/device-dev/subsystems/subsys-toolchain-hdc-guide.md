@@ -211,7 +211,7 @@ hdc_std list targets -v
   ```
 
 - **tmode usb**
-  执行后设备端对应daemon进程重启，并首先选用usb连接方式。
+  执行后设备端对应daemon进程重启，并首先选用USB连接方式。
 
     **表8** 命令说明
   
@@ -229,7 +229,7 @@ hdc_std list targets -v
   ```
 
 - **tmode port port-number**
-  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择usb连接。
+  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接。
 
     **表9** 命令说明
   
