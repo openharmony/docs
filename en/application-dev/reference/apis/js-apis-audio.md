@@ -4911,7 +4911,7 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-    console.error(`AudioFrameworkRecLog: getBufferSize: EROOR: ${err}`);
+    console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
   });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
   if (!err) {
