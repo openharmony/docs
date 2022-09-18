@@ -3545,7 +3545,7 @@ previewOutput.stop((err) => {
         console.error(`Failed to stop the previewOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -3567,7 +3567,7 @@ Stops outputting preview streams. This API uses a promise to return the result.
 
 ```js
 previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -4476,7 +4476,7 @@ metadataOutput.stop((err) => {
         console.error(`Failed to stop the metadataOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4498,7 +4498,7 @@ Stops outputting metadata. This API uses a promise to return the result.
 
 ```js
 metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
