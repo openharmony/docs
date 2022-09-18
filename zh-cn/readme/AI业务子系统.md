@@ -420,7 +420,7 @@ AI业务子系统是OpenHarmony提供原生的分布式AI能力的子系统。�
 
 [ai_engine](https://gitee.com/openharmony/ai_engine)
 
-依赖仓：
+## 依赖仓：
 
 [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README_zh.md)
 
