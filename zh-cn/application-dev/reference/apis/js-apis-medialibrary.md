@@ -92,23 +92,44 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 **示例：**
 
 ```js
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
-    if (fetchFileResult != undefined) {
-        console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
-        fetchFileResult.getAllObject((err, fileAssetList) => {
-            if (fileAssetList != undefined) {
-                fileAssetList.forEach(function(getAllObjectInfo){
-                    console.info("getAllObjectInfo.displayName :" + getAllObjectInfo.displayName);
-                });
-            }
-    	});
+media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
+    if (fetchFileResult == undefined) {
+        console.error('Failed to get fetchFileResult: ' + error);
+        return;
     }
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject((err, fileAsset) => {
+        if (fileAsset == undefined) {
+            console.error('Failed to get first object: ' + err);
+            return;
+        }
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject((err, fileAsset) => {
+                if (fileAsset == undefined) {
+                    console.error('Failed to get next object: ' + err);
+                    return;
+                }
+                console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            })
+        }
+    });
 });
 ```
 ### getFileAssets<sup>7+</sup>
@@ -136,16 +157,37 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 **示例：**
 
 ```js
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
-    console.info("getFileAssets successfully: image number is "+ fetchFileResult.getCount());
+media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject().then(function(fileAsset) {
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject().then(function(fileAsset) {
+                console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+            }).catch(function(err) {
+                console.error('Failed to get next object: ' + err);
+            })
+        }
+    }).catch(function(err) {
+        console.error('Failed to get first object: ' + err);
+    });
 }).catch(function(err){
-    console.info("getFileAssets failed with error:"+ err);
+    console.error("Failed to get file assets: " + err);
 });
 ```
 
@@ -761,7 +803,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
 ```js
-let option = {
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -801,7 +843,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```js
-let option = {
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -1718,18 +1760,13 @@ async function example() {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.isTrash(isTrashCallBack);
-    function isTrashCallBack(err, isTrash) {
-            if (isTrash == true) {
-                console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-                asset.trash(true, istrashCallBack);
-
-            } else {
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
-
-            }
-    }
+    asset.isTrash((err, isTrash) => {
+      if (isTrash == undefined) {
+        console.error('Failed to get trash state: ' + err);
+        return;
+      }
+      console.info('Get trash state success: ' + isTrash);
+    });
 }
 ```
 
@@ -1759,14 +1796,13 @@ async function example() {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
       order: fileKeyObj.DATE_ADDED + " DESC",
-      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.isTrash().then(function(isTrash){
-        console.info("isTrash result:"+ isTrash);
+      console.info("isTrash result: " + isTrash);
     }).catch(function(err){
-        console.info("isTrash failed with error:"+ err);
+      console.error("isTrash failed with error: " + err);
     });
 }
 ```
@@ -2548,5 +2584,4 @@ async function example() {
 | ----- | ------ | ---- | -------------------- |
 | type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
-
 
