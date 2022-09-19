@@ -49,6 +49,7 @@ import Want from '@ohos.application.Want';
 - Passing a file descriptor (FD)
 
   ```  js
+    import fileio from '@ohos.fileio';
     var fd;
     try {
         fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
@@ -59,9 +60,9 @@ import Want from '@ohos.application.Want';
         "deviceId": "", // An empty deviceId indicates the local device.
         "bundleName": "com.extreme.test",
         "abilityName": "MainAbility",
-        "moduleName": "entry" // moduleName is optional.
+        "moduleName": "entry", // moduleName is optional.
         "parameters": {
-          "keyFd":{"type":"FD", "value":fd}
+            "keyFd":{"type":"FD", "value":fd}
         }
     };
     this.context.startAbility(want, (error) => {
