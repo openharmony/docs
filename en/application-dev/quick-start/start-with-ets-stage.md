@@ -285,7 +285,7 @@ You can implement page redirection through the page router, which finds the targ
 
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
-2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signaure**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
+2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signature**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
 
    ![06](figures/06.png)
 
