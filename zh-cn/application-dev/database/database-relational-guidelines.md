@@ -196,14 +196,13 @@
 
    (3) 创建数据库。
 
-   示例代码如下：
    FA模型示例：
 
     ```js
     import data_rdb from '@ohos.data.rdb'
     // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
-   var context = featureAbility.getContext()
+   let context = featureAbility.getContext()
 
    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 
@@ -218,10 +217,10 @@
     import data_rdb from '@ohos.data.rdb'
     // 获取context
    import Ability from '@ohos.application.Ability'
-   var context
-   class MainAbility extends Ability{
-         onWindowStageCreate(windowStage){
-             context = this.context
+   let context = null
+   class MainAbility extends Ability {
+       onWindowStageCreate(windowStage) {
+         context = this.context
        }
    }
 
