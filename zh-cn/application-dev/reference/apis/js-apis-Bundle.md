@@ -158,7 +158,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的包名。                                               |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 | userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -196,7 +196,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的包名。                                               |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 
 **返回值：**
 
@@ -448,7 +448,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, options: BundleOptions): BundleInfo;
 
-以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+以同步方法根据给定的包名获取BundleInfo，返回BundleInfo对象。
 
 **需要权限：**
 
@@ -488,7 +488,7 @@ console.info('Operation successful. Name:' + bundleInfo.name);
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo;
 
-以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+以同步方法根据给定的包名获取BundleInfo，返回BundleInfo对象。
 
 **需要权限：**
 
