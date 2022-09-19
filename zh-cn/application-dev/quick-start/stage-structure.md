@@ -65,7 +65,6 @@ app.json示例：
 | entityType                     | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）。 | 字符串   | 该标签可以缺省，缺省为unspecified。         |
 | singleton                      | 标识该应用开启单例模式，仅支持系统应用配置，三方应用配置不生效。配置为true时，在多用户场景下，该应用仍然单实例运行，不会随用户切换而变动。采用布尔类型，该字段从API8开始支持。 | 布尔值   | 可缺省，缺省值为false。                     |
 | removable                      | 标识应用是否可卸载，仅支持系统应用配置，三方应用配置不生效，该字段从API8开始支持。 | 布尔值   | 可缺省，缺省值为true。                      |
-| process                        | 标识应用进程名，标签值为字符串类型，最长为127个字节。如果app标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串   | 可缺省，缺省值为app标签下的bundleName。     |
 | keepAlive                      | 标识应用是否始终保持运行状态，仅支持系统应用配置，三方应用配置不生效。标签值为布尔类型，如果为true，应用将始终保持为运行状态，并且在系统启动的时候会被系统启动起来，应用进程退出后，系统也会重新启动该应用进程。 | 布尔值   | 可缺省，缺省值为false。                     |
 | userDataClearable              | 标识是否允许应用清除用户数据，仅支持系统应用配置，三方应用配置不生效，该字段从API8开始支持。 | 布尔值   | 可缺省，缺省值为true。                      |
 | accessible                     | 标识应用的安装目录是否是可访问的，仅支持系统应用配置，三方应用配置不生效。配置为true表示安装目录可以被三方应用访问，false表示不能被三方应用访问。 | 布尔值   | 可缺省，缺省值为false。                     |
@@ -82,7 +81,6 @@ module.json5示例:
         "type": "entry|feature|har",
         "srcEntrance" : "./MyAbilityStage.js",
         "description" : "$string:description_application",
-        "process": "string", 
         "mainElement": "MainAbility",
         "deviceTypes": [
             "tablet", 
@@ -176,7 +174,7 @@ hap包的配置信息，该标签下的配置只对当前hap包生效。
 | type                 | 该标签标识当前hap的类型。类型有三种，分别是entry、feature和har。 | 字符串     | 该标签不可缺省。                                             |
 | srcEntrance          | 该标签标识hap所对应的入口js代码路径，标签值为字符串（最长为127字节）。 | 字符串     | 该标签可缺省。                                               |
 | description          | 该标签标识hap包的描述信息，标签值是是字符串类型或对描述内容的资源索引，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。                                   |
-| process              | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。 | 字符串     | 可缺省，缺省为app标签下的bundleName。                        |
+| process              | 该标签标识hap的进程名，标签值为字符串类型（最长为31个字节）。如果在hap标签下配置了process，该应用的所有ability都运行在该进程中。该标签只支持系统应用配置。 | 字符串     | 可缺省，缺省为app标签下的bundleName。                        |
 | mainElement          | 该标签标识hap的入口ability名称或者extension名称。只有配置为mainElement的ability或者extension才允许在服务中心露出。创建OpenHarmony原子化服务时，该标签不可缺省。 | 字符串     | OpenHarmony应用下，该标签可缺省。                            |
 | deviceTypes          | 该标签标识hap可以运行在哪类设备上，标签值采用字符串数组的表示，系统预定义的设备类型见表4。<br />与syscap不同的是，deviceTypes是以设备类型为粒度，而syscap是以设备能力(例如蓝牙、wifi)为粒度。 | 字符串数组 | 该标签不可缺省，可以为空值。                                 |
 | deliveryWithInstall  | 该标签标识当前hap是否在用户主动安装的时候安装，true表示主动安装时安装，false表示主动安装时不安装。 | 布尔值     | 该标签不可缺省。                                             |
