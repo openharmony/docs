@@ -347,8 +347,8 @@ await captureSession.start().then(() => {
 
 ```js
 let settings = {
-    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH                                      //设置图片质量高
-    rotation: camera.ImageRotation.ROTATION_0,                                           //设置图片旋转角度0
+    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     //设置图片质量高
+    rotation: camera.ImageRotation.ROTATION_0                                            //设置图片旋转角度0
 }
 //使用当前拍照设置进行拍照
 photoOutput.capture(settings, (err) => {
