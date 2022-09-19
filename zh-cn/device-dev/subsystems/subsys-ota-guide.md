@@ -72,7 +72,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 &ensp;&ensp;<a href="#api-应用定制场景冷升级">5.2 API 应用定制场景</a>
 
-&ensp;&ensp;<a href="#ab-热升级指导">5.2 AB 热升级场景</a>
+&ensp;&ensp;<a href="#ab-热升级场景">5.2 AB 热升级场景</a>
 
 
 ### 开发步骤
@@ -518,8 +518,8 @@ const char *get_local_version(void)
 - JS API 通过 update_service 模块处理AB热升级相关流程
 
    1.升级包安装进度显示接口：
-   ```java
-   on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
+   ```cpp
+   on(eventType: "upgradeProgress", callback: UpdateProgressCallback): void;
    ```
    
    2.设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
