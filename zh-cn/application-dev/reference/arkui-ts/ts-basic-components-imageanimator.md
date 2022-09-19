@@ -38,11 +38,11 @@ ImageAnimator()
 - ImageFrameInfo属性说明
   | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | src | string \| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | "" | 是 | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](../../ui/ts-types.md#resource类型)类型的路径 |
-  | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片宽度 |
-  | height | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片高度 |
-  | top | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的纵向坐标 |
-  | left | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的横向坐标 |
+  | src | string \| [Resource](ts-types.md#resource类型)<sup>9+</sup> | "" | 是 | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource类型)类型的路径 |
+  | width | [Length](ts-types.md#长度类型) | 0 | 否 | 图片宽度 |
+  | height | [Length](ts-types.md#长度类型) | 0 | 否 | 图片高度 |
+  | top | [Length](ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的纵向坐标 |
+  | left | [Length](ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的横向坐标 |
   | duration | number | 0 | 否 | 每一帧图片的播放时长，单位毫秒 |
 
 
