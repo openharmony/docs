@@ -185,7 +185,7 @@ Modem业务请求及响应接口。
            case CALL_CLIR_SUPPRESSION:
                clir = "i";
                break; /* suppression */
-           case CALL_CLIR_SUBSCRIPTION_DEFUALT:
+           case CALL_CLIR_SUBSCRIPTION_DEFAULT:
            default:
                clir = "";
                break; /* subscription default */
@@ -437,7 +437,7 @@ Modem事件上报接口。
           case CALL_CLIR_SUPPRESSION:
               clir = "i";
               break; /* suppression */
-          case CALL_CLIR_SUBSCRIPTION_DEFUALT:
+          case CALL_CLIR_SUBSCRIPTION_DEFAULT:
           default:
               clir = "";
               break; /* subscription default */
