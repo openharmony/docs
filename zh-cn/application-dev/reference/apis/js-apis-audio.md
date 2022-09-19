@@ -2075,6 +2075,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 
 ```js
 var audioManager = audio.getAudioManager();
+var audioGroupManager;
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2339,6 +2340,23 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err) => {
   if (err) {
     console.error(`Failed to set the volume. ${err}`);
@@ -2378,6 +2396,24 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
+
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
@@ -2403,6 +2439,23 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the volume. ${err}`);
@@ -2437,6 +2490,23 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value) => {
   console.info(`Promise returned to indicate that the volume is obtained ${value}.`);
 });
@@ -2462,6 +2532,23 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the minimum volume. ${err}`);
@@ -2496,6 +2583,23 @@ getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value) => {
   console.info(`Promised returned to indicate that the minimum volume is obtained ${value}.`);
 });
@@ -2521,6 +2625,23 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the maximum volume. ${err}`);
@@ -2555,6 +2676,23 @@ getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data) => {
   console.info('Promised returned to indicate that the maximum volume is obtained.');
 });
@@ -2585,6 +2723,23 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err) => {
   if (err) {
     console.error(`Failed to mute the stream. ${err}`);
@@ -2624,6 +2779,23 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
   console.info('Promise returned to indicate that the stream is muted.');
 });
@@ -2649,6 +2821,23 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the mute status. ${err}`);
@@ -2683,6 +2872,23 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
+async function getGroupManager(){
+  let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
+  if (value.length > 0) {
+    let groupid = value[0].groupId;
+    audioManager.getGroupManager(groupid, (err, value) => {
+      if (err) {
+        console.error(`Failed to obtain the volume group infos list. ${err}`);
+        return;
+      }
+      audioGroupManager = value
+      console.info('Callback invoked to indicate that the volume group infos list is obtained.');
+    });
+  }
+}
+
 audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
   console.info(`Promise returned to indicate that the mute status of the stream is obtained ${value}.`);
 });
@@ -2709,8 +2915,9 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2766,8 +2973,9 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2821,8 +3029,9 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2876,8 +3085,9 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2930,8 +3140,9 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -2981,8 +3192,9 @@ off(type: "audioRendererChange");
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -3013,8 +3225,9 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -3063,8 +3276,9 @@ off(type: "audioCapturerChange");
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let audioStreamManager;
-audio.getStreamManager((err, data) => {
+audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`getStreamManager : Error: ${err}`);
   } else {
@@ -3099,11 +3313,11 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
+  } else {
     AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
       if (err) {
         console.error(`Failed to obtain the device list. ${err}`);
@@ -3138,6 +3352,7 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3169,6 +3384,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3203,6 +3419,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3234,6 +3451,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
@@ -3276,6 +3494,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
@@ -3312,6 +3531,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3362,6 +3582,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
