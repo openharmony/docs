@@ -88,15 +88,22 @@
 2. 获取Preferences实例。
 
    读取指定文件，将数据加载到Preferences实例，用于数据操作。
-   
+
    FA模型示例：
 
    ```js
    // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
-   let context = featureAbility.getContext()
-
+   let context = featureAbility.getContext();
+   
+   let preferences = null;
    let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get preferences.");
+   })
    ```
 
    Stage模型示例：
@@ -104,14 +111,21 @@
    ```ts
    // 获取context
    import Ability from '@ohos.application.Ability'
-   let context = null
+   let context = null;
+   let preferences = null;
    export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage){
-           context = this.context
+           context = this.context;
        }
    }
-
+   
    let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get preferences.");
+   })
    ```
 
 3. 存入数据。
@@ -119,35 +133,27 @@
    使用put方法保存数据到缓存的实例中。
 
    ```js
-   promise.then((preferences) => {
-       let putPromise = preferences.put('startup', 'auto');
-       putPromise.then(() => {
-           console.info("Succeeded in putting the value of 'startup'.");
-       }).catch((err) => {
-           console.info("Failed to put the value of 'startup'. Cause: " + err);
-       })
+   let putPromise = preferences.put('startup', 'auto');
+   putPromise.then(() => {
+       console.info("Succeeded in putting the value of 'startup'.");
    }).catch((err) => {
-       console.info("Failed to get preferences.");
+       console.info("Failed to put the value of 'startup'. Cause: " + err);
    })
    ```
-
+   
 4. 读取数据。
 
    使用get方法读取数据。
 
    ```js
-   promise.then((preferences) => {
-     let getPromise = preferences.get('startup', 'default');
-     getPromise.then((value) => {
+   let getPromise = preferences.get('startup', 'default');
+   getPromise.then((value) => {
        console.info("The value of 'startup' is " + value);
-     }).catch((err) => {
-       console.info("Failed to get the value of 'startup'. Cause: " + err);
-     })
    }).catch((err) => {
-     console.info("Failed to get preferences.")
-   });
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+   })
    ```
-
+   
 5. 数据持久化。
 
    应用存入数据到Preferences实例后，可以通过flush方法将Preferences实例回写到文件中。
@@ -165,7 +171,7 @@
        console.info("The key" + key + " changed.");
    }
    preferences.on('change', observer);
-   // 数据产生变更，由'auto'变为'manual'。
+   // 数据产生变更，由'auto'变为'manual'
    preferences.put('startup', 'manual', function (err) {
        if (err) {
            console.info("Failed to put the value of 'startup'. Cause: " + err);
