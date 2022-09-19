@@ -287,7 +287,7 @@ optional arguments:
   --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
   --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
   --keep-ninja-going    keeps ninja going until 1000000 jobs fail
-  --build-only-gn       only do gn parse, donot run ninja
+  --build-only-gn       only do gn parse, do not run ninja
   --log-level LOG_LEVEL
                         specifies the log level during compilationyou can select three levels: debug, info and error
   --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
