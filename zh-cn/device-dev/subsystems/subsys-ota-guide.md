@@ -8,31 +8,25 @@
 
 随着设备系统日新月异，用户如何及时获取系统的更新，体验新版本带来的新的体验，以及提升系统的稳定和安全性成为了每个厂商都面临的严峻问题。
 
-OTA（Over the Air）提供对设备远程升级的能力。升级子系统对用户屏蔽了底层芯片的差异，对外提供了统一的升级接口。基于接口进行二次开发后，可以让厂商的设备（如IP摄像头等）轻松支持远程升级能力。目前轻量和小型系统仅支持全量包升级，暂不支持差分包升级。
+OTA（Over the Air）提供对设备远程升级的能力。升级子系统对用户屏蔽了底层芯片的差异，对外提供了统一的升级接口。基于接口进行二次开发后，可以让厂商的设备（如IP摄像头等）轻松支持远程升级能力。
 
 
 ### 基本概念
 
-- 全量包升级：将新系统全部内容做成升级包，进行升级。
-
-- 差分包升级：将新老系统的差异内容做成升级包，进行升级。
-
 - 冷升级：设备完成升级包下载后，进入 updater 模式开始升级，结束后设备自动重启到正常系统，完成系统更新。
 
-- 热升级：相较与冷升级，OpenHarmony 升级服务子系统的热升级是在设备正常使用的情况下，在后台完成升级包的下载，静默升级。当前热升级场景包括系统AB热升级，参数升级，cota定制升级，补丁升级等。
+- 热升级：相较于冷升级，热升级是在设备正常使用的情况下，在后台完成升级包的下载，静默升级。当前热升级场景包括系统AB热升级，参数升级，cota定制升级，补丁升级等。
 
 - 全量升级包：将所有目标版本的镜像均通过全量镜像的方式打包获得的升级包。
 
 - 差分升级包：对源版本和目标版本差分，获得两个版本镜像之间的差异，以这种方式打包制作升级包。
-
-- 变分区升级包：分区表变更的升级包
 
 
 ### 实现原理
 
 OTA 的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成 OTA 升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
 
-<a href="#p53">AB 热升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
+<a href="#ab-热升级指导">AB 热升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
 
 
 ### 约束与限制
@@ -40,8 +34,10 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 支持基于Hi3861/Hi3518EV300/Hi3516DV300芯片的开源套件。
 
 - 对Hi3518EV300/Hi3516DV300开源套件，设备需要支持SD卡（VFAT格式）。
-  > **说明：**
-  > 生成升级包需要在linux系统下面执行。
+
+- 生成升级包需要在linux系统下面执行。
+
+- 目前轻量和小型系统仅支持全量包升级，暂不支持差分包、变分区包升级。
 
 
 ## 环境准备
@@ -60,7 +56,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 <a href="#生成公私钥对">1. 使用OpenSSL工具生成公私钥对</a>
 
-<a href="#升级包制作">2. 使用升级包制作工具制作升级包</a>
+<a href="#制作升级包">2. 使用升级包制作工具制作升级包</a>
 
 &ensp;&ensp;<a href="#轻量与小型系统升级包制作">2.1 轻量与小型系统升级包</a>
 
@@ -70,22 +66,22 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 <a href="#下载升级包">4. 厂商应用从OTA服务器下载升级包</a>
 
-<a href="#厂商应用集成OTA能力">5. 厂商应用集成OTA能力</a>
+<a href="#厂商应用集成ota能力">5. 厂商应用集成OTA能力</a>
 
-&ensp;&ensp;<a href="#API 应用默认场景（冷升级）">5.1 API 应用默认场景</a>
+&ensp;&ensp;<a href="#api-应用默认场景冷升级">5.1 API 应用默认场景</a>
 
-&ensp;&ensp;<a href="#API 应用定制场景（冷升级）">5.2 API 应用定制场景</a>
+&ensp;&ensp;<a href="#api-应用定制场景冷升级">5.2 API 应用定制场景</a>
 
-&ensp;&ensp;<a href="#AB 热升级指导">5.2 AB 热升级场景</a>
+&ensp;&ensp;<a href="#ab-热升级指导">5.2 AB 热升级场景</a>
 
 
 ### 开发步骤
 
 
-#### <a id="生成公私钥对">生成公私钥对</a>
+#### 生成公私钥对
 1. 使用OpenSSL工具生成公私钥对。
 
-3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生产的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
 5. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
@@ -98,10 +94,10 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    ```
 
 
-#### <a id="升级包制作">升级包制作</a>
+#### 制作升级包
 
 
-##### <a id="轻量与小型系统升级包制作">轻量与小型系统升级包制作</a>
+##### 轻量与小型系统升级包制作
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
      
@@ -117,9 +113,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
         └── updater_specified_config.xml
    ```
 
-2. 将待升级的组件，包括镜像文件（例如：rootfs.img等）等放入目标版本文件夹的根目录下，代替上结构中的{component_N}部分。
+2. 将待升级的组件，包括镜像文件（例如：rootfs.img）等放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
 
-3. 填写“update_config”文件夹中的“updater_specified_config.xml”组件配置文件。
+3. 填写“updater_config”文件夹中的“updater_specified_config.xml”组件配置文件。
    组件配置文件“updater_specified_config.xml”，格式如下：
 
      
@@ -142,17 +138,6 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
    | -------- | -------- | -------- | -------- | -------- |
    | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
-   | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
-   | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
-   | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
-   | date | 必填 | 升级包制作日期，保留字段，不影响升级包生成 | 
-   | time | 必填 | 升级包制作时间，保留字段，不影响升级包生成 | 
-
-     **表2** 组件配置文件节点说明
-   
-   | 信息类别 | 节点名称 | 节点标签 | 是否必填 | 内容说明 | 
-   | -------- | -------- | -------- | -------- | -------- |
-   | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
    | 头信息（head节点） | info节点 | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
    | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
    | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
@@ -165,7 +150,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 组件信息（group节点） | component节点 | compType | 必填 | 处理方式全量/差分，配置镜像处理方式的，0为全量处理、1为差分处理。 | 
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为‘1’，必须全部配置为‘0’。
+   > 对轻量系统/小型系统，不支持做差分升级，component标签中，属性compType值，不能配为 1，必须全部配置为 0。
    > 
    > 对轻量系统/小型系统，不支持变分区升级包的制作。
 
@@ -176,7 +161,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    ```
 
 5. 创建“config文件”，内容为设置bootargs以及bootcmd的信息。
-   例如配置如下：
+   配置例如下：
 
      
    ```
@@ -187,7 +172,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 6. 执行升级包制作命令。
      
    ```
-   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2x
+   python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2
    ```
 
    - ./target_package/：指定target_package路径。
@@ -197,7 +182,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    - -nl2：打开非“标准系统”模式开关
 
 
-##### <a id="标准系统升级包制作">标准系统升级包制作</a>
+##### 标准系统升级包制作
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
@@ -214,11 +199,11 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
            └── updater_specified_config.xml
    ```
 
-2. 将待升级的组件，包括镜像文件（例如：system.img等）等放入目标版本文件夹的根目录下，代替上结构中的{component_N}部分。
+2. 将待升级的组件，包括镜像文件（例如：system.img）等放入目标版本文件夹的根目录下，代替上文结构中的{component_N}部分。
 
-3. 填写“update_config”文件夹中的组件配置文件。
+3. 填写“updater_config”文件夹中的组件配置文件。
 
-4. 配置“update_config”文件夹中当前升级包支持的产品list：**BOARD.list**。
+4. 配置“updater_config”文件夹中当前升级包支持的产品list：**BOARD.list**。
 
    例如配置如下：
 
@@ -228,13 +213,13 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    HI3518
    ```
 
-5. 配置“update_config”文件夹中当前升级包所支持的版本范围：**VERSION.mbn**。
+5. 配置“updater_config”文件夹中当前升级包所支持的版本范围：**VERSION.mbn**。
 
    版本名称格式：Hi3516DV300-eng 10 QP1A.XXXXXX.{大版本号（6位）}.XXX{小版本号（3位）}。
 
    例如：Hi3516DV300-eng 10 QP1A.190711.020。名称中“190711”为大版本号，“020”为小版本号。
 
-   例如配置如下：
+   配置例如下：
 
      
    ```
@@ -258,7 +243,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    </Partition_Info>
    ```
 
-   **表3** 分区表Part标签说明
+   **表2** 分区表Part标签说明
 
      | 标签名称 | 标签说明 | 
    | -------- | -------- |
@@ -314,31 +299,31 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    - -pf ./partition_file.xml：指定分区表文件路径。
 
 
-#### <a id="上传升级包">上传升级包</a>
+#### 上传升级包
 
 将升级包上传到厂商的OTA服务器。
 
 
-#### <a id="下载升级包">下载升级包</a>
+#### 下载升级包
 
 1. 厂商应用从OTA服务器下载升级包。
 
 2. 对Hi3518EV300/Hi3516DV300开源套件，需要插入SD卡(容量&gt;100MBytes)。
 
 
-#### <a id="厂商应用集成OTA能力">厂商应用集成OTA能力</a>
+#### 厂商应用集成OTA能力
 
 1. 轻量与小型系统
 
-   - 调用OTA模块的动态库libhota.so，对应头文件位于：base\update\ota_lite\interfaces\kits\hota_partition.h&amp;hota_updater.h。
-   - libhota.so对应的源码路径为base\update\ota_lite\frameworks\source。
+   - 调用OTA模块的动态库libhota.so，对应头文件hota_partition.h和hota_updater.h路径：base\update\ota_lite\interfaces\kits\。
+   - libhota.so对应的源码路径为：base\update\ota_lite\frameworks\source。
    - API的使用方法，见本文“API应用场景”和API文档的OTA接口章节。
    - 如果需要适配开发板，请参考HAL层头文件：base\update\ota_lite\hals\hal_hota_board.h。
 
 2. 标准系统请参考[JS参考规范](../../application-dev/reference/apis/js-apis-update.md)指导中的升级接口参考规范。
 
 
-##### <a id="API 应用默认场景（冷升级）">API 应用默认场景（冷升级）</a>
+##### API 应用默认场景（冷升级）
 
 升级包是按照上文“生成公私钥对”和“生成升级包”章节制作的。
 
@@ -354,7 +339,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 ###### 示例代码
 
-  使用OpenHarmony的“升级包格式和校验方法“进行升级。
+  使用OpenHarmony的“升级包格式和校验方法”进行升级。
   
 ```
 int main(int argc, char **argv)
@@ -407,7 +392,7 @@ int main(int argc, char **argv)
 ```
 
 
-##### <a id="API 应用定制场景（冷升级）">API 应用定制场景（冷升级）</a>
+##### API 应用定制场景（冷升级）
 
 升级包不是按照上文“生成公私钥对”和“生成升级包”章节制作的，是通过其它方式制作的。
 
@@ -517,7 +502,7 @@ const char *get_local_version(void)
 ```
 
 
-##### <a id="AB 热升级指导">AB 热升级指导</a>
+##### AB 热升级场景
 
 
 ###### 开发流程
@@ -530,50 +515,63 @@ const char *get_local_version(void)
 
 ###### 开发步骤
 
-**JS API 通过 update_service 模块处理AB热升级相关流程**
+- JS API 通过 update_service 模块处理AB热升级相关流程
 
-- 升级包安装进度显示接口：
-```
-on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
-```
-
-- 设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
-```
-upgrade（apply）
-```
-
-
-**update_service 通过 SAMGR 将 sys_installer 拉起**
-
-- 拉起sys_installer服务，并建立IPC连接：
-```
-int SysInstallerInit(void * callback)
-```
-
-- 安装指定路径的AB升级包：
-```
-int StartUpdatePackageZip(string path)
-```
-
-- 设置进度回调：
-```
-int SetUpdateProgressCallback(void * callback)
-```
-
-- 获取sys_installer的升级包安装状态（0 未开始,1 安装中,2，安装结束）:
-```
-int GetUpdateStatus()
-```
+   1.升级包安装进度显示接口：
+   ```
+   on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
+   ```
+   
+   2.设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
+   ```
+   upgrade（apply）
+   ```
 
 
-   **表4** 使用 HDI 接口南向激活新版本
+- update_service 通过 SAMGR 将 sys_installer 拉起
+   
+   1.拉起sys_installer服务，并建立IPC连接：
+   ```
+   int SysInstallerInit(void * callback)
+   ```
+   
+   2.安装指定路径的AB升级包：
+   ```
+   int StartUpdatePackageZip(string path)
+   ```
+   
+   3.设置进度回调：
+   ```
+   int SetUpdateProgressCallback(void * callback)
+   ```
+   
+   4.获取sys_installer的升级包安装状态（0 未开始,1 安装中,2 安装结束）:
+   ```
+   int GetUpdateStatus()
+   ```
 
-| 方法 | 功能 |
-| ------------ | ------------ |
-| int GetCurrentSlot() | 获取当前启动的slot，来决策待升级的分区 |
-| int SetActiveBootSlot(int slot) | 在升级结束后，将已升级好的slot进行切换，重启完成新版本更新 |
-| int setSlotUnbootable(int slot) | 在升级开始时，将待升级的分区slot设置成unbootable状态 |
-| int32 GetSlotNum(void) | 获取slot个数，1位非AB，2为AB分区，用例兼容AB和非AB的流程判断 |
+
+- 使用 HDI 接口南向激活新版本
+
+   1.获取当前启动的slot，来决策待升级的分区：
+   ```
+   int GetCurrentSlot()
+   ```
+   
+   2.在升级结束后，将已升级好的slot进行切换，重启完成新版本更新：
+   ```
+   int SetActiveBootSlot(int slot)
+   ```
+   
+   3.在升级开始时，将待升级的分区slot设置成unbootable状态：
+   ```
+   int setSlotUnbootable(int slot)
+   ```
+   
+   4.获取slot个数，1位非AB，2为AB分区，用例兼容AB和非AB的流程判断：
+   ```
+   int32 GetSlotNum(void)
+   ```
 
 
 ###### 常见问题
