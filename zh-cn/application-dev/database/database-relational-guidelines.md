@@ -199,7 +199,7 @@
    FA模型示例：
 
     ```js
-    import data_rdb from '@ohos.data.rdb'
+   import data_rdb from '@ohos.data.rdb'
     // 获取context
    import featureAbility from '@ohos.ability.featureAbility'
    let context = featureAbility.getContext()
@@ -213,8 +213,8 @@
    })
     ```
     Stage模型示例：
-     ```js
-    import data_rdb from '@ohos.data.rdb'
+     ```ts
+   import data_rdb from '@ohos.data.rdb'
     // 获取context
    import Ability from '@ohos.application.Ability'
    let context = null
