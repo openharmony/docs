@@ -6,7 +6,7 @@ AudioStreamManager提供了音频流管理的方法。开发者可以通过本�
 
 ### 工作流程
 
-在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例，进而通过该实例管理音频流。开发者可通过调用on（'audioRendererChange'）、on（'audioCapturerChange'）监听音频播放应用和音频录制应用，在应用状态变化、设备变化、音频属性变化时获得通知。同时可通过off（'audioRendererChange'）、off（'audioCapturerChange'）取消相关事件的监听。与此同时，开发者可以通过调用（可选）使用getCurrentAudioRendererInfoArray()获取当前音频播放应用的音频流唯一ID、音频播放客户端的UID、音频状态等信息，同理可调用getCurrentAudioCapturerInfoArray()获取音频录制应用的信息。其具体调用关系可参考音频流管理调用关系图。
+在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例，进而通过该实例管理音频流。开发者可通过调用on('audioRendererChange')、on('audioCapturerChange')监听音频播放应用和音频录制应用，在应用状态变化、设备变化、音频属性变化时获得通知。同时可通过off('audioRendererChange')、off('audioCapturerChange')取消相关事件的监听。与此同时，开发者可以通过调用（可选）使用getCurrentAudioRendererInfoArray()获取当前音频播放应用的音频流唯一ID、音频播放客户端的UID、音频状态等信息，同理可调用getCurrentAudioCapturerInfoArray()获取音频录制应用的信息。其具体调用关系可参考音频流管理调用关系图。
 
 详细API含义可参考：[音频管理API文档AudioStreamManager](../reference/apis/js-apis-audio.md#audiostreammanager9)
 

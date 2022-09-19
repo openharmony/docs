@@ -33,7 +33,7 @@
 
 ## 开发步骤
 
-详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md)
+详细API含义可参考：[媒体服务API文档VideoPlayer](../reference/apis/js-apis-media.md#videoplayer8)
 
 ### 全流程场景
 
