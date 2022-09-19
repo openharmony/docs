@@ -103,10 +103,10 @@
 
 | 名称      | 描述                                                     |
 | --------- | -------------------------------------------------------- |
-| None      | 播放完成后恢复初始状态。                                 |
-| Forwards  | 播放完成后保持动画结束时的状态。                         |
-| Backwards | 在显示动画之前，为动画延迟指定的时间段应用“开始”属性值。 |
-| Both      | 应用正向和反向填充模式。                                 |
+| None      | 动画未执行时不会将任何样式应用于目标，动画播放完成之后恢复初始默认状态。 |
+| Forwards  | 目标将保留动画执行期间最后一个关键帧的状态。                 |
+| Backwards | 动画将在应用于目标时立即应用第一个关键帧中定义的值，并在delay期间保留此值。第一个关键帧取决于playMode，playMode为Normal或Alternate时为from的状态，playMode为Reverse或AlternateReverse时为to的状态。 |
+| Both      | 动画将遵循Forwards和Backwards的规则，从而在两个方向上扩展动画属性。 |
 
 ## PlayMode
 
