@@ -1,9 +1,13 @@
-# Internationalization – i18n
+# Internationalization – I18N
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - This module contains enhanced i18n APIs, which are not defined in ECMA 402.
+This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402.
+
+The [Intl](intl-guidelines.md) module provides basic I18N capabilities through the standard I18N APIs defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 
 ## Modules to Import
@@ -49,15 +53,15 @@ Obtains the localized script for the specified country.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name         | Type     | Mandatory  | Description              |
-| ------------ | ------- | ---- | ---------------- |
+| Name         | Type     | Mandatory  | Description            |
+| ------------ | ------- | ---- | ----------------------------- |
 | country      | string  | Yes   | Specified country.           |
 | locale       | string  | Yes   | Locale ID.    |
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
 
 **Return Value**
-| Type    | Description           |
-| ------ | ------------- |
+| Type   | Description                                |
+| ------ | ------------------------------------------ |
 | string | Localized script for the specified country.|
 
 **Example**
@@ -76,12 +80,12 @@ Checks whether the localized script for the specified language is displayed from
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
-| Name   | Type    | Description     |
-| ------ | ------ | ------- |
-| locale | string | Locale ID.|
+| Name   | Type   | Description |
+| ------ | ------ | ----------- |
+| locale | string | Locale ID.  |
 
 **Return Value**
-| Type     | Description                                      |
+| Type     | Description                             |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
 
@@ -115,7 +119,9 @@ Obtains the system language.
 
 setSystemLanguage(language: string): boolean
 
-Sets the system language.
+Sets the system language. Currently, this API does not support real-time updating of the system language.
+
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -145,9 +151,9 @@ getSystemLanguages(): Array&lt;string&gt;
 
 Obtains the list of system languages.
 
-**System capability**: SystemCapability.Global.I18n
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Global.I18n
 
 **Return Value**
 | Type                 | Description          |
@@ -166,9 +172,9 @@ getSystemCountries(language: string): Array&lt;string&gt;
 
 Obtains the list of countries and regions supported for the specified language.
 
-**System capability**: SystemCapability.Global.I18n
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 | Name     | Type    | Description   |
@@ -211,11 +217,11 @@ setSystemRegion(region: string): boolean
 
 Sets the system region.
 
+**System API**: This is a system API.
+
 **Required permission**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name   | Type    | Description   |
@@ -258,11 +264,11 @@ setSystemLocale(locale: string): boolean
 
 Sets the system locale.
 
+**System API**: This is a system API.
+
 **Required permission**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Global.I18n
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 | Name   | Type    | Description             |
@@ -286,9 +292,9 @@ isSuggested(language: string, region?: string): boolean
 
 Checks whether the system language matches the specified region.
 
-**System capability**: SystemCapability.Global.I18n
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Global.I18n
 
 **Parameters**
 | Name     | Type    | Mandatory  | Description           |
@@ -673,6 +679,31 @@ Formats a phone number.
   phonenumberfmt.format("15812312312");
   ```
 
+### getLocationName<sup>9+</sup>
+
+getLocationName(number: string, locale: string): string
+
+Obtains the home location of a phone number.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description        |
+| ------ | ------ | ---- | ---------- |
+| number | string | Yes   | Phone number.|
+| locale | string | Yes   | Locale ID.|
+
+**Return value**
+| Type    | Description        |
+| ------ | ---------- |
+| string | Home location of the phone number.|
+
+**Example**
+  ```js
+  var phonenumberfmt = new i18n.PhoneNumberFormat("CN");
+  phonenumberfmt.isValidNumber("15812312312");
+  ```
+
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
@@ -727,6 +758,28 @@ Converts one measurement unit into another and formats the unit based on the spe
   i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
   ```
 
+### getDateOrder<sup>9+</sup>
+
+static getDateOrder(locale: string): string
+
+Obtains the sequence of the year, month, and day in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name     | Type                    | Mandatory  | Description                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+
+**Return value**
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Sequence of the year, month, and day.|
+
+**Example**
+  ```
+  i18n.Util.getDateOrder("zh-CN");
+  ```
 
 ## getInstance<sup>8+</sup>
 
@@ -816,7 +869,7 @@ Obtains the index of a text object.
 **Example**
   ```
   var indexUtil= i18n.getInstance("zh-CN");
-  indexUtil.getIndex("hi"); // Return h.
+  indexUtil.getIndex("hi"); // Return hi.
   ```
 
 
@@ -1442,10 +1495,10 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
   ```
 
 
-## RelativeTimeFormat<sup>8+</sup>
+## TimeZone
 
 
-### getID<sup>8+</sup>
+### getID
 
 getID(): string
 
@@ -1465,7 +1518,7 @@ Obtains the ID of the specified **TimeZone** object.
   ```
 
 
-### getDisplayName<sup>8+</sup>
+### getDisplayName
 
 getDisplayName(locale?: string, isDST?: boolean): string
 
@@ -1491,7 +1544,7 @@ Obtains the representation of a **TimeZone** object in the specified locale.
   ```
 
 
-### getRawOffset<sup>8+</sup>
+### getRawOffset
 
 getRawOffset(): number
 
@@ -1511,7 +1564,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
   ```
 
 
-### getOffset<sup>8+</sup>
+### getOffset
 
 getOffset(date?: number): number
 
@@ -1528,4 +1581,208 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
   ```
   var timezone = i18n.getTimeZone();
   timezone.getOffset(1234567890);
+  ```
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): Array&lt;string&gt;
+
+Obtains the list of time zone IDs supported by the system.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type                 | Description         |
+| ------------------- | ----------- |
+| Array&lt;string&gt; | List of time zone IDs supported by the system.|
+
+**Example**
+  ```ts
+  var ids = i18n.TimeZone.getAvailableIDs();
+  ```
+
+
+### getAvailableZoneCityIDs<sup>9+</sup>
+
+static getAvailableZoneCityIDs(): Array&lt;string&gt;
+
+Obtains the list of time zone city IDs supported by the system.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type                 | Description           |
+| ------------------- | ------------- |
+| Array&lt;string&gt; | List of time zone city IDs supported by the system.|
+
+**Example**
+  ```ts
+  var cityIDs = i18n.TimeZone.getAvailableZoneCityIDs();
+  ```
+
+
+### getCityDisplayName<sup>9+</sup>
+
+static getCityDisplayName(cityID: string, locale: string): string
+
+Obtains the localized display of a time zone city in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| cityID | string | Yes   | Time zone city ID.|
+| locale | string | Yes   | Locale ID.  |
+
+**Return value**
+| Type    | Description                |
+| ------ | ------------------ |
+| string | Localized display of the time zone city in the specified locale.|
+
+**Example**
+  ```ts
+  var displayName = i18n.TimeZone.getCityDisplayName("Shanghai", "zh-CN");
+  ```
+
+
+### getTimezoneFromCity<sup>9+</sup>
+
+static getTimezoneFromCity(cityID: string): TimeZone
+
+Obtains the **TimeZone** object corresponding to the specified time zone city ID.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name   | Type    | Mandatory  | Description    |
+| ------ | ------ | ---- | ------ |
+| cityID | string | Yes   | Time zone city ID.|
+
+**Return value**
+| Type      | Description         |
+| -------- | ----------- |
+| TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
+
+**Example**
+  ```ts
+  var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
+  ```
+
+
+## i18n.setUsingLocalDigit<sup>9+</sup>
+
+setUsingLocalDigit(flag: boolean): boolean
+
+Sets whether to turn on the local digit switch.
+
+This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
+
+**Return value**
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
+
+**Example**
+  ```ts
+  var status = i18n.setUsingLocalDigit(true);
+  ```
+
+
+## i18n.getUsingLocalDigit<sup>9+</sup>
+
+getUsingLocalDigit(): boolean
+
+Checks whether the local digit switch is turned on.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
+
+**Example**
+  ```ts
+  var status = i18n.getUsingLocalDigit();
+  ```
+
+
+## Transliterator<sup>9+</sup>
+
+
+### getAvailableIDs<sup>9+</sup>
+
+static getAvailableIDs(): string[]
+
+Obtains a list of IDs supported by the **Transliterator** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+| Type      | Description        |
+| -------- | ---------- |
+| string[] | List of IDs supported by the **Transliterator** object.|
+
+**Example**
+  ```ts
+  i18n.Transliterator.getAvailableIDs();
+  ```
+
+
+### getInstance<sup>9+</sup>
+
+static getInstance(id: string): Transliterator
+
+Creates a **Transliterator** object.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name | Type    | Mandatory  | Description      |
+| ---- | ------ | ---- | -------- |
+| id   | string | Yes   | ID supported by the **Transliterator** object.|
+
+**Return value**
+| Type                                | Description   |
+| ---------------------------------- | ----- |
+| [Transliterator](#transliterator9) | **Transliterator** object.|
+
+**Example**
+  ```ts
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  ```
+
+
+### transform<sup>9+</sup>
+
+transform(text: string): string
+
+Converts the input string from the source format to the target format.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+| Name | Type    | Mandatory  | Description    |
+| ---- | ------ | ---- | ------ |
+| text | string | Yes   | Input string.|
+
+**Return value**
+| Type    | Description      |
+| ------ | -------- |
+| string | Target string.|
+
+**Example**
+  ```ts
+  var transliterator = i18n.Transliterator.getInstance("Any-Latn");
+  transliterator.transform ("China");
   ```

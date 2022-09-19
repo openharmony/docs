@@ -1,14 +1,17 @@
-# Internationalization – intl
+# Internationalization – Intl
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - This module contains standard i18n APIs, which are defined in ECMA 402.
+ This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N APIs defined in ECMA 402.
+
+The [I18N](i18n-guidelines.md) module provides enhanced I18N capabilities through supplementary APIs that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
+
+>  **NOTE**
+>  
+>  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-```
+```js
 import Intl from '@ohos.intl';
 ```
 
@@ -43,7 +46,7 @@ Creates a Locale object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var locale = new Intl.Locale();
   ```
 
@@ -63,7 +66,7 @@ Creates a Locale object.
 | options | LocaleOptions | No   | Options for creating the **Locale** object.                |
 
 **Example**
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   ```
 
@@ -82,7 +85,7 @@ Converts locale information to a string.
 | string | String containing locale information.|
 
 **Example**
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.toString();
   ```
@@ -102,7 +105,7 @@ Maximizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the maximized information.|
 
 **Example**
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.maximize();
   ```
@@ -122,7 +125,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
 | [Locale](#locale) | **Locale** object with the minimized information.|
 
 **Example**
-  ```
+  ```js
   var locale = new Intl.Locale("zh-CN");
   locale.minimize();
   ```
@@ -156,7 +159,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat();
   ```
 
@@ -176,13 +179,13 @@ Creates a **DateTimeOptions** object for the specified locale.
 | options | [DateTimeOptions](#datetimeoptions) | No   | Options for creating a **DateTimeFormat** object.             |
 
 **Example**
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat("zh-CN", { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
 
 **Example**
-  ```
+  ```js
   var datefmt= new Intl.DateTimeFormat(["ban", "zh"], { dateStyle: 'full', timeStyle: 'medium' });
   ```
 
@@ -206,7 +209,7 @@ Formats the specified date and time.
 | string | A string containing the formatted date and time.|
 
 **Example**
-  ```
+  ```js
   var date = new Date(2021, 11, 17, 3, 24, 0);
   var datefmt = new Intl.DateTimeFormat("en-GB");
   datefmt.format(date);
@@ -233,7 +236,7 @@ Formats the specified date range.
 | string | A string containing the formatted date and time range.|
 
 **Example**
-  ```
+  ```js
   var startDate = new Date(2021, 11, 17, 3, 24, 0);
   var endDate = new Date(2021, 11, 18, 3, 24, 0);
   var datefmt = new Intl.DateTimeFormat("en-GB");
@@ -255,7 +258,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 | [DateTimeOptions](#datetimeoptions) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
-  ```
+  ```js
   var datefmt = new Intl.DateTimeFormat("en-GB");
   datefmt.resolvedOptions();
   ```
@@ -302,7 +305,7 @@ Creates a **NumberFormat** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat();
   ```
 
@@ -322,7 +325,7 @@ Parameters
 | options | [NumberOptions](#numberoptions) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat("en-GB", {style:'decimal', notation:"scientific"});
   ```
 
@@ -347,7 +350,7 @@ Formats a number.
 
 
 **Example**
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   numfmt.format(1223);
   ```
@@ -368,7 +371,7 @@ Obtains the options of the **NumberFormat** object.
 
 
 **Example**
-  ```
+  ```js
   var numfmt = new Intl.NumberFormat(["en-GB", "zh"], {style:'decimal', notation:"scientific"});
   numfmt.resolvedOptions();
   ```
@@ -388,7 +391,7 @@ Provides the device capability.
 | currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.|
 | unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **medium**.|
-| unitUsage<sup>8+</sup>                | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
+| unitUsage<sup>8+</sup>   | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
 | signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.|
 | compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**.     |
 | notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.|
@@ -415,7 +418,7 @@ Creates a Collator object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var collator = new Intl.Collator();
   ```
 
@@ -436,7 +439,7 @@ Creates a Collator object.
 | options | [CollatorOptions](#collatoroptions) | No   | Options for creating a **Collator** object.                |
 
 **Example**
-  ```
+  ```js
   var collator = new Intl.Collator("zh-CN", {localeMatcher: "lookup", usage: "sort"});
   ```
 
@@ -461,7 +464,7 @@ Compares two strings based on the sorting policy of the **Collator** object.
 | number | Comparison result. If the value is a negative number, the first string is before the second string. If the value of number is **0**, the first string is equal to the second string. If the value of number is a positive number, the first string is after the second string.|
 
 **Example**
-  ```
+  ```js
   var collator = new Intl.Collator("zh-Hans");
   collator.compare("first", "second");
   ```
@@ -481,13 +484,13 @@ Returns properties reflecting the locale and collation options of a **Collator**
 | [CollatorOptions](#collatoroptions) | Properties of the **Collator** object.|
 
 **Example**
-  ```
+  ```js
   var collator = new Intl.Collator("zh-Hans");
   var options = collator.resolvedOptions();
   ```
 
 
-## CollatorOptions<sup>8+</sup><a name=collatoroptions></a>
+## CollatorOptions<sup>8+</sup>
 
 Represents the properties of a **Collator** object.
 
@@ -516,7 +519,7 @@ Create a **PluralRules** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var pluralRules = new Intl.PluralRules();
   ```
 
@@ -536,8 +539,8 @@ Parameters
 | options | [PluralRulesOptions](#pluralrulesoptions) | No   | Options for creating a **PluralRules** object.               |
 
 **Example**
-  ```
-  var pluralRules= new Intl.PluraRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
+  ```js
+  var pluralRules= new Intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
 
@@ -560,13 +563,13 @@ Obtains a string that represents the singular-plural type of the specified numbe
 | string | Singular-plural type. The value can be any of the following: **one**, **two**, **few**, **many**, **others**.|
 
 **Example**
-  ```
+  ```js
   var pluralRules = new Intl.PluralRules("zh-Hans");
   pluralRules.select(1);
   ```
 
 
-## PluralRulesOptions<sup>8+</sup><a name=pluralrulesoptions></a>
+## PluralRulesOptions<sup>8+</sup>
 
 Represents the properties of a **PluralRules** object.
 
@@ -595,7 +598,7 @@ Creates a **RelativeTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Example**
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat();
   ```
 
@@ -615,7 +618,7 @@ Parameters
 | options | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
-  ```
+  ```js
   var relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {"localeMatcher": "lookup", "numeric": "always", "style": "long"});
   ```
 
@@ -640,7 +643,7 @@ Formats the value and unit based on the specified locale and formatting options.
 | string | Relative time after formatting.|
 
 **Example**
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat("zh-CN");
   relativetimefmt.format(3, "quarter")
   ```
@@ -666,7 +669,7 @@ Returns an array of RelativeTimeFormat objects in parts for locale-aware formatt
 | Array&lt;object&gt; | An array of **RelativeTimeFormat** objects in parts.|
 
 **Example**
-  ```
+  ```js
   var relativetimefmt = new Intl.RelativeTimeFormat("en", {"numeric": "auto"});
   var parts = relativetimefmt.format(10, "seconds");
   ```
@@ -686,13 +689,13 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | Formatting options for **RelativeTimeFormat** objects.|
 
 **Example**
-  ```
+  ```js
   var relativetimefmt= new Intl.RelativeTimeFormat("en-GB");
   relativetimefmt.resolvedOptions();
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>8+</sup><a name=relativetimeformatinputoptions></a>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
 
@@ -705,7 +708,7 @@ Represents the properties of a **RelativeTimeFormat** object.
 | style         | string | Yes   | Yes   | Length of an internationalized message. The value can be **long**, **short**, or **narrow**.|
 
 
-## RelativeTimeFormatResolvedOptions<sup>8+</sup><a name=relativetimeformatresolvedoptions></a>
+## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
 
