@@ -1,7 +1,6 @@
 # Internationalization Development (I18N)
 
-This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N interfaces that are not defined in ECMA 402.
-The [Intl](intl-guidelines.md) module provides basic I18N capabilities through the standard I18N interfaces defined in ECMA 402. It works with the I18N module to provide a complete suite of I18N capabilities.
+This module provides system-related or enhanced I18N capabilities, such as locale management, phone number formatting, and calendar, through supplementary I18N APIs that are not defined in ECMA 402. For more details about APIs and their usage, see [I18N](../reference/apis/js-apis-i18n.md).
 
 ## Obtaining System Language and Region Information
 
@@ -23,57 +22,64 @@ You can use APIs provided in the following table to obtain the system language a
 
 ### How to Develop
 
-1. Obtain the system language.<br>
+1. Obtain the system language.
+
     Call the **getSystemLanguage** method to obtain the system language (**i18n** is the name of the imported module).
 
    
-   ```
+    ```js
    var language = i18n.getSystemLanguage();
    ```
 
-2. Obtain the system region.<br>
+2. Obtain the system region.
+
     Call the **getSystemRegion** method to obtain the system region.
      
-   ```
+    ```js
    var region = i18n.getSystemRegion();
    ```
 
-3. Obtain the system locale.<br>
+3. Obtain the system locale.
+
     Call the **getSystemLocale** method to obtain the system locale.
      
-   ```
+    ```js
    var locale = i18n.getSystemLocale();
    ```
 
-4. Check whether the locale's language is RTL.<br>
+4. Check whether the locale's language is RTL.
+
     Call the **isRTL** method to check whether the locale's language is RTL.
 
    
-   ```
+    ```js
    var rtl = i18n.isRTL("zh-CN");
    ```
 
-5. Check whether the system uses a 24-hour clock.<br>
+5. Check whether the system uses a 24-hour clock.
+
     Call the **is24HourClock** method to check whether the system uses a 24-hour clock.
      
-   ```
+    ```js
    var hourClock = i18n.is24HourClock();
    ```
 
-6. Obtain the localized display of a language.<br>
+6. Obtain the localized display of a language.
+
     Call the **getDisplayLanguage** method to obtain the localized display of a language. **language** indicates the language to be localized, **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
      
-   ```
+    ```js
    var language = "en";
    var locale = "zh-CN";
    var sentenceCase = false;
    var localizedLanguage = i18n.getDisplayLanguage(language, locale, sentenceCase);
    ```
 
-7. Obtain the localized display of a country.<br>
+7. Obtain the localized display of a country.
+
     Call the **getDisplayCountry** method to obtain the localized display of a country name. **country** indicates the country code (a two-letter code in compliance with ISO-3166, for example, CN), **locale** indicates the locale, and **sentenceCase** indicates whether the first letter of the result must be capitalized.
      
-   ```
+    ```js
    var country = "US";
    var locale = "zh-CN";
    var sentenceCase = false;
@@ -83,7 +89,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 ## Obtaining Calendar Information
 
-[Calendar](../reference/apis/js-apis-intl.md) APIs are used to obtain calendar information, for example, the localized display of the calendar, the first day of a week, and the minimum count of days in the first week of a year.
+[Calendar](../reference/apis/js-apis-i18n.md#calendar8) APIs are used to obtain calendar information, for example, the localized display of the calendar, the first day of a week, and the minimum count of days in the first week of a year.
 
 
 ### Available APIs
@@ -106,70 +112,78 @@ You can use APIs provided in the following table to obtain the system language a
 
 ### How to Develop
 
-1. Instantiate a **Calendar** object.<br>
+1. Instantiate a **Calendar** object.
+
     Call the **getCalendar** method to obtain the time zone object of a specific locale and type (**i18n** is the name of the imported module). **type** indicates the valid calendar type, for example, **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic_civil**, **islamic_tbla**, **islamic_umalqura**, **japanese**, and **persian**. If **type** is left unspecified, the default calendar type of the locale is used.
 
    
-   ```
-   var calendar = i18n.getCalendar("zh-CN", "gregory);
+    ```js
+   var calendar = i18n.getCalendar("zh-CN", "gregory");
    ```
 
-2. Set the time for the **Calendar** object.<br>
+2. Set the time for the **Calendar** object.
+
     Call the **setTime** method to set the time of the **Calendar** object. This method receives two types of parameters. One is a **Date** object, and the other is a value indicating the number of milliseconds elapsed since January 1, 1970, 00:00:00 GMT.
      
-   ```
+    ```js
    var date1 = new Date();
    calendar.setTime(date1);
    var date2 = 1000;
    calendar.setTime(date2);
    ```
 
-3. Set the year, month, day, hour, minute, and second for the **Calendar** object.<br>
+3. Set the year, month, day, hour, minute, and second for the **Calendar** object.
+
     Call the **set** method to set the year, month, day, hour, minute, and second for the **Calendar** object.
      
-   ```
+    ```js
    calendar.set(2021, 12, 21, 6, 0, 0)
    ```
 
-4. Set and obtain the time zone for the **Calendar** object.<br>
+4. Set and obtain the time zone for the **Calendar** object.
+
     Call the **setTimeZone** and **getTimeZone** methods to set and obtain the time zone for the **Calendar** object. The **setTimeZone** method requires an input string to indicate the time zone to be set.
 
    
-   ```
+    ```js
    calendar.setTimeZone("Asia/Shanghai");
    var timezone = calendar.getTimeZone();
    ```
 
-5. Set and obtain the first day of a week for the **Calendar** object.<br>
+5. Set and obtain the first day of a week for the **Calendar** object.
+
     Call the **setFirstDayOfWeek** and **getFirstDayOfWeek** methods to set and obtain the first day of a week for the **Calendar** object. **setFirstDayOfWeek** must be set to a value indicating the first day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.
 
    
-   ```
+    ```js
    calendar.setFirstDayOfWeek(1);
    var firstDayOfWeek = calendar.getFirstDayOfWeek();
    ```
 
-6. Set and obtain the minimum count of days in the first week for the **Calendar** object.<br>
+6. Set and obtain the minimum count of days in the first week for the **Calendar** object.
+
     Call the **setMinimalDaysInFirstWeek** and **getMinimalDaysInFirstWeek** methods to set and obtain the minimum count of days in the first week for the **Calendar** object.
      
-   ```
+    ```js
    calendar.setMinimalDaysInFirstWeek(3);
    var minimalDaysInFirstWeek = calendar.getMinimalDaysInFirstWeek();
    ```
 
-7. Obtain the localized display of the **Calendar** object.<br>
+7. Obtain the localized display of the **Calendar** object.
+
     Call the **getDisplayName** method to obtain the localized display of the **Calendar** object.
 
    
-   ```
+    ```js
    var localizedName = calendar.getDisplayName("zh-CN");
    ```
 
-8. Check whether a date is a weekend.<br>
+8. Check whether a date is a weekend.
+
     Call the **isWeekend** method to determine whether the input date is a weekend.
 
    
-   ```
+    ```js
    var date = new Date();
    var weekend = calendar.isWeekend(date);
    ```
@@ -177,7 +191,7 @@ You can use APIs provided in the following table to obtain the system language a
 
 ## Formatting a Phone Number
 
-[PhoneNumberFormat](../reference/apis/js-apis-intl.md) APIs are used to format phone numbers in different countries and check whether the phone number formats are correct.
+[PhoneNumberFormat](../reference/apis/js-apis-i18n.md#phonenumberformat8) APIs are used to format phone numbers in different countries and check whether the phone number formats are correct.
 
 
 ### Available APIs
@@ -191,25 +205,26 @@ You can use APIs provided in the following table to obtain the system language a
 
 ### How to Develop
 
-1. Instantiate a **PhoneNumberFormat** object.<br>
+1. Instantiate a **PhoneNumberFormat** object.
+
     Call the **PhoneNumberFormat** constructor to instantiate a **PhoneNumberFormat** object. The country code and formatting options of the phone number need to be passed into this constructor. The formatting options are optional, including a style option. Values of this option include: **E164**, **INTERNATIONAL**, **NATIONAL**, and **RFC3966**.
 
    
-   ```
+    ```js
    var phoneNumberFormat = new i18n.PhoneNumberFormat("CN", {type: "E164"});
    ```
 
 2. Check whether the phone number format is correct.
     Call the **isValidNumber** method to check whether the format of the input phone number is correct.
      
-   ```
+    ```js
    var validNumber = phoneNumberFormat.isValidNumber("15812341234");
    ```
 
 3. Format a phone number.
     Call the **format** method of **PhoneNumberFormat** to format the input phone number.
      
-   ```
+    ```js
    var formattedNumber = phoneNumberFormat.format("15812341234");
    ```
 
@@ -229,10 +244,10 @@ The **unitConvert** API is provided to help you implement measurement conversion
 ### How to Develop
 
 1. Convert a measurement unit.
-   Call the [unitConvert](../reference/apis/js-apis-intl.md) method to convert a measurement unit and format the display result.
+   Call the [unitConvert](../reference/apis/js-apis-i18n.md#unitconvert8) method to convert a measurement unit and format the display result.
 
    
-   ```
+    ```js
    var fromUnit = {unit: "cup", measureSystem: "US"};
    var toUnit = {unit: "liter", measureSystem: "SI"};
    var number = 1000;
@@ -244,7 +259,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ## Alphabet Index
 
-[IndexUtil](../reference/apis/js-apis-intl.md) APIs are used to obtain the alphabet indexes of different locales and calculate the index to which a string belongs.
+[IndexUtil](../reference/apis/js-apis-i18n.md#indexutil8) APIs are used to obtain the alphabet indexes of different locales and calculate the index to which a string belongs.
 
 
 ### Available APIs
@@ -259,32 +274,36 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ### How to Develop
 
-1. Instantiate an **IndexUtil** object.<br>
+1. Instantiate an **IndexUtil** object.
+
     Call the **getInstance** method to instantiate an **IndexUtil** object for a specific locale. When the **locale** parameter is empty, instantiate an **IndexUtil** object of the default locale.
 
    
-   ```
-   var indexUtil = getInstance("zh-CN");
+    ```js
+   var indexUtil = i18n.getInstance("zh-CN");
    ```
 
-2. Obtain the index list.<br>
+2. Obtain the index list.
+
     Call the **getIndexList** method to obtain the alphabet index list of the current locale.
      
-   ```
+    ```js
    var indexList = indexUtil.getIndexList();
    ```
 
-3. Add an index.<br>
+3. Add an index.
+
     Call the **addLocale** method to add the alphabet index of a new locale to the current index list.
      
-   ```
+    ```js
    indexUtil.addLocale("ar")
    ```
 
-4. Obtain the index of a string.<br>
+4. Obtain the index of a string.
+
     Call the **getIndex** method to obtain the alphabet index of a string.
      
-   ```
+    ```js
    var text = "access index";
    indexUtil.getIndex(text);
    ```
@@ -292,7 +311,7 @@ The **unitConvert** API is provided to help you implement measurement conversion
 
 ## Obtaining Line Breaks of Text
 
-When a text is displayed in more than one line, [BreakIterator](../reference/apis/js-apis-intl.md) APIs are used to obtain the line break positions of the text.
+When a text is displayed in more than one line, [BreakIterator8](../reference/apis/js-apis-i18n.md#breakiterator8) APIs are used to obtain the line break positions of the text.
 
 
 ### Available APIs
@@ -313,38 +332,42 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
 
 ### How to Develop
 
-1. Instantiate a **BreakIterator** object.<br>
+1. Instantiate a **BreakIterator** object.
+
     Call the **getLineInstance** method to instantiate a **BreakIterator** object.
 
    
-   ```
+    ```js
    var locale = "en-US"
    var breakIterator = i18n.getLineInstance(locale);
    ```
 
-2. Set and access the text that requires line breaking.<br>
+2. Set and access the text that requires line breaking.
+
     Call the **setLineBreakText** and **getLineBreakText** methods to set and access the text that requires line breaking.
 
    
-   ```
+    ```js
    var text = "Apple is my favorite fruit";
    breakIterator.setLineBreakText(text);
    var breakText = breakIterator.getLineBreakText();
    ```
 
-3. Obtain the current position of the **BreakIterator** object.<br>
+3. Obtain the current position of the **BreakIterator** object.
+
     Call the **current** method to obtain the current position of the **BreakIterator** object in the text being processed.
 
    
-   ```
+    ```js
    var pos = breakIterator.current();
    ```
 
-4. Set the position of a **BreakIterator** object.<br>
+4. Set the position of a **BreakIterator** object.
+
     The following APIs are provided to adjust the **first**, **last**, **next**, **previous**, or **following** position of the **BreakIterator** object in the text to be processed.
 
    
-   ```
+    ```js
    var firstPos = breakIterator.first(); // Set a BreakIterator object to the first break point, that is, the start position of the text.
    var lastPos = breakIterator.last(); // Set a BreakIterator object to the last break point, that is, the position after the text end.
    // Move a BreakIterator object forward or backward by a certain number of break points.
@@ -356,10 +379,11 @@ When a text is displayed in more than one line, [BreakIterator](../reference/api
    var followingPos = breakIterator.following(10); 
    ```
 
-5. Determine whether a position is a break point.<br>
+5. Determine whether a position is a break point.
+
     Call the **isBoundary** method to determine whether a position is a break point. If yes, **true** is returned and the **BreakIterator** object is moved to this position. If no, **false** is returned and the **BreakIterator** object is moved to a break point after this position.
 
    
-   ```
+    ```js
    var isboundary = breakIterator.isBoundary(5);
    ```
