@@ -607,7 +607,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
   - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontorl，便于dispatch contro进行控制
   - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器
-  - Rk809DaiHwParams, 根据HAL下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
+  - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
   - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等
 
 ##### DAI(i2s)模块
