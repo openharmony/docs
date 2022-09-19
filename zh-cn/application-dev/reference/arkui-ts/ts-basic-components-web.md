@@ -2162,7 +2162,7 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 cancel(): void
 
-通知Web组件取消相同host和port服务器发送的请求事件。同时，相同host和port服务器的请求，不重复上报该事件。
+通知Web组件取消相同host和port服务器发送的客户端证书请求事件。同时，相同host和port服务器的请求，不重复上报该事件。
 
 ### ignore<sup>9+</sup>
 
