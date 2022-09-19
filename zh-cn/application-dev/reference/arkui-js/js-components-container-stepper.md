@@ -45,8 +45,8 @@
 | finish | 无                                        | 当步骤导航器最后一个步骤完成时触发该事件。                    |
 | skip   | 无                                        | 当通过setNextButtonStatus方法设置当前步骤导航器可跳过时，点击右侧跳过按钮触发该事件。 |
 | change | {&nbsp;prevIndex：prevIndex,&nbsp;index:&nbsp;index} | 当步骤导航器点击左边或者右边文本按钮进行步骤切换时触发该事件，prevIndex表示老步骤的序号，index表示新步骤的序号。 |
-| next   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击下一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将于跳转的序号，该事件有返回值，返回值格式为：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改下一个步骤使用哪个stepper-item子组件。 |
-| back   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击上一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将于跳转的序号，该事件有返回值，返回值格式为Object：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改上一个步骤使用哪个stepper-item子组件。 |
+| next   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击下一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将要跳转的序号，该事件有返回值，返回值格式为：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改下一个步骤使用哪个stepper-item子组件。 |
+| back   | {&nbsp;index：index,&nbsp;pendingIndex:&nbsp;pendingIndex&nbsp;} | 当用户点击上一步按钮时触发该事件，index表示当前步骤序号，pendingIndex表示将要跳转的序号，该事件有返回值，返回值格式为Object：{&nbsp;pendingIndex：pendingIndex&nbsp;}，可以通过指定pendingIndex来修改上一个步骤使用哪个stepper-item子组件。 |
 
 
 ## 方法

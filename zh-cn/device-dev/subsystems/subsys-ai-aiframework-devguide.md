@@ -442,9 +442,9 @@ Response类的属性如下表所示。
        int32_t Release(bool isFullUnload, long long transactionId, const DataInfo &amp;amp;inputInfo) override;
    };
    ```
-
-     上述代码实现server提供的IPlugin接口。唤醒词识别的sample中调用的client端接口与插件中的接口对应关系及其实现功能如下表所示。
-     **表1** 唤醒词识别中client端接口与插件中的接口对应关系
+上述代码实现server提供的IPlugin接口。唤醒词识别的sample中调用的client端接口与插件中的接口对应关系及其实现功能如下表所示。
+     
+**表1** 唤醒词识别中client端接口与插件中的接口对应关系
 
 | client端定义的接口 | 插件中定义的接口 | 功能 |
 | -------- | -------- | -------- |

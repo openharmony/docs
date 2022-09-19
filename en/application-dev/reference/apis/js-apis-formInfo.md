@@ -105,7 +105,7 @@ Enumerates the widget parameters.
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | Temporary widget.  |
 | ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | Ability name.  |
 | DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | Device ID.<br>This is a system API.  |
-| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.<br>This is a system API.  |
+| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.|
 
 ##  FormDimension
 

@@ -41,7 +41,7 @@
        "module": {
          "abilities": [
            {
-             "continuable": true,
+             "continuable": true
            }
          ]
        }
@@ -62,7 +62,7 @@
        "module": {
          "abilities": [
            {
-             "launchType": "standard",
+             "launchType": "standard"
            }
          ]
        }
@@ -76,7 +76,7 @@
        "module": {
          "abilities": [
            {
-             "launchType": "singleton",
+             "launchType": "singleton"
            }
          ]
        }

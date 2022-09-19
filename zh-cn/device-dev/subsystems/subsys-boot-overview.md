@@ -317,22 +317,24 @@
          因此，当我们看到"Mount required partitions"打印的时候，表示required分区设备已经准备完成，即将执行挂载动作。分区挂载过程中，还有一些关键打印如下：
          ```
          BEGET_LOGE("Unsupported file system \" %s \"", item->fsType);
-         表示当前文件系统类型不支持
-
-         BEGET_LOGE("Cannot get stat of \" %s \", err = %d", target, errno);
-         表示无法获取挂载点目录信息
-
-         BEGET_LOGE("Failed to create dir \" %s \", err = %d", target, errno);
-         表示无法创建挂载点目录
-
-         BEGET_LOGI("Mount %s to %s successful", item->deviceName, item->mountPoint);
-         表示成功挂载设备，打印中还包含了挂载的设备名和挂载点信息
          ```
-
+         表示当前文件系统类型不支持。
+         ```
+         BEGET_LOGE("Cannot get stat of \" %s \", err = %d", target, errno);
+         ```
+         表示无法获取挂载点目录信息。
+         ```
+         BEGET_LOGE("Failed to create dir \" %s \", err = %d", target, errno);
+         ```
+         表示无法创建挂载点目录。
+         ```
+         BEGET_LOGI("Mount %s to %s successful", item->deviceName, item->mountPoint);
+         ```
+         表示成功挂载设备，打印中还包含了挂载的设备名和挂载点信息。
 
 - init执行system和vendor中的启动脚本，挂载vendor中更多的分区
 
-		挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
+挂载完必要的分区后，init扫描各个脚本文件。vendor中与芯片或开发板相关的初始化脚本入口如/vendor/etc/init.{ohos.boot.hardware}.cfg。vendor中扩展的挂载分区文件是/vendor/etc/fstab.{ohos.boot.hardware}。hardware的来源是bootloader传递给内核的bootargs。
 
 
 ### 无ramdisk的启动加载流程

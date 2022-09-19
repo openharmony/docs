@@ -32,7 +32,7 @@ Enumerates the action constants of the **Want** object.
 | ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | Action of launching the UI for deleting an alarm.                            |
 | ACTION_DISMISS_TIMER                        | ohos.want.action.dismissTimer            | Action of launching the UI for dismissing a timer.                          |
 |  ACTION_SEND_SMS                            | ohos.want.action.sendSms                 | Action of launching the UI for sending an SMS message.                             |
-| ACTION_CHOOSE                               | ohos.want.action.choose                  | Action of launching the UI for openning a contact or picture.                     |
+| ACTION_CHOOSE                               | ohos.want.action.choose                  | Action of launching the UI for opening a contact or picture.                     |
 | ACTION_IMAGE_CAPTURE<sup>8+</sup>           | ohos.want.action.imageCapture            | Action of launching the UI for photographing.                                  |
 | ACTION_VIDEO_CAPTURE<sup>8+</sup>           | ohos.want.action.videoCapture            | Action of launching the UI for shooting a video.                            |
 | ACTION_SELECT                               | ohos.want.action.select                  | Action of launching the UI for application selection.                            |

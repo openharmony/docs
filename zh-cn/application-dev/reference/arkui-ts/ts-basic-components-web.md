@@ -26,7 +26,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
-| src        | [ResourceStr](../../ui/ts-types.md)                           | 是    | 网页资源地址。 |
+| src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
 | controller | [WebController](#webcontroller) | 否    | 控制器。    |
 
 **示例：**
