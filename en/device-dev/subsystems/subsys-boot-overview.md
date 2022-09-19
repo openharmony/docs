@@ -301,7 +301,7 @@ On each development board, you need to partition the memory to store the precedi
 
          After a device node is created, mount it to the corresponding partition. The code is as follows:
          ```
-          int MountRequriedPartitions(const Fstab *fstab)
+          int MountRequiredPartitions(const Fstab *fstab)
           {
               INIT_ERROR_CHECK(fstab != NULL, return -1, "Failed fstab is NULL");
               int rc;
