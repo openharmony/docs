@@ -125,7 +125,7 @@ JS API 文档模板路径：[https://](https://gitee.com/openharmony/docs/blob/m
 
   - **枚举（可选）**：一组值组成的类型。 以表格形式呈现，包括枚举名称、枚举值、说明。
 
-  - **类/interface（可选）**：一般包含自有属性和方法。以section形式呈现，包括类名/intrface名、描述、自有属性等。
+  - **类/interface（可选）**：一般包含自有属性和方法。以section形式呈现，包括类名/interface名、描述、自有属性等。
 
   - **自定义类型（ 可选）**：以k-v键值对表示的interface，描述和方法的参数一致。以表格形式呈现，包括参数名、类型、是否必填、说明。
 
@@ -173,9 +173,9 @@ JS API 文档模板路径：[https://](https://gitee.com/openharmony/docs/blob/m
 
 ### 内容写作
 
-概述模板链接：[https](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[://gitee.com/openharmony/docs/blob/master/](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[zh-cn](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)[/contribute/template/concept-overview-template.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/concept-overview-template.md)
+概述模板链接：[concept-overview-template.md](template/concept-overview-template.md)
 
-开发指导模板链接：[https://](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md)[gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/template/guide-template.md)
+开发指导模板链接：[guide-template.md](template/guide-template.md)
 
 **每一个文档必须包含的内容**：
 
