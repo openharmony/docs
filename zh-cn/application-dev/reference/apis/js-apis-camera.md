@@ -631,7 +631,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, survaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```

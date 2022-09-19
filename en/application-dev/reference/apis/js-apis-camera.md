@@ -631,7 +631,7 @@ Creates a **PreviewOutput** instance. This API uses a promise to return the resu
 **Example**
 
 ```js
-cameraManager.createPreviewOutput(profile, survaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```
