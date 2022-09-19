@@ -54,7 +54,7 @@ startWork(work: WorkInfo): boolean
       }
   }
   var res = workScheduler.startWork(workInfo);
-  console.info("workschedulerLog res: ${res}");
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.stopWork
@@ -95,7 +95,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
       }
      }
   var res = workScheduler.stopWork(workInfo, false);
-  console.info("workschedulerLog res: ${res}");
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.getWorkStatus
@@ -117,10 +117,10 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 ```js
   workScheduler.getWorkStatus(50, (err, res) => {
     if (err) {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+      console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
     } else {
       for (let item in res) {
-        console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
       }
     }
   });
@@ -150,10 +150,10 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 ```js
   workScheduler.getWorkStatus(50).then((res) => {
     for (let item in res) {
-      console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+      console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
     }
   }).catch((err) => {
-    console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+    console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
   })
 ```
 
@@ -181,9 +181,9 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 ```js
   workScheduler.obtainAllWorks((err, res) =>{
     if (err) {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+      console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
     } else {
-      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
     }
   });
 ```
@@ -205,9 +205,9 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 ```js
   workScheduler.obtainAllWorks().then((res) => {
-    console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
   }).catch((err) => {
-    console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+    console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
   })
 ```
 
@@ -222,7 +222,7 @@ stopAndClearWorks(): boolean
 
 ```js
   let res = workScheduler.stopAndClearWorks();
-  console.info("workschedulerLog res: ${res}");
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -250,9 +250,9 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 ```js
   workScheduler.isLastWorkTimeOut(500, (err, res) =>{
     if (err) {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
     } else {
-      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
     }
   });
 ```
@@ -281,10 +281,10 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ```js
   workScheduler.isLastWorkTimeOut(500)
     .then(res => {
-      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
     })
     .catch(err =>  {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
     });
 ```
 
