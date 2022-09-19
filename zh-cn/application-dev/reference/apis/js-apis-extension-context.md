@@ -31,7 +31,7 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 三个Module内都定义一个相同名称的ServiceExtension：
 ``` js
 import ServiceExtension from '@ohos.application.ServiceExtensionAbility'
-import Want from '@ohos.application.Want';
+import Want from '@ohos.application.Want'
 export default class TheServiceExtension extends ServiceExtension {
     onCreate(want:Want) {
         console.log('ServiceAbility onCreate, want: ' + want.abilityName);
@@ -55,7 +55,7 @@ export default class TheServiceExtension extends ServiceExtension {
     onDestroy() {
         console.log('ServiceAbility onDestroy');
     }
-}
+};
 ```
 
 在entry的MainAbility的onCreate回调内启动ServiceExtension
@@ -108,5 +108,5 @@ export default class ServiceModel {
                 break;
         }
     }
-}
+};
 ```
