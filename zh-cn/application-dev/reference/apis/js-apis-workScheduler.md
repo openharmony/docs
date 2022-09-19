@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```js
-import workScheduler from '@ohos.workScheduler' 
+import workScheduler from '@ohos.workScheduler';
 ```
 
 ## workScheduler.startWork
@@ -54,7 +54,7 @@ startWork(work: WorkInfo): boolean
       }
   }
   var res = workScheduler.startWork(workInfo);
-  console.info("workschedulerLog res:" + res);
+  console.info("workschedulerLog res: ${res}");
 ```
 
 ## workScheduler.stopWork
@@ -95,7 +95,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
       }
      }
   var res = workScheduler.stopWork(workInfo, false);
-  console.info("workschedulerLog res:" + res);
+  console.info("workschedulerLog res: ${res}");
 ```
 
 ## workScheduler.getWorkStatus
@@ -222,7 +222,7 @@ stopAndClearWorks(): boolean
 
 ```js
   let res = workScheduler.stopAndClearWorks();
-  console.info("workschedulerLog res:" + res);
+  console.info("workschedulerLog res: ${res}");
 ```
 
 ## workScheduler.isLastWorkTimeOut
