@@ -47,5 +47,6 @@
       -   Native APIs
         - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
         - [Node_API](reference/native-lib/third_party_napi/napi.md)
+- [FAQs](faqs/Readme-EN.md)
 - Contribution
     - [How to Contribute](../contribute/documentation-contribution.md)
