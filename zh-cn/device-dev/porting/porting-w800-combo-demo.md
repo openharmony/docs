@@ -606,7 +606,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
      "component": "wifi_lite",
      "targets": [
        "//foundation/communication/wifi_lite:wifi"       --- wifi_lite的编译目标
-     ],
+     ]
    },
    ```
 
