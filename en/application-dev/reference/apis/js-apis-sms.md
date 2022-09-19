@@ -71,7 +71,7 @@ let promise = sms.createMessage(pdu, specification);
 promise.then(data => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`createMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`createMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -154,7 +154,7 @@ let promise = sms.getDefaultSmsSlotId();
 promise.then(data => {
     console.log(`getDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -164,7 +164,7 @@ setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
 
 Sets the default slot of the SIM card used to send SMS messages. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -192,7 +192,7 @@ setDefaultSmsSlotId\(slotId: number\): Promise&lt;void&gt;
 
 Sets the default slot of the SIM card used to send SMS messages. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -217,7 +217,7 @@ let promise = sms.setDefaultSmsSlotId(0);
 promise.then(data => {
     console.log(`setDefaultSmsSlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setDefaultSmsSlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDefaultSmsSlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -227,7 +227,7 @@ setSmscAddr\(slotId: number, smscAddr: string, callback: AsyncCallback<void\>\):
 
 Sets the short message service center (SMSC) address. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
@@ -258,7 +258,7 @@ setSmscAddr\(slotId: number, smscAddr: string\): Promise\<void\>
 
 Sets the SMSC address. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE (a system permission)
 
@@ -286,7 +286,7 @@ let promise = sms.setSmscAddr(slotId, smscAddr);
 promise.then(data => {
     console.log(`setSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -297,7 +297,7 @@ getSmscAddr\(slotId: number, callback: AsyncCallback<string\>\): void
 
 Obtains the SMSC address. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
@@ -326,7 +326,7 @@ getSmscAddr\(slotId: number\): Promise<string\>
 
 Obtains the SMSC address. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE (a system permission)
 
@@ -352,7 +352,7 @@ let promise = sms.getSmscAddr(slotId);
 promise.then(data => {
     console.log(`getSmscAddr success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmscAddr fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmscAddr failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -381,7 +381,7 @@ splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 
 Splits an SMS message into multiple segments. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SEND_MESSAGES
 
@@ -410,7 +410,7 @@ splitMessage(content: string): Promise<Array<string\>>
 
 Splits an SMS message into multiple segments. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SEND_MESSAGES
 
@@ -436,7 +436,7 @@ let promise = sms.splitMessage(content);
 promise.then(data => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`splitMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`splitMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -446,7 +446,7 @@ addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
 Adds a SIM message. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -480,7 +480,7 @@ addSimMessage(options: SimMessageOptions): Promise<void\>
 
 Adds a SIM message. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -511,7 +511,7 @@ let promise = sms.addSimMessage(simMessageOptions);
 promise.then(data => {
     console.log(`addSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`addSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`addSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -521,7 +521,7 @@ delSimMessage(slotId: number, msgIndex: number, callback: AsyncCallback<void\>):
 
 Deletes a SIM message. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -552,7 +552,7 @@ delSimMessage(slotId: number, msgIndex: number): Promise<void\>
 
 Deletes a SIM message. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -580,7 +580,7 @@ let promise = sms.delSimMessage(slotId, msgIndex);
 promise.then(data => {
     console.log(`delSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`delSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`delSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -590,7 +590,7 @@ updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\
 
 Updates a SIM message. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -625,7 +625,7 @@ updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
 Updates a SIM message. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS,ohos.permission.SEND_MESSAGES
 
@@ -657,7 +657,7 @@ let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(data => {
     console.log(`updateSimMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`updateSimMessage fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`updateSimMessage failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -667,7 +667,7 @@ getAllSimMessages(slotId: number, callback: AsyncCallback<Array<SimShortMessage\
 
 Obtains all SIM card messages. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS
 
@@ -696,7 +696,7 @@ getAllSimMessages(slotId: number): Promise<Array<SimShortMessage\>>
 
 Obtains all SIM card messages. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS
 
@@ -722,7 +722,7 @@ let promise = sms.getAllSimMessages(slotId);
 promise.then(data => {
     console.log(`getAllSimMessages success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getAllSimMessages fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getAllSimMessages failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -732,7 +732,7 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 Sets the cell broadcast configuration. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS
 
@@ -766,7 +766,7 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 Sets the cell broadcast configuration. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.RECEIVE_SMS
 
@@ -797,7 +797,7 @@ let promise = sms.setCBConfig(cbConfigOptions);
 promise.then(data => 
     console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`setCBConfig fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -807,7 +807,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean, callback
 
 Obtains SMS message segment information. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -836,7 +836,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 
 Obtains SMS message segment information. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -862,7 +862,7 @@ let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
 promise.then(data => 
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSmsSegmentsInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -872,7 +872,7 @@ isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
 Checks whether SMS is supported on IMS. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -897,7 +897,7 @@ isImsSmsSupported(): Promise<boolean\>
 
 Checks whether SMS is supported on IMS. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -914,7 +914,7 @@ let promise = sms.isImsSmsSupported();
 promise.then(data => {
     console.log(`isImsSmsSupported success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isImsSmsSupported fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isImsSmsSupported failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -924,7 +924,7 @@ getImsShortMessageFormat(callback: AsyncCallback<string\>): void
 
 Obtains the SMS format supported by the IMS. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -949,7 +949,7 @@ getImsShortMessageFormat(): Promise<string\>
 
 Obtains the SMS format supported by the IMS. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -966,7 +966,7 @@ let promise = sms.getImsShortMessageFormat();
 promise.then(data => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getImsShortMessageFormat fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getImsShortMessageFormat failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -976,7 +976,7 @@ decodeMms(mmsFilePathName: string | Array<number\>, callback: AsyncCallback<MmsI
 
 Decodes MMS messages. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1003,7 +1003,7 @@ decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
 Decodes MMS messages. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1027,7 +1027,7 @@ let promise = sms.getSmscAddr(mmsFilePathName);
 promise.then(data => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`decodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1037,7 +1037,7 @@ encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
 Encodes MMS messages. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1072,7 +1072,7 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
 Encodes MMS messages. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1104,7 +1104,7 @@ let promise = sms.encodeMms(mmsInformation);
 promise.then(data => {
     console.log(`encodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`encodeMms fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`encodeMms failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1203,7 +1203,7 @@ Enumerates SMS message sending results.
 
 Defines the MMS message information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1217,7 +1217,7 @@ This is a system API.
 
 Defines an MMS message sending request.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1243,7 +1243,7 @@ This is a system API.
 
 Defines the MMS message sending configuration.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1258,7 +1258,7 @@ This is a system API.
 
 Defines an MMS notification index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1279,7 +1279,7 @@ This is a system API.
 
 Defines an MMS confirmation index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1293,7 +1293,7 @@ This is a system API.
 
 Defines the MMS message retrieval configuration.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1318,7 +1318,7 @@ This is a system API.
 
 Defines the original MMS message reading index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1336,7 +1336,7 @@ This is a system API.
 
 Defines the MMS message reading index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1354,7 +1354,7 @@ This is a system API.
 
 Defines the attachment of an MMS message.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1375,7 +1375,7 @@ This is a system API.
 
 Defines an MMSC address.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1388,7 +1388,7 @@ This is a system API.
 
 Enumerates message types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1408,7 +1408,7 @@ This is a system API.
 
 Enumerates MMS message priorities.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1422,7 +1422,7 @@ This is a system API.
 
 Enumerates MMS versions.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1437,7 +1437,7 @@ This is a system API.
 
 Enumerates MMS character sets.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1462,7 +1462,7 @@ This is a system API.
 
 Enumerates disposition types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1476,7 +1476,7 @@ This is a system API.
 
 Enumerates report types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1489,7 +1489,7 @@ This is a system API.
 
 Defines the cell broadcast configuration options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1505,7 +1505,7 @@ This is a system API.
 
 Defines the SIM message status.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1521,7 +1521,7 @@ This is a system API.
 
 Enumerates RAN types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1534,7 +1534,7 @@ This is a system API.
 
 Enumerates SMS encoding schemes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1549,7 +1549,7 @@ This is a system API.
 
 Defines the SIM message options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1564,7 +1564,7 @@ This is a system API.
 
 Defines the updating SIM message options.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1580,7 +1580,7 @@ This is a system API.
 
 Defines a SIM message.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1594,7 +1594,7 @@ This is a system API.
 
 Defines an MMS message delivery index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1610,7 +1610,7 @@ This is a system API.
 
 Defines an MMS response index.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
@@ -1625,7 +1625,7 @@ This is a system API.
 
 Defines the SMS message segment information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.SmsMms
 
