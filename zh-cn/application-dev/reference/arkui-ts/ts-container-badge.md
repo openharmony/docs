@@ -23,12 +23,12 @@
 创建数字标记组件。
 
 **参数：**
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | count | number | 是 | - | 设置提醒消息数。 |
-  | position | BadgePosition | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
-  | maxCount | number | 否 | 99 | 最大消息数，超过最大消息时仅显示maxCount+。 |
-  | style | BadgeStyle | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| count | number | 是 | - | 设置提醒消息数。 |
+| position | BadgePosition | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
+| maxCount | number | 否 | 99 | 最大消息数，超过最大消息时仅显示maxCount+。 |
+| style | BadgeStyle | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 方法2： Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
@@ -92,7 +92,7 @@ struct BadgeExample {
 
       Badge({
         value: ' ',
-        position: 1,
+        position: BadgePosition.Right,
         style: { badgeSize: 6, badgeColor: Color.Red }
       }) {
         Text('message')
