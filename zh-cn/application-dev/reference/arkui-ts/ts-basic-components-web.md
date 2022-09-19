@@ -2127,7 +2127,7 @@ isHttpAuthInfoSaved(): boolean
 
 ## SslErrorHandler<sup>9+</sup>
 
-Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerrorEventreceive9)。
+Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerroreventreceive9)。
 
 ### handleCancel<sup>9+</sup>
 
