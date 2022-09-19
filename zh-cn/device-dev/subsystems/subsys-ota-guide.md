@@ -86,7 +86,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 5. 对使用 Hi3518EV300/Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块device\hisilicon\third_party\uboot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
 
-   ```
+   ```c
    static unsigned char g_pub_key[PUBKEY_LEN] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
        0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
@@ -101,7 +101,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
      
-   ```
+   ```text
     target_package
     ├── OTA.tag
     ├── config
@@ -119,7 +119,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    组件配置文件“updater_specified_config.xml”，格式如下：
 
      
-   ```
+   ```xml
    <?xml version="1.0"?>
    <package>
        <head name="Component header information">
@@ -156,7 +156,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 4. 创建“OTA.tag文件”，内容为OTA升级包的魔数，固定如下：
      
-   ```
+   ```text
    package_type:ota1234567890qwertw
    ```
 
@@ -164,14 +164,14 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    配置例如下：
 
      
-   ```
+   ```text
    setenv bootargs 'mem=128M console=ttyAMA0,115200 root=/dev/mmcblk0p3 rw rootfstype=ext4 rootwait blkdevparts=mmcblk0:1M
    (u-boot.bin),9M(kernel.bin),50M(rootfs_ext4.img),50M(userfs.img)' setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800;bootm 0x82000000'
    ```
 
 6. 执行升级包制作命令。
      
-   ```
+   ```text
    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key3072.pem -nz -nl2
    ```
 
@@ -187,7 +187,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 1. 创建目标版本（target_package）文件夹，文件格式如下：
 
      
-   ```
+   ```text
    target_package
    ├── {component_1}
    ├── {component_2}
@@ -208,7 +208,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    例如配置如下：
 
      
-   ```
+   ```text
    HI3516
    HI3518
    ```
@@ -222,7 +222,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    配置例如下：
 
      
-   ```
+   ```text
    Hi3516DV300-eng 10 QP1A.190711.001
    Hi3516DV300-eng 10 QP1A.190711.020
    Hi3518DV300-eng 10 QP1A.190711.021
@@ -235,7 +235,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    分区表会随镜像一起生成，格式如下：
 
      
-   ```
+   ```xml
    <?xml version="1.0" encoding="GB2312" ?>
    <Partition_Info>
    <Part Sel="1" PartitionName="镜像名称1" FlashType="flash磁盘类型" FileSystem="文件系统类型" Start="该分区起始地址" Length="该分区大小" SelectFile="实际镜像所在路径"/>
@@ -262,7 +262,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    命令如下：
 
      
-   ```
+   ```text
    python build_update.py ./target_package/ ./output_package/ -pk ./rsa_private_key2048.pem
    ```
 
@@ -275,7 +275,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    命令如下：
 
      
-   ```
+   ```text
    python build_update.py ./target_package/ ./output_package/  -s ./source_package.zip  -pk ./rsa_private_key2048.pem
    ```
 
@@ -289,7 +289,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    命令如下：
 
      
-   ```
+   ```text
    python build_update.py  ./target_package/ ./output_package/  -pk ./rsa_private_key2048.pem  -pf ./partition_file.xml
    ```
 
@@ -341,7 +341,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
   使用OpenHarmony的“升级包格式和校验方法”进行升级。
   
-```
+```cpp
 int main(int argc, char **argv)
 {
     printf("this is update print!\r\n");
@@ -416,7 +416,7 @@ int main(int argc, char **argv)
 
   使用非OpenHarmony的“升级包格式和校验方法“进行升级。
   
-```
+```cpp
 int main(int argc, char **argv)
 {
     printf("this is update print!\r\n");
@@ -492,7 +492,7 @@ int main(int argc, char **argv)
 
   示例，增加版本号。
   
-```
+```cpp
 const char *get_local_version(void)
 {
 #if defined(CONFIG_TARGET_HI3516EV200) || \
@@ -518,12 +518,12 @@ const char *get_local_version(void)
 - JS API 通过 update_service 模块处理AB热升级相关流程
 
    1.升级包安装进度显示接口：
-   ```
+   ```cpp
    on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
    ```
    
    2.设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
-   ```
+   ```cpp
    upgrade（apply）
    ```
 
@@ -531,22 +531,22 @@ const char *get_local_version(void)
 - update_service 通过 SAMGR 将 sys_installer 拉起
    
    1.拉起sys_installer服务，并建立IPC连接：
-   ```
+   ```cpp
    int SysInstallerInit(void * callback)
    ```
    
    2.安装指定路径的AB升级包：
-   ```
+   ```cpp
    int StartUpdatePackageZip(string path)
    ```
    
    3.设置进度回调：
-   ```
+   ```cpp
    int SetUpdateProgressCallback(void * callback)
    ```
    
    4.获取sys_installer的升级包安装状态（0 未开始,1 安装中,2 安装结束）:
-   ```
+   ```cpp
    int GetUpdateStatus()
    ```
 
@@ -554,22 +554,22 @@ const char *get_local_version(void)
 - 使用 HDI 接口南向激活新版本
 
    1.获取当前启动的slot，来决策待升级的分区：
-   ```
+   ```cpp
    int GetCurrentSlot()
    ```
    
    2.在升级结束后，将已升级好的slot进行切换，重启完成新版本更新：
-   ```
+   ```cpp
    int SetActiveBootSlot(int slot)
    ```
    
    3.在升级开始时，将待升级的分区slot设置成unbootable状态：
-   ```
+   ```cpp
    int setSlotUnbootable(int slot)
    ```
    
    4.获取slot个数，1位非AB，2为AB分区，用例兼容AB和非AB的流程判断：
-   ```
+   ```cpp
    int32 GetSlotNum(void)
    ```
 
