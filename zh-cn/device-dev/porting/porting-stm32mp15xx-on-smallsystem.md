@@ -344,13 +344,11 @@ vendor
     module_name = get_path_info(rebase_path("."), "name")
 
     hdf_driver("hdf_gpio") {
-        sources = [
-        "stm32mp1_gpio.c",                                      ---gpio驱动源文件。
-    ]
-        include_dirs = [                                        ---依赖的.h路径。
-        "." ,
-        "../stm32mp1xx_hal/STM32MP1xx_HAL_Driver/Inc",
-    ]
+        sources = [ "stm32mp1_gpio.c" ]        ---gpio驱动源文件。
+        include_dirs = [                       ---依赖的.h路径。
+          "." ,
+          "../stm32mp1xx_hal/STM32MP1xx_HAL_Driver/Inc",
+        ]
     }
     ```
 
