@@ -89,7 +89,7 @@ module.json5示例:
             "tv", 
             "wearable",
             "car",
-            "router",
+            "router"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
