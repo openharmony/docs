@@ -189,7 +189,7 @@ media.createVideoRecorder().then((video) => {
 
 媒体服务错误类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称                       | 值   | 说明                                   |
 | -------------------------- | ---- | -------------------------------------- |
@@ -208,7 +208,7 @@ media.createVideoRecorder().then((video) => {
 
 媒体类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称           | 值   | 说明       |
 | -------------- | ---- | ---------- |
@@ -219,7 +219,7 @@ media.createVideoRecorder().then((video) => {
 
 Codec MIME类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称         | 值                    | 说明                     |
 | ------------ | --------------------- | ------------------------ |
@@ -236,7 +236,7 @@ Codec MIME类型枚举。
 
 媒体信息描述枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
@@ -255,7 +255,7 @@ Codec MIME类型枚举。
 
 缓存事件类型枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
@@ -272,14 +272,14 @@ Codec MIME类型枚举。
 
 ### 属性<a name=audioplayer_属性></a>
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
+**系统能力：** ystemCapability.Multimedia.Media.AudioPlayer
 
 | 名称                            | 类型                                | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | src                             | string                              | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(m4a、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**需要权限：** ohos.permission.INTERNET。 |
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#interruptmode9) | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)  | 是   | 是   | 音频媒体文件描述，使用场景：应用中的音频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>音乐1(地址偏移:0，字节长度:100)<br/>音乐2(地址偏移:101，字节长度:50)<br/>音乐3(地址偏移:151，字节长度:150)<br/>1. 播放音乐1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放音乐2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放音乐3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的音乐文件: 请使用src=fd://xx <br/> |
 | loop                            | boolean                             | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
-| audioInterruptMode<sup>9+</sup> | [InterruptMode](#interruptmode9)    | 是   | 是   | 音频焦点模型。                                               |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9)    | 是   | 是   | 音频焦点模型。                                              |
 | currentTime                     | number                              | 是   | 否   | 音频的当前播放位置，单位为毫秒（ms）。                       |
 | duration                        | number                              | 是   | 否   | 音频时长，单位为毫秒（ms）。                                 |
 | state                           | [AudioState](#audiostate)           | 是   | 否   | 可以查询音频播放的状态，该状态不可作为调用play/pause/stop等状态切换的触发条件。 |
@@ -645,7 +645,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 音频播放的状态机。可通过state属性获取当前状态。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioPlayer。
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 | 名称    | 类型   | 描述                                           |
 | ------- | ------ | ---------------------------------------------- |
@@ -661,21 +661,11 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
+| 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | 是   | 资源句柄，通过resourceManager.getRawFileDescriptor获取       |
 | offset | number | 是   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误 |
 | length | number | 是   | 资源长度，需要基于预置资源的信息输入，非法值会造成音视频资源解析错误 |
-
-## InterruptMode<sup>9+</sup>
-
-音频焦点模式。
-
-**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
-
-具体参数值请查询[@ohos.multimedia.audio.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.multimedia.audio.d.ts)
 
 ## VideoPlayer<sup>8+</sup>
 
@@ -685,15 +675,15 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 ### 属性<a name=videoplayer_属性></a>
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**需要权限：** ohos.permission.INTERNET。 |
-| fdSrc<sup>9+</sup> | [AVFileDescriptor](#interruptmode9) | 是 | 是 | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/> |
+| fdSrc<sup>9+</sup> | [AVFileDescriptor](#avfiledescriptor9) | 是 | 是 | 视频媒体文件描述，使用场景：应用中的视频资源被连续存储在同一个文件中。<br/>**使用示例**：<br/>假设一个连续存储的音乐文件: <br/>视频1(地址偏移:0，字节长度:100)<br/>视频2(地址偏移:101，字节长度:50)<br/>视频3(地址偏移:151，字节长度:150)<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }<br/>假设是一个独立的视频文件: 请使用src=fd://xx <br/> |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | 是   | 是   | 视频缩放模式。       |
-| audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | 是   | 是   | 音频焦点模型。       |
+| audioInterruptMode<sup>9+</sup>        | [audio.InterruptMode](js-apis-audio.md#interruptmode9)  | 是   | 是   | 音频焦点模型。       |
 | currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms）。                       |
 | duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，单位为毫秒（ms），返回-1表示直播模式。             |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | 是   | 否   | 视频播放的状态。                                             |
@@ -1564,7 +1554,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 视频播放的状态机，可通过state属性获取当前状态。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称     | 类型   | 描述           |
 | -------- | ------ | -------------- |
@@ -1579,7 +1569,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 视频播放的Seek模式枚举，可通过seek方法作为参数传递下去。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称           | 值   | 描述                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
@@ -1590,7 +1580,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                 | 值   | 描述                           |
 | -------------------- | ---- | ------------------------------ |
@@ -1604,7 +1594,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 枚举，视频缩放模式。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoPlayer。
+**系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                         | 默认值 | 描述       |
 | ---------------------------- | ------ | ---------- |
@@ -1615,7 +1605,7 @@ videoPlayer.on('availableBitratesCollect', (bitrates) => {
 
 通过key-value方式获取媒体信息。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 **示例：**
 
@@ -1877,7 +1867,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 表示音频的录音配置。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
 | 名称                  | 参数类型                                | 必填 | 说明                                                         |
 | --------------------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -1898,7 +1888,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 表示音频编码格式的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
 | 名称    | 默认值 | 说明                                                         |
 | ------- | ------ | ------------------------------------------------------------ |
@@ -1916,7 +1906,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 表示音频封装格式的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.AudioRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
 | 名称     | 默认值 | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
@@ -1934,7 +1924,7 @@ audioRecorder.prepare(audioRecorderConfig);                            // prepar
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称               | 类型                                   | 可读 | 可写 | 说明             |
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
@@ -2495,7 +2485,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 视频录制的状态机。可通过state属性获取当前状态。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称     | 类型   | 描述                   |
 | -------- | ------ | ---------------------- |
@@ -2510,7 +2500,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 表示视频录制的参数设置。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称            | 参数类型                                       | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -2519,13 +2509,13 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
 | location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) <br/> |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png)|
 
 ## AudioSourceType<sup>9+</sup>
 
 表示视频录制中音频源类型的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称                      | 值   | 说明                   |
 | ------------------------- | ---- | ---------------------- |
@@ -2536,7 +2526,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 表示视频录制中视频源类型的枚举。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称                          | 值   | 说明                            |
 | ----------------------------- | ---- | ------------------------------- |
@@ -2547,7 +2537,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 视频录制的配置文件。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.VideoRecorder。
+**系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
 | 名称             | 参数类型                                     | 必填 | 说明             |
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
@@ -2566,7 +2556,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 表示容器格式类型的枚举，缩写为CFT。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
@@ -2577,7 +2567,7 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 视频录制的地理位置。
 
-**系统能力：** 以下各项对应的系统能力均为 SystemCapability.Multimedia.Media.Core。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称      | 参数类型 | 必填 | 说明             |
 | --------- | -------- | ---- | ---------------- |
