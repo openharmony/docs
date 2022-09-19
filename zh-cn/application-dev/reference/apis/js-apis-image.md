@@ -1449,7 +1449,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 ```js
 imageSourceApi.createPixelMap((err, pixelmap) => {
-                    console.info('Succeeded in creating pixelmap object.')；
+                    console.info('Succeeded in creating pixelmap object.');
                 })
 ```
 
