@@ -2068,7 +2068,7 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| networkId | string                                    | 是   | 设备的网络id。     |
+| groupId    | number                                    | 是   | 音量组id。     |
 | callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 是   | 回调，返回一个音量组实例。 |
 
 **示例：**
@@ -2106,7 +2106,7 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 
 | 参数名     | 类型                                      | 必填 | 说明              |
 | ---------- | ---------------------------------------- | ---- | ---------------- |
-| networkId | string                                    | 是   | 设备的网络id。     |
+| groupId    | number                                   | 是   | 音量组id。     |
 
 **返回值：**
 
@@ -2122,7 +2122,7 @@ async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
     let groupid = value[0].groupId;
-    let audioGroupManager = await audioManager.getGroupManager(audio.LOCAL_NETWORK_ID)
+    let audioGroupManager = await audioManager.getGroupManager(groupid)
     console.info('Callback invoked to indicate that the volume group infos list is obtained.');
   }
 }
@@ -3458,15 +3458,18 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDevice<sup>9+</sup>
@@ -3501,14 +3504,17 @@ let outputAudioDeviceDescriptor =[{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3545,15 +3551,18 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices by filter result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices by filter result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3596,14 +3605,17 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices by filter result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
-  })
-});
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices by filter result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    })
+  });
+}
 ```
 
 ## AudioRendererChangeInfo<sup>9+</sup>
@@ -3634,12 +3646,14 @@ var audioStreamManager;
 var audioStreamManagerCB;
 var resultFlag = false;
 
-await audioManager.getStreamManager().then(async function (data) {
-  audioStreamManager = data;
-  console.info('Get AudioStream Manager : Success');
-}).catch((err) => {
-  console.error(`Get AudioStream Manager : ERROR : ${err}`);
-});
+async function getStreamManager(){
+  await audioManager.getStreamManager().then(async function (data) {
+    audioStreamManager = data;
+    console.info('Get AudioStream Manager : Success');
+  }).catch((err) => {
+    console.error(`Get AudioStream Manager : ERROR : ${err}`);
+  });
+}
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
