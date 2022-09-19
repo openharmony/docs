@@ -100,7 +100,7 @@
    let promise = data_preferences.getPreferences(context, 'mystore');
    
    promise.then((pref) => {
-       prefrences = pref;
+       preferences = pref;
    }).catch((err) => {
        console.info("Failed to get preferences.");
    })
@@ -122,7 +122,7 @@
    let promise = data_preferences.getPreferences(context, 'mystore');
    
    promise.then((pref) => {
-       prefrences = pref;
+       preferences = pref;
    }).catch((err) => {
        console.info("Failed to get preferences.");
    })
