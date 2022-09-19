@@ -528,7 +528,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.HEART_BEAT_RATE](#HEART_BEAT_RATE9)
+从API Version9开始该接口不再维护，请使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -1113,7 +1113,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.once.HEART_BEAT_RATE](#HEART_BEAT_RATE9)
+从API Version9开始该接口不再维护，请使用[sensor.once.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEART_RATE  
 
@@ -1417,7 +1417,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.HEART_BEAT_RATE](#HEART_BEAT_RATE9)
+从API Version9开始该接口不再维护，请使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
