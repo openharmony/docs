@@ -2152,10 +2152,10 @@ confirm(priKeyFile : string, certChainFile : string): void
 通知Web组件使用指定的私钥和客户端证书链。
 **参数：**
 
-| 参数名         | 参数类型 | 必填  | 默认值  | 参数描述        |
-| --------      | ------   | ----  | ----   | ----------     |
-| priKeyFile    | string   | 是    | -      | 存放私钥的文件，包含路径和文件名。|
-| certChainFile | string   | 是    | -      | 存放证书链的文件，包含路径和文件名。|
+| 参数名         | 参数类型 | 必填   | 参数描述        |
+| --------      | ------   | ----  | ----------     |
+| priKeyFile    | string   | 是    | 存放私钥的文件，包含路径和文件名。|
+| certChainFile | string   | 是    | 存放证书链的文件，包含路径和文件名。|
 
 ### cancel<sup>9+</sup>
 
