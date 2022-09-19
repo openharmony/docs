@@ -24,6 +24,7 @@ ExtensionContext主要用于查询所属Extension的信息、Module的配置信�
 
 **场景说明：**
 一个应用为了适配不同性能的设备，提供了highPerformance、midPerformance、lowPerformance三个Module，这三个Module均提供了一个ServiceExtension给entry使用。安装应用时，应用市场会根据设备的性能，选择对应Module的Hap包与entry的Hap包进行打包安装，实际运行应用时，entry将解析ServiceExtensionContext.HapModuleInfo获取Hap包信息，根据不同的Hap包执行不同的业务逻辑。
+
 ![Example](figures/zh_cn_image_ExtensionContext_Example.png)
 
 **示例：**
