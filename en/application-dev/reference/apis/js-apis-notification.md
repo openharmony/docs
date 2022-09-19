@@ -528,7 +528,7 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 | Name    | Readable| Writable| Type                             | Mandatory| Description                |
 | -------- | ---- | --- | --------------------------------- | ---- | -------------------- |
-| callback | Yes  | No | AsyncCallback\<[NotificationSlot](#notificationslot)\> | Yes  | Callback used to return the result.|
+| callback | Yes  | No | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return the result.|
 
 **Example**
 

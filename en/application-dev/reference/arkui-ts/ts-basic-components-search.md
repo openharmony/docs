@@ -20,32 +20,32 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 **Parameters**
 
-| Name        | Type            | Mandatory  | Default Value | Description                                    |
-| ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
-| value       | string           | No   | -    | Text input in the search text box.                                  |
-| placeholder | string           | No   | -    | Text displayed when there is no input.                              |
-| icon        | string           | No   | -    | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
-| controller  | SearchController | No   | -    | Controller.                                    |
+| Name        | Type            | Mandatory  | Description                                    |
+| ----------- | ---------------- | ---- | ---------------------------------------- |
+| value       | string           | No   | Text input in the search text box.                                  |
+| placeholder | string           | No   | Text displayed when there is no input.                              |
+| icon        | string           | No   | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
+| controller  | SearchController | No   | Controller.                                    |
 
 
 ## Attributes
 
-| Name                     | Type                                    | Default Value | Description                   |
-| ----------------------- | ---------------------------------------- | ---- | --------------------- |
-| searchButton            | string                                   | –   | Text on the search button located next to the search text box. By default, there is no search button.|
-| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor8)    | -    | Placeholder text color.     |
-| placeholderFont         | [Font](ts-types.md#font)             | -    | Placeholder text style.   |
-| textFont                | [Font](ts-types.md#font)                 | -    | Text font for the search text box.          |
+| Name                     | Type                                    | Description                   |
+| ----------------------- | ---------------------------------------- | --------------------- |
+| searchButton            | string                                   | Text on the search button located next to the search text box. By default, there is no search button.|
+| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor8)    | Placeholder text color.     |
+| placeholderFont         | [Font](ts-types.md#font)             | Placeholder text style.   |
+| textFont                | [Font](ts-types.md#font)            | Text font for the search text box.          |
 
 ## Events
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> -**value**: current text input.|
-| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br> -**value**: current text input. |
-| onCopy(callback: (value: string) => void) | Triggered when data is copied to the pasteboard.<br> -**value**: text copied.     |
-| onCut(callback: (value: string) => void) | Triggered when data is cut from the pasteboard.<br> -**value**: text cut.     |
-| onPaste(callback: (value: string) => void) | Triggered when data is pasted from the pasteboard.<br> -**value**: text pasted.     |
+| Name                                        | Description                                                  |
+| ------------------------------------------- | ------------------------------------------------------------ |
+| onSubmit(callback: (value: string) => void) | Triggered when users click the search icon or the search button, or touch the search button on a soft keyboard.<br>- **value**: current text input. |
+| onChange(callback: (value: string) => void) | Triggered when the input in the text box changes.<br>- **value**: current text input. |
+| onCopy(callback: (value: string) => void)   | Triggered when data is copied to the pasteboard.<br>- **value**: text copied. |
+| onCut(callback: (value: string) => void)    | Triggered when data is cut from the pasteboard.<br>- **value**: text cut. |
+| onPaste(callback: (value: string) => void)  | Triggered when data is pasted from the pasteboard.<br>- **value**: text pasted. |
 
 ## SearchController
 
@@ -63,9 +63,9 @@ Sets the position of the caret.
 
 **Parameters**
 
-| Name  | Type  | Mandatory  | Default Value | Description             |
-| ----- | ------ | ---- | ---- | ----------------- |
-| value | number | Yes   | -    | Length from the start of the character string to the position where the caret is located.|
+| Name  | Type  | Mandatory  | Description             |
+| ----- | ------ | ---- | ----------------- |
+| value | number | Yes   | Length from the start of the character string to the position where the caret is located.|
 
 
 

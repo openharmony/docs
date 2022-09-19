@@ -1,7 +1,12 @@
 # Work Scheduler
 
-> **NOTE**<br/>
-> The initial APIs of this module are supported since API version 9. API version 9 is a canary version for trial use. The APIs of this version may be unstable.
+The **workScheduler** module provides the APIs for registering, canceling, and querying Work Scheduler tasks, which do not have real-time constraints.
+
+The system executes Work Scheduler tasks at an appropriate time, subject to the storage space, power consumption, temperature, and more.
+
+>  **NOTE**
+>
+>  The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -100,7 +105,7 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 ```
   workScheduler.getWorkStatus(50, (err, res) => {
     if (err) {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+      console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
     } else {
       for (let item in res) {
         console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
@@ -136,7 +141,7 @@ Obtains the latest task status. This API uses a promise to return the result.
       console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
     }
   }).catch((err) => {
-    console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+    console.info('workschedulerLog getWorkStatus failed, because:' + err.data);
   })
 ```
 
@@ -164,7 +169,7 @@ Obtains all tasks associated with this application. This API uses an asynchronou
 ```
   workScheduler.obtainAllWorks((err, res) =>{
     if (err) {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+      console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
     } else {
       console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
     }
@@ -190,7 +195,7 @@ Obtains all tasks associated with this application. This API uses a promise to r
   workScheduler.obtainAllWorks().then((res) => {
     console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
   }).catch((err) => {
-    console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+    console.info('workschedulerLog obtainAllWorks failed, because:' + err.data);
   })
 ```
 
@@ -233,7 +238,7 @@ Checks whether the last execution of the specified task timed out. This API uses
 ```
   workScheduler.isLastWorkTimeOut(500, (err, res) =>{
     if (err) {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
     } else {
       console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
     }
@@ -267,32 +272,30 @@ Checks whether the last execution of the specified task timed out. This API uses
       console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
     })
     .catch(err =>  {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.data);
     });
 ```
 
 ## WorkInfo
-Provides detailed information about the task.
+Provides detailed information about the task. For details about the constraints on configuring **WorkInfo**, see [Work Scheduler Overview](../../task-management/work-scheduler-overview.md).
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-| Name         | Type                             | Mandatory| Description                            |
-| --------------- | --------------------------------- | ---- | -------------------------------- |
-| workId          | number                            | Yes  | Task ID.                    |
-| bundleName      | string                            | Yes  | Name of the Work Scheduler task bundle.                    |
-| abilityName     | string                            | Yes  | Name of the component to be notified by a Work Scheduler callback.|
-| networkType     | [NetworkType](#networktype)       | No  | Network type.                        |
-| isCharging      | boolean                           | No  | Whether the device is charging.                        |
-| chargerType     | [ChargingType](#chargingtype)     | No  | Charging type.                        |
-| batteryLevel    | number                            | No  | Battery level.                            |
-| batteryStatus   | [BatteryStatus](#batterystatus)   | No  | Battery status.                        |
-| storageRequest  | [StorageRequest](#storagerequest) | No  | Storage status.                        |
-| isRepeat        | boolean                           | No  | Whether the task is repeated.                    |
-| repeatCycleTime | number                            | No  | Repeat interval.                        |
-| repeatCount     | number                            | No  | Number of repeat times.                        |
-| isPersisted     | boolean                           | No  | Whether to enable persistent storage for the task.              |
-| isDeepIdle      | boolean                           | No  | Whether the device needs to enter the idle state.        |
-| idleWaitTime    | number                            | No  | Time to wait in the idle state.                    |
+| Name            | Type                               | Mandatory  | Description              |
+| --------------- | --------------------------------- | ---- | ---------------- |
+| workId          | number                            | Yes   | Task ID.         |
+| bundleName      | string                            | Yes   | Name of the Work Scheduler task bundle.          |
+| abilityName     | string                            | Yes   | Name of the component to be notified by a Work Scheduler callback.|
+| networkType     | [NetworkType](#networktype)       | No   | Network type.            |
+| isCharging      | boolean                           | No   | Whether the device is charging.            |
+| chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
+| batteryLevel    | number                            | No   | Battery level.              |
+| batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
+| storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
+| isRepeat        | boolean                           | No   | Whether the task is repeated.          |
+| repeatCycleTime | number                            | No   | Repeat interval.            |
+| repeatCount     | number                            | No   | Number of repeat times.            |
+| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
 
 ## NetworkType
 Enumerates the network types that can trigger the task.
@@ -336,8 +339,8 @@ Enumerates the storage states that can trigger the task.
 
 **System capability**: SystemCapability.ResourceSchedule.WorkScheduler
 
-  |Name   |Default Value   |Description|
-  | -------- | -------- | -------- |
-  |STORAGE_LEVEL_LOW    |0    |The storage space is insufficient.
-  |STORAGE_LEVEL_OKAY    |1    |The storage space is restored from insufficient to normal.
-  |STORAGE_LEVEL_LOW_OR_OKAY    |2    |The storage space is restored from insufficient to normal, or the storage space is insufficient.
+| Name                       | Default Value | Description                            |
+| ------------------------- | ---- | ------------------------------ |
+| STORAGE_LEVEL_LOW         | 0    | The storage space is insufficient.              |
+| STORAGE_LEVEL_OKAY        | 1    | The storage space is restored from insufficient to normal.        |
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is restored from insufficient to normal, or the storage space is insufficient.|
