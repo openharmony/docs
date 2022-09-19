@@ -2262,7 +2262,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(er
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of isExposureModeSupported');
+    console.log('Callback returned with the successful execution of isExposureModeSupported');
 })
 ```
 
@@ -2365,7 +2365,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureMode');
+    console.log('Callback returned with the successful execution of setExposureMode');
 })
 ```
 
@@ -2464,7 +2464,7 @@ cameraInput.setMeteringPoint(Point1,(err) => {
         console.log(`Failed to set the exposure point ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setMeteringPoint');
+    console.log('Callback returned with the successful execution of setMeteringPoint');
 })
 ```
 
@@ -2571,7 +2571,7 @@ cameraInput.setExposureBias(-4,(err) => {
         console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureBias');
+    console.log('Callback returned with the successful execution of setExposureBias');
 })
 ```
 
