@@ -2162,7 +2162,7 @@ confirm(priKeyFile : string, certChainFile : string): void
 
 cancel(): void
 
-通知Web组件取消此请求，同时，保存用户策略，相同host和port的服务器请求采用相同策略，不重复上报客户端证书请求事件。
+通知Web组件取消相同host和port服务器发送的请求事件。同时，相同host和port服务器的请求，不重复上报该事件。
 
 ### ignore<sup>9+</sup>
 
@@ -3240,7 +3240,7 @@ clearHistory(): void
 
 clearSslCache(): void
 
-清除记录的SSL证书错误事件用户操作首选项。
+清除Web组件记录的SSL证书错误事件对应的用户操作行为。
 
 **示例：**
 
@@ -3267,7 +3267,7 @@ clearSslCache(): void
 
 clearClientAuthenticationCache(): void
 
-清除记录的客户端证书请求事件用户操作首选项。
+清除Web组件记录的客户端证书请求事件对应的用户操作行为。
 
 **示例：**
 
