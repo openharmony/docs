@@ -305,7 +305,7 @@
 
          设备节点创建完成后，即可挂载对应分区，主要接口如下：
          ```
-          int MountRequriedPartitions(const Fstab *fstab)
+          int MountRequiredPartitions(const Fstab *fstab)
           {
               INIT_ERROR_CHECK(fstab != NULL, return -1, "Failed fstab is NULL");
               int rc;
