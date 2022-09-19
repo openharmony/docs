@@ -774,12 +774,15 @@ getRoutingManager(): Promise&lt;AudioRoutingManager&gt;
 
 **示例：**
 ```js
-await audioManager.getRoutingManager().then((value) => {
-  var routingManager = value;
-  console.info('getRoutingManager Promise SUCCESS.');
-}).catch((err) => {
-  console.error(`Result ERROR: ${err}`);
-});
+var audioManager = audio.getAudioManager();
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    var routingManager = value;
+    console.info('getRoutingManager Promise SUCCESS.');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
 ```
 
 ### setVolume
@@ -4246,7 +4249,10 @@ audioRenderer.getBufferSize().then((data)=> {
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
+var path;
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
 var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -4314,7 +4320,9 @@ audioRenderer.getBufferSize().then((data) => {
   });
 console.info(`BufferSize: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
 var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -4593,7 +4601,11 @@ var audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+let audioRenderer;
+async function createAudioRenderer(){
+  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+}
+
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
   console.info('setInterruptMode Success!');
@@ -4634,7 +4646,12 @@ var audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+
+let audioRenderer;
+async function createAudioRenderer(){
+  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+}
+
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err, data)=>{
   if(err){
