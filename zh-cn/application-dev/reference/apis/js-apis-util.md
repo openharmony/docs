@@ -37,7 +37,7 @@ printf(format: string,  ...args: Object[]): string
 
 **示例：**
   ```js
-  var res = util.printf("%s", "hello world!");
+  let res = util.printf("%s", "hello world!");
   console.log(res);
   ```
 
@@ -64,8 +64,8 @@ getErrorString(errno: number): string
 
 **示例：**
   ```js
-  var errnum = 10; // 10 : a system error number
-  var result = util.getErrorString(errnum);
+  let errnum = 10; // 10 : a system error number
+  let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
 
@@ -95,8 +95,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   async function promiseFn() {
       return Promise.reject('value');
   }
-  var err = "type err";
-  var cb = util.callbackWrapper(promiseFn);
+  let err = "type err";
+  let cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
       console.log(err);
       console.log(ret);
@@ -283,7 +283,7 @@ TextDecoder的构造函数。
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
 
@@ -316,8 +316,8 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  var result = new Uint8Array(6);
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
   result[2] = 0xBF;
@@ -325,7 +325,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  var retStr = textDecoder.decode( result , {stream: false});
+  let retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -359,8 +359,8 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  var result = new Uint8Array(6);
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
   result[2] = 0xBF;
@@ -368,7 +368,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  var retStr = textDecoder.decodeWithStream( result , {stream: false});
+  let retStr = textDecoder.decodeWithStream( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -394,7 +394,7 @@ TextEncoder的构造函数。
 
 **示例：**
   ```js
-  var textEncoder = new util.TextEncoder();
+  let textEncoder = new util.TextEncoder();
   ```
 
 
@@ -420,9 +420,9 @@ encode(input?: string): Uint8Array
 
 **示例：**
   ```js
-  var textEncoder = new util.TextEncoder();
-  var buffer = new ArrayBuffer(20);
-  var result = new Uint8Array(buffer);
+  let textEncoder = new util.TextEncoder();
+  let buffer = new ArrayBuffer(20);
+  let result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
 
@@ -450,10 +450,10 @@ encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 
 **示例：**
   ```js
-  var that = new util.TextEncoder()
-  var buffer = new ArrayBuffer(4)
-  var dest = new Uint8Array(buffer)
-  var result = new Object()
+  let that = new util.TextEncoder()
+  let buffer = new ArrayBuffer(4)
+  let dest = new Uint8Array(buffer)
+  let result = new Object()
   result = that.encodeInto('abcd', dest)
   ```
 
@@ -477,7 +477,7 @@ RationalNumber的构造函数。
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
+  let rationalNumber = new util.RationalNumber(1,2);
   ```
 
 
@@ -503,8 +503,8 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
 
@@ -530,9 +530,9 @@ compareTo​(another: RationalNumber): number​
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.compareTo(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.compareTo(rational);
   ```
 
 
@@ -552,8 +552,8 @@ valueOf(): number
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.valueOf();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.valueOf();
   ```
 
 
@@ -579,9 +579,9 @@ equals​(obj: Object): boolean
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.equals(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.equals(rational);
   ```
 
 
@@ -608,8 +608,8 @@ static getCommonDivisor​(number1: number,number2: number): number
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = util.RationalNumber.getCommonDivisor(4,6);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
 
@@ -629,8 +629,8 @@ getNumerator​(): number
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getNumerator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getNumerator();
   ```
 
 
@@ -650,8 +650,8 @@ getDenominator​(): number
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getDenominator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getDenominator();
   ```
 
 
@@ -671,8 +671,8 @@ isZero​():boolean
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isZero();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isZero();
   ```
 
 
@@ -692,8 +692,8 @@ isNaN​(): boolean
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isNaN();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isNaN();
   ```
 
 
@@ -713,8 +713,8 @@ isFinite​():boolean
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isFinite();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isFinite();
   ```
 
 
@@ -734,8 +734,8 @@ toString​(): string
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.toString();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.toString();
   ```
 
 ## LruBuffer<sup>8+</sup>
@@ -750,10 +750,10 @@ toString​(): string
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(1,8);
-  var result = pro.length;
+  let result = pro.length;
   ```
 
 
@@ -773,7 +773,7 @@ constructor(capacity?: number)
 
 **示例：**
   ```js
-  var lrubuffer= new util.LruBuffer();
+  let lrubuffer= new util.LruBuffer();
   ```
 
 
@@ -793,8 +793,8 @@ updateCapacity(newCapacity: number): void
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.updateCapacity(100);
+  let pro = new util.LruBuffer();
+  let result = pro.updateCapacity(100);
   ```
 
 
@@ -814,11 +814,11 @@ toString(): string
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   pro.remove(20);
-  var result = pro.toString();
+  let result = pro.toString();
   ```
 
 
@@ -838,8 +838,8 @@ getCapacity(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.getCapacity();
+  let pro = new util.LruBuffer();
+  let result = pro.getCapacity();
   ```
 
 
@@ -853,9 +853,9 @@ clear(): void
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.length;
+  let result = pro.length;
   pro.clear();
   ```
 
@@ -876,9 +876,9 @@ getCreateCount(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(1,8);
-  var result = pro.getCreateCount();
+  let result = pro.getCreateCount();
   ```
 
 
@@ -898,10 +898,10 @@ getMissCount(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMissCount();
+  let result = pro.getMissCount();
   ```
 
 
@@ -921,11 +921,11 @@ getRemovalCount(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.updateCapacity(2);
   pro.put(50,22);
-  var result = pro.getRemovalCount();
+  let result = pro.getRemovalCount();
   ```
 
 
@@ -945,10 +945,10 @@ getMatchCount(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMatchCount();
+  let result = pro.getMatchCount();
   ```
 
 
@@ -968,9 +968,9 @@ getPutCount(): number
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.getPutCount();
+  let result = pro.getPutCount();
   ```
 
 
@@ -990,9 +990,9 @@ isEmpty(): boolean
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.isEmpty();
+  let result = pro.isEmpty();
   ```
 
 
@@ -1018,9 +1018,9 @@ get(key: K): V | undefined
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result  = pro.get(2);
+  let result  = pro.get(2);
   ```
 
 
@@ -1047,8 +1047,8 @@ put(key: K,value: V): V
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.put(2,10);
+  let pro = new util.LruBuffer();
+  let result = pro.put(2,10);
   ```
 
 ### values<sup>8+</sup>
@@ -1067,11 +1067,11 @@ values(): V[]
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
-  var result = pro.values();
+  let result = pro.values();
   ```
 
 
@@ -1091,9 +1091,9 @@ keys(): K[]
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.keys();
+  let result = pro.keys();
   ```
 
 
@@ -1119,9 +1119,9 @@ remove(key: K): V | undefined
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.remove(20);
+  let result = pro.remove(20);
   ```
 
 
@@ -1144,7 +1144,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
   ```js
-  var arr = [];
+  let arr = [];
   class ChildLruBuffer extends util.LruBuffer
   {
   	constructor()
@@ -1159,7 +1159,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   		}
   	}
   }
-  var lru = new ChildLruBuffer();
+  let lru = new ChildLruBuffer();
   lru.afterRemoval(false,10,30,null);
   ```
 
@@ -1186,9 +1186,9 @@ contains(key: K): boolean
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.contains(20);
+  let result = pro.contains(20);
   ```
 
 
@@ -1214,8 +1214,8 @@ createDefault(key: K): V
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.createDefault(50);
+  let pro = new util.LruBuffer();
+  let result = pro.createDefault(50);
   ```
 
 
@@ -1235,9 +1235,9 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.entries();
+  let result = pro.entries();
   ```
 
 
@@ -1257,9 +1257,9 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro[Symbol.iterator]();
+  let result = pro[Symbol.iterator]();
   ```
 
 
@@ -1320,9 +1320,9 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
   ```
 
 
@@ -1342,10 +1342,10 @@ toString(): string
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.toString();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.toString();
   ```
 
 
@@ -1371,12 +1371,12 @@ intersect(range: Scope): Scope
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
   range.intersect(rangeFir );
   ```
 
@@ -1404,12 +1404,12 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.intersect(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.intersect(tempMiDF, tempMidS);
   ```
 
 
@@ -1429,10 +1429,10 @@ getUpper(): ScopeType
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getUpper();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getUpper();
   ```
 
 
@@ -1452,10 +1452,10 @@ getLower(): ScopeType
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getLower();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getLower();
   ```
 
 
@@ -1483,12 +1483,12 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 **示例：**
 
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF, tempMidS);
   ```
 
 
@@ -1514,13 +1514,13 @@ expand(range: Scope): Scope
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
-  var result = range.expand(rangeFir);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let result = range.expand(rangeFir);
   ```
 
 
@@ -1546,11 +1546,11 @@ expand(value: ScopeType): Scope
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF);
   ```
 
 
@@ -1576,10 +1576,10 @@ contains(value: ScopeType): boolean
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
   range.contains(tempMiDF);
   ```
 
@@ -1606,13 +1606,13 @@ contains(range: Scope): boolean
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempLess = new Temperature(20);
-  var tempMore = new Temperature(45);
-  var rangeSec = new util.Scope(tempLess, tempMore);
-  var result = range.contains(rangeSec);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempLess = new Temperature(20);
+  let tempMore = new Temperature(45);
+  let rangeSec = new util.Scope(tempLess, tempMore);
+  let result = range.contains(rangeSec);
   ```
 
 
@@ -1638,11 +1638,11 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.clamp(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.clamp(tempMiDF);
   ```
 
 
@@ -1659,7 +1659,7 @@ Base64的构造函数。
 
 **示例：**
   ```js
-  var base64 = new  util.Base64();
+  let base64 = new  util.Base64();
   ```
 
 
@@ -1685,9 +1685,9 @@ encodeSync(src: Uint8Array): Uint8Array
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeSync(array);
   ```
 
 
@@ -1713,9 +1713,9 @@ encodeToStringSync(src: Uint8Array): string
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeToStringSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeToStringSync(array);
   ```
 
 
@@ -1741,9 +1741,9 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var buff = 'czEz';
-  var result = that.decodeSync(buff);
+  let that = new util.Base64();
+  let buff = 'czEz';
+  let result = that.decodeSync(buff);
   ```
 
 
@@ -1769,9 +1769,9 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var rarray = new Uint8Array([99,122,69,122]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1802,8 +1802,8 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
       console.log(val)
   })
@@ -1832,9 +1832,9 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([99,122,69,122]);
-  var rarray = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([99,122,69,122]);
+  let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1856,7 +1856,7 @@ Types的构造函数。
 
 **示例：**
   ```js
-  var type = new util.types();
+  let type = new util.types();
   ```
 
 
@@ -1882,8 +1882,8 @@ isAnyArrayBuffer(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1911,8 +1911,8 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBufferView(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isArrayBufferView(new Int8Array([]));
   ```
 
 
@@ -1938,11 +1938,11 @@ isArgumentsObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function foo() {
       var result = that.isArgumentsObject(arguments);
   }
-  var f = foo();
+  let f = foo();
   ```
 
 
@@ -1968,8 +1968,8 @@ isArrayBuffer(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1995,8 +1995,8 @@ isAsyncFunction(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isAsyncFunction(async function foo() {});
+  let that = new util.types();
+  let result = that.isAsyncFunction(async function foo() {});
   ```
 
 
@@ -2022,8 +2022,8 @@ isBooleanObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBooleanObject(new Boolean(true));
+  let that = new util.types();
+  let result = that.isBooleanObject(new Boolean(true));
   ```
 
 
@@ -2049,8 +2049,8 @@ isBoxedPrimitive(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBoxedPrimitive(new Boolean(false));
+  let that = new util.types();
+  let result = that.isBoxedPrimitive(new Boolean(false));
   ```
 
 
@@ -2076,9 +2076,9 @@ isDataView(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const ab = new ArrayBuffer(20);
-  var result = that.isDataView(new DataView(ab));
+  let result = that.isDataView(new DataView(ab));
   ```
 
 
@@ -2104,8 +2104,8 @@ isDate(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isDate(new Date());
+  let that = new util.types();
+  let result = that.isDate(new Date());
   ```
 
 
@@ -2131,8 +2131,8 @@ isExternal(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isExternal(true);
+  let that = new util.types();
+  let result = that.isExternal(true);
   ```
 
 
@@ -2158,8 +2158,8 @@ isFloat32Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isFloat32Array(new Float32Array());
+  let that = new util.types();
+  let result = that.isFloat32Array(new Float32Array());
   ```
 
 
@@ -2185,8 +2185,8 @@ isFloat64Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isFloat64Array(new Float64Array());
+  let that = new util.types();
+  let result = that.isFloat64Array(new Float64Array());
   ```
 
 
@@ -2212,8 +2212,8 @@ isGeneratorFunction(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isGeneratorFunction(function* foo() {});
+  let that = new util.types();
+  let result = that.isGeneratorFunction(function* foo() {});
   ```
 
 
@@ -2239,10 +2239,10 @@ isGeneratorObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function* foo() {}
   const generator = foo();
-  var result = that.isGeneratorObject(generator);
+  let result = that.isGeneratorObject(generator);
   ```
 
 
@@ -2268,8 +2268,8 @@ isInt8Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt8Array(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isInt8Array(new Int8Array([]));
   ```
 
 
@@ -2295,8 +2295,8 @@ isInt16Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt16Array(new Int16Array([]));
+  let that = new util.types();
+  let result = that.isInt16Array(new Int16Array([]));
   ```
 
 
@@ -2322,8 +2322,8 @@ isInt32Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt32Array(new Int32Array([]));
+  let that = new util.types();
+  let result = that.isInt32Array(new Int32Array([]));
   ```
 
 
@@ -2349,8 +2349,8 @@ isMap(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isMap(new Map());
+  let that = new util.types();
+  let result = that.isMap(new Map());
   ```
 
 
@@ -2376,9 +2376,9 @@ isMapIterator(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const map = new Map();
-  var result = that.isMapIterator(map.keys());
+  let result = that.isMapIterator(map.keys());
   ```
 
 
@@ -2404,8 +2404,8 @@ isNativeError(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isNativeError(new TypeError());
+  let that = new util.types();
+  let result = that.isNativeError(new TypeError());
   ```
 
 
@@ -2431,8 +2431,8 @@ isNumberObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isNumberObject(new Number(0));
+  let that = new util.types();
+  let result = that.isNumberObject(new Number(0));
   ```
 
 
@@ -2458,8 +2458,8 @@ isPromise(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isPromise(Promise.resolve(1));
+  let that = new util.types();
+  let result = that.isPromise(Promise.resolve(1));
   ```
 
 
@@ -2485,10 +2485,10 @@ isProxy(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const target = {};
   const proxy = new Proxy(target, {});
-  var result = that.isProxy(proxy);
+  let result = that.isProxy(proxy);
   ```
 
 
@@ -2514,8 +2514,8 @@ isRegExp(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isRegExp(new RegExp('abc'));
+  let that = new util.types();
+  let result = that.isRegExp(new RegExp('abc'));
   ```
 
 
@@ -2541,8 +2541,8 @@ isSet(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isSet(new Set());
+  let that = new util.types();
+  let result = that.isSet(new Set());
   ```
 
 
@@ -2568,9 +2568,9 @@ isSetIterator(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const set = new Set();
-  var result = that.isSetIterator(set.keys());
+  let result = that.isSetIterator(set.keys());
   ```
 
 
@@ -2596,8 +2596,8 @@ isStringObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isStringObject(new String('foo'));
+  let that = new util.types();
+  let result = that.isStringObject(new String('foo'));
   ```
 
 
@@ -2623,9 +2623,9 @@ isSymbolObject(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const symbols = Symbol('foo');
-  var result = that.isSymbolObject(Object(symbols));
+  let result = that.isSymbolObject(Object(symbols));
   ```
 
 
@@ -2653,8 +2653,8 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isTypedArray(new Float64Array([]));
+  let that = new util.types();
+  let result = that.isTypedArray(new Float64Array([]));
   ```
 
 
@@ -2680,8 +2680,8 @@ isUint8Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint8Array(new Uint8Array([]));
+  let that = new util.types();
+  let result = that.isUint8Array(new Uint8Array([]));
   ```
 
 
@@ -2707,8 +2707,8 @@ isUint8ClampedArray(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let that = new util.types();
+  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
 
 
@@ -2734,8 +2734,8 @@ isUint16Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint16Array(new Uint16Array([]));
+  let that = new util.types();
+  let result = that.isUint16Array(new Uint16Array([]));
   ```
 
 
@@ -2761,8 +2761,8 @@ isUint32Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint32Array(new Uint32Array([]));
+  let that = new util.types();
+  let result = that.isUint32Array(new Uint32Array([]));
   ```
 
 
@@ -2788,8 +2788,8 @@ isWeakMap(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isWeakMap(new WeakMap());
+  let that = new util.types();
+  let result = that.isWeakMap(new WeakMap());
   ```
 
 
@@ -2815,8 +2815,8 @@ isWeakSet(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isWeakSet(new WeakSet());
+  let that = new util.types();
+  let result = that.isWeakSet(new WeakSet());
   ```
 
 
@@ -2842,8 +2842,8 @@ isBigInt64Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBigInt64Array(new BigInt64Array([]));
+  let that = new util.types();
+  let result = that.isBigInt64Array(new BigInt64Array([]));
   ```
 
 
@@ -2869,8 +2869,8 @@ isBigUint64Array(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBigUint64Array(new BigUint64Array([]));
+  let that = new util.types();
+  let result = that.isBigUint64Array(new BigUint64Array([]));
   ```
 
 
@@ -2897,8 +2897,8 @@ isModuleNamespaceObject(value: Object): boolean
 **示例：**
   ```js
   import url from '@ohos.url'
-  var that = new util.types();
-  var result = that.isModuleNamespaceObject(url);
+  let that = new util.types();
+  let result = that.isModuleNamespaceObject(url);
   ```
 
 
@@ -2924,6 +2924,6 @@ isSharedArrayBuffer(value: Object): boolean
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```

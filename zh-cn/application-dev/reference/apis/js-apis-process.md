@@ -63,8 +63,8 @@ wait(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-var child = process.runCmd('ls');
-var result = child.wait();
+let child = process.runCmd('ls');
+let result = child.wait();
 result.then(val=>{
     console.log("result = " + val);
 })
@@ -90,8 +90,8 @@ getOutput(): Promise&lt;Uint8Array&gt;
 **示例：**
 
 ```js
-var child = process.runCmd('ls');
-var result = child.wait();
+let child = process.runCmd('ls');
+let result = child.wait();
 child.getOutput().then(val=>{
     console.log("child.getOutput = " + val);
 })
@@ -117,8 +117,8 @@ getErrorOutput(): Promise&lt;Uint8Array&gt;
 **示例：**
 
 ```js
-var child = process.runCmd('madir test.text');
-var result = child.wait();
+let child = process.runCmd('madir test.text');
+let result = child.wait();
 child.getErrorOutput().then(val=>{
     console.log("child.getErrorOutput= " + val);
 })
@@ -138,7 +138,7 @@ close(): void
 **示例：**
 
 ```js
-var child = process.runCmd('sleep 5; ls');
+let child = process.runCmd('sleep 5; ls');
 child.close();
 ```
 
@@ -162,7 +162,7 @@ kill(signal: number | string): void
 **示例：**
 
 ```js
-var child = process.runCmd('sleep 5; ls');
+let child = process.runCmd('sleep 5; ls');
 child.kill(9);
 ```
 
@@ -184,7 +184,7 @@ isIsolatedProcess(): boolean
 **示例：**
 
 ```js
-var result = process.isIsolatedProcess();
+let result = process.isIsolatedProcess();
 ```
 
 
@@ -211,7 +211,7 @@ isAppUid(v: number): boolean
 **示例：**
 
 ```js
-var result = process.isAppUid(688);
+let result = process.isAppUid(688);
 ```
 
 
@@ -232,7 +232,7 @@ is64Bit(): boolean
 **示例：**
 
 ```js
-var result = process.is64Bit();
+let result = process.is64Bit();
 ```
 
 
@@ -259,7 +259,7 @@ getUidForName(v: string): number
 **示例：**
 
 ```js
-var pres = process.getUidForName("tool")
+let pres = process.getUidForName("tool")
 ```
 
 
@@ -286,8 +286,8 @@ getThreadPriority(v: number): number
 **示例：**
 
 ```js
-var tid = process.tid;
-var pres = process.getThreadPriority(tid);
+let tid = process.tid;
+let pres = process.getThreadPriority(tid);
 ```
 
 
@@ -308,7 +308,7 @@ getStartRealtime(): number
 **示例：**
 
 ```js
-var realtime = process.getStartRealtime();
+let realtime = process.getStartRealtime();
 ```
 
 ## process.getPastCpuTime<sup>8+</sup>
@@ -328,7 +328,7 @@ getPastCpuTime(): number
 **示例：**
 
 ```js
-var result = process.getPastCpuTime() ;
+let result = process.getPastCpuTime() ;
 ```
 
 
@@ -355,8 +355,8 @@ getSystemConfig(name: number): number
 **示例：**
 
 ```js
-var _SC_ARG_MAX = 0
-var pres = process.getSystemConfig(_SC_ARG_MAX)
+let _SC_ARG_MAX = 0
+let pres = process.getSystemConfig(_SC_ARG_MAX)
 ```
 
 
@@ -383,7 +383,7 @@ getEnvironmentVar(name: string): string
 **示例：**
 
 ```js
-var pres = process.getEnvironmentVar("PATH")
+let pres = process.getEnvironmentVar("PATH")
 ```
 
 
@@ -421,8 +421,8 @@ runCmd(command: string, options?: { timeout?: number, killSignal?: number | stri
 **示例：**
 
 ```js
-var child = process.runCmd('ls', { maxBuffer : 2 });
-var result = child.wait();
+let child = process.runCmd('ls', { maxBuffer : 2 });
+let result = child.wait();
 child.getOutput.then(val=>{
     console.log("child.getOutput = " + val);
 })
@@ -504,7 +504,7 @@ off(type: string): boolean
 process.on("data", (e)=>{
     console.log("data callback");
 })
-var result = process.off("data");
+let result = process.off("data");
 ```
 
 
@@ -544,7 +544,7 @@ cwd(): string
 **示例：**
 
 ```js
-var path = process.cwd();
+let path = process.cwd();
 ```
 
 
@@ -588,7 +588,7 @@ uptime(): number
 **示例：**
 
 ```js
-var time = process.uptime();
+let time = process.uptime();
 ```
 
 
@@ -616,6 +616,6 @@ kill(signal: number, pid: number): boolean
 **示例：**
 
 ```js
-var pres = process.pid
-var result = process.kill(28, pres)
+let pres = process.pid
+let result = process.kill(28, pres)
 ```
