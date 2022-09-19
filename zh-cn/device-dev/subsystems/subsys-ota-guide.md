@@ -465,7 +465,7 @@ int main(int argc, char **argv)
     while (leftLen > 0) {
         int tmpLen = leftLen >= READ_BUF_LEN ? READ_BUF_LEN : leftLen;
         (void)memset_s(g_readBuf, READ_BUF_LEN, 0, READ_BUF_LEN);
-        if (HotaRead(offset, READ_BUF_LEN, (unsigned char *)g_readBuf) != 0) {}
+        if (HotaRead(offset, READ_BUF_LEN, (unsigned char *)g_readBuf) != 0) {
             printf("ota write fail!\r\n");
             (void)HotaCancel();
             return -1;
@@ -518,13 +518,13 @@ const char *get_local_version(void)
 - JS API 通过 update_service 模块处理AB热升级相关流程
 
    1.升级包安装进度显示接口：
-   ```cpp
+   ```java
    on(eventType: 'upgradeProgress', callback: UpdateProgressCallback): void;
    ```
    
    2.设置激活策略（立即重启，夜间重启，随下次重启激活）接口：
    ```cpp
-   upgrade（apply）
+   upgrade(apply)
    ```
 
 
