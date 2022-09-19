@@ -97,7 +97,7 @@ struct BadgeExample {
 
       Badge({
         value: '',
-        position: 1,
+        position: BadgePosition.Right,
         style: { badgeSize: 6, badgeColor: Color.Red }
       }) {
         Text('message')
