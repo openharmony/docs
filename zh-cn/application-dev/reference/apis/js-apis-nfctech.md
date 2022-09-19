@@ -692,7 +692,7 @@ writeNdef(msg: NdefMessage, callback: AsyncCallback\<number>): void
 import tag from '@ohos.nfc.tag';
 
 // tagInfo is an Object given by nfc service when tag is dispatched.
-tag.NdefTag(taginfo).write(msg，function (error, has) {
+tag.NdefTag(taginfo).write(msg, function (error, has) {
     console.log(JSON.stringify(error))
     console.log('has: ' + has)
 })
