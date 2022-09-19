@@ -2150,6 +2150,7 @@ Web组件返回的SSL客户端证书请求事件用户处理功能对象。示�
 confirm(priKeyFile : string, certChainFile : string): void
 
 通知Web组件使用指定的私钥和客户端证书链。
+
 **参数：**
 
 | 参数名         | 参数类型 | 必填   | 参数描述        |
