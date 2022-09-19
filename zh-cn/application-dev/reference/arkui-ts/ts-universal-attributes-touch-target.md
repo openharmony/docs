@@ -18,10 +18,10 @@
 ### Rectangle对象说明
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| x | [Length](../../ui/ts-types.md) | 否 | 触摸点相对于组件本身左边沿的X坐标。<br/>默认值：0vp |
-| y | [Length](../../ui/ts-types.md) | 否 | 触摸点相对于组件本身左边沿的Y坐标。<br/>默认值：0vp |
-| width | [Length](../../ui/ts-types.md) | 否 | 触摸热区范围的宽度。<br/>默认值：100% |
-| height | [Length](../../ui/ts-types.md) | 否 | 触摸热区范围的高度。<br/>默认值：100% |
+| x | [Length](ts-types.md) | 否 | 触摸点相对于组件本身左边沿的X坐标。<br/>默认值：0vp |
+| y | [Length](ts-types.md) | 否 | 触摸点相对于组件本身左边沿的Y坐标。<br/>默认值：0vp |
+| width | [Length](ts-types.md) | 否 | 触摸热区范围的宽度。<br/>默认值：100% |
+| height | [Length](ts-types.md) | 否 | 触摸热区范围的高度。<br/>默认值：100% |
 
   >  **说明：**
   >

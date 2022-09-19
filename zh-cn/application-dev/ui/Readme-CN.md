@@ -12,7 +12,6 @@
             - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
             - [资源访问](ts-resource-access.md)
         - [像素单位](ts-pixel-units.md)
-        - [类型定义](ts-types.md)
     - 声明式语法
         - [描述规范使用说明](ts-syntax-intro.md)
         - 通用UI描述规范

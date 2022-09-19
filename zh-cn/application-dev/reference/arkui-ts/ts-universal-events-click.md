@@ -26,7 +26,7 @@
 ## EventTarget<sup>8+</sup>对象说明
 | 名称   | 参数类型              | 描述         |
 | ---- | ----------------- | ---------- |
-| area | [Area](../../ui/ts-types.md#area8) | 目标元素的区域信息。 |
+| area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
 
 
 

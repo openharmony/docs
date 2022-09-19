@@ -27,8 +27,8 @@ QRCode(value: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | 设置二维码颜色。<br/>默认值：Color.Black |
-| backgroundColor | [ResourceColor](../../ui/ts-types.md) | 设置二维码背景颜色。<br/>默认值：Color.White |
+| color | [ResourceColor](ts-types.md) | 设置二维码颜色。<br/>默认值：Color.Black |
+| backgroundColor | [ResourceColor](ts-types.md) | 设置二维码背景颜色。<br/>默认值：Color.White |
 
 
 ## 事件
