@@ -13,10 +13,6 @@ OTA（Over the Air）提供对设备远程升级的能力。升级子系统对�
 
 ### 基本概念
 
-- 冷升级：设备完成升级包下载后，进入 updater 模式开始升级，结束后设备自动重启到正常系统，完成系统更新。
-
-- 热升级：相较于冷升级，热升级是在设备正常使用的情况下，在后台完成升级包的下载，静默升级。当前热升级场景包括系统AB热升级，参数升级，cota定制升级，补丁升级等。
-
 - 全量升级包：将所有目标版本的镜像均通过全量镜像的方式打包获得的升级包。
 
 - 差分升级包：对源版本和目标版本差分，获得两个版本镜像之间的差异，以这种方式打包制作升级包。
@@ -26,7 +22,7 @@ OTA（Over the Air）提供对设备远程升级的能力。升级子系统对�
 
 OTA 的升级原理是利用升级包制作工具，将编译出的版本打包生成升级包。厂商设备集成 OTA 升级能力后，将升级包上传至服务器，通过升级应用下载升级包，触发并完成升级。
 
-<a href="#ab-热升级指导">AB 热升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
+<a href="#ab-升级场景">AB 升级</a>：是 OTA 升级的一个场景，原理是设备有一套备份的B系统，在A系统运行时，可以在正常使用的状态下，静默更新B系统，升级成功后，重启切换新系统，实现版本更新的机制。
 
 
 ### 约束与限制
@@ -46,7 +42,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 - 准备升级包制作工具
 - 编译出版本镜像文件
 - 制作升级包需要 Linux 系统环境
-- AB 热升级只适用于标准系统支持 AB 分区启动的设备
+- AB 升级只适用于标准系统支持 AB 分区启动的设备
 
 
 ## OTA 升级指导
@@ -72,7 +68,7 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 
 &ensp;&ensp;<a href="#api-应用定制场景冷升级">5.2 API 应用定制场景</a>
 
-&ensp;&ensp;<a href="#ab-热升级场景">5.2 AB 热升级场景</a>
+&ensp;&ensp;<a href="#ab-升级场景">5.2 AB 升级场景</a>
 
 
 ### 开发步骤
@@ -502,20 +498,20 @@ const char *get_local_version(void)
 ```
 
 
-##### AB 热升级场景
+##### AB 升级场景
 
 
 ###### 开发流程
 
 1. 应用侧下载获取当前设备升级包
-2. update_service 通过 SAMGR 将 sys_installer 拉起
-3. 由 sys_installer 模块完成静默热安装
+2. update_service 通过 SAMGR 将系统安装部件拉起
+3. 由系统安装部件完成静默热安装
 4. 下一次重启时激活新版本
 
 
 ###### 开发步骤
 
-- JS API 通过 update_service 模块处理AB热升级相关流程
+- JS API 通过 update_service 模块处理AB升级相关流程
 
    1.升级包安装进度显示接口：
    ```cpp
@@ -528,9 +524,9 @@ const char *get_local_version(void)
    ```
 
 
-- update_service 通过 SAMGR 将 sys_installer 拉起
+- update_service 通过 SAMGR 将系统安装服务拉起
    
-   1.拉起sys_installer服务，并建立IPC连接：
+   1.拉起系统安装服务，并建立IPC连接：
    ```cpp
    int SysInstallerInit(void * callback)
    ```
@@ -545,7 +541,7 @@ const char *get_local_version(void)
    int SetUpdateProgressCallback(void * callback)
    ```
    
-   4.获取sys_installer的升级包安装状态（0 未开始,1 安装中,2 安装结束）:
+   4.获取升级包安装状态（0 未开始,1 安装中,2 安装结束）:
    ```cpp
    int GetUpdateStatus()
    ```
