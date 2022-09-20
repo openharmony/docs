@@ -7,7 +7,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 - The SD card update depends on the update packages and SD cards.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
-> **Note:**
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -239,7 +239,7 @@ var versionDigestInfo = {
 
 // Options of the description file
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 }
 
@@ -282,7 +282,7 @@ var versionDigestInfo = {
 
 // Options of the description file
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 }
 
@@ -369,7 +369,7 @@ Obtains the description file of the current version. This API uses an asynchrono
 ```ts
 // Options of the description file
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 }
 
@@ -406,7 +406,7 @@ Obtains the description file of the current version. This API uses a promise to 
 ```ts
 // Options of the description file
 var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
 }
 
@@ -1580,7 +1580,7 @@ Represents an update file.
 
 ## UpgradeTaskCallback
 
-### (eventInfo: [EventInfo](#eventinfo)): void
+(eventInfo: EventInfo): void
 
 Represents an event callback.
 
