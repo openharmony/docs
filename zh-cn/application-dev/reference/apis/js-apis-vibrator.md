@@ -18,7 +18,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 按照指定持续时间触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -50,7 +50,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -78,7 +78,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 按照指定振动效果触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -108,7 +108,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -136,7 +136,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -166,7 +166,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
 
-**权限列表**：ohos.permission.VIBRATE，该权限为系统权限
+**权限列表**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
