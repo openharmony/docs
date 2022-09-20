@@ -141,7 +141,7 @@
   - [@ohos.net.webSocket](js-apis-webSocket.md) 
   - [@ohos.request](js-apis-request.md)
 - Connectivity
-  
+
   - [@ohos.bluetooth](js-apis-bluetooth.md)
   - [@ohos.connectedTag](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation](js-apis-cardEmulation.md)
@@ -166,6 +166,7 @@
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
+  - [console (Log)](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
 - Device Management
 
@@ -240,4 +241,3 @@
   - [@system.sensor](js-apis-system-sensor.md)
   - [@system.storage](js-apis-system-storage.md)
   - [@system.vibrator](js-apis-system-vibrate.md)
-  - [console](js-apis-logs.md)
