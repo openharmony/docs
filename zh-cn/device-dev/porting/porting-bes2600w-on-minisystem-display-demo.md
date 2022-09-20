@@ -867,7 +867,7 @@ static void DSoftBus(void)
 
     extern void InitSoftBusServer(void);
     if (osThreadNew((osThreadFunc_t) InitSoftBusServer, NULL, &attr) == NULL) {
-        printf("Falied to create WifiSTATask!\n");
+        printf("Failed to create WifiSTATask!\n");
     }
 }
 
@@ -1477,3 +1477,4 @@ APP_FEATURE_INIT(AppEntry);
 - 分布式能力：`dms`、`dm`
 - 分布式音乐播放器样例
 
+porting-bes2600w-on-minisystem-display-demo.md
