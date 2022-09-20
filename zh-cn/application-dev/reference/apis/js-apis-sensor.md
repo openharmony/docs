@@ -2096,7 +2096,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
           return;
       }
       for (var i=0; i < data.length; i++) {
-          console.info(JSON.stringify(data));
+          console.info("data[" + i + "]: " + data[i]);
       }
   })
   ```
@@ -2291,12 +2291,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
-                        err.message);
+          console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
       for (var i=0; i < data.rotation.length; i++) {
-          console.info("data[" + i + "]: " + data[i])
+          console.info(JSON.stringify(data));
       }
   })
   ```
@@ -2330,7 +2329,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
           for (var i=0; i < data.rotation.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
+              console.info(JSON.stringify(data));
           }
       }).catch((err) => {
           console.info('promise failed');
