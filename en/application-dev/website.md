@@ -46,7 +46,6 @@
           - [Accessing Application Resources](ui/ts-resource-access.md)
         - [Pixel Units](ui/ts-pixel-units.md)
       - Declarative Syntax
-
         - [Overview](ui/ts-syntax-intro.md)
         - General UI Description Specifications
           - [Basic Concepts](ui/ts-general-ui-concepts.md)
@@ -288,7 +287,7 @@
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials  
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - Component Reference (TypeScript-based Declarative Development Paradigm)
@@ -537,7 +536,7 @@
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
     - [Type Attributes](reference/arkui-js/js-appendix-types.md)
-- APIs
+  - JS and TS APIs
     - Ability Framework    
       - [@ohos.ability.dataUriUtils](reference/apis/js-apis-DataUriUtils.md)
       - [@ohos.ability.errorCode ](reference/apis/js-apis-ability-errorCode.md)
@@ -710,7 +709,6 @@
         - [@ohos.usb](reference/apis/js-apis-usb.md)
         - [@ohos.vibrator](reference/apis/js-apis-vibrator.md)
     - Account Management
-
         - [@ohos.account.appAccount](reference/apis/js-apis-appAccount.md)
         - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
         - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)
@@ -760,3 +758,12 @@
         - [@system.sensor](reference/apis/js-apis-system-sensor.md)
         - [@system.storage](reference/apis/js-apis-system-storage.md)
         - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
+  - Native APIs
+    - Standard Libraries
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [libuv](reference/native-lib/third_party_libuv/libuv.md)
+      - [Native Standard Libraries Supported by OpenHarmony](reference/native-lib/third_party_libc/musl.md)
+      - Appendix
+        - [Native API Symbols Not Exported](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [EGL Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/egl-symbol.md)
+        - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
