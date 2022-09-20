@@ -2294,9 +2294,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
           console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
-      for (var i=0; i < data.rotation.length; i++) {
-          console.info(JSON.stringify(data));
-      }
+      console.info(JSON.stringify(data));
   })
   ```
 
@@ -2327,10 +2325,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.rotation.length; i++) {
-              console.info(JSON.stringify(data));
-          }
+          console.info(JSON.stringify(data));
       }).catch((err) => {
           console.info('promise failed');
   })
