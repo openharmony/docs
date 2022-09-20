@@ -338,7 +338,7 @@ predicates.isNotNull("NAME")
 
 like(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配指定通配符的字段。
+该接口用于配置谓词以匹配指定通配符表达式的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -368,7 +368,7 @@ predicates.like("NAME", "%os%")
 
 unlike(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配不类似指定通配符的字段。
+该接口用于配置谓词以匹配不类似指定通配符表达式的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -398,7 +398,7 @@ predicates.unlike("NAME", "%os%")
 
 glob(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配指定通配符的字段。
+该接口用于配置谓词以匹配指定通配符表达式的字段。
 
 目前仅RDB支持该谓词。
 
