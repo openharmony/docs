@@ -4,7 +4,7 @@
 >
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
-**CanvasGradient**  provides a gradient object.
+**CanvasGradient** provides a gradient object.
 
 ## addColorStop
 
@@ -20,6 +20,7 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
 | color   | string | Gradient color to set.                                       |
 
 **Example** 
+
   ```html
 <!-- xxx.hml -->
 <div>
