@@ -1,6 +1,6 @@
 # System Event Logging
 
-Provides system event logging APIs for system HAP applications.
+This module provides system event logging APIs for system HAP applications.
 
 > **NOTE**<br>
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -87,9 +87,9 @@ Writes event information to the event file. This API uses a promise to return th
 
 **Parameters**
 
-| Name   | Type                   | Mandatory| Description|
-| --------- | ----------------------- | ---- | --------------- |
-| eventType | [EventType](#eventtype) | Yes  | Application event type.|
+| Name   | Type                | Mandatory | Description |
+| ------ | ------------------- | --------- | ----------- |
+| info | [SysEventInfo](#syseventinfo) | Yes | System event. |
 
 **Return value**
 

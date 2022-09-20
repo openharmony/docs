@@ -94,14 +94,16 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | device | [USBDevice](#usbdevice) | Yes| USB device information.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| device | [USBDevice](#usbdevice) | Yes| USB device information.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
+
+| Type| Description|
+| -------- | -------- |
+| Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | USB device pipe for data transfer.|
 
 **Example**
 
@@ -119,14 +121,16 @@ Checks whether the application has the permission to access the device.
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name to set.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceName | string | Yes| Device name.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
 
 **Example**
 
@@ -140,19 +144,21 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-Requests the temporary permission for the application to access the USB device.
+Requests the temporary permission for the application to access the USB device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | Yes| Device name to set.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| deviceName | string | Yes| Device name.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Returns **true** if the temporary device access permissions are granted; returns **false** otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the temporary device access permissions are granted; and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -174,16 +180,18 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
-  | force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to claim.|
+| force | boolean | No| Whether to forcibly claim the USB interface. The default value is **false**, indicating not to forcibly claim the USB interface.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
 
 **Example**
 
@@ -203,15 +211,17 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| iface | [USBInterface](#usbinterface) | Yes| USB interface, which is used to determine the index of the interface to release.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
 
 **Example**
 
@@ -231,15 +241,17 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
-  | config | [USBConfig](#usbconfig) | Yes| USB configuration to set.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| config | [USBConfig](#usbconfig) | Yes| USB configuration to set.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
 
 **Example**
 
@@ -266,9 +278,10 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 | iface | [USBInterface](#usbinterface)   | Yes  | USB interface to set. |
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
 
 **Example**
 
@@ -289,11 +302,12 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Uint8Array | Returns the raw USB descriptor if the operation is successful; returns **undefined** otherwise.|
@@ -315,9 +329,10 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| Device pipe, which is used to determine the bus number and device address.|
 
 **Return value**
 
@@ -342,16 +357,18 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
+| contrlparam | [USBControlParams](#usbcontrolparams) | Yes| Control transfer parameters.|
+| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transmitted or received data block if the transfer is successful, or **-1** if an exception has occurred.|
 
 **Example**
 
@@ -372,17 +389,19 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
-  | endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
-  | buffer | Uint8Array | Yes| Buffer for writing or reading data.|
-  | timeout | number | No| Timeout duration. The default value is **0**, indicating no timeout.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe, which is used to determine the USB device.|
+| endpoint | [USBEndpoint](#usbendpoint) | Yes| USB endpoint, which is used to determine the USB port for data transfer.|
+| buffer | Uint8Array | Yes| Buffer for writing or reading data.|
+| timeout | number | No| Timeout duration in ms. This parameter is optional. The default value is **0**, indicating no timeout.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Returns the size of the transmitted or received data block if the control transfer is successful; returns **-1** if an exception occurs.|
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the result, which is the size of the transmitted or received data block if the transfer is successful, or **-1** if an exception has occurred.|
 
 **Example**
 
@@ -406,14 +425,16 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **System capability**: SystemCapability.USB.USBManager
 
 **Parameters**
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | Yes| USB device pipe.|
 
 **Return value**
-  | Type| Description|
-  | -------- | -------- |
-  | number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
+
+| Type| Description|
+| -------- | -------- |
+| number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
 
 **Example**
 
@@ -498,8 +519,8 @@ Sets the current USB function list in Device mode.
 
 **Return value**
 
-| Type              | Description                                                  |
-| ------------------ | ------------------------------------------------------ |
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**
@@ -601,8 +622,8 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 **Return value**
 
-| Type              | Description          |
-| ------------------ | -------------- |
+| Type              | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Example**

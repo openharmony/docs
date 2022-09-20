@@ -30,7 +30,7 @@ The following table lists the USB APIs currently available. For details, see the
 
 ## How to Develop
 
-You can set a USB device as a host to connect to a device for data transfer. The development procedure is as follows:
+You can set a USB device as the USB host to connect to other USB devices for data transfer. The development procedure is as follows:
 
 1.  Obtain the USB device list.
 
