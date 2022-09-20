@@ -31,16 +31,19 @@ Called when this Window Extension ability is connected to an ability for the fir
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name. |
+| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
-**Return value**
-| Type                                           | Description                |
+**Return value** 
+
+| Type                                            | Description                 |
 | ----------------------------------------------- | -------------------- |
-| [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Proxy of this Window Extension ability.|
+| [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Proxy of this Window Extension ability. |
 
-**Example**
+**Example** 
 
 ```ts
 import rpc from '@ohos.rpc';
@@ -88,9 +91,11 @@ Called when this Window Extension ability is disconnected from all connected abi
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name. |
+| want | [Want](js-apis-application-Want.md) | Yes| Information related to this Window Extension ability, including the ability name and bundle name.|
 
 
 **Example**
@@ -113,6 +118,8 @@ onWindowReady(window: Window): void
 Called when a window is ready.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
