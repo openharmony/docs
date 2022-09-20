@@ -37,8 +37,6 @@ NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0x
 2)	Bitmap：变长，Bitmap默认为紧跟在Dispatch有效位后面的7比特，Bitmap字段长度可持续扩展。Bitmap最后一位置0表示Bitmap结束，最后一位置1表示Bitmap向后扩展1 Byte，直至最后一位置0。
 3)	Value: 标识字段的值，长度为1 Byte的整数倍，类型及长度由报头字段语义表确定。
 
-
-
 **Bitmap字段定义如下：**
 
 | 极简Bitmap标识             | Bitops | 字段长度         | 置位策略       | 备注                                    |
@@ -93,14 +91,14 @@ NewIP采用自解释编码，编码格式如下所示：
 
 启用NewIP，需要通过编译内核时打开相应的配置项及依赖，NewIP相关CONFIG如下：
 
-```
+```c
 CONFIG_NEWIP=y          // 使能NewIP内核协议栈
 CONFIG_NEWIP_HOOKS=y    // 使能NewIP内核侵入式修改插桩函数注册，使能NewIP的同时必须使用NewIP插桩功能
 ```
 
 另有部分CONFIG被依赖：
 
-```
+```c
 VENDOR_HOOKS=y          // 使能内核插桩基础框架
 ```
 
@@ -145,6 +143,26 @@ static u32 sk_ehashfn(const struct sock *sk)
 ```
 
 
+
+代码编译完成后，通过下面命令可以确认newip协议栈代码是否使能成功。
+
+```c
+find out/ -name *nip*.o
+out/rk3568/obj/third_party/glib/glib/glib_source/guniprop.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_addrconf_core.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_hdr_decap.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_addr.o
+out/kernel/OBJ/linux-5.10/net/newip/nip_checksum.o
+out/kernel/OBJ/linux-5.10/net/newip/tcp_nip_output.o
+...
+```
+
+禁用NewIP内核协议栈，删除CONFIG_NEWIP使能开关，删除out/kernel目录后重新编译。
+
+```c
+# CONFIG_NEWIP is not set
+# CONFIG_NEWIP_HOOKS is not set
+```
 
 ## NewIP相关接口
 
@@ -325,5 +343,5 @@ allow thread_xxx thread_xxx:socket { create bind connect listen accept read writ
 allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 ```
 
-## 
+
 
