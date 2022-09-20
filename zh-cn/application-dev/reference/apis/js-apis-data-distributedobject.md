@@ -117,9 +117,9 @@ setSessionId(sessionId?: string): boolean
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
-//g_object加入分布式组网
+// g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId());
-//设置为""退出分布式组网
+// 设置为""退出分布式组网
 g_object.setSessionId("");
 ```
 
@@ -175,9 +175,9 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-//删除数据变更回调changeCallback
+// 删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
-//删除所有的数据变更回调
+// 删除所有的数据变更回调
 g_object.off("change");
 ```
 
@@ -231,9 +231,9 @@ var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, is
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-//删除上下线回调changeCallback
+// 删除上下线回调changeCallback
 g_object.off("status",globalThis.statusCallback);
-//删除所有的上下线回调
+// 删除所有的上下线回调
 g_object.off("status");
 ```
 
@@ -266,7 +266,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (status, result)=>{
+g_object.save("local", (status, result) => {
     console.log("save status = " + status);
     console.log("save callback");
     console.info("save sessionId: " + result.sessionId);
@@ -309,12 +309,12 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local").then((result)=>{
+g_object.save("local").then((result) => {
     console.log("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}, ()=>{
+}, () => {
     console.error("save failed");
 });
 ```
@@ -342,7 +342,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave((result, data) =>{
+g_object.revokeSave((result, data) => {
   console.log("revokeSave callback");
 });
 ```
@@ -370,10 +370,10 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave().then((result)=>{
+g_object.revokeSave().then((result) => {
     console.log("revokeSave callback");
     console.log("sessionId" + result.sessionId);
-}, ()=>{
+}, () => {
     console.error("revokeSave failed");
 });
 ```
