@@ -2096,7 +2096,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
           return;
       }
       for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
+          console.info(JSON.stringify(data));
       }
   })
   ```
