@@ -2162,7 +2162,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
           console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
-      console.info("data[" + i + "]: " + data[i])
+      console.info(JSON.stringify(data));
   })
   ```
 
