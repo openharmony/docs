@@ -3,6 +3,8 @@
 
 ## 基本概念
 
+NewIP（Network 2030 and the Future of IP）由网络5.0联盟，向联合国国际电信联盟(ITU)提议的一项新的网络技术新标准，在现有IP能力基础上，基于未来愿景，满足未来智能机器通信为主的全行业互联网和工业互联网需求。
+
 目前WiFi协议报文，三层报头和地址开销使得报文开销大，传输效率较低。
 
 ![zh-cn_image-20220915162621809](figures/zh-cn_image-20220915162621809.png)
@@ -12,9 +14,19 @@ IPv4地址长度固定4字节，IPv6地址长度固定16字节。
 IPv4网络层报头长度20~60字节，IPv6网络层报头长度40字节。
 ```
 
-NewIP（Network 2030 and the Future of IP）由网络5.0联盟，向联合国国际电信联盟(ITU)提议的一项新的网络技术新标准，在现有IP能力基础上，基于未来愿景，满足未来智能机器通信为主的全行业互联网和工业互联网需求。
-
 NewIP支持**可变长多语义地址（最短1字节）**，**可变长定制化报头封装（最短5字节）**，通过精简报文头开销，提升数据传输效率。
+
+NewIP报头开销，相比IPv4节省25.9%，相比IPv6节省44.9%。
+
+NewIP载荷传输效率，相比IPv4提高1%，相比IPv6提高2.33%。
+
+| 对比场景       | 报头开销     | 载荷传输效率（WiFi MTU=1500B，BT MTU=255B） |
+| -------------- | ------------ | ------------------------------------------- |
+| IPv4 for WiFi  | 30+8+20=58 B | (1500-58)/1500=96.13%                       |
+| IPv6 for WiFi  | 30+8+40=78 B | (1500-78)/1500=94.8%                        |
+| NewIP for WiFi | 30+8+5=43 B  | (1500-43)/1500=97.13%                       |
+
+## 可变长报头格式
 
 NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
 
@@ -53,6 +65,27 @@ NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0x
 NewIP数据报头（极简模式）解析遇到新bitmap字段时的处理方法：
 
 仅解析当前版本协议中已定义的bitmap字段，从第一个未知语义的bitmap字段开始，跳过后面的所有bitmap字段，直接通过header length定位到报文开始位置并解析报文。如果报头中携带了未知语义的bitmap字段，且未携带header length字段，则丢弃该数据包。
+
+## 可变长地址格式
+
+NewIP采用自解释编码，编码格式如下所示：
+
+| First Byte | Semantics                                                    | 地址段有效范围                                               |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 0x00       | Address is 0                                                 | 【1字节】0 ~ 220 (0x00 ~ 0xDC)                               |
+| 0x01       | Address is 1                                                 |                                                              |
+| 0x02       | Address is 2                                                 |                                                              |
+| ...        | ...                                                          |                                                              |
+| 0xDC       | Address is 220                                               |                                                              |
+| 0xDD       | An 16-bit address, which is 0 + 256 * (0xDD - 0xDD) + the last byte value | 【2字节】221 ~ 255 (0x**DD**DD ~ 0x**DD**FF)                 |
+| 0xDE       | An 16-bit address, which is 0 + 256 * (0xDE - 0xDD) + the last byte value | 【2字节】256 ~ 511 (0x**DE**00 ~ 0x**DE**FF)                 |
+| 0xDF       | An 16-bit address, which is 0 + 256 * (0xDF - 0xDD) + the last byte value | 【2字节】512 ~ 767 (0x**DF**00 ~ 0x**DF**FF)                 |
+| ...        | ...                                                          |                                                              |
+| 0xF0       | An 16-bit address, which is 0 + 256 * (0xF0 - 0xDD) + the last byte value | 【2字节】4864 ~ 5119 (0x**F0**00 ~ 0x**F0**FF)               |
+| 0xF1       | An 16-bit address is followed                                | 【3字节】5120 ~ 65535 (0x**F1** 1400 ~ 0x**F1** FFFF)        |
+| 0xF2       | An 32-bit address is followed                                | 【5字节】65536 ~ 4,294,967,295 (0x**F2** 0001 0000 ~ 0x**F2** FFFF FFFF) |
+| 0xF3       | An 48-bit address is followed                                | 【7字节】4,294,967,296 ~ 281,474,976,710,655 (0x**F3** 0001 0000 0000 ~ 0x**F3** FFFF FFFF FFFF) |
+| 0xFE       | An 56-bit address is followed                                | 【8字节】0 ~ 72,057,594,037,927,935 (0x**FE**00 0000 0000 0000 ~ 0x**FE**FF FFFF FFFF FFFF) |
 
 
 
