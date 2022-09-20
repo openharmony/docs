@@ -187,7 +187,7 @@
   2、完成后，重新安装python3。
 
 
-#### 遇到lsb\_release错误<a name="section5803174135115"></a>
+### 安装kconfiglib过程中遇到lsb\_release错误<a name="section5803174135115"></a>
 
 - **现象描述**
 
