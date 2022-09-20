@@ -1,6 +1,4 @@
-# FAQs About hdc_std Command Usage
-
-
+# hdc_std Command Usage
 
 ## Common Log Commands
 

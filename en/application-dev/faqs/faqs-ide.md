@@ -1,4 +1,4 @@
-# FAQs About IDE Usage
+# IDE Usage
 
 
 ## What Should Do If the Error Message "npm ERR! code SELF_SIGNED_CERT_IN_CHAIN" Is Displayed?

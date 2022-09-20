@@ -1,6 +1,4 @@
-# FAQs About Network and Connection Development
-
-
+# Network and Connection Development
 
 ## What Are the Data Formats Supported by extraData in an HTTP Request?
 
