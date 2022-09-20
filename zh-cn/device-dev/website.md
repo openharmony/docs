@@ -289,6 +289,7 @@
 - 子系统开发
 
   -  内核
+     - [内核概述](kernel/kernel-overview.md)
      - 轻量系统内核
        - [内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
@@ -447,6 +448,7 @@
            - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   -  驱动
+     - [驱动概述](driver/driver-overview-foundation.md)
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
