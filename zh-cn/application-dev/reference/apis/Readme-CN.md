@@ -92,6 +92,7 @@
   - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
   - bundle/[RemoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
   - bundle/[ShortcutInfo (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
+  - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)

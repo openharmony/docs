@@ -48,7 +48,6 @@
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
         - [像素单位](ui/ts-pixel-units.md)
-        - [类型定义](ui/ts-types.md)
       - 声明式语法
         - [描述规范使用说明](ui/ts-syntax-intro.md)
         - 通用UI描述规范
@@ -526,7 +525,8 @@
         - [时间选择弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
-    - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
+    - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
+    - [类型说明](reference/arkui-ts/ts-types.md)
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -757,6 +757,7 @@
       - [PermissionDef (PermissionDef)](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo (RemoteAbilityInfo)](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo (ShortcutInfo)](reference/apis/js-apis-bundle-ShortcutInfo.md)
+      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
