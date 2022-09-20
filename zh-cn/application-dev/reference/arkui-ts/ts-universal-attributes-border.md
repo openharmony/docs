@@ -17,7 +17,7 @@
 | border       | {<br/>width?:&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;EdgeWidth<sup>9+</sup>,<br/>color?: &nbsp;[ResourceColor](ts-types.md#resourcecolor8)&nbsp;\|&nbsp;EdgeColor<sup>9+</sup>,<br/>radius?: &nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;BorderRadiuses<sup>9+</sup>,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;EdgeStyle<sup>9+</sup><br/>} | 统一边框样式设置接口。<br/>-&nbsp;width：设置边框宽度。<br/>-&nbsp;color：设置边框颜色。<br/>-&nbsp;radius：设置边框圆角半径。<br/>-&nbsp;style：设置边框样式。 |
 | borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyle<sup>9+</sup> | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid     |
 | borderWidth  | [Length](ts-types.md#length) \| EdgeWidth<sup>9+</sup> | 设置元素的边框宽度。                               |
-| borderColor  | [ResourceColor](ts-types.mdts-types.md#resourcecolor8) \| EdgeColor<sup>9+</sup> | 设置元素的边框颜色。                               |
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor8) \| EdgeColor<sup>9+</sup> | 设置元素的边框颜色。                               |
 | borderRadius | [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup> | 设置元素的边框圆角半径。                             |
 
 ## EdgeWidth<sup>9+</sup>对象说明
