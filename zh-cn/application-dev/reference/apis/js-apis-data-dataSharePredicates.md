@@ -1,8 +1,8 @@
 # 数据共享谓词
 
-**谓词(DataSharePredicates)** 是用户通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))、删除数据([delete](js-apis-data-dataShare.md#delete))和查询数据([query](js-apis-data-dataShare.md#query))中。
+**谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare.md#update))、删除数据([delete](js-apis-data-dataShare.md#delete))和查询数据([query](js-apis-data-dataShare.md#query))中。
 
-谓词的接口函数与数据库的筛选条件一一对应，用户在使用前需预备数据库相关知识。
+谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
 
 > **说明：** 
 >
@@ -338,7 +338,7 @@ predicates.isNotNull("NAME")
 
 like(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配通配符指定模式的字段。
+该接口用于配置谓词以匹配指定通配符的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -349,9 +349,7 @@ like(field: string, value: string): DataSharePredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的通配符。 |
-
-value为数据库专用通配符，'%'代表零个、一个或多个数字或字符，'_'代表一个单一的数字或字符，不区分大小写。
+| value  | string | 是   | 指示要与谓词匹配的通配符。 <br>'%'代表零个、一个或多个数字或字符，'_'代表一个单一的数字或字符，不区分大小写。|
 
 **返回值：**
 
@@ -370,7 +368,7 @@ predicates.like("NAME", "%os%")
 
 unlike(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词以匹配不类似通配符指定模式的字段。
+该接口用于配置谓词以匹配不类似指定通配符的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
@@ -381,9 +379,7 @@ unlike(field: string, value: string): DataSharePredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的通配符。 |
-
-value为数据库专用通配符，'%'代表零个、一个或多个数字或字符，'_'代表一个单一的数字或字符，不区分大小写。
+| value  | string | 是   | 指示要与谓词匹配的通配符。<br>'%'代表零个、一个或多个数字或字符，'_'代表一个单一的数字或字符，不区分大小写。 |
 
 **返回值：**
 
@@ -402,7 +398,7 @@ predicates.unlike("NAME", "%os%")
 
 glob(field: string, value: string): DataSharePredicates
 
-该接口用于配置谓词匹配通配符指定模式的字段。
+该接口用于配置谓词以匹配指定通配符的字段。
 
 目前仅RDB支持该谓词。
 
@@ -413,9 +409,7 @@ glob(field: string, value: string): DataSharePredicates
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
 | field  | string | 是   | 数据库表中的列名。     |
-| value  | string | 是   | 指示要与谓词匹配的通配符。 |
-
-value为数据库专用通配符，'*'代表零个、一个或多个数字或字符，'?'代表一个单一的数字或字符，区分大小写。
+| value  | string | 是   | 指示要与谓词匹配的通配符。<br>'*'代表零个、一个或多个数字或字符，'?'代表一个单一的数字或字符，区分大小写。|
 
 **返回值：**
 
