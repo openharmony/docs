@@ -122,7 +122,3 @@ The implementation is similar for UDPSocket and TCPSocket. The following uses th
        tcp.off('close');
    }, 30 * 1000);
    ```
-
-## Samples
-The following sample is provided to help you better understand how to develop the socket connection feature:
-- [`Socket`: Socket Connection (eTS) (API 8)](https://gitee.com/openharmony/app_samples/tree/master/Network/Socket)

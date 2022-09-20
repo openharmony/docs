@@ -1,49 +1,51 @@
 # Alert Dialog Box
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-You can set the text content and response callback for an alert dialog box.
+The **<AlertDialog\>** component is used to display an alert dialog box. You can set the text content and response callback for an alert dialog box as needed.
 
 
 ## Attributes
 
-  | Name | Type | Default Value | Description | 
+| Name | Type | Default Value | Description |
 | -------- | -------- | -------- | -------- |
-| show | options: { paramObject1\| paramObject2} | - | Defines and displays the **&lt;AlertDialog&gt;** component. | 
+| show | options: { paramObject1 \| paramObject2} | - | Defines and displays the **<AlertDialog\>** component. |
 
 - paramObject1 parameters
     | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | title | string \|[Resource](../../ui/ts-types.md#resource) |  |  | Title of a dialog box. |
-  | message | string \|[Resource](../../ui/ts-types.md#resource) |  |  | Content of the dialog box. |
+  | title | string \| [Resource](../../ui/ts-types.md#resource-type) | No | - | Title of a dialog box. |
+  | message | string \| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Content of the dialog box. |
   | autoCancel | boolean | No | true | Whether to close the dialog box when the overlay is clicked. |
-  | confirm | {<br/>value: string \|[Resource](../../ui/ts-types.md#resource),<br>fontColor?: Color\|number \|string \|[Resource](../../ui/ts-types.md#resource),<br/>backgroundColor?:Color  \|number\|string\|[Resource](../../ui/ts-types.md#resource),<br>action: () =&gt; void<br/>} <br/> |  |  | Text content, text color, background color, and click callback of the confirm button. |
+  | confirm | {<br/>value: string \| [Resource](../../ui/ts-types.md#resource-type),<br>fontColor?: Color\| number \| string \| [Resource](../../ui/ts-types.md),<br/>backgroundColor?:Color \| number \| string \| [Resource](../../ui/ts-types.md),<br>action: () =&gt; void<br/>} <br/> | No | - | Text content, text color, background color, and click callback of the confirm button. |
   | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay is clicked. |
-  | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
-  | offset | {<br/>dx: Length \|[Resource](../../ui/ts-types.md#resource),<br/>dy: Length  \|[Resource](../../ui/ts-types.md#resource)<br/>} |  |  | Offset of the dialog box relative to the alignment position. |
+  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
+  | offset | {<br/>dx: Length \| [Resource](../../ui/ts-types.md#resource-type),<br/>dy: Length \| [Resource](../../ui/ts-types.md)<br/>} | No | - | Offset of the dialog box relative to the alignment position. |
   | gridCount | number | No | - | Number of grid columns occupied by the width of the dialog box. |
 
 - paramObject2 parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | title | string \|[Resource](../../ui/ts-types.md#resource) | No | - | Title of a dialog box. |
-  | message | string \|[Resource](../../ui/ts-types.md#resource) | Yes | - | Content of the dialog box. |
+  | title | string \| [Resource](../../ui/ts-types.md#resource-type) | No | - | Title of a dialog box. |
+  | message | string \| [Resource](../../ui/ts-types.md#resource-type) | Yes | - | Content of the dialog box. |
   | autoCancel | boolean | No | true | Whether to close the dialog box when the overlay is clicked. |
-  | primaryButton | {<br/>value: string \|[Resource](../../ui/ts-types.md#resource),<br>fontColor?: Color\|number \|string \|[Resource](../../ui/ts-types.md#resource),<br/>backgroundColor?:Color  \|number\|string\|[Resource](../../ui/ts-types.md#resource),<br>action: () =&gt; void<br/>} <br/> |  |  | Text content, text color, background color, and click callback of the primary button. |
-  | secondaryButton | {<br/>value: string \|[Resource](../../ui/ts-types.md#resource),<br>fontColor?: Color\|number \|string \|[Resource](../../ui/ts-types.md#resource),<br/>backgroundColor?:Color  \|number\|string\|[Resource](../../ui/ts-types.md#resource),<br>action: () =&gt; void<br/>} <br/> |  |  | Text content, text color, background color, and click callback of the secondary button. |
+  | primaryButton | {<br/>value: string \| [Resource](../../ui/ts-types.md#resource-type),<br>fontColor?: Color \| number \| string \| [Resource](../../ui/ts-types.md),<br/>backgroundColor?:Color \| number\| string\| [Resource](../../ui/ts-types.md),<br>action: () =&gt; void<br/>} <br/> | No | - | Text content, text color, background color, and click callback of the primary button. |
+  | secondaryButton | {<br/>value: string \|[Resource](../../ui/ts-types.md#resource-type),<br>fontColor?: Color \| number \| string \| [Resource](../../ui/ts-types.md),<br/>backgroundColor?:Color \| number\| string\| [Resource](../../ui/ts-types.md),<br>action: () =&gt; void<br/>} <br/> | No | - | Text content, text color, background color, and click callback of the secondary button. |
   | cancel | () =&gt; void | No | - | Callback invoked when the dialog box is closed after the overlay is clicked. |
-  | alignment | DialogAlignment | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
-  | offset | {<br/>dx: Length \|[Resource](../../ui/ts-types.md#resource),<br/>dy: Length  \|[Resource](../../ui/ts-types.md#resource)<br/>} |  |  | Offset of the dialog box relative to the alignment position. |
+  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | No | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction. |
+  | offset | {<br/>dx: Length \| [Resource](../../ui/ts-types.md#resource-type),<br/>dy: Length  \| [Resource](../../ui/ts-types.md#resource-type)<br/>} | No | - | Offset of the dialog box relative to the alignment position. |
   | gridCount | number | No | - | Number of grid columns occupied by the width of the dialog box. |
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AlertDialogExample {

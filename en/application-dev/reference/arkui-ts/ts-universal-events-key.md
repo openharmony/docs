@@ -1,8 +1,10 @@
 # Key Event
 
+A key event is triggered when a component interacts with a keyboard, remote control, or any other input device with keys.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This method is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -12,58 +14,51 @@ None
 
 ## Events
 
-| Name | Bubble Supported | Description |
+| Name | Bubbling Supported | Description |
 | -------- | -------- | -------- |
-| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when a key event occurs. For details about the event parameters, see [KeyEvent Object](#KeyEvent Object). |
+| onKeyEvent(event: (event?: KeyEvent) =&gt; void) | Yes | Called when the a key event occurs on the bound component in focus. For details about **event**, see [KeyEvent](#keyevent). |
 
 
-### KeyEvent Object
+## KeyEvent
 
 - Attributes
-    | Name | Type | Description | 
+  | Name | Type | Description |
   | -------- | -------- | -------- |
-  | type | KeyType | Type of a key. | 
-  | keyCode | number | Key code. | 
-  | keyText | string | Key value. | 
-  | keySource | KeySource | Type of the input device that triggers the key event. | 
-  | deviceId | number | ID of the input device that triggers the key event. | 
-  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. | 
-  | timestamp | number | Timestamp when the key is pressed. | 
+  | type | [KeyType](#keytype-enums) | Type of a key. |
+  | keyCode | number | Key code. |
+  | keyText | string | Key value. |
+  | keySource | [KeySource](#keysource-enums) | Type of the input device that triggers the key event. |
+  | deviceId | number | ID of the input device that triggers the key event. |
+  | metaKey | number | State of the metakey when the key is pressed. The value **1** means the pressed state, and **0** means the unpressed state. |
+  | timestamp | number | Timestamp when the key is pressed. |
 
 - APIs
-    | Name | Description | 
+  | Name | Description |
   | -------- | -------- |
-  | stopPropagation(): void | Stops the event from bubbling upwards or downwards. | 
+  | stopPropagation(): void | Stops the event from bubbling upwards or downwards. |
 
-- KeyType enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Down | The key is pressed. | 
-  | Up | The key is released. | 
+## KeyType Enums
+
+| Name | Description |
+| -------- | -------- |
+| Down | The key is pressed. |
+| Up | The key is released. |
 
 
-- KeySource enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Unknown | Unknown input device. | 
-  | Keyboard | The input device is a keyboard. | 
+## KeySource Enums
+| Name | Description |
+| -------- | -------- |
+| Unknown  | Unknown input device. |
+| Keyboard | The input device is a keyboard. |
 
-- Common KeyCode description
-    | Value | Behavior | Physical Button | 
-  | -------- | -------- | -------- |
-  | 19 | Upward | Up button. | 
-  | 20 | Downward | Down button. | 
-  | 21 | Leftward | Left button. | 
-  | 22 | Rightward | Right button. | 
-  | 23 | OK | **OK** key on a remote control. | 
-  | 66 | OK | **Enter** key on a keyboard. | 
-  | 160 | OK | **Enter** button on the numeric keypad. | 
+
 
 
 ## Example
 
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct KeyEventExample {

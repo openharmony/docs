@@ -1,58 +1,44 @@
 # Popup控制
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  **说明：**
+>
+>  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
+## 接口
 
 
-## 属性
+| 名称      | 参数类型                                                     | 描述                                                         |
+| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions\|&nbsp;CustomPopupOptions<sup>8+</sup> | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
 
+## PopupOptions类型说明
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions\|&nbsp;CustomPopupOptions | - | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| 名称            | 类型                                                         | 必填 | 描述                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| message         | string                                                       | 是   | 弹窗信息内容。                                               |
+| placementOnTop  | boolean                                                      | 否   | 是否在组件上方显示，默认值为false。                          |
+| primaryButton   | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 |
+| secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 |
+| onStateChange   | (event:{isVisible:&nbsp;boolean })&nbsp;=&gt;&nbsp;void      | 否   | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。    |
 
+## CustomPopupOptions<sup>8+</sup>类型说明
 
-- PopupOptions类型接口说明
-  | 名称 | 类型 | 必填 | 默认值 | 描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | message | string | 是 | - | 弹窗信息内容。 | 
-  | placementOnTop | boolean | 否 | false | 是否在组件上方显示，默认值为false。 | 
-  | primaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 | 
-  | secondaryButton | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 | 
-  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。 | 
-
-- CustomPopupOptions<sup>8+</sup>类型接口说明
-  | 名称 | 类型 | 必填 | 默认值 | 描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | builder | ()&nbsp;=&gt;&nbsp;any | 是 | - | 提示气泡内容的构造器。 |
-  | placement | Placement | 否 | Placement.Bottom | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。 |
-  | maskColor | [Color](../../ui/ts-types.md#颜色类型) | 否 | - | 提示气泡遮障层的颜色。 |
-  | popupColor | [Color](../../ui/ts-types.md#颜色类型) | 否 | - | 提示气泡的颜色。 |
-  | enableArrow | boolean | 否 | true | 是否显示箭头，只有上、下方向的气泡会显示箭头。 |
-  | autoCancel | boolean | 否 | true | 页面有操作时，是否自动关闭气泡 |
-  | onStateChange | (isVisible:&nbsp;boolean)&nbsp;=&gt;&nbsp;void | 否 | - | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
-
-- Placement<sup>8+</sup>枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Left | 气泡提示位于组件左侧。 | 
-  | Right | 气泡提示位于组件右侧。 | 
-  | Top | 气泡提示位于组件上侧。 | 
-  | Bottom | 气泡提示位于组件下侧。 | 
-  | TopLeft | 气泡提示位于组件左上角。 | 
-  | TopRight | 气泡提示位于组件右上角。 | 
-  | BottomLeft | 气泡提示位于组件左下角。 | 
-  | BottomRight | 气泡提示位于组件右下角。 | 
+| 名称          | 类型                                                    | 必填 | 描述                                                         |
+| ------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| builder       | [CustomBuilder](ts-types.md#custombuilder8)             | 是   | 提示气泡内容的构造器。                                       |
+| placement     | [Placement](ts-appendix-enums.md#placement8)            | 否   | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom |
+| maskColor     | [ResourceColor](ts-types.md#resourcecolor)              | 否   | 提示气泡遮障层的颜色。                                       |
+| popupColor    | [ResourceColor](ts-types.md#resourcecolor)              | 否   | 提示气泡的颜色。                                             |
+| enableArrow   | boolean                                                 | 否   | 是否显示箭头，只有上、下方向的气泡会显示箭头。<br/>默认值：true |
+| autoCancel    | boolean                                                 | 否   | 页面有操作时，是否自动关闭气泡<br/>默认值：true              |
+| onStateChange | (event:{isVisible:&nbsp;boolean })&nbsp;=&gt;&nbsp;void | 否   | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。             |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct PopupExample {
@@ -63,7 +49,7 @@ struct PopupExample {
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
-      Text('Custom Popup').fontSize(12)
+      Text('Custom Popup').fontSize(10)
     }.width(100).height(50).backgroundColor(Color.White)
   }
 

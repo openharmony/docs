@@ -87,7 +87,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 | callback | Callback&lt;MediaQueryResult&gt; | 否    | 需要去注册的回调，如果参数缺省则去注册该句柄下所有的回调。 |
 
 **示例：** 
-  ```js
+  ```ts
     import mediaquery from '@ohos.mediaquery'
     
     let listener = mediaquery.matchMediaSync('(orientation: landscape)'); //监听横屏事件
@@ -116,10 +116,8 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
 
 ### 示例
 
-```js
+```ts
 import mediaquery from '@ohos.mediaquery'
-
-let portraitFunc = null
 
 @Entry
 @Component
@@ -139,7 +137,7 @@ struct MediaQueryExample {
   }
 
   aboutToAppear() {
-    portraitFunc = this.onPortrait.bind(this) //bind current js instance
+    let portraitFunc = this.onPortrait.bind(this) //bind current js instance
     this.listener.on('change', portraitFunc)
   }
 

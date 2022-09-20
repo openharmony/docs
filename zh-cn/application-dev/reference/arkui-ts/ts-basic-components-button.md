@@ -1,11 +1,10 @@
 # Button
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供按钮组件。
 
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 权限列表
 
@@ -19,52 +18,52 @@
 
 ## 接口
 
-- Button(options?: {type?: ButtonType, stateEffect?: boolean})
+**方法1：** Button(options?: {type?: ButtonType, stateEffect?: boolean})
 
-  **表1** options参数说明
-  
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | type | ButtonType | 否 | Capsule | 描述按钮风格。 | 
-  | stateEffect | boolean | 否 | true | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 | 
+表1 options参数说明
 
+| 参数名         | 参数类型       | 必填   | 默认值     | 参数描述                              |
+| ----------- | ---------- | ---- | ------- | --------------------------------- |
+| type        | ButtonType | 否    | Capsule | 描述按钮风格。                           |
+| stateEffect | boolean    | 否    | true    | 按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
-- Button(label?: string, options?: { type?: ButtonType, stateEffect?: boolean })
+**方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
-  使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
+使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
-  **表2** value参数说明
-  
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | label | string | 否 | - | 按钮文本内容。 |
-  | options | Object | 否 | - | 见options参数说明。 |
+表2 value参数说明
 
+| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述          |
+| ------- | ------ | ---- | ---- | ------------- |
+| label   | [ResourceStr](ts-types.md#resourcestr8) | 否    | -    | 按钮文本内容。       |
+| options | Object | 否    | -    | 见options参数说明。 |
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| type | ButtonType | Capsule | 设置Button样式。 |
-| stateEffect | boolean | true | 状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。 |
+| 名称          | 参数类型       | 默认值     | 描述                                |
+| ----------- | ---------- | ------- | --------------------------------- |
+| type        | ButtonType | ButtonType.Capsule | 设置Button样式。                       |
+| stateEffect | boolean    | true    | 状态切换时是否开启切换效果，当状态置为false时，点击效果关闭。 |
 
-- ButtonType枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Capsule | 胶囊型按钮（圆角默认为高度的一半）。 | 
-  | Circle | 圆形按钮。 | 
-  | Normal | 普通按钮（默认不带圆角）。 | 
+## ButtonType枚举说明
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 按钮圆角通过[通用属性borderRadius设置](ts-universal-attributes-border.md)（不支持通过border接口设置圆角）。
-> - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
-> - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
-> - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
+| 名称      | 描述                 |
+| ------- | ------------------ |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 圆形按钮。              |
+| Normal  | 普通按钮（默认不带圆角）。      |
+
+>  **说明：**
+>  - 按钮圆角通过[通用属性borderRadius设置](ts-universal-attributes-border.md)（不支持通过border接口设置圆角）。
+>  - 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角始终为高度的一半。
+>  - 当按钮类型为Circle时，borderRadius即为按钮半径，若未设置borderRadius按钮半径则为宽、高中较小值的一半。
+>  - 按钮文本通过[通用文本样式](ts-universal-attributes-text-style.md)进行设置。
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ButtonExample {

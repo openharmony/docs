@@ -488,7 +488,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 let kvManager;
 try {
     console.log('GetAllKVStoreId');
-    kvManager.getAllKVStoreId('apppId').then((data) => {
+    kvManager.getAllKVStoreId('appId').then((data) => {
         console.log('getAllKVStoreId success');
         console.log('size = ' + data.length);
     }).catch((err) => {
@@ -568,17 +568,16 @@ try {
 
 用于提供创建数据库的配置信息。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 参数名  | 参数类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。     |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。     |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。 |
-| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。 |
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步，默认不自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -597,16 +596,15 @@ KVStore数据库类型枚举。
 
 数据库的安全级别枚举。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | 表示数据库不设置安全级别。   |
-| S0  | 1 | 表示数据库的安全级别为公共级别。 |
-| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
+| NO_LEVEL  | 0 | 表示数据库不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| S0  | 1 | 表示数据库的安全级别为公共级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 
 
 ## Constants
@@ -745,7 +743,7 @@ try {
         console.log('getResultSet succeed.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const count = resultSet.getCount();
     console.log("getCount succeed:" + count);
@@ -775,10 +773,10 @@ let kvStore;
 try {
     let resultSet;
     kvStore.getResultSet('batch_test_string_key').then((result) => {
-        console.log('getResultSet succeeed.');
+        console.log('getResultSet succeeded.');
         resultSet = result;
     }).catch((err) => {
-        console.log('getResultSet failed:ed: ' + err);
+        console.log('getResultSet failed: ' + err);
     });
     const position = resultSet.getPosition();
     console.log("getPosition succeed:" + position);
@@ -1249,7 +1247,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1284,7 +1282,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1319,7 +1317,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1354,7 +1352,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1389,7 +1387,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1424,7 +1422,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1458,7 +1456,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1494,7 +1492,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1529,7 +1527,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1564,7 +1562,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1599,7 +1597,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1634,7 +1632,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1669,7 +1667,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1699,7 +1697,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1729,7 +1727,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1764,7 +1762,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1799,7 +1797,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1828,14 +1826,16 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```js
+let total = 10;
+let offset = 1;
 try {
     let query = new distributedData.Query();
     query.notEqualTo("field", "value");
-    query.limit("total", "offset");
+    query.limit(total, offset);
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1869,7 +1869,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1899,7 +1899,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1929,7 +1929,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1964,7 +1964,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-    console.log("dumplicated calls should be ok :" + e);
+    console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -1999,7 +1999,7 @@ try {
     console.log("query is " + query.getSqlLike());
     query = null;
 } catch (e) {
-   console.log("dumplicated calls should be ok :" + e);
+   console.log("duplicated calls should be ok :" + e);
 }
 ```
 
@@ -2060,7 +2060,7 @@ try {
     let sql1 = query.getSqlLike();
     console.log("GetSqlLike sql=" + sql1);
 } catch (e) {
-    console.log("dumplicated calls should be ok : " + e);
+    console.log("duplicated calls should be ok : " + e);
 }
 ```
 
@@ -2296,12 +2296,21 @@ off(event:'dataChange', observer?: Callback&lt;ChangeNotification&gt;): void
 
 ```js
 let kvStore;
-kvStore.on('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
-kvStore.off('dataChange', function (data) {
-    console.log("callback call data: " + data);
-});
+class KvstoreModel {
+    call(data) {
+        console.log("dataChange: " + data);
+    }
+    subscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
+        }
+    }
+    unsubscribeDataChange() {
+        if (kvStore != null) {
+            kvStore.off('dataChange', this.call);
+        }
+    }
+}
 ```
 
 
@@ -2340,10 +2349,10 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -2392,7 +2401,7 @@ try {
     console.log('entries: ' + JSON.stringify(entries));
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
             console.log('PutBatch ' + JSON.stringify(entries));
         }).catch((err) => {
@@ -3048,10 +3057,10 @@ try {
     }
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_number_key', function (err,entrys) {
+        kvStore.getEntries('batch_test_number_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -3100,12 +3109,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -3156,10 +3165,10 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -3212,7 +3221,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -3758,14 +3767,20 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 
@@ -3886,7 +3901,7 @@ try {
         console.log('getSecurityLevel success');
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -3916,7 +3931,7 @@ try {
         console.log('getSecurityLevel fail ' + JSON.stringify(err));
     });
 }catch(e) {
-    console.log('GetSecurityLeve e ' + e);
+    console.log('GetSecurityLevel e ' + e);
 }
 ```
 
@@ -4046,10 +4061,10 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries, async function (err,data) {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entrys) {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key', function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
 }catch(e) {
@@ -4099,12 +4114,12 @@ try {
     console.log('entries: ' + entries);
     kvStore.putBatch(entries).then(async (err) => {
         console.log('putBatch success');
-        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entrys) => {
+        kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
-            console.log('entrys[0].value: ' + JSON.stringify(entrys[0].value));
-            console.log('entrys[0].value.value: ' + entrys[0].value.value);
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
+            console.log('entries[0].value: ' + JSON.stringify(entries[0].value));
+            console.log('entries[0].value.value: ' + entries[0].value.value);
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
         });
@@ -4156,10 +4171,10 @@ try {
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
         query.deviceId('localDeviceId');
-        kvStore.getEntries(query, function (err,entrys) {
+        kvStore.getEntries(query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         });
     });
     console.log('GetEntries success');
@@ -4212,7 +4227,7 @@ try {
         console.log('putBatch success');
         const query = new distributedData.Query();
         query.prefixKey("batch_test");
-        kvStore.getEntries(query).then((entrys) => {
+        kvStore.getEntries(query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -4267,10 +4282,10 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query, function (err,entrys) {
+        kvStore.getEntries('localDeviceId', query, function (err,entries) {
             console.log('getEntries success');
-            console.log('entrys.length: ' + entrys.length);
-            console.log('entrys[0]: ' + JSON.stringify(entrys[0]));
+            console.log('entries.length: ' + entries.length);
+            console.log('entries[0]: ' + JSON.stringify(entries[0]));
         })
     });
     console.log('GetEntries success');
@@ -4325,7 +4340,7 @@ try {
         var query = new distributedData.Query();
         query.deviceId('localDeviceId');
         query.prefixKey("batch_test");
-        kvStore.getEntries('localDeviceId', query).then((entrys) => {
+        kvStore.getEntries('localDeviceId', query).then((entries) => {
             console.log('getEntries success');
         }).catch((err) => {
             console.log('getEntries fail ' + JSON.stringify(err));
@@ -5117,14 +5132,20 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 
 ```js
 let kvStore;
-try {
-    const func = function (data) {
-        console.log('syncComplete ' + data)
-    };
-    kvStore.on('syncComplete', func);
-    kvStore.off('syncComplete', func);
-}catch(e) {
-    console.log('syncComplete e ' + e);
+class KvstoreModel {
+    call(data) {
+        console.log("syncComplete: " + data);
+    }
+    subscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.on('syncComplete', this.call);
+        }
+    }
+    unsubscribeSyncComplete() {
+        if (kvStore != null) {
+            kvStore.off('syncComplete', this.call);
+        }
+    }
 }
 ```
 

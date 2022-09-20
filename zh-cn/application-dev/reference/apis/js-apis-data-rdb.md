@@ -29,7 +29,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | 是 | 指定callback回调函数，返回一个RdbStore。 |
@@ -37,8 +37,13 @@ getRdbStore(context: Context, config: StoreConfig, version: number, callback: As
 **示例：**
 
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
         console.info("Get RdbStore failed, err: " + err)
         return
@@ -59,7 +64,7 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。 |
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。 |
 | config | [StoreConfig](#storeconfig) | 是 | 与此RDB存储相关的数据库配置。 |
 | version | number | 是 | 数据库版本。 |
 
@@ -72,8 +77,13 @@ getRdbStore(context: Context, config: StoreConfig, version: number): Promise&lt;
 **示例：**
 
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用getRdbStore
 const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
     console.log("Get RdbStore successfully.")
 }).catch((err) => {
@@ -92,13 +102,18 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | name | string | 是 | 数据库名称。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 指定callback回调函数。 |
 
 **示例：**
 ```js
-data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Delete RdbStore failed, err: " + err)
         return
@@ -118,7 +133,7 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 **参数**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 应用程序或功能的上下文。 <br>API version 9之前的Context定义见[Context](js-apis-Context.md)。<br>API version 9及之后的Context定义见[Context](js-apis-ability-context.md)。|
+| context | [Context](js-apis-Context.md) | 是 | 应用上下文。|
 | name | string | 是 | 数据库名称。 |
 
 **返回值**：
@@ -128,7 +143,12 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 **示例：**
 ```js
-let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// 获取context后调用deleteRdbStore
+let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Delete RdbStore successfully.")
 }).catch((err) => {
@@ -166,7 +186,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
-同步分布式数据库时指定组网内的远程设备。
+同步分布式数据库时连接到组网内指定的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -191,7 +211,7 @@ predicates.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicates
 
 
-同步分布式数据库时连接到组网内的所有远程设备。
+同步分布式数据库时连接到组网内所有的远程设备。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core。
 
@@ -780,14 +800,7 @@ distinct(): RdbPredicates
 **示例：**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
-}).catch((err) => {
-    console.log("query err.")
-})
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 
@@ -954,6 +967,8 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 ## RdbStore
 
 提供管理关系数据库(RDB)方法的接口。
+
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
 
 
 ### insert
@@ -1205,7 +1220,7 @@ query(rdbPredicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Re
 **返回值**：
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
   ```js
@@ -1266,7 +1281,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **返回值**：
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[ResultSet](../apis/js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
+| Promise&lt;[ResultSet](js-apis-data-resultset.md)&gt; | 指定Promise回调函数。如果操作成功，则返回ResultSet对象。 |
 
 **示例：**
 ```js
@@ -1682,7 +1697,7 @@ try {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-| 名称 | 说明 |
+| 类型 | 说明 |
 | -------- | -------- |
 | number | 表示值类型为数字。 |
 | string | 表示值类型为字符。 |
@@ -1691,13 +1706,13 @@ try {
 
 ## ValuesBucket
 
-用于存储键值对。
+用于存储键值对的类型。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.DistributedDataManager.RelationalStore.Core。
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| [key:&nbsp;string] | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 是 | 用于存储键值对。 |
+| 键类型 | 值类型 |
+| -------- | -------- |
+| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null | 
 
 
 ## SyncMode<sup>8+</sup>

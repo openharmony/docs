@@ -23,8 +23,8 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | Yes   | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
@@ -1350,8 +1350,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 Unsubscribes from sensor data changes.
 
-**Required permission**: ohos.permission.READ_HEALTH_DATA (a system permission)
-
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
@@ -1403,8 +1401,6 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 Unsubscribes from sensor data changes.
-
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1486,6 +1482,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 Unsubscribes from sensor data changes.
+
+**Required permissions**: ohos.permission.ACTIVITY_MOTION
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1717,7 +1715,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
     }
-    console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
@@ -1739,7 +1737,7 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 **Return value**
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field. |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example**
   ```js
@@ -1899,7 +1897,6 @@ Obtains the angle change between two rotation matrices. This API uses a callback
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1967,7 +1964,6 @@ Converts a rotation vector into a rotation matrix. This API uses a callback to r
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2034,7 +2030,6 @@ Converts a rotation vector into a quaternion. This API uses a callback to return
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2101,7 +2096,6 @@ Obtains the device direction based on the rotation matrix. This API uses a callb
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
@@ -2169,8 +2163,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
-      for (var i=0; i < data.length; i++) {
+      for (var i=0; i < data.rotation.length; i++) {
           console.info("data[" + i + "]: " + data[i])
       }
   })
@@ -2204,7 +2197,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
           console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.length; i++) {
+          for (var i=0; i < data.rotation.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
@@ -2418,9 +2411,9 @@ Describes the Hall effect sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable  | Writable  | Description                               |
-| ------ | ------ | ---- | ---- | --------------------------------- |
-| status | number | Yes   | Yes   | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field exists around the device, and **1** means the opposite.|
+| Name  | Type| Readable| Writable| Description                                                        |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | Yes  | Yes  | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field does not exist, and a value greater than **0** means the opposite.|
 
 
 ## MagneticFieldResponse
@@ -2430,11 +2423,11 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable  | Writable  | Description                |
-| ---- | ------ | ---- | ---- | ------------------ |
-| x    | number | Yes   | Yes   | Magnetic field strength on the x-axis, in μT. |
-| y    | number | Yes   | Yes   | Magnetic field strength on the y-axis, in μT. |
-| z    | number | Yes   | Yes   | Magnetic field strength on the z-axis, in μT.|
+| Name| Type| Readable| Writable| Description                        |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | Yes  | Yes  | Magnetic field strength on the x-axis, in μT.|
+| y    | number   | Yes  | Yes  | Magnetic field strength on the y-axis, in μT.|
+| z    | number   | Yes  | Yes  | Magnetic field strength on the z-axis, in μT.|
 
 
 ## MagneticFieldUncalibratedResponse

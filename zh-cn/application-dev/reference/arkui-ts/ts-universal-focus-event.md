@@ -1,28 +1,25 @@
 # 焦点事件
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 事件
 
-| **名称** | **支持冒泡** | **功能描述** | 
-| -------- | -------- | -------- |
-| onFocus(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否 | 当前组件获取焦点时触发的回调。 | 
-| onBlur(callback:()&nbsp;=&gt;&nbsp;void) | 否 | 当前组件失去焦点时触发的回调。 | 
+| **名称**                                     | **支持冒泡** | **功能描述**                   |
+| -------------------------------------------- | ------------ | ------------------------------ |
+| onFocus(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否           | 当前组件获取焦点时触发的回调。 |
+| onBlur(event:()&nbsp;=&gt;&nbsp;void)        | 否           | 当前组件失去焦点时触发的回调。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 支持焦点事件的组件：Button、Text、Image、List、Grid。
+>  **说明：**
+>  支持焦点事件的组件：Button、Text、Image、List、Grid。
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FocusEventExample {

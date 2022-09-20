@@ -1,12 +1,10 @@
 # Context
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> **NOTE**
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 Provides the context for running code, including **applicationInfo** and **resourceManager**.
-
 
 ## Usage
 
@@ -36,7 +34,7 @@ You must extend **AbilityContext** to implement this module.
 
 createBundleContext(bundleName: string): Context;
 
-Creates an application context.
+Creates a context for a given application.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -50,10 +48,10 @@ Creates an application context.
 
 | Type| Description|
 | -------- | -------- |
-| Context | Context of the application created.|
+| Context | Context created.|
 
 **Example**
-    
+
   ```js
   let test = "com.example.test";
   let context = this.context.createBundleContext(test);
@@ -74,9 +72,47 @@ Obtains the context of this application.
 | -------- | -------- |
 | Context | Context obtained.|
 
-**Example**
-    
+**Example**    
+
   ```js
   // This part is mandatory.
   let context = this.context.getApplicationContext();
   ```
+
+
+
+>  **NOTE**
+>
+>  Currently, API version 9 is a Canary version.
+
+## Context.switchArea
+
+switchArea(mode: AreaMode): void
+
+Switches the file area mode.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type                 | Mandatory| Description          |
+| ------ | --------------------- | ---- | -------------- |
+| mode   | [AreaMode](#AreaMode) | Yes  | File area mode.|
+
+**Example**
+
+```js
+var areaMode = 0
+this.context.switchArea(areaMode);
+```
+
+## AreaMode
+
+Describes the file area mode.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Value  |
+| ---- | -------- | ---- |
+| EL1  | number   | 0    |
+| EL2  | number   | 1    |

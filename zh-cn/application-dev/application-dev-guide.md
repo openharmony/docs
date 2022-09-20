@@ -47,15 +47,16 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ### 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ### API参考
 
 API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
 
 内容包括：
--   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/js-components-common-attributes.md)
 -   [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-universal-events-click.md)
+-   [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/js-components-common-attributes.md)
+-   [JS服务卡片UI组件参考](reference/js-service-widget-ui/js-service-widget-file.md)
 -   [接口参考（JS及TS API）](reference/apis/js-apis-DataUriUtils.md)
 -   接口参考（Native API）
     -   [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)

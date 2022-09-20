@@ -195,7 +195,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 import rpc from "@ohos.rpc";
 
-function startBackgroundRunning() {
+function startContinuousTask() {
     let wantAgentInfo = {
         // 点击通知后，将要执行的动作列表
         wants: [
@@ -223,12 +223,19 @@ function startBackgroundRunning() {
     });
 }
 
-function stopBackgroundRunning() {
+function stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
         console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
         console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
+}
+
+async function processAsyncJobs() {
+    // 此处执行具体的长时任务。
+
+    // 长时任务执行完，调用取消接口，释放资源。
+    stopContinuousTask();
 }
 
 let mMyStub;
@@ -262,9 +269,9 @@ export default {
     onStart(want) {
         console.info('ServiceAbility onStart');
         mMyStub = new MyStub("ServiceAbility-test");
-        startBackgroundRunning();
-        // 此处执行后台具体的长时任务。
-        stopBackgroundRunning();
+        // 在执行后台长时任前，调用申请接口。
+        startContinuousTask();
+        processAsyncJobs();
     },
     onStop() {
         console.info('ServiceAbility onStop');
@@ -289,4 +296,4 @@ export default {
 
 基于后台任务管理，有以下相关实例可供参考：
 
-- [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)
+- [`BackgroundTaskManager`：后台任务管理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/BackgroundTaskManager)

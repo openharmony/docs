@@ -1,45 +1,41 @@
 # Divider
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供分隔器组件，分隔不同内容块/内容元素。
 
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 权限列表
 
 无
 
-
 ## 子组件
 
 无
-
 
 ## 接口
 
 Divider()
 
-
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| vertical | boolean | false | 使用水平分割线还是垂直分割线，false:&nbsp;水平分割线，&nbsp;true:垂直分割线。 |
-| color | Color | - | 设置分割线颜色。 |
-| strokeWidth | Length | 1 | 设置分割线宽度。 |
-| lineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle枚举说明) | LineCapStyle.Butt | 设置分割线条的端点样式。 |
+| 名称        | 参数类型                                                  | 默认值            | 描述                                                         |
+| ----------- | --------------------------------------------------------- | ----------------- | ------------------------------------------------------------ |
+| vertical    | boolean                                                   | false             | 使用水平分割线还是垂直分割线，false:&nbsp;水平分割线，&nbsp;true:垂直分割线。 |
+| color       | [ResourceColor](ts-types.md#resourcecolor8)               | -                 | 设置分割线颜色。                                             |
+| strokeWidth | number \| string                                          | 1                 | 设置分割线宽度。                                             |
+| lineCap     | [LineCapStyle](ts-appendix-enums.md#linecapstyle枚举说明) | LineCapStyle.Butt | 设置分割线条的端点样式。                                     |
 
 
 ## 事件
 
 不支持通用事件。
 
-
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DividerExample {

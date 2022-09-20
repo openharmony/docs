@@ -39,7 +39,7 @@ Adds a path to this path.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164873.png)
+  ![img](figures/en-us_image_0000001173164873.png)
 
 ## setTransform
 
@@ -82,7 +82,7 @@ Sets the path transformation matrix.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125208.png)
+  ![img](figures/en-us_image_0000001127125208.png)
 
 ## closePath
 
@@ -115,7 +115,7 @@ Moves the current point of the path back to the start point of the path, and dra
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125202.png)
+  ![img](figures/en-us_image_0000001127125202.png)
 
 ## moveTo
 
@@ -157,7 +157,7 @@ Moves the current coordinate point of the path to the target point, without draw
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164869.png)
+  ![img](figures/en-us_image_0000001173164869.png)
 
 ## lineTo
 
@@ -200,7 +200,7 @@ Draws a straight line from the current point to the target point.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127285024.png)
+  ![img](figures/en-us_image_0000001127285024.png)
 
 ## bezierCurveTo
 
@@ -244,7 +244,7 @@ Draws a cubic bezier curve on the canvas.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324783.png)
+  ![img](figures/en-us_image_0000001173324783.png)
 
 ## quadraticCurveTo
 
@@ -286,7 +286,7 @@ Draws a quadratic curve on the canvas.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164871.png)
+  ![img](figures/en-us_image_0000001173164871.png)
 
 ## arc
 
@@ -329,7 +329,7 @@ Draws an arc on the canvas.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164867.png)
+  ![img](figures/en-us_image_0000001173164867.png)
 
 ## arcTo
 
@@ -371,7 +371,7 @@ Draws an arc based on the radius and points on the arc.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125204.png)
+  ![img](figures/en-us_image_0000001127125204.png)
 
 ## ellipse
 
@@ -416,7 +416,7 @@ Draws an ellipse in the specified rectangular region.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324787.png)
+  ![img](figures/en-us_image_0000001173324787.png)
 
 ## rect
 
@@ -457,4 +457,4 @@ Creates a rectangle.
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125212.png)
+  ![img](figures/en-us_image_0000001127125212.png)

@@ -27,8 +27,12 @@ The OpenHarmony Markup Language (HML) is an HTML-like language that allows you t
   <text> {{content[1]}} </text>
 </div>
 ```
-
-
+```
+/*xxx.css*/
+.container{
+    margin: 200px;
+}
+```
 ```
 // xxx.js
 export default {
@@ -41,11 +45,13 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > - To make the array data modification take effect, use the splice method to change array items.
 >
 > - ECMAScript 6 (ES6) syntax is not supported in HML.
 
+![en-us_image_0000001118642003](figures/en-us_image_0000001118642003.png)
 
 ## Common Event Binding
 
@@ -127,17 +133,19 @@ Events can be written in the following formats:
   }
   ```
 
+![en-us_image_0000001118642002](figures/en-us_image_0000001118642002.gif)
 
 ## Bubbling Event Binding<sup>5+</sup>
 
 Bubbling event binding covers the following:
 
-- Bind an event callback for event bubbling: on:{event}.bubble. on:{event} is equivalent to on:{event}.bubble.
+- Bind an event callback for event bubbling: **on:{event}.bubble**. **on:{event}** is equivalent to **on:{event}.bubble**.
 
-- Bind an event callback, but stop the event from bubbling upwards: grab:{event}.bubble. grab:{event} is equivalent to grab:{event}.bubble.
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-  > For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md)
-
+- Bind an event callback, but stop the event from bubbling upwards: **grab:{event}.bubble**. **grab:{event}** is equivalent to **grab:{event}.bubble**.
+  > **NOTE**
+  >
+> For details about bubbling events, see [Universal Events](../reference/arkui-js/js-components-common-events.md).
+  
 - Example
 
   ```
@@ -146,7 +154,7 @@ Bubbling event binding covers the following:
      <!-- Bind an event callback for event bubbling.5+ -->
       <div on:touchstart.bubble="touchstartfunc"></div>
       <div on:touchstart="touchstartfunc"></div>
-      <!-- Bind an event callback, but stop the event from bubbling upwards. 5+ -->
+      <!-- Bind an event callback, but stop the event from bubbling upwards.5+ -->
       <div grab:touchstart.bubble="touchstartfunc"></div>
       <div grab:touchstart="touchstartfunc"></div>
       <!-- Bind an event callback for event bubbling.6+ -->
@@ -171,7 +179,8 @@ Bubbling event binding covers the following:
   }
   ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > Events bound using a traditional statement (such as onclick) will bubble only when the API version in use is 6 or later.
 
 ## Capturing Event Binding<sup>5+</sup>
@@ -180,9 +189,9 @@ Touch events can be captured. In the capture phase, which precedes the bubbling 
 
 Event capturing binding includes:
 
-- Bind an event callback for event capturing: on:{event}.capture.
+- Bind an event callback for event capturing: **on:{event}.capture**.
 
-- Bind an event callback, but stop the event from being captured during downward transfer: grab:{event}.capture.
+- Bind an event callback, but stop the event from being captured during downward transfer: **grab:{event}.capture**.
 
 - Example
 
@@ -248,9 +257,9 @@ export default {
 }
 ```
 
-The tid attribute accelerates the for loop and improves the re-rendering efficiency when data in a loop changes.
+The **tid** attribute accelerates the for loop and improves the re-rendering efficiency when data in a loop changes.
 
-The tid attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, tid="id" indicates that the id attribute of each element is its unique ID.
+The **tid** attribute specifies the unique ID of each element in the array. If it is not specified, the index of each element in the array is used as the ID. For example, **tid="id"** indicates that the **id** attribute of each element is its unique ID.
 
 The for loop supports the following statements:
 
@@ -260,17 +269,18 @@ The for loop supports the following statements:
 
 - for="(i, v) in array": i indicates the element index, and v indicates the element variable. All elements of the array object will be looped through.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
+> **NOTE**
+>
 > - Each element in the array must have the data attribute specified by tid. Otherwise, an exception may occur.
 >
 > - The attribute specified by tid in the array must be unique. Otherwise, performance loss occurs. In the above example, only id and name can be used as tid because they are unique fields.
 >
 > - The tid field does not support expressions.
 
-
+![en-us_image_0000001118642001](figures/en-us_image_0000001118642001.gif)
 ## Conditional Rendering
 
-There are two ways to implement conditional rendering: if-elif-else or show. In if-elif-else, when the if statement evaluates to false, the component is not built in the VDOM and is not rendered. For show, when show is false, the component is not rendered but is built in the VDOM. In addition, the if-elif-else statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
+There are two ways to implement conditional rendering: **if-elif-else** or **show**. In **if-elif-else**, when the if statement evaluates to **false**, the component is not built in the VDOM and is not rendered. For show, when **show** is **false**, the component is not rendered but is built in the VDOM. In addition, the **if-elif-else** statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
 
 
 ```
@@ -278,8 +288,8 @@ There are two ways to implement conditional rendering: if-elif-else or show. In 
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
   <button class="btn" type="capsule" value="toggleDisplay" onclick="toggleDisplay"></button>
-  <text if="{{visible}}"> Hello-World1 </text>
-  <text elif="{{display}}"> Hello-World2 </text>
+  <text if="{{visible}}"> Hello-world1 </text>
+  <text elif="{{display}}"> Hello-world2 </text>
   <text else> Hello-World </text>
 </div>
 ```
@@ -315,8 +325,9 @@ export default {
 }
 ```
 
-In the optimized rendering (show), if show is true, the node is rendered properly; if it is false, the display style will be none.
+![en-us_image_0000001118642004](figures/en-us_image_0000001118642004.gif)
 
+In the optimized rendering (**show**), if **show** is **true**, the node is rendered properly; if it is false, the display style will be none.
 
 ```
 <!-- xxx.hml -->
@@ -353,13 +364,15 @@ export default {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> Do not use for and if attributes at the same time in an element.
+> **NOTE**
+>
+> Do not use **for** and **if** attributes at the same time in an element.
+
+![en-us_image_0000001118642005](figures/en-us_image_0000001118642005.gif)
 
 ## Logic Control Block
 
-\<block> makes loop rendering and conditional rendering more flexible. A \<block> will not be compiled as a real component. **NOTE** that the \<block> tag supports only the for and if attributes.
-
+**\<block>** makes loop rendering and conditional rendering more flexible. A \<block> will not be compiled as a real component. Note that the **\<block>** tag supports only the for and if attributes.
 
 ```
 <!-- xxx.hml -->
@@ -390,10 +403,11 @@ export default {
 }
 ```
 
+![en-us_image_0000001118642006](figures/en-us_image_0000001118642006.png)
+
 ## Template Reference
 
-HML supports using elements to reference template files. For details, see Custom Components.
-
+HML supports using `element` to reference template files. For details, see [Custom Components](../reference/arkui-js/js-components-custom-basic-usage.md).
 
 ```
 <!-- template.hml -->

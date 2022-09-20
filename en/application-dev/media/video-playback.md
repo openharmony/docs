@@ -445,8 +445,3 @@ export class VideoPlayerDemo {
   }
 }
 ```
-
-## Samples
-The following samples are provided to help you better understand how to develop video playback:
-
-- [`VideoPlayer`: Video Playback (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/media/VideoPlayer)

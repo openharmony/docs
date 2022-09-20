@@ -10,11 +10,12 @@ import image from '@ohos.multimedia.image';
 ```
 
 ## image.createPixelMap<sup>8+</sup>
+
 createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<PixelMap>
 
 通过属性创建PixelMap，通过Promise返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -33,6 +34,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then((pixelmap) => {
@@ -45,7 +47,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 通过属性创建PixelMap，通过回调函数返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -59,6 +61,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
         })
@@ -70,7 +73,7 @@ image.createPixelMap(color, opts, (pixelmap) => {
 
  ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                    | 类型    | 可读 | 可写 | 说明                       |
 | ----------------------- | ------- | ---- | ---- | -------------------------- |
@@ -82,7 +85,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 读取图像像素数据，结果写入ArrayBuffer里，使用Promise形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -99,10 +102,11 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer).then(() => {
-    console.log('readPixelsToBuffer succeeded.');  //符合条件则进入 
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer).then(() => {
+    console.log('Succeeded in reading image pixel data.');  //符合条件则进入 
 }).catch(error => {
-    console.log('readPixelsToBuffer failed.');  //不符合条件则进入
+    console.log('Failed to read image pixel data.');  //不符合条件则进入
 })
 ```
 
@@ -112,7 +116,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取图像像素数据，结果写入ArrayBuffer里，使用callback形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -124,11 +128,12 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-pixelmap.readPixelsToBuffer(ReadBuffer, (err, res) => {
+const readBuffer = new ArrayBuffer(400);
+pixelmap.readPixelsToBuffer(readBuffer, (err, res) => {
     if(err) {
-        console.log('readPixelsToBuffer failed.');  //不符合条件则进入
+        console.log('Failed to read image pixel data.');  //不符合条件则进入
     } else {
-        console.log('readPixelsToBuffer succeeded.');  //符合条件则进入
+        console.log('Succeeded in reading image pixel data.');  //符合条件则进入
     }
 })
 ```
@@ -139,7 +144,7 @@ readPixels(area: PositionArea): Promise\<void>
 
 读取区域内的图片数据，使用Promise形式返回读取结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -156,10 +161,11 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-pixelmap.readPixels(Area).then((data) => {
-    console.log('readPixels succeeded.'); //符合条件则进入
+const area = new ArrayBuffer(400);
+pixelmap.readPixels(area).then(() => {
+    console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
 }).catch(error => {
-    console.log('readPixels failed.'); //不符合条件则进入
+    console.log('Failed to read the image data in the area.'); //不符合条件则进入
 })
 ```
 
@@ -169,7 +175,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 读取区域内的图片数据，使用callback形式返回读取结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -181,6 +187,8 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if(pixelmap == undefined){
@@ -203,7 +211,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 将PixelMap写入指定区域内，使用Promise形式返回写入结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：** 
 
@@ -221,6 +229,7 @@ writePixels(area: PositionArea): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( pixelmap => {
@@ -256,21 +265,22 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 将PixelMap写入指定区域内，使用callback形式返回写入结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：** 
 
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback: | AsyncCallback\<void>           | 是   | 获取回调，失败时error会返回错误信息。 |
+| callback | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
 ```js
-pixelmap.writePixels(Area, (error) => {
+const area = new ArrayBuffer(400);
+pixelmap.writePixels(area, (error) => {
     if (error!=undefined) {
-		console.info('writePixels failed.');
+		console.info('Failed to write pixelmap into the specified area.');
 	} else {
 	    const readArea = {
             pixels: new ArrayBuffer(20),
@@ -288,7 +298,7 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用Promise形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -305,7 +315,10 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 **示例：**
 
 ```js
-PixelMap.writeBufferToPixels(color).then(() => {
+const color = new ArrayBuffer(96);
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Uint88Array(color);
+pixelMap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -318,7 +331,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 读取缓冲区中的图片数据，结果写入PixelMap中，使用callback形式返回。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -330,7 +343,10 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-PixelMap.writeBufferToPixels(color, function(err) {
+const color = new ArrayBuffer(96);\
+const pixelMap = new ArrayBuffer(400);
+let bufferArr = new Uint88Array(color);
+pixelMap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
@@ -346,7 +362,7 @@ getImageInfo(): Promise\<ImageInfo>
 
 获取图像像素信息，使用Promise形式返回获取的图像像素信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -357,7 +373,8 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```js
-PixelMap.getImageInfo().then(function(info) {
+const pixelMap = new ArrayBuffer(400);
+pixelMap.getImageInfo().then(function(info) {
     console.log("Succeeded in obtaining the image pixel map information.");
 }).catch((err) => {
     console.error("Failed to obtain the image pixel map information.");
@@ -370,7 +387,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图像像素信息，使用callback形式返回获取的图像像素信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -382,9 +399,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```js
 pixelmap.getImageInfo((imageInfo) => { 
-    console.log("getImageInfo succeeded.");
-}).catch((err) => {
-    console.error("getImageInfo failed.");
+    console.log("Succeeded in obtaining the image pixel map information.");
 })
 ```
 
@@ -394,7 +409,7 @@ getBytesNumberPerRow(): number
 
 获取图像像素每行字节数。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -405,7 +420,10 @@ getBytesNumberPerRow(): number
 **示例：**
 
 ```js
-image.createPixelMap(clolr, opts, (err,pixelmap) => {
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err,pixelmap) => {
     let rowCount = pixelmap.getBytesNumberPerRow();
 })
 ```
@@ -416,7 +434,7 @@ getPixelBytesNumber(): number
 
 获取图像像素的总字节数。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -436,7 +454,7 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **返回值：**
 
@@ -447,11 +465,14 @@ release():Promise\<void>
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -462,7 +483,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
@@ -473,11 +494,14 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint88Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (pixelmap) => {
     pixelmap.release().then(() => {
-	    console.log('release succeeded.');
+	    console.log('Succeeded in releasing pixelmap object.');
     }).catch(error => {
-	    console.log('release failed.');
+	    console.log('Failed to release pixelmap object.');
     })
 })
 ```
@@ -488,7 +512,7 @@ createImageSource(uri: string): ImageSource
 
 通过传入的uri创建图片源实例。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -515,13 +539,13 @@ createImageSource(fd: number): ImageSource
 
 通过传入文件描述符来创建图片源实例。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| fd     | number | 是   | 文件描述符fd。 |
+| 参数名 | 类型   | 必填 | 说明          |
+| ------ | ------ | ---- | ------------- |
+| fd     | number | 是   | 文件描述符fd。|
 
 **返回值：**
 
@@ -532,7 +556,7 @@ createImageSource(fd: number): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0);
+const imageSourceApi = image.createImageSource(0)
 ```
 
 ## ImageSource
@@ -541,7 +565,7 @@ const imageSourceApi = image.createImageSource(0);
 
 ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -553,7 +577,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 获取指定序号的图片信息，使用callback形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -580,7 +604,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 获取图片信息，使用callback形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -592,9 +616,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 ```js
 imageSourceApi.getImageInfo(imageInfo => { 
-    console.log('getImageInfo succeeded.');
-}).catch(error => {
-	console.log('getImageInfo failed.');
+    console.log('Succeeded in obtaining the image information.');
 })
 ```
 
@@ -604,7 +626,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 获取图片信息，使用Promise形式返回图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -623,9 +645,9 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 ```js
 imageSourceApi.getImageInfo(0)
     .then(imageInfo => {
-		console.log('getImageInfo succeeded.');
+		console.log('Succeeded in obtaining the image information.');
 	}).catch(error => {
-		console.log('getImageInfo failed.');
+		console.log('Failed to obtain the image information.');
 	})
 ```
 
@@ -635,7 +657,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
  **参数：**
 
@@ -655,9 +677,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 ```js
 imageSourceApi.getImageProperty("BitsPerSample")
     .then(data => {
-		console.log('getImageProperty succeeded.');
-	}).catch(error => {
-		console.log('getImageProperty failed.');
+		console.log('Succeeded in getting the value of the specified attribute key of the image.');
 	})
 ```
 
@@ -667,7 +687,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
  **参数：**
 
@@ -681,9 +701,9 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 ```js
 imageSourceApi.getImageProperty("BitsPerSample",(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -694,7 +714,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 
 获取图片指定属性键的值，callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -707,11 +727,12 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```js
-imageSourceApi.getImageProperty("BitsPerSample",Property,(error,data) => { 
+const property = new ArrayBuffer(400);
+imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
     if(error) {
-        console.log('getImageProperty failed.');
+        console.log('Failed to get the value of the specified attribute key of the image.');
     } else {
-        console.log('getImageProperty succeeded.');
+        console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
@@ -722,7 +743,7 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -740,9 +761,9 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 ```js
 imageSourceApi.createPixelMap().then(pixelmap => {
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object through image decoding parameters.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object through image decoding parameters.');
 })
 ```
 
@@ -752,7 +773,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -764,9 +785,9 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 ```js
 imageSourceApi.createPixelMap(pixelmap => { 
-    console.log('createPixelMap succeeded.');
+    console.log('Succeeded in creating pixelmap object.');
 }).catch(error => {
-    console.log('createPixelMap failed.');
+    console.log('Failed to create pixelmap object.');
 })
 ```
 
@@ -776,7 +797,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 通过图片解码参数创建PixelMap对象。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -788,11 +809,10 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```js
+const decodingOptions = new ArrayBuffer(400);
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
-    console.log('createPixelMap succeeded.');
-}).catch(error => {
-    console.log('createPixelMap failed.');
-}) 
+    console.log('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### release
@@ -801,7 +821,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片源实例，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
@@ -814,8 +834,6 @@ release(callback: AsyncCallback\<void>): void
 ```js
 imageSourceApi.release(() => { 
     console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
 })
 ```
 
@@ -825,7 +843,7 @@ release(): Promise\<void>
 
 释放图片源实例，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
@@ -837,9 +855,9 @@ release(): Promise\<void>
 
 ```js
 imageSourceApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing the image source instance.');
 }).catch(error => {
-    console.log('release failed.');
+    console.log('Failed to release the image source instance.');
 })
 ```
 
@@ -849,7 +867,7 @@ createImagePacker(): ImagePacker
 
 创建ImagePacker实例。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **返回值：**
 
@@ -869,7 +887,7 @@ const imagePackerApi = image.createImagePacker();
 
 ### 属性
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
@@ -881,7 +899,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -895,7 +913,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 ```js
 let packOpts = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(ImageSourceApi, packOpts, data => {})
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
 ### packing
@@ -904,7 +923,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -922,8 +941,9 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(ImageSourceApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const imageSourceApi = new ArrayBuffer(400);
+imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
 	}).catch(error => {
@@ -937,7 +957,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 图片压缩或重新打包，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -950,11 +970,12 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts, data => { 
-    console.log('packing succeeded.');
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    console.log('Succeeded in packing the image.');
 }).catch(error => {
-	console.log('packing failed.');
+	console.log('Failed to pack the image.');
 })
 ```
 
@@ -964,7 +985,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 图片压缩或重新打包，使用Promise形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -982,12 +1003,13 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:["image/jpeg"], quality:98 }
-imagePackerApi.packing(PixelMapApi, packOpts)
+let packOpts = { format:"image/jpeg", quality:98 }
+const pixelMapApi = new ArrayBuffer(400);
+imagePackerApi.packing(pixelMapApi, packOpts)
     .then( data => {
-	    console.log('packing succeeded.');
+	    console.log('Succeeded in packing the image.');
 	}).catch(error => {
-	    console.log('packing failed.');
+	    console.log('Failed to pack the image.');
 	})
 ```
 
@@ -997,7 +1019,7 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片打包实例，使用callback形式返回结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
@@ -1009,9 +1031,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 imagePackerApi.release(()=>{ 
-    console.log('release succeeded.');
-}).catch(error => {
-	console.log('release failed.');
+    console.log('Succeeded in releasing image packaging.');
 })
 ```
 
@@ -1021,7 +1041,7 @@ release(): Promise\<void>
 
 释放图片打包实例，使用Promise形式返回释放结果。
 
-**系统能力：** SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 
@@ -1033,396 +1053,18 @@ release(): Promise\<void>
 
 ```js
 imagePackerApi.release().then(()=>{
-    console.log('release succeeded.');
+    console.log('Succeeded in releasing image packaging.');
 }).catch((error)=>{ 
-    console.log('release failed.'); 
+    console.log('Failed to release image packaging.'); 
 }) 
 ```
 
-## image.createImageReceiver<sup>9+</sup>
-
-createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
-
-通过宽、高、图片格式、容量创建ImageReceiver实例。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| width    | number | 是   | 图像的默认宽度。       |
-| height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式。             |
-| capacity | number | 是   | 同时访问的最大图像数。 |
-
-**返回值：**
-
-| 类型                             | 说明                                    |
-| -------------------------------- | --------------------------------------- |
-| [ImageReceiver](#imagereceiver9) | 如果操作成功，则返回ImageReceiver实例。 |
-
-**示例：**
-
-```js
-var receiver = image.createImageReceiver(8192, 8, 4, 8);
-```
-
-## ImageReceiver<sup>9+</sup>
-
-图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
-
-在调用以下方法前需要先创建ImageReceiver实例。
-
-### 属性
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
-
-| 名称                  | 类型                         | 可读 | 可写 | 说明               |
-| --------------------- | ---------------------------- | ---- | ---- | ------------------ |
-| size<sup>9+</sup>     | [Size](#size)                | 是   | 否   | 图片大小。         |
-| capacity<sup>9+</sup> | number                       | 是   | 否   | 同时访问的图像数。 |
-| format<sup>9+</sup>   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
-
-### getReceivingSurfaceId<sup>9+</sup>
-
-getReceivingSurfaceId(callback: AsyncCallback\<string>): void
-
-用于获取一个surface id供Camera或其他组件使用。使用callback返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型                   | 必填 | 说明                       |
-| -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<string> | 是   | 回调函数，返回surface id。 |
-
-**示例:**
-
-```js
- receiver.getReceivingSurfaceId((err, id) => { 
-    if(err) {
-        console.log('getReceivingSurfaceId failed.');
-    } else {
-        console.log('getReceivingSurfaceId succeeded.');
-    }
-});
-```
-
-### getReceivingSurfaceId<sup>9+</sup>
-
-getReceivingSurfaceId(): Promise\<string>
-
-用于获取一个surface id供Camera或其他组件使用。使用promise返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<string> | 异步返回surface id。 |
-
-**示例：**
-
-```js
-receiver.getReceivingSurfaceId().then( id => { 
-    console.log('getReceivingSurfaceId succeeded.');
-}).catch(error => {
-    console.log('getReceivingSurfaceId failed.');
-})
-```
-
-### readLatestImage<sup>9+</sup>
-
-readLatestImage(callback: AsyncCallback\<Image>): void
-
-从ImageReceiver读取最新的图片，并使用callback返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型                            | 必填 | 说明                     |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回最新图像。 |
-
-**示例：**
-
-```js
-receiver.readLatestImage((err, img) => { 
-    if(err) {
-        console.log('readLatestImage failed.');
-    } else {
-        console.log('readLatestImage succeeded.');
-    }
-});
-```
-
-### readLatestImage<sup>9+</sup>
-
-readLatestImage(): Promise\<Image>
-
-从ImageReceiver读取最新的图片，并使用promise返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**返回值：**
-
-| 类型                      | 说明               |
-| ------------------------- | ------------------ |
-| Promise<[Image](#image8)> | 异步返回最新图片。 |
-
-**示例：**
-
-```js
-receiver.readLatestImage().then(img => {
-    console.log('readLatestImage succeeded.');
-}).catch(error => {
-    console.log('readLatestImage failed.');
-})
-```
-
-### readNextImage<sup>9+</sup>
-
-readNextImage(callback: AsyncCallback\<Image>): void
-
-从ImageReceiver读取下一张图片，并使用callback返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型                            | 必填 | 说明                       |
-| -------- | ------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回下一张图片。 |
-
-**示例：**
-
-```js
-receiver.readNextImage((err, img) => { 
-    if(err) {
-        console.log('readNextImage failed.');
-    } else {
-        console.log('readNextImage succeeded.');
-    }
-});
-```
-
-### readNextImage<sup>9+</sup>
-
-readNextImage(): Promise\<Image>
-
-从ImageReceiver读取下一张图片，并使用promise返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**返回值：**
-
-| 类型                      | 说明                 |
-| ------------------------- | -------------------- |
-| Promise<[Image](#image9)> | 异步返回下一张图片。 |
-
-**示例：**
-
-```js
-receiver.readNextImage().then(img => {
-    console.log('readNextImage succeeded.');
-}).catch(error => {
-    console.log('readNextImage failed.');
-})
-```
-
-### on('imageArrival')<sup>9+</sup>
-
-on(type: 'imageArrival', callback: AsyncCallback\<void>): void
-
-接收图片时注册回调。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型                 | 必填 | 说明                                                   |
-| -------- | -------------------- | ---- | ------------------------------------------------------ |
-| type     | string               | 是   | 注册事件的类型，固定为'imageArrival'，接收图片时触发。 |
-| callback | AsyncCallback\<void> | 是   | 注册的事件回调。                                       |
-
-**示例：**
-
-```js
-receiver.on('imageArrival', () => {})
-```
-
-### release<sup>9+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-释放ImageReceiver实例并使用回调返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**参数：**
-
-| 名称     | 类型                 | 必填 | 说明                     |
-| -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回操作结果。 |
-
-**示例：**
-
-```js
-receiver.release(() => {})
-```
-
-### release<sup>9+</sup>
-
-release(): Promise\<void>
-
-释放ImageReceiver实例并使用promise返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
-
-**返回值：**
-
-| 类型           | 说明               |
-| -------------- | ------------------ |
-| Promise\<void> | 异步返回操作结果。 |
-
-**示例：**
-
-```js
-receiver.release().then(() => {
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-})
-```
-
-## Image<sup>9+</sup>
-
-提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage9)和[readLatestImage](#readlatestimage9)接口时会返回image。
-
-### 属性
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
-
-| 名称                  | 类型               | 可读 | 可写 | 说明                                               |
-| --------------------- | ------------------ | ---- | ---- | -------------------------------------------------- |
-| clipRect<sup>9+</sup> | [Region](#region7) | 是   | 是   | 要裁剪的图像区域。                                 |
-| size<sup>9+</sup>     | [Size](#size)      | 是   | 否   | 图像大小。                                         |
-| format<sup>9+</sup>   | number             | 是   | 否   | 图像格式，参考[PixelMapFormat](#pixelmapformat7)。 |
-
-### getComponent<sup>9+</sup>
-
-getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>): void
-
-根据图像的组件类型从图像中获取组件缓存并使用callback返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**参数：**
-
-| 名称          | 类型                                    | 必填 | 说明                 |
-| ------------- | --------------------------------------- | ---- | -------------------- |
-| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。     |
-| callback      | AsyncCallback<[Component](#component9)> | 是   | 用于返回组件缓冲区。 |
-
-**示例：**
-
-```js
-img.getComponent(4, (err, component) => {
-    if(err) {
-        console.log('getComponent failed.');
-    } else {
-        console.log('getComponent succeeded.');
-    }
-})
-```
-
-### getComponent<sup>9+</sup>
-
-getComponent(componentType: ComponentType): Promise\<Component>
-
-根据图像的组件类型从图像中获取组件缓存并使用Promise方式返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**参数：**
-
-| 名称          | 类型                             | 必填 | 说明             |
-| ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。 |
-
-**返回值：**
-
-| 类型                              | 说明                              |
-| --------------------------------- | --------------------------------- |
-| Promise<[Component](#component9)> | 用于返回组件缓冲区的promise实例。 |
-
-**示例：**
-
-```js
-img.getComponent(4).then(component => { })
-```
-
-### release<sup>9+</sup>
-
-release(callback: AsyncCallback\<void>): void
-
-释放当前图像并使用callback返回结果。
-
-在接收另一个图像前必须先释放对应资源。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**参数：**
-
-| 名称     | 类型                 | 必填 | 说明           |
-| -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
-
-**示例：**
-
-```js
-img.release(() =>{ 
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-}) 
-```
-
-### release<sup>9+</sup>
-
-release(): Promise\<void>
-
-释放当前图像并使用Promise方式返回结果。
-
-在接收另一个图像前必须先释放对应资源。
-
-**系统能力：** SystemCapability.Multimedia.Image.Core
-
-**返回值：**
-
-| 类型           | 说明                  |
-| -------------- | --------------------- |
-| Promise\<void> | promise返回操作结果。 |
-
-**示例：**
-
-```js
-img.release().then(() =>{
-    console.log('release succeeded.');
-}).catch(error => {
-    console.log('release failed.');
-})
-```
 
 ## PositionArea<sup>7+</sup>
 
 表示图片指定区域内的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -1435,7 +1077,7 @@ img.release().then(() =>{
 
 表示图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
@@ -1445,7 +1087,7 @@ img.release().then(() =>{
 
 表示图片尺寸。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -1456,7 +1098,7 @@ img.release().then(() =>{
 
 枚举，图片像素格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称      | 默认值 | 描述              |
 | --------- | ------ | ----------------- |
@@ -1464,49 +1106,25 @@ img.release().then(() =>{
 | RGBA_8888 | 3      | 格式为RGBA_8888。 |
 | RGB_565   | 2      | 格式为RGB_565。   |
 
-## AlphaType<sup>9+</sup>
 
-枚举，图像的透明度类型。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
-
-| 名称     | 默认值 | 描述                    |
-| -------- | ------ | ----------------------- |
-| UNKNOWN  | 0      | 未知透明度。            |
-| OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
-
-## ScaleMode<sup>9+</sup>
-
-枚举，图像的缩放模式。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
-
-| 名称            | 默认值 | 描述                                               |
-| --------------- | ------ | -------------------------------------------------- |
-| CENTER_CROP     | 1      | 缩放图像以填充目标图像区域并居中裁剪区域外的效果。 |
-| FIT_TARGET_SIZE | 2      | 图像适合目标尺寸的效果。                           |
 
 ## InitializationOptions<sup>8+</sup>
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Code
 
 | 名称                   | 类型                               | 可读 | 可写 | 说明           |
 | ---------------------- | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup> | [AlphaType](#alphatype9)           | 是   | 是   | 透明度。       |
 | editable               | boolean                            | 是   | 是   | 是否可编辑。   |
 | pixelFormat            | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。     |
-| scaleMode<sup>9+</sup> | [ScaleMode](#scalemode9)           | 是   | 是   | 缩略值。       |
 | size                   | [Size](#size)                      | 是   | 是   | 创建图片大小。 |
 
 ## DecodingOptions<sup>7+</sup>
 
 图像解码设置选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -1516,13 +1134,13 @@ PixelMap的初始化选项。
 | desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。   |
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
-| index              | number                              | 是   | 是   | 解码图片序号     |
+| index              | number                             | 是   | 是   | 解码图片序号。   |
 
 ## Region<sup>7+</sup>
 
 表示区域信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -1534,7 +1152,7 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 可读 | 可写 | 说明           |
 | ------- | ------ | ---- | ---- | -------------- |
@@ -1545,7 +1163,7 @@ PixelMap的初始化选项。
 
 表示查询图片属性的索引。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
 
 | 名称         | 类型   | 可读 | 可写 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -1556,53 +1174,59 @@ PixelMap的初始化选项。
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image
-
-| 名称              | 默认值            | 说明                 |
-| ----------------- | ----------------- | -------------------- |
-| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素比特数。     |
-| ORIENTATION       | "Orientation"     | 图片方向。           |
-| IMAGE_LENGTH      | "ImageLength"     | 图片长度。           |
-| IMAGE_WIDTH       | "ImageWidth"      | 图片宽度。           |
-| GPS_LATITUDE      | "GPSLatitude"     | 图片纬度。           |
-| GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。           |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。 |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。 |
-
-## ImageFormat<sup>9+</sup>
-
-枚举，图片格式。
-
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
-| 名称         | 默认值 | 描述                 |
-| ------------ | ------ | -------------------- |
-| YCBCR_422_SP | 1000   | YCBCR422半平面格式。 |
-| JPEG         | 2000   | JPEG编码格式。       |
+| 名称              | 默认值            | 说明                |
+| ----------------- | ----------------- | ------------------- |
+| BITS_PER_SAMPLE   | "BitsPerSample"   | 每个像素比特数。    |
+| ORIENTATION       | "Orientation"     | 图片方向。          |
+| IMAGE_LENGTH      | "ImageLength"     | 图片长度。          |
+| IMAGE_WIDTH       | "ImageWidth"      | 图片宽度。          |
+| GPS_LATITUDE      | "GPSLatitude"     | 图片纬度。          |
+| GPS_LONGITUDE     | "GPSLongitude"    | 图片经度。          |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"  | 纬度引用，例如N或S。|
+| GPS_LONGITUDE_REF | "GPSLongitudeRef" | 经度引用，例如W或E。|
 
-## ComponentType<sup>9+</sup>
 
-枚举，图像的组件类型。
+## ResponseCode
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+编译错误返回的响应码。
 
-| 名称  | 默认值 | 描述        |
-| ----- | ------ | ----------- |
-| YUV_Y | 1      | 亮度信息。  |
-| YUV_U | 2      | 色度信息。  |
-| YUV_V | 3      | 色度信息。  |
-| JPEG  | 4      | Jpeg 类型。 |
 
-## Component<sup>9+</sup>
-
-描述图像颜色分量。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
-
-| 名称          | 类型                             | 可读 | 可写 | 说明         |
-| ------------- | -------------------------------- | ---- | ---- | ------------ |
-| componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。       |
-| pixelStride   | number                           | 是   | 否   | 像素间距。   |
-| byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
-
+| 名称                                | 值       | 说明                                                |
+| ----------------------------------- | -------- | --------------------------------------------------- |
+| ERR_MEDIA_INVALID_VALUE             | -1       | 无效大小。                                          |
+| SUCCESS                             | 0        | 操作成功。                                          |
+| ERROR                               | 62980096 | 操作失败。                                          |
+| ERR_IPC                             | 62980097 | ipc错误。                                           |
+| ERR_SHAMEM_NOT_EXIST                | 62980098 | 共享内存错误。                                      |
+| ERR_SHAMEM_DATA_ABNORMAL            | 62980099 | 共享内存错误。                                      |
+| ERR_IMAGE_DECODE_ABNORMAL           | 62980100 | 图像解码错误。                                      |
+| ERR_IMAGE_DATA_ABNORMAL             | 62980101 | 图像输入数据错误。                                  |
+| ERR_IMAGE_MALLOC_ABNORMAL           | 62980102 | 图像malloc错误。                                    |
+| ERR_IMAGE_DATA_UNSUPPORT            | 62980103 | 不支持图像类型。                                    |
+| ERR_IMAGE_INIT_ABNORMAL             | 62980104 | 图像初始化错误。                                    |
+| ERR_IMAGE_GET_DATA_ABNORMAL         | 62980105 | 图像获取数据错误。                                  |
+| ERR_IMAGE_TOO_LARGE                 | 62980106 | 图像数据太大。                                      |
+| ERR_IMAGE_TRANSFORM                 | 62980107 | 图像转换错误。                                      |
+| ERR_IMAGE_COLOR_CONVERT             | 62980108 | 图像颜色转换错误。                                  |
+| ERR_IMAGE_CROP                      | 62980109 | 裁剪错误。                                          |
+| ERR_IMAGE_SOURCE_DATA               | 62980110 | 图像源数据错误。                                    |
+| ERR_IMAGE_SOURCE_DATA_INCOMPLETE    | 62980111 | 图像源数据不完整。                                  |
+| ERR_IMAGE_MISMATCHED_FORMAT         | 62980112 | 图像格式不匹配。                                    |
+| ERR_IMAGE_UNKNOWN_FORMAT            | 62980113 | 图像未知格式。                                      |
+| ERR_IMAGE_SOURCE_UNRESOLVED         | 62980114 | 图像源未解析。                                      |
+| ERR_IMAGE_INVALID_PARAMETER         | 62980115 | 图像无效参数。                                      |
+| ERR_IMAGE_DECODE_FAILED             | 62980116 | 解码失败。                                          |
+| ERR_IMAGE_PLUGIN_REGISTER_FAILED    | 62980117 | 注册插件失败。                                      |
+| ERR_IMAGE_PLUGIN_CREATE_FAILED      | 62980118 | 创建插件失败。                                      |
+| ERR_IMAGE_ENCODE_FAILED             | 62980119 | 图像编码失败。                                      |
+| ERR_IMAGE_ADD_PIXEL_MAP_FAILED      | 62980120 | 图像添加像素映射失败。                              |
+| ERR_IMAGE_HW_DECODE_UNSUPPORT       | 62980121 | 不支持图像硬件解码。                                |
+| ERR_IMAGE_DECODE_HEAD_ABNORMAL      | 62980122 | 图像解码头错误。                                    |
+| ERR_IMAGE_DECODE_EXIF_UNSUPPORT     | 62980123 | 图像解码exif取消支持。                              |
+| ERR_IMAGE_PROPERTY_NOT_EXIST        | 62980124 | 图像属性不存在；错误代码被媒体占用，图像从150开始。 |
+| ERR_IMAGE_READ_PIXELMAP_FAILED      | 62980246 | 读取像素地图失败。                                  |
+| ERR_IMAGE_WRITE_PIXELMAP_FAILED     | 62980247 | 写入像素映射失败。                                  |
+| ERR_IMAGE_PIXELMAP_NOT_ALLOW_MODIFY | 62980248 | pixelmap不允许修改。                                |
+| ERR_IMAGE_CONFIG_FAILED             | 62980259 | 配置错误。                                          |

@@ -1,17 +1,14 @@
 # Window
 
-The `Window` module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
+The `Window` module provides basic window management capabilities, such as creating and destroying the current window and setting properties for the current window.
 
 This module provides the following common window-related functions:
 
-- [Window](#window): the current window instance, which is the basic unit managed by the window manager.
-- [WindowStage](#windowstage9): window manager that manages windows.
+[Window](#window): the current window instance, which is the basic unit managed by the window manager.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> API version 9 is a canary version for trial use. The APIs of this version may be unstable.
 
 ## Modules to Import
 
@@ -37,16 +34,16 @@ Enumerates the types of the area where the window cannot be displayed.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name       | Value  | Description              |
-| ----------- | ---- | ------------------ |
-| TYPE_SYSTEM | 0    | Default area of the system.|
-| TYPE_CUTOUT | 1    | Notch.  |
+| Name                              | Value | Description             |
+|----------------------------------|-----| ----------------- |
+| TYPE_SYSTEM                      | 0   | Default area of the system.|
+| TYPE_CUTOUT                      | 1   | Notch. |
 
 ## WindowMode<sup>7+</sup>
 
 Enumerates the window modes.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -66,41 +63,41 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type| Readable| Writable| Description                                                        |
 | -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | Yes  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| statusBarColor                         | string   | No  | Yes  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  | No  | Yes  | Whether any icon on the status bar is highlighted.                                  |
 | statusBarContentColor<sup>8+</sup>     | string   | No  | Yes  | Color of the text on the status bar.                                            |
-| navigationBarColor                     | string   | Yes  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | No  | Whether any icon on the navigation bar is highlighted.                                  |
+| navigationBarColor                     | string   | No  | Yes  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | No  | Yes  | Whether any icon on the navigation bar is highlighted.                                  |
 | navigationBarContentColor<sup>8+</sup> | string   | No  | Yes  | Color of the text on the navigation bar.                                            |
 
 ## SystemBarRegionTint<sup>8+</sup>
 
 Describes the callback for a single system bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name           | Type                 | Readable| Writable| Description                                                        |
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type            | [WindowType](#windowtype) | Yes  | Yes  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
-| isEnable        | boolean                   | Yes  | Yes  | Whether the system bar is displayed.                                        |
-| region          | [Rect](#rect)             | Yes  | Yes  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | Yes  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
-| contentColor    | string                    | Yes  | Yes  | Color of the text on the system bar.                                            |
+| type            | [WindowType](#windowtype) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
+| isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed.                                        |
+| region          | [Rect](#rect)             | Yes  | No  | Current position and size of the system bar.                                    |
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
 
 Describes the callback for the current system bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name      | Type                                           | Readable| Writable| Description                        |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
 | displayId  | number                                              | Yes  | No  | ID of the current physical screen.            |
-| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | Yes  | All system bar information that has been changed.|
+| regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | Yes  | No  | All system bar information that has been changed.|
 
 ## Rect<sup>7+</sup>
 
@@ -128,6 +125,7 @@ Describes the area where the window cannot be displayed.
 | rightRect  | [Rect](#rect) | Yes  | Yes  | Rectangle on the right of the screen.|
 | bottomRect | [Rect](#rect) | Yes  | Yes  | Rectangle at the bottom of the screen.|
 
+
 ## Size<sup>7+</sup>
 
 Describes the window size.
@@ -145,20 +143,20 @@ Describes the window properties.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name                           | Type                 | Readable| Writable| Description                                        |
-| ------------------------------- | ------------------------- | ---- | ---- | -------------------------------------------- |
-| windowRect<sup>7+</sup>         | [Rect](#rect)             | Yes  | Yes  | Window size.                                  |
-| type<sup>7+</sup>               | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                  |
-| isFullScreen                    | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                     |
-| isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.             |
-| focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                |
-| touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                |
-| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness. |
-| dimBehindValue<sup>(deprecated)</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br> |
-| isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                 |
-| isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                     |
-| isRoundCorner<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`.               |
-| isTransparent<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                 |
+| Name                                 | Type                 | Readable| Writable| Description                                                        |
+| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| windowRect<sup>7+</sup>               | [Rect](#rect)             | Yes  | Yes  | Window size.                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype) | Yes  | Yes  | Window type.                                                  |
+| isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full screen mode. The default value is `false`.                                     |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.                             |
+| focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                                |
+| touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                                |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness.                 |
+| dimBehindValue<sup>7+</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness. |
+| isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                                 |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                                     |
+| isRoundCorner<sup>7+</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is `false`. |
+| isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is `false`.                                 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -191,13 +189,14 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 ```js
 var windowClass = null;
- let promise = window.create("first", window.WindowType.TYPE_APP);
- promise.then((data)=> {
- 	windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
- }).catch((err)=>{
-    console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
- });
+window.create("first", window.WindowType.TYPE_APP,(err,data) => {
+    if(err.code){
+        console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## window.create<sup>7+</sup>
@@ -228,7 +227,7 @@ var windowClass = null;
 let promise = window.create("first", window.WindowType.TYPE_APP);
 promise.then((data)=> {
     windowClass = data;
-    console.info('SubWindow created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
 });
@@ -238,7 +237,7 @@ promise.then((data)=> {
 
 create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses an asynchronous callback to return the result.
+Creates a subwindow. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -246,10 +245,10 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | Yes  | Current application context.<br>For the definition of `Context` of API version 8, see [Context](js-apis-Context.md).<br>For the definition of `Context` of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md).|
+| ctx      | [Context](js-apis-Context.md)          | Yes  | Current application context.|
 | id       | string                                 | Yes  | Window ID.                                                    |
 | type     | [WindowType](#windowtype)              | Yes  | Window type.                                                  |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window created.                        |
+| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.                        |
 
 **Example**
 
@@ -257,11 +256,11 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 var windowClass = null;
  window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
-        console.error('Failed to create the Window. Cause: ' + JSON.stringify(err));
+        console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
     }
     windowClass = data;
-    console.info('Window created. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
     windowClass.resetSize(500, 1000);
 });
 ```
@@ -270,7 +269,8 @@ var windowClass = null;
 
 create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 
-Creates a subwindow (in API version 8) or a system window (from API version 9). This API uses a promise to return the result.
+Creates a subwindow. This API uses a promise to return the result.
+
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -278,7 +278,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context                   | Yes  | Current application context.<br>For the definition of `Context` of API version 8, see [Context](js-apis-Context.md).<br>For the definition of `Context` of API version 9, see [ServiceExtensionContext](js-apis-service-extension-context.md).|
+| ctx    | [Context](js-apis-Context.md)                   | Yes  | Current application context.|
 | id     | string                    | Yes  | Window ID.                                                    |
 | type   | [WindowType](#windowtype) | Yes  | Window type.                                                  |
 
@@ -286,7 +286,7 @@ Creates a subwindow (in API version 8) or a system window (from API version 9). 
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the window created.|
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created.|
 
 **Example**
 
@@ -295,9 +295,9 @@ var windowClass = null;
 let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data)=> {
  	windowClass = data;
-    console.info('Window created. Data:' + JSON.stringify(data));
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+    console.error('Failed to create the window. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -322,11 +322,11 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 var windowClass = null;
  window.find("alertWindow", (err, data) => {
    if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+       console.error('Failed to find the window. Cause: ' + JSON.stringify(err));
        return;
    }
    windowClass = data;
-   console.info('window found. Data: ' + JSON.stringify(data));
+   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -357,9 +357,9 @@ var windowClass = null;
 let promise = window.find("alertWindow");
 promise.then((data)=> {
  	windowClass = data;
-    console.info('window found. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+    console.error('Failed to find the window. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -430,7 +430,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| ctx      | Context                                | Yes  | Current application context.<br>For the definition of `Context` of API version 8, see [Context](js-apis-Context.md).<br>For the definition of `Context` of API version 9, see [AbilityContext](js-apis-ability-context.md).|
+| ctx      | [Context](js-apis-Context.md)                                | Yes  | Current application context.|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the top window obtained.                |
 
 **Example**
@@ -459,7 +459,7 @@ Obtains the top window of the current application. This API uses a promise to re
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| ctx    | Context | Yes  | Current application context.<br>For the definition of `Context` of API version 8, see [Context](js-apis-Context.md).<br>For the definition of `Context` of API version 9, see [AbilityContext](js-apis-ability-context.md).|
+| ctx    | [Context](js-apis-Context.md) | Yes  | Current application context.|
 
 **Return value**
 
@@ -486,7 +486,7 @@ on(type: 'systemBarTintChange', callback: Callback&lt;SystemBarTintState&gt;): v
 
 Enables listening for properties changes of the status bar and navigation bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -494,7 +494,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
+| type     | string                                                    | Yes  | Event type. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | Yes  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
@@ -511,7 +511,7 @@ off(type: 'systemBarTintChange', callback?: Callback&lt;SystemBarTintState &gt;)
 
 Disables listening for properties changes of the status bar and navigation bar.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -519,7 +519,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name  | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                    | Yes  | Type of event to listen for. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
+| type     | string                                                    | Yes  | Event type. The value is fixed at `systemBarTintChange`, indicating the property change event of the status bar and navigation bar.|
 | callback | Callback&lt;[SystemBarTintState](#systembartintstate)&gt; | No  | Callback used to return the properties of the status bar and navigation bar.                |
 
 **Example**
@@ -540,7 +540,7 @@ hide (callback: AsyncCallback&lt;void&gt;): void
 
 Hides this window. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -558,7 +558,7 @@ windowClass.hide((err, data) => {
         console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
         return;
     }
-    console.info('window hidden. data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. data: ' + JSON.stringify(data));
 })
 ```
 
@@ -568,7 +568,7 @@ hide(): Promise&lt;void&gt;
 
 Hides this window. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -583,7 +583,7 @@ This is a system API and cannot be called by third-party applications.
 ```js
 let promise = windowClass.hide();
 promise.then((data)=> {
-    console.info('window hidden. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in hiding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to hide the window. Cause: ' + JSON.stringify(err));
 })
@@ -715,7 +715,7 @@ windowClass.moveTo(300, 300, (err, data)=>{
         console.error('Failed to move the window. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 
 });
 ```
@@ -746,7 +746,7 @@ Moves this window. This API uses a promise to return the result.
 ```js
 let promise = windowClass.moveTo(300, 300);
 promise.then((data)=> {
-    console.info('Window moved. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to move the window. Cause: ' + JSON.stringify(err));
 })
@@ -776,7 +776,7 @@ windowClass.resetSize(500, 1000, (err, data) => {
         console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -806,7 +806,7 @@ Changes the size of this window. This API uses a promise to return the result.
 ```js
 let promise = windowClass.resetSize(500, 1000);
 promise.then((data)=> {
-    console.info('Window size changed. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in changing the window size. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to change the window size. Cause: ' + JSON.stringify(err));
 });
@@ -818,7 +818,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the type of this window. This API uses an asynchronous callback to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -848,7 +848,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 Sets the type of this window. This API uses a promise to return the result.
 
-This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -937,8 +937,8 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| Name  | Type                                           | Mandatory| Description                                                        |
+| -------- |-----------------------------------------------| ---- | ------------------------------------------------------------ |
 | type     | [AvoidAreaType](#avoidareatype)              | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 | callback | AsyncCallback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
@@ -965,20 +965,21 @@ Obtains the area where this window cannot be displayed, for example, the system 
 
 **Parameters**
 
-| Name| Type                           | Mandatory| Description                                                        |
-| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+| Name| Type                              | Mandatory| Description                                                        |
+| ------ |----------------------------------| ---- | ------------------------------------------------------------ |
 | type   | [AvoidAreaType](#avoidareatype) | Yes  | Type of the area. `TYPE_SYSTEM` indicates the default area of the system. `TYPE_CUTOUT` indicates the notch.|
 
 **Return value**
 
-| Type                                  | Description                               |
-| -------------------------------------- | ----------------------------------- |
+| Type                                     | Description                               |
+|-----------------------------------------| ----------------------------------- |
 | Promise&lt;[AvoidArea](#avoidarea)&gt; | Promise used to return the area.|
 
 **Example**
 
 ```js
-let promise = windowClass.getAvoidArea();
+var type = window.AvoidAreaType.TYPE_SYSTEM;
+let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1124,13 +1125,14 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Example**
 
 ```js
-var names = ["status", "navigation"];
+// In this example, the status bar and navigation bar are not displayed.
+var names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
-        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+        console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
         return;
     }
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1157,12 +1159,13 @@ Sets whether to display the status bar and navigation bar in this window. This A
 **Example**
 
 ```js
-var names = ["status", "navigation"];
+// In this example, the status bar and navigation bar are not displayed.
+var names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
-    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
+    console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
 });
 ```
 
@@ -1313,7 +1316,7 @@ Checks whether this window is displayed. This API uses an asynchronous callback 
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1339,7 +1342,7 @@ Checks whether this window is displayed. This API uses a promise to return the r
 
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that this window is displayed, and `false` means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value `true` means that the window is displayed, and `false` means the opposite.|
 
 **Example**
 
@@ -1364,7 +1367,7 @@ Enables listening for window size changes.
 
 | Name  | Type                          | Mandatory| Description                                                    |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | Yes  | Type of event to listen for. The value is fixed at `windowSizeChange`, indicating the window size change event.|
+| type     | string                         | Yes  | Event type. The value is fixed at `windowSizeChange`, indicating the window size change event.|
 | callback | Callback&lt;[Size](#size7)&gt; | Yes  | Callback used to return the window size.                          |
 
 **Example**
@@ -1387,7 +1390,7 @@ Disables listening for window size changes.
 
 | Name  | Type                         | Mandatory| Description                                                    |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                        | Yes  | Type of event to listen for. The value is fixed at `windowSizeChange`, indicating the window size change event.|
+| type     | string                        | Yes  | Event type. The value is fixed at `windowSizeChange`, indicating the window size change event.|
 | callback | Callback&lt;[Size](#size)&gt; | No  | Callback used to return the window size.                          |
 
 **Example**
@@ -1406,9 +1409,9 @@ Enables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description                                                        |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | Yes  | Type of event to listen for. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
 | callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | Yes  | Callback used to return the area.                            |
 
 **Example**
@@ -1429,10 +1432,10 @@ Disables listening for changes to the area where the window cannot be displayed.
 
 **Parameters**
 
-| Name  | Type                                   | Mandatory| Description                                                        |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                  | Yes  | Type of event to listen for. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
-| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                            |
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes  | Event type. The value is fixed at `systemAvoidAreaChange`, indicating the event of changes to the area where the window cannot be displayed.|
+| callback | Callback&lt;[AvoidArea](#avoidarea)&gt; | No  | Callback used to return the area.                           |
 
 **Example**
 
@@ -1452,7 +1455,7 @@ Enables listening for keyboard height changes.
 
 | Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Type of event to listen for. The value is fixed at `keyboardHeightChange`, indicating the keyboard height change event.|
+| type     | string              | Yes  | Event type. The value is fixed at `keyboardHeightChange`, indicating the keyboard height change event.|
 | callback | Callback<number&gt; | Yes  | Callback used to return the current keyboard height.                              |
 
 **Example**
@@ -1475,7 +1478,7 @@ Disables listening for keyboard height changes.
 
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | Yes  | Type of event to listen for. The value is fixed at `keyboardHeightChange`, indicating the keyboard height change event.|
+| type     | string                 | Yes  | Event type. The value is fixed at `keyboardHeightChange`, indicating the keyboard height change event.|
 | callback | Callback&lt;number&gt; | No  | Callback used to return the current keyboard height.                              |
 
 **Example**
@@ -1585,7 +1588,7 @@ Sets this window to the wide or default color gamut mode. This API uses a promis
 **Example**
 
 ```js
-let promise = windowClass.isSupportWideGamut(window.ColorSpace.WIDE_GAMUT);
+let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then((data)=> {
     console.info('Succeeded in setting window colorspace. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1656,7 +1659,7 @@ Sets the background color for this window. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color    | string                    | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
@@ -1684,7 +1687,7 @@ Sets the background color for this window. This API uses a promise to return the
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | Yes  | Background color to set. The value is a hexadecimal color value and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
+| color  | string | Yes  | Background color to set. The value is a hexadecimal color code and is case insensitive, for example, `#00FF00` or `#FF00FF00`.|
 
 **Return value**
 
@@ -1764,15 +1767,15 @@ promise.then((data)=> {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+### setDimBehind<sup>7+</sup>
 
 setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the dimness of the window that is not on top. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
->  This API is supported since API version 7 and deprecated since API version 9.
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1795,15 +1798,15 @@ windowClass.setDimBehind(0.5, (err, data) => {
 });
 ```
 
-### setDimBehind<sup>(deprecated)</sup>
+### setDimBehind<sup>7+</sup>
 
 setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 Sets the dimness of the window that is not on top. This API uses a promise to return the result.
 
 > **NOTE**
-> 
->  This API is supported since API version 7 and deprecated since API version 9.
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1950,15 +1953,15 @@ promise.then((data) => {
 });
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+### setOutsideTouchable<sup>7+</sup>
 
 setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the area outside the subwindow is touchable. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
->  This API is supported since API version 7 and deprecated since API version 9.
+>
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1981,7 +1984,7 @@ windowClass.setOutsideTouchable(true, (err, data) => {
 })
 ```
 
-### setOutsideTouchable<sup>(deprecated)</sup>
+### setOutsideTouchable<sup>7+</sup>
 
 setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
@@ -1989,9 +1992,7 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
->
-> 
+> This API cannot be used.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2022,7 +2023,7 @@ promise.then((data)=> {
 
 setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result.
+Sets whether this window is in privacy mode. This API uses an asynchronous callback to return the result. When in privacy mode, the window content cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2051,7 +2052,7 @@ windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
 
 setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
-Sets whether this window is in privacy mode. This API uses a promise to return the result.
+Sets whether this window is in privacy mode. This API uses a promise to return the result. When in privacy mode, the window content cannot be captured or recorded.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2138,315 +2139,4 @@ promise.then((data)=> {
 }).catch((err)=>{
     console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
-```
-
-## WindowStageEventType<sup>9+</sup>
-
-Describes the lifecycle of a window stage.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-| Name      | Default Value | Description      |
-| ---------- | ------ | ---------- |
-| FOREGROUND | 1      | The window stage is running in the foreground.|
-| ACTIVE     | 2      | The window stage gains focus.|
-| INACTIVE   | 3      | The window stage loses focus.|
-| BACKGROUND | 4      | The window stage is running in the background.|
-
-## WindowStage<sup>9+</sup>
-
-Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
-
-Before calling any of the following APIs, you must use `[onWindowStageCreate()](js-apis-application-ability.md#abilityonwindowstagecreate)` to create a `WindowStage` instance.
-
-### getMainWindow<sup>9+</sup>
-
-getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
-
-Obtains the main window of this window stage. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                  | Mandatory| Description                                         |
-| -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the main window.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-### getMainWindow<sup>9+</sup>
-
-getMainWindow(): Promise&lt;Window&gt;
-
-Obtains the main window of this window stage. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Return value**
-
-| Type                            | Description                                            |
-| -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the main window.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.getMainWindow();
-        promise.then((data)=> {
-        windowClass = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-        });
-    }
-}
-```
-### createSubWindow<sup>9+</sup>
-
-createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
-
-Creates a subwindow for this window stage. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                  | Mandatory| Description                                         |
-| -------- | -------------------------------------- | ---- | --------------------------------------------- |
-| name     | String                                 | Yes  | Name of the subwindow.                               |
-| callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.createSubWindow("mySubWindow", (err, data) => {
-            if (err.code) {
-                console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-            windowClass.resetSize(500, 1000);
-        });
-    }
-}
-```
-### createSubWindow<sup>9+</sup>
-
-createSubWindow(name: string): Promise&lt;Window&gt;
-
-Creates a subwindow for this window stage. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description          |
-| ------ | ------ | ---- | -------------- |
-| name   | String | Yes  | Name of the subwindow.|
-
-**Return value**
-
-| Type                            | Description                                            |
-| -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.createSubWindow("mySubWindow");
-        promise.then((data)=> {
-            windowClass = data;
-            console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
-        })
-    }
-}
-```
-### getSubWindow<sup>9+</sup>
-
-getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
-
-Obtains all the subwindows of this window stage. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                               | Mandatory| Description                                             |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Window](#window)&gt;&gt; | Yes  | Callback used to return all the subwindows.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.getSubWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-### getSubWindow<sup>9+</sup>
-
-getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
-
-Obtains all the subwindows of this window stage. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Return value**
-
-| Type                                         | Description                                                |
-| --------------------------------------------- | ---------------------------------------------------- |
-| Promise&lt;Array&lt;[Window](#window)&gt;&gt; | Promise used to return all the subwindows.|
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.getSubWindow();
-        promise.then((data)=> {
-            windowClass = data;
-            console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
-        }).catch((err)=>{
-            console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
-        })
-    }
-}
-```
-### loadContent<sup>9+</sup>
-
-loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
-
-Loads content from a page to this window stage. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description                |
-| -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2", (err, data) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-
-### on('windowStageEvent')<sup>9+</sup>
-
-on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void
-
-Enables listening for window stage lifecycle changes.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at `windowStageEvent`, indicating the window stage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | Yes  | Callback used to return the window stage lifecycle state.               |
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.on('windowStageEvent', (data) => {
-            console.info('Succeeded in enabling the listener for window stage event changes. Data: ' + JSON.stringify(data));
-        });
-    }
-}
-```
-
-### off('windowStageEvent')<sup>9+</sup>
-
-off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&gt;): void
-
-Disables listening for window stage lifecycle changes.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Type of event to listen for. The value is fixed at `windowStageEvent`, indicating the window stage lifecycle change event.|
-| callback | Callback&lt;[WindowStageEventType](#windowstageeventtype9)&gt; | No  | Callback used to return the window stage lifecycle state.               |
-
-**Example**
-
-```ts
-import Ability from '@ohos.application.Ability';
-class myAbility extends Ability {
-    onWindowStageCreate(windowStage) {
-        console.log('onWindowStageCreate');
-        windowStage.off('windowStageEvent');
-    }
-}
 ```

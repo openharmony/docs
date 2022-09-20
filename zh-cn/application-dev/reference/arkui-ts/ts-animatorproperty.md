@@ -1,42 +1,29 @@
 # 属性动画
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+组件的某些通用属性变化时，可以通过属性动画实现渐变效果，提升用户体验。支持的属性包括width、height、backgroundColor、opacity、scale、rotate、translate等。
 
+>  **说明：**
+>
+>  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-组件的通用属性发生变化时，可以创建属性动画进行渐变，提升用户体验。
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve, delay?:number, iterations: number, playMode?: PlayMode, onFinish?: () => void})
 
+**参数：**
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| duration | number | 1000 | 单位为毫秒，默认动画时长为1000毫秒。 |
-| curve | Curve | Curve.Linear | 默认曲线为线性。 |
-| delay | number | 0 | 单位为毫秒，默认不延时播放。 |
-| iterations | number | 1 | 默认播放一次，设置为-1时表示无限次播放。 |
-| playMode | [PlayMode](ts-appendix-enums.md#playmode枚举值说明) | PlayMode.Normal | 设置动画播放模式，默认播放完成后重头开始播放。 |
-
-
-- Curve枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Linear | 表示动画从头到尾的速度都是相同的。 | 
-  | Ease | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25,&nbsp;0.1,&nbsp;0.25,&nbsp;1.0)。 | 
-  | EaseIn | 表示动画以低速开始，CubicBezier(0.42,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 | 
-  | EaseOut | 表示动画以低速结束，CubicBezier(0.0,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 | 
-  | EaseInOut | 表示动画以低速开始和结束，CubicBezier(0.42,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 | 
-  | FastOutSlowIn | 标准曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 | 
-  | LinearOutSlowIn | 减速曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 | 
-  | FastOutLinearIn | 加速曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 | 
-  | ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0)。 | 
-  | Sharp | 锐利曲线，cubic-bezier(0.33,&nbsp;0.0,&nbsp;0.67,&nbsp;1.0)。 | 
-  | Rhythm | 节奏曲线，cubic-bezier(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 | 
-  | Smooth | 平滑曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0)。 | 
-  | Friction | 阻尼曲线，CubicBezier(0.2,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 | 
-
+| 名称       | 参数类型                                                     | 必填 | 描述                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| duration   | number                                                       | 否   | 设置动画时长。单位为毫秒，默认动画时长为1000毫秒。<br/>默认值：1000 |
+| tempo      | number                                                       | 否   | 动画播放速度。数值越大，动画播放速度越快，数值越小，播放速度越慢<br/>值为0时，表示不存在动画。<br/>默认值：1 |
+| curve      | string&nbsp;\|&nbsp;[Curve](ts-appendix-enums.md#curve)      | 否   | 设置动画曲线。默认曲线为线性。<br/>默认值：Curve.Linear      |
+| delay      | number                                                       | 否   | 设置动画延迟执行的时长。单位为毫秒，默认不延时播放。<br/>默认值：0 |
+| iterations | number                                                       | 否   | 设置播放次数。默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
+| playMode   | [PlayMode](ts-appendix-enums.md#playmode)                    | 否   | 设置动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal |
+| onFinish   | () => void                                                   | 否   | 状态回调，动画播放完成时触发。                               |
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AttrAnimationExample {

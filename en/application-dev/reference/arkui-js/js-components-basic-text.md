@@ -102,7 +102,7 @@ export default {
 }
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/3.png)
+![img](figures/3.png)
 
 ```
 <!-- xxx.hml -->
@@ -138,4 +138,4 @@ export default {
 }
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/2.png)
+![img](figures/2.png)

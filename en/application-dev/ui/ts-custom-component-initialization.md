@@ -5,32 +5,32 @@ The member variables of a component can be initialized in either of the followin
 
 
 - Local initialization. For example:
-    
+  
   ```
   @State counter: Counter = new Counter()
   ```
 
 - Initialization using constructor parameters. For example:
-    
+  
   ```
-  MyComponent(counter: $myCounter)
+  MyComponent({counter: $myCounter})
   ```
 
 
 The allowed method depends on the decorator of the state variable, as shown in the following table.
 
 
-  | Decorator Type | Local Initialization | Initialization Using Constructor Parameters | 
+| Decorator Type | Local Initialization | Initialization Using Constructor Parameters |
 | -------- | -------- | -------- |
-| @State | Mandatory | Optional | 
-| @Prop | Forbidden | Mandatory | 
-| @Link | Forbidden | Mandatory | 
-| @StorageLink | Mandatory | Forbidden | 
-| @StorageProp | Mandatory | Forbidden | 
-| @Provide | Mandatory | Optional | 
-| @Consume | Forbidden | Forbidden | 
-| @ObjectLink | Forbidden | Mandatory | 
-| Normal member variable | Recommended | Optional | 
+| @State | Mandatory | Optional |
+| @Prop | Forbidden | Mandatory |
+| @Link | Forbidden | Mandatory |
+| @StorageLink | Mandatory | Forbidden |
+| @StorageProp | Mandatory | Forbidden |
+| @Provide | Mandatory | Optional |
+| @Consume | Forbidden | Forbidden |
+| @ObjectLink | Forbidden | Mandatory |
+| Normal member variable | Recommended | Optional |
 
 
 As indicated by the preceding table:
@@ -44,14 +44,14 @@ As indicated by the preceding table:
 Comply with the following rules when using constructors to initialize member variables:
 
 
-  | From the Variable in the Parent Component (Below) to the Variable in the Child Component (Right) | @State | @Link | @Prop | Normal Variable | 
+| From the Variable in the Parent Component (Below) to the Variable in the Child Component (Right) | @State | @Link | @Prop | Normal Variable |
 | -------- | -------- | -------- | -------- | -------- |
-| @State | Not allowed | Allowed | Allowed | Allowed | 
-| @Link | Not allowed | Allowed | Not recommended | Allowed | 
-| @Prop | Not allowed | Not allowed | Allowed | Allowed | 
-| @StorageLink | Not allowed | Allowed | Not allowed | Allowed | 
-| @StorageProp | Not allowed | Not allowed | Not allowed | Allowed | 
-| Normal variable | Allowed | Not allowed | Not allowed | Allowed | 
+| @State | Not allowed | Allowed | Allowed | Allowed |
+| @Link | Not allowed | Allowed | Not recommended | Allowed |
+| @Prop | Not allowed | Not allowed | Allowed | Allowed |
+| @StorageLink | Not allowed | Allowed | Not allowed | Allowed |
+| @StorageProp | Not allowed | Not allowed | Not allowed | Allowed |
+| Normal variable | Allowed | Not allowed | Not allowed | Allowed |
 
 
 As indicated by the preceding table:
@@ -59,7 +59,7 @@ As indicated by the preceding table:
 
 - The normal variables of the parent component can be used to initialize the @State decorated variables of the child component, but not the @Link or @Prop decorated variables.
 
-- The @State decorated variable of the parent component can be used to initialize the @Prop, @Link (using $), or normal variables of the child component, but not the @State decorated variables of the child component.
+- The @State decorated variable of the parent component can be used to initialize the @Prop, @Link (using `$`), or normal variables of the child component, but not the @State decorated variables of the child component.
 
 - The @Link decorated variables of the parent component can be used to initialize the @Link decorated or normal variables of the child component. However, initializing the @State decorated members of the child component can result in a syntax error. In addition, initializing the @Prop decorated variables is not recommended.
 
@@ -72,7 +72,7 @@ As indicated by the preceding table:
 
 ## Example
 
-  
+
 ```
 @Entry
 @Component
@@ -97,7 +97,7 @@ struct CompA {
         Row() {
             CompB({bLink: $aLink,         // valid init a @Link with reference of another @Link,
                 bProp: this.aState})    // valid init a @Prop with value of a @State
-            CompB({aLink: $aState,  // invalid: type missmatch expected ref to ClassA, provided reference to boolean
+            CompB({aLink: $aState,  // invalid: type mismatch expected ref to ClassA, provided reference to boolean
                 bProp: false})           // valid init a @Prop by constants value
         }
     }

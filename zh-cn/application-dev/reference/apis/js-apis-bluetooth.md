@@ -13,17 +13,6 @@ import bluetooth from '@ohos.bluetooth';
 ```
 
 
-## 权限
-
-ohos.permission.USE_BLUETOOTH
-
-ohos.permission.MANAGE_BLUETOOTH
-
-ohos.permission.DISCOVER_BLUETOOTH
-
-ohos.permission.LOCATION
-
-
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
@@ -354,7 +343,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): boolean
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。                      |
-| duration | number                | 是    | 设备可被发现的持续时间，单位为秒；设置为0则持续可发现。 |
+| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
 
 **返回值：**
 
@@ -620,7 +609,7 @@ on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。 |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 是    | 表示回调函数的入参，配对的状态。回调函数由用户创建通过该接口注册。    |
 
 **返回值：**
 
@@ -651,7 +640,7 @@ off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"bondStateChange"字符串，表示蓝牙配对状态改变事件。     |
-| callback | Callback&lt;[BondStateParam](#bondstate)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[BondStateParam](#BondStateParam)&gt; | 否    | 表示取消订阅蓝牙配对状态改变事件上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **返回值：**
 
@@ -1269,9 +1258,8 @@ getConnectionDevices(): Array&lt;string&gt;
 
 **返回值：**
 
-|                     |               |
+|  类型                   |   说明             |
 | ------------------- | ------------- |
-| 类型                  | 说明            |
 | Array&lt;string&gt; | 返回已连接设备的地址列表。 |
 
 
@@ -1290,11 +1278,11 @@ getDeviceState(device: string): ProfileConnectionState
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
+
 **返回值：**
 
-|                                                   |                         |
+|   类型                                                | 说明                        |
 | ------------------------------------------------- | ----------------------- |
-| 类型                                              | 说明                    |
 | [ProfileConnectionState](#profileconnectionstate) | 返回profile的连接状态。 |
 
 
@@ -1318,13 +1306,11 @@ connect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1350,13 +1336,12 @@ disconnect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
+
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1443,9 +1428,8 @@ getPlayingState(device: string): PlayingState
 
 **返回值：**
 
-|                               |            |
-| ----------------------------- | ---------- |
 | 类型                            | 说明         |
+| ----------------------------- | ---------- |
 | [PlayingState](#PlayingState) | 远端设备的播放状态。 |
 
 **示例：**
@@ -1476,13 +1460,12 @@ connect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
+
 
 **返回值：**
 
-|         |                     |
-| ------- | ------------------- |
 | 类型      | 说明                  |
+| ------- | ------------------- |
 | boolean | 成功返回true，失败返回false。 |
 
 **示例：**
@@ -1508,7 +1491,7 @@ disconnect(device: string): boolean
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | device | string | 是    | 远端设备地址。 |
-|
+
 
 **返回值：**
 
@@ -1708,7 +1691,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 // 创建characteristics
@@ -1753,9 +1736,8 @@ removeService(serviceUuid: string): boolean
 
 **返回值：**
 
-|         |                            |
-| ------- | -------------------------- |
 | 类型      | 说明                         |
+| ------- | -------------------------- |
 | boolean | 删除服务操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1803,9 +1785,8 @@ server端特征值发生变化时，主动通知已连接的client设备。
 
 **返回值：**
 
-|         |                          |
-| ------- | ------------------------ |
 | 类型      | 说明                       |
+| ------- | ------------------------ |
 | boolean | 通知操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1818,7 +1799,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 let arrayBufferC = new ArrayBuffer(8);
@@ -1849,9 +1830,8 @@ server端回复client端的读写请求。
 
 **返回值：**
 
-|         |                            |
-| ------- | -------------------------- |
 | 类型      | 说明                         |
+| ------- | -------------------------- |
 | boolean | 回复响应操作，成功返回true，否则返回false。 |
 
 **示例：**
@@ -1971,7 +1951,7 @@ server端订阅特征值写请求事件。
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                   | 是    | 填写"characteristicWrite"字符串，表示特征值写请求事件。 |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | 是    | 表示回调函数的入参，client端发送的写请求数据。             |
 
 **返回值：**
 
@@ -2399,7 +2379,9 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。
 
 ```js
 // Promise 模式
-gattClientDevice.getServices().then(result => {
+let device = bluetooth.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
+device.connect();
+device.getServices().then(result => {
     console.info("getServices successfully:" + JSON.stringify(result));
 });
 ```
@@ -2477,9 +2459,8 @@ client端读取蓝牙低功耗设备特定服务的特征值。
 
 **返回值：**
 
-|                                          |                            |
-| ---------------------------------------- | -------------------------- |
 | 类型                                       | 说明                         |
+| ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | client读取特征值，通过promise形式获取。 |
 
 **示例：**
@@ -2568,9 +2549,8 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。
 
 **返回值：**
 
-|                                          |                            |
-| ---------------------------------------- | -------------------------- |
 | 类型                                       | 说明                         |
+| ---------------------------------------- | -------------------------- |
 | Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | client读取描述符，通过promise形式获取。 |
 
 **示例：**
@@ -2741,7 +2721,7 @@ let descV = new Uint8Array(arrayBuffer);
 descV[0] = 11;
 let descriptor = {serviceUuid: '00001810-0000-1000-8000-00805F9B34FB',
   characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-  descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+  descriptorUuid: '00002902-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
 descriptors[0] = descriptor;
 
 let arrayBufferC = new ArrayBuffer(8);
@@ -3300,7 +3280,7 @@ let rssi = gattClient.getRssiValue().then((data) => {
 
 | 名称          | 参数类型    | 可读   | 可写   | 说明                                       |
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
-| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16777215个slot，默认值设置为1600个slot表示1s。 |
+| interval    | number  | 是    | 是    | 表示广播间隔，最小值设置32个slot表示20ms，最大值设置16384个slot，默认值设置为1600个slot表示1s。 |
 | txPower     | number  | 是    | 是    | 表示发送功率，最小值设置-127，最大值设置1，默认值设置-7，单位dbm。   |
 | connectable | boolean | 是    | 是    | 表示是否是可连接广播，默认值设置为true。                   |
 
@@ -3352,6 +3332,18 @@ let rssi = gattClient.getRssiValue().then((data) => {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
+
+
+## BondStateParam<sup>8+</sup><a name="BondStateParam"></a>
+
+描述配对状态参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 参数类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string      | 是    | 否    | 表示要配对的设备ID。 |
+| state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
 ## StateChangeParam<sup>8+</sup><a name="StateChangeParam"></a>

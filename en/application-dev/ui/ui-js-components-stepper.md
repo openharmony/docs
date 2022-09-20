@@ -412,8 +412,3 @@ export default {
 ```
 
 ![en-us_image_0000001267887817](figures/en-us_image_0000001267887817.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;stepper&gt;** component:
-
-[`StepNavigator`: StepNavigator (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/StepNavigator)

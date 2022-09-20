@@ -60,7 +60,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 let videoPlayer
 
 media.createVideoPlayer((error, video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
@@ -89,7 +89,7 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 let videoPlayer
 
 media.createVideoPlayer().then((video) => {
-   if (typeof(video) != 'undefined') {
+   if (video != null) {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
@@ -105,6 +105,7 @@ media.createVideoPlayer().then((video) => {
 createAudioRecorder(): AudioRecorder
 
 创建音频录制的实例来控制音频的录制。
+一台设备只允许创建一个录制实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -214,7 +215,7 @@ Codec MIME类型枚举。
 
 | 名称        | 类型                      | 可读 | 可写 | 说明                                                         |
 | ----------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的音频格式(mp4、aac、mp3、ogg、wav)。<br>**支持路径示例**：<br>1、fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br>3、hls网络播放路径：开发中<br>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| src         | string                    | 是   | 是   | 音频媒体URI，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。|
 | loop        | boolean                   | 是   | 是   | 音频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime | number                    | 是   | 否   | 音频的当前播放位置。                                         |
 | duration    | number                    | 是   | 否   | 音频时长。                                                   |
@@ -306,7 +307,7 @@ seek(timeMs: number): void
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -379,7 +380,7 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
@@ -415,7 +416,7 @@ function printfDescription(obj) {
 }
 
 audioPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('audio getTrackDescription fail');
@@ -490,7 +491,7 @@ audioPlayer.on('reset', () => {               //设置'reset'事件回调
     audioPlayer = undefined;
 });
 audioPlayer.on('timeUpdate', (seekDoneTime) => {  //设置'timeUpdate'事件回调
-    if (typeof(seekDoneTime) == "undefined") {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -545,7 +546,7 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 ```js
 audioPlayer.on('timeUpdate', (seekDoneTime) => {    //设置'timeUpdate'事件回调
-    if (typeof (seekDoneTime) == 'undefined') {
+    if (seekDoneTime == null) {
         console.info('audio seek fail');
         return;
     }
@@ -606,7 +607,7 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2、http网络播放: http://xx<br/>3、hls网络播放路径：开发中<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
+| url<sup>8+</sup>         | string                             | 是   | 是   | 视频媒体URL，支持当前主流的视频格式(mp4、mpeg-ts、webm、mkv)。<br>**支持路径示例**：<br>1. fd类型播放：fd://xx<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http://xx<br/>3. https网络播放: https://xx<br/>4. hls网络播放路径：http://xx或者https://xx<br/>**注意事项**：<br>使用媒体素材需要获取读权限，否则无法正常播放。 |
 | loop<sup>8+</sup>        | boolean                            | 是   | 是   | 视频循环播放属性，设置为'true'表示循环播放。                 |
 | currentTime<sup>8+</sup> | number                             | 是   | 否   | 视频的当前播放位置。                                         |
 | duration<sup>8+</sup>    | number                             | 是   | 否   | 视频时长，返回-1表示直播模式。                               |
@@ -633,7 +634,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setDisplaySurface success!');
     } else {
         console.info('setDisplaySurface fail!');
@@ -689,7 +690,7 @@ prepare(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.prepare((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('prepare success!');
     } else {
         console.info('prepare fail!');
@@ -739,7 +740,7 @@ play(callback: AsyncCallback\<void>): void;
 
 ```js
 videoPlayer.play((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('play success!');
     } else {
         console.info('play fail!');
@@ -789,7 +790,7 @@ pause(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.pause((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('pause success!');
     } else {
         console.info('pause fail!');
@@ -839,7 +840,7 @@ stop(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.stop((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('stop success!');
     } else {
         console.info('stop fail!');
@@ -889,7 +890,7 @@ reset(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.reset((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('reset success!');
     } else {
         console.info('reset fail!');
@@ -940,7 +941,7 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.seek((seekTime, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -968,7 +969,7 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.seek((seekTime, seekMode, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('seek success!');
     } else {
         console.info('seek fail!');
@@ -1032,7 +1033,7 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.setVolume((vol, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setVolume success!');
     } else {
         console.info('setVolume fail!');
@@ -1088,7 +1089,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 videoPlayer.release((err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('release success!');
     } else {
         console.info('release fail!');
@@ -1146,7 +1147,7 @@ function printfDescription(obj) {
 }
 
 videoPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
@@ -1183,7 +1184,7 @@ function printfDescription(obj) {
 
 let arrayDescription;
 videoPlayer.getTrackDescription().then((arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         arrayDescription = arrlist;
     } else {
         console.log('video getTrackDescription fail');
@@ -1215,7 +1216,7 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```js
 videoPlayer.setSpeed((speed:number, err) => {
-    if (typeof (err) == 'undefined') {
+    if (err == null) {
         console.info('setSpeed success!');
     } else {
         console.info('setSpeed fail!');
@@ -1436,7 +1437,7 @@ function printfItemDescription(obj, key) {
 }
 
 audioPlayer.getTrackDescription((error, arrlist) => {
-    if (typeof (arrlist) != 'undefined') {
+    if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
@@ -1716,7 +1717,7 @@ audioRecorder.prepare();                                                  // pre
 ## AudioOutputFormat<sup>(deprecated)</sup>
 
 > **说明：**
-> 从 API Version 8 开始废弃，建议使用[ContainerFormatType ](#containerformattype8)替代。
+> 从 API Version 8 开始废弃，建议使用[ContainerFormatType](#containerformattype8)替代。
 
 表示音频封装格式的枚举。
 

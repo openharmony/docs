@@ -1,9 +1,9 @@
 # Security
 
 - Access Control  
-  - [Access Control Overview](accesstoken-overview.md)
-  - [Access Control Development](accesstoken-guidelines.md)
-  - [Permission List](permission-list.md)
+  - [Access Control (Permission) Overview](accesstoken-overview.md)
+  - [Access Control (Permission) Development](accesstoken-guidelines.md)
+  - [Application Permission List](permission-list.md)
 
 - User Authentication
   - [User Authentication Overview](userauth-overview.md)
@@ -14,6 +14,6 @@
   - [HUKS Development](huks-guidelines.md)
   
 - hapsigntool  
-  - [hapsigntool Overview](hapsigntool-overview.md)
   - [hapsigntool Guide](hapsigntool-guidelines.md)
   
+

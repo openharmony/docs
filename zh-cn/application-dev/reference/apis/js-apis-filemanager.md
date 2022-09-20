@@ -35,12 +35,10 @@ getRoot(options? : {dev? : DevInfo}) : Promise&lt;FileInfo[]&gt;
 **示例：**
 
   ```js
-  filemanager.getRoot().then((fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  filemanager.getRoot().then((fileInfos) => {
+    for (var i = 0; i < fileInfos.length; i++) {
+        console.log("files:"+JSON.stringify(fileInfos));
+    }
   }).catch((err) => {
       console.log(err)
   });
@@ -69,14 +67,11 @@ getRoot(options? : {dev? : DevInfo}, callback : AsyncCallback&lt;FileInfo[]&gt;)
       "name":"local"
     }
   };
-  filemanager.getRoot(options, (err, fileInfo)=>{
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      } 
+  filemanager.getRoot(options, (err, fileInfos)=>{
+    for (var i = 0; i < fileInfos.length; i++) {
+        console.log("files:"+JSON.stringify(fileInfos));
+    }
   });
-  
   ```
 
 ## filemanager.listFile
@@ -111,18 +106,17 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 **示例：**
 
   ```js
-  // 获取目录下所有文件
-  // 通过listFile、getRoot获取的文件uri
-  let media_path = ""
-  filemanager.listFile(media_path, "file")
-  .then((fileInfo) => {
-      if(Array.isArray(fileInfo)) {
-          for (var i = 0; i < fileInfo.length; i++) {
-              console.log("file:"+JSON.stringify(fileInfo));
-          }
-      }
+  // 获取目录下所有文件，通过getRoot获取的目录uri
+  filemanager.getRoot().then((fileInfos) => {
+    let file = fileInfos.find(item => item.name == "file_folder");
+    let path = file.path;
+    filemanager.listFile(path, "file").then((files) => {
+        console.log("files:" + JSON.stringify(files));
+      }).catch((err) => {
+        console.log("failed to get files" + err);
+      });
   }).catch((err) => {
-      console.log("failed to get file"+err);
+      console.log("failed to get root" + err);
   });
   ```
 
@@ -153,33 +147,18 @@ listFile(path : string, type : string, options? : {dev? : DevInfo, offset? : num
 
 **示例：**
 
-  ```js
-  // 通过listFile、getRoot获取的文件path
-  let fileInfos = filemanager.getRoot(); 
-  let media_path  = "";
-  for (let i = 0; i < fileInfos.length; i++) {
-	if (fileInfos[i].name == "image_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "audio_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "video_album") {
-	  media_path = fileInfos[i].path;
-	} else if (fileInfos[i].name == "file_folder") {
-	  media_path = fileInfos[i].path;
-	}
-  }
-
-  filemanager.listFile(media_path, "file")
-  .then((fileInfo) => {
-    if(Array.isArray(fileInfo)) {
-        for (var i = 0; i < fileInfo.length; i++) {
-            console.log("file:"+JSON.stringify(fileInfo));
-        }
-    }
-  }).catch((err) => {
-    console.log("failed to get file"+err);
-  });
-  ```
+```js
+// 获取目录下所有文件，通过getRoot获取的目录uri
+filemanager.getRoot().then((fileInfos) => {
+  let file = fileInfos.find(item => item.name == "image_album");
+  let path = file.path;
+  filemanager.listFile(path, "image",function(err, files){
+    console.log("files:" + JSON.stringify(files));
+  })
+}).catch((err) => {
+    console.log("failed to get root" + err);
+});
+```
 
 ## filemanager.createFile
 

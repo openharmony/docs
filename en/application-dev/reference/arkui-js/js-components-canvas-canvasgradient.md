@@ -40,4 +40,4 @@ Adds a color stop for the** CanvasGradient** object based on the specified offse
   }
   ```
 
-  ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001152610806.png)
+  ![img](figures/en-us_image_0000001152610806.png)

@@ -14,8 +14,8 @@
 | onLayoutReady | Function | 自定义组件布局完成 | 自定义组件插入Page组件树后，将会对自定义组件进行布局计算，调整其内容元素尺寸与位置，当布局计算结束后触发该回调。 |
 | onDetached | Function | 自定义组件摘除 | 自定义组件摘除时，触发该回调，常用于停止动画或异步逻辑停止执行的场景。 |
 | onDestroy | Function | 自定义组件销毁 | 自定义组件销毁时，触发该回调，常用于资源释放。 |
-| onPageShow | Function | 自定义组件Page显示 | 自定义组件所在Page显示后，触发该回调。 |
-| onPageHide | Function | 自定义组件Page隐藏 | 自定义组件所在Page隐藏后，触发该回调。 |
+| onShow | Function | 自定义组件Page显示 | 自定义组件所在Page显示后，触发该回调。 |
+| onHide | Function | 自定义组件Page隐藏 | 自定义组件所在Page隐藏后，触发该回调。 |
 
 
 ## 示例
@@ -42,10 +42,10 @@ export default {
   onDetached() {
     this.value = ""
   },
-  onPageShow() {
+  onShow() {
     console.log("Page显示")
   },
-  onPageHide() {
+  onHide() {
     console.log("Page隐藏")
   }
 }

@@ -1,14 +1,17 @@
 # 升级
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 升级范围：升级整个系统，包括内置的资源、预置应用；第三方的应用不在升级的范围。
 
 升级依赖：升级分为SD卡升级和在线升级两种。
 
 - SD卡升级依赖升级包和SD卡安装。
 - 在线升级依赖设备厂商部署的用于管理升级包的服务器。服务器由设备厂商部署，IP由调用者传入，请求的request接口是固定的，由设备厂商开发。
+
+> **说明：**
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -43,7 +46,7 @@ getUpdater(upgradeFile: string, updateType?: UpdateTypes): Updater
 
 **示例：**
 
-```
+```js
 try {
   let updater = update.getUpdater('/data/updater/updater.zip', 'OTA');
 } catch(error) {
@@ -75,7 +78,7 @@ getUpdaterForOther(upgradeFile: string, device: string, updateType?: UpdateTypes
 
 **示例：**
 
-```
+```js
 try {
   let updater = update.getUpdaterForOther('/data/updater/updater.zip', '1234567890', 'OTA');
 } catch(error) {
@@ -107,7 +110,7 @@ getUpdaterFromOther(upgradeFile: string, device: string, updateType?: UpdateType
 
 **示例：**
 
-```
+```js
 try {
   let updater = update.getUpdaterFromOther('/data/updater/updater.zip', '1234567890', 'OTA');
 } catch(error) {
@@ -133,7 +136,7 @@ getNewVersionInfo(callback: AsyncCallback\<NewVersionInfo>): void
 
 **示例：**
 
-```
+```js
 updater.getNewVersionInfo((err, info) => {
   console.log("getNewVersionInfo success  " + info.status);
   console.log(`info versionName = ` + info.checkResults[0].versionName);
@@ -158,7 +161,7 @@ getNewVersionInfo(): Promise\<NewVersionInfo>
 
 **示例：**
 
-```
+```js
 updater.getNewVersionInfo().then(value => {
   console.log(`info versionName = ` + value.checkResults[0].versionName);
   console.log(`info versionCode = ` + value.checkResults[0].versionCode);
@@ -184,7 +187,7 @@ checkNewVersion(callback: AsyncCallback\<NewVersionInfo>): void
 
 **示例：**
 
-```
+```js
 updater.checkNewVersion((err, info) => {
   console.log("checkNewVersion success  " + info.status);
   console.log(`info versionName = ` + info.checkResults[0].versionName);
@@ -209,7 +212,7 @@ checkNewVersion(): Promise\<NewVersionInfo>
 
 **示例:**
 
-```
+```js
 updater.checkNewVersion().then(value => {
   console.log(`info versionName = ` + value.checkResults[0].versionName);
   console.log(`info versionCode = ` + value.checkResults[0].versionCode);
@@ -236,7 +239,7 @@ verifyUpdatePackage(upgradeFile: string, certsFile: string): void
 
 **示例：**
 
-```
+```js
 updater.on("verifyProgress", callback => {
   console.info('on verifyProgress ' + callback.percent);
 });
@@ -259,7 +262,7 @@ rebootAndCleanUserData(): Promise\<number>
 
 **示例：**
 
-```
+```js
 updater.rebootAndCleanUserData().then(result => {
   console.log("rebootAndCleanUserData " + result);
 }).catch(err => {
@@ -283,7 +286,7 @@ rebootAndCleanUserData(callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```
+```js
 updater.rebootAndCleanUserData((err, result) => {
   console.log("rebootAndCleanUserData ", result)
 });
@@ -305,7 +308,7 @@ applyNewVersion(): Promise\<number>
 
 **示例：**
 
-```
+```js
 updater.applyNewVersion().then(result => {
     console.log("appVewVersion ", result)
 }).catch(err => {
@@ -329,7 +332,7 @@ applyNewVersion(callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```
+```js
 updater.applyNewVersion((err, result) => {
   console.log("applyNewVersion ", result)
 });
@@ -345,7 +348,7 @@ download(): void
 
 **示例：**
 
-```
+```js
 updater.on("downloadProgress", progress => {
   console.log("downloadProgress on" + progress);
   console.log(`downloadProgress status: ` + progress.status);
@@ -364,7 +367,7 @@ upgrade():void
 
 **示例：**
 
-```
+```js
 updater.on("upgradeProgress", progress => {
   console.log("upgradeProgress on" + progress);
   console.log(`upgradeProgress status: ` + progress.status);
@@ -390,7 +393,7 @@ setUpdatePolicy(policy: UpdatePolicy, callback: AsyncCallback\<number>): void
 
 **示例：**
 
-```
+```js
 // 设置策略
 let policy = {
   autoDownload: false,
@@ -426,7 +429,7 @@ setUpdatePolicy(policy: UpdatePolicy): Promise\<number>
 
 **示例：**
 
-```
+```js
 let policy = {
   autoDownload: false,
   autoDownloadNet: true,
@@ -457,7 +460,7 @@ getUpdatePolicy(callback: AsyncCallback\<UpdatePolicy>): void
 
 **示例：**
 
-```
+```js
 updater.getUpdatePolicy((err, policy) => {
   console.log("getUpdatePolicy success");
   console.log(`policy autoDownload = ` + policy.autoDownload);
@@ -482,7 +485,7 @@ getUpdatePolicy(): Promise\<UpdatePolicy>
 
 **示例：**
 
-```
+```js
 updater.getUpdatePolicy().then(value => {
   console.log(`info autoDownload = ` + value.autoDownload);
   console.log(`info autoDownloadNet = ` + value.autoDownloadNet);
@@ -496,7 +499,7 @@ updater.getUpdatePolicy().then(value => {
 
 升级类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名   | 说明    |
 | ----- | ----- |
@@ -507,7 +510,7 @@ updater.getUpdatePolicy().then(value => {
 
 升级包类型。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                  | 默认值  | 说明      |
 | -------------------- | ---- | ------- |
@@ -523,7 +526,7 @@ updater.getUpdatePolicy().then(value => {
 
 安装模式。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明   |
 | ------------------- | ---- | ---- |
@@ -535,7 +538,7 @@ updater.getUpdatePolicy().then(value => {
 
 新版本检测状态。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 参数名                 | 默认值  | 说明       |
 | ------------------- | ---- | -------- |
@@ -548,7 +551,7 @@ updater.getUpdatePolicy().then(value => {
 
 升级策略。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称                  | 参数类型                        | 必填   | 说明      |
 | ------------------- | --------------------------- | ---- | ------- |
@@ -560,7 +563,7 @@ updater.getUpdatePolicy().then(value => {
 
 新版本信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称              | 参数类型                                     | 必填   | 说明   |
 | --------------- | ---------------------------------------- | ---- | ---- |
@@ -573,7 +576,7 @@ updater.getUpdatePolicy().then(value => {
 
 检测结果。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称            | 参数类型                          | 必填   | 说明     |
 | ------------- | ----------------------------- | ---- | ------ |
@@ -588,7 +591,7 @@ updater.getUpdatePolicy().then(value => {
 
 版本描述信息。
 
-**系统能力**：以下各项对应的系统能力均为:SystemCapability.Update.UpdateService
+**系统能力**：SystemCapability.Update.UpdateService
 
 | 名称            | 参数类型   | 必填   | 说明            |
 | ------------- | ------ | ---- | ------------- |

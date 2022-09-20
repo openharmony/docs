@@ -1,6 +1,9 @@
 # USB
 
-> **NOTE**<br>
+This module provides USB device management functions, including USB device list query, bulk data transfer, control transfer, and permission control.
+
+> **NOTE**
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -126,8 +129,8 @@ Checks whether the application has the permission to access the device.
 
 - **Example**
   ```js
-  let divicesName="1-1";
-  let bool = usb.hasRight(divicesName);
+  let devicesName="1-1";
+  let bool = usb.hasRight(devicesName);
   console.log(bool);
   ```
 
@@ -152,8 +155,8 @@ Requests the temporary permission for the application to access the USB device.
 
 - **Example**
   ```js
-  let divicesName="1-1";
-  usb.requestRight(divicesName).then((ret) => {
+  let devicesName="1-1";
+  usb.requestRight(devicesName).then((ret) => {
     console.log(`requestRight = ${JSON.stringify(ret)}`);
   });
   ```
@@ -248,7 +251,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface..
+Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and interfaces, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim a USB interface..
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -358,7 +361,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 Performs bulk transfer.
 
-Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and endpoints, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim the USB interface.
+Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB device list and endpoints, call [usb.requestRight](#usbrequestright) to request the device access permission, call [usb.connectDevice](#usbconnectdevice) to obtain **devicepipe** as an input parameter, and call [usb.claimInterface](#usbclaiminterface) to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -379,7 +382,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
   ```js
   // Call usb.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
   // Pass the obtained USB device as a parameter to usb.connectDevice. Then, call usb.connectDevice to connect the USB device.
-  // Call usb.claimInterface to claim the USB interface. After that, call usb.bulkTransfer to start bulk transfer.
+  // Call usb.claimInterface to claim a USB interface. After that, call usb.bulkTransfer to start bulk transfer.
   usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
    console.log(`bulkTransfer = ${JSON.stringify(ret)}`);
   });

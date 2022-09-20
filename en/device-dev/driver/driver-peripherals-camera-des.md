@@ -52,7 +52,7 @@ The camera module encapsulates camera operations in camera preview, photographin
   | API                                                    | Description                    |
   | ------------------------------------------------------------ | ---------------------------- |
   | CamRetCode GetStreamOperator(<br>    const OHOS::sptr<IStreamOperatorCallback> &callback,<br>    OHOS::sptr<IStreamOperator> &streamOperator) | Obtains the stream controller.                |
-  | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settingss) | Updates device control parameters.            |
+  | CamRetCode UpdateSettings(const std::shared_ptr<CameraSetting> &settings) | Updates device control parameters.            |
   | CamRetCode SetResultMode(const ResultCallbackMode &mode)     | Sets the result callback mode and function.|
   | CamRetCode GetEnabledResults(std::vector<MetaType> &results) | Obtains the enabled ResultMeta.        |
   | CamRetCode EnableResult(const std::vector<MetaType> &results) | Enables specific ResultMeta.        |
@@ -730,7 +730,7 @@ There is a camera demo in the **/drivers/peripheral/camera/hal/init** directory.
    "-o | --offline       stream offline test\n"
    "-c | --capture       capture one picture\n"
    "-w | --set WB        Set white balance Cloudy\n"
-   "-v | --video         capture Viedeo of 10s\n"
+   "-v | --video         capture Video of 10s\n"
    "-a | --Set AE        Set Auto exposure\n"
    "-f | --Set Flashlight        Set flashlight ON 5s OFF\n"
    "-q | --quit          stop preview and quit this app\n");

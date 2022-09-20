@@ -43,9 +43,9 @@ listener.on('change', onPortrait)
 
 `(max-height: 800)` ：当高度小于800时条件成立
 
-`(height &lt;= 800) ` ：当高度小于800时条件成立
+`(height <= 800) ` ：当高度小于等于800时条件成立
 
-`screen and (device-type: tv) or (resolution &lt; 2)` ：包含多个媒体特征的多条件复杂语句查询
+`screen and (device-type: tv) or (resolution < 2)` ：包含多个媒体特征的多条件复杂语句查询
 
 ###  媒体类型(media-type)
 
@@ -152,5 +152,5 @@ listener.on('change', onPortrait)
 
 针对媒体查询开发，有以下相关实例可供参考：
 
-- [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/MediaQuery)
+- [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)
 

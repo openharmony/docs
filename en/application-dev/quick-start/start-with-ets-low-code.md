@@ -1,6 +1,8 @@
 # Getting Started with eTS in the Low-Code Approach
 
-> **NOTE**<br/>This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
+> **NOTE**
+>
+> This feature is supported in DevEco Studio V3.0 Beta3 and later versions.
 >
 > The component lineup that supports low-code development in eTS is now at its preliminary stage and will be expanding in coming versions.
 >
@@ -15,7 +17,7 @@ You can develop applications or services in the low-code approach using either o
 
 - Create a project that supports low-code development. This method is used as an example in this topic.
 
-- In an existing project, create a .visual file for development.
+- In an existing project, create a .visual file for development. For details, see [Creating a .visual File That Supports Low-Code Development](#building-the-second-page).
 
 
 ## Creating a Project That Supports Low-Code Development

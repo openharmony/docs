@@ -273,7 +273,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173324843.png)
+   ![img](figures/en-us_image_0000001173324843.png)
 
 2. Bar chart
 
@@ -342,7 +342,7 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001173164929.png)
+   ![img](figures/en-us_image_0000001173164929.png)
 
 3. Gauge chart
 
@@ -372,4 +372,4 @@ In addition to the methods in [Universal Methods](js-components-common-methods.m
    }
    ```
 
-   ![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001127125264.png)
+   ![img](figures/en-us_image_0000001127125264.png)

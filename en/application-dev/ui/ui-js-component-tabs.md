@@ -320,10 +320,3 @@ export default {
 ```
 
 ![en-us_image_tab.gif](figures/en-us_image_tab.gif)
-
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;tabs&gt;** component:
-
-[`Tabs`: Tabs (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/Tabs)

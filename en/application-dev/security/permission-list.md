@@ -1,14 +1,8 @@
-# Permission List
+# Application Permission List
 
-On the basis of the [principles for app permission management](accesstoken-overview.md#basic-principles), apply for permissions for an app by following the procedure illustrated in the figure below.
+Before applying for required permissions, read and understand the [permission workflow](accesstoken-overview.md#permission-workflow). Then, determine whether the app can apply for the target permissions based on the table below.
 
-![](figures/permission-application-process.png)
-
-1. For details about the mapping between the app's ability privilege level (APL) and permission level, see [Permission Levels](accesstoken-overview.md#permission-levels).
-2. Permissions can be authorized by the user (user_grant) or the system (system_grant). For details, see [Permission Authorization Modes](accesstoken-overview.md#permission-authorization-modes).
-3. In principle, an app with a lower APL cannot apply for higher permissions by default. The Access Control List (ACL) makes low-level apps have high-level permissions. For details, see [ACL](accesstoken-overview.md#acl).
-
-The following lists the permissions defined by the system. For details about permission usage examples, see [Access Control Development](accesstoken-guidelines.md).
+For details about permission usage examples, see [Access Control (Permission) Development](accesstoken-guidelines.md).
 
 | Permission                                                  | APL    | Authorization Mode    | Enable ACL| Description                                                    |
 | -------------------------------------------------------- | ------------ | ------------ | ------- | ------------------------------------------------------------ |
@@ -83,7 +77,6 @@ The following lists the permissions defined by the system. For details about per
 | ohos.permission.SET_ABILITY_CONTROLLER                   | system_basic | system_grant | TRUE    | Allows an app to set the start and stop of an ability.                       |
 | ohos.permission.USE_USER_IDM                             | system_basic | system_grant | FALSE   | Allows an app to access the system identity credential information.                              |
 | ohos.permission.MANAGE_USER_IDM                          | system_basic | system_grant | FALSE   | Allows an app to use the system identity credential management capability to enroll, modify, and delete PINs, face images, and fingerprints.|
-| ohos.permission.ACCESS_BIOMETRIC                         | normal       | system_grant | TRUE    | Allows an app to use biometric recognition for identity authentication.                  |
 | ohos.permission.ACCESS_USER_AUTH_INTERNAL                | system_basic | system_grant | FALSE   | Allows an app to use the system identity authentication capability to authenticate or identify users.    |
 | ohos.permission.ACCESS_PIN_AUTH                          | system_basic | system_grant | FALSE   | Allows a system app to call the PIN input APIs to present a password input dialog box for users.|
 | ohos.permission.GET_RUNNING_INFO                         | system_basic | system_grant | TRUE    | Allows an app to obtain running status information.                                    |

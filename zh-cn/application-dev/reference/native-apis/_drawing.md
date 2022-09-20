@@ -43,7 +43,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 ### Classes
 
-  | Classe&nbsp;Name | Description | 
+  | Classes&nbsp;Name | Description | 
 | -------- | -------- |
 | [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
 

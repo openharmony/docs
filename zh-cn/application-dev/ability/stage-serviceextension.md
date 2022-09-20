@@ -26,7 +26,7 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 1.创建ServiceExtensionAbility
 
-开发者在创建TS文件中自定义类继承ServiceExtensionAbility，重写基类回调函数，示例如下：
+开发者在创建TS文件中自定义类继承ServiceExtensionAbility，重写基类回调函数，接口生成的默认相对路径：entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts，示例如下：
 
   ```js
   import rpc from '@ohos.rpc'
@@ -61,9 +61,9 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
 
 2.注册ServiceExtensionAbility
 
-需要在应用配置文件module.json中进行注册，注册类型type需要设置为service。
+需要在应用配置文件module.json5中进行注册，注册类型type需要设置为service。
 
-**module.json配置样例**
+**module.json5配置样例**
 
 ```json
 "extensionAbilities":[{
@@ -72,11 +72,6 @@ ExtensionAbility，是Stage模型中新增的扩展组件的基类，一般用�
     "description": "service",
     "type": "service",
     "visible": true,
-    "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"    
+    "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
 }]
 ```
-
-## 相关实例
-
-针对ServiceExtensionAbility开发，有以下相关实例可供参考：
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（eTS）（API9）](https://gitee.com/openharmony/app_samples/tree/master/ability/ServiceExtAbility)

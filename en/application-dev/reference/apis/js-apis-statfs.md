@@ -1,9 +1,9 @@
 # statfs
 
-> **NOTE:**<br>
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The statfs module provides APIs for obtaining file system information, including the total number of bytes and the number of idle bytes of the file system.
 
-Obtains file system information, including the total number of bytes and the number of idle bytes of the file system.
+> **NOTE**<br>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -63,7 +63,7 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
       statfs.getFreeBytes(path, function(err, number){
-          console.info("getFreeBytes callback successfully:"+ number);
+          console.info("Got free bytes successfully:"+ number);
       });
   });
   ```
@@ -121,7 +121,7 @@ Obtains the total number of bytes of the specified file system in asynchronous m
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
       statfs.getTotalBytes(path, function(err, number){
-          console.info("getTotalBytes callback successfully:"+ number);
+          console.info("Got total bytes successfully:"+ number);
       });
   });
   ```

@@ -26,7 +26,7 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
 
 1. Create a Service Extension ability.
 
-2. Customize a class that inherits from **ServiceExtensionAbility** in the .ts file in the directory where the Service Extension ability is defined and override the lifecycle callbacks of the base class. The code sample is as follows:
+2. Customize a class that inherits from **ServiceExtensionAbility** in the .ts file in the directory where the Service Extension ability is defined (**entry\src\main\ets\ServiceExtAbility\ServiceExtAbility.ts** by default) and override the lifecycle callbacks of the base class. The code sample is as follows:
 
   ```js
   import rpc from '@ohos.rpc'
@@ -61,9 +61,9 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
 
 2. Register the Service Extension ability.
 
-   Declare the Service Extension ability in the **module.json** file by setting its **type** attribute to **service**.
+   Declare the Service Extension ability in the **module.json5** file by setting its **type** attribute to **service**.
 
-   **module.json configuration example**
+   **module.json5 configuration example**
 
 ```json
 "extensionAbilities":[{
@@ -75,8 +75,3 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
     "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"    
 }]
 ```
-
-## Samples
-
-The following sample is provided to help you better understand how to develop Service Extension abilities:
-- [`ServiceExtAbility`: Stage Extension Ability Creation and Usage (eTS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/StageCallAbility)

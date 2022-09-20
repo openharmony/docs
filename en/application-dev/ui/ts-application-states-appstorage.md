@@ -21,7 +21,7 @@ By default, the attributes in the AppStorage are changeable. If needed, AppStora
 | Set | key: string,<br/>newValue: T | void | Replaces the value of a saved key. |
 | Link | key: string | @Link | Returns two-way binding to this attribute if there is data with a given key. This means that attribute changes made by a variable or component will be synchronized to the AppStorage, and attribute changes made through the AppStorage will be synchronized to the variable or component. If the attribute with this key does not exist or is read-only, undefined is returned. |
 | SetAndProp | propName: string,<br/>defaultValue: S | @Prop | Works in a way similar to the Prop API. If the current key is stored in the AppStorage, the value corresponding to the key is returned. If the key has not been created, a Prop instance corresponding to the default value is created and returned. |
-| Prop | key: string | @Prop | Returns one-way binding to an attribute with a given key if the attribute exists. This means that attribute changes made through the AppStorage will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the AppStorage. The variable returned by this method is an immutable one, which is applicable both to the variable and immutable state attributes. If the attribute with the specified key does not exist, undefined is returned.<br/>> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:<br/>> The attribute value used in the prop method must be of a simple type. |
+| Prop | key: string | @Prop | Returns one-way binding to an attribute with a given key if the attribute exists. This means that attribute changes made through the AppStorage will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the AppStorage. The variable returned by this method is an immutable one, which is applicable both to the variable and immutable state attributes. If the attribute with the specified key does not exist, undefined is returned.<br/>**NOTE**<br/>The attribute value used in the prop method must be of a simple type. |
 | SetOrCreate | key: string,<br/>newValue: T | boolean | If an attribute that has the same name as the specified key exists: replaces the value of the attribute and returns true when the attribute can be modified; retains the original value of the attribute and returns false otherwise.<br/>If an attribute that has the same name as the specified key does not exist: creates an attribute whose key is key and value is newValue. The values null and undefined are not supported. |
 | Get | key: string | T or undefined | Obtains the value of the specified key. |
 | Has | propName: string | boolean | Checks whether the attribute corresponding to the specified key value exists. |
@@ -51,9 +51,8 @@ One-way data binding can be established between components and the AppStorage th
 ## Example
 
 
-```
-let varA = AppStorage.Link('varA')
-let envLang = AppStorage.Prop('languageCode')
+```ts
+// xxx.ets
 
 @Entry
 @Component
@@ -62,7 +61,7 @@ struct ComponentA {
   @StorageProp('languageCode') lang: string = 'en'
   private label: string = 'count'
 
-  private aboutToAppear() {
+  aboutToAppear() {
     this.label = (this.lang === 'en') ? 'Number' : 'Count'
   }
 

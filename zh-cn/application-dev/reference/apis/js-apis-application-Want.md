@@ -10,7 +10,7 @@ Want是系统的基本通信组件。
 
 ## 导入模块
 
-  
+
 ```
 import Want from '@ohos.application.Want';
 ```
@@ -32,3 +32,45 @@ import Want from '@ohos.application.Want';
 | entities    | 只读     | Array\<string>       | 否   | 表示entities相关描述。                                    |                              |
 | extensionAbilityType<sup>9+</sup> |  只读   | bundle.ExtensionAbilityType | 否  | ExtensionAbility类型                |
 | extensionAbilityName<sup>9+<sup> | 只读     | string               | 否   | Want中扩展能力名称的描述。                                   |
+
+**示例：**
+
+- 基础用法
+
+  ```js
+  var want = {
+        "deviceId": "", // deviceId为空表示本设备
+        "bundleName": "com.extreme.test",
+        "abilityName": "MainAbility",
+        "uri": "pages/second" // uri非必选，可以传递路由地址
+    };
+    this.context.startAbility(want, (error) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.log("error.code = " + error.code)
+    })
+  ```
+
+- 传递FD数据，FD表示文件描述符(FileDescriptor)
+
+  ```js
+  var fd;
+    try {
+        fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
+    } catch(e) {
+        console.log("openSync fail:" + JSON.stringify(e));
+    }
+    var want = {
+        "deviceId": "", // deviceId为空表示本设备
+        "bundleName": "com.extreme.test",
+        "abilityName": "MainAbility",
+        "parameters": {
+          "keyFd":{"type":"FD", "value":fd}
+        }
+    };
+    this.context.startAbility(want, (error) => {
+        // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+        console.log("error.code = " + error.code)
+    })
+  ```
+
+  

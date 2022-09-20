@@ -2,7 +2,7 @@
 
 # 应用包结构配置文件的说明
 
-在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json和app.json配置文件中对应用的包结构进行声明。
+在开发FA模型下的应用程序时，需要在config.json文件中对应用的包结构进行申明；同样的，在开发stage模型下的应用程序时，需要在module.json5和app.json配置文件中对应用的包结构进行声明。
 
 ## 配置文件内部结构
 
@@ -66,7 +66,7 @@ app.json示例：
 
 ### module对象内部结构
 
-module.json示例:
+module.json5示例:
 
 ```json
 {
@@ -97,50 +97,6 @@ module.json示例:
                 "name": "string",
                 "value": "string",
                 "resource": "$profile:config_file2"
-            }
-        ],
-        "metadata": [
-            {
-                "name": "string",
-                "value": "string",
-                "resource": "$profile:config_file1"
-            },
-            {
-                "name": "string",
-                "value": "string",
-                "resource": "$profile:config_file2"
-            }
-        ],
-        "abilities": [
-            {
-                "name": "MainAbility",
-                "srcEntrance" : "./login/MyMainAbility.ts",
-                "description": "$string:description_main_ability",
-                "icon": "$media:icon",
-                "label": "HiMusic",
-                "visible": true,
-                "skills": [
-                    {
-                        "actions": [
-                            "action.system.home"
-                        ],
-                        "entities": [
-                            "entity.system.home"
-                        ],
-                        "uris": [ ]
-                    }
-                ],
-                "backgroundModes": [
-                    "dataTransfer",
-                    "audioPlayback",
-                    "audioRecording",
-                    "location",
-                    "bluetoothInteraction",
-                    "multiDeviceConnection",
-                    "wifiInteraction",
-                    "voip",
-                    "taskKeeping"
-                ],
             }
         ],
         "abilities": [
@@ -314,7 +270,7 @@ abilities描述ability的配置信息，标签值为数组类型。
 | launchType      | 该标签标示ability的启动模式，标签值可选“standard”、“singleton”、“specified”。该标签缺省为"singleton"。standard表示普通多实例，spcified表示指定实例，运行时由ability内部业务决定是否创建多实例，singleton表示单实例。 | 字符串     | 可缺省，该标签缺省为"singleton"                               |
 | description     | 该标签标识ability的描述，标签值是是字符串类型或对描述内容的资源索引，要求采用用资源索引方式，以支持多语言。 | 字符串     | 该标签可缺省，缺省值为空。                                   |
 | icon            | 该标签标识ability图标，标签值为资源文件的索引。该标签可缺省，缺省值为空。<br/>如果ability被配置为MainElement，该标签必须配置。 | 字符串     | 该标签可缺省，缺省值为空。<br/>如果ability被配置为MainElement，该标签必须配置。 |
-| permissions     | 该标签标识被其它应用的ability调用时需要申请的权限的集合，字符串数组类型，每个数组元素为一个权限名称，通常采用反向域名方式表示（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。该标签可缺省，缺省值为空。 | 字符串数组 | 该标签可缺省，缺省值为空。                                   |
+| permissions     | 该标签标识被其它应用的ability调用时需要申请的权限的集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。                                   |
 | metadata        | 该标签表示ability的元信息。metadata参考[metadata对象内部结构](#metadata对象内部结构)。 | 数组       | 该标签可缺省，缺省值为空。                                   |
 | visible         | 该标签标识ability是否可以被其它应用调用，为布尔类型，true表示可以被其它应用调用， false表示不可以被其它应用调用。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
 | continuable     | 该标签标识ability是否可以迁移，为布尔类型，true表示可以被迁移， false表示不可以被迁移。 | 布尔值     | 该标签可缺省，缺省值为false。                                |
@@ -587,7 +543,7 @@ form示例 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息
+在module.json5的extension组件下面定义metadata信息
 
 ```json
 {
@@ -709,7 +665,7 @@ metadata中指定commonEvent信息，其中 :
 }
 ```
 
-在module.json的extension组件下面定义metadata信息，如下 :
+在module.json5的extension组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [
@@ -801,7 +757,7 @@ distroFilter示例 :
 ]
 ```
 
-在module.json的extensionAbilities组件下面定义metadata信息，如下 :
+在module.json5的extensionAbilities组件下面定义metadata信息，如下 :
 
 ```json
 "extensionAbilities": [

@@ -369,8 +369,3 @@ export default {
 ```
 
 ![en-us_image_0000001231843132](figures/en-us_image_0000001231843132.gif)
-## Samples
-
-The following sample is provided to help you better understand how to develop the **&lt;swiper&gt;** component:
-
-- [`Swiper`: Swiper (JavaScript, API 7)](https://gitee.com/openharmony/app_samples/tree/master/UI/Swiper)

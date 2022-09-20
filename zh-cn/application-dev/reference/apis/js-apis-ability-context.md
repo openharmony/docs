@@ -126,7 +126,7 @@ var options = {
   windowMode: 0,
 };
 this.context.startAbility(want, options)
-.then((data) => {
+.then(() => {
     console.log('Operation successful.')
 }).catch((error) => {
     console.log('Operation failed.');
@@ -273,7 +273,7 @@ var options = {
 };
 var accountId = 11;
 this.context.startAbility(want, accountId, options)
-.then((data) => {
+.then(() => {
     console.log('Operation successful.')
 }).catch((error) => {
     console.log('Operation failed.');
@@ -352,7 +352,7 @@ startAbilityForResult(want: Want, options: StartOptions): Promise&lt;AbilityResu
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-featureAbility.md#Want) | 是 | 启动Ability的want信息。 |
-| options | StartOptions | 是 | 启动Ability所携带的参数。 |
+| options | StartOptions | 否 | 启动Ability所携带的参数。 |
 
 **返回值**：
 
@@ -511,8 +511,8 @@ terminateSelf(): Promise&lt;void&gt;
 **示例**：
 
 ```js
-this.context.terminateSelf(want).then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.terminateSelf(want).then(() => {
+    console.log('success:');
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));
 });
@@ -571,7 +571,7 @@ this.context.terminateSelfWithResult(
 {
     want: {bundleName: "com.extreme.myapplication", abilityName: "MainAbilityDemo"},
     resultCode: 100
-}).then((result) => {
+}).then(() => {
     console.log("terminateSelfWithResult")
 })
 ```
@@ -595,7 +595,7 @@ connectAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 连接Ability的代码 |
+| number | 返回Ability连接的结果code。 |
 
 **示例**：
 ```js
@@ -606,7 +606,7 @@ var want = {
 }
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
@@ -615,8 +615,8 @@ var options = {
     console.log('connectAbility onFailed, code: ' + code)
   }
 }
-this.context.connectAbility(want, options) {
-  console.log('code: ' + code)
+let result = this.context.connectAbility(want, options) {
+  console.log('code: ' + result)
 }
 ```
 
@@ -652,7 +652,7 @@ var want = {
 var accountId = 111;
 var options = {
   onConnect: (elementName, remote) => {
-    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' remote)
+    console.log('connectAbility onConnect, elementName: ' + elementName + ', remote: ' + remote)
   },
   onDisconnect: (elementName) => {
     console.log('connectAbility onDisconnect, elementName: ' + elementName)
@@ -768,8 +768,8 @@ setMissionLabel(label: string): Promise\<void>
 **示例**：
     
 ```js
-this.context.setMissionLabel("test").then((data) => {
-    console.log('success:' + JSON.stringify(data));
+this.context.setMissionLabel("test").then(() => {
+    console.log('success:');
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));
 });

@@ -440,9 +440,6 @@
            .fontWeight(FontWeight.Bold)
            .layoutWeight(1)
          Flex({ alignItems: ItemAlign.Center }) {
-           Circle({width: 6, height: 6})
-             .margin({right: 12})
-             .fill(colorValue)
            Text(name)
              .fontSize(17.4)
              .flexGrow(1)
@@ -531,6 +528,6 @@
 
 针对创建简单视图，有以下示例工程可供参考：
 
-- [`BuildCommonView`：创建简单视图（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/BuildCommonView)
+- [`BuildCommonView`：创建简单视图（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BuildCommonView)
 
   本示例为构建了简单页面展示食物番茄的图片和营养信息，主要为了展示简单页面的Stack布局和Flex布局。

@@ -23,7 +23,7 @@ struct CountDownTimerComponent {
     @State countDownFrom: number = 10
     private timerId: number = -1
 
-    private aboutToAppear(): void  {
+    aboutToAppear(): void  {
         this.timerId = setInterval(() => {
             if (this.countDownFrom <= 1) {
                 clearTimeout(this.timerId)
@@ -32,7 +32,7 @@ struct CountDownTimerComponent {
         }, 1000) // decr counter by 1 every second
     }
 
-    private aboutToDisappear(): void {
+    aboutToDisappear(): void {
         if (this.timerId > 0) {
             clearTimeout(this.timerId)
             this.timerId = -1
@@ -48,7 +48,8 @@ struct CountDownTimerComponent {
 上述示例表明，生命周期函数对于允许CountDownTimerComponent管理其计时器资源至关重要，类似的函数也包括异步从网络请求加载资源。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > - 允许在生命周期函数中使用Promise和异步回调函数，比如网络资源获取，定时器设置等；
 > 
 > - 不允许在生命周期函数中使用async await。

@@ -1,11 +1,11 @@
 # Scroll
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **&lt;Scroll&gt;** component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
+The **\<Scroll>** component scrolls the content when the layout size of a component exceeds the viewport of its parent component.
 
 
 ## Required Permissions
@@ -28,8 +28,8 @@ Scroll(scroller?: Scroller)
 | Name       | Type      | Default Value      | Description |
 | -------- | -------- | -------- | -------- |
 | scrollable     | ScrollDirection   | ScrollDirection.Vertical | Scroll method. |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate-enums) | Auto | Scroll bar status. |
-| scrollBarColor | Color | - | Color of the scroll bar. |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate-enums) | ScrollDirection.Auto | Scrollbar status. |
+| scrollBarColor | Color | - | Color of the scrollbar. |
 | scrollBarWidth | Length | - | Width of the scrollbar. |
 
 - ScrollDirection
@@ -39,10 +39,18 @@ Scroll(scroller?: Scroller)
   | Vertical | Only vertical scrolling is supported. |
   | None     | Scrolling is disabled. |
 
+## Events
+
+| Name | Description |
+| -------- | -------- |
+| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked when scrolling starts. It returns the horizontal and vertical offsets. |
+| onScrollEdge(side: Edge) =&gt; void | Invoked when scrolling reaches the edge. |
+| onScrollEnd() =&gt; void | Invoked when scrolling stops. |
+
 
 ## Scroller
 
-Controller of the scrollable container component. You can bind this component to the container component and use it to control the scrolling of the container component. Currently, this component can be bound to the **&lt;List&gt;** and **&lt;Scroll&gt;** components.
+Controller of the scrollable container component. You can bind this component to the container component and use it to control the scrolling of the container component. Currently, this component can be bound to the **\<List>** and **\<Scroll>** components.
 
 
 ### Objects to Import
@@ -53,7 +61,7 @@ scroller: Scroller = new Scroller()
 ```
 
 
-### scroller.scrollTo
+### scrollTo
 
 scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration: number, curve: Curve } }): void
 
@@ -69,7 +77,7 @@ Scrolls to the specified position.
   | animation | {<br/>duration: number,<br/>curve: Curve \|<br/>CubicBezier \|<br/>SpringCurve<br/>} | No |  | Animation configuration, which includes the following:<br/>- **duration**: scrolling duration.<br/>- **curve**: scrolling curve. |
 
 
-### scroller.scrollEdge
+### scrollEdge
 
 scrollEdge(value: Edge): void
 
@@ -83,7 +91,7 @@ Scrolls to the edge of the container.
   | value | Edge | Yes | - | Edge position to scroll to. |
 
 
-### scroller.scrollPage
+### scrollPage
 
 scrollPage(value: { next: boolean, direction?: Axis }): void
 
@@ -95,7 +103,7 @@ Scrolls to the next or previous page.
   | next | boolean | Yes | - | Whether to turn to the next page. The value **true** means to scroll to the next page, and the value **false** means to scroll to the previous page. |
 
 
-### scroller.currentOffset
+### currentOffset
 
 scroller.currentOffset(): Object
 
@@ -117,23 +125,16 @@ scroller.scrollToIndex(value: number): void
 Scrolls to the specified index.
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> Only the **&lt;List&gt;** component is supported.
+> **NOTE**
+>
+> Only the **\<List>** component is supported.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | value | number | Yes | - | Index of the item to be scrolled to in the list. |
 
-
-## Events
-
-| Name | Description |
-| -------- | -------- |
-| onScroll(xOffset: number, yOffset: number) =&gt; void | Invoked to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs. |
-| onScrollEdge(side: Edge) =&gt; void | Callback for the event of scrolling to the edge. |
-| onScrollEnd() =&gt; void | Invoked when scrolling stops. |
 
 
 ## Example
@@ -152,14 +153,20 @@ struct ScrollExample {
         Column() {
           ForEach(this.arr, (item) => {
             Text(item.toString())
-              .width('90%').height(150).backgroundColor(0xFFFFFF)
-              .borderRadius(15).fontSize(16).textAlign(TextAlign.Center)
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
               .margin({ top: 10 })
           }, item => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical).scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray).scrollBarWidth(30)
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.On)
+      .scrollBarColor(Color.Gray)
+      .scrollBarWidth(30)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })

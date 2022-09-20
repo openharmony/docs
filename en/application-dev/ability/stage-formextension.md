@@ -358,8 +358,3 @@ You can use HML, CSS, and JSON to develop the UI page for a JavaScript-programme
 Now you've got a widget shown below.
 
 ![fa-form-example](figures/fa-form-example.png)
-
-## Samples
-
-The following sample is provided to help you better understand how to develop a widget on the stage model:
-- [`FormExtAbility`: Stage Model Widget (eTS, JS, API version 9)](https://gitee.com/openharmony/app_samples/tree/master/ability/FormExtAbility)

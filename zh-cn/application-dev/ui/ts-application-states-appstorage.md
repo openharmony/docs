@@ -50,9 +50,6 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 ## 示例
 
 ```
-let varA = AppStorage.Link('varA')
-let envLang = AppStorage.Prop('languageCode')
-
 @Entry
 @Component
 struct ComponentA {
@@ -60,7 +57,7 @@ struct ComponentA {
   @StorageProp('languageCode') lang: string = 'en'
   private label: string = 'count'
 
-  private aboutToAppear() {
+  aboutToAppear() {
     this.label = (this.lang === 'zh') ? '数' : 'Count'
   }
 

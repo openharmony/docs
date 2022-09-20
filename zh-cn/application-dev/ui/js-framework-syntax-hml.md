@@ -24,7 +24,12 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
   <text> {{content[1]}} </text>
 </div>
 ```
-
+```
+/*xxx.css*/
+.container{
+    margin: 200px;
+}
+```
 ```
 // xxx.js
 export default {
@@ -42,6 +47,7 @@ export default {
 >
 > - hml文件中的js表达式不支持ES6语法。
 
+![zh-cn_image_0000001118642003](figures/zh-cn_image_0000001118642003.png)
 
 ## 普通事件绑定
 
@@ -120,6 +126,7 @@ export default {
   }
   ```
 
+![zh-cn_image_0000001118642002](figures/zh-cn_image_0000001118642002.gif)
 
 ## 冒泡事件绑定<sup>5+</sup>
 
@@ -200,7 +207,7 @@ Touch触摸类事件支持捕获，捕获阶段位于冒泡阶段之前，捕获
 
 ```
 <!-- xxx.hml -->
-<div class="array-container">
+<div class="array-container" style="flex-direction: column;margin: 200px;">
   <!-- div列表渲染 -->
   <!-- 默认$item代表数组中的元素, $idx代表数组中的元素索引 -->
   <div for="{{array}}" tid="id" onclick="changeText">
@@ -252,6 +259,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 >
 > - tid不支持表达式。
 
+![zh-cn_image_0000001118642001](figures/zh-cn_image_0000001118642001.gif)
 
 ## 条件渲染
 
@@ -297,6 +305,8 @@ export default {
 }
 ```
 
+![zh-cn_image_0000001118642004](figures/zh-cn_image_0000001118642004.gif)
+
 优化渲染优化：show方法。当show为true时，节点正常渲染；当为false时，仅仅设置display样式为none。
 
 ```
@@ -335,6 +345,8 @@ export default {
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 禁止在同一个元素上同时设置for和if属性。
 
+![zh-cn_image_0000001118642005](figures/zh-cn_image_0000001118642005.gif)
+
 ## 逻辑控制块
 
 &lt;block&gt;控制块使得循环渲染和条件渲染变得更加灵活；block在构建时不会被当作真实的节点编译。注意block标签只支持for和if属性。
@@ -366,6 +378,8 @@ export default {
   },
 }
 ```
+
+![zh-cn_image_0000001118642006](figures/zh-cn_image_0000001118642006.png)
 
 ## 模板引用
 

@@ -82,4 +82,4 @@ export default {
 }
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/1-6.png)
+![img](figures/1-6.png)

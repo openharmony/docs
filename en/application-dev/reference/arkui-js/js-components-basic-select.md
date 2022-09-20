@@ -67,4 +67,4 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
 }
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001152588538.png)
+![img](figures/en-us_image_0000001152588538.png)

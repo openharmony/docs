@@ -184,7 +184,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
 2. 通过$element获取DOM元素
    ```
    <!-- index.hml -->
-   <div class="container">
+   <div class="container" style="width:500px;height: 700px; margin: 100px;">
      <image-animator class="image-player" id="animator" images="{{images}}" duration="1s" onclick="handleClick"></image-animator>
    </div>
    ```
@@ -213,6 +213,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
    };
    ```
 
+![zh-cn_image_0000001118642007](figures/zh-cn_image_0000001118642007.gif)
+
 ## 获取ViewModel
 
 根节点所在页面：
@@ -236,6 +238,8 @@ export default {
   },
 }
 ```
+
+![zh-cn_image_0000001118642008](figures/zh-cn_image_0000001118642008.png)
 
 自定义parent组件：
 
@@ -272,7 +276,7 @@ export default {
 <!-- child.hml -->
 <div class="item" onclick="textClicked">
   <text class="text-style" onclick="childClicked">child component clicked</text>
-  <text class="text-style" if="{{show}}">hello child component</text>
+  <text class="text-style" if="{{isShow}}">hello child component</text>
 </div>
 ```
 
@@ -280,11 +284,11 @@ export default {
 // child.js
 export default {
   data: {
-    show: false,
+    isShow: false,
     text: 'I am child component!',
   },
   childClicked () {
-    this.show = !this.show;
+    this.isShow = !this.isShow;
     console.info('child component get parent text');
     console.info('${this.$parent().text}');
     console.info('child component get root text');
@@ -292,3 +296,5 @@ export default {
   },
 }
 ```
+
+![zh-cn_image_0000001118642009](figures/zh-cn_image_0000001118642009.gif)

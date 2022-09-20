@@ -1,6 +1,8 @@
 # Distributed Account Management
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
+The distributedAccount module provides basic functions for managing distributed accounts, including querying and updating account login status.
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -11,16 +13,13 @@ import account_distributedAccount from '@ohos.account.distributedAccount';
 ```
 
 
-## System Capability
-
-SystemCapability.Account.OsAccount
-
-
 ## account_distributedAccount.getDistributedAccountAbility
 
 getDistributedAccountAbility(): DistributedAccountAbility
 
 Obtains a **DistributedAccountAbility** instance.
+
+**System capability**: SystemCapability.Account.OsAccount
 
 - Return value
   | Type| Description|
@@ -40,7 +39,9 @@ Provides methods for querying and updating the login state of a distributed acco
 
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
 
-Obtains distributed account information. This method uses an asynchronous callback to return the result.
+Obtains distributed account information. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
@@ -63,7 +64,9 @@ Obtains distributed account information. This method uses an asynchronous callba
 
 queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
-Obtains distributed account information. This method uses a promise to return the result asynchronously.
+Obtains distributed account information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS or ohos.permission.DISTRIBUTED_DATASYNC (available only to system applications)
 
@@ -87,7 +90,9 @@ Obtains distributed account information. This method uses a promise to return th
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
-Updates distributed account information. This method uses an asynchronous callback to return the result.
+Updates distributed account information. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only to system applications)
 
@@ -110,7 +115,9 @@ Updates distributed account information. This method uses an asynchronous callba
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
-Updates distributed account information. This method uses a promise to return the result asynchronously.
+Updates distributed account information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Account.OsAccount
 
 **Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (available only to system applications)
 
@@ -140,6 +147,7 @@ Updates distributed account information. This method uses a promise to return th
 
 Defines distributed OS account information.
 
+**System capability**: SystemCapability.Account.OsAccount
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

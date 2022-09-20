@@ -1,6 +1,7 @@
 # Notification
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -2526,12 +2527,12 @@ function onConsumeCallback(data) {
     let wantAgent = data.wantAgent;
     wantAgent .getWant(wantAgent)
         .then((data1) => {
-            console.log('===> getWant success want:' + JSON.stringfy(data1));
+            console.log('===> getWant success want:' + JSON.stringify(data1));
         })
         .catch((err) => {
-            console.error('===> getWant failed because' + JSON.stringfy(err));
+            console.error('===> getWant failed because' + JSON.stringify(err));
         });
-    console.info('===> onConsume callback req.wantAgent:' + JSON.stringfy(req.wantAgent));
+    console.info('===> onConsume callback req.wantAgent:' + JSON.stringify(req.wantAgent));
 };
 
 var subscriber = {
@@ -3056,7 +3057,7 @@ Notification.subscribe(subscriber, subscribeCallback);
 | desc                 | Yes | Yes | string                | No  | Notification slot description.                          |
 | badgeFlag            | Yes | Yes | boolean               | No  | Whether to display the badge.                              |
 | bypassDnd            | Yes | Yes | boolean               | No  | Whether to bypass the DND mode in the system.              |
-| lockscreenVisibility | Yes | Yes | boolean               | No  | Mode for displaying the notification on the lock screen.                |
+| lockscreenVisibility | Yes | Yes | number                | No  | Mode for displaying the notification on the lock screen.                |
 | vibrationEnabled     | Yes | Yes | boolean               | No  | Whether vibration is supported for the notification.                                |
 | sound                | Yes | Yes | string                | No  | Notification alert tone.                                |
 | lightEnabled         | Yes | Yes | boolean               | No  | Whether the indicator blinks for the notification.                                  |

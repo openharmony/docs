@@ -20,7 +20,7 @@ The IoT peripheral subsystem provides dedicated peripheral operation interfaces 
 
 **Description for HAL APIs of the IoT peripheral subsystem**
 
-The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [HAL header files of IoT peripherals](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/kits).
+The SoC needs to implement related APIs. For details about the dependency of OpenHarmony on the chip peripheral APIs, see  [HAL header files of IoT peripherals](https://gitee.com/openharmony/iothardware_peripheral/tree/master/interfaces/inner_api).
 
 ## WLAN<a name="section1331917210911"></a>
 

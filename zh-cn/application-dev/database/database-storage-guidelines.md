@@ -75,20 +75,22 @@
 1. 准备工作，导入@ohos.data.storage以及相关的模块到开发环境。
 
    ```js
-   import dataStorage from '@ohos.data.storage'
-   import featureAbility from '@ohos.ability.featureAbility'  // 用于获取文件存储路径
+   import dataStorage from '@ohos.data.storage';
+   import featureAbility from '@ohos.ability.featureAbility';  // 用于获取文件存储路径
    ```
 
 2. 获取Storage实例。
 
    读取指定文件，将数据加载到Storage实例，用于数据操作。
    ```js
-   var context = featureAbility.getContext()
-   context.getFilesDir().then(() => {
-    console.info("======================>getFilesDirPromsie====================>");
+   var path;
+   var context = featureAbility.getContext();
+   context.getFilesDir().then((filePath) => {
+       path = filePath;
+       console.info("======================>getFilesDirPromsie====================>");
+       
+       let promise = dataStorage.getStorage(path + '/mystore');
    });
-
-   let promise = dataStorage.getStorage(path + '/mystore')
    ```
 
 3. 存入数据。
@@ -97,14 +99,14 @@
 
    ```js
    promise.then((storage) => {
-       let getPromise = storage.put('startup', 'auto') // 保存数据到缓存的storage示例中。
+       let getPromise = storage.put('startup', 'auto'); // 保存数据到缓存的storage实例中
        getPromise.then(() => {
-           console.info("Put the value of startup successfully.")
+           console.info("Succeeded in putting the value of startup.");
        }).catch((err) => {
-           console.info("Put the value of startup failed with err: " + err)
+           console.info("Failed to put the value of startup failed with err: " + err);
        })
    }).catch((err) => {
-       console.info("Get the storage failed")
+       console.info("Failed to get the storage.");
    })
    ```
 
@@ -116,12 +118,14 @@
    promise.then((storage) => {
        let getPromise = storage.get('startup', 'default')
        getPromise.then((value) => {
-           console.info("The value of startup is " + value)
+           console.info("The value of startup is " + value);
        }).catch((err) => {
-           console.info("Get the value of startup failed with err: " + err)
+           console.info("Failed to get the value of startup with err: " + err);
        })
    }).catch((err) => {
-       console.info("Get the storage failed")})
+       console.info("Failed to get the storage.")
+        
+   })
    ```
 
 5. 数据持久化。
@@ -139,15 +143,15 @@
    ```js
    promise.then((storage) => {
        var observer = function (key) {
-           console.info("The key of " + key + " changed.")
+           console.info("The key of " + key + " changed.");
        }
        storage.on('change', observer)
-       storage.putSync('startup', 'auto')  // 修改storage存储数据
-       storage.flushSync()  // 触发订阅者回调方法
+       storage.putSync('startup', 'auto');  // 修改storage存储数据
+       storage.flushSync();  // 触发订阅者回调方法
    
-       storage.off('change', observer) // 注销数据变化订阅
+       storage.off('change', observer); // 注销数据变化订阅
    }).catch((err) => {
-       console.info("Get the storage failed")
+       console.info("Failed to get the storage.");
    })
    ```
 
@@ -156,14 +160,15 @@
    使用deleteStorage方法从内存中移除指定文件对应的Storage单实例，并删除指定文件及其备份文件、损坏文件。删除指定文件时，应用不允许再使用该实例进行数据操作，否则会出现数据一致性问题。删除后，数据及文件将不可恢复。
 
    ```js
-   let promise = dataStorage.deleteStorage(path + '/mystore')
+   let promise = dataStorage.deleteStorage(path + '/mystore');
    promise.then(() => {
-       console.info("Deleted successfully.")
+       console.info("Succeeded in deleting the storage.");
    }).catch((err) => {
-       console.info("Deleted failed with err: " + err)})
+       console.info("Failed to delete the storage with err: " + err);
+        
+   })
    ```
 ## 相关实例
 针对轻量级数据存储开发，有以下相关实例可供参考：
-- [`LiteStorage`：轻量级存储（eTS）（API7）](https://gitee.com/openharmony/app_samples/tree/master/data/LiteStorage)
-- [轻量级偏好数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/Database)
-- [备忘录（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS)
+- [轻量级偏好数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/Database)
+- [备忘录（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS)

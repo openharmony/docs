@@ -64,4 +64,4 @@ Not supported
 </toolbar>
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/progress-7.jpg)
+![img](figures/progress-7.jpg)

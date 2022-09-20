@@ -130,8 +130,8 @@ hasRight(deviceName: string): boolean
 
 **示例：**
   ```js
-  let divicesName="1-1";
-  let bool = usb.hasRight(divicesName);
+  let devicesName="1-1";
+  let bool = usb.hasRight(devicesName);
   console.log(bool);
   ```
 
@@ -156,8 +156,8 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 
 **示例：**
   ```js
-  let divicesName="1-1";
-  usb.requestRight(divicesName).then((ret) => {
+  let devicesName="1-1";
+  usb.requestRight(devicesName).then((ret) => {
     console.log(`requestRight = ${JSON.stringify(ret)}`);
   });
   ```

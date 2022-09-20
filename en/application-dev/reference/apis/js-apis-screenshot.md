@@ -1,5 +1,5 @@
 # Screenshot
-Provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
+The **Screenshot** module provides APIs for you to set information such as the region to capture and the size of the screen region when capturing a screen.
 
 > **NOTE**
 >
@@ -57,7 +57,7 @@ Describes the size of the screen region to capture.
 
 save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-Takes a screenshot and saves it as a **PixelMap** object. This method uses a callback to return the result.
+Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -67,7 +67,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | No  | Consists of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set them separately.|
+| options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 | callback | AsyncCallback&lt;image.PixelMap&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Example**
@@ -98,7 +98,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a cal
 
 save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
-Takes a screenshot and saves it as a **PixelMap** object. This method uses a promise to return the result.
+Takes a screenshot and saves it as a **PixelMap** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -108,7 +108,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This method uses a pro
 
 | Name | Type                                   | Mandatory| Description                                                        |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ScreenshotOptions](#screenshotoptions) | No  | Consists of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set them separately.|
+| options | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 
 **Return value**
 

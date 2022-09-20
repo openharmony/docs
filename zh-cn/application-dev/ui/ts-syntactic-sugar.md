@@ -44,7 +44,7 @@ struct MyComponent {
 | @Component | struct | 结构体在装饰后具有基于组件的能力，需要实现build方法来更新UI。 |
 | @Entry | struct | 组件被装饰后作为页面的入口，页面加载时将被渲染显示。 |
 | @Preview | struct | 用@Preview装饰的自定义组件可以在DevEco&nbsp;Studio的预览器上进行预览，加载页面时，将创建并呈现@Preview装饰的自定义组件。 |
-| @Builder | 方法 | 在@Builder装饰的方法用通过声明式UI描述，可以在一个自定义组件内快速生成多个布局内容。 |
+| @Builder | 方法 | 在@Builder装饰的方法里，通过声明式UI描述，可以在一个自定义组件内快速生成多个布局内容。 |
 | @Extend | 方法 | @Extend装饰器将新的属性函数添加到内置组件上，通过@Extend装饰器可以快速定义并复用组件的自定义样式。 |
 | @CustomDialog | struct | @CustomDialog装饰器用于装饰自定义弹窗。 |
 | @State | 基本数据类型，类，数组 | 修饰的状态数据被修改时会触发组件的build方法进行UI界面更新。 |
@@ -166,3 +166,32 @@ struct bindPopup {
 	}
 }
 ```
+
+
+## 状态变量多种数据类型声明使用限制
+
+@State、@Provide、 @Link和@Consume四种状态变量的多种数据类型只能同时由简单数据类型或引用数据类型其中一种构成。
+
+示例：
+
+```ts
+@Entry
+@Component
+struct Index {
+  //错误写法: @State message: string | Resource = 'Hello World'
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+      Column() {
+        Text(`${ this.message }`)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+

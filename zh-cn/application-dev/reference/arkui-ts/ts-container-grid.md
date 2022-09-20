@@ -1,16 +1,10 @@
 # Grid
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 网格容器，由“行”和“列”分割的单元格所组成，通过指定“项目”所在的单元格做出各种各样的布局。
 
-
-
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -20,41 +14,66 @@
 
 ## 接口
 
-Grid()
+Grid(scroller?: Scroller)
+
+**参数：**
+
+| 参数名       | 参数类型                                     | 必填   | 参数描述                    |
+| --------- | ---------------------------------------- | ---- | ----------------------- |
+| scroller  | [Scroller](ts-container-scroll.md#scroller) | 否    | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
 
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| columnsTemplate | string | '1fr' | 用于设置当前网格布局列的数量，不设置时默认1列&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;分三列，将父组件允许的宽分为4等份，第一列占1份，第二列占一份，第三列占2份。 |
-| rowsTemplate | string | '1fr' | 用于设置当前网格布局行的数量，不设置时默认1行&nbsp;示例,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。 |
-| columnsGap | Length | 0 | 用于设置列与列的间距。 |
-| rowsGap | Length | 0 | 用于设置行与行的间距。 |
-| editMode <font color=ff0000><sup>8+</sup></font> | boolean | flase | 是否进入编辑模式，进入编辑模式可以拖拽Gird组件内部[GridItem](ts-container-griditem.md)。 |
-| layoutDirection<font color=ff0000><sup>8+</sup></font>  | number | 0                 |设置布局的主轴方向，目前支持的主轴布局方向如下：<br/>- 0：主轴布局方向沿水平方向布局，即先填满一列，再去填下一列。<br/>- 1：主轴布局方向沿垂直方向布局，即先填满一行，再去填下一行。|
-| maxCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是0时，表示可显示的最大行数<br/>当layoutDirection是1时，表示可显示的最大列数。 |
-| minCount <font color=ff0000><sup>8+</sup></font> | number | 1 | 当layoutDirection是0时，表示可显示的最小行数。<br/>当layoutDirection是1时，表示可显示的最小列数。 |
-| cellLength <font color=ff0000><sup>8+</sup></font> | number | 0 | 当layoutDirection是0时，表示一行的高度。<br/>当layoutDirection是1时，表示一列的宽度。 |
-| multiSelectable<font color=ff0000><sup>8+</sup></font> | boolean | false | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。 |
-| dragAnimation<font color=ff0000><sup>8+</sup></font> | boolean         | false                 | 是否开启拖拽GridItem动画。 |
-| edgeEffection<font color=ff0000><sup>8+</sup></font> | EdgeEffect         | EdgeEffect.Spring     | 设置边缘滑动效果，目前支持的滑动效果参见EdgeEffect枚举说明。 |
+| 名称                                       | 参数类型    | 描述                                       |
+| ---------------------------------------- | ------- | ---------------------------------------- |
+| columnsTemplate                          | string  | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>默认值：'1fr' |
+| rowsTemplate                             | string  | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>默认值：'1fr' |
+| columnsGap                               | Length  | 设置列与列的间距。<br/>默认值：0                    |
+| rowsGap                                  | Length  | 设置行与行的间距。<br/>默认值：0                    |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 设置滚动条的颜色。 |
+| scrollBarWidth | string&nbsp;\|&nbsp;number | 设置滚动条的宽度。 |
+| cachedCount | number                                   | 设置预加载的GridItem的数量。具体使用可参考[减少应用白块说明](../../ui/ts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1 |
+| editMode <sup>8+</sup>                   | boolean | 是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。<br/>默认值：false |
+| layoutDirection<sup>8+</sup>             | GridDirection  | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
+| maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大行数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大列数。<br/>默认值：1 |
+| minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小行数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小列数。<br/>默认值：1 |
+| cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：0 |
+| multiSelectable<sup>8+</sup> | boolean | 是否开启鼠标框选。<br/>-&nbsp;false：关闭框选。<br/>-&nbsp;true：开启框选。<br/>默认值：false |
+| supportAnimation<sup>8+</sup> | boolean | 是否支持动画。<br/>默认值：false |
 
-- EdgeEffect枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Spring | 弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。 |
-  | None | 滑动到边缘后无效果。 |
+## GridDirection枚举说明<sup>8+</sup>
+
+| 名称         | 描述         |
+| ---------- | ---------- |
+| Row | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
+| Column   | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
+| RowReverse  | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。      |
+| ColumnReverse  | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。      |
 
 ## 事件
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onScrollIndex(first:&nbsp;number)&nbsp;=&gt;&nbsp;void | 当前列表显示的起始位置item发生变化时触发。 |
+| 名称                                                         | 功能描述                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onScrollIndex(event: (first: number) => void)                | 当前网格显示的起始位置item发生变化时触发。<br/>- first: 当前显示的网格起始位置的索引值。 |
+| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。 |
+| onItemDragEnter(event: (event: ItemDragInfo) => void)        | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
+| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
+| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
+| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
+
+## ItemDragInfo对象说明
+
+| 名称         | 类型         |   描述         |
+| ---------- | ---------- | ---------- |
+| x | number |  当前拖拽点的x坐标。    |
+| y   | number |  当前拖拽点的y坐标。    |
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridExample {

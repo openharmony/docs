@@ -1,6 +1,6 @@
 # 点击控制
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -14,12 +14,13 @@
 
 | **名称**    | **参数类型** | **默认值** | **描述**         |
 | --------- | -------- | ------- | -------------- |
-| touchable | boolean  | true    | 设置当前组件是否可以被触摸。 |
+| touchable | boolean  | true    | 设置当前组件是否可以响应点击事件、触摸事件等手指交互事件。 |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TouchAbleExample {

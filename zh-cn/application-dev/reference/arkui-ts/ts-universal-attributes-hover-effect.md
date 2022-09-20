@@ -1,6 +1,6 @@
 # 悬浮态效果
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -13,20 +13,13 @@
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| hoverEffect | HoverEffect | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
-
-- HoverEffect 枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Auto | 使用组件的系统默认悬浮效果。 |
-  | Scale | 放大缩小效果。 |
-  | Highlight | 背景淡入淡出的强调效果。 |
-  | None | 不设置效果。 |
+| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8) | HoverEffect.Auto | 设置当前组件悬停态下的悬浮效果。 |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct HoverExample {

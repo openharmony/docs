@@ -1,7 +1,9 @@
 # Wallpaper
 
 
-> **NOTE**<br>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -465,7 +467,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-  ```
+```
 
 
 ## wallpaper.setWallpaper
@@ -520,7 +522,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-  ```
+```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -528,7 +530,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 Obtains the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -557,7 +559,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 Obtains the wallpaper of the specified type. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.SET_WALLPAPER and ohos.permission.READ_USER_STORAGE
+**Required permissions**: ohos.permission.GET_WALLPAPER and ohos.permission.READ_USER_STORAGE
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
@@ -636,7 +638,7 @@ Obtains the pixel image for the wallpaper of the specified type. This API uses a
 **Example**
 
   ```js
-  wallpaper.getPixelMap(WALLPAPER_SYSTEM).then((data) => {
+  wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + data);
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + JSON.stringify(data));
   }).catch((err) => {
@@ -695,9 +697,9 @@ Unsubscribes from the wallpaper color change event.
   wallpaper.on('colorChange', listener);
 // Unsubscribe from the listener.
 wallpaper.off('colorChange', listener);
-//Unsubscribe from all subscriptions of the colorChange type.
+// Unsubscribe from all subscriptions of the colorChange type.
 wallpaper.off('colorChange');
-```
+  ```
 
 
 ## RgbaColor

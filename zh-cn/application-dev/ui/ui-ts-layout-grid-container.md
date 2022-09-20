@@ -71,7 +71,7 @@
          Text('1')
            .useSizeType({
              xs: { span: 2},
-             sm: { span: 3, offset: 1 },
+             sm: { span: 3, offset: 0 },
              md: { span: 6, offset: 2 },
              lg: { span: 8, offset: 2 },
            })
@@ -91,14 +91,14 @@ GridContainer() {
      Text('1')
        .useSizeType({
          xs: { span: 2},
-         sm: { span: 3, offset: 1 },
+         sm: { span: 2, offset: 0 },
          md: { span: 6, offset: 2 },
          lg: { span: 8, offset: 2 },
        })
    }
 }
 ```
-其中`sm: { span: 2, offset: 0 } `指在设备宽度类型为SM的设备上，Text组件占用3列，且放在栅格容器的第1列上。
+其中`sm: { span: 2, offset: 0 } `指在设备宽度类型为SM的设备上，Text组件占用2列，且放在栅格容器的第1列上。
 ## 场景示例
 
 使用栅格布局可以灵活地在不同的设备宽度类型下呈现合适的效果，而不必书写大量的代码兼容不同宽度类型的设备。  

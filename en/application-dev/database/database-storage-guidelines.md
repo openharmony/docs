@@ -76,19 +76,24 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 1.  Import  **@ohos.data.storage**  and related modules to the development environment.
 
     ```js
-    import dataStorage from '@ohos.data.storage'
-    import featureAbility from '@ohos.ability.featureAbility'  // Used to obtain the file storage path.
+    import dataStorage from '@ohos.data.storage';
+    import featureAbility from '@ohos.ability.featureAbility';  // Used to obtain the file storage path.
     ```
 
 2.  Create a  **Storage**  instance.
 
     Read the specified file and load its data to the  **Storage**  instance for data operations.
 
-    ```js
-    var context = featureAbility.getContext()
-    var path = await context.getFilesDir()
-    let promise = dataStorage.getStorage(path + '/mystore')
-    ```
+   ```js
+   var path;
+   var context = featureAbility.getContext();
+   context.getFilesDir().then((filePath) => {
+       path = filePath;
+       console.info("======================>getFilesDirPromsie====================>");
+   });
+
+   let promise = dataStorage.getStorage(path + '/mystore');
+   ```
 
 
 3.  Write data.
@@ -97,14 +102,14 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     ```js
     promise.then((storage) => {
-        let getPromise = storage.put('startup', 'auto') // Save data to the Storage instance.
+        let getPromise = storage.put('startup', 'auto'); // Save data to the Storage instance.
         getPromise.then(() => {
-            console.info("Put the value of startup successfully.")
+            console.info("Succeeded in putting the value of startup.");
         }).catch((err) => {
-            console.info("Put the value of startup failed with err: " + err)
+            console.info("Failed to put the value of startup with err: " + err);
         })
     }).catch((err) => {
-        console.info("Get the storage failed")
+        console.info("Failed to get the storage.");
     })
     ```
 
@@ -115,14 +120,14 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     ```js
     promise.then((storage) => {
-        let getPromise = storage.get('startup', 'default')
+        let getPromise = storage.get('startup', 'default');
         getPromise.then((value) => {
-            console.info("The value of startup is " + value)
+            console.info("The value of startup is " + value);
         }).catch((err) => {
-            console.info("Get the value of startup failed with err: " + err)
+            console.info("Failed to get the value of startup with err: " + err);
         })
     }).catch((err) => {
-        console.info("Get the storage failed")
+        console.info("Failed to get the storage.");
     })
     ```
 
@@ -142,15 +147,15 @@ Use the following APIs to delete a  **Storage**  instance or data file.
     ```js
     promise.then((storage) => {
         var observer = function (key) {
-            console.info("The key of " + key + " changed.")
+            console.info("The key of " + key + " changed.");
         }
-        storage.on('change', observer)
-        storage.putSync('startup', 'auto') // Modify data in the Storage instance.
-        storage.flushSync() // Trigger the StorageObserver callback.
+        storage.on('change', observer);
+        storage.putSync('startup', 'auto'); // Modify data in the Storage instance.
+        storage.flushSync(); // Trigger the StorageObserver callback.
     
-        storage.off(...change..., observer) // Unsubscribe from the data changes.
+        storage.off('change', observer); // Unsubscribe from the data changes.
     }).catch((err) => {
-        console.info("Get the storage failed")
+        console.info("Failed to get the storage.");
     })
     ```
 
@@ -160,11 +165,11 @@ Use the following APIs to delete a  **Storage**  instance or data file.
     Use the  **deleteStorage**  method to delete the  **Storage**  singleton of the specified file from the memory, and delete the specified file, its backup file, and damaged files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will occur. The deleted data and files cannot be restored.
 
     ```js
-    let promise = dataStorage.deleteStorage(path + '/mystore')
+    let promise = dataStorage.deleteStorage(path + '/mystore');
     promise.then(() => {
-        console.info("Deleted successfully.")
+        console.info("Succeeded in deleting the storage.");
     }).catch((err) => {
-        console.info("Deleted failed with err: " + err)
+        console.info("Failed to deleted the storage with err: " + err);
     })
     ```
 

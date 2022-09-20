@@ -39,7 +39,7 @@ createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates):
 **示例：**
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
-  dataAbilityPredicates.equalTo("NAME", "Rose").between("AGE", 16, 30)
+  dataAbilityPredicates.equalTo("NAME", "Rose")
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 
@@ -789,7 +789,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
 
-| 名称    | 说明                 |
+| 类型    | 说明                 |
 | ------- | -------------------- |
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |

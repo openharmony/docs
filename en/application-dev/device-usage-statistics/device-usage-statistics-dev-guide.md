@@ -1,4 +1,4 @@
-## Device Usage Statistics Development
+# Device Usage Statistics Development
 
 ## When to Use
 
@@ -56,7 +56,9 @@ import stats from '@ohos.bundleState';
 
     // Use an asynchronous callback to return the result.
     stats.queryBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleActiveStates callback number : ' + (i + 1));
@@ -74,21 +76,23 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // Use a promise to return the result.
-    stats.queryBundleStateInfos(0, 20000000000000).then( res => {
+    stats.queryBundleStateInfos(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise success.');
         let i = 1;
-        for(let key in res){
+        for (let key in res) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos promise number : ' + i);
             console.log('BUNDLE_ACTIVE queryBundleStateInfos promise result ' + JSON.stringify(res[key]));
             i++;
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfos promise failed, because: ' + err.code);
     });
 
     // Use an asynchronous callback to return the result.
     stats.queryBundleStateInfos(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfos callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfos callback success.');
             let i = 1;
             for(let key in res){
@@ -108,26 +112,26 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // Use a promise to return the result.
-    stats.queryCurrentBundleActiveStates(0, 20000000000000).then( res => {
+    stats.queryCurrentBundleActiveStates(0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
     });
 
     // Use an asynchronous callback to return the result.
     stats.queryCurrentBundleActiveStates(0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
              }
-        } else {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
         }
     });
     ```
@@ -138,26 +142,26 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // Use a promise to return the result.
-    stats.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
+    stats.queryBundleStateInfoByInterval(0, 0, 20000000000000).then(res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise failed, because: ' + err.code);
     });
 
     // Use an asynchronous callback to return the result.
     stats.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
-        if(err.code == 0) {
+        if (err) {
+            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
+        } else {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback success.');
             for (let i = 0; i < res.length; i++) {
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback number : ' + (i + 1));
                 console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback result ' + JSON.stringify(res[i]));
             }
-        } else {
-            console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
         }
     });
     ```
@@ -168,18 +172,18 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // Use a promise to return the result.
-    stats.queryAppUsagePriorityGroup().then( res => {
+    stats.queryAppUsagePriorityGroup().then(res => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
     });
 
     // Use an asynchronous callback to return the result.
     stats.queryAppUsagePriorityGroup((err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
-        } else {
+        if (err) {
             console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
         }
     });
     ```
@@ -190,18 +194,18 @@ import stats from '@ohos.bundleState';
     import stats from '@ohos.bundleState'
 
     // Use a promise to return the result.
-    stats.isIdleState("com.ohos.camera").then( res => {
+    stats.isIdleState("com.ohos.camera").then(res => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
-    }).catch( err => {
+    }).catch(err => {
         console.log('BUNDLE_ACTIVE isIdleState promise failed, because: ' + err.code);
     });
 
     // Use an asynchronous callback to return the result.
     stats.isIdleState("com.ohos.camera", (err, res) => {
-        if(err.code === 0) {
-            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
-        } else {
+        if (err) {
             console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
     });
     ```

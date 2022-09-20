@@ -163,4 +163,4 @@ repo forall -c 'git lfs pull'
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------- | ------------ |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | 【RK3568】打开沉浸式主窗口和在主窗口上打开辅助窗口出现闪屏 | 影响开发者体验。                                  | 2022-06-15   |
 | [I58GFY](https://gitee.com/openharmony/communication_wifi/issues/I58GFY) | 【RK3568】 2.4G/5G频段WPA+TKIP/AES加密方式均连接失败       | TP-Link AX50型号路由器无法正常连接WiFi。          | 2022-06-30   |
-| [I59P32](https://gitee.com/openharmony/device_manager/issues/I59P32) | 【RK3568】设备信任周期超期后无法重新PIN码认证              | 长时间不输入PIN码导致超时后触发，重启设备可恢复。 | 2022-06-15   |
+| [I59P32](https://gitee.com/openharmony/distributedhardware_device_manager/issues/I59P32) | 【RK3568】设备信任周期超期后无法重新PIN码认证              | 长时间不输入PIN码导致超时后触发，重启设备可恢复。 | 2022-06-15   |

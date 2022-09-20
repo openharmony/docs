@@ -1,6 +1,6 @@
 # CanvasRenderingContext2D
 
-> ![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > Supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 **CanvasRenderingContext2D** allows you to draw rectangles, text, images, and other objects on a canvas.
@@ -38,11 +38,11 @@
 
 - Anti-aliasing disabled
 
-  ![en-us_image_0000001214837333](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214837333.png)
+  ![en-us_image_0000001214837333](figures/en-us_image_0000001214837333.png)
 
 - Anti-aliasing enabled
 
-  ![screenshot-8](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/screenshot-8.png)
+  ![screenshot-8](figures/screenshot-8.png)
 
 ## Attributes
 
@@ -55,7 +55,7 @@
 | [lineJoin](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | miter                           | Style of the intersection point between line segments. The options are as follows: <br/>-**round**: The intersection is a sector, whose radius at the rounded corner is equal to the line width. <br/>- **bevel**: The intersection is a triangle. The rectangular corner of each line is independent. <br/>-**miter**: The intersection has a miter corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**. |
 | [miterLimit](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | 10                              | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet. |
 | [font](js-components-canvas-canvasrenderingcontext2d.md)     | string                                                       | "normal normal 14px sans-serif" | Font style. Syntax: ctx.font="font-style font-weight font-size font-family"5+ <br/>-(Optional) **font-style**: font style. Available values are **normal** and **italic**. <br/>- (Optional) **font-weight**: font weight. Available values are as follows: **normal**, **bold**, **bolder**, **lighter**, **100**, **200**, **300**, **400**, **500**, **600**, **700**, **800**, **900**. <br/>- (Optional) **font-size**: font size and row height. The unit can only be pixels. <br/>- (Optional) **font-family**: font family. Available values are **sans-serif**, **serif**, and **monospace**. |
-| [textAlign](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | left                            | Text alignment mode. Available values are as follows: <br/>- **left**: The text is left-aligned. <br/>-**right**: The text is right-aligned. <br/>- **center**: The text is center-aligned. <br/>- **start**: The text is aligned with the start bound. <br/>- **end**: The text is aligned with the end bound. <br/>>![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**<br/> > In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
+| [textAlign](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | left                            | Text alignment mode. Available values are as follows: <br/>- **left**: The text is left-aligned. <br/>-**right**: The text is right-aligned. <br/>- **center**: The text is center-aligned. <br/>- **start**: The text is aligned with the start bound. <br/>- **end**: The text is aligned with the end bound. <br/>>![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/> > In the **ltr** layout mode, the value **start** equals **left**. In the **rtl** layout mode, the value **start** equals **right**. |
 | [textBaseline](js-components-canvas-canvasrenderingcontext2d.md) | string                                                       | alphabetic                      | Horizontal alignment mode of text. Available values are as follows:<br/>- **alphabetic**: The text baseline is the normal alphabetic baseline. <br/>- **top**: The text baseline is on the top of the text bounding box. <br/>-**hanging**: The text baseline is a hanging baseline over the text. <br/>- **middle**: The text baseline is in the middle of the text bounding box. <br/>- **ideographic**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excessive character. <br/>- **bottom**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line. |
 | [globalAlpha](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | -                               | Opacity. <br/>**0.0**: completely transparent. <br/>**1.0**: completely opaque. |
 | [lineDashOffset](js-components-canvas-canvasrenderingcontext2d.md) | number                                                       | 0.0                             | Offset of the dashed line. The precision is float.           |
@@ -85,7 +85,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001166962736](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001166962736.png)
+![en-us_image_0000001166962736](figures/en-us_image_0000001166962736.png)
 
 ### lineWidth
 
@@ -105,7 +105,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001166484430](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001166484430.png)
+![en-us_image_0000001166484430](figures/en-us_image_0000001166484430.png)
 
 ### strokeStyle
 
@@ -126,7 +126,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001212124299](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001212124299.png)
+![en-us_image_0000001212124299](figures/en-us_image_0000001212124299.png)
 
 ### lineCap
 
@@ -150,7 +150,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001214837127](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214837127.png)
+![en-us_image_0000001214837127](figures/en-us_image_0000001214837127.png)
 
 ### lineJoin
 
@@ -175,7 +175,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001214717247](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214717247.png)
+![en-us_image_0000001214717247](figures/en-us_image_0000001214717247.png)
 
 ### miterLimit
 
@@ -200,7 +200,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167001464](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167001464.png)
+![en-us_image_0000001167001464](figures/en-us_image_0000001167001464.png)
 
 ### font
 
@@ -220,7 +220,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167046832](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167046832.png)
+![en-us_image_0000001167046832](figures/en-us_image_0000001167046832.png)
 
 ### textAlign
 
@@ -254,7 +254,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167472798](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167472798.png)
+![en-us_image_0000001167472798](figures/en-us_image_0000001167472798.png)
 
 ### textBaseline
 
@@ -287,7 +287,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001169315920](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169315920.png)
+![en-us_image_0000001169315920](figures/en-us_image_0000001169315920.png)
 
 ### globalAlpha
 
@@ -311,7 +311,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167953648](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167953648.png)
+![en-us_image_0000001167953648](figures/en-us_image_0000001167953648.png)
 
 ### lineDashOffset
 
@@ -333,7 +333,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167950468](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167950468.png)
+![en-us_image_0000001167950468](figures/en-us_image_0000001167950468.png)
 
 ### globalCompositeOperation
 
@@ -380,7 +380,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001213192781](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001213192781.png)
+![en-us_image_0000001213192781](figures/en-us_image_0000001213192781.png)
 
 In the above example, the blue rectangle represents the new drawing, and the red rectangle represents the existing drawing.
 
@@ -404,7 +404,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001168111514](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168111514.png)
+![en-us_image_0000001168111514](figures/en-us_image_0000001168111514.png)
 
 ### shadowColor
 
@@ -426,7 +426,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001168111610](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168111610.png)
+![en-us_image_0000001168111610](figures/en-us_image_0000001168111610.png)
 
 ### shadowOffsetX
 
@@ -449,7 +449,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001167631876](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001167631876.png)
+![en-us_image_0000001167631876](figures/en-us_image_0000001167631876.png)
 
 ### shadowOffsetY
 
@@ -472,7 +472,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001213193285](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001213193285.png)
+![en-us_image_0000001213193285](figures/en-us_image_0000001213193285.png)
 
 ### imageSmoothingEnabled6+
 
@@ -496,7 +496,7 @@ export default {
 }
 ```
 
-![smoothoff](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/smoothoff.png)
+![smoothoff](figures/smoothoff.png)
 
 ## Methods
 
@@ -532,7 +532,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001214811029](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214811029.png)
+![en-us_image_0000001214811029](figures/en-us_image_0000001214811029.png)
 
 ### clearRect
 
@@ -571,7 +571,7 @@ Clears the content in a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214619417](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214619417.png)
+  ![en-us_image_0000001214619417](figures/en-us_image_0000001214619417.png)
 
 ### strokeRect
 
@@ -608,7 +608,7 @@ Draws a rectangle stroke on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214822091](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214822091.png)
+  ![en-us_image_0000001214822091](figures/en-us_image_0000001214822091.png)
 
 ### fillText
 
@@ -645,7 +645,7 @@ Draws filled text on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214469787](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214469787.png)
+  ![en-us_image_0000001214469787](figures/en-us_image_0000001214469787.png)
 
 ### strokeText
 
@@ -682,7 +682,7 @@ Draws a text stroke on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214460669](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214460669.png)
+  ![en-us_image_0000001214460669](figures/en-us_image_0000001214460669.png)
 
 ### measureText
 
@@ -725,7 +725,7 @@ Returns a **TextMetrics** object used to obtain the width of specified text.
   }
   ```
 
-  ![en-us_image_0000001169142476](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169142476.png)
+  ![en-us_image_0000001169142476](figures/en-us_image_0000001169142476.png)
 
 ### stroke
 
@@ -757,7 +757,7 @@ Draws a stroke.
   }
   ```
 
-  ![en-us_image_0000001236697937](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001236697937.png)
+  ![en-us_image_0000001236697937](figures/en-us_image_0000001236697937.png)
 
 ### beginPath
 
@@ -790,7 +790,7 @@ Creates a drawing path.
   }
   ```
 
-  ![en-us_image_0000001214629745](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214629745.png)
+  ![en-us_image_0000001214629745](figures/en-us_image_0000001214629745.png)
 
 ### moveTo
 
@@ -828,7 +828,7 @@ Moves a drawing path to a target position on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169309948](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169309948.png)
+  ![en-us_image_0000001169309948](figures/en-us_image_0000001169309948.png)
 
 ### lineTo
 
@@ -866,7 +866,7 @@ Connects the current point to a target position using a straight line.
   }
   ```
 
-  ![en-us_image_0000001169469914](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169469914.png)
+  ![en-us_image_0000001169469914](figures/en-us_image_0000001169469914.png)
 
 ### closePath
 
@@ -899,7 +899,7 @@ Draws a closed path.
   }
   ```
 
-  ![en-us_image_0000001169151508](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169151508.png)
+  ![en-us_image_0000001169151508](figures/en-us_image_0000001169151508.png)
 
 ### createPattern
 
@@ -944,7 +944,7 @@ Creates a pattern for image filling based on a specified source image and repeti
   }
   ```
 
-  ![en-us_image_0000001169301188](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169301188.png)
+  ![en-us_image_0000001169301188](figures/en-us_image_0000001169301188.png)
 
 ### bezierCurveTo
 
@@ -986,7 +986,7 @@ Draws a cubic bezier curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214621177](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214621177.png)
+  ![en-us_image_0000001214621177](figures/en-us_image_0000001214621177.png)
 
 ### quadraticCurveTo
 
@@ -1026,7 +1026,7 @@ Draws a quadratic curve on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169461910](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169461910.png)
+  ![en-us_image_0000001169461910](figures/en-us_image_0000001169461910.png)
 
 ### arc
 
@@ -1067,7 +1067,7 @@ Draws an arc on the canvas.
   }
   ```
 
-  ![en-us_image_0000001169470288](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169470288.png)
+  ![en-us_image_0000001169470288](figures/en-us_image_0000001169470288.png)
 
 ### arcTo
 
@@ -1107,7 +1107,7 @@ Draws an arc based on the radius and points on the arc.
   }
   ```
 
-  ![en-us_image_0000001169143586](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169143586.png)
+  ![en-us_image_0000001169143586](figures/en-us_image_0000001169143586.png)
 
 ### ellipse6+
 
@@ -1150,7 +1150,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
   }
   ```
 
-  ![ellipse](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/ellipse.png)
+  ![ellipse](figures/ellipse.png)
 
 ### rect
 
@@ -1188,7 +1188,7 @@ Creates a rectangle on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214630783](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214630783.png)
+  ![en-us_image_0000001214630783](figures/en-us_image_0000001214630783.png)
 
 ### fill
 
@@ -1217,7 +1217,7 @@ Fills the area inside a closed path on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214703717](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214703717.png)
+  ![en-us_image_0000001214703717](figures/en-us_image_0000001214703717.png)
 
 ### clip
 
@@ -1250,7 +1250,7 @@ Sets the current path to a clipping path.
   }
   ```
 
-  ![en-us_image_0000001169303414](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169303414.png)
+  ![en-us_image_0000001169303414](figures/en-us_image_0000001169303414.png)
 
 ### rotate
 
@@ -1285,7 +1285,7 @@ Rotates a canvas clockwise around its coordinate axes.
   }
   ```
 
-  ![en-us_image_0000001169463368](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169463368.png)
+  ![en-us_image_0000001169463368](figures/en-us_image_0000001169463368.png)
 
 ### scale
 
@@ -1322,7 +1322,7 @@ Scales the canvas based on scale factors.
   }
   ```
 
-  ![en-us_image_0000001214463281](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214463281.png)
+  ![en-us_image_0000001214463281](figures/en-us_image_0000001214463281.png)
 
 ### transform
 
@@ -1330,7 +1330,7 @@ transform(scaleX: number, skewX: number, skewY: number, scale: number, translate
 
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
-> ![icon-note.gif](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/public_sys-resources/icon-note.gif) **NOTE**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
 > - x' = scaleX * x + skewY * y + translateX
@@ -1374,7 +1374,7 @@ Defines a transformation matrix. To transform a graph, you only need to set para
   }
   ```
 
-  ![en-us_image_0000001214623227](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214623227.png)
+  ![en-us_image_0000001214623227](figures/en-us_image_0000001214623227.png)
 
 ### setTransform
 
@@ -1417,7 +1417,7 @@ Resets the existing transformation matrix and creates a new transformation matri
   }
   ```
 
-  ![en-us_image_0000001168984880](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168984880.png)
+  ![en-us_image_0000001168984880](figures/en-us_image_0000001168984880.png)
 
 ### translate
 
@@ -1454,7 +1454,7 @@ Moves the origin of the coordinate system.
   }
   ```
 
-  ![en-us_image_0000001169144864](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169144864.png)
+  ![en-us_image_0000001169144864](figures/en-us_image_0000001169144864.png)
 
 ### createPath2D6+
 
@@ -1500,7 +1500,7 @@ Creates a **Path2D** object.
   }
   ```
 
-  ![en-us_image_0000001214824709](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214824709.png)
+  ![en-us_image_0000001214824709](figures/en-us_image_0000001214824709.png)
 
 ### drawImage
 
@@ -1544,7 +1544,7 @@ Draws an image on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214704759](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214704759.png)
+  ![en-us_image_0000001214704759](figures/en-us_image_0000001214704759.png)
 
 ### restore
 
@@ -1648,7 +1648,7 @@ Creates a linear gradient and returns a **CanvasGradient** object. For details, 
   }
   ```
 
-  ![en-us_image_0000001169303416](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169303416.png)
+  ![en-us_image_0000001169303416](figures/en-us_image_0000001169303416.png)
 
 ### createRadialGradient6+
 
@@ -1702,7 +1702,7 @@ Creates a radial gradient and returns a **CanvasGradient** object.
   }
   ```
 
-  ![en-us_image_0000001169463370](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001169463370.png)
+  ![en-us_image_0000001169463370](figures/en-us_image_0000001169463370.png)
 
 ### createImageData
 
@@ -1831,7 +1831,7 @@ Puts the **ImageData** onto a rectangular area on the canvas.
   }
   ```
 
-  ![en-us_image_0000001214463283](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214463283.png)
+  ![en-us_image_0000001214463283](figures/en-us_image_0000001214463283.png)
 
 ### setLineDash
 
@@ -1867,7 +1867,7 @@ Sets the dash line style.
   }
   ```
 
-  ![en-us_image_0000001214623229](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001214623229.png)
+  ![en-us_image_0000001214623229](figures/en-us_image_0000001214623229.png)
 
 ### getLineDash
 
@@ -1939,4 +1939,4 @@ Displays the specified **ImageBitmap** object.
   }
   ```
 
-  ![en-us_image_0000001168984882](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/en-us_image_0000001168984882.png)
+  ![en-us_image_0000001168984882](figures/en-us_image_0000001168984882.png)

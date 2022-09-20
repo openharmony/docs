@@ -261,7 +261,3 @@ export default {
   },
 }
 ```
-## Samples
-The following sample is provided to help you better understand how to develop a Page ability:
-
-- [`DMS`: Distributed Demo (eTS, API version 8)](https://gitee.com/openharmony/app_samples/tree/master/ability/DMS)

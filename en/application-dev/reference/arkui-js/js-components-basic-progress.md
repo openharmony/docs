@@ -138,4 +138,4 @@ Methods in [Universal Methods](js-components-common-methods.md) are supported.
 }
 ```
 
-![img](https://gitee.com/openharmony/docs/raw/OpenHarmony-3.1-Release/en/application-dev/reference/arkui-js/figures/progress.png)
+![img](figures/progress.png)

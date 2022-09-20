@@ -1,6 +1,6 @@
 # 警告弹窗
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -11,37 +11,38 @@
 
 | 名称 | 参数类型 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| show | options:&nbsp;{&nbsp;paramObject1\|&nbsp;paramObject2} | - | 定义并显示AlertDialog组件。 |
+| show | value:&nbsp;{&nbsp;AlertDialogParamWithConfirm&nbsp;\|&nbsp;AlertDialogParamWithButtons} | - | 定义并显示AlertDialog组件。 |
 
-- paramObject1参数
+## AlertDialogParamWithConfirm对象说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | title | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
-  | message | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 弹窗内容。 |
+  | title | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否 | - | 弹窗标题。 |
+  | message | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是 | - | 弹窗内容。 |
   | autoCancel | boolean | 否 | true | 点击遮障层时，是否关闭弹窗。 |
-  | confirm | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 确认按钮的文本内容、文本色、按钮背景色和点击回调。 |
+  | confirm | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否 | - | 确认按钮的文本内容、文本色、按钮背景色和点击回调。 |
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层关闭dialog时的回调。 |
-  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
-  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
+  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment枚举说明) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
+  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。 |
 
-- paramObject2参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+## AlertDialogParamWithButtons对象说明
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
   | -------- | -------- | -------- | -------- | -------- |
-  | title | string&nbsp;\|&&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 否 | - | 弹窗标题。 |
-  | message | string&nbsp;\|&&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 弹窗内容。 |
+  | title | string&nbsp;\|&&nbsp;[Resource](ts-types.md#resource) | 否 | - | 弹窗标题。 |
+  | message | string&nbsp;\|&&nbsp;[Resource](ts-types.md#resource) | 是 | - | 弹窗内容。 |
   | autoCancel | boolean | 否 | true | 点击遮障层时，是否关闭弹窗。 |
-  | primaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
-  | secondaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
+  | primaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
+  | secondaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | - | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层关闭dialog时的回调。 |
-  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
-  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
+  | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment枚举说明) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
+  | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。 |
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct AlertDialogExample {

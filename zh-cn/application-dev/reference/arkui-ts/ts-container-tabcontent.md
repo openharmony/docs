@@ -1,15 +1,10 @@
 # TabContent
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 仅在Tabs中使用，对应一个切换页签的内容视图。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -26,19 +21,20 @@ TabContent()
 
 不支持触摸热区设置。
 
-| 名称     | 参数类型                                     | 默认值  | 描述                                       |
-| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
-| tabBar | string&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string,<br/>text?:&nbsp;string<br/>}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -    | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
+| 名称   | 参数类型                                                     | 默认值 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| tabBar | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;{<br/>icon?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>text?:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>}<br/>\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | -      | 设置TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API8版本以上适用）。<br/>**说明：**<br/>如果icon采用svg格式图源，则要求svg图源删除其自有宽高属性值。如采用带有自有宽高属性的svg图源，icon大小则是svg本身内置的宽高属性值大小。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
+>  **说明：**
+>  - TabContent组件不支持设置通用宽度属性，其宽度默认撑满Tabs父组件。
 >
-> - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
+>  - TabContent组件不支持设置通用高度属性，其高度由Tabs父组件高度与TabBar组件高度决定。
 
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TabContentExample  {

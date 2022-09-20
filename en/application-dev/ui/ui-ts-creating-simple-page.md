@@ -7,7 +7,8 @@ In this section, we will develop an infographic food details page, by building c
 ## Building the Stack Layout
 
 1. Create a food name.
-   Delete the code of the build method in the project template, create a &lt;Stack&gt; component, and place the **\<Text>** component in the braces of the **\<Stack>** component so that the &lt;Text&gt; component becomes a child component of the &lt;Stack&gt; component. A **\<Stack>** component consists of one or more child components. The latter child component overwrites the former one.
+   
+   Delete the code of the **build** method in the project template, create a **\<Stack>** component, and place the **\<Text>** component in the braces of the **\<Stack>** component. When the **\<Stack>** component contains multiple child components, the latter child component overwrites the former one.
 
    ```
    @Entry
@@ -23,10 +24,11 @@ In this section, we will develop an infographic food details page, by building c
    }
    ```
 
-   ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
+![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)
 
 2. Display food pictures.
-   Create an **\<Image>** component and specify a URL for it. The **\<Image>** and **\<Text>** components are mandatory. To display the **\<Text>** component above the **\<Image>** component, you need to declare the **\<Image>** component first. Image resources are stored in the **rawfile** folder in **resources**. When referencing the resources in the **rawfile** folder, use the `"$rawfile('filename')"` format, where filename indicates the relative path of the file in the **rawfile** folder. Currently, `$rawfile` only allows the **\<Image>** component to reference image resources.
+
+   Create an **\<Image>** component and specify a URL for it. The **\<Image>** and **\<Text>** components are mandatory. To display the **\<Text>** component above the **\<Image>** component, you need to declare the **\<Image>** component first. Image resources are stored in the **rawfile** folder in **resources**. When referencing the resources in the **rawfile** folder, use the `"$rawfile('filename')"` format, where **filename** indicates the relative path of the file in the **rawfile** folder. Currently, `$rawfile` only allows the **\<Image>** component to reference image resources.
 
    ```
    @Entry
@@ -46,9 +48,10 @@ In this section, we will develop an infographic food details page, by building c
    ![en-us_image_0000001267887861](figures/en-us_image_0000001267887861.png)
 
 3. Access images through resources.
-   In addition to specifying the image path, you can also use the media resource symbol $r to reference resources based on the resource qualifier rules in the resources folder. Right-click the resources folder, choose **New** &gt; **Resource Directory**, and set **Resource Type** to **Media (image resource)**. Place Tomato.png in the media folder.
 
-   You can then can reference the application resource in the ` "$r('app.type.name')"`  format, that is, `$r('app.media.Tomato')`.
+   In addition to specifying the image path, you can also use the media resource symbol `$r` to reference resources in the **resources** folder based on the resource qualifier rules. Right-click the **resources** folder, choose **New** &gt; **Resource Directory**, and set **Resource Type** to **Media (image resource)**.
+
+   Place **Tomato.png** in the **media** folder. You can then can reference the application resource in the `$r('app.type.name')` format, that is, `$r('app.media.Tomato')`.
 
 
    ```
@@ -68,10 +71,11 @@ In this section, we will develop an infographic food details page, by building c
    }
    ```
 
-4. Set the width and height of the image, and set the objectFit attribute of the image to ImageFit.Contain, which means to keep the aspect ratio of the image to ensure that the image is completely displayed within the boundary.If the image fills the entire screen, the possible causes are as follows:
+4. Set the width and height of the image, and set the **objectFit** attribute of the image to **ImageFit.Contain**, which means to keep the aspect ratio of the image to ensure that the image is completely displayed within the boundary. If the image fills the entire screen, the possible causes are as follows:
+   
      1. The width and height of the image are not set.
      2. The default attribute of **objectFit** of the image is **ImageFit.Cover**, that is, the image is zoomed in or zoomed out to fill the entire display boundary with the aspect ratio locked.
-
+     
    ```
    @Entry
    @Component
@@ -91,7 +95,7 @@ In this section, we will develop an infographic food details page, by building c
 
 ![en-us_image_0000001223127732](figures/en-us_image_0000001223127732.png)
 ​     
-5. Set the food image and name layout. Set the alignment mode of the stack to bottom alignment. By default, the stack is center aligned. Set **alignContent** to **Alignment.BottomStart**. Similar to **FontWeight**, **Alignment** is a built-in enumeration type provided by the framework.
+5. Set the food image and name layout. Set **alignContent** to **Alignment.BottomStart**. Similar to **FontWeight**, **Alignment** is a built-in enumeration type provided by the framework.
 
 ```
    @Entry
@@ -112,9 +116,9 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001267647873](figures/en-us_image_0000001267647873.png)
 
-6. You can change the background color of the food image by setting the background color of the stack. You can set the background color in either of the following ways:
-   1. By using the built-in enumeration value of Color provided by the framework. For example, **backgroundColor(Color.Red)** indicates that the background color is set to red.
-   2. By using the parameter of the string type. The supported color formats are rgb, rgba, and HEX. For example, you can set the background color to blue by setting **backgroundColor(??\#0000FF??)** and set the background color to white by setting **backgroundColor(??rgb(255, 255, 255)??)**.
+6. You can change the background color of the food image by setting the background color of the **\<Stack>** component in either of the following ways:
+   1. Using the built-in **Color** enums provided by the framework. For example, **backgroundColor(Color.Red)** indicates that the background color is set to red.
+   2. Using the string-type parameter. The supported color formats are rgb, rgba, and HEX. For example, you can set the background color to blue by setting **backgroundColor(??\#0000FF??)** and set the background color to white by setting **backgroundColor(??rgb(255, 255, 255)??)**.
 
 
    ```
@@ -163,7 +167,7 @@ In this section, we will develop an infographic food details page, by building c
 
    ![en-us_image_0000001222967776](figures/en-us_image_0000001222967776.png)
 
-8. Adjust the structure between components and semanticize component names. Create the FoodDetail page entry component, create a column in **FoodDetail**, and set the alignment to **alignItems(HorizontalAlign.Center)**. Change the name of the **MyComponent** component to **FoodImageDisplay**, which is a child component of the **FoodDetail** component.
+8. Adjust the structure between components and semanticize component names. Create the **FoodDetail** page entry component, create a column in **FoodDetail**, and set the alignment to **alignItems(HorizontalAlign.Center)**. Change the name of the **MyComponent** component to **FoodImageDisplay**, which is a child component of the **FoodDetail** component.
    
    A column is a container component whose child components are vertically arranged. It is a linear layout in essence. Therefore, only the alignment in the cross axis direction can be set.
 
@@ -202,7 +206,7 @@ In this section, we will develop an infographic food details page, by building c
 
 You can use the Flex layout to build a food composition table. In this way you do not need to worry about the width and height calculation. The size of different cells can be flexibly set based on the proportion.
 
-1. Create a **ContentTable** component as a child component of the FoodDetail component.
+1. Create a **ContentTable** component as a child component of the **FoodDetail** component.
 
    ```
    @Component
@@ -239,13 +243,13 @@ You can use the Flex layout to build a food composition table. In this way you d
    }
    ```
 
-2. Create a Flex component to display two food composition categories in the tomato: Calories and Nutrition.
+2. Create a Flex component to display two food composition categories in the tomato: **Calories** and **Nutrition**.
    
-Calories contains information about calories. Nutrition contains information about protein, fat, carbohydrates, and vitamin C.
+   **Calories** contains information about calories. **Nutrition** contains information about protein, fat, carbohydrates, and vitamin C.
    
-Create the Calories class. Create a Flex component and set its height to 280, and the top, right, and left margins to 30. The Flex component contains three Text child components, which represent the category name (Calories), content name (Calories), and contain value (17 kcal), respectively. By default, child components in the Flex component are arranged horizontally.
+   Create the **Calories** class. Create a Flex component and set its height to 280, and the top, right, and left margins to 30. The Flex component contains three **\<Text>** child components, which represent the category name (**Calories**), content name (**Calories**), and contain value (**17 kcal**), respectively. By default, child components in the Flex component are arranged horizontally.
    
-   In the following example, code of FoodImageDisplay is omitted, and only code of ContentTable is provided.
+   In the following example, code of **FoodImageDisplay** is omitted, and only code of **ContentTable** is provided.
 
 
    ```
@@ -281,14 +285,14 @@ Create the Calories class. Create a Flex component and set its height to 280, an
 
    ![en-us_image_0000001267767869](figures/en-us_image_0000001267767869.png)
 
-3. Adjust the layout and set the proportion (layoutWeight) of each part. Set the proportion of the category name to **1**, and the total proportion of content name and content value to **2**. The content name and content value are in a same Flex, and the content name occupies all remaining space flexGrow(1).
+3. Adjust the layout and set the proportion (**layoutWeight**) of each part. Set the proportion of the category name to **1**, and the total proportion of content name and content value to **2**. The content name and content value are in a same Flex, and the content name occupies all remaining space **flexGrow(1)**.
 
    ```
    @Component
    struct FoodImageDisplay {
      build() {
        Stack({ alignContent: Alignment.BottomStart }) {
-         Image($m('Tomato.png'))
+         Image($r('app.media.Tomato'))
            .objectFit(ImageFit.Contain)
            .height(357)
          Text('Tomato')
@@ -337,7 +341,7 @@ Create the Calories class. Create a Flex component and set its height to 280, an
 
    ![en-us_image_0000001267607901](figures/en-us_image_0000001267607901.png)
 
-4. Create the **Nutrient** class in a similar process. Nutrition consists of four parts: Protein, Fat, Carbohydrates, and VitaminC. The names of the last three parts are omitted in the table and represented by spaces.
+4. Create the **Nutrient** class in a similar process. **Nutrition** consists of four parts: **Protein**, **Fat**, **Carbohydrates**, and **VitaminC**. The names of the last three parts are omitted in the table and represented by spaces.
    
    Set **FlexDirection.Column**, **FlexAlign.SpaceBetween**, and **ItemAlign.Start**.
 
@@ -442,7 +446,7 @@ Create the Calories class. Create a Flex component and set its height to 280, an
 
    Currently, all food groups are declared, resulting in code duplication and redundancy. You can use @Builder to build a custom method and abstract the same UI structure declaration. The @Builder decorated method and the build method for the @Component decorated component are used to declare some UI rendering structures and comply with the same eTS syntax. You can define one or more methods decorated by @Builder, but a component decorated by @Component can have only one build method.
 
-   Declare the IngredientItem method decorated by @Builder in ContentTable to declare the UI descriptions for the category name, content name, and content value.
+   Declare the **IngredientItem** method decorated by @Builder in **ContentTable** to declare the UI descriptions for the category name, content name, and content value.
 
 
    ```
@@ -455,9 +459,6 @@ Create the Calories class. Create a Flex component and set its height to 280, an
            .fontWeight(FontWeight.Bold)
            .layoutWeight(1)
          Flex({ alignItems: ItemAlign.Center }) {
-           Circle({width: 6, height: 6})
-             .margin({right: 12})
-             .fill(colorValue)
            Text(name)
              .fontSize(17.4)
              .flexGrow(1)
@@ -470,7 +471,7 @@ Create the Calories class. Create a Flex component and set its height to 280, an
    }
    ```
 
-When the  ` IngredientItem` API is called in the build method of ContentTable,  ` this `  needs to be used to invoke the method in the scope of the component to distinguish the global method call.
+   When the `IngredientItem` API is called in the **build** method of **ContentTable**, `this` needs to be used to invoke the method in the scope of the component to distinguish the global method call.
 
 
    ```
@@ -491,7 +492,7 @@ When the  ` IngredientItem` API is called in the build method of ContentTable,  
    }
    ```
 
-The overall code of the ContentTable component is as follows:
+   The overall code of the **ContentTable** component is as follows:
 
 
    ```

@@ -16,7 +16,7 @@ The following table lists the USB APIs currently available. For details, see the
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hasRight(deviceName: string): boolean                        | Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise. |
 | requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. |
-| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by **getDevices()**. |
+| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by `getDevices()`. |
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the USB device list.                                 |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
@@ -113,7 +113,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
     Claim the corresponding interface from deviceList.
     interface1 must be one present in the device configuration.
     */
-    usb.claimInterface(pipe , interface1, true);
+    usb.claimInterface(pipe, interface1, true);
     ```
 
 4.  Perform data transfer.

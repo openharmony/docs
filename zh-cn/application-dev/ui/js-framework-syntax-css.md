@@ -1,6 +1,6 @@
 # CSS语法参考
 
-CSS是描述HML页面结构的样式语言。所有组件均存在系统默认样式，也可在页面CSS样式文件中对组件、页面自定义不同的样式。
+CSS是描述HML页面结构的样式语言。所有组件均存在系统默认样式，也可在页面CSS样式文件中对组件、页面自定义不同的样式。请参考[通用样式](../reference/arkui-js/js-components-common-styles.md)了解基于JS扩展的类Web开发范式支持的组件样式。
 
 ## 尺寸单位
 
@@ -57,12 +57,12 @@ CSS是描述HML页面结构的样式语言。所有组件均存在系统默认�
 
 css选择器用于选择需要添加样式的元素，支持的选择器如下表所示：
 
-| 选择器 | 样例 | 样例描述 |
-| -------- | -------- | -------- |
-| .class | .container | 用于选择class="container"的组件。 |
-| \#id | \#titleId | 用于选择id="titleId"的组件。 |
-| tag | text | 用于选择text组件。 |
-| , | .title,&nbsp;.content | 用于选择class="title"和class="content"的组件。 |
+| 选择器                       | 样例                                    | 样例描述                                     |
+| ------------------------- | ------------------------------------- | ---------------------------------------- |
+| .class                    | .container                            | 用于选择class="container"的组件。                |
+| \#id                      | \#titleId                             | 用于选择id="titleId"的组件。                     |
+| tag                       | text                                  | 用于选择text组件。                              |
+| ,                         | .title,&nbsp;.content                 | 用于选择class="title"和class="content"的组件。    |
 | \#id&nbsp;.class&nbsp;tag | \#containerId&nbsp;.content&nbsp;text | 非严格父子关系的后代选择器，选择具有id="containerId"作为祖先元素，class="content"作为次级祖先元素的所有text组件。如需使用严格的父子关系，可以使用“&gt;”代替空格，如：\#containerId&gt;.content。 |
 
 示例：
@@ -79,7 +79,7 @@ css选择器用于选择需要添加样式的元素，支持的选择器如下�
 
 ```
 /* 页面样式xxx.css */
-/\* 对所有div组件设置样式 \*/
+/* 对所有div组件设置样式 */
 div {
   flex-direction: column;
 }
@@ -95,13 +95,13 @@ div {
 .title, .content {
   padding: 5px;
 }
-/\* 对class="container"的组件下的所有text设置样式 \*/
+/* 对class="container"的组件下的所有text设置样式 */
 .container text {
-  color: \#007dff;
+  color: #007dff;
 }
-/\* 对class="container"的组件下的直接后代text设置样式 \*/
+/* 对class="container"的组件下的直接后代text设置样式 */
 .container &gt; text {
-  color: \#fa2a2d;
+  color: #fa2a2d;
 }
 ```
 
@@ -124,12 +124,12 @@ css伪类是选择器中的关键字，用于指定要选择元素的特殊状�
 
 除了单个伪类之外，还支持伪类的组合，例如，:focus:checked状态可以用来设置元素的focus属性和checked属性同时为true时的样式。支持的单个伪类如下表所示，按照优先级降序排列：
 
-| 名称 | 支持组件 | 描述 |
-| -------- | -------- | -------- |
-| :disabled | 支持disabled属性的组件 | 表示disabled属性变为true时的元素（不支持动画样式的设置）。 |
-| :active | 支持click事件的组件<br/> | 表示被用户激活的元素，如：被用户按下的按钮、被激活的tab-bar页签（不支持动画样式的设置）。 |
-| :waiting | button | 表示waiting属性为true的元素（不支持动画样式的设置）。 |
-| :checked | input[type="checkbox"、type="radio"]、&nbsp;switch | 表示checked属性为true的元素（不支持动画样式的设置）。 |
+| 名称        | 支持组件                                     | 描述                                       |
+| --------- | ---------------------------------------- | ---------------------------------------- |
+| :disabled | 支持disabled属性的组件                          | 表示disabled属性变为true时的元素（不支持动画样式的设置）。      |
+| :active   | 支持click事件的组件<br/>                        | 表示被用户激活的元素，如：被用户按下的按钮、被激活的tab-bar页签（不支持动画样式的设置）。 |
+| :waiting  | button                                   | 表示waiting属性为true的元素（不支持动画样式的设置）。         |
+| :checked  | input[type="checkbox"、type="radio"]、&nbsp;switch | 表示checked属性为true的元素（不支持动画样式的设置）。         |
 
 伪类示例如下，设置按钮的:active伪类可以控制被用户按下时的样式：
 

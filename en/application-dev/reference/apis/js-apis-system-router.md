@@ -66,6 +66,7 @@ export default {
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > The page routing stack supports a maximum of 32 pages.
 
 
@@ -182,6 +183,7 @@ export default {
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+>
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
 ## router.getParams
@@ -375,8 +377,8 @@ Defines the **EnableAlertBeforeBackPage** parameters.
 | Name      | Type                    | Mandatory  | Description                       |
 | -------- | ------------------------ | ---- | ------------------------- |
 | message  | string                   | Yes   | Content displayed in the confirm dialog box.                 |
-| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
-| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
+| success  | (errMsg: string) => void | No   | Called when the **OK** button in the confirm dialog box is clicked. **errMsg** indicates the returned information. |
+| cancel     | (errMsg: string) => void | No   | Called when the **Cancel** button in the confirm dialog box is clicked. **errMsg** indicates the returned information. |
 | complete | () => void               | No   | Called when the API call is complete.             |
 
 ## DisableAlertBeforeBackPageOptions<sup>6+</sup>
@@ -387,8 +389,8 @@ Define the **DisableAlertBeforeBackPage** parameters.
 
 | Name      | Type                    | Mandatory  | Description                       |
 | -------- | ------------------------ | ---- | ------------------------- |
-| success  | (errMsg: string) => void | No   | Called when a dialog box is displayed. **errMsg** indicates the returned information.   |
-| fail     | (errMsg: string) => void | No   | Called when the API fails to be called. **errMsg** indicates the returned information.|
+| success  | (errMsg: string) => void | No   | Called when the dialog box is closed. **errMsg** indicates the returned information. |
+| cancel     | (errMsg: string) => void | No   | Called when the dialog box fails to be closed. **errMsg** indicates the returned information. |
 | complete | () => void               | No   | Called when the API call is complete.             |
 
 ## ParamsInterface

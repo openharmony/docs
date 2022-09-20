@@ -32,10 +32,8 @@ getId(uri: string): number
 **示例：**
 
 ```js
-dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
+dataUriUtils.getId("com.example.dataUriUtils/1221")
 ```
-
-
 
 ## dataUriUtils.attachId
 
@@ -68,8 +66,6 @@ dataUriUtils.attachId(
 )
 ```
 
-
-
 ## dataUriUtils.deleteId
 
 deleteId(uri: string): string
@@ -95,8 +91,6 @@ deleteId(uri: string): string
 ```js
 dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
-
-
 
 ## dataUriUtils.updateId
 

@@ -389,7 +389,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
-**需要权限：**ohos.permission.SET_WALLPAPER
+**需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -422,7 +422,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 将指定资源设置为指定类型的壁纸。
 
-**需要权限:** ohos.permission.SET_WALLPAPER
+**需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -530,7 +530,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 
 获取指定类型的壁纸文件。
 
-**需要权限**：ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -559,7 +559,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 
 获取指定类型的壁纸文件。
 
-**需要权限：** ohos.permission.SET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
 
@@ -592,9 +592,11 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 获取壁纸图片的像素图。
 
-**需要权限**：ohos.permission.GET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -619,9 +621,11 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 获取壁纸图片的像素图。
 
-**需要权限**：ohos.permission.GET_WALLPAPER、ohos.permission.READ_USER_STORAGE
+**需要权限**：ohos.permission.GET_WALLPAPER 和 ohos.permission.READ_USER_STORAGE
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -638,7 +642,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 **示例：**
   
   ```js
-  wallpaper.getPixelMap(WALLPAPER_SYSTEM).then((data) => {
+  wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + data);
       console.info('wallpaperXTS ===> testGetPixelMapPromiseSystem data : ' + JSON.stringify(data));
   }).catch((err) => {

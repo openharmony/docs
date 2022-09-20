@@ -115,7 +115,7 @@ back(options?: RouterOptions ): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [RouterOptions](#routeroptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页。 |
+| options | [RouterOptions](#routeroptions) | 是 | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面栈里面的page不会回收，出栈后会回收。 |
 
 **示例：**
   ```js
@@ -162,7 +162,7 @@ back(options?: RouterOptions ): void
   // 通过back，返回到detail页面
   export default {    
     backToDetail() {        
-      router.back({uri:'pages/detail/detail'});    
+      router.back({url:'pages/detail/detail'});    
     }
   }
   ```
@@ -263,12 +263,6 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
     enableAlertBeforeBackPage() {        
       router.enableAlertBeforeBackPage({            
         message: 'Message Info',            
-        success: function() {                
-          console.log('success');            
-        },            
-        fail: function() {                
-          console.log('fail');            
-        },        
       });    
     }
   }
@@ -334,7 +328,7 @@ getParams(): Object
   // 在detail页面中
   export default {
     onInit() {
-      console.info('showData1:' + router.getParams().data1);
+      console.info('showData1:' + router.getParams()[data1]);
     }
   }
   ```

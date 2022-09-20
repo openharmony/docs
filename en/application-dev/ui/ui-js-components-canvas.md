@@ -140,9 +140,3 @@ export default {
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > The **&lt;canvas&gt;** component cannot be created in **onInit** or **onReady**.
 
-## Samples
-
-The following sample is provided to help you better understand how to develop the **\<canvas>** component:
-
-[`JsCanvas`: \<canvas> (JavaScript, API 8)](https://gitee.com/openharmony/app_samples/tree/master/UI/JsCanvas)
-

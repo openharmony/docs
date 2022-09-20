@@ -1,6 +1,6 @@
 # 时间滑动选择器弹窗
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 默认以00：00至23：59的时间区间创建滑动选择器，展示在弹窗上。
@@ -27,7 +27,8 @@ show(options?: TimePickerDialogOptions)
 ## 示例
 
 ### 时间滑动选择器（24小时制）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample01 {
@@ -55,7 +56,8 @@ struct TimePickerDialogExample01 {
 }
 ```
 ### 时间滑动选择器（12小时制）示例
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample02 {

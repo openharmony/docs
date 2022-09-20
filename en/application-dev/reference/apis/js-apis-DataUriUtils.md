@@ -32,10 +32,8 @@ Obtains the ID attached to the end of a given URI.
 **Example**
 
 ```js
-dataUriUtils.getIdSync("com.example.dataUriUtils/1221")
+dataUriUtils.getId("com.example.dataUriUtils/1221")
 ```
-
-
 
 ## dataUriUtils.attachId
 
@@ -68,8 +66,6 @@ dataUriUtils.attachId(
 )
 ```
 
-
-
 ## dataUriUtils.deleteId
 
 deleteId(uri: string): string
@@ -95,8 +91,6 @@ Deletes the ID from the end of a given URI.
 ```js
 dataUriUtils.deleteId("com.example.dataUriUtils/1221")
 ```
-
-
 
 ## dataUriUtils.updateId
 

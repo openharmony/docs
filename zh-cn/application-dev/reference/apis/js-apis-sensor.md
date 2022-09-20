@@ -246,6 +246,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。   |
@@ -1349,8 +1350,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA
-
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -1402,8 +1401,6 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅传感器数据。
-
-**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1485,6 +1482,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+ **需要权限**: ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1716,7 +1715,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
         console.error('Operation failed. Error code: ' + err.code + '; message: ' + err.message);
         return;
     }
-    console.info('sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+    console.info('sensor_getGeomagneticField_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
@@ -1898,7 +1897,6 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  getAngleModifiy interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -1966,7 +1964,6 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get createRotationMatrix interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2033,7 +2030,6 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get  createQuaternion interface get data: " + data.x);
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2100,7 +2096,6 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
@@ -2410,9 +2405,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                |
-| ------ | ------ | ---- | ---- | --------------------------------- |
-| status | number | 是    | 是    | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示有，1表示没有。 |
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
 
 
 ## MagneticFieldResponse
@@ -2422,11 +2417,11 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称   | 参数类型   | 可读   | 可写   | 说明                 |
-| ---- | ------ | ---- | ---- | ------------------ |
-| x    | number | 是    | 是    | x轴环境磁场强度，单位 : μT。  |
-| y    | number | 是    | 是    | y轴环境磁场强度，单位 : μT。  |
-| z    | number | 是    | 是    | z轴环境磁场强度，单位 : μT。。 |
+| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
+| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
+| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
 
 
 ## MagneticFieldUncalibratedResponse

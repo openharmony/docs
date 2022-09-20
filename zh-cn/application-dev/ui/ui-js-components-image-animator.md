@@ -339,4 +339,4 @@ export default {
 
 针对Image-animator开发，有以下相关实例可供参考：
 
-- [image、image-animator（JS）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)
+- [image、image-animator（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ClickableJsDemo)

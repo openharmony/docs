@@ -2,11 +2,12 @@
 
 The  **<text\>**  component is used to display a piece of textual information.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->-   The text content must be written in the content area. The  **tspan**  sub-element label can be nested to segment the text content. The  **textPath**  sub-element label can be nested to draw the text content based on the specified path.
->-   **<text\>**  can be nested only by the parent element label  **svg**.
->-   Only the default font  **sans-serif**  is supported.
+> **NOTE** 
+>
+> -   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> -   The text content must be written in the content area. The  **tspan**  sub-element label can be nested to segment the text content. The  **textPath**  sub-element label can be nested to draw the text content based on the specified path.
+> -   **<text\>**  can be nested only by the parent element label  **svg**.
+> -   Only the default font  **sans-serif**  is supported.
 
 ## Required Permissions
 
@@ -14,7 +15,7 @@ None
 
 ## Child Components
 
-**Tspan**,  **textpath**,  **animate**, and  **animateTransform are**  supported.
+**\<tspan>**,  **\<textpath>**,  **\<animate>**, and **\<animateTransform>** are supported.
 
 ## Attributes
 
@@ -39,7 +40,7 @@ The attributes in the following table are supported.
 
 ## Example
 
-```
+```css
 /* xxx.css */
 .container {    
     flex-direction: row;
@@ -50,7 +51,7 @@ The attributes in the following table are supported.
 }
 ```
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -72,7 +73,7 @@ The attributes in the following table are supported.
 
 Attribute animation example
 
-```
+```css
 /* xxx.css  */
 .container {
     flex-direction: row;
@@ -83,11 +84,12 @@ Attribute animation example
 }
 ```
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
     <text y="50" font-size="30" fill="blue">
+        text attribute x|opacity|rotate
       <animate attributeName="x" from="100" by="400" dur="3s" repeatCount="indefinite"></animate>
       <animate attributeName="opacity" from="0.01" to="0.99" dur="3s" repeatCount="indefinite"></animate>
       <animate attributeName="rotate" from="0" to="360" dur="3s" repeatCount="indefinite"></animate>
@@ -99,7 +101,7 @@ Attribute animation example
 
 ![](figures/text-animate-part1.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>
@@ -114,7 +116,7 @@ Attribute animation example
 
 ![](figures/text-animate-part2.gif)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg>

@@ -1,10 +1,10 @@
 # Row
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 沿水平方向布局容器。
+
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 权限列表
@@ -19,32 +19,25 @@
 
 ## 接口
 
-Row(value:{space?: Length})
+Row(value?:{space?: string&nbsp;|&nbsp;number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | 否 | 0 | 横向布局元素间距。 | 
+**参数：**
 
+| 参数名 | 参数类型                   | 必填 | 默认值 | 参数描述           |
+| ------ | -------------------------- | ---- | ------ | ------------------ |
+| space  | string&nbsp;\|&nbsp;number | 否   | 0      | 横向布局元素间距。 |
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| alignItems | VerticalAlign | VerticalAlign.Center | 在垂直方向上子组件的对齐格式。 |
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | 设置子组件在水平方向上的对齐格式。 |
-
-- VerticalAlign枚举说明
-  | 名称 | 描述 | 
-  | -------- | -------- |
-  | Top | 顶部对齐。 | 
-  | Center | 居中对齐，默认对齐方式。 | 
-  | Bottom | 底部对齐。 |
-
+| 名称               | 参数类型                              | 默认值                  | 描述                |
+| ---------------- | --------------------------------- | -------------------- | ----------------- |
+| alignItems       | [VerticalAlign](ts-appendix-enums.md#verticalalign)    | VerticalAlign.Center | 在垂直方向上子组件的对齐格式。   |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | FlexAlign.Start      | 设置子组件在水平方向上的对齐格式。 |
 
 ## 示例
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RowExample {

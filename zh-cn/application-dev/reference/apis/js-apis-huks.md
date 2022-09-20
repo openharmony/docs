@@ -1438,5 +1438,5 @@ huks Handle结构体。
 | errorCode  | number            | 是   | 错误码   |
 | outData    | Uint8Array        | 否   | 输出数据 |
 | properties | Array\<HuksParam> | 否   | 属性     |
-| certChains | Array\<string>    | 否   | 证书链   |
+| certChains | Array\<string>    | 否   | 预留字段 |
 

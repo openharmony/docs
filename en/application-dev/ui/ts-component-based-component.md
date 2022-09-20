@@ -1,30 +1,28 @@
 # @Component
 
-
-A struct decorated by @Component has the componentization capability and can serve as an independent component. This type of component is also called a custom component, and its UI structure is described in the build method. Custom components have the following features:
+A struct decorated by **@Component** has the componentization capability and can serve as an independent component. This type of component is also called a custom component, and its UI structure is described in the **build** method. Custom components have the following features:
 
 
 - Composability: Custom components can be used with preset or other components, as well as common attributes and methods.
 
 - Reusable: Custom components can be reused by other components and used as different instances in different parent components or containers.
-
 - Lifecycle: Custom components provide callbacks for service logic processing throughout the lifecycle.
-
 - Data-driven update: The UI of custom components can be automatically updated based on the data of state variables.
 
 
-For details about componentization, see [About @Component](ts-function-build.md).
+For details about componentization, see [About @Component](ts-custom-component-initialization.md).
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**:
-> - The build method must be defined for a custom component.
-> 
-> - Custom constructors are prohibited for custom components.
+>  **NOTE**
+>
+>  - The **build** method must be defined for a custom component.
+>- Custom constructors are prohibited for custom components.
 
 
-The following code illustrates how to create a custom component named MyComponent:
+The following code illustrates how to create a custom component named **MyComponent**:
 
-```
+
+```ts
 @Component
 struct MyComponent {
     build() {
@@ -37,12 +35,13 @@ struct MyComponent {
 ```
 
 
-The build method of MyComponent is executed during initial rendering. When the component status changes, the build method will be executed again.
+The **build** method of **MyComponent** is executed during initial rendering. When the component status changes, the **build** method will be executed again.
 
 
-The following code illustrates how to use MyComponent:
+The following code illustrates how to use **MyComponent**:
 
-```
+
+```ts
 @Component
 struct ParentComponent {
     build() {
@@ -56,9 +55,10 @@ struct ParentComponent {
 ```
 
 
-MyComponent can be applied multiple times and reused in different components, as shown in the code below:
+**MyComponent** can be applied multiple times and reused in different components, as shown in the code below:
 
-```
+
+```ts
 @Component
 struct ParentComponent {
     build() {
@@ -76,11 +76,11 @@ struct ParentComponent {
         }
     }
 
-    private aboutToAppear() {
+    aboutToAppear() {
         console.log('ParentComponent: Just created, about to become rendered first time.')
     }
 
-    private aboutToDisappear() {
+    aboutToDisappear() {
         console.log('ParentComponent: About to be removed from the UI.')
     }
 }

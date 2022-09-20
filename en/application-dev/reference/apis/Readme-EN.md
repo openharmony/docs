@@ -18,8 +18,8 @@
   - [@ohos.application.formError](js-apis-formerror.md)
   - [@ohos.application.formHost](js-apis-formhost.md)
   - [@ohos.application.formInfo](js-apis-formInfo.md)
-  - [@ohos.application.missionManager](js-apis-missionManager.md)
   - [@ohos.application.formProvider](js-apis-formprovider.md)
+  - [@ohos.application.missionManager](js-apis-missionManager.md)
   - [@ohos.ability.particleAbility](js-apis-particleAbility.md)
   - [@ohos.application.ServiceExtensionAbility](js-apis-service-extension-ability.md)
   - [@ohos.application.StartOptions](js-apis-application-StartOptions.md)
@@ -31,22 +31,23 @@
   - application/[AbilityContext](js-apis-ability-context.md)
   - application/[abilityDelegator](js-apis-application-abilityDelegator.md)
   - application/[abilityDelegatorArgs](js-apis-application-abilityDelegatorArgs.md)
+  - application/[AbilityManager](js-apis-abilityManager.md)
   - application/[abilityMonitor](js-apis-application-abilityMonitor.md)
   - application/[AbilityRunningInfo](js-apis-abilityrunninginfo.md)
   - application/[AbilityStageContext](js-apis-abilityStageContext.md)
   - application/[Context](js-apis-application-context.md)
+  - application/[ExtensionAbilityContext](js-apis-extension-ability-context.md)
+  - application/[ExtensionAbilityInfo](js-apis-extensionAbilityInfo.md)
   - application/[ExtensionContext](js-apis-extension-context.md)
   - application/[ExtensionRunningInfo](js-apis-extensionrunninginfo.md)
   - application/[FormExtensionContext](js-apis-formextensioncontext.md)
+  - application/[MissionInfo](js-apis-application-missionInfo.md)
   - application/[MissionSnapshot](js-apis-application-MissionSnapshot.md)
   - application/[PermissionRequestResult](js-apis-permissionrequestresult.md)
   - application/[ProcessRunningInfo](js-apis-processrunninginfo.md)
+  - application/[ServiceExtAbilityContext](js-apis-serviceExtAbilityContext.md)
   - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
   - application/[shellCmdResult](js-apis-application-shellCmdResult.md)
-  - application/[AbilityManager (AbilityManager)](js-apis-abilityManager.md)
-  - application/[ExtensionAbilityContext (ExtensionAbilityContext)](js-apis-extension-ability-context.md)
-  - application/[ExtensionAbilityInfo (ExtensionAbilityInfo)](js-apis-extensionAbilityInfo.md)
-  - application/[ServiceExtAbilityContext (ServiceExtAbilityContext)](js-apis-serviceExtAbilityContext.md)
 - Common Event and Notification
 
   - [@ohos.commonEvent](js-apis-commonEvent.md)
@@ -87,6 +88,7 @@
   - [@ohos.multimedia.media](js-apis-media.md)
   - [@ohos.multimedia.medialibrary](js-apis-medialibrary.md)
 - Resource Management
+
   - [@ohos.i18n](js-apis-i18n.md)
   - [@ohos.intl](js-apis-intl.md)
   - [@ohos.resourceManager](js-apis-resource-manager.md)
@@ -110,7 +112,6 @@
   - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
-  - [@ohos.settings](js-apis-settings.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
   - data/rdb/[resultSet](js-apis-data-resultset.md)
 - File Management
@@ -119,6 +120,7 @@
   - [@ohos.environment](js-apis-environment.md)
   - [@ohos.fileio](js-apis-fileio.md)
   - [@ohos.fileManager](js-apis-filemanager.md)
+  - [@ohos.securityLabel](js-apis-securityLabel.md)
   - [@ohos.statfs](js-apis-statfs.md)
   - [@ohos.storageStatistics](js-apis-storage-statistics.md)
   - [@ohos.volumeManager](js-apis-volumemanager.md)
@@ -132,11 +134,12 @@
   - [@ohos.telephony.sms](js-apis-sms.md)
   - [@ohos.telephony.data](js-apis-telephony-data.md)
 - Network Management
+
   - [@ohos.net.connection](js-apis-net-connection.md)
   - [@ohos.net.http](js-apis-http.md)
-  - [@ohos.request](js-apis-request.md)
   - [@ohos.net.socket](js-apis-socket.md)
   - [@ohos.net.webSocket](js-apis-webSocket.md) 
+  - [@ohos.request](js-apis-request.md)
 - Connectivity
 
   - [@ohos.bluetooth](js-apis-bluetooth.md)
@@ -163,6 +166,7 @@
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
+  - [console (Log)](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
 - Device Management
 
@@ -178,6 +182,7 @@
   - [@ohos.power](js-apis-power.md)
   - [@ohos.runningLock](js-apis-runninglock.md)
   - [@ohos.sensor](js-apis-sensor.md)
+  - [@ohos.settings](js-apis-settings.md)
   - [@ohos.systemParameter](js-apis-system-parameter.md)
   - [@ohos.thermal](js-apis-thermal.md)
   - [@ohos.update](js-apis-update.md)
@@ -236,4 +241,3 @@
   - [@system.sensor](js-apis-system-sensor.md)
   - [@system.storage](js-apis-system-storage.md)
   - [@system.vibrator](js-apis-system-vibrate.md)
-  - [console](js-apis-logs.md)

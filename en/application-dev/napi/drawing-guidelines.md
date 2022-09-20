@@ -200,9 +200,3 @@ The following steps describe how to use the text drawing and display feature of 
     double position[2] = {10.0, 15.0};
     OH_Drawing_TypographyPaint(typography, cCanvas, position[0], position[1]);
     ```
-
-## Samples
-
-The following samples are provided to help you better understand how to use the Native Drawing module:
-* [2D Graphics Drawing Using Native Drawing](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/2d_graphics/drawing_c_sample.cpp)
-* [Text Drawing and Painting Using Native Drawing](https://gitee.com/openharmony/graphic_graphic_2d/blob/master/rosen/samples/text/renderservice/drawing_text_c_sample.cpp)

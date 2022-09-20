@@ -52,9 +52,7 @@ Switch为开关选择器，切换开启或关闭状态。具体用法请参考[S
   background-color: #F1F3F5;
 }
 switch{
-  // 选中时的字体颜色
   texton-color: #002aff;
-  // 未选中时的字体颜色
   textoff-color: silver;
   text-padding: 20px; 
   font-size: 50px;

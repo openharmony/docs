@@ -37,7 +37,7 @@
    "reqPermissions":[
      {
         "name":"ohos.permission.ACCELEROMETER",
-        "reason"":"", 
+        "reason":"", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -45,7 +45,7 @@
      },
      {
         "name":"ohos.permission.GYROSCOPE",
-        "reason"":"", 
+        "reason":"", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -53,7 +53,7 @@
      },
      {
         "name":"ohos.permission.ACTIVITY_MOTION",
-        "reason"":"ACTIVITY_MOTION_TEST", 
+        "reason":"ACTIVITY_MOTION_TEST", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -61,7 +61,7 @@
      },
      {
         "name":"ohos.permission.READ_HEALTH_DATA",
-        "reason"":"HEALTH_DATA_TEST", 
+        "reason":"HEALTH_DATA_TEST", 
         "usedScene":{
          "ability": ["sensor.index.MainAbility",".MainAbility"],
          "when":"inuse"
@@ -123,8 +123,3 @@
       console.error(error);
     }
     ```
-## Samples
-
-The following sample is provided to help you better understand how to develop sensors:
-
-- [`Sensor`: sensor (eTS, API 8)](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor)
