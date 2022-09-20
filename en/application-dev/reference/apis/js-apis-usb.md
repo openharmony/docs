@@ -130,7 +130,7 @@ Checks whether the application has the permission to access the device.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the application has the permission to access the device; returns **false** otherwise.|
+| boolean | The value **true** indicates that the application has the permission to access the device, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -158,7 +158,7 @@ Requests the temporary permission for the application to access the USB device. 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the temporary device access permissions are granted; and the value **false** indicates the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the temporary device access permissions are granted, and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -191,7 +191,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB interface is successfully claimed; returns an error code otherwise.|
+| number | The value **0** indicates that the USB interface is successfully claimed, and an error code indicates the opposite.|
 
 **Example**
 
@@ -221,7 +221,7 @@ Before you do this, ensure that you have claimed the interface by calling [usb.c
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB interface is successfully released; returns an error code otherwise.|
+| number | The value **0** indicates that the USB interface is successfully released, and an error code indicates the opposite.|
 
 **Example**
 
@@ -251,7 +251,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB configuration is successfully set; returns an error code otherwise.|
+| number | The value **0** indicates that the USB configuration is successfully set, and an error code indicates the opposite.|
 
 **Example**
 
@@ -281,7 +281,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB interface is successfully set; returns an error code otherwise.|
+| number | The value **0** indicates that the USB interface is successfully set, and an error code indicates the opposite.|
 
 **Example**
 
@@ -310,7 +310,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Returns the raw USB descriptor if the operation is successful; returns **undefined** otherwise.|
+| Uint8Array | The return value is the raw USB descriptor if the operation is successful, or **undefined** if the operation has failed.|
 
 **Example**
 
@@ -338,7 +338,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type    | Description                  |
 | ------ | -------------------- |
-| number | Returns the file descriptor of the USB device if the operation is successful; returns **-1** otherwise.|
+| number | The return value is the file descriptor of the USB device if the operation is successful, or **-1** if the operation has failed.|
 
 **Example**
 
@@ -434,7 +434,7 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the USB device pipe is closed successfully; returns an error code otherwise.|
+| number | The value **0** indicates that the USB device pipe is closed successfully, and an error code indicates the opposite.|
 
 **Example**
 
