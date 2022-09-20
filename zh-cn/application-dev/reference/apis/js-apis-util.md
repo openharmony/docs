@@ -1145,7 +1145,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 **示例：**
   ```js
   let arr = [];
-  class ChildLruBuffer extends util.LruBuffer
+  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
   {
   	constructor()
   	{
