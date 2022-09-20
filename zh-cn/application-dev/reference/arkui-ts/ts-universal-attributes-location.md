@@ -3,24 +3,21 @@
 设置组件的对齐方式、布局方向和显示位置。
 
 >  **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
+>
+>  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
 
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | Center | 设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。 |
-| direction | [Direction](ts-appendix-enums.md#direction) | Auto | 设置元素水平方向的布局，可选值参照Direction枚举说明。 |
-| position | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | - | 使用绝对定位，设置元素锚点相对于父容器顶部起点偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
-| markAnchor | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 设置元素在位置定位时的锚点，以元素顶部起点作为基准点进行偏移。 |
-| offset | {<br/>x:&nbsp;Length,<br/>y:&nbsp;Length<br/>} | {<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} | 相对布局完成位置坐标偏移量，设置该属性，不影响父容器布局，仅在绘制时进行位置调整。 |
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| align | [Alignment](ts-appendix-enums.md#alignment) | 设置元素内容的对齐方式，只有当设置的width和height大小超过元素本身内容大小时生效。<br/>默认值：Alignment.Center |
+| direction | [Direction](ts-appendix-enums.md#direction) | 设置元素水平方向的布局。<br/>默认值：Direction.Auto |
+| position | {<br/>x:&nbsp;[Length](ts-types.md#length),<br/>y:&nbsp;[Length](ts-types.md#length)<br/>} | 使用绝对定位，设置元素锚点相对于父容器顶部起点偏移位置。在布局容器中，设置该属性不影响父容器布局，仅在绘制时进行位置调整。 |
+| markAnchor | {<br/>x:&nbsp;[Length](ts-types.md#length),<br/>y:&nbsp;[Length](ts-types.md#length)<br/>} | 设置元素在位置定位时的锚点，以元素顶部起点作为基准点进行偏移。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 1<br/>} |
+| offset | {<br/>x:&nbsp;[Length](ts-types.md#length),<br/>y:&nbsp;[Length](ts-types.md#length)<br/>} | 相对布局完成位置坐标偏移量，设置该属性，不影响父容器布局，仅在绘制时进行位置调整。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 1<br/>} |
+| alignRules<sup>9+</sup> | {<br/>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br/>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br/>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br/>} | 指定相对容器的对齐规则。<br/>-&nbsp;left：设置左对齐参数。<br/>-&nbsp;right：设置右对齐参数。<br/>-&nbsp;middle：设置中间对齐的参数。<br/>-&nbsp;top：设置顶部对齐的参数。<br/>-&nbsp;bottom：设置底部对齐的参数。<br/>-&nbsp;center：设置中心对齐的参数。<br/>**说明：**<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br>-&nbsp;align：设置相对于锚点组件的对齐方式。 |
 
 
 ## 示例

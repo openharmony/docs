@@ -853,4 +853,5 @@ xts子系统的适配，以`//vendor/chipsea/xts_demo/config.json`为例，需�
      "-lmodule_ActsSamgrTest",
      "-lmodule_ActsWifiServiceTest",
      "-lmodule_ActsDsoftbusMgrTest",
+ ]
 ```

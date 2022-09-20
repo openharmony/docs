@@ -430,6 +430,8 @@ Initialize the controller hardware, call core-layer APIs to add or delete device
 
 2.  Build source code and burn images to the development board.
 
-    For details, see the related sections in  [Getting Started for Standard System](../quick-start/quickstart-standard.md).
+    - For details about the operations using the installation package, see [Building](../quick-start/quickstart-ide-standard-running-hi3516-build.md) and [Burning](../quick-start/quickstart-ide-standard-running-hi3516-burning.md).
+    
+    - For details about the operations in IDE mode, see [Building](../quick-start/quickstart-standard-running-hi3516-build.md) and [Burning](../quick-start/quickstart-standard-running-hi3516-burning.md).
 
 

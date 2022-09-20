@@ -3,12 +3,8 @@
 路径绘制组件，根据绘制路径生成封闭的自定义形状。
 
 > **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
 
 
 ## 子组件
@@ -19,15 +15,13 @@
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
-- 参数
+**参数:**
 
-  | 参数名   | 参数类型 | 必填 | 默认值 | 参数描述             |
-  | -------- | -------- | ---- | ------ | -------------------- |
-  | width    | number \| string   | 否   | 0      | 路径所在矩形的宽度   |
-  | height   | number \| string   | 否   | 0      | 路径所在矩形的高度   |
-  | commands | string   | 否   | ''  | 路径绘制的命令字符串 |
-
-  
+| 参数名   | 参数类型         | 必填 | 参数描述                            |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| width    | number \| string | 否   | 路径所在矩形的宽度<br/>默认值：0    |
+| height   | number \| string | 否   | 路径所在矩形的高度<br/>默认值：0    |
+| commands | string           | 否   | 路径绘制的命令字符串<br/>默认值：'' |
 
 ## 属性
 
@@ -36,15 +30,15 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 | 参数名称     | 参数类型                                | 默认值  | 必填   | 参数描述                                     |
 | -------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
 | commands | string                              | ''   | 否  | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](../../ui/ts-pixel-units.md)。 |
-| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
 | strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 

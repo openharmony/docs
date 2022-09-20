@@ -19,9 +19,9 @@
 
 除支持[通用属性](../arkui-js/js-components-common-attributes.md)外，还支持如下属性：
 
-| 名称 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| scrollable | boolean | true | 否 | 是否可以通过左右滑动进行页面切换。默认为true，设置为false后，页面的切换只能通过tab-bar的点击实现。 |
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| scrollable | boolean | &nbsp;&nbsp;否&nbsp;&nbsp; | 是否可以通过左右滑动进行页面切换。默认为true，设置为false后，页面的切换只能通过tab-bar的点击实现。 |
 
 
 ## 样式

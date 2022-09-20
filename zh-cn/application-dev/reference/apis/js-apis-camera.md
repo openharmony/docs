@@ -631,7 +631,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\
 **示例：**
 
 ```js
-cameraManager.createPreviewOutput(profile, survaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```
@@ -2262,7 +2262,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(er
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of isExposureModeSupported');
+    console.log('Callback returned with the successful execution of isExposureModeSupported');
 })
 ```
 
@@ -2365,7 +2365,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureMode');
+    console.log('Callback returned with the successful execution of setExposureMode');
 })
 ```
 
@@ -2464,7 +2464,7 @@ cameraInput.setMeteringPoint(Point1,(err) => {
         console.log(`Failed to set the exposure point ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setMeteringPoint');
+    console.log('Callback returned with the successful execution of setMeteringPoint');
 })
 ```
 
@@ -2571,7 +2571,7 @@ cameraInput.setExposureBias(-4,(err) => {
         console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureBias');
+    console.log('Callback returned with the successful execution of setExposureBias');
 })
 ```
 
@@ -3545,7 +3545,7 @@ previewOutput.stop((err) => {
         console.error(`Failed to stop the previewOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -3567,7 +3567,7 @@ stop(): Promise<void\>
 
 ```js
 previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -4476,7 +4476,7 @@ metadataOutput.stop((err) => {
         console.error(`Failed to stop the metadataOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4498,7 +4498,7 @@ stop(): Promise<void\>
 
 ```js
 metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4513,7 +4513,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback<Array<MetadataObjec
 **参数：**
 
 | 名称      | 类型                                                  | 必填 | 说明                                  |
-| -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------ |
 | type     | string                            | 是   | 监听事件，固定为'metadataObjectsAvailable'，即metadata对象。 |
 | callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | 是   | 回调函数，用于获取错误信息。               |
 

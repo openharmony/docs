@@ -1283,6 +1283,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 进行图形子系统适配需要添加`graphic_utils`部件，直接在`config.json`配置即可。
 
 ```
+    {
       "components": [
         {
           "component": "graphic_utils",
@@ -1294,7 +1295,7 @@ HiviewRegisterHilogProc(HilogProc_Impl);
           "component": "ui"
         }
       ]
-    }
+    },
 ```
 
 `graphic`配置文件见 `//vendor/bestechnic/display_demo/graphic_config/product_graphic_lite_config.h`。

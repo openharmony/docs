@@ -20,7 +20,7 @@ Text(content?: string | Resource)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](../../ui/ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 
 ## 属性
 
@@ -31,12 +31,12 @@ Text(content?: string | Resource)
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 设置多行文本的文本对齐方式。<br/>默认值：TextAlign.Start |
 | textOverflow | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 设置文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip}<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。<br />需配合`maxLines`使用，单独设置不生效。 |
 | maxLines | number | 设置文本的最大行数。<br />默认值：Infinity<br/>**说明：**<br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。 |
-| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)  | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
-| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| lineHeight     | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md)  | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。 |
+| decoration     | {<br/>type:&nbsp;TextDecorationType,<br/>color?:&nbsp;[ResourceColor](ts-types.md)<br/>} | 设置文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
 | baselineOffset | number&nbsp;\|&nbsp;string | 设置文本基线的偏移量。                              |
 | letterSpacing       | number&nbsp;\|&nbsp;string | 设置文本字符间距。                                 |
-| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | 设置文本最小显示字号。                                 |
-| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md)      | 设置文本最大显示字号。                                 |
+| minFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md)      | 设置文本最小显示字号。                                 |
+| maxFontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md)      | 设置文本最大显示字号。                                 |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br />默认值：TextCase.Normal |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本是否可复制粘贴。<br />默认值：CopyOptions.None |
 

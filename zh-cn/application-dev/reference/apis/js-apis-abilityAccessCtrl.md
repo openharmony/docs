@@ -282,6 +282,32 @@ promise.then(data => {
 });
 ```
 
+### getVersion
+
+getVersion(): Promise&lt;number&gt;
+
+获取当前权限管理的数据版本，使用Promise方式异步返回结果。
+
+此接口为系统接口。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;number&gt; | Promise实例，用于获取异步返回的版本号。 |
+
+**示例：**
+
+```js
+var AtManager = abilityAccessCtrl.createAtManager();
+let promise = AtManager.getVersion();
+promise.then(data => {
+    console.log(`promise: data->${JSON.stringify(data)}`);
+});
+```
+
 ### on<sup>9+</sup>
 
 on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNameList: Array&lt;string&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void;
@@ -313,8 +339,8 @@ function OnPermissionStateChanged(data){
 }
 let atManager = abilityAccessCtrl.createAtManager();
 let type: 'permissionStateChange' = 'permissionStateChange';
-let tokenIDList: Array&lt;number&gt; = [];
-let permissionNameList: Array&lt;string&gt; = [];
+let tokenIDList: Array<number> = [];
+let permissionNameList: Array<string> = [];
 try{
     atManager.on(type, tokenIDList, permissionNameList, OnPermissionStateChanged);
 }
@@ -351,8 +377,8 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let type: 'permissionStateChange' = 'permissionStateChange';
-let tokenIDList: Array&lt;number&gt; = [];
-let permissionNameList: Array&lt;string&gt; = [];
+let tokenIDList: Array<number> = [];
+let permissionNameList: Array<string> = [];
 try{
     atManager.off(type, tokenIDList, permissionNameList);
 }
@@ -381,7 +407,7 @@ catch(err){
 | 名称                     | 默认值 | 描述              |
 | ----------------------- | ------ | ----------------- |
 | PERMISSION_REVOKED_OPER | 0      | 表示权限取消操作。 |
-| PERMISSION_GRANTED      | 1      | 表示权限授予操作。 |
+| PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
 
 ### PermissionStateChangeInfo<sup>9+</sup>
 

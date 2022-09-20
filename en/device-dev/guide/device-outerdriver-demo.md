@@ -315,7 +315,7 @@ The input driver model consists of three parts of drivers. To develop a brand-ne
 
     **touch\_gt911.o**  is the content added in this example.
 
-2.  Build source code and burn images. For details, see the related sections in  [Getting Started for Standard System](../quick-start/quickstart-standard.md).
+2.  Build source code and burn images. For details, see the related sections in [Standard System Overview](../quick-start/quickstart-standard-overview.md).
 
 ## Debugging and Verification<a name="section62577313482"></a>
 

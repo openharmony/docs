@@ -6,18 +6,15 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
-
 
 ## 事件
 
 | 名称                                       | 支持冒泡 | 功能描述                              |
 | ---------------------------------------- | ---- | --------------------------------- |
-| onClick(callback:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该方法调用，event参数见ClickEvent介绍。 |
+| onClick(event:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该方法调用，event参数见ClickEvent介绍。 |
 
 ## ClickEvent对象说明
+
 | 属性名称                | 类型                               | 描述                  |
 | ------------------- | -------------------------------- | ------------------- |
 | screenX             | number                           | 点击点相对于设备屏幕左边沿的X坐标。  |
@@ -28,9 +25,10 @@
 | timestamp           | number                           | 事件时间戳。              |
 
 ## EventTarget<sup>8+</sup>对象说明
-| 名称   | 参数类型              | 描述         |
-| ---- | ----------------- | ---------- |
-| area | [Area](../../ui/ts-types.md#area8) | 目标元素的区域信息。 |
+
+| 名称   | 参数类型                      | 描述         |
+| ---- | ------------------------- | ---------- |
+| area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
 
 
 

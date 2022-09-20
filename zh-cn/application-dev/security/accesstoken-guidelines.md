@@ -88,10 +88,10 @@
         "name" : "ohos.permission.PERMISSION1",
         "reason": "$string:reason",
         "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
         }
       },
       {
@@ -101,7 +101,7 @@
           "abilities": [
             "FormAbility"
           ],
-        "when":"always"
+          "when":"always"
         }
       }
     ]

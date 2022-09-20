@@ -607,7 +607,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
   - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontorl，便于dispatch contro进行控制
   - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器
-  - Rk809DaiHwParams, 根据HAL下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
+  - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
   - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等
 
 ##### DAI(i2s)模块
@@ -758,7 +758,7 @@ ops函数相关函数
 3.  Rk3568DmaConfigChannel
 
    ```
-      设置通道配置参数
+      //设置通道配置参数
       // 放音通道参数配置
       slave_config.direction = DMA_MEM_TO_DEV;
       slave_config.dst_addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
@@ -770,7 +770,7 @@ ops函数相关函数
       slave_config.src_addr = I2S1_ADDR + I2S_RXDR;
       slave_config.src_maxburst = 8;
    
-      使用Linux DMA原生接口函数完成DMA通道配置
+      //使用Linux DMA原生接口函数完成DMA通道配置
       ret = dmaengine_slave_config(dmaChan, &slave_config);
       if (ret != 0) {
           AUDIO_DEVICE_LOG_ERR("dmaengine_slave_config failed");
@@ -783,9 +783,11 @@ ops函数相关函数
       使用Linux DMA原生接口函数dmaengine_prep_dma_cyclic，初始化一个具体的周期性的DMA传输描述符dmaengine_submit接口将该描述符放到传输队列上，然后调用dma_async_issue_pending接口，启动传输。
 
 5. Rk3568PcmPointer
+ 
+第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
 
    ```
-      第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
+     
       dma_chn = dmaRtd->dmaChn[DMA_TX_CHANNEL];
       buf_size = data->renderBufInfo.cirBufSize;
       dmaengine_tx_status(dma_chn, dmaRtd->cookie[DMA_TX_CHANNEL], &dma_state);

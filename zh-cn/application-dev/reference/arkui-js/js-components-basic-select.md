@@ -1,13 +1,10 @@
 # select
 
+下拉选择按钮，可使用下拉菜单展示并选择内容。
+
 >  **说明：**
+>
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-下拉选择按钮，可让用户在多个选项之间选择。
-
-## 权限列表
-
-无
 
 
 ## 子组件
@@ -24,18 +21,18 @@
 
 除支持[通用样式](../arkui-js/js-components-common-styles.md)外，还支持如下样式：
 
-| 名称          | 类型     | 默认值        | 必填   | 描述                                       |
-| ----------- | ------ | ---------- | ---- | ---------------------------------------- |
-| font-family | string | sans-serif | 否    | 字体列表，用逗号分隔，每个字体用字体名或者字体族名设置。列表中第一个系统中存在的或者通过[自定义字体](../arkui-js/js-components-common-customizing-font.md)指定的字体，会被选中作为文本的字体。 |
+| 名称        | 类型   | 必填 | 描述                                                         |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| font-family | string | 否   | 字体样式列表，用逗号分隔。列表中第一个系统中存在的字体样式或者通过[自定义字体](./js-components-common-customizing-font.md)指定的字体样式，会被选中作为当前文本的字体样式。<br/>默认值：sans-serif |
 
 
 ## 事件
 
 除支持[通用事件](../arkui-js/js-components-common-events.md)外，还支持如下事件：
 
-| 名称     | 参数                        | 描述                                       |
-| ------ | ------------------------- | ---------------------------------------- |
-| change | {newValue:&nbsp;newValue} | 下拉选择新值后触发该事件，newValue的值为子组件option的value属性值。 |
+| 名称   | 参数                      | 描述                                                         |
+| ------ | ------------------------- | ------------------------------------------------------------ |
+| change | {newValue:&nbsp;newValue} | 选择下拉选项后触发该事件，返回值为一个对象，其中newValue为选中项option的value值。 |
 
 >  **说明：**
 >
@@ -72,6 +69,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+```
+
+```js
+// ×××.js
+export default {
+  changeFruit(e){
+    console.log("newValue:" + e.newValue)
+  }
 }
 ```
 

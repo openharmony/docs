@@ -39,8 +39,8 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 | 名称 | 参数 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | - | 设置组件打开状态的背景颜色。 |
-| switchPointColor | [ResourceColor](../../ui/ts-types.md) | - | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
+| selectedColor | [ResourceColor](ts-types.md) | - | 设置组件打开状态的背景颜色。 |
+| switchPointColor | [ResourceColor](ts-types.md) | - | 设置Switch类型的圆形滑块颜色。<br/>>&nbsp;**说明：**<br/>>&nbsp;仅对type为ToggleType.Switch生效。 |
 
 
 ## 事件

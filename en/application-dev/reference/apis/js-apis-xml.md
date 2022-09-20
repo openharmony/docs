@@ -302,7 +302,7 @@ var strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length);
+var arrayBuffer = new ArrayBuffer(strXml.length*2);
 var bufView = new Uint8Array(arrayBuffer);
 var strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
@@ -336,7 +336,7 @@ var strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length);
+var arrayBuffer = new ArrayBuffer(strXml.length*2);
 var bufView = new Uint8Array(arrayBuffer);
 var strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
@@ -357,9 +357,9 @@ that.parse(options);
 console.log(str);
 // Output:
 // key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
-// Notes:
-// The key represents the current event type, and the value represents the depth of the current parsing. You can know the parsed event according to EVENTTYPE. For example, the result 'key: value' in this example means:
-// 0(START_DOCUMENT):0(Parse to the START_DOCUMENT, and the depth is 0), 2(START_TAG):1(Parse to the START_TAG node, and the depth is 1), 10(WHITESPACE):1(Parse to the WHITESPACE space, and the depth is 1), 2(START_TAG):2(Parse to the START_TAG title, and the depth is 2), ...
+// Note:
+// key indicates the event type, and value indicates the parsing depth. You can learn the specific parsed event based on EVENTTYPE. In this example, key: value means:
+// 0(START_DOCUMENT):0 (START_DOCUMENT is being parsed, and the depth is 0), 2(START_TAG):1 (START_TAG is being parsed, and the depth is 1), 10(WHITESPACE):1 (WHITESPACE is being parsed, and the depth is 1), 2(START_TAG):2 (START_TAG is being parsed, and the depth is 2), ...
 ```
 
 
