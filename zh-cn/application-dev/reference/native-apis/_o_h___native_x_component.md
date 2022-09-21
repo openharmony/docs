@@ -37,7 +37,7 @@
 | -------- | -------- |
 | [OH_NativeXComponent](#oh_nativexcomponent) | 提供封装的OH_NativeXComponent实例。 |
 | [OH_NativeXComponent_Callback](#oh_nativexcomponent_callback) | 注册surface生命周期和触摸事件回调。 |
-| [OH_NativeXComponent_MouseEvent_Callback](#oh_nativexcomponent_mouseeventcallback) | 注册鼠标事件的回调。 |
+| [OH_NativeXComponent_MouseEvent_Callback](#oh_nativexcomponent_mouseevent_callback) | 注册鼠标事件的回调。 |
 
 
 ### 枚举
@@ -67,8 +67,8 @@
 
 | 变量名称 | 描述 |
 | -------- | -------- |
-| [OH_XCOMPONENT_ID_LEN_MAX](#ohxcomponentidlenmax) = 128 | ArkUI XComponent的id最大长度。 |
-| [OH_MAX_TOUCH_POINTS_NUMBER](#ohmaxtouchpointsnumber) = 10 | 触摸事件中的可识别的触摸点个数最大值。 |
+| [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max) = 128 | ArkUI XComponent的id最大长度。 |
+| [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number) = 10 | 触摸事件中的可识别的触摸点个数最大值。 |
 | [OH_NativeXComponent_TouchPoint::id](#id-12) = 0 | 手指的唯一标识符。 |
 | [OH_NativeXComponent_TouchPoint::screenX](#screenx-13) = 0.0 | 触摸点相对于屏幕左边缘的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::screenY](#screeny-13) = 0.0 | 触摸点相对于屏幕上边缘的y坐标。 |
