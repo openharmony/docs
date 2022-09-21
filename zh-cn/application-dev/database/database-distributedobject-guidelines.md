@@ -95,36 +95,36 @@
 
    需要在`config.json`文件里进行配置请求权限（FA模型），示例代码如下：
 
-    ```json
-     {
+   ```json
+   {
        "module": {
            "reqPermissions": [
                {
-                  "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+                   "name": "ohos.permission.DISTRIBUTED_DATASYNC"
                }
            ]
        }
-     }
-    ```
+   }
+   ```
    Stage模型下的权限请求请参见[权限声明-Stage模型](../security/accesstoken-guidelines.md#stage模型)。
 
    这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
 
-    ```js
-    import featureAbility from '@ohos.ability.featureAbility';
+   ```js
+   import featureAbility from '@ohos.ability.featureAbility';
 	
-    function grantPermission() {
-        console.info('grantPermission');
-        let context = featureAbility.getContext();
-        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-            console.info(`result.requestCode=${result.requestCode}`)
+   function grantPermission() {
+       console.info('grantPermission');
+       let context = featureAbility.getContext();
+       context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+           console.info(`result.requestCode=${result.requestCode}`)
     
-        })
-        console.info('end grantPermission');
-    }
+       })
+       console.info('end grantPermission');
+   }
     
-    grantPermission();
-    ```
+   grantPermission();
+   ```
     
 3. 获取分布式数据对象实例。
 
@@ -167,7 +167,7 @@
    // 收到status上线后remote_object同步数据，即name变成jack,age是18
    remoteObject.setSessionId(sessionId);
    ```
-  
+
 5. 监听对象数据变更。可监听对端数据的变更，以Callback作为变更回调实例。
 
    以下为监听对象数据变更的代码示例。
@@ -186,7 +186,7 @@
    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
    localObject.on("change", this.changeCallback.bind(this));
    ```
-  
+
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    以下为修改分布式数据对象属性的代码示例：
@@ -233,7 +233,7 @@
    function statusCallback(sessionId, networkId, status) {
        this.response += "status changed " + sessionId + " " + status + " " + networkId;
    }
-  
+ 
    localObject.on("status", this.statusCallback);
    ```
 
