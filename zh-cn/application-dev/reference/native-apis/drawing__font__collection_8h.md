@@ -21,5 +21,5 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_CreateFontCollection](_drawing.md#ohdrawingcreatefontcollection) (void) | 创建OH_Drawing_FontCollection |
-| [OH_Drawing_DestroyFontCollection](_drawing.md#ohdrawingdestroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#ohdrawingfontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存 |
+| [OH_Drawing_CreateFontCollection](_drawing.md#oh_drawing_createfontcollection) (void) | 创建OH_Drawing_FontCollection |
+| [OH_Drawing_DestroyFontCollection](_drawing.md#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存 |

@@ -21,4 +21,4 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_ColorSetArgb](_drawing.md#ohdrawingcolorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量 |
+| [OH_Drawing_ColorSetArgb](_drawing.md#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量 |

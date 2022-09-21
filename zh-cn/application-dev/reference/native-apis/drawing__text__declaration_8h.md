@@ -21,8 +21,8 @@
 
   | 类型定义名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontCollection](_drawing.md#ohdrawingfontcollection) | OH_Drawing_FontCollection用于加载字体 | 
-| [OH_Drawing_Typography](_drawing.md#ohdrawingtypography) | OH_Drawing_Typography用于管理排版的布局和显示等 | 
-| [OH_Drawing_TextStyle](_drawing.md#ohdrawingtextstyle) | OH_Drawing_TextStyle用于管理字体颜色、装饰等 | 
-| [OH_Drawing_TypographyStyle](_drawing.md#ohdrawingtypographystyle) | OH_Drawing_TypographyStyle用于管理排版风格，如文字方向等 | 
-| [OH_Drawing_TypographyCreate](_drawing.md#ohdrawingtypographycreate) | OH_Drawing_TypographyCreate用于创建OH_Drawing_Typography | 
+| [OH_Drawing_FontCollection](_drawing.md#oh_drawing_fontcollection) | OH_Drawing_FontCollection用于加载字体 | 
+| [OH_Drawing_Typography](_drawing.md#oh_drawing_typography) | OH_Drawing_Typography用于管理排版的布局和显示等 | 
+| [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) | OH_Drawing_TextStyle用于管理字体颜色、装饰等 | 
+| [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) | OH_Drawing_TypographyStyle用于管理排版风格，如文字方向等 | 
+| [OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) | OH_Drawing_TypographyCreate用于创建OH_Drawing_Typography | 

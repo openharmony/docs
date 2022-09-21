@@ -28,10 +28,10 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBuffer_Alloc](_o_h___native_buffer.md#ohnativebufferalloc) (const [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例。 |
-| [OH_NativeBuffer_Reference](_o_h___native_buffer.md#ohnativebufferreference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数加1。 |
-| [OH_NativeBuffer_Unreference](_o_h___native_buffer.md#ohnativebufferunreference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉。 |
-| [OH_NativeBuffer_GetConfig](_o_h___native_buffer.md#ohnativebuffergetconfig) (OH_NativeBuffer \*buffer, [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 用于获取OH_NativeBuffer的属性。 |
-| [OH_NativeBuffer_Map](_o_h___native_buffer.md#ohnativebuffermap) (OH_NativeBuffer \*buffer, void \*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间。 |
-| [OH_NativeBuffer_Unmap](_o_h___native_buffer.md#ohnativebufferunmap) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除。 |
-| [OH_NativeBuffer_GetSeqNum](_o_h___native_buffer.md#ohnativebuffergetseqnum) (OH_NativeBuffer \*buffer) | 获取OH_NativeBuffer的序列号。 |
+| [OH_NativeBuffer_Alloc](_o_h___native_buffer.md#oh_nativebuffer_alloc) (const [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例。 |
+| [OH_NativeBuffer_Reference](_o_h___native_buffer.md#oh_nativebuffer_reference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数加1。 |
+| [OH_NativeBuffer_Unreference](_o_h___native_buffer.md#oh_nativebuffer_unreference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉。 |
+| [OH_NativeBuffer_GetConfig](_o_h___native_buffer.md#oh_nativebuffer_getconfig) (OH_NativeBuffer \*buffer, [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 用于获取OH_NativeBuffer的属性。 |
+| [OH_NativeBuffer_Map](_o_h___native_buffer.md#oh_nativebuffer_map) (OH_NativeBuffer \*buffer, void \*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间。 |
+| [OH_NativeBuffer_Unmap](_o_h___native_buffer.md#oh_nativebuffer_unmap) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除。 |
+| [OH_NativeBuffer_GetSeqNum](_o_h___native_buffer.md#oh_nativebuffer_getseqnum) (OH_NativeBuffer \*buffer) | 获取OH_NativeBuffer的序列号。 |

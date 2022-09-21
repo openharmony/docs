@@ -59,13 +59,13 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 
 | 宏定义名称 | 描述 |
 | -------- | -------- |
-| [LOG_DOMAIN](_hi_log.md#logdomain)   0 | 日志所对应的业务领域，用于标识业务的子系统、模块。 |
-| [LOG_TAG](_hi_log.md#logtag)   NULL | 字符串常量，标识调用所在的类或者业务。 |
-| [OH_LOG_DEBUG](_hi_log.md#ohlogdebug)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#ohlogprint)((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
-| [OH_LOG_INFO](_hi_log.md#ohloginfo)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#ohlogprint)((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
-| [OH_LOG_WARN](_hi_log.md#ohlogwarn)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#ohlogprint)((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
-| [OH_LOG_ERROR](_hi_log.md#ohlogerror)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#ohlogprint)((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
-| [OH_LOG_FATAL](_hi_log.md#ohlogfatal)(type, ...)   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
+| [LOG_DOMAIN](_hi_log.md#log_domain)   0 | 日志所对应的业务领域，用于标识业务的子系统、模块。 |
+| [LOG_TAG](_hi_log.md#log_tag)   NULL | 字符串常量，标识调用所在的类或者业务。 |
+| [OH_LOG_DEBUG](_hi_log.md#oh_log_debug)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#oh_log_print)((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
+| [OH_LOG_INFO](_hi_log.md#oh_log_info)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#oh_log_print)((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
+| [OH_LOG_WARN](_hi_log.md#oh_log_warn)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#oh_log_print)((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
+| [OH_LOG_ERROR](_hi_log.md#oh_log_error)(type, ...)   ((void)[OH_LOG_Print](_hi_log.md#oh_log_print)((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
+| [OH_LOG_FATAL](_hi_log.md#oh_log_fatal)(type, ...)   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 
 
 ### 枚举
@@ -80,5 +80,5 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_LOG_Print](_hi_log.md#ohlogprint) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) __attribute__((__format__(os_log | 写日志接口。 |
-| [OH_LOG_IsLoggable](_hi_log.md#ohlogisloggable) (unsigned int domain, const char \*tag, [LogLevel](_hi_log.md#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 |
+| [OH_LOG_Print](_hi_log.md#oh_log_print) ([LogType](_hi_log.md#log_type) type, [LogLevel](_hi_log.md#log_level) level, unsigned int domain, const char \*tag, const char \*fmt,...) __attribute__((__format__(os_log | 写日志接口。 |
+| [OH_LOG_IsLoggable](_hi_log.md#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](_hi_log.md#log_level) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 |

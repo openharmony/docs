@@ -30,7 +30,7 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_ResourceManager_InitNativeResourceManager](rawfile.md#ohresourcemanagerinitnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt resource manager获取native resource manager |
-| [OH_ResourceManager_ReleaseNativeResourceManager](rawfile.md#ohresourcemanagerreleasenativeresourcemanager) ([NativeResourceManager](rawfile.md#nativeresourcemanager) \*resMgr) | 释放native resource manager |
-| [OH_ResourceManager_OpenRawDir](rawfile.md#ohresourcemanageropenrawdir) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录 |
-| [OH_ResourceManager_OpenRawFile](rawfile.md#ohresourcemanageropenrawfile) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件 |
+| [OH_ResourceManager_InitNativeResourceManager](rawfile.md#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt resource manager获取native resource manager |
+| [OH_ResourceManager_ReleaseNativeResourceManager](rawfile.md#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](rawfile.md#nativeresourcemanager) \*resMgr) | 释放native resource manager |
+| [OH_ResourceManager_OpenRawDir](rawfile.md#oh_resourcemanager_openrawdir) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录 |
+| [OH_ResourceManager_OpenRawFile](rawfile.md#oh_resourcemanager_openrawfile) (const [NativeResourceManager](rawfile.md#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件 |
