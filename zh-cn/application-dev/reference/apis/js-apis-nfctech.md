@@ -1742,7 +1742,13 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<number>):
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。 |
+
+**返回值：**
+
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
 | callback: AsyncCallback\<number> | 回调函数。 |
+
 
 **示例：**
 
@@ -1804,7 +1810,13 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<n
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的Ndef消息。可以为null，为null时仅格式化标签，不写入内容。|
+
+**返回值：**
+
+| **类型** | **说明**                             |
+| ------------------ | --------------------------|
 | callback: AsyncCallback\<number> | 回调函数。 |
+
 
 **示例：**
 
