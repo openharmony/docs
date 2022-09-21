@@ -52,7 +52,7 @@
   | -------- | -------- | -------- |
   | timestamp<sup>8+</sup> | number | 事件时间戳。 |
   | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
-  | source<sup>8+</sup> | [SourceType](#sourcetype) | 事件输入设备。 |
+  | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
   | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
   | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。 |
   | offsetX | number | 手势事件x轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
@@ -63,7 +63,7 @@
   | pinchCenterX | number | 捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
   | pinchCenterY | number | 捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
   
-## SourceType
+## SourceType枚举说明
   | 名称 | 描述 |
   | -------- | -------- |
   | Unknown | 未知设备。 |
