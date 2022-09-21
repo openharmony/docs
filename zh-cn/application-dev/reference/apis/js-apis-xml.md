@@ -31,9 +31,9 @@ XmlSerializer的构造函数。
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 ```
 
 
@@ -55,9 +55,9 @@ setAttributes(name: string, value: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
 
@@ -79,9 +79,9 @@ addEmptyElement(name: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
 
@@ -97,9 +97,9 @@ setDeclaration(): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
 
@@ -121,8 +121,8 @@ startElement(name: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("notel");
 thatSer.endElement();// => '<notel/>';
 ```
@@ -139,9 +139,9 @@ endElement(): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
 thatSer.setAttributes("importance", "high");
@@ -168,8 +168,8 @@ setNamespace(prefix: string, namespace: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
@@ -193,8 +193,8 @@ setComment(text: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setComment("Hi!");
 thatSer.endElement(); // => '<note>\r\n  <!--Hi!-->\r\n</note>';
@@ -218,8 +218,8 @@ setCDATA(text: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1028);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1028);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
 ```
 
@@ -241,8 +241,8 @@ setText(text: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy1");
@@ -267,8 +267,8 @@ setDocType(text: string): void
 **示例：**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
 ```
 
@@ -294,20 +294,20 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 **示例：**
 
 ```js
-var strXml =
+let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
             '    <title>Happy</title>' +
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
-var bufView = new Uint8Array(arrayBuffer);
-var strLen = strXml.length;
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
     bufView[i] = strXml.charCodeAt(i);//设置arraybuffer方式
 }
-var that = new xml.XmlPullParser(arrayBuffer);
+let that = new xml.XmlPullParser(arrayBuffer);
 ```
 
 
@@ -328,30 +328,37 @@ parse(option: ParseOptions): void
 **示例：**
 
 ```js
-var strXml =
+let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
             '    <title>Happy</title>' +
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
-var bufView = new Uint8Array(arrayBuffer);
-var strLen = strXml.length;
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
     bufView[i] = strXml.charCodeAt(i);
 }
-var that = new xml.XmlPullParser(arrayBuffer);
-var arrTag = {};
-arrTag[0] = '132';
-var i = 1;
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
 function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
+    str += arrTag[i];
     i++;
-    return true;
+    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
 }
-var options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
+console.log(str);
+// 输出:
+// key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
+// 解析:
+// key代表了当前事件类型，value为当前解析的深度。你可以根据EVENTTYPE来知道具体的解析事件。例如本示例结果key: value代表含义为:
+// 0(START_DOCUMENT):0(起始深度为0), 2(START_TAG):1(解析到开始标签node, 对应深度为1), 10(WHITESPACE):1(解析到空白标签空格, 对应深度为1), 2(START_TAG):2(解析到开始标签title, 对应深度为2), ...
 ```
 
 

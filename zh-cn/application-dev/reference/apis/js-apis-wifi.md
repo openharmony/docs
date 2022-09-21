@@ -24,6 +24,7 @@ enableWifi(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
@@ -42,6 +43,7 @@ disableWifi(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
@@ -58,6 +60,7 @@ isWifiActive(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:已使能，&nbsp;false:未使能。 |
@@ -74,6 +77,7 @@ scan(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:扫描操作执行成功，&nbsp;false:扫描操作执行失败。 |
@@ -90,6 +94,7 @@ getScanInfos(): Promise&lt;Array&lt;WifiScanInfo&gt;&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise对象。返回扫描到的热点列表。 |
@@ -106,6 +111,7 @@ getScanInfos(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | 是 | 回调函数。当成功时，err为0，data为扫描到的热点；否则err为非0值，data为空。 |
@@ -159,6 +165,7 @@ WLAN热点信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
+
 | **参数名** | **类型** | **读写属性** | **说明** |
 | -------- | -------- | -------- | -------- |
 | ssid | string | 只读 | 热点的SSID，编码格式为UTF-8。 |
@@ -169,8 +176,8 @@ WLAN热点信息。
 | band | number | 只读 | WLAN接入点的频段。 |
 | frequency | number | 只读 | WLAN接入点的频率。 |
 | channelWidth | number | 只读 | WLAN接入点的带宽。 |
-| centerFrequency0<sup>9+</sup> | number | 只读 | 中心频点。 |
-| centerFrequency1<sup>9+</sup> | number | 只读 | 中心频点。 |
+| centerFrequency0<sup>9+</sup> | number | 只读 | 热点的中心频率。 |
+| centerFrequency1<sup>9+</sup> | number | 只读 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems<sup>9+</sup> | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 只读 | 信息元素。 |
 | timestamp | number | 只读 | 时间戳。 |
 
@@ -180,6 +187,7 @@ WLAN热点信息。
 表示加密类型的枚举。
 
 **系统能力：** SystemCapability.Communication.WiFi.Core
+
 
 | **名称** | **默认值** | **说明** |
 | -------- | -------- | -------- |
@@ -203,6 +211,7 @@ WLAN热点信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
+
 | **参数名** | **类型** | **读写属性** | **说明** |
 | -------- | -------- | -------- | -------- |
 | eid | number | 只读 | 元素ID。 |
@@ -214,6 +223,7 @@ WLAN热点信息。
 表示带宽类型的枚举。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
 
 | **名称** | **默认值** | **说明** |
 | -------- | -------- | -------- |
@@ -236,6 +246,7 @@ getScanInfosSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | 扫描结果数组。 |
@@ -254,11 +265,13 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise对象。返回添加的网络配置ID，如果值为-1表示添加失败。 |
@@ -268,6 +281,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 WLAN配置信息。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
 
 | **参数名** | **类型** | **读写属性** | **说明** |
 | -------- | -------- | -------- | -------- |
@@ -293,6 +307,7 @@ WLAN配置信息。
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
+
 
 | 名称 | 默认值 | 说明 |
 | -------- | -------- | -------- |
@@ -396,6 +411,7 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
@@ -413,11 +429,13 @@ addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
@@ -434,6 +452,7 @@ addUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boolean&
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
@@ -451,11 +470,13 @@ removeUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise对象。表示操作结果，true: 成功， false: 失败。 |
@@ -472,6 +493,7 @@ removeUntrustedConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;boole
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
@@ -489,11 +511,13 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise对象。表示网络配置ID。 |
@@ -510,6 +534,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
@@ -527,11 +552,13 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 网络配置ID。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise对象。 |
@@ -548,6 +575,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 网络配置ID。 |
@@ -565,6 +593,7 @@ getCandidateConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 候选网络配置数组。 |
@@ -581,6 +610,7 @@ connectToCandidateConfig(networkId: number): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 候选网络配置的ID。 |
@@ -599,11 +629,13 @@ connectToNetwork(networkId: number): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 待连接的网络配置ID。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -623,11 +655,13 @@ connectToDevice(config: WifiDeviceConfig): boolean
   SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -637,7 +671,7 @@ connectToDevice(config: WifiDeviceConfig): boolean
 
 disconnect(): boolean
 
-连接到指定网络。
+断开连接的网络。
 
 **系统接口：** 此接口为系统接口。
 
@@ -647,6 +681,7 @@ disconnect(): boolean
   SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -662,13 +697,15 @@ getSignalLevel(rssi: number, band: number): number
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
-**参数：**：
+**参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | rssi | number | 是 | 热点的信号强度(dBm)。 |
   | band | number | 是 | WLAN接入点的频段。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | number | 信号强度，取值范围为[0,&nbsp;4]。 |
@@ -685,6 +722,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise对象。表示WLAN连接信息。 |
@@ -701,6 +739,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | 是 | 回调函数。当获取成功时，err为0，data表示WLAN连接信息。如果error为非0，表示处理出现错误。 |
@@ -804,6 +843,7 @@ isConnected(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:已连接，&nbsp;false:未连接。 |
@@ -822,6 +862,7 @@ getSupportedFeatures(): number
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | number | 支持的特性值。 |
@@ -854,11 +895,13 @@ isFeatureSupported(featureId: number): boolean
 
 **参数：**
 
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | featureId | number | 是 | 特性ID值。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:支持，&nbsp;false:不支持。 |
@@ -877,6 +920,7 @@ getDeviceMacAddress(): string[]
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | string[] | MAC地址。 |
@@ -893,6 +937,7 @@ getIpInfo(): IpInfo
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | [IpInfo](#ipinfo7) | IP信息。 |
@@ -926,6 +971,7 @@ getCountryCode(): string
 **系统能力：** SystemCapability.Communication.WiFi.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | string | 国家码。 |
@@ -944,6 +990,7 @@ reassociate(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -962,6 +1009,7 @@ reconnect(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -980,6 +1028,7 @@ getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt;
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | 网络配置信息的数组。 |
@@ -998,11 +1047,13 @@ updateNetwork(config: WifiDeviceConfig): number
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiDeviceConfig](#wifideviceconfig) | 是 | WLAN配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | number | 返回更新的网络配置ID，如果值为-1表示更新失败。 |
@@ -1021,11 +1072,13 @@ disableNetwork(netId: number): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | netId | number | 是 | 网络配置ID。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -1044,6 +1097,7 @@ removeAllNetwork(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -1062,11 +1116,13 @@ removeDevice(id: number): boolean
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | id | number | 是 | 网络配置ID。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -1085,6 +1141,7 @@ enableHotspot(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
@@ -1103,6 +1160,7 @@ disableHotspot(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。|
@@ -1121,6 +1179,7 @@ isHotspotDualBandSupported(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:支持，&nbsp;false:不支持。|
@@ -1139,6 +1198,7 @@ isHotspotActive(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:已使能，&nbsp;false:未使能。|
@@ -1157,11 +1217,13 @@ setHotspotConfig(config: HotspotConfig): boolean
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [HotspotConfig](#hotspotconfig7) | 是 | 热点配置信息。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -1197,6 +1259,7 @@ getHotspotConfig(): HotspotConfig
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | [HotspotConfig](#hotspotconfig7) | 热点的配置信息。 |
@@ -1215,6 +1278,7 @@ getStations(): &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt;
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | 连接的设备数组。 |
@@ -1246,6 +1310,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise对象。表示P2P连接信息。 |
@@ -1288,6 +1353,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示P2P连接信息。如果error为非0，表示处理出现错误。 |
@@ -1304,6 +1370,7 @@ getCurrentGroup(): Promise&lt;WifiP2pGroupInfo&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise对象。表示当前组信息。 |
@@ -1320,6 +1387,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示当前组信息。如果error为非0，表示处理出现错误。 |
@@ -1336,6 +1404,7 @@ getP2pPeerDevices(): Promise&lt;WifiP2pDevice[]&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise对象。表示对端设备列表信息。 |
@@ -1352,6 +1421,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示对端设备列表信息。如果error为非0，表示处理出现错误。 |
@@ -1398,6 +1468,7 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Promise对象。表示本端设备信息。 |
@@ -1414,6 +1485,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示本端设备信息。如果error为非0，表示处理出现错误。 |
@@ -1436,6 +1508,7 @@ createGroup(config: WifiP2PConfig): boolean
   | config | [WifiP2PConfig](#wifip2pconfig8) | 是 | 群组配置信息。 |
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
@@ -1480,6 +1553,7 @@ removeGroup(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -1497,11 +1571,13 @@ p2pConnect(config: WifiP2PConfig): boolean
 
 **参数：**
 
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | config | [WifiP2PConfig](#wifip2pconfig8) | 是 | 连接配置信息。 |
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -1585,6 +1661,7 @@ p2pCancelConnect(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -1601,6 +1678,7 @@ startDiscoverDevices(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
@@ -1617,6 +1695,7 @@ stopDiscoverDevices(): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，操作执行失败。 |
@@ -1628,17 +1707,21 @@ deletePersistentGroup(netId: number): boolean
 
 删除永久组。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
 
+
   | **参数名** | **类型** | 必填 | **说明** |
   | -------- | -------- | -------- | -------- |
   | netId | number | 是 | 组的ID。 |
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | boolean | true:操作执行成功，操作执行失败。 |
@@ -1646,17 +1729,18 @@ deletePersistentGroup(netId: number): boolean
 
 ## wifi.getP2pGroups<sup>9+</sup>
 
-**系统接口：** 此接口为系统接口。
-
 getP2pGroups(): Promise&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;
 
 获取创建的所有P2P群组信息，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise对象。表示所有群组信息。 |
@@ -1687,11 +1771,14 @@ getP2pGroups(callback: AsyncCallback&lt;Array&lt;WifiP2pGroupInfo&gt;&gt;): void
 
 获取创建的所有P2P群组信息，使用callback方式作为异步方法。
 
+**系统接口：** 此接口为系统接口。
+
 **需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.LOCATION
 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | 是 | 回调函数。当操作成功时，err为0，data表示所有群组信息。如果error为非0，表示处理出现错误。 |
@@ -1710,11 +1797,13 @@ setDeviceName(devName: string): boolean
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | devName | string | 是 | 设备名称。 |
 
 **返回值：**
+
   | **类型** | **说明** |
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
@@ -1731,6 +1820,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
@@ -1757,6 +1847,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
@@ -1790,6 +1881,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
@@ -1814,6 +1906,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
@@ -1831,6 +1924,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiScanStateChange"字符串。 |
@@ -1873,6 +1967,7 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
@@ -1890,6 +1985,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
@@ -1907,6 +2003,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
@@ -1933,6 +2030,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
@@ -1950,6 +2048,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
@@ -1976,6 +2075,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
@@ -1993,6 +2093,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
@@ -2010,6 +2111,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
@@ -2027,6 +2129,7 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
@@ -2044,6 +2147,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
@@ -2061,6 +2165,7 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
@@ -2078,6 +2183,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
@@ -2095,6 +2201,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
@@ -2112,6 +2219,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
@@ -2129,6 +2237,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
@@ -2153,6 +2262,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
+
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |

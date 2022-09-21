@@ -92,6 +92,7 @@
   - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
   - bundle/[RemoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
   - bundle/[ShortcutInfo (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
+  - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
 - UI界面
 
   - [@ohos.animator (动画)](js-apis-animator.md)
@@ -131,7 +132,7 @@
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager (企业设备管理)](js-apis-enterprise-device-manager.md)
   - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
-  - [enterpriseDeviceManager/DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
+  - enterpriseDeviceManager/[DeviceSettingsManager(设备设置管理)](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
 - 安全
 
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)

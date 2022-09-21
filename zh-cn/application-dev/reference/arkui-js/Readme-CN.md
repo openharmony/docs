@@ -1,4 +1,4 @@
-# 基于JS扩展的类Web开发范式
+# 兼容JS的类Web开发范式
 
 - 组件通用信息
     - [通用属性](js-components-common-attributes.md)

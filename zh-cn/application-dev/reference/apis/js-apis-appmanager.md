@@ -185,13 +185,11 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>;
 
 ## appManager.getProcessRunningInfos<sup>(deprecated)</sup>
 
-> **说明：**
->
-> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
-
 getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): void;
 
 获取有关运行进程的信息。
+
+> 从 API Version 9 开始废弃，建议使用[appManager.getProcessRunningInformation<sup>9+</sup>](#appmanagergetprocessrunninginformation9-1)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -226,7 +224,7 @@ getProcessRunningInformation(): Promise\<Array\<ProcessRunningInformation>>;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<ProcessRunningInformation>> | 获取有关运行进程的信息。 |
+| Promise\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -252,7 +250,7 @@ getProcessRunningInformation(callback: AsyncCallback\<Array\<ProcessRunningInfor
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<ProcessRunningInformation>> | 否 | 获取有关运行进程的信息。 |
+| callback | AsyncCallback\<Array\<[ProcessRunningInformation](#processrunninginformation)>> | 否 | 获取有关运行进程的信息。 |
 
 **示例：**
     
@@ -706,9 +704,14 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const foregroundApplicationInfo = ApplicationStateObserver.onForegroundApplicationChanged();
-console.log('-------- foregroundApplicationInfo: ---------', foregroundApplicationInfo);
+  var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
+
 ```
 
 ## ApplicationStateObserver.onAbilityStateChanged<sup>8+</sup>
@@ -730,9 +733,13 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const abilityStateChangedInfo = ApplicationStateObserver.onAbilityStateChanged();
-console.log('-------- abilityStateChangedInfo: ---------', abilityStateChangedInfo);
+  var applicationStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## ApplicationStateObserver.onProcessCreated<sup>8+</sup>
@@ -754,9 +761,13 @@ onProcessCreated(processData: ProcessData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const processCreatedInfo = ApplicationStateObserver.onProcessCreated();
-console.log('-------- processCreatedInfo: ---------', processCreatedInfo);
+  var applicationStateObserver = {
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## ApplicationStateObserver.onProcessDied<sup>8+</sup>
@@ -778,9 +789,13 @@ onProcessDied(processData: ProcessData): void;
 **示例：**
     
 ```js
-import ApplicationStateObserver from '@ohos.application.ApplicationStateObserver'
-const processDiedInfo = ApplicationStateObserver.onProcessDied();
-console.log('-------- processDiedInfo: ---------', processDiedInfo);
+  var applicationStateObserver = {
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    }
+  }
+  const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
+  console.log('-------- observerCode: ---------', observerCode);
 ```
 
 ## AppStateData
@@ -848,3 +863,16 @@ console.log('-------- processDiedInfo: ---------', processDiedInfo);
 | [onAbilityStateChanged<sup>8+</sup>](#applicationstateobserveronabilitystatechanged8)  | AsyncCallback\<void>   | 是   | 否  | ability状态发生变化时执行的回调函数。                  |
 | [onProcessCreated<sup>8+</sup>](#applicationstateobserveronprocesscreated8)         | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。                  |
 | [onProcessDied<sup>8+</sup>](#applicationstateobserveronprocessdied8)         | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。                  |
+
+## ProcessRunningInformation
+   
+进程的运行信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称        | 读写属性 | 类型                 | 必填 | 描述                                                         |
+| ----------- | -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| pid<sup>9+</sup>     | 只读     | number               | 否   | 进程ID。                                |
+| uid<sup>9+</sup>   | 只读     | number               | 否   | 用户ID。 |
+| processName<sup>9+</sup>  | 只读     | string               | 否   | 进程的名称。 |
+| bundleNames<sup>9+</sup>          | 只读     | Array\<string>              | 否   | 进程中运行的bundleName数组。 | 

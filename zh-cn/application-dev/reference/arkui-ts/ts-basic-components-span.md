@@ -3,12 +3,8 @@
 作为Text组件的子组件，用于显示行内文本的组件。
 
 >  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -18,23 +14,24 @@
 
 ## 接口
 
-Span(content: ResourceStr)
+Span(content:  string | Resource)
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | content | [ResourceStr](../../ui/ts-types.md#resourcestr8) | 是 | - | 文本内容。 |
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| content | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
 
 
 ## 属性
 
 通用属性方法仅支持通用文本样式，不支持触摸热区设置。
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md#resourcecolor8)<br/>} | {<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} | 设置文本装饰线样式及其颜色。 |
-| letterSpacing       | [Length](../../ui/ts-types.md#length)                 | -                          | 设置文本字符间距。                                 |
-| textCase | [TextCase](ts-appendix-enums.md#textcase) | Normal | 设置文本大小写。 |
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
+| letterSpacing       | number \| string  | 设置文本字符间距。                                 |
+| textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal |
 
 
 ## 事件
@@ -42,7 +39,8 @@ Span(content: ResourceStr)
 通用事件仅支持点击事件。
 
 >  **说明：**
-> 由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
+>
+>  由于Span组件无尺寸信息，因此点击事件返回的ClickEvent对象的target属性无效。
 
 
 ## 示例

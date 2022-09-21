@@ -1,15 +1,10 @@
 # Ellipse
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 椭圆绘制组件。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,26 +14,32 @@
 
 ## 接口
 
-ellipse(options?: {width: Length, height: Length})
+ellipse(options?: {width?: string | number, height?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | 否 | - | 见options参数说明。 |
+**参数:**
 
-- options参数说明
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | 是 | - | 宽度。 | 
-  | height | Length | 是 | - | 高度。 | 
-
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0 |
+| height | string \| number | 否 | 高度。<br/>默认值：0 |
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | 否 | 椭圆所在矩形的宽度。 | 
-| height | Length | 0 | 否 | 椭圆所在矩形的高度。 | 
+| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 |设置线条颜色。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
+| strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
+| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
+| antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
 
 ## 示例
@@ -50,9 +51,9 @@ ellipse(options?: {width: Length, height: Length})
 struct EllipseExample {
   build() {
     Flex({ justifyContent: FlexAlign.SpaceAround }) {
-      // 在一个 150 * 70 的矩形框中绘制一个椭圆
+      // 在一个 150 * 80 的矩形框中绘制一个椭圆
       Ellipse({ width: 150, height: 80 })
-      // 在一个 150 * 70 的矩形框中绘制一个椭圆
+      // 在一个 150 * 80 的矩形框中绘制一个椭圆
       Ellipse().width(150).height(80)
     }.width('100%').margin({ top: 5 })
   }

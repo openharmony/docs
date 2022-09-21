@@ -35,8 +35,8 @@ Added samples such as Gobang, QR code generation and parsing, widget usage, mult
 | Software/Tool| Version| Remarks|
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta2 | NA |
-| Public SDK | Ohos_sdk_public 3.2.5.5 (API Version 9 Beta2) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio.|
-| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Public SDK | Ohos_sdk_public 3.2.5.5 (API Version 9 Beta2)<br>Ohos_sdk_public 3.2.5.6 (API Version 9 Beta2) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio.|
+| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2)<br>Ohos_sdk_full 3.2.5.6 (API Version 9 Beta2) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
 | (Optional) HUAWEI DevEco Studio| 3.0 Beta4 | This tool is recommended for developing OpenHarmony applications.|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release | This tool is recommended for developing OpenHarmony smart devices.|
 
@@ -115,10 +115,14 @@ Use the **repo** tool to download the source code over HTTPS.
 | Hi3516 mini system solution - LiteOS (binary)| 3.2 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus.tar.gz.sha256)|
 | Hi3516 mini system solution - Linux (binary) | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta1/hispark_taurus_linux.tar.gz.sha256)|
 | RK3568 standard system solution (binary)       | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/dayu200_standard_arm64.tar.gz.sha256)|
-| Full SDK package for the standard system (macOS)              | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz.sha256)|
-| Full SDK package for the standard system (Windows/Linux)    | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256)|
-| Public SDK package for the standard system (macOS)            | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256)|
-| Public SDK package for the standard system (Windows/Linux)  | 3.2 Beta2    | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256)|
+| Full SDK package for the standard system (macOS)              | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-full.tar.gz.sha256)|
+| Full SDK package for the standard system (Windows/Linux)    | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-full.tar.gz.sha256)|
+| Public SDK package for the standard system (macOS)            | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz)| [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-mac-public.tar.gz.sha256)|
+| Public SDK package for the standard system (Windows/Linux)  | 3.2.5.5      | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz) | [Download](https://repo.huaweicloud.com/harmonyos/os/3.2-Beta2/ohos-sdk-windows_linux-public.tar.gz.sha256)|
+| Full SDK package for the standard system (macOS)              | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-full_20220913.tar.gz.sha256)|
+| Full SDK package for the standard system (Windows/Linux)    | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-full_20220913.tar.gz.sha256)|
+| Public SDK package for the standard system (macOS)            | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-mac-public.tar.gz.sha256)|
+| Public SDK package for the standard system (Windows/Linux)  | 3.2.5.6      | [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz)| [Download](https://repo.huaweicloud.com/openharmony/os/3.2-Beta2/sdk-patch/ohos-sdk-windows_linux-public.tar.gz.sha256)|
 
 
 ## What's New
@@ -151,10 +155,6 @@ If an application developed using the SDK of an earlier version calls system API
 | Driver subsystem| - Dynamic loading of kernel-mode drivers and DFX capabilities are supported.<br>- Codec 2.0 interfaces and codec driver models are provided.<br>- The driver capabilities of the camera, display, audio, sensor, and WLAN modules are enhanced.<br>The following requirements are involved:<br>I536FN [New feature] HDI passthrough<br>I5DJE5 [Enhanced feature] Compatibility with Linux uevent reporting, and enhancement to device plug-and-play<br>I550OL [New feature] DFX tracing and locating<br>I544XP [New feature] SELinux permission check for the HDF service<br>I528DG [New feature] Implementation of Codec 2.0 interfaces<br>I50I6S [New feature] Unified audio HDIs for the IPC mode and direct calling mode<br>I5A6H6 [Enhanced feature] Enhanced display management, and support for multi-screen display<br>I5B0C5 [New feature] Support for the metadata streams of the camera<br>I5B0BR [New feature] Selfie mirroring in recording mode<br>I5AJW1 [New feature] Linux libALSA audio interface compatibility<br>I56V2N [New feature] Definition and development of interfaces related to the HDF WLAN DAL HDI power mode<br>I5F411 [Enhanced feature] Enhanced vibrator effect capability| NA |
 | USB subsystem| - Broadcast messages are provided for USB service events.<br>- The SELinux security policy is enhanced.<br>The following requirements are involved:<br>I59MYK [New feature] Broadcast messages for USB service events<br>I5AR8N [New specifications] SELinux policy configuration| NA |
 | Kernel subsystem| - Refined memory management is supported.<br>- The adjustment mechanism is added for associated services.<br>The following requirements are involved:<br>I58LOD [New feature] Adjustment mechanism of associated services<br>I54Y5J [New feature] memtrack memory usage and adj query interface by process<br>I56B3Q [New feature] OnMemoryLevel<br>I5B694 [New feature] Refined memory management<br>I59O8H [New feature] Purgeable memory<br>I5CXOK [New feature] Hyperhold for reliability improvement| NA |
-
-
-### 
-
 
 ### Chip and Development Board Adaptation
 
@@ -202,7 +202,7 @@ For more information, visit [Samples](https://gitee.com/openharmony/app_samples)
 | -------- | -------- |
 | [I4Z3G9](https://gitee.com/openharmony/graphic_graphic_2d/issues/I4Z3G9) | [RK3568] Screen flickering occurs when the secondary window is opened in the immersive primary window.|
 | [I59M4Q](https://gitee.com/openharmony/developtools_hdc/issues/I59M4Q) | There is a low probability of device disconnection when hdc_std of API version 9 is used.|
-| [I54D32](https://gitee.com/openharmony/multimedia_camera_standard/issues/I54D32) | [RK3568] [Mandatory] A black screen is displayed when the camera has been recording videos for multiple consecutive times.|
+| [I54D32](https://gitee.com/openharmony/multimedia_camera_framework/issues/I54D32) | [RK3568] [Mandatory] A black screen is displayed when the camera has been recording videos for multiple consecutive times.|
 
 
 ## Known Issues

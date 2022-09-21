@@ -1,15 +1,10 @@
 # Slider
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 滑动条组件，用来快速调节设置值，如音量、亮度等。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,38 +14,40 @@
 
 ## 接口
 
-Slider(options:{value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
+Slider(options?: {value?: number, min?: number, max?: number, step?: number, style?: SliderStyle, direction?: Axis, reverse?: boolean})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | 否 | 0 | 当前进度值。 |
-  | min | number | 否 | 0 | 设置最小值。 |
-  | max | number | 否 | 100 | 设置最大值。 |
-  | step | number | 否 | 1 | 设置Slider滑动跳动值，当设置相应的step时，Slider为间歇滑动。 |
-  | style | SliderStyle | 否 | SliderStyle.OutSet | 设置Slider的滑块样式。 |
-  | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | Axis.Horizontal | 设置滑动条滑动方向为水平或竖直方向。 |
-  | reverse<sup>8+</sup> | boolean | 否 | false | 设置滑动条取值范围是否反向。 |
+**参数：**
 
-- SliderStyle枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | OutSet | 滑块在滑轨上。 |
-  | InSet | 滑块在滑轨内。 |
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | number | 否 | 当前进度值。<br/>默认值：0 |
+| min | number | 否 | 设置最小值。<br/>默认值：0 |
+| max | number | 否 | 设置最大值。<br/>默认值：100 |
+| step | number | 否 | 设置Slider滑动跳动值，当设置相应的step时，Slider为间歇滑动。<br/>默认值：1 |
+| style | SliderStyle | 否 | 设置Slider的滑块样式。<br/>默认值：SliderStyle.OutSet |
+| direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
+| reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向。<br/>默认值：false |
+
+## SliderStyle枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| OutSet | 滑块在滑轨上。 |
+| InSet | 滑块在滑轨内。 |
 
 
 ## 属性
 
 不支持触摸热区设置。
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| blockColor | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | - | 设置滑块的颜色。 |
-| trackColor | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | - | 设置滑轨的背景颜色。 |
-| selectedColor | [ResourceColor](../../ui/ts-types.md#resourcecolor8) | - | 设置滑轨的已滑动颜色。 |
-| showSteps | boolean | false | 设置当前是否显示步长刻度值。 |
-| showTips | boolean | false | 设置滑动时是否显示气泡提示百分比。 |
-| trackThickness      | [Length](../../ui/ts-types.md#length) | - | 设置滑轨的粗细。 |
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑块的颜色。 |
+| trackColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的背景颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的已滑动颜色。 |
+| showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false |
+| showTips | boolean | 设置滑动时是否显示气泡提示百分比。<br/>默认值：false |
+| trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。 |
 
 
 ## 事件
@@ -61,13 +58,14 @@ Slider(options:{value?: number, min?: number, max?: number, step?: number, style
 | -------- | -------- |
 | onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
 
-- SliderChangeMode枚举说明
-  | 名称 | 值 | 描述 |
-  | -------- | -------- | -------- |
-  | Begin | 0 | 用户开始拖动滑块。 |
-  | Moving | 1 | 用户拖动滑块中。 |
-  | End | 2 | 用户结束拖动滑块。 |
-  | Click    | 3    | 用户点击滑动条使滑块位置移动。 |
+## SliderChangeMode枚举说明
+
+| 名称 | 值 | 描述 |
+| -------- | -------- | -------- |
+| Begin | 0 | 用户开始拖动滑块。 |
+| Moving | 1 | 用户拖动滑块中。 |
+| End | 2 | 用户结束拖动滑块。 |
+| Click    | 3    | 用户点击滑动条使滑块位置移动。 |
 
 
 ## 示例

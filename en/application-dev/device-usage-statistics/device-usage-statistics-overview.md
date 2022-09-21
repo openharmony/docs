@@ -4,7 +4,7 @@ With device usage statistics APIs, you can have a better understanding of the ap
 
 ## Introduction
 
-Currently you can have access to statistics on the application usage, and notification and system usage statistics feature will be available for use in later versions.
+Currently you can have access to statistics on the application usage, and the notification and system usage statistics feature will be available for use in later versions.
 
 - **The application usage statistics is updated**:
 1.  Every 30 minutes
@@ -21,7 +21,7 @@ Currently you can have access to statistics on the application usage, and notifi
 7.  Number of FA usage records specified by **maxNum**, sorted by time (most recent first). If **maxNum** is not specified, the default value **1000** will be used.
 8.  Number of notifications from applications based on the specified start time and end time
 9.  Statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time
-9.  Priority group of the invoker application or a specified application
+10. Priority group of the invoker application or a specified application
 
 - **The setters can be used to:**
 

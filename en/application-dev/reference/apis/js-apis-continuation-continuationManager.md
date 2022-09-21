@@ -112,32 +112,108 @@ Registers the continuation management service and obtains a token. This API uses
   ```
 
 ## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceconnect) instead.
 
 on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 Subscribes to device connection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondeviceconnect9) instead.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
+  | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | Yes| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
+
+**Example**
+
+  ```js
+  continuationManager.on("deviceConnect", (data) => {
+    console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
+    console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
+    console.info('onDeviceConnect deviceName: ' + JSON.stringify(data.name));
+  });
+  ```
+
 ## continuationManager.on("deviceDisconnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondevicedisconnect) instead.
 
 on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 Subscribes to device disconnection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [on](#continuationmanagerondevicedisconnect9) instead.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
+  | callback | Callback\<string> | Yes| Callback invoked when a device is disconnected in the device selection module. This callback returns the device ID.|
+
+**Example**
+
+  ```js
+  continuationManager.on("deviceDisconnect", (data) => {
+    console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
+  });
+  ```
+
 ## continuationManager.off("deviceConnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceconnect) instead.
 
 off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 Unsubscribes from device connection events. This API uses an asynchronous callback to return the result.
 
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdeviceconnect9) instead.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is fixed at **deviceConnect**.|
+  | callback | Callback\<[ContinuationResult](js-apis-continuation-continuationResult.md)> | No| Callback invoked when a device is selected from the device list provided by the device selection module. This callback returns the device ID, type, and name.|
+
+**Example**
+
+  ```js
+  continuationManager.off("deviceConnect", (data) => {
+    console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
+    console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
+    console.info('onDeviceConnect deviceName: ' + JSON.stringify(data.name));
+  });
+  ```
+
 ## continuationManager.off("deviceDisconnect")<sup>(deprecated)</sup>
-> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdevicedisconnect) instead.
 
 off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 Unsubscribes from device disconnection events. This API uses an asynchronous callback to return the result.
+
+> This API is deprecated since API version 9. You are advised to use [off](#continuationmanageroffdevicedisconnect9) instead.
+
+**System capability**: SystemCapability.Ability.DistributedAbilityManager
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type. The value is fixed at **deviceDisconnect**.|
+  | callback | Callback\<string> | No| Callback invoked when a device is disconnected in the device selection module. This callback returns the device ID.|
+
+**Example**
+
+  ```js
+  continuationManager.off("deviceDisconnect", (data) => {
+    console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
+  });
+  ```
 
 ## continuationManager.on("deviceConnect")<sup>9+</sup>
 

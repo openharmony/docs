@@ -20,9 +20,9 @@ Obtains a **CameraManager** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                                           | Mandatory| Description                              |
-| -------- | ----------------------------------------------- | ---- | ---------------------------------- |
-| context  | Context                                         | Yes  | Application context.                      |
+| Name    | Type                                           | Mandatory| Description                          |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| context  | Context                                         | Yes  | Application context.                  |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | Yes  | Callback used to return the **CameraManager** instance.|
 
 **Example**
@@ -53,8 +53,8 @@ Obtains a **CameraManager** instance. This API uses a promise to return the resu
 
 **Return value**
 
-| Type                                     | Description                                     |
-| ----------------------------------------- | ----------------------------------------- |
+| Type                                     | Description                                 |
+| ----------------------------------------- | ----------------------------------- |
 | Promise<[CameraManager](#cameramanager)\> | Promise used to return the **CameraManager** instance.|
 
 **Example**
@@ -71,23 +71,23 @@ Enumerates the camera statuses.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                     | Value  | Description          |
-| ------------------------- | ---- | -------------- |
-| CAMERA_STATUS_APPEAR      | 0    | A camera appears.|
-| CAMERA_STATUS_DISAPPEAR   | 1    | The camera disappears.  |
-| CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.    |
-| CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.  |
+| Name                     | Value  | Description        |
+| ------------------------- | ---- | ------------ |
+| CAMERA_STATUS_APPEAR      | 0    | A camera appears.  |
+| CAMERA_STATUS_DISAPPEAR   | 1    | The camera disappears.|
+| CAMERA_STATUS_AVAILABLE   | 2    | The camera is available.  |
+| CAMERA_STATUS_UNAVAILABLE | 3    | The camera is unavailable.|
 
 ## Profile
 
-Defines the camera configuration.
+Defines the camera profile.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type                         | Read only| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| format | [CameraFormat](#cameraformat) | Yes  | Output format.|
-| size   | [Size](#size)                 | Yes  | Resolution.  |
+| Name     | Type                          | Read only| Description        |
+| -------- | ----------------------------- |---- | ------------- |
+| format   | [CameraFormat](#cameraformat) | Yes | Output format.     |
+| size     | [Size](#size)                 | Yes | Resolution.      |
 
 ## FrameRateRange
 
@@ -95,20 +95,20 @@ Defines the camera configuration.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type  | Read only| Description             |
-| ---- | ------ | ---- | ----------------- |
-| min  | number | Yes  | Minimum rate, in fps.|
-| max  | number | Yes  | Maximum rate, in fps.|
+| Name                      | Type   | Read only| Description                |
+| ------------------------- | ------ | ---- | ------------------- |
+| min                       | number | Yes  | Minimum rate, in fps.     |
+| max                       | number | Yes  | Maximum rate, in fps.     |
 
 ## VideoProfile
 
-Defines the video configuration.
+Defines the video profile.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name           | Type                             | Read only| Description  |
-| --------------- | --------------------------------- | ---- | ------ |
-| frameRateRanges | [FrameRateRange](#frameraterange) | Yes  | Frame rate range.|
+| Name                      | Type                                     | Read only| Description       |
+| ------------------------- | ----------------------------------------- | --- |------------ |
+| frameRateRanges           | [FrameRateRange](#frameraterange)          | Yes | Frame rate range.      |
 
 ## CameraOutputCapability
 
@@ -116,12 +116,12 @@ Defines the camera output capability.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Type                                             | Read only| Description                      |
-| ---------------------------- | ------------------------------------------------- | ---- | -------------------------- |
-| previewProfiles              | Array<[Profile](#profile)\>                       | Yes  | Supported preview configurations.      |
-| photoProfiles                | Array<[Profile](#profile)\>                       | Yes  | Supported shooting configurations.      |
-| videoProfiles                | Array<[VideoProfile](#videoprofile)\>             | Yes  | Supported video recording configurations.      |
-| supportedMetadataObjectTypes | Array<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Supported metadata object types.|
+| Name                          | Type                                              | Read only| Description               |
+| ----------------------------- | -------------------------------------------------- | --- |------------------- |
+| previewProfiles               | Array<[Profile](#profile)\>                        | Yes | Supported preview profiles.   |
+| photoProfiles                 | Array<[Profile](#profile)\>                        | Yes | Supported shooting profiles.   |
+| videoProfiles                 | Array<[VideoProfile](#videoprofile)\>              | Yes | Supported video recording profiles.   |
+| supportedMetadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
 
 ## CameraManager
 
@@ -137,8 +137,8 @@ Obtains supported cameras. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
+| Name     | Type                                                  | Mandatory| Description                            |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback<Array<[CameraDevice](#cameradevice)\>\> | Yes  | Callback used to return the array of supported cameras.|
 
 **Example**
@@ -163,8 +163,8 @@ Obtains supported cameras. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                           | Description                         |
-| ----------------------------------------------- | ----------------------------- |
+| Type                                            | Description                      |
+| ----------------------------------------------- | ------------------------- |
 | Promise<Array<[CameraDevice](#cameradevice)\>\> | Promise used to return the array of supported cameras.|
 
 
@@ -186,10 +186,10 @@ Obtains the output capability supported by a camera. This API uses an asynchrono
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                              |
-| -------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| camera   | [CameraDevice](#cameradevice)                                | Yes  | **CameraDevice** object.                |
-| callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | Yes  | Callback used to return the output capability.|
+| Name    | Type                                                             | Mandatory| Description                     |
+| -------- | ---------------------------------------------------------------- | -- | -------------------------- |
+| camera   | [CameraDevice](#cameradevice)                                    | Yes| **CameraDevice** object.         |
+| callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | Yes| Callback used to return the output capability.|
 
 **Example**
 
@@ -213,15 +213,15 @@ Obtains the output capability supported by a camera. This API uses a promise to 
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description              |
-| ------ | ----------------------------- | ---- | ------------------ |
-| camera | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
+| Name     | Type                             | Mandatory | Description       |
+| -------- | --------------------------------- | ---- | ---------- |
+| camera   | [CameraDevice](#cameradevice)     |  Yes | **CameraDevice** object.|
 
 **Return value**
 
-| Type                                                       | Description                                         |
-| ----------------------------------------------------------- | --------------------------------------------- |
-| Promise<[CameraOutputCapability](#cameraoutputcapability)\> | Promise used to return the output capability.|
+| Type                                                           | Description                         |
+| -------------------------------------------------------------- | ----------------------------- |
+| Promise<[CameraOutputCapability](#cameraoutputcapability)\>    | Promise used to return the output capability.|
 
 
 **Example**
@@ -236,15 +236,15 @@ cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapab
 
 getSupportedMetadataObjectType(callback: AsyncCallback<Array<MetadataObjectType\>\>): void
 
-Obtains the metadata information supported by this camera. This API uses an asynchronous callback to return the result.
+Obtains the metadata object types supported by this camera. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                        |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| callback | AsyncCallback<Array<[MetadataObjectType](#metadataobject)\>\> | Yes  | Callback used to return the metadata information.|
+| Name    | Type                                                             | Mandatory| Description                     |
+| -------- | ---------------------------------------------------------------- | -- | -------------------------- |
+| callback | AsyncCallback<Array<[MetadataObjectType](#metadataobject)\>\> | Yes| Callback used to return the metadata object types.|
 
 **Example**
 
@@ -262,15 +262,15 @@ cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
 
 getSupportedMetadataObjectType(camera:CameraDevice): Promise<CameraOutputCapability\>
 
-Obtains the metadata information supported by this camera. This API uses a promise to return the result.
+Obtains the metadata object types supported by this camera. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                                                   | Description                                                 |
-| ------------------------------------------------------- | ----------------------------------------------------- |
-| Promise<Array<[MetadataObjectType](#metadataobject)\>\> | Promise used to return the metadata information.|
+| Type                                                           | Description                         |
+| -------------------------------------------------------------- | ----------------------------- |
+| Promise<Array<[MetadataObjectType](#metadataobject)\>\>    | Promise used to return the metadata object types.|
 
 
 **Example**
@@ -291,9 +291,9 @@ Checks whether this camera is muted. This API uses an asynchronous callback to r
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                                             |
-| -------- | ----------------------- | ---- | ------------------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the result. The value **true** means that the camera is muted, and **false** means the opposite.|
+| Name     | Type                                     | Mandatory| Description                                 |
+| -------- | ---------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<boolean\>                  | Yes  | Callback used to return the result. The value **true** means that the camera is muted, and **false** means the opposite.|
 
 **Example**
 
@@ -317,9 +317,9 @@ Checks whether this camera is muted. This API uses a promise to return the resul
 
 **Return value**
 
-| Type             | Description                                               |
-| ----------------- | --------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the result. The value **true** means that the camera is muted, and **false** means the opposite.|
+| Type                                 | Description                                         |
+| ------------------------------------ | --------------------------------------------- |
+| Promise<boolean\>                    | Promise used to return the result. The value **true** means that the camera is muted, and **false** means the opposite. |
 
 
 **Example**
@@ -344,9 +344,9 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                                        |
-| -------- | ----------------------- | ---- | -------------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite.|
+| Name    | Type                                     | Mandatory| Description                                |
+| -------- | --------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback<boolean\>                 |  Yes |  Callback used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite. |
 
 **Example**
 
@@ -374,9 +374,9 @@ This is a system API.
 
 **Return value**
 
-| Type             | Description                                                   |
-| ----------------- | ------------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite.|
+| Type                  | Description                         |
+| --------------------- | ----------------------------- |
+| Promise<boolean\>     | Promise used to return the result. The value **true** means that the camera can be muted, and **false** means the opposite.|
 
 
 **Example**
@@ -401,10 +401,10 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                |
-| -------- | -------------------- | ---- | ------------------------------------ |
-| mute     | boolean              | Yes  | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite.                      |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name    | Type                                     | Mandatory  | Description                                |
+| -------- | ----------------------------------------- | ---- | ------------------------------------ |
+| mute     | boolean                                   |  Yes | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite.                   |
+| callback | AsyncCallback<void\>                      |  Yes | Callback used to return the result.|
 
 **Example**
 
@@ -432,15 +432,15 @@ This is a system API.
 
 **Parameters**
 
-| Name| Type   | Mandatory| Description          |
-| ---- | ------- | ---- | -------------- |
-| mute | boolean | Yes  | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite.|
+| Name    | Type                                     | Mandatory| Description           |
+| -------- | ----------------------------------------- | ---- | ------------ |
+| mute     | boolean                                   |  Yes | Whether to mute the camera. The value **true** means to mute the camera, and **false** means the opposite. |
 
 **Return value**
 
-| Type          | Description                                               |
-| -------------- | --------------------------------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| Promise<void\>                     | Promise used to return the result.|
 
 
 **Example**
@@ -465,10 +465,10 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                               |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
-| camera   | [CameraDevice](#cameradevice)               | Yes  | **CameraDevice** object.                 |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.|
+| Name    | Type                                        | Mandatory| Description                               |
+| -------- | ------------------------------------------- | ---- | --------------------------------- |
+| camera   | [CameraDevice](#cameradevice)               | Yes  | **CameraDevice** object.                       |
+| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.   |
 
 **Example**
 
@@ -496,14 +496,14 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description              |
-| ------ | ----------------------------- | ---- | ------------------ |
-| camera | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
+| Name    | Type                          | Mandatory| Description        |
+| -------- | ----------------------------- | ---- | ---------- |
+| camera   | [CameraDevice](#cameradevice) | Yes  | **CameraDevice** object.|
 
 **Return value**
 
-| Type                                 | Description                                    |
-| ------------------------------------- | ---------------------------------------- |
+| Type                                 | Description                                  |
+| ------------------------------------- | ------------------------------------ |
 | Promise<[CameraInput](#camerainput)\> | Promise used to return the **CameraInput** instance.|
 
 **Example**
@@ -529,10 +529,10 @@ This is a system API.
 **Parameters**
 
 | Name    | Type                                       | Mandatory| Description                               |
-| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| -------- | ------------------------------------------- | ---- | --------------------------------- |
 | position | [CameraPosition](#cameraposition)           | Yes  | Camera position.                         |
 | type     | [CameraType](#cameratype)                   | Yes  | Camera type.                         |
-| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.|
+| callback | AsyncCallback<[CameraInput](#camerainput)\> | Yes  | Callback used to return the **CameraInput** instance.   |
 
 **Example**
 
@@ -560,15 +560,15 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type                             | Mandatory| Description      |
-| -------- | --------------------------------- | ---- | ---------- |
-| position | [CameraPosition](#cameraposition) | Yes  | Camera position.|
-| type     | [CameraType](#cameratype)         | Yes  | Camera type.|
+| Name    | Type                              | Mandatory| Description          |
+| -------- | --------------------------------- | ---- | ------------ |
+| position | [CameraPosition](#cameraposition) | Yes  | Camera position.    |
+| type     | [CameraType](#cameratype)         | Yes  | Camera type.    |
 
 **Return value**
 
-| Type                                 | Description                                    |
-| ------------------------------------- | ---------------------------------------- |
+| Type                                 | Description                                  |
+| ------------------------------------- | ------------------------------------ |
 | Promise<[CameraInput](#camerainput)\> | Promise used to return the **CameraInput** instance.|
 
 **Example**
@@ -589,11 +589,11 @@ Creates a **PreviewOutput** instance. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name     | Type                                           | Mandatory| Description                                                        |
-| --------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [Profile](#profile)                             | Yes  | Supported preview configurations.                                        |
-| surfaceId | string                                          | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
-| callback  | AsyncCallback<[PreviewOutput](#previewoutput)\> | Yes  | Callback used to return the **PreviewOutput** instance.                       |
+| Name    | Type                                            | Mandatory| Description                             |
+| -------- | ----------------------------------------------- | ---- | ------------------------------- |
+| profile  | [Profile](#profile)                             | Yes  | Supported preview profile.               |
+| surfaceId| string | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| callback | AsyncCallback<[PreviewOutput](#previewoutput)\>  | Yes  | Callback used to return the **PreviewOutput** instance.|
 
 **Example**
 
@@ -617,21 +617,21 @@ Creates a **PreviewOutput** instance. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                                                        |
-| --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [Profile](#profile) | Yes  | Supported preview configurations.                                        |
-| surfaceId | string              | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| Name    | Type                             | Mandatory| Description               |
+| -------- | ---------------------------------| ---- | ----------------- |
+| profile  | [Profile](#profile)              | Yes  | Supported preview profile. |
+| surfaceId| string | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)** or **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
 
 **Return value**
 
-| Type                                     | Description                                      |
-| ----------------------------------------- | ------------------------------------------ |
-| Promise<[PreviewOutput](#previewoutput)\> | Promise used to return the **PreviewOutput** instance.|
+| Type                                     | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise<[PreviewOutput](#previewoutput)\> | Promise used to return the **PreviewOutput** instance. |
 
 **Example**
 
 ```js
-cameraManager.createPreviewOutput(profile, survaceId).then((previewoutput) => {
+cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
     console.log('Promise returned with previewOutput created.');
 })
 ```
@@ -646,10 +646,10 @@ Creates a **PreviewOutput** instance without a surface ID. This API uses an asyn
 
 **Parameters**
 
-| Name    | Type                                           | Mandatory| Description                                 |
-| -------- | ----------------------------------------------- | ---- | ------------------------------------- |
-| profile  | [Profile](#profile)                             | Yes  | Supported preview configurations.                 |
-| callback | AsyncCallback<[PreviewOutput](#previewoutput)\> | Yes  | Callback used to return the **PreviewOutput** instance.|
+| Name    | Type                                            | Mandatory| Description                               |
+| -------- | ----------------------------------------------- | ---- | --------------------------------- |
+| profile  | [Profile](#profile)                             | Yes  | Supported preview profile.                 |
+| callback | AsyncCallback<[PreviewOutput](#previewoutput)\> | Yes  | Callback used to return the **PreviewOutput** instance. |
 
 **Example**
 
@@ -673,15 +673,15 @@ Creates a **PreviewOutput** instance without a surface ID. This API uses a promi
 
 **Parameters**
 
-| Name   | Type               | Mandatory| Description                |
-| ------- | ------------------- | ---- | -------------------- |
-| profile | [Profile](#profile) | Yes  | Supported preview configurations.|
+| Name    | Type                             | Mandatory | Description       |
+| -------- | ---------------------------------| ---- | ---------- |
+| profile  | [Profile](#profile)              | Yes  | Supported preview profile. |
 
 **Return value**
 
-| Type                                     | Description                                      |
-| ----------------------------------------- | ------------------------------------------ |
-| Promise<[PreviewOutput](#previewoutput)\> | Promise used to return the **PreviewOutput** instance.|
+| Type                                      | Description                                    |
+| ----------------------------------------- | --------------------------------------- |
+| Promise<[PreviewOutput](#previewoutput)\>  | Promise used to return the **PreviewOutput** instance.|
 
 **Example**
 
@@ -701,11 +701,11 @@ Creates a **PhotoOutput** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name     | Type                                       | Mandatory| Description                                                        |
-| --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [Profile](#profile)                         | Yes  | Supported shooting configurations.                                        |
-| surfaceId | string                                      | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
-| callback  | AsyncCallback<[PhotoOutput](#photooutput)\> | Yes  | Callback used to return the **PhotoOutput** instance.                         |
+| Name    | Type                                        | Mandatory| Description                                 |
+| -------- | ------------------------------------------- | ---- | ----------------------------------- |
+| profile  | [Profile](#profile)                         | Yes  | Supported shooting profile.                   |
+| surfaceId| string            | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| callback | AsyncCallback<[PhotoOutput](#photooutput)\>  | Yes  | Callback used to return the **PhotoOutput** instance.   |
 
 **Example**
 
@@ -729,16 +729,16 @@ Creates a **PhotoOutput** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                                                        |
-| --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [Profile](#profile) | Yes  | Supported shooting configurations.                                        |
-| surfaceId | string              | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
+| Name    | Type                              | Mandatory| Description        |
+| -------- | ---------------------------------| ---- | ----------- |
+| profile  | [Profile](#profile)              | Yes  | Supported shooting profile. |
+| surfaceId| string       | Yes  | Surface ID, which is obtained from **[ImageReceiver](js-apis-image.md#imagereceiver9)**.|
 
 **Return value**
 
 | Type                                 | Description                                    |
-| ------------------------------------- | ---------------------------------------- |
-| Promise<[PhotoOutput](#photooutput)\> | Promise used to return the **PhotoOutput** instance.|
+| ------------------------------------- | -------------------------------------- |
+| Promise<[PhotoOutput](#photooutput)\>  | Promise used to return the **PhotoOutput** instance. |
 
 **Example**
 
@@ -758,11 +758,11 @@ Creates a **VideoOutput** instance. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name     | Type                                       | Mandatory| Description                                                        |
-| --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [VideoProfile](#videoprofile)               | Yes  | Supported video recording configurations.                                        |
-| surfaceId | string                                      | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
-| callback  | AsyncCallback<[VideoOutput](#videooutput)\> | Yes  | Callback used to return the **VideoOutput** instance.                         |
+| Name    | Type                                       | Mandatory| Description                             |
+| -------- | ------------------------------------------- | ---- | ------------------------------ |
+| profile  | [VideoProfile](#videoprofile)               | Yes  | Supported video recording profile.              |
+| surfaceId| string          | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
+| callback | AsyncCallback<[VideoOutput](#videooutput)\>  | Yes  | Callback used to return the **VideoOutput** instance.|
 
 **Example**
 
@@ -786,16 +786,16 @@ Creates a **VideoOutput** instance. This API uses a promise to return the result
 
 **Parameters**
 
-| Name     | Type                         | Mandatory| Description                                                        |
-| --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
-| profile   | [VideoProfile](#videoprofile) | Yes  | Supported video recording configurations.                                        |
-| surfaceId | string                        | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
+| Name    | Type                             | Mandatory| Description        |
+| -------- | ---------------------------------| ---- | ---------- |
+| profile  | [VideoProfile](#videoprofile)    | Yes  | Supported video recording profile.  |
+| surfaceId| string        | Yes  | Surface ID, which is obtained from **[VideoRecorder](js-apis-media.md#videorecorder9)**.|
 
 **Return value**
 
 | Type                                 | Description                                    |
-| ------------------------------------- | ---------------------------------------- |
-| Promise<[VideoOutput](#videooutput)\> | Promise used to return the **VideoOutput** instance.|
+| ------------------------------------- | -------------------------------------- |
+| Promise<[VideoOutput](#videooutput)\>  | Promise used to return the **VideoOutput** instance. |
 
 **Example**
 
@@ -815,10 +815,10 @@ Creates a **MetadataOutput** instance. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name               | Type                                             | Mandatory| Description                                  |
-| ------------------- | ------------------------------------------------- | ---- | -------------------------------------- |
-| metadataObjectTypes | Array<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Supported metadata object types.                      |
-| callback            | AsyncCallback<[MetadataOutput](#metadataoutput)\> | Yes  | Callback used to return the **MetadataOutput** instance.|
+| Name                 | Type                                              | Mandatory| Description                         |
+| -------------------- | -------------------------------------------------- | --- | ---------------------------- |
+| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes  | Supported metadata object types.             |
+| callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | Yes  | Callback used to return the **MetadataOutput** instance.   |
 
 **Example**
 
@@ -842,15 +842,15 @@ Creates a **MetadataOutput** instance. This API uses a promise to return the res
 
 **Parameters**
 
-| Name               | Type                                             | Mandatory| Description            |
-| ------------------- | ------------------------------------------------- | ---- | ---------------- |
-| metadataObjectTypes | Array<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Supported metadata object types.|
+| Name                 | Type                                              | Mandatory| Description           |
+| -------------------- | -------------------------------------------------- | --- | -------------- |
+| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | Yes | Supported metadata object types.|
 
 **Return value**
 
-| Type                                       | Description                                       |
-| ------------------------------------------- | ------------------------------------------- |
-| Promise<[MetadataOutput](#metadataoutput)\> | Promise used to return the **MetadataOutput** instance.|
+| Type                                       | Description                                      |
+| ------------------------------------------ | ----------------------------------------- |
+| Promise<[MetadataOutput](#metadataoutput)\> |  Promise used to return the **MetadataOutput** instance.|
 
 **Example**
 
@@ -870,9 +870,9 @@ Creates a **CaptureSession** instance. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                            |
-| -------- | ------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<[CaptureSession](#capturesession)\> | Yes  | Callback used to return the **CaptureSession** instance.|
+| Name                 | Type                                     | Mandatory        | Description                         |
+| -------------------- | ----------------------------------------- | ----------- | ---------------------------- |
+| callback             | AsyncCallback<[CaptureSession](#capturesession)\>  | Yes  | Callback used to return the **CaptureSession** instance.|
 
 **Example**
 
@@ -896,9 +896,9 @@ Creates a **CaptureSession** instance. This API uses a promise to return the res
 
 **Return value**
 
-| Type                                       | Description                                       |
-| ------------------------------------------- | ------------------------------------------- |
-| Promise<[CaptureSession](#capturesession)\> | Promise used to return the **CaptureSession** instance.|
+| Type                                        | Description                                     |
+| ------------------------------------------- | ---------------------------------------- |
+| Promise<[CaptureSession](#capturesession)\>  | Promise used to return the **CaptureSession** instance.|
 
 **Example**
 
@@ -918,9 +918,9 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                                |
-| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **cameraStatus**, indicating the camera status change event.|
+| Name    | Type                                                   | Mandatory| Description      |
+| -------- | ----------------------------------------------------- | ---- | --------- |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'cameraStatus'**, indicating the camera status change event.|
 | callback | AsyncCallback<[CameraStatusInfo](#camerastatusinfo)\> | Yes  | Callback used to return the camera status change.                |
 
 **Example**
@@ -950,10 +950,10 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                                                  |
-| -------- | ----------------------- | ---- | ------------------------------------------------------ |
-| type     | string                  | Yes  | Event type. The value is fixed at **cameraMute**, indicating the camera mute status change event.|
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the camera mute status.                      |
+| Name    | Type                                     | Mandatory| Description                           |
+| -------- | --------------------------------------- | ---- | ------------------------------- |
+| type     | string                                  | Yes  | Event type. The value is fixed at **'cameraMute'**, indicating the camera mute status change event.|
+| callback | AsyncCallback<boolean\>                 | Yes  | Callback used to return the camera mute status. |
 
 **Example**
 
@@ -973,7 +973,7 @@ Describes the camera status information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type                         | Description      |
+| Name  | Type                           | Description      |
 | ------ | ----------------------------- | ---------- |
 | camera | [CameraDevice](#cameradevice) | Camera object.|
 | status | [CameraStatus](#camerastatus) | Camera status.|
@@ -984,9 +984,9 @@ Enumerates the camera positions.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                       | Value  | Description            |
-| --------------------------- | ---- | ---------------- |
-| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position.|
+| Name                        | Value  | Description           |
+| --------------------------- | ---- | -------------- |
+| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position. |
 | CAMERA_POSITION_BACK        | 1    | Rear camera.      |
 | CAMERA_POSITION_FRONT       | 2    | Front camera.      |
 
@@ -996,12 +996,12 @@ Enumerates the camera types.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                   | Value  | Description              |
-| ----------------------- | ---- | ------------------ |
-| CAMERA_TYPE_UNSPECIFIED | 0    | Unspecified camera type.  |
-| CAMERA_TYPE_WIDE_ANGLE  | 1    | Wide camera.        |
-| CAMERA_TYPE_ULTRA_WIDE  | 2    | Ultra wide camera.      |
-| CAMERA_TYPE_TELEPHOTO   | 3    | Telephoto camera.        |
+| Name                    | Value  | Description           |
+| ----------------------- | ---- | -------------- |
+| CAMERA_TYPE_UNSPECIFIED | 0    | Unspecified camera type. |
+| CAMERA_TYPE_WIDE_ANGLE  | 1    | Wide camera.      |
+| CAMERA_TYPE_ULTRA_WIDE  | 2    | Ultra wide camera.    |
+| CAMERA_TYPE_TELEPHOTO   | 3    | Telephoto camera.      |
 | CAMERA_TYPE_TRUE_DEPTH  | 4    | Camera with depth of field information.|
 
 ## ConnectionType
@@ -1010,10 +1010,10 @@ Enumerates the camera connection types.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description            |
-| ---------------------------- | ---- | ---------------- |
-| CAMERA_CONNECTION_BUILT_IN   | 0    | Built-in camera.      |
-| CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB. |
+| Name                         | Value  | Description          |
+| ---------------------------- | ---- | ------------- |
+| CAMERA_CONNECTION_BUILT_IN   | 0    | Built-in camera.     |
+| CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
 
 ## CameraDevice
@@ -1022,12 +1022,12 @@ Defines the camera device information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                             | Read only| Description            |
-| -------------- | --------------------------------- | ---- | ---------------- |
+| Name          | Type                               | Read only| Description       |
+| -------------- | --------------------------------- | ---- | ---------- |
 | cameraId       | string                            | Yes  | **CameraDevice** object.|
-| cameraPosition | [CameraPosition](#cameraposition) | Yes  | Camera position.      |
-| cameraType     | [CameraType](#cameratype)         | Yes  | Camera type.      |
-| connectionType | [ConnectionType](#connectiontype) | Yes  | Camera connection type.  |
+| cameraPosition | [CameraPosition](#cameraposition) | Yes  | Camera position.   |
+| cameraType     | [CameraType](#cameratype)         | Yes  | Camera type.   |
+| connectionType | [ConnectionType](#connectiontype) | Yes  | Camera connection type.|
 
 **Example**
 
@@ -1049,10 +1049,10 @@ Enumerates the camera output capability.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Type  | Readable| Writable| Description              |
-| ------ | ------ | ---- | ---- | ------------------ |
+| Name  | Type  | Readable| Writable| Description        |
+| ------ | ------ | ---- | ---- | ------------ |
 | height | number | Yes  | Yes  | Image height, in pixels.|
-| width  | number | Yes  | Yes  | Image width, in pixel.|
+| width  | number | Yes  | Yes  | Image width, in pixels.|
 
 ## Point
 
@@ -1060,21 +1060,21 @@ Enumerates the point coordinates, which are used for focus and exposure configur
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type  | Mandatory| Description       |
-| ---- | ------ | ---- | ----------- |
-| x    | number | Yes  | X coordinate of a point.|
-| y    | number | Yes  | Y coordinate of a point.|
+| Name  | Type  | Mandatory  | Description        |
+| ------ | ------ | ---- | ------------ |
+| x      | number | Yes   | X coordinate of a point.  |
+| y      | number | Yes   | Y coordinate of a point.  |
 
 ## CameraFormat
 
-Enumerates the camera output format.
+Enumerates the camera output formats.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Default Value| Description                  |
-| ------------------------ | ------ | ---------------------- |
-| CAMERA_FORMAT_YUV_420_SP | 1003   | YUV 420 SP image.|
-| CAMERA_FORMAT_JPEG       | 2000   | JPEG image.      |
+| Name                    | Default Value    | Description        |
+| ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_YUV_420_SP| 1003      | YUV 420 SP image.     |
+| CAMERA_FORMAT_JPEG      | 2000      | JPEG image.           |
 
 ## CameraInput
 
@@ -1090,8 +1090,8 @@ Opens this camera. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name    | Type                 | Mandatory| Description                 |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1116,8 +1116,8 @@ Opens this camera. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type          | Description                     |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1138,8 +1138,8 @@ Closes this camera. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name    | Type                  | Mandatory| Description                 |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1164,8 +1164,8 @@ Closes this camera. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type          | Description                     |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1186,8 +1186,8 @@ Releases this camera. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name    | Type                  | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1212,8 +1212,8 @@ Releases this camera. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type          | Description                     |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1234,10 +1234,10 @@ Listens for **CameraInput** errors. This API uses a callback to return the resul
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                            |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is fixed at **error**, indicating the camera input error event.|
-| callback | ErrorCallback<[CameraInputError](#camerainputerror)\> | Yes  | Callback used to return the result.                        |
+| Name    | Type                            | Mandatory| Description                                         |
+| -------- | -------------------------------- | ---- | ------------------------------------------- |
+| type     | string                           | Yes  | Event type. The value is fixed at **'error'**, indicating the camera input error event.|
+| callback | ErrorCallback<[CameraInputError](#camerainputerror)\> | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1253,14 +1253,14 @@ Enumerates the error codes used for camera input.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                     | Value  | Description          |
-| ------------------------- | ---- | -------------- |
-| ERROR_UNKNOWN             | -1   | Unknown error.    |
-| ERROR_NO_PERMISSION       | 0    | You do not have the required permission.    |
-| ERROR_DEVICE_PREEMPTED    | 1    | The camera is preempted.  |
+| Name                      | Value  | Description      |
+| ------------------------- | ---- | ---------- |
+| ERROR_UNKNOWN             | -1   | Unknown error.|
+| ERROR_NO_PERMISSION       | 0    | You do not have the required permission.|
+| ERROR_DEVICE_PREEMPTED    | 1    | The camera is preempted.|
 | ERROR_DEVICE_DISCONNECTED | 2    | The camera is disconnected.|
 | ERROR_DEVICE_IN_USE       | 3    | The camera is in use.|
-| ERROR_DRIVER_ERROR        | 4    | Driver error.    |
+| ERROR_DRIVER_ERROR        | 4    | Driver error.   |
 
 ## CameraInputError
 
@@ -1268,8 +1268,8 @@ Defines an error object used for **[CameraInput](#camerainput)**.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type                                         | Description                   |
-| ---- | --------------------------------------------- | ----------------------- |
+| Name| Type                                          | Description                  |
+| ---- | --------------------------------------------- | --------------------- |
 | code | [CameraInputErrorCode](#camerainputerrorcode) | **CameraInput** error code.|
 
 
@@ -1279,8 +1279,8 @@ Enumerates the flash modes.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                  | Value  | Description        |
-| ---------------------- | ---- | ------------ |
+| Name                   | Value  | Description       |
+| ---------------------- | ---- | ---------- |
 | FLASH_MODE_CLOSE       | 0    | The flash is off.|
 | FLASH_MODE_OPEN        | 1    | The flash is on.|
 | FLASH_MODE_AUTO        | 2    | The flash mode is auto, indicating that the flash fires automatically depending on the shooting conditions.|
@@ -1292,8 +1292,8 @@ Enumerates the exposure modes.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                         | Value  | Description          |
-| ----------------------------- | ---- | -------------- |
+| Name                          | Value  | Description        |
+| ----------------------------- | ---- | ----------- |
 | EXPOSURE_MODE_LOCKED          | 0    | Exposure locked.|
 | EXPOSURE_MODE_AUTO            | 1    | Auto exposure.|
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | Continuous auto exposure.|
@@ -1304,8 +1304,8 @@ Enumerates the focus modes.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                      | Value  | Description          |
-| -------------------------- | ---- | -------------- |
+| Name                       | Value  | Description         |
+| -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | Manual focus.    |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | Continuous auto focus.|
 | FOCUS_MODE_AUTO            | 2    | Auto focus.    |
@@ -1317,10 +1317,10 @@ Enumerates the focus states.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                 | Value  | Description        |
-| --------------------- | ---- | ------------ |
-| FOCUS_STATE_SCAN      | 0    | Focusing.  |
-| FOCUS_STATE_FOCUSED   | 1    | Focused.  |
+| Name                  | Value  | Description      |
+| --------------------- | ---- | --------- |
+| FOCUS_STATE_SCAN      | 0    | Focusing. |
+| FOCUS_STATE_FOCUSED   | 1    | Focused. |
 | FOCUS_STATE_UNFOCUSED | 2    | Unfocused.|
 
 ## ExposureState
@@ -1329,10 +1329,10 @@ Enumerates the exposure states.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Value  | Description      |
-| ------------------------ | ---- | ---------- |
-| EXPOSURE_STATE_SCAN      | 0    | Exposing.  |
-| EXPOSURE_STATE_CONVERGED | 1    | Exposure converged.|
+| Name                      | Value  | Description      |
+| ------------------------- | ---- | -------- |
+| EXPOSURE_STATE_SCAN       | 0    | Exposing.  |
+| EXPOSURE_STATE_CONVERGED  | 1    | Exposure converged.|
 
 ## VideoStabilizationMode
 
@@ -1340,13 +1340,13 @@ Enumerates the video stabilization modes.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name  | Value  | Description                                                |
-| ------ | ---- | ---------------------------------------------------- |
-| OFF    | 0    | Video stabilization is disabled.                                  |
-| LOW    | 1    | The basic video stabilization algorithm is used.                                  |
-| MIDDLE | 2    | A video stabilization algorithm with a stabilization effect better than that of the **LOW** type is used.   |
-| HIGH   | 3    | A video stabilization algorithm with a stabilization effect better than that of the **MIDDLE** type is used.|
-| AUTO   | 4    | Automatic video stabilization is used.                                      |
+| Name      | Value  | Description        |
+| --------- | ---- | ------------ |
+| OFF       | 0    | Video stabilization is disabled.  |
+| LOW       | 1    | The basic video stabilization algorithm is used.  |
+| MIDDLE    | 2    | A video stabilization algorithm with a stabilization effect better than that of the **LOW** type is used.  |
+| HIGH      | 3    | A video stabilization algorithm with a stabilization effect better than that of the **MIDDLE** type is used.  |
+| AUTO      | 4    | Automatic video stabilization is used.  |
 
 ## CaptureSession
 
@@ -1362,8 +1362,8 @@ Starts configuration for this **CaptureSession** instance. This API uses an asyn
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name    | Type                  | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1388,8 +1388,8 @@ Starts configuration for this **CaptureSession** instance. This API uses a promi
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 
@@ -1411,8 +1411,8 @@ Commits the configuration for this **CaptureSession** instance. This API uses an
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name    | Type                  | Mandatory| Description                 |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1437,8 +1437,8 @@ Commits the configuration for this **CaptureSession** instance. This API uses a 
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                     |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1459,8 +1459,8 @@ Checks whether a **[CameraInput](#camerainput)** instance can be added to this *
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                     |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
 | callback    | AsyncCallback<boolean\>     | Yes  | Callback used to return the result.   |
 
@@ -1486,14 +1486,14 @@ Checks whether a **[CameraInput](#camerainput)** instance can be added to this *
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                     |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
+| Type          | Description                        |
+| -------------- | -------------------------- |
 | Promise<boolean\> | Promise used to return the result.|
 
 **Example**
@@ -1514,8 +1514,8 @@ Adds a **[CameraInput](#camerainput)** instance to this **CaptureSession**. This
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                    |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
 | callback    | AsyncCallback<void\>        | Yes  | Callback used to return the result.   |
 
@@ -1541,14 +1541,14 @@ Adds a **[CameraInput](#camerainput)** instance to this **CaptureSession**. This
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                    |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to add.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type          | Description                     |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1569,8 +1569,8 @@ Removes a **[CameraInput](#camerainput)** instance from this **CaptureSession**.
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                     |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to remove.|
 | callback    | AsyncCallback<void\>        | Yes  | Callback used to return the result.   |
 
@@ -1596,14 +1596,14 @@ Removes a **[CameraInput](#camerainput)** instance from this **CaptureSession**.
 
 **Parameters**
 
-| Name       | Type                       | Mandatory| Description                       |
-| ----------- | --------------------------- | ---- | --------------------------- |
+| Name       | Type                         | Mandatory| Description                     |
+| ----------- | --------------------------- | ---- | ------------------------ |
 | cameraInput | [CameraInput](#camerainput) | Yes  | **CameraInput** instance to remove.|
 
 **Return value**
 
-| Type           | Description                       |
-| --------------- | --------------------------- |
+| Type           | Description                     |
+| -------------- | ------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
 **Example**
@@ -1624,10 +1624,10 @@ Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
-| callback     | AsyncCallback<boolean\>       | Yes  | Callback used to return the result.    |
+| Name          | Type                            | Mandatory| Description                     |
+| ------------- | ------------------------------- | ---- | ------------------------- |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
+| callback      | AsyncCallback<boolean\>         | Yes  | Callback used to return the result.  |
 
 **Example**
 
@@ -1651,15 +1651,15 @@ Checks whether a **[CameraOutput](#cameraoutput)** instance can be added to this
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
+| Name          | Type                            | Mandatory| Description                     |
+| ------------- | ------------------------------- | ---- | ------------------------- |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
 
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
+| Type           | Description                       |
+| -------------- | --------------------------- |
 | Promise<boolean\> | Promise used to return the result.|
 
 
@@ -1681,10 +1681,10 @@ Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. Th
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
-| callback     | AsyncCallback<void\>          | Yes  | Callback used to return the result.    |
+| Name          | Type                            | Mandatory| Description                     |
+| ------------- | ------------------------------- | ---- | ------------------------ |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
+| callback      | AsyncCallback<void\>            | Yes  | Callback used to return the result.     |
 
 **Example**
 
@@ -1708,14 +1708,14 @@ Adds a **[CameraOutput](#cameraoutput)** instance to this **CaptureSession**. Th
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to add.|
+| Name          | Type                            | Mandatory| Description                      |
+| ------------- | ------------------------------- | ---- | ------------------------- |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to add.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1736,10 +1736,10 @@ Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession*
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to remove.|
-| callback     | AsyncCallback<void\>          | Yes  | Callback used to return the result.    |
+| Name          | Type                            | Mandatory| Description                     |
+| ------------- | ------------------------------- | ---- | ------------------------ |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
+| callback      | AsyncCallback<void\>            | Yes  | Callback used to return the result.     |
 
 **Example**
 
@@ -1763,15 +1763,15 @@ Removes a **[CameraOutput](#cameraoutput)** instance from this **CaptureSession*
 
 **Parameters**
 
-| Name        | Type                         | Mandatory| Description                        |
-| ------------ | ----------------------------- | ---- | ---------------------------- |
-| cameraOutput | [CameraOutput](#cameraoutput) | Yes  | **CameraOutput** instance to remove.|
+| Name          | Type                            | Mandatory| Description                     |
+| ------------- | ------------------------------- | ---- | ------------------------- |
+| cameraOutput  | [CameraOutput](#cameraoutput)   | Yes  | **CameraOutput** instance to remove.|
 
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 
@@ -1793,8 +1793,8 @@ Starts this **CaptureSession**. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1819,8 +1819,8 @@ Starts this **CaptureSession**. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1841,8 +1841,8 @@ Stops this **CaptureSession**. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1867,8 +1867,8 @@ Stops this **CaptureSession**. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1883,14 +1883,14 @@ captureSession.stop().then(() => {
 
 lockForControl(callback: AsyncCallback<void\>): void
 
-Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses an asynchronous callback to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the lock.
+Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses an asynchronous callback to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the exclusive control.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1909,14 +1909,14 @@ captureSession.lockForControl((err) => {
 
 lockForControl(): Promise<void\>
 
-Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses a promise to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the lock.
+Requests to exclusively control the hardware attributes **[CameraInput](#camerainput)** of the camera device. This API uses a promise to return the result. After the exclusive control is complete, you must call **[unlockForControl](#unlockforcontrol)** to release the exclusive control.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1937,8 +1937,8 @@ Releases the exclusive control on the device configuration. This API uses an asy
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1963,8 +1963,8 @@ Releases the exclusive control on the device configuration. This API uses a prom
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -1985,8 +1985,8 @@ Releases this **CaptureSession**. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -2011,8 +2011,8 @@ Releases this **CaptureSession**. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -2027,15 +2027,15 @@ captureSession.release().then(() => {
 
 hasFlash(callback: AsyncCallback<boolean\>): void
 
-Checks whether the device has flash light. This API uses an asynchronous callback to return the result.
+Checks whether the device has flash. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the flash light support status. The value **true** means that the device has flash light.|
+| Name     | Type                    | Mandatory| Description                            |
+| -------- | ----------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the flash support status. The value **true** means that the device has flash.|
 
 **Example**
 
@@ -2053,15 +2053,15 @@ cameraInput.hasFlash((err, status) => {
 
 hasFlash(): Promise<boolean\>
 
-Checks whether the device has flash light. This API uses a promise to return the result.
+Checks whether the device has flash. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type             | Description                                                   |
-| ----------------- | ------------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the flash light support status. The value **true** means that the device has flash light.|
+| Type              | Description                                            |
+| ----------------- | ----------------------------------------------- |
+| Promise<boolean\> | Promise used to return the flash support status. The value **true** means that the device has flash.|
 
 **Example**
 
@@ -2081,9 +2081,9 @@ Checks whether a specified flash mode is supported. This API uses an asynchronou
 
 **Parameters**
 
-| Name     | Type                   | Mandatory| Description                                    |
-| --------- | ----------------------- | ---- | ---------------------------------------- |
-| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.                        |
+| Name      | Type                    | Mandatory| Description                              |
+| --------- | ----------------------- | ---- | --------------------------------- |
+| flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.                    |
 | callback  | AsyncCallback<boolean\> | Yes  | Callback used to return the flash mode support status. The value **true** means that the flash mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -2108,14 +2108,14 @@ Checks whether a specified flash mode is supported. This API uses a promise to r
 
 **Parameters**
 
-| Name     | Type                   | Mandatory| Description            |
-| --------- | ----------------------- | ---- | ---------------- |
+| Name      | Type                   | Mandatory| Description           |
+| --------- | ----------------------- | ---- | ------------- |
 | flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.|
 
 **Return value**
 
-| Type             | Description                                                        |
-| ----------------- | ------------------------------------------------------------ |
+| Type              | Description                                                 |
+| ----------------- | ---------------------------------------------------- |
 | Promise<boolean\> | Promise used to return the flash mode support status. The value **true** means that the flash mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -2134,15 +2134,15 @@ Sets the flash mode. This API uses an asynchronous callback to return the result
 
 Before the setting, do the following checks:
 
-1. Use **[hasFlash](#hasflash)** to check whether the device has flash light.
+1. Use **[hasFlash](#hasflash)** to check whether the device has flash.
 2. Use **[isFlashModeSupported](#isflashmodesupported)** to check whether the device supports the flash mode.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name     | Type                   | Mandatory| Description                    |
-| --------- | ----------------------- | ---- | ------------------------ |
+| Name      | Type                    | Mandatory| Description                 |
+| --------- | ----------------------- | ---- | --------------------- |
 | flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.        |
 | callback  | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
 
@@ -2166,21 +2166,21 @@ Sets a flash mode. This API uses a promise to return the result.
 
 Before the setting, do the following checks:
 
-1. Use **[hasFlash](#hasflash)** to check whether the device has flash light.
+1. Use **[hasFlash](#hasflash)** to check whether the device has flash.
 2. Use **[isFlashModeSupported](#isflashmodesupported)** to check whether the device supports the flash mode.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name     | Type                   | Mandatory| Description            |
-| --------- | ----------------------- | ---- | ---------------- |
+| Name      | Type                    | Mandatory| Description          |
+| --------- | ----------------------- | ---- | ------------- |
 | flashMode | [FlashMode](#flashmode) | Yes  | Flash mode.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -2201,8 +2201,8 @@ Obtains the flash mode in use. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                                    |
-| -------- | --------------------------------------- | ---- | ---------------------------------------- |
+| Name     | Type                                    | Mandatory| Description                             |
+| -------- | --------------------------------------- | ---- | --------------------------------- |
 | callback | AsyncCallback<[FlashMode](#flashmode)\> | Yes  | Callback used to return the flash mode.|
 
 **Example**
@@ -2227,8 +2227,8 @@ Obtains the flash mode in use. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                             | Description                                   |
-| --------------------------------- | --------------------------------------- |
+| Type                              | Description                              |
+| --------------------------------- | --------------------------------- |
 | Promise<[FlashMode](#flashmode)\> | Promise used to return the flash mode.|
 
 **Example**
@@ -2249,10 +2249,10 @@ Checks whether a specified exposure mode is supported. This API uses an asynchro
 
 **Parameters**
 
-| Name    | Type                         | Mandatory| Description                                |
-| -------- | ----------------------------- | ---- | ------------------------------------ |
-| aeMode   | [ExposureMode](#exposuremode) | Yes  | Exposure mode.                          |
-| callback | AsyncCallback<boolean\>       | Yes  | Callback used to return the exposure mode support status. The value **true** means that the exposure mode is supported, and **false** means the opposite.|
+| Name     | Type                          | Mandatory | Description                          |
+| -------- | -------------------------------| ---- | ----------------------------- |
+| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.                     |
+| callback | AsyncCallback<boolean\>        | Yes  | Callback used to return the exposure mode support status. The value **true** means that the exposure mode is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -2262,7 +2262,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(er
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of isExposureModeSupported');
+    console.log('Callback returned with the successful execution of isExposureModeSupported');
 })
 ```
 
@@ -2276,14 +2276,14 @@ Checks whether a specified exposure mode is supported. This API uses a promise t
 
 **Parameters**
 
-| Name  | Type                         | Mandatory| Description      |
-| ------ | ----------------------------- | ---- | ---------- |
-| aeMode | [ExposureMode](#exposuremode) | Yes  | Exposure mode.|
+| Name     | Type                          | Mandatory | Description                          |
+| -------- | -------------------------------| ---- | ----------------------------- |
+| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.                     |
 
 **Return value**
 
-| Name             | Description                                 |
-| ----------------- | ------------------------------------- |
+| Name              | Description                            |
+| ----------------- |--------------------------------- |
 | Promise<boolean\> | Promise used to return the exposure mode support status. The value **true** means that the exposure mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -2304,9 +2304,9 @@ Obtains the exposure mode in use. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                         | Mandatory| Description                            |
-| -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<[ExposureMode](#exposuremode)\> | Yes  | Callback used to return the exposure mode.|
+| Name     | Type                           | Mandatory| Description                                    |
+| -------- | -------------------------------| ---- | ---------------------------------------- |
+| callback | AsyncCallback<[ExposureMode](#exposuremode)\>   | Yes  | Callback used to return the exposure mode.|
 
 **Example**
 
@@ -2330,8 +2330,8 @@ Obtains the exposure mode in use. This API uses a promise to return the result.
 
 **Return value**
 
-| Name                                   | Description                               |
-| --------------------------------------- | ----------------------------------- |
+| Name                                    | Description                          |
+| --------------------------------------- |------------------------------- |
 | Promise<[ExposureMode](#exposuremode)\> | Promise used to return the exposure mode.|
 
 **Example**
@@ -2352,10 +2352,10 @@ Sets an exposure mode. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name    | Type                         | Mandatory| Description                        |
-| -------- | ----------------------------- | ---- | ---------------------------- |
-| aeMode   | [ExposureMode](#exposuremode) | Yes  | Exposure mode.                  |
-| callback | AsyncCallback<void\>          | Yes  | Callback used to return the result.|
+| Name     | Type                           | Mandatory| Description                   |
+| -------- | -------------------------------| ---- | ----------------------- |
+| aeMode   | [ExposureMode](#exposuremode)  | Yes  | Exposure mode.               |
+| callback | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2365,7 +2365,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureMode');
+    console.log('Callback returned with the successful execution of setExposureMode');
 })
 ```
 
@@ -2379,9 +2379,9 @@ Sets an exposure mode. This API uses a promise to return the result.
 
 **Return value**
 
-| Name          | Description                           |
-| -------------- | ------------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Name              | Description                       |
+| ----------------- |---------------------------- |
+| Promise<void\>   | Promise used to return the result.|
 
 **Example**
 
@@ -2401,9 +2401,9 @@ Obtains the center of the metering area. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name    | Type                           | Mandatory| Description                          |
-| -------- | ------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[Point](#point)\> | Yes  | Callback used to return the center of the metering area.|
+| Name    | Type                           | Mandatory| Description                      |
+| -------- | -------------------------------| ---- | ------------------------ |
+| callback | AsyncCallback<[Point](#point)\>| Yes  | Callback used to return the center of the metering area.|
 
 **Example**
 
@@ -2427,8 +2427,8 @@ Obtains the center of the metering area. This API uses a promise to return the r
 
 **Return value**
 
-| Name                     | Description                             |
-| ------------------------- | --------------------------------- |
+| Name                      | Description                         |
+| ------------------------- |----------------------------- |
 | Promise<[Point](#point)\> | Promise used to return the center of the metering area.|
 
 **Example**
@@ -2449,10 +2449,10 @@ Sets the center of the metering area. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name         | Type                | Mandatory| Description                    |
-| ------------- | -------------------- | ---- | ------------------------ |
-| exposurePoint | [Point](#point)      | Yes  | Exposure point.                |
-| callback      | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name          | Type                           | Mandatory| Description                |
+| ------------- | -------------------------------| ---- | ------------------- |
+| exposurePoint | [Point](#point)                | Yes  | Exposure point.             |
+| callback      | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2464,7 +2464,7 @@ cameraInput.setMeteringPoint(Point1,(err) => {
         console.log(`Failed to set the exposure point ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setMeteringPoint');
+    console.log('Callback returned with the successful execution of setMeteringPoint');
 })
 ```
 
@@ -2478,15 +2478,15 @@ Sets the center of the metering area. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name         | Type           | Mandatory| Description    |
-| ------------- | --------------- | ---- | -------- |
-| exposurePoint | [Point](#point) | Yes  | Exposure point.|
+| Name          | Type                           | Mandatory| Description                |
+| ------------- | -------------------------------| ---- | ------------------- |
+| exposurePoint | [Point](#point)                | Yes  | Exposure point.             |
 
 **Return value**
 
-| Name          | Description                       |
-| -------------- | --------------------------- |
-| Promise<void\>| Promise used to return the center of the metering area.|
+| Name              | Description                    |
+| ----------------- |------------------------ |
+| Promise<void\>   | Promise used to return the center of the metering area.|
 
 **Example**
 
@@ -2508,9 +2508,9 @@ Obtains the exposure compensation values. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                          | Mandatory| Description                              |
-| -------- | ------------------------------ | ---- | ---------------------------------- |
-| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return the array of compensation values.|
+| Name     | Type                           | Mandatory| Description                          |
+| -------- | -------------------------------| ---- | ----------------------------- |
+| callback | AsyncCallback<Array<number\>\>  | Yes  | Callback used to return the array of compensation values.|
 
 **Example**
 
@@ -2534,8 +2534,8 @@ Obtains the exposure compensation values. This API uses a promise to return the 
 
 **Return value**
 
-| Name                    | Description                               |
-| ------------------------ | ----------------------------------- |
+| Name              | Description                                  |
+| ----------------- |-------------------------------------- |
 | Promise<Array<number\>\> | Promise used to return the array of compensation values.|
 
 **Example**
@@ -2558,10 +2558,10 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 **Parameters**
 
-| Name        | Type                | Mandatory| Description                    |
-| ------------ | -------------------- | ---- | ------------------------ |
-| exposureBias | number               | Yes  | Compensation value.              |
-| callback     | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name    | Type                           | Mandatory| Description                |
+| -------- | -------------------------------| ---- | ------------------- |
+| exposureBias   | number                   | Yes  | Compensation value.           |
+| callback | AsyncCallback<void\>           | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2571,7 +2571,7 @@ cameraInput.setExposureBias(-4,(err) => {
         console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
     }
-    console.log('Callback returned with the successful excution of setExposureBias');
+    console.log('Callback returned with the successful execution of setExposureBias');
 })
 ```
 
@@ -2587,15 +2587,15 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description      |
-| ------------ | ------ | ---- | ---------- |
-| exposureBias | number | Yes  | Compensation value.|
+| Name           | Type     | Mandatory| Description       |
+| -------------- | --------- | ---- | --------- |
+| exposureBias   | number    | Yes  | Compensation value. |
 
 **Return value**
 
-| Name          | Description                       |
-| -------------- | --------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Name              | Description                    |
+| ----------------- |------------------------- |
+| Promise<void\>   | Promise used to return the result.|
 
 **Example**
 
@@ -2615,9 +2615,9 @@ Obtains the exposure value in use. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                      |
-| -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to the exposure value.|
+| Name    | Type                     | Mandatory| Description                  |
+| -------- | ------------------------| ---- | --------------------- |
+| callback | AsyncCallback<number\>  | Yes  | Callback used to the exposure value.|
 
 **Example**
 
@@ -2641,9 +2641,9 @@ Obtains the exposure value in use. This API uses a promise to return the result.
 
 **Return value**
 
-| Name            | Description                         |
-| ---------------- | ----------------------------- |
-| Promise<number\> | Promise used to the exposure value.|
+| Name              | Description                      |
+| ----------------- |-------------------------- |
+| Promise<number\>  | Promise used to the exposure value.|
 
 **Example**
 
@@ -2663,9 +2663,9 @@ Checks whether a specified focus mode is supported. This API uses an asynchronou
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.                      |
+| Name     | Type                    | Mandatory| Description                             |
+| -------- | ----------------------- | ---- | -------------------------------- |
+| afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.                   |
 | callback | AsyncCallback<boolean\> | Yes  | Callback used to return the focus mode support status. The value **true** means that the focus mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -2690,14 +2690,14 @@ Checks whether a specified focus mode is supported. This API uses a promise to r
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description            |
-| ------ | ----------------------- | ---- | ---------------- |
+| Name   | Type                    | Mandatory| Description          |
+| ------ | ----------------------- | ---- | ------------- |
 | afMode | [FocusMode](#focusmode) | Yes  | Focus mode.|
 
 **Return value**
 
-| Type             | Description                                                       |
-| ----------------- | ----------------------------------------------------------- |
+| Type              | Description                                               |
+| ----------------- | --------------------------------------------------- |
 | Promise<boolean\> | Promise used to return the focus mode support status. The value **true** means that the focus mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -2720,9 +2720,9 @@ Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to che
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                    |
-| -------- | ----------------------- | ---- | ------------------------ |
-| afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.        |
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| afMode   | [FocusMode](#focusmode) | Yes  | Focus mode.      |
 | callback | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
 
 **Example**
@@ -2749,14 +2749,14 @@ Before the setting, use **[isFocusModeSupported](#isfocusmodesupported)** to che
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description            |
-| ------ | ----------------------- | ---- | ---------------- |
+| Name   | Type                    | Mandatory| Description          |
+| ------ | ----------------------- | ---- | ------------- |
 | afMode | [FocusMode](#focusmode) | Yes  | Focus mode.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -2777,8 +2777,8 @@ Obtains the focus mode in use. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                                   | Mandatory| Description                                  |
-| -------- | --------------------------------------- | ---- | -------------------------------------- |
+| Name     | Type                                    | Mandatory| Description                            |
+| -------- | --------------------------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback<[FocusMode](#focusmode)\> | Yes  | Callback used to return the focus mode.|
 
 **Example**
@@ -2803,8 +2803,8 @@ Obtains the focus mode in use. This API uses a promise to return the result.
 
 **Return value**
 
-| Type               | Description                                 |
-| ------------------- | ------------------------------------- |
+| Type                | Description                            |
+| ------------------- | -------------------------------- |
 | Promise<FocusMode\> | Promise used to return the focus mode.|
 
 **Example**
@@ -2825,10 +2825,10 @@ Sets a focus point. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| point    | [Point](#point)      | Yes  | Focus point.                  |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| point    | [Point](#point)         | Yes  | Focus point.               |
+| callback | AsyncCallback<void\>    | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -2848,20 +2848,20 @@ cameraInput.setFocusPoint(Point1, (err) => {
 
 setFocusPoint(point: Point): Promise<void\>
 
-Sets a focus point. This API uses a promise to return the result.
+Sets a focal point. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name | Type           | Mandatory| Description  |
-| ----- | --------------- | ---- | ------ |
-| point | [Point](#point) | Yes  | Focus point.|
+| Name     | Type                    | Mandatory| Description                |
+| -------- | ----------------------- | ---- | ------------------- |
+| point    | [Point](#point)         | Yes  | Focal point.               |
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type          | Description                     |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -2878,15 +2878,15 @@ cameraInput.setFocusPoint(Point2).then(() => {
 
 getFocusPoint(callback: AsyncCallback<Point\>): void
 
-Obtains the focus point. This API uses an asynchronous callback to return the result.
+Obtains the focal point. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                           | Mandatory| Description                        |
-| -------- | ------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback<[Point](#point)\> | Yes  | Callback used to return the focus point.|
+| Name     | Type                              | Mandatory| Description                    |
+| -------- | ---------------------------------- | ---- | ----------------------- |
+| callback | AsyncCallback<[Point](#point)\>    | Yes  | Callback used to return the focal point.|
 
 **Example**
 
@@ -2904,15 +2904,15 @@ cameraInput.getFocusPoint((err, point) => {
 
 getFocusPoint(): Promise<Point\>
 
-Obtains the focus point. This API uses a promise to return the result.
+Obtains the focal point. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type           | Description                           |
-| --------------- | ------------------------------- |
-| Promise<Point\> | Promise used to return the focus point.|
+| Type            | Description                       |
+| --------------- | --------------------------- |
+| Promise<Point\> | Promise used to return the focal point.|
 
 **Example**
 
@@ -2932,9 +2932,9 @@ Obtains the focal length. This API uses an asynchronous callback to return the r
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                        |
-| -------- | ---------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the focal length.|
+| Name     | Type                      | Mandatory| Description                    |
+| -------- | ------------------------- | ---- | ----------------------- |
+| callback | AsyncCallback<number\>    | Yes  | Callback used to return the focal length.|
 
 **Example**
 
@@ -2958,8 +2958,8 @@ Obtains the focal length. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description                       |
-| ---------------- | --------------------------- |
+| Type             | Description                    |
+| ---------------- | ----------------------- |
 | Promise<number\> | Promise used to return the focal length.|
 
 **Example**
@@ -2974,15 +2974,15 @@ cameraInput.getFocalLength().then((focalLength) => {
 
 getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 
-Obtains the zoom range. This API uses an asynchronous callback to return the result.
+Obtains the zoom ratio range. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                          | Mandatory| Description                    |
-| -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return the zoom range.|
+| Name     | Type                           | Mandatory| Description                |
+| -------- | ------------------------------ | ---- | ------------------- |
+| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -3000,15 +3000,15 @@ cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
 
 getZoomRatioRange\(\): Promise<Array<number\>\>
 
-Obtains the zoom range. This API uses a promise to return the result.
+Obtains the zoom ratio range. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type                    | Description                           |
-| ------------------------ | ------------------------------- |
-| Promise<Array<number\>\> | Promise used to return the zoom range.|
+| Type                     | Description                       |
+| ------------------------ | --------------------------- |
+| Promise<Array<number\>\> | Promise used to return the zoom ratio range.|
 
 **Example**
 
@@ -3028,9 +3028,9 @@ Sets a zoom ratio. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name     | Type                | Mandatory| Description                    |
-| --------- | -------------------- | ---- | ------------------------ |
-| zoomRatio | number               | Yes  | Zoom ratio.            |
+| Name      | Type                 | Mandatory| Description                |
+| --------- | -------------------- | ---- | ------------------- |
+| zoomRatio | number               | Yes  | Zoom ratio.          |
 | callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3055,14 +3055,14 @@ Sets a zoom ratio. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description        |
-| --------- | ------ | ---- | ------------ |
+| Name      | Type   | Mandatory| Description      |
+| --------- | ------ | ---- | --------- |
 | zoomRatio | number | Yes  | Zoom ratio.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -3083,8 +3083,8 @@ Obtains the zoom ratio in use. This API uses an asynchronous callback to return 
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                    |
-| -------- | ---------------------- | ---- | ------------------------ |
+| Name     | Type                  | Mandatory| Description                 |
+| -------- | ---------------------- | ---- | ------------------- |
 | callback | AsyncCallback<number\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3109,8 +3109,8 @@ Obtains the zoom ratio in use. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description                       |
-| ---------------- | --------------------------- |
+| Type             | Description                    |
+| ---------------- | ----------------------- |
 | Promise<number\> | Promise used to return the zoom ratio.|
 
 **Example**
@@ -3125,16 +3125,16 @@ cameraInput.getZoomRatio().then((zoomRatio) => {
 
 isVideoStablizationModeSupported(vsMode: VideoStabilizationMode, callback: AsyncCallback<boolean\>): void
 
-Checks whether a specified video stabilization mode is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified video stabilization mode is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.                      |
-| callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite.|
+| Name     | Type                                             | Mandatory| Description                            |
+| -------- | ------------------------------------------------- | ---- | ------------------------------ |
+| vsMode   | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.                   |
+| callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite. |
 
 **Example**
 
@@ -3152,14 +3152,14 @@ captureSession.isVideoStablizationModeSupported(camera.VideoStabilizationMode.OF
 
 isVideoStablizationModeSupported(vsMode: VideoStabilizationMode): Promise<boolean\>
 
-Checks whether a specified video stabilization mode is supported. This API uses a promise to return the result.
+Checks whether the specified video stabilization mode is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Return value**
 
-| Type             | Description                                                 |
-| ----------------- | ----------------------------------------------------- |
+| Type              | Description                                          |
+| ----------------- | --------------------------------------------- |
 | Promise<boolean\> | Promise used to return whether the video stabilization mode is supported. The value **true** means that the video stabilization mode is supported, and **false** means the opposite.|
 
 **Example**
@@ -3180,9 +3180,9 @@ Obtains the video stabilization mode in use. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name    | Type                                  | Mandatory| Description                                |
-| -------- | -------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<VideoStabilizationMode\> | Yes  | Callback used to return the video stabilization mode.|
+| Name     | Type                                      | Mandatory| Description                           |
+| -------- | ----------------------------------------- | ---- | ------------------------------ |
+| callback | AsyncCallback<VideoStabilizationMode\>    | Yes  | Callback used to return the video stabilization mode. |
 
 **Example**
 
@@ -3206,9 +3206,9 @@ Obtains the video stabilization mode in use. This API uses a promise to return t
 
 **Return value**
 
-| Type                            | Description                                                     |
-| -------------------------------- | --------------------------------------------------------- |
-| Promise<VideoStabilizationMode\> | Promise used to return the video stabilization mode.|
+| Type                             | Description                                             |
+| -------------------------------- | ------------------------------------------------- |
+| Promise<VideoStabilizationMode\> | Promise used to return the video stabilization mode. |
 
 **Example**
 
@@ -3228,10 +3228,10 @@ Sets a video stabilization mode. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                    |
-| -------- | ------------------------------------------------- | ---- | ------------------------ |
-| mode     | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.|
-| callback | AsyncCallback<void\>                              | Yes  | Callback used to return the result.              |
+| Name     | Type                                             | Mandatory| Description                   |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.  |
+| callback | AsyncCallback<void\>                              | Yes  | Callback used to return the result.    |
 
 **Example**
 
@@ -3255,15 +3255,15 @@ Sets a video stabilization mode. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                             | Mandatory| Description                    |
-| ---- | ------------------------------------------------- | ---- | ------------------------ |
-| mode | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.|
+| Name     | Type                                             | Mandatory| Description                   |
+| -------- | ------------------------------------------------- | ---- | --------------------- |
+| mode     | [VideoStabilizationMode](#videostabilizationmode) | Yes  | Video stabilization mode.  |
 
 **Return value**
 
-| Type          | Description                                                     |
-| -------------- | --------------------------------------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type           | Description                                              |
+| -------------- | ------------------------------------------------- |
+| Promise<void\>| Promise used to return the result. |
 
 **Example**
 
@@ -3283,10 +3283,10 @@ Listens for focus state changes. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                                     | Mandatory| Description                                                    |
-| -------- | ----------------------------------------- | ---- | -------------------------------------------------------- |
-| type     | string                                    | Yes  | Event type. The value is fixed at **focusStateChange**, indicating the focus state change event.|
-| callback | AsyncCallback<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change.                            |
+| Name    | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**, indicating the focus state change event.|
+| callback | AsyncCallback<[FocusState](#focusstate)\> | Yes  | Callback used to return the focus state change. |
 
 **Example**
 
@@ -3306,10 +3306,10 @@ Listens for exposure state changes. This API uses an asynchronous callback to re
 
 **Parameters**
 
-| Name    | Type                                           | Mandatory| Description                                                       |
-| -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | string                                          | Yes  | Event type. The value is fixed at **'exposureStateChange'**, indicating the exposure state change event.|
-| callback | AsyncCallback<[ExposureState](#exposurestate)\> | Yes  | Callback used to return the exposure state change.                               |
+| Name    | Type                                     | Mandatory| Description                                            |
+| -------- | ----------------------------------------- | ---- | ---------------------------------------------- |
+| type     | string                             | Yes  |   Event type. The value is fixed at **'exposureStateChange'**, indicating the exposure state change event.|
+| callback | AsyncCallback<[ExposureState](#exposurestate)\> | Yes  |  Callback used to return the exposure state change.                |
 
 **Example**
 
@@ -3329,10 +3329,10 @@ Listens for **CaptureSession** errors. This API uses a callback to return the er
 
 **Parameters**
 
-| Name    | Type                                                       | Mandatory| Description                                         |
-| -------- | ----------------------------------------------------------- | ---- | --------------------------------------------- |
-| type     | string                                                      | Yes  | Event type. The value is fixed at **error**, indicating the capture session error event.|
-| callback | ErrorCallback<[CaptureSessionError](#capturesessionerror)\> | Yes  | Callback used to return the error information.                 |
+| Name    | Type                                                         | Mandatory| Description                          |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
+| type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**, indicating the capture session error event.|
+| callback | ErrorCallback<[CaptureSessionError](#capturesessionerror)\> | Yes  | Callback used to return the error information.       |
 
 **Example**
 
@@ -3348,15 +3348,15 @@ Enumerates the error codes used in a **CaptureSession**.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description      |
-| ---------------------------- | ---- | ---------- |
-| ERROR_UNKNOWN                | -1   | Unknown error.|
-| ERROR_INSUFFICIENT_RESOURCES | 0    | Insufficient resources.|
-| ERROR_TIMEOUT                | 1    | Timeout.    |
+| Name                          | Value  | Description     |
+| ----------------------------- | ---- | -------- |
+| ERROR_UNKNOWN                 | -1   | Unknown error.|
+| ERROR_INSUFFICIENT_RESOURCES  | 0    | Insufficient resources.|
+| ERROR_TIMEOUT                 | 1    | Timeout.|
 
 ## CaptureSessionError
 
-Defines a capture session error.
+Defines a **CaptureSession** error.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -3378,8 +3378,8 @@ Releases output resources. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3404,8 +3404,8 @@ Releases output resources. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -3430,10 +3430,10 @@ Adds a surface after a **PreviewOutput** instance is created. This API uses an a
 
 **Parameters**
 
-| Name     | Type                | Mandatory| Description                                                        |
-| --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| surfaceId | string               | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
-| callback  | AsyncCallback<void\> | Yes  | Callback used to return the result.                                    |
+| Name    | Type                  | Mandatory| Description                                                                 |
+| -------- | -------------------- | ---- | -------------------------------------------------------------------- |
+| surfaceId| string     | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                                                 |
 
 **Example**
 
@@ -3457,14 +3457,14 @@ Adds a surface after a **PreviewOutput** instance is created. This API uses a pr
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description                                                        |
-| --------- | ------ | ---- | ------------------------------------------------------------ |
-| surfaceId | string | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
+| Name    | Type        | Mandatory| Description                                                                           |
+| -------- | -----------| ---- | ------------------------------------------------------------------------------ |
+| surfaceId| string     | Yes  | Surface ID, which is obtained from **[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)**.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -3485,8 +3485,8 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3511,8 +3511,8 @@ Starts to output preview streams. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -3533,8 +3533,8 @@ Stops outputting preview streams. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3545,7 +3545,7 @@ previewOutput.stop((err) => {
         console.error(`Failed to stop the previewOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -3559,15 +3559,15 @@ Stops outputting preview streams. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
 
 ```js
 previewOutput.stop().then(() => {
-    console.log('Callback returned with previewOutput stoped.');
+    console.log('Callback returned with previewOutput stopped.');
 })
 ```
 
@@ -3581,9 +3581,9 @@ Listens for preview frame start events. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                        |
-| -------- | -------------------- | ---- | -------------------------------------------- |
-| type     | string               | Yes  | Event type. The value is fixed at **frameStart**, indicating the preview frame start event.|
+| Name     | Type                 | Mandatory| Description                                    |
+| -------- | -------------------- | ---- | --------------------------------------- |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**, indicating the preview frame start event.|
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                    |
 
 **Example**
@@ -3604,10 +3604,10 @@ Listens for preview frame end events. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                      |
-| -------- | -------------------- | ---- | ------------------------------------------ |
-| type     | string               | Yes  | Event type. The value is fixed at **frameEnd**, indicating the preview frame end event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                  |
+| Name     | Type                 | Mandatory| Description                                 |
+| -------- | -------------------- | ---- | ------------------------------------- |
+| type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**, indicating the preview frame end event.|
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                 |
 
 **Example**
 
@@ -3627,10 +3627,10 @@ Listens for **PreviewOutput** errors. This API uses a callback to return the err
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                         |
-| -------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| type     | string                                                       | Yes  | Event type. The value is fixed at **error**, indicating the preview output error event.|
-| callback | ErrorCallback<[PreviewOutputErrorCode](#previewoutputerrorcode)\> | Yes  | Callback used to return the error information.                 |
+| Name    | Type                                                              | Mandatory| Description                      |
+| -------- | ----------------------------------------------------------------- | ---- | ------------------------ |
+| type     | string                                               | Yes  | Event type. The value is fixed at **'error'**, indicating the preview output error event.|
+| callback | ErrorCallback<[PreviewOutputErrorCode](#previewoutputerrorcode)\> | Yes  | Callback used to return the error information. |
 
 **Example**
 
@@ -3647,7 +3647,7 @@ Enumerates the error codes used for preview output.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name         | Value  | Description      |
-| ------------- | ---- | ---------- |
+| ------------- | ---- | -------- |
 | ERROR_UNKNOWN | -1   | Unknown error.|
 
 ## PreviewOutputError
@@ -3656,8 +3656,8 @@ Defines the preview output error.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type                                             | Description                     |
-| ---- | ------------------------------------------------- | ------------------------- |
+| Name| Type                                             | Description                  |
+| ---- | ------------------------------------------------- | ---------------------- |
 | code | [PreviewOutputErrorCode](#previewoutputerrorcode) | **PreviewOutput** error code.|
 
 ## ImageRotation
@@ -3666,8 +3666,8 @@ Enumerates the image rotation angles.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name        | Value  | Description           |
-| ------------ | ---- | --------------- |
+| Name         | Value  | Description          |
+| ------------ | ---- | ------------- |
 | ROTATION_0   | 0    | The image rotates 0 degrees.  |
 | ROTATION_90  | 90   | The image rotates 90 degrees. |
 | ROTATION_180 | 180  | The image rotates 180 degrees.|
@@ -3679,11 +3679,11 @@ Defines geolocation information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name     | Type  | Mandatory| Description      |
-| --------- | ------ | ---- | ---------- |
-| latitude  | number | Yes  | Latitude, in degree.|
-| longitude | number | Yes  | Longitude, in degree.|
-| altitude  | number | Yes  | Altitude, in meter.|
+| Name         | Type  | Mandatory|Description        |
+| ------------ | ------ | --- |------------ |
+| latitude     | number | Yes |Latitude, in degrees.   |
+| longitude    | number | Yes |Longitude, in degrees.   |
+| altitude     | number | Yes |Altitude, in meters.   |
 
 ## QualityLevel
 
@@ -3691,8 +3691,8 @@ Enumerates the image quality levels.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                | Value  | Description          |
-| -------------------- | ---- | -------------- |
+| Name                 | Value  | Description        |
+| -------------------- | ---- | ------------ |
 | QUALITY_LEVEL_HIGH   | 0    | High image quality.  |
 | QUALITY_LEVEL_MEDIUM | 1    | Medium image quality.|
 | QUALITY_LEVEL_LOW    | 2    | Low image quality.  |
@@ -3704,12 +3704,12 @@ Defines the settings for photo capture.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name    | Type                           | Mandatory| Default Value            | Description                  |
-| -------- | ------------------------------- | ---- | ------------------ | ---------------------- |
-| quality  | [QualityLevel](#qualitylevel)   | No  | QUALITY_LEVEL_HIGH | Photo quality.            |
-| rotation | [ImageRotation](#imagerotation) | No  | ROTATION_0         | Rotation angle of the photo.        |
-| location | [Location](#location)           | No  | (0,0,0)            | Geolocation information of the photo.    |
-| mirror   | boolean                         | No  | false              | Whether mirroring is enabled. By default, mirroring is disabled.|
+| Name     | Type                           | Mandatory | Default Value            | Description             |
+| -------- | ------------------------------- | ---- | ----------------- | -----------------|
+| quality  | [QualityLevel](#qualitylevel)   | No  | QUALITY_LEVEL_HIGH| Photo quality.        |
+| rotation | [ImageRotation](#imagerotation) | No  | ROTATION_0        | Rotation angle of the photo.     |
+| location | [Location](#location)           | No  | (0,0,0)           | Geolocation information of the photo.  |
+| mirror   | boolean                         | No  | false             |Whether mirroring is enabled. By default, mirroring is disabled.|
 
 ## PhotoOutput
 
@@ -3725,8 +3725,8 @@ Obtains the default shooting parameters. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name    | Type                                                       | Mandatory| Description                    |
-| -------- | ----------------------------------------------------------- | ---- | ------------------------ |
+| Name    | Type                                                        | Mandatory| Description                 |
+| -------- | ----------------------------------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback<[PhotoCaptureSetting](#photocapturesetting)\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3751,8 +3751,8 @@ Obtains the default shooting parameters. This API uses a promise to return the r
 
 **Return value**
 
-| Type                                                 | Description                       |
-| ----------------------------------------------------- | --------------------------- |
+| Type                                                  | Description                    |
+| ----------------------------------------------------- | ----------------------- |
 | Promise<[PhotoCaptureSetting](#photocapturesetting)\> | Promise used to return the result.|
 
 **Example**
@@ -3773,8 +3773,8 @@ Captures a photo with the default shooting parameters. This API uses an asynchro
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | ------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -3799,10 +3799,10 @@ Captures a photo with the specified shooting parameters. This API uses an asynch
 
 **Parameters**
 
-| Name    | Type                                       | Mandatory| Description                    |
-| -------- | ------------------------------------------- | ---- | ------------------------ |
-| setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.              |
-| callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result.|
+| Name     | Type                                        | Mandatory| Description                 |
+| -------- | ------------------------------------------- | ---- | -------------------- |
+| setting  | [PhotoCaptureSetting](#photocapturesetting) | Yes  | Shooting settings.            |
+| callback | AsyncCallback<void\>                        | Yes  | Callback used to return the result. |
 
 **Example**
 
@@ -3830,14 +3830,14 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 **Parameters**
 
-| Name   | Type                                       | Mandatory| Description      |
-| ------- | ------------------------------------------- | ---- | ---------- |
+| Name    | Type                                        | Mandatory| Description     |
+| ------- | ------------------------------------------- | ---- | -------- |
 | setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting settings.|
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ------------------------ |
 | Promise<void\>| Promise used to return the result.|
 
 
@@ -3859,9 +3859,9 @@ Checks whether mirroring is supported. This API uses an asynchronous callback to
 
 **Parameters**
 
-| Name    | Type                   | Mandatory| Description                           |
-| -------- | ----------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback<boolean\> | Yes  | Callback used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite.|
+| Name     | Type                                             | Mandatory| Description                        |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<boolean\>                           | Yes  | Callback used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite. |
 
 **Example**
 
@@ -3885,9 +3885,9 @@ Checks whether mirroring is supported. This API uses a promise to return the res
 
 **Return value**
 
-| Type             | Description                                             |
-| ----------------- | ------------------------------------------------- |
-| Promise<boolean\> | Promise used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite.|
+| Type              | Description                                       |
+| ----------------- | ------------------------------------------- |
+| Promise<boolean\> | Promise used to return the mirroring support status. The value **true** means that mirroring is supported, and **false** means the opposite. |
 
 **Example**
 
@@ -3907,10 +3907,10 @@ Listens for shooting start events. This API uses an asynchronous callback to ret
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                                            |
-| -------- | ---------------------- | ---- | ------------------------------------------------ |
-| type     | string                 | Yes  | Event type. The value is fixed at **captureStart**, indicating the shooting start event.|
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the capture ID.              |
+| Name     | Type                   | Mandatory| Description                                      |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**, indicating the shooting start event.|
+| callback | AsyncCallback<number\> | Yes  | Callback used to return the capture ID.           |
 
 **Example**
 
@@ -3930,10 +3930,10 @@ Listens for frame shutter events. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                          |
-| -------- | ----------------------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **frameShutter**, indicating the frame shutter event.|
-| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result.                  |
+| Name    | Type                                                  | Mandatory| Description                                 |
+| -------- | ----------------------------------------------------- | --- | ------------------------------------ |
+| type     | string                                           | Yes  | Event type. The value is fixed at **'frameShutter'**, indicating the frame shutter event.|
+| callback | AsyncCallback<[FrameShutterInfo](#frameshutterinfo)\> | Yes  | Callback used to return the result.            |
 
 **Example**
 
@@ -3954,10 +3954,10 @@ Listens for shooting end events. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name    | Type                                             | Mandatory| Description                                          |
-| -------- | ------------------------------------------------- | ---- | ---------------------------------------------- |
-| type     | string                                            | Yes  | Event type. The value is fixed at **captureEnd**, indicating the shooting end event.|
-| callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                  |
+| Name    | Type                                             | Mandatory| Description                                      |
+| -------- | ------------------------------------------------- | ---- | ---------------------------------------- |
+| type     | string                                            | Yes  | Event type. The value is fixed at **'captureEnd'**, indicating the shooting end event.|
+| callback | AsyncCallback<[CaptureEndInfo](#captureendinfo)\> | Yes  | Callback used to return the result.                 |
 
 **Example**
 
@@ -3978,10 +3978,10 @@ Listens for **PhotoOutput** errors. This API uses a callback to return the error
 
 **Parameters**
 
-| Name    | Type                                                 | Mandatory| Description                                     |
-| -------- | ----------------------------------------------------- | ---- | ----------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value is fixed at **error**, indicating the photo output error event.|
-| callback | ErrorCallback<[PhotoOutputError](#photooutputerror)\> | Yes  | Callback used to return the error information.             |
+| Name    | Type                                                   | Mandatory| Description                                |
+| -------- | ----------------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                                | Yes  | Event type. The value is fixed at **'error'**, indicating the photo output error event.|
+| callback | ErrorCallback<[PhotoOutputError](#photooutputerror)\> | Yes  | Callback used to return the error information.            |
 
 **Example**
 
@@ -3998,8 +3998,8 @@ Defines the frame shutter information.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name     | Type  | Mandatory| Description        |
-| --------- | ------ | ---- | ------------ |
-| captureId | number | Yes  | ID of this capture action.  |
+| --------- | ------ | ---- | ---------- |
+| captureId | number | Yes  | ID of this capture action. |
 | timestamp | number | Yes  | Timestamp when the frame shutter event is triggered.|
 
 ## CaptureEndInfo
@@ -4009,9 +4009,9 @@ Defines the capture end information.
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 | Name      | Type  | Mandatory| Description      |
-| ---------- | ------ | ---- | ---------- |
+| ---------- | ------ | ---- | ---------|
 | captureId  | number | Yes  | ID of this capture action.|
-| frameCount | number | Yes  | Number of frames captured.    |
+| frameCount | number | Yes  | Number of frames captured.   |
 
 ## PhotoOutputErrorCode
 
@@ -4019,12 +4019,12 @@ Enumerates the error codes used for photo output.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description              |
-| ---------------------------- | ---- | ------------------ |
-| ERROR_UNKNOWN                | -1   | Unknown error.        |
-| ERROR_DRIVER_ERROR           | 0    | The driver or hardware is faulty.|
-| ERROR_INSUFFICIENT_RESOURCES | 1    | Insufficient resources.        |
-| ERROR_TIMEOUT                | 2    | Timeout.            |
+| Name                          | Value  | Description            |
+| ----------------------------- | ---- | --------------- |
+| ERROR_UNKNOWN                 | -1   | Unknown error.       |
+| ERROR_DRIVER_ERROR            | 0    | The driver or hardware is faulty.|
+| ERROR_INSUFFICIENT_RESOURCES  | 1    | Insufficient resources.       |
+| ERROR_TIMEOUT                 | 2    | Timeout.          |
 
 ## PhotoOutputError
 
@@ -4050,8 +4050,8 @@ Starts video recording. This API uses an asynchronous callback to return the res
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
+| Name     | Type                 | Mandatory| Description                |
+| -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -4076,8 +4076,8 @@ Starts video recording. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 
@@ -4125,8 +4125,8 @@ Stops video recording. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
+| Type           | Description                    |
+| -------------- | ----------------------- |
 | Promise<void\>| Promise used to return the result.|
 
 **Example**
@@ -4135,7 +4135,7 @@ Stops video recording. This API uses a promise to return the result.
 videoOutput.stop().then(() => {
     console.log('Promise returned to indicate that stop method execution success.');
 })
-```
+``` 
 
 ### on('frameStart')
 
@@ -4147,10 +4147,10 @@ Listens for video recording start events. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                            |
-| -------- | -------------------- | ---- | ------------------------------------------------ |
+| Name     | Type                 | Mandatory| Description                                      |
+| -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **frameStart**, indicating the video recording start event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
 
 **Example**
 
@@ -4170,10 +4170,10 @@ Listens for video recording stop events. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                                            |
-| -------- | -------------------- | ---- | ------------------------------------------------ |
+| Name     | Type                 | Mandatory| Description                                      |
+| -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**, indicating the video recording stop event.|
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                        |
+| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.                      |
 
 **Example**
 
@@ -4193,10 +4193,10 @@ Listens for errors that occur during video recording. This API uses a callback t
 
 **Parameters**
 
-| Name    | Type                                            | Mandatory| Description                                         |
-| -------- | ------------------------------------------------ | ---- | --------------------------------------------- |
-| type     | string                                           | Yes  | Event type. The value is fixed at **error**, indicating the video output error event.|
-| callback | Callback<[VideoOutputError](#videooutputerror)\> | Yes  | Callback used to return the error information.                 |
+| Name    | Type                                              | Mandatory| Description                                   |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
+| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**, indicating the video output error event.|
+| callback | Callback<[VideoOutputError](#videooutputerror)\> | Yes  | Callback used to return the error information.                |
 
 **Example**
 
@@ -4212,10 +4212,10 @@ Enumerates the error codes used for video recording.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name              | Value  | Description              |
-| ------------------ | ---- | ------------------ |
-| ERROR_UNKNOWN      | -1   | Unknown error.        |
-| ERROR_DRIVER_ERROR | 0    | The driver or hardware is faulty.|
+| Name                  | Value  | Description         |
+| --------------------- | ---- | ------------ |
+| ERROR_UNKNOWN         | -1   | Unknown error.    |
+| ERROR_DRIVER_ERROR    | 0    | The driver or hardware is faulty.|
 
 ## VideoOutputError
 
@@ -4233,9 +4233,9 @@ Enumerates metadata streams.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Value  | Description              |
-| -------------- | ---- | ------------------ |
-| FACE_DETECTION | 0    | Metadata object type.|
+| Name                      | Value  | Description             |
+| ------------------------- | ---- | ----------------- |
+| FACE_DETECTION            | 0    | Metadata object type.|
 
 ## Rect
 
@@ -4243,10 +4243,10 @@ Defines a rectangle.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name    | Type  | Description                 |
-| -------- | ------ | --------------------- |
-| topLeftX | number | X-axis coordinate of the upper left corner of the rectangle.|
-| topLeftY | number | Y-axis coordinate of the upper left corner of the rectangle.|
+| Name     | Type  | Description                |
+| -------- | ------ | -------------------- |
+| topLeftX | number | X-axis coordinate of the upper left corner of the rectangle.  |
+| topLeftY | number | Y-axis coordinate of the upper left corner of the rectangle.  |
 | width    | number | Width of the rectangle.             |
 | height   | number | Height of the rectangle.             |
 
@@ -4264,8 +4264,8 @@ Obtains the metadata object type. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name    | Type                                                     | Mandatory| Description                    |
-| -------- | --------------------------------------------------------- | ---- | ------------------------ |
+| Name    | Type                                                      | Mandatory| Description                 |
+| -------- | --------------------------------------------------------- | --- | -------------------- |
 | callback | AsyncCallback<[MetadataObjectType](#metadataobjecttype)\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -4290,7 +4290,7 @@ Obtains the metadata object type. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                               | Description                       |
+| Type                                                | Description                       |
 | --------------------------------------------------- | --------------------------- |
 | Promise<[MetadataObjectType](#metadataobjecttype)\> | Promise used to return the result.|
 
@@ -4312,9 +4312,9 @@ Obtains the metadata timestamp. This API uses an asynchronous callback to return
 
 **Parameters**
 
-| Name    | Type                  | Mandatory| Description                    |
-| -------- | ---------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the result.|
+| Name    | Type                                                        | Mandatory| Description                    |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<number\>                                      | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4338,8 +4338,8 @@ Obtains the metadata timestamp. This API uses a promise to return the result.
 
 **Return value**
 
-| Type             | Description                       |
-| ----------------- | --------------------------- |
+| Type              | Description                       |
+| ----------------  | --------------------------- |
 | Promise<number)\> | Promise used to return the result.|
 
 **Example**
@@ -4360,9 +4360,9 @@ Obtains the bounding box of metadata. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name    | Type                         | Mandatory| Description                    |
-| -------- | ----------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Rect](#rect)\> | Yes  | Callback used to return the result.|
+| Name    | Type                                                        | Mandatory| Description                    |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<[Rect](#rect)\>                               | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4387,7 +4387,7 @@ Obtains the bounding box of metadata. This API uses a promise to return the resu
 **Return value**
 
 | Type                   | Description                       |
-| ----------------------- | --------------------------- |
+| ----------------------  | --------------------------- |
 | Promise<[Rect](#rect)\> | Promise used to return the result.|
 
 **Example**
@@ -4400,11 +4400,11 @@ metadataObject.getBoundingBox().then((rect) => {
 
 ## MetadataFaceObject
 
-Implements the face object of metadata. It inherits **[MetadataObject](#metadataobject)**.
+Implements the face object of metadata. It inherits [MetadataObject](#metadataobject).
 
 ## MetadataOutput
 
-Implements metadata stream. It inherits **[CameraOutput](#cameraoutput)**.
+Implements metadata streams. It inherits **[CameraOutput](#cameraoutput)**.
 
 ### start
 
@@ -4416,9 +4416,9 @@ Starts to output metadata. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name    | Type                                                        | Mandatory| Description                |
+| -------- | ----------------------------------------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>                                       | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4442,9 +4442,9 @@ Starts to output metadata. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type                    | Description                    |
+| ----------------------  | ------------------------ |
+| Promise<void\>         | Promise used to return the result.|
 
 **Example**
 
@@ -4464,9 +4464,9 @@ Stops outputting metadata. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name    | Type                | Mandatory| Description                    |
-| -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name    | Type                        | Mandatory| Description                 |
+| -------- | -------------------------- | ---- | ------------------- |
+| callback | AsyncCallback<void\>       | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -4476,7 +4476,7 @@ metadataOutput.stop((err) => {
         console.error(`Failed to stop the metadataOutput. ${err.message}`);
         return;
     }
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4490,15 +4490,15 @@ Stops outputting metadata. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                       |
-| -------------- | --------------------------- |
-| Promise<void\>| Promise used to return the result.|
+| Type                   | Description                       |
+| ----------------------  | --------------------------- |
+| Promise<void\>        | Promise used to return the result.|
 
 **Example**
 
 ```js
 metadataOutput.stop().then(() => {
-    console.log('Callback returned with metadataOutput stoped.');
+    console.log('Callback returned with metadataOutput stopped.');
 })
 ```
 
@@ -4512,10 +4512,10 @@ Listens for metadata objects. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                                        |
-| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**, that is, the metadata object.|
-| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the error information.                                |
+| Name     | Type                                                 | Mandatory| Description                                 |
+| -------- | -----------------------------------------------    - | ---- | ------------------------------------ |
+| type     | string                            | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**, that is, the metadata object.|
+| callback | Callback<Array<[MetadataObject](#metadataobject)\>\> | Yes  | Callback used to return the error information.              |
 
 **Example**
 
@@ -4535,10 +4535,10 @@ Listens for metadata errors. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name    | Type                                                  | Mandatory| Description                                         |
-| -------- | ------------------------------------------------------ | ---- | --------------------------------------------- |
-| type     | string                                                 | Yes  | Event type. The value is fixed at **'error'**, that is, the metadata error.|
-| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | Yes  | Callback used to return the error information.                 |
+| Name    | Type                                              | Mandatory| Description                                    |
+| -------- | ------------------------------------------------ | ---- | --------------------------------------- |
+| type     | string                                           | Yes  | Event type. The value is fixed at **'error'**, that is, the metadata error.|
+| callback | Callback<[MetadataOutputError](#metadataoutputerror)\> | Yes  | Callback used to return the error information.           |
 
 **Example**
 
@@ -4550,14 +4550,14 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 ## MetadataOutputErrorCode
 
-Enumerates the error codes used for metadata output.
+Enumerates the codes used for metadata output errors.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                        | Value  | Description      |
-| ---------------------------- | ---- | ---------- |
-| ERROR_UNKNOWN                | -1   | Unknown error.|
-| ERROR_INSUFFICIENT_RESOURCES | 0    | Insufficient resources.|
+| Name                            | Value  | Description     |
+| ------------------------------- | ---- | -------- |
+| ERROR_UNKNOWN                   | -1   | Unknown error.|
+| ERROR_INSUFFICIENT_RESOURCES    | 0    | Insufficient resources.|
 
 ## MetadataOutputError
 
@@ -4565,6 +4565,6 @@ Defines a metadata output error.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name| Type                                               | Description                      |
-| ---- | --------------------------------------------------- | -------------------------- |
+| Name| Type                                 | Description                   |
+| ---- | ------------------------------------- | ----------------------- |
 | code | [MetadataOutputErrorCode](#metadataoutputerrorcode) | **MetadataOutput** error code.|

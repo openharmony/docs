@@ -109,7 +109,7 @@ group("wifi") {
 
 ## 适配实例
 
-1. 在“config.json”中添加iot_hardware子系统。
+1. 在“config.json”中添加communication子系统。
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
    修改如下：
@@ -117,8 +117,8 @@ group("wifi") {
      
    ```
    { 
-       subsystem": "communication", 
-       components": [ 
+       "subsystem": "communication", 
+       "components": [ 
            { "component": "wifi_lite", "features":[] }
        ] 
    },

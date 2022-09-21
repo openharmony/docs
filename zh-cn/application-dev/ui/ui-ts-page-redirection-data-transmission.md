@@ -159,12 +159,12 @@
    }
    ```
 
-3. 获取foodData对应的value。调用router.getParams().foodData来获取到FoodCategoryList页面跳转来时携带的foodDate对应的数据。
+3. 获取foodData对应的value。调用router.getParams()['foodData']来获取到FoodCategoryList页面跳转来时携带的foodData对应的数据。
    ```ts
    @Entry
    @Component
    struct FoodDetail {
-     private foodItem: FoodData = router.getParams().foodData
+     private foodItem: FoodData = router.getParams()['foodData']
 
      build() {
        ......
@@ -248,7 +248,7 @@
    @Entry
    @Component
    struct FoodDetail {
-     private foodItem: FoodData = router.getParams().foodData
+     private foodItem: FoodData = router.getParams()['foodData']
 
      build() {
        Column() {

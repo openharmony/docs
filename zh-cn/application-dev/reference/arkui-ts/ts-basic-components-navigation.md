@@ -1,15 +1,10 @@
 # Navigation
 
-> **说明：**
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 Navigation组件一般作为Page页面的根容器，通过属性设置来展示页面的标题、工具栏、菜单。
 
-
-## 权限列表
-
-无
+> **说明：**
+>
+> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -23,43 +18,47 @@ Navigation()
 
 创建可以根据属性设置，自动展示导航栏、标题、工具栏的组件。
 
-
 ## 属性
 
-| 名称             | 参数类型                                     | 默认值                      | 描述                                       |
-| -------------- | ---------------------------------------- | ------------------------ | ---------------------------------------- |
-| title          | string&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md) | -                        | 页面标题。                                    |
-| subTitle       | string                                   | -                        | 页面副标题。                                   |
-| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](../../ui/ts-types.md)<sup>8+</sup> | -                        | 页面右上角菜单。      |
-| titleMode      | NavigationTitleMode                      | NavigationTitleMode.Free | 页面标题栏显示模式。                               |
-| toolBar        | {<br/>items:Array&lt;Object&gt;&nbsp;}<br/>\|&nbsp;[CustomBuilder](../../ui/ts-types.md#custombuilder8)<sup>8+</sup> | -      | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
-| hideToolBar    | boolean                                  | false                    | 设置隐藏/显示工具栏：<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
-| hideTitleBar   | boolean                                  | false                    | 隐藏标题栏。                                   |
-| hideBackButton | boolean                                  | false                    | 隐藏返回键。                                   |
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-- NavigationMenuItem类型接口说明
-  | 名称     | 类型                      | 必填   | 默认值  | 描述              |
-  | ------ | ----------------------- | ---- | ---- | --------------- |
-  | value  | string                  | 是    | -    | 菜单栏单个选项的显示文本。   |
-  | icon   | string                  | 否    | -    | 菜单栏单个选项的图标资源路径。 |
-  | action | ()&nbsp;=&gt;&nbsp;void | 否    | -    | 当前选项被选中的事件回调。   |
+| 名称             | 参数类型                                     | 描述                                       |
+| -------------- | ---------------------------------------- | ---------------------------------------- |
+| title          | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md) | 页面标题。                                    |
+| subTitle       | string                                   | 页面副标题。                                   |
+| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 页面右上角菜单。      |
+| titleMode      | NavigationTitleMode                      | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
+| toolBar        | object&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
+| hideToolBar    | boolean                                  | 设置隐藏/显示工具栏：<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |
+| hideTitleBar   | boolean                                  | 隐藏标题栏。<br/>默认值：false                     |
+| hideBackButton | boolean                                  | 隐藏返回键。<br/>默认值：false                     |
 
-- Object类型说明
-  | 名称     | 类型                      | 必填   | 默认值  | 描述              |
-  | ------ | ----------------------- | ---- | ---- | --------------- |
-  | value  | string                  | 是    | -    | 工具栏单个选项的显示文本。   |
-  | icon   | string                  | 否    | -    | 工具栏单个选项的图标资源路径。 |
-  | action | ()&nbsp;=&gt;&nbsp;void | 否    | -    | 当前选项被选中的事件回调。   |
+## NavigationMenuItem类型说明
 
-- NavigationTitleMode枚举说明
-  | 名称   | 描述                                       |
-  | ---- | ---------------------------------------- |
-  | Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。 |
-  | Mini | 固定为小标题模式（图标+主副标题）。                       |
-  | Full | 固定为大标题模式（主副标题）。                          |
+| 名称   | 类型                    | 必填 | 描述                           |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| value  | string                  | 是   | 菜单栏单个选项的显示文本。     |
+| icon   | string                  | 否   | 菜单栏单个选项的图标资源路径。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否   | 当前选项被选中的事件回调。     |
 
-  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > 目前可滚动组件只支持List。
+## object类型说明
+
+| 名称   | 类型                    | 必填 | 描述                           |
+| ------ | ----------------------- | ---- | ------------------------------ |
+| value  | string                  | 是   | 工具栏单个选项的显示文本。     |
+| icon   | string                  | 否   | 工具栏单个选项的图标资源路径。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否   | 当前选项被选中的事件回调。     |
+
+## NavigationTitleMode枚举说明
+
+| 名称   | 描述                                       |
+| ---- | ---------------------------------------- |
+| Free | 当内容为可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。 |
+| Mini | 固定为小标题模式（图标+主副标题）。                       |
+| Full | 固定为大标题模式（主副标题）。                          |
+
+>  **说明：**
+> 目前可滚动组件只支持List。
 
 
 ## 事件

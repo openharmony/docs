@@ -1,25 +1,19 @@
 # Flex布局
 
 >  **说明：**
-> - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 
-> - 仅当父组件是Flex组件时生效。
-
-
-## 权限列表
-
-无
+>  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  - 仅当父组件是 Flex、Column、Row 时生效。
 
 
 ## 属性
 
-
-| 名称 | 参数说明 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| flexBasis | 'auto'&nbsp;\|&nbsp;Length | 'auto' | 此属性所在的组件在Flex容器中主轴方向上基准尺寸。 |
-| flexGrow | number | 0 | Flex容器的剩余空间分配给此属性所在组件的比例。 |
-| flexShrink | number | 1 | Flex容器压缩尺寸分配给此属性所在组件的比例。 |
-| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign枚举说明) | Auto | 覆盖Flex布局容器中alignItems默认配置。 |
+| 名称         | 参数说明                                     | 描述                                       |
+| ---------- | ---------------------------------------- | ---------------------------------------- |
+| flexBasis  | number \| string                         | 设置组件在父容器主轴方向上的基准尺寸。<br/>默认值：'auto'（表示组件在主轴方向上的基准尺寸为组件原本的大小） |
+| flexGrow   | number                                   | 设置父容器的剩余空间分配给此属性所在组件的比例。<br/>默认值：0       |
+| flexShrink | number                                   | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>默认值：1        |
+| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | 子组件在父容器交叉轴的对齐格式，覆盖Flex布局容器中alignItems默认配置。<br/>默认值：ItemAlign.Auto |
 
 
 ## 示例
@@ -34,7 +28,7 @@ struct FlexExample {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // 基于主轴基准尺寸
-      // flexBasis()值可以是'auto'(默认值)元素本来的大小 ,如果是数字则类似于.width()/.height() ,基于主轴
+      // flexBasis()值可以是'auto',表示基准尺寸是元素本来的大小 ,也可以是长度设置，相当于.width()/.height()
       Flex() {
         Text('flexBasis(100)')
           .flexBasis('100').height(100).lineHeight(70)

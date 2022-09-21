@@ -49,6 +49,7 @@ import Want from '@ohos.application.Want';
 - 传递FD数据，FD表示文件描述符(FileDescriptor)
 
   ```  js
+    import fileio from '@ohos.fileio';
     var fd;
     try {
         fd = fileio.openSync("/data/storage/el2/base/haps/pic.png");
@@ -59,9 +60,9 @@ import Want from '@ohos.application.Want';
         "deviceId": "", // deviceId为空表示本设备
         "bundleName": "com.extreme.test",
         "abilityName": "MainAbility",
-        "moduleName": "entry" // moduleName非必选
+        "moduleName": "entry", // moduleName非必选
         "parameters": {
-          "keyFd":{"type":"FD", "value":fd}
+            "keyFd":{"type":"FD", "value":fd}
         }
     };
     this.context.startAbility(want, (error) => {

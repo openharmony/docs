@@ -32,8 +32,9 @@ During system startup,  **OsUserInitProcess**  is called to start the  **init** 
 
 -   Starts key system programs or services, such as shell.
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
-    >In OpenHarmony, the  **init**  process reads the  **/etc/init.cfg**  file and runs specified commands or starts specified processes based on configurations. For details, see  [init Module](../subsystems/subsys-boot-init.md).
+    >![](../public_sys-resources/icon-note.gif) **NOTE**
+    >
+    >In OpenHarmony, the  **init**  process reads the  **/etc/init.cfg**  file and runs specified commands or starts specified processes based on configurations. For details, see [init Module](../subsystems/subsys-boot-init-cfg.md).
 
 
 -   Monitors the process for reclaiming the orphan process and clears the zombie processes in child processes.

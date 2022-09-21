@@ -60,6 +60,7 @@ constructor(locale: string, options?: LocaleOptions)
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名     | 类型            | 必填   | 说明                           |
 | ------- | ------------- | ---- | ---------------------------- |
 | locale  | string        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -80,6 +81,7 @@ toString(): string
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型     | 说明          |
 | ------ | ----------- |
 | string | 字符串形式的区域信息。 |
@@ -100,6 +102,7 @@ maximize(): Locale
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                | 说明         |
 | ----------------- | ---------- |
 | [Locale](#locale) | 最大化后的区域对象。 |
@@ -120,6 +123,7 @@ minimize(): Locale
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                | 说明         |
 | ----------------- | ---------- |
 | [Locale](#locale) | 最小化后的区域对象。 |
@@ -131,7 +135,7 @@ minimize(): Locale
   ```
 
 
-## LocaleOptions
+## LocaleOptions<sup>9+</sup>
 
 表示区域初始化选项。
 
@@ -173,6 +177,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名     | 类型                                  | 必填   | 说明                           |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -199,11 +204,13 @@ format(date: Date): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ---- | ---- | ------- |
 | date | Date | 是    | 时间日期对象。 |
 
 **返回值：** 
+
 | 类型     | 说明           |
 | ------ | ------------ |
 | string | 格式化后的时间日期字符串 |
@@ -225,12 +232,14 @@ formatRange(startDate: Date, endDate: Date): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名       | 类型   | 必填   | 说明       |
 | --------- | ---- | ---- | -------- |
 | startDate | Date | 是    | 起始的时间日期。 |
 | endDate   | Date | 是    | 结束的时间日期。 |
 
 **返回值：** 
+
 | 类型     | 说明             |
 | ------ | -------------- |
 | string | 格式化后的时间日期段字符串。 |
@@ -253,6 +262,7 @@ resolvedOptions(): DateTimeOptions
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                                  | 说明                            |
 | ----------------------------------- | ----------------------------- |
 | [DateTimeOptions](#datetimeoptions) | DateTimeFormat&nbsp;对象的格式化选项。 |
@@ -264,7 +274,7 @@ resolvedOptions(): DateTimeOptions
   ```
 
 
-## DateTimeOptions
+## DateTimeOptions<sup>9+</sup>
 
 表示时间日期格式化选项。
 
@@ -318,7 +328,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-参数：
+**参数：** 
+
 | 参数名     | 类型                              | 必填   | 说明                           |
 | ------- | ------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;   | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -339,11 +350,13 @@ format(number: number): string;
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
 | number | number | 是    | 数字对象 |
 
 **返回值：** 
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的数字字符串 |
@@ -365,6 +378,7 @@ resolvedOptions(): NumberOptions
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                              | 说明                          |
 | ------------------------------- | --------------------------- |
 | [NumberOptions](#numberoptions) | NumberFormat&nbsp;对象的格式化选项。 |
@@ -377,7 +391,7 @@ resolvedOptions(): NumberOptions
   ```
 
 
-## NumberOptions
+## NumberOptions<sup>9+</sup>
 
 表示设备支持的能力。
 
@@ -391,7 +405,7 @@ resolvedOptions(): NumberOptions
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| unitUsage<sup>8+</sup>   | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
+| unitUsage                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
 | signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
 | compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
 | notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。 |
@@ -453,12 +467,14 @@ compare(first: string, second: string): number
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名    | 类型     | 必填   | 说明           |
 | ------ | ------ | ---- | ------------ |
 | first  | string | 是    | 进行比较第一个字符串。  |
 | second | string | 是    | 进行比较的第二个字符串。 |
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | number | 比较结果。当number为负数，表示first排序在second之前；当number为0，表示first与second排序相同；当number为正数，表示first排序在second之后。 |
@@ -479,6 +495,7 @@ resolvedOptions(): CollatorOptions
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                                  | 说明                |
 | ----------------------------------- | ----------------- |
 | [CollatorOptions](#collatoroptions) | 返回的Collator对象的属性。 |
@@ -490,7 +507,7 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>8+</sup>
+## CollatorOptions<sup>9+</sup>
 
 表示Collator可设置的属性。
 
@@ -532,7 +549,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 **系统能力**：SystemCapability.Global.I18n
 
-参数：
+**参数：** 
+
 | 参数名     | 类型                                       | 必填   | 说明                           |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -553,11 +571,13 @@ select(n: number): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名  | 类型     | 必填   | 说明           |
 | ---- | ------ | ---- | ------------ |
 | n    | number | 是    | 待获取单复数类别的数字。 |
 
 **返回值：** 
+
 | 类型     | 说明                                       |
 | ------ | ---------------------------------------- |
 | string | 单复数类别，取值包括："zero"，"one"，"two",&nbsp;"few",&nbsp;"many",&nbsp;"others"。 |
@@ -569,7 +589,7 @@ select(n: number): string
   ```
 
 
-## PluralRulesOptions<sup>8+</sup>
+## PluralRulesOptions<sup>9+</sup>
 
 表示PluralRules对象可设置的属性。
 
@@ -611,7 +631,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 
 **系统能力**：SystemCapability.Global.I18n
 
-参数：
+**参数：** 
+
 | 参数名     | 类型                                       | 必填   | 说明                           |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
@@ -632,12 +653,14 @@ format(value: number, unit: string): string
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
 | unit  | string | 是    | 相对时间格式化的单位，取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
 **返回值：** 
+
 | 类型     | 说明         |
 | ------ | ---------- |
 | string | 格式化后的相对时间。 |
@@ -658,12 +681,14 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
+
 | 参数名   | 类型     | 必填   | 说明                                       |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 相对时间格式化的数值。                              |
 | unit  | string | 是    | 相对时间格式化的单位，取值包括："year",&nbsp;"quarter",&nbsp;"month",&nbsp;"week",&nbsp;"day",&nbsp;"hour",&nbsp;"minute",&nbsp;"second"。 |
 
 **返回值：** 
+
 | 类型                  | 说明                          |
 | ------------------- | --------------------------- |
 | Array&lt;object&gt; | 返回可用于自定义区域设置格式的相对时间格式的对象数组。 |
@@ -684,6 +709,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
+
 | 类型                                       | 说明                                |
 | ---------------------------------------- | --------------------------------- |
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
@@ -695,7 +721,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>8+</sup>
+## RelativeTimeFormatInputOptions<sup>9+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
 

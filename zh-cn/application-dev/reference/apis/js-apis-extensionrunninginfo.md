@@ -12,9 +12,9 @@ ExtensionRunningInfo模块提供对Extension运行的相关信息和类型进行
 通过abilityManager中方法获取。
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilityManager from '@ohos.application.abilityManager';
 let upperLimit=1
-abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });
 ```

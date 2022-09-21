@@ -49,7 +49,7 @@ vendor
 
 ### 单板配置
 
-在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括cpu、toolchain、kernel、compile flags等。例如：
+在关联到的<board>目录下，以`device/board/lango/dev_wifi_a`为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括CPU、toolchain、kernel、compile flags等。例如：
 
 ```
 # 内核类型
@@ -358,7 +358,7 @@ LOSCFG_DRIVERS_HDF_PLATFORM=y
 
 #### GPIO适配
 
-1. 芯片驱动适配文件位于`//drivers/adapter/platform`目录，在gpio目录增加gpio_asr.c和gpio_asr.h文件，在BUILD.gn中增加新增的驱动文件编译条件：
+1. 芯片驱动适配文件位于`//drivers/hdf_core/adapter/platform`目录，在gpio目录增加gpio_asr.c文件，在BUILD.gn中增加新增的驱动文件编译条件：
 
    ```
    if (defined(LOSCFG_SOC_COMPANY_ASRMICRO)) {

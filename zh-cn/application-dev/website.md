@@ -48,7 +48,6 @@
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
         - [像素单位](ui/ts-pixel-units.md)
-        - [类型定义](ui/ts-types.md)
       - 声明式语法
         - [描述规范使用说明](ui/ts-syntax-intro.md)
         - 通用UI描述规范
@@ -190,17 +189,10 @@
       - [后台提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
-    - 窗口
-      - [窗口开发概述](windowmanager/window-overview.md)
-      - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
-      - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
-      - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
-    - 屏幕属性
-      - [屏幕属性开发概述](windowmanager/display-overview.md)
-      - [屏幕属性开发指导](windowmanager/display-guidelines.md)
-    - 屏幕截图
-      - [屏幕截图开发概述](windowmanager/screenshot-overview.md)
-      - [屏幕截图开发指导](windowmanager/screenshot-guidelines.md)
+    - [窗口开发概述](windowmanager/window-overview.md)
+    - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
+    - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
+    - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
   - WebGL
     - [WebGL开发概述](webgl/webgl-overview.md)
     - [WebGL开发指导](webgl/webgl-guidelines.md)
@@ -377,7 +369,7 @@
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
-  - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
+  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - 组件参考（基于TS扩展的声明式开发范式）
@@ -533,7 +525,8 @@
         - [时间选择弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
-    - [文档中涉及到的内置枚举值](reference/arkui-ts/ts-appendix-enums.md)
+    - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
+    - [类型说明](reference/arkui-ts/ts-types.md)
   - 组件参考（基于JS扩展的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -639,7 +632,6 @@
   - JS服务卡片UI组件参考
     - JS服务卡片UI框架说明
         - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
-        - [配置文件](reference/js-service-widget-ui/js-service-widget-config-file.md)
         - 语法
             - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
             - [CSS语法参考](reference/js-service-widget-ui/js-service-widget-syntax-css.md)
@@ -765,6 +757,7 @@
       - [PermissionDef (PermissionDef)](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo (RemoteAbilityInfo)](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo (ShortcutInfo)](reference/apis/js-apis-bundle-ShortcutInfo.md)
+      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)

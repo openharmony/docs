@@ -169,8 +169,6 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
   |  ----  |  ----  |  ----  |
   | RdbStore | int Backup(const std::string databasePath, const std::vector&lt;uint8_t&gt; destEncryptKey) | Backs up the current database file.<br>- **databasePath**: name or path of the backup file to generate.<br>- **destEncryptKey**: key used to encrypt the RDB store. Currently, only non-encrypted RDB stores can be backed up. |
 
-  
-
 - Restoring an RDB store
 
   Call **int Restore()** to restore an RDB from the backup file. **backupPath** specifies the name or path of the backup file. If the restore is successful, **0** is returned; otherwise, an error code is returned.
@@ -187,11 +185,11 @@ You can use the APIs provided by **rdbStore** to back up and restore local datab
 
   Table 16 Transaction APIs
 
-| Class| API| Description|
-|  ----  |  ----  |  ----  |
-| RdbStore | int BeginTransaction() | Starts a transaction.|
-| RdbStore | int Commit() | Commits the changes.|
-| RdbStore | int RollBack() | Rolls back the changes.|
+  | Class| API| Description|
+  |  ----  |  ----  |  ----  |
+  | RdbStore | int BeginTransaction() | Starts a transaction.|
+  | RdbStore | int Commit() | Commits the changes.|
+  | RdbStore | int RollBack() | Rolls back the changes.|
 
 ## Constraints
 
@@ -208,9 +206,9 @@ None.
     c. Create an RDB store.
 
     The sample code is as follows:
-    ```
+    ```c++
     const std::string DATABASE_NAME = RDB_TEST_PATH + "RdbStoreTest.db";
-    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
+    const std::string CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, salary REAL, blobType BLOB)";
 
     class OpenCallback : public RdbOpenCallback {
     public:
@@ -238,7 +236,7 @@ None.
     c. Create an RDB store.
 
     The sample code is as follows:
-    ```
+    ```c++
     ValuesBucket values;
 
     values.PutInt("id", 1);
@@ -260,7 +258,7 @@ None.
     d. Call the **ResultSet** APIs to traverse data in the result set.
 
     The sample code is as follows:
-    ```
+    ```c++
     std::vector<std::string> columns = {"id", "name", "age", "salary"};
 
     RdbPredicates predicates("test");
@@ -275,7 +273,7 @@ None.
 
     The sample code is as follows:
 
-    ```
+    ```c++
     store->SetDistributedTables("test");
     ```
 
@@ -289,7 +287,7 @@ None.
 
     The sample code is as follows:
 
-    ```
+    ```c++
     SyncOption option;
     option.mode = PUSH;
     option.isBlock = true;
@@ -312,7 +310,7 @@ None.
 
     The sample code is as follows:
 
-    ```
+    ```c++
     class MyObserver : public RdbStoreObserver {
     public:
         void OnChange(const std::vector<std::string>& devices) override {
@@ -337,10 +335,10 @@ None.
    b. Run SQL statements to query data in the RDB store of the remote device.
 
    The sample code is as follows:
-   ```
+   ```c++
     std::string tableName = store->ObtainDistributedTableName("123456789abcd", "test");
     auto resultSet = store->QuerySql("SELECT * from ?;", tableName);
-   ```
+    ```
 
 8. Back up and restore an RDB store.
 
@@ -349,9 +347,9 @@ None.
    b. Restore the RDB store from the specified backup file.
 
    The sample code is as follows:
-   ```
+   ```c++
     std::string backupName = "backup.db"; // Name of the database backup file to generate.
     std::vector<uint8_t> key; // Key used to encrypt the RDB store.
     int errno = store->Backup(backupName, key);
     errno = store->Restore(backupName, key);
-   ```
+    ```

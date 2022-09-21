@@ -10,11 +10,11 @@ OpenHarmony 3.2 Beta2版本相较于OpenHarmony 3.2 Beta1版本，Web子系统�
 | ohos.web | WebDataBase | static getHttpAuthCredentials(host: string, realm: string): Array\<string>; | 新增 |
 | ohos.web | WebDataBase | static deleteHttpAuthCredentials(): void; | 新增 |
 | ohos.web | WebDataBase | static existHttpAuthCredentials(): boolean; | 新增 |
-| ohos.web | WebStorage | static getOriginUsage(origin : string) : Promise\<number> ;<br>static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void; | 新增 |
-| ohos.web | WebStorage | static getOriginQuota(origin : string) : Promise\<number>;<br>static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void; | 新增 |
-| ohos.web | WebStorage | static getOrigins() : Promise\<Array\<WebStorageOrigin>>;<br>static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void; | 新增 |
-| ohos.web | WebStorage | static deleteOrigin(origin : string): void; | 新增 |
-| ohos.web | WebStorage | static deleteAllData() : void; | 新增 |
+| ohos.web | WebStorage | static getOriginUsage(origin: string): Promise\<number> ;<br>static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.web | WebStorage | static getOriginQuota(origin: string): Promise\<number>;<br>static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void; | 新增 |
+| ohos.web | WebStorage | static getOrigins(): Promise\<Array\<WebStorageOrigin>>;<br>static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void; | 新增 |
+| ohos.web | WebStorage | static deleteOrigin(origin: string): void; | 新增 |
+| ohos.web | WebStorage | static deleteAllData(): void; | 新增 |
 | ohos.web | WebStorageOrigin | quota: number; | 新增 |
 | ohos.web | WebStorageOrigin | usage: number; | 新增 |
 | ohos.web | WebStorageOrigin | origin: string; | 新增 |

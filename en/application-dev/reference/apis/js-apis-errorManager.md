@@ -34,13 +34,6 @@ var observer = {
     }
 }
 errorManager.registerErrorObserver(observer)
-    .then((data) => {
-        console.log('----------- registerErrorObserver success ----------', data);
-    })
-    .catch((err) => {
-        console.log('----------- registerErrorObserver fail ----------', err);
-    })
-
 ```
 
 ## ErrorManager.unregisterErrorObserver
@@ -129,11 +122,4 @@ var observer = {
     }
 }
 errorManager.registerErrorObserver(observer)
-    .then((data) => {
-        console.log('----------- registerErrorObserver success ----------', data);
-    })
-    .catch((err) => {
-        console.log('----------- registerErrorObserver fail ----------', err);
-    })
-
 ```

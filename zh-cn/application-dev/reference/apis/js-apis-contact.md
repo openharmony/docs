@@ -24,6 +24,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                        | 必填 | 说明                           |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | contact  | [Contact](#contact)         | 是   | 联系人信息。                   |
@@ -33,7 +34,7 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
   ```js
   contact.addContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err, data) => {
       if (err) {
@@ -56,11 +57,13 @@ addContact(contact: Contact): Promise&lt;number&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名  | 类型                | 必填 | 说明         |
 | ------- | ------------------- | ---- | ------------ |
 | contact | [Contact](#contact) | 是   | 联系人信息。 |
 
 **返回值：**
+
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;number&gt; | 以Promise形式返回结果，返回添加的联系人id。 |
@@ -91,6 +94,7 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | key      | string                    | 是   | 联系人key值，一个联系人对应一个key。 |
@@ -120,11 +124,13 @@ deleteContact(key: string): Promise&lt;void&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | key    | string | 是   | 联系人的key值，一个联系人对应一个key。 |
 
 **返回值：**
+
 | 类型                | 说明                                          |
 | ------------------- | --------------------------------------------- |
 | Promise&lt;void&gt; | 以Promise形式返回结果，返回删除联系人的结果。 |
@@ -152,6 +158,7 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                      | 必填 | 说明                                 |
 | -------- | ------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)       | 是   | 联系人信息。                         |
@@ -184,6 +191,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                    | 必填 | 说明                                 |
 | -------- | --------------------------------------- | ---- | ------------------------------------ |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。                         |
@@ -194,7 +202,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
   ```js
   contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   },{
       attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
@@ -219,6 +227,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名  | 类型                                    | 必填 | 说明               |
 | ------- | --------------------------------------- | ---- | ------------------ |
 | contact | [Contact](#contact)                     | 是   | 联系人信息。       |
@@ -233,7 +242,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
   ```js
   let promise = contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
@@ -257,6 +266,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | 是   | 联系人对象的id属性，一个联系人对应一个id。                   |
@@ -286,11 +296,13 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
 | id     | number | 是   | 联系人对象的id属性，一个联系人对应一个id。 |
 
 **返回值：**
+
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回布尔值。true代表联系人id在本地电话簿中，false则代表联系人id不在本地电话簿中。 |
@@ -318,6 +330,7 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                         | 必填 | 说明                                                         |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | id       | number                       | 是   | 联系人对象的id属性。                                         |
@@ -347,11 +360,13 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | id     | number | 是   | 联系人对象的id属性。 |
 
 **返回值：**
+
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | 以Promise形式返回结果，返回是否为“我的名片”的布尔值。true代表此联系人是“我的名片”，false则代表不是。 |
@@ -379,6 +394,7 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                           |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数，返回“我的名片”信息。 |
@@ -407,6 +423,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                           |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | attrs    | [ContactAttributes](#contactattributes)  | 是   | 联系人的属性列表。             |
@@ -438,6 +455,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型                                    | 必填 | 说明               |
 | ------ | --------------------------------------- | ---- | ------------------ |
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。 |
@@ -469,9 +487,10 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
-**系统能力**：SystemCapability.Applications.Contacts、SystemCapability.Applications.ContactsData
+**系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回选择的联系人对象数组。 |
@@ -500,6 +519,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 **系统能力**：SystemCapability.Applications.Contacts、SystemCapability.Applications.ContactsData
 
 **返回值：**
+
 | 类型                                            | 说明                                              |
 | ----------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回选择的联系人对象数组。 |
@@ -527,6 +547,7 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                                   |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
@@ -556,6 +577,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                                   |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
@@ -590,6 +612,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                                   |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
@@ -622,6 +645,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                     | 必填 | 说明                                   |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。 |
@@ -659,6 +683,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型                                    | 必填 | 说明                                   |
 | ------ | --------------------------------------- | ---- | -------------------------------------- |
 | key    | string                                  | 是   | 联系人的key值，一个联系人对应一个key。 |
@@ -699,6 +724,7 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Contact](#contact)&gt;&gt; | 是   | 回调函数，返回查询到的联系人对象数组。 |
@@ -727,6 +753,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
@@ -760,6 +787,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | attrs    | [ContactAttributes](#contactattributes)               | 是   | 联系人的属性列表。                     |
@@ -791,6 +819,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | holder   | [Holder](#holder)                                     | 是   | 创建联系人的应用信息。                 |
@@ -827,6 +856,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | holder | [Holder](#holder)                       | 否   | 创建联系人的应用信息。 |
@@ -866,6 +896,7 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名      | 类型                                                  | 必填 | 说明                                   |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
@@ -895,6 +926,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名      | 类型                                                  | 必填 | 说明                                   |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
@@ -929,6 +961,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名      | 类型                                                  | 必填 | 说明                                   |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
@@ -961,6 +994,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名      | 类型                                                  | 必填 | 说明                                   |
 | ----------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                                                | 是   | 联系人的电话号码。                     |
@@ -998,6 +1032,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名      | 类型                                    | 必填 | 说明                   |
 | ----------- | --------------------------------------- | ---- | ---------------------- |
 | phoneNumber | string                                  | 是   | 联系人的电话号码。     |
@@ -1005,6 +1040,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 | attrs       | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
 
 **返回值：**
+
 | 类型                                            | 说明                                                |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
@@ -1038,6 +1074,7 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | email    | string                                                | 是   | 联系人的邮箱地址。                     |
@@ -1067,6 +1104,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                   |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------- |
 | email    | string                                                | 是   | 联系人的邮箱地址。                     |
@@ -1101,6 +1139,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | email    | string                                                | 是   | 联系人的邮箱地址。                   |
@@ -1133,6 +1172,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                  | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
 | email    | string                                                | 是   | 联系人的邮箱地址。                   |
@@ -1170,6 +1210,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型                                    | 必填 | 说明                   |
 | ------ | --------------------------------------- | ---- | ---------------------- |
 | email  | string                                  | 是   | 联系人的邮箱地址。     |
@@ -1177,6 +1218,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 | attrs  | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。     |
 
 **返回值：**
+
 | 类型                                            | 说明                                                |
 | ----------------------------------------------- | --------------------------------------------------- |
 | Promise&lt;Array&lt;[Contact](#contact)&gt;&gt; | 以Promise形式返回结果，返回查询到的联系人对象数组。 |
@@ -1210,6 +1252,7 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;[Group](#group)&gt;&gt; | 是   | 回调函数，返回查询到的群组对象数组。 |
@@ -1238,6 +1281,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
 | holder   | Holder                                            | 是   | 创建联系人的应用信息。               |
@@ -1271,11 +1315,13 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
 | holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
 
 **返回值：**
+
 | 类型                                        | 说明                                              |
 | ------------------------------------------- | ------------------------------------------------- |
 | Promise&lt;Array&lt;[Group](#group)&gt;&gt; | 以Promise形式返回结果，返回查询到的群组对象数组。 |
@@ -1307,6 +1353,7 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                                                | 必填 | 说明                                                 |
 | -------- | --------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Holder](#holder)&gt;&gt; | 是   | 回调函数，返回查询到的创建联系人应用信息的对象数组。 |
@@ -1335,6 +1382,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **返回值：**
+
 | 类型                                          | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[Holder](#holder)&gt;&gt; | 以Promise形式返回结果，返回查询到的创建联系人应用信息的对象数组。 |
@@ -1362,6 +1410,7 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                        | 必填 | 说明                                    |
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | id       | number                      | 是   | 联系人对象的id属性。                    |
@@ -1391,6 +1440,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名   | 类型                        | 必填 | 说明                                    |
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | id       | number                      | 是   | 联系人对象的id属性。                    |
@@ -1400,7 +1450,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 **示例：**
 
   ```js
-  contact.queryKey(id, {
+  contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1425,12 +1475,14 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 **系统能力**：SystemCapability.Applications.ContactsData
 
 **参数：**
+
 | 参数名 | 类型              | 必填 | 说明                   |
 | ------ | ----------------- | ---- | ---------------------- |
 | id     | number            | 是   | 联系人对象的id属性。   |
 | holder | [Holder](#holder) | 否   | 创建联系人的应用信息。 |
 
 **返回值：**
+
 | 类型                  | 说明                                                 |
 | --------------------- | ---------------------------------------------------- |
 | Promise&lt;string&gt; | 以Promise形式返回结果，返回查询到的联系人对应的key。 |
@@ -1438,7 +1490,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  let promise = contact.queryKey(id, {
+  let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1553,7 +1605,7 @@ let contactAttributes = {
 
 ```js
 let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = ["ATTR_EMAIL"];
+contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 

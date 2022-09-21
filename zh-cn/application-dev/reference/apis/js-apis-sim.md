@@ -589,7 +589,7 @@ getActiveSimAccountInfoList(callback: AsyncCallback<Array<IccAccountInfo\>>): vo
 **示例：**
 
 ```js
-sim.getActiveSimAccountInfoList(0, (err, data) => {
+sim.getActiveSimAccountInfoList((err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -710,7 +710,7 @@ setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-const name = '中国移动';
+let name = '中国移动';
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```js
-const name = '中国移动';
+let name = '中国移动';
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
@@ -1096,9 +1096,9 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 
 ```js
 let lockInfo = {
-    lockType = 1,
+    lockType: sim.LockType.PIN_LOCK,
     password = "1234",
-    state = 0
+    state: sim.LockState.LOCK_OFF
 };
 sim.setLockState(0, lockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1135,9 +1135,9 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 
 ```js
 let lockInfo = {
-    lockType = 1,
+    lockType: sim.LockType.PIN_LOCK,
     password = "1234",
-    state = 0
+    state: sim.LockState.LOCK_OFF
 };
 let promise = sim.setLockState(0, lockInfo);
 promise.then(data => {
@@ -2236,12 +2236,12 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-sim.addIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2277,12 +2277,12 @@ addIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-let promise = sim.addIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.addIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`addIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2315,12 +2315,12 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-sim.delIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2356,12 +2356,12 @@ delIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dialli
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-let promise = sim.delIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.delIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`delIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2394,12 +2394,12 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof, (err, data) => {
+sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2435,12 +2435,12 @@ updateIccDiallingNumbers(slotId: number, type: ContactType, diallingNumbers: Dia
 
 ```js
 let diallingNumbersInof = {
-    alphaTag = "alpha",
-    number = "138xxxxxxxx",
-    recordNumber = 123,
-    pin2 = "1234"
+    alphaTag: "alpha",
+    number: "138xxxxxxxx",
+    recordNumber: 123,
+    pin2: "1234"
 };
-let promise = sim.updateIccDiallingNumbers(0, 1, diallingNumbersInof);
+let promise = sim.updateIccDiallingNumbers(0, sim.ContactType.GENERAL_CONTACT, diallingNumbersInof);
 promise.then(data => {
     console.log(`updateIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2602,7 +2602,7 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 
 ```js
 let persoLockInfo = {
-    lockType = 0,
+    lockType = sim.PersoLockType.PN_PIN_LOCK,
     password = "1234"
 };
 sim.unlockSimLock(0, persoLockInfo, (err, data) => {
@@ -2640,7 +2640,7 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 
 ```js
 let persoLockInfo = {
-    lockType = 0,
+    lockType = sim.PersoLockType.PN_PIN_LOCK,
     password = "1234"
 };
 let promise = sim.unlockSimLock(0, persoLockInfo);

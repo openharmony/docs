@@ -13,12 +13,14 @@ addColorStop(offset: number, color: string): void
 设置渐变断点值，包括偏移和颜色。
 
 **参数：** 
+
 | 参数     | 类型     | 描述                           |
 | ------ | ------ | ---------------------------- |
 | offset | number | 设置渐变点距离起点的位置占总体长度的比例，范围为0到1。 |
 | color  | string | 设置渐变的颜色。                     |
 
 **示例：** 
+
   ```html
 <!-- xxx.hml -->
 <div>

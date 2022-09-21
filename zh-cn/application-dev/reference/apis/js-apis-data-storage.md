@@ -6,8 +6,10 @@
 > **说明：**
 >
 > -  本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 
+>
 > -  从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.data.preferences`](js-apis-data-preferences.md)。
+> 
+> -  本模块接口仅可在FA模型下使用。
 
 
 ## 导入模块
@@ -55,7 +57,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   let storage = data_storage.getStorageSync(path + '/mystore');
   storage.putSync('startup', 'auto');
@@ -88,7 +90,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   data_storage.getStorage(path + '/mystore', function (err, storage) {
     if (err) {
@@ -131,7 +133,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   let getPromise = data_storage.getStorage(path + '/mystore');
   getPromise.then((storage) => {
@@ -167,7 +169,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
 
     data_storage.deleteStorageSync(path + '/mystore');
 });  
@@ -197,7 +199,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   data_storage.deleteStorage(path + '/mystore', function (err) {
     if (err) {
@@ -239,7 +241,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   let promisedelSt = data_storage.deleteStorage(path + '/mystore');
   promisedelSt.then(() => {
@@ -273,7 +275,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
     path = filePath;
-    console.info("======================>getFilesDirPromsie====================>");
+    console.info("======================>getFilesDirPromise====================>");
     
     data_storage.removeStorageFromCacheSync(path + '/mystore');
 });  
@@ -304,7 +306,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   data_storage.removeStorageFromCache(path + '/mystore', function (err) {
     if (err) {
@@ -346,7 +348,7 @@ var path;
 var context = featureAbility.getContext();
 context.getFilesDir().then((filePath) => {
   path = filePath;
-  console.info("======================>getFilesDirPromsie====================>");
+  console.info("======================>getFilesDirPromise====================>");
 
   let promiserevSt = data_storage.removeStorageFromCache(path + '/mystore')
   promiserevSt.then(() => {

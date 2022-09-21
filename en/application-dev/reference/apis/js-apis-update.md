@@ -1379,7 +1379,7 @@ Represents a version component.
 
 | Parameter             | Type                               | Mandatory  | Description      |
 | --------------- | ----------------------------------- | ---- | -------- |
-| componentId     | number                              | Yes   | Component ID.    |
+| componentId     | string                              | Yes   | Component ID.    |
 | componentType   | [ComponentType](#componenttype)     | Yes   | Component type.    |
 | upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Update mode.    |
 | displayVersion  | string                              | Yes   | Display version number.   |

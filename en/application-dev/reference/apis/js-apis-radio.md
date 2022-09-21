@@ -70,7 +70,7 @@ let promise = radio.getRadioTech(slotId);
 promise.then(data => {
     console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getRadioTech fail, err->${JSON.stringify(err)}`);
+    console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -157,7 +157,7 @@ let promise = radio.getNetworkState(slotId);
 promise.then(data => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkState fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -215,7 +215,7 @@ let promise = radio.getNetworkSelectionMode(slotId);
 promise.then(data => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -273,7 +273,7 @@ let promise = radio.getISOCountryCodeForNetwork(slotId);
 promise.then(data => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getISOCountryCodeForNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -322,7 +322,7 @@ let promise = radio.getPrimarySlotId();
 promise.then(data => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -380,7 +380,7 @@ let promise = radio.getSignalInformation(slotId);
 promise.then(data => {
     console.log(`getSignalInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getSignalInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getSignalInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -389,7 +389,7 @@ promise.then(data => {
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the current device supports 5G \(NR\).
+Checks whether the current device supports 5G \(NR\) for the SIM card in the specified slot.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -470,7 +470,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 isRadioOn\(slotId?: number\): Promise<boolean\>
 
-Checks whether the radio service is enabled. This API uses a promise to return the result.
+Checks whether the radio service is enabled on the SIM card in the specified slot. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -496,7 +496,7 @@ let promise = radio.isRadioOn(slotId);
 promise.then(data => {
     console.log(`isRadioOn success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`isRadioOn fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isRadioOn failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -505,7 +505,7 @@ promise.then(data => {
 
 getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
-Obtains the carrier name. This API uses an asynchronous callback to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -530,7 +530,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 getOperatorName\(slotId: number\): Promise<string\>
 
-Obtains the carrier name. This API uses a promise to return the result.
+Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -554,7 +554,7 @@ let promise = radio.getOperatorName(slotId);
 promise.then(data => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getOperatorName fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -564,7 +564,7 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 Sets the ID of the slot in which the primary card is located. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -593,7 +593,7 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 Sets the ID of the slot in which the primary card is located. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -619,7 +619,7 @@ let promise = radio.setPrimarySlotId(slotId);
 promise.then(data => {
     console.log(`setPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPrimarySlotId fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -629,7 +629,7 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -656,7 +656,7 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -685,7 +685,7 @@ getIMEI(slotId?: number): Promise<string\>
 
 Obtains the IMEI of the SIM card in a card slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -711,7 +711,7 @@ let promise = radio.getIMEI(slotId);
 promise.then(data => {
     console.log(`getIMEI success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getIMEI fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getIMEI failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -721,7 +721,7 @@ getMEID(callback: AsyncCallback<string\>): void
 
 Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -748,7 +748,7 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -777,7 +777,7 @@ getMEID(slotId?: number): Promise<string\>
 
 Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -803,7 +803,7 @@ let promise = radio.getMEID(slotId);
 promise.then(data => {
     console.log(`getMEID success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getMEID fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getMEID failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -813,7 +813,7 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -840,7 +840,7 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -869,7 +869,7 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -895,7 +895,7 @@ let promise = radio.getUniqueDeviceId(slotId);
 promise.then(data => {
     console.log(`getUniqueDeviceId success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getUniqueDeviceId fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getUniqueDeviceId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -905,9 +905,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
-
-
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -927,13 +925,45 @@ radio.sendUpdateCellLocationRequest((err, data) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(\): Promise<void\>
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
 
-Sends a cell location update request. This API uses a promise to return the result.
+Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description      |
+| -------- | --------------------- | ---- | ---------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+let slotId = 0;
+radio.sendUpdateCellLocationRequest(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## radio.sendUpdateCellLocationRequest<sup>8+</sup>
+
+sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
+
+Sends a cell location update request for the SIM card in the specified slot.This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | No  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 
 **Return value**
 
@@ -944,11 +974,12 @@ This is a system API.
 **Example**
 
 ```js
-let promise = radio.sendUpdateCellLocationRequest();
+let slotId = 0;
+let promise = radio.sendUpdateCellLocationRequest(slotId);
 promise.then(data => {
     console.log(`sendUpdateCellLocationRequest success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`sendUpdateCellLocationRequest fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -958,7 +989,7 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 Obtains cell information. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -983,9 +1014,9 @@ radio.getCellInformation((err, data) => {
 
 getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
 
-Obtains cell information. This API uses an asynchronous callback to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -1012,9 +1043,9 @@ radio.getCellInformation(slotId, (err, data) => {
 
 getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
-Obtains cell information. This API uses a promise to return the result.
+Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.LOCATION
 
@@ -1040,7 +1071,7 @@ let promise = radio.getCellInformation(slotId);
 promise.then(data => {
     console.log(`getCellInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getCellInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1050,7 +1081,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 Sets the network selection mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1089,7 +1120,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 Sets the network selection mode. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1126,7 +1157,7 @@ let promise = radio.setNetworkSelectionMode(networkSelectionModeOptions);
 promise.then(data => {
     console.log(`setNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setNetworkSelectionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1134,9 +1165,9 @@ promise.then(data => {
 
 getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
 
-Obtains network search information. This API uses an asynchronous callback to return the result. 
+Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result. 
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1161,9 +1192,9 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 getNetworkSearchInformation\(slotId: number\): Promise<void\>
 
-Obtains network search information. This API uses a promise to return the result.
+Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1188,7 +1219,7 @@ let promise = radio.getNetworkSearchInformation(0);
 promise.then(data => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getNetworkSearchInformation fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1198,7 +1229,7 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 Obtains the NR option mode. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1221,9 +1252,9 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
-Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1248,9 +1279,9 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
-Obtains the NR option mode. This API uses a promise to return the result.
+Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1274,7 +1305,7 @@ let promise = radio.getNrOptionMode(slotId);
 promise.then(data => {
     console.log(`getNrOptionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`getNrOptionMode fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNrOptionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1284,7 +1315,7 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 Turns on the radio function. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1311,7 +1342,7 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1340,7 +1371,7 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 Turns on the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1366,7 +1397,7 @@ let promise = radio.turnOnRadio(slotId);
 promise.then(data => {
     console.log(`turnOnRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOnRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOnRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1376,7 +1407,7 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 Turns off the radio function. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1403,7 +1434,7 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1432,7 +1463,7 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 Turns off the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1458,7 +1489,7 @@ let promise = radio.turnOffRadio(slotId);
 promise.then(data => {
     console.log(`turnOffRadio success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.error(`turnOffRadio fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`turnOffRadio failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1466,9 +1497,9 @@ promise.then(data => {
 
 setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
 
-Sets the preferred network. This API uses an asynchronous callback to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1494,9 +1525,9 @@ radio.setPreferredNetwork(0, 1, (err, data) => {
 
 setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
 
-Sets the preferred network. This API uses a promise to return the result.
+Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.SET_TELEPHONY_STATE
 
@@ -1522,7 +1553,7 @@ let promise = radio.setPreferredNetwork(0, 1);
 promise.then(data => {
     console.log(`setPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`setPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1530,9 +1561,9 @@ promise.then(data => {
 
 getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
 
-Obtains the preferred network. This API uses an asynchronous callback to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1557,9 +1588,9 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 getPreferredNetwork(slotId: number): Promise<void\>
 
-Obtains the preferred network. This API uses a promise to return the result.
+Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1584,7 +1615,7 @@ let promise = radio.getPreferredNetwork(0);
 promise.then(data => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getPreferredNetwork fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1592,9 +1623,9 @@ promise.then(data => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
 
-Obtains the IMS registration status of the specified IMS service type. This API uses an asynchronous callback to return the result.
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1620,9 +1651,9 @@ radio.getImsRegInfo(0, 1, (err, data) => {
 
 getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
-Obtains the IMS registration status of the specified IMS service type. This API uses a promise to return the result.
+Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses a promise to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1648,7 +1679,7 @@ let promise = radio.getImsRegInfo(0, 1);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
-    console.log(`getImsRegInfo fail, promise: err->${JSON.stringify(err)}`);
+    console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1656,9 +1687,9 @@ promise.then(data => {
 
 on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
 
-Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Enables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1685,9 +1716,9 @@ radio.on('imsRegStateChange', 0, 1, (err, data) => {
 
 off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
 
-Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
+Disables listening for **imsRegStateChange** events for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **Required permission**: ohos.permission.GET_TELEPHONY_STATE
 
@@ -1826,7 +1857,7 @@ Enumerates network selection modes.
 
 Enumerates preferred network modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1871,7 +1902,7 @@ This is a system API.
 
 Defines the cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1887,7 +1918,7 @@ This is a system API.
 
 Defines the CDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1903,7 +1934,7 @@ This is a system API.
 
 Defines the GSM cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1920,7 +1951,7 @@ This is a system API.
 
 Defines the LTE cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1939,7 +1970,7 @@ This is a system API.
 
 Defines the NR cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1956,7 +1987,7 @@ This is a system API.
 
 Defines the TD-SCDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1973,7 +2004,7 @@ This is a system API.
 
 Defines the WCDMA cell information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -1990,7 +2021,7 @@ This is a system API.
 
 Enumerates NR selection modes.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2005,7 +2036,7 @@ This is a system API.
 
 Defines the network search result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2018,7 +2049,7 @@ This is a system API.
 
 Defines the network information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2033,7 +2064,7 @@ This is a system API.
 
 Enumerates network information states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2048,7 +2079,7 @@ This is a system API.
 
 Defines the network selection mode.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2063,7 +2094,7 @@ This is a system API.
 
 Enumerates IMS registration states.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2076,7 +2107,7 @@ This is a system API.
 
 Enumerates IMS registration technologies.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2091,7 +2122,7 @@ This is a system API.
 
 Defines the IMS registration information.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2104,7 +2135,7 @@ This is a system API.
 
 Enumerates IMS service types.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 

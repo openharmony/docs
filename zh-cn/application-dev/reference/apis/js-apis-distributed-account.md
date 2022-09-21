@@ -21,12 +21,13 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-- 返回值：
+**返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | [DistributedAccountAbility](#distributedaccountability) | 返回一个实例，实例提供查询和更新分布式帐号登录状态方法。 |
 
-- 示例：
+**示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   ```
@@ -45,12 +46,13 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
 
-- 参数：
+**参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 获取分布式帐号信息的回调。 |
 
-- 示例：
+**示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => { 
@@ -70,12 +72,13 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.DISTRIBUTED_DATASYNC。
 
-- 返回值：
+**返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise实例，用于获取异步返回结果。 |
 
-- 示例：
+**示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => { 
@@ -96,13 +99,14 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
 
-- 参数：
+**参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
   | callback | AsyncCallback&lt;void&gt; | 是 | 更新分布式帐号信息的回调。 |
 
-- 示例：
+**示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
@@ -121,17 +125,19 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
 
-- 参数：
+**参数：**
+
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐户信息。 |
 
-- 返回值：
+**返回值：**
+
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-- 示例：
+**示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
