@@ -10,16 +10,17 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
 
     LED control examples are stored in the file **applications/sample/wifi-iot/app/iothardware/led\_example.c**.
 
-2.  Understand the cable connections by referring to the schematic diagram. You can learn that LED of hispark pegasus is connected to pin 9 of the chip.
+2.  Understand the cable connections by referring to the schematic diagram of the development board. You can learn that LED of hispark pegasus is connected to pin 9 of the chip.
 
     ```
     #define LED_TEST_GPIO 9
     ```
 
-    >![](../public_sys-resources/icon-note.gif) **NOTE:** 
+    >![](../public_sys-resources/icon-note.gif) **NOTE:**
+    >
     >For details about the schematic diagram of the development board, contact the Hi3861 customer service personnel.
 
-3.  Initialize the GPIO pin, specify the pin usage, and create a task to turn on or off the LED periodically so that the LED blinks.
+3.  Initialize the GPIO pin, specify the pin usage, and create a task that turns on or off the LED periodically to implement LED blinking.
 
     ```
     static void LedExampleEntry(void)
@@ -82,7 +83,7 @@ Based on the Hi3861 platform, the OpenHarmony WLAN module provides abundant peri
     SYS_RUN(LedExampleEntry);
     ```
 
-6.  Change the **applications/sample/wifi-iot/app/BUILD.gn** file to enable **led\_example.c** to participate in compilation.
+6.  Add **led\_example.c** to the **applications/sample/wifi-iot/app/BUILD.gn** file for building.
 
     ```
     import("//build/lite/config/component/lite_component.gni")
