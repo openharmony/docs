@@ -25,8 +25,8 @@
 
 | 宏定义 | 描述 |
 | -------- | -------- |
-| [SENSOR_NAME_MAX_LEN](#sensornamemaxlen)&nbsp;&nbsp;&nbsp;32 | Sensor名称的最大长度。 |
-| [SENSOR_VERSION_MAX_LEN](#sensorversionmaxlen)&nbsp;&nbsp;&nbsp;16 | Sensor版本号的最大长度。 |
+| [SENSOR_NAME_MAX_LEN](#sensor_name_max_len)&nbsp;&nbsp;&nbsp;32 | Sensor名称的最大长度。 |
+| [SENSOR_VERSION_MAX_LEN](#sensor_version_max_len)&nbsp;&nbsp;&nbsp;16 | Sensor版本号的最大长度。 |
 
 
 ### 类型定义
