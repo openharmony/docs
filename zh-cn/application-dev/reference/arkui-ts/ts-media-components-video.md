@@ -158,7 +158,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: Resource = $rawfile('video1');
+  @State srcs: Resource = $rawfile('video1.mp4');
   @State previewUris: Resource = $r('app.media.img');
   @State currentProgressRates: number = 1;
   @State autoPlays: boolean = false;
@@ -201,7 +201,7 @@ struct VideoCreateComponent {
                 })
       Row() {
         Button("src").onClick(() => {
-            this.srcs = $rawfile('video2');
+            this.srcs = $rawfile('video2.mp4');
         });
         Button("previewUri").onClick(() => {
             this.previewUris = $r('app.media.img1');
