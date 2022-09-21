@@ -304,7 +304,7 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
 
 向系统申请能效资源，使用boolean形式返回结果。
-进程和他所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
+进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 **系统API**: 此接口为系统接口。
@@ -373,15 +373,15 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 
 | 参数名                     | 参数值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
-| DATA_TRANSFER           | 1    | 数据传输                  |
-| AUDIO_PLAYBACK          | 2    | 音频播放                  |
-| AUDIO_RECORDING         | 3    | 录音                    |
-| LOCATION                | 4    | 定位导航                  |
-| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关                  |
-| MULTI_DEVICE_CONNECTION | 6    | 多设备互联                 |
+| DATA_TRANSFER           | 1    | 数据传输。                  |
+| AUDIO_PLAYBACK          | 2    | 音频播放。                  |
+| AUDIO_RECORDING         | 3    | 录音。                    |
+| LOCATION                | 4    | 定位导航。                  |
+| BLUETOOTH_INTERACTION   | 5    | 蓝牙相关。                  |
+| MULTI_DEVICE_CONNECTION | 6    | 多设备互联。                 |
 | WIFI_INTERACTION        | 7    | WLAN相关<br />此接口为系统接口。 |
 | VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
-| TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）        |
+| TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
 
 ## EfficiencyResourcesRequest<sup>9+</sup>
 
@@ -393,7 +393,7 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
 | isApply         | boolean | 是    | 申请资源或者是释放资源。          |
-| timeOut         | number  | 是    | 资源的使用时间，以ms为单位。                |
+| timeOut         | number  | 是    | 资源的使用时间，以毫秒为单位。                |
 | isPersist       | boolean | 否    | 是否永久持有资源，如果是true，那么timeOut就无效。    |
 | isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
 | reason          | string  | 是    | 申请资源的原因。                |
@@ -406,10 +406,10 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 
 | 参数名                     | 参数值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
-| CPU                     | 1    | CPU资源，申请后不被挂起             |
-| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉  |
-| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉    |
-| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉  |
-| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉z  |
-| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉 |
+| CPU                     | 1    | CPU资源，申请后不被挂起。             |
+| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
+| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
+| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
+| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
+| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
+| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
