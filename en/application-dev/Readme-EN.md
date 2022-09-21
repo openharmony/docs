@@ -37,7 +37,7 @@
 - Tools
     - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
-    - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+    - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
     - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/Readme-EN.md)
