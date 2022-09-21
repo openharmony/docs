@@ -499,6 +499,7 @@
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
        - [Light](driver/driver-peripherals-light-des.md)
+       - [Motion](driver/driver-peripherals-motion-des.md)
        - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
        - [Sensor](driver/driver-peripherals-sensor-des.md)
        - [Touchscreen](driver/driver-peripherals-touch-des.md)
