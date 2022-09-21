@@ -41,7 +41,7 @@ NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0x
 
 | 极简Bitmap标识             | Bitops | 字段长度         | 置位策略       | 备注                                    |
 | -------------------------- | ------ | ---------------- | -------------- | --------------------------------------- |
-| Bitmap 1st Byte:           |        |                  |                |                                         |
+| Bitmap 1st Byte:           | -      | -                | -              | -                                       |
 | 标记位Dispatch             | 0      | 不表示具体字段   | 置0            | 0：极简帧，1：普通帧。                  |
 | TTL                        | 1      | 1 Byte           | 置1            | 剩余跳数。                              |
 | Total Length               | 2      | 2 Byte           | UDP置0，TCP置1 | NewIP报文总长度（包含报头长度）。       |
@@ -49,15 +49,15 @@ NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0x
 | Reserve                    | 4      | 保留             | 置0            | 保留字段。                              |
 | Dest Address               | 5      | 变长（1~8 Byte） | 置1            | 目的地址。                              |
 | Source Address             | 6      | 变长（1~8 Byte） | 由协议自行确定 | 源地址。                                |
-| 标记位，标志是否有2nd Byte | 7      | 不表示具体字段   |                | 0：bitmap结束，1：后跟另外8bit bitmap。 |
-| Bitmap 2nd Byte:           |        |                  |                |                                         |
-| Header Length              | 0      | 1 Byte           |                | NewIP报头长度。                         |
-| Reserve                    | 1      | 保留             | 置0            |                                         |
-| Reserve                    | 2      | 保留             | 置0            |                                         |
-| Reserve                    | 3      | 保留             | 置0            |                                         |
-| Reserve                    | 4      | 保留             | 置0            |                                         |
-| Reserve                    | 5      | 保留             | 置0            |                                         |
-| Reserve                    | 6      | 保留             | 置0            |                                         |
+| 标记位，标志是否有2nd Byte | 7      | 不表示具体字段   | -              | 0：bitmap结束，1：后跟另外8bit bitmap。 |
+| Bitmap 2nd Byte:           | -      | -                | -              | -                                       |
+| Header Length              | 0      | 1 Byte           | -              | NewIP报头长度。                         |
+| Reserve                    | 1      | 保留             | 置0            | -                                       |
+| Reserve                    | 2      | 保留             | 置0            | -                                       |
+| Reserve                    | 3      | 保留             | 置0            | -                                       |
+| Reserve                    | 4      | 保留             | 置0            | -                                       |
+| Reserve                    | 5      | 保留             | 置0            | -                                       |
+| Reserve                    | 6      | 保留             | 置0            | -                                       |
 | 标记位，标志是否有3rd Byte | 7      | 不表示具体字段   | 置0            | 0：bitmap结束，1：后跟另外8bit bitmap。 |
 
 NewIP数据报头（极简模式）解析遇到新bitmap字段时的处理方法：
@@ -71,14 +71,14 @@ NewIP采用自解释编码，编码格式如下所示：
 | First Byte | Semantics                                                    | 地址段有效范围                                               |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 0x00       | Address is 0                                                 | 【1字节】0 ~ 220 (0x00 ~ 0xDC)                               |
-| 0x01       | Address is 1                                                 |                                                              |
-| 0x02       | Address is 2                                                 |                                                              |
-| ...        | ...                                                          |                                                              |
-| 0xDC       | Address is 220                                               |                                                              |
+| 0x01       | Address is 1                                                 | -                                                            |
+| 0x02       | Address is 2                                                 | -                                                            |
+| ...        | ...                                                          | -                                                            |
+| 0xDC       | Address is 220                                               | -                                                            |
 | 0xDD       | An 16-bit address, which is 0 + 256 * (0xDD - 0xDD) + the last byte value | 【2字节】221 ~ 255 (0x**DD**DD ~ 0x**DD**FF)                 |
 | 0xDE       | An 16-bit address, which is 0 + 256 * (0xDE - 0xDD) + the last byte value | 【2字节】256 ~ 511 (0x**DE**00 ~ 0x**DE**FF)                 |
 | 0xDF       | An 16-bit address, which is 0 + 256 * (0xDF - 0xDD) + the last byte value | 【2字节】512 ~ 767 (0x**DF**00 ~ 0x**DF**FF)                 |
-| ...        | ...                                                          |                                                              |
+| ...        | ...                                                          | -                                                            |
 | 0xF0       | An 16-bit address, which is 0 + 256 * (0xF0 - 0xDD) + the last byte value | 【2字节】4864 ~ 5119 (0x**F0**00 ~ 0x**F0**FF)               |
 | 0xF1       | An 16-bit address is followed                                | 【3字节】5120 ~ 65535 (0x**F1** 1400 ~ 0x**F1** FFFF)        |
 | 0xF2       | An 32-bit address is followed                                | 【5字节】65536 ~ 4,294,967,295 (0x**F2** 0001 0000 ~ 0x**F2** FFFF FFFF) |
