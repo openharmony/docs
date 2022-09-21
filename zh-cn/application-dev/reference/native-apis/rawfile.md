@@ -7,8 +7,6 @@
 
 提供操作rawfile目录和rawfile文件的功能
 
-提供操作rawfile目录和rawfile文件功能
-
 功能包括遍历、打开、搜索、读取和关闭rawfile
 
 **Since:**
