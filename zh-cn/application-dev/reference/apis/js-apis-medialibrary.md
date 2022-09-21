@@ -316,7 +316,7 @@ deleteAsset(uri: string): Promise\<void>
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -364,7 +364,7 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
