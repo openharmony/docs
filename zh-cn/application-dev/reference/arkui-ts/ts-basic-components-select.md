@@ -32,7 +32,7 @@ Select(options: Array\<SelectOption\>)
 | selectedOptionFont      | [Font](ts-types.md#font)                    | 设置下拉菜单选中项的文本样式。                |
 | selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置下拉菜单选中项的文本颜色。                |
 | optionBgColor           | [ResourceColor](ts-types.md#resourcecolor8) | 设置下拉菜单项的背景色。                      |
-| optionFont              | [Font](../../ui/ts-types.md)                | 设置下拉菜单项的文本样式。                    |
+| optionFont              | [Font](ts-types.md#font)                | 设置下拉菜单项的文本样式。                    |
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor8) | 设置下拉菜单项的文本颜色。                    |
 
 ## 事件
