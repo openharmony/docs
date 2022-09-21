@@ -203,7 +203,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
-**返回值**
+**返回值**：
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |
@@ -281,7 +281,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
-**返回值**
+**返回值**：
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |
@@ -307,6 +307,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
 **系统API**: 此接口为系统接口。
 
 **参数**：
@@ -315,7 +316,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
 
-**返回值**
+**返回值**：
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | boolean | true代表申请成功，false代表申请失败。 |
@@ -344,6 +345,7 @@ resetAllEfficiencyResources(): void
 释放所有已经申请的资源。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
 **系统API**: 此接口为系统接口。
 
 **示例**：
@@ -389,6 +391,8 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
+**系统API**: 此接口为系统接口。
+
 | 参数名             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
@@ -403,6 +407,8 @@ backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
 能效资源类型。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**系统API**: 此接口为系统接口。
 
 | 参数名                     | 参数值  | 描述                    |
 | ----------------------- | ---- | --------------------- |
