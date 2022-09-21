@@ -110,7 +110,7 @@ int32_t SensorEvents::version
 传感器算法版本号。
 
 
-### h2dataLen
+### dataLen
 
   
 ```
