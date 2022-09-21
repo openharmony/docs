@@ -30,13 +30,13 @@ HiLog模块实现日志打印功能。
 
 | 宏定义名称 | 描述 |
 | -------- | -------- |
-| [LOG_DOMAIN](#logdomain)   0 | 日志所对应的业务领域，用于标识业务的子系统、模块。 |
-| [LOG_TAG](#logtag)   NULL | 字符串常量，标识调用所在的类或者业务。 |
-| [OH_LOG_DEBUG](#ohlogdebug)(type, ...)   ((void)[OH_LOG_Print](#ohlogprint)((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
-| [OH_LOG_INFO](#ohloginfo)(type, ...)   ((void)[OH_LOG_Print](#ohlogprint)((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
-| [OH_LOG_WARN](#ohlogwarn)(type, ...)   ((void)[OH_LOG_Print](#ohlogprint)((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
-| [OH_LOG_ERROR](#ohlogerror)(type, ...)   ((void)[OH_LOG_Print](#ohlogprint)((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
-| [OH_LOG_FATAL](#ohlogfatal)(type, ...)   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
+| [LOG_DOMAIN](#log_domain)   0 | 日志所对应的业务领域，用于标识业务的子系统、模块。 |
+| [LOG_TAG](#log_tag)   NULL | 字符串常量，标识调用所在的类或者业务。 |
+| [OH_LOG_DEBUG](#oh_log_debug)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | DEBUG级别写日志，宏封装接口。 |
+| [OH_LOG_INFO](#oh_log_info)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | INFO级别写日志，宏封装接口。 |
+| [OH_LOG_WARN](#oh_log_warn)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | WARN级别写日志，宏封装接口。 |
+| [OH_LOG_ERROR](#oh_log_error)(type, ...)   ((void)[OH_LOG_Print](#oh_log_print)((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | ERROR级别写日志，宏封装接口。 |
+| [OH_LOG_FATAL](#oh_log_fatal)(type, ...)   ((void)HiLogPrint((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | FATAL级别写日志，宏封装接口。 |
 
 
 ### 枚举
@@ -51,8 +51,8 @@ HiLog模块实现日志打印功能。
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_LOG_Print](#ohlogprint) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os\_log | 写日志接口。 |
-| [OH_LOG_IsLoggable](#ohlogisloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 |
+| [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os\_log | 写日志接口。 |
+| [OH_LOG_IsLoggable](#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 |
 
 
 ## 详细描述
@@ -118,7 +118,7 @@ DEBUG级别写日志，宏封装接口。
 
 **参见：**
 
-[OH_LOG_Print](#ohlogprint)
+[OH_LOG_Print](#oh_log_print)
 
 **自从：**
 
@@ -148,7 +148,7 @@ ERROR级别写日志，宏封装接口。
 
 **参见：**
 
-[OH_LOG_Print](#ohlogprint)
+[OH_LOG_Print](#oh_log_print)
 
 **自从：**
 
@@ -178,7 +178,7 @@ FATAL级别写日志，宏封装接口。
 
 **参见：**
 
-[OH_LOG_Print](#ohlogprint)
+[OH_LOG_Print](#oh_log_print)
 
 **自从：**
 
@@ -208,7 +208,7 @@ INFO级别写日志，宏封装接口。
 
 **参见：**
 
-[OH_LOG_Print](#ohlogprint)
+[OH_LOG_Print](#oh_log_print)
 
 **自从：**
 
@@ -238,7 +238,7 @@ WARN级别写日志，宏封装接口。
 
 **参见：**
 
-[OH_LOG_Print](#ohlogprint)
+[OH_LOG_Print](#oh_log_print)
 
 **自从：**
 

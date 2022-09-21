@@ -46,114 +46,114 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 类型定义名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_FontCollection](#ohdrawingfontcollection) | OH_Drawing_FontCollection用于加载字体。 |
-| [OH_Drawing_Typography](#ohdrawingtypography) | OH_Drawing_Typography用于管理排版的布局和显示等。 |
-| [OH_Drawing_TextStyle](#ohdrawingtextstyle) | OH_Drawing_TextStyle用于管理字体颜色、装饰等。 |
-| [OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) | OH_Drawing_TypographyStyle用于管理排版风格，如文字方向等。 |
-| [OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) | OH_Drawing_TypographyCreate用于创建OH_Drawing_Typography。 |
-| [OH_Drawing_Canvas](#ohdrawingcanvas) | OH_Drawing_Canvas定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
-| [OH_Drawing_Pen](#ohdrawingpen) | OH_Drawing_Pen定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
-| [OH_Drawing_Brush](#ohdrawingbrush) | OH_Drawing_Brush定义为画刷，画刷用于描述填充图形的样式和颜色。 |
-| [OH_Drawing_Path](#ohdrawingpath) | OH_Drawing_Path定义为路径，路径用于自定义各种形状。 |
-| [OH_Drawing_Bitmap](#ohdrawingbitmap) | OH_Drawing_Bitmap定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
+| [OH_Drawing_FontCollection](#oh_drawing_fontcollection) | OH_Drawing_FontCollection用于加载字体。 |
+| [OH_Drawing_Typography](#oh_drawing_typography) | OH_Drawing_Typography用于管理排版的布局和显示等。 |
+| [OH_Drawing_TextStyle](#oh_drawing_textstyle) | OH_Drawing_TextStyle用于管理字体颜色、装饰等。 |
+| [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) | OH_Drawing_TypographyStyle用于管理排版风格，如文字方向等。 |
+| [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) | OH_Drawing_TypographyCreate用于创建OH_Drawing_Typography。 |
+| [OH_Drawing_Canvas](#oh_drawing_canvas) | OH_Drawing_Canvas定义为一块矩形的画布，可以结合画笔和画刷在上面绘制各种形状、图片和文字。 |
+| [OH_Drawing_Pen](#oh_drawing_pen) | OH_Drawing_Pen定义为画笔，画笔用于描述绘制图形轮廓的样式和颜色。 |
+| [OH_Drawing_Brush](#oh_drawing_brush) | OH_Drawing_Brush定义为画刷，画刷用于描述填充图形的样式和颜色。 |
+| [OH_Drawing_Path](#oh_drawing_path) | OH_Drawing_Path定义为路径，路径用于自定义各种形状。 |
+| [OH_Drawing_Bitmap](#oh_drawing_bitmap) | OH_Drawing_Bitmap定义为位图，位图是一块内存，内存中包含了描述一张图片的像素数据。 |
 
 
 ### 枚举
 
 | 枚举名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_PenLineCapStyle](#ohdrawingpenlinecapstyle) { LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP } | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
-| [OH_Drawing_PenLineJoinStyle](#ohdrawingpenlinejoinstyle) { LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN } | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
-| [OH_Drawing_TextDirection](#ohdrawingtextdirection) { TEXT_DIRECTION_RTL, TEXT_DIRECTION_LTR } | 文字方向。 |
-| [OH_Drawing_TextAlign](#ohdrawingtextalign) { TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER, TEXT_ALIGN_JUSTIFY,   TEXT_ALIGN_START, TEXT_ALIGN_END } | 文字对齐方式。 |
-| [OH_Drawing_FontWeight](#ohdrawingfontweight) {  FONT_WEIGHT_100, FONT_WEIGHT_200, FONT_WEIGHT_300, FONT_WEIGHT_400,   FONT_WEIGHT_500, FONT_WEIGHT_600, FONT_WEIGHT_700, FONT_WEIGHT_800,  FONT_WEIGHT_900  } | 字重。 |
-| [OH_Drawing_TextBaseline](#ohdrawingtextbaseline) { TEXT_BASELINE_ALPHABETIC, TEXT_BASELINE_IDEOGRAPHIC } | 基线位置。 |
-| [OH_Drawing_TextDecoration](#ohdrawingtextdecoration) { TEXT_DECORATION_NONE = 0x0, TEXT_DECORATION_UNDERLINE = 0x1, TEXT_DECORATION_OVERLINE = 0x2, TEXT_DECORATION_LINE_THROUGH = 0x4 } | 文本装饰。 |
-| [OH_Drawing_FontStyle](#ohdrawingfontstyle) { FONT_STYLE_NORMAL, FONT_STYLE_ITALIC } | 区分字体是否为斜体。 |
-| [OH_Drawing_ColorFormat](#ohdrawingcolorformat) {  COLOR_FORMAT_UNKNOWN, COLOR_FORMAT_ALPHA_8, COLOR_FORMAT_RGB_565, COLOR_FORMAT_ARGB_4444,   COLOR_FORMAT_RGBA_8888, COLOR_FORMAT_BGRA_8888 } | OH_Drawing_ColorFormat用于描述位图像素的存储格式。 |
-| [OH_Drawing_AlphaFormat](#ohdrawingalphaformat) { ALPHA_FORMAT_UNKNOWN, ALPHA_FORMAT_OPAQUE, ALPHA_FORMAT_PREMUL, ALPHA_FORMAT_UNPREMUL } | OH_Drawing_AlphaFormat用于描述位图像素的透明度分量。 |
+| [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle) { LINE_FLAT_CAP, LINE_SQUARE_CAP, LINE_ROUND_CAP } | 枚举集合定义了画笔笔帽的样式，即画笔在绘制线段时，在线段头尾端点的样式。 |
+| [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle) { LINE_MITER_JOIN, LINE_ROUND_JOIN, LINE_BEVEL_JOIN } | 枚举集合定义了线条转角的样式，即画笔在绘制折线段时，在折线转角处的样式。 |
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) { TEXT_DIRECTION_RTL, TEXT_DIRECTION_LTR } | 文字方向。 |
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) { TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER, TEXT_ALIGN_JUSTIFY,   TEXT_ALIGN_START, TEXT_ALIGN_END } | 文字对齐方式。 |
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) {  FONT_WEIGHT_100, FONT_WEIGHT_200, FONT_WEIGHT_300, FONT_WEIGHT_400,   FONT_WEIGHT_500, FONT_WEIGHT_600, FONT_WEIGHT_700, FONT_WEIGHT_800,  FONT_WEIGHT_900  } | 字重。 |
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) { TEXT_BASELINE_ALPHABETIC, TEXT_BASELINE_IDEOGRAPHIC } | 基线位置。 |
+| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) { TEXT_DECORATION_NONE = 0x0, TEXT_DECORATION_UNDERLINE = 0x1, TEXT_DECORATION_OVERLINE = 0x2, TEXT_DECORATION_LINE_THROUGH = 0x4 } | 文本装饰。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) { FONT_STYLE_NORMAL, FONT_STYLE_ITALIC } | 区分字体是否为斜体。 |
+| [OH_Drawing_ColorFormat](#oh_drawing_colorformat) {  COLOR_FORMAT_UNKNOWN, COLOR_FORMAT_ALPHA_8, COLOR_FORMAT_RGB_565, COLOR_FORMAT_ARGB_4444,   COLOR_FORMAT_RGBA_8888, COLOR_FORMAT_BGRA_8888 } | OH_Drawing_ColorFormat用于描述位图像素的存储格式。 |
+| [OH_Drawing_AlphaFormat](#oh_drawing_alphaformat) { ALPHA_FORMAT_UNKNOWN, ALPHA_FORMAT_OPAQUE, ALPHA_FORMAT_PREMUL, ALPHA_FORMAT_UNPREMUL } | OH_Drawing_AlphaFormat用于描述位图像素的透明度分量。 |
 
 
 ### 函数
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_BitmapCreate](#ohdrawingbitmapcreate) (void) | 函数用于创建一个位图对象。 |
-| [OH_Drawing_BitmapDestroy](#ohdrawingbitmapdestroy) ([OH_Drawing_Bitmap](#ohdrawingbitmap) \*) | 函数用于销毁位图对象并回收该对象占有内存。 |
-| [OH_Drawing_BitmapBuild](#ohdrawingbitmapbuild) ([OH_Drawing_Bitmap](#ohdrawingbitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | 函数用于初始化位图对象的宽度和高度，并且为该位图设置像素格式。 |
-| [OH_Drawing_BitmapGetWidth](#ohdrawingbitmapgetwidth) ([OH_Drawing_Bitmap](#ohdrawingbitmap) \*) | 该函数用于获取指定位图的宽度。 |
-| [OH_Drawing_BitmapGetHeight](#ohdrawingbitmapgetheight) ([OH_Drawing_Bitmap](#ohdrawingbitmap) \*) | 函数用于获取指定位图的高度。 |
-| [OH_Drawing_BitmapGetPixels](#ohdrawingbitmapgetpixels) ([OH_Drawing_Bitmap](#ohdrawingbitmap) \*) | 函数用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 |
-| [OH_Drawing_BrushCreate](#ohdrawingbrushcreate) (void) | 函数用于创建一个画刷对象。 |
-| [OH_Drawing_BrushDestroy](#ohdrawingbrushdestroy) ([OH_Drawing_Brush](#ohdrawingbrush) \*) | 函数用于销毁画刷对象并回收该对象占有的内存。 |
-| [OH_Drawing_BrushIsAntiAlias](#ohdrawingbrushisantialias) (const [OH_Drawing_Brush](#ohdrawingbrush) \*) | 函数用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_BrushSetAntiAlias](#ohdrawingbrushsetantialias) ([OH_Drawing_Brush](#ohdrawingbrush) \*, bool) | 函数用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_BrushGetColor](#ohdrawingbrushgetcolor) (const [OH_Drawing_Brush](#ohdrawingbrush) \*) | 函数用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_BrushSetColor](#ohdrawingbrushsetcolor) ([OH_Drawing_Brush](#ohdrawingbrush) \*, uint32_t color) | 函数用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_CanvasCreate](#ohdrawingcanvascreate) (void) | 函数用于创建一个画布对象。 |
-| [OH_Drawing_CanvasDestroy](#ohdrawingcanvasdestroy) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*) | 函数用于销毁画布对象并回收该对象占有的内存。 |
-| [OH_Drawing_CanvasBind](#ohdrawingcanvasbind) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, [OH_Drawing_Bitmap](#ohdrawingbitmap) \*) | 函数用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 |
-| [OH_Drawing_CanvasAttachPen](#ohdrawingcanvasattachpen) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 |
-| [OH_Drawing_CanvasDetachPen](#ohdrawingcanvasdetachpen) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*) | 函数用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 |
-| [OH_Drawing_CanvasAttachBrush](#ohdrawingcanvasattachbrush) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, const [OH_Drawing_Brush](#ohdrawingbrush) \*) | 函数用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
-| [OH_Drawing_CanvasDetachBrush](#ohdrawingcanvasdetachbrush) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*) | 函数用于去除掉画布中的画刷，使用后画布将不去填充图形形状。 |
-| [OH_Drawing_CanvasSave](#ohdrawingcanvassave) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*) | 函数用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
-| [OH_Drawing_CanvasRestore](#ohdrawingcanvasrestore) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*) | 函数用于恢复保存在栈顶的画布状态（画布矩阵）。 |
-| [OH_Drawing_CanvasDrawLine](#ohdrawingcanvasdrawline) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, float x1, float y1, float x2, float y2) | 函数用于画一条直线段。 |
-| [OH_Drawing_CanvasDrawPath](#ohdrawingcanvasdrawpath) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, const [OH_Drawing_Path](#ohdrawingpath) \*) | 函数用于画一个自定义路径。 |
-| [OH_Drawing_CanvasClear](#ohdrawingcanvasclear) ([OH_Drawing_Canvas](#ohdrawingcanvas) \*, uint32_t color) | 函数用于使用指定颜色去清空画布。 |
-| [OH_Drawing_ColorSetArgb](#ohdrawingcolorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量。 |
-| [OH_Drawing_CreateFontCollection](#ohdrawingcreatefontcollection) (void) | 创建OH_Drawing_FontCollection。 |
-| [OH_Drawing_DestroyFontCollection](#ohdrawingdestroyfontcollection) ([OH_Drawing_FontCollection](#ohdrawingfontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存。 |
-| [OH_Drawing_PathCreate](#ohdrawingpathcreate) (void) | 函数用于创建一个路径对象。 |
-| [OH_Drawing_PathDestroy](#ohdrawingpathdestroy) ([OH_Drawing_Path](#ohdrawingpath) \*) | 函数用于销毁路径对象并回收该对象占有的内存。 |
-| [OH_Drawing_PathMoveTo](#ohdrawingpathmoveto) ([OH_Drawing_Path](#ohdrawingpath) \*, float x, float y) | 函数用于设置自定义路径的起始点位置。 |
-| [OH_Drawing_PathLineTo](#ohdrawingpathlineto) ([OH_Drawing_Path](#ohdrawingpath) \*, float x, float y) | 函数用于添加一条从路径的最后点位置到目标点位置的线段。 |
-| [OH_Drawing_PathArcTo](#ohdrawingpatharcto) ([OH_Drawing_Path](#ohdrawingpath) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 函数用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 |
-| [OH_Drawing_PathQuadTo](#ohdrawingpathquadto) ([OH_Drawing_Path](#ohdrawingpath) \*, float ctrlX, float ctrlY, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。 |
-| [OH_Drawing_PathCubicTo](#ohdrawingpathcubicto) ([OH_Drawing_Path](#ohdrawingpath) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。 |
-| [OH_Drawing_PathClose](#ohdrawingpathclose) ([OH_Drawing_Path](#ohdrawingpath) \*) | 函数用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 |
-| [OH_Drawing_PathReset](#ohdrawingpathreset) ([OH_Drawing_Path](#ohdrawingpath) \*) | 函数用于重置自定义路径数据。 |
-| [OH_Drawing_PenCreate](#ohdrawingpencreate) (void) | 函数用于创建一个画笔对象。 |
-| [OH_Drawing_PenDestroy](#ohdrawingpendestroy) ([OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于销毁画笔对象并回收该对象占有的内存。 |
-| [OH_Drawing_PenIsAntiAlias](#ohdrawingpenisantialias) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_PenSetAntiAlias](#ohdrawingpensetantialias) ([OH_Drawing_Pen](#ohdrawingpen) \*, bool) | 函数用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
-| [OH_Drawing_PenGetColor](#ohdrawingpengetcolor) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_PenSetColor](#ohdrawingpensetcolor) ([OH_Drawing_Pen](#ohdrawingpen) \*, uint32_t color) | 函数用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| [OH_Drawing_PenGetWidth](#ohdrawingpengetwidth) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
-| [OH_Drawing_PenSetWidth](#ohdrawingpensetwidth) ([OH_Drawing_Pen](#ohdrawingpen) \*, float width) | 函数用于设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
-| [OH_Drawing_PenGetMiterLimit](#ohdrawingpengetmiterlimit) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
-| [OH_Drawing_PenSetMiterLimit](#ohdrawingpensetmiterlimit) ([OH_Drawing_Pen](#ohdrawingpen) \*, float miter) | 函数用于设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
-| [OH_Drawing_PenGetCap](#ohdrawingpengetcap) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取画笔笔帽的样式。 |
-| [OH_Drawing_PenSetCap](#ohdrawingpensetcap) ([OH_Drawing_Pen](#ohdrawingpen) \*, [OH_Drawing_PenLineCapStyle](#ohdrawingpenlinecapstyle)) | 函数用于设置画笔笔帽样式。 |
-| [OH_Drawing_PenGetJoin](#ohdrawingpengetjoin) (const [OH_Drawing_Pen](#ohdrawingpen) \*) | 函数用于获取画笔绘制折线转角的样式。 |
-| [OH_Drawing_PenSetJoin](#ohdrawingpensetjoin) ([OH_Drawing_Pen](#ohdrawingpen) \*, [OH_Drawing_PenLineJoinStyle](#ohdrawingpenlinejoinstyle)) | 函数用于设置画笔绘制转角的样式。 |
-| [OH_Drawing_CreateTypographyStyle](#ohdrawingcreatetypographystyle) (void) | 创建OH_Drawing_TypographyStyle。 |
-| [OH_Drawing_DestroyTypographyStyle](#ohdrawingdestroytypographystyle) ([OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。 |
-| [OH_Drawing_SetTypographyTextDirection](#ohdrawingsettypographytextdirection) ([OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) \*, int) | 设置文本方向。 |
-| [OH_Drawing_SetTypographyTextAlign](#ohdrawingsettypographytextalign) ([OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) \*, int) | 设置文本对齐方式。 |
-| [OH_Drawing_SetTypographyTextMaxLines](#ohdrawingsettypographytextmaxlines) ([OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) \*, int) | 设置文本最大行数。 |
-| [OH_Drawing_CreateTextStyle](#ohdrawingcreatetextstyle) (void) | 创建OH_Drawing_TextStyle。 |
-| [OH_Drawing_DestroyTextStyle](#ohdrawingdestroytextstyle) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。 |
-| [OH_Drawing_SetTextStyleColor](#ohdrawingsettextstylecolor) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, uint32_t) | 设置文本颜色。 |
-| [OH_Drawing_SetTextStyleFontSize](#ohdrawingsettextstylefontsize) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, double) | 设置字号。 |
-| [OH_Drawing_SetTextStyleFontWeight](#ohdrawingsettextstylefontweight) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, int) | 设置字重。 |
-| [OH_Drawing_SetTextStyleBaseLine](#ohdrawingsettextstylebaseline) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, int) | 设置字体基线位置。 |
-| [OH_Drawing_SetTextStyleDecoration](#ohdrawingsettextstyledecoration) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, int) | 设置装饰。 |
-| [OH_Drawing_SetTextStyleDecorationColor](#ohdrawingsettextstyledecorationcolor) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, uint32_t) | 设置装饰颜色。 |
-| [OH_Drawing_SetTextStyleFontHeight](#ohdrawingsettextstylefontheight) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, double) | 设置字体高度。 |
-| [OH_Drawing_SetTextStyleFontFamilies](#ohdrawingsettextstylefontfamilies) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。 |
-| [OH_Drawing_SetTextStyleFontStyle](#ohdrawingsettextstylefontstyle) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, int) | 设置字体风格。 |
-| [OH_Drawing_SetTextStyleLocale](#ohdrawingsettextstylelocale) ([OH_Drawing_TextStyle](#ohdrawingtextstyle) \*, const char \*) | 设置语言区域。 |
-| [OH_Drawing_CreateTypographyHandler](#ohdrawingcreatetypographyhandler) ([OH_Drawing_TypographyStyle](#ohdrawingtypographystyle) \*, [OH_Drawing_FontCollection](#ohdrawingfontcollection) \*) | 创建指向OH_Drawing_TypographyCreate对象的指针。 |
-| [OH_Drawing_DestroyTypographyHandler](#ohdrawingdestroytypographyhandler) ([OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) \*) | 释放被OH_Drawing_TypographyCreate对象占据的内存。 |
-| [OH_Drawing_TypographyHandlerPushTextStyle](#ohdrawingtypographyhandlerpushtextstyle) ([OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) \*, [OH_Drawing_TextStyle](#ohdrawingtextstyle) \*) | 设置排版风格。 |
-| [OH_Drawing_TypographyHandlerAddText](#ohdrawingtypographyhandleraddtext) ([OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) \*, const char \*) | 设置文本内容。 |
-| [OH_Drawing_TypographyHandlerPopTextStyle](#ohdrawingtypographyhandlerpoptextstyle) ([OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) \*) | 排版弹出。 |
-| [OH_Drawing_CreateTypography](#ohdrawingcreatetypography) ([OH_Drawing_TypographyCreate](#ohdrawingtypographycreate) \*) | 创建OH_Drawing_Typography。 |
-| [OH_Drawing_DestroyTypography](#ohdrawingdestroytypography) ([OH_Drawing_Typography](#ohdrawingtypography) \*) | 释放OH_Drawing_Typography对象占据的内存。 |
-| [OH_Drawing_TypographyLayout](#ohdrawingtypographylayout) ([OH_Drawing_Typography](#ohdrawingtypography) \*, double) | 排版布局。 |
-| [OH_Drawing_TypographyPaint](#ohdrawingtypographypaint) ([OH_Drawing_Typography](#ohdrawingtypography) \*, [OH_Drawing_Canvas](#ohdrawingcanvas) \*, double, double) | 显示文本。 |
+| [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 函数用于创建一个位图对象。 |
+| [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于销毁位图对象并回收该对象占有内存。 |
+| [OH_Drawing_BitmapBuild](#oh_drawing_bitmapbuild) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*, const uint32_t width, const uint32_t height, const [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) \*) | 函数用于初始化位图对象的宽度和高度，并且为该位图设置像素格式。 |
+| [OH_Drawing_BitmapGetWidth](#oh_drawing_bitmapgetwidth) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 该函数用于获取指定位图的宽度。 |
+| [OH_Drawing_BitmapGetHeight](#oh_drawing_bitmapgetheight) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于获取指定位图的高度。 |
+| [OH_Drawing_BitmapGetPixels](#oh_drawing_bitmapgetpixels) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。 |
+| [OH_Drawing_BrushCreate](#oh_drawing_brushcreate) (void) | 函数用于创建一个画刷对象。 |
+| [OH_Drawing_BrushDestroy](#oh_drawing_brushdestroy) ([OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于销毁画刷对象并回收该对象占有的内存。 |
+| [OH_Drawing_BrushIsAntiAlias](#oh_drawing_brushisantialias) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_BrushSetAntiAlias](#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](#oh_drawing_brush) \*, bool) | 函数用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_BrushGetColor](#oh_drawing_brushgetcolor) (const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_BrushSetColor](#oh_drawing_brushsetcolor) ([OH_Drawing_Brush](#oh_drawing_brush) \*, uint32_t color) | 函数用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate) (void) | 函数用于创建一个画布对象。 |
+| [OH_Drawing_CanvasDestroy](#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于销毁画布对象并回收该对象占有的内存。 |
+| [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 函数用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 |
+| [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 |
+| [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 |
+| [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 函数用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
+| [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于去除掉画布中的画刷，使用后画布将不去填充图形形状。 |
+| [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 函数用于恢复保存在栈顶的画布状态（画布矩阵）。 |
+| [OH_Drawing_CanvasDrawLine](#oh_drawing_canvasdrawline) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, float x1, float y1, float x2, float y2) | 函数用于画一条直线段。 |
+| [OH_Drawing_CanvasDrawPath](#oh_drawing_canvasdrawpath) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于画一个自定义路径。 |
+| [OH_Drawing_CanvasClear](#oh_drawing_canvasclear) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, uint32_t color) | 函数用于使用指定颜色去清空画布。 |
+| [OH_Drawing_ColorSetArgb](#oh_drawing_colorsetargb) (uint32_t alpha, uint32_t red, uint32_t green, uint32_t blue) | 函数用于将4个变量（分别描述透明度、红色、绿色和蓝色）转化为一个描述颜色的32位（ARGB）变量。 |
+| [OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection) (void) | 创建OH_Drawing_FontCollection。 |
+| [OH_Drawing_DestroyFontCollection](#oh_drawing_destroyfontcollection) ([OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 释放被OH_Drawing_FontCollection对象占据的内存。 |
+| [OH_Drawing_PathCreate](#oh_drawing_pathcreate) (void) | 函数用于创建一个路径对象。 |
+| [OH_Drawing_PathDestroy](#oh_drawing_pathdestroy) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于销毁路径对象并回收该对象占有的内存。 |
+| [OH_Drawing_PathMoveTo](#oh_drawing_pathmoveto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 函数用于设置自定义路径的起始点位置。 |
+| [OH_Drawing_PathLineTo](#oh_drawing_pathlineto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 函数用于添加一条从路径的最后点位置到目标点位置的线段。 |
+| [OH_Drawing_PathArcTo](#oh_drawing_patharcto) ([OH_Drawing_Path](#oh_drawing_path) \*, float x1, float y1, float x2, float y2, float startDeg, float sweepDeg) | 函数用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。 |
+| [OH_Drawing_PathQuadTo](#oh_drawing_pathquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。 |
+| [OH_Drawing_PathCubicTo](#oh_drawing_pathcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 函数用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。 |
+| [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 |
+| [OH_Drawing_PathReset](#oh_drawing_pathreset) ([OH_Drawing_Path](#oh_drawing_path) \*) | 函数用于重置自定义路径数据。 |
+| [OH_Drawing_PenCreate](#oh_drawing_pencreate) (void) | 函数用于创建一个画笔对象。 |
+| [OH_Drawing_PenDestroy](#oh_drawing_pendestroy) ([OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于销毁画笔对象并回收该对象占有的内存。 |
+| [OH_Drawing_PenIsAntiAlias](#oh_drawing_penisantialias) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_PenSetAntiAlias](#oh_drawing_pensetantialias) ([OH_Drawing_Pen](#oh_drawing_pen) \*, bool) | 函数用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
+| [OH_Drawing_PenGetColor](#oh_drawing_pengetcolor) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_PenSetColor](#oh_drawing_pensetcolor) ([OH_Drawing_Pen](#oh_drawing_pen) \*, uint32_t color) | 函数用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。 |
+| [OH_Drawing_PenGetWidth](#oh_drawing_pengetwidth) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
+| [OH_Drawing_PenSetWidth](#oh_drawing_pensetwidth) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float width) | 函数用于设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。 |
+| [OH_Drawing_PenGetMiterLimit](#oh_drawing_pengetmiterlimit) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
+| [OH_Drawing_PenSetMiterLimit](#oh_drawing_pensetmiterlimit) ([OH_Drawing_Pen](#oh_drawing_pen) \*, float miter) | 函数用于设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。 |
+| [OH_Drawing_PenGetCap](#oh_drawing_pengetcap) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔笔帽的样式。 |
+| [OH_Drawing_PenSetCap](#oh_drawing_pensetcap) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineCapStyle](#oh_drawing_penlinecapstyle)) | 函数用于设置画笔笔帽样式。 |
+| [OH_Drawing_PenGetJoin](#oh_drawing_pengetjoin) (const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 函数用于获取画笔绘制折线转角的样式。 |
+| [OH_Drawing_PenSetJoin](#oh_drawing_pensetjoin) ([OH_Drawing_Pen](#oh_drawing_pen) \*, [OH_Drawing_PenLineJoinStyle](#oh_drawing_penlinejoinstyle)) | 函数用于设置画笔绘制转角的样式。 |
+| [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle) (void) | 创建OH_Drawing_TypographyStyle。 |
+| [OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。 |
+| [OH_Drawing_SetTypographyTextDirection](#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本方向。 |
+| [OH_Drawing_SetTypographyTextAlign](#oh_drawing_settypographytextalign) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本对齐方式。 |
+| [OH_Drawing_SetTypographyTextMaxLines](#oh_drawing_settypographytextmaxlines) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本最大行数。 |
+| [OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle) (void) | 创建OH_Drawing_TextStyle。 |
+| [OH_Drawing_DestroyTextStyle](#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。 |
+| [OH_Drawing_SetTextStyleColor](#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置文本颜色。 |
+| [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字号。 |
+| [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字重。 |
+| [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字体基线位置。 |
+| [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置装饰。 |
+| [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。 |
+| [OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字体高度。 |
+| [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。 |
+| [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字体风格。 |
+| [OH_Drawing_SetTextStyleLocale](#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*) | 设置语言区域。 |
+| [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 创建指向OH_Drawing_TypographyCreate对象的指针。 |
+| [OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 释放被OH_Drawing_TypographyCreate对象占据的内存。 |
+| [OH_Drawing_TypographyHandlerPushTextStyle](#oh_drawing_typographyhandlerpushtextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 设置排版风格。 |
+| [OH_Drawing_TypographyHandlerAddText](#oh_drawing_typographyhandleraddtext) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, const char \*) | 设置文本内容。 |
+| [OH_Drawing_TypographyHandlerPopTextStyle](#oh_drawing_typographyhandlerpoptextstyle) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 排版弹出。 |
+| [OH_Drawing_CreateTypography](#oh_drawing_createtypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 创建OH_Drawing_Typography。 |
+| [OH_Drawing_DestroyTypography](#oh_drawing_destroytypography) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 释放OH_Drawing_Typography对象占据的内存。 |
+| [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) ([OH_Drawing_Typography](#oh_drawing_typography) \*, double) | 排版布局。 |
+| [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | 显示文本。 |
 
 
 ## 详细描述

@@ -38,27 +38,27 @@
 | -------- | -------- |
 | [RawDir](#rawdir) | 提供对rawfile目录的访问。 | 
 | [RawFile](#rawfile) | 提供对rawfile的访问功能。 | 
-| [NativeResourceManager](#nativeresourcemanager) | 代表resource&nbsp;manager。 | 
+| [NativeResourceManager](#nativeresourcemanager) | 代表resource manager。 | 
 
 
 ### 函数
 
   | 函数名称 | 描述 | 
 | -------- | -------- |
-| [OH_ResourceManager_GetRawFileName](#ohresourcemanagergetrawfilename)&nbsp;([RawDir](#rawdir)&nbsp;\*rawDir,&nbsp;int&nbsp;index) | 通过索引获取rawfile文件名称。 | 
-| [OH_ResourceManager_GetRawFileCount](#ohresourcemanagergetrawfilecount)&nbsp;([RawDir](#rawdir)&nbsp;\*rawDir) | 获取[RawDir](#rawdir)中的rawfile数量。 | 
-| [OH_ResourceManager_CloseRawDir](#ohresourcemanagercloserawdir)&nbsp;([RawDir](#rawdir)&nbsp;\*rawDir) | 关闭已打开的[RawDir](#rawdir)并释放所有相关联资源。 | 
-| [OH_ResourceManager_ReadRawFile](#ohresourcemanagerreadrawfile)&nbsp;(const&nbsp;[RawFile](#rawfile)&nbsp;\*rawFile,&nbsp;void&nbsp;\*buf,&nbsp;size_t&nbsp;length) | 读取rawfile。 | 
-| [OH_ResourceManager_SeekRawFile](#ohresourcemanagerseekrawfile)&nbsp;(const&nbsp;[RawFile](#rawfile)&nbsp;\*rawFile,&nbsp;long&nbsp;offset,&nbsp;int&nbsp;whence) | 基于指定的offset，在rawfile文件内搜索读写数据的位置。 | 
-| [OH_ResourceManager_GetRawFileSize](#ohresourcemanagergetrawfilesize)&nbsp;([RawFile](#rawfile)&nbsp;\*rawFile) | 获取rawfile长度，单位为int32_t。 | 
-| [OH_ResourceManager_CloseRawFile](#ohresourcemanagercloserawfile)&nbsp;([RawFile](#rawfile)&nbsp;\*rawFile) | 关闭已打开的[RawFile](#rawfile)&nbsp;以及释放所有相关联资源。 | 
-| [OH_ResourceManager_GetRawFileOffset](#ohresourcemanagergetrawfileoffset)&nbsp;(const&nbsp;[RawFile](#rawfile)&nbsp;\*rawFile) | 获取rawfile当前的offset，单位为int32_t。 | 
-| [OH_ResourceManager_GetRawFileDescriptor](#ohresourcemanagergetrawfiledescriptor)&nbsp;(const&nbsp;[RawFile](#rawfile)&nbsp;\*rawFile,&nbsp;[RawFileDescriptor](_raw_file_descriptor.md)&nbsp;&amp;descriptor) | 基于offset(单位为int32_t)和文件长度打开rawfile，并获取rawfile文件描述符。 | 
-| [OH_ResourceManager_ReleaseRawFileDescriptor](#ohresourcemanagerreleaserawfiledescriptor)&nbsp;(const&nbsp;[RawFileDescriptor](_raw_file_descriptor.md)&nbsp;&amp;descriptor) | 关闭rawfile文件描述符。 | 
-| [OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)&nbsp;(napi_env&nbsp;env,&nbsp;napi_value&nbsp;jsResMgr) | 基于JavaScipt&nbsp;resource&nbsp;manager获取native&nbsp;resource&nbsp;manager。 | 
-| [OH_ResourceManager_ReleaseNativeResourceManager](#ohresourcemanagerreleasenativeresourcemanager)&nbsp;([NativeResourceManager](#nativeresourcemanager)&nbsp;\*resMgr) | 释放native&nbsp;resource&nbsp;manager。 | 
-| [OH_ResourceManager_OpenRawDir](#ohresourcemanageropenrawdir)&nbsp;(const&nbsp;[NativeResourceManager](#nativeresourcemanager)&nbsp;\*mgr,&nbsp;const&nbsp;char&nbsp;\*dirName) | 打开rawfile目录。 | 
-| [OH_ResourceManager_OpenRawFile](#ohresourcemanageropenrawfile)&nbsp;(const&nbsp;[NativeResourceManager](#nativeresourcemanager)&nbsp;\*mgr,&nbsp;const&nbsp;char&nbsp;\*fileName) | 打开rawfile文件。 | 
+| [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | 通过索引获取rawfile文件名称。 | 
+| [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) | 获取[RawDir](#rawdir)中的rawfile数量。 | 
+| [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | 关闭已打开的[RawDir](#rawdir)并释放所有相关联资源。 | 
+| [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | 读取rawfile。 | 
+| [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | 基于指定的offset，在rawfile文件内搜索读写数据的位置。 | 
+| [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | 获取rawfile长度，单位为int32_t。 | 
+| [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | 关闭已打开的[RawFile](#rawfile) 以及释放所有相关联资源。 | 
+| [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的offset，单位为int32_t。 | 
+| [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于offset(单位为int32_t)和文件长度打开rawfile，并获取rawfile文件描述符。 | 
+| [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 关闭rawfile文件描述符。 | 
+| [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt resource manager获取native resource manager。 | 
+| [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | 释放native resource manager。 | 
+| [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录。 | 
+| [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件。 | 
 
 
 ## 详细描述
@@ -78,7 +78,7 @@ typedef struct NativeResourceManager NativeResourceManager
 
 代表resource manager。
 
-此类封装了JavaScript resource manager的native实现 **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)方法获取
+此类封装了JavaScript resource manager的native实现 **ResourceManager**指针可以通过调用[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取
 
 **自从：**
 
@@ -139,7 +139,7 @@ void OH_ResourceManager_CloseRawDir (RawDir * rawDir)
 
 **参见：**
 
-[OH_ResourceManager_OpenRawDir](#ohresourcemanageropenrawdir)
+[OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir)
 
 **自从：**
 
@@ -165,7 +165,7 @@ void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 
 **参见：**
 
-[OH_ResourceManager_OpenRawFile](#ohresourcemanageropenrawfile)
+[OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
 **自从：**
 
@@ -183,7 +183,7 @@ int OH_ResourceManager_GetRawFileCount (RawDir * rawDir)
 
 获取[RawDir](#rawdir)中的rawfile数量。
 
-通过此方法可以获取[OH_ResourceManager_GetRawFileName](#ohresourcemanagergetrawfilename)中可用的索引。
+通过此方法可以获取[OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename)中可用的索引。
 
 **参数：**
 
@@ -193,7 +193,7 @@ int OH_ResourceManager_GetRawFileCount (RawDir * rawDir)
 
 **参见：**
 
-[OH_ResourceManager_GetRawFileName](#ohresourcemanagergetrawfilename)
+[OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename)
 
 **自从：**
 
@@ -251,11 +251,11 @@ const char* OH_ResourceManager_GetRawFileName (RawDir * rawDir, int index )
 
 **返回：**
 
-通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](#ohresourcemanageropenrawfile)的输入参数， 如果遍历完所有文件仍未找到，则返回**NULL**。
+通过索引返回文件名称，此返回值可以作为[OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)的输入参数， 如果遍历完所有文件仍未找到，则返回**NULL**。
 
 **参见：**
 
-[OH_ResourceManager_OpenRawFile](#ohresourcemanageropenrawfile)
+[OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile)
 
 **自从：**
 
@@ -333,8 +333,8 @@ NativeResourceManager* OH_ResourceManager_InitNativeResourceManager (napi_env en
 
   | Name | 描述 | 
 | -------- | -------- |
-| env | 表示JavaScipt&nbsp;Native&nbsp;Interface&nbsp;(napi)环境指针。 | 
-| jsResMgr | 表示JavaScipt&nbsp;resource&nbsp;manager。 | 
+| env | 表示JavaScipt Native Interface (napi)环境指针。 | 
+| jsResMgr | 表示JavaScipt resource manager。 | 
 
 **返回：**
 
@@ -362,18 +362,18 @@ RawDir* OH_ResourceManager_OpenRawDir (const NativeResourceManager * mgr, const 
 
   | Name | 描述 | 
 | -------- | -------- |
-| mgr | 表示指向[NativeResourceManager](#nativeresourcemanager)的指针，此指针是通过调用&nbsp;[OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)方法获取的。 | 
+| mgr | 表示指向[NativeResourceManager](#nativeresourcemanager)的指针，此指针是通过调用 [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取的。 | 
 | dirName | 表示要打开的rawfile目录名称，当传递一个空字符串时表示打开rawfile根目录。 | 
 
 **返回：**
 
-返回[RawDir](#rawdir)指针。使用完此指针后，调用[OH_ResourceManager_CloseRawDir](#ohresourcemanagercloserawdir)释放。
+返回[RawDir](#rawdir)指针。使用完此指针后，调用[OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir)释放。
 
 **参见：**
 
-[OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)
+[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)
 
-[OH_ResourceManager_CloseRawDir](#ohresourcemanagercloserawdir)
+[OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir)
 
 **自从：**
 
@@ -397,18 +397,18 @@ RawFile* OH_ResourceManager_OpenRawFile (const NativeResourceManager * mgr, cons
 
   | Name | 描述 | 
 | -------- | -------- |
-| mgr | 表示指向[NativeResourceManager](#nativeresourcemanager)的指针，此指针是通过调用&nbsp;[OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)方法获取的。 | 
+| mgr | 表示指向[NativeResourceManager](#nativeresourcemanager)的指针，此指针是通过调用 [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)方法获取的。 | 
 | fileName | 表示基于rawfile根目录的相对路径下的文件名称。 | 
 
 **返回：**
 
-返回[RawFile](#rawfile)指针。当使用完此指针，调用[OH_ResourceManager_CloseRawFile](#ohresourcemanagercloserawfile)释放。
+返回[RawFile](#rawfile)指针。当使用完此指针，调用[OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)释放。
 
 **参见：**
 
-[OH_ResourceManager_InitNativeResourceManager](#ohresourcemanagerinitnativeresourcemanager)
+[OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager)
 
-[OH_ResourceManager_CloseRawFile](#ohresourcemanagercloserawfile)
+[OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)
 
 **自从：**
 
@@ -512,7 +512,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 | -------- | -------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
 | offset | 表示指定的offset。 | 
-| whence | 读写位置，有以下场景:<br/>**0**:&nbsp;读写位置为**offset**<br/>**1**:&nbsp;读写位置为当前位置加上**offset2**:&nbsp;读写位置为文件末尾(EOF)加上**offset**。 | 
+| whence | 读写位置，有以下场景:<br/>**0**: 读写位置为**offset**<br/>**1**: 读写位置为当前位置加上**offset2**: 读写位置为文件末尾(EOF)加上**offset**。 | 
 
 **返回：**
 

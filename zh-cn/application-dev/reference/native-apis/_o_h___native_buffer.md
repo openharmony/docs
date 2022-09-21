@@ -34,13 +34,13 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBuffer_Alloc](#ohnativebufferalloc)&nbsp;(const&nbsp;[OH_NativeBuffer_Config](_o_h___native_buffer___config.md)&nbsp;\*config) | 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例 |
-| [OH_NativeBuffer_Reference](#ohnativebufferreference)&nbsp;(OH_NativeBuffer&nbsp;\*buffer) | 将OH_NativeBuffer对象的引用计数加1 |
-| [OH_NativeBuffer_Unreference](#ohnativebufferunreference)&nbsp;(OH_NativeBuffer&nbsp;\*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉 |
-| [OH_NativeBuffer_GetConfig](#ohnativebuffergetconfig)&nbsp;(OH_NativeBuffer&nbsp;\*buffer,&nbsp;[OH_NativeBuffer_Config](_o_h___native_buffer___config.md)&nbsp;\*config) | 用于获取OH_NativeBuffer的属性 |
-| [OH_NativeBuffer_Map](#ohnativebuffermap)&nbsp;(OH_NativeBuffer&nbsp;\*buffer,&nbsp;void&nbsp;\*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间 |
-| [OH_NativeBuffer_Unmap](#ohnativebufferunmap)&nbsp;(OH_NativeBuffer&nbsp;\*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除 |
-| [OH_NativeBuffer_GetSeqNum](#ohnativebuffergetseqnum)&nbsp;(OH_NativeBuffer&nbsp;\*buffer) | 获取OH_NativeBuffer的序列号 |
+| [OH_NativeBuffer_Alloc](#oh_nativebuffer_alloc) (const [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 通过OH_NativeBuffer_Config创建OH_NativeBuffer实例，每次调用都会产生一个新的OH_NativeBuffer实例 |
+| [OH_NativeBuffer_Reference](#oh_nativebuffer_reference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数加1 |
+| [OH_NativeBuffer_Unreference](#oh_nativebuffer_unreference) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对象的引用计数减1，当引用计数为0的时候，该NativeBuffer对象会被析构掉 |
+| [OH_NativeBuffer_GetConfig](#oh_nativebuffer_getconfig) (OH_NativeBuffer \*buffer, [OH_NativeBuffer_Config](_o_h___native_buffer___config.md) \*config) | 用于获取OH_NativeBuffer的属性 |
+| [OH_NativeBuffer_Map](#oh_nativebuffer_map) (OH_NativeBuffer \*buffer, void \*\*virAddr) | 将OH_NativeBuffer对应的ION内存映射到进程空间 |
+| [OH_NativeBuffer_Unmap](#oh_nativebuffer_unmap) (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除 |
+| [OH_NativeBuffer_GetSeqNum](#oh_nativebuffer_getseqnum) (OH_NativeBuffer \*buffer) | 获取OH_NativeBuffer的序列号 |
 
 
 ## 详细描述

@@ -42,9 +42,9 @@
 
 | 函数名称 | 描述 |
 | -------- | -------- |
-| [OH_GetImageInfo](#ohgetimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_ohos_pixel_map_info.md) \*info) | 获取 **PixelMap** 的信息，并记录信息到[OhosPixelMapInfo](_ohos_pixel_map_info.md)结构中。 |
-| [OH_AccessPixels](#ohaccesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | 获取**PixelMap**对象数据的内存地址，并锁定该内存。 |
-| [OH_UnAccessPixels](#ohunaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁, 用于匹配方法[OH_AccessPixels](#ohaccesspixels)。 |
+| [OH_GetImageInfo](#oh_getimageinfo) (napi_env env, napi_value value, [OhosPixelMapInfo](_ohos_pixel_map_info.md) \*info) | 获取 **PixelMap** 的信息，并记录信息到[OhosPixelMapInfo](_ohos_pixel_map_info.md)结构中。 |
+| [OH_AccessPixels](#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | 获取**PixelMap**对象数据的内存地址，并锁定该内存。 |
+| [OH_UnAccessPixels](#oh_unaccesspixels) (napi_env env, napi_value value) | 释放**PixelMap**对象数据的内存锁, 用于匹配方法[OH_AccessPixels](#oh_accesspixels)。 |
 
 
 ## 详细描述
@@ -113,7 +113,7 @@ int32_t OH_AccessPixels (napi_env env, napi_value value, void ** addrPtr )
 
 获取**PixelMap**对象数据的内存地址，并锁定该内存。
 
-函数执行成功后，**\*addrPtr**就是获取的待访问的内存地址。访问操作完成后,必须要使用[OH_UnAccessPixels](#ohunaccesspixels)来释放锁, 否则的话资源无法被释放。待解锁后，内存地址就不可以再被访问和操作。
+函数执行成功后，**\*addrPtr**就是获取的待访问的内存地址。访问操作完成后,必须要使用[OH_UnAccessPixels](#oh_unaccesspixels)来释放锁, 否则的话资源无法被释放。待解锁后，内存地址就不可以再被访问和操作。
 
 **参数：**
 
@@ -125,7 +125,7 @@ int32_t OH_AccessPixels (napi_env env, napi_value value, void ** addrPtr )
 
 **参见：**
 
-[OH_UnAccessPixels](#ohunaccesspixels)
+[OH_UnAccessPixels](#oh_unaccesspixels)
 
 **返回：**
 
@@ -177,7 +177,7 @@ int32_t OH_UnAccessPixels (napi_env env, napi_value value )
 
 **描述：**
 
-释放**PixelMap**对象数据的内存锁, 用于匹配方法[OH_AccessPixels](#ohaccesspixels)。
+释放**PixelMap**对象数据的内存锁, 用于匹配方法[OH_AccessPixels](#oh_accesspixels)。
 
 **参数：**
 
