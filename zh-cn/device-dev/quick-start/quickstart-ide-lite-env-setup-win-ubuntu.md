@@ -153,7 +153,7 @@
 
 ### 远程连接Ubuntu环境
 
-1. 打开Windows系统的Visual Studio Code，点击![zh-cn_image_0000001238760373](figures/zh-cn_image_0000001238760373.png)，在REMOTE EXOPLORER页面点击+按钮。
+1. 打开Windows系统的Visual Studio Code，点击![zh-cn_image_0000001238760373](figures/zh-cn_image_0000001238760373.png)，在REMOTE EXPLORER页面点击+按钮。
 
    ![zh-cn_image_0000001215878922](figures/zh-cn_image_0000001215878922.png)
 
