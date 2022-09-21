@@ -131,14 +131,14 @@
    以下为创建分布式数据对象的代码示例：
 
    ```js
-   var local_object = distributedObject.createDistributedObject({
-     name: undefined,
-     age: undefined,
-     isVis: true,
-     parent: undefined,
-     list: undefined
+   let localObject = distributedObject.createDistributedObject({
+       name: undefined,
+       age: undefined,
+       isVis: true,
+       parent: undefined,
+       list: undefined
    });
-   var sessionId = distributedObject.genSessionId();
+   let sessionId = distributedObject.genSessionId();
    ```
 
 4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
@@ -147,28 +147,28 @@
 
    ```js
    // 发起方
-   var local_object = distributedObject.createDistributedObject({
-     name: "jack",
-     age: 18,
-     isVis: true,
-     parent: { mother: "jack mom", father: "jack Dad" },
-     list: [{ mother: "jack mom" }, { father: "jack Dad" }]
+   let localObject = distributedObject.createDistributedObject({
+       name: "jack",
+       age: 18,
+       isVis: true,
+       parent: { mother: "jack mom", father: "jack Dad" },
+       list: [{ mother: "jack mom" }, { father: "jack Dad" }]
    });
-   local_object.setSessionId(sessionId);
-   
+   localObject.setSessionId(sessionId);
+  
    // 被拉起方
-   var remote_object = distributedObject.createDistributedObject({
-     name: undefined,
-     age: undefined,
-     isVis: true,
-     parent: undefined,
-     list: undefined
+   let remoteObject = distributedObject.createDistributedObject({
+       name: undefined,
+       age: undefined,
+       isVis: true,
+       parent: undefined,
+       list: undefined
    });
    // 收到status上线后remote_object同步数据，即name变成jack,age是18
-   remote_object.setSessionId(sessionId);
+   remoteObject.setSessionId(sessionId);
    ```
-   
-5. 监听对象数据变更。可监听对端数据的变更，以callback作为变更回调实例。
+  
+5. 监听对象数据变更。可监听对端数据的变更，以Callback作为变更回调实例。
 
    以下为监听对象数据变更的代码示例。
    
@@ -178,25 +178,25 @@
    
        if (changeData != null && changeData != undefined) {
            changeData.forEach(element => {
-               console.info("changed !" + element + " " + local_object[element]);
-       });
+               console.info("changed !" + element + " " + localObject[element]);
+           });
        }
    } 
 
    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
-   local_object.on("change", this.changeCallback.bind(this));
+   localObject.on("change", this.changeCallback.bind(this));
    ```
-   
+  
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    以下为修改分布式数据对象属性的代码示例：
 
    ```js
-   local_object.name = "jack";
-   local_object.age = 19;
-   local_object.isVis = false;
-   local_object.parent = { mother: "jack mom", father: "jack Dad" };
-   local_object.list = [{ mother: "jack mom" }, { father: "jack Dad" }];
+   localObject.name = "jack";
+   localObject.age = 19;
+   localObject.isVis = false;
+   localObject.parent = { mother: "jack mom", father: "jack Dad" };
+   localObject.list = [{ mother: "jack mom" }, { father: "jack Dad" }];
    ```
 
    > **说明：**
@@ -204,9 +204,9 @@
 
    ```js
    // 支持的修改方式
-   local_object.parent = { mother: "mom", father: "dad" };
+   localObject.parent = { mother: "mom", father: "dad" };
    // 不支持的修改方式
-   local_object.parent.mother = "mom";
+   localObject.parent.mother = "mom";
    ```
 
 7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
@@ -214,7 +214,7 @@
    以下为访问对象的代码示例：
 
    ```js
-   console.info("name " + local_object["name"]); 
+   console.info("name " + localObject["name"]); 
    ```
 8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
 
@@ -222,56 +222,56 @@
 
    ```js
    // 删除变更回调changeCallback
-   local_object.off("change", changeCallback);
+   localObject.off("change", changeCallback);
    // 删除所有的变更回调
-   local_object.off("change"); 
+   localObject.off("change"); 
    ```
 9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
    以下为访问对象的代码示例：
 
    ```js
-    function statusCallback(sessionId, networkId, status) {
-      this.response += "status changed " + sessionId + " " + status + " " + networkId;
-    }
-   
-    local_object.on("status", this.statusCallback);
+   function statusCallback(sessionId, networkId, status) {
+       this.response += "status changed " + sessionId + " " + status + " " + networkId;
+   }
+  
+   localObject.on("status", this.statusCallback);
    ```
 
 10. 保存和撤回已保存的数据对象。
 
-    ```js
-    // 保存数据对象
-    g_object.save("local").then((result) => {
-      console.info("save sessionId " + result.sessionId);
-      console.info("save version " + result.version);
-      console.info("save deviceId " + result.deviceId);
-    }, (result) => {
-      console.info("save local failed.");
-    });
-    // 撤回保存的数据对象
-    g_object.revokeSave().then((result) => {
-      console.info("revokeSave success.");
-    }, (result) => {
-      console.info("revokeSave failed.");
-    });
-    ```
+   ```js
+   // 保存数据对象
+   localObject.save("local").then((result) => {
+       console.info("save sessionId " + result.sessionId);
+       console.info("save version " + result.version);
+       console.info("save deviceId " + result.deviceId);
+   }, (result) => {
+       console.info("save local failed.");
+   });
+   // 撤回保存的数据对象
+   localObject.revokeSave().then((result) => {
+       console.info("revokeSave success.");
+   }, (result) => {
+       console.info("revokeSave failed.");
+   });
+   ```
 11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
 
-    以下为取消监听数据变更的代码示例：
+   以下为取消监听数据变更的代码示例：
 
-    ```js
-    // 删除上下线回调statusCallback
-    local_object.off("status", this.statusCallback);
-    // 删除所有的上下线回调
-    local_object.off("status");
-    ```
+   ```js
+   // 删除上下线回调statusCallback
+   localObject.off("status", this.statusCallback);
+   // 删除所有的上下线回调
+   localObject.off("status");
+   ```
 12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
 
-    以下为退出同步组网的代码示例：
+   以下为退出同步组网的代码示例：
 
-    ```js
-    local_object.setSessionId("");
-    ```
+   ```js
+   localObject.setSessionId("");
+   ```
 
 ## 相关实例
 
