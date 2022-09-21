@@ -462,7 +462,7 @@ ws.on('message', (err, value) => {
 
 off\(type: 'message', callback?: AsyncCallback<string | ArrayBuffer\>\): void
 
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
 
 >![](public_sys-resources/icon-note.gif) **说明：** 
 >AsyncCallback中的数据可以是字符串\(API 6\)或ArrayBuffer\(API 8\)。
