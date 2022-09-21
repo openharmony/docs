@@ -170,7 +170,12 @@ Reads image pixel map data in an area. This API uses a promise to return the dat
 **Example**
 
 ```js
-const area = new ArrayBuffer(400);
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
 pixelmap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
 }).catch(error => {
