@@ -63,7 +63,7 @@
 
    ![zh-cn_image_0000001322167645.png](figures/zh-cn_image_0000001322167645.png)
    
-   安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
+   安装完成后，当界面输出“DevEco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
 
    ![zh-cn_image_0000001198722374](figures/zh-cn_image_0000001198722374.png)
 
