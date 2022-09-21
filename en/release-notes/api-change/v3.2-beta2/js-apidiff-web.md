@@ -10,11 +10,11 @@ The table below lists the APIs changes of the web subsystem in OpenHarmony 3.2 B
 | ohos.web | WebDataBase | static getHttpAuthCredentials(host: string, realm: string): Array\<string>; | Added|
 | ohos.web | WebDataBase | static deleteHttpAuthCredentials(): void; | Added|
 | ohos.web | WebDataBase | static existHttpAuthCredentials(): boolean; | Added|
-| ohos.web | WebStorage | static getOriginUsage(origin : string) : Promise\<number> ;<br>static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void; | Added|
-| ohos.web | WebStorage | static getOriginQuota(origin : string) : Promise\<number>;<br>static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void; | Added|
-| ohos.web | WebStorage | static getOrigins() : Promise\<Array\<WebStorageOrigin>>;<br>static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void; | Added|
-| ohos.web | WebStorage | static deleteOrigin(origin : string): void; | Added|
-| ohos.web | WebStorage | static deleteAllData() : void; | Added|
+| ohos.web | WebStorage | static getOriginUsage(origin: string): Promise\<number> ;<br>static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void; | Added|
+| ohos.web | WebStorage | static getOriginQuota(origin: string): Promise\<number>;<br>static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void; | Added|
+| ohos.web | WebStorage | static getOrigins(): Promise\<Array\<WebStorageOrigin>>;<br>static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void; | Added|
+| ohos.web | WebStorage | static deleteOrigin(origin: string): void; | Added|
+| ohos.web | WebStorage | static deleteAllData(): void; | Added|
 | ohos.web | WebStorageOrigin | quota: number; | Added|
 | ohos.web | WebStorageOrigin | usage: number; | Added|
 | ohos.web | WebStorageOrigin | origin: string; | Added|
