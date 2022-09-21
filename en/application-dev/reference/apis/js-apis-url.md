@@ -26,16 +26,16 @@ Creates a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string,&nbsp;string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
 
 **Example**
 
 ```js
-var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
-var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
-var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new Url.URLSearchParams(urlObject.search);
+let objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+let objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
+let objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
+let urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+let params = new Url.URLSearchParams(urlObject.search);
 ```
 
 
@@ -133,7 +133,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 **Example**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
+let searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
 for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
@@ -197,9 +197,9 @@ Obtains the value of the first key-value pair based on the specified key.
 **Example**
 
 ```js
-var paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
-var name = paramsOject.get("name"); // is the string "Jonathan" 
-var age = parseInt(paramsOject.get("age"), 10); // is the number 18
+let paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
+let name = paramsOject.get("name"); // is the string "Jonathan" 
+let age = parseInt(paramsOject.get("age"), 10); // is the number 18
 ```
 
 
@@ -267,7 +267,7 @@ Sorts all key-value pairs contained in this object based on the Unicode code poi
 **Example**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
+let searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
 console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=2&c=3&d=4
 ```
@@ -290,7 +290,7 @@ Obtains an ES6 iterator that contains the keys of all the key-value pairs.
 **Example**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+let searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var key of searchParamsObject .keys()) { // Output key-value pairs
     console.log(key);
 }
@@ -314,8 +314,8 @@ Obtains an ES6 iterator that contains the values of all the key-value pairs.
 **Example**
 
 ```js
-var searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-for (var value of searchParams.values()) { 
+let searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+for (var value of searchParams.values()) {
     console.log(value);
 }
 ```
@@ -339,7 +339,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 ```js
 const paramsObject = new Url.URLSearchParams('fod=bay&edg=bap');
-for (const [name, value] of paramsObject) { 
+for (const [name, value] of paramsObject) {
     console.log(name, value); 
 } 
 ```
@@ -409,11 +409,11 @@ Creates a URL.
 **Example**
 
 ```js
-var mm = 'http://username:password@host:8080';
-var a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
-var b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
+let mm = 'http://username:password@host:8080';
+let a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
+let b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
 new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-var c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
+let c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
 new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
