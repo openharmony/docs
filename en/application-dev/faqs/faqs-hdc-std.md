@@ -41,7 +41,8 @@ Applicable to: OpenHarmony SDK 3.2.2.5
 
 The maximum length of a log record is 1,024 characters, and it is not changeable.
 
-## What Should I Do If a HAP Package Cannot Be Opened After Being Installed on the Development Board Using the IDE?
+
+## What should I do if a HAP package cannot be opened after being installed on the development board using the IDE?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
