@@ -19,7 +19,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 Subscribes to data changes of the acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -48,7 +48,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 Subscribes to data changes of the linear acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -76,7 +76,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 Subscribes to data changes of the uncalibrated acceleration sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -133,7 +133,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 Subscribes to data changes of the gyroscope sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+**Required permissions**: ohos.permission.GYROSCOPE
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -161,7 +161,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is called multiple times for the same application, the last call takes effect.
 
-**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+**Required permissions**: ohos.permission.GYROSCOPE
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -573,7 +573,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 Subscribes to only one data change of the acceleration sensor.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -599,7 +599,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 Subscribes to only one data change of the linear acceleration sensor.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -625,7 +625,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 
 Subscribes to only one data change of the uncalibrated acceleration sensor.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -678,7 +678,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 
 Subscribes to only one data change of the gyroscope sensor.
 
-**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+**Required permissions**: ohos.permission.GYROSCOPE
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -704,7 +704,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 Subscribes to only one data change of the uncalibrated gyroscope sensor.
 
-**Required permissions**: ohos.permission.GYROSCOPE (a system permission)
+**Required permissions**: ohos.permission.GYROSCOPE
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1374,7 +1374,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 Unsubscribes from sensor data changes.
 
-**Required permissions**: ohos.permission.ACCELEROMETER (a system permission)
+**Required permissions**: ohos.permission.ACCELEROMETER
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -2159,13 +2159,10 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
-                        err.message);
+          console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
-      for (var i=0; i < data.rotation.length; i++) {
-          console.info("data[" + i + "]: " + data[i])
-      }
+      console.info(JSON.stringify(data));
   })
   ```
 
@@ -2196,10 +2193,7 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
   ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.rotation.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
+          console.info(JSON.stringify(data));
       }).catch((err) => {
           console.info('promise failed');
   })
