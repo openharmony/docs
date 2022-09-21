@@ -10,7 +10,9 @@ The **DispatchInfo** module provides dispatch information.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name       | Type  | Readable| Writable| Description                    |
 | ----------- | ------ | ---- | ---- | ------------------------ |
-| verison     | string | Yes  | No  | Version of the API to dispatch.|
+| version     | string | Yes  | No  | Version of the API to dispatch.|
 | dispatchAPI | string | Yes  | No  | API to dispatch.    |
