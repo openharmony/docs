@@ -2,7 +2,7 @@
 
 
 
-## Common Log Commands
+## What are the commands commonly used for log management?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
@@ -12,7 +12,8 @@ Applicable to: OpenHarmony SDK 3.2.2.5
 
 - Capturing logs: hdc_std shell hilog &gt; log.txt
 
-## What Should I Do to Avoid Log Flow Control?
+
+## What should I do to avoid log flow control?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
@@ -26,13 +27,15 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 After performing the preceding operations, restart the DevEco Studio.
 
-## Is HiLog or Console Recommended for Log Printing? How Do I Set the Domain If HiLog Is Used?
+
+## Is HiLog or Console recommended for log printing? How do I set the domain if HiLog is used?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
 [HiLog](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md) is recommended for an application to print logs. For details about domain setting, see [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-hilog.md#hilogisloggable).
 
-## What Is the Maximum Length of a Log Record When HiLog Is Used? Is It Configurable?
+
+## What is the maximum length of a log record when HiLog is used? Is it configurable?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
@@ -44,19 +47,21 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 Check whether the SDK version is consistent with the system version on the development board. You are advised to use the SDK version and system version that are released on the same day.
 
-## How Do I Upload Files Using an hdc Command?
+
+## How do I upload files using an hdc command?
 
 Applicable to: OpenHarmony SDK 3.2.2.5
 
 Run the **hdc_std file send** command.
 
-## How Do I Prevent the Screen of the RK3568 Development Board from Turning Off?
+## How do I prevent the screen of the RK3568 development board from turning off?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 Run the **hdc_std shell "power-shell setmode 602"** command.
 
-## How Do I Start Ability Using an hdc Command?
+
+## How do I start an ability using an hdc command?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 

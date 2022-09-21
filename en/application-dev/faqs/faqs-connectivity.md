@@ -2,7 +2,7 @@
 
 
 
-## What Are the Data Formats Supported by extraData in an HTTP Request?
+## What are the data formats supported by extraData in an HTTP request?
 
 Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
@@ -14,7 +14,8 @@ Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
 - If you pass in a string object, **extraData** contains the string encoded on your own.
 
-## What Does Error Code 28 Mean for an HTTP Request?
+
+## What does error code 28 mean for an HTTP request?
 
 Applicable to: OpenHarmony SDK 3.2.2.5, stage model of API version 9
 
@@ -22,7 +23,8 @@ Error code 28 refers to **CURLE_OPERATION_TIMEDOUT**, which means a libcurl libr
 
 Reference: [Development Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-http.md#httpresponse) and [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html)
 
-## What Does Error Code 6 Mean for the Response of \@ohos.net.http.d.ts?
+
+## What does error code 6 mean for the response of \@ohos.net.http.d.ts?
 
 Applicable to: OpenHarmony SDK 3.2.3.5
 

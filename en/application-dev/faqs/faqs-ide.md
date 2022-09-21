@@ -1,7 +1,7 @@
 # IDE Usage
 
 
-## What Should Do If the Error Message "npm ERR! code SELF_SIGNED_CERT_IN_CHAIN" Is Displayed?
+## What should do if the error message "npm ERR! code SELF_SIGNED_CERT_IN_CHAIN" is displayed?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
@@ -9,7 +9,7 @@ Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
 2. Run the **npm install** on the DevEco Studio terminal.
 
-## After Manual Updating of the DevEco Studio SDK, Error Message "Cannot find module 'xxx\ets\x.x.x.x\build-tools\ets-loader\node_modules\webpack\bin\webpack.js'" Is Displayed During HAP Building. What Should I Do?
+## After manual updating of the DevEco Studio SDK, the error message "Cannot find module 'xxx\ets\x.x.x.x\build-tools\ets-loader\node_modules\webpack\bin\webpack.js'" is displayed during HAP building. What should I do?
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
