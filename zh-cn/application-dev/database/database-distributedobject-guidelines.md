@@ -155,7 +155,7 @@
        list: [{ mother: "jack mom" }, { father: "jack Dad" }]
    });
    localObject.setSessionId(sessionId);
-  
+   
    // 被拉起方
    let remoteObject = distributedObject.createDistributedObject({
        name: undefined,
@@ -186,7 +186,7 @@
    // 发起方要在changeCallback里刷新界面，则需要将正确的this绑定给changeCallback
    localObject.on("change", this.changeCallback.bind(this));
    ```
-
+   
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
    
    以下为修改分布式数据对象属性的代码示例：
@@ -233,7 +233,7 @@
    function statusCallback(sessionId, networkId, status) {
        this.response += "status changed " + sessionId + " " + status + " " + networkId;
    }
- 
+   
    localObject.on("status", this.statusCallback);
    ```
 
