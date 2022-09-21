@@ -272,7 +272,7 @@ Codec MIME类型枚举。
 
 ### 属性<a name=audioplayer_属性></a>
 
-**系统能力：** ystemCapability.Multimedia.Media.AudioPlayer
+**系统能力：** SystemCapability.Multimedia.Media.AudioPlayer
 
 | 名称                            | 类型                                | 可读 | 可写 | 说明                                                         |
 | ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
