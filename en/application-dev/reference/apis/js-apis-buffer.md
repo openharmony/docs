@@ -1,11 +1,12 @@
 # Buffer
 
 > **NOTE**
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-A **Buffer** object represents a byte sequence of a fixed length. It is used to store binary data.
+A **Buffer** object represents a fixed-length sequence of bytes. It is used to store binary data.
 
-You can use the APIs provided by the **Buffer** module to process images and a large amount of binary data, receive and upload files, and use network protocols.
+You can use the APIs provided by the **Buffer** module to process images and a large amount of binary data, and receive or upload files.
 
 ## Modules to Import
 
@@ -52,7 +53,7 @@ let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
 allocUninitializedFromPool(size: number): Buffer
 
 Allocates a **Buffer** instance of the specified size from the buffer pool, without initializing it.
-To initialize the **Buffer** instance, call the **fill()** function.
+To initialize the **Buffer** instance, call **fill()**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -108,7 +109,7 @@ buf.fill(0);
 
 ### byteLength
 
-byteLength(string: string | Buffer | TypeArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
+byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
 Obtains the number of bytes of a string based on the encoding format.
 
@@ -118,7 +119,7 @@ Obtains the number of bytes of a string based on the encoding format.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypeArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
+| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
 | encoding | BufferEncoding | No| Encoding format. The default value is **utf-8**.|
 
 **Return value**
@@ -133,15 +134,15 @@ Obtains the number of bytes of a string based on the encoding format.
 import buffer from '@ohos.buffer';
 
 let str = '\u00bd + \u00bc = \u00be';
-console.log('${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes');
+console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
 // Print: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
 ### compare
 
-compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): number
+compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
-Compares two **Buffer** instances.
+Compares two **Buffer** instances. This API is used for sorting **Buffer** instances.
 
 
 **System capability**: SystemCapability.Utils.Lang
@@ -157,7 +158,7 @@ Compares two **Buffer** instances.
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if **buf1** is the same as **buf2**.<br>Returns **1** if **buf1** comes after **buf2** when sorted.<br>Returns **-1** if **buf1** comes before **buf2** when sorted.|
+| -1&nbsp;\|&nbsp;0&nbsp;\|&nbsp;1 | Returns **0** if **buf1** is the same as **buf2**.<br>Returns **1** if **buf1** comes after **buf2** when sorted.<br>Returns **-1** if **buf1** comes before **buf2** when sorted.|
 
 **Example**
 
@@ -166,8 +167,9 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
+let res = buf1.compare(buf2);
 
-console.log(buf1.compare(buf2));
+console.log(Number(res).toString());
 // Print 1
 ```
 
@@ -200,12 +202,12 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
-console.log(buf); // <Buffer 31 32 33 34 61 62 63 64>
+console.log(buf.toString('hex')); // 3132333461626364
 ```
 
 ### from
 
-from(array: number[]): Buffer
+from(array: number[]): Buffer;
 
 Creates a **Buffer** instance with the specified array.
 
@@ -228,11 +230,8 @@ Creates a **Buffer** instance with the specified array.
 ```ts
 import buffer from '@ohos.buffer';
 
-let arrayList = new ArrayList();
-
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-console.log(buf);
-// Print: <Buffer 62 75 66 66 65 72>
+console.log(buf.toString('hex')); // 627566666572
 ```
 
 ### from
@@ -268,7 +267,7 @@ let buf = buffer.from(ab, 0, 2);
 
 ### from
 
-from(data: Buffer | Uint8Array): Buffer
+from(buffer: Buffer | Uint8Array): Buffer
 
 Creates a **Buffer** instance with the copy of another instance.
 
@@ -278,7 +277,7 @@ Creates a **Buffer** instance with the copy of another instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| data | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to copy.|
+| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to copy. |
 
 **Return value**
 
@@ -327,7 +326,7 @@ let buf = buffer.from(new String('this is a test'));
 
 ### from
 
-from(string: string, encoding?: BufferEncoding): Buffer
+from(string: String, encoding?: BufferEncoding): Buffer
 
 Creates a **Buffer** instance based on a string in the given encoding format.
 
@@ -337,7 +336,7 @@ Creates a **Buffer** instance based on a string in the given encoding format.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| string | string | Yes| String.|
+| string | String | Yes| String.|
 | encoding | BufferEncoding | No| Encoding format of the string. The default value is **utf-8**.|
 
 **Return value**
@@ -403,7 +402,7 @@ Checks whether the encoding format is supported.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| Encoding format.|
+| encoding | string | Yes| Encoding format to check. |
 
 **Return value**
 
@@ -416,10 +415,10 @@ Checks whether the encoding format is supported.
 ```ts
 import buffer from '@ohos.buffer';
 
-console.log (Buffer.isEncoding ('utf-8'));	// Print: true
-console.log (Buffer.isEncoding ('hex'));	// Print: true
-console.log (Buffer.isEncoding ('utf/8'));	// Print: false
-console.log (Buffer.isEncoding ('')); // Print: false
+console.log(buffer.isEncoding('utf-8').toString());	// Print: true
+console.log(buffer.isEncoding('hex').toString());	// Print: true
+console.log(buffer.isEncoding('utf/8').toString());	// Print: false
+console.log(buffer.isEncoding('').toString());	// Print: false
 ```
 
 ### compare
@@ -436,13 +435,15 @@ Compares this **Buffer** instance with another instance.
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Target **Buffer** instance to compare.|
 | targetStart | number | No| Offset to the start of the data to compare in the target **Buffer** instance. The default value is **0**.|
-| targetEnd | number | No| Offset to the end of the data to compare in the target **Buffer** instance (not inclusive). The default value is length of the target **Buffer** instance.|
+| targetEnd | number | No| Offset to the end of the data to compare in the target **Buffer** instance (not inclusive). The default value is the length of the target **Buffer** instance.|
 | sourceStart | number | No| Offset to the start of the data to compare in this **Buffer** instance. The default value is **0**.|
 | sourceEnd | number | No| Offset to the end of the data to compare in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
 
+**Return value**
+
 | Type| Description|
 | -------- | -------- |
-| number | Returns **0** if the two **Buffer** instances are the same.<br>Returns **1** if the target instance comes before this instance when sorted.<br>Returns **-1** if the target instance comes after this instance when sorted.|
+| number | Returns **0** if the two **Buffer** instances are the same.<br>Returns **1** if this instance comes after the target instance when sorted.<br>Returns **-1** if this instance comes before the target instance when sorted. |
 
 **Example**
 
@@ -452,9 +453,9 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 
-console.log (buf1.compare (buf2, 5, 9, 0, 4);	// Print: 0
-console.log (buf1.compare (buf2, 0, 6, 4);	// Print: -1
-console.log (buf1.compare (buf2, 5, 6, 5));	// Print: 1
+console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// Print: 0
+console.log(buf1.compare(buf2, 0, 6, 4).toString());	// Print: -1
+console.log(buf1.compare(buf2, 5, 6, 5).toString());	// Print: 1
 ```
 
 ### copy
@@ -512,13 +513,13 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (let pair of buf.entries()) {
-  console.log(pair);
+  console.log(pair.toString());
 }
 ```
 
 ### equals
 
-equals(otherBuffer: Buffer | Uint8Array): boolean
+equals(otherBuffer: Uint8Array | Buffer): boolean
 
 Checks whether this **Buffer** instance is the same as another **Buffer** instance.
 
@@ -528,7 +529,7 @@ Checks whether this **Buffer** instance is the same as another **Buffer** instan
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| otherBuffer | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| **Buffer** instance to compare.|
+| otherBuffer | Uint8Array&nbsp;\|&nbsp;Buffer | Yes| **Buffer** instance to compare.|
 
 **Return value**
 
@@ -545,8 +546,8 @@ let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
 let buf3 = buffer.from('ABCD');
 
-console.log (buf1.equals (buf2));	// Print: true
-console.log (buf1.equals (buf3));	// Print: false
+console.log(buf1.equals(buf2).toString());	// Print: true
+console.log(buf1.equals(buf3).toString());	// Print: false
 
 ```
 
@@ -596,7 +597,7 @@ Checks whether this **Buffer** instance contains the specified value.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before checking data. If the offset is a negative number, data is searched from the end of the **Buffer** instance. The default value is **0**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
 | encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
@@ -611,8 +612,8 @@ Checks whether this **Buffer** instance contains the specified value.
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log (buf.includes ('this'));	// Print: true
-console.log (buf.includes ('be'));	// Print: false
+console.log(buf.includes('this').toString());	// Print: true
+console.log(buf.includes('be').toString());	// Print: false
 ```
 
 ### indexOf
@@ -628,7 +629,7 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before checking data. If the offset is a negative number, data is searched from the end of the **Buffer** instance. The default value is **0**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
 | encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
@@ -643,8 +644,8 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log (buf.indexOf('this'));	// Print: 0
-console.log(buf.indexOf('is'));		// Print: 2
+console.log(buf.indexOf('this').toString());	// Print: 0
+console.log(buf.indexOf('is').toString());		// Print: 2
 ```
 
 ### keys
@@ -668,7 +669,7 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (const key of buf.keys()) {
-  console.log(key);
+  console.log(key.toString());
 }
 ```
 
@@ -685,7 +686,7 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
-| byteOffset | number | No| Number of bytes to skip before checking data. If the offset is a negative number, data is searched from the end of the **Buffer** instance. The default value is **0**.|
+| byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**. |
 | encoding | BufferEncoding | No| Encoding format used if **value** is a string. The default value is **utf-8**.|
 
 **Return value**
@@ -700,16 +701,16 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this'));	// Print: 0
-console.log(buf.lastIndexOf('buffer'));	// Print:17
+console.log(buf.lastIndexOf('this').toString());	// Print: 0
+console.log(buf.lastIndexOf('buffer').toString());	// Print: 17
 ```
 
 
 ### readBigInt64BE
 
-readBigInt64BE(offset: number): number
+readBigInt64BE(offset?: number): bigint
 
-Reads a signed, big-endian 64-bit integer from this **Buffer** instance at the specified offset.
+Reads a signed, big-endian 64-bit Big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -717,13 +718,13 @@ Reads a signed, big-endian 64-bit integer from this **Buffer** instance at the s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A signed, big-endian 64-bit integer.|
+| bigint | A signed, big-endian 64-bit Big integer. |
 
 **Example**
 
@@ -732,14 +733,14 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64BE(0));
+console.log(buf.readBigInt64BE(0).toString());
 ```
 
 ### readBigInt64LE
 
-readBigInt64LE(offset: number): number
+readBigInt64LE(offset?: number): bigint
 
-Reads a signed, little-endian 64-bit integer from this **Buffer** instance at the specified offset.
+Reads a signed, little-endian 64-bit Big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -747,13 +748,13 @@ Reads a signed, little-endian 64-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A signed, little-endian 64-bit integer.|
+| bigint | A signed, little-endian 64-bit Big integer. |
 
 **Example**
 
@@ -762,14 +763,14 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64LE(0));
+console.log(buf.readBigInt64LE(0).toString());
 ```
 
 ### readBigUInt64BE
 
-readBigUInt64BE(offset: number): number
+readBigUInt64BE(offset?: number): bigint
 
-Reads an unsigned, big-endian 64-bit integer from this **Buffer** instance at the specified offset.
+Reads an unsigned, big-endian 64-bit Big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -777,13 +778,13 @@ Reads an unsigned, big-endian 64-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | An unsigned, big-endian 64-bit integer.|
+| bigint | An unsigned, big-endian 64-bit Big integer. |
 
 **Example**
 
@@ -792,14 +793,14 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64BE(0));
+console.log(buf.readBigUInt64BE(0).toString());
 ```
 
 ### readBigUInt64LE
 
-readBigUInt64LE(offset: number): number
+readBigUInt64LE(offset?: number): bigint
 
-Reads an unsigned, little-endian 64-bit integer from this **Buffer** instance at the specified offset.
+Reads an unsigned, little-endian 64-bit Big integer from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -807,13 +808,13 @@ Reads an unsigned, little-endian 64-bit integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | An unsigned, little-endian 64-bit integer.|
+| bigint | An unsigned, little-endian 64-bit Big integer. |
 
 **Example**
 
@@ -822,14 +823,14 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64LE(0));
+console.log(buf.readBigUInt64LE(0).toString());
 ```
 
 ### readDoubleBE
 
-readDoubleBE(offset: number): number
+readDoubleBE(offset?: number): number
 
-Reads a 64-bit, big-endian double-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a big-endian double-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -837,13 +838,13 @@ Reads a 64-bit, big-endian double-precision floating-point number from this **Bu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A 64-bit, big-endian double-precision floating-point number.|
+| number | A big-endian double-precision floating-point number. |
 
 **Example**
 
@@ -851,14 +852,14 @@ Reads a 64-bit, big-endian double-precision floating-point number from this **Bu
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleBE(0));
+console.log(buf.readDoubleBE(0).toString());
 ```
 
 ### readDoubleLE
 
-readDoubleLE(offset: number): number
+readDoubleLE(offset?: number): number
 
-Reads a 64-bit, little-endian double-precision floating-point number from this **Buffer** instance at the specified offset.
+Reads a little-endian double-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -866,13 +867,13 @@ Reads a 64-bit, little-endian double-precision floating-point number from this *
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A 64-bit, little-endian double-precision floating-point number.|
+| number | A little-endian double-precision floating-point number. |
 
 **Example**
 
@@ -880,14 +881,14 @@ Reads a 64-bit, little-endian double-precision floating-point number from this *
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleLE(0));
+console.log(buf.readDoubleLE(0).toString());
 ```
 
 ### readFloatBE
 
-readFloatBE(offset: number): number
+readFloatBE(offset?: number): number
 
-Reads a 32-bit, big-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a big-endian single-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -895,13 +896,13 @@ Reads a 32-bit, big-endian floating-point number from this **Buffer** instance a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A 32-bit, big-endian floating-point number.|
+| number | A big-endian single-precision floating-point number. |
 
 **Example**
 
@@ -909,14 +910,14 @@ Reads a 32-bit, big-endian floating-point number from this **Buffer** instance a
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatBE(0));
+console.log(buf.readFloatBE(0).toString());
 ```
 
 ### readFloatLE
 
-readFloatLE(offset: number): number
+readFloatLE(offset?: number): number
 
-Reads a 32-bit, little-endian floating-point number from this **Buffer** instance at the specified offset.
+Reads a little-endian single-precision floating-point number from this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -924,13 +925,13 @@ Reads a 32-bit, little-endian floating-point number from this **Buffer** instanc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A 32-bit, little-endian floating-point number.|
+| number | A little-endian single-precision floating-point number. |
 
 **Example**
 
@@ -938,12 +939,12 @@ Reads a 32-bit, little-endian floating-point number from this **Buffer** instanc
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatLE(0));
+console.log(buf.readFloatLE(0).toString());
 ```
 
 ### readInt8
 
-readInt8(offset: number): number
+readInt8(offset?: number): number
 
 Reads a signed 8-bit integer from this **Buffer** instance at the specified offset.
 
@@ -953,13 +954,13 @@ Reads a signed 8-bit integer from this **Buffer** instance at the specified offs
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | A signed 8-bit integer.|
+| number | A signed 8-bit integer. |
 
 **Example**
 
@@ -967,13 +968,13 @@ Reads a signed 8-bit integer from this **Buffer** instance at the specified offs
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log (buf.readInt8(0));	// Print: -1
-console.log (buf.readInt8(1);	// Print: 5
+console.log(buf.readInt8(0).toString());	// Print: -1
+console.log(buf.readInt8(1).toString());	// Print: 5
 ```
 
 ### readInt16BE
 
-readInt16BE(offset: number): number
+readInt16BE(offset?: number): number
 
 Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the specified offset.
 
@@ -983,7 +984,7 @@ Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
@@ -996,13 +997,13 @@ Reads a signed, big-endian 16-bit integer from this **Buffer** instance at the s
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log (buf.readInt16BE(0));	// Print: 5
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16BE(0).toString());	// Print: 5
 ```
 
 ### readInt16LE
 
-readInt16LE(offset: number): number
+readInt16LE(offset?: number): number
 
 Reads a signed, little-endian 16-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1012,7 +1013,7 @@ Reads a signed, little-endian 16-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
@@ -1025,13 +1026,13 @@ Reads a signed, little-endian 16-bit integer from this **Buffer** instance at th
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log (buf.readInt16BE(0));	// Print: 1280
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16LE(0).toString());	// Print: 1280
 ```
 
 ### readInt32BE
 
-readInt32BE(offset: number): number
+readInt32BE(offset?: number): number
 
 Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1041,7 +1042,7 @@ Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
@@ -1055,12 +1056,12 @@ Reads a signed, big-endian 32-bit integer from this **Buffer** instance at the s
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32BE(0));	// Print: 5
+console.log(buf.readInt32BE(0).toString());	// Print: 5
 ```
 
 ### readInt32LE
 
-readInt32LE(offset: number): number
+readInt32LE(offset?: number): number
 
 Reads a signed, little-endian 32-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1070,7 +1071,7 @@ Reads a signed, little-endian 32-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 **Return value**
 
@@ -1084,7 +1085,7 @@ Reads a signed, little-endian 32-bit integer from this **Buffer** instance at th
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log (buf.readInt32LE(0));	// Print: 83886080
+console.log(buf.readInt32LE(0).toString());	// Print: 83886080
 ```
 
 ### readIntBE
@@ -1099,8 +1100,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to read.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to read.|
 
 
 **Return value**
@@ -1114,9 +1115,9 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from("ab");
+let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
-console.log(num); // 97
+console.log(num.toString()); // 97
 ```
 
 
@@ -1132,8 +1133,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to read.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to read.|
 
 
 **Return value**
@@ -1153,7 +1154,7 @@ console.log(buf.readIntLE(0, 6).toString(16));
 
 ### readUInt8
 
-readUInt8(offset: number): number
+readUInt8(offset?: number): number
 
 Reads an unsigned 8-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1163,7 +1164,7 @@ Reads an unsigned 8-bit integer from this **Buffer** instance at the specified o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 
 **Return value**
@@ -1178,13 +1179,13 @@ Reads an unsigned 8-bit integer from this **Buffer** instance at the specified o
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, -2]);
-console.log(buf.readUInt8(0));
-console.log(buf.readUInt8(1));
+console.log(buf.readUInt8(0).toString());
+console.log(buf.readUInt8(1).toString());
 ```
 
 ### readUInt16BE
 
-readUInt16BE(offset: number): number
+readUInt16BE(offset?: number): number
 
 Reads an unsigned, big-endian 16-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1194,7 +1195,7 @@ Reads an unsigned, big-endian 16-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 
 **Return value**
@@ -1215,7 +1216,7 @@ console.log(buf.readUInt16BE(1).toString(16));
 
 ### readUInt16LE
 
-readUInt16LE(offset: number): number
+readUInt16LE(offset?: number): number
 
 Reads an unsigned, little-endian 16-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1225,7 +1226,7 @@ Reads an unsigned, little-endian 16-bit integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 
 **Return value**
@@ -1246,7 +1247,7 @@ console.log(buf.readUInt16LE(1).toString(16));
 
 ### readUInt32BE
 
-readUInt32BE(offset: number): number
+readUInt32BE(offset?: number): number
 
 Reads an unsigned, big-endian 32-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1256,7 +1257,7 @@ Reads an unsigned, big-endian 32-bit integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 
 **Return value**
@@ -1276,7 +1277,7 @@ console.log(buf.readUInt32BE(0).toString(16));
 
 ### readUInt32LE
 
-readUInt32LE(offset: number): number
+readUInt32LE(offset?: number): number
 
 Reads an unsigned, little-endian 32-bit integer from this **Buffer** instance at the specified offset.
 
@@ -1286,7 +1287,7 @@ Reads an unsigned, little-endian 32-bit integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
 
 
 **Return value**
@@ -1316,8 +1317,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to read.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to read.|
 
 
 **Return value**
@@ -1347,8 +1348,8 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before reading data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to read.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to read.|
 
 
 **Return value**
@@ -1423,10 +1424,10 @@ Interprets this **Buffer** instance as an array of unsigned 16-bit integers and 
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1); // Print: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// Print: 0102030405060708
 
 buf1.swap16();
-console.log(buf1); // Print: <Buffer 02 01 04 03 06 05 08 07>
+console.log(buf1.toString('hex'));	// Print: 0201040306050807
 ```
 
 ### swap32
@@ -1450,10 +1451,10 @@ Interprets this **Buffer** instance as an array of unsigned 32-bit integers and 
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1); // Print: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// Print: 0102030405060708
 
 buf1.swap32();
-console.log(buf1); // Print: <Buffer 04 03 02 01 08 07 06 05>
+console.log(buf1.toString('hex'));	// Print: 0403020108070605
 ```
 
 ### swap64
@@ -1477,9 +1478,9 @@ Interprets this **Buffer** instance as an array of unsigned 64-bit integers and 
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// Print: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// Print: 0102030405060708
 buf1.swap64();
-console.log(buf1);	// Print: <Buffer 08 07 06 05 04 03 02 01>
+console.log(buf1.toString('hex'));	// Print: 0807060504030201
 ```
 
 ### toJSON
@@ -1503,9 +1504,8 @@ Converts this **Buffer** instance into a JSON object.
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
-let buf2 = buffer.from(buf1.toJSON())
-let json = JSON.stringify(buf2);
-console.log(json);
+let obj = buf1.toJSON();
+console.log(JSON.stringify(obj))
 // Print: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1564,8 +1564,8 @@ Creates and returns an iterator that contains the values of this **Buffer** inst
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (const value of buf.values()) {
-  console.log(value);
+for (let value of buf1.values()) {
+  console.log(value.toString());
 }
 ```
 
@@ -1582,7 +1582,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | str | string | Yes| String to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 | length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
 | encoding | BufferEncoding | No| Encoding format of the string. The default value is **utf-8**.|
 
@@ -1603,15 +1603,15 @@ let len = buf.write('\u00bd + \u00bc = \u00be', 0);
 console.log(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
 // Print: 12 bytes: ½ + ¼ = ¾
 
-let buffer = Buffer.alloc(10);
-let length = buffer.write('abcd', 8);
+let buffer1 = buffer.alloc(10);
+let length = buffer1.write('abcd', 8);
 ```
 
 ### writeBigInt64BE
 
-writeBigInt64BE(value: number, offset?: number): number
+writeBigInt64BE(value: bigint, offset?: number): number
 
-Writes a signed, big-endian 64-bit integer to this **Buffer** instance at the specified offset.
+Writes a signed, big-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1619,8 +1619,8 @@ Writes a signed, big-endian 64-bit integer to this **Buffer** instance at the sp
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| value | bigint | Yes| Data to write.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1640,9 +1640,9 @@ buf.writeBigInt64BE(0x0102030405060708n, 0);
 
 ### writeBigInt64LE
 
-writeBigInt64LE(value : number, offset? : number): number
+writeBigInt64LE(value: bigint, offset?: number): number
 
-Writes a signed, little-endian 64-bit integer to this **Buffer** instance at the specified offset.
+Writes a signed, little-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1650,8 +1650,8 @@ Writes a signed, little-endian 64-bit integer to this **Buffer** instance at the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| value | bigint | Yes| Data to write.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1671,9 +1671,9 @@ buf.writeBigInt64LE(0x0102030405060708n, 0);
 
 ### writeBigUInt64BE
 
-writeBigUInt64BE(value : number, offset? : number): number
+writeBigUInt64BE(value: bigint, offset?: number): number
 
-Writes an unsigned, big-endian 64-bit integer to this **Buffer** instance at the specified offset.
+Writes an unsigned, big-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1681,8 +1681,8 @@ Writes an unsigned, big-endian 64-bit integer to this **Buffer** instance at the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| value | bigint | Yes| Data to write.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1702,9 +1702,9 @@ buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
 
 ### writeBigUInt64LE
 
-writeBigUInt64LE(value : number, offset? : number): number
+writeBigUInt64LE(value: bigint, offset?: number): number
 
-Writes an unsigned, little-endian 64-bit integer to this **Buffer** instance at the specified offset.
+Writes an unsigned, little-endian 64-bit Big integer to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1712,8 +1712,8 @@ Writes an unsigned, little-endian 64-bit integer to this **Buffer** instance at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| value | bigint | Yes| Data to write.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1733,9 +1733,9 @@ buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
 
 ### writeDoubleBE
 
-writeDoubleBE(value : number, offset? : number): number
+writeDoubleBE(value: number, offset?: number): number
 
-Writes a 64-bit, big-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a big-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1744,7 +1744,7 @@ Writes a 64-bit, big-endian double-precision floating-point number to this **Buf
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1764,9 +1764,9 @@ buf.writeDoubleBE(123.456, 0);
 
 ### writeDoubleLE
 
-writeDoubleLE(value : number, offset? : number): number
+writeDoubleLE(value: number, offset?: number): number
 
-Writes a 64-bit, little-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
+Writes a little-endian double-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1775,7 +1775,7 @@ Writes a 64-bit, little-endian double-precision floating-point number to this **
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1795,9 +1795,9 @@ buf.writeDoubleLE(123.456, 0);
 
 ### writeFloatBE
 
-writeFloatBE(value : number, offset? : number): number
+writeFloatBE(value: number, offset?: number): number
 
-Writes a 32-bit, big-endian floating-point number to this **Buffer** instance at the specified offset.
+Writes a big-endian single-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1806,7 +1806,7 @@ Writes a 32-bit, big-endian floating-point number to this **Buffer** instance at
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1827,9 +1827,9 @@ buf.writeFloatBE(0xcafebabe, 0);
 
 ### writeFloatLE
 
-writeFloatLE(value : number, offset? : number): number
+writeFloatLE(value: number, offset?: number): number
 
-Writes a 32-bit, little-endian floating-point number to this **Buffer** instance at the specified offset.
+Writes a little-endian single-precision floating-point number to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1838,7 +1838,7 @@ Writes a 32-bit, little-endian floating-point number to this **Buffer** instance
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1858,7 +1858,7 @@ buf.writeFloatLE(0xcafebabe, 0);
 
 ### writeInt8
 
-writeInt8(value : number, offset? : number): number
+writeInt8(value: number, offset?: number): number
 
 Writes a signed 8-bit integer to this **Buffer** instance at the specified offset.
 
@@ -1869,7 +1869,7 @@ Writes a signed 8-bit integer to this **Buffer** instance at the specified offse
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1891,7 +1891,7 @@ buf.writeInt8(-2, 1);
 
 ### writeInt16BE
 
-writeInt16BE(value : number, offset? : number): number
+writeInt16BE(value: number, offset?: number): number
 
 Writes a signed, big-endian 16-bit integer to this **Buffer** instance at the specified offset.
 
@@ -1902,7 +1902,7 @@ Writes a signed, big-endian 16-bit integer to this **Buffer** instance at the sp
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1923,7 +1923,7 @@ buf.writeInt16BE(0x0102, 0);
 
 ### writeInt16LE
 
-writeInt16LE(value : number, offset : number): number
+writeInt16LE(value: number, offset?: number): number
 
 Writes a signed, little-endian 16-bit integer to this **Buffer** instance at the specified offset.
 
@@ -1934,7 +1934,7 @@ Writes a signed, little-endian 16-bit integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1954,7 +1954,7 @@ buf.writeInt16LE(0x0304, 0);
 
 ### writeInt32BE
 
-writeInt32BE(value : number, offset : number): number
+writeInt32BE(value: number, offset?: number): number
 
 Writes a signed, big-endian 32-bit integer to this **Buffer** instance at the specified offset.
 
@@ -1965,7 +1965,7 @@ Writes a signed, big-endian 32-bit integer to this **Buffer** instance at the sp
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -1986,7 +1986,7 @@ buf.writeInt32BE(0x01020304, 0);
 
 ### writeInt32LE
 
-writeInt32LE(value : number, offset : number): number
+writeInt32LE(value: number, offset?: number): number
 
 Writes a signed, little-endian 32-bit integer to this **Buffer** instance at the specified offset.
 
@@ -1997,7 +1997,7 @@ Writes a signed, little-endian 32-bit integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2017,7 +2017,7 @@ buf.writeInt32LE(0x05060708, 0);
 
 ### writeIntBE
 
-writeIntBE(value : number, offset : number, byteLength : number): number
+writeIntBE(value: number, offset: number, byteLength: number): number
 
 Writes a big-endian signed value of the specified length to this **Buffer** instance at the specified offset.
 
@@ -2028,8 +2028,8 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to write.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to write.|
 
 
 **Return value**
@@ -2050,7 +2050,7 @@ buf.writeIntBE(0x1234567890ab, 0, 6);
 
 ### writeIntLE
 
-writeIntLE(value : number, offset : number, byteLength : number): number
+writeIntLE(value: number, offset: number, byteLength: number): number
 
 Writes a little-endian signed value of the specified length to this **Buffer** instance at the specified offset.
 
@@ -2061,8 +2061,8 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to write.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to write.|
 
 
 **Return value**
@@ -2082,7 +2082,7 @@ buf.writeIntLE(0x1234567890ab, 0, 6);
 
 ### writeUInt8
 
-writeUInt8(value : number, offset : number): number
+writeUInt8(value: number, offset?: number): number
 
 Writes an unsigned 8-bit integer to this **Buffer** instance at the specified offset.
 
@@ -2093,7 +2093,7 @@ Writes an unsigned 8-bit integer to this **Buffer** instance at the specified of
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2116,7 +2116,7 @@ buf.writeUInt8(0x42, 3);
 
 ### writeUInt16BE
 
-writeUInt16BE(value : number, offset : number): number
+writeUInt16BE(value: number, offset?: number): number
 
 Writes an unsigned, big-endian 16-bit integer to this **Buffer** instance at the specified offset.
 
@@ -2127,7 +2127,7 @@ Writes an unsigned, big-endian 16-bit integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2148,7 +2148,7 @@ buf.writeUInt16BE(0xbeef, 2);
 
 ### writeUInt16LE
 
-writeUInt16LE(value : number, offset : number): number
+writeUInt16LE(value: number, offset?: number): number
 
 Writes an unsigned, little-endian 16-bit integer to this **Buffer** instance at the specified offset.
 
@@ -2159,7 +2159,7 @@ Writes an unsigned, little-endian 16-bit integer to this **Buffer** instance at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2180,7 +2180,7 @@ buf.writeUInt16LE(0xbeef, 2);
 
 ### writeUInt32BE
 
-writeUInt32BE(value : number, offset : number): number
+writeUInt32BE(value: number, offset?: number): number
 
 Writes an unsigned, big-endian 32-bit integer to this **Buffer** instance at the specified offset.
 
@@ -2191,7 +2191,7 @@ Writes an unsigned, big-endian 32-bit integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2211,7 +2211,7 @@ buf.writeUInt32BE(0xfeedface, 0);
 
 ### writeUInt32LE
 
-writeUInt32LE(value : number, offset : number): number
+writeUInt32LE(value: number, offset?: number): number
 
 Writes an unsigned, little-endian 32-bit integer to this **Buffer** instance at the specified offset.
 
@@ -2221,8 +2221,8 @@ Writes an unsigned, little-endian 32-bit integer to this **Buffer** instance at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Number to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
+| value | number | Yes| Data to write.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 
 
 **Return value**
@@ -2242,9 +2242,9 @@ buf.writeUInt32LE(0xfeedface, 0);
 
 ### writeUIntBE
 
-writeUIntBE(value : number, offset : number, byteLength : number): number
+writeUIntBE(value: number, offset: number, byteLength: number): number
 
-Writes a big-endian unsigned value of the specified length to this **Buffer** instance at the specified offset.
+Writes an unsigned big-endian value of the specified length to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2253,8 +2253,8 @@ Writes a big-endian unsigned value of the specified length to this **Buffer** in
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to write.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to write.|
 
 
 **Return value**
@@ -2274,9 +2274,9 @@ buf.writeUIntBE(0x1234567890ab, 0, 6);
 
 ### writeUIntLE
 
-writeUIntLE(value : number, offset : number, byteLength : number): number
+writeUIntLE(value: number, offset: number, byteLength: number): number
 
-Writes a little-endian unsigned value of the specified length to this **Buffer** instance at the specified offset.
+Writes an unsigned little-endian value of the specified length to this **Buffer** instance at the specified offset.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2285,8 +2285,8 @@ Writes a little-endian unsigned value of the specified length to this **Buffer**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before writing data. The default value is **0**.|
-| byteLength | number | No| Number of bytes to write.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| byteLength | number | Yes| Number of bytes to write.|
 
 
 **Return value**
@@ -2306,7 +2306,7 @@ buf.writeUIntLE(0x1234567890ab, 0, 6);
 
 ### transcode
 
-transcode(source : Buffer | Uint8Array, fromEnc : string, toEnc : string): Buffer
+transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 Transcodes the given **Buffer** or **Uint8Array** instance from one encoding format to another.
 
@@ -2316,7 +2316,7 @@ Transcodes the given **Buffer** or **Uint8Array** instance from one encoding for
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to encode.|
+| source | Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Instance to transcode. |
 | fromEnc | string | Yes| Current encoding format.|
 | toEnc | string | Yes| Target encoding format.|
 
@@ -2332,7 +2332,7 @@ Transcodes the given **Buffer** or **Uint8Array** instance from one encoding for
 import buffer from '@ohos.buffer';
 
 let buf = buffer.alloc(50);
-let newBuf = buf.transcode(buffer.from('€'), 'utf8', 'ascii');
+let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```
 
@@ -2349,7 +2349,7 @@ console.log(newBuf.toString('ascii'));
 
 ### constructor
 
-constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options: Object)
+constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options?: Object)
 
 A constructor used to create a **Blob** instance.
 
@@ -2368,7 +2368,7 @@ A constructor used to create a **Blob** instance.
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob1 = new buffer.Blob(['a', 'b', 'c']);
+let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
@@ -2390,7 +2390,8 @@ Puts the **Blob** data into an **ArrayBuffer** instance. This API uses a promise
   let blob = new buffer.Blob(['a', 'b', 'c']);
   let pro = blob.arrayBuffer();
   pro.then(val => {
-      console.log(val)
+    let uintarr = new Uint8Array(val);
+    console.log(uintarr.toString());
   });
   ```
 ### slice
@@ -2412,7 +2413,7 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Blob | New **Blob** instance created.|
+| Blob | **Blob** instance created. |
 
 **Example**
   ```ts

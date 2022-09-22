@@ -14,7 +14,7 @@ import worker from '@ohos.worker';
 
 ## 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称       | 参数类型                                                  | 可读 | 可写 | 说明                                 |
 | ---------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------ |
@@ -25,7 +25,7 @@ import worker from '@ohos.worker';
 
 Worker构造函数的选项信息，用于为Worker添加其他信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称   | 参数类型  | 可读 | 可写 | 说明                   |
 | ------ | --------- | ---- | ---- | ---------------------- |
@@ -568,7 +568,7 @@ parentPort.onmessageerror= function(e) {
 
 明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 参数类型 | 可读 | 可写 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
@@ -579,7 +579,7 @@ parentPort.onmessageerror= function(e) {
 
 事件类。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                               |
 | --------- | -------- | ---- | ---- | ---------------------------------- |
@@ -591,8 +591,7 @@ parentPort.onmessageerror= function(e) {
 
 事件监听类。
 
-
-### (evt: Event): void | Promise&lt;void&gt;
+(evt: Event): void | Promise&lt;void&gt;
 
 执行的回调函数。
 
@@ -624,7 +623,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 参数类型 | 可读 | 可写 | 说明                 |
 | -------- | -------- | ---- | ---- | -------------------- |
@@ -639,7 +638,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 消息类，持有Worker线程间传递的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明               |
 | ---- | -------- | ---- | ---- | ------------------ |
@@ -652,7 +651,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型                                                     | 可读 | 可写 | 说明                                    |
 | ---- | ------------------------------------------------------------ | ---- | ---- | --------------------------------------- |
@@ -694,6 +693,7 @@ parentPort.onerror = function(e){
 
 ### 内存模型
 Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。 
+
 Actor并发模型的交互原理：各个Actor并发地处理主线程任务，每个Actor内部都有一个消息队列及单线程执行模块，消息队列负责接收主线程及其他Actor的请求，单线程执行模块则负责串行地处理请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离没有数据竞争，因此Actor可以高并发运行。
 
 ### 注意事项
