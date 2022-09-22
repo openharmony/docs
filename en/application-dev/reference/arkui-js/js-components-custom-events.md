@@ -1,16 +1,18 @@
-# Custom Events<a name="EN-US_TOPIC_0000001127284896"></a>
+# Custom Events
 
-The following example describes how to define a child component  **comp**:
+The following example describes how to define a child component **comp**:
 
-```
+
+```html
 <!-- comp.hml -->
 <div class="item">  
-   <text class="text-style" onclick="childClicked">Click here to view the hidden text.</text> 
+      <text class="text-style" onclick="childClicked">Click here to view the hidden text.</text> 
    <text class="text-style" if="{{showObj}}">hello world</text> 
 </div>
 ```
 
-```
+
+```css
 /* comp.css */
 .item {  
   width: 700px;   
@@ -26,7 +28,8 @@ The following example describes how to define a child component  **comp**:
 }
 ```
 
-```
+
+```js
 // comp.js
 export default { 
   data: {  
@@ -39,9 +42,11 @@ export default {
 }
 ```
 
+
 The following example describes how to introduce the child component:
 
-```
+
+```html
 <!-- xxx.hml --> 
 <element name='comp' src='../../common/component/comp.hml'></element>  
 <div class="container">  
@@ -49,7 +54,8 @@ The following example describes how to introduce the child component:
 </div>
 ```
 
-```
+
+```css
 /* xxx.css */
 .container {  
   background-color: #f8f8ff;  
@@ -59,10 +65,12 @@ The following example describes how to introduce the child component:
 } 
 ```
 
-```
+
+```js
 // xxx.js
 export default {    
   textClicked () {},  
 }
 ```
 
+For more information, see [Basic Usage](./js-components-custom-basic-usage.md).
