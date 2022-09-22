@@ -78,7 +78,7 @@ export default class MyWindowExtensionAbility extends WindowExtensionAbility {
 
 ## WindowExtensionAbility.onWindowReady
 
-onWindowReady(window: Window): void
+onWindowReady(window: window.Window): void
 
 当窗口被创建时回调。
 
@@ -88,7 +88,7 @@ onWindowReady(window: Window): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| window | [Window](js-apis-window.md) | 是 | 当前窗口实例。 |
+| window | [window.Window](js-apis-window.md#window) | 是 | 当前窗口实例。 |
 
 
 **示例：** 
