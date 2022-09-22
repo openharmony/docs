@@ -2,8 +2,8 @@
 
 - 内核
     - [内核概述](kernel-overview.md)
-    - 轻量系统内核
-        - [内核概述](kernel-mini-overview.md)
+    - 轻量系统内核（LiteOS-M）
+        - [轻量系统内核概述](kernel-mini-overview.md)
         - 基础内核
             - [中断管理](kernel-mini-basic-interrupt.md)
             - [任务管理](kernel-mini-basic-task.md)
@@ -29,8 +29,8 @@
             - [内核编码规范](kernel-mini-appx-code.md)
             - [双向链表](kernel-mini-appx-data-list.md)
             - [标准库支持](kernel-mini-appx-lib.md)
-    - 小型系统内核
-        - [内核概述](kernel-small-overview.md)
+    - 小型系统内核（LiteOS-A）
+        - [小型系统内核概述](kernel-small-overview.md)
         - 内核启动
             - [内核态启动](kernel-small-start-kernel.md)
             - [用户态启动](kernel-small-start-user.md)
@@ -150,10 +150,11 @@
                 - [双向链表](kernel-small-apx-dll.md)
                 - [位操作](kernel-small-apx-bitwise.md)
             - [标准库](kernel-small-apx-library.md)
-    - 标准系统内核
-        - [Linux内核概述](kernel-standard-overview.md)
+            - [内核编码规范](kernel-mini-appx-code.md)
+    - 标准系统内核（Linux）
+        - [标准系统内核概述](kernel-standard-overview.md)
         - [OpenHarmony开发板Patch使用指导](kernel-standard-patch.md)
-        - [Linux内核编译与构建指导](kernel-standard-build.md)
+        - [标准系统内核编译与构建指导](kernel-standard-build.md)
         - 内核增强特性
           - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
           - [NewIP内核协议栈介绍](kernel-standard-newip.md)
