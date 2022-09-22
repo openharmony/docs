@@ -52,9 +52,9 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 3. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
 
    ```ts
-   let DB_NAME = "DB00.db";
-   let TBL_NAME = "TBL00";
-   let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+   const DB_NAME = "DB00.db";
+   const TBL_NAME = "TBL00";
+   const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
    + TBL_NAME
    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)";
    
@@ -132,9 +132,9 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 1. 导入基础依赖包。
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   import dataShare from '@ohos.data.dataShare'
-   import dataSharePredicates from '@ohos.data.dataSharePredicates'
+   import Ability from '@ohos.application.Ability';
+   import dataShare from '@ohos.data.dataShare';
+   import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
    
 2. 定义与数据提供方通信的URI字符串。
@@ -164,29 +164,25 @@ DataShare即数据共享模块，提供了向其他应用共享以及管理其�
 
    ```ts
    // 构建一条数据
-   var valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
-   var updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
-   let da = new dataSharePredicates.DataSharePredicates();
-   var valArray = new Array("*");
-   let people = new Array(
-     { "name": "LiSi", "age": 41, "Binary": ar },
-     { "name": "WangWu", "age": 21, "Binary": arr },
-     { "name": "ZhaoLiu", "age": 61, "Binary": arr });
+   let valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
+   let updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
+   let predicates = new dataSharePredicates.DataSharePredicates();
+   let valArray = new Array("*");
    // 插入一条数据
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
      console.log("dsHelper insert result: " + data);
    });
-   // 删除指定的数据
-   dsHelper.delete(dseUri, da, (err, data) => {
-     console.log("dsHelper delete result: " + data);
-   });
    // 更新数据
-   dsHelper.update(dseUri, da, updateBucket, (err, data) => {
+   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
      console.log("dsHelper update result: " + data);
    });
    // 查询数据
-   dsHelper.query(dseUri, da, valArray, (err, data) => {
+   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
      console.log("dsHelper query result: " + data);
+   });
+   // 删除指定的数据
+   dsHelper.delete(dseUri, predicates, (err, data) => {
+     console.log("dsHelper delete result: " + data);   
    });
    ```
    
