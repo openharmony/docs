@@ -10,6 +10,12 @@
 
 | 名称         | 参数类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
+| borderImage     | BorderImageOption | 图片边框或者渐变色边框设置接口。                            |
+
+## BorderImageOption对象说明
+
+| 名称         | 类型                                     | 描述                                      |
+| ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
 | slice      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框切割宽度。<br/>默认值：0                   |
 | width      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框宽度。<br/>默认值：0                     |
