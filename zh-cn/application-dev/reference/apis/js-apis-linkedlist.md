@@ -11,6 +11,9 @@ LinkedList和[ArrayList](js-apis-arraylist.md)相比，存取数据的效率不�
 
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用LinkedList高效操作。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -75,7 +78,7 @@ let result = linkedList.add("a");
 let result1 = linkedList.add(1);
 let b = [1, 2, 3];
 linkedList.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = linkedList.add(false);
 ```
 
@@ -101,7 +104,7 @@ linkedList.addFirst("a");
 linkedList.addFirst(1);
 let b = [1, 2, 3];
 linkedList.addFirst(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 linkedList.addFirst(false);
 ```
 
@@ -153,9 +156,9 @@ has(element: T): boolean
 
 ```ts
 let linkedList = new LinkedList();
-let result1 = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
-linkedList.add("Ahfbrgrbgnutfodgorrogorg");
-let result = linkedList.has("Ahfbrgrbgnutfodgorrogorg");
+let result1 = linkedList.has("squirrel");
+linkedList.add("squirrel");
+let result = linkedList.has("squirrel");
 ```
 
 ### get
