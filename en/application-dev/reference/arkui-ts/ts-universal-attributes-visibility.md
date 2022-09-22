@@ -1,7 +1,9 @@
 # Visibility
 
+The visibility attribute controls whether a component is visible.
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+> **NOTE**
+>
 > This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -13,23 +15,15 @@ None
 ## Attributes
 
 
-  | Name | Type | Default Value | Description | 
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | Whether the component is shown or hidden. | 
-
-
-- Visibility enums
-    | Name | Description | 
-  | -------- | -------- |
-  | Hidden | The component is hidden, and a placeholder is used for it in the layout. | 
-  | Visible | The component is shown. | 
-  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it. | 
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Visibility.Visible | Whether the component is visible. |
 
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct VisibilityExample {
@@ -40,11 +34,11 @@ struct VisibilityExample {
         Row().visibility(Visibility.Visible).width('90%').height(80).backgroundColor(0xAFEEEE)
 
         Text('None').fontSize(9).width('90%').fontColor(0xCCCCCC)
-        // The component is hidden and no placeholder is used.
+        // The component is hidden, and no placeholder is used.
         Row().visibility(Visibility.None).width('90%').height(80).backgroundColor(0xAFEEEE)
 
         Text('Hidden').fontSize(9).width('90%').fontColor(0xCCCCCC)
-        // The component is hidden and a placeholder is used.
+        // The component is hidden, and a placeholder is used for it in the layout.
         Row().visibility(Visibility.Hidden).width('90%').height(80).backgroundColor(0xAFEEEE)
       }.width('90%').border({ width: 1 })
     }.width('100%').margin({ top: 5 })

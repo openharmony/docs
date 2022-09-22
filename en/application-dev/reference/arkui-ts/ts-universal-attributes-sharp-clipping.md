@@ -3,7 +3,7 @@
 
 > **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions

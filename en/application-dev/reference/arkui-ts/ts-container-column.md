@@ -1,11 +1,11 @@
 # Column
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+The **\<Column>** component lays out child components vertically.
+
+> **NOTE**
+>
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;Column&gt;** component lays out child components vertically.
 
 
 ## Required Permissions
@@ -20,34 +20,27 @@ This component can contain child components.
 
 ## APIs
 
-Column(value:{space?: Length})
+Column(value?:{space?: string | number})
 
-
-- Parameters
-    | Name  | Type   | Mandatory | Default Value | Description                              |
-    | ----- | ------ | --------- | ------------- | ---------------------------------------- |
-    | space | Length | No        | 0             | Space between any two adjacent child components in the vertical layout. |
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| space | string\|numbe | No| 0 | Space between two adjacent child components in the vertical layout.|
 
 
 ## Attributes
 
-| Name                        | Type                              | Default Value          | Description                              |
-| --------------------------- | --------------------------------- | ---------------------- | ---------------------------------------- |
-| alignItems                  | HorizontalAlign                   | HorizontalAlign.Center | Alignment mode of child components in the horizontal direction. |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start        | Alignment mode of child components in the vertical direction. |
+| Name| Type| Default Value| Description|
+| -------- | -------- | -------- | -------- |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | HorizontalAlign.Center | Alignment mode of the child components in the horizontal direction.|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the vertical direction.|
 
-- HorizontalAlign enums
-    | Name   | Description                              |
-    | ------ | ---------------------------------------- |
-    | Start  | Aligned with the start edge in the same direction as the language in use. |
-    | Center | Center alignment. This is the default alignment mode. |
-    | End    | Aligned with the end edge in the same direction as the language in use. |
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ColumnExample {
@@ -76,6 +69,7 @@ struct ColumnExample {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)
           Column().width('30%').height(30).backgroundColor(0x00FFFF)
         }.height('15%').border({ width: 1 }).justifyContent(FlexAlign.Center)
+
         Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
         Column() {
           Column().width('30%').height(30).backgroundColor(0xAFEEEE)
@@ -86,4 +80,4 @@ struct ColumnExample {
 }
 ```
 
-![](figures/Column.png)
+![Column](figures/Column.png)
