@@ -24,7 +24,8 @@
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | 允许应用修改系统时区。                                       |
 | ohos.permission.<br>DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | 允许应用管理下载任务会话。                                   |
 | ohos.permission.COMMONEVENT_STICKY                       | normal       | system_grant | TRUE    | 允许应用发布粘性公共事件。                                   |
-| ohos.permission.SYSTEM_FLOAT_WINDOW                      | normal       | system_grant | TRUE    | 允许应用使用悬浮窗的能力。                                   |
+| ohos.permission.SYSTEM_FLOAT_WINDOW                      | system_basic | system_grant | TRUE    | 允许应用使用悬浮窗的能力。                                   |
+| ohos.permission.PRIVACY_WINDOW                           | system_basic | system_grant | TRUE    | 允许应用将窗口设置为隐私窗口，禁止截屏录屏。                   |
 | ohos.permission.POWER_MANAGER                            | system_core  | system_grant | TRUE    | 允许应用调用电源管理子系统的接口，休眠或者唤醒设备。         |
 | ohos.permission.REFRESH_USER_ACTION                      | system_basic | system_grant | TRUE    | 允许应用在收到用户事件时，重新计算超时时间。                 |
 | ohos.permission.POWER_OPTIMIZATION                       | system_basic | system_grant | TRUE    | 允许系统应用设置省电模式、获取省电模式的配置信息并接收配置变化的通知。 |
