@@ -157,15 +157,16 @@ getNdefFormatableTag(tagInfo: [TagInfo](#taginfo9)): [NdefFormatableTag](js-apis
 | ------------------ | --------------------------|
 | [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag)  | Ndef Formatable类型Tag对象。 |
 
-## TagInfo<sup>9+</sup>
+## TagInfo<sup>7+</sup>
 
 nfc服务在调度标签时给出的对象。
 
+**需要权限**：ohos.permission.NFC_TAG
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **类型** |  **说明** |
 | -------- | -------- | -------- |
-| uid | string |  标签的uid。 |
-| technology | number[] |  支持的技术类型。 |
-| extrasData | PacMap[] |  标签的额外信息。 |
-| tagRfDiscId | number |  标签的RF discovery id。 |
-| remoteTagService | rpc.RemoteObject |  标签服务的rpc远程对象。 |
-| supportedProfiles | number[] |  支持的技术类型。 |
+| uid<sup>9+</sup> | string |  标签的uid。 |
+| technology<sup>9+</sup> | number[] |  支持的技术类型。 |
+| supportedProfiles<sup>7+</sup> | number[] |  支持的技术类型。 |
