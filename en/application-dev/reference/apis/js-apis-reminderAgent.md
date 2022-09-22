@@ -20,7 +20,7 @@ import reminderAgent from'@ohos.reminderAgent';
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
-Publishes an agent-powered reminder. This API uses an asynchronous callback to return the result.
+Publishes a reminder through the reminder agent. This API uses an asynchronous callback to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8).
 
 **Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -54,8 +54,9 @@ Publishes an agent-powered reminder. This API uses an asynchronous callback to r
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
-Publishes an agent-powered reminder. This API uses a promise callback to return the result.
+Publishes a reminder through the reminder agent. This API uses a promise to return the result. It can be called only when notification is enabled for the application through [Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8).
 
+**Required permissions**: ohos.permission.PUBLISH_AGENT_REMINDER
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -290,7 +291,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. |
 | callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
 
 **Example**
@@ -321,7 +322,7 @@ Adds a notification slot. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
+| slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot. |
 
 **Return value**
 
@@ -455,7 +456,7 @@ Sets the package and ability that are redirected to when the reminder notificati
 
 ## MaxScreenWantAgent
 
-Sets the name of the target package and ability to start automatically when the reminder arrives and the device is not in use. If the device is in use, a notification will be displayed.
+Provides the information about the target package and ability to start automatically when the reminder is displayed in full-screen mode. This API is reserved.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -474,7 +475,7 @@ Defines the reminder to publish.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | ReminderType | Yes| Type of the reminder.|
-| actionButton | [ActionButton?,&nbsp;ActionButton?] | No| Action button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
+| actionButton | [ActionButton?,&nbsp;ActionButton?] | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
 | wantAgent | WantAgent | No| Information about the ability that is redirected to when the notification is clicked.|
 | maxScreenWantAgent | MaxScreenWantAgent | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration.|
