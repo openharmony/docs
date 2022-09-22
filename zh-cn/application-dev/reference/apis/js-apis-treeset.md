@@ -9,6 +9,9 @@ TreeSet和[HashSet](js-apis-hashset.md)相比，HashSet中的数据无序存放�
 
 **推荐使用场景：** 一般需要存储有序集合的场景，可以使用TreeSet。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -28,7 +31,7 @@ import TreeSet from '@ohos.util.TreeSet';
 
 ### constructor
 
-constructor(comparator?:(firstValue: T, secondValue: T) => boolean)
+constructor(comparator?: (firstValue: T, secondValue: T) => boolean)
 
 TreeSet的构造函数。
 
@@ -117,8 +120,8 @@ getFirstValue(): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.getFirstValue();
 ```
 
@@ -141,8 +144,8 @@ getLastValue(): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.getLastValue();
 ```
 
@@ -171,7 +174,7 @@ add(value: T): boolean
 
 ```ts
 let treeSet = new TreeSet();
-let result = treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeSet.add("squirrel");
 ```
 
 
@@ -199,9 +202,9 @@ remove(value: T): boolean
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-let result = treeSet.remove("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+let result = treeSet.remove("sparrow");
 ```
 
 
@@ -229,10 +232,10 @@ getLowerValue(key: T): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-treeSet.add("zdfgsd");
-let result = treeSet.getLowerValue("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getLowerValue("sparrow");
 ```
 
 
@@ -260,10 +263,10 @@ getHigherValue(key: T): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
-treeSet.add("zdfgsd");
-let result = treeSet.getHigherValue("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
+treeSet.add("gander");
+let result = treeSet.getHigherValue("sparrow");
 ```
 
 
@@ -285,8 +288,8 @@ popFirst(): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.popFirst();
 ```
 
@@ -309,8 +312,8 @@ popLast(): T
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let result = treeSet.popLast();
 ```
 
@@ -327,8 +330,8 @@ clear(): void
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 treeSet.clear();
 ```
 
@@ -351,8 +354,8 @@ values(): IterableIterator&lt;T&gt;
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let iter = treeSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -388,8 +391,8 @@ callbackfn的参数说明：
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("sdfs");
-treeSet.add("dfsghsf");
+treeSet.add("sparrow");
+treeSet.add("gull");
 treeSet.forEach((value, key) => {
   console.log("value:" + value, key)
 });
@@ -414,8 +417,8 @@ entries(): IterableIterator<[T, T]>
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
 let iter = treeSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -444,8 +447,8 @@ while(temp != undefined) {
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeSet.add("sdfs");
+treeSet.add("squirrel");
+treeSet.add("sparrow");
   
 // 使用方法一：
 for (let item of treeSet) { 

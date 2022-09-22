@@ -11,6 +11,9 @@ ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问
 
 **推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -71,7 +74,7 @@ add(element: T): boolean
   let result1 = arrayList.add(1);
   let b = [1, 2, 3];
   let result2 = arrayList.add(b);
-  let c = {name: "lala", age: "13"};
+  let c = {name: "Dylon", age: "13"};
   let result3 = arrayList.add(false);
   ```
 
@@ -123,9 +126,9 @@ has(element: T): boolean
 
 ```ts
 let arrayList = new ArrayList();
-let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = arrayList.has("squirrel");
+arrayList.add("squirrel");
+let result1 = arrayList.has("squirrel");
 ```
 
 ### getIndexOf
@@ -360,7 +363,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log("value:" + value, index);
+  console.log(`value:${value}`, index);
 });
 ```
 
@@ -622,14 +625,14 @@ arrayList.add(4);
 
 // 使用方法一：
 for (let item of arrayList) { 
-  console.log("value:" + item); 
+  console.log(`value:${item}`); 
 } 
 
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.log(`value:${temp}`);
   temp = iter.next().value;
 }
 ```
