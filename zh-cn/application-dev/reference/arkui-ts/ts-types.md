@@ -194,7 +194,7 @@
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | 否    | 边框宽度。   |
-| color  | [ResourceColor](#resourcecolor8) \| [EdgeColors](#edgrcolors9)<sup>9+</sup> | 否    | 边框颜色。   |
+| color  | [ResourceColor](#resourcecolor8) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | 否    | 边框圆角半径。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
 
