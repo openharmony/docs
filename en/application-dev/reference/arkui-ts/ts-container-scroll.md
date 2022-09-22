@@ -34,7 +34,7 @@ Scroll(scroller?: Scroller)
 | scrollBarWidth | Length                                   | -                        | Width of the scrollbar.|
 | edgeEffect     | EdgeEffect                               | EdgeEffect.Spring | Scroll effect. For details, see **EdgeEffect**.|
 
-## ScrollDirection enums
+## ScrollDirection
   | Name        | Description        |
   | ---------- | ---------- |
   | Horizontal | Only horizontal scrolling is supported.|
