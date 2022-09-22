@@ -14,7 +14,7 @@
 
 ## 接口
 
-Polygon(options?: {width?: string | number, height?: string | number})
+Polygon(value?: {width?: string | number, height?: string | number})
 
 - 参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 

@@ -18,8 +18,8 @@ Select(options: Array\<SelectOption\>)
 
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
 | ------ | ----------------------------------- | ---- | -------------- |
-| value  | [ResourceStr](ts-types.md) | 是   | 下拉选项内容。 |
-| icon   | [ResourceStr](ts-types.md) | 否   | 下拉选项图片。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。 |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。 |
 
 ## 属性
 

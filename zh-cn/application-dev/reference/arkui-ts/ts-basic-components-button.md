@@ -36,7 +36,7 @@
 
   | 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述          |
   | ------- | ----------------------------------- | ---- | ---- | ------------- |
-  | label   | [ResourceStr](ts-types.md) | 否    | -    | 按钮文本内容。       |
+  | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | -    | 按钮文本内容。       |
   | options | Object                              | 否    | -    | 见options参数说明。 |
 
 

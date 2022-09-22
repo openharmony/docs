@@ -15,8 +15,8 @@
 | width          | [Length](ts-types.md#length)             | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。              |
 | height         | [Length](ts-types.md#length)             | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。              |
 | size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。                                  |
-| padding        | {<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>left?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 |
-| margin         | {<br/>top?:&nbsp;[Length](ts-types.md#length),<br/>right?:&nbsp;[Length](ts-types.md#length),<br/>bottom?:&nbsp;[Length](ts-types.md#length),<br/>left?:&nbsp;[Length](ts-types.md#length)<br/>}<br/>\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 |
+| padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 |
+| margin         | [Margin](ts-types.md#margin))&nbsp;\|&nbsp;[Length](ts-types.md#length)  | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 |
 | constraintSize | {<br/>minWidth?:&nbsp;[Length](ts-types.md#length),<br/>maxWidth?:&nbsp;[Length](ts-types.md#length),<br/>minHeight?:&nbsp;[Length](ts-types.md#length),<br/>maxHeight?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置约束尺寸，组件布局时，进行尺寸范围限制。constraintSize的优先级高于Width和Height。<br>默认值：<br>{<br/>minWidth:&nbsp;0,<br/>maxWidth:&nbsp;Infinity,<br/>minHeight:&nbsp;0,<br/>maxHeight:&nbsp;Infinity<br/>} |
 | layoutWeight   | number&nbsp;\|&nbsp;string               | 容器尺寸确定时，元素与兄弟节点主轴布局尺寸按照权重进行分配，忽略本身尺寸设置，表示自适应占满剩余空间。<br>**说明：**<br/>仅在Row/Column/Flex布局中生效。<br>默认值：0 |
 

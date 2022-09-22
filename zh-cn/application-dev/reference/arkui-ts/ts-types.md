@@ -28,7 +28,7 @@
 | number   | 默认单位vp。                                |
 | Resource | 使用引入资源的方式，引入系统资源或者应用资源中的尺寸。            |
 
-## ResourceStr<sup>8+</sup>
+## ResourceStr
 
 字符串类型，用于描述字符串入参可以使用的类型。
 
