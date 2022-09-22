@@ -27,4 +27,6 @@ struct FancyUse {
 
 
 > **说明：**
-> @Extend装饰器不能用在自定义组件struct定义框内。
+>
+> - @Extend装饰器不能用在自定义组件struct定义框内。
+> - @Extend装饰器内仅支持属性函数语句。

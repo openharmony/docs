@@ -11,6 +11,9 @@ PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值
 
 **推荐使用场景：** 当需要存储key值为number类型的键值对时，可以使用PlainArray。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -92,7 +95,7 @@ has(key: number): boolean
 ```ts
 let plainArray = new PlainArray();
 plainArray.has(1);
-plainArray.add(1, "sddfhf");
+plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
 ```
 
@@ -121,8 +124,8 @@ get(key: number): T
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
 ```
 
@@ -151,8 +154,8 @@ getIndexOfKey(key: number): number
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
 ```
 
@@ -181,9 +184,9 @@ getIndexOfValue(value: T): number
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
-let result = plainArray.getIndexOfValue("sddfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.getIndexOfValue("squirrel");
 ```
 
 
@@ -211,8 +214,8 @@ getKeyAt(index: number): number
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
 ```
 
@@ -240,8 +243,8 @@ getValueAt(index: number): T
 
   ```ts
   let plainArray = new PlainArray();
-  plainArray.add(1, "sddfhf");
-  plainArray.add(2, "sffdfhf");
+  plainArray.add(1, "squirrel");
+  plainArray.add(2, "sparrow");
   let result = plainArray.getKeyAt(1);
   ```
 
@@ -263,8 +266,8 @@ clone(): PlainArray&lt;T&gt;
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
 ```
 
@@ -288,7 +291,7 @@ add(key: number, value: T): void
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
+plainArray.add(1, "squirrel");
 ```
 
 
@@ -316,8 +319,8 @@ remove(key: number): T
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.remove(2);
 let result = plainArray.remove(2);
 ```
@@ -347,8 +350,8 @@ removeAt(index: number): T
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
 ```
@@ -379,8 +382,8 @@ removeRangeFrom(index: number, size: number): number
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
 ```
 
@@ -404,8 +407,8 @@ setValueAt(index: number, value: T): void
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
 ```
 
@@ -428,8 +431,8 @@ toString(): String
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.toString();
 ```
 
@@ -446,8 +449,8 @@ clear(): void
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.clear();
 ```
 
@@ -478,8 +481,8 @@ callbackfn的参数说明：
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
   console.log("value:" + value, index);
 });
@@ -504,8 +507,8 @@ plainArray.forEach((value, index) => {
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 
 // 使用方法一：
 for (let item of plainArray) { 

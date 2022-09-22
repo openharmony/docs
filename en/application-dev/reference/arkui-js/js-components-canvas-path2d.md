@@ -19,6 +19,7 @@ Adds a path to this path.
 | path | Object | Path to be added to this path. |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -60,6 +61,7 @@ Sets the path transformation matrix.
 | translateY | number | Translation distance of the y-axis. |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -130,6 +132,7 @@ Moves the current coordinate point of the path to the target point, without draw
 | y         | number | Y-coordinate of the target point. |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -216,6 +219,7 @@ Draws a cubic bezier curve on the canvas.
 | y         | number | Y-coordinate of the end point on the bezier curve.        |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -256,6 +260,7 @@ Draws a quadratic curve on the canvas.
 | y         | number | Y-coordinate of the end point on the bezier curve. |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -298,6 +303,7 @@ Draws an arc on the canvas.
 | anticlockwise | boolean | Whether to draw the arc counterclockwise.    |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -338,6 +344,7 @@ Draws an arc based on the radius and points on the arc.
 | radius    | number | Radius of the arc.                           |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -381,6 +388,7 @@ Draws an ellipse in the specified rectangular region.
 | anticlockwise | number | Whether to draw the ellipse in the anticlockwise direction. The value **0** indicates clockwise and the value **1** indicates anticlockwise. This parameter is optional. The default value is **0**. |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>
@@ -420,6 +428,7 @@ Creates a rectangle.
 | height    | number | Height of the rectangle.                                |
 
 **Example**
+
   ```html
 <!-- xxx.hml -->
 <div>

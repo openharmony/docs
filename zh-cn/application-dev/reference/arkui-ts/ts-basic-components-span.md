@@ -14,13 +14,14 @@
 
 ## 接口
 
-Span(content:  string | Resource)
+Span(value: string | Resource)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
+| value | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
+
 
 
 ## 属性

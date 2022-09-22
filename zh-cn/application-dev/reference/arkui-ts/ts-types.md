@@ -28,7 +28,7 @@
 | number   | 默认单位vp。                                |
 | [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。            |
 
-## ResourceStr<sup>8+</sup>
+## ResourceStr
 
 字符串类型，用于描述字符串入参可以使用的类型。
 
@@ -98,10 +98,10 @@
 
 | 名称     | 类型          | 必填   | 说明       |
 | ------ | ----------- | ---- | -------- |
-| top    | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle) | 否    | 组件上边框样式。 |
-| right  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle) | 否    | 组件右边框样式。 |
-| bottom | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
-| left   | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
+| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件上边框样式。 |
+| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件右边框样式。 |
+| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
+| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
 
 
 ## Offset
@@ -119,7 +119,7 @@
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| [Color](../reference/arkui-ts/ts-appendix-enums.md#color) | 颜色枚举值。                      |
+| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                      |
 | number                                   | HEX格式颜色。                    |
 | string                                   | rgb或者rgba格式颜色。              |
 | [Resource](#resource)                                 | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
@@ -141,9 +141,9 @@
 | 名称     | 类型                                       | 必填   | 说明                                       |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。          |
-| weight | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
 | family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
-| style  | [FontStyle](../reference/arkui-ts/ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
 
 ## Area<sup>8+</sup>
 
@@ -204,7 +204,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4*5矩阵的颜色过滤器, 入参为[m*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>

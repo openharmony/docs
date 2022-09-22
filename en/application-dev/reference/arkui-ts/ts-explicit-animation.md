@@ -14,21 +14,16 @@ You can create explicit animation with your custom settings.
 
 ## AnimationOptions
 
-- Attributes
-  | Name| Type| Default Value| Description|
-  | -------- | -------- | -------- | -------- |
-  | duration | number | 1000 | Animation duration, in ms.|
-  | tempo | number | 1.0 | Animation playback speed. A larger value indicates faster animation playback, and a smaller value indicates slower animation playback. The value **0** means that there is no animation.|
-  | curve | Curve \| Curves | Linear | Animation curve.|
-  | delay | number | 0 | Delay of animation playback, in ms. By default, the playback is not delayed.|
-  | iterations | number | 1 | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.|
-  | playMode | [PlayMode](ts-appendix-enums.md#playmode) | Normal | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| duration | number | Animation duration, in ms.<br>Default value: **1000**|
+| tempo | number | Animation playback speed. A larger value indicates faster animation playback, and a smaller value indicates slower animation playback. The value **0** means that there is no animation.<br>Default value: **1.0**|
+| curve | Curve \| Curves | Animation curve.<br>Default value: **Curve.Linear**|
+| delay | number | Delay of animation playback, in ms. By default, the playback is not delayed.<br>Default value: **0**|
+| iterations | number | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
+| playMode | [PlayMode](ts-appendix-enums.md#playmode) | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**|
+| onFinish   | () =&gt; void   | Callback invoked when the animation playback is complete.|
 
-
-- APIs
-  | Name| Description|
-  | -------- | -------- |
-  | onFinish() =&gt; void | Callback invoked when the animation playback is complete.|
 
 
 ## Example

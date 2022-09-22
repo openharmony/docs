@@ -1,4 +1,4 @@
-# **标准系统方案之瑞芯微RK3568移植案例**
+**标准系统方案之瑞芯微RK3568移植案例**
 
 ​        本文章是基于瑞芯微RK3568芯片的DAYU200开发板，进行标准系统相关功能的移植，主要包括产品配置添加，内核启动、升级，音频ADM化，Camera，TP，LCD，WIFI，BT，vibrator、sensor、图形显示模块的适配案例总结，以及相关功能的适配。
 
@@ -171,7 +171,7 @@ init相关配置请参考[启动子系统的规范要求](https://gitee.com/open
 │       │   └── rk817_codec.h
 │       └── src
 │           ├── rk809_codec_adapter.c
-│           ├── rk809_codec_liunx_driver.c
+│           ├── rk809_codec_linux_driver.c
 │           └── rk809_codec_ops.c
 ├── dai
 │   ├── include
@@ -292,7 +292,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 ```
 
-根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关contorl寄存器地址）涉及Codec_config.hcs和DAI_config.hcs
+根据接入的设备，选择Codec节点还是Accessory节点，配置硬件设备对应的私有属性（包含寄存器首地址，相关control寄存器地址）涉及Codec_config.hcs和DAI_config.hcs
 
 配置相关介绍见[Audio](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-peripherals-audio-des.md) hcs配置章节以及ADM框架的audio_parse模块代码。
 
@@ -605,7 +605,7 @@ ADM结构框图如下，Audio Peripheral Drivers和Platform Drivers为平台适�
 
 5. 其他ops函数
 
-  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontorl，便于dispatch contro进行控制
+  - Rk809DeviceInit，读取hcs文件，初始化Codec寄存器，同时将对应的control配置（/* reg, rreg, shift, rshift, min, max, mask, invert, value */添加到kcontrol，便于dispatch contro进行控制
   - Rk809DaiStartup, 读取hcs文件，配置可选设备（codec/accessory）的控制寄存器
   - Rk809DaiHwParams, 根据hal下发的audio attrs（采样率、format、channel等）,配置对应的寄存器
   - RK809NormalTrigger，根据hal下发的操作命令码，操作对应的寄存器，实现Codec的启动停止、录音和放音的切换等
@@ -783,7 +783,7 @@ ops函数相关函数
       使用Linux DMA原生接口函数dmaengine_prep_dma_cyclic，初始化一个具体的周期性的DMA传输描述符dmaengine_submit接口将该描述符放到传输队列上，然后调用dma_async_issue_pending接口，启动传输。
 
 5. Rk3568PcmPointer
- 
+
 第4步完成之后，ADM框架调用Rk3568PcmPointer，循环写cirBuf，计算pointer
 
    ```
@@ -815,7 +815,7 @@ ops函数相关函数
 
 1. 播放一段时间后，停止播放，持续有尖锐的很小的声音
         问题原因：播放停止后，Codec相关器件没有下电
-        解决方案：注册Codec的tirrger函数，当接收到Cmd为Stop时，对Codec进行下电
+        解决方案：注册Codec的trigger函数，当接收到Cmd为Stop时，对Codec进行下电
 
 2. 播放一段时间后，停止播放，然后重新播放没有声音
          问题原因：DMA驱动的PAUSE接口函数,并未停止DMA传输
@@ -1142,7 +1142,7 @@ deviceManager中的controller和驱动适配层直接交互。
  hdi_impl下的“camera_host_config.hcs”为物理/逻辑Camera配置、能力配置，此处的物理/逻辑Camera配置，需要在hal内部使用，逻辑Camera及能力配置需要上报给上层，请按照所适配的芯片产品添加其能力配置。其中所用的能力值为键值对，定义在//drivers/peripheral/camera/hal/hdi_impl/include/camera_host/metadata_enum_map.h中。
 
 ```
-      normal_privew :: pipeline_spec {
+      normal_preview :: pipeline_spec {
       name = "normal_preview";
             v4l2_source :: node_spec {
           name = "v4l2_source#0";
@@ -1190,7 +1190,7 @@ deviceManager中的controller和驱动适配层直接交互。
           id = 0;
                 name = "";
       }
-            priview :: stream_info {
+            preview :: stream_info {
           id = 0;
                 name = "preview";
       }
@@ -1516,7 +1516,7 @@ Camera hal层向下屏蔽了平台及芯片差异，对外（Camera service或�
                                        std::to_string(OHOS_CAMERA_FORMAT_YCRCB_420_SP));
       #endif
 
-foundation/multimedia/camera_standard/services/camera_service/src/hstream_repea t.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中    
+foundation/multimedia/camera_standard/services/camera_service/src/hstream_repeat.cpp 文件中如下内容，该文件被编译在libcamera_service.z.so中    
 
 ```
 void HStreamRepeat::SetStreamInfo(std::shared_ptr<Camera::StreamInfo> streamInfo)
@@ -1641,7 +1641,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
                 Yuv420ToRGBA8888(buffer);
             }
 
-由fork_node出来的数据流将会被deliver到rk_codec_node的DeliverBuffer接口中，该接口会根据不同的EncodeTyep去做不同的转换处理。经过转换过的buffers再deliver到下一级node中处理。直到deliver到buffer消费者手中。
+由fork_node出来的数据流将会被deliver到rk_codec_node的DeliverBuffer接口中，该接口会根据不同的EncodeType去做不同的转换处理。经过转换过的buffers再deliver到下一级node中处理。直到deliver到buffer消费者手中。
 
 ####  H264帧时间戳和音频时间戳不同步问题。
 
@@ -1673,7 +1673,7 @@ device/board/hihope/rk3568/camera/src/pipeline_core/BUILD.gn中添加rk_codec_no
                 buf_size = ((MpiEncTestData *)halCtx_)->frame_size;
         
                 ret = hal_mpp_encode(halCtx_, dma_fd, (unsigned char *)buffer->GetVirAddress(), &buf_size);
-                SerchIFps((unsigned char *)buffer->GetVirAddress(), buf_size, buffer);
+                SearchIFps((unsigned char *)buffer->GetVirAddress(), buf_size, buffer);
         
                 buffer->SetEsFrameSize(buf_size);
                 clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -1827,7 +1827,7 @@ struct v4l2_buffer {
 
         static constexpr uint32_t nalBit = 0x1F;
         #define NAL_TYPE(value)             ((value) & nalBit)
-        void RKCodecNode::SerchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
+        void RKCodecNode::SearchIFps(unsigned char* buf, size_t bufSize, std::shared_ptr<IBuffer>& buffer)
         {
             size_t nalType = 0;
             size_t idx = 0;
@@ -1835,7 +1835,7 @@ struct v4l2_buffer {
             constexpr uint32_t nalTypeValue = 0x05;
         
             if (buffer == nullptr || buf == nullptr) {
-                CAMERA_LOGI("RKCodecNode::SerchIFps paramater == nullptr");
+                CAMERA_LOGI("RKCodecNode::SearchIFps parameter == nullptr");
                 return;
             }
         
@@ -1848,7 +1848,7 @@ struct v4l2_buffer {
                     nalType = NAL_TYPE(buf[idx + ret]);
                     CAMERA_LOGI("ForkNode::ForkBuffers nalu == 0x%{public}x buf == 0x%{public}x \n", nalType, buf[idx + ret]);
 
-每经过一个h264转换过的buffer都会被传入SerchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来
+每经过一个h264转换过的buffer都会被传入SearchIFps接口中寻找IDR帧。其中findStartCode()接口会对buffer中的内容逐个字节扫描，知道寻找出NALU头来
 
   ```
      int RKCodecNode::findStartCode(unsigned char *data, size_t dataSz)
@@ -1858,7 +1858,7 @@ struct v4l2_buffer {
             constexpr uint32_t dataBit3 = 3;
         
             if (data == nullptr) {
-                CAMERA_LOGI("RKCodecNode::findStartCode paramater == nullptr");
+                CAMERA_LOGI("RKCodecNode::findStartCode parameter == nullptr");
                 return -1;
             }
         
@@ -2137,10 +2137,10 @@ foundation/graphic/graphic/rosen/samples/composer/
   service_control stop render_service
   ```
 
-2. 关闭 fondation进程
+2. 关闭 foundation进程
 
   ```
-  service_control stop fondation
+  service_control stop foundation
   ```
 
 3. 运行hello_composer 测试相关接口
@@ -2149,7 +2149,7 @@ foundation/graphic/graphic/rosen/samples/composer/
    ./hello_composer
    ```
 
-devicetest测试：HDI显示模块提供的测试模块，主要测试HDI接口、显示buffer、驱动等能力，测试时也需要关闭render service和 fondation进程。
+devicetest测试：HDI显示模块提供的测试模块，主要测试HDI接口、显示buffer、驱动等能力，测试时也需要关闭render service和 foundation进程。
 
 代码路径：/drivers/peripheral/display/test/unittest/standard
 
@@ -2731,17 +2731,17 @@ wpa_supplicant -iwlan0 -c /data/wpa_supplicant.conf & 这样后台启动就可�
 #### STA模式连接成功日志
 
 ```
-WPA: Key negotiation ccompleted with 50:eb:f6:02:8e6:d4 [PTK=CCMP GTK=CCMP]
+WPA: Key negotiation completed with 50:eb:f6:02:8e6:d4 [PTK=CCMP GTK=CCMP]
  06 wlan0: State: GROUP_HANDSHAKEc -> COMPLETED
 wlan0: CTRL-E4VENT-CONNECTED - Connection to 50:eb:f6:02:8e:d4 completed 3[id=0 id_str=]
-WifiWpaReceid eEapol done 
+WifiWpaReceived eEapol done 
 ```
 
 #### AP模式连接成功日志
 
 ```
 wlan0: STA 96:27:b3:95:b7:6e IEEE 802.1X: au:thorizing port
-wlan0: STA 96:27:b3:95:b7:6e WPA: pairwiseb key handshake completed (RSN)
+wlan0: STA 96:27:b3:95:b7:6e WPA: pairwise key handshake completed (RSN)
 WifiWpaReceiveEapol done 
 ```
 
@@ -2749,14 +2749,14 @@ WifiWpaReceiveEapol done
 
 ```
 P2P: cli_channels:
-EAPOL: External notification - portValid=1
-EAPOL: External notifica:tion - EAP success=1
+EAPOL: External notificationtion - portValid=1
+EAPOL: External notification:tion - EAP success=1
 EAPOL: SUPP_PAE entering state AUTHENTIwCATING
 EAPOL: SUPP_BE enterilng state SUCCESS
 EAP: EAP ent_ering state DISABLED
 EAPOL: SUPP_PAE entering state AUTHENTICATED
 EAPOL:n Supplicant port status: Authoorized
-EAPOL: SUPP_BE enteringtstate IDLE
+EAPOL: SUPP_BE entertaining IDLE
 WifiWpaReceiveEapol donepleted - result=SUCCESS
 
 \# ifconfig                                  
@@ -2838,12 +2838,12 @@ foundation/communication/bluetooth/services/bluetooth_standard/hardware/include
 ```c
 typedef struct {
     /**
-     * Set to sizeof(bt_vndor_interface_t)
+     * Set to sizeof(bt_vendor_interface_t)
      */
     size_t size;
     /**
      * Caller will open the interface and pass in the callback routines
-     * to the implemenation of this interface.
+     * to the implementation of this interface.
      */
     int (*init)(const bt_vendor_callbacks_t* p_cb, unsigned char* local_bdaddr);
 

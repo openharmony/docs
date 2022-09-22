@@ -14,7 +14,7 @@
 
 ## 接口
 
-Panel(show：boolean)
+Panel(show: boolean)
 
 **参数：**
 

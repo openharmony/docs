@@ -37,7 +37,9 @@ Navigator(value?: {target: string, type?: NavigationType})
 | 名称   | 参数    | 描述                                                         |
 | ------ | ------- | ------------------------------------------------------------ |
 | active | boolean | 当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。 |
-| params | Object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用router.getParams()获得。 |
+| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用router.getParams()获得。 |
+| target | string         | 设置跳转目标页面的路径。                       |
+| type   | NavigationType | 设置路由方式。<br/>默认值：NavigationType.Push |
 
 
 ## 示例
