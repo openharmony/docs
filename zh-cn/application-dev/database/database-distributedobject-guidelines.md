@@ -164,7 +164,7 @@
        parent: undefined,
        list: undefined
    });
-   // 收到status上线后remote_object同步数据，即name变成jack,age是18
+   // 收到status上线后remoteObject同步数据，即name变成jack,age是18
    remoteObject.setSessionId(sessionId);
    ```
 
@@ -227,6 +227,7 @@
    localObject.off("change"); 
    ```
 9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
+
    以下为访问对象的代码示例：
 
    ```js
@@ -239,39 +240,39 @@
 
 10. 保存和撤回已保存的数据对象。
 
-   ```js
-   // 保存数据对象
-   localObject.save("local").then((result) => {
-       console.info("save sessionId " + result.sessionId);
-       console.info("save version " + result.version);
-       console.info("save deviceId " + result.deviceId);
-   }, (result) => {
-       console.info("save local failed.");
-   });
-   // 撤回保存的数据对象
-   localObject.revokeSave().then((result) => {
-       console.info("revokeSave success.");
-   }, (result) => {
-       console.info("revokeSave failed.");
-   });
-   ```
+    ```js
+    // 保存数据对象
+    localObject.save("local").then((result) => {
+        console.info("save sessionId " + result.sessionId);
+        console.info("save version " + result.version);
+        console.info("save deviceId " + result.deviceId);
+    }, (result) => {
+        console.info("save local failed.");
+    });
+    // 撤回保存的数据对象
+    localObject.revokeSave().then((result) => {
+        console.info("revokeSave success.");
+    }, (result) => {
+        console.info("revokeSave failed.");
+    });
+    ```
 11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
 
-   以下为取消监听数据变更的代码示例：
+    以下为取消监听数据变更的代码示例：
 
-   ```js
-   // 删除上下线回调statusCallback
-   localObject.off("status", this.statusCallback);
-   // 删除所有的上下线回调
-   localObject.off("status");
-   ```
+    ```js
+    // 删除上下线回调statusCallback
+    localObject.off("status", this.statusCallback);
+    // 删除所有的上下线回调
+    localObject.off("status");
+    ```
 12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
 
-   以下为退出同步组网的代码示例：
+    以下为退出同步组网的代码示例：
 
-   ```js
-   localObject.setSessionId("");
-   ```
+    ```js
+    localObject.setSessionId("");
+    ```
 
 ## 相关实例
 
