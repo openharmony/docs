@@ -61,7 +61,7 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
-| reference  | BreakpointsReference | 否    | 竖直gutter option。 |
+| reference  | BreakpointsReference | 否    | 断点切换参照物。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
