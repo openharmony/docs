@@ -198,7 +198,7 @@
    var collator = new intl.Collator();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9)。
    
    ```js
    var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
@@ -245,7 +245,7 @@
    var pluralRules = new intl.PluralRules();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9)。
    
    ```js
    var pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -262,7 +262,7 @@
 
 ## 相对时间格式化
 
-调用相对时间格式化[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)的接口，实现针对特定Locale的相对时间格式化功能。
+调用相对时间格式化[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat9)的接口，实现针对特定Locale的相对时间格式化功能。
 
 ### 接口说明
 
