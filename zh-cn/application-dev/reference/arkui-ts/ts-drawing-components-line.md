@@ -36,9 +36,9 @@ Line(options?: {width?: string | number, height?: string | number})
 | -------- | -------- | -------- | -------- | -------- |
 | startPoint | Array | [0,&nbsp;0] | 是   | 直线起点坐标点(相对坐标)。 |
 | endPoint   | Array | [0,&nbsp;0] | 是   | 直线终点坐标点(相对坐标)。 |
-| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
+| fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
