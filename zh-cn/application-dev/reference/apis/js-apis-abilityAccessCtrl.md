@@ -282,7 +282,7 @@ promise.then(data => {
 });
 ```
 
-### getVersion
+### getVersion<sup>9+</sup>
 
 getVersion(): Promise&lt;number&gt;
 

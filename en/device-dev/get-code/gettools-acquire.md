@@ -76,7 +76,7 @@ Before using the Docker environment, perform the following operations:
 
 ## Standalone Docker Environment<a name="section2858536103611"></a>
 
-The Docker image of OpenHarmony is hosted on  [HUAWEI CLOUD SWR](https://console.huaweicloud.com/swr/?region=cn-south-1&locale=en-us#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage). Using the Docker image will help simplify environment configurations needed for the building. The following describes the detailed procedure.
+The Docker image of OpenHarmony is hosted on HUAWEI CLOUD SWR. Using the Docker image will help simplify environment configurations needed for the building. The following describes the detailed procedure.
 
 ### Setting Up the Docker Environment for Mini-System Devices \(reference memory ≥ 128 KB\) and Small-System Devices \(reference memory ≥ 1 MB\)<a name="section319412277287"></a>
 

@@ -11,22 +11,22 @@
 | 名称         | 参数类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
-| slice      | [Length](ts-types.md#length)\| EdgeWidth | 设置图片边框切割宽度。<br/>默认值：0                   |
-| width      | [Length](ts-types.md#length)\| EdgeWidth | 设置图片边框宽度。<br/>默认值：0                     |
-| outset     | [Length](ts-types.md#length)\| EdgeWidth | 设置边框图片向外延伸距离。<br/>默认值：0                 |
+| slice      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框切割宽度。<br/>默认值：0                   |
+| width      | [Length](ts-types.md#length)\| EdgeWidths | 设置图片边框宽度。<br/>默认值：0                     |
+| outset     | [Length](ts-types.md#length)\| EdgeWidths | 设置边框图片向外延伸距离。<br/>默认值：0                 |
 | RepeatMode | RepeatMode                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
 | fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
 
-## EdgeWidth枚举说明  
+## EdgeWidths对象说明
 
 引用该对象时，至少传入一个参数。
 
-| 名称     | 参数类型                         | 必填   | 描述      |
-| ------ | ---------------------------- | ---- | ------- |
-| left   | [Length](ts-types.md#length) | 否    | 左侧距离参数。 |
-| right  | [Length](ts-types.md#length) | 否    | 右侧距离参数。 |
-| top    | [Length](ts-types.md#length) | 否    | 上侧距离参数。 |
-| bottom | [Length](ts-types.md#length) | 否    | 下侧距离参数。 |
+| 名称 | 参数类型 | 必填 |描述 |
+| -------- | -------- |-------- |-------- |
+| left | [Length](ts-types.md#length) | 否 | 左侧距离参数。 |
+| right | [Length](ts-types.md#length) | 否 | 右侧距离参数。 |
+| top | [Length](ts-types.md#length) | 否 | 上侧距离参数。 |
+| bottom | [Length](ts-types.md#length) | 否 | 下侧距离参数。 |
 
 ## RepeatMode枚举说明
 

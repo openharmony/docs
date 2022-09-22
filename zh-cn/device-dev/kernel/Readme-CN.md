@@ -157,6 +157,7 @@
         - [标准系统内核编译与构建指导](kernel-standard-build.md)
         - 内核增强特性
           - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
+          - [NewIP内核协议栈介绍](kernel-standard-newip.md)
           - 任务调度
             - [关联线程组调度](kernel-standard-sched-rtg.md)
             - [CPU轻量级隔离](kernel-standard-sched-cpuisolation.md)

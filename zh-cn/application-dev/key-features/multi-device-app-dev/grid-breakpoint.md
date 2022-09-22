@@ -23,7 +23,7 @@
 > - 类Web开发范式，通过[grid-container](../../reference/arkui-js/js-components-grid-container.md)、 [grid-row](../../reference/arkui-js/js-components-grid-row.md)、[grid-col](../../reference/arkui-js/js-components-grid-col.md)组件来实现栅格布局，请访问相应的链接了解其详细用法。
 
 
-## 示例：
+## 示例
 
 - 默认设备屏幕宽度为360vp，属于SizeType.SM类型设备，Column数量为4。根据示例代码配置，在该设备上，Left占1列，Center占2列，Right占1列。
 
@@ -74,3 +74,9 @@
    }
  }
 ```
+
+## 相关实例
+
+针对栅格断点系统开发，有以下相关实例可供参考：
+
+- [`Weather`：一多天气（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather)

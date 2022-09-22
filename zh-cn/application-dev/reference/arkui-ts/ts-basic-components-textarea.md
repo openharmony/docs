@@ -20,8 +20,8 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 | 参数名                     | 参数类型                                     | 必填   | 参数描述           |
 | ----------------------- | ---------------------------------------- | ---- | -------------- |
-| placeholder      | [ResourceStr](ts-types.md)  | 否    | 无输入时的提示文本。     |
-| text             | [ResourceStr](ts-types.md)  | 否    | 设置输入框当前的文本内容。     |
+| placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 无输入时的提示文本。     |
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。     |
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -35,7 +35,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。                                    |
 | textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本水平对齐式。<br/>默认值：TextAlign.Start |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor8) | 设置输入框光标颜色。                               |
-| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
 
 ## 事件
