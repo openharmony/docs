@@ -9,6 +9,8 @@
 
 > **说明：**
 >
+> 系统资源一般定义在SDK文件的ets/x.x.x.x(SDK版本）/build-tools/ets-loader/sysResource.js文件中，由系统预置。
+> 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
 > `$r`返回值为Resource对象，可通过[getString](../reference/apis/js-apis-resource-manager.md#getstring) 方法获取对应的字符串。
