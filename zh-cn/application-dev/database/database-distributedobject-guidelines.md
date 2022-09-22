@@ -93,7 +93,7 @@
    ```
 2. 请求权限。
 
-   需要在`config.json`文件里进行配置请求权限（FA模型），示例代码如下：
+   需要在`config.json`文件里进行配置请求权限（FA模型）。
 
    ```json
    {
@@ -108,7 +108,7 @@
    ```
    Stage模型下的权限请求请参见[权限声明-Stage模型](../security/accesstoken-guidelines.md#stage模型)。
 
-   这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
+   这个权限还需要在应用首次启动的时候弹窗获取用户授权。
 
    ```js
    import featureAbility from '@ohos.ability.featureAbility';
@@ -128,8 +128,6 @@
     
 3. 获取分布式数据对象实例。
 
-   以下为创建分布式数据对象的代码示例：
-
    ```js
    let localObject = distributedObject.createDistributedObject({
        name: undefined,
@@ -142,8 +140,6 @@
    ```
 
 4. 加入同步组网。同步组网中的数据对象分为发起方和被拉起方。
-   
-   以下为加入同步组网的代码示例:
 
    ```js
    // 发起方
@@ -169,8 +165,6 @@
    ```
 
 5. 监听对象数据变更。可监听对端数据的变更，以Callback作为变更回调实例。
-
-   以下为监听对象数据变更的代码示例。
    
    ```js
    function changeCallback(sessionId, changeData) {
@@ -188,8 +182,6 @@
    ```
    
 6. 修改对象属性，对象属性支持基本类型（数字类型、布尔类型、字符串类型）以及复杂类型（数组、基本类型嵌套等）。
-   
-   以下为修改分布式数据对象属性的代码示例：
 
    ```js
    localObject.name = "jack";
@@ -200,7 +192,7 @@
    ```
 
    > **说明：**
-   > 针对复杂类型的数据修改，目前支持对根属性的修改，暂不支持对下级属性的修改。示例如下：
+   > 针对复杂类型的数据修改，目前支持对根属性的修改，暂不支持对下级属性的修改。
 
    ```js
    // 支持的修改方式
@@ -210,15 +202,11 @@
    ```
 
 7. 访问对象。可以通过直接获取的方式访问到分布式数据对象的属性，且该数据为组网内的最新数据。
-   
-   以下为访问对象的代码示例：
 
    ```js
    console.info("name " + localObject["name"]); 
    ```
 8. 删除监听数据变更。可以指定删除监听的数据变更回调；也可以不指定，这将会删除该分布式数据对象的所有数据变更回调。
-
-   以下为取消监听数据变更的代码示例：
 
    ```js
    // 删除变更回调changeCallback
@@ -227,8 +215,6 @@
    localObject.off("change"); 
    ```
 9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
-
-   以下为访问对象的代码示例：
 
    ```js
    function statusCallback(sessionId, networkId, status) {
@@ -258,8 +244,6 @@
     ```
 11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
 
-    以下为取消监听数据变更的代码示例：
-
     ```js
     // 删除上下线回调statusCallback
     localObject.off("status", this.statusCallback);
@@ -267,8 +251,6 @@
     localObject.off("status");
     ```
 12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
-
-    以下为退出同步组网的代码示例：
 
     ```js
     localObject.setSessionId("");
