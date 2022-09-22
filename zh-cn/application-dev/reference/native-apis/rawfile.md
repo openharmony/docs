@@ -512,7 +512,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 | -------- | -------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
 | offset | 表示指定的offset。 | 
-| whence | 读写位置，有以下场景:<br/>**0**: 读写位置为**offset**<br/>**1**: 读写位置为当前位置加上**offset2**: 读写位置为文件末尾(EOF)加上**offset**。 | 
+| whence | 读写位置，有以下场景:<br/>**0**: 读写位置为**offset**<br/>**1**: 读写位置为当前位置加上**offset**<br/>**2**: 读写位置为文件末尾(EOF)加上**offset**。 | 
 
 **返回：**
 
