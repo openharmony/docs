@@ -26,7 +26,7 @@
 | -------- | -------------------------------------- |
 | string   | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
 | number   | 默认单位vp。                                |
-| Resource | 使用引入资源的方式，引入系统资源或者应用资源中的尺寸。            |
+| [Resource](#resource) | 使用引入资源的方式，引入系统资源或者应用资源中的尺寸。            |
 
 ## ResourceStr
 
@@ -35,7 +35,7 @@
 | 类型       | 说明                           |
 | -------- | ---------------------------- |
 | string   | 字符串类型。                       |
-| Resource | 使用引入资源的方式，引入系统资源或者应用资源中的字符串。 |
+| [Resource](#resource) | 使用引入资源的方式，引入系统资源或者应用资源中的字符串。 |
 
 ## Padding
 
@@ -43,10 +43,10 @@
 
 | 名称     | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| top    | Length | 否    | 组件内元素距组件顶部的尺寸。  |
-| right  | Length | 否    | 组件内元素距组件右边界的尺寸。 |
-| bottom | Length | 否    | 组件内元素距组件底部的尺寸。  |
-| left   | Length | 否    | 组件内元素距组件左边界的尺寸。 |
+| top    | [Length](#length) | 否    | 组件内元素距组件顶部的尺寸。  |
+| right  | [Length](#length) | 否    | 组件内元素距组件右边界的尺寸。 |
+| bottom | [Length](#length) | 否    | 组件内元素距组件底部的尺寸。  |
+| left   | [Length](#length) | 否    | 组件内元素距组件左边界的尺寸。 |
 
 ## Margin
 
@@ -54,10 +54,10 @@
 
 | 名称     | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| top    | Length | 否    | 组件外元素距组件顶部的尺寸。  |
-| right  | Length | 否    | 组件外元素距组件右边界的尺寸。 |
-| bottom | Length | 否    | 组件外元素距组件底部的尺寸。  |
-| left   | Length | 否    | 组件外元素距组件左边界的尺寸。 |
+| top    | [Length](#length) | 否    | 组件外元素距组件顶部的尺寸。  |
+| right  | [Length](#length) | 否    | 组件外元素距组件右边界的尺寸。 |
+| bottom | [Length](#length) | 否    | 组件外元素距组件底部的尺寸。  |
+| left   | [Length](#length) | 否    | 组件外元素距组件左边界的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -65,10 +65,10 @@
 
 | 名称     | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | -------- |
-| top    | Length | 否    | 组件上边框宽度。 |
-| right  | Length | 否    | 组件右边框宽度。 |
-| bottom | Length | 否    | 组件下边框宽度。 |
-| left   | Length | 否    | 组件左边框宽度。 |
+| top    | [Length](#length) | 否    | 组件上边框宽度。 |
+| right  | [Length](#length) | 否    | 组件右边框宽度。 |
+| bottom | [Length](#length) | 否    | 组件下边框宽度。 |
+| left   | [Length](#length) | 否    | 组件左边框宽度。 |
 
 ## BorderRadiuses<sup>9+</sup>
 
@@ -76,10 +76,10 @@
 
 | 名称          | 类型     | 必填   | 说明         |
 | ----------- | ------ | ---- | ---------- |
-| topLeft     | Length | 否    | 组件左上角圆角半径。 |
-| topRight    | Length | 否    | 组件右上角圆角半径。 |
-| bottomLeft  | Length | 否    | 组件左下角圆角半径。 |
-| bottomRight | Length | 否    | 组件右下角圆角半径。 |
+| topLeft     | [Length](#length) | 否    | 组件左上角圆角半径。 |
+| topRight    | [Length](#length) | 否    | 组件右上角圆角半径。 |
+| bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
+| bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
 ## EdgeColors<sup>9+</sup>
 
@@ -87,10 +87,10 @@
 
 | 名称     | 类型            | 必填   | 说明       |
 | ------ | ------------- | ---- | -------- |
-| top    | ResourceColor | 否    | 组件上边框颜色。 |
-| right  | ResourceColor | 否    | 组件右边框颜色。 |
-| bottom | ResourceColor | 否    | 组件下边框颜色。 |
-| left   | ResourceColor | 否    | 组件左边框颜色。 |
+| top    | [ResourceColor](#resourcecolor8) | 否    | 组件上边框颜色。 |
+| right  | [ResourceColor](#resourcecolor8) | 否    | 组件右边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor8) | 否    | 组件下边框颜色。 |
+| left   | [ResourceColor](#resourcecolor8) | 否    | 组件左边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -98,10 +98,10 @@
 
 | 名称     | 类型          | 必填   | 说明       |
 | ------ | ----------- | ---- | -------- |
-| top    | BorderStyle | 否    | 组件上边框样式。 |
-| right  | BorderStyle | 否    | 组件右边框样式。 |
-| bottom | BorderStyle | 否    | 组件下边框样式。 |
-| left   | BorderStyle | 否    | 组件左边框样式。 |
+| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件上边框样式。 |
+| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件右边框样式。 |
+| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件下边框样式。 |
+| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | 否    | 组件左边框样式。 |
 
 
 ## Offset
@@ -110,8 +110,8 @@
 
 | 名称   | 类型     | 必填   | 说明       |
 | ---- | ------ | ---- | -------- |
-| dx   | Length | 是    | 水平方向偏移量。 |
-| dy   | Length | 是    | 竖直方向偏移量。 |
+| dx   | [Length](#length) | 是    | 水平方向偏移量。 |
+| dy   | [Length](#length) | 是    | 竖直方向偏移量。 |
 
 ## ResourceColor<sup>8+</sup>
 
@@ -119,10 +119,10 @@
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| [Color](../reference/arkui-ts/ts-appendix-enums.md#color) | 颜色枚举值。                      |
+| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                      |
 | number                                   | HEX格式颜色。                    |
 | string                                   | rgb或者rgba格式颜色。              |
-| Resource                                 | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
+| [Resource](#resource)                                 | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
 
 ## LengthConstrain
 
@@ -130,8 +130,8 @@
 
 | 名称        | 类型     | 必填   | 说明      |
 | --------- | ------ | ---- | ------- |
-| minLength | Length | 是    | 组件最小长度。 |
-| maxLength | Length | 是    | 组件最大长度。 |
+| minLength | [Length](#length) | 是    | 组件最小长度。 |
+| maxLength | [Length](#length) | 是    | 组件最大长度。 |
 
 
 ## Font
@@ -141,9 +141,9 @@
 | 名称     | 类型                                       | 必填   | 说明                                       |
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。          |
-| weight | [FontWeight](../reference/arkui-ts/ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
 | family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial, sans-serif'。 |
-| style  | [FontStyle](../reference/arkui-ts/ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
 
 ## Area<sup>8+</sup>
 
@@ -163,8 +163,8 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| x    | Length | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
-| y    | Length | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+| x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
+| y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
 ## ConstraintSizeOptions
 
@@ -172,10 +172,10 @@
 
 | 名称        | 类型     | 必填   | 说明      |
 | --------- | ------ | ---- | ------- |
-| minWidth  | Length | 否    | 元素最小宽度。 |
-| maxWidth  | Length | 否    | 元素最大宽度。 |
-| minHeight | Length | 否    | 元素最小高度。 |
-| maxHeight | Length | 否    | 元素最大高度。 |
+| minWidth  | [Length](#length) | 否    | 元素最小宽度。 |
+| maxWidth  | [Length](#length) | 否    | 元素最大宽度。 |
+| minHeight | [Length](#length) | 否    | 元素最小高度。 |
+| maxHeight | [Length](#length) | 否    | 元素最大高度。 |
 
 ## SizeOptions
 
@@ -183,8 +183,8 @@
 
 | 名称     | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| width  | Length | 否    | 元素宽度。 |
-| height | Length | 否    | 元素高度。 |
+| width  | [Length](#length) | 否    | 元素宽度。 |
+| height | [Length](#length) | 否    | 元素高度。 |
 
 
 ## BorderOptions
@@ -193,10 +193,10 @@
 
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | Length  \| EdgeWidths<sup>9+</sup>       | 否    | 边框宽度。   |
-| color  | ResourceColor \| EdgeColors<sup>9+</sup> | 否    | 边框颜色。   |
-| radius | Length \| BorderRadiuses<sup>9+</sup>    | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | 否    | 边框宽度。   |
+| color  | [ResourceColor](#resourcecolor8) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
+| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | 否    | 边框圆角半径。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -204,7 +204,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4*5矩阵的颜色过滤器, 入参为[m*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
