@@ -2575,7 +2575,7 @@ lchownSync(path: string, uid: number, gid: number): void
 
 ## fileio.createWatcher<sup>7+</sup>
 
-createWatcher(filePath: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
+createWatcher(filename: string, events: number, callback: AsyncCallback&lt;number&gt;): Watcher
 
 监听文件或者目录的变化，使用callback异步回调。
 
@@ -3501,7 +3501,7 @@ isSymbolicLink(): boolean
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
 
-## Filter
+## Filter<sup>9+</sup>
 
 **系统接口**：此接口为系统接口。
 
