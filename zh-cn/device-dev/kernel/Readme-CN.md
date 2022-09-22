@@ -3,7 +3,7 @@
 - 内核
     - [内核概述](kernel-overview.md)
     - 轻量系统内核（LiteOS-M）
-        - [清凉系统内核概述](kernel-mini-overview.md)
+        - [轻量系统内核概述](kernel-mini-overview.md)
         - 基础内核
             - [中断管理](kernel-mini-basic-interrupt.md)
             - [任务管理](kernel-mini-basic-task.md)
