@@ -37,7 +37,7 @@ FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](h
 
 ## 相关实例
 
-针对Ability（FA模型）开发，有以下相关实例可供参考：
+针对FA模型下的Ability开发，有以下相关实例可供参考：
 
 - [`FaModel`：FA模型（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FaModel)
 - [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
