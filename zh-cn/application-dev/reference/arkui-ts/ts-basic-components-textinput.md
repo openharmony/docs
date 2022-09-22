@@ -27,7 +27,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持通用属性以及[文本样式设置](ts-universal-attributes-text-style.md)的属性外，还支持以下属性：
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
@@ -41,6 +41,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，密码框末尾的图标是否显示。<br/>默认值：true |
 | style<sup>9+</sup> | TextInputStyle | TextInput风格。<br/>默认值：TextInputStyle.Default |
+| textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本水平对齐式。<br/>默认值：TextAlign.Start  |
 
 ## EnterKeyType枚举说明
 
@@ -62,7 +63,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
-## TextInputStyle枚举说明
+## TextInputStyle<sup>9+</sup>枚举说明
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |
