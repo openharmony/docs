@@ -16,8 +16,8 @@
   | Public&nbsp;属性 | 描述 | 
 | -------- | -------- |
 | [executorType](#executortype) | 执行器类型，根据执行器支持的算法类型进行分类。 | 
-| [freezingTime](#freezingtime) | 认证方式被冻结的时间。 | 
-| [remainTimes](#remaintimes) | 认证方式距离被冻结的可处理认证请求次数。 | 
+| [lockoutDuration](#lockoutduration) | 认证方式被冻结的时间。 |
+| [remainAttempts](#remainattempts) | 认证方式距离被冻结的可处理认证请求次数。 |
 | [extraInfo](#extrainfo) | 其他相关信息，用于支持信息扩展。 | 
 
 
@@ -61,11 +61,11 @@ unsigned char [] TemplateInfo::extraInfo
 其他相关信息，用于支持信息扩展。
 
 
-### freezingTime
+### lockoutDuration
 
   
 ```
-int TemplateInfo::freezingTime
+int TemplateInfo::lockoutDuration
 ```
 
 **描述：**
@@ -73,11 +73,11 @@ int TemplateInfo::freezingTime
 认证方式被冻结的时间。
 
 
-### remainTimes
+### remainAttempts
 
   
 ```
-int TemplateInfo::remainTimes
+int TemplateInfo::remainAttempts
 ```
 
 **描述：**
