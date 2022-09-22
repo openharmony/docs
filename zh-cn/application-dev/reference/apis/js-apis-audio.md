@@ -161,6 +161,8 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明             |
@@ -206,6 +208,8 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 获取音频采集器。使用promise 方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**需要权限：** ohos.permission.MICROPHONE
 
 **参数：**
 
