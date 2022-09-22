@@ -12,12 +12,13 @@
 
 ```js
 import dataRdb from '@ohos.data.rdb';
-let predicates = new dataRdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("AGE", 18)
-let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+let predicates = new dataRdb.RdbPredicates("EMPLOYEE");
+predicates.equalTo("AGE", 18);
+let promise = rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
     console.log(TAG + "resultSet columnNames:" + resultSet.columnNames);
-    console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);})
+    console.log(TAG + "resultSet columnCount:" + resultSet.columnCount);
+});
 ```
 
 ## ResultSet
@@ -63,11 +64,11 @@ getColumnIndex(columnName: string): number
 **示例：**
 
   ```js
-  resultSet.goToFirstRow()
-  const id = resultSet.getLong(resultSet.getColumnIndex("ID"))
-  const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
-  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"))
-  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"))
+  resultSet.goToFirstRow();
+  const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
 ### getColumnName
@@ -93,9 +94,9 @@ getColumnName(columnIndex: number): string
 **示例：**
 
   ```js
-  const id = resultSet.getColumnName(0)
-  const name = resultSet.getColumnName(1)
-  const age = resultSet.getColumnName(2)
+  const id = resultSet.getColumnName(0);
+  const name = resultSet.getColumnName(1);
+  const age = resultSet.getColumnName(2);
   ```
 
 ### goTo
@@ -121,14 +122,14 @@ goTo(offset:number): boolean
 **示例：**
 
   ```js
-  let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgoto = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygoto = rdbStore.query(predicatesgoto, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygoto.then((resultSet) {
-      resultSet.goTo(1)
-      resultSet.close()
+      resultSet.goTo(1);
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### goToRow
@@ -154,14 +155,14 @@ goToRow(position: number): boolean
 **示例：**
 
   ```js
-  let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgotorow = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygotorow = rdbStore.query(predicatesgotorow, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygotorow.then((resultSet) {
-      resultSet.goToRow(5)
-      resultSet.close()
+      resultSet.goToRow(5);
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### goToFirstRow
@@ -182,14 +183,14 @@ goToFirstRow(): boolean
 **示例：**
 
   ```js
-  let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgoFirst = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygoFirst = rdbStore.query(predicatesgoFirst, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygoFirst.then((resultSet) {
-      resultSet.goToFirstRow()
-      resultSet.close()
+      resultSet.goToFirstRow();
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### goToLastRow
@@ -209,14 +210,14 @@ goToLastRow(): boolean
 **示例：**
 
   ```js
-  let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgoLast = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygoLast = rdbStore.query(predicatesgoLast, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygoLast.then((resultSet) {
-      resultSet.goToLastRow()
-      resultSet.close()
+      resultSet.goToLastRow();
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### goToNextRow
@@ -236,14 +237,14 @@ goToNextRow(): boolean
 **示例：**
 
   ```js
-  let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgoNext = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygoNext = rdbStore.query(predicatesgoNext, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygoNext.then((resultSet) {
-      resultSet.goToNextRow()
-      resultSet.close()
+      resultSet.goToNextRow();
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### goToPreviousRow
@@ -263,14 +264,14 @@ goToPreviousRow(): boolean
 **示例：**
 
   ```js
-  let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesgoPrev = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promisequerygoPrev = rdbStore.query(predicatesgoPrev, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promisequerygoPrev.then((resultSet) {
-      resultSet.goToPreviousRow()
-      resultSet.close()
+      resultSet.goToPreviousRow();
+      resultSet.close();
   }).catch((err) => {
-      console.log('query failed')
-  })
+      console.log('query failed');
+  });
   ```
 
 ### getBlob
@@ -296,7 +297,7 @@ getBlob(columnIndex: number): Uint8Array
 **示例：**
 
   ```js
-  const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"))
+  const codes = resultSet.getBlob(resultSet.getColumnIndex("CODES"));
   ```
 
 ### getString
@@ -322,7 +323,7 @@ getString(columnIndex: number): string
 **示例：**
 
   ```js
-  const name = resultSet.getString(resultSet.getColumnIndex("NAME"))
+  const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
   ```
 
 ### getLong
@@ -348,7 +349,7 @@ getLong(columnIndex: number): number
 **示例：**
 
   ```js
-  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"))
+  const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
   ```
 
 ### getDouble
@@ -374,7 +375,7 @@ getDouble(columnIndex: number): number
 **示例：**
 
   ```js
-  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"))
+  const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
 
 ### isColumnNull
@@ -400,7 +401,7 @@ isColumnNull(columnIndex: number): boolean
 **示例：**
 
   ```js
-  const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"))
+  const isColumnNull = resultSet.isColumnNull(resultSet.getColumnIndex("CODES"));
   ```
 
 ### close
@@ -414,12 +415,12 @@ close(): void
 **示例：**
 
   ```js
-  let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE")
-  let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"])
+  let predicatesClose = new dataRdb.RdbPredicates("EMPLOYEE");
+  let promiseClose = rdbStore.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
   promiseClose.then((resultSet) {
-      resultSet.close()
+      resultSet.close();
   }).catch((err) => {
-      console.log('resultset close failed')
-  })
+      console.log('resultset close failed');
+  });
   ```
 
