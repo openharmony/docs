@@ -19,13 +19,8 @@ Circle(options?: {width?: string | number, height?: string | number})
 - Parameters
   | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | No| 0 | Width of the circle. |
-  | height | string \| number | No| 0 | Height of the circle. |
-
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| width | string \| number | Yes| - | Width.|
-| height | string \| number | Yes| - | Height.|
+  | width | string \| number | No| 0 | Width of the circle.|
+  | height | string \| number | No| 0 | Height of the circle.|
 
 ## Attributes
 
