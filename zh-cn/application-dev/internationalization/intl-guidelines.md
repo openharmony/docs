@@ -262,7 +262,7 @@
 
 ## 相对时间格式化
 
-调用相对时间格式化[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat9)的接口，实现针对特定Locale的相对时间格式化功能。
+调用相对时间格式化[RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8)的接口，实现针对特定Locale的相对时间格式化功能。
 
 ### 接口说明
 
@@ -284,7 +284,7 @@
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
    
    ```
    var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
