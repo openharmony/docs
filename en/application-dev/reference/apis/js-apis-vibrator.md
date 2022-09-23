@@ -18,7 +18,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 Triggers vibration with a specific duration. This API uses a promise to return the execution result.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -50,7 +50,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 Triggers vibration with a specific duration. This API uses an asynchronous callback to return the execution result.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -78,7 +78,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 Triggers vibration with a specific effect. This API uses a promise to return the execution result.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -108,7 +108,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 Triggers vibration with a specific effect. This API uses an asynchronous callback to return the execution result.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -136,7 +136,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 Stops the vibration based on the specified **stopMode**. This API uses a promise to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -166,7 +166,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void;
 
 Stops the vibration based on the specified **stopMode**. This API uses an asynchronous callback to return the execution result. If the specified **stopMode** is different from the mode used to trigger the vibration, this API fails to be called.
 
-**Required permissions**: ohos.permission.VIBRATE (a system permission)
+**Required permissions**: ohos.permission.VIBRATE
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
