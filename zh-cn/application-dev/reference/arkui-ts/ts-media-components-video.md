@@ -46,22 +46,22 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | muted     | boolean                                  | false | 是否静音。           |
 | autoPlay  | boolean                                  | false | 是否自动播放。         |
 | controls  | boolean                                  | true  | 控制视频播放的控制栏是否显示。 |
-| objectFit | [ImageFit](ts-basic-components-image.md) | Cover | 设置视频显示模式。       |
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | Cover | 设置视频显示模式。       |
 | loop      | boolean                                  | false | 是否单个视频循环播放。     |
 
 
 ## 事件
 
-| 名称                                                         | 功能描述                                                     |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onStart(event:()&nbsp;=&gt;&nbsp;void)                       | 播放时触发该事件。                                           |
-| onPause(event:()&nbsp;=&gt;&nbsp;void)                       | 暂停时触发该事件。                                           |
-| onFinish(event:()&nbsp;=&gt;&nbsp;void)                      | 播放结束时触发该事件。                                       |
-| onError(event:()&nbsp;=&gt;&nbsp;void)                       | 播放失败时触发该事件。                                       |
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onStart(event:()&nbsp;=&gt;&nbsp;void)   | 播放时触发该事件。                                |
+| onPause(event:()&nbsp;=&gt;&nbsp;void)   | 暂停时触发该事件。                                |
+| onFinish(event:()&nbsp;=&gt;&nbsp;void)  | 播放结束时触发该事件。                              |
+| onError(event:()&nbsp;=&gt;&nbsp;void)   | 播放失败时触发该事件。                              |
 | onPrepared(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为s。<br/>- duration: 视频的时长。 |
-| onSeeking(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
-| onSeeked(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
-| onUpdate(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
+| onSeeking(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                     |
+| onSeeked(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                  |
+| onUpdate(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。          |
 
 
 ## VideoController
