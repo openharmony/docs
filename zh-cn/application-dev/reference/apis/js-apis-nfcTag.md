@@ -13,7 +13,7 @@ import tag from '@ohos.nfc.tag';
 
 ## tag.getNfcATag
 
-getNfcATag(tagInfo: [TagInfo](#taginfo9)): [NfcATag](js-apis-nfctech.md#nfcatag)
+getNfcATag(tagInfo: [TagInfo](#taginfo7): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 获取NFC A类型Tag对象，通过该对象可访问NfcA技术类型的Tag。
 
@@ -29,7 +29,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo9)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 ## tag.getNfcBTag
 
-getNfcBTag(tagInfo: [TagInfo](#taginfo9)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
+getNfcBTag(tagInfo: [TagInfo](#taginfo7): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 获取NFC B类型Tag对象，通过该对象可访问NfcB技术类型的Tag。
 
@@ -45,7 +45,7 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo9)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 ## tag.getNfcFTag
 
-getNfcFTag(tagInfo: [TagInfo](#taginfo9)): [NfcFTag](js-apis-nfctech.md#nfcftag)
+getNfcFTag(tagInfo: [TagInfo](#taginfo7): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 获取NFC F类型Tag对象，通过该对象可访问NfcF技术类型的Tag。
 
@@ -61,7 +61,7 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo9)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 ## tag.getNfcVTag
 
-getNfcVTag(tagInfo: [TagInfo](#taginfo9)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
+getNfcVTag(tagInfo: [TagInfo](#taginfo7): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 获取NFC V类型Tag对象，通过该对象可访问NfcV技术类型的Tag。
 
@@ -77,7 +77,7 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo9)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 ## tag.getIsoDepTag<sup>9+</sup>
 
-getIsoDepTag(tagInfo: [TagInfo](#taginfo9)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDepTag(tagInfo: [TagInfo](#taginfo7): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
 
 获取IsoDep类型Tag对象，通过该对象可访问Iso Dep技术类型的Tag。
 
@@ -94,7 +94,7 @@ getIsoDepTag(tagInfo: [TagInfo](#taginfo9)): [IsoDepTag](js-apis-nfctech.md#isoD
 
 ## tag.getNdefTag<sup>9+</sup>
 
-getNdefTag(tagInfo: [TagInfo](#taginfo9)): [NdefTag](js-apis-nfctech.md#ndefTag9)
+getNdefTag(tagInfo: [TagInfo](#taginfo7): [NdefTag](js-apis-nfctech.md#ndefTag9)
 
 获取Ndef类型Tag对象，通过该对象可访问Ndef技术类型的Tag。
 
@@ -111,7 +111,7 @@ getNdefTag(tagInfo: [TagInfo](#taginfo9)): [NdefTag](js-apis-nfctech.md#ndefTag9
 
 ## tag.getMifareClassicTag<sup>9+</sup>
 
-getMifareClassicTag(tagInfo: [TagInfo](#taginfo9)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
+getMifareClassicTag(tagInfo: [TagInfo](#taginfo7): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
 
 获取Mifare Classic类型Tag对象，通过该对象访问Mifare Classic技术类型的Tag。
 
@@ -127,7 +127,7 @@ getMifareClassicTag(tagInfo: [TagInfo](#taginfo9)): [MifareClassicTag](js-apis-n
 
 ## tag.getMifareUltralightTag<sup>9+</sup>
 
-getMifareUltralightTag(tagInfo: [TagInfo](#taginfo9)): [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)
+getMifareUltralightTag(tagInfo: [TagInfo](#taginfo7): [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)
 
 获取Mifare Ultralight类型Tag对象，通过该对象可访问Mifare Ultralight技术类型的Tag。
 
@@ -143,7 +143,7 @@ getMifareUltralightTag(tagInfo: [TagInfo](#taginfo9)): [MifareUltralightTag](js-
 
 ## tag.getNdefFormatableTag<sup>9+</sup>
 
-getNdefFormatableTag(tagInfo: [TagInfo](#taginfo9)): [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9)
+getNdefFormatableTag(tagInfo: [TagInfo](#taginfo7): [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9)
 
 获取Ndef Formatable类型Tag对象，通过该对象可访问Ndef Formatable技术类型的Tag。
 
