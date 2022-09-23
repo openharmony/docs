@@ -1,6 +1,6 @@
 # 启动一个Worker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
@@ -589,11 +589,9 @@ parentPort.onmessageerror= function(e) {
 
 ## EventListener
 
-事件监听类。
-
 (evt: Event): void | Promise&lt;void&gt;
 
-执行的回调函数。
+事件监听类。
 
 **系统能力：** SystemCapability.Utils.Lang
 
