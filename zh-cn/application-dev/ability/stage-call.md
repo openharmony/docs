@@ -16,7 +16,7 @@ Call调用的使用场景主要包括：
 |CallerAbility|指代进行Call调用的Ability（调用方）|
 |CalleeAbility|指代被Call调用的Ability（被调用方）|
 |Caller       |实际对象，由startAbilityByCall接口所返回，CallerAbility可使用Caller与CalleeAbility进行通信，具体接口见表2|
-|Callee       |实际对象，被Ability对象所持有，可与Caller进行通信|
+|Callee       |实际对象，被CalleeAbility持有，可与Caller进行通信|
 |IPC          |指代进程间通信|
 
 Call调用流程示意图如下：
@@ -80,7 +80,7 @@ import Ability from '@ohos.application.Ability'
 ```ts
 export default class MySequenceable {
     num: number = 0
-    str: String = ""
+    str: string = ""
 
     constructor(num, string) {
         this.num = num
