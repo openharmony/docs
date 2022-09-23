@@ -123,7 +123,7 @@ getMifareClassicTag(tagInfo: [TagInfo](#taginfo7)): [MifareClassicTag](js-apis-n
 
 | **类型** | **说明**                          |
 | ----------------- | ------------------------|
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | Mifare Classic类型Tag对象。 |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)  | Mifare Classic类型Tag对象。 |
 
 ## tag.getMifareUltralightTag<sup>9+</sup>
 
