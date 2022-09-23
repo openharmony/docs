@@ -14,7 +14,7 @@ Below are the restrictions on using generator functions in TypeScript:
 
 - The generator function cannot contain local variables.
 
-None of the above restrictions apply to anonymous function implementations of event handlers (such as **onClick**)
+None of the above restrictions apply to anonymous function implementations of event handlers (such as **onClick**).
 
 Negative example:
 

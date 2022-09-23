@@ -1,16 +1,11 @@
 # Gauge
 
-
 The **\<Gauge>** component is used to display data in a ring chart.
+
 
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -22,23 +17,25 @@ Not supported
 
 Gauge(options:{value: number, min?: number, max?: number})
 
-- Parameters
-    | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes| - | Current data value.|
-  | min | number | No| 0 | Minimum value of the current data segment.|
-  | max | number | No| 100 | Maximum value of the current data segment.|
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | number | Yes| Current data value.|
+| min | number | No| Minimum value of the current data segment.<br>Default value: **0**|
+| max | number | No| Maximum value of the current data segment.<br>Default value: **100**|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| value | number | 0 | Value of the chart.|
-| startAngle | number | -150 | Start angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.|
-| endAngle | number | 150 | End angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.|
-| colors | Array&lt;ColorStop&gt; | - | Colors of the chart. Colors can be set for individual segments.|
-| strokeWidth | Length | - | Stroke width of the chart.|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| value | number | Value of the chart.<br>Default value: **0**|
+| startAngle | number | Start angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **-150**|
+| endAngle | number | End angle of the chart. The value 0 indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **150**|
+| colors | Array&lt;ColorStop&gt; | Colors of the chart. Colors can be set for individual segments.|
+| strokeWidth | Length | Stroke width of the chart.|
 
 ## ColorStop
 
@@ -46,7 +43,7 @@ Describes a gradient stop.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](../../ui/ts-types.md#resourcecolor8), number] | Type of the gradient stop. The first parameter specifies the color, and the second parameter specifies the offset, which ranges from 0 to 1.|
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter specifies the color, and the second parameter specifies the offset, which ranges from 0 to 1.|
 
 
 ## Example
