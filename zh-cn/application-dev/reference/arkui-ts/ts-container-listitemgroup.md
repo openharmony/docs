@@ -96,7 +96,7 @@ struct ListItemGroupExample {
             }, item => item)
           }
           .borderRadius(20)
-          .divider({ strokeWidth: 1, color: 0xDCDCDC }) // 每行之间的分界线
+          .divider({ strokeWidth: 1, color: Color.Blue) // 每行之间的分界线
         })
       }
       .width('90%')

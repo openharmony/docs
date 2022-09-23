@@ -22,7 +22,7 @@
 @Component
 struct AreaExample {
   @State value: string = 'Text'
-  @State size1: string = ''
+  @State size: string = ''
 
   build() {
     Column() {
@@ -33,7 +33,7 @@ struct AreaExample {
         })
         .onAreaChange((oldValue: Area, newValue: Area) => {
           console.info(`Ace: on area change, oldValue is ${JSON.stringify(oldValue)} value is ${JSON.stringify(newValue)}`)
-          this.size1 = JSON.stringify(newValue)
+          this.size = JSON.stringify(newValue)
         })
       Text('new area is: \n' + this.size).margin({ right: 30, left: 30 })
     }
