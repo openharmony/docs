@@ -21,7 +21,7 @@
 | autoCancel | boolean | 否   | 点击遮障层时，是否关闭弹窗。<br>默认值：true |
 | confirm    | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否   | 确认按钮的文本内容、文本色、按钮背景色和点击回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void      | 否     | 点击遮障层关闭dialog时的回调。 |
-| alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
+| alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset     | [Offset](ts-types.md#offset) | 否     | 弹窗相对alignment所在位置的偏移量。 |
 | gridCount  | number                       | 否     | 弹窗容器宽度所占用栅格数。          |
 
@@ -34,7 +34,7 @@
 | primaryButton   | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否 | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
 | secondaryButton | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>fontColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>backgroundColor?:&nbsp;Color&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void;<br/>} | 否  | 按钮的文本内容、文本色、按钮背景色和点击回调。 |
 | cancel          | ()&nbsp;=&gt;&nbsp;void      | 否  | 点击遮障层关闭dialog时的回调。         |
-| alignment       | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
+| alignment       | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default |
 | offset          | [Offset](ts-types.md#offset) | 否  | 弹窗相对alignment所在位置的偏移量。 |
 | gridCount       | number                       | 否  | 弹窗容器宽度所占用栅格数。          |
 

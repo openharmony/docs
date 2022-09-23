@@ -8,7 +8,6 @@
 
 
 
-
 ## 子组件
 
 无
@@ -29,7 +28,7 @@ ImageAnimator()
 | reverse    | boolean | 否    | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false |
 | fixedSize  | boolean | 否    | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true |
 | preDecode  | number  | 否    | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。<br/>默认值：0 |
-| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | 否    | 设置动画开始前和结束后的状态，可选值参见FillMode说明。<br/>默认值：FillMode. Forwards |
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | 否    | 设置动画开始前和结束后的状态，可选值参见FillMode说明。<br/>默认值：FillMode.Forwards |
 | iterations | number  | 否    | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
 - ImageFrameInfo属性说明
