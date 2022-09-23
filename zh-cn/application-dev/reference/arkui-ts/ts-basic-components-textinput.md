@@ -20,7 +20,6 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
-<<<<<<< Updated upstream
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | 否    | 无输入时的提示文本。      |
 | text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。     |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。 |
