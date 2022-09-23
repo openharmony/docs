@@ -1,6 +1,6 @@
-# Pan-Sensor<a name="EN-US_TOPIC_0000001078062432"></a>
+# Pan-Sensor
 
-## Introduction<a name="section11660541593"></a>
+## Introduction
 
 The pan-sensor service subsystem provides a lightweight sensor service framework, through which you can perform the following operations:
 
@@ -11,11 +11,9 @@ The pan-sensor service subsystem provides a lightweight sensor service framework
 
 The following figure shows the architecture of the pan-sensor service framework.
 
-**Figure1**  Pan-sensor service architecture
-
 ![](figures/en-us_image_0000001106694563.png)
 
-## Directory Structure<a name="section161941989596"></a>
+## Directory Structure
 
 ```
 /base/sensors
@@ -26,7 +24,7 @@ The following figure shows the architecture of the pan-sensor service framework.
 └── miscdevice_lite      # Misc device directory
 ```
 
-## Usage<a name="section1312121216216"></a>
+## Usage
 
 The following modules work cooperatively to implement pan-sensor capabilities: Sensor API, Sensor Framework, and Sensor Service.
 
@@ -34,7 +32,7 @@ The following modules work cooperatively to implement pan-sensor capabilities: S
 -   Sensor Framework: manages sensor data subscription, creates and destroys data channels, subscribes to or unsubscribes from sensor data, and implements communication with the Sensor Service module.
 -   Sensor Service: interacts with the HDF module to receive, parse, and distribute data, manages sensor services and sensor data reporting, and controls sensor permissions.
 
-## Repositories Involved<a name="section1371113476307"></a>
+## Repositories Involved
 
 **Pan-sensor subsystem**
 
