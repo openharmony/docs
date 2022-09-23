@@ -18,7 +18,7 @@ You can use audio playback APIs to convert audio data into audible analog signal
 
 ## How to Develop
 
-For details about the APIs, see [AudioPlayer in the Media API](../reference/apis/js-apis-media.md).
+For details about the APIs, see [AudioPlayer in the Media API](../reference/apis/js-apis-media.md#audioplayer).
 
 ### Full-Process Scenario
 
