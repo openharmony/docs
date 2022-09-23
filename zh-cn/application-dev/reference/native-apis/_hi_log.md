@@ -315,7 +315,7 @@ enum LogType
 
 
 ```
-int bool OH_LOG_IsLoggable (unsigned int domain, const char * tag, LogLevel level )
+bool OH_LOG_IsLoggable (unsigned int domain, const char * tag, LogLevel level )
 ```
 
 **描述：**
