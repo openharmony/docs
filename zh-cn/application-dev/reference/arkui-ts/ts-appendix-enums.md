@@ -138,9 +138,9 @@
 | Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃       |
 | Bottom   | 竖直方向下边缘         |
 | Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃 |
-| Start<sup>(deprecated) </sup>    | 水平方向起始位置<br/> 从API version 9开始废弃       |
+| Start    | 水平方向起始位置       |
 | Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃       |
-| End<sup>(deprecated) </sup>      | 水平方向末尾位置<br/> 从API version 9开始废弃       |
+| End      | 水平方向末尾位置       |
 
 ## Week
 
