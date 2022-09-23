@@ -65,10 +65,10 @@
 
 | 名称     | 类型     | 必填   | 说明       |
 | ------ | ------ | ---- | -------- |
-| top    | [Length](#length)  | 否    | 组件上边框宽度。 |
-| right  | [Length](#length)  | 否    | 组件右边框宽度。 |
-| bottom | [Length](#length)  | 否    | 组件下边框宽度。 |
-| left   | [Length](#length)  | 否    | 组件左边框宽度。 |
+| top    | [Length](#length) | 否    | 组件上边框宽度。 |
+| right  | [Length](#length) | 否    | 组件右边框宽度。 |
+| bottom | [Length](#length) | 否    | 组件下边框宽度。 |
+| left   | [Length](#length) | 否    | 组件左边框宽度。 |
 
 ## BorderRadiuses<sup>9+</sup>
 
@@ -76,10 +76,10 @@
 
 | 名称          | 类型     | 必填   | 说明         |
 | ----------- | ------ | ---- | ---------- |
-| topLeft     | [Length](#length)  | 否    | 组件左上角圆角半径。 |
-| topRight    | [Length](#length)  | 否    | 组件右上角圆角半径。 |
-| bottomLeft  | [Length](#length)  | 否    | 组件左下角圆角半径。 |
-| bottomRight | [Length](#length)  | 否    | 组件右下角圆角半径。 |
+| topLeft     | [Length](#length) | 否    | 组件左上角圆角半径。 |
+| topRight    | [Length](#length) | 否    | 组件右上角圆角半径。 |
+| bottomLeft  | [Length](#length) | 否    | 组件左下角圆角半径。 |
+| bottomRight | [Length](#length) | 否    | 组件右下角圆角半径。 |
 
 ## EdgeColors<sup>9+</sup>
 
@@ -110,8 +110,8 @@
 
 | 名称   | 类型     | 必填   | 说明       |
 | ---- | ------ | ---- | -------- |
-| dx   | [Length](#length)  | 是    | 水平方向偏移量。 |
-| dy   | [Length](#length)  | 是    | 竖直方向偏移量。 |
+| dx   | [Length](#length) | 是    | 水平方向偏移量。 |
+| dy   | [Length](#length) | 是    | 竖直方向偏移量。 |
 
 ## ResourceColor
 
@@ -130,8 +130,8 @@
 
 | 名称        | 类型     | 必填   | 说明      |
 | --------- | ------ | ---- | ------- |
-| minLength | [Length](#length)  | 是    | 组件最小长度。 |
-| maxLength | [Length](#length)  | 是    | 组件最大长度。 |
+| minLength | [Length](#length) | 是    | 组件最小长度。 |
+| maxLength | [Length](#length) | 是    | 组件最大长度。 |
 
 
 ## Font
@@ -163,8 +163,8 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| x    | [Length](#length)  | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
-| y    | [Length](#length)  | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
+| x    | [Length](#length) | 否    | x轴坐标，作为返回值时，类型为number，单位vp。 |
+| y    | [Length](#length) | 否    | y轴坐标，作为返回值时，类型为number，单位vp。 |
 
 ## ConstraintSizeOptions
 
@@ -172,10 +172,10 @@
 
 | 名称        | 类型     | 必填   | 说明      |
 | --------- | ------ | ---- | ------- |
-| minWidth  | [Length](#length)  | 否    | 元素最小宽度。 |
-| maxWidth  | [Length](#length)  | 否    | 元素最大宽度。 |
-| minHeight | [Length](#length)  | 否    | 元素最小高度。 |
-| maxHeight | [Length](#length)  | 否    | 元素最大高度。 |
+| minWidth  | [Length](#length) | 否    | 元素最小宽度。 |
+| maxWidth  | [Length](#length) | 否    | 元素最大宽度。 |
+| minHeight | [Length](#length) | 否    | 元素最小高度。 |
+| maxHeight | [Length](#length) | 否    | 元素最大高度。 |
 
 ## SizeOptions
 
@@ -183,8 +183,8 @@
 
 | 名称     | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| width  | [Length](#length)  | 否    | 元素宽度。 |
-| height | [Length](#length)  | 否    | 元素高度。 |
+| width  | [Length](#length) | 否    | 元素宽度。 |
+| height | [Length](#length) | 否    | 元素高度。 |
 
 
 ## BorderOptions

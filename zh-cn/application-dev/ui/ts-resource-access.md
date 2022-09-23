@@ -9,7 +9,7 @@
 
 > **说明：**
 >
-> 系统资源一般定义在SDK文件的ets/x.x.x.x(SDK版本）/build-tools/ets-loader/sysResource.js文件中，由系统预置。
+> 系统资源一般定义在SDK的ets/x.x.x.x(SDK版本号)/build-tools/ets-loader/sysResource.js文件中，由系统预置。
 > 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
