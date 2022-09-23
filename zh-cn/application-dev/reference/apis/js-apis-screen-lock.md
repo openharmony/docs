@@ -271,7 +271,7 @@ lockScreen(): Promise&lt;boolean&gt;
 
 onSystemEvent(callback: Callback\<SystemEvent\>): boolean
 
-注册 syscreen lock 相关的系统事件。
+注册锁屏相关的系统事件。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -281,7 +281,13 @@ onSystemEvent(callback: Callback\<SystemEvent\>): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | Callback\<SystemEvent\> | 是 | 事件回调方法。 |
+  | callback | Callback\<SystemEvent\> | 是 | 锁屏相关的系统事件回调函数 |
+
+**返回值：** 
+
+  | 类型     | 说明                                        |
+  | ------- | -------------------------------------------- |
+  | boolean |  返回true表示锁屏系统事件注册成功，否则返回false|
 
 **示例**：
 
