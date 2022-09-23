@@ -123,7 +123,7 @@ getMifareClassicTag(tagInfo: [TagInfo](#taginfo7)): [MifareClassicTag](js-apis-n
 
 | **类型** | **说明**                          |
 | ----------------- | ------------------------|
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)  | Mifare Classic类型Tag对象。 |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | Mifare Classic类型Tag对象。 |
 
 ## tag.getMifareUltralightTag<sup>9+</sup>
 
@@ -170,3 +170,4 @@ nfc服务在调度标签时给出的对象。
 | uid<sup>9+</sup> | string |  标签的uid。 |
 | technology<sup>9+</sup> | number[] |  支持的技术类型。 |
 | supportedProfiles<sup>7+</sup> | number[] |  支持的技术类型。 |
+<!--no_check-->
