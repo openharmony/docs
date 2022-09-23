@@ -90,11 +90,11 @@ getIsoDepTag(tagInfo: [TagInfo](#taginfo7)): [IsoDepTag](js-apis-nfctech.md#isoD
 
 | **类型** | **说明**            |
 | ---------- | ------------------|
-| [IsoDepTag](js-apis-nfctech.md#isodeptag9>)  | Iso Dep类型Tag对象。 |
+| [IsoDepTag](js-apis-nfctech.md#isodeptag9)  | Iso Dep类型Tag对象。 |
 
 ## tag.getNdefTag<sup>9+</sup>
 
-getNdefTag(tagInfo: [TagInfo](#taginfo7)): [NdefTag](js-apis-nfctech.md#ndefTag9)
+getNdefTag(tagInfo: [TagInfo](#taginfo7)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 获取Ndef类型Tag对象，通过该对象可访问Ndef技术类型的Tag。
 
