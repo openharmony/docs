@@ -485,7 +485,7 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 getRecentlyUsedModules(callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（由近及远排序）。
+查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（FA记录按时间由近及远排序）。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -531,7 +531,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | 是    | 返回条目的最大数量，最多支持1000条。|
+| maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
 | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
