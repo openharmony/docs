@@ -21,8 +21,8 @@
 | message                  | string                                          | 是    | 弹窗信息内容。                                     |
 | placementOnTop           | boolean                                         | 否    | 是否在组件上方显示，默认值为false。                  |
 | arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                    | 否    | popup箭头在弹窗处的偏移。箭头在气泡上下方时，默认居左；箭头在气泡左右侧时，默认居上。      |
-| primaryButton            | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第一个按钮。<br/>- value:&nbsp;弹窗里主按钮的文本。<br/>- action:&nbsp;点击主按钮的回调函数。 |
-| secondaryButton          | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第二个按钮。<br/>- value:&nbsp;弹窗里辅助按钮的文本。<br/>- action:&nbsp;点击辅助按钮的回调函数。 |
+| primaryButton            | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第一个按钮。<br/>value:&nbsp;弹窗里主按钮的文本。<br/>action:&nbsp;点击主按钮的回调函数。 |
+| secondaryButton          | {<br/>value:&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否    | 第二个按钮。<br/>value:&nbsp;弹窗里辅助按钮的文本。<br/>action:&nbsp;点击辅助按钮的回调函数。 |
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数isVisible为弹窗当前的显示状态。      |
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
