@@ -14,7 +14,7 @@
 
 ## 接口
 
-Rect(options?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
 - 参数

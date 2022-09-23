@@ -11,7 +11,7 @@
 可以包含单个子组件。
 ## 接口
 
-GridCol(optiion?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
+GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColColumnOption, order?: number | GridColColumnOption})
 
 **参数：**
 

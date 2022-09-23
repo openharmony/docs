@@ -4,6 +4,20 @@
     - [Compilation and Building Guide](subsys-build-all.md)
     - [Build System Coding Specifications and Best Practices](subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsys-build-gn-kconfig-visual-config-guide.md)
+    - Related Operations
+      - [Building a Product](subsys-build-product.md)
+      - [Building a Subsystem](subsys-build-subsystem.md)
+      - [Building a Component](subsys-build-component.md)
+      - [Building a Module](subsys-build-module.md)
+      - [Building a Chipset Solution](subsys-build-chip_solution.md)
+      - [Configuring Features](subsys-build-feature.md)
+      - [Configuring System Capabilities](subsys-build-syscap.md)
+      - [Setting deps and external_deps](subsys-build-reference.md#deps-and-external_deps)
+      - [Information Collected by the Open Source Software Notice](subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
+      - [Configuring Parameters for Accelerating Local Build](subsys-build-reference.md#parameters-for-accelerating-local-build)
+      - [Viewing Ninja Build Information](subsys-build-reference.md#viewing-ninja-build-information)
+      - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
+      - [FAQs](subsys-build-FAQ.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
 - Graphics
   - [Graphics Overview](subsys-graphics-overview.md)
@@ -70,6 +84,7 @@
   - [Development on Application Permission Management](subsys-security-rightmanagement.md)
   - [Development on IPC Authentication](subsys-security-communicationverify.md)
   - [Development on Device Security Level Management](subsys-security-devicesecuritylevel.md)
+  - [Development on HUKS](subsys-security-huks-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
   - init Module

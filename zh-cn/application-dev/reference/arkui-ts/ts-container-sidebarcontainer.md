@@ -36,9 +36,9 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
 | controlButton | ButtonStyle                                                | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
-| sideBarWidth | number | 设置侧边栏的宽度。<br/>默认值：200，单位vp |
-| minSideBarWidth | number | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
-| maxSideBarWidth | number | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
+| sideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200，单位vp |
+| minSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
+| maxSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true |
 | sideBarPosition<sup>9+</sup> | SideBarPosition | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
 

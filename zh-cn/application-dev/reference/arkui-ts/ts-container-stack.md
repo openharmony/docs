@@ -14,7 +14,7 @@
 
 ## 接口
 
-Stack({&nbsp;alignContent?:&nbsp;Alignment&nbsp;})
+Stack(value?: { alignContent?: Alignment })
 
 **参数：**
 

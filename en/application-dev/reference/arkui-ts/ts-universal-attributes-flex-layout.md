@@ -1,10 +1,9 @@
 # Flex Layout
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+> - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 > 
-> - This attribute is valid only when the parent component is a **Flex** component.
+> - The flex layout attributes are valid only when the parent component is a **\<Flex>** component.
 
 
 ## Required Permissions
@@ -15,26 +14,27 @@ None
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
+| Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| flexBasis | 'auto' \| Length | 'auto' | Base dimension of a component in the main axis of the **Flex** layout. |
-| flexGrow | number | 0 | Percentage of the **Flex** layout's remaining space that is allocated to the component. |
-| flexShrink | number | 1 | Percentage of the **Flex** layout's shrink size that is allocated to the component. |
-| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign-enums) | Auto | Alignment mode, which overwrites the default **alignItems** configuration in the **Flex** layout. |
+| flexBasis | 'auto' \| Length | 'auto' | Base dimension of the component in the main axis of the flex layout.|
+| flexGrow | number | 0 | Percentage of the flex layout's remaining space that is allocated to the component.|
+| flexShrink | number | 1 | Percentage of the flex layout's shrink size that is allocated to the component.|
+| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign)| Auto | Alignment mode, which overwrites the default **alignItems** configuration in the flex layout.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct FlexExample {
+
   build() {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
       // Base dimension in the main axis
-      // flexBasis() can be auto (default value), which indicates the original component size. If the value is of the number type, it is similar to .width()/.height(). The value is based on the main axis.
+      // flexBasis() can be 'auto' (default value), which indicates the original component size. If the value is of the number type, it is similar to .width()/.height(). The value is based on the main axis.
       Flex() {
         Text('flexBasis(100)')
           .flexBasis('100').height(100).lineHeight(70)
@@ -71,7 +71,7 @@ struct FlexExample {
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('alignSelf').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // alignSelf() overwrites the default alignItems configuration in the Flex layout.
+      // alignSelf() overwrites the default alignItems configuration in the flex layout.
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
         Text('no alignSelf,height:80').width('33%').height(80)
           .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)

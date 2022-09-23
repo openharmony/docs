@@ -1,6 +1,6 @@
 # 启动一个Worker
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br/>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
@@ -14,7 +14,7 @@ import worker from '@ohos.worker';
 
 ## 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称       | 参数类型                                                  | 可读 | 可写 | 说明                                 |
 | ---------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------ |
@@ -25,11 +25,10 @@ import worker from '@ohos.worker';
 
 Worker构造函数的选项信息，用于为Worker添加其他信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称   | 参数类型  | 可读 | 可写 | 说明                   |
 | ------ | --------- | ---- | ---- | ---------------------- |
-| type   | "classic" | 是   | 是   | 按照指定方式执行脚本。 |
 | name   | string    | 是   | 是   | Worker的名称。         |
 | shared | boolean   | 是   | 是   | Worker是否可以被分享。 |
 
@@ -569,7 +568,7 @@ parentPort.onmessageerror= function(e) {
 
 明确数据传递过程中需要转移所有权对象的类，传递所有权的对象必须是ArrayBuffer。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 参数类型 | 可读 | 可写 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
@@ -580,7 +579,7 @@ parentPort.onmessageerror= function(e) {
 
 事件类。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                               |
 | --------- | -------- | ---- | ---- | ---------------------------------- |
@@ -590,12 +589,9 @@ parentPort.onmessageerror= function(e) {
 
 ## EventListener
 
+(evt: Event): void | Promise&lt;void&gt;
+
 事件监听类。
-
-
-### (evt: Event): void | Promise&lt;void&gt;
-
-执行的回调函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -625,7 +621,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 错误事件类，用于表示Worker执行过程中出现异常的详细信息，ErrorEvent类继承[Event](#event)。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称     | 参数类型 | 可读 | 可写 | 说明                 |
 | -------- | -------- | ---- | ---- | -------------------- |
@@ -640,7 +636,7 @@ workerInstance.addEventListener("alert", (e)=>{
 
 消息类，持有Worker线程间传递的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明               |
 | ---- | -------- | ---- | ---- | ------------------ |
@@ -653,7 +649,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 参数类型                                                     | 可读 | 可写 | 说明                                    |
 | ---- | ------------------------------------------------------------ | ---- | ---- | --------------------------------------- |
@@ -691,23 +687,43 @@ parentPort.onerror = function(e){
 }
 ```
 
+## 其他说明
+
+### 内存模型
+Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。 
+
+Actor并发模型的交互原理：各个Actor并发地处理主线程任务，每个Actor内部都有一个消息队列及单线程执行模块，消息队列负责接收主线程及其他Actor的请求，单线程执行模块则负责串行地处理请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离没有数据竞争，因此Actor可以高并发运行。
+
+### 注意事项
+- Worker存在数量限制，当前支持最多同时存在7个Worker。
+- 当Worker数量超出限制，会出现Error "Too many workers, the number of workers exceeds the maximum."。
+- 主动销毁Worker可以调用新创建Worker对象的terminate()或parentPort.close()方法。
+- Worker的创建和销毁耗费性能，建议管理已创建的Worker并重复使用。
+
 ## 完整示例
 ### FA模型
 ```js
 // main.js(同级目录为例)
 import worker from '@ohos.worker';
+// 主线程中创建Worker对象
 const workerInstance = new worker.Worker("workers/worker.ts");
 // 创建js和ts文件都可以
 // const workerInstance = new worker.Worker("workers/worker.js");
 
+// 主线程向worker线程传递信息
 workerInstance.postMessage("123");
+
+// 主线程接收worker线程信息
 workerInstance.onmessage = function(e) {
+    // data：worker线程发送的信息
     let data = e.data;
     console.log("main.js onmessage");
-    // 接收worker线程信息后执行terminate
+
+    // 销毁Worker对象
     workerInstance.terminate();
 }
-// 在调用terminate后，执行onexit
+
+// 在调用terminate后，执行回调onexit
 workerInstance.onexit = function() {
     console.log("main.js terminate");
 }
@@ -715,14 +731,21 @@ workerInstance.onexit = function() {
 ```js
 // worker.js
 import worker from '@ohos.worker';
+
+// 创建worker线程中与主线程通信的对象
 const parentPort = worker.parentPort
 
+// worker线程接收主线程信息
 parentPort.onmessage = function(e) {
+    // data：主线程发送的信息
     let data = e.data;
     console.log("worker.js onmessage");
+
+    // worker线程向主线程发送信息
     parentPort.postMessage("123")
 }
 
+// worker线程发生error的回调
 parentPort.onerror= function(e) {
     console.log("worker.js onerror");
 }
@@ -741,14 +764,22 @@ build-profile.json5 配置 :
 ```js
 // main.js（以不同目录为例）
 import worker from '@ohos.worker';
+
+// 主线程中创建Worker对象
 const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.ts");
 // 创建js和ts文件都可以
 // const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.js");
+
+// 主线程向worker线程传递信息
 workerInstance.postMessage("123");
+
+// 主线程接收worker线程信息
 workerInstance.onmessage = function(e) {
+    // data：worker线程发送的信息
     let data = e.data;
     console.log("main.js onmessage");
-    // 接收worker线程信息后执行terminate
+
+    // 销毁Worker对象
     workerInstance.terminate();
 }
 // 在调用terminate后，执行onexit
@@ -759,14 +790,21 @@ workerInstance.onexit = function() {
 ```js
 // worker.js
 import worker from '@ohos.worker';
+
+// 创建worker线程中与主线程通信的对象
 const parentPort = worker.parentPort
 
+// worker线程接收主线程信息
 parentPort.onmessage = function(e) {
+    // data：主线程发送的信息
     let data = e.data;
     console.log("worker.js onmessage");
+
+    // worker线程向主线程发送信息
     parentPort.postMessage("123")
 }
 
+// worker线程发生error的回调
 parentPort.onerror= function(e) {
     console.log("worker.js onerror");
 }
@@ -781,7 +819,3 @@ build-profile.json5 配置:
     }
   }
 ```
-
-## 注意事项
-Worker存在数量限制，当前支持最多同时存在7个Worker。
-当Worker数量超出限制，会出现Error "Too many workers, the number of workers exceeds the maximum."。

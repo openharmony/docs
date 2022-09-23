@@ -1293,7 +1293,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| [WebResourceResponse](#webresourceresponse) | 返回响应数据为空表示按原来方式加载，否则加载响应数据。 |
+| [WebResourceResponse](#webresourceresponse) | 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -1598,10 +1598,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onContextMenuShow((event) => {
+          .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
-            return false;
+            return true;
         })
       }
     }

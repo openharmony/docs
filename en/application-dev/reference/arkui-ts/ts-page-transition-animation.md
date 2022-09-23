@@ -1,6 +1,6 @@
 # Page Transition
 
-Customize the page transition animations by configuring the page entrance and exit components in the global **pageTransition** method.
+The page transition navigates users between pages. You can customize page transitions by configuring the page entrance and exit components in the global **pageTransition** API.
 
 > **NOTE**
 >
@@ -70,16 +70,12 @@ Customization method 1: The entrance animation of the current page is configured
 struct PageTransitionExample1 {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
 
   build() {
   Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 // Customization method 1: Customize the transition process.
@@ -105,7 +101,6 @@ struct PageTransitionExample1 {
 struct AExample {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
@@ -141,16 +136,12 @@ Customization method 2: The entrance animation of the current page is configured
 struct PageTransitionExample {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 
@@ -172,16 +163,12 @@ struct PageTransitionExample {
 struct PageTransitionExample1 {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
-
+    
   build() {
     Column() {
       Navigator({ target: 'pages/index', type: NavigationType.Push }) {
         Image($r('app.media.bg2')).width  ("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale2 }).opacity(this.opacity2)
   }
 

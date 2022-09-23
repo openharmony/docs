@@ -337,6 +337,7 @@ optional arguments:
 ## 参考信息
 
 - [关于deps、external_deps的使用](subsys-build-reference.md#关于deps、external_deps的使用)
+- [Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)
 - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
 - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
 - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)

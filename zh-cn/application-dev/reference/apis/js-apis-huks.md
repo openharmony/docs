@@ -1437,7 +1437,7 @@ update(handle: number, token?: Uint8Array, options: HuksOptions, callback: Async
 
 update操作密钥接口，使用Callback回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.update<sup>9+</sup>](#huksupdate9)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.update<sup>9+</sup>](#huksupdate9-1)替代。
 
 **系统能力**： SystemCapability.Security.Huks
 

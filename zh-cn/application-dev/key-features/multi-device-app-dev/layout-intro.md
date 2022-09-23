@@ -14,7 +14,11 @@
 
 下面将详细介绍这些布局能力。
 ## 相关实例
+
 针对一次开发，多端部署，有以下相关实例可供参考：
+
+- [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum)
+- [`AppMarket`：一多应用市场首页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket)
 - [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
 - [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
 - [一次开发多端部署（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)

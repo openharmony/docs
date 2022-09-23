@@ -71,6 +71,8 @@
     - [IPC通信鉴权开发指导](subsys-security-communicationverify.md)
     - [设备安全等级管理开发指导](subsys-security-devicesecuritylevel.md)
     - [OpenHarmony通用密钥库系统开发指导](subsys-security-huks-guide.md)
+    - [应用特权配置指导](subsys-app-privilege-config-guide.md)
+    - [预置应用配置指导](subsys-preinstall-app-config-guide.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
     - init启动引导组件

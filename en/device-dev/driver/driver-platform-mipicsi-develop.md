@@ -130,7 +130,7 @@ The following uses **mipi_rx_hi35xx.c** as an example to present the information
 
    - Defining a custom structure
 
-     To the driver, the custom structure hols parameters and data. The values in the **config** file are used to initialize the structure members. In this example, the MIPI CSI attributes are defined in the source file. Therefore, the basic member structure is similar to that of **MipiCsiCntlr**.
+     To the driver, the custom structure holds parameters and data. The values in the **config** file are used to initialize the structure members. In this example, the MIPI CSI attributes are defined in the source file. Therefore, the basic member structure is similar to that of **MipiCsiCntlr**.
 
      ```c
      typedef struct {
