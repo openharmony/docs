@@ -72,11 +72,11 @@ The ADC module adaptation involves the following steps:
    
    ```
    static struct HdfDriverEntry g_hi35xxAdcDriverEntry = {
-       .moduleVersion = 1,
-       .Init = Hi35xxAdcInit,
-       .Release = Hi35xxAdcRelease,
-       .moduleName = "hi35xx_adc_driver",    // (Mandatory) This parameter must be the same as that in the .hcs file.
-      };
+    .moduleVersion = 1,
+    .Init = Hi35xxAdcInit,
+    .Release = Hi35xxAdcRelease,
+    .moduleName = "hi35xx_adc_driver",    // (Mandatory) This parameter must be the same as that in the .hcs file.
+    };
       HDF_INIT(g_hi35xxAdcDriverEntry);      // Call HDF_INIT to register the driver entry with the HDF.
       
       // Driver entry of the adc_core.c manager service at the core layer
@@ -88,7 +88,6 @@ The ADC module adaptation involves the following steps:
    };
       HDF_INIT(g_adcManagerEntry);
    ```
-   
    
 2. Add **deviceNode** to the **device_info.hcs** file, and configure the device attributes in the **adc_config.hcs** file. 
 
