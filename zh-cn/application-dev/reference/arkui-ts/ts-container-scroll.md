@@ -20,21 +20,21 @@ Scroll(scroller?: Scroller)
 
 ## 属性
 
-| 名称             | 参数类型                                     | 描述        |
-| -------------- | ---------------------------------------- | --------- |
+| 名称             | 参数类型                                     | 描述                                       |
+| -------------- | ---------------------------------------- | ---------------------------------------- |
 | scrollable     | ScrollDirection                          | 设置滑动方法。<br/>默认值：ScrollDirection.Vertical |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滑动条状态。<br/>默认值：BarState.Off |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | 设置滑动条的颜色。 |
-| scrollBarWidth | string&nbsp;\|&nbsp;number      | 设置滑动条的宽度。 |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滑动条状态。<br/>默认值：BarState.Off            |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | 设置滑动条的颜色。                                |
+| scrollBarWidth | string&nbsp;\|&nbsp;number               | 设置滑动条的宽度。                                |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
 
 ## ScrollDirection枚举说明
 
-| 名称       | 描述                     |
-| ---------- | ------------------------ |
-| Horizontal | 仅支持水平方向滚动。     |
-| Vertical   | 仅支持竖直方向滚动。     |
-| None       | 不可滚动。               |
+| 名称         | 描述           |
+| ---------- | ------------ |
+| Horizontal | 仅支持水平方向滚动。   |
+| Vertical   | 仅支持竖直方向滚动。   |
+| None       | 不可滚动。        |
 | Free       | 支持竖直或水平方向滚动。 |
 
 ## 事件
@@ -43,7 +43,7 @@ Scroll(scroller?: Scroller)
 | ---------------------------------------- | ----------------------------- |
 | onScroll(event: (xOffset: number, yOffset: number) => void) | 滚动事件回调,&nbsp;返回滚动时水平、竖直方向偏移量。 |
 | onScrollEdge(event: (side: Edge) => void) | 滚动到边缘事件回调。                    |
-| onScrollEnd(event: () => void)      | 滚动停止事件回调。                     |
+| onScrollEnd(event: () => void)           | 滚动停止事件回调。                     |
 
 ## Scroller
 
@@ -66,11 +66,11 @@ scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?
 
 **参数：**
 
-| 参数名    | 参数类型                                                     | 必填 | 参数描述                                                     |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滑动偏移。                                               |
-| yOffset   | number&nbsp;\|&nbsp;string                                   | 是   | 竖直滑动偏移。                                               |
-| animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-animatorproperty.md)&nbsp;<br/>} | 否   | 动画配置：<br/>-&nbsp;duration:&nbsp;滑动时长设置。<br/>-&nbsp;curve:&nbsp;滑动曲线设置。 |
+| 参数名       | 参数类型                                     | 必填   | 参数描述                                     |
+| --------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| xOffset   | number&nbsp;\|&nbsp;string               | 是    | 水平滑动偏移。                                  |
+| yOffset   | number&nbsp;\|&nbsp;string               | 是    | 竖直滑动偏移。                                  |
+| animation | {<br/>duration:&nbsp;number,<br/>curve:&nbsp;[Curve](ts-appendix-enums.md#curve)&nbsp;<br/>} | 否    | 动画配置：<br/>-&nbsp;duration:&nbsp;滑动时长设置。<br/>-&nbsp;curve:&nbsp;滑动曲线设置。 |
 
 ### scrollEdge
 
@@ -87,10 +87,10 @@ scrollPage(value: { next: boolean, direction?: Axis }): void
 
 **参数：**
 
-| 参数名    | 参数类型                          | 必填 | 参数描述                                            |
-| --------- | --------------------------------- | ---- | --------------------------------------------------- |
-| next      | boolean                           | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
-| direction | [Axis](ts-appendix-enums.md#axis) | 否   | 设置滑动方向为水平或竖直方向。                      |
+| 参数名       | 参数类型                              | 必填   | 参数描述                           |
+| --------- | --------------------------------- | ---- | ------------------------------ |
+| next      | boolean                           | 是    | 是否向下翻页。true表示向下翻页，false表示向上翻页。 |
+| direction | [Axis](ts-appendix-enums.md#axis) | 否    | 设置滑动方向为水平或竖直方向。                |
 
 ### currentOffset
 
@@ -112,9 +112,9 @@ scrollToIndex(value: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                           |
-| ------ | -------- | ---- | ---------------------------------- |
-| value  | number   | 是   | 要滑动到的列表项在列表中的索引值。 |
+| 参数名   | 参数类型   | 必填   | 参数描述              |
+| ----- | ------ | ---- | ----------------- |
+| value | number | 是    | 要滑动到的列表项在列表中的索引值。 |
 
 ## 示例
 

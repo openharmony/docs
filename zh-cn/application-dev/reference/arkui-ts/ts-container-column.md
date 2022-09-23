@@ -23,16 +23,16 @@ Column(value?:{space?: string | number})
 
 **参数：**
 
-| 参数名 | 参数类型       | 必填 | 默认值 | 参数描述           |
-| ------ | -------------- | ---- | ------ | ------------------ |
-| space  | string\|number | 否   | 0      | 纵向布局元素间距。 |
+| 参数名   | 参数类型           | 必填   | 默认值  | 参数描述      |
+| ----- | -------------- | ---- | ---- | --------- |
+| space | string\|number | 否    | 0    | 纵向布局元素间距。 |
 
 ## 属性
 
-| 名称               | 参数类型                              | 默认值                    | 描述                |
-| ---------------- | --------------------------------- | ---------------------- | ----------------- |
-| alignItems       | [HorizontalAlign](ts-appendix-enums.md#horizontalalign)       | HorizontalAlign.Center | 设置子组件在水平方向上的对齐格式。 |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start        | 设置子组件在垂直方向上的对齐格式。 |
+| 名称                          | 参数类型                                     | 默认值                    | 描述                |
+| --------------------------- | ---------------------------------------- | ---------------------- | ----------------- |
+| alignItems                  | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | HorizontalAlign.Center | 设置子组件在水平方向上的对齐格式。 |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | FlexAlign.Start        | 设置子组件在垂直方向上的对齐格式。 |
 
 
 ## 示例
