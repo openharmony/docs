@@ -19,7 +19,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | 参数名            | 参数类型      | 必填     | 参数描述                                                     |
 | -------------- | -------- | ------ | --------------------------------------------------------------------------- |
 | timeZoneOffset | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 |
-| controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。<br/>默认值：null|
+| controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。|
 
 ## 属性
 

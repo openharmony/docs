@@ -84,7 +84,7 @@ struct MarqueeExample {
         Button('start')
           .onClick(() => {
             this.start = true
-             })
+          })
           .width(200)
           .height(60)
           .margin({bottom:20})
