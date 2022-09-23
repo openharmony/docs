@@ -23,7 +23,7 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(): Promise&lt;number&gt;; | Queries the priority group of this application. This API uses a promise to return the result.|
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the application specified by **bundleName** is in the idle state. |
 | function getRecentlyUsedModules(callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **1000**.|
-| function getRecentlyUsedModules(maxNum : number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**.|
+| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**.|
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | Queries the number of notifications from all applications based on the specified start time and end time.|
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time.|
 | function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|

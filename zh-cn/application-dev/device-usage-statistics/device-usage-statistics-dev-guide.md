@@ -23,10 +23,10 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(): Promise&lt;number&gt;; | 查询当前应用的使用优先级群组。promise形式。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 | function getRecentlyUsedModules(callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
-| function getRecentlyUsedModules(maxNum : number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录，若不填写maxNum参数，则默认maxNum值为1000。 |
+| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 |
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | 查询当前调用者应用或者指定应用的使用优先级群组。callback形式。 |
+| function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | 查询指定应用的使用优先级群组。callback形式。 |
 | function queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
 | function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
 | function setBundleGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |

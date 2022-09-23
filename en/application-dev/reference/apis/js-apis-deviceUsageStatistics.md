@@ -486,7 +486,7 @@ Obtains the number of FA usage records specified by **maxNum**. This API uses a 
 
 getRecentlyUsedModules(callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
-Obtains the number of FA usage records. This API uses an asynchronous callback to return the records sorted by time (most recent first).
+This API uses an asynchronous callback to return at most 1000 records sorted by time (most recent first).
 
 **Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
 

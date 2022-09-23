@@ -485,7 +485,7 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 getRecentlyUsedModules(callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量为1000的值，FA使用记录由近及远排序。
+查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（由近及远排序）。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -608,7 +608,7 @@ queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。               |
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回当前应用的分组。               |
 
 **示例**：
 
@@ -639,7 +639,7 @@ queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;numbe
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。               |
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回制指定bundleName的应用分组。|
 
 **示例**：
 
