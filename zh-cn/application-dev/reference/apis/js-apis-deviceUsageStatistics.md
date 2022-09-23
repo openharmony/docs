@@ -531,7 +531,7 @@ getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;Bundl
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | 是    | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。  |
+| maxNum   | number                                   | 是    | 返回条目的最大数量，最多支持1000条。|
 | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
