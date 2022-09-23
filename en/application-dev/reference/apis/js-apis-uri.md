@@ -47,7 +47,7 @@ A constructor used to create a URI instance.
 **Example**
 
 ```js
-var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+let mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 ```
 ```js
