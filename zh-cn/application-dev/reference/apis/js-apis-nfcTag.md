@@ -107,7 +107,7 @@ getNdefTag(tagInfo: [TagInfo](#taginfo7)): [NdefTag](js-apis-nfctech.md#ndeftag9
 
 | **类型** | **说明**        |
 | ---------| -------------- |
-| [NdefTag](js-apis-nfctech.md#ndefTag9)  | Ndef类型Tag对象。|
+| [NdefTag](js-apis-nfctech.md#ndeftag9)  | Ndef类型Tag对象。|
 
 ## tag.getMifareClassicTag<sup>9+</sup>
 
