@@ -127,7 +127,7 @@ getMifareClassicTag(tagInfo: [TagInfo](#taginfo7)): [MifareClassicTag](js-apis-n
 
 ## tag.getMifareUltralightTag<sup>9+</sup>
 
-getMifareUltralightTag(tagInfo: [TagInfo](#taginfo7)): [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)
+getMifareUltralightTag(tagInfo: [TagInfo](#taginfo7)): [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag-9)
 
 获取Mifare Ultralight类型Tag对象，通过该对象可访问Mifare Ultralight技术类型的Tag。
 
@@ -139,7 +139,7 @@ getMifareUltralightTag(tagInfo: [TagInfo](#taginfo7)): [MifareUltralightTag](js-
 
 | **类型** | **说明**                                |
 | -------------------- | ---------------------------|
-| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)  | Mifare Ultralight类型Tag对象。 |
+| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag-9)  | Mifare Ultralight类型Tag对象。 |
 
 ## tag.getNdefFormatableTag<sup>9+</sup>
 
