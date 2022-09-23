@@ -24,7 +24,7 @@
 | stateEffect | boolean    | 否    |  按钮按下时是否开启切换效果，当状态置为false时，点击效果关闭。<br/>默认值：true |
 
 
-**方法2：**Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+**方法2：** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
   使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
