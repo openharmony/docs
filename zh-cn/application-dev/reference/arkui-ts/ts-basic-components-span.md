@@ -30,7 +30,7 @@ Span(value: string | Resource)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor8)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
 | letterSpacing       | number \| string  | 设置文本字符间距。                                 |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal |
 

@@ -29,11 +29,11 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 | 名称                  | 参数类型     | 描述                                                              |
 | ----------------------- | --------------- | ----------------------------------------------------------- |
-| color                   | [ResourceColor](ts-types.md#resourcecolor8)       | 设置文字颜色。                           |
-| selectedColor           | [ResourceColor](ts-types.md#resourcecolor8)     | 设置选中项文字颜色。                           |
-| popupColor              | [ResourceColor](ts-types.md#resourcecolor8)        | 设置提示弹窗文字颜色。                         |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor8)       | 设置选中项背景颜色。                           |
-| popupBackground         | [ResourceColor](ts-types.md#resourcecolor8)        | 设置提示弹窗背景色。                            |
+| color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。                           |
+| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。                           |
+| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。                         |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。                           |
+| popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。                         |
 | selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。                           |
 | popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。                         |

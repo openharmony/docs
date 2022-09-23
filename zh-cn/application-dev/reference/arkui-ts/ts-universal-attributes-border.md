@@ -13,10 +13,10 @@
 
 | 名称         | 参数类型                                                     | 描述                                                         |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| border       | {<br/>width?:&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;EdgeWidths<sup>9+</sup>,<br/>color?: &nbsp;[ResourceColor](ts-types.md#resourcecolor8)&nbsp;\|&nbsp;EdgeColors<sup>9+</sup>,<br/>radius?: &nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;BorderRadiuses<sup>9+</sup>,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;EdgeStyles<sup>9+</sup><br/>} | 统一边框样式设置接口。<br/>-&nbsp;width：设置边框宽度。<br/>-&nbsp;color：设置边框颜色。<br/>-&nbsp;radius：设置边框圆角半径。<br/>-&nbsp;style：设置边框样式。 |
+| border       | {<br/>width?:&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;EdgeWidths<sup>9+</sup>,<br/>color?: &nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;EdgeColors<sup>9+</sup>,<br/>radius?: &nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;BorderRadiuses<sup>9+</sup>,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;EdgeStyles<sup>9+</sup><br/>} | 统一边框样式设置接口。<br/>-&nbsp;width：设置边框宽度。<br/>-&nbsp;color：设置边框颜色。<br/>-&nbsp;radius：设置边框圆角半径。<br/>-&nbsp;style：设置边框样式。 |
 | borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyles<sup>9+</sup> | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid           |
 | borderWidth  | [Length](ts-types.md#length) \| EdgeWidths<sup>9+</sup>     | 设置元素的边框宽度。                                         |
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor8) \| EdgeColors<sup>9+</sup> | 设置元素的边框颜色。                                         |
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| EdgeColors<sup>9+</sup> | 设置元素的边框颜色。                                         |
 | borderRadius | [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup> | 设置元素的边框圆角半径。                                     |
 
 ## EdgeWidths<sup>9+</sup>对象说明
@@ -36,10 +36,10 @@
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [ResourceColor](ts-types.md#resourcecolor8) | 否    | 左侧边框颜色。 |
-| right  | [ResourceColor](ts-types.md#resourcecolor8) | 否    | 右侧边框颜色。 |
-| top    | [ResourceColor](ts-types.md#resourcecolor8) | 否    | 上侧边框颜色。 |
-| bottom | [ResourceColor](ts-types.md#resourcecolor8) | 否    | 下侧边框颜色。 |
+| left   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 左侧边框颜色。 |
+| right  | [ResourceColor](ts-types.md#resourcecolor) | 否    | 右侧边框颜色。 |
+| top    | [ResourceColor](ts-types.md#resourcecolor) | 否    | 上侧边框颜色。 |
+| bottom | [ResourceColor](ts-types.md#resourcecolor) | 否    | 下侧边框颜色。 |
 
 ## BorderRadiuses<sup>9+</sup>对象说明
 
