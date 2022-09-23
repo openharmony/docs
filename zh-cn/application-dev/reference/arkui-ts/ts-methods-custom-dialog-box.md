@@ -22,7 +22,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | cancel                 | ()&nbsp;=&gt;&nbsp;void                            | 否              | 点击遮障层退出时的回调。           |
 | autoCancel             | boolean                                            | 否              | 是否允许点击遮障层退出。true           |
 | alignment              | DialogAlignment(#dialogalignment枚举说明)           | 否              | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default        |
-| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
+| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
 | customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false           |
 | gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。              |
 
