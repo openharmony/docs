@@ -12,7 +12,7 @@
 
 ## 接口
 
-Checkbox( option?:&nbsp;{name?: string,  group?: string })
+Checkbox(options?:&nbsp;{name?: string,  group?: string })
 
 **参数:**
 

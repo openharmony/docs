@@ -9,6 +9,9 @@ Queue和[Deque](js-apis-deque.md)相比，Queue只能在一端删除一端增加
 
 **推荐使用场景：** 一般符合先进先出的场景可以使用Queue。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -71,7 +74,7 @@ let result1 = queue.add(1);
 queue.add(1);
 let b = [1, 2, 3];
 queue.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
 ```
 

@@ -8,12 +8,13 @@ The system executes Work Scheduler tasks at an appropriate time, subject to the 
 >
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
+>  - For details about the constraints on the Work Scheduler usage, see [Work Scheduler Overview](../../task-management/work-scheduler-overview.md).
 
 
 ## Modules to Import
 
 ```js
-import workScheduler from '@ohos.workScheduler' 
+import workScheduler from '@ohos.workScheduler';
 ```
 
 ## workScheduler.startWork
@@ -53,7 +54,7 @@ Instructs the **WorkSchedulerService** to add the specified task to the executio
       }
   }
   var res = workScheduler.startWork(workInfo);
-  console.info("workschedulerLog res:" + res);
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.stopWork
@@ -94,7 +95,7 @@ Instructs the **WorkSchedulerService** to stop the specified task.
       }
      }
   var res = workScheduler.stopWork(workInfo, false);
-  console.info("workschedulerLog res:" + res);
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.getWorkStatus
@@ -116,10 +117,10 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 ```js
   workScheduler.getWorkStatus(50, (err, res) => {
     if (err) {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+      console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
     } else {
       for (let item in res) {
-        console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
       }
     }
   });
@@ -149,10 +150,10 @@ Obtains the latest task status. This API uses a promise to return the result.
 ```js
   workScheduler.getWorkStatus(50).then((res) => {
     for (let item in res) {
-      console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
+      console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
     }
   }).catch((err) => {
-    console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
+    console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
   })
 ```
 
@@ -167,7 +168,7 @@ Obtains all tasks associated with this application. This API uses an asynchronou
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return all tasks associated with the current application.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return all tasks associated with the current application. |
 
 **Return value**
 
@@ -180,9 +181,9 @@ Obtains all tasks associated with this application. This API uses an asynchronou
 ```js
   workScheduler.obtainAllWorks((err, res) =>{
     if (err) {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+      console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
     } else {
-      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
     }
   });
 ```
@@ -198,15 +199,15 @@ Obtains all tasks associated with this application. This API uses a promise to r
 
 | Type                                    | Description                            |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all tasks associated with the current application.|
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all tasks associated with the current application. |
 
 **Example**
 
 ```js
   workScheduler.obtainAllWorks().then((res) => {
-    console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
+    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
   }).catch((err) => {
-    console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
+    console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
   })
 ```
 
@@ -221,7 +222,7 @@ Stops and cancels all tasks associated with the current application.
 
 ```js
   let res = workScheduler.stopAndClearWorks();
-  console.info("workschedulerLog res:" + res);
+  console.info(`workschedulerLog res: ${res}`);
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -249,9 +250,9 @@ Checks whether the last execution of the specified task timed out. This API uses
 ```js
   workScheduler.isLastWorkTimeOut(500, (err, res) =>{
     if (err) {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
     } else {
-      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
     }
   });
 ```
@@ -280,10 +281,10 @@ Checks whether the last execution of the specified task timed out. This API uses
 ```js
   workScheduler.isLastWorkTimeOut(500)
     .then(res => {
-      console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
+      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
     })
     .catch(err =>  {
-      console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
+      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
     });
 ```
 

@@ -969,6 +969,8 @@ FA的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 | 参数名                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | 否    | FA所属deviceId。                 |
@@ -990,6 +992,8 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 | 参数名              | 类型     | 必填   | 说明          |
 | ---------------- | ------ | ---- | ----------- |
 | formName         | string | 是    | 卡片名称。       |
@@ -1003,6 +1007,8 @@ FA卡片的使用信息的属性集合。
 应用分组变化回调返回的属性集合
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
@@ -1032,20 +1038,6 @@ FA卡片的使用信息的属性集合。
 | fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-
-### merge
-
-merge(toMerge: BundleStateInfo): void
-
-合并相同包名的应用使用信息。
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**参数**：
-
-| 参数名     | 类型                                  | 必填   | 说明             |
-| ------- | ----------------------------------- | ---- | -------------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | 是    | 相同包名的应用使用统计信息。 |
 
 ## BundleActiveState
 
@@ -1105,6 +1097,8 @@ merge(toMerge: BundleStateInfo): void
 提供应用分组的设置类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 名称                 | 默认值  | 说明                |
 | ------------------ | ---- | ----------------- |

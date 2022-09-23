@@ -195,7 +195,7 @@ goToRow(position: number): boolean
 **示例：**
 
 ```ts
-let goToRowNum = 2
+let goToRowNum = 2;
 let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
 ```
@@ -223,7 +223,7 @@ getBlob(columnIndex: number): Uint8Array
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getBlob = resultSet.getBlob(columnIndex);
 console.info('resultSet.getBlob: ' + getBlob);
@@ -231,7 +231,7 @@ console.info('resultSet.getBlob: ' + getBlob);
 
 ### getString
 
-getString(columnIndex: number): *string*
+getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
 
@@ -252,7 +252,7 @@ getString(columnIndex: number): *string*
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getString = resultSet.getString(columnIndex);
 console.info('resultSet.getString: ' + getString);
@@ -281,7 +281,7 @@ getLong(columnIndex: number): number
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getLong = resultSet.getLong(columnIndex);
 console.info('resultSet.getLong: ' + getLong);
@@ -310,7 +310,7 @@ getDouble(columnIndex: number): number
 **示例：**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getDouble = resultSet.getDouble(columnIndex);
 console.info('resultSet.getDouble: ' + getDouble);
@@ -353,14 +353,14 @@ getColumnIndex(columnName: string): number
 **示例：**
 
 ```ts
-let ColumnName = "name"
-let getColumnIndex = resultSet.getColumnIndex(ColumnName)
+let ColumnName = "name";
+let getColumnIndex = resultSet.getColumnIndex(ColumnName);
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 ```
 
 ### getColumnName
 
-getColumnName(columnIndex: number): *string*
+getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
@@ -381,8 +381,8 @@ getColumnName(columnIndex: number): *string*
 **示例：**
 
 ```ts
-let columnIndex = 1
-let getColumnName = resultSet.getColumnName(columnIndex)
+let columnIndex = 1;
+let getColumnName = resultSet.getColumnName(columnIndex);
 console.info('resultSet.getColumnName: ' + getColumnName);
 ```
 

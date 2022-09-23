@@ -53,7 +53,7 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
    - LDO_1P8：1.8V数字电路
    - LDO_3P3：3.3V模拟电路
 
-     通常情况下，Touchscreenreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
+     通常情况下，Touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
 2. **IO控制接口**
 
