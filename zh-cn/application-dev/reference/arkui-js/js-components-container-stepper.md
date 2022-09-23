@@ -95,6 +95,7 @@
   height: 300px;
 }
 .stepperItem {
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
