@@ -62,6 +62,50 @@
 
   ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：部件间依赖要写在external_deps里面，格式为”部件名:模块名"的形式，并且依赖的模块必须是依赖的部件声明在inner_kits中的模块。
 
+## Sanitizer使用说明
+
+在添加模块时，可选地对该模块开启编译器提供的Sanitizer功能，包括整数溢出排错、控制流完整性检查等。配置的每一项都是可选的，如不指定默认为false或者空。Sanitizer配置示例如下所示：
+``` shell
+  ohos_shared_library("example") {
+    sanitize = {
+      cfi = true
+      integer_overflow = true                
+      debug = true                           # 可选，调测模式，默认是不开启
+      blocklist = "./blocklist.txt"          # 可选，屏蔽名单路径
+    }
+    ...
+  }
+```
+
+**支持的Sanitizer选项**
+
+目前支持开启的Sanitizer：
+
+- 整数溢出排错：unsigned_integer_overflow/signed_integer_overflow/integer_overflow(同时包括无符号和有符号整数溢出两种检查)
+- 控制流完整性：cfi
+
+**发布、调测模式**
+
+通过`debug`选项控制使用发布模式还是调测模式，默认为发布模式，使用`debug = true`显式声明开启调测模式，在发布版本的编译中不带此选项。
+
+- 调试模式：使用Sanitizer在开发时排查问题，与编译的debug版本无关。该模式下会输出产生错误相关的丰富信息来辅助定位错误，并且在发生错误后并不会直接中断程序运行，而是会恢复程序运行进一步识别后续的错误。
+
+- 发布模式：保护程序发生错误或被恶意攻击，在产生错误后直接中断程序不会继续执行。
+
+
+**屏蔽名单**
+
+指定该模块中不受Sanitizer选项影响的函数或源程序文件名单，用于避免良性行为被识别为错误、热点函数产生了不合理、不可接受的开销；该名单需谨慎使用。名单示例如下所示：
+```
+[cfi]
+fun:*([Tt]est|TEST)*
+fun: main
+
+[integer]
+src:example/*.cpp
+```
+
+
 ## 开源软件Notice收集策略说明
 
 开源软件Notice是与项目开源相关的文件，收集这些文件的目的是为了符合开源的规范。
