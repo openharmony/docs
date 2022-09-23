@@ -87,10 +87,10 @@
 
 | 名称     | 类型            | 必填   | 说明       |
 | ------ | ------------- | ---- | -------- |
-| top    | [ResourceColor](#resourcecolor8) | 否    | 组件上边框颜色。 |
-| right  | [ResourceColor](#resourcecolor8) | 否    | 组件右边框颜色。 |
-| bottom | [ResourceColor](#resourcecolor8) | 否    | 组件下边框颜色。 |
-| left   | [ResourceColor](#resourcecolor8) | 否    | 组件左边框颜色。 |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -113,16 +113,16 @@
 | dx   | [Length](#length)  | 是    | 水平方向偏移量。 |
 | dy   | [Length](#length)  | 是    | 竖直方向偏移量。 |
 
-## ResourceColor<sup>8+</sup>
+## ResourceColor
 
 颜色类型，用于描述资源颜色类型。
 
-| 类型                                       | 说明                          |
-| ---------------------------------------- | --------------------------- |
-| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                      |
-| number                                   | HEX格式颜色。                    |
-| string                                   | rgb或者rgba格式颜色。              |
-| [Resource](#resource)                                 | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
+| 类型                                      | 说明                                             |
+| ---------------------------------------- | ------------------------------------------------- |
+| [Color](ts-appendix-enums.md#color)      | 颜色枚举值。                                       |
+| number                                   | HEX格式颜色。                                      |
+| string                                   | rgb或者rgba格式颜色。                              |
+| [Resource](#resource)                    | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
 
 ## LengthConstrain
 
@@ -193,10 +193,10 @@
 
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)   \| [EdgeWidths<sup>9+</sup>](#edgewidths9)       | 否    | 边框宽度。   |
-| color  | [ResourceColor](#resourcecolor8) \| [EdgeColors<sup>9+</sup>](#edgecolors9) | 否    | 边框颜色。   |
-| radius | [Length](#length)  \| [BorderRadiuses<sup>9+</sup>](#borderradiuses9)    | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](../reference/arkui-ts/ts-appendix-enums.md#borderstyle)  \| [EdgeStyles<sup>9+</sup>](#edgestyles9) | 否    | 边框样式。   |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | 否    | 边框宽度。   |
+| color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
+| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | 否    | 边框圆角半径。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
