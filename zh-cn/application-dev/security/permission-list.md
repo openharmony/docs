@@ -143,3 +143,5 @@
 | ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | 允许应用上报风险数据至设备风险管理平台。                       |
 | ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | 允许应用获取设备风险状态。                                     |
 | ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | 允许应用获取风险详细数据。                                     |
+| ohos.permission.READ_ACCESSIBILITY_CONFIG                    | system_basic | system_grant | FALSE   | 允许应用读取无障碍配置信息                                   |
+| ohos.permission.WRITE_ACCESSIBILITY_CONFIG                   | system_basic | system_grant | FALSE   | 允许应用设置无障碍配置信息                                   |
