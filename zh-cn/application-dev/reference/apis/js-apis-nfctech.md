@@ -841,6 +841,8 @@ let ndefTypeString= tag.NdefTag(taginfo).getNdefTagTypeString(type);
 
 ## NfcForumType<sup>9+</sup>
 
+**系统能力**：SystemCapability.Communication.NFC.Core
+
 | **参数名** | **类型** |  **说明** |
 | -------- | -------- | -------- |
 | NFC_FORUM_TYPE_1 | 1 |  NFC论坛类型1。 |
