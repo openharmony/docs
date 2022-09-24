@@ -12,7 +12,6 @@
             - [Resource File Categories](ui-ts-basic-resource-file-categories.md)
             - [Accessing Resources](ts-resource-access.md)
         - [Pixel Units](ts-pixel-units.md)
-        - [Types](ts-types.md)
     - Declarative Syntax
         - [Overview](ts-syntax-intro.md)
         - General UI Description Specifications
@@ -20,8 +19,8 @@
             - Declarative UI Description Specifications
                 - [Configuration Without Parameters](ts-parameterless-configuration.md)
                 - [Configuration with Mandatory Parameters](ts-configuration-with-mandatory-parameters.md)
-
-                - [Attribute Configuration](ts-attribution-configuration.md)
+    
+            - [Attribute Configuration](ts-attribution-configuration.md)
                 - [Event Configuration](ts-event-configuration.md)
                 - [Child Component Configuration](ts-child-component-configuration.md)
             - Componentization
@@ -73,7 +72,8 @@
         - [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)
-
+    - [Recommendations for Improving Performance](ts-performance-improvement-recommendation.md)
+    
 - JavaScript-based Web-like Development Paradigm
     - [Overview](ui-js-overview.md)
     - Framework
