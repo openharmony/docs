@@ -6,7 +6,7 @@
 设备类型分为default（默认设备）、tablet、tv、wearable等，有多种查询设备类型的方式。
 
 1. 通过命令行的方式查询设备类型。
-   通过命令行查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统参数介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-syspara.md)。
+   通过命令行查询指定系统参数（const.build.characteristics）进而确定设备类型，详见[系统参数介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
    
    ```shell
