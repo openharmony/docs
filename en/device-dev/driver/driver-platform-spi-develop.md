@@ -95,32 +95,32 @@ The following uses **spi_hi35xx.c** as an example to present the information req
      
      ```
      root {
-     device_info {
+       device_info {
          match_attr = "hdf_manager";
          platform :: host {
-         hostName = "platform_host";
-         priority = 50;
-         device_spi :: device {                           // Configure an HDF device node for each SPI controller.
+           hostName = "platform_host";
+           priority = 50;
+           device_spi :: device {                            // Configure an HDF device node for each SPI controller.
              device0 :: deviceNode {
-             policy = 1;
-             priority = 60;
-             permission = 0644;
-             moduleName = "HDF_PLATFORM_SPI";
-             serviceName = "HDF_PLATFORM_SPI_0";
-             deviceMatchAttr = "hisilicon_hi35xx_spi_0";
+               policy = 1;
+               priority = 60;
+               permission = 0644;
+               moduleName = "HDF_PLATFORM_SPI";
+               serviceName = "HDF_PLATFORM_SPI_0";
+               deviceMatchAttr = "hisilicon_hi35xx_spi_0";
              }
              device1 :: deviceNode {
-             policy = 1;
-             priority = 60;
-             permission = 0644;
-             moduleName = "HDF_PLATFORM_SPI";             // (Mandatory) Driver name, which must be the same as that of moduleName in the driver entry structure.
-             serviceName = "HDF_PLATFORM_SPI_1";          // (Mandatory) Unique name of the service published by the driver.
-             deviceMatchAttr = "hisilicon_hi35xx_spi_1";// The value must be the same as that of match_attr in the .hcs file.
+               policy = 1;
+               priority = 60;
+               permission = 0644;
+               moduleName = "HDF_PLATFORM_SPI";             // (Mandatory) Driver name, which must be the same as that of moduleName in the driver entry structure.
+               serviceName = "HDF_PLATFORM_SPI_1";           // (Mandatory) Unique name of the service published by the driver.
+               deviceMatchAttr = "hisilicon_hi35xx_spi_1";       // The value must be the same as that of match_attr in the .hcs file.
              }
              ...
+           }
          }
-         }
-     }
+       }
      }
      ```
    
@@ -129,9 +129,9 @@ The following uses **spi_hi35xx.c** as an example to present the information req
      
      ```
      root {
-     platform {
+       platform {
          spi_config {                        // Configure private data for each SPI controller.
-         template spi_controller {           // Template configuration. In the template, you can configure the common parameters shared by device nodes.
+           template spi_controller {           // Template configuration. In the template, you can configure the common parameters shared by device nodes.
              serviceName = "";
              match_attr = "";
              transferMode = 0; // Data transfer mode. The value **0** indicates interrupt transfer, **1** indicates flow control transfer, and **2** indicates DMA transfer.
@@ -152,25 +152,25 @@ The following uses **spi_hi35xx.c** as an example to present the information req
              REG_MISC_CTRL_SPI = 0x12030024; // MISC_REG_BASE(0x12030000) + 0x24
              MISC_CTRL_SPI_CS = 0;
              MISC_CTRL_SPI_CS_SHIFT = 0;
-         }      
-         controller_0x120c0000 :: spi_controller {
+           }      
+           controller_0x120c0000 :: spi_controller {
              busNum = 0;                           // (Mandatory) Bus number.
              CRG_SPI_CKEN = 0x10000;               // (0x1 << 16) 0:close clk, 1:open clk 
              CRG_SPI_RST = 0x1;                    // (0x1 << 0) 0:cancel reset, 1:reset 
              match_attr = "hisilicon_hi35xx_spi_0";// (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
-         }      
-         controller_0x120c1000 :: spi_controller {
+           }      
+           controller_0x120c1000 :: spi_controller {
              busNum = 1;
              CRG_SPI_CKEN = 0x20000;    // (0x1 << 17) 0:close clk, 1:open clk
              CRG_SPI_RST = 0x2;         // (0x1 << 1) 0:cancel reset, 1:reset 
              match_attr = "hisilicon_hi35xx_spi_1"; 
              regBase = 0x120c1000;      // (Mandatory) Used for address mapping.
              irqNum = 101;              // (Mandatory) IRQ number.
-         }
+           }
          ...
          //(Optional) Add nodes to the device_info.hcs file as required.
          }
-     }
+       }
      }
      ```
 
