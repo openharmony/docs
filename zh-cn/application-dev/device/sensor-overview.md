@@ -8,10 +8,10 @@ OpenHarmony系统传感器是应用访问底层硬件传感器的一种设备抽
 
 | 传感器类型                                   | 描述        | 说明                                       | 主要用途                 |
 | --------------------------------------- | --------- | ---------------------------------------- | -------------------- |
-| SENSOR_TYPE_ACCELEROMETER               | 加速度传感器    | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测运动状态               |
-| SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED  | 未校准加速度传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的未校准的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测加速度偏差估值            |
-| SENSOR_TYPE_LINEAR_ACCELERATION         | 线性加速度传感器  | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的线性加速度（不包括重力加速度），单位&nbsp;:&nbsp;m/s2 | 检测每个单轴方向上的线性加速度      |
-| SENSOR_TYPE_GRAVITY                     | 重力传感器     | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的重力加速度，单位&nbsp;:&nbsp;m/s2 | 测量重力大小               |
+| SENSOR_TYPE_ACCELEROMETER               | 加速度传感器    | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s² | 检测运动状态               |
+| SENSOR_TYPE_ACCELEROMETER_UNCALIBRATED  | 未校准加速度传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的未校准的加速度（包括重力加速度），单位&nbsp;:&nbsp;m/s² | 检测加速度偏差估值            |
+| SENSOR_TYPE_LINEAR_ACCELERATION         | 线性加速度传感器  | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的线性加速度（不包括重力加速度），单位&nbsp;:&nbsp;m/s² | 检测每个单轴方向上的线性加速度      |
+| SENSOR_TYPE_GRAVITY                     | 重力传感器     | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，施加在设备上的重力加速度，单位&nbsp;:&nbsp;m/s² | 测量重力大小               |
 | SENSOR_TYPE_GYROSCOPE                   | 陀螺仪传感器    | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度             |
 | SENSOR_TYPE_GYROSCOPE_UNCALIBRATED      | 未校准陀螺仪传感器 | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备的未校准旋转角速度，单位&nbsp;:&nbsp;rad/s | 测量旋转的角速度及偏差估值        |
 | SENSOR_TYPE_SIGNIFICANT_MOTION          | 大幅度动作传感器  | 测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动 | 用于检测设备是否存在大幅度运动      |
@@ -60,3 +60,4 @@ OpenHarmony传感器包含如下四个模块：Sensor API、Sensor Framework、S
     | 心率计                       | ohos.permission.READ_HEALTH_DATA | user_grant   | 允许读取健康数据                |
 
 2. 传感器数据订阅和取消订阅接口成对调用，当不再需要订阅传感器数据时，开发者需要调用取消订阅接口停止数据上报。
+    
