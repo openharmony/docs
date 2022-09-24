@@ -4,7 +4,7 @@
 
 该模块提供以下图像效果相关的常用功能：
 
-- [Filter](#filter)：效果链。
+- [Filter](#filter)：效果链，指各种图像处理效果的集合链表。
 - [Color](#color)：颜色类，用于保存取色的结果。
 - [ColorPicker](#colorpicker)：智能取色器。
 
@@ -155,7 +155,7 @@ getMainColor(): Promise\<Color>
 ```js
 colorPicker.getMainColor().then(color => {
     console.log('Succeeded in getting main color.');
-    console.info("color[ARGB]=" + color.alpha + "," + color.red + "," + color.green + "," + color.blue);
+    console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
 }).catch(error => {
     console.log('Failed to get main color.');
 })
