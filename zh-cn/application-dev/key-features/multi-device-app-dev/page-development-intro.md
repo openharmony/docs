@@ -19,6 +19,57 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 开发多设备上同一页面时，建议开发者多使用[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
+> 开发多设备上同一页面时，建议开发者多使用[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
+
+
+
+## 相关示例
+
+本章中涉及的示例代码均可以在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev)中获取，感兴趣的开发者可以自行下载、运行及查看效果。
+
+| 示例名称                                                     | 简介                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
+| [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket) | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 
-> - 本章中涉及的示例代码均可以在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev)中获取，感兴趣的开发者可以自行下载、运行及查看效果。
+>
+
+- [`AdaptiveCapabilities`（eTS）
+
+  
+
+- [`JsAdaptiveCapabilities`](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
+
+  ：多设备自适应能力（JS）（API8）
+
+- [`MusicAlbum`
+
+  ：一多音乐专辑主页（eTS）（API9）
+
+- [`AppMarket`
+
+  ：一多应用市场首页（eTS）（API9）
+
+
+
+
+
+针对一次开发，多端部署，有以下相关实例可供参考：
+
+- [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum)
+- [`AppMarket`：一多应用市场首页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket)
+- [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
+- [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
+- [一次开发多端部署（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
+
+
+
+## 相关实例
+
+针对栅格断点系统开发，有以下相关实例可供参考：
+
+- [`Weather`：一多天气（eTS）（API9）

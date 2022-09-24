@@ -254,8 +254,7 @@ struct MediaQuerySample {
 
 ## 栅格布局
 
-
-## <sub>栅格</sub>
+### 简介
 
 栅格是多设备场景下通用的辅助定位工具，通过将空间分割为有规律的栅格。栅格可以显著降低适配不同屏幕尺寸的设计及开发成本，使得整体设计和开发流程更有秩序和节奏感，同时也保证多设备上应用显示的协调性和一致性，提升用户体验。
 
@@ -269,9 +268,6 @@ struct MediaQuerySample {
 - Columns是栅格中的列数，其数值决定了内容的布局复杂度。
 
 单个Column的宽度是系统结合Margin、Gutter和Columns自动计算的，不需要也不允许开发者手动配置。
-
-
-### 栅格布局
 
 栅格布局就是栅格结合了断点，实现栅格布局能力的组件叫栅格组件。在实际使用场景中，可以根据需要配置不同断点下栅格组件中元素占据的列数，同时也可以调整Margin、Gutter、Columns的取值，从而实现不同的布局效果。
 
@@ -394,7 +390,6 @@ struct GridRowSample2 {
 
 
 总的来讲，margin在组件外而padding在组件内，开发者可以根据实际需要进行选择及实现目标效果。
-
 
 **示例3：**
 
@@ -729,8 +724,3 @@ struct GridRowSample9 {
 
 如前所述，栅格组件提供了丰富的自定义能力，功能异常灵活和强大。只需要明确栅格在不同断点下的Columns、Margin、Gutter及span等参数，即可确定最终布局，无需关心具体的设备类型及设备状态（如横竖屏）等。栅格可以节约设计团队与开发团队的沟通成本，提升整体开发效率。
 
-## 相关实例
-
-针对栅格断点系统开发，有以下相关实例可供参考：
-
-- [`Weather`：一多天气（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather)
