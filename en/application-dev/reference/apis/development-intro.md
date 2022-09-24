@@ -26,6 +26,10 @@ A description regarding system APIs will be provided in the document.
 - If all the APIs of a module are system APIs, the following description is provided at the beginning of the reference document: "All the APIs of this module are system APIs."
 - If a specific API of a module is a system API, the following description is provided individually for the API: "This is a system API."
 
+Non-system applications are applications whose Ability Privilege Level (APL) is **normal**. The default application level is **normal**.
+
+For details about the APL and how to declare the APL of an application higher than **normal**, see [Access Control Overview - App APLs](../../security/accesstoken-overview.md#app-apls).
+
 ## Permission Description
 
 By default, applications can access limited system resources. However, in some cases, an application needs to access excess data (including personal data) and functions of the system or another application to implement extended functions. For details, see [Access Control Overview](../../security/accesstoken-overview.md).
