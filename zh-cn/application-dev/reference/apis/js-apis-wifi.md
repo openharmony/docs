@@ -1857,16 +1857,15 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   ```js
   import wifi from '@ohos.wifi';
   
-  var WIFI_POWER_STATE = "wifiStateChange";
   var recvPowerNotifyFunc = result => {
       console.info("Receive power state change event: " + result);
   }
   
   // Register event
-  wifi.on(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.on("wifiStateChange", recvPowerNotifyFunc);
   
   // Unregister event
-  wifi.off(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.off("wifiStateChange", recvPowerNotifyFunc);
   ```
 
 

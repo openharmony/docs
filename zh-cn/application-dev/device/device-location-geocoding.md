@@ -20,12 +20,12 @@
 
 | 接口名 | 功能描述 | 
 | -------- | -------- |
-| isGeoServiceAvailable(callback:&nbsp;AsyncCallback&lt;boolean&gt;)&nbsp;:&nbsp;void | 判断（逆）地理编码服务状态，使用callback回调异步返回结果。 | 
-| isGeoServiceAvailable()&nbsp;:&nbsp;Promise&lt;boolean&gt; | 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。 | 
-| getAddressesFromLocation(request:&nbsp;ReverseGeoCodeRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;)&nbsp;:&nbsp;void | 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。 | 
-| getAddressesFromLocation(request:&nbsp;ReverseGeoCodeRequest)&nbsp;:&nbsp;Promise&lt;Array&lt;GeoAddress&gt;&gt;; | 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。 | 
-| getAddressesFromLocationName(request:&nbsp;GeoCodeRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;)&nbsp;:&nbsp;void | 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。 | 
-| getAddressesFromLocationName(request:&nbsp;GeoCodeRequest)&nbsp;:&nbsp;Promise&lt;Array&lt;GeoAddress&gt;&gt; | 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。 | 
+| isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;) : void | 判断（逆）地理编码服务状态，使用callback回调异步返回结果。 | 
+| isGeoServiceAvailable() : Promise&lt;boolean&gt; | 判断（逆）地理编码服务状态，使用Promise方式异步返回结果。 | 
+| getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | 调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。 | 
+| getAddressesFromLocation(request: ReverseGeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | 调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。 | 
+| getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;) : void | 调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。 | 
+| getAddressesFromLocationName(request: GeoCodeRequest) : Promise&lt;Array&lt;GeoAddress&gt;&gt; | 调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。 | 
 
 
 ## 开发步骤

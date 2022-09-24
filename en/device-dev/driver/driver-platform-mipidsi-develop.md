@@ -182,39 +182,39 @@ The following uses **mipi_tx_hi35xx.c** as an example to present the contents th
      Attaches the **MipiDsiCntlrMethod** instance, calls **MipiDsiRegisterCntlr**, and performs other vendor-defined initialization operations.
 
      ```
-     static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
-       {
-       int32_t ret;
-       g_mipiTx.priv = NULL;                         // g_mipiTx is a global variable defined.
+      static int32_t Hi35xxMipiTxInit(struct HdfDeviceObject *device)
+      {
+      int32_t ret;
+      g_mipiTx.priv = NULL;                         // g_mipiTx is a global variable defined.
                                                      // static struct MipiDsiCntlr g_mipiTx { 
                                                      //     .devNo=0
                                                      //};
-       g_mipiTx.ops = &g_method;                     // Attach the MipiDsiCntlrMethod instance.
-       ret = MipiDsiRegisterCntlr(&g_mipiTx, device);// (Mandatory) Call the function at the core layer and g_mipiTx to initialize global variables at the core layer.
-       ...
-       return MipiTxDrvInit(0);                      // (Mandatory) Device initialization customized by the vendor.
-       }
+      g_mipiTx.ops = &g_method;                     // Attach the MipiDsiCntlrMethod instance.
+      ret = MipiDsiRegisterCntlr(&g_mipiTx, device);// (Mandatory) Call the function at the core layer and g_mipiTx to initialize global variables at the core layer.
+      ...
+      return MipiTxDrvInit(0);                      // (Mandatory) Device initialization customized by the vendor.
+      }
        
-       // mipi_dsi_core.c file
-       int32_t MipiDsiRegisterCntlr(struct MipiDsiCntlr *cntlr, struct HdfDeviceObject *device)
-       {
-       ...
-       // Define the global variable static struct MipiDsiHandle g_mipiDsihandle[MAX_CNTLR_CNT].
-       if (g_mipiDsihandle[cntlr->devNo].cntlr == NULL) {
-           (void)OsalMutexInit(&g_mipiDsihandle[cntlr->devNo].lock);
-           (void)OsalMutexInit(&(cntlr->lock));
+      // mipi_dsi_core.c file
+      int32_t MipiDsiRegisterCntlr(struct MipiDsiCntlr *cntlr, struct HdfDeviceObject *device)
+      {
+      ...
+      // Define the global variable static struct MipiDsiHandle g_mipiDsihandle[MAX_CNTLR_CNT].
+      if (g_mipiDsihandle[cntlr->devNo].cntlr == NULL) {
+          (void)OsalMutexInit(&g_mipiDsihandle[cntlr->devNo].lock);
+          (void)OsalMutexInit(&(cntlr->lock));
        
-           g_mipiDsihandle[cntlr->devNo].cntlr = cntlr;// Initialize MipiDsiHandle.
-           g_mipiDsihandle[cntlr->devNo].priv = NULL;  
-           cntlr->device = device;                     // Prerequisites for conversion between HdfDeviceObject and MipiDsiHandle.
-           device->service = &(cntlr->service);       // Prerequisites for conversion between HdfDeviceObject and MipiDsiHandle.
-           cntlr->priv = NULL;    
-           ...
-           return HDF_SUCCESS;
-       }
-       ...
-        return HDF_FAILURE;
-       }
+          g_mipiDsihandle[cntlr->devNo].cntlr = cntlr;// Initialize MipiDsiHandle.
+          g_mipiDsihandle[cntlr->devNo].priv = NULL;  
+          cntlr->device = device;                     // Prerequisites for conversion between HdfDeviceObject and MipiDsiHandle.
+          device->service = &(cntlr->service);       // Prerequisites for conversion between HdfDeviceObject and MipiDsiHandle.
+          cntlr->priv = NULL;    
+          ...
+          return HDF_SUCCESS;
+      }
+      ...
+      return HDF_FAILURE;
+      }
      ```
 
    - **Release** function
@@ -237,17 +237,15 @@ The following uses **mipi_tx_hi35xx.c** as an example to present the contents th
 
      ```
       static void Hi35xxMipiTxRelease(struct HdfDeviceObject *device)
-        {
-        struct MipiDsiCntlr *cntlr = NULL;
-        ...
-        cntlr = MipiDsiCntlrFromDevice(device);// A forced conversion from HdfDeviceObject to MipiDsiCntlr is involved.
+      {
+      struct MipiDsiCntlr *cntlr = NULL;
+      ...
+      cntlr = MipiDsiCntlrFromDevice(device);// A forced conversion from HdfDeviceObject to MipiDsiCntlr is involved.
                                                // return (device == NULL) ? NULL : (struct MipiDsiCntlr *)device->service;
-        ...
-        MipiTxDrvExit(;                        // (Mandatory) Release the resources occupied by the vendor's devices.
-        MipiDsiUnregisterCntlr(&g_mipiTx);     // Empty function
-        g_mipiTx.priv = NULL;
-        HDF_LOGI("%s: unload mipi_tx driver 1212!", __func__);
-        } 
+      ...
+      MipiTxDrvExit(;                        // (Mandatory) Release the resources occupied by the vendor's devices.
+      MipiDsiUnregisterCntlr(&g_mipiTx);     // Empty function
+      g_mipiTx.priv = NULL;
+      HDF_LOGI("%s: unload mipi_tx driver 1212!", __func__);
+      } 
      ```
-   
-   

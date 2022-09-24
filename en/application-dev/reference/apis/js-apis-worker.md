@@ -64,17 +64,18 @@ A constructor used to create a **Worker** instance.
 **Example**
 
 ```js
+import worker from '@ohos.worker';
 // Create a worker thread.
 
 // In the FA model, the workers and pages directories are at the same level.
-const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
+const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker"});
 // In the FA model, the workers and pages directories are at different levels.
-const workerInstance = new worker.Worker("../workers/worker.js", {name:"first worker"});
+const workerFAModel02 = new worker.Worker("../workers/worker.js", {name:"first worker"});
 
 // In the stage model, the workers and pages directories are at the same level.
-const workerInstance = new worker.Worker('entry/ets/workers/worker.ts');
+const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts');
 // In the stage model, the workers and pages directories are at different levels.
-const workerInstance = new worker.Worker('entry/ets/pages/workers/worker.ts');
+const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
 // scriptURL—— Description of "entry/ets/workers/worker.ts".
 // entry is the value of the name attribute under module in the module.json5 file.
@@ -144,8 +145,9 @@ Sends a message to the worker thread. The message data is transferred using the 
 
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
+
 workerInstance.postMessage("hello world");
-const workerInstance= new worker.Worker("workers/worker.js");
+
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -290,7 +292,7 @@ workerInstance.onerror = function(e) {
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
 
@@ -316,7 +318,7 @@ workerInstance.onmessage = function(e) {
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
 
@@ -503,7 +505,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message sent by the host thread through **worker.postMessage**. The event handler is executed in the worker thread.
 
@@ -535,7 +537,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
 
@@ -780,3 +782,7 @@ Configuration of the **build-profile.json5** file:
     }
   }
 ```
+
+## Precautions
+Currently, a maximum of seven workers can co-exist.
+If the number of workers exceeds the upper limit, the error message "Too many workers, the number of workers exceeds the maximum." is displayed.

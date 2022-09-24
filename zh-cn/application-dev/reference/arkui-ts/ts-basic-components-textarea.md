@@ -36,7 +36,8 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | textAlign                | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本水平对齐式。<br/>默认值：TextAlign.Start |
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置输入框光标颜色。                               |
 | inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。满足表达式的输入允许显示，不满足的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，不支持过滤8到10位的强密码。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
+
 
 ## 事件
 

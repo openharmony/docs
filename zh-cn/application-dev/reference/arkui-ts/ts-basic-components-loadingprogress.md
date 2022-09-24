@@ -21,7 +21,7 @@ LoadingProgress()
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md) | 设置加载进度条前景色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置加载进度条前景色。 |
 
 ## 示例
 

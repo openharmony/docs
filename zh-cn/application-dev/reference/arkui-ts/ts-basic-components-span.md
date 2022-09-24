@@ -23,10 +23,9 @@ Span(value: string | Resource)
 | value | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
 
 
-
 ## 属性
 
-通用属性方法仅支持通用文本样式，不支持触摸热区设置。
+通用属性方法仅支持[通用文本样式](ts-universal-attributes-text-style.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
@@ -37,7 +36,7 @@ Span(value: string | Resource)
 
 ## 事件
 
-通用事件仅支持点击事件。
+通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
 
 >  **说明：**
 >

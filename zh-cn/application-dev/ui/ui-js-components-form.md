@@ -150,7 +150,7 @@ export default{
 <div class="container">
    <form onsubmit="formSubmit" onreset="formReset">
  <text style="font-size: 30px; margin-bottom: 20px; margin-top: 100px;">
-      <span > form </span>
+      <span > Form </span>
   </text>
     <div style="flex-direction: column;width: 90%;padding: 30px 0px;">
      <text class="txt">Select 1 or more options</text>
