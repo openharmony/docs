@@ -40,7 +40,7 @@ struct PinchGestureExample {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PinchGesture scale:' + this.scale)
+      Text('PinchGesture scale:' + this.scaleValue)
     }
     .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
     .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
