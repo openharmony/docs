@@ -56,10 +56,10 @@ struct ParentComp {
         Column() {
             Text(this.isCountDown ? 'Count Down' : 'Stopwatch')
             if (this.isCountDown) {
-                Image('countdown.png')
+                Image($r("app.media.countdown")).width(200).height(200)
                 TimerComponent({counter: 10, changePerSec: -1, showInColor: Color.Red})
             } else {
-                Image('stopwatch.png')
+                Image($r("app.media.stopwatch")).width(200).height(200)
                 TimerComponent({counter: 0, changePerSec: +1, showInColor: Color.Black })
             }
             Button(this.isCountDown ? 'Switch to Stopwatch' : 'Switch to Count Down')
@@ -93,3 +93,5 @@ struct TimerComponent {
     }
 }   
 ```
+
+![](figures/zh-cn_image_0000001118642023.gif)
