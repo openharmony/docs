@@ -70,7 +70,7 @@
          Text('1')
            .useSizeType({
              xs: { span: 2, offset: 0 },
-             sm: { span: 2, offset: 0 },
+             sm: { span: 3, offset: 0 },
              md: { span: 6, offset: 2 },
              lg: { span: 8, offset: 2 },
            })
@@ -90,7 +90,7 @@ GridContainer() {
      Text('1')
        .useSizeType({
          xs: { span: 2, offset: 0 },
-         sm: { span: 0, offset: 0 },
+         sm: { span: 2, offset: 0 },
          md: { span: 6, offset: 2 },
          lg: { span: 8, offset: 2 },
        })

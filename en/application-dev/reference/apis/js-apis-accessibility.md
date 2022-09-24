@@ -162,7 +162,7 @@ In the following API examples, you must first use the [accessibility.getCaptions
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
-Enables listening for enabled status changes of captions configuration.
+Enables listening for the enabled status changes of captions configuration.
 
 - **Parameters**
 
@@ -204,7 +204,7 @@ Enables listening for captions style changes.
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
-Disables listening for enabled status changes of captions configuration.
+Disables listening for the enabled status changes of captions configuration.
 
 - **Parameters**
 
@@ -268,6 +268,8 @@ Describes a GUI change event.
 constructor(jsonObject)
 
 Implements a constructor.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 - **Parameters**
 
@@ -435,14 +437,16 @@ Obtains the captions configuration.
 
 on(type: 'accessibilityStateChange' | 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
-Enables listening for the accessibility application or touch guide mode status changes. 
+Enables listening for the enabled status changes of the accessibility application or touch guide mode.
+
+ 
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
-  | callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
+  | type | string | Yes| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for the enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for the enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
+  | callback | Callback\<boolean> | Yes| Callback invoked when the enabled status of captions configuration changes.|
 
 - **Example**
 
@@ -456,13 +460,15 @@ Enables listening for the accessibility application or touch guide mode status c
 
 off(type: 'accessibilityStateChange ' | 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
-Disables listening for the accessibility application or touch guide mode status changes. 
+Disables listening for the enabled status changes of the accessibility application or touch guide mode.
+
+ 
 
 - **Parameters**
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type |  string | No| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
+  | type |  string | No| Type of the event to listen for.<br>- **'accessibilityStateChange'** means to listen for the enabled status changes of the accessibility application.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Core<br>- **'touchGuideStateChange'** means to listen for the enabled status changes of the touch guide mode.<br>**System capability**: SystemCapability.BarrierFree.Accessibility.Vision|
   | callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status changes.|
 
 - **Example**

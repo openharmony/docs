@@ -279,7 +279,7 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**SigningConfigs**界面勾选“**Automatically generate signaure**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**SigningConfigs**界面勾选“**Automatically generate signature**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
 
    ![06](figures/06.png)
 

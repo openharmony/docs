@@ -53,10 +53,30 @@ option涉及以下命令：
   hdc_std -v / hdc_std version
   ```
 
+- **-l 0-5**
+  用于指定运行时日志等级,默认为LOG_INFO。
+
+    **表2** 命令说明
+  
+  | 参数 | 参数说明 | 
+  | -------- | -------- |
+  | 0 | LOG_OFF  |
+  | 1 | LOG_FATAL|
+  | 2 | LOG_WARN |
+  | 3 | LOG_INFO |
+  | 4 | LOG_DEBUG|
+  | 5 | LOG_ALL  |
+
+  使用方法：
+
+  ```
+  hdc_std -l5 start
+  ```
+
 - **-t key**
   用于连接指定设备标识为key的设备。
 
-    **表2** 命令说明
+    **表3** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -75,6 +95,21 @@ option涉及以下命令：
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 一台开发机可支持多个设备连接，每个设备有其唯一的设备标识，如果通过网络与设备连接,其标识为IP地址:port格式，如果通过usb连接则标识为设备sn号。该命令需要跟随具体操作命令。
 
+- **checkserver**
+  用于获取client-server版本。
+
+    **表4** 命令说明
+  
+  | 返回值 | 返回值说明| 
+  | -------- | -------- |
+  | Client version:  server version: | client-server版本号 |
+
+  使用方法：
+
+  ```
+  hdc_std checkserver
+  ```
+
 
 ## 查询设备列表的命令
 
@@ -89,7 +124,7 @@ list targets[-v]
 显示所有已经连接的目标设备列表
 
 
-  **表3** 命令说明
+  **表5** 命令说明
 
 | 参数 | 参数说明| 
 | -------- | -------- |
@@ -121,7 +156,7 @@ hdc_std list targets -v
 - **target mount**
   以读写模式挂载系统分区。
 
-    **表4** 命令说明
+    **表6** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -136,8 +171,18 @@ hdc_std list targets -v
   hdc_std target mount
   ```
 
-- **smode [off]**
-  授予后台服务进程root权限， 使用off参数取消授权。
+- **target boot**
+  设备重启。
+
+  使用方法：
+
+ 
+  ```
+  hdc_std target boot
+  ```
+
+- **smode [-r]**
+  授予后台服务进程root权限， 使用-r参数取消授权。
 
   使用方法：
 
@@ -148,13 +193,13 @@ hdc_std list targets -v
 
     
   ```
-  hdc_std smode off
+  hdc_std smode -r
   ```
 
 - **kill [-r]**
   终止服务进程。
 
-    **表5** 命令说明
+    **表7** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -171,7 +216,7 @@ hdc_std list targets -v
 - **start [-r]**
   启动服务进程。
 
-    **表6** 命令说明
+    **表8** 命令说明
   
   | 参数 | 参数说明 |
   | -------- | -------- |
@@ -185,6 +230,29 @@ hdc_std list targets -v
   hdc_std start
   ```
 
+客户端远程访问服务器
+
+1 **kill** 
+  关闭sever。
+
+2 **-s [ip:]port -m** 
+  启动server。
+
+  使用方法：
+
+```
+hdc_std -s severIP:8710 -m
+```
+
+3 **-s [ip:]port command**
+  指定server执行指令。
+
+  使用方法：
+
+```
+hdc_std -s severIP:8710 list targets
+```
+
 
 ## 网络相关的命令
 
@@ -194,7 +262,7 @@ hdc_std list targets -v
 - **tconn host[:port][-remove]**
   通过【ip地址：端口号】来指定连接的设备
 
-    **表7** 命令说明
+    **表9** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -211,9 +279,9 @@ hdc_std list targets -v
   ```
 
 - **tmode usb**
-  执行后设备端对应daemon进程重启，并首先选用usb连接方式。
+  执行后设备端对应daemon进程重启，并首先选用USB连接方式。
 
-    **表8** 命令说明
+    **表10** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -229,9 +297,9 @@ hdc_std list targets -v
   ```
 
 - **tmode port port-number**
-  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择usb连接。
+  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接。
 
-    **表9** 命令说明
+    **表11** 命令说明
   
   | 参数 | 参数说明 |
   | -------- | -------- | 
@@ -249,6 +317,55 @@ hdc_std list targets -v
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
   > 执行完毕后，远端daemon将会退出并重启，默认启用TCP连接，如果不加上listen端口则listen随机端口。
 
+- **fport localnode remotenode**
+  端口转发，指定 主机端口 转发数据到 设备侧端口。
+
+  使用方法：
+
+    
+  ```
+  hdc_std fport tcp:1234 tcp:1080
+  ```
+
+- **rport remotenode localnode**
+  端口转发，指定 设备侧端口 转发数据到 主机端口。
+
+  使用方法：
+
+    
+  ```
+  hdc_std rport tcp:2080 tcp:2345 
+  ```
+
+- **fport ls**
+  列出全部转发端口转发任务。
+
+    **表12** 命令说明
+  
+  | 参数 | 参数说明 | 
+  | -------- | -------- |
+  | 无 | 无 | 
+  | **返回值** | **返回值说明** | 
+  | 'tcp:1234 tcp:1080'     [Forward] | 正向端口转发任务 | 
+  | 'tcp:2080 tcp:2345'     [Reverse] | 反向端口转发任务 | 
+
+  使用方法：
+
+    
+  ```
+  hdc_std fport ls 
+  ```
+
+- **fport rm**
+  删除指定端口转发任务。
+
+  使用方法：
+
+    
+  ```
+  hdc_std fport rm tcp:1234 tcp:1080 
+  ```
+
 
 ## 文件相关的命令
 
@@ -258,7 +375,7 @@ hdc_std list targets -v
 - **file send local remote**
   发送文件至远端设备。
 
-    **表10** 命令说明
+    **表13** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -277,7 +394,7 @@ hdc_std list targets -v
 - **file recv [-a] remote local**
   从远端设备接收文件至本地。
 
-    **表11** 命令说明
+    **表14** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -303,7 +420,7 @@ hdc_std list targets -v
 - **install [-r/-d/-g] _package_**
   安装OpenHarmony APP package。
 
-    **表12** 命令说明
+    **表15** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -324,7 +441,7 @@ hdc_std list targets -v
 - **uninstall [-k] package**
   卸载OpenHarmony应用。
 
-    **表13** 命令说明
+    **表16** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -349,7 +466,7 @@ hdc_std list targets -v
 - **hilog**
   支持抓取log信息。
 
-    **表14** 命令说明
+    **表17** 命令说明
   
   | 参数 | 参数说明 | 
   | -------- | -------- |
@@ -374,7 +491,7 @@ hdc_std list targets -v
 - **shell [_command_]**
   远程执行命令或进入交互命令环境。
 
-    **表15** 命令说明
+    **表18** 命令说明
   
   | 参数 | 参数说明 |
   | -------- | -------- |  
@@ -387,6 +504,16 @@ hdc_std list targets -v
     
   ```
   hdc_std shell
+  ```
+
+- **jpid**
+  获取可调试进程列表。
+
+  使用方法：
+
+    
+  ```
+  hdc_std jpid
   ```
 
 

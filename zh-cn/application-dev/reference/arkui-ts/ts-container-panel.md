@@ -14,7 +14,7 @@
 
 ## 接口
 
-Panel(show：boolean)
+Panel(show: boolean)
 
 **参数：**
 
@@ -34,7 +34,7 @@ Panel(show：boolean)
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。 |
 | show | boolean | 当滑动面板弹出时调用。 |
-| backgroundMask<sup>9+</sup>|[ResourceColor](../../ui/ts-types.md#resourcecolor8)|指定Panel的背景蒙层。|
+| backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。|
 
 ## PanelType枚举说明
 

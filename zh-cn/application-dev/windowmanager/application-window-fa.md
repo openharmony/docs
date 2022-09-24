@@ -56,7 +56,7 @@
    import window from '@ohos.window';
    
    let windowClass = null;
-   // 1.方式一：创建子窗口。
+   // 方式一：创建子窗口。
    window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
        if (err.code) {
            console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
@@ -65,7 +65,7 @@
        console.info('Succeeded in creating subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   // 1.方式二：获取子窗口。
+   // 方式二：获取子窗口。
    window.getTopWindow((err, data) => {
        if (err.code) {
            console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -74,7 +74,7 @@
        console.info('Succeeded in getting subWindow. Data: ' + JSON.stringify(data));
        windowClass = data;
    });
-   // 1.方式三：查找得到子窗口。
+   // 方式三：查找得到子窗口。
    window.find("subWindow", (err, data) => {
        if (err.code) {
            console.error('Failed to find the subWindow. Cause: ' + JSON.stringify(err));
@@ -90,7 +90,7 @@
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
    
    ```js
-   // 2.移动子窗口位置。
+   // 移动子窗口位置。
    windowClass.moveTo(300, 300, (err, data) => {
      if (err.code) {
        console.error('Failed to move the window. Cause:' + JSON.stringify(err));
@@ -98,7 +98,7 @@
      }
      console.info('Succeeded in moving the window. Data: ' + JSON.stringify(data));
    });
-   // 2.改变子窗口大小。
+   // 改变子窗口大小。
    windowClass.resetSize(500, 1000, (err, data) => {
      if (err.code) {
        console.error('Failed to change the window size. Cause:' + JSON.stringify(err));
@@ -113,14 +113,14 @@
    使用`loadContent`和`show`接口加载显示子窗口的具体内容。
    
    ```js
-   // 3.为子窗口加载对应的目标页面。
+   // 为子窗口加载对应的目标页面。
    windowClass.loadContent("pages/page2", (err, data) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-       // 3.显示子窗口。
+       // 显示子窗口。
        windowClass.show((err, data) => {
         if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -136,7 +136,7 @@
    当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用`destroy`接口销毁子窗口。
    
    ```js
-   // 4.销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口，此处以监听窗口区域外的点击事件实现子窗口的销毁。
+   // 销毁子窗口。当不再需要某些子窗口时，可根据场景的具体实现逻辑，使用destroy接口销毁子窗口，此处以监听窗口区域外的点击事件实现子窗口的销毁。
    windowClass.on('touchOutside', () => {
        console.info('touch outside');
        windowClass.destroy((err, data) => {
@@ -169,7 +169,7 @@
    import window from '@ohos.window';
    
    let mainWindowClass = null;
-   // 1.获取主窗口
+   // 获取主窗口
    window.getTopWindow((err, data) => {
      if (err.code) {
        console.error('Failed to get the subWindow. Cause: ' + JSON.stringify(err));
@@ -187,7 +187,7 @@
    - 方式三：调用`setLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
    ```js
-   // 2.实现沉浸式效果。方式一：设置窗口全屏显示。
+   // 实现沉浸式效果。方式一：设置窗口全屏显示。
    let isFullScreen = true;
    mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
@@ -196,7 +196,7 @@
      }
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
-   // 2.实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
+   // 实现沉浸式效果。方式二：设置导航栏、状态栏不显示。
    let names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
@@ -205,7 +205,7 @@
      }
      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
    });
-   // 2.实现沉浸式效果。
+   // 实现沉浸式效果。
    // 方式三：设置窗口为全屏布局，配合设置状态栏、导航栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
    let isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
@@ -239,14 +239,14 @@
    使用`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
    
    ```js
-   // 3.为沉浸式窗口加载对应的目标页面。
+   // 为沉浸式窗口加载对应的目标页面。
    mainWindowClass.loadContent("pages/page3", (err, data) => {
        if (err.code) {
            console.error('Failed to load the content. Cause: ' + JSON.stringify(err));
            return;
        }
        console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-       // 3.显示沉浸式窗口。
+       // 显示沉浸式窗口。
        mainWindowClass.show((err, data) => {
            if (err.code) {
                console.error('Failed to show the window. Cause: ' + JSON.stringify(err));

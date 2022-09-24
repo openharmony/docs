@@ -5,8 +5,8 @@ The **AbilityContext** module, inherited from **Context**, implements the contex
 This module provides APIs for accessing ability-specific resources. You can use the APIs to start and terminate an ability, obtain the caller interface, and request permissions from users by displaying a dialog box.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.  
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
 ## Usage
@@ -78,7 +78,7 @@ Starts an ability with start options specified. This API uses an asynchronous ca
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-    
+
   ```js
   var want = {
   	"deviceId": "",
@@ -127,7 +127,7 @@ Starts an ability. This API uses a promise to return the result.
   	windowMode: 0,
   };
   this.context.startAbility(want, options)
-  .then((data) => {
+  .then(() => {
       console.log('Operation successful.')
   }).catch((error) => {
       console.log('Operation failed.');
@@ -407,8 +407,8 @@ Starts a new Service Extension ability. This API uses a promise to return the re
     "abilityName": "MainAbility"
   };
   this.context.startServiceExtensionAbility(want)
-    .then((data) => {
-        console.log('---------- startServiceExtensionAbility success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startServiceExtensionAbility success -----------');
     })
     .catch((err) => {
         console.log('---------- startServiceExtensionAbility fail, err:  -----------', err);
@@ -477,8 +477,8 @@ Starts a new Service Extension ability with the account ID specified. This API u
   };
   var accountId = 100;
   this.context.startServiceExtensionAbilityWithAccount(want,accountId)
-    .then((data) => {
-        console.log('---------- startServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startServiceExtensionAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- startServiceExtensionAbilityWithAccount fail, err:  -----------', err);
@@ -539,8 +539,8 @@ Stops a Service Extension ability in the same application. This API uses a promi
     "abilityName": "MainAbility"
   };
   this.context.stopServiceExtensionAbility(want)
-    .then((data) => {
-        console.log('---------- stopServiceExtensionAbility success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- stopServiceExtensionAbility success -----------');
     })
     .catch((err) => {
         console.log('---------- stopServiceExtensionAbility fail, err:  -----------', err);
@@ -610,8 +610,8 @@ Stops a Service Extension ability in the same application with the account ID sp
   };
   var accountId = 100;
   this.context.stopServiceExtensionAbilityWithAccount(want,accountId)
-    .then((data) => {
-        console.log('---------- stopServiceExtensionAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- stopServiceExtensionAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- stopServiceExtensionAbilityWithAccount fail, err:  -----------', err);
@@ -658,8 +658,8 @@ Terminates this ability. This API uses a promise to return the result.
 **Example**
 
   ```js
-  this.context.terminateSelf().then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  this.context.terminateSelf().then(() => {
+      console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
@@ -848,11 +848,11 @@ Disconnects a connection. This API uses a promise to return the result.
 | Promise\<void> | Promise used to return the result.|
 
 **Example**
-    
+
   ```js
   var connectionNumber = 0;
-  this.context.disconnectAbility(connectionNumber).then((data) => {
-       console.log('disconnectAbility success, data: ', data);
+  this.context.disconnectAbility(connectionNumber).then(() => {
+       console.log('disconnectAbility success');
   }).catch((err) => {
        console.log('disconnectAbility fail, err: ', err);
   });
@@ -888,7 +888,7 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-Starts an ability in the foreground or background and obtains the caller interface for communication with the ability.
+Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -905,11 +905,11 @@ Starts an ability in the foreground or background and obtains the caller interfa
 | Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
 
 **Example**
-    
+
   ```js
   let caller = undefined;
 
-  // Start an ability in the background without passing parameters.
+  // Start an ability in the background by not passing parameters.
   var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
@@ -1050,8 +1050,8 @@ Starts an ability with the account ID specified. This API uses a promise to retu
     windowMode: 0,
   };
   this.context.startAbilityWithAccount(want, accountId, options)
-    .then((data) => {
-        console.log('---------- startAbilityWithAccount success, data:  -----------', data);
+    .then(() => {
+        console.log('---------- startAbilityWithAccount success -----------');
     })
     .catch((err) => {
         console.log('---------- startAbilityWithAccount fail, err:  -----------', err);
@@ -1074,13 +1074,13 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
-    
+
   ```js
        var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions,(result) => {
        console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
   });
-  
+
   ```
 
 
@@ -1105,7 +1105,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 | Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result.|
 
 **Example**
-    
+
   ```js
    var permissions=['com.example.permission']
        this.context.requestPermissionsFromUser(permissions).then((data) => {
@@ -1133,7 +1133,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
-    
+
   ```js
   this.context.setMissionLabel("test",(result) => {
       console.log('requestPermissionsFromUserresult:' + JSON.stringify(result));
@@ -1162,10 +1162,10 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-    
+
   ```js
-  this.context.setMissionLabel("test").then((data) => {
-      console.log('success:' + JSON.stringify(data));
+  this.context.setMissionLabel("test").then(() => {
+      console.log('success');
   }).catch((error) => {
       console.log('failed:' + JSON.stringify(error));
   });
@@ -1188,7 +1188,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
-    
+
   ```js
     import image from '@ohos.multimedia.image'
     var imagePixelMap;
@@ -1235,7 +1235,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 | Promise&lt;void&gt; | Promise used to return the result.|
 
 **Example**
-    
+
   ```js
     import image from '@ohos.multimedia.image'
     var imagePixelMap;
@@ -1254,8 +1254,8 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
           console.log('--------- createPixelMap fail, err: ---------', err)
       });
     this.context.setMissionIcon(imagePixelMap)
-      .then((data) => {
-          console.log('-------------- setMissionIcon success, data: -------------', data);
+      .then(() => {
+          console.log('-------------- setMissionIcon success -------------');
       })
       .catch((err) => {
           console.log('-------------- setMissionIcon fail, err: -------------', err);

@@ -28,7 +28,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | 设置空白填充的填充颜色。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置空白填充的填充颜色。 |
 
 
 ## 示例

@@ -53,7 +53,7 @@ You can create a subwindow, such as a dialog box, and set its properties.
    ```js
    import window from '@ohos.window';
    
-   var windowClass = null;
+   let windowClass = null;
    // 1. Method 1: Create a subwindow.
    window.create("subWindow", window.WindowType.TYPE_APP, (err, data) => {
        if (err.code) {
@@ -86,7 +86,6 @@ You can create a subwindow, such as a dialog box, and set its properties.
 2. Set the properties of the subwindow.
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
-
    
    ```js
    // 2. Move the subwindow.
@@ -110,7 +109,6 @@ You can create a subwindow, such as a dialog box, and set its properties.
 3. Load content for the subwindow and show it.
 
    Call `loadContent` and `show` to load and display the content in the subwindow.
-
    
    ```js
    // 3. Load the page content to the subwindow.
@@ -134,7 +132,6 @@ You can create a subwindow, such as a dialog box, and set its properties.
 4. Destroy the subwindow.
 
    When the subwindow is no longer needed, you can call `destroy` to destroy it.
-
    
    ```js
    // 4. Destroy the subwindow when a click event outside the window is detected.
@@ -160,13 +157,16 @@ To create a better video watching and gaming experience, you can use the immersi
 
 1. Obtain the main window.
 
-   The immersive window feature can be implemented only after the main window is obtained. You can call `window.getTopWindow` to obtain the main window.
-
+   > **NOTE**
+   >
+   > The immersive window feature can be implemented only after the main window is obtained.
+   >
+   > Ensure that the top window of the application is the main window. You can use `window.getTopWindow` to obtain the main window.
    
    ```js
    import window from '@ohos.window';
    
-   var mainWindowClass = null;
+   let mainWindowClass = null;
    // 1. Obtain the main window.
    window.getTopWindow((err, data) => {
      if (err.code) {
@@ -186,7 +186,7 @@ To create a better video watching and gaming experience, you can use the immersi
 
    ```js
    // 2. Use method 1 to implement the immersive effect.
-   var isFullScreen = true;
+   let isFullScreen = true;
    mainWindowClass.setFullScreen(isFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -195,7 +195,7 @@ To create a better video watching and gaming experience, you can use the immersi
      console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
    });
    // 2. Use method 2 to implement the immersive effect.
-   var names = [];
+   let names = [];
    mainWindowClass.setSystemBarEnable(names, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -204,7 +204,7 @@ To create a better video watching and gaming experience, you can use the immersi
      console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
    });
    // 2. Use method 3 to implement the immersive effect.
-   var isLayoutFullScreen = true;
+   let isLayoutFullScreen = true;
    mainWindowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
      if (err.code) {
        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -212,7 +212,7 @@ To create a better video watching and gaming experience, you can use the immersi
      }
      console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
    });
-   var SystemBarProperties = {
+   let sysBarProps = {
      statusBarColor: '#ff00ff',
      navigationBarColor: '#00ff00',
      // The following properties are supported since API version 7.
@@ -222,7 +222,7 @@ To create a better video watching and gaming experience, you can use the immersi
      statusBarContentColor: '#ffffff',
      navigationBarContentColor: '#ffffff'
    };
-   mainWindowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+   mainWindowClass.setSystemBarProperties(sysBarProps, (err, data) => {
      if (err.code) {
        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
        return;
@@ -234,7 +234,6 @@ To create a better video watching and gaming experience, you can use the immersi
 3. Load content for the immersive window and show it.
 
    Call `loadContent` and `show` to load and display the content in the immersive window.
-
    
    ```js
    // 3. Load the page content to the immersive window.

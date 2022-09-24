@@ -110,7 +110,7 @@ connection.hasDefaultNet().then(function (has) {
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
-获取全部激活的数据网络列表，使用callback方式作为异步方法。
+获取所有处于连接状态的网络列表，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -136,7 +136,7 @@ connection.getAllNets(function (error, nets) {
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
-获取全部激活的数据网络列表，使用promise方式作为异步方法。
+获取所有处于连接状态的网络列表，使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -280,7 +280,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-报告网络状态已连接，使用callback方式作为异步方法。
+向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
+使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -308,7 +309,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-报告网络状态已连接，使用promise方式作为异步方法。
+向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
+使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -340,7 +342,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-报告网络状态已断开，使用callback方式作为异步方法。
+向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
+使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -368,7 +371,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-报告网络状态已断开，使用promise方式作为异步方法。
+向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
+使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -556,7 +560,7 @@ connection.disableAirplaneMode().then(function (error) {
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-获取一个netSpecifier指定的网络的句柄。
+返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -948,9 +952,9 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
-| NET_CAPABILITY_INTERNET  | 12   | 网络可以访问Internet。 |
+| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
-| NET_CAPABILITY_VALIDATED | 16   | 网络可用。             |
+| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
 
 ## NetBearType
 

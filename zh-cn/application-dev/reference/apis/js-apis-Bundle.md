@@ -158,7 +158,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的包名。                                               |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 | userId      | number | 是   | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。        |
 
 **返回值：**
@@ -196,7 +196,7 @@ SystemCapability.BundleManager.BundleFramework
 | 名称        | 类型   | 必填 | 描述                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 要查询的包名。                                               |
-| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中包信息相关flag。 |
+| bundleFlags | number | 是   | 用于指定返回的应用信息对象中包含信息的标记。默认值：0，取值范围：参考[BundleFlag说明](#bundleflag)中应用信息相关flag。 |
 
 **返回值：**
 
@@ -448,7 +448,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, options: BundleOptions): BundleInfo;
 
-以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+以同步方法根据给定的包名获取BundleInfo，返回BundleInfo对象。
 
 **需要权限：**
 
@@ -488,7 +488,7 @@ console.info('Operation successful. Name:' + bundleInfo.name);
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo;
 
-以同步方法根据给定的包名获取ApplicationInfo，返回BundleInfo对象。
+以同步方法根据给定的包名获取BundleInfo，返回BundleInfo对象。
 
 **需要权限：**
 
@@ -908,11 +908,11 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称           | 类型                               | 必填 | 描述                                                 |
-| -------------- | ---------------------------------- | ---- | ---------------------------------------------------- |
-| bundleName     | string                             | 是   | 应用程序包名称。                                     |
-| bundlePackFlag | pack.BundlePackFlag                | 是   | 指示要查询的应用包标志                               |
-| callback       | AsyncCallback<pack.BundlePackInfo> | 是   | 程序启动作为入参的回调函数，返回BundlePackInfo信息。 |
+| 名称           | 类型                                                         | 必填 | 描述                                                 |
+| -------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| bundleName     | string                                                       | 是   | 应用程序包名称。                                     |
+| bundlePackFlag | [pack.BundlePackFlag](js-apis-bundle-PackInfo.md)            | 是   | 指示要查询的应用包标志                               |
+| callback       | AsyncCallback<[pack.BundlePackInfo](js-apis-bundle-PackInfo.md)> | 是   | 程序启动作为入参的回调函数，返回BundlePackInfo信息。 |
 
 ## bundle.getBundlePackInfo<sup>9+</sup>
 
@@ -930,16 +930,16 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称           | 类型                | 必填 | 描述                   |
-| -------------- | ------------------- | ---- | ---------------------- |
-| bundleName     | string              | 是   | 应用程序包名称。       |
-| bundlePackFlag | pack.BundlePackFlag | 是   | 指示要查询的应用包标志 |
+| 名称           | 类型                                              | 必填 | 描述                   |
+| -------------- | ------------------------------------------------- | ---- | ---------------------- |
+| bundleName     | string                                            | 是   | 应用程序包名称。       |
+| bundlePackFlag | [pack.BundlePackFlag](js-apis-bundle-PackInfo.md) | 是   | 指示要查询的应用包标志 |
 
 **返回值：**
 
-| 类型                         | 说明                                |
-| ---------------------------- | ----------------------------------- |
-| Promise<pack.BundlePackInfo> | Promise形式返回BundlePackInfo信息。 |
+| 类型                                                       | 说明                                |
+| ---------------------------------------------------------- | ----------------------------------- |
+| Promise<[pack.BundlePackInfo](js-apis-bundle-PackInfo.md)> | Promise形式返回BundlePackInfo信息。 |
 
 ## bundle.getDispatcherVersion<sup>9+</sup>
 
@@ -2619,7 +2619,7 @@ ExtensionAbility的类型
 
 此项仅供内部系统使用
 
-**系统API：**此接口为系统接口，三方应用不支持调用
+**系统API：** 此接口为系统接口，三方应用不支持调用
 
 **系统能力:**  以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 

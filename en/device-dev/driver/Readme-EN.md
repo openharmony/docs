@@ -49,6 +49,7 @@
   - [Fingerprint Authentication](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
   - [Light](driver-peripherals-light-des.md)
+  - [Motion](driver-peripherals-motion-des.md)
   - [PIN Authentication](driver-peripherals-pinauth-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
   - [Touchscreen](driver-peripherals-touch-des.md)

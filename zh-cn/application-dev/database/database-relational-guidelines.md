@@ -196,17 +196,41 @@
 
    (3) 创建数据库。
 
-   示例代码如下：
+   FA模型示例：
 
     ```js
-    import data_rdb from '@ohos.data.rdb'
+   import data_rdb from '@ohos.data.rdb'
+    // 获取context
+   import featureAbility from '@ohos.ability.featureAbility'
+   let context = featureAbility.getContext()
 
-    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-    const STORE_CONFIG = { name: "rdbstore.db" }
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "RdbTest.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
       rdbStore.executeSql(CREATE_TABLE_TEST)
       console.info('create table done.')
-    })
+   })
+    ```
+    Stage模型示例：
+     ```ts
+   import data_rdb from '@ohos.data.rdb'
+    // 获取context
+   import Ability from '@ohos.application.Ability'
+   let context = null
+   class MainAbility extends Ability {
+       onWindowStageCreate(windowStage) {
+         context = this.context
+       }
+   }
+
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "rdbstore.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(CREATE_TABLE_TEST)
+       console.info('create table done.')
+   })
     ```
 
 2. 插入数据。

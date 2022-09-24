@@ -73,7 +73,7 @@ The following uses the RTL8720 development board provided by Realtek as an examp
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "gcc-arm-none-eabi"
    
-   # The toolchain path instatlled, it's not mandatory if you have added toolchian path to your ~/.bashrc.
+   # The toolchain path instatlled, it's not mandatory if you have added toolchain path to your ~/.bashrc.
    board_toolchain_path =
        rebase_path("//prebuilts/gcc/linux-x86/arm/gcc-arm-none-eabi/bin",
                    root_build_dir)

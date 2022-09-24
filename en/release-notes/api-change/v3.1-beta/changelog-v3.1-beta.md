@@ -21,6 +21,26 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 ```
 import rpc from "@ohos.rpc"
+import FA from "@ohos.ability.featureAbility";
+
+let proxy;
+let connect = {
+    onConnect: function(elementName, remoteProxy) {
+        console.log("RpcClient: js onConnect called.");
+        proxy = remoteProxy;
+    },
+    onDisconnect: function(elementName) {
+        console.log("RpcClient: onDisconnect");
+    },
+    onFailed: function() {
+        console.log("RpcClient: onFailed");
+    }
+};
+let want = {
+    "bundleName": "com.ohos.server",
+    "abilityName": "com.ohos.server.MainAbility",
+};
+FA.connectAbility(want, connect);
 
 let option = new rpc.MessageOption()
 let data = rpc.MessageParcel.create()

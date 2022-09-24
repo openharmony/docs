@@ -11,6 +11,10 @@ TreeMap和[HashMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- K: Key, 键<br>
+- V: Value, 值
+
 ## 导入模块
 
 ```ts
@@ -95,9 +99,9 @@ hasKey(key: K): boolean
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeMap.hasKey("squirrel");
+treeMap.set("squirrel", 123);
+let result1 = treeMap.hasKey("squirrel");
 ```
 
 
@@ -126,7 +130,7 @@ hasValue(value: V): boolean
 ```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+treeMap.set("squirrel", 123);
 let result1 = treeMap.hasValue(123);
 ```
 
@@ -155,9 +159,9 @@ get(key: K): V
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-let result = treeMap.get("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.get("sparrow");
 ```
 
 
@@ -179,8 +183,8 @@ getFirstKey(): K
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
 ```
 
@@ -203,8 +207,8 @@ getLastKey(): K
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
 ```
 
@@ -227,8 +231,8 @@ setAll(map: TreeMap<K, V>): void
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let map = new TreeMap();
 treeMap.setAll(map);
 ```
@@ -259,7 +263,7 @@ set(key: K, value: V): Object
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+treeMap.set("squirrel", 123);
 ```
 
 
@@ -287,9 +291,9 @@ remove(key: K): V
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.remove("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.remove("sparrow");
 ```
 
 
@@ -317,10 +321,10 @@ getLowerKey(key: K): K
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.set("zdfgsd", 356);
-let result = treeMap.getLowerKey("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getLowerKey("sparrow");
 ```
 
 
@@ -348,10 +352,10 @@ getHigherKey(key: K): K
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.set("zdfgsd", 356);
-let result = treeMap.getHigherKey("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getHigherKey("sparrow");
 ```
 
 ### replace
@@ -379,8 +383,8 @@ replace(key: K, newValue: V): boolean
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("sdfs", 123);
-let result = treeMap.replace("sdfs", 357);
+treeMap.set("sparrow", 123);
+let result = treeMap.replace("sparrow", 357);
 ```
 
 
@@ -396,8 +400,8 @@ clear(): void
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 treeMap.clear();
 ```
 
@@ -420,8 +424,8 @@ keys(): IterableIterator&lt;K&gt;
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -449,8 +453,8 @@ values(): IterableIterator&lt;V&gt;
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -486,8 +490,8 @@ callbackfn的参数说明：
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("sdfs", 123);
-treeMap.set("dfsghsf", 357);
+treeMap.set("sparrow", 123);
+treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -512,8 +516,8 @@ entries(): IterableIterator<[K, V]>
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -541,8 +545,8 @@ while(temp != undefined) {
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 
 // 使用方法一：
 for (let item of treeMap) { 
