@@ -12,6 +12,7 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 import bluetooth from '@ohos.bluetooth';
 ```
 
+
 ## bluetooth.enableBluetooth<sup>8+</sup><a name="enableBluetooth"></a>
 
 enableBluetooth(): boolean
@@ -279,7 +280,7 @@ let remoteDeviceName = bluetooth.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-Obtains the type of the remote Bluetooth device.
+Obtains the class of the remote Bluetooth device.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -295,7 +296,7 @@ Obtains the type of the remote Bluetooth device.
 
 | Type                         | Description      |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass) | Type of a remote device obtained.|
+| [DeviceClass](#deviceclass) | Class of the remote device obtained.|
 
 **Example**
 
@@ -513,7 +514,7 @@ Unsubscribes from the Bluetooth device discovery events.
 | Name     | Type                                 | Mandatory  | Description                                      |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | type     | string                              | Yes   | Event type. The value **bluetoothDeviceFind** indicates an event reported when a Bluetooth device is discovered.  |
-| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback used to report the discovered devices. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;string&gt;&gt; | No   | Callback for the **bluetoothDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -576,7 +577,7 @@ Unsubscribes from the pairing request events of the remote Bluetooth device.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **pinRequired** indicates a pairing request event.            |
-| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback used to report the Bluetooth pairing request. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[PinRequiredParam](#pinrequiredparam)&gt; | No   | Callback for the **pinRequired** event. The input parameter is the pairing request parameter. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -597,7 +598,7 @@ bluetooth.off('pinRequired', onReceiveEvent);
 
 on(type: "bondStateChange", callback: Callback&lt;BondStateParam&gt;): void
 
-Subscribes to the Bluetooth bond state change events.
+Subscribes to the Bluetooth paring change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -607,8 +608,8 @@ Subscribes to the Bluetooth bond state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.|
-| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | Yes   | Callback invoked to return the bond state. You need to implement this callback.   |
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth paring state change event. |
+| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | Yes   | Callback invoked to return the paring state. You need to implement this callback. |
 
 **Return value**
 
@@ -617,7 +618,7 @@ No value is returned.
 **Example**
 
 ```js
-function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the bond state.
+function onReceiveEvent(data) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
 bluetooth.on('bondStateChange', onReceiveEvent);
@@ -628,7 +629,7 @@ bluetooth.on('bondStateChange', onReceiveEvent);
 
 off(type: "bondStateChange", callback?: Callback&lt;BondStateParam&gt;): void
 
-Unsubscribes from the Bluetooth bond state change events.
+Unsubscribes from the Bluetooth pairing state change events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -638,8 +639,8 @@ Unsubscribes from the Bluetooth bond state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth bond state change event.    |
-| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | No   | Callback used to report the change of the Bluetooth bond state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| type     | string                                   | Yes   | Event type. The value **bondStateChange** indicates a Bluetooth pairing state change event. |
+| callback | Callback&lt;[BondStateParam](#bondstateparam8)&gt; | No   | Callback for the pairing state change event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -702,7 +703,7 @@ Unsubscribes from the Bluetooth connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **stateChange** indicates a Bluetooth connection state change event.          |
-| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback used to report the Bluetooth connection state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BluetoothState](#bluetoothstate)&gt; | No   | Callback for the Bluetooth connection state event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -987,7 +988,7 @@ Unsubscribes from the SPP read request events.
 | ------------ | --------------------------- | ---- | ---------------------------------------- |
 | type         | string                      | Yes   | Event type. The value **sppRead** indicates an SPP read request event.              |
 | clientSocket | number                      | Yes   | Client socket ID, which is obtained by **sppAccept** or **sppConnect**.                           |
-| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback used to report an SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback     | Callback&lt;ArrayBuffer&gt; | No   | Callback for the SPP read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -1219,7 +1220,7 @@ Unsubscribes from the BLE device discovery events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **BLEDeviceFind** indicates an event reported when a BLE device is discovered.       |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback used to report the discovered devices. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | No   | Callback for the **BLEDeviceFind** event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -1257,10 +1258,9 @@ No value is returned.
 
 **Return value**
 
-|                     |               |
+|  Type                  |   Description            |
 | ------------------- | ------------- |
-| Type                  | Description            |
-| Array&lt;string&gt; | Addresses of the connected devices. |
+| Array&lt;string&gt; | Addresses of the connected devices.|
 
 
 ### getDeviceState<sup>8+</sup><a name="getDeviceState"></a>
@@ -1278,12 +1278,12 @@ Obtains the connection state of the profile.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
+
 **Return value**
 
-|                                                   |                         |
+|   Type                                               | Description                       |
 | ------------------------------------------------- | ----------------------- |
-| Type                                              | Description                    |
-| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained. |
+| [ProfileConnectionState](#profileconnectionstate) | Profile connection state obtained.|
 
 
 ## A2dpSourceProfile
@@ -1306,14 +1306,12 @@ Sets up an Advanced Audio Distribution Profile (A2DP) connection.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
-|
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1338,14 +1336,13 @@ Disconnects an A2DP connection.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
-|
+
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1397,7 +1394,7 @@ Unsubscribes from the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the A2DP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback for the A2DP connection state change event.                            |
 
 **Return value**
 
@@ -1431,10 +1428,9 @@ Obtains the playing state of a device.
 
 **Return value**
 
-|                               |            |
+| Type                           | Description        |
 | ----------------------------- | ---------- |
-| Type | Description |
-| [PlayingState](#PlayingState) | Playing state obtained. |
+| [PlayingState](#PlayingState) | Playing state obtained.|
 
 **Example**
 
@@ -1464,14 +1460,13 @@ Sets up a Hands-free Profile (HFP) connection of a device.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
-|
+
 
 **Return value**
 
-|         |                     |
+| Type     | Description                 |
 | ------- | ------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1496,7 +1491,7 @@ Disconnects the HFP connection of a device.
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | device | string | Yes   | Address of the target device.|
-|
+
 
 **Return value**
 
@@ -1554,7 +1549,7 @@ Unsubscribes from the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback used to return the HFP connection state change event.                              |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback for the HFP connection state change event.                            |
 
 **Return value**
 
@@ -1741,10 +1736,9 @@ Removes a service from this GATT server.
 
 **Return value**
 
-|         |                            |
+| Type     | Description                        |
 | ------- | -------------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1791,10 +1785,9 @@ Notifies the connected client device when a characteristic value changes.
 
 **Return value**
 
-|         |                          |
+| Type     | Description                      |
 | ------- | ------------------------ |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1837,10 +1830,9 @@ Sends a response to a read or write request from the GATT client.
 
 **Return value**
 
-|         |                            |
+| Type     | Description                        |
 | ------- | -------------------------- |
-| Type | Description |
-| boolean | Returns **true** if the operation is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
@@ -1930,7 +1922,7 @@ Unsubscribes from the characteristic read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicRead** indicates a characteristic read request event.   |
-| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | No   | Callback used to report a characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicReadReq](#characteristicreadreq)&gt; | No   | Callback for the characteristic read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -2010,7 +2002,7 @@ Unsubscribes from the characteristic write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **characteristicWrite** indicates a characteristic write request event.  |
-| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | No   | Callback used to report a characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[CharacteristicWriteReq](#characteristicwritereq)&gt; | No   | Callback for the characteristic write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -2087,7 +2079,7 @@ Unsubscribes from the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.       |
-| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | No   | Callback used to report a descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorReadReq](#descriptorreadreq)&gt; | No   | Callback for the descriptor read request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -2167,7 +2159,7 @@ Unsubscribes from the descriptor write request events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorWrite** indicates a descriptor write request event.      |
-| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No   | Callback used to report a descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[DescriptorWriteReq](#descriptorwritereq)&gt; | No   | Callback for the descriptor write request event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -2230,7 +2222,7 @@ Unsubscribes from the BLE connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectStateChange** indicates a BLE connection state change event.|
-| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback used to report the BLE connection state. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.|
+| callback | Callback&lt;[BLEConnectChangedState](#bleconnectchangedstate)&gt; | No   | Callback for the BLE connection state event. If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**. |
 
 **Return value**
 
@@ -2467,10 +2459,9 @@ Reads the characteristic value of the specific service of the remote BLE device.
 
 **Return value**
 
-|                                          |                            |
+| Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Type | Description |
-| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read. |
+| Promise&lt;[BLECharacteristic](#blecharacteristic)&gt; | Promise used to return the characteristic value read.|
 
 **Example**
 
@@ -2558,10 +2549,9 @@ Reads the descriptor contained in the specific characteristic of the remote BLE 
 
 **Return value**
 
-|                                          |                            |
+| Type                                      | Description                        |
 | ---------------------------------------- | -------------------------- |
-| Type | Description |
-| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read. |
+| Promise&lt;[BLEDescriptor](#bledescriptor)&gt; | Promise used to return the descriptor read.|
 
 **Example**
 
@@ -3346,7 +3336,7 @@ Defines the pairing request parameters.
 
 ## BondStateParam<sup>8+</sup><a name="BondStateParam"></a>
 
-Defines the bond state parameters.
+Defines the pairing state parameters.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
