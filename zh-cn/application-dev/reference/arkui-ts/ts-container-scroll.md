@@ -24,7 +24,7 @@ Scroll(scroller?: Scroller)
 
 | 名称             | 参数类型                                     | 描述        |
 | -------------- | ---------------------------------------- | --------- |
-| scrollable     | ScrollDirection                          | 设置滚动方法。<br/>默认值：ScrollDirection.Vertical |
+| scrollable     | ScrollDirection                          | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度。 |
@@ -140,7 +140,7 @@ scrollToIndex(value: number): void
 | value  | number   | 是   | 要滑动到的列表项在列表中的索引值。 |
 
 
-### scrollBy
+### scrollBy<sup>9+</sup>
 
 scrollBy(dx: Length, dy: Length): void
 
