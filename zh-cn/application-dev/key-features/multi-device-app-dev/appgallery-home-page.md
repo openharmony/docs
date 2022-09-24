@@ -267,3 +267,5 @@ export default struct Home {
   | sm | md | lg | 
 | -------- | -------- | -------- |
 | ![zh-cn_image_0000001334345550](figures/zh-cn_image_0000001334345550.jpg) | ![zh-cn_image_0000001385105477](figures/zh-cn_image_0000001385105477.jpg) | ![zh-cn_image_0000001384985569](figures/zh-cn_image_0000001384985569.jpg) | 
+
+<!--no_check-->

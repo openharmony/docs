@@ -31,7 +31,7 @@
 | -------- | -------- | -------- | -------- |
 | flexGrow | number | 0 | 仅当父容器宽度大于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例拉伸，分配父容器的多余空间。 | 
 | flexShrink | number | 1 | 仅当父容器宽度小于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例收缩，分配父容器的不足空间。 | 
-| flexBasis | 'auto'&nbsp;\|&nbsp;[Length](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-types.md#%E9%95%BF%E5%BA%A6%E7%B1%BB%E5%9E%8B) | 'auto' | 设置组件在Flex容器中主轴方向上基准尺寸。'auto'意味着使用组件原始的尺寸，不做修改。<br/>flexBasis属性不是必须的，通过width或height也可以达到同样的效果。当flexBasis属性与width或height发生冲突时，以flexBasis属性为准。 | 
+| flexBasis | 'auto'&nbsp;\|&nbsp;[Length](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-types.md#length) | 'auto' | 设置组件在Flex容器中主轴方向上基准尺寸。'auto'意味着使用组件原始的尺寸，不做修改。<br/>flexBasis属性不是必须的，通过width或height也可以达到同样的效果。当flexBasis属性与width或height发生冲突时，以flexBasis属性为准。 | 
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -265,7 +265,7 @@ struct EquipartitionCapabilitySample {
 占比能力通常有两种实现方式：
 
 
-- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-types.md#%E9%95%BF%E5%BA%A6%E7%B1%BB%E5%9E%8B)。
+- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-types.md#length)。
 
 - 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)。
   - 当父容器尺寸确定时，其子组件按照开发者配置的权重比例分配父容器中主轴方向的空间。
