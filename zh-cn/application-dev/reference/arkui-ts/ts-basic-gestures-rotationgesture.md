@@ -47,13 +47,13 @@ struct RotationGestureExample {
     .gesture(
       RotationGesture()
         .onActionStart((event: GestureEvent) => {
-          console.log('Rotation start')
+          console.log('Rotation start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.angle = event.angle
+          this.angle = event.angle;
         })
         .onActionEnd(() => {
-          console.log('Rotation end')
+          console.log('Rotation end');
         })
     )
   }

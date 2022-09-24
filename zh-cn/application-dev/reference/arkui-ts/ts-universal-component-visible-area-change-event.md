@@ -23,8 +23,8 @@
 struct ScrollExample {
   scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State testTextStr: string = "test"
-  @State testRowStr: string = "test"
+  @State testTextStr: string = 'test'
+  @State testRowStr: string = 'test'
 
   build() {
     Column() {
@@ -46,22 +46,22 @@ struct ScrollExample {
             .height(200)
             .margin({ top: 50, bottom: 20 })
             .backgroundColor(Color.Green)
-            // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
+              // 通过设置ratios为[0.0, 1.0]，实现当组件完全显示或完全消失在屏幕中时触发回调
             .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-              console.info("Test Text isVisible: " + isVisible + ", currentRatio:" + currentRatio)
+              console.info('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio)
               if (isVisible && currentRatio >= 1.0) {
-                console.info("Test Text is fully visible. currentRatio:" + currentRatio)
-                this.testTextStr = "Test Text is fully visible"
+                console.info('Test Text is fully visible. currentRatio:' + currentRatio)
+                this.testTextStr = 'Test Text is fully visible'
               }
 
               if (!isVisible && currentRatio <= 0.0) {
-                console.info("Test Text is completely invisible.")
-                this.testTextStr = "Test Text is completely invisible"
+                console.info('Test Text is completely invisible.')
+                this.testTextStr = 'Test Text is completely invisible'
               }
             })
 
           Row() {
-            Text("Test Row Visible  Change")
+            Text('Test Row Visible  Change')
               .fontSize(20)
               .margin({ bottom: 20 })
 
@@ -69,15 +69,15 @@ struct ScrollExample {
           .height(200)
           .backgroundColor(Color.Yellow)
           .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-            console.info("Test Row isVisible:" + isVisible + ", currentRatio:" + currentRatio)
+            console.info('Test Row isVisible:' + isVisible + ', currentRatio:' + currentRatio)
             if (isVisible && currentRatio >= 1.0) {
-              console.info("Test Row is fully visible.")
-              this.testRowStr = "Test Row is fully visible"
+              console.info('Test Row is fully visible.')
+              this.testRowStr = 'Test Row is fully visible'
             }
 
             if (!isVisible && currentRatio <= 0.0) {
-              console.info("Test Row is is completely invisible.")
-              this.testRowStr = "Test Row is is completely invisible"
+              console.info('Test Row is is completely invisible.')
+              this.testRowStr = 'Test Row is is completely invisible'
             }
           })
 
