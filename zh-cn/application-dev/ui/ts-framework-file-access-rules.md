@@ -10,11 +10,9 @@
 
 ## 示例
 ```
-MainAbility
-├─ app.ets
-├─ common
-│    └─ utils
-│           └─ utils.ets
+common
+│  └─ utils
+│        └─ utils.ets
 └─ pages
        └─ index.ets
 ```
