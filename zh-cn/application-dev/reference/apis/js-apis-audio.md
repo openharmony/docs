@@ -4113,33 +4113,6 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data) => {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
