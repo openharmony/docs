@@ -118,8 +118,6 @@ import prompt from '@system.prompt';
 export default {
   data:{
     dataURL:null,
-    antialia: false,
-    porc:'open',
   },
   onShow(){
     let el = this.$refs.canvas1;
