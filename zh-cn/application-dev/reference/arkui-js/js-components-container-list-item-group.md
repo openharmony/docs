@@ -127,7 +127,8 @@ import prompt from '@system.prompt';
 export default {
   data: {
     direction: 'column',
-    list: []
+    list: [],
+    listAdd: []
   },
   onInit() {
     this.list = []
