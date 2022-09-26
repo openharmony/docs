@@ -5,24 +5,18 @@
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-针对包含文本元素的组件，设置文本样式。
-
-
-## 权限列表
-
-无
-
+针对包含文本元素的组件，设置字体样式。
 
 ## 属性
 
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| fontColor | [ResourceColor](../../ui/ts-types.md) | - | 设置文本颜色。 |
-| fontSize | Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | - | 设置文本尺寸，Length为number类型时，使用fp单位。 |
-| fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | FontStyle.Normal | 设置文本的字体样式。 |
-| fontWeight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | FontWeight.FontWeightNormal | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>提供常用枚举值，参考：FontWeight枚举说明。 |
-| fontFamily | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | - | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。 |
+| 名称         | 参数类型                                      | 描述                                    |
+| -----------| ---------------------------------------- | ------------------------------------ |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor)  | 设置文本颜色。                                 |
+| fontSize   | Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置文本尺寸，Length为number类型时，使用fp单位。     |
+| fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | 设置文本的字体样式。<br>默认值：FontStyle.Normal         |
+| fontWeight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string  | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>默认值：FontWeight.Normal  |
+| fontFamily | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：'Arial,&nbsp;sans-serif'。 |
 
 
 ## 示例

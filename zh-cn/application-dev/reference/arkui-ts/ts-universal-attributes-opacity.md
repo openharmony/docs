@@ -1,23 +1,18 @@
 # 透明度设置
 
->  **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 设置组件的透明度。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
 
 
-| 名称 | 参数类型 | 默认值 | 描述 | 
-| -------- | -------- | -------- | -------- |
-| opacity | number&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 元素的不透明度，取值范围为0到1，1表示为不透明，0表示为完全透明。 | 
+| 名称      | 参数类型                                     | 描述                                       |
+| ------- | ---------------------------------------- | ---------------------------------------- |
+| opacity | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 元素的不透明度，取值范围为0到1，1表示不透明，0表示完全透明, 达到隐藏组件效果，但是在布局中占位，与[Visibility](ts-universal-attributes-visibility.md).Hidden效果相似<br>默认值：1 |
 
 
 ## 示例
@@ -35,6 +30,10 @@ struct OpacityExample {
       Text().width('90%').height(50).opacity(0.7).backgroundColor(0xAFEEEE)
       Text('opacity(0.4)').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Text().width('90%').height(50).opacity(0.4).backgroundColor(0xAFEEEE)
+      Text('opacity(0.1)').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Text().width('90%').height(50).opacity(0.1).backgroundColor(0xAFEEEE)
+      Text('opacity(0)').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Text().width('90%').height(50).opacity(0).backgroundColor(0xAFEEEE)
     }
     .width('100%')
     .padding({ top: 5 })
@@ -42,4 +41,4 @@ struct OpacityExample {
 }
 ```
 
-![zh-cn_image_0000001219662647](figures/zh-cn_image_0000001219662647.gif)
+![opacity.png](figures/opacity.png)
