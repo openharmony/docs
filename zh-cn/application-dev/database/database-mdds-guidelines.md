@@ -75,12 +75,11 @@
    ```js
    // FA模型获取context
    import featureAbility from '@ohos.ability.featureAbility';
-   var context = null;
    let context = featureAbility.getContext();
 
    // Stage模型获取context
    import AbilityStage from '@ohos.application.Ability'
-   var context = null;
+   let context = null;
    class MainAbility extends Ability{
       onWindowStageCreate(windowStage){
         context = this.context;
