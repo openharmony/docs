@@ -12,7 +12,7 @@
 
 | 名称      | 参数类型                                     | 描述                                       |
 | ------- | ---------------------------------------- | ---------------------------------------- |
-| opacity | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 元素的不透明度，取值范围为0到1，1表示不透明，0表示完全透明, 达到隐藏组件效果，但是在布局中占位，与[Visibility](ts-universal-attributes-visibility.md).Hidden效果相似<br>默认值：1 |
+| opacity | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 元素的不透明度，取值范围为0到1，1表示不透明，0表示完全透明, 达到隐藏组件效果，但是在布局中占位。<br>默认值：1 |
 
 
 ## 示例
