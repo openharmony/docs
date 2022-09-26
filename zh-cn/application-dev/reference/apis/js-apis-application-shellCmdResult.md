@@ -8,17 +8,17 @@
 
 ## 使用说明
 
-通过abilityDelegator中的executeShellCommand方法来获取。
+通过abilityDelegator中的[executeShellCommand](js-apis-application-abilityDelegator.md#executeshellcommand)方法来获取。
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-var abilityDelegator;
-var cmd = "cmd";
-var timeout = 100;
+import AbilityDelegatorRegistry from "@ohos.application.abilityDelegatorRegistry";
+let abilityDelegator;
+let cmd = "cmd";
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.executeShellCommand(cmd, timeout).then((data : any) => {
-    console.info("executeShellCommand promise");
+abilityDelegator.executeShellCommand(cmd, (err: any, data: any) => {
+    console.info("executeShellCommand callback, failed: ", err);
+    console.info("executeShellCommand callback, success: ", data);
 });
 ```
 
@@ -30,5 +30,5 @@ Shell命令执行结果
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                                         |
 | --------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| stdResult | string | 是   | 是   | 标准输出内容 |
-| exitCode  | number | 是   | 是   | 结果码 |
+| stdResult | string | 是   | 是   | 标准输出内容。 |
+| exitCode  | number | 是   | 是   | 结果码。 |
