@@ -2,7 +2,7 @@
 
 You can set the touch target for components that support universal click events, touch events, and gestures.
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -10,20 +10,20 @@ You can set the touch target for components that support universal click events,
 ## Attributes
 
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
+| Name            | Type                                         | Description                                     |
+| -------------- | --------------------------------------------- | ----------------------------------------- |
 | responseRegion | Array&lt;Rectangle&gt; \| Rectangle | One or more touch targets, including their location and size.<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>} |
 
 
 ### Rectangle
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| x | [Length](../../ui/ts-types.md) | No| X coordinate of the touch point relative to the left edge of the component.<br>Default value: **0vp**|
-| y | [Length](../../ui/ts-types.md) | No| Y coordinate of the touch point relative to the left edge of the component.<br>Default value: **0vp**|
-| width | [Length](../../ui/ts-types.md) | No| Width of the touch target.<br>Default value: **100%**|
-| height | [Length](../../ui/ts-types.md) | No| Height of the touch target.<br>Default value: **100%**|
+| Name       | Type                      | Mandatory  | Description                            |
+| ------ | ----------------------------- | -----| -------------------------------- |
+| x      | [Length](ts-types.md#length)  | No  | X coordinate of the touch point relative to the left edge of the component.<br>Default value: **0vp**|
+| y      | [Length](ts-types.md#length)  | No  | Y coordinate of the touch point relative to the left edge of the component.<br>Default value: **0vp**|
+| width  | [Length](ts-types.md#length)  | No  | Width of the touch target.<br>Default value: **100%**|
+| height | [Length](ts-types.md#length) | No  | Height of the touch target.<br>Default value: **100%**|
 
-  >  **NOTE**
+  >  **NOTE**<br>
   >
   >  **x** and **y** can be set to a positive or negative percentage value. For example, when **x** is set to **'100%'**, the touch target is the offset from the right edge of the component by the component's width. When **x** is set to **'-100%'**, the touch target is the offset from the left edge of the component by the component's width. When **y** is set to **'100%'**, the touch target is the offset from the bottom edge of the component by the component's height. When **y** is set to **'-100%'**, the touch target is the offset from the top edge of the component by the component's height.
   >

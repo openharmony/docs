@@ -1,11 +1,10 @@
 # RowSplit
 
-
-> **NOTE**<br>
+>  **NOTE**
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **<RowSplit\>** component lays out child components horizontally and inserts a vertical divider between every two child components.
+The **\<RowSplit>** lays out child components horizontally and inserts a vertical divider between every two child components.
 
 
 ## Required Permissions
@@ -15,7 +14,7 @@ None
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
@@ -25,18 +24,18 @@ RowSplit()
 
 ## Attributes
 
-| Name | Type | Description |
+| Name| Type| Description| 
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider is draggable. The default value is **false**. |
+| resizeable | boolean | Whether the divider can be dragged. The default value is **false**.| 
 
-> **NOTE**<br>
-> Similar to **<RowSplit\>**, the divider of **<RowSplit\>** can be dragged to a position that just fully holds a component.
+>  **NOTE**
+> Similar to **\<RowSplit>**, the divider of **\<RowSplit>** can be dragged to a position that just fully holds a component.
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RowSplitExample {

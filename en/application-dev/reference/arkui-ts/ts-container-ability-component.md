@@ -4,7 +4,7 @@
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The APIs of this module are system APIs and cannot be called by third-party applications.
 
