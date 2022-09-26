@@ -10,6 +10,8 @@ The **LauncherAbilityInfo** module provides information about a launcher ability
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name           | Type                                                | Readable| Writable| Description                                |
 | --------------- | ---------------------------------------------------- | ---- | ---- | ------------------------------------ |
 | applicationInfo | [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | Yes  | No  | Application information of the launcher ability.|

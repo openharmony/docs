@@ -33,7 +33,7 @@ The table below lists the mainstream playback formats and resolutions.
 
 ## How to Develop
 
-For details about the APIs, see [VideoPlayer in the Media API](../reference/apis/js-apis-media.md).
+For details about the APIs, see [VideoPlayer in the Media API](../reference/apis/js-apis-media.md#videoplayer8).
 
 ### Full-Process Scenario
 

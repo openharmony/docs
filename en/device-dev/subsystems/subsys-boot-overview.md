@@ -77,7 +77,7 @@ On each development board, you need to partition the memory to store the precedi
 
 - Initializes hardware such as the ROM and RAM, and loads the partition table information.
 - Loads the **boot.img** file based on the partition table and parses and loads the **ramdisk.img** file to the memory.
-- Prepares the partition table information and ramdisk address and enters the kernel, so that the kernel loads the the ramdisk image and starts the init process.
+- Prepares the partition table information and ramdisk address and enters the kernel, so that the kernel loads the ramdisk image and starts the init process.
 - Waits until the init process prepares the initial file system and mounts **required.fstab** (including **system.img** and **vendor.img**) to the file system.
 - Scans the boot scripts in the **etc/init** directory in **system.img** and **vendor.img** and runs each boot command.
 
@@ -89,7 +89,7 @@ On each development board, you need to partition the memory to store the precedi
 
   - **boot.img** format
 
-    **boot.img** building and loading varies depending on the platform. The implementation on mainstream OpenHarmony platforms is as follows:
+    **boot.img** building and loading vary depending on the platform. The implementation on mainstream OpenHarmony platforms is as follows:
 
     - Hi3516D V300
 
@@ -200,7 +200,7 @@ On each development board, you need to partition the memory to store the precedi
                   if (access(fstabFile, F_OK) != 0) {
                       fstabFile = "/system/etc/fstab.required";
                   }
-                  INIT_ERROR_CHECK(access(fstabFile, F_OK) == 0, abort(), "Failed get fstab.required");
+                  INIT_ERROR_CHECK(access(fstabFile, F_OK) == 0, abort(), "Failed to get fstab.required");
                   fstab = ReadFstabFromFile(fstabFile, false);
               }
               return fstab;
@@ -301,7 +301,7 @@ On each development board, you need to partition the memory to store the precedi
 
          After a device node is created, mount it to the corresponding partition. The code is as follows:
          ```
-          int MountRequriedPartitions(const Fstab *fstab)
+          int MountRequiredPartitions(const Fstab *fstab)
           {
               INIT_ERROR_CHECK(fstab != NULL, return -1, "Failed fstab is NULL");
               int rc;
@@ -313,22 +313,22 @@ On each development board, you need to partition the memory to store the precedi
          Therefore, when "Mount required partitions" is displayed, the required partition device is ready for mounting. During the mounting process, the following key information is printed:
          ```
          BEGET_LOGE("Unsupported file system \" %s \"", item->fsType);
-         The current file system type is not supported.
+         // The current file system type is not supported.
 
          BEGET_LOGE("Cannot get stat of \" %s \", err = %d", target, errno);
-         Failed to obtain the mount point directory.
+         // Failed to obtain the mount point directory.
 
          BEGET_LOGE("Failed to create dir \" %s \", err = %d", target, errno);
-         Failed to create the mount point directory.
+         // Failed to create the mount point directory.
 
          BEGET_LOGI("Mount %s to %s successful", item->deviceName, item->mountPoint);
-         The device is successfully mounted. The output also contains the name of the mounted device and information about the mount point.
+         // The device is successfully mounted. The output also contains the name of the mounted device and information about the mount point.
          ```
 
 
 - Mounting of vendor partitions
 
-​	After mounting required partitions, the init process scans each script file in the **vendor** partition. The initialization scripts related to the chip or development board is named in the format of **/vendor/etc/init.{ohos.boot.hardware}.cfg**. Wherein, **/vendor/etc/fstab.{ohos.boot.hardware}** represents the extended mount partition file; **hardware** is sourced from **bootargs**, which is passed from the bootloader to the kernel.
+After mounting required partitions, the init process scans each script file in the **vendor** partition. The initialization scripts related to the chip or development board are named in the format of **/vendor/etc/init.{ohos.boot.hardware}.cfg**. Wherein, **/vendor/etc/fstab.{ohos.boot.hardware}** represents the extended mount partition file; **hardware** is sourced from **bootargs**, which is passed from the bootloader to the kernel.
 
 
 ### Boot Loading Without ramdisk

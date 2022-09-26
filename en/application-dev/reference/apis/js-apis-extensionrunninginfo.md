@@ -12,9 +12,9 @@ The **ExtensionRunningInfo** module provides running information and states for 
 The Extension ability running information is obtained through an **abilityManager** instance.
 
 ```js
-import abilitymanager from '@ohos.application.abilityManager';
+import abilityManager from '@ohos.application.abilityManager';
 let upperLimit=1
-abilitymanager.getExtensionRunningInfos(upperLimit, (err,data) => { 
+abilityManager.getExtensionRunningInfos(upperLimit, (err,data) => {
     console.log("getExtensionRunningInfos err: "  + err + " data: " + JSON.stringify(data));
 });
 ```

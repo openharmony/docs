@@ -55,8 +55,6 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
 
-### 参数
-
 | 名称     | 参数类型   | 可读   | 可写   | 说明        |
 | ------ | ------ | ---- | ---- | --------- |
 | left   | number | 是    | 否    | 矩形区域的左边界。 |
@@ -75,35 +73,9 @@ class MainAbility extends AccessibilityExtensionAbility {
 | application | 表示应用窗口类型。 |
 | system      | 表示系统窗口类型。 |
 
-## AccessibilityExtensionContext.setEventTypeFilter
-
-setEventTypeFilter(type: Array<accessibility.EventType>): Promise\<boolean>;
-
-设置关注的事件类型。
-
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名  | 参数类型                                     | 必填   | 说明       |
-| ---- | ---------------------------------------- | ---- | -------- |
-| type | Array&lt;[EventType](js-apis-accessibility.md#EventType)&gt; | 是    | 关注的事件类型。 |
-
-**返回值：**
-
-| 类型                     | 说明                    |
-| ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回当前设置是否成功。 |
-
-**示例：**
-
-```ts
-this.context.setEventTypeFilter(['click', 'longClick']);
-```
-
 ## AccessibilityExtensionContext.setTargetBundleName
 
-setTargetBundleName(targetNames: Array\<string>): Promise\<boolean>;
+setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 设置关注的事件类型。
 
@@ -213,7 +185,7 @@ this.context.getWindows().then(windows => {
 
 ## AccessibilityExtensionContext.injectGesture
 
-injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
+injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<void>
 
 注入手势。
 
@@ -243,4 +215,171 @@ for (let i = 0; i < 10; i++) {
 this.context.gestureInject(gesturePath, (result) => {
     console.info('gestureInject result: ' + result);
 })
+```
+## AccessibilityElement.attributeNames
+
+attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array<T>>;
+
+获取节点元素的所有属性名称。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise对象。返回获取元素所有属性名称的调用结果。 |
+
+**示例：**
+
+```ts
+let accessibilityElement;
+try {
+    accessibilityElement.attributeNames().then((values) => {
+        console.log("get attribute names success");
+    }).catch((err) => {
+        console.log("get attribute names err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.attributeValue
+
+attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
+
+根据属性名称获取属性值。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 参数类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| attributeName | T | 是    | 表示属性的名称。     |
+
+**返回值：**
+
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;ElementAttributeValues[T]&gt;&gt; | Promise对象。返回根据属性名称获取属性值的调用结果。 |
+
+**示例：**
+
+```ts
+let accessibilityElement;
+try {
+    let attributeName = 'name';
+    accessibilityElement.attributeValue(attributeName).then((value) => {
+        console.log("get attribute value by name success");
+    }).catch((err) => {
+        console.log("get attribute value by name err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.actionNames
+
+actionNames(): Promise\<Array<string>>;
+
+获取节点元素支持的所有操作名称。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**返回值：**
+
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回获取节点元素支持的所有操作名称的调用结果。 |
+
+**示例：**
+
+```ts
+let accessibilityElement;
+try {
+    accessibilityElement.actionNames().then((values) => {
+        console.log("get action names success");
+    }).catch((err) => {
+        console.log("get action names err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.performAction
+
+performAction(actionName: string, parameters?: object): Promise\<boolean>;
+
+根据操作名称执行某个操作。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 参数类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| actionName | string | 是    | 表示属性的名称。     |
+| parameters | object | 否    | 表示执行操作时所需要的参数。     |
+
+**返回值：**
+
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象。返回获取元素所有属性名的调用结果。 |
+
+**示例：**
+
+```ts
+let accessibilityElement;
+try {
+
+    accessibilityElement.performAction('action').then((result) => {
+        console.info('perform action result: ' + result);
+    }).catch((err) => {
+        console.log("perform action err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
+```
+
+## AccessibilityElement.findElement
+
+findElement(type: 'content', condition: string): Promise\<Array<AccessibilityElement>>;
+
+查询节点元素的指定内容。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名         | 参数类型                                     | 必填   | 说明             |
+| ----------- | ---------------------------------------- | ---- | -------------- |
+| type | string | 是    | 固定为'content',表示查找的类型为节点元素内容。     |
+| condition | string | 是    | 表示查找的条件。     |
+
+**返回值：**
+
+| 类型                                       | 说明                       |
+| ---------------------------------------- | ------------------------ |
+| Promise&lt;Array&lt;T&gt;&gt; | Promise对象。返回获取元素所有属性名的调用结果。 |
+
+**示例：**
+
+```ts
+let accessibilityElement;
+try {
+    let condition = 'keyword';
+    accessibilityElement.findElement('content', condition).then((values) => {
+        console.log("find element success");
+    }).catch((err) => {
+        console.log("find element err: "  + JSON.stringify(err));
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
+}
 ```

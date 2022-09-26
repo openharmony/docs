@@ -41,7 +41,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
        "module": {
          "abilities": [
            {
-             "continuable": true,
+             "continuable": true
            }
          ]
        }
@@ -62,7 +62,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
        "module": {
          "abilities": [
            {
-             "launchType": "standard",
+             "launchType": "standard"
            }
          ]
        }
@@ -76,7 +76,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
        "module": {
          "abilities": [
            {
-             "launchType": "singleton",
+             "launchType": "singleton"
            }
          ]
        }

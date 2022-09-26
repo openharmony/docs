@@ -18,7 +18,6 @@
   - [多模输入](js-apidiff-multi-modal-input.md)
   - [多媒体](js-apidiff-multimedia.md)
   - [资源调度](js-apidiff-resource-scheduler.md)
-  - [分布式软总线](js-apidiff-soft-bus.md)
   - [测试框架](js-apidiff-unitest.md)
   - [Web](js-apidiff-web.md)
   - [窗口管理](js-apidiff-window.md)

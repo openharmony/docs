@@ -401,10 +401,10 @@ skills示例
                             "pathRegex":"/query/.*",
                             "path":"path",
                             "type": "text/*"
-                        },
+                        }
                     ]
                 }
-            ],
+            ]
         }
     ],
     "extensionAbilities": [
@@ -424,12 +424,12 @@ skills示例
                             "pathRegex":"/query/.*",
                             "path":"path",
                             "type": "text/*"
-                        },
+                        }
                     ]
                 }
-            ],
+            ]
         }
-    ],
+    ]
 }
 ```
 
@@ -480,7 +480,7 @@ extensionAbility示例 :
                     "name": "ohos.extability.form",
                     "resource": "$profile:form_config", 
                 }
-            ],
+            ]
         }
     ]
 }

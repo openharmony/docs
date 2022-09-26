@@ -11,7 +11,7 @@
 
 ## 代码准备
 
-目前OpenHarmony已经为各厂家创建了仓库并在openharmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
+目前OpenHarmony已经为各厂家创建了仓库并在OpenHarmony-sig中进行孵化。参与孵化仓开发，需要使用如下方法初始化和下载代码。
 
 ```shell
 repo init -u https://gitee.com/openharmony-sig/manifest.git -b master -m devboard.xml --no-repo-verify

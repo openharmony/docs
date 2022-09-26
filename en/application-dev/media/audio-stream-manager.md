@@ -12,7 +12,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
 
 **Figure 1** Audio stream management invoking relationship
 
-![](figures/zh-ch_image_audio_stream_manager.png)
+![](figures/en-us_image_audio_stream_manager.png)
 
 ## How to Develop
 

@@ -29,7 +29,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -60,7 +60,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 从API Version9开始该接口不再维护，请使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -77,7 +77,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -105,7 +105,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -162,7 +162,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -190,7 +190,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -627,7 +627,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 监听加速度传感器的数据变化一次。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -656,7 +656,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 从API Version9开始该接口不再维护，请用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELERATION，该权限为系统权限
+**需要权限**：ohos.permission.ACCELERATION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -673,7 +673,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;L
 
 订阅一次线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -699,7 +699,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 
 监听未校准加速度传感器的数据变化一次。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -752,7 +752,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 
 监听陀螺仪传感器的数据变化一次。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -778,7 +778,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 监听未校准陀螺仪传感器的数据变化一次。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1180,7 +1180,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1208,7 +1208,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1337,7 +1337,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1365,7 +1365,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1488,7 +1488,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 从API Version9开始该接口不再维护，请使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1505,7 +1505,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback?: Callback&lt
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2291,13 +2291,10 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
-                        err.message);
+          console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
-      for (var i=0; i < data.rotation.length; i++) {
-          console.info("data[" + i + "]: " + data[i])
-      }
+      console.info(JSON.stringify(data));
   })
   ```
 
@@ -2328,10 +2325,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.rotation.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
+          console.info(JSON.stringify(data));
       }).catch((err) => {
           console.info('promise failed');
   })

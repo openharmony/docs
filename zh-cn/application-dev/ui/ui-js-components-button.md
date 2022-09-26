@@ -74,13 +74,8 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 
 
 > **说明：**
-> - 胶囊按钮（type=capsule）不支持border相关样式。
->
-> - 圆形按钮（type=circle）不支持文本相关样式。
->
-> - 文本按钮（type=text），自适应文本大小，不支持尺寸样式设置（radius，width，height），背景透明不支持background-color样式。
->
-> - button组件使用的icon图标如果来自云端路径，需要添加网络访问权限 ohos.permission.INTERNET。
+> 
+>- button组件使用的icon图标如果来自云端路径，需要添加网络访问权限 ohos.permission.INTERNET。
 
 
 如果需要添加ohos.permission.INTERNET权限，则在resources文件夹下的config.json文件里进行权限配置。

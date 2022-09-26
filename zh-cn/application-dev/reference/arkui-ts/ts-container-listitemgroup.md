@@ -23,15 +23,15 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
   | 参数名 | 参数类型 | 必填 | 参数描述 |
   | -------- | -------- | -------- | -------- |
-  | header | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
-  | footer | [CustomBuilder](../../ui/ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
+  | header | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup头部组件。 |
+  | footer | [CustomBuilder](ts-types.md#custombuilder8) | 否 |  设置ListItemGroup尾部组件。 |
   | space | number&nbsp;\|&nbsp;string | 否 | 列表项间距。只作用于ListItem与ListItem之间，不作用于header与ListItem、footer与ListItem之间。 |
 
 ## 属性
 
 | 名称 | 参数类型 |  描述 |
 | -------- | -------- | -------- |
-| divider | {<br/>strokeWidth:&nbsp;[Length](../../ui/ts-types.md#length),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md#resourcecolor8),<br/>startMargin?:&nbsp;[Length](../../ui/ts-types.md#length),<br/>endMargin?:&nbsp;[Length](../../ui/ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
+| divider | {<br/>strokeWidth:&nbsp;[Length](ts-types.md#length),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor),<br/>startMargin?:&nbsp;[Length](ts-types.md#length),<br/>endMargin?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;null | 用于设置ListItem分割线样式，默认无分割线。<br/>strokeWidth:&nbsp;分割线的线宽。<br/>color:&nbsp;分割线的颜色。<br/>startMargin：&nbsp;分割线距离列表侧边起始端的距离。<br/>endMargin:&nbsp;分割线距离列表侧边结束端的距离。 |
 
 
 ## 示例

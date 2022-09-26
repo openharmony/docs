@@ -26,12 +26,12 @@ PatternLock(controller?: PatternLockController)
 
 | 名称            | 参数类型                              | 描述                                                         |
 | --------------- | ------------------------------------- | ------------------------------------------------------------ |
-| sideLength      | [Length](../../ui/ts-types.md)        | 设置组件的宽度和高度（相同值）。最小可以设置为0。<br/>默认值：300vp |
-| circleRadius    | [Length](../../ui/ts-types.md)        | 设置宫格圆点的半径。<br/>默认值：14vp                        |
-| regularColor    | [ResourceColor](../../ui/ts-types.md) | 设置宫格圆点在“未选中”状态的填充颜色。<br/>默认值：Color.Black |
-| selectedColor   | [ResourceColor](../../ui/ts-types.md) | 设置宫格圆点在“选中”状态的填充颜色。<br/>默认值：Color.Black |
-| activeColor     | [ResourceColor](../../ui/ts-types.md) | 设置宫格圆点在“激活”状态的填充颜色。<br/>默认值：Color.Black |
-| pathColor       | [ResourceColor](../../ui/ts-types.md) | 设置连线的颜色。<br/>默认值：Color.Blue                      |
+| sideLength      | [Length](ts-types.md#length)        | 设置组件的宽度和高度（相同值）。最小可以设置为0。<br/>默认值：300vp |
+| circleRadius    | [Length](ts-types.md#length)        | 设置宫格圆点的半径。<br/>默认值：14vp                        |
+| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“未选中”状态的填充颜色。<br/>默认值：Color.Black |
+| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“选中”状态的填充颜色。<br/>默认值：Color.Black |
+| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | 设置宫格圆点在“激活”状态的填充颜色。<br/>默认值：Color.Black |
+| pathColor       | [ResourceColor](ts-types.md#resourcecolor) | 设置连线的颜色。<br/>默认值：Color.Blue                      |
 | pathStrokeWidth | number&nbsp;\|&nbsp;string            | 设置连线的宽度。最小可以设置为0。<br/>默认值：34vp           |
 | autoReset       | boolean                               | 设置是否支持用户在完成输入后再次触屏重置组件状态。如果设置为true，用户可以通过触摸图案密码锁重置组件状态（清除之前的输入效果）；如果设置为false，用户手指离开屏幕完成输入后，再次触摸图案密码锁（包括圆点）不能改变之前的输入状态。<br/>默认值：true |
 
@@ -80,12 +80,16 @@ struct PatternLockExample {
         .backgroundColor(Color.White)
         .autoReset(true)
         .onPatternComplete((input: Array<number>) => {
-          if (input == null || input == undefined || input.length < 5) {
+          // 判断输出的密码格式
+          if (input === null || input === undefined || input.length < 5) {
             this.message = 'The password length needs to be greater than 5.'
+            // 重新触发该回调
             return
           }
+          // 判断密码长度是否大于0
           if (this.passwords.length > 0) {
-            if (this.passwords.toString() == input.toString()) {
+              // 判断俩次输入的密码是否相等
+            if (this.passwords.toString() === input.toString()) {
               this.passwords = input
               this.message = 'Set password successfully: ' + this.passwords.toString()
             } else {

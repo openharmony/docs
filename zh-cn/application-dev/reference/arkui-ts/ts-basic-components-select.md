@@ -18,8 +18,8 @@ Select(options: Array\<SelectOption\>)
 
 | 参数名 | 参数类型                            | 必填 | 参数描述       |
 | ------ | ----------------------------------- | ---- | -------------- |
-| value  | [ResourceStr](../../ui/ts-types.md) | 是   | 下拉选项内容。 |
-| icon   | [ResourceStr](../../ui/ts-types.md) | 否   | 下拉选项图片。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。 |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。 |
 
 ## 属性
 
@@ -27,20 +27,20 @@ Select(options: Array\<SelectOption\>)
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
 | selected                | number                                | 设置下拉菜单初始选项的索引，第一项的索引为0。 |
 | value                   | string                                | 设置下拉按钮本身的文本显示。                  |
-| font                    | [Font](../../ui/ts-types.md)          | 设置下拉按钮本身的文本样式。                  |
-| fontColor               | [ResourceColor](../../ui/ts-types.md) | 设置下拉按钮本身的文本颜色。                  |
-| selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md) | 设置下拉菜单选中项的背景色。                  |
-| selectedOptionFont      | [Font](../../ui/ts-types.md)          | 设置下拉菜单选中项的文本样式。                |
-| selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md) | 设置下拉菜单选中项的文本颜色。                |
-| optionBgColor           | [ResourceColor](../../ui/ts-types.md) | 设置下拉菜单项的背景色。                      |
-| optionFont              | [Font](../../ui/ts-types.md)          | 设置下拉菜单项的文本样式。                    |
-| optionFontColor         | [ResourceColor](../../ui/ts-types.md) | 设置下拉菜单项的文本颜色。                    |
+| font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。                  |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉按钮本身的文本颜色。                  |
+| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的背景色。                  |
+| selectedOptionFont      | [Font](ts-types.md#font)          | 设置下拉菜单选中项的文本样式。                |
+| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的文本颜色。                |
+| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的背景色。                      |
+| optionFont              | [Font](ts-types.md#font)          | 设置下拉菜单项的文本样式。                    |
+| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的文本颜色。                    |
 
 ## 事件
 
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelect(callback: (index: number, value?:&nbsp;string) => void) | 下拉菜单选中某一项的回调。index：选中项的索引。value：选中项的值。 |
+| onSelect(callback: (index: number, value?:&nbsp;string) => void) | 下拉菜单选中某一项的回调。<br/>index：选中项的索引。<br/>value：选中项的值。 |
 
 ##  示例
 

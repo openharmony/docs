@@ -8,7 +8,7 @@ You can use the APIs provided by **AudioCapturer** to record raw audio files.
 
 During application development, you are advised to use **on('stateChange')** to subscribe to state changes of the **AudioCapturer** instance. This is because some operations can be performed only when the audio capturer is in a given state. If the application performs an operation when the audio capturer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
-For details about the APIs, see [AudioCapturer in Audio Management](../reference/apis/js-apis-audio.md).
+For details about the APIs, see [AudioCapturer in Audio Management](../reference/apis/js-apis-audio.md#audiocapturer8).
 
 **Figure 1** Audio capturer state
 
