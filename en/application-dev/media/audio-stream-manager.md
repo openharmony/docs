@@ -117,7 +117,7 @@ This API can be used to obtain the unique ID of the audio stream, UID of the aud
            console.info('Address:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].address);
            console.info('SampleRates:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
            console.info('ChannelCounts' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
-           console.info('ChannnelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+           console.info('ChannelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
          }
        }
      }

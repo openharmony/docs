@@ -197,9 +197,9 @@ Obtains the value of the first key-value pair based on the specified key.
 **Example**
 
 ```js
-let paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
-let name = paramsOject.get("name"); // is the string "Jonathan" 
-let age = parseInt(paramsOject.get("age"), 10); // is the number 18
+let paramsObject = new Url.URLSearchParams('name=Jonathan&age=18'); 
+let name = paramsObject.get("name"); // is the string "Jonathan" 
+let age = parseInt(paramsObject.get("age"), 10); // is the number 18
 ```
 
 
