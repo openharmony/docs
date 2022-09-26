@@ -1076,20 +1076,6 @@ Provides the usage duration information of applications.
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.<br>This API is defined but not implemented in OpenHarmony 3.1 Release. It will be available for use in OpenHarmony 3.1 MR.|
 
-### merge
-
-merge(toMerge: BundleStateInfo): void
-
-Merges the application usage information that has the same bundle name.
-
-**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**Parameters**
-
-| Name    | Type                                 | Mandatory  | Description            |
-| ------- | ----------------------------------- | ---- | -------------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | Yes   | Application usage information to merge.|
-
 ## BundleActiveState
 
 Provides information about an application event.
