@@ -1,15 +1,43 @@
 # @Builder
 
 
-@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。\@Builder装饰方法的功能和语法规范与[build函数](ts-function-build.md)相同。
+@Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。如果\@Builder装饰的方法中使用了自定义组件，那么该方法每次被调用时，对应的自定义组件均会重新创建。\@Builder装饰方法的功能和语法规范与[build函数](ts-function-build.md)相同。
 
 
 ```ts
 // xxx.ets
+
+@Component
+struct CompB {
+  @State CompValue: string = '';
+
+  aboutToAppear() {
+    console.info('CompB aboutToAppear.');
+  }
+
+  aboutToDisappear() {
+    console.info('CompB aboutToDisappear.');
+  }
+
+  build() {
+    Column() {
+      Button(this.CompValue);
+    }
+  }
+}
+
 @Entry
 @Component
 struct CompA {
-  size1 : number = 100;
+  size1: number = 100;
+  @State CompValue1: string = "Hello,CompValue1";
+  @State CompValue2: string = "Hello,CompValue2";
+  @State CompValue3: string = "Hello,CompValue3";
+
+  // @Builder装饰的函数内使用自定义组件
+  @Builder CompC(value: string) {
+    CompB({ CompValue: value });
+  }
 
   @Builder SquareText(label: string) {
     Text(label)
@@ -35,7 +63,16 @@ struct CompA {
       }
       .width(2 * this.size1)
       .height(1 * this.size1)
+
       this.RowOfSquareTexts("C", "D")
+      Column() {
+        // 使用三次@Builder装饰的自定义组件
+        this.CompC(this.CompValue1);
+        this.CompC(this.CompValue2);
+        this.CompC(this.CompValue3);
+      }
+      .width(2 * this.size1)
+      .height(2 * this.size1)
     }
     .width(2 * this.size1)
     .height(2 * this.size1)

@@ -12,14 +12,14 @@
 
 ### 创建数据对象实例
 
-创建一个分布式数据对象实例，开发者可以通过source指定分布式对象中的属性。
+创建一个分布式数据对象实例，开发者可以通过source指定分布式数据对象中的属性。
 
 
 **表1** 分布式数据对象实例创建接口
 
 | 包名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作。 <br>-&nbsp;source：设置distributedObject的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式对象。 |
+| ohos.data.distributedDataObject| createDistributedObject(source: object): DistributedObject | 创建一个分布式数据对象实例，用于数据操作。 <br>-&nbsp;source：设置分布式数据对象的属性。<br>-&nbsp;DistributedObject：返回值是创建好的分布式数据对象。 |
 
 ### 创建分布式数据对象sessionId
 
@@ -39,7 +39,7 @@
 
 | 类名 | 接口名 | 描述 |
 | -------- | -------- | -------- |
-| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId。<br>&nbsp;sessionId：分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
+| DistributedDataObject | setSessionId(sessionId?: string): boolean | 为分布式数据对象设置sessionId。<br>&nbsp;sessionId：分布式数据对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
 
 ### 订阅数据变更
 
@@ -214,7 +214,7 @@
    // 删除所有的变更回调
    localObject.off("change"); 
    ```
-9. 监听分布式对象的上下线。可以监听对端分布式数据对象的上下线。
+9. 监听分布式数据对象的上下线。可以监听对端分布式数据对象的上下线。
 
    ```js
    function statusCallback(sessionId, networkId, status) {
@@ -242,7 +242,7 @@
         console.info("revokeSave failed.");
     });
     ```
-11. 删除监听分布式对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
+11. 删除监听分布式数据对象的上下线。可以指定删除监听的上下线回调；也可以不指定，这将会删除该分布式数据对象的所有上下线回调。
 
     ```js
     // 删除上下线回调statusCallback
@@ -250,7 +250,7 @@
     // 删除所有的上下线回调
     localObject.off("status");
     ```
-12. 退出同步组网。分布式对象退出组网后，本地的数据变更对端不会同步。
+12. 退出同步组网。分布式数据对象退出组网后，本地的数据变更对端不会同步。
 
     ```js
     localObject.setSessionId("");

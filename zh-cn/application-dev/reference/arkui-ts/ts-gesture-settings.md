@@ -74,8 +74,8 @@
   | 名称 | 类型 | 描述 |
   | -------- | -------- | -------- |
   | id | number | 手指的索引编号。 |
-  | globalX | number | 相对于设备屏幕左上角的x轴坐标。 |
-  | globalY | number | 相对于设备屏幕左上角的y轴坐标。 |
+  | globalX | number | 相对于应用窗口左上角的x轴坐标。 |
+  | globalY | number | 相对于应用窗口左上角的y轴坐标。 |
   | localX | number | 相对于当前组件元素左上角的x轴坐标。 |
   | localY | number | 相对于当前组件元素左上角的y轴坐标。 |
 

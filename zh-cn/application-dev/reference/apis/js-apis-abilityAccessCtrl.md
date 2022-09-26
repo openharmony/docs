@@ -402,6 +402,8 @@ catch(err){
 
 表示权限状态变化操作类型的枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.Security.AccessToken
 
 | 名称                     | 默认值 | 描述              |
@@ -410,6 +412,8 @@ catch(err){
 | PERMISSION_GRANTED_OPER | 1      | 表示权限授予操作。 |
 
 ### PermissionStateChangeInfo<sup>9+</sup>
+
+**系统接口：** 此接口为系统接口。
 
  **系统能力:** SystemCapability.Security.AccessToken
 

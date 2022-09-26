@@ -55,7 +55,7 @@ import screenshot from '@ohos.screenshot';
 
 ## screenshot.save
 
-save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
+save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取屏幕截图。
 
@@ -67,7 +67,7 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | 否   | 该类型的参数包含screenRect，imageSize，rotation， displayId四个参数，可以分别设置这四个参数。 |
+| options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
 **示例：**
@@ -86,6 +86,35 @@ save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;)
     "displayId": 0
   };
   screenshot.save(screenshotOptions, (err, pixelMap) => {
+    if (err) {
+        console.log('Failed to save screenshot: ' + JSON.stringify(err));
+        return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // PixelMap使用完后及时释放内存
+  });
+  ```
+
+## screenshot.save
+
+save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+获取屏幕截图。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
+
+**参数：**
+
+| 参数名   | 类型                                    | 必填 | 说明                                                         |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+
+**示例：**
+
+  ```js
+  screenshot.save((err, pixelMap) => {
     if (err) {
         console.log('Failed to save screenshot: ' + JSON.stringify(err));
         return;
