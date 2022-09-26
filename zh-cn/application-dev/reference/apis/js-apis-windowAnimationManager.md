@@ -31,7 +31,7 @@ setController(controller: WindowAnimationController): void
 **示例：**
 
 ```js
-var controller = {
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -88,8 +88,8 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: Async
 **示例：**
 
 ```js
-var target: WindowAnimationTarget = undefined;
-var controller = {
+let target: WindowAnimationTarget = undefined;
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -127,7 +127,7 @@ var controller = {
 
 windowAnimationManager.setController(controller)
 
-var finishedCallback = null;
+let finishedCallback = null;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
     if (err.code) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
@@ -164,8 +164,8 @@ minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget): Promise&lt;Win
 **示例：**
 
 ```js
-var target: WindowAnimationTarget = undefined;
-var controller = {
+let target: WindowAnimationTarget = undefined;
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
