@@ -18,9 +18,9 @@ Canvas(context?: CanvasRenderingContext2D)
 
 **参数：**
 
-  | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
-  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
+| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
 
 ## 属性
 
@@ -41,8 +41,8 @@ Canvas(context?: CanvasRenderingContext2D)
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -50,10 +50,10 @@ struct CanvasExample {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0,30,100,100)
-        })
-    }
+        .onReady(() => {
+          this.context.fillRect(0, 30, 100, 100)
+        });
+    };
     .width('100%')
     .height('100%')
   }
