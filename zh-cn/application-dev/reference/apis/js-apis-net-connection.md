@@ -66,6 +66,7 @@ connection.getDefaultNet().then(function (netHandle) {
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 检查默认数据网络是否被激活，使用callback方式作为异步方法。
+默认数据网络：以太网>wifi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -89,6 +90,7 @@ connection.hasDefaultNet(function (error, has) {
 hasDefaultNet(): Promise\<boolean>
 
 检查默认数据网络是否被激活，使用Promise方式作为异步方法。
+默认数据网络：以太网>wifi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -793,6 +795,108 @@ netConnection.unregister(function (error) {
 | 参数名 | 类型   | 说明                      |
 | ------ | ------ | ------------------------- |
 | netId  | number | 网络ID，必须大于等于100。 |
+
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
+
+将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名      | 类型                     | 必填 | 说明                            |
+| ----------- | ------------------------ | ---- | -------------------------------|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
+| callback    | AsyncCallback\<void>      | 是   | 回调函数                        |
+
+**示例：**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if (socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(udp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+
+将TCPSocket或UDPSockett绑定到当前网络，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名          | 类型                  | 必填  | 说明                           |
+| --------------- | --------------------- | ---- | ------------------------------ |
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
+
+**返回值：**
+
+| 类型           | 说明                   |
+| -------------- | ---------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if(socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
 
 ### getAddressesByName
 
