@@ -175,10 +175,15 @@
   - [@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
 - 网络管理
   - [@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+  - [@ohos.net.statistics (网络流量管理)](js-apis-net-statistics.md)
+  - [@ohos.net.policy (网络策略管理)](js-apis-net-policy.md)
+  - [@ohos.net.ethernet (以太网连接管理)](js-apis-net-ethernet.md)
+  - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.http (数据请求)](js-apis-http.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+  - [@ohos.net.tlsSocket (TLSSocket连接)](js-apis-tlsSocket.md)
 - 通信与连接
 
   - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
