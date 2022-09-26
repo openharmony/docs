@@ -16,7 +16,7 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
 | ohos.vibrator | vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified duration. This API uses a callback to return the result.     |
 | ohos.vibrator | vibrate(effectId: EffectId): Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result. |
 | ohos.vibrator | vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified effect. This API uses a callback to return the result.|
-| ohos.vibrator | stop(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.                          |
+| ohos.vibrator | stop(stopMode: VibratorStopMode): Promise&lt;void&gt;| Stops vibration. This API uses a promise to return the result.                          |
 | ohos.vibrator | stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void | Stops vibration. This API uses a callback to return the result.                          |
 
 
@@ -55,7 +55,7 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
                ],
                "when": "inuse"
            }
-       },
+       }
    ]
    ```
 

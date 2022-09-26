@@ -46,7 +46,7 @@
    mkdir -p device/board/realtek/rtl8720
    ```
 
-2. 创建内核适配目录，并编写开发板编译配置config.gni文件。 以realtek的“rtl8720“开发板的liteos_a适配为例，device/board/realtek/rtl8720/liteo_a/config.gni的内容如下：
+2. 创建内核适配目录，并编写开发板编译配置config.gni文件。 以realtek的“rtl8720“开发板的liteos_a适配为例，device/board/realtek/rtl8720/liteos_a/config.gni的内容如下：
 
    ```shell
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".

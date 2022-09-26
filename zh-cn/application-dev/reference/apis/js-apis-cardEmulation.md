@@ -109,4 +109,15 @@ hceService.on("hceCmd", (err, res) => {
     }
 })
 ```
+## FeatureType
+
+表示NFC支持的卡模拟类型枚举。
+
+**系统能力**：SystemCapability.Communication.NFC.Core
+
+| 名称 | 默认值 | 说明 |
+| -------- | -------- | -------- |
+| HCE | 0 | 该常量用于检查是否支持 HCE 卡模拟。 |
+| UICC | 1 | 该常量用于检查是否支持 SIM 卡模拟。 |
+| ESE | 2      | 该常量用于检查是否支持ESE卡模拟。 |
 

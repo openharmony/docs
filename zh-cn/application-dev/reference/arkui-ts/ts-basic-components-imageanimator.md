@@ -1,15 +1,11 @@
 # ImageAnimator
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 提供帧动画组件来实现逐帧播放图片的能力，可以配置需要播放的图片列表，每张图片可以配置时长。
 
+>  **说明：**
+>
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 权限列表
-
-无
 
 
 ## 子组件
@@ -24,26 +20,27 @@ ImageAnimator()
 
 ## 属性
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| images | Array&lt;ImageFrameInfo&gt; | [] | 是 | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。 |
-| state | [AnimationStatus](ts-appendix-enums.md#animationstatus) | Initial | 否 | 默认为初始状态，用于控制播放状态。 |
-| duration | number | 1000 | 否 | 单位为毫秒，默认时长为1000ms；duration为0时，不播放图片；值的改变只会在下一次循环开始时生效；当images中任意一帧图片设置了单独的duration后，该属性设置无效。 |
-| reverse | boolean | false | 否 | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
-| fixedSize | boolean | true | 否 | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。 |
-| preDecode | number | 0 | 否 | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。 |
-| fillMode | [FillMode](ts-appendix-enums.md#fillmode) | Forwards | 否 | 设置动画开始前和结束后的状态，可选值参见FillMode说明。 |
-| iterations | number | 1 | 否 | 默认播放一次，设置为-1时表示无限次播放。 |
+| 参数名称     | 参数类型                  | 必填      | 参数描述                   |
+| ---------- | ----------------------- | -------- | -------- |
+| images     | Array&lt;ImageFrameInfo&gt; | 否   | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[]  |
+| state      | [AnimationStatus](ts-appendix-enums.md#animationstatus) | 否    | 默认为初始状态，用于控制播放状态。<br/>默认值：AnimationStatus.Initial |
+| duration   | number  | 否    | 单位为毫秒，默认时长为1000ms；duration为0时，不播放图片；值的改变只会在下一次循环开始时生效；当images中任意一帧图片设置了单独的duration后，该属性设置无效。<br/>默认值：1000 |
+| reverse    | boolean | 否    | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。<br/>默认值：false |
+| fixedSize  | boolean | 否    | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性是无效的。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true |
+| preDecode  | number  | 否    | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。<br/>默认值：0 |
+| fillMode   | [FillMode](ts-appendix-enums.md#fillmode) | 否    | 设置动画开始前和结束后的状态，可选值参见FillMode说明。<br/>默认值：FillMode.Forwards |
+| iterations | number  | 否    | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
 - ImageFrameInfo属性说明
-  | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | src | string \| [Resource](../../ui/ts-types.md#resource类型)<sup>9+</sup> | "" | 是 | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](../../ui/ts-types.md#resource类型)类型的路径 |
-  | width | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片宽度 |
-  | height | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片高度 |
-  | top | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的纵向坐标 |
-  | left | [Length](../../ui/ts-types.md#长度类型) | 0 | 否 | 图片相对于组件左上角的横向坐标 |
-  | duration | number | 0 | 否 | 每一帧图片的播放时长，单位毫秒 |
+
+| 参数名称   | 参数类型   | 必填 | 参数描述 |
+| -------- | -------------- | -------- | -------- |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径。|
+| width    | [Length](ts-types.md#length)  | 否  | 图片宽度。<br/>默认值：0          |
+| height   | [Length](ts-types.md#length)  | 否  | 图片高度。<br/>默认值：0             |
+| top      | [Length](ts-types.md#length)  | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0    |
+| left     | [Length](ts-types.md#length)  | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0    |
+| duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0               |
 
 
 ## 事件

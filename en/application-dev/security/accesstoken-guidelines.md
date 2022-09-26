@@ -123,7 +123,7 @@ In this example, declare the permission under the **acls** field:
     "allowed-acls": [
       "ohos.permission.PERMISSION2"
     ]
-  },
+  }
 }
 ```
 

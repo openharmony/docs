@@ -1,6 +1,6 @@
 # Intl开发指导
 
-本模块提供提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。更多接口和使用方式请见[Intl](../reference/apis/js-apis-intl.md)。
+本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。更多接口和使用方式请见[Intl](../reference/apis/js-apis-intl.md)。
 
 [I18N](i18n-guidelines.md)模块提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。
 
@@ -198,7 +198,7 @@
    var collator = new intl.Collator();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9)。
    
    ```js
    var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
@@ -245,7 +245,7 @@
    var pluralRules = new intl.PluralRules();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9)。
    
    ```js
    var pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -284,7 +284,7 @@
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
    
    ```
    var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});

@@ -1,9 +1,8 @@
-# Standard NFC Tag Session
+# NFC Tag Session
 
 The **tagSession** module provides common APIs for establishing connections and transferring data.
 
-> **NOTE**
-> 
+> **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## **Modules to Import**
@@ -18,7 +17,7 @@ Provides common APIs for establishing connections and transferring data. **tagSe
 
 A child class instance is required to access the following interfaces. You can use **get**XX**Tag()** to obtain a child class instance.
 
-The specific method varies with the NFC tag technology in use. For details, see [nfcTag](js-apis-nfcTag.md).
+The specific API varies with the NFC tag technology in use. For details, see [NFC Tags](js-apis-nfcTag.md).
 
 ### tagSession.connectTag
 
@@ -26,7 +25,7 @@ connectTag(): boolean;
 
 Connects to this tag.
 
-Call this method to set up a connection before reading data from or writing data to a tag.
+Call this API to set up a connection before reading data from or writing data to a tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -95,7 +94,7 @@ Checks whether the tag is connected.
 ```js
 import tag from '@ohos.nfc.tag';
 
-// tagInfo is an Object given by nfc service when tag is dispatched.
+// tagInfo is an object given by the NFC service when a tag is dispatched.
 let isTagConnected = tag.getXXXTag(taginfo).isTagConnected(); 
 console.log("isTagConnected:" +isTagConnected);
 ```

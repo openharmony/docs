@@ -14,29 +14,29 @@
 
 ## 接口
 
-Span(content:  string | Resource)
+Span(value: string | Resource)
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](../../ui/ts-types.md#resource) | 是 | 文本内容。 |
+| value | string \| [Resource](ts-types.md#resource) | 是 | 文本内容。 |
 
 
 ## 属性
 
-通用属性方法仅支持通用文本样式，不支持触摸热区设置。
+通用属性方法仅支持[通用文本样式](ts-universal-attributes-text-style.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md#resourcecolor8)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
+| decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
 | letterSpacing       | number \| string  | 设置文本字符间距。                                 |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal |
 
 
 ## 事件
 
-通用事件仅支持点击事件。
+通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
 
 >  **说明：**
 >

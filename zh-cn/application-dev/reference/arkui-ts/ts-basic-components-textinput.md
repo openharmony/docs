@@ -20,27 +20,28 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 参数名                     | 参数类型                                     | 必填   | 参数描述            |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
-| placeholder   | [ResourceStr](../../ui/ts-types.md)       | 否    | 无输入时的提示文本。      |
-| text          | [ResourceStr](../../ui/ts-types.md)       | 否    | 设置输入框当前的文本内容。     |
+| placeholder   | [ResourceStr](ts-types.md#resourcestr)       | 否    | 无输入时的提示文本。      |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | 否    | 设置输入框当前的文本内容。     |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | 否    | 设置TextInput控制器。 |
 
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持通用属性以及[文本样式设置](ts-universal-attributes-text-style.md)的属性外，还支持以下属性：
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
 | type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal        |
-| placeholderColor         | [ResourceColor](../../ui/ts-types.md)     | 设置placeholder颜色。|
-| placeholderFont          | [Font](../../ui/ts-types.md#font) | 设置placeholder文本样式。 |
+| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder颜色。|
+| placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
 | enterKeyType             | EnterKeyType                             | 设置输入法回车键类型。<br/>默认值：EnterKeyType.Done    |
-| caretColor               | [ResourceColor](../../ui/ts-types.md)    | 设置输入框光标颜色。                               |
+| caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | 设置输入框光标颜色。                               |
 | maxLength                | number                                   | 设置文本的最大输入字符数。                            |
-| inputFilter<sup>8+</sup>      | {<br/>value:&nbsp;[ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
+| inputFilter<sup>8+</sup> | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void<br/>} | 正则表达式，满足表达式的输入允许显示，不满足正则表达式的输入被忽略。仅支持单个字符匹配，不支持字符串匹配。例如：^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$，8到10位的强密码不支持过滤。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被忽略的内容。 |
+| copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置文本是否可复制。 |
 | showPasswordIcon<sup>9+</sup> | boolean | 密码输入模式时，密码框末尾的图标是否显示。<br/>默认值：true |
-| style<sup>9+</sup> | TextInputStyle | TextInput风格。<br/>默认值：Default |
+| style<sup>9+</sup> | TextInputStyle | TextInput风格。<br/>默认值：TextInputStyle.Default |
+| textAlign<sup>9+</sup>   | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本水平对齐式。<br/>默认值：TextAlign.Start  |
 
 ## EnterKeyType枚举说明
 
@@ -56,13 +57,13 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |
-| Normal   | 基本输入模式。       |
+| Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
 | Password | 密码输入模式。       |
 | Email    | e-mail地址输入模式。 |
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
-## TextInputStyle枚举说明
+## TextInputStyle<sup>9+</sup>枚举说明
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |

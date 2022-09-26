@@ -33,9 +33,10 @@ interface Builder {
 
 开发者创建系统组件时，会显示其默认样式。开发者可以通过更改组件的属性样式来改变组件的视图显示。
 
-1. 修改Text组件的fontSize属性来更改组件的字体大小，将字体大小设置为26，fontWeight字体的粗细为500。fontWeight支持两种设置方式：
-   1. number类型的取值范围为100到900，默认为400，取值越大，字体越粗。
-   2. fontWeight为内置枚举类型，取值支持Lighter、Normal、Bold、Bolder。
+1. 修改Text组件的fontSize属性来更改组件的字体大小，将字体大小设置为26，通过fontWeight属性更改字体粗细，将其设置为500。fontWeight属性支持三种设置方式：
+   1. number类型的取值范围为100到900，取值间隔为100，默认为400，取值越大，字体越粗。
+   2. FontWeight为内置枚举类型，取值支持FontWeight.Lighter、FontWeight.Normal、FontWeight.Regular、FontWeight.Medium、FontWeight.Bold、FontWeight.Bolder。FontWeight.Normal即为400数值的字体粗细。
+   3. string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。设置其他字符串则为无效，保持默认字体粗细显示。
 
    属性方法要紧随组件，通过“.”运算符连接，也可以通过链式调用的方式配置组件的多个属性。
 

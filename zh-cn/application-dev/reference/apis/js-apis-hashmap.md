@@ -11,6 +11,10 @@ HashMap和[TreeMap](js-apis-treemap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 需要快速存取、删除以及插入键值对数据时，推荐使用HashMap。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- K: Key, 键<br>
+- V: Value, 值
+
 ## 导入模块
 
 ```ts
@@ -89,9 +93,9 @@ hasKey(key: K): boolean
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = hashMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashMap.hasKey("squirrel");
+hashMap.set("squirrel", 123);
+let result1 = hashMap.hasKey("squirrel");
 ```
 
 
@@ -120,7 +124,7 @@ hasValue(value: V): boolean
 ```ts
 let hashMap = new HashMap();
 let result = hashMap.hasValue(123);
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+hashMap.set("squirrel", 123);
 let result1 = hashMap.hasValue(123);
 ```
 
@@ -149,9 +153,9 @@ get(key: K): V
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
-let result = hashMap.get("sdfs");
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
+let result = hashMap.get("sparrow");
 ```
 
 
@@ -173,8 +177,8 @@ setAll(map: HashMap<K, V>): void
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 let newHashMap = new HashMap();
 hashMap.setAll(newHashMap);
 ```
@@ -205,7 +209,7 @@ set(key: K, value: V): Object
 
 ```ts
 let hashMap = new HashMap();
-let result = hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+let result = hashMap.set("squirrel", 123);
 ```
 
 
@@ -233,9 +237,9 @@ remove(key: K): V
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
-let result = hashMap.remove("sdfs");
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
+let result = hashMap.remove("sparrow");
 ```
 
 
@@ -251,8 +255,8 @@ clear(): void
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 hashMap.clear();
 ```
 
@@ -275,8 +279,8 @@ keys(): IterableIterator&lt;K&gt;
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 let iter = hashMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -304,8 +308,8 @@ values(): IterableIterator&lt;V&gt;
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 let iter = hashMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -340,8 +344,8 @@ replace(key: K, newValue: V): boolean
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("sdfs", 123);
-let result = hashMap.replace("sdfs", 357);
+hashMap.set("sparrow", 123);
+let result = hashMap.replace("sparrow", 357);
 ```
 
 
@@ -371,8 +375,8 @@ callbackfn的参数说明：
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("sdfs", 123);
-hashMap.set("dfsghsf", 357);
+hashMap.set("sparrow", 123);
+hashMap.set("gull", 357);
 hashMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -397,8 +401,8 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 let iter = hashMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -426,8 +430,8 @@ while(temp != undefined) {
 **示例：**
 ```ts
 let hashMap = new HashMap();
-hashMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-hashMap.set("sdfs", 356);
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
 
 // 使用方法一：
 for (let item of hashMap) { 

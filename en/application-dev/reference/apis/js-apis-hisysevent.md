@@ -89,7 +89,7 @@ Writes event information to the event file. This API uses a promise to return th
 
 | Name   | Type                   | Mandatory| Description|
 | --------- | ----------------------- | ---- | --------------- |
-| eventType | [EventType](#eventtype) | Yes  | Application event type.|
+| info | [SysEventInfo](#syseventinfo) | Yes  | System event information.|
 
 **Return value**
 

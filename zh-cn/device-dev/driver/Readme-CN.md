@@ -1,5 +1,6 @@
 # 驱动使用指南
 
+- [驱动概述](driver-overview-foundation.md)
 - HDF驱动框架
   - [HDF开发概述](driver-hdf-overview.md)
   - [驱动开发](driver-hdf-development.md)
@@ -50,6 +51,7 @@
   - [Fingerprint_auth](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
   - [Light](driver-peripherals-light-des.md)
+  - [Motion](driver-peripherals-motion-des.md)
   - [Pin_auth](driver-peripherals-pinauth-des.md)
   - [Sensor](driver-peripherals-sensor-des.md)
   - [Touchscreen](driver-peripherals-touch-des.md)

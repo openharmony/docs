@@ -28,6 +28,7 @@ export default {
 
 ```html
 <!-- xxx.hml -->
+<element name='comp' src='../../common/comp/comp.hml'></element>
 <div class="container">  
    <text>父组件：{{text}}</text> 
    <comp @event-type1="textClicked"></comp>  
@@ -46,3 +47,5 @@ export default {
   },
 }
 ```
+
+![EventParameters](figures/EventParameters.gif)

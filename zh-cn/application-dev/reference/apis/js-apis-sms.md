@@ -397,7 +397,7 @@ splitMessage(content: string, callback: AsyncCallback<Array<string\>>): void
 **示例：**
 
 ```js
-string content= "long message";
+let content = "long message";
 sms.splitMessage(content, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -431,7 +431,7 @@ splitMessage(content: string): Promise<Array<string\>>
 **示例：**
 
 ```js
-string content = "long message";
+let content = "long message";
 let promise = sms.splitMessage(content);
 promise.then(data => {
     console.log(`splitMessage success, promise: data->${JSON.stringify(data)}`);
@@ -463,10 +463,10 @@ addSimMessage(options: SimMessageOptions, callback: AsyncCallback<void\>): void
 
 ```js
 let simMessageOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxx",
-    status = 0
+    slotId: 0,
+    smsc: "test",
+    pdu: "xxxxxx",
+    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
 sms.addSimMessage(simMessageOptions, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -502,10 +502,10 @@ addSimMessage(options: SimMessageOptions): Promise<void\>
 
 ```js
 let simMessageOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxx",
-    status = 0
+    slotId: 0,
+    smsc: "test",
+    pdu: "xxxxxx",
+    status: sms.SimMessageStatus.SIM_MESSAGE_STATUS_READ
 };
 let promise = sms.addSimMessage(simMessageOptions);
 promise.then(data => {
@@ -607,9 +607,9 @@ updateSimMessage(options: UpdateSimMessageOptions, callback: AsyncCallback<void\
 
 ```js
 let updateSimMessageOptions = {
-    slotId = 0,
-    msgIndex = 1,
-    newStatus = 0,
+    slotId: 0,
+    msgIndex: 1,
+    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu = "xxxxxxx",
     smsc = "test"
 };
@@ -647,9 +647,9 @@ updateSimMessage(options: UpdateSimMessageOptions): Promise<void\>
 
 ```js
 let updateSimMessageOptions = {
-    slotId = 0,
-    msgIndex = 1,
-    newStatus = 0,
+    slotId: 0,
+    msgIndex: 1,
+    newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
     pdu = "xxxxxxx",
     smsc = "test"
 };
@@ -749,10 +749,11 @@ setCBConfig(options: CBConfigOptions, callback: AsyncCallback<void\>): void
 
 ```js
 let cbConfigOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxxxx",
-    status = 0
+    slotId: 0,
+    enable: true,
+    startMessageId: 100,
+    endMessageId: 200,
+    ranType: sms.RanType.TYPE_GSM
 };
 sms.setCBConfig(cbConfigOptions, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -788,13 +789,14 @@ setCBConfig(options: CBConfigOptions): Promise<void\>
 
 ```js
 let cbConfigOptions = {
-    slotId = 0,
-    smsc = "test",
-    pdu = "xxxxxxxx",
-    status = 0
+    slotId: 0,
+    enable: true,
+    startMessageId: 100,
+    endMessageId: 200,
+    ranType: sms.RanType.TYPE_GSM
 };
 let promise = sms.setCBConfig(cbConfigOptions);
-promise.then(data => 
+promise.then(data => {
     console.log(`setCBConfig success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`setCBConfig failed, promise: err->${JSON.stringify(err)}`);
@@ -859,7 +861,7 @@ getSmsSegmentsInfo(slotId: number, message: string, force7bit: boolean): Promise
 ```js
 let slotId = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
-promise.then(data => 
+promise.then(data => {
     console.log(`getSmsSegmentsInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
     console.error(`getSmsSegmentsInfo failed, promise: err->${JSON.stringify(err)}`);
@@ -886,7 +888,7 @@ isImsSmsSupported(callback: AsyncCallback<boolean\>): void
 
 ```js
 sms.isImsSmsSupported((err, data) => {
-      console.log(`callback: err->${JSON.(err)}, data->${JSON.stringify(data)}`);
+      console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1023,7 +1025,7 @@ decodeMms(mmsFilePathName: string | Array<number\>): Promise<MmsInformation\>
 
 ```js
 let mmsFilePathName = "filename";
-let promise = sms.getSmscAddr(mmsFilePathName);
+let promise = sms.decodeMms(mmsFilePathName);
 promise.then(data => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1092,13 +1094,13 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 
 ```js
 let mmsAcknowledgeInd = {
-    transactionId = "100",
-    version = 0x10,
-    reportAllowed = 128
+    transactionId: "100",
+    version: sms.MmsVersionType.MMS_VERSION_1_0,
+    reportAllowed = sms.ReportType.MMS_YES
 };
 let mmsInformation = {
-   messageType = 133,
-    mmsType = mmsAcknowledgeInd
+   messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
+    mmsType: mmsAcknowledgeInd
 };
 let promise = sms.encodeMms(mmsInformation);
 promise.then(data => {

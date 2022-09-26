@@ -32,3 +32,5 @@
     }
 }
 ```
+
+可参考示例：[input](./js-service-widget-basic-input.md)与[list](js-service-widget-container-list.md)等组件中的用法。

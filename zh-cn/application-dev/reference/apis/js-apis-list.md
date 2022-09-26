@@ -9,6 +9,9 @@ List和[LinkedList](js-apis-linkedlist.md)相比，LinkedList是双向链表，�
 
 **推荐使用场景：** 当需要频繁的插入删除时，推荐使用List高效操作。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -71,7 +74,7 @@ let result = list.add("a");
 let result1 = list.add(1);
 let b = [1, 2, 3];
 list.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = list.add(false);
 ```
 
@@ -123,9 +126,9 @@ has(element: T): boolean
 
 ```ts
 let list = new List();
-let result = list.has("Ahfbrgrbgnutfodgorrogorg");
-list.add("Ahfbrgrbgnutfodgorrogorg");
-let result1 = list.has("Ahfbrgrbgnutfodgorrogorg");
+let result = list.has("squirrel");
+list.add("squirrel");
+let result1 = list.has("squirrel");
 ```
 
 ### get
@@ -180,7 +183,7 @@ getLastIndexOf(element: T): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 查找指定元素最后一次出现的下标值，查找失败返回-1。 |
+| number | 返回指定元素最后一次出现的下标值，没有找到返回-1。 |
 
 **示例：**
 
@@ -249,7 +252,7 @@ equal(obj: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 如果对象与此列表相同回true，否则返回false。 |
+| boolean | 如果对象与此列表相同返回true，否则返回false。 |
 
 **示例：**
 
@@ -264,7 +267,7 @@ obj1.add(2);
 obj1.add(4);
 obj1.add(5);
 list.equal(obj1);
-let obj2 = {name : "lala", age : "13"};
+let obj2 = {name : "Dylon", age : "13"};
 let result = list.equal(obj2);
 ```
 

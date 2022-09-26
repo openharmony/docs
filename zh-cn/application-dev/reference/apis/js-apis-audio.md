@@ -54,60 +54,6 @@ getAudioManager(): AudioManager
 var audioManager = audio.getAudioManager();
 ```
 
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
-
-获取音频流管理器实例。使用callback方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
-**参数：**
-
-| 参数名   | 类型                                                       | 必填 | 说明             |
-| -------- | --------------------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | 是   | 返回音频流管理器实例。 |
-
-**示例：**
-
-```js
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    let audioStreamManager = data;
-  }
-});
-```
-
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(): Promise<AudioStreamManager\>
-
-获取音频流管理器实例。使用Promise方式异步返回结果。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Core
-
-**返回值：**
-
-| 类型                                                | 说明             |
-| ---------------------------------------------------- | ---------------- |
-| Promise<[AudioStreamManager](#audiostreammanager9)> | 返回音频流管理器实例。 |
-
-**示例：**
-
-```js
-var audioStreamManager;
-audio.getStreamManager().then((data) => {
-  audioStreamManager = data;
-  console.info('getStreamManager: Success!');
-}).catch((err) => {
-  console.error(`getStreamManager: ERROR : ${err}`);
-});
-
-```
-
 ## audio.createAudioRenderer<sup>8+</sup>
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
@@ -215,6 +161,8 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明             |
@@ -260,6 +208,8 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 获取音频采集器。使用promise 方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**需要权限：** ohos.permission.MICROPHONE
 
 **参数：**
 
@@ -667,6 +617,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备连接类型。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
 
 | 名称                            | 默认值 | 描述                   |
@@ -688,7 +640,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | groupId<sup>9+</sup>       | number                     | 是   | 否   | 组设备组id。 |
 | mappingId<sup>9+</sup>     | number                     | 是   | 否   | 组映射id。 |
 | groupName<sup>9+</sup>     | number                     | 是   | 否   | 组名。 |
-| ConnectType<sup>9+</sup>   | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
+| type<sup>9+</sup>          | [ConnectType](#connecttype9)| 是   | 否   | 连接设备类型。 |
 
 ## VolumeGroupInfos<sup>9+</sup>
 
@@ -826,12 +778,15 @@ getRoutingManager(): Promise&lt;AudioRoutingManager&gt;
 
 **示例：**
 ```js
-await audioManager.getRoutingManager().then((value) => {
-  var routingManager = value;
-  console.info('getRoutingManager Promise SUCCESS.');
-}).catch((err) => {
-  console.error(`Result ERROR: ${err}`);
-});
+var audioManager = audio.getAudioManager();
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    var routingManager = value;
+    console.info('getRoutingManager Promise SUCCESS.');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
 ```
 
 ### setVolume
@@ -1950,6 +1905,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
@@ -1984,6 +1940,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
@@ -2008,6 +1965,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene((err, value) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
@@ -2035,6 +1993,7 @@ getAudioScene\(\): Promise<AudioScene\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
@@ -2061,6 +2020,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2115,12 +2075,14 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| networkId | string                                    | 是   | 设备的网络id。     |
+| groupId    | number                                    | 是   | 音量组id。     |
 | callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | 是   | 回调，返回一个音量组实例。 |
 
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2150,8 +2112,8 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 **参数：**
 
 | 参数名     | 类型                                      | 必填 | 说明              |
-| ---------- | ---------------------------------------- | ---- | -------------- -- |
-| networkId | string                                    | 是   | 设备的网络id。     |
+| ---------- | ---------------------------------------- | ---- | ---------------- |
+| groupId    | number                                   | 是   | 音量组id。     |
 
 **返回值：**
 
@@ -2162,15 +2124,74 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
     let groupid = value[0].groupId;
-    let audioGroupManager = await audioManager.getGroupManager(audio.LOCAL_NETWORK_ID)
+    let audioGroupManager = await audioManager.getGroupManager(groupid)
     console.info('Callback invoked to indicate that the volume group infos list is obtained.');
   }
 }
 ```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
+
+获取音频流管理器实例。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                                       | 必填 | 说明             |
+| -------- | --------------------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | 是   | 返回音频流管理器实例。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+let audioStreamManager;
+audioManager.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(): Promise<AudioStreamManager\>
+
+获取音频流管理器实例。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                                | 说明             |
+| ---------------------------------------------------- | ---------------- |
+| Promise<[AudioStreamManager](#audiostreammanager9)> | 返回音频流管理器实例。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+var audioStreamManager;
+audioManager.getStreamManager().then((data) => {
+  audioStreamManager = data;
+  console.info('getStreamManager: Success!');
+}).catch((err) => {
+  console.error(`getStreamManager: ERROR : ${err}`);
+});
+
+```
+
 ### requestIndependentInterrupt<sup>9+</sup>
 
 requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
@@ -2202,7 +2223,7 @@ async function requestIndependentInterrupt(){
 ```
 ### requestIndependentInterrupt<sup>9+</sup>
 
-requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
+requestIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 申请独立焦点，获取独立SessionID，使用promise方式异步返回结果。
 
@@ -2264,7 +2285,7 @@ async function abandonIndependentInterrupt(){
 ```
 ### abandonIndependentInterrupt<sup>9+</sup>
 
-abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
+abandonIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 废除独立焦点，使用promise方式异步返回结果。
 
@@ -2312,6 +2333,8 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2344,6 +2367,8 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2373,6 +2398,8 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 
 获取指定流的音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2399,6 +2426,8 @@ audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2428,6 +2457,8 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最小音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2454,6 +2485,8 @@ audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最小音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2483,6 +2516,8 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 获取指定流的最大音量，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2509,6 +2544,8 @@ audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 获取指定流的最大音量，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2542,6 +2579,8 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2574,6 +2613,8 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 仅设置铃声（即volumeType为AudioVolumeType.RINGTONE）在静音和非静音状态切换时需要该权限。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2603,6 +2644,8 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 
 获取指定音量流是否被静音，使用callback方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2630,6 +2673,8 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 获取指定音量流是否被静音，使用Promise方式异步返回结果。
 
+**系统接口：** 该接口为系统接口
+
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
 **参数：**
@@ -2654,7 +2699,7 @@ audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ## AudioStreamManager<sup>9+</sup>
 
-管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#audiogetstreammanager9)获取AudioStreamManager实例。
+管理音频流。在使用AudioStreamManager的API前，需要使用[getStreamManager](#getstreammanager9)获取AudioStreamManager实例。
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
@@ -2673,16 +2718,6 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2730,42 +2765,34 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
-await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
-  console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
-  if (AudioRendererChangeInfoArray != null) {
-    for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-      let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
-      console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
-      console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
-      console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-      console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
-      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
-      for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-        console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
-        console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-        console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-        console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
-        console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-        console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-        console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-        console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+async function getCurrentAudioRendererInfoArray(){
+  await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+    console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
+    if (AudioRendererChangeInfoArray != null) {
+      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
+        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
+        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
+        console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
+        console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
+        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
+        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
+        for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+          console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
+          console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+          console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+          console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
+          console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
+          console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+        }
       }
     }
-  }
-}).catch((err) => {
-  console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
-});
+  }).catch((err) => {
+    console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
+  });
+}
 ```
 
 ### getCurrentAudioCapturerInfoArray<sup>9+</sup>
@@ -2785,16 +2812,6 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2840,40 +2857,32 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
-await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
-  console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
-  if (AudioCapturerChangeInfoArray != null) {
-    for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-      console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
-      console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
-      console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-      console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
-      for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-        console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
-        console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-        console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-        console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
-        console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-        console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-        console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-        console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+async function getCurrentAudioCapturerInfoArray(){
+  await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+    console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
+    if (AudioCapturerChangeInfoArray != null) {
+      for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+        console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
+        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
+        console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
+        console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
+        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
+        for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+          console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
+          console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
+          console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
+          console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
+          console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
+          console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+        }
       }
     }
-  }
-}).catch((err) => {
-  console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
-});
+  }).catch((err) => {
+    console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
+  });
+}
 ```
 
 ### on('audioRendererChange')<sup>9+</sup>
@@ -2894,16 +2903,6 @@ on(type: "audioRendererChange", callback: Callback&lt;AudioRendererChangeInfoArr
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -2945,16 +2944,6 @@ off(type: "audioRendererChange");
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.off('audioRendererChange');
 console.info('######### RendererChange Off is called #########');
 ```
@@ -2977,19 +2966,9 @@ on(type: "audioCapturerChange", callback: Callback&lt;AudioCapturerChangeInfoArr
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(`## CapChange on is called for element ${i} ##');
+    console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
@@ -3027,16 +3006,6 @@ off(type: "audioCapturerChange");
 **示例：**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
@@ -3063,11 +3032,11 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
+  } else {
     AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
       if (err) {
         console.error(`Failed to obtain the device list. ${err}`);
@@ -3102,6 +3071,7 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3133,6 +3103,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3161,18 +3132,17 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 获取设备更新详情。                         |
 
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
-    AudioRoutingManager.off('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+  } else {
+    AudioRoutingManager.off('deviceChange', (deviceChanged) => {
       console.info('Should be no callback.');
     });
   }
@@ -3198,21 +3168,25 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDevice<sup>9+</sup>
@@ -3240,20 +3214,24 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3276,6 +3254,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **示例：**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3289,15 +3268,18 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices by filter result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices by filter result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3326,6 +3308,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3339,14 +3322,17 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices by filter result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
-  })
-});
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices by filter result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    })
+  });
+}
 ```
 
 ## AudioRendererChangeInfo<sup>9+</sup>
@@ -3377,12 +3363,14 @@ var audioStreamManager;
 var audioStreamManagerCB;
 var resultFlag = false;
 
-await audioManager.getStreamManager().then(async function (data) {
-  audioStreamManager = data;
-  console.info('Get AudioStream Manager : Success');
-}).catch((err) => {
-  console.error(`Get AudioStream Manager : ERROR : ${err}`);
-});
+async function getStreamManager(){
+  await audioManager.getStreamManager().then(async function (data) {
+    audioStreamManager = data;
+    console.info('Get AudioStream Manager : Success');
+  }).catch((err) => {
+    console.error(`Get AudioStream Manager : ERROR : ${err}`);
+  });
+}
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
@@ -3528,13 +3516,11 @@ promise.then(function (value) {
 
 **系统接口：** 该接口为系统接口
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
-
 | 名称          | 类型                                     | 必填  | 说明          |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  是  | 表示应用ID。<br> 系统能力：SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  否  | 音频流唯一id。<br> 系统能力：SystemCapability.Multimedia.Audio.Renderer|
+| uid          | number                                   |  是  | 表示应用ID。<br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  否  | 表示渲染器信息。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  否  | 音频流唯一id。<br> **系统能力：** SystemCapability.Multimedia.Audio.Renderer|
 
 **示例：**
 
@@ -3977,7 +3963,10 @@ audioRenderer.getBufferSize().then((data)=> {
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
+var path;
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
 var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -4045,7 +4034,9 @@ audioRenderer.getBufferSize().then((data) => {
   });
 console.info(`BufferSize: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
 var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -4324,7 +4315,11 @@ var audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+let audioRenderer;
+async function createAudioRenderer(){
+  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+}
+
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
   console.info('setInterruptMode Success!');
@@ -4365,7 +4360,12 @@ var audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+
+let audioRenderer;
+async function createAudioRenderer(){
+  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+}
+
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err, data)=>{
   if(err){
@@ -4441,7 +4441,7 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用。
 
@@ -4488,7 +4488,7 @@ audioRenderer.off('markReach');
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -4755,6 +4755,11 @@ var audioCapturerInfo = {
   capturerFlags: 0
 }
 
+var audioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+}
+
 var audioCapturer;
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
@@ -4910,7 +4915,7 @@ audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-    console.error(`AudioFrameworkRecLog: getBufferSize: EROOR: ${err}`);
+    console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
   });
 audioCapturer.read(bufferSize, true, async(err, buffer) => {
   if (!err) {
@@ -5067,7 +5072,7 @@ audioCapturer.getBufferSize().then((data) => {
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发。
 
@@ -5113,7 +5118,7 @@ audioCapturer.off('markReach');
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，回调被循环调用。
 
@@ -5149,7 +5154,7 @@ off(type: 'periodReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | Yes  | 取消事件回调类型，支持的事件为：'periodReach'。 |
+| type   | string | 是  | 取消事件回调类型，支持的事件为：'periodReach'。 |
 
 **示例：**
 

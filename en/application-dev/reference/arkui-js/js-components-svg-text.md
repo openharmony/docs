@@ -4,6 +4,7 @@ The **\<text>** component is used to display a piece of textual information.
 
 
 >  **NOTE**
+>
 >  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - The text content must be written in the content area. The **tspan** sub-element label can be nested to segment the text content. The **textPath** sub-element label can be nested to draw the text content based on the specified path.
@@ -19,7 +20,7 @@ None
 
 ## Child Components
 
-The **\<tspan>**, **\<textPath>**, **\<animate>**, and **\<animateTransform>** child components are supported.
+The following are supported: [\<tspan>](js-components-svg-tspan.md), [\<textpath>](js-components-svg-textpath.md), [\<animate>](js-components-svg-animate.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
 
 
 ## Attributes
@@ -29,16 +30,16 @@ The attributes in the following table are supported.
 | Name            | Type                                | Default Value  | Mandatory  | Description                                      |
 | -------------- | ---------------------------------- | ----- | ---- | ---------------------------------------- |
 | id             | string                             | -     | No   | Unique ID of the component.                                |
-| x              | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | X-coordinate of the upper left corner of the component.                             |
-| y              | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Y-coordinate of the upper left corner of the component.                             |
-| dx             | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Offset of the text on the x-axis.                                |
-| dy             | &lt;length&gt;\|&lt;percentage&gt; | 0     | No   | Offset of the text on the y-axis.                                |
+| x              | &lt;length&gt; \| &lt;percentage&gt; | 0     | No   | X-coordinate of the upper left corner of the component.                             |
+| y              | &lt;length&gt; \| &lt;percentage&gt; | 0     | No   | Y-coordinate of the upper left corner of the component.                             |
+| dx             | &lt;length&gt; \| &lt;percentage&gt; | 0     | No   | Offset of the text on the x-axis.                                |
+| dy             | &lt;length&gt; \| &lt;percentage&gt; | 0     | No   | Offset of the text on the y-axis.                                |
 | rotate         | number                             | 0     | No   | Rotation of the text around its lower left corner. A positive number indicates clockwise rotation, and a negative number indicates counterclockwise rotation.               |
 | font-size      | &lt;length&gt;                     | 30px  | No   | Font size.                                |
 | fill           | &lt;color&gt;                      | black | No   | Fill color of the text.                                  |
 | fill-opacity   | number                             | 1.0   | No   | Fill opacity of the text.                                 |
 | opacity        | number                             | 1     | No   | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.|
-| stroke         | &lt;color&gt;                      | black | No   | Stroke and stroke color.                             |
+| stroke         | &lt;color&gt;                      | black | No   | Stroke color.                             |
 | stroke-width   | number                             | 1px   | No   | Stroke width.                                  |
 | stroke-opacity | number                             | 1.0   | No   | Stroke opacity.                                 |
 

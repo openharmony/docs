@@ -30,7 +30,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 ## 独立Docker环境
 
-OpenHarmony的Docker镜像托管在[HuaweiCloud SWR](https://console.huaweicloud.com/swr/?region=cn-south-1#/app/warehouse/warehouseMangeDetail/goldensir/openharmony-docker/openharmony-docker?type=ownImage)上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。下文将介绍具体使用步骤。
+OpenHarmony的Docker镜像托管在HuaweiCloud SWR上。开发者可以通过该镜像在很大程度上简化编译前的环境配置。下文将介绍具体使用步骤。
 
 ### 搭建Docker环境（轻量系统和小型系统）
 
