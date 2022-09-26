@@ -73,7 +73,7 @@
 
 - [`Gallery`：组件集合（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery)
 
-- [`BringApp`：拉起系统应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
+- [`BringApp`：拉起系统应用（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BringApp)
 
 - [`Chat`：聊天示例应用（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/AppSample/Chat)
 
@@ -95,7 +95,7 @@
 
 - [`Search`：Search组件（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Search)
 
-- [`QRCode`：二维码（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
+- [`QRCode`：二维码（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/QRCode)
 
 - [极简声明式UI范式（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
 
