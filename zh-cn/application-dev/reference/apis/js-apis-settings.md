@@ -422,7 +422,7 @@ enableAirplaneMode(enable: boolean): Promise\<void>
 
 ```js
 let isEnabled = true;
-settingsenableAirplaneMode(isEnabled).then((err) => {
+settings.enableAirplaneMode(isEnabled).then((err) => {
     if (err) {
         console.log('Failed to enable AirplaneMode.');
         return;
