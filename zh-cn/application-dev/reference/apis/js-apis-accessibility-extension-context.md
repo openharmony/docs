@@ -27,7 +27,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 表示查询下一焦点元素的方向。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称       | 描述      |
 | -------- | ------- |
@@ -42,7 +42,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 表示查询焦点元素的类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称            | 描述          |
 | ------------- | ----------- |
@@ -53,7 +53,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 表示矩形区域。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称     | 参数类型   | 可读   | 可写   | 说明        |
 | ------ | ------ | ---- | ---- | --------- |
@@ -66,7 +66,7 @@ class MainAbility extends AccessibilityExtensionAbility {
 
 表示窗口的类型。
 
-**系统能力**：以下各项对应的系统能力均为 SystemCapability.Barrierfree.Accessibility.Core
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
 | 名称          | 描述        |
 | ----------- | --------- |
@@ -185,7 +185,7 @@ this.context.getWindows().then(windows => {
 
 ## AccessibilityExtensionContext.injectGesture
 
-injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<void>
+injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 注入手势。
 
@@ -196,13 +196,7 @@ injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<
 | 参数名         | 参数类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | gesturePath | [GesturePath](js-apis-application-AccessibilityExtensionAbility.md#GesturePath) | 是    | 表示手势的路径信息。     |
-| listener    | Callback&lt;boolean&gt;                  | 是    | 表示注入手势执行结果的回调。 |
-
-**返回值：**
-
-| 类型                     | 说明                     |
-| ---------------------- | ---------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回注入手势的调用结果。 |
+| callback    | AsyncCallback&lt;void&gt;                  | 是    | 表示注入手势执行结果的回调。 |
 
 **示例：**
 
@@ -218,7 +212,7 @@ this.context.gestureInject(gesturePath, (result) => {
 ```
 ## AccessibilityElement.attributeNames
 
-attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array<T>>;
+attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 
 获取节点元素的所有属性名称。
 
@@ -283,7 +277,7 @@ try {
 
 ## AccessibilityElement.actionNames
 
-actionNames(): Promise\<Array<string>>;
+actionNames(): Promise\<Array\<string>>;
 
 获取节点元素支持的所有操作名称。
 
@@ -349,7 +343,7 @@ try {
 
 ## AccessibilityElement.findElement
 
-findElement(type: 'content', condition: string): Promise\<Array<AccessibilityElement>>;
+findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
 查询节点元素的指定内容。
 
