@@ -90,9 +90,9 @@ Use the following APIs to delete a  **Storage**  instance or data file.
    context.getFilesDir().then((filePath) => {
        path = filePath;
        console.info("======================>getFilesDirPromsie====================>");
+       
+       let promise = dataStorage.getStorage(path + '/mystore');
    });
-
-   let promise = dataStorage.getStorage(path + '/mystore');
    ```
 
 
@@ -118,18 +118,19 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Use the  **get\(\)**  method of the  **Storage**  class to read data.
 
-    ```js
-    promise.then((storage) => {
-        let getPromise = storage.get('startup', 'default');
-        getPromise.then((value) => {
-            console.info("The value of startup is " + value);
-        }).catch((err) => {
-            console.info("Failed to get the value of startup with err: " + err);
-        })
-    }).catch((err) => {
-        console.info("Failed to get the storage.");
-    })
-    ```
+   ```js
+   promise.then((storage) => {
+       let getPromise = storage.get('startup', 'default')
+       getPromise.then((value) => {
+           console.info("The value of startup is " + value);
+       }).catch((err) => {
+           console.info("Failed to get the value of startup with err: " + err);
+       })
+   }).catch((err) => {
+       console.info("Failed to get the storage.")
+        
+   })
+   ```
 
 
 5.  Store data persistently.
@@ -144,32 +145,32 @@ Use the following APIs to delete a  **Storage**  instance or data file.
 
     Specify  **StorageObserver**  as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and the  **flush\(\)**  method is executed,  **StorageObserver**  will be invoked. Unregister the  **StorageObserver**  when it is no longer required.
 
-    ```js
-    promise.then((storage) => {
-        var observer = function (key) {
-            console.info("The key of " + key + " changed.");
-        }
-        storage.on('change', observer);
-        storage.putSync('startup', 'auto'); // Modify data in the Storage instance.
-        storage.flushSync(); // Trigger the StorageObserver callback.
+   ```js
+   promise.then((storage) => {
+       var observer = function (key) {
+           console.info("The key of " + key + " changed.");
+       }
+       storage.on('change', observer)
+       storage.putSync('startup', 'auto'); // Modify data in the Storage instance.
+       storage.flushSync(); // Trigger the StorageObserver callback.
     
-        storage.off('change', observer); // Unsubscribe from the data changes.
-    }).catch((err) => {
-        console.info("Failed to get the storage.");
-    })
-    ```
+       storage.off('change', observer); // Unsubscribe from the data changes.
+   }).catch((err) => {
+       console.info("Failed to get the storage.");
+   })
+   ```
 
 
 7.  Delete the specified file.
 
     Use the  **deleteStorage**  method to delete the  **Storage**  singleton of the specified file from the memory, and delete the specified file, its backup file, and damaged files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will occur. The deleted data and files cannot be restored.
 
-    ```js
-    let promise = dataStorage.deleteStorage(path + '/mystore');
-    promise.then(() => {
-        console.info("Succeeded in deleting the storage.");
-    }).catch((err) => {
-        console.info("Failed to deleted the storage with err: " + err);
-    })
-    ```
-
+   ```js
+   let promise = dataStorage.deleteStorage(path + '/mystore');
+   promise.then(() => {
+       console.info("Succeeded in deleting the storage.");
+   }).catch((err) => {
+       console.info("Failed to delete the storage with err: " + err);
+        
+   })
+   ```
