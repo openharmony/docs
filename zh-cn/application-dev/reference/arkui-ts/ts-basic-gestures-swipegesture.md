@@ -33,7 +33,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 |
+| onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 |
 
 ![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374661.png)
 ## 示例

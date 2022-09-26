@@ -23,9 +23,9 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
-| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
-| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
+| onActionStart(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功回调。 |
+| onActionUpdate(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pinch手势移动过程中回调。 |
+| onActionEnd(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，手指抬起后触发回调。 |
 | onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | Pinch手势识别成功，接收到触摸取消事件触发回调。 |
 
 
@@ -40,7 +40,7 @@ struct PinchGestureExample {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PinchGesture scale:' + this.scale)
+      Text('PinchGesture scale:' + this.scaleValue)
     }
     .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
     .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
