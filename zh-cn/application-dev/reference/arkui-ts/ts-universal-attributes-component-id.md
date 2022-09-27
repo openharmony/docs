@@ -172,7 +172,7 @@ struct IdExample {
         console.info(getInspectorTree())
         this.text = "Button 'click to start' is clicked"
         setTimeout(() => {
-          sendEventByKey("longClick", 11, "") //给id为"longClick"的组件发送长按事件
+          sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件
         }, 2000)
       }).id('click')
 
@@ -184,18 +184,18 @@ struct IdExample {
         console.info('long clicked')
         this.text = "Button 'longClick' is longclicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch') //获取id为"onTouch"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onTouch') // 获取id为"onTouch"组件的矩形区域坐标
           let touchPoint: TouchObject = {
             id: 1,
-            x: rect.left + (rect.right - rect.left) / 2, //组件中心点x坐标
-            y: rect.top + (rect.bottom - rect.top) / 2, //组件中心点y坐标
+            x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
             type: TouchType.Down,
-            screenX: rect.left + (rect.right - rect.left) / 2, //组件中心点x坐标
-            screenY: rect.left + (rect.right - rect.left) / 2, //组件中心点y坐标
+            screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            screenY: rect.left + (rect.right - rect.left) / 2, // 组件中心点y坐标
           }
-          sendTouchEvent(touchPoint) //发送触摸事件
+          sendTouchEvent(touchPoint) // 发送触摸事件
           touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint) //发送触摸事件
+          sendTouchEvent(touchPoint) // 发送触摸事件
         }, 2000)
       })).id('longClick')
 
@@ -206,14 +206,14 @@ struct IdExample {
         console.info('onTouch is clicked')
         this.text = "Button 'onTouch' is clicked"
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse') //获取id为"onMouse"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onMouse') // 获取id为"onMouse"组件的矩形区域坐标
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
-            x: rect.left + (rect.right - rect.left) / 2, //组件中心点x坐标
-            y: rect.top + (rect.bottom - rect.top) / 2, //组件中心点y坐标
-            screenX: rect.left + (rect.right - rect.left) / 2, //组件中心点x坐标
-            screenY: rect.top + (rect.bottom - rect.top) / 2, //组件中心点y坐标
+            x: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            y: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
+            screenX: rect.left + (rect.right - rect.left) / 2, // 组件中心点x坐标
+            screenY: rect.top + (rect.bottom - rect.top) / 2, // 组件中心点y坐标
             timestamp: 1,
             target: {
               area: {
@@ -231,7 +231,7 @@ struct IdExample {
             },
             source: SourceType.Mouse
           }
-          sendMouseEvent(mouseEvent) //发送鼠标事件
+          sendMouseEvent(mouseEvent) // 发送鼠标事件
         }, 2000)
       }).id('onTouch')
 
@@ -251,7 +251,7 @@ struct IdExample {
             metaKey: 0,
             timestamp: 0
           }
-          sendKeyEvent(keyEvent) //发送按键事件
+          sendKeyEvent(keyEvent) // 发送按键事件
         }, 2000)
       }).id('onMouse')
 

@@ -17,10 +17,10 @@
 | 名称         | 类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
-| slice      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
-| width      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
-| outset     | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
-| RepeatMode | RepeatMode                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
+| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
+| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
+| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
+| repeat | [RepeatMode](#repeatmode枚举说明)                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
 | fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
 
 
