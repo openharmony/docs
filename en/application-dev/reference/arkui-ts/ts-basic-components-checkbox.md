@@ -12,7 +12,7 @@ Not supported
 
 ## APIs
 
-Checkbox( option?: {name?: string,  group?: string })
+Checkbox(options?: {name?: string,  group?: string })
 
 **Parameters**
 
@@ -29,7 +29,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name         | Type| Description|
 | ------------- | ------- | -------- |
 | select        | boolean | Whether the check box is selected.<br>Default value: **false**|
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | Color of the check box when it is selected.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.|
 
 ## Events
 

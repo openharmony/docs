@@ -266,7 +266,7 @@ hiAppEvent.configure({
 
 addWatcher(watcher: [Watcher](#watcher9)): [AppEventPackageHolder](#appeventpackageholder9)
 
-新增应用事件订阅者。
+添加应用事件订阅者。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -404,11 +404,29 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
+### constructor<sup>9+</sup>
+
+constructor(watcherName: string);
+
+类构造函数，在添加订阅时会被系统自动调用来创建一个订阅数据持有者对象并返回给开发者。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**示例：**
+
+```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
+```
+
 ### setSize<sup>9+</sup>
 
 setSize(size: number): void
 
 设置每次取出的应用事件包的数据大小阈值，单位为byte，默认值为512*1024。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **示例：**
 
@@ -424,6 +442,8 @@ holder.setSize(1000);
 takeNext(): [AppEventPackage](#appeventpackage9)
 
 根据设置的数据大小阈值来取出订阅事件数据，当订阅事件数据全部被取出时返回null作为标识。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **示例：**
 

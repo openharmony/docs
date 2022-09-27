@@ -1,25 +1,19 @@
 # Flex Layout
 
 >  **NOTE**
-> - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-> 
-> - The flex layout attributes are valid only when the parent component is a **\<Flex>** component.
-
-
-## Required Permissions
-
-None
+>  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - The flex layout is valid only when the parent component is a **\<Flex>**, **\<Column>**, or **\<Row>** component.
 
 
 ## Attributes
 
-
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| flexBasis | 'auto' \| Length | 'auto' | Base dimension of the component in the main axis of the flex layout.|
-| flexGrow | number | 0 | Percentage of the flex layout's remaining space that is allocated to the component.|
-| flexShrink | number | 1 | Percentage of the flex layout's shrink size that is allocated to the component.|
-| alignSelf | [ItemAlign](ts-appendix-enums.md#itemalign)| Auto | Alignment mode, which overwrites the default **alignItems** configuration in the flex layout.|
+| Name        | Type                                    | Description                                      |
+| ---------- | ---------------------------------------- | ---------------------------------------- |
+| flexBasis  | number \| string                         | Base size of a component in the main axis of the parent container.<br>Default value: **'auto'** (indicating that the base size of the component in the main axis is the original size of the component)|
+| flexGrow   | number                                   | Percentage of the parent container's remaining space that is allocated to the component.<br>Default value: **0**      |
+| flexShrink | number                                   | Percentage of the parent container's shrink size that is allocated to the component.<br>When the parent container is **\<Row>** or **\<Column>**, the default value is **0**.<br> When the parent container is **\<Flex>**, the default value is **1**.      |
+| alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the child components along the cross axis, which overwrites the default **alignItems** configuration in the parent container.<br>Default value: **ItemAlign.Auto**|
 
 
 ## Example
@@ -33,8 +27,8 @@ struct FlexExample {
   build() {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // Base dimension in the main axis
-      // flexBasis() can be 'auto' (default value), which indicates the original component size. If the value is of the number type, it is similar to .width()/.height(). The value is based on the main axis.
+      // Base size in the main axis
+      // The value of flexBasis() can be 'auto' or a number, which is equivalent to .width()/.height().
       Flex() {
         Text('flexBasis(100)')
           .flexBasis('100').height(100).lineHeight(70)

@@ -139,8 +139,8 @@
 
 | 名称        | 类型   | 可读 | 可写 | 说明                 |
 | ----------- | ------ | ---- | ---- | -------------------- |
-| releaseType | string | 是   | 否   | 版本的最小兼容代码。 |
-| compatible  | number | 是   | 否   | 版本的名称。         |
+| releaseType | string | 是   | 否   | 版本的名称。         |
+| compatible  | number | 是   | 否   | 版本的最小兼容代码。 |
 | target      | numbe  | 是   | 否   | 目标版本号。         |
 
 ## Version
