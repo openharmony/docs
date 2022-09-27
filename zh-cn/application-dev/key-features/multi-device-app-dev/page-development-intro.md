@@ -25,51 +25,15 @@
 
 ## 相关示例
 
-本章中涉及的示例代码均可以在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev)中获取，感兴趣的开发者可以自行下载、运行及查看效果。
+[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev)中提供了如下一多示例，感兴趣的开发者可以自行下载、运行及查看效果。
 
-| 示例名称                                                     | 简介                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
-| [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket) | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
-| [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
-| [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 
->
-
-- [`AdaptiveCapabilities`（eTS）
-
-  
-
-- [`JsAdaptiveCapabilities`](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
-
-  ：多设备自适应能力（JS）（API8）
-
-- [`MusicAlbum`
-
-  ：一多音乐专辑主页（eTS）（API9）
-
-- [`AppMarket`
-
-  ：一多应用市场首页（eTS）（API9）
+| 示例名称                                                     | 开发范式       | 简介                                                         |
+| ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
+| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities) | 声明式开发范式 | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
+| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities) | 类Web开发范式  | 本章配套的示例代码，包括自适应布局、响应式布局及资源文件使用等。 |
+| [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket) | 声明式开发范式 | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [蔬菜百科首页](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Vegetable) | 声明式开发范式 | 一多示例页面，以蔬菜百科首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [天气](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
 
 
-
-
-
-针对一次开发，多端部署，有以下相关实例可供参考：
-
-- [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum)
-- [`AppMarket`：一多应用市场首页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket)
-- [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
-- [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
-- [一次开发多端部署（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
-
-
-
-## 相关实例
-
-针对栅格断点系统开发，有以下相关实例可供参考：
-
-- [`Weather`：一多天气（eTS）（API9）
