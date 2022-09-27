@@ -169,12 +169,7 @@ readPixels(area: PositionArea): Promise\<void>
 **示例：**
 
 ```js
-const area = {
-    pixels: new ArrayBuffer(8),
-    offset: 0,
-    stride: 8,
-    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-}
+const area = new ArrayBuffer(400);
 pixelmap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); //符合条件则进入
 }).catch(error => {
@@ -2483,7 +2478,7 @@ PixelMap的初始化选项。
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
 
 | 名称              | 默认值                  | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
