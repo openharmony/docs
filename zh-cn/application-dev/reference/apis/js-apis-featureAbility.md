@@ -14,7 +14,7 @@ FeatureAbility模块的接口只能在Page类型的Ability调用
 ## 导入模块
 
 ```
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 ```
 
 ## featureAbility.startAbility
@@ -35,8 +35,8 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -52,6 +52,9 @@ featureAbility.startAbility(
             uri: ""
         },
     },
+    (err, data) => {
+        console.info("startAbility err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+    }
 );
 ```
 
@@ -74,8 +77,8 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbility(
     {
         want:
@@ -83,7 +86,7 @@ featureAbility.startAbility(
             action: "action.system.home",
             entities: ["entity.system.home"],
             type: "MIMETYPE",
-			flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
             deviceId: "",
             bundleName: "com.example.myapplication",
             /* FA模型中abilityName由package + Ability name组成 */
@@ -92,7 +95,7 @@ featureAbility.startAbility(
         },
     }
 ).then((data) => {
-	console.info("==========================>startAbility=======================>");
+    console.info("startAbility data: " + JSON.stringify(data));
 });
 ```
 
@@ -119,10 +122,10 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-featureAbility.acquireDataAbilityHelper(
+import featureAbility from '@ohos.ability.featureAbility';
+var dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     "dataability:///com.example.DataAbility"
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -144,7 +147,7 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
    {
         want:
@@ -161,9 +164,9 @@ featureAbility.startAbilityForResult(
         },
     },
     (err, data) => {
-        console.info("err: " + JSON.stringify(err) + "data: " + JSON.stringify(data))
+        console.info("startAbilityForResult err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
     }
-)
+);
 ```
 
 ## featureAbility.startAbilityForResult<sup>7+</sup>
@@ -190,7 +193,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.startAbilityForResult(
     {
         want:
@@ -218,7 +221,7 @@ featureAbility.startAbilityForResult(
         },
     },
 ).then((data) => {
-    console.info("==========================>startAbilityForResult=======================>");
+    console.info("startAbilityForResult data: " + JSON.stringify(data));
 });
 ```
 
@@ -240,8 +243,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 **示例：**
 
 ```javascript
-import featureAbility from '@ohos.ability.featureAbility'
-import wantConstant from '@ohos.ability.wantConstant'
+import featureAbility from '@ohos.ability.featureAbility';
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -295,7 +298,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-import wantConstant from '@ohos.ability.wantConstant'
+import wantConstant from '@ohos.ability.wantConstant';
 featureAbility.terminateSelfWithResult(
     {
         resultCode: 1,
@@ -345,7 +348,9 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.hasWindowFocus()
+featureAbility.hasWindowFocus((err, data) => {
+    console.info("hasWindowFocus err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.hasWindowFocus<sup>7+<sup>
@@ -367,7 +372,7 @@ hasWindowFocus(): Promise\<boolean>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.hasWindowFocus().then((data) => {
-    console.info("==========================>hasWindowFocus=======================>");
+    console.info("hasWindowFocus data: " + JSON.stringify(data));
 });
 ```
 
@@ -389,7 +394,9 @@ getWant(callback: AsyncCallback\<Want>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.getWant()
+featureAbility.getWant((err, data) => {
+    console.info("getWant err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.getWant
@@ -411,7 +418,7 @@ getWant(): Promise\<Want>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.getWant().then((data) => {
-	console.info("==========================>getWantCallBack=======================>");
+    console.info("getWant data: " + JSON.stringify(data));
 });
 ```
 
@@ -434,7 +441,9 @@ getContext(): Context
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 var context = featureAbility.getContext()
-context.getBundleName()
+context.getBundleName((err, data) => {
+    console.info("getBundleName err: " + JSON.stringify(err) + "data: " + JSON.stringify(data));
+});
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -455,7 +464,7 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf()
+featureAbility.terminateSelf();
 ```
 
 ## featureAbility.terminateSelf<sup>7+</sup>
@@ -477,7 +486,7 @@ terminateSelf(): Promise\<void>
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
 featureAbility.terminateSelf().then((data) => {
-    console.info("==========================>terminateSelfCallBack=======================>");
+    console.info("==========================>terminateSelf=======================>");
 });
 ```
 
@@ -517,8 +526,8 @@ ConnectOptions类型说明
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -528,7 +537,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -560,8 +569,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -571,7 +580,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -582,7 +591,7 @@ var connId = featureAbility.connectAbility(
         onFailed: onFailedCallback,
     },
 );
-var result = featureAbility.disconnectAbility(connId,
+var result = featureAbility.disconnectAbility(connectId,
     (error,data) => {
         console.log('featureAbilityTest DisConnectJsSameBundleName result errCode : ' + error.code + " data: " + data)
     },
@@ -612,8 +621,8 @@ disconnectAbility(connection: number): Promise\<void>
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -623,7 +632,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         bundleName: "com.ix.ServiceAbility",
         abilityName: "ServiceAbilityA",
@@ -635,7 +644,7 @@ var connId = featureAbility.connectAbility(
     },
 );
 
-featureAbility.disconnectAbility(connId).then((data) => {
+featureAbility.disconnectAbility(connectId).then((data) => {
     console.log('data : '  + data);
 }).catch((error)=>{
     console.log('featureAbilityTest result errCode : ' + error.code);
@@ -660,7 +669,9 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 **示例：**
 
 ```javascript
-featureAbility.getWindow()
+featureAbility.getWindow((err, data) => {
+    console.info("getWindow err: " + JSON.stringify(err) + "data: " + typeof(data));
+});
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -681,7 +692,7 @@ getWindow(): Promise\<window.Window>;
 
 ```javascript
 featureAbility.getWindow().then((data) => {
-  console.info("=============getWindowPromise========== " +  JSON.stringify(data)); 
+    console.info("getWindow data: " + typeof(data));
 });
 ```
 
@@ -703,8 +714,8 @@ onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void;
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -714,7 +725,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -745,8 +756,8 @@ onDisconnect(elementName: ElementName): void;
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -756,7 +767,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",
@@ -787,8 +798,8 @@ ConnectAbility调用失败时的回调函数。
 **示例：**
 
 ```javascript
-import rpc from '@ohos.rpc'
-import featureAbility from '@ohos.ability.featureAbility'
+import rpc from '@ohos.rpc';
+import featureAbility from '@ohos.ability.featureAbility';
 function onConnectCallback(element, remote){
     console.log('ConnectAbility onConnect remote is proxy:' + (remote instanceof rpc.RemoteProxy));
 }
@@ -798,7 +809,7 @@ function onDisconnectCallback(element){
 function onFailedCallback(code){
     console.log('featureAbilityTest ConnectAbility onFailed errCode : ' + code)
 }
-var connId = featureAbility.connectAbility(
+var connectId = featureAbility.connectAbility(
     {
         deviceId: "",
         bundleName: "com.ix.ServiceAbility",

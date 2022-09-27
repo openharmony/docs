@@ -33,13 +33,13 @@ onConfigurationUpdated(config: Configuration): void;
     
 
   ```js
-import AbilityStage from "@ohos.application.AbilityStage";
+import Ability from "@ohos.application.Ability";
 
 var callbackId;
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MyAbility extends Ability {
     onCreate() {
-        console.log("MyAbilityStage onCreate")
+        console.log("MyAbility onCreate")
         globalThis.applicationContext = this.context.getApplicationContext();
         let EnvironmentCallback  =  {
             onConfigurationUpdated(config){

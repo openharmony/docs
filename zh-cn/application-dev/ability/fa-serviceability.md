@@ -176,7 +176,7 @@ let promise = featureAbility.startAbility(
 
     ```javascript
     import featureAbility from '@ohos.ability.featureAbility';
-    let connId = featureAbility.connectAbility(
+    let connectId = featureAbility.connectAbility(
         {
             bundleName: "com.jstest.service",
             abilityName: "com.jstest.service.ServiceAbility",
@@ -293,7 +293,7 @@ function getRemoteDeviceId() {
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let connId = featureAbility.connectAbility(
+let connectId = featureAbility.connectAbility(
     {
         deviceId: getRemoteDeviceId(),
         bundleName: "ohos.samples.etsDemo",
