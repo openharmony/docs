@@ -52,7 +52,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -81,7 +81,7 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 | 类型                                  | 说明                                |
 | ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -134,7 +134,7 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 异步创建视频录制实例回调方法。 |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
@@ -164,7 +164,7 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 | 类型                                      | 说明                                |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | 异步创建视频录制实例Promise返回值。 |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
