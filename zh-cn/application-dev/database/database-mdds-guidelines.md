@@ -50,6 +50,7 @@
    这个权限还需要在应用首次启动的时候弹窗获取用户授权，可以通过如下代码实现：
 
     ```js
+    // FA模型
     import featureAbility from '@ohos.ability.featureAbility';
 	
     function grantPermission() {
@@ -63,6 +64,47 @@
     }
     
     grantPermission();
+
+    // Stage模型
+    import AbilityStage from '@ohos.application.Ability';
+    import accessControl from '@ohos.abilityAccessCtrl';
+    import bundle from '@ohos.bundle';
+
+    let appId = "appId";
+    async function requestPermissions () {
+      let permissions: Array<string> = [
+        "ohos.permission.DISTRIBUTED_DATASYNC"
+      ];
+      let needGrantPermission = false
+      let accessManger = accessControl.createAtManager()
+      console.info("[JSDemo]: app permission get bundle info")
+      let bundleInfo = bundle.getApplicationInfo(appId, 0, 100)
+      console.info(`[JSDemo]: app permission query permission ${bundleInfo.accessTokenId.toString()}`)
+      for (const permission of permissions) {
+        console.info(`[JSDemo]: app permission query grant status ${permission}`)
+        try {
+          let grantStatus = accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
+          if (grantStatus === accessControl.GrantStatus.PERMISSION_DENIED) {
+            needGrantPermission = true
+            break;
+          }
+        } catch (err) {
+          console.error(`[JSDemo]: app permission query grant status error ${permission} ${JSON.stringify(err)}`)
+          needGrantPermission = true
+          break;
+        }
+      }
+      if (needGrantPermission) {
+        console.info("[JSDemo]: app permission needGrantPermission")
+        try {
+        globalThis.abilityContext.requestPermissionsFromUser(permissions)
+        } catch (err) {
+          console.error(`[JSDemo]: app permission ${JSON.stringify(err)}`)
+        }
+      } else {
+        console.info("[JSDemo]: app permission already granted")
+      }
+    }
     ```
 
 3. 根据配置构造分布式数据库管理类实例。
@@ -80,7 +122,7 @@
    // Stage模型获取context
    import AbilityStage from '@ohos.application.Ability'
    let context = null;
-   class MainAbility extends Ability{
+   class MainAbility extends AbilityStage{
       onWindowStageCreate(windowStage){
         context = this.context;
       }
