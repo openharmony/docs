@@ -43,7 +43,7 @@ getOnlineUpdater(upgradeInfo: UpgradeInfo): Updater
 
 ```ts
 try {
-  let upgradeInfo = {
+  const upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
       vendor: update.BusinessVendor.PUBLIC,
@@ -233,12 +233,12 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-let descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -276,12 +276,12 @@ getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOption
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 描述文件选项
-let descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -368,7 +368,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions, callback: A
 
 ```ts
 // 描述文件选项
-let descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -405,7 +405,7 @@ getCurrentVersionDescription(descriptionOptions: DescriptionOptions): Promise\<A
 
 ```ts
 // 描述文件选项
-let descriptionOptions = {
+const descriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // 标准格式
   language: "zh-cn" // 中文
 };
@@ -489,12 +489,12 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions,
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-let downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 };
@@ -530,12 +530,12 @@ download(versionDigestInfo: VersionDigestInfo, downloadOptions: DownloadOptions)
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 下载选项
-let downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
   order: update.Order.DOWNLOAD // 下载
 };
@@ -568,12 +568,12 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-let resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
@@ -608,12 +608,12 @@ resumeDownload(versionDigestInfo: VersionDigestInfo, resumeDownloadOptions: Resu
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 恢复下载选项
-let resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // 允许数据网络下载
 };
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
@@ -645,12 +645,12 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-let pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
@@ -685,12 +685,12 @@ pauseDownload(versionDigestInfo: VersionDigestInfo, pauseDownloadOptions: PauseD
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 暂停下载选项
-let pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // 允许自动恢复下载
 };
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
@@ -722,12 +722,12 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions, ca
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-let upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
@@ -762,12 +762,12 @@ upgrade(versionDigestInfo: VersionDigestInfo, upgradeOptions: UpgradeOptions): P
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 安装选项
-let upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // 安装指令
 };
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
@@ -799,12 +799,12 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions, cal
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-let clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
@@ -839,12 +839,12 @@ clearError(versionDigestInfo: VersionDigestInfo, clearOptions: ClearOptions): Pr
 
 ```ts
 // 版本摘要信息
-let versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // 检测结果中的版本摘要信息
 };
 
 // 清除选项
-let clearOptions = {
+lconstet clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
 };
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
@@ -926,7 +926,7 @@ setUpgradePolicy(policy: UpgradePolicy, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
@@ -961,7 +961,7 @@ setUpgradePolicy(policy: UpgradePolicy): Promise\<void>
 **示例：**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // 自动升级时间段，用分钟表示
@@ -1041,7 +1041,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 **示例：**
 
 ```ts
-let eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
@@ -1068,7 +1068,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 **示例：**
 
 ```ts
-let eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
@@ -1153,7 +1153,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string, callback: Asyn
 **示例：**
 
 ```ts
-let upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
@@ -1189,7 +1189,7 @@ verifyUpgradePackage(upgradeFile: UpgradeFile, certsFile: string): Promise\<void
 **示例:**
 
 ```ts
-let upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 };
@@ -1219,7 +1219,7 @@ applyNewVersion(upgradeFiles: Array<[UpgradeFile](#upgradefile)>, callback: Asyn
 **示例：**
 
 ```ts
-let upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA包
   filePath: "path" // 本地升级包路径
 }];
@@ -1276,7 +1276,7 @@ on(eventClassifyInfo: EventClassifyInfo, taskCallback: UpgradeTaskCallback): voi
 **示例：**
 
 ```ts
-let eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
@@ -1305,7 +1305,7 @@ off(eventClassifyInfo: EventClassifyInfo, taskCallback?: UpgradeTaskCallback): v
 **示例：**
 
 ```ts
-let eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // 订阅升级更新事件
   extraInfo: ""
 };
