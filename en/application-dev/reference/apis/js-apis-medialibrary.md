@@ -1130,7 +1130,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail((err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
     });
 }
 ```
@@ -1168,7 +1168,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
     });
 }
 ```
@@ -1212,7 +1212,7 @@ async function example() {
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size)
     .then((pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
     })
     .catch((err) => {
         console.info('mediaLibraryTest : getThumbnail fail'+ err);
@@ -1502,7 +1502,7 @@ async function example() {
                 asset.trash(true, istrashCallBack);
 
             } else {
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
+                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessful = ' + err);
                 console.info('mediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
 
             }
@@ -1736,7 +1736,7 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next file asset.|
+| callback | AsyncCallback&lt;[FileAsset](#fileasset7)&gt; | Yes  | Callback used to return the next file asset.|
 
 **Example**
 

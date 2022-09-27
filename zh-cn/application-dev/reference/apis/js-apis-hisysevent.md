@@ -207,7 +207,7 @@ let ret = hiSysEvent.addWatcher(watcher)
 
 ## hiSysEvent.removeWatcher
 
-removeWatcher(wathcer: Watcher): number
+removeWatcher(watcher: Watcher): number
 
 取消订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
 

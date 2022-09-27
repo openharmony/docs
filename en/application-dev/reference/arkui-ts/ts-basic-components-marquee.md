@@ -1,17 +1,11 @@
 # Marquee
 
+The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
+
 
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<Marquee>** component is used to display a scrolling piece of text. The text is scrolled only when its width exceeds the width of the **\<Marquee>** component.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -23,23 +17,29 @@ Not supported
 
 Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
 
-- Parameters
-    | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | start | boolean | Yes| - | Whether to start scrolling.|
-  | step | number | No| 6 | Scrolling step.|
-  | loop | number | No| -1 | Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.|
-  | fromStart | boolean | No| true | Whether the text scrolls from the start.|
-  | src | string | Yes| - | Text to scroll.|
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| start | boolean | Yes| Whether to start scrolling.|
+| step | number | No| Scrolling step.<br>Default value: **6**, in vp|
+| loop | number | No| Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**|
+| fromStart | boolean | No| Whether the text scrolls from the start.<br>Default value: **true**|
+| src | string | Yes| Text to scroll.|
+
+## Attributes
+
+| Name      | Type| Description                                |
+| ---------- | -------- | ------------------------------------ |
+| allowScale | boolean  | Whether to allow text to scale.<br>Default value: **false**|
 
 ## Events
 
 | Name| Description|
 | -------- | -------- |
-| onStart(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee starts scrolling.|
-| onBounce(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has reached the end.|
-| onFinish(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | Triggered when the marquee has finished scrolling.|
+| onStart(event: () =&gt; void) | Triggered when the marquee starts scrolling.|
+| onBounce(event: () =&gt; void) | Triggered when the marquee has reached the end. This event will be triggered for multiple times if the **loop** attribute is not set to **1**.|
+| onFinish(event: () =&gt; void) | Triggered when the marquee has finished the number of scrolling times set by the **loop** attribute.|
 
 
 ## Example
@@ -84,7 +84,7 @@ struct MarqueeExample {
         Button('start')
           .onClick(() => {
             this.start = true
-             })
+          })
           .width(200)
           .height(60)
           .margin({bottom:20})

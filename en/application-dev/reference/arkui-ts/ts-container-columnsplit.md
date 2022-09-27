@@ -1,11 +1,11 @@
 # ColumnSplit
 
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<ColumnSplit>** lays out child components vertically and inserts a horizontal divider between every two child components.
 
-
-The **&lt;ColumnSplit&gt;** component lays out child components vertically and inserts a horizontal divider between every two child components.
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -15,7 +15,7 @@ None
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
@@ -25,18 +25,19 @@ ColumnSplit()
 
 ## Attributes
 
-| Name | Type | Description | 
+| Name| Type| Description|
 | -------- | -------- | -------- |
-| resizeable | boolean | Whether the divider can be dragged. The default value is **false**. | 
+| resizeable | boolean | Whether the divider can be dragged. The default value is **false**.|
 
-> **NOTE**<br>
-> Similar to **&lt;RowSplit&gt;**, the divider of **&lt;ColumnSplit&gt;** can be dragged to a position that just fully holds a component.
+>  **NOTE**
+>
+>  Similar to **\<RowSplit>**, the divider of **\<ColumnSplit>** can be dragged to a position that just fully holds a component.
 
 
 ## Example
 
-  
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct ColumnSplitExample {

@@ -40,6 +40,7 @@ struct MyComponent {
 }
 ```
 
+![@state1](figures/@state1.gif)
 
 ## 复杂类型的状态变量示例
 
@@ -90,6 +91,7 @@ struct MyComponent {
 }
 ```
 
+![@state1](figures/@state.png)
 
 在上述示例中：
 

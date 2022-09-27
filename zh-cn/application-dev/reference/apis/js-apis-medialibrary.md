@@ -1395,7 +1395,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail((err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1433,7 +1433,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1477,7 +1477,7 @@ async function example() {
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size)
     .then((pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     })
     .catch((err) => {
         console.info('mediaLibraryTest : getThumbnail fail'+ err);

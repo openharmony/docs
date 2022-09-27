@@ -1,4 +1,4 @@
-#    OS Account Management
+# OS Account Management
 
 The **osAccount** module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
 
@@ -3163,7 +3163,7 @@ This is a system API and cannot be called by third-party applications.
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | The face is not facing the device.                        |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | No face is detected.                        |
 
-## ingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>8+</sup>
 
 Enumerates the tip codes for fingerprint authentication.
 

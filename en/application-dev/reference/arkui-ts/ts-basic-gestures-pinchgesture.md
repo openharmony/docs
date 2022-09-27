@@ -1,47 +1,35 @@
 # PinchGesture
 
-PinchGesture is used to trigger a pinch gesture, which requires two to five fingers with a minimum 3 vp distance between the fingers.
+**PinchGesture** is used to trigger a pinch gesture, which requires two to five fingers with a minimum 3 vp distance between the fingers.
 
-> **NOTE**
+>  **NOTE**
 >
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
 
-PinchGesture(options?: { fingers?: number, distance?: number })
+PinchGesture(value?: { fingers?: number, distance?: number })
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. |
-  | distance | number | No | 3.0 | Minimum recognition distance, in vp. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5.<br>Default value: **2**|
+| distance | number | No| Minimum recognition distance, in vp.<br>Default value: **3.0**|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a pinch gesture is recognized. |
-| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of a pinch gesture. |
-| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a pinch gesture is lift. |
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a pinch gesture is recognized. |
-
-- GestureEvent attributes related to the pinch gesture  
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | scale | number | Scale ratio. This attribute is used for the pinch gesture. |
-  | pinchCenterX | number | X-coordinate of the center of the pinch gesture, in px. |
-  | pinchCenterY | number | Y-coordinate of the center of the pinch gesture, in px. |
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a pinch gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a pinch gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for a pinch gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after a pinch gesture is recognized.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
