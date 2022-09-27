@@ -347,14 +347,12 @@ listInputMethod(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 **示例：**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod(true, (err,data) => {
     if (err) {
         console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
     }
     console.log('listInputMethod success');
-    this.imeList = data;
  });
 ```
 
@@ -381,10 +379,8 @@ listInputMethod(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 **示例：**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod(true).then((data) => {
     console.info('listInputMethod success');
-    this.imeList = data;
 }).catch((err) => {
     console.error('listInputMethod promise err: ' + err);
 })
@@ -407,14 +403,12 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 **示例：**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod((err,data) => {
     if (err) {
         console.error('listInputMethod failed because: ' + JSON.stringify(err));
         return;
     }
     console.log('listInputMethod success');
-    this.imeList = data;
  });
 ```
 
@@ -435,10 +429,8 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 **示例：**
 
 ```js
-imeList: Array<inputMethod.InputMethodProperty> = null
 InputMethodSetting.listInputMethod().then((data) => {
     console.info('listInputMethod success');
-    this.imeList = data;
 }).catch((err) => {
     console.error('listInputMethod promise err: ' + err);
 })
