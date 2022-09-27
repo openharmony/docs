@@ -7,17 +7,12 @@ Click control attributes are used to set whether a component can respond to fing
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Attributes
 
 
-| Name   | Type| Default Value| Description        |
-| --------- | -------- | ------- | -------------- |
-| touchable | boolean  | true    | Whether the component can respond to finger interactions such as click and touch events.|
+| Name     | Type| Description                   |
+| ----------- | -------- | ------------------------ |
+| touchable   | boolean  | Whether the component can respond to finger interactions such as click and touch events.<br>Default value: **true**|
 
 
 ## Example

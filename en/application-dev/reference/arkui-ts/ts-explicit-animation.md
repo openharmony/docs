@@ -9,10 +9,10 @@ You can create explicit animation with your custom settings.
 
 | API                                                    | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| animateTo(value: [AnimationOptions](#animationoptions), event: ()=&gt; void) : void | Provides a transition animation when the status changes due to the closure code.<br>**event** specifies the closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
+| animateTo(value: [AnimateParam](#animateparam), event: ()=&gt; void) : void | Provides a transition animation when the status changes due to the closure code.<br>**event** specifies the closure function that displays the dynamic effect. The system automatically inserts the transition animation if the status changes in the closure function.|
 
 
-## AnimationOptions
+## AnimateParam
 
 | Name| Type| Description|
 | -------- | -------- | -------- |

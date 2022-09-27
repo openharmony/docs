@@ -8,7 +8,7 @@
 ## 使用说明
 当ListItemGroup的父组件List的listDirection属性为Axis.Vertical时，不允许设置ListItemGroup组件的height属性。ListItemGroup的高度为header高度、footer高度和所有ListItem布局后总高度之和。当父组件List的listDirection属性为Axis.Horizontal时，不允许设置ListItemGroup组件的width属性。ListItemGroup的宽度为header宽度、footer宽度和所有ListItem布局后总宽度之和。
 
-当前ListItemGroup内部的ListItem不支持编辑、框选、拖拽功能，即组件editable、selectable属性不生效。
+当前ListItemGroup内部的ListItem组件不支持编辑、框选、拖拽功能，即ListItem组件的editable、selectable属性不生效。
 
 ## 子组件
 

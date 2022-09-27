@@ -117,7 +117,7 @@ AudioStreamManager提供了音频流管理的方法。开发者可以通过本�
            console.info('Address:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].address);
            console.info('SampleRates:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]);
            console.info('ChannelCounts' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]);
-           console.info('ChannnelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
+           console.info('ChannelMask:' + i + ':' + AudioRendererChangeInfo.deviceDescriptors[j].channelMasks);
          }
        }
      }

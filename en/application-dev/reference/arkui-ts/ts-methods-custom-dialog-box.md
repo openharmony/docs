@@ -7,35 +7,39 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
+
+
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
 
 
-- Parameters
-  | Name                   | Type                                    | Mandatory  | Default Value                    | Description                  |
-  | ---------------------- | ---------------------------------------- | ---- | ----------------------- | ---------------------- |
-  | builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes   | -                       | Constructor of the custom dialog box content.           |
-  | cancel                 | () =&gt; void                  | No   | -                       | Callback invoked when the dialog box is closed after the overlay exits.          |
-  | autoCancel             | boolean                                  | No   | true                    | Whether to allow users to click the overlay to exit.          |
-  | alignment              | DialogAlignment                          | No   | DialogAlignment.Default | Alignment mode of the dialog box in the vertical direction.        |
-  | offset                 | {<br>dx: Length \| [Resource](../../ui/ts-types.md#resource)<br>dy: Length  \| [Resource](../../ui/ts-types.md#resource)<br>} | No   | -                       | Offset of the dialog box relative to the alignment position.|
-  | customStyle            | boolean                                  | No   | false                   | Whether to use a custom style for the dialog box.          |
-  | gridCount<sup>8+</sup> | number                                   | No   | -                       | Number of grid columns occupied by the dialog box.         |
+**Parameters**
 
-- DialogAlignment
-  | Name                      | Description     |
-  | ------------------------ | ------- |
-  | Top                      | Vertical top alignment.|
-  | Center                   | Vertical center alignment.|
-  | Bottom                   | Vertical bottom alignment.|
-  | Default                  | Default alignment.  |
-  | TopStart<sup>8+</sup>    | Top left alignment.  |
-  | TopEnd<sup>8+</sup>      | Top right alignment.  |
-  | CenterStart<sup>8+</sup> | Center left alignment.  |
-  | CenterEnd<sup>8+</sup>   | Center right alignment.  |
-  | BottomStart<sup>8+</sup> | Bottom left alignment.  |
-  | BottomEnd<sup>8+</sup>   | Bottom right alignment.  |
+| Name                   | Type                                    | Mandatory                 | Description                  |
+| ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
+| builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | Yes    | Constructor of the custom dialog box content.           |
+| cancel                 | () =&gt; void                            | No             | Callback invoked when the dialog box is closed after the overlay exits.          |
+| autoCancel             | boolean                                            | No             | Whether to allow users to click the overlay to exit.<br>Default value: **true**          |
+| alignment              | [DialogAlignment](#dialogalignment)           | No             | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**       |
+| offset                 | {<br>dx: Length \| [Resource](ts-types.md#resource),<br>dy: Length  \| [Resource](ts-types.md#resource)<br>} | No   | Offset of the dialog box relative to the alignment position.|
+| customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**          |
+| gridCount<sup>8+</sup> | number                                   | No                   | Number of grid columns occupied by the dialog box.             |
+
+## DialogAlignment
+
+| Name                      | Description     |
+| ------------------------ | ------- |
+| Top                      | Vertical top alignment.|
+| Center                   | Vertical center alignment.|
+| Bottom                   | Vertical bottom alignment.|
+| Default                  | Default alignment.  |
+| TopStart<sup>8+</sup>    | Top left alignment.  |
+| TopEnd<sup>8+</sup>      | Top right alignment.  |
+| CenterStart<sup>8+</sup> | Center left alignment.  |
+| CenterEnd<sup>8+</sup>   | Center right alignment.  |
+| BottomStart<sup>8+</sup> | Bottom left alignment.  |
+| BottomEnd<sup>8+</sup>   | Bottom right alignment.  |
 
 
 ## CustomDialogController

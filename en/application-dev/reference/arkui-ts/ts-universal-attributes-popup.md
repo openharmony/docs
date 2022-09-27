@@ -7,40 +7,36 @@ The popup attribute defines the popup displayed when a component is clicked.
 >  This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
+## APIs
 
 
-## Attributes
+| Name          | Type                            | Description                                       |
+| ---------- | ------------------------------------- | --------------------------------------- |
+| bindPopup  | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions<sup>8+</sup> | Settings of the popup bound to the component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
 
+## PopupOptions
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| bindPopup | show: boolean,<br>popup: PopupOptions \| CustomPopupOptions | - | Settings of the popup bound to the component.<br>**show**: whether to display the popup on the creation page by default. The default value is **false**.<br>**popup**: parameters of the popup.|
+| Name                     | Type                                               | Mandatory   | Description                                         |
+| -------------------------| ------------------------------------------------| -----| ----------------------------------------- |
+| message                  | string                                          | Yes   | Content of the popup message.                                    |
+| placementOnTop           | boolean                                         | No   | Whether to display the popup above the component. The default value is **false**.                 |
+| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                    | No   | Offset of the popup arrow in the popup window. When residing above or below the popup, the arrow is offset to the left by default. When residing on the left or right side of the popup, the arrow is offset to the top by default.     |
+| primaryButton            | {<br>value: string,<br>action: () =&gt; void<br>} | No   | Primary button.<br>**value**: text of the primary button in the popup.<br>**action**: callback for clicking the primary button.|
+| secondaryButton          | {<br>value: string,<br>action: () =&gt; void<br>} | No   | Secondary button.<br>**value**: text of the secondary button in the popup.<br>**action**: callback for clicking the secondary button.|
+| onStateChange            | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.     |
 
+## CustomPopupOptions<sup>8+</sup>
 
-- PopupOptions
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | message | string | Yes| - | Content of the popup message.|
-  | placementOnTop | boolean | No| false | Whether to display the popup above the component. The default value is **false**.|
-  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
-  | primaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Primary button.<br>**value**: text of the primary button in the popup.<br>**action**: callback for clicking the primary button.|
-  | secondaryButton | {<br>value: string,<br>action: () =&gt; void<br>} | No| - | Secondary button.<br>**value**: text of the secondary button in the popup.<br>**action**: callback for clicking the secondary button.|
-  | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
-
-- CustomPopupOptions<sup>8+</sup>
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | builder | () =&gt; any | Yes| - | Builder of the popup content.|
-  | placement | [Placement](ts-appendix-enums.md#placement8) | No| Placement.Bottom | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.|
-  | arrowOffset<sup>9+</sup> | Length | No| - | Offset of the popup arrow in the popup window. When above or below the popup, the arrow is offset to the left by default. When on the left or right side of the popup, the arrow is offset to the top by default.|
-  | maskColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup mask.|
-  | popupColor | [ResourceColor](../../ui/ts-types.md) | No| - | Color of the popup.|
-  | enableArrow | boolean | No| true | Whether to display an arrow.<br>Since API version 9, if the location set for the popup arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.|
-  | autoCancel | boolean | No| true | Whether to automatically close the popup when an operation is performed on the page.|
-  | onStateChange | (isVisible: boolean) =&gt; void | No| - | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
+| Name                      | Type                      | Mandatory    | Description                                                |
+| -------------------------| ------------------------- | ---- | ---------------------------------------------------- |
+| builder                  | [CustomBuilder](ts-types.md#custombuilder8)  | Yes  | Builder of the popup content.                                         |
+| placement                | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**    |
+| arrowOffset<sup>9+</sup> | [Length](ts-types.md#length)                 | No  | Offset of the popup arrow in the popup window. When residing above or below the popup, the arrow is offset to the left by default. When residing on the left or right side of the popup, the arrow is offset to the top by default.         |
+| maskColor                | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the popup mask.                                         |
+| popupColor               | [ResourceColor](ts-types.md#resourcecolor)  | No  | Color of the popup.                                              |
+| enableArrow              | boolean                                      | No  | Whether to display an arrow.<br>Since API version 9, if the location set for the popup arrow is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left** and the popup height is less than the arrow width (32 vp), the arrow will not be displayed.<br>Default value: **true**|
+| autoCancel               | boolean                                      | No  | Whether to automatically close the popup when an operation is performed on the page.<br>Default value: **true**                       |
+| onStateChange            | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event. The parameter **isVisible** indicates whether the popup is visible.|
 
 
 ## Example

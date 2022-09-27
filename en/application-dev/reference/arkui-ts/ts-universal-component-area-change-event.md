@@ -2,25 +2,19 @@
 
 The area change event is triggered when the component's size, position, or any other attribute that may affect its display area changes.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-| Name | Bubble Supported | Description |
-| -------- | -------- | -------- |
-| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No | Triggered when the component area changes. For details about the **Area** type, see **Area** attributes. |
+| Name                                      | Bubbling Supported| Description                                    |
+| ---------------------------------------- | ---- | ---------------------------------------- |
+| onAreaChange(event: (oldValue: Area, newValue: Area) =&gt; void) | No   | Triggered when the component area changes. For details about the **Area** type, see [Area](ts-types.md#area8).|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

@@ -8,8 +8,6 @@
 引用rawfile下资源时使用```"$rawfile('filename')"```的形式，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
 
 > **说明：**
->
-> 系统资源一般定义在SDK的ets/x.x.x.x(SDK版本号)/build-tools/ets-loader/sysResource.js文件中，由系统预置。
 > 
 > 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
 >
