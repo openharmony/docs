@@ -260,12 +260,7 @@ image.createPixelMap(color, opts)
         }
 
         pixelmap.writePixels(area).then(() => {
-            const readArea = { pixels: new ArrayBuffer(8),
-                offset: 0,
-                stride: 8,
-                // region.size.width + x < opts.width, region.size.height + y < opts.height
-                region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-            }        
+		    console.info('Succeeded to write pixelmap into the specified area.');
         })
     }).catch(error => {
         console.log('error: ' + error);
@@ -290,17 +285,20 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const area = new ArrayBuffer(400);
+const area = { pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+let bufferArr = new Uint8Array(area.pixels);
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
 pixelmap.writePixels(area, (error) => {
     if (error != undefined) {
 		console.info('Failed to write pixelmap into the specified area.');
 	} else {
-	    const readArea = {
-            pixels: new ArrayBuffer(20),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-        }
+		console.info('Succeeded to write pixelmap into the specified area.');
 	}
 })
 ```
@@ -329,9 +327,11 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-const pixelMap = new ArrayBuffer(400);
 let bufferArr = new Uint8Array(color);
-pixelMap.writeBufferToPixels(color).then(() => {
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
+pixelmap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -357,9 +357,11 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-const pixelMap = new ArrayBuffer(400);
 let bufferArr = new Uint8Array(color);
-pixelMap.writeBufferToPixels(color, function(err) {
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
+pixelmap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
@@ -386,12 +388,22 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```js
-const pixelMap = new ArrayBuffer(400);
-pixelMap.getImageInfo().then(function(info) {
-    console.log("Succeeded in obtaining the image pixel map information.");
-}).catch((err) => {
-    console.error("Failed to obtain the image pixel map information.");
-});
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+image.createPixelMap(color, opts).then(pixelmap => {
+    globalpixelmap = pixelmap;
+    if (pixelmap == undefined) {
+        console.error("Failed to obtain the image pixel map information.");
+    }
+    pixelmap.getImageInfo().then(imageInfo => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
+})
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -411,8 +423,21 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```js
-pixelmap.getImageInfo((imageInfo) => { 
-    console.log("Succeeded in obtaining the image pixel map information.");
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err, pixelmap) => {
+    if (pixelmap == undefined) {
+        globalpixelmap = pixelmap;
+        console.error("Failed to obtain the image pixel map information.");
+    }
+    pixelmap.getImageInfo((err, imageInfo) => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
 })
 ```
 
@@ -499,9 +524,15 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.opacity(0.5);
-}
+var rate = 0.5;
+pixelmap.opacity(rate, (err) => {
+	if (err) {
+        console.error("Failed to set opacity.");
+        return;
+    } else {
+        console.log("Succeeded in setting opacity.");
+	}
+})
 ```
 
 ### opacity<sup>9+</sup>
@@ -528,7 +559,8 @@ opacity(rate: number): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.opacity(0.5);
+    var rate = 0.5;
+	await pixelmap.opacity(rate);
 }
 ```
 
@@ -549,12 +581,8 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```js
-pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
-    if (alphaPixelMap == undefined) {
-        console.info('Failed to obtain new pixel map.');
-    } else {
-        console.info('Succeed in obtaining new pixel map.');
-    }
+async function () {
+    await pixelmap.createAlphaPixelmap();    
 })
 ```
 
@@ -575,14 +603,13 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-let pixelMap = await imageSource.createPixelMap();
-if (pixelMap != undefined) {
-    pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
-        console.info('Failed to obtain new pixel map.');    
-    })
-} else {
-    console.info('Succeed in obtaining new pixel map.');
-}
+pixelmap.createAlphaPixelmap((err, alphaPixelMap) => {
+    if (alphaPixelMap == undefined) {
+        console.info('Failed to obtain new pixel map.');
+    } else {
+        console.info('Succeed in obtaining new pixel map.');
+    }
+})
 ```
 
 ### scale<sup>9+</sup>
@@ -605,7 +632,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.scale(2.0, 1.0);
+	await pixelmap.scale(2.0, 1.0);
 }
 ```
 
@@ -634,7 +661,7 @@ scale(x: number, y: number): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.scale(2.0, 1.0);
+	await pixelmap.scale(2.0, 1.0);
 }
 ```
 
@@ -658,7 +685,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.translate(3.0, 1.0);
+	await pixelmap.translate(3.0, 1.0);
 }
 ```
 
@@ -687,7 +714,7 @@ translate(x: number, y: number): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.translate(3.0, 1.0);
+	await pixelmap.translate(3.0, 1.0);
 }
 ```
 
@@ -710,7 +737,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.rotate(90.0);
+	await pixelmap.rotate(90.0);
 }
 ```
 
@@ -738,7 +765,7 @@ rotate(angle: number): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.rotate(90.0);
+	await pixelmap.rotate(90.0);
 }
 ```
 
@@ -762,7 +789,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 ```js
 async function () {
-	await pixelMap.flip(false, true);
+	await pixelmap.flip(false, true);
 }
 ```
 
@@ -791,7 +818,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.flip(false, true);
+	await pixelmap.flip(false, true);
 }
 ```
 
@@ -814,7 +841,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 ```js
 async function () {
-	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -842,7 +869,7 @@ crop(region: Region): Promise\<void>
 
 ```js
 async function () {
-	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -1008,7 +1035,7 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 
 ```js
 var sourceOptions = { sourceDensity: 120 };
-let imageSource = image.createImageSource(0, sourceOptions);
+const imageSourceApi = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1084,7 +1111,7 @@ createIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
 ## image.createIncrementalSource<sup>9+</sup>
@@ -1112,7 +1139,7 @@ createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1283,7 +1310,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```js
-const property = new ArrayBuffer(400);
+let property = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
     if(error) {
         console.log('Failed to get the value of the specified attribute key of the image.');
@@ -1478,7 +1505,15 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```js
-const decodingOptions = new ArrayBuffer(400);
+let decodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
     console.log('Succeeded in creating pixelmap object.');
 })
@@ -1582,7 +1617,6 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 ```js
 let packOpts = { format:"image/jpeg", quality:98 };
-const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
@@ -1611,7 +1645,6 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 ```js
 let packOpts = { format:"image/jpeg", quality:98 }
-const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
