@@ -1033,7 +1033,8 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(0);
+var sourceOptions = { sourceDensity: 120 };
+const imageSourceApi = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1109,7 +1110,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1137,7 +1138,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
 ```
 
 ## ImageSource
