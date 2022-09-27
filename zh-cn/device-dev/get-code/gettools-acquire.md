@@ -23,7 +23,7 @@ OpenHarmony为开发者提供了两种Docker环境，以帮助开发者快速完
 
 1. 安装Docker，Docker安装请参考[官方指导](https://docs.docker.com/engine/install/)。
 
-2. 获取OpenHarmony源码，请参考[获取源码](https://device.harmonyos.com/cn/docs/documentation/guide/sourcecode-acquire-0000001050769927)。
+2. 获取OpenHarmony源码，请参考[获取源码](sourcecode-acquire.md)。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**<br>
    > HPM Docker环境无需单独获取源码。
 

@@ -8,8 +8,8 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 ## 导入模块
 
-```
-import wantConstant from '@ohos.ability.wantConstant'
+```js
+import wantConstant from '@ohos.ability.wantConstant';
 ```
 
 ## wantConstant.Action
@@ -26,7 +26,7 @@ want操作的常数。
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。    |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                  |
 | ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | 指示启动显示指定应用程序详细信息的页面功能的操作。             |
-| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操做作。                          |
+| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操作。                          |
 | ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | 指示启动显示所有警报的页面功能的操作时钟。                     |
 | ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | 指示启动用于使闹钟睡眠的页面功能的操作。                       |
 | ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | 指示启动删除闹钟的页面功能的操作。                             |

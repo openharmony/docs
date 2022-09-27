@@ -3,7 +3,7 @@
 FormInfo模块提供对卡片的相关卡片信息和状态进行设置和查询的能力。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -122,3 +122,12 @@ import formInfo from '@ohos.application.formInfo';
 | Dimension_2_1<sup>9+</sup>      | 5   | 2 x 1 form。   |
 
 
+## FormInfoFilter
+
+卡片信息过滤器，仅将符合过滤器内要求的卡片信息返回。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        |  必选   | 说明         |
+| ----------- | ---- | ------------ |
+| moduleName<sup>9+</sup>   | 否   | 可选字段，表示仅保留moduleName与提供值相符的卡片信息。 |

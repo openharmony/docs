@@ -110,7 +110,7 @@ DEBUG级别写日志，宏封装接口。
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 |
@@ -140,7 +140,7 @@ ERROR级别写日志，宏封装接口。
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 |
@@ -170,7 +170,7 @@ FATAL级别写日志，宏封装接口。
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 |
@@ -200,7 +200,7 @@ INFO级别写日志，宏封装接口。
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 |
@@ -230,7 +230,7 @@ WARN级别写日志，宏封装接口。
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 |
@@ -324,7 +324,7 @@ bool OH_LOG_IsLoggable (unsigned int domain, const char * tag, LogLevel level )
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | domain | 指定日志业务领域。 |
 | tag | 指定日志TAG。 |
@@ -354,7 +354,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 
 **参数：**
 
-| Name | 描述 |
+| 名称 | 描述 |
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 |
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 |
