@@ -41,16 +41,16 @@ struct LongPressGestureExample {
   build() {
     Column() {
       Text('LongPress onAction:' + this.count).fontSize(28)
-        //单指长按文本触发该手势事件
+        // 单指长按文本触发该手势事件
         .gesture(
         LongPressGesture({ repeat: true })
-          //由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
+          // 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
           .onAction((event: GestureEvent) => {
             if (event.repeat) {
               this.count++;
             }
           })
-            //长按动作一结束触发
+            // 长按动作一结束触发
           .onActionEnd(() => {
             this.count = 0;
           })
