@@ -63,6 +63,28 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync
+
+getDefaultCellularDataSlotIdSync(): number
+
+获取默认移动数据的SIM卡
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ------ | -------------------------------------------------- |
+| number | 获取默认移动数据的SIM卡。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**示例：**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
 ## data.setDefaultCellularDataSlotId
 
 setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
