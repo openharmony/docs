@@ -54,22 +54,22 @@
 
 | 函数名称 | 描述 | 
 | -------- | -------- |
-| [OH_NativeWindow_CreateNativeWindow](#ohnativewindowcreatenativewindow) (void \*pSurface) | 创建NativeWindow实例，每次调用都会产生一个新的NativeWindow实例 | 
-| [OH_NativeWindow_DestroyNativeWindow](#ohnativewindowdestroynativewindow) (OHNativeWindow \*window) | 将NativeWindow对象的引用计数减1，当引用计数为0的时候，该NativeWindow对象会被析构掉 | 
-| [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#ohnativewindowcreatenativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建NativeWindowBuffer实例，每次调用都会产生一个新的NativeWindowBuffer实例 | 
-| [OH_NativeWindow_DestroyNativeWindowBuffer](#ohnativewindowdestroynativewindowbuffer) (OHNativeWindowBuffer \*buffer) | 将NativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该NativeWindowBuffer对象会被析构掉 | 
-| [OH_NativeWindow_NativeWindowRequestBuffer](#ohnativewindownativewindowrequestbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | 通过NativeWindow对象申请一块NativeWindowBuffer，用以内容生产 | 
-| [OH_NativeWindow_NativeWindowFlushBuffer](#ohnativewindownativewindowflushbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, [Region](_region.md) region) | 通过NativeWindow将生产好内容的NativeWindowBuffer放回到Buffer队列中，用以内容消费 | 
-| [OH_NativeWindow_NativeWindowAbortBuffer](#ohnativewindownativewindowabortbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer) | 通过NativeWindow将之前申请出来的NativeWindowBuffer返还到Buffer队列中，供下次再申请 | 
-| [OH_NativeWindow_NativeWindowHandleOpt](#ohnativewindownativewindowhandleopt) (OHNativeWindow \*window, int code,...) | 设置/获取NativeWindow的属性，包括设置/获取宽高、内容格式等 | 
-| [OH_NativeWindow_GetBufferHandleFromNative](#ohnativewindowgetbufferhandlefromnative) (OHNativeWindowBuffer \*buffer) | 通过NativeWindowBuffer获取该buffer的BufferHandle指针 | 
-| [OH_NativeWindow_NativeObjectReference](#ohnativewindownativeobjectreference) (void \*obj) | 增加一个NativeObject的引用计数 | 
-| [OH_NativeWindow_NativeObjectUnreference](#ohnativewindownativeobjectunreference) (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉 | 
-| [OH_NativeWindow_GetNativeObjectMagic](#ohnativewindowgetnativeobjectmagic) (void \*obj) | 获取NativeObject的MagicId | 
-| [OH_NativeWindow_NativeWindowSetScalingMode](#ohnativewindownativewindowsetscalingmode) (OHNativeWindow \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | 设置NativeWindow的ScalingMode | 
-| [OH_NativeWindow_NativeWindowSetMetaData](#ohnativewindownativewindowsetmetadata) (OHNativeWindow \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | 设置NativeWindow的元数据 | 
-| [OH_NativeWindow_NativeWindowSetMetaDataSet](#ohnativewindownativewindowsetmetadataset) (OHNativeWindow \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | 设置NativeWindow的元数据集。 | 
-| [OH_NativeWindow_NativeWindowSetTunnelHandle](#ohnativewindownativewindowsettunnelhandle) (OHNativeWindow \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | 设置NativeWindow的TunnelHandle。 | 
+| [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建NativeWindow实例，每次调用都会产生一个新的NativeWindow实例 | 
+| [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) (OHNativeWindow \*window) | 将NativeWindow对象的引用计数减1，当引用计数为0的时候，该NativeWindow对象会被析构掉 | 
+| [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建NativeWindowBuffer实例，每次调用都会产生一个新的NativeWindowBuffer实例 | 
+| [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) (OHNativeWindowBuffer \*buffer) | 将NativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该NativeWindowBuffer对象会被析构掉 | 
+| [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*\*buffer, int \*fenceFd) | 通过NativeWindow对象申请一块NativeWindowBuffer，用以内容生产 | 
+| [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, [Region](_region.md) region) | 通过NativeWindow将生产好内容的NativeWindowBuffer放回到Buffer队列中，用以内容消费 | 
+| [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer) | 通过NativeWindow将之前申请出来的NativeWindowBuffer返还到Buffer队列中，供下次再申请 | 
+| [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) (OHNativeWindow \*window, int code,...) | 设置/获取NativeWindow的属性，包括设置/获取宽高、内容格式等 | 
+| [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) (OHNativeWindowBuffer \*buffer) | 通过NativeWindowBuffer获取该buffer的BufferHandle指针 | 
+| [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | 增加一个NativeObject的引用计数 | 
+| [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉 | 
+| [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | 获取NativeObject的MagicId | 
+| [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) (OHNativeWindow \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | 设置NativeWindow的ScalingMode | 
+| [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) (OHNativeWindow \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | 设置NativeWindow的元数据 | 
+| [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) (OHNativeWindow \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | 设置NativeWindow的元数据集。 | 
+| [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) (OHNativeWindow \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | 设置NativeWindow的TunnelHandle。 | 
 
 
 ## 详细描述
