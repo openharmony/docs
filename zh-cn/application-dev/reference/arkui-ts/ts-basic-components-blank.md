@@ -57,3 +57,34 @@ struct BlankExample {
 横屏状态
 
 ![zh-cn_image_0000001174104388](figures/zh-cn_image_0000001174104388.gif)
+
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct BlankExample {
+  build() {
+    Column({ space: 20 }) {
+      // blank父组件不设置宽度时，Blank世纪
+      Row() {
+        Text('Bluetooth').fontSize(18)
+        Blank().color(Color.Yellow)
+        Toggle({ type: ToggleType.Switch })
+      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
+
+      Row() {
+        Text('Bluetooth').fontSize(18)
+        // 设置最小宽度为160
+        Blank('160').color(Color.Yellow)
+        Toggle({ type: ToggleType.Switch })
+      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
+      
+    }.backgroundColor(0xEFEFEF).padding(20).width('100%')
+  }
+}
+```
+Blank父组件未设置宽度时，子组件间无空白填充，使用min参数设置填充尺寸
+
+![blankmin](figures/blankmin.png)
+
