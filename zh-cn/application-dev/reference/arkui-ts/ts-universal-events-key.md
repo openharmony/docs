@@ -14,8 +14,6 @@
 | ---------------------------------------- | ---- | ---------------------------------------- |
 | onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是    | 绑定该方法的组件获焦后，按键动作触发该方法调用，event参数见[KeyEvent](#keyevent对象说明)介绍。 |
 
->
->  该事件适用于所有可交互组件（默认可获焦），例如Button；对于Text，Image等不可获焦组件，可以设置.focasable(true)后使用按键事件。
 
 ## KeyEvent对象说明
 
