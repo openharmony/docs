@@ -112,4 +112,4 @@ struct GridContainerExample1 {
 
 **图4** 单独设置gridSpan和gridOffset在特定屏幕大小下的效果与useSizeType效果一致
 
-![gridSppan](figures/grodSpan.png)
+![gridSppan](figures/gridSpan.png)
