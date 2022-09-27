@@ -4,7 +4,7 @@ OpenHarmony provides a comprehensive auto-test framework for designing test case
 This document describes how to use the OpenHarmony test framework.
 ## Setting Up the Environment
 The test framework depends on the Python running environment. Before using the test framework, set up the environment as follows:
- - [Setting Up the Environment](../device-dev/subsystems/subsys-testguide-envbuild.md)
+ - [Setting Up the Environment](../device-dev/subsystems/subsys-testguide-test.md#setting-up-the-environment)
  - [Obtaining Source Code](../device-dev/get-code/sourcecode-acquire.md)
 
 
@@ -12,48 +12,48 @@ The test framework depends on the Python running environment. Before using the t
 The directory structure of the test framework is as follows:
 ```
 test # Test subsystem
-├── developertest  # Developer test module
-│   ├── aw  # Static library of the test framework
+├── developertest             # Developer test module
+│   ├── aw                    # Static library of the test framework
 │   ├── config  # Test framework configuration
 │   │   │ ...
-│   │   └── user_config.xml  # User configuration
-│   ├── examples  # Examples of test cases
-│   ├── src  # Source code of the test framework
-│   ├── third_party  # Adaptation code for third-party components on which the test framework depends
-│   ├── reports  # Test reports
-│   ├── BUILD.gn  # Build entry of the test framework
-│   ├── start.bat  # Test entry for Windows
-│   └── start.sh  # Test entry for Linux
-└── xdevice  # Modules on which the test framework depends
+│   │   └── user_config.xml   # User configuration
+│   ├── examples              # Examples of test cases
+│   ├── src                   # Source code of the test framework
+│   ├── third_party           # Adaptation code for third-party components on which the test framework depends
+│   ├── reports               # Test reports
+│   ├── BUILD.gn              # Build entry of the test framework
+│   ├── start.bat             # Test entry for Windows
+│   └── start.sh              # Test entry for Linux
+└── xdevice                   # Modules on which the test framework depends
 ```
 ## Writing Test Cases
 ###  Designing the Test Case Directory
 Design the test case directory as follows:
 ```
-subsystem # Subsystem
-├── partA  # Part A
-│   ├── moduleA  # Module A
+subsystem                                # Subsystem
+├── partA                                # Part A
+│   ├── moduleA                          # Module A
 │   │   ├── include       
-│   │   ├── src  # Service code
-│   │   └── test  # Test directory
-│   │       ├── unittest  # Unit test
-│   │       │   ├── common  # Common test cases
-│   │       │   │   ├── BUILD.gn  # Build file of test cases
-│   │       │   │   └── testA_test.cpp  # Source code of unit test cases
-│   │       │   ├── phone  # Test cases for mobile phones
-│   │       │   ├── ivi  # Test cases for head units
-│   │       │   └── liteos-a  # Test cases for the IP cameras that use the LiteOS kernel
-│   │       ├── moduletest  # Module test
+│   │   ├── src                          # Service code
+│   │   └── test                         # Test directory
+│   │       ├── unittest                 # Unit test
+│   │       │   ├── common               # Common test cases
+│   │       │   │   ├── BUILD.gn         # Build file of test cases
+│   │       │   │   └── testA_test.cpp   # Source code of unit test cases
+│   │       │   ├── phone                # Test cases for mobile phones
+│   │       │   ├── ivi                  # Test cases for head units
+│   │       │   └── liteos-a             # Test cases for the IP cameras that use the LiteOS kernel
+│   │       ├── moduletest               # Module test
 │   │       ...
 │   │            
-│   ├── moduleB  # Module B  
+│   ├── moduleB                   # Module B  
 │   ├── test               
-│   │   └── resource  # Dependency resources   
-│   │       ├── moduleA  # Module A
+│   │   └── resource              # Dependency resources   
+│   │       ├── moduleA           # Module A
 │   │       │   ├── ohos_test.xml # Resource configuration file
-│   │       ... └── 1.txt  # Resource file  
+│   │       ... └── 1.txt         # Resource file  
 │   │            
-│   ├── ohos_build  # Build entry configuration 
+│   ├── ohos_build                # Build entry configuration 
 │   ...
 │
 ...
@@ -213,7 +213,7 @@ Example:
         |Performance test     |PERF|
         |Reliability test   |RELI|
         |Security test     |SECU|
-        |Fuzz test      |FUZZ|	   
+        |Fuzz test      |FUZZ|
     
 
 #### JavaScript Test Case Example

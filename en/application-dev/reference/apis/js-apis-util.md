@@ -1015,7 +1015,7 @@ Obtains the value of the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| V \| undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V \| undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
 **Example**
   ```js
@@ -1116,7 +1116,7 @@ Removes the specified key and its value from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V \| undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V \| undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
 **Example**
   ```js
@@ -1291,7 +1291,7 @@ class Temperature{
        // private readonly _temp: Temperature;
        this._temp = value;
     }
-    comapreTo(value){
+    compareTo(value){
        return this._temp >= value.getTemp();
     }
     getTemp(){

@@ -10,19 +10,15 @@
 
 ## 示例
 ```
-MainAbility
-├─ app.ets
-├─ common
-│    └─ utils
-│           └─ utils.ets
+common
+│  └─ utils
+│        └─ utils.ets
 └─ pages
        └─ index.ets
 ```
->注：公共代码文件推荐新建一个**common**目录存放
-
 如上所示，将utils放在common中,示例中index.ets访问utils.ets文件
 ```ts
-// index.ets
+// xxx.ets
 import { FoodData, FoodList } from "../common/utils/utils";
 
 @Entry

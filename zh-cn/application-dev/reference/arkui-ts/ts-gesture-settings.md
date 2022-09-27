@@ -50,9 +50,9 @@
 ## GestureEvent对象说明
   | 名称 | 类型 | 描述 |
   | -------- | -------- | -------- |
-  | timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
-  | source<sup>8+</sup> | SourceType | 事件输入设备。 |
+  | timestamp<sup>8+</sup> | number | 事件时间戳。 |
+  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
+  | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
   | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
   | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。 |
   | offsetX | number | 手势事件x轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
