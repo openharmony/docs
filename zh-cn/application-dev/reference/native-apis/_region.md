@@ -17,7 +17,7 @@
 
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [*rects](#\*rects) | 如果rects是空指针nullptr， 默认Buffer大小为脏区。 | 
+| [*rects](#rects) | 如果rects是空指针nullptr， 默认Buffer大小为脏区。 | 
 | [rectNumber](#rectnumber) | 如果rectNumber为0，默认Buffer大小为脏区。 | 
 
 
@@ -43,3 +43,5 @@ struct Rect Region::*rects
 **描述：**
 
 结构体指针，类型为[Rect](_rect.md)。如果rects是空指针nullptr， 默认Buffer大小为脏区。
+
+<!--no_check-->
