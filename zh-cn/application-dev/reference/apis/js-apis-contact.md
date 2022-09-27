@@ -487,7 +487,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
-**系统能力**：SystemCapability.Applications.ContactsData
+**系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
 
@@ -516,7 +516,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
-**系统能力**：SystemCapability.Applications.Contacts、SystemCapability.Applications.ContactsData
+**系统能力**：SystemCapability.Applications.Contacts
 
 **返回值：**
 
