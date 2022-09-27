@@ -1058,9 +1058,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.CreateIncrementalSource<sup>9+</sup>
+## image.createIncrementalSource<sup>9+</sup>
 
-CreateIncrementalSource(buf: ArrayBuffer): ImageSource
+createIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1082,12 +1082,12 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.CreateIncrementalSource(buf);
+const imageSourceApi = image.createIncrementalSource(buf);
 ```
 
-## image.CreateIncrementalSource<sup>9+</sup>
+## image.createIncrementalSource<sup>9+</sup>
 
-CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1110,7 +1110,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.CreateIncrementalSource(buf);
+const imageSourceApi = image.createIncrementalSource(buf);
 ```
 
 ## ImageSource
