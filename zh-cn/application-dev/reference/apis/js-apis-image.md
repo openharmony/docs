@@ -953,7 +953,8 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
+var sourceOptions = { sourceDensity: 120 };
+let imageSource = image.createImageSource('test.png', sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1006,7 +1007,8 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(fd);
+var sourceOptions = { sourceDensity: 120 };
+let imageSource = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1123,7 +1125,7 @@ const imageSourceApi = image.CreateIncrementalSource(buf);
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，wbmp，bmp，gif，webp，heif等。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW。 |
 
 ### getImageInfo
 
@@ -1550,7 +1552,7 @@ const imagePackerApi = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例，当前支持格式有：jpeg webp。
 
 ### 属性
 
@@ -1761,7 +1763,7 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8);
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
@@ -1990,7 +1992,7 @@ receiver.release().then(() => {
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
@@ -2105,20 +2107,20 @@ img.release().then(() =>{
 
 表示图片指定区域内的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                    |
+| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4                      |
 | region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
 表示图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
@@ -2128,7 +2130,7 @@ img.release().then(() =>{
 
 表示图片尺寸。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -2139,33 +2141,33 @@ img.release().then(() =>{
 
 枚举，图片像素格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   | 默认值 | 描述              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888。 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
+| RGBA_8888              | 3      | 格式为RGBA_8888   |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888   |
 
 ## AlphaType<sup>9+</sup>
 
 枚举，图像的透明度类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 默认值 | 描述                    |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
+| PREMUL   | 2      | RGB前乘alpha           |
+| UNPREMUL | 3      | RGB不前乘alpha         |
 
 ## ScaleMode<sup>9+</sup>
 
 枚举，图像的缩放模式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称            | 默认值 | 描述                                               |
 | --------------- | ------ | -------------------------------------------------- |
@@ -2176,7 +2178,7 @@ img.release().then(() =>{
 
 ImageSource的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 类型                               | 可读 | 可写 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
@@ -2189,7 +2191,7 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
@@ -2203,7 +2205,7 @@ PixelMap的初始化选项。
 
 图像解码设置选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -2219,7 +2221,7 @@ PixelMap的初始化选项。
 
 表示区域信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -2231,18 +2233,18 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。  |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp  |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
 表示查询图片属性的索引。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称         | 类型   | 可读 | 可写 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -2253,7 +2255,7 @@ PixelMap的初始化选项。
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 默认值                  | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
@@ -2270,7 +2272,7 @@ PixelMap的初始化选项。
 
 枚举，图片格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称         | 默认值 | 描述                 |
 | ------------ | ------ | -------------------- |
@@ -2281,20 +2283,20 @@ PixelMap的初始化选项。
 
 枚举，图像的组件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称  | 默认值 | 描述        |
 | ----- | ------ | ----------- |
 | YUV_Y | 1      | 亮度信息。  |
 | YUV_U | 2      | 色度信息。  |
 | YUV_V | 3      | 色度信息。  |
-| JPEG  | 4      | Jpeg 类型。 |
+| JPEG  | 4      | JPEG 类型。 |
 
 ## Component<sup>9+</sup>
 
 描述图像颜色分量。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称          | 类型                             | 可读 | 可写 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
