@@ -349,7 +349,7 @@ struct GridRowSample2 {
       // 侧边栏，尺寸变化范围 [100vp, 600vp]
       Column(){}.width('100%').backgroundColor('#19000000')
 
-      // 内容区，尺寸变化范围 [窗口宽度550vp, 窗口宽度50vp]
+      // 内容区，尺寸变化范围 [550vp, 50vp]
       GridRow({breakpoints: {value: ['100vp', '200vp', '300vp', '400vp', '500vp'],
         reference: BreakpointsReference.ComponentSize}}) {
         GridCol({span:{xs: 12, sm: 12, md: 12, lg:12, xl: 12, xxl:12}}) {
