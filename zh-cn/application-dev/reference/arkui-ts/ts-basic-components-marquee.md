@@ -22,7 +22,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | start | boolean | 是 | 控制跑马灯是否进入播放状态。 |
-| step | number | 否 | 滚动动画文本滚动步长。<br/>默认值：6，单位vp |
+| step | number | 否 | 滚动动画文本滚动步长。<br/>默认值：6vp |
 | loop | number | 否 | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1 |
 | fromStart | boolean | 否 | 设置文本从头开始滚动或反向滚动。<br/>默认值：true |
 | src | string | 是 | 需要滚动的文本。 |

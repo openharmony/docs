@@ -24,8 +24,8 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 指定当前进度值。 |
 | total | number | 否 | 指定进度总长。<br/>默认值：100 |
-| type<sup>8+</sup> | ProgressType | 否 | 指定进度条样式。<br/>默认值：ProgressType.Linear |
-| style<sup>deprecated</sup> | ProgressStyle | 否 | 指定进度条类型。<br/>该参数从API Version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
+| type<sup>8+</sup> | [ProgressType](#progresstype枚举说明) | 否 | 指定进度条类型。<br/>默认值：ProgressType.Linear |
+| style<sup>deprecated</sup> | [ProgressStyle](#progressstyle枚举说明) | 否 | 指定进度条样式。<br/>该参数从API Version8开始废弃，建议使用type替代。<br/>默认值：ProgressStyle.Linear |
 
 ## ProgressType枚举说明
 
@@ -69,6 +69,7 @@ struct ProgressExample {
       Progress({ value: 10, type: ProgressType.Linear }).width(200)
       Progress({ value: 20, total: 150, type: ProgressType.Linear }).color(Color.Grey).value(50).width(200)
 
+
       Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
         Progress({ value: 10, type: ProgressType.Eclipse }).width(100)
@@ -81,6 +82,16 @@ struct ProgressExample {
         Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })
           .color(Color.Grey).value(50).width(100)
           .style({ strokeWidth: 15, scaleCount: 15, scaleWidth: 5 })
+      }
+
+      // scaleCount和scaleWidth效果对比
+      Row({ space: 40 }) {
+        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })
+          .color(Color.Grey).value(50).width(100)
+          .style({ strokeWidth: 20, scaleCount: 20, scaleWidth: 5 })
+        Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })
+          .color(Color.Grey).value(50).width(100)
+          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 3 })
       }
 
       Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -105,4 +116,4 @@ struct ProgressExample {
 }
 ```
 
-![zh-cn_image_0000001198839004](figures/zh-cn_image_0000001198839004.gif)
+![progress](figures/progress.png)

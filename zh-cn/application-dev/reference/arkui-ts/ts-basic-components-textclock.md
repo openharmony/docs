@@ -21,6 +21,12 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | timeZoneOffset | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 |
 | controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。|
 
+
+## TextClockController
+
+TextClock容器组件的控制器，可以将此对象绑定到TextClock组件，再通过它控制文本时钟的启动与停止。一个TextClock组件仅支持绑定一个控制器。
+
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -35,29 +41,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称                                         | 功能描述                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件最小回调间隔为秒。<br /> - value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
-
-## TextClockController
-
-TextClock容器组件的控制器，可以将此对象绑定到TextClock组件，再通过它控制文本时钟的启动与停止。一个TextClock组件仅支持绑定一个控制器。
-
-### 导入对象
-
-```ts
-controller: TextClockController = new TextClockController()
-```
-
-### start
-
-start()
-
-启动文本时钟。
-
-### stop
-
-stop()
-
-停止文本时钟。
+| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件最小回调间隔为秒。<br /> value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
 
 
 ## 示例
@@ -67,8 +51,8 @@ stop()
 @Component
 struct Second {
   @State accumulateTime: number = 0
+  // 导入对象
   controller: TextClockController = new TextClockController()
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Current milliseconds is ' + this.accumulateTime)
@@ -84,10 +68,12 @@ struct Second {
       Button("start TextClock")
         .margin({ bottom: 10 })
         .onClick(() => {
+          // 启动文本时钟
           this.controller.start()
         })
       Button("stop TextClock")
         .onClick(() => {
+          // 停止文本时钟
           this.controller.stop()
         })
     }
@@ -96,5 +82,5 @@ struct Second {
   }
 }
 ```
-![](figures/text_clock.png)
+![text_clock](figures/text_clock.png)
 
