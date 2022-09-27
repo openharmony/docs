@@ -3,7 +3,7 @@
 The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -183,7 +183,7 @@ Obtains the application's widget information that meets a filter criterion on th
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | formInfo.FormInfoFilter | Yes| Filter criterion.|
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md#forminfofilter) | Yes| Filter criterion.|
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | Yes| Callback used to return the widget information.|
 
 **Example**
@@ -214,7 +214,7 @@ Obtains the application's widget information on the device. This API uses a prom
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | formInfo.FormInfoFilter | No| Filter criterion.|
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md) | No| Filter criterion.|
 
 **Return value**
 
