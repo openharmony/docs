@@ -52,59 +52,40 @@
     ```js
     // FA模型
     import featureAbility from '@ohos.ability.featureAbility';
-	
+
     function grantPermission() {
-        console.info('grantPermission');
-        let context = featureAbility.getContext();
-        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-            console.info(`result.requestCode=${result.requestCode}`)
-    
-        })
-        console.info('end grantPermission');
+    console.info('grantPermission');
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666).then((data) => {
+        console.info('success: ${data}');
+    }).catch((error) => {
+        console.info('failed: ${error}');
+    })
     }
-    
+
     grantPermission();
 
     // Stage模型
-    import AbilityStage from '@ohos.application.Ability';
-    import accessControl from '@ohos.abilityAccessCtrl';
-    import bundle from '@ohos.bundle';
+    import Ability from '@ohos.application.Ability';
 
-    let appId = "appId";
-    async function requestPermissions () {
-      let permissions: Array<string> = [
-        "ohos.permission.DISTRIBUTED_DATASYNC"
-      ];
-      let needGrantPermission = false
-      let accessManger = accessControl.createAtManager()
-      console.info("[JSDemo]: app permission get bundle info")
-      let bundleInfo = bundle.getApplicationInfo(appId, 0, 100)
-      console.info(`[JSDemo]: app permission query permission ${bundleInfo.accessTokenId.toString()}`)
-      for (const permission of permissions) {
-        console.info(`[JSDemo]: app permission query grant status ${permission}`)
-        try {
-          let grantStatus = accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
-          if (grantStatus === accessControl.GrantStatus.PERMISSION_DENIED) {
-            needGrantPermission = true
-            break;
-          }
-        } catch (err) {
-          console.error(`[JSDemo]: app permission query grant status error ${permission} ${JSON.stringify(err)}`)
-          needGrantPermission = true
-          break;
+    let context = null;
+
+    function grantPermission() {
+    class MainAbility extends Ability {
+        onWindowStageCreate(windowStage) {
+        let context = this.context;
         }
-      }
-      if (needGrantPermission) {
-        console.info("[JSDemo]: app permission needGrantPermission")
-        try {
-        globalThis.abilityContext.requestPermissionsFromUser(permissions)
-        } catch (err) {
-          console.error(`[JSDemo]: app permission ${JSON.stringify(err)}`)
-        }
-      } else {
-        console.info("[JSDemo]: app permission already granted")
-      }
     }
+
+    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+    context.requestPermissionsFromUser(permissions).then((data) => {
+        console.log('success: ${data}');
+    }).catch((error) => {
+        console.log('failed: ${error}');
+    });
+    }
+
+    grantPermission();
     ```
 
 3. 根据配置构造分布式数据库管理类实例。
@@ -120,7 +101,7 @@
    let context = featureAbility.getContext();
 
    // Stage模型获取context
-   import AbilityStage from '@ohos.application.Ability'
+   import AbilityStage from '@ohos.application.Ability';
    let context = null;
    class MainAbility extends AbilityStage{
       onWindowStageCreate(windowStage){
@@ -140,14 +121,14 @@
      }
      distributedData.createKVManager(kvManagerConfig, function (err, manager) {
        if (err) {
-         console.log("createKVManager err: " + JSON.stringify(err));
+         console.log('createKVManager err: ${error}');
          return;
        }
-       console.log("createKVManager success");
+       console.log('createKVManager success');
        kvManager = manager;
      });
    } catch (e) {
-     console.log("An unexpected error occurred. Error: " + e);
+     console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -171,14 +152,14 @@
      };
      kvManager.getKVStore('storeId', options, function (err, store) {
        if (err) {
-         console.log("getKVStore err: " + JSON.stringify(err));
+         console.log('getKVStore err: ${err}');
          return;
        }
-       console.log("getKVStore success");
+       console.log('getKVStore success');
        kvStore = store;
      });
    } catch (e) {
-     console.log("An unexpected error occurred. Error: " + e);
+     console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -192,7 +173,7 @@
 
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
-       console.log("dataChange callback call data: " + JSON.stringify(data));
+       console.log("dataChange callback call data:  ${data}");
    });
    ```
 
@@ -209,13 +190,13 @@
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.log('put err:  ${error}');
                return;
            }
-           console.log("put success");
+           console.log('put success');
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error: " + e);
+       console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -232,16 +213,16 @@
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.log('put err:  ${error}');
                return;
            }
-           console.log("put success");
+           console.log('put success');
            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
-               console.log("get success data: " + data);
+               console.log('get success data:  ${data}');
            });
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error: " + e);
+       console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -260,7 +241,7 @@
    
    let devManager;
    // create deviceManager
-   deviceManager.createDeviceManager("bundleName", (err, value) => {
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
        if (!err) {
            devManager = value;
            // deviceIds由deviceManager调用getTrustedDeviceListSync方法得到
@@ -275,7 +256,7 @@
                // 1000表示最大延迟时间为1000ms
                kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
            } catch (e) {
-                console.log("An unexpected error occurred. Error: " + e);
+                console.log('An unexpected error occurred. Error:  ${e}');
            }
        }
    });
