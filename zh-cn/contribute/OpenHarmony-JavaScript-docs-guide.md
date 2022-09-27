@@ -58,7 +58,7 @@
 
 1. 图片文件夹：放置文档中引用的图片，包含svg、png、gif等。
 2. 系统资源文件夹：放置文档中引用的系统图标，无需关注。
-3. Readme：目录 每一个新增的md文档，都需要写在Readme中。
+3. Readme：目录每一个新增的md文档，都需要写在Readme中。
 4. 文档：重点关注文档命名，详见后续描述。
 
 ![](figures/figure2.png)
@@ -149,7 +149,7 @@ JS API 文档模板路径：[https://](https://gitee.com/openharmony/docs/blob/m
 
    abandonmentMethod(deprecated)
 
-   \> 从API Version 7 开始废弃，建议使用newMethod替代。
+   \> 从API version 7 开始废弃，建议使用newMethod替代。
 
 **写作示例**：
 
