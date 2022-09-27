@@ -175,9 +175,9 @@ bash build/prebuilts_download.sh
   ```shell
   ./build.sh --product-name {product_name} --gn-args is_debug=true
   ```
-  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块 ：
+>![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块 ：
   
-  ```
+> ```
   ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
   ```
 
