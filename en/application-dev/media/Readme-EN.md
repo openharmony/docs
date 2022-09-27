@@ -20,4 +20,4 @@
   
 -   Camera
    - [Camera Development](camera.md)
-
+   - [Distributed Camera Development](remote-camera.md)

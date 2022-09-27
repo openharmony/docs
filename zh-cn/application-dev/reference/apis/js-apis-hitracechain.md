@@ -71,7 +71,7 @@ import hiTraceChain from '@ohos.hiTraceChain';
 
 ## hiTraceChain.begin
 
-begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
+begin(name: string, flags?: number): HiTraceId
 
 开始跟踪，同步接口。
 
@@ -82,7 +82,7 @@ begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name  | string | 是 | 跟踪业务名。 |
-| flags | number | 是 | 跟踪标志组合，具体可参考[HiTraceFlag](#hitraceflag)。 |
+| flags | number | 否 | 跟踪标志组合，具体可参考[HiTraceFlag](#hitraceflag)。 |
 
 **返回值：**
 
@@ -113,7 +113,7 @@ end(id: HiTraceId): void
 **示例：**
 
 ```js
-let asyncTraceId = hiTraceChain.begin("business");
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，结束跟踪。
 hiTraceChain.end(asyncTraceId);
 ```
@@ -135,7 +135,7 @@ getId(): HiTraceId
 **示例：**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，获取当前HiTraceId。
 let curTraceId = hiTraceChain.getId();
 ```
@@ -158,7 +158,7 @@ setId(id: HiTraceId): void
 
 ```js
 let asyncTraceId;
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，设置当前HiTraceId。
 hiTraceChain.setId(asyncTraceId);
 ```
@@ -174,7 +174,7 @@ clearId(): void
 **示例：**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，清除当前HiTraceId。
 hiTraceChain.clearId();
 ```
@@ -196,7 +196,7 @@ createSpan(): HiTraceId
 **示例：**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // 若干业务逻辑完成后，创建跟踪分支。
 let spanTraceId = hiTraceChain.createSpan();
 ```
@@ -249,7 +249,7 @@ isValid(id: HiTraceId): boolean
 **示例：**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
 ```
 

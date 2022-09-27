@@ -1,40 +1,48 @@
 # Border Image
+
 You can draw an image around a component.
+
 >  **NOTE**
 >
-> The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-## Required Permissions
-
-None
-
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Attributes
 
+| Name        | Type                                    | Description                                     |
+| ---------- | ---------------------------------------- | --------------------------------------- |
+| borderImage     | BorderImageOption | Border image or border gradient.                           |
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| source | string \| [Resource](../../ui/ts-types.md) \| [linearGradient](ts-universal-attributes-gradient-color.md) | - | Source or gradient color of the border image.|
-| slice | Length \| EdgeWidth | 0 | Slice width of the border image.|
-| width | Length \| EdgeWidth | 0 | Width of the border image.|
-| outset | Length \| EdgeWidth | 0 | Amount by which the border image is extended beyond the border box.|
-| RepeatMode  | RepeatMode | RepeatMode.Stretch | Repeat mode of the border image.|
-| fill | boolean | false | Whether to fill the center of the border image. |
-- EdgeWidth 
+## BorderImageOption
 
-   At least one parameter must be passed to reference an **EdgeWidth** object.
-  | Name| Type| Mandatory| Default Value |Description|
-  | -------- | -------- |-------- |-------- |-------- |
-  | left | Length | No| 0 | Distance on the left.|
-  | right | Length | No| 0 | Distance on the right.|
-  | top | Length | No| 0 | Distance at the top.|
-  | bottom | Length | No| 0 | Distance on the bottom.|
-- RepeatMode
-  | Name| Description|
-  | -------- | -------- |
-  | Repeat | The source image's slices are tiled. Tiles beyond the border box will be clipped.|
-  | Stretch | The source image's slices stretched to fill the border box.|
-  | Round | The source image's slices are tiled to fill the border box. Tiles may be compressed when needed.|
-  | Space | The source image's slices are tiled to fill the border box. Extra space will be filled in between tiles.|
+| Name        | Type                                    | Description                                     |
+| ---------- | ---------------------------------------- | --------------------------------------- |
+| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | Source or gradient color of the border image.                           |
+| slice      | [Length](ts-types.md#length)\| EdgeWidths | Slice width of the border image.<br>Default value: **0**                  |
+| width      | [Length](ts-types.md#length)\| EdgeWidths | Width of the border image.<br>Default value: **0**                    |
+| outset     | [Length](ts-types.md#length)\| EdgeWidths | Amount by which the border image is extended beyond the border box.<br>Default value: **0**                |
+| RepeatMode | RepeatMode                               | Repeat mode of the border image.<br>Default value: **RepeatMode.Stretch**|
+| fill       | boolean                                  | Whether to fill the center of the border image.<br>Default value: **false**              |
+
+## EdgeWidths
+
+At least one parameter must be passed to reference an **EdgeWidth** object.
+
+| Name| Type| Mandatory|Description|
+| -------- | -------- |-------- |-------- |
+| left | [Length](ts-types.md#length) | No| Distance on the left.|
+| right | [Length](ts-types.md#length) | No| Distance on the right.|
+| top | [Length](ts-types.md#length) | No| Distance at the top.|
+| bottom | [Length](ts-types.md#length) | No| Distance on the bottom.|
+
+## RepeatMode
+
+| Name     | Description                                 |
+| ------- | ----------------------------------- |
+| Repeat  | The source image's slices are tiled. Tiles beyond the border box will be clipped.         |
+| Stretch | The source image's slices stretched to fill the border box.               |
+| Round   | The source image's slices are tiled to fill the border box. Tiles may be compressed when needed.|
+| Space   | The source image's slices are tiled to fill the border box. Extra space will be filled in between tiles.  |
+
 
 ## Example
 
@@ -43,6 +51,7 @@ None
 @Entry
 @Component
 struct Index {
+
   build() {
     Row() {
       Column() {
@@ -71,6 +80,7 @@ struct Index {
 @Entry
 @Component
 struct Index {
+
   build() {
     Row() {
       Column() {

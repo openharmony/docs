@@ -41,7 +41,8 @@ Go to the root directory of the source code in the Ubuntu environment and perfor
 
      ![en-us_image_0000001226634716](figures/en-us_image_0000001226634716.png)
 
-5. Check the build result. If "build success" is displayed, the building is successful.
+5. Check the build result. If "build success" is displayed, the build is successful.
 
-   > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**
+   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
+   > 
    > The build result and log files are stored in **out/hispark_pegasus/wifiiot_hispark_pegasus**.

@@ -13,12 +13,12 @@
 
 ## 子组件
 
-支持animate、animateMotion、animateTransform。
+支持[animate](js-components-svg-animate.md)、[animateMotion](js-components-svg-animatemotion.md)、[animateTransform](js-components-svg-animatetransform.md)。
 
 
 ## 属性
 
-支持所列的Svg组件通用属性和以下表格的属性。
+支持Svg组件[通用属性](js-components-svg-common-attributes.md)和以下属性。
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -38,8 +38,11 @@
     <line x1="10" x2="300" y1="50" y2="50" stroke-width="4" fill="white" stroke="blue"></line>
     <line x1="10" x2="300" y1="100" y2="100" stroke-width="4" fill="white" stroke="blue"></line>
     <line x1="10" x2="300" y1="150" y2="150" stroke-width="10" stroke="red" stroke-dasharray="5 3" stroke-dashoffset="3"></line>
+    // round：在路径的末端延伸半个圆，直径等于线宽
     <line x1="10" x2="300" y1="200" y2="200" stroke-width="10" stroke="black" stroke-linecap="round"></line>
+    // butt：不在路径两端扩展
     <line x1="10" x2="300" y1="220" y2="220" stroke-width="10" stroke="black" stroke-linecap="butt"></line>
+    // square：在路径的末端延伸一个矩形，宽度等于线宽的一半，高度等于线宽
     <line x1="10" x2="300" y1="240" y2="240" stroke-width="10" stroke="black" stroke-linecap="square"></line>
   </svg>
 </div>

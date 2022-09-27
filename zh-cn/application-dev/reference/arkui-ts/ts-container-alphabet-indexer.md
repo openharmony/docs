@@ -3,11 +3,8 @@
 可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件。
 
 >  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-## 权限列表
-
-无
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -19,37 +16,43 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | arrayValue | Array&lt;string&gt; | 是 | - | 字母索引字符串数组。 |
-  | selected   | number              | 是    | -    | 初始选中项索引值。     |
+**参数：**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| arrayValue | Array&lt;string&gt; | 是 | 字母索引字符串数组。 |
+| selected   | number              | 是    | 初始选中项索引值。     |
 
 ## 属性
 
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 名称                  | 参数类型     | 描述                                                              |
 | ----------------------- | --------------- | ----------------------------------------------------------- |
-| color                   | [ResourceColor](../../ui/ts-types.md)       | 设置文字颜色。                           |
-| selectedColor           | [ResourceColor](../../ui/ts-types.md)     | 设置选中项文字颜色。                           |
-| popupColor              | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗文字颜色。                         |
-| selectedBackgroundColor | [ResourceColor](../../ui/ts-types.md)        | 设置选中项背景颜色。                           |
-| popupBackground         | [ResourceColor](../../ui/ts-types.md)        | 设置提示弹窗背景色。                            |
+| color                   | [ResourceColor](ts-types.md#resourcecolor)       | 设置文字颜色。                           |
+| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | 设置选中项文字颜色。                           |
+| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗文字颜色。                         |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | 设置选中项背景颜色。                           |
+| popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | 设置提示弹窗背景色。                            |
 | usingPopup              | boolean                                  | 设置是否使用提示弹窗。                         |
-| selectedFont            | [Font](../../ui/ts-types.md) | 设置选中项文字样式。                           |
-| popupFont               | [Font](../../ui/ts-types.md) | 设置提示弹窗字体样式。                         |
-| font                    | [Font](../../ui/ts-types.md) | 设置字母索引条默认字体样式。                      |
-| itemSize                | Length                                   | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
+| selectedFont            | [Font](ts-types.md#font) | 设置选中项文字样式。                           |
+| popupFont               | [Font](ts-types.md#font) | 设置提示弹窗字体样式。                         |
+| font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。                      |
+| itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。       |
 | alignStyle              | IndexerAlign                             | 设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值：IndexerAlign.Right |
+| selected | number | 设置选中项索引值。 |
+| popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。 |
 
-- IndexerAlign枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Left | 弹框显示在索引条右侧。 |
-  | Right | 弹框显示在索引条左侧。 |
+## IndexerAlign枚举说明
 
+| 名称 | 描述 |
+| -------- | -------- |
+| Left | 弹框显示在索引条右侧。 |
+| Right | 弹框显示在索引条左侧。 |
 
 ## 事件
+
+仅支持以下事件：
 
 | 名称 | 功能描述 |
 | -------- | -------- |

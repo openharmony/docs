@@ -1,44 +1,30 @@
 # 自定义弹窗
 
-通过CustomDialogController类显示自定义弹窗。
+通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
 
 > **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-通过CustomDialogController类显示自定义弹窗。使用弹窗组件时，可优先考虑自定义弹窗，便于自定义弹窗的样式与内容。
 
 
 ## 接口
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
 
 
-- 参数
-  | 参数名                    | 参数类型                                     | 必填   | 默认值                     | 参数描述                   |
-  | ---------------------- | ---------------------------------------- | ---- | ----------------------- | ---------------------- |
-  | builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是    | -                       | 自定义弹窗内容构造器。            |
-  | cancel                 | ()&nbsp;=&gt;&nbsp;void                  | 否    | -                       | 点击遮障层退出时的回调。           |
-  | autoCancel             | boolean                                  | 否    | true                    | 是否允许点击遮障层退出。           |
-  | alignment              | DialogAlignment                          | 否    | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。         |
-  | offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否    | -                       | 弹窗相对alignment所在位置的偏移量。 |
-  | customStyle            | boolean                                  | 否    | false                   | 弹窗容器样式是否自定义。           |
-  | gridCount<sup>8+</sup> | number                                   | 否    | -                       | 弹窗宽度占栅格宽度的个数。          |
+**参数:**
 
-- DialogAlignment枚举说明
-  | 名称                       | 描述      |
-  | ------------------------ | ------- |
-  | Top                      | 垂直顶部对齐。 |
-  | Center                   | 垂直居中对齐。 |
-  | Bottom                   | 垂直底部对齐。 |
-  | Default                  | 默认对齐。   |
-  | TopStart<sup>8+</sup>    | 左上对齐。   |
-  | TopEnd<sup>8+</sup>      | 右上对齐。   |
-  | CenterStart<sup>8+</sup> | 左中对齐。   |
-  | CenterEnd<sup>8+</sup>   | 右中对齐。   |
-  | BottomStart<sup>8+</sup> | 左下对齐。   |
-  | BottomEnd<sup>8+</sup>   | 右下对齐。   |
-
+| 参数名                    | 参数类型                                     | 必填                  | 参数描述                   |
+| ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
+| builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是     | 自定义弹窗内容构造器。            |
+| cancel                 | ()&nbsp;=&gt;&nbsp;void                            | 否              | 点击遮障层退出时的回调。           |
+| autoCancel             | boolean                                            | 否              | 是否允许点击遮障层退出。<br>默认值：true           |
+| alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明)           | 否              | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default        |
+| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
+| customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false           |
+| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。              |
 
 ## CustomDialogController
 

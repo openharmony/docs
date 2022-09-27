@@ -32,7 +32,7 @@ Canvas(context?: CanvasRenderingContext2D)
 
 | 名称                            | 参数   | 描述                   |
 | ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | 无    | 画布组件的事件回调，可以在此时进行绘制。 |
+| onReady(event: () => void) | 无    | Canvas组件初始化完成时的事件回调，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。 |
 
 ## 示例
 

@@ -82,7 +82,7 @@ int(* AudioManager::LoadAdapter) (struct AudioAdapterManager *manager, const str
 
 加载一个音频适配器（声卡）的驱动
 
-加载一个具体的音频驱动，例如usb驱动，在具体实现中可能加载的是一个动态链接库（\*.so）
+加载一个具体的音频驱动，例如USB驱动，在具体实现中可能加载的是一个动态链接库（\*.so）
 
 **参数：**
 
@@ -122,7 +122,7 @@ bool(* AudioManager::ReleaseAudioManagerObject) (struct AudioManager *object)
 
 **返回：**
 
-成功返回ture，失败返回false
+成功返回true，失败返回false
 
 
 ### UnloadAdapter

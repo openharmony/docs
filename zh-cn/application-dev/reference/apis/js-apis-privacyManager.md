@@ -42,10 +42,17 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
-var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
-privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+import bundle from '@ohos.bundle';
+import privacyManager from '@ohos.privacyManager';
+
+let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
+    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(data => {
+        console.log(`promise: data->${JSON.stringify(data)}`);
+    });
+})
+
 ```
 
 ## privacyManager.addPermissionUsedRecord
@@ -72,10 +79,17 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 **示例：**
 
 ```js
-var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
-privacyManager.privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
-});
+import bundle from '@ohos.bundle';
+import privacyManager from '@ohos.privacyManager';
+
+let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
+    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
+        console.log(`callback: data->${JSON.stringify(data)}`);
+    });
+})
+
 ```
 
 ## privacyManager.getPermissionUsedRecords
@@ -105,10 +119,10 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 ```js
 let request = {
     "tokenId": 1,
-    "isRemote": 1,
+    "isRemote": false,
     "deviceId": "device",
     "bundleName": "bundle",
-    "permissionNames": 1,
+    "permissionNames": [],
     "beginTime": 0,
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
@@ -140,10 +154,10 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 ```js
 let request = {
     "tokenId": 1,
-    "isRemote": 1,
+    "isRemote": false,
     "deviceId": "device",
     "bundleName": "bundle",
-    "permissionNames": 1,
+    "permissionNames": [],
     "beginTime": 0,
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
@@ -183,15 +197,16 @@ import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
 let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    let tokenID = appInfo.accessTokenId;
+    let permissionName = "ohos.permission.CAMERA";
+    privacyManager.startUsingPermission(tokenID, permissionName).then(data => {
+        console.log(`promise: data->${JSON.stringify(data)}`);
+    }).catch(err => {
+        console.log(`Error: err->${JSON.stringify(err)}`);
+    });
+})
 
-let tokenID = appInfo.accessTokenId;
-let permissionName = "ohos.permission.CAMERA";
-privacyManager.startUsingPermission(tokenID, permissionName).then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`Error: err->${JSON.stringify(err)}`);
-});
 ```
 
 ## privacyManager.startUsingPermission<sup>9+</sup>
@@ -219,17 +234,18 @@ import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
 let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    let tokenID = appInfo.accessTokenId;
+    let permissionName = "ohos.permission.CAMERA";
+    privacyManager.startUsingPermission(tokenID, permissionName, (err, data)=> {
+        if (err) {
+            console.log(`Error: err->${JSON.stringify(err)}`);
+        } else {S
+            console.log(`promise: data->${JSON.stringify(data)}`);
+        }
+    });
+})
 
-let tokenID = appInfo.accessTokenId;
-let permissionName = "ohos.permission.CAMERA";
-privacyManager.startUsingPermission(tokenID, permissionName, (err, data)=> {
-    if (err) {
-        console.log(`Error: err->${JSON.stringify(err)}`);
-    } else {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }
-});
 ```
 
 ## privacyManager.stopUsingPermission<sup>9+</sup>
@@ -262,15 +278,16 @@ import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
 let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    let tokenID = appInfo.accessTokenId;
+    let permissionName = "ohos.permission.CAMERA";
+    privacyManager.stopUsingPermission(tokenID, permissionName).then(data => {
+        console.log(`promise: data->${JSON.stringify(data)}`);
+    }).catch(err => {
+        console.log(`Error: err->${JSON.stringify(err)}`);
+    });
+})
 
-let tokenID = appInfo.accessTokenId;
-let permissionName = "ohos.permission.CAMERA";
-privacyManager.stopUsingPermission(tokenID, permissionName).then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.log(`Error: err->${JSON.stringify(err)}`);
-});
 ```
 
 ## privacyManager.stopUsingPermission<sup>9+</sup>
@@ -298,17 +315,18 @@ import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
 let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-let appInfo = await bundle.getApplicationInfo(bundleName, 16); // need async type function
+bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
+    let tokenID = appInfo.accessTokenId;
+    let permissionName = "ohos.permission.CAMERA";
+    privacyManager.stopUsingPermission(tokenID, permissionName, (err, data)=> {
+        if (err) {
+            console.log(`Error: err->${JSON.stringify(err)}`);
+        } else {
+            console.log(`promise: data->${JSON.stringify(data)}`);
+        }
+    });
+})
 
-let tokenID = appInfo.accessTokenId;
-let permissionName = "ohos.permission.CAMERA";
-privacyManager.privacyManager.stopUsingPermission(tokenID, permissionName, (err, data)=> {
-    if (err) {
-        console.log(`Error: err->${JSON.stringify(err)}`);
-    } else {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }
-});
 ```
 
 ## privacyManager.on<sup>9+</sup>
@@ -340,7 +358,7 @@ function OnPermissionUseStateChanged(data){
     console.debug("receive permission state change, data:" + JSON.stringify(data));
 }
 let type: 'activeStateChange' = 'activeStateChange';
-let permissionNameList: Array&lt;string&gt; = [];
+let permissionNameList: Array<string> = [];
 try{
     privacyManager.on(type, permissionNameList, OnPermissionUseStateChanged);
 }
@@ -375,7 +393,7 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback
 import privacyManager from '@ohos.privacyManager';
 
 let type: 'activeStateChange' = 'activeStateChange';
-let permissionNameList: Array&lt;string&gt; = [];
+let permissionNameList: Array<string> = [];
 try{
     privacyManager.off(type, permissionNameList);
 }

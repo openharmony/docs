@@ -96,7 +96,7 @@ import {KeyCode} from '@ohos.multimodalInput.keyCode'
 | KEYCODE_EQUALS                   | number | 是    | 否    | 按键'='                       |
 | KEYCODE_LEFT_BRACKET             | number | 是    | 否    | 按键'['                       |
 | KEYCODE_RIGHT_BRACKET            | number | 是    | 否    | 按键']'                       |
-| KEYCODE_BACKSLASH                | number | 是    | 否    | 按键'\'                       |
+| KEYCODE_BACKSLASH                | number | 是    | 否    | 按键'\\'                       |
 | KEYCODE_SEMICOLON                | number | 是    | 否    | 按键';'                       |
 | KEYCODE_APOSTROPHE               | number | 是    | 否    | 按键''' (单引号)                 |
 | KEYCODE_SLASH                    | number | 是    | 否    | 按键'/'                       |

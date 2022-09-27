@@ -140,7 +140,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
   ```js
   InputMethodEngine.off('inputStart', (kbController, textInputClient) => {
-      console.log("delete inputStart notification.");
+      console.log('delete inputStart notification.');
   });
   ```
 
@@ -163,7 +163,7 @@ on(type: 'inputStop', callback: () => void): void
 
   ```js
 InputMethodEngine.getInputMethodEngine().on('inputStop', () => {
-    console.log("inputMethodEngine inputStop");
+    console.log('inputMethodEngine inputStop');
 });
   ```
 
@@ -186,7 +186,7 @@ off(type: 'inputStop', callback: () => void): void
 
   ```js
 InputMethodEngine.getInputMethodEngine().off('inputStop', () => {
-    console.log("inputMethodEngine delete inputStop notification.");
+    console.log('inputMethodEngine delete inputStop notification.');
 });
   ```
 
@@ -209,7 +209,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
   ```js
 InputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
-    console.log("inputMethodEngine setCallingWindow");
+    console.log('inputMethodEngine setCallingWindow');
 });
   ```
 
@@ -232,7 +232,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
   ```js
 InputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
-    console.log("inputMethodEngine delete setCallingWindow notification.");
+    console.log('inputMethodEngine delete setCallingWindow notification.');
 });
   ```
 
@@ -255,10 +255,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
   ```js
   InputMethodEngine.on('keyboardShow', () => {
-      console.log("inputMethodEngine keyboardShow.");
+      console.log('inputMethodEngine keyboardShow.');
   });
   InputMethodEngine.on('keyboardHide', () => {
-      console.log("inputMethodEngine keyboardHide.");
+      console.log('inputMethodEngine keyboardHide.');
   });
   ```
 
@@ -281,10 +281,10 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
   ```js
   InputMethodEngine.off('keyboardShow', () => {
-      console.log("inputMethodEngine delete keyboardShow notification.");
+      console.log('inputMethodEngine delete keyboardShow notification.');
   });
   InputMethodEngine.off('keyboardHide', () => {
-      console.log("inputMethodEngine delete keyboardHide notification.");
+      console.log('inputMethodEngine delete keyboardHide notification.');
   });
   ```
 
@@ -314,13 +314,13 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
   ```js
   KeyboardDelegate.on('keyUp', (keyEvent) => {
-      console.info("inputMethodEngine keyCode.(keyUp):" + JSON.stringify(keyEvent.keyCode));
-      console.info("inputMethodEngine keyAction.(keyUp):" + JSON.stringify(keyEvent.keyAction));
+      console.info('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
+      console.info('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
       return true;
   });
   KeyboardDelegate.on('keyDown', (keyEvent) => {
-      console.info("inputMethodEngine keyCode.(keyDown):" + JSON.stringify(keyEvent.keyCode));
-      console.info("inputMethodEngine keyAction.(keyDown):" + JSON.stringify(keyEvent.keyAction));
+      console.info('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
+      console.info('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
       return true;
   });
   ```
@@ -344,11 +344,11 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
   ```js
   KeyboardDelegate.off('keyUp', (keyEvent) => {
-      console.log("delete keyUp notification.");
+      console.log('delete keyUp notification.');
       return true;
   });
   KeyboardDelegate.off('keyDown', (keyEvent) => {
-      console.log("delete keyDown notification.");
+      console.log('delete keyDown notification.');
       return true;
   });
   ```
@@ -374,9 +374,9 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 ```js
 KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
-    console.log("inputMethodEngine cursorContextChange x:" + x);
-    console.log("inputMethodEngine cursorContextChange y:" + y);
-    console.log("inputMethodEngine cursorContextChange height:" + height);
+    console.log('inputMethodEngine cursorContextChange x:' + x);
+    console.log('inputMethodEngine cursorContextChange y:' + y);
+    console.log('inputMethodEngine cursorContextChange height:' + height);
 });
 ```
 
@@ -400,7 +400,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 
 ```js
 KeyboardDelegate.off('cursorContextChange', (x, y, height) => {
-    console.log("delete cursorContextChange notification.");
+    console.log('delete cursorContextChange notification.');
 });
 ```
 ### on('selectionChange')
@@ -422,10 +422,10 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 ```js
 KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-    console.log("inputMethodEngine beforeEach selectionChange oldBegin:" + oldBegin);
-    console.log("inputMethodEngine beforeEach selectionChange oldEnd:" + oldEnd);
-    console.log("inputMethodEngine beforeEach selectionChange newBegin:" + newBegin);
-    console.log("inputMethodEngine beforeEach selectionChange newEnd:" + newEnd);
+    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
 });
 ```
 
@@ -448,7 +448,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 ```js
 KeyboardDelegate.off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-  console.log("delete selectionChange notification.");
+  console.log('delete selectionChange notification.');
 });
 ```
 
@@ -472,7 +472,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 
 ```js
 KeyboardDelegate.on('textChange', (text) => {
-    console.log("inputMethodEngine textChange. text:" + text);
+    console.log('inputMethodEngine textChange. text:' + text);
 });
 ```
 
@@ -495,7 +495,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 ```js
 keyboardDelegate.off('textChange', (text) => {
-    console.log("delete textChange notification. text:" + text);
+    console.log('delete textChange notification. text:' + text);
 });
 ```
 
@@ -522,11 +522,11 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 KeyboardController.hideKeyboard((err) => {
-    if (err == undefined) {
-        console.error("hideKeyboard callback result---err: " + err.msg);
+    if (err === undefined) {
+        console.error('hideKeyboard callback result---err: ' + err.msg);
         return;
     }
-    console.log("hideKeyboard callback.");
+    console.log('hideKeyboard callback.');
 });
 ```
 
@@ -549,9 +549,9 @@ hideKeyboard(): Promise&lt;void&gt;
 ```js
 async function InputMethodEngine() {
     await KeyboardController.hideKeyboard().then(() => {
-        console.info("hideKeyboard promise.");
+        console.info('hideKeyboard promise.');
     }).catch((err) => {
-        console.info("hideKeyboard promise err: " + err.msg);
+        console.info('hideKeyboard promise err: ' + err.msg);
     });
 }
 ```
@@ -580,11 +580,11 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
   ```js
   var length = 1;
   TextInputClient.getForward(length, (err, text) => {
-      if (err == undefined) {
-          console.error("getForward callback result---err: " + err.msg);
+      if (err === undefined) {
+          console.error('getForward callback result---err: ' + err.msg);
           return;
       }
-      console.log("getForward callback result---text: " + text);
+      console.log('getForward callback result---text: ' + text);
   });
   ```
 
@@ -614,9 +614,9 @@ getForward(length:number): Promise&lt;string&gt;
   async function InputMethodEngine() {
       var length = 1;
       await TextInputClient.getForward(length).then((text) => {
-          console.info("getForward promise result---res: " + text);
+          console.info('getForward promise result---res: ' + text);
       }).catch((err) => {
-          console.error("getForward promise err: " + err.msg);
+          console.error('getForward promise err: ' + err.msg);
       });
   }
   ```
@@ -641,11 +641,11 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
   ```js
   var length = 1;
   TextInputClient.getBackward(length, (err, text) => {
-      if (err == undefined) {
-          console.error("getBackward callback result---err: " + err.msg);
+      if (err === undefined) {
+          console.error('getBackward callback result---err: ' + err.msg);
           return;
       }
-      console.log("getBackward callback result---text: " + text);
+      console.log('getBackward callback result---text: ' + text);
   });
   ```
 
@@ -675,9 +675,9 @@ getBackward(length:number): Promise&lt;string&gt;
   async function InputMethodEngine() {
       var length = 1;
       await TextInputClient.getBackward(length).then((text) => {
-          console.info("getBackward promise result---res: " + text);
+          console.info('getBackward promise result---res: ' + text);
       }).catch((err) => {
-          console.error("getBackward promise err: " + err.msg);
+          console.error('getBackward promise err: ' + err.msg);
       });
   }
   ```
@@ -702,14 +702,14 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
   ```js
   var length = 1;
   TextInputClient.deleteForward(length, (err, result) => {
-      if (err == undefined) {
+      if (err === undefined) {
           console.error('deleteForward callback result---err: ' + err.msg);
           return;
       }
       if (result) {
-          console.info("Success to deleteForward.(callback) ");
+          console.info('Success to deleteForward.(callback) ');
       } else {
-          console.error("Failed to deleteForward.(callback) ");
+          console.error('Failed to deleteForward.(callback) ');
       }
   });
   ```
@@ -740,12 +740,12 @@ async function InputMethodEngine() {
     var length = 1;
     await TextInputClient.deleteForward(length).then((result) => {
         if (result) {
-            console.info("Success to deleteForward.(promise) ");
+            console.info('Success to deleteForward.(promise) ');
         } else {
-            console.error("Failed to deleteForward.(promise) ");
+            console.error('Failed to deleteForward.(promise) ');
         }
     }).catch((err) => {
-        console.error("deleteForward promise err: " + err.msg);
+        console.error('deleteForward promise err: ' + err.msg);
     });
 }
 ```
@@ -770,14 +770,14 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 var length = 1;
 TextInputClient.deleteBackward(length, (err, result) => {
-    if (err == undefined) {
-        console.error("deleteBackward callback result---err: " + err.msg);
+    if (err === undefined) {
+        console.error('deleteBackward callback result---err: ' + err.msg);
         return;
     }
     if (result) {
-        console.info("Success to deleteBackward.(callback) ");
+        console.info('Success to deleteBackward.(callback) ');
     } else {
-        console.error("Failed to deleteBackward.(callback) ");
+        console.error('Failed to deleteBackward.(callback) ');
     }
 });
 ```
@@ -809,12 +809,12 @@ async function InputMethodEngine() {
     var length = 1;
     await TextInputClient.deleteBackward(length).then((result) => {
         if (result) {
-            console.info("Success to deleteBackward.(promise) ");
+            console.info('Success to deleteBackward.(promise) ');
         } else {
-            console.error("Failed to deleteBackward.(promise) ");
+            console.error('Failed to deleteBackward.(promise) ');
         }
     }).catch((err) => {
-        console.error("deleteBackward promise err: " + err.msg);
+        console.error('deleteBackward promise err: ' + err.msg);
     });
 }
 ```
@@ -837,14 +837,14 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
-    if (err == undefined) {
-        console.error("sendKeyFunction callback result---err: " + err.msg);
+    if (err === undefined) {
+        console.error('sendKeyFunction callback result---err: ' + err.msg);
         return;
     }
     if (result) {
-        console.info("Success to sendKeyFunction.(callback) ");
+        console.info('Success to sendKeyFunction.(callback) ');
     } else {
-        console.error("Failed to sendKeyFunction.(callback) ");
+        console.error('Failed to sendKeyFunction.(callback) ');
     }
 });
 ```
@@ -875,12 +875,12 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
   async function InputMethodEngine() {
       await client.sendKeyFunction(keyFunction).then((result) => {
           if (result) {
-              console.info("Success to sendKeyFunction.(promise) ");
+              console.info('Success to sendKeyFunction.(promise) ');
           } else {
-              console.error("Failed to sendKeyFunction.(promise) ");
+              console.error('Failed to sendKeyFunction.(promise) ');
           }
       }).catch((err) => {
-          console.error("sendKeyFunction promise err:" + err.msg);
+          console.error('sendKeyFunction promise err:' + err.msg);
       });
   }
   ```
@@ -904,14 +904,14 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 TextInputClient.insertText('test', (err, result) => {
-    if (err == undefined) {
-        console.error("insertText callback result---err: " + err.msg);
+    if (err === undefined) {
+        console.error('insertText callback result---err: ' + err.msg);
         return;
     }
     if (result) {
-        console.info("Success to insertText.(callback) ");
+        console.info('Success to insertText.(callback) ');
     } else {
-        console.error("Failed to insertText.(callback) ");
+        console.error('Failed to insertText.(callback) ');
     }
 });
 ```
@@ -942,12 +942,12 @@ insertText(text:string): Promise&lt;boolean&gt;
   async function InputMethodEngine() {
       await TextInputClient.insertText('test').then((result) => {
           if (result) {
-              console.info("Success to insertText.(promise) ");
+              console.info('Success to insertText.(promise) ');
           } else {
-              console.error("Failed to insertText.(promise) ");
+              console.error('Failed to insertText.(promise) ');
           }
       }).catch((err) => {
-          console.error("insertText promise err: " + err.msg);
+          console.error('insertText promise err: ' + err.msg);
       });
   }
   ```
@@ -970,12 +970,12 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
   ```js
   TextInputClient.getEditorAttribute((err, editorAttribute) => {
-      if (err == undefined) {
-          console.error("getEditorAttribute callback result---err: " + err.msg);
+      if (err === undefined) {
+          console.error('getEditorAttribute callback result---err: ' + err.msg);
           return;
       }
-      console.log("editorAttribute.inputPattern(callback): " + JSON.stringify(editorAttribute.inputPattern));
-      console.log("editorAttribute.enterKeyType(callback): " + JSON.stringify(editorAttribute.enterKeyType));
+      console.log('editorAttribute.inputPattern(callback): ' + JSON.stringify(editorAttribute.inputPattern));
+      console.log('editorAttribute.enterKeyType(callback): ' + JSON.stringify(editorAttribute.enterKeyType));
   });
   ```
 
@@ -998,10 +998,10 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
    ```js
    async function InputMethodEngine() {
        await TextInputClient.getEditorAttribute().then((editorAttribute) => {
-           console.info("editorAttribute.inputPattern(promise): " + JSON.stringify(editorAttribute.inputPattern));
-           console.info("editorAttribute.enterKeyType(promise): " + JSON.stringify(editorAttribute.enterKeyType));
+           console.info('editorAttribute.inputPattern(promise): ' + JSON.stringify(editorAttribute.inputPattern));
+           console.info('editorAttribute.enterKeyType(promise): ' + JSON.stringify(editorAttribute.enterKeyType));
        }).catch((err) => {
-           console.error("getEditorAttribute promise err: " + err.msg);
+           console.error('getEditorAttribute promise err: ' + err.msg);
        });
    }
    ```
@@ -1025,8 +1025,8 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 TextInputClient.moveCursor(inputMethodEngine.CURSOR_xxx, (err) => {
-    if (err == undefined) {
-        console.error("moveCursor callback result---err: " + err.msg);
+    if (err === undefined) {
+        console.error('moveCursor callback result---err: ' + err.msg);
         return;
     }
 });
@@ -1059,7 +1059,7 @@ async function InputMethodEngine() {
     await TextInputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then(async (err) => {
         console.log('moveCursor success');
     }).catch((err) => {
-        console.error("moveCursor success err: " + err.msg);
+        console.error('moveCursor success err: ' + err.msg);
     });
 }
   ```

@@ -1,57 +1,58 @@
 # Rect
 
+The **\<Rect>** component is used to draw a rectangle.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **<Rect\>** component is used to draw a rectangle.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
-Rect(value:{options?: {width: Length,height: Length,radius?: Length | Array&lt;Length&gt;} | {width: Length,height: Length,radiusWidth?: Length,radiusHeight?: Length}})
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
+  {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
+  | Name| Type| Mandatory| Default Value| Description| 
   | -------- | -------- | -------- | -------- | -------- |
-  | options | Object | No | - | Options of the rectangle to draw. For details, see the **options** parameters. | 
-
-- options parameters
-  | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | Length | Yes | - | Width of the rectangle. | 
-  | height | Length | Yes | - | Height of the rectangle. | 
-  | radius | Length \| Array&lt;Length&gt; | No | 0 | Radius of the rounded corner. You can set the radius of four rounded corners. | 
-  | radiusWidth | Length | No | 0 | Width of the rounded corner. | 
-  | radiusHeight | Length | No | 0 | Height of the rounded corner. | 
+  | width | string \| number | No| 0 | Width.| 
+  | height | string \| number | No| 0 | Height.| 
+  | radius | string \| number \| Array&lt;string \| number&gt; | No| 0 | Radius of the rounded corner. You can set separate radiuses for four rounded corners.| 
+  | radiusWidth | string \| number | No| 0 | Width of the rounded corner.| 
+  | radiusHeight | string \| number | No| 0 | Height of the rounded corner.| 
 
 
 ## Attributes
 
-| Name | Type | Default Value | Mandatory | Description | 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Default Value| Mandatory| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| width | Length | 0 | No | Width of the rectangle. | 
-| height | Length | 0 | No | Height of the rectangle. | 
-| radiusWidth | Length | 0 | No | Width of the rounded corner. The width and height are the same when only the width is set. | 
-| radiusHeight | Length | 0 | No | Height of the rounded corner. The width and height are the same only when the height is set. | 
-| radius | Length \| Array&lt;Length&gt; | 0 | No | Radius of the rounded corner. | 
+| radiusWidth | string \| number | 0 | No| Width of the rounded corner. The width and height are the same when only the width is set.| 
+| radiusHeight | string \| number | 0 | No| Height of the rounded corner. The width and height are the same only when the height is set.| 
+| radius | string \| number \| Array&lt;string \| number&gt; | 0 | No| Radius of the rounded corner. You can set separate radiuses for four rounded corners.|
+| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Color of the fill area.|
+| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Opacity of the fill area.|
+| stroke | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Stroke color.|
+| strokeDashArray | Array&lt;Length&gt; | [] | No| Stroke dash.|
+| strokeDashOffset | number \| string | 0 | No| Offset of the start point for drawing the stroke.|
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | No| Cap style of the stroke.|
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | No| Join style of the stroke.|
+| strokeMiterLimit | number \| string | 4 | No| Limit value when the sharp angle is drawn as a miter.|
+| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Stroke opacity.|
+| strokeWidth | Length | 1 | No| Stroke width.|
+| antiAlias | boolean | true | No| Whether anti-aliasing is enabled.|
 
 
 ## Example
 
-  
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct RectExample {

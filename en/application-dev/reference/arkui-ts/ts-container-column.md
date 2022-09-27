@@ -1,42 +1,35 @@
 # Column
 
+The **<Column\>** component lays out child components vertically.
 
-The **\<Column>** component lays out child components vertically.
-
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
 
-Column(value?:{space?: Length})
+Column(value?:{space?: string | number})
 
+**Parameters**
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No| 0 | Space between two adjacent child components in the vertical layout.|
-
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| space | string \| number | No| Space between two adjacent child components in the vertical layout.<br>Default value: **0**|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | HorizontalAlign.Center | Alignment mode of the child components in the horizontal direction.|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the vertical direction.|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **HorizontalAlign.Center**|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | Alignment mode of the child components in the vertical direction.<br>Default value: **FlexAlign.Start**|
 
 ## Example
 
