@@ -183,8 +183,8 @@ bash build/prebuilts_download.sh
   > ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
   > ```
   > 
-  - {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
-  - 编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
+  {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
+  编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
 
 
 
