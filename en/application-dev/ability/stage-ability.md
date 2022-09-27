@@ -108,7 +108,9 @@ To create Page abilities for an application in the stage model, you must impleme
    }
    ```
 ### Obtaining AbilityStage and Ability Configurations
-Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details. The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
+Both the `AbilityStage` and `Ability` classes have the `context` attribute. An application can obtain the context of an `Ability` instance through `this.context` to obtain the configuration details.
+
+The following example shows how an application obtains the bundle code directory, HAP file name, ability name, and system language through the `context` attribute in the `AbilityStage` class. The sample code is as follows:
 
 ```ts
 import AbilityStage from "@ohos.application.AbilityStage"
@@ -123,7 +125,7 @@ export default class MyAbilityStage extends AbilityStage {
         console.log("MyAbilityStage hap module mainAbilityName" + currentHapModuleInfo.mainAbilityName)
 
         let config = this.context.config
-        console.log("MainAbility config language" + config.language)
+        console.log("MyAbilityStage config language" + config.language)
     }
 }
 ```
@@ -142,7 +144,7 @@ export default class MainAbility extends Ability {
         console.log("MainAbility ability name" + abilityInfo.name)
 
         let config = this.context.config
-        console.log("MainAbility config language" + config.language)
+        console.log("MyAbilityStage config language" + config.language)
     }
 }
 ```
