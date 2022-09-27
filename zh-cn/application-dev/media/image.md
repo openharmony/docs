@@ -285,7 +285,7 @@ public async init(surfaceId: any) {
     // 获取Surface ID
     var surfaceId = await receiver.getReceivingSurfaceId();
 
-    // 注册Surface的监听，在suface的buffer准备好后触发
+    // 注册Surface的监听，在surface的buffer准备好后触发
     receiver.on('imageArrival', () => {
         // 去获取Surface中最新的buffer
         receiver.readNextImage((err, img) => {

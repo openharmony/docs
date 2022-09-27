@@ -1,4 +1,4 @@
-#    系统帐号管理
+# 系统帐号管理
 
 本模块提供管理系统帐号的一些基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能，提供系统帐号数据落盘的能力。
 
@@ -239,7 +239,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 | constraint | string                       | 是   | 指定的[约束](#系统帐号约束列表)名称。             |
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：**判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -273,7 +273,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：**判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -506,7 +506,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | enable      | boolean                   | 是   | 设置(true)/删除(false)                       |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调结果。                                   |
 
-**示例：**给ID为100的系统帐号设置禁止使用wifi的约束
+**示例：**给ID为100的系统帐号设置禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -542,7 +542,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**删除ID为100的系统帐号的禁止使用wifi的约束
+**示例：**删除ID为100的系统帐号的禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -3164,7 +3164,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面未朝向设备。                         |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | 表示未检测到人脸。                         |
 
-## ingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>8+</sup>
 
 枚举，指示指纹身份验证过程中提示代码。
 
@@ -3218,8 +3218,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 约束                                  | 说明                           |
 | ------------------------------------- | ------------------------------ |
-| constraint.wifi                       | 禁止使用wifi                   |
-| constraint.wifi.set                   | 禁止配置wifi                   |
+| constraint.wifi                       | 禁止使用Wi-Fi                  |
+| constraint.wifi.set                   | 禁止配置Wi-Fi                  |
 | constraint.locale.set                 | 禁止配置设备语言               |
 | constraint.app.accounts               | 禁止添加和删除应用帐号         |
 | constraint.apps.install               | 禁止安装应用                   |

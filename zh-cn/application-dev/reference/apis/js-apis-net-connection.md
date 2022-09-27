@@ -66,7 +66,7 @@ connection.getDefaultNet().then(function (netHandle) {
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 检查默认数据网络是否被激活，使用callback方式作为异步方法。
-默认数据网络：以太网>wifi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
+默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -90,7 +90,7 @@ connection.hasDefaultNet(function (error, has) {
 hasDefaultNet(): Promise\<boolean>
 
 检查默认数据网络是否被激活，使用Promise方式作为异步方法。
-默认数据网络：以太网>wifi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
+默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1031,7 +1031,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) | 存储数据网络的传输能力和承载类型。                           |
-| bearerPrivateIdentifier | string                              | 网络标识符，WIFI网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+| bearerPrivateIdentifier | string                              | 网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
 ## NetCapabilities
 

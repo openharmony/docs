@@ -2,13 +2,9 @@
 
 The **<Select\>** component provides a drop-down list box that allows users to select among multiple options.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -16,35 +12,35 @@ Not supported
 
 ## APIs
 
-Select(options: Array\<SelectOption>\)
+Select(options: Array\<SelectOption\>)
 
-- SelectOption parameters
+**SelectOption**
 
-  | Name| Type| Mandatory| Default Value| Description|
-  | ------ | ----------------------------------------------- | ---- | ------ | -------------- |
-  | value | [ResourceStr](../../ui/ts-types.md) | Yes | - | Value of an option in the drop-down list box. |
-  | icon | [ResourceStr](../../ui/ts-types.md) | No | - | Icon of an option in the drop-down list box. |
+| Name| Type                           | Mandatory| Description      |
+| ------ | ----------------------------------- | ---- | -------------- |
+| value  | [ResourceStr](ts-types.md#resourcestr) | Yes  | Value of an option in the drop-down list box.|
+| icon   | [ResourceStr](ts-types.md#resourcestr) | No  | Icon of an option in the drop-down list box.|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| ----------------------- | --------------------------------------------------- | ------ | ----------------------------------------------- |
-| selected                | number                                              | -      | Index of the initial selected option in the drop-down list box. The index of the first option is **0**. |
-| value                   | string                                              | -      | Text of the drop-down button. |
-| font                    | [Font](../../ui/ts-types.md) | -      | Text font of the drop-down button. |
-| fontColor               | [ResourceColor](../../ui/ts-types.md) | -      | Text color of the drop-down button. |
-| selectedOptionBgColor   | [ResourceColor](../../ui/ts-types.md) | -      | Background color of the selected option in the drop-down list box. |
-| selectedOptionFont      | [Font](../../ui/ts-types.md) | -      | Text font of the selected option in the drop-down list box. |
-| selectedOptionFontColor | [ResourceColor](../../ui/ts-types.md) | -      | Text color of the selected option in the drop-down list box. |
-| optionBgColor           | [ResourceColor](../../ui/ts-types.md) | -      | Background color of an option in the drop-down list box. |
-| optionFont              | [Font](../../ui/ts-types.md) | -      | Text font of an option in the drop-down list box. |
-| optionFontColor         | [ResourceColor](../../ui/ts-types.md) | -      | Text color of an option in the drop-down list box. |
+| Name                   | Type                             | Description                                         |
+| ----------------------- | ------------------------------------- | --------------------------------------------- |
+| selected                | number                                | Index of the initial selected option in the drop-down list box. The index of the first option is **0**.|
+| value                   | string                                | Text of the drop-down button.                 |
+| font                    | [Font](ts-types.md#font) | Text font of the drop-down button.                 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor) | Text color of the drop-down button.                 |
+| selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | Background color of the selected option in the drop-down list box.                 |
+| selectedOptionFont      | [Font](ts-types.md#font) | Text font of the selected option in the drop-down list box.               |
+| selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | Text color of the selected option in the drop-down list box.               |
+| optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | Background color of an option in the drop-down list box.                     |
+| optionFont              | [Font](ts-types.md#font) | Text font of an option in the drop-down list box.                   |
+| optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | Text color of an option in the drop-down list box.                   |
 
 ## Events
 
-| Name| Description|
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelect(callback: (index: number, value?:string) => void) | Invoked when an option in the drop-down list box is selected. **index** indicates the index of the selected option. **value** indicates the value of the selected option. |
+| Name                                                       | Description                                                  |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| onSelect(callback: (index: number, value?:string) => void) | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br/>**value**: value of the selected option. |
 
 ##  Example
 

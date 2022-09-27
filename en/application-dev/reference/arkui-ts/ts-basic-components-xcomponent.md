@@ -1,22 +1,24 @@
 # XComponent
 
-  > **NOTE**
-  >
-  > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
 
-  The **\<XComponent>** can accept and display the EGL/OpenGL ES and media data input.
+> **NOTE**
+>
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
+
 
 ## Required Permissions
 
-  None
+None
 
 ## Child Components
 
-  Not supported
+Not supported
 
 ## APIs
 
-  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **Parameters**
 
