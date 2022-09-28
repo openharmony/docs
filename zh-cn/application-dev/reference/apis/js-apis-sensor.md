@@ -23,7 +23,7 @@ import sensor from '@ohos.sensor';
 
 ## sensor.on
 
-### ACCELEROMETER <sup>9+</sup>
+### ACCELEROMETER<sup>9+</sup>
 
 on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;,options?: Options): void
 
@@ -53,7 +53,7 @@ sensor.on(sensor.SensorId.ACCELEROMETER,function(data){
 );
 ```
 
-### ACCELEROMETER_UNCALIBRATED <sup>9+</sup>
+### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
 on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback:Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
 
@@ -86,7 +86,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback:Callback&lt;Accelerometer
   );
 ```
 
-### AMBIENT_LIGHT <sup>9+</sup>
+### AMBIENT_LIGHT<sup>9+</sup>
 
 on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
@@ -112,7 +112,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
   );
 ```
 
-###  AMBIENT_TEMPERATURE <sup>9+</sup>
+###  AMBIENT_TEMPERATURE<sup>9+</sup>
 
 on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;,options?: Options): void
 
@@ -138,7 +138,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
   );
 ```
 
-### BAROMETER <sup>9+</sup>
+### BAROMETER<sup>9+</sup>
 
 on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, options?: Options): void
 
@@ -164,7 +164,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
   );
 ```
 
-###  GRAVITY <sup>9+</sup>
+###  GRAVITY<sup>9+</sup>
 
 on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
@@ -192,7 +192,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
   );
 ```
 
-###  GYROSCOPE <sup>9+</sup>
+###  GYROSCOPE<sup>9+</sup>
 
 on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options?: Options): void
 
@@ -222,7 +222,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
   );
 ```
 
-###  GYROSCOPE_UNCALIBRATED <sup>9+</sup>
+###  GYROSCOPE_UNCALIBRATED<sup>9+</sup>
 
 on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalibratedResponse&gt;,
       options?: Options): void
@@ -256,7 +256,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
   );
 ```
 
-###  HALL <sup>9+</sup>
+###  HALL<sup>9+</sup>
 
 on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
@@ -282,7 +282,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
   );
 ```
 
-###   HEART_RATE <sup>9+</sup>
+###   HEART_RATE<sup>9+</sup>
 
 on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,options?: Options): void
 
@@ -310,7 +310,7 @@ sensor.on(sensor.SensorId.HEART_RATE,function(data){
 );
 ```
 
-###  HUMIDITY <sup>9+</sup>
+###  HUMIDITY<sup>9+</sup>
 
 on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
@@ -366,7 +366,7 @@ on(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometer
   );
 ```
 
-###  MAGNETIC_FIELD <sup>9+</sup>
+###  MAGNETIC_FIELD<sup>9+</sup>
 
 on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
@@ -394,7 +394,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
   );
 ```
 
-### MAGNETIC_FIELD_UNCALIBRATED <sup>9+</sup>
+### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup>
 
 on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticFieldUncalibratedResponse&gt;,
         options?: Options): void
@@ -426,7 +426,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticField
   );
 ```
 
-### ORIENTATION <sup>9+</sup>
+### ORIENTATION<sup>9+</sup>
 
 on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,options?: Options): void
 
@@ -454,7 +454,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
   );
 ```
 
-### PEDOMETER <sup>9+</sup>
+### PEDOMETER<sup>9+</sup>
 
 on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
@@ -482,7 +482,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
   );
 ```
 
-### PEDOMETER_DETECTION <sup>9+</sup>
+### PEDOMETER_DETECTION<sup>9+</sup>
 
 on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;,
         options?: Options): void
@@ -511,7 +511,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
   );
 ```
 
-### PROXIMITY <sup>9+</sup>
+### PROXIMITY<sup>9+</sup>
 
 on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, options?: Options): void
 
@@ -537,7 +537,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
   );
 ```
 
-### ROTATION_VECTOR <sup>9+</sup>
+### ROTATION_VECTOR<sup>9+</sup>
 
 on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;,
         options?: Options): void
@@ -567,7 +567,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
   );
 ```
 
-### SIGNIFICANT_MOTION <sup>9+</sup>
+### SIGNIFICANT_MOTION<sup>9+</sup>
 
 on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;,
         options?: Options): void
@@ -594,7 +594,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
   );
 ```
 
-###  WEAR_DETECTION <sup>9+</sup>
+###  WEAR_DETECTION<sup>9+</sup>
 
 on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,
         options?: Options): void
@@ -623,7 +623,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 ## sensor.once
 
-### ACCELEROMETER <sup>9+</sup>
+### ACCELEROMETER<sup>9+</sup>
 
 once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
@@ -651,7 +651,7 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
   );
 ```
 
-### ACCELEROMETER_UNCALIBRATED <sup>9+</sup>
+### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
 once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
@@ -682,7 +682,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;Acceleromete
   );
 ```
 
-### AMBIENT_LIGHT <sup>9+</sup>
+### AMBIENT_LIGHT<sup>9+</sup>
 
 once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
@@ -706,7 +706,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
   );
 ```
 
-### AMBIENT_TEMPERATURE <sup>9+</sup>
+### AMBIENT_TEMPERATURE<sup>9+</sup>
 
 once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
@@ -729,7 +729,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
   );
 ```
 
-### BAROMETER <sup>9+</sup>
+### BAROMETER<sup>9+</sup>
 
 once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
@@ -752,7 +752,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
   );
 ```
 
-### GRAVITY <sup>9+</sup>
+### GRAVITY<sup>9+</sup>
 
 once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
@@ -778,7 +778,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
   );
 ```
 
-### GYROSCOPE <sup>9+</sup>
+### GYROSCOPE<sup>9+</sup>
 
 once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
@@ -806,7 +806,7 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
   );
 ```
 
-### GYROSCOPE_UNCALIBRATED <sup>9+</sup>
+### GYROSCOPE_UNCALIBRATED<sup>9+</sup>
 
 once(type: 
 
@@ -839,7 +839,7 @@ sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function(data) {
 );
 ```
 
-### HALL <sup>9+</sup>
+### HALL<sup>9+</sup>
 
 once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
@@ -863,7 +863,7 @@ sensor.once(sensor.SensorId.HALL, function(data) {
 );
 ```
 
-### HEART_RATE <sup>9+</sup>
+### HEART_RATE<sup>9+</sup>
 
 once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
@@ -1736,7 +1736,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.ACCELEROMETER](#accelerometer<sup>9+</sup>)
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/5874d864fc967bf36d039d5b29766243cbfa0bc5/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer-9) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -1809,17 +1809,20 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
   );
   ```
 
-### ACCELEROMETER_UNCALIBRATED
+### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用[zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/5874d864fc967bf36d039d5b29766243cbfa0bc5/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated-9) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的未校准加速度计传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
@@ -2337,6 +2340,10 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
 监听加速度传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请使用[sensor.once.ACCELEROMETER](#accelerometer<sup>9+</sup>)
+
+从API Version9开始该接口不再维护，请使用[sensor.once.ACCELEROMETER](#accelerometer9-1)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
