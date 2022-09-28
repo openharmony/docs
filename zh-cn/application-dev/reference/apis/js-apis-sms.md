@@ -160,7 +160,7 @@ promise.then(data => {
 
 ## sms.setDefaultSmsSlotId<sup>7+</sup>
 
-setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
+setDefaultSmsSlotId\(slotId: number, callback: AsyncCallback&lt;void&gt;\): void
 
 设置发送短信的默认SIM卡槽ID。使用callback异步回调。
 
@@ -180,7 +180,7 @@ setDefaultSmsSlotId\(slotId: number,callback: AsyncCallback&lt;void&gt;\): void
 **示例：**
 
 ```js
-sms.setDefaultSmsSlotId(0,(err, data) => {
+sms.setDefaultSmsSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```

@@ -403,7 +403,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 **示例：**
 
 ```js
-call.formatPhoneNumber("138xxxxxxxx",{
+call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 }, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
