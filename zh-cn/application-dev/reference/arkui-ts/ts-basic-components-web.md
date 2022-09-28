@@ -564,7 +564,7 @@ userAgent(userAgent: string)
   }
   ```
 
-### webDebuggingAccess
+### webDebuggingAccess<sup>9+</sup>
 
 webDebuggingAccess(webDebuggingAccess: boolean)
 
