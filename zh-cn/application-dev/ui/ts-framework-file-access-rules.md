@@ -18,7 +18,7 @@ common
 ```
 如上所示，将utils放在common中,示例中index.ets访问utils.ets文件
 ```ts
-// index.ets
+// xxx.ets
 import { FoodData, FoodList } from "../common/utils/utils";
 
 @Entry

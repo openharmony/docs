@@ -26,12 +26,12 @@
 ## 示例
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
-
+### 示例一，模糊属性的用法，blur内容模糊，backdropBlur背景模糊
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct ImageEffectsExample1 {
+struct BlurEffectsExample {
   build() {
     Column({ space: 10 }) {
       //       对字体进行模糊
@@ -62,13 +62,14 @@ struct ImageEffectsExample1 {
 }
 ```
 
-![textblur.jpg](figures/textblur.jpg)
+![textblur](figures/textblur.png)
 
+### 示例二，图片效果属性的用法
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct ImageEffectsExample2 {
+struct ImageEffectsExample {
   build() {
     Column({ space: 10 }) {
       // 添加阴影效果，图片效果不变
@@ -80,25 +81,27 @@ struct ImageEffectsExample2 {
 
       // 灰度效果0~1，越接近1，灰度越明显
       Text('grayscale').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).grayscale(0.5)
-      Image($r('app.media.image')).width('90%').height(40).grayscale(1)
+      Image($r('app.media.image')).width('90%').height(40).grayscale(0.3)
+      Image($r('app.media.image')).width('90%').height(40).grayscale(0.8)
+
       // 高光效果，1为正常图片，<1变暗，>1亮度增大
       Text('brightness').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).brightness(1.5)
+      Image($r('app.media.image')).width('90%').height(40).brightness(1.2)
+
       // 饱和度，原图为1
       Text('saturate').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image')).width('90%').height(40).saturate(2.0)
-      Image($r('app.media.image')).width('90%').height(40).saturate(0.5)
+      Image($r('app.media.image')).width('90%').height(40).saturate(0.7)
 
-      // 对比度，1为原图，>1值越大越清晰，<1越模糊
+      // 对比度，1为原图，>1值越大越清晰，<1值越小越模糊
       Text('contrast').fontSize(15).fontColor(0xCCCCCC).width('90%')
       Image($r('app.media.image')).width('90%').height(40).contrast(2.0)
-      Image($r('app.media.image')).width('90%').height(40).contrast(0.5)
+      Image($r('app.media.image')).width('90%').height(40).contrast(0.8)
 
       // 图像反转比例
       Text('invert').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).invert(0.3)
-      Image($r('app.media.image')).width('90%').height(40).invert(1)
+      Image($r('app.media.image')).width('90%').height(40).invert(0.2)
+      Image($r('app.media.image')).width('90%').height(40).invert(0.8)
 
       // 叠色添加
       Text('colorBlend').fontSize(15).fontColor(0xCCCCCC).width('90%')
@@ -107,7 +110,7 @@ struct ImageEffectsExample2 {
 
       // 深褐色
       Text('sepia').fontSize(15).fontColor(0xCCCCCC).width('90%')
-      Image($r('app.media.image')).width('90%').height(40).sepia(1)
+      Image($r('app.media.image')).width('90%').height(40).sepia(0.8)
 
       // 色相旋转
       Text('hueRotate').fontSize(15).fontColor(0xCCCCCC).width('90%')
@@ -117,5 +120,5 @@ struct ImageEffectsExample2 {
 }
 ```
 
-![imageeffect.jpg](figures/imageeffect.jpg)
+![imageeffect](figures/imageeffect.png)
 
