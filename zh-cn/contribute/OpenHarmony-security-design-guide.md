@@ -49,10 +49,14 @@ MD5/DES/3DES（加密传输协议TLS/SSH密码协议中避免使用3DES，非密
 **说明**：使用了不安全的随机数，容易导致密码算法的强度降低甚至算法的失效。
 
 **示例**：可使用以下的安全随机数生成接口：
-1) OpenSSL的RAND_bytes或RAND_priv_bytes；
-2) OpenSSL FIPS模块中实现的DRBG；
-3) JDK的java.security.SecureRandom；
+1) OpenSSL的RAND_bytes或RAND_priv_bytes
+
+2) OpenSSL FIPS模块中实现的DRBG
+
+3) JDK的java.security.SecureRandom
+
 4）类Unix平台的/dev/random文件
+
 
 3-4	默认使用安全的密码算法，关闭或者禁用不安全的密码算法。在选择密码算法库时，应使用通过认证的或业界开源公认的或经评估认可的密码算法库。
 
