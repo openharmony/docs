@@ -294,6 +294,9 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number;
     },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -335,6 +338,9 @@ registerApplicationStateObserver(observer: ApplicationStateObserver, bundleNameL
     },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   var bundleNameList = ['bundleName1', 'bundleName2'];
@@ -707,6 +713,18 @@ onForegroundApplicationChanged(appStateData: AppStateData): void;
   var applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {
         console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -734,8 +752,20 @@ onAbilityStateChanged(abilityStateData: AbilityStateData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
     onAbilityStateChanged(abilityStateData) {
         console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -762,8 +792,20 @@ onProcessCreated(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
     onProcessCreated(processData) {
         console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -790,8 +832,20 @@ onProcessDied(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
     onProcessDied(processData) {
         console.log('------------ onProcessDied -----------', processData);
+    },
+    onProcessStateChanged(processData) {
+        console.log('------------ onProcessStateChanged -----------', processData);
     }
   }
   const observerCode = app.registerApplicationStateObserver(applicationStateObserver);
@@ -818,6 +872,18 @@ onProcessDied(processData: ProcessData): void;
     
 ```js
   var applicationStateObserver = {
+    onForegroundApplicationChanged(appStateData) {
+        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+    },
+    onAbilityStateChanged(abilityStateData) {
+        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+    },
+    onProcessCreated(processData) {
+        console.log('------------ onProcessCreated -----------', processData);
+    },
+    onProcessDied(processData) {
+        console.log('------------ onProcessDied -----------', processData);
+    },
     onProcessStateChanged(processData) {
         console.log('------------ onProcessStateChanged -----------', processData);
     }
