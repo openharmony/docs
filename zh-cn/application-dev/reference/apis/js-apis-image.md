@@ -558,7 +558,7 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
     await pixelmap.opacity(0.5);
 }
 ```
@@ -580,7 +580,7 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
     await pixelmap.createAlphaPixelmap();
 }   
 ```
@@ -630,7 +630,7 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.scale(2.0, 1.0);
 }
 ```
@@ -659,7 +659,7 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.scale(2.0, 1.0);
 }
 ```
@@ -683,7 +683,7 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.translate(3.0, 1.0);
 }
 ```
@@ -712,7 +712,7 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.translate(3.0, 1.0);
 }
 ```
@@ -735,7 +735,7 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.rotate(90.0);
 }
 ```
@@ -763,7 +763,7 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.rotate(90.0);
 }
 ```
@@ -787,7 +787,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.flip(false, true);
 }
 ```
@@ -816,7 +816,7 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.flip(false, true);
 }
 ```
@@ -839,7 +839,7 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
@@ -867,7 +867,7 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```js
-async function A() {
+async function Demo() {
 	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
