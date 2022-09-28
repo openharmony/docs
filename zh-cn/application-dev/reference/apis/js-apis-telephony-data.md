@@ -87,7 +87,7 @@ console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
@@ -107,7 +107,7 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 **示例：**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -312,7 +312,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 **示例：**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```

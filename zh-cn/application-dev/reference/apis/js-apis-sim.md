@@ -689,7 +689,7 @@ promise.then(data => {
 
 ## sim.**setShowName**<sup>8+</sup>
 
-setShowName\(slotId: number, name: string,callback: AsyncCallback<void\>\): void
+setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): void
 
 设置指定卡槽SIM卡显示的名称。使用callback异步回调。
 
@@ -818,7 +818,7 @@ promise.then(data => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number, number: string,callback: AsyncCallback<void\>\): void
+setShowNumber\(slotId: number, number: string, callback: AsyncCallback<void\>\): void
 
 设置指定卡槽SIM卡的号码。使用callback异步回调。
 
@@ -848,7 +848,7 @@ sim.setShowNumber(0, number, (err, data) => {
 
 ## sim.**setShowNumber**<sup>8+</sup>
 
-setShowNumber\(slotId: number,number: string\): Promise\<void\>
+setShowNumber\(slotId: number, number: string\): Promise\<void\>
 
 设置指定卡槽SIM卡的号码。使用Promise异步回调。
 
@@ -885,7 +885,7 @@ promise.then(data => {
 
 ## sim.**getShowNumber**<sup>8+</sup>
 
-getShowNumber(slotId: number,callback: AsyncCallback<string\>): void
+getShowNumber(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽SIM卡的号码。使用callback异步回调。
 
@@ -1344,7 +1344,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin(slotId: number, pin: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
@@ -1374,7 +1374,7 @@ sim.unlockPin(0, pin, (err, data) => {
 
 ## sim.**unlockPin**<sup>7+</sup>
 
-unlockPin(slotId: number,pin: string): Promise&lt;LockStatusResponse\>
+unlockPin(slotId: number, pin: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
@@ -1411,7 +1411,7 @@ promise.then(data => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPuk(slotId: number, newPin: string, puk: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码的解锁密码。使用callback异步回调。
 
@@ -1443,7 +1443,7 @@ sim.unlockPuk(0, newPin, puk, (err, data) => {
 
 ## sim.**unlockPuk**<sup>7+</sup>
 
-unlockPuk(slotId: number,newPin: string,puk: string): Promise&lt;LockStatusResponse\>
+unlockPuk(slotId: number, newPin: string, puk: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码的解锁密码。使用Promise异步回调。
 
@@ -1482,7 +1482,7 @@ promise.then(data => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string ,callback: AsyncCallback<LockStatusResponse\>): void
+unlockPin2(slotId: number, pin2: string, callback: AsyncCallback<LockStatusResponse\>): void
 
 解锁指定卡槽SIM卡密码。使用callback异步回调。
 
@@ -1512,7 +1512,7 @@ sim.unlockPin2(0, pin2, (err, data) => {
 
 ## sim.**unlockPin**2<sup>8+</sup>
 
-unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
+unlockPin2(slotId: number, pin2: string): Promise&lt;LockStatusResponse\>
 
 解锁指定卡槽SIM卡密码。使用Promise异步回调。
 
@@ -1539,7 +1539,7 @@ unlockPin2(slotId: number,pin2: string): Promise&lt;LockStatusResponse\>
 
 ```js
 let pin2='1234';
-let promise = sim.unlockPin2(0,pin2);
+let promise = sim.unlockPin2(0, pin2);
 promise.then(data => {
     console.log(`unlockPin2 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1851,7 +1851,7 @@ setVoiceMailInfo(slotId: number, mailName: string, mailNumber: string, callback:
 **示例：**
 
 ```js
-sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com" , (err, data) => {
+sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
