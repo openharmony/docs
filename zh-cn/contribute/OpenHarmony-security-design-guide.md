@@ -27,6 +27,7 @@
 **说明**：算法的安全性不在于算法本身的机密性。
 
 **示例**：推荐使用的密码算法：
+
 1）分组密码算法：AES（密钥长度在128位及以上）
 
 2）流密码算法：AES（密钥长度在128位及以上）（OFB或CTR模式）
@@ -49,13 +50,15 @@ MD5/DES/3DES（加密传输协议TLS/SSH密码协议中避免使用3DES，非密
 **说明**：使用了不安全的随机数，容易导致密码算法的强度降低甚至算法的失效。
 
 **示例**：可使用以下的安全随机数生成接口：
-1) OpenSSL的RAND_bytes或RAND_priv_bytes
 
-2) OpenSSL FIPS模块中实现的DRBG
+- OpenSSL的RAND_bytes或RAND_priv_bytes 
+- OpenSSL FIPS模块中实现的DRBG
+- JDK的java.security.SecureRandom
+- 类Unix平台的/dev/random文件
 
-3) JDK的java.security.SecureRandom
 
-4）类Unix平台的/dev/random文件
+
+
 
 
 3-4	默认使用安全的密码算法，关闭或者禁用不安全的密码算法。在选择密码算法库时，应使用通过认证的或业界开源公认的或经评估认可的密码算法库。
@@ -92,12 +95,19 @@ MD5/DES/3DES（加密传输协议TLS/SSH密码协议中避免使用3DES，非密
 
 **示例**：截短消息认证码的配置举例：SSH协议中配置HMAC-MD5-96、HMAC-SHA1-96、HMAC-SHA2-256-96
 哈希算法的标准输出长度如下，低于标准长度可视为截短：
+
 1）SHA1/HMAC-SHA1，标准输出长度160比特
+
 2）SHA224/HMAC-SHA224，标准输出长度224比特
+
 3）SHA256/HMAC-SHA256，标准输出长度256比特
+
 4）SHA384/HMAC-SHA384，标准输出长度384比特
+
 5）SHA512/HMAC-SHA512，标准输出长度512比特
+
 6）SHA-512/224/HMAC-SHA-512/224，标准输出长度224比特
+
 7）SHA512/256/HMAC-SHA-512/256，标准输出长度256比特
 
 3-13	使用HMAC保护数据完整性时，不能使用hash(key||message)或hash(message||key)的计算结果作为MAC值。
