@@ -1722,12 +1722,6 @@ function accCallback(data) {
 sensor.off(sensor.SensorId.WEAR_DETECTION, accCallback);
 ```
 
-
-
-
-
-
-
 ## sensor.on
 
 ### ACCELEROMETER<sup>(deprecated)</sup>
@@ -1736,7 +1730,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/5874d864fc967bf36d039d5b29766243cbfa0bc5/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer-9) 
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer9) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -1815,7 +1809,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/5874d864fc967bf36d039d5b29766243cbfa0bc5/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated-9) 
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated9) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -1843,15 +1837,18 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
   );
   ```
 
-### GRAVITY
+### GRAVITY<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: Options): void
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gravity9) 
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                    |
 | -------- | ---------------------------------------- | ---- | ------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的重力传感器类型为SENSOR_TYPE_ID_GRAVITY。   |
@@ -1869,11 +1866,13 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
   );
   ```
 
-### GYROSCOPE
+### GYROSCOPE<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, options?: Options): void
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope9) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -1897,11 +1896,13 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
   );
   ```
 
-### GYROSCOPE_UNCALIBRATED
+### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope_uncalibrated9) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -1928,11 +1929,13 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
   );
   ```
 
-### SIGNIFICANT_MOTION
+### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionResponse&gt;, options?: Options): void
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#significant_motion9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1952,11 +1955,13 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
   );
   ```
 
-### PEDOMETER_DETECTION
+### PEDOMETER_DETECTION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionResponse&gt;, options?: Options): void
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer_detection9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -1978,11 +1983,13 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
   );
   ```
 
-### PEDOMETER
+### PEDOMETER<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, options?: Options): void
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -2004,15 +2011,18 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
   );
   ```
 
-### AMBIENT_TEMPERATURE
+### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_temperature9) 
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的环境温度传感器类型为SENSOR_TYPE_ID_AMBIENT_TEMPERATURE。 |
@@ -2029,11 +2039,13 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
   );
   ```
 
-### MAGNETIC_FIELD
+### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;,options?: Options): void
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2056,11 +2068,13 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
   );
   ```
 
-### MAGNETIC_FIELD_UNCALIBRATED
+### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field_uncalibrated9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2086,11 +2100,13 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
   );
   ```
 
-### PROXIMITY
+### PROXIMITY<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;,options?: Options): void
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#proximity9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2110,15 +2126,18 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
   );
   ```
 
-### HUMIDITY
+### HUMIDITY<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#humidity9) 
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。   |
@@ -2135,11 +2154,13 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
   );
   ```
 
-### BAROMETER
+### BAROMETER<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;,options?: Options): void
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#barometer9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2161,11 +2182,13 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
   );
   ```
 
-### HALL
+### HALL<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;, options?: Options): void
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#hall9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2185,11 +2208,13 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
   );
   ```
 
-### AMBIENT_LIGHT
+### AMBIENT_LIGHT<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, options?: Options): void
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_light9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2210,11 +2235,13 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
   );
   ```
 
-### ORIENTATION
+### ORIENTATION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#orientation9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2282,11 +2309,13 @@ sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,function(data){
 );
 ```
 
-### ROTATION_VECTOR
+### ROTATION_VECTOR<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#rotation_vector9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2309,11 +2338,13 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
   );
   ```
 
-### WEAR_DETECTION
+### WEAR_DETECTION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;,options?: Options): void
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#wear_detection9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2335,15 +2366,13 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 
 ## sensor.once
 
-### ACCELEROMETER
+### ACCELEROMETER<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;): void
 
 监听加速度传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.once.ACCELEROMETER](#accelerometer<sup>9+</sup>)
-
-从API Version9开始该接口不再维护，请使用[sensor.once.ACCELEROMETER](#accelerometer9-1)
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer9-1) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2411,11 +2440,13 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;L
   );
   ```
 
-### ACCELEROMETER_UNCALIBRATED
+### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 监听未校准加速度传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated9-1) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2440,11 +2471,13 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
   );
   ```
 
-### GRAVITY
+### GRAVITY<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 监听重力传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gravity9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2464,11 +2497,13 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
   );
   ```
 
-### GYROSCOPE
+### GYROSCOPE<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): void
 
 监听陀螺仪传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope9-1) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -2490,11 +2525,13 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
   );
   ```
 
-### GYROSCOPE_UNCALIBRATED
+### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 监听未校准陀螺仪传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope_uncalibrated9-1) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -2519,11 +2556,13 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
   );
   ```
 
-### SIGNIFICANT_MOTION
+### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;SignificantMotionResponse&gt;): void
 
 监听有效运动传感器的数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#significant_motion9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2541,11 +2580,13 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
   );
   ```
 
-### PEDOMETER_DETECTION
+### PEDOMETER_DETECTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;PedometerDetectionResponse&gt;): void
 
 监听计步检测传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer_detection9-1) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -2565,11 +2606,13 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
   );
   ```
 
-### PEDOMETER
+### PEDOMETER<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
 监听计步器传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer9-1) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -2589,11 +2632,13 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
   );
   ```
 
-### AMBIENT_TEMPERATURE
+### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 监听环境温度传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_temperature9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2611,11 +2656,13 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
   );
   ```
 
-### MAGNETIC_FIELD
+### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt;): void
 
 监听磁场传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2636,11 +2683,13 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
   );
   ```
 
-### MAGNETIC_FIELD_UNCALIBRATED
+### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 监听未校准磁场传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field_uncalibrated9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2663,11 +2712,13 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
   );
   ```
 
-### PROXIMITY
+### PROXIMITY<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): void
 
 监听接近光传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#proximity9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2686,11 +2737,13 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
   );
   ```
 
-### HUMIDITY
+### HUMIDITY<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 监听湿度传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#humidity9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2708,11 +2761,13 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
   );
   ```
 
-### BAROMETER
+### BAROMETER<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerResponse&gt;): void
 
 监听气压计传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#barometer9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2730,11 +2785,13 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
   );
   ```
 
-### HALL
+### HALL<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;): void
 
 监听霍尔传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#hall9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2752,11 +2809,13 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
   );
   ```
 
-### AMBIENT_LIGHT
+### AMBIENT_LIGHT<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): void
 
 监听环境光传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_light9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2776,11 +2835,13 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
   );
   ```
 
-### ORIENTATION
+### ORIENTATION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;OrientationResponse&gt;): void
 
 监听方向传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#orientation9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2800,11 +2861,13 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
   );
   ```
 
-### ROTATION_VECTOR
+### ROTATION_VECTOR<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&gt;): void
 
 监听旋转矢量传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#rotation_vector9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2868,11 +2931,13 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback: Callback&lt;Hear
   );
   ```
 
-### WEAR_DETECTION
+### WEAR_DETECTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
 
 监听佩戴检测传感器数据变化一次。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#wear_detection9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2892,11 +2957,13 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 
 ## sensor.off
 
-### ACCELEROMETER
+### ACCELEROMETER<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer9-2) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2920,11 +2987,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
 ```
 
-### ACCELEROMETER_UNCALIBRATED
+### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated9-2) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2951,11 +3020,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
-### AMBIENT_LIGHT
+### AMBIENT_LIGHT<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_light9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2975,11 +3046,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
 ```
 
-### AMBIENT_TEMPERATURE
+### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_temperature9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2999,11 +3072,13 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
-### AMBIENT_TEMPERATURE
+### BAROMETER<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#barometer9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3023,11 +3098,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
 ```
 
-### GRAVITY
+### GRAVITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gravity9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3049,11 +3126,13 @@ function callback(data) {
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
 ```
 
-### GYROSCOPE
+### GYROSCOPE<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope9-2) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -3077,11 +3156,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
 ```
 
-### GYROSCOPE_UNCALIBRATED
+### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope_uncalibrated9-2) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -3105,11 +3186,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
 ```
 
-### HALL
+### HALL<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#hall9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3174,11 +3257,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
 ```
 
-### HUMIDITY
+### HUMIDITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#humidity9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3245,11 +3330,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback);
 ```
 
-### MAGNETIC_FIELD
+### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3271,11 +3358,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 ```
 
-### MAGNETIC_FIELD_UNCALIBRATED
+### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
 
  off(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field_uncalibrated9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3300,11 +3389,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
-### ORIENTATION
+### ORIENTATION<sup>(deprecated)</sup>
 
  off(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#orientation9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3326,11 +3417,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
 ```
 
-### PEDOMETER
+### PEDOMETER<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer9-2) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -3352,11 +3445,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
 ```
 
-### PEDOMETER_DETECTION
+### PEDOMETER_DETECTION<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer_detection9-2) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -3378,11 +3473,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
 ```
 
-### PROXIMITY
+### PROXIMITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#proximity9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3402,11 +3499,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
 ```
 
-### ROTATION_VECTOR
+### ROTATION_VECTOR<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#rotation_vector9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3429,11 +3528,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
 ```
 
-### SIGNIFICANT_MOTION
+### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#significant_motion9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3453,11 +3554,13 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
 ```
 
-### WEAR_DETECTION
+### WEAR_DETECTION<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#wear_detection9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
