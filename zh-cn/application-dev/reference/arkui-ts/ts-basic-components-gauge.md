@@ -81,4 +81,4 @@ struct GaugeExample {
 }
 ```
 
-![gauge](figures/gauge.png)
+![gauge](figures/gauge-image.png)
