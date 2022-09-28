@@ -1,6 +1,6 @@
 # Z序控制
 
-组件的Z序，设置组件的堆叠顺序，具有较高堆叠顺序的元素在堆叠顺序较低的元素前面。
+组件的Z序，设置组件的堆叠顺序。
 
 >  **说明：**
 >
@@ -25,7 +25,7 @@ struct ZIndexExample {
   build() {
     Column() {
       Stack() {
-        // stack会重叠组件, 默认后定义的在最上面
+        // stack会重叠组件, 默认后定义的在最上面，具有较高zIndex值的元素在zIndex较小的元素前面
         Text('1, zIndex(2)')
           .size({ width: '40%', height: '30%' }).backgroundColor(0xbbb2cb)
           .zIndex(2)
