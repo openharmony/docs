@@ -306,11 +306,11 @@ hiAppEvent.addWatcher({
         }
         let eventPkg = null;
         while ((eventPkg = holder.takeNext()) != null) {
-            console.info("eventPkg.packageId=" + eventPkg.packageId);
-            console.info("eventPkg.row=" + eventPkg.row);
-            console.info("eventPkg.size=" + eventPkg.size);
+            console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+            console.info(`eventPkg.row=${eventPkg.row}`);
+            console.info(`eventPkg.size=${eventPkg.size}`);
             for (const eventInfo of eventPkg.data) {
-                console.info("eventPkg.data=" + eventInfo);
+                console.info(`eventPkg.data=${eventInfo}`);
             }
         }
     }
@@ -323,11 +323,11 @@ let holder = hiAppEvent.addWatcher({
 if (holder != null) {
     let eventPkg = null;
     while ((eventPkg = holder.takeNext()) != null) {
-        console.info("eventPkg.packageId=" + eventPkg.packageId);
-        console.info("eventPkg.row=" + eventPkg.row);
-        console.info("eventPkg.size=" + eventPkg.size);
+        console.info(`eventPkg.packageId=${eventPkg.packageId}`);
+        console.info(`eventPkg.row=${eventPkg.row}`);
+        console.info(`eventPkg.size=${eventPkg.size}`);
         for (const eventInfo of eventPkg.data) {
-            console.info("eventPkg.data=" + eventInfo);
+            console.info(`eventPkg.data=${eventInfo}`);
         }
     }
 }
