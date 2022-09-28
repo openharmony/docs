@@ -866,7 +866,7 @@ onProcessDied(processData: ProcessData): void;
 | bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
 | uid<sup>8+</sup>         | number   | 是   | 否   | 用户ID。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 判断过程是否为连续任务。                  |
-| isKeepAlive<sup>8+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
+| isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 判断该过程是否保持活跃。                  |
 
 ## ProcessRunningInfo
 

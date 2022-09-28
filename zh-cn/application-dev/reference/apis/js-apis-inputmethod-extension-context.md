@@ -47,8 +47,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
     let want = {
-      "bundleName": "com.example.myapp",
-      "abilityName": "MyAbility"};
+      'bundleName': 'com.example.myapp',
+      'abilityName': 'MyAbility'};
       this.context.startAbility(want, (err) => {
       console.log('startAbility result:' + JSON.stringify(err));
     });
@@ -79,8 +79,8 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
   ```js
     let want = {
-        "bundleName": "com.example.myapp",
-        "abilityName": "MyAbility"
+        'bundleName': 'com.example.myapp',
+        'abilityName': 'MyAbility'
     };
     this.context.startAbility(want).then((data) => {
         console.log('success:' + JSON.stringify(data));
@@ -110,15 +110,15 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
   ```js
   var want = {
-  	"deviceId": "",
-  	"bundleName": "com.extreme.test",
-  	"abilityName": "MainAbility"
+  	'deviceId': '',
+  	'bundleName': 'com.extreme.test',
+  	'abilityName': 'MainAbility'
   };
   var options = {
   	windowMode: 0,
   };
   this.context.startAbility(want, options, (error) => {
-    console.log("error.code = " + error.code)
+    console.log('error.code = ' + error.code)
   })
   ```
 

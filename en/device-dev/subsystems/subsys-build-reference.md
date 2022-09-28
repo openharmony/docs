@@ -8,9 +8,9 @@ When adding a module, you must declare its dependencies in **BUILD.gn**. **deps*
 
 ![Dependency Types](figure/dependency_types.png)
 
-The dependency between modules can be classified into **desp** (left in the figure above) and **external_deps** (right in the figure above).
+The dependency between modules can be classified into **deps** (left in the figure above) and **external_deps** (right in the figure above).
 
-- **desp**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and both modules 1 and 2 belong to the samp component. 
+- **deps**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and both modules 1 and 2 belong to the same component. 
 
 - **external_deps**: The dependent module to be added belongs to another component. For example, module 2 depends on module 1, and modules 1 and 2 belong to different components.
 
