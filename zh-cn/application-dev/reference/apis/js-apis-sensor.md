@@ -37,7 +37,7 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的加速度传感器类型为 ACCELEROMETER。                   |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的加速度传感器类型为 ACCELEROMETER。                   |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -69,7 +69,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback:Callback&lt;Accelerometer
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -102,7 +102,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 | 参数名   | 类型                                            | 必填 | 说明                                                        |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid)                           | 是   | 要订阅的环境光传感器类型为AMBIENT_LIGHT。                   |
+| type     | [SensorId](#sensorid9)                          | 是   | 要订阅的环境光传感器类型为AMBIENT_LIGHT。                   |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 | options  | [Options](#options)                             | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
@@ -130,7 +130,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。            |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。            |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -158,7 +158,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要订阅的气压计传感器类型为BAROMETER。                        |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的气压计传感器类型为BAROMETER。                        |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -186,7 +186,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 
 | 参数名   | 类型                                                | 必填 | 说明                                                        |
 | -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| type     | [SensorId](#sensorid)                               | 是   | 要订阅的重力传感器类型为GRAVITY。                           |
+| type     | [SensorId](#sensorid9)                              | 是   | 要订阅的重力传感器类型为GRAVITY。                           |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 | options  | [Options](#options)                                 | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
@@ -218,7 +218,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要订阅的陀螺仪传感器类型为GYROSCOPE。                        |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的陀螺仪传感器类型为GYROSCOPE。                        |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 返回注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -251,7 +251,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。     |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -284,7 +284,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                         | 是   | 要订阅的霍尔传感器类型为HALL。                               |
+| type     | [SensorId](#sensorid9)                        | 是   | 要订阅的霍尔传感器类型为HALL。                               |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
 | options  | [Options](#options)                           | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -314,7 +314,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要订阅的心率传感器类型为HEART_RATE。                         |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的心率传感器类型为HEART_RATE。                         |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -342,7 +342,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                 | 是   | 要订阅的湿度传感器类型为HUMIDITY。                           |
+| type     | [SensorId](#sensorid9)                                | 是   | 要订阅的湿度传感器类型为HUMIDITY。                           |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 | options  | [Options](#options)                                   | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -373,7 +373,7 @@ on(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometer
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELERATION。          |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELERATION。          |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -403,7 +403,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的磁场传感器类型为MAGNETIC_FIELD。                     |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的磁场传感器类型为MAGNETIC_FIELD。                     |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -434,7 +434,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticField
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。  |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。  |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -467,7 +467,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                       | 是   | 要订阅的方向传感器类型为ORIENTATION。                        |
+| type     | [SensorId](#sensorid9)                                      | 是   | 要订阅的方向传感器类型为ORIENTATION。                        |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 | options  | [Options](#options)                                         | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -499,7 +499,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要订阅的计步传感器类型为PEDOMETER。                          |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的计步传感器类型为PEDOMETER。                          |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -530,7 +530,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的计步检测传感器类型为PEDOMETER_DETECTION。            |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的计步检测传感器类型为PEDOMETER_DETECTION。            |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -558,7 +558,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要订阅的接近光传感器类型为PROXIMITY。                        |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的接近光传感器类型为PROXIMITY。                        |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 | options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -587,7 +587,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的旋转矢量传感器类型为ROTATION_VECTOR。                |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的旋转矢量传感器类型为ROTATION_VECTOR。                |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -619,7 +619,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。             |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。             |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -648,7 +648,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要订阅的佩戴检测传感器类型为WEAR_DETECTION。                 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的佩戴检测传感器类型为WEAR_DETECTION。                 |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -680,7 +680,7 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 加速度传感器类型为ACCELEROMETER。                            |
+| type     | [SensorId](#sensorid9)                                       | 是   | 加速度传感器类型为ACCELEROMETER。                            |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 注册一次加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 
 **示例：** 
@@ -712,7 +712,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;Acceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。         |
+| type     | [SensorId](#sensorid9)                                       | 是   | 未校准加速度传感器类型为ACCELEROMETER_UNCALIBRATED。         |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 注册一次未校准加速度传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
 
 **示例：** 
@@ -745,7 +745,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                           | 是   | 环境光传感器类型为AMBIENT_LIGHT。                            |
+| type     | [SensorId](#sensorid9)                          | 是   | 环境光传感器类型为AMBIENT_LIGHT。                            |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
 **示例：** 
@@ -772,7 +772,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 环境温度传感器类型为AMBIENT_TEMPERATURE。                    |
+| type     | [SensorId](#sensorid9)                                       | 是   | 环境温度传感器类型为AMBIENT_TEMPERATURE。                    |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 注册一次环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 
 **示例：** 
@@ -799,7 +799,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 气压计传感器类型为BAROMETER。                                |
+| type     | [SensorId](#sensorid9)                                  | 是   | 气压计传感器类型为BAROMETER。                                |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 注册一次气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 
 **示例：** 
@@ -827,7 +827,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                               | 是   | 重力传感器类型为GRAVITY。                                    |
+| type     | [SensorId](#sensorid9)                              | 是   | 重力传感器类型为GRAVITY。                                    |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 注册一次重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 
 **示例：**
@@ -859,7 +859,7 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 陀螺仪传感器类型为GYROSCOPE。                                |
+| type     | [SensorId](#sensorid9)                                  | 是   | 陀螺仪传感器类型为GYROSCOPE。                                |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 注册一次陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 
 **示例：**
@@ -893,7 +893,7 @@ SensorId.GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedRespon
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。             |
+| type     | [SensorId](#sensorid9)                                       | 是   | 未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。             |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 注册一次未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 
 **示例：**
@@ -926,7 +926,7 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                         | 是   | 霍尔传感器类型为HALL。                                       |
+| type     | [SensorId](#sensorid9)                        | 是   | 霍尔传感器类型为HALL。                                       |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 注册一次霍尔传感器的回调函数，上报的数据类型为HallResponse。 |
 
 **示例：**
@@ -956,7 +956,7 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 心率传感器类型为HEART_RATE。                                 |
+| type     | [SensorId](#sensorid9)                                  | 是   | 心率传感器类型为HEART_RATE。                                 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：**
@@ -984,7 +984,7 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                 | 是   | 湿度传感器类型为HUMIDITY。                                   |
+| type     | [SensorId](#sensorid9)                                | 是   | 湿度传感器类型为HUMIDITY。                                   |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 注册一次湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 
 **示例：**
@@ -1014,7 +1014,7 @@ once(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAcceleromet
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 线性加速度传感器类型为LINEAR_ACCELERATION。                  |
+| type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELERATION。                  |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：**
@@ -1044,7 +1044,7 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 磁场传感器类型为MAGNETIC_FIELD。                             |
+| type     | [SensorId](#sensorid9)                                       | 是   | 磁场传感器类型为MAGNETIC_FIELD。                             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 注册一次磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 
 **示例：**
@@ -1074,7 +1074,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticFie
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。          |
+| type     | [SensorId](#sensorid9)                                       | 是   | 未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。          |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 注册一次未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 
 **示例：**
@@ -1107,7 +1107,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                       | 是   | 方向传感器类型为ORIENTATION。                                |
+| type     | [SensorId](#sensorid9)                                      | 是   | 方向传感器类型为ORIENTATION。                                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 注册一次方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 
 **示例：**
@@ -1139,7 +1139,7 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 计步传感器类型为PEDOMETER。                                  |
+| type     | [SensorId](#sensorid9)                                  | 是   | 计步传感器类型为PEDOMETER。                                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 注册一次计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
 **示例：**
@@ -1169,7 +1169,7 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 计步检测传感器类型为PEDOMETER_DETECTION。                    |
+| type     | [SensorId](#sensorid9)                                       | 是   | 计步检测传感器类型为PEDOMETER_DETECTION。                    |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 注册一次计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 
 **示例：**
@@ -1197,7 +1197,7 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 接近光传感器类型为PROXIMITY。                                |
+| type     | [SensorId](#sensorid9)                                  | 是   | 接近光传感器类型为PROXIMITY。                                |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 注册一次接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 
 **示例：**
@@ -1225,7 +1225,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 旋转矢量传感器类型为ROTATION_VECTOR。                        |
+| type     | [SensorId](#sensorid9)                                       | 是   | 旋转矢量传感器类型为ROTATION_VECTOR。                        |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 注册一次旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 
 **示例：** 
@@ -1256,7 +1256,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 有效运动传感器类型为SIGNIFICANT_MOTION。                     |
+| type     | [SensorId](#sensorid9)                                       | 是   | 有效运动传感器类型为SIGNIFICANT_MOTION。                     |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 注册一次有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 
 **示例：** 
@@ -1284,7 +1284,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 佩戴检测传感器类型为                                         |
+| type     | [SensorId](#sensorid9)                                       | 是   | 佩戴检测传感器类型为                                         |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 
 **示例：** 
@@ -1316,7 +1316,7 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的加速度传感器类型为ACCELEROMETER。                |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的加速度传感器类型为ACCELEROMETER。                |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 是   | 取消注册加速度传感器的回调函数，上报的数据类型为AccelerometerResponse。 |
 
 **示例：**
@@ -1348,7 +1348,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback?:Callback&lt;Acceleromete
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的未校准加速度计传感器类型为ACCELEROMETER_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准加速度计传感器类型为ACCELEROMETER_UNCALIBRATED。 |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 是   | 取消注册未校准加速度计传感器的回调函数，上报的数据类型为AccelerometerUncalibratedResponse。 |
 
 **示例：**
@@ -1381,7 +1381,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                           | 是   | 要取消订阅的环境光传感器类型为AMBIENT_LIGHT。                |
+| type     | [SensorId](#sensorid9)                          | 是   | 要取消订阅的环境光传感器类型为AMBIENT_LIGHT。                |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是   | 取消注册环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
 **示例：**
@@ -1409,7 +1409,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。        |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的环境温度传感器类型为AMBIENT_TEMPERATURE。        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 是   | 取消注册环境温度传感器的回调函数，上报的数据类型为AmbientTemperatureResponse。 |
 
 **示例：**
@@ -1437,7 +1437,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要取消订阅的气压计传感器类型为BAROMETER。                    |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的气压计传感器类型为BAROMETER。                    |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 是   | 取消注册气压计传感器的回调函数，上报的数据类型为BarometerResponse。 |
 
 **示例：**
@@ -1465,7 +1465,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                               | 是   | 要取消订阅的重力传感器类型为GRAVITY。                        |
+| type     | [SensorId](#sensorid9)                              | 是   | 要取消订阅的重力传感器类型为GRAVITY。                        |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 是   | 取消注册注册重力传感器的回调函数，上报的数据类型为GravityResponse。 |
 
 **示例：**
@@ -1497,7 +1497,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要取消订阅的陀螺仪传感器类型为GYROSCOPE。                    |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的陀螺仪传感器类型为GYROSCOPE。                    |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 是   | 取消注册陀螺仪传感器的回调函数，上报的数据类型为GyroscopeResponse。 |
 
 **示例：**
@@ -1529,7 +1529,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?:Callback&lt;GyroscopeUncali
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准陀螺仪传感器类型为GYROSCOPE_UNCALIBRATED。 |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 是   | 取消注册未校准陀螺仪传感器的回调函数，上报的数据类型为GyroscopeUncalibratedResponse。 |
 
 **示例：**
@@ -1559,7 +1559,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                         | 是   | 要取消订阅的霍尔传感器类型为HALL。                           |
+| type     | [SensorId](#sensorid9)                        | 是   | 要取消订阅的霍尔传感器类型为HALL。                           |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 是   | 取消注册霍尔传感器的回调函数，上报的数据类型为&nbsp;HallResponse。 |
 
 **示例：**
@@ -1589,7 +1589,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要取消订阅的心率传感器类型为HEART_RATE。                     |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的心率传感器类型为HEART_RATE。                     |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：**
@@ -1617,7 +1617,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                 | 是   | 要取消订阅的湿度传感器类型为HUMIDITY。                       |
+| type     | [SensorId](#sensorid9)                                | 是   | 要取消订阅的湿度传感器类型为HUMIDITY。                       |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 是   | 取消注册湿度传感器的回调函数，上报的数据类型为HumidityResponse。 |
 
 **示例：**
@@ -1647,7 +1647,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的线性加速度传感器类型为LINEAR_ACCELERATION。      |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的线性加速度传感器类型为LINEAR_ACCELERATION。      |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：**
@@ -1677,7 +1677,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的磁场传感器类型为MAGNETIC_FIELD。                 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的磁场传感器类型为MAGNETIC_FIELD。                 |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 是   | 取消注册磁场传感器的回调函数，上报的数据类型为MagneticFieldResponse。 |
 
 **示例：**
@@ -1707,7 +1707,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback?:Callback&lt;MagneticFie
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。 |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的未校准磁场传感器类型为MAGNETIC_FIELD_UNCALIBRATED。 |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 是   | 取消注册未校准磁场传感器的回调函数，上报的数据类型为MagneticFieldUncalibratedResponse。 |
 
 **示例：**
@@ -1740,7 +1740,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                       | 是   | 要取消订阅的方向传感器类型为ORIENTATION。                    |
+| type     | [SensorId](#sensorid9)                                      | 是   | 要取消订阅的方向传感器类型为ORIENTATION。                    |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 是   | 取消注册方向传感器的回调函数，上报的数据类型为OrientationResponse。 |
 
 **示例：**
@@ -1772,7 +1772,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要取消订阅的计步传感器类型为PEDOMETER。                      |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的计步传感器类型为PEDOMETER。                      |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 是   | 取消注册计步传感器的回调函数，上报的数据类型为PedometerResponse。 |
 
 **示例：**
@@ -1802,7 +1802,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的计步检测传感器类型为PEDOMETER_DETECTION。        |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的计步检测传感器类型为PEDOMETER_DETECTION。        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 是   | 取消注册计步检测传感器的回调函数，上报的数据类型为PedometerDetectionResponse。 |
 
 **示例：**
@@ -1830,7 +1830,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                   | 是   | 要取消订阅的接近光传感器类型为PROXIMITY。                    |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的接近光传感器类型为PROXIMITY。                    |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 是   | 取消注册接近光传感器的回调函数，上报的数据类型为ProximityResponse。 |
 
 **示例：**
@@ -1858,7 +1858,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的旋转矢量传感器类型为ROTATION_VECTOR。            |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的旋转矢量传感器类型为ROTATION_VECTOR。            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 是   | 取消注册旋转矢量传感器的回调函数，上报的数据类型为RotationVectorResponse。 |
 
 **示例：**
@@ -1889,7 +1889,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。         |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的大幅动作传感器类型为SIGNIFICANT_MOTION。         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 是   | 取消注册有效运动传感器的回调函数，上报的数据类型为SignificantMotionResponse。 |
 
 **示例：**
@@ -1917,7 +1917,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid)                                        | 是   | 要取消订阅的佩戴检测传感器类型为WEAR_DETECTION。             |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的佩戴检测传感器类型为WEAR_DETECTION。             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 取消注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 
 **示例：**
