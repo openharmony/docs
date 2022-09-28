@@ -824,7 +824,7 @@ This is a system API.
 **Example**
 
 ```js
-let promise = call.reject(1, (error, data) => {
+call.reject(1, (error, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
