@@ -30,7 +30,7 @@ Span(value: string | Resource)
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | decoration | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 设置文本装饰线样式及其颜色。<br/>默认值：{<br/>type:&nbsp;TextDecorationType.None<br/>color：Color.Black<br/>} |
-| letterSpacing       | number \| string  | 设置文本字符间距。默认0,字符间距正常，取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。                                |
+| letterSpacing       | number \| string  | 设置文本字符间距。取值小于0，字符聚集重叠，取值大于0且随着数值变大，字符间距越来越大，稀疏分布。                                |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal |
 
 
