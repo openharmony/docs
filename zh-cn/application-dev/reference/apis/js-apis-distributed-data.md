@@ -1008,7 +1008,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved5 = resultSet.move();
+    const moved5 = resultSet.move(1);
     console.log("move succeed:" + moved5);
 } catch (e) {
     console.log("move failed: " + e);
@@ -1048,7 +1048,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved6 = resultSet.moveToPosition();
+    const moved6 = resultSet.moveToPosition(1);
     console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
     console.log("moveToPosition failed: " + e);

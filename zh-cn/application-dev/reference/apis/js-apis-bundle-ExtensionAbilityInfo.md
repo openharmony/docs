@@ -7,7 +7,7 @@
 
 
 
-ExtensionAbility信息，未做特殊说明的属性，均通过GET_BUNDLE_DEFAULT获取
+ExtensionAbility信息，未做特殊说明的属性，均通过[getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfo)获取，flag使用[GET_BUNDLE_DEFAULT](js-apis-Bundle.md#bundleflag)获取
 
 ## ExtensionAbilityInfo
 

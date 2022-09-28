@@ -384,6 +384,26 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>7+</sup>
+
+isNrSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
 
 ## radio.isNrSupported<sup>8+</sup>
 

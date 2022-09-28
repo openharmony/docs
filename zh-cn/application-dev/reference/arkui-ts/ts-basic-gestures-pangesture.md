@@ -17,7 +17,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发拖动的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 |
 | direction | PanDirection | 否 | 触发拖动的手势方向，此枚举值支持逻辑与(&amp;)和逻辑或（\|）运算。<br/>默认值：PanDirection.All |
-| distance | number | 否 | 最小拖动识别距离，单位为vp。<br/>默认值：5.0<br/>**说明：**<br/>> tab滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
+| distance | number | 否 | 最小拖动识别距离，单位为vp。<br/>默认值：5<br/>**说明：**<br/>> tab滑动与该拖动手势事件同时存在时，可将distance值设为1，使拖动更灵敏，避免造成事件错乱。 |
 
 ## PanDirection枚举说明
 
@@ -73,28 +73,47 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
-    .gesture(
-      PanGesture({})
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      // 左右拖动触发该手势事件
+      .gesture(
+      PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
-          console.info('Pan start')
+          console.info('Pan start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.offsetX = event.offsetX
-          this.offsetY = event.offsetY
+          this.offsetX = this.positionX + event.offsetX;
+          this.offsetY = this.positionY + event.offsetY;
         })
         .onActionEnd(() => {
-          console.info('Pan end')
+          this.positionX = this.offsetX;
+          this.positionY = this.offsetY;
+          console.info('Pan end');
         })
-    )
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          // 将PanGesture手势事件触发条件改为双指以任意方向拖动
+          this.panOption.setDirection(PanDirection.All);
+          this.panOption.setFingers(2);
+        })
+    }
   }
 }
 ```

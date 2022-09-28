@@ -68,6 +68,8 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 检查默认数据网络是否被激活，使用callback方式作为异步方法。
 默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
 
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -91,6 +93,8 @@ hasDefaultNet(): Promise\<boolean>
 
 检查默认数据网络是否被激活，使用Promise方式作为异步方法。
 默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 

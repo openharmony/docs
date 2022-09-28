@@ -2657,8 +2657,6 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的opkey。使用callback异步回调。
 
-此接口为系统接口。
-
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **参数：**
@@ -2682,8 +2680,6 @@ sim.getOpKey(0, (err, data) => {
 getOpKey(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的opkey。使用Promise异步回调。
-
-此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
@@ -2716,8 +2712,6 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 获取指定卡槽中SIM卡的OpName。使用callback异步回调。
 
-此接口为系统接口。
-
 **系统能力**：SystemCapability.Telephony.CoreService
 
 **参数：**
@@ -2741,8 +2735,6 @@ sim.getOpName(0, (err, data) => {
 getOpName(slotId: number): Promise<string\>
 
 获取指定卡槽中SIM卡的OpName。使用Promise异步回调。
-
-此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
 
