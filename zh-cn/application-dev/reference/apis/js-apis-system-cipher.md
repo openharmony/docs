@@ -9,7 +9,7 @@
 
 
 ```js
-import cipher from '@system.cipher'
+import cipher from '@system.cipher';
 ```
 
 
