@@ -25,9 +25,9 @@ Enables WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disableWifi
@@ -44,9 +44,9 @@ Disables WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.isWifiActive
@@ -61,9 +61,9 @@ Checks whether WLAN is enabled.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
 
 ## wifi.scan
@@ -78,9 +78,9 @@ Starts a scan for WLAN.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getScanInfos
@@ -95,9 +95,9 @@ Obtains the scan result. This API uses a promise to return the result.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&nbsp;&gt; | Promise used to return the detected hotspots.|
 
 
 ## wifi.getScanInfos
@@ -112,9 +112,9 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
 **Example**
   ```js
@@ -247,9 +247,9 @@ Obtains the scan result. This API returns the result synchronously.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt; | Scan result obtained.|
 
 
 ## wifi.addDeviceConfig
@@ -266,15 +266,15 @@ Adds network configuration. This API uses a promise to return the result.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the operation has failed.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the operation has failed.|
 
 ## WifiDeviceConfig
 
@@ -412,10 +412,10 @@ Adds network configuration. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -430,15 +430,15 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
@@ -453,10 +453,10 @@ Adds the configuration of an untrusted network. This API uses an asynchronous ca
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
@@ -471,15 +471,15 @@ Removes the configuration of an untrusted network. This API uses a promise to re
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
@@ -494,10 +494,10 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
-  | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.addCandidateConfig<sup>9+</sup>
@@ -512,15 +512,15 @@ Adds the configuration of a candidate network. This API uses a promise to return
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise used to return the network configuration ID.|
 
 
 ## wifi.addCandidateConfig<sup>9+</sup>
@@ -535,10 +535,10 @@ Adds the configuration of a candidate network. This API uses an asynchronous cal
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
-  | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
@@ -553,15 +553,15 @@ Removes the configuration of a candidate network. This API uses a promise to ret
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 
 ## wifi.removeCandidateConfig<sup>9+</sup>
@@ -576,10 +576,10 @@ Removes the configuration of a candidate network. This API uses an asynchronous 
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the network configuration to remove.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the network configuration to remove.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, the value of **err** is **0**. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCandidateConfigs<sup>9+</sup>
@@ -594,9 +594,9 @@ Obtains candidate network configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Candidate network configuration obtained.|
 
 
 ## wifi.connectToCandidateConfig<sup>9+</sup>
@@ -611,9 +611,9 @@ Connects to a candidate network.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| ID of the candidate network configuration.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| ID of the candidate network configuration.|
 
 
 ## wifi.connectToNetwork
@@ -630,15 +630,15 @@ Connects to the specified network.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | Yes| Network configuration ID.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| networkId | number | Yes| Network configuration ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.connectToDevice
@@ -656,15 +656,15 @@ Connects to the specified network.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disconnect
@@ -682,9 +682,9 @@ Disconnects the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getSignalLevel
@@ -699,16 +699,16 @@ Obtains the WLAN signal level.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | rssi | number | Yes| RSSI of the hotspot, in dBm.|
-  | band | number | Yes| Frequency band of the WLAN AP.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| rssi | number | Yes| RSSI of the hotspot, in dBm.|
+| band | number | Yes| Frequency band of the WLAN AP.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Signal level obtained. The value range is [0, 4].|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Signal level obtained. The value range is [0, 4].|
 
 
 ## wifi.getLinkedInfo
@@ -723,9 +723,9 @@ Obtains WLAN connection information. This API uses a promise to return the resul
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Promise used to return the WLAN connection information obtained.|
 
 
 ## wifi.getLinkedInfo
@@ -740,9 +740,9 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
   ```js
@@ -844,9 +844,9 @@ Checks whether the WLAN is connected.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the WLAN is connected; returns **false** otherwise.|
 
 
 ## wifi.getSupportedFeatures<sup>7+</sup>
@@ -863,24 +863,24 @@ Obtains the features supported by this device.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | Feature value. |
+| **Type**| **Description**|
+| -------- | -------- |
+| number | Feature value. |
 
 **Feature IDs**
 
 | Value| Description|
 | -------- | -------- |
-| 0x0001 | WLAN infrastructure mode|
-| 0x0002 | 5 GHz feature|
-| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature|
-| 0x0008 | Wi-Fi Direct|
-| 0x0010 | SoftAP|
-| 0x0040 | Wi-Fi AWare|
-| 0x8000 | WLAN AP/STA concurrency|
-| 0x8000000 | WPA3 Personal (WPA-3 SAE)|
-| 0x10000000 | WPA3-Enterprise Suite B |
-| 0x20000000 | Enhanced open feature|
+| 0x0001 | WLAN infrastructure mode. |
+| 0x0002 | 5 GHz feature. |
+| 0x0004 | Generic Advertisement Service (GAS)/Access Network Query Protocol (ANQP) feature. |
+| 0x0008 | Wi-Fi Direct. |
+| 0x0010 | SoftAP. |
+| 0x0040 | Wi-Fi AWare. |
+| 0x8000 | WLAN AP/STA concurrency. |
+| 0x8000000 | WPA3 Personal (WPA-3 SAE). |
+| 0x10000000 | WPA3-Enterprise Suite B. |
+| 0x20000000 | Enhanced open feature. |
 
 
 ## wifi.isFeatureSupported<sup>7+</sup>
@@ -896,15 +896,15 @@ Checks whether the device supports the specified WLAN feature.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | featureId | number | Yes| Feature ID.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| featureId | number | Yes| Feature ID.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 
 ## wifi.getDeviceMacAddress<sup>7+</sup>
@@ -921,9 +921,9 @@ Obtains the device MAC address.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string[] | MAC address obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string[] | MAC address obtained.|
 
 
 ## wifi.getIpInfo<sup>7+</sup>
@@ -938,9 +938,9 @@ Obtains IP information.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [IpInfo](#ipinfo7) | IP information obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [IpInfo](#ipinfo7) | IP information obtained.|
 
 
 ## IpInfo<sup>7+</sup>
@@ -972,9 +972,9 @@ Obtains the country code.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | string | Country code obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| string | Country code obtained.|
 
 
 ## wifi.reassociate<sup>7+</sup>
@@ -991,9 +991,9 @@ Re-associates with the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.reconnect<sup>7+</sup>
@@ -1010,9 +1010,9 @@ Reconnects to the network.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getDeviceConfigs<sup>7+</sup>
@@ -1029,9 +1029,9 @@ Obtains network configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
 
 ## wifi.updateNetwork<sup>7+</sup>
@@ -1048,15 +1048,15 @@ Updates network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig) | Yes| New WLAN configuration.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+| **Type**| **Description**|
+| -------- | -------- |
+| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 
 ## wifi.disableNetwork<sup>7+</sup>
@@ -1073,15 +1073,15 @@ Disables network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the network configuration to disable.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| netId | number | Yes| ID of the network configuration to disable.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.removeAllNetwork<sup>7+</sup>
@@ -1098,9 +1098,9 @@ Removes the configuration of all networks.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.removeDevice<sup>7+</sup>
@@ -1117,15 +1117,15 @@ Removes the specified network configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| ID of the network configuration to remove.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| id | number | Yes| ID of the network configuration to remove.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.enableHotspot<sup>7+</sup>
@@ -1142,9 +1142,9 @@ Enables this hotspot.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.disableHotspot<sup>7+</sup>
@@ -1161,9 +1161,9 @@ Disables this hotspot.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.isHotspotDualBandSupported<sup>7+</sup>
@@ -1180,9 +1180,9 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
 
 ## wifi.isHotspotActive<sup>7+</sup>
@@ -1199,9 +1199,9 @@ Checks whether this hotspot is active.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
 
 ## wifi.setHotspotConfig<sup>7+</sup>
@@ -1218,15 +1218,15 @@ Sets hotspot configuration.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [HotspotConfig](#hotspotconfig7) | Yes| Hotspot configuration to set.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## HotspotConfig<sup>7+</sup>
@@ -1260,9 +1260,9 @@ obtains hotspot configuration.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
 
 
 ## wifi.getStations<sup>7+</sup>
@@ -1279,9 +1279,9 @@ Obtains information about the connected stations.
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
+| **Type**| **Description**|
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
 
 
 ## StationInfo<sup>7+</sup>
@@ -1311,9 +1311,9 @@ Obtains P2P link information. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Promise used to return the P2P link information obtained.|
 
 
 
@@ -1354,9 +1354,9 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -1371,9 +1371,9 @@ Obtains the current P2P group information. This API uses a promise to return the
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Promise used to return the group information obtained.|
 
 
 ## wifi.getCurrentGroup<sup>8+</sup>
@@ -1388,9 +1388,9 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
@@ -1405,9 +1405,9 @@ Obtains the peer device list in the P2P connection. This API uses a promise to r
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Promise used to return the peer device list.|
 
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
@@ -1422,9 +1422,9 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## WifiP2pDevice<sup>8+</sup>
@@ -1469,9 +1469,9 @@ Obtains the local device information in the P2P connection. This API uses a prom
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Promise used to return the local device information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Promise used to return the local device information obtained.|
 
 
 ## wifi.getP2pLocalDevice<sup>9+</sup>
@@ -1486,9 +1486,9 @@ Obtains the local device information in the P2P connection. This API uses an asy
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the local device information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.createGroup<sup>8+</sup>
@@ -1503,15 +1503,15 @@ Creates a P2P group.
 
 **Parameters**
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| Group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## WifiP2PConfig<sup>8+</sup>
@@ -1554,9 +1554,9 @@ Removes this P2P group.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.p2pConnect<sup>8+</sup>
@@ -1572,15 +1572,15 @@ Sets up a P2P connection.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiP2PConfig](#wifip2pconfig8) | Yes| P2P group configuration.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 **Example**
@@ -1662,9 +1662,9 @@ Cancels this P2P connection.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.startDiscoverDevices<sup>8+</sup>
@@ -1679,9 +1679,9 @@ Starts to discover devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.stopDiscoverDevices<sup>8+</sup>
@@ -1696,9 +1696,9 @@ Stops discovering devices.
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.deletePersistentGroup<sup>8+</sup>
@@ -1716,15 +1716,15 @@ Deletes a persistent group.
 **Parameters**
 
 
-  | **Name**| **Type**| Mandatory| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | netId | number | Yes| ID of the group to delete.|
+| **Name**| **Type**| Mandatory| **Description**|
+| -------- | -------- | -------- | -------- |
+| netId | number | Yes| ID of the group to delete.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.getP2pGroups<sup>9+</sup>
@@ -1741,9 +1741,9 @@ Obtains information about all P2P groups. This API uses a promise to return the 
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&nbsp;&gt; | Promise used to return the group information obtained.|
 
 
 ## WifiP2pGroupInfo<sup>8+</sup>
@@ -1779,9 +1779,9 @@ Obtains information about all P2P groups. This API uses an asynchronous callback
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
 
 ## wifi.setDeviceName<sup>8+</sup>
@@ -1798,15 +1798,15 @@ Sets the device name.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | devName | string | Yes| Device name to set.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| devName | string | Yes| Device name to set.|
 
 **Return value**
 
-  | **Type**| **Description**|
-  | -------- | -------- |
-  | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+| **Type**| **Description**|
+| -------- | -------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
@@ -1821,19 +1821,19 @@ Registers the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN state.|
 
 **WLAN states** 
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Deactivated|
-| 1 | Activated|
-| 2 | Activating|
-| 3 | Deactivating|
+| 0 | Deactivated. |
+| 1 | Activated. |
+| 2 | Activating. |
+| 3 | Deactivating. |
 
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
@@ -1848,25 +1848,24 @@ Unregisters the WLAN state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
   ```js
   import wifi from '@ohos.wifi';
   
-  var WIFI_POWER_STATE = "wifiStateChange";
   var recvPowerNotifyFunc = result => {
       console.info("Receive power state change event: " + result);
   }
   
   // Register an event.
-  wifi.on(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.on("wifiStateChange", recvPowerNotifyFunc);
   
   // Unregister an event.
-  wifi.off(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.off("wifiStateChange", recvPowerNotifyFunc);
   ```
 
 
@@ -1882,17 +1881,17 @@ Registers the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN connection state.|
 
 **WLAN connection states**
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Disconnected|
-| 1 | Connected|
+| 0 | Disconnected.|
+| 1 | Connected.|
 
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
@@ -1907,10 +1906,10 @@ Unregisters the WLAN connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiConnectionChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
@@ -1925,17 +1924,17 @@ Registers the WLAN scan state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiScanStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the WLAN scan state.|
 
 **WLAN scan states**
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Scan failed|
-| 1 | Scan successful|
+| 0 | Scan failed.|
+| 1 | Scan successful.|
 
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
@@ -1968,10 +1967,10 @@ Registers the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the RSSI, in dBm.|
 
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
@@ -1986,10 +1985,10 @@ Unregisters the RSSI change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **wifiRssiChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **wifiRssiChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
@@ -2004,19 +2003,19 @@ Registers the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the hotspot state.|
 
 **Hotspot states**
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Deactivated|
-| 1 | Activated|
-| 2 | Activating|
-| 3 | Deactivating|
+| 0 | Deactivated. |
+| 1 | Activated. |
+| 2 | Activating. |
+| 3 | Deactivating. |
 
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
@@ -2031,10 +2030,10 @@ Unregisters the hotspot state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **hotspotStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **hotspotStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the hotspot state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
@@ -2049,20 +2048,20 @@ Registers the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P state.|
 
 **P2P states**
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 1 | Available|
-| 2 | Opening|
-| 3 | Opened|
-| 4 | Closing|
-| 5 | Closed|
+| 1 | Available. |
+| 2 | Opening. |
+| 3 | Opened. |
+| 4 | Closing. |
+| 5 | Closed. |
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
@@ -2076,10 +2075,10 @@ Unregisters the P2P state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pStateChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pStateChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
   ## wifi.on('p2pConnectionChange')<sup>8+</sup>
@@ -2094,10 +2093,10 @@ Registers the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the P2P connection state.|
 
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
@@ -2112,10 +2111,10 @@ Unregisters the P2P connection state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback used to return the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pConnectionChange**.|
+| callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback used to return the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
@@ -2130,10 +2129,10 @@ Registers the P2P device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P device state.|
 
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
@@ -2148,10 +2147,10 @@ Unregisters the P2P device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback used to return the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback used to return the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2166,10 +2165,10 @@ Registers the P2P peer device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the P2P peer device state.|
 
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
@@ -2184,10 +2183,10 @@ Unregisters the P2P peer device state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
+| callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback used to return the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2202,10 +2201,10 @@ Registers the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | Yes| Callback invoked to return the P2P persistent group state.|
 
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
@@ -2220,10 +2219,10 @@ Unregisters the P2P persistent group state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
-  | callback | Callback&lt;void&gt; | No| Callback used to return the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
+| callback | Callback&lt;void&gt; | No| Callback used to return the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
@@ -2238,17 +2237,17 @@ Registers the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the P2P device discovery state.|
 
 **P2P discovered device states**
 
 | **Value**| **Description**|
 | -------- | -------- |
-| 0 | Initial state|
-| 1 | Discovered|
+| 0 | Initial state.|
+| 1 | Discovered.|
 
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
@@ -2263,7 +2262,7 @@ Unregisters the P2P device discovery state change events.
 
 **Parameters**
 
-  | **Name**| **Type**| **Mandatory**| **Description**|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
-  | callback | Callback&lt;number&gt; | No| Callback used to return the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
+| callback | Callback&lt;number&gt; | No| Callback used to return the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
