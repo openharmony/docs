@@ -44,13 +44,15 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 **示例：** 
 
 ```js
-sensor.on(sensor.SensorId.ACCELEROMETER,function(data){
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-  },
-    {interval: 10000000}
-);
+try {
+    sensor.on(sensor.SensorId.ACCELEROMETER,function(data){
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }, {interval: 10000000} );
+} catch(err) {
+        console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
@@ -74,16 +76,18 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback:Callback&lt;Accelerometer
 **示例：** 
 
 ```js
-  sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 10000000}
-  );
+try {
+    sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED,function(data){
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+      }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### AMBIENT_LIGHT<sup>9+</sup>
@@ -105,11 +109,13 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 **示例：** 
 
 ```js
+try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT,function(data){
       console.info('Illumination: ' + data.intensity);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  AMBIENT_TEMPERATURE<sup>9+</sup>
@@ -131,11 +137,13 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### BAROMETER<sup>9+</sup>
@@ -157,11 +165,13 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  GRAVITY<sup>9+</sup>
@@ -183,13 +193,15 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;,options?: O
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  GYROSCOPE<sup>9+</sup>
@@ -213,13 +225,15 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  GYROSCOPE_UNCALIBRATED<sup>9+</sup>
@@ -244,6 +258,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -251,9 +266,10 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  HALL<sup>9+</sup>
@@ -275,11 +291,13 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.HALL,function(data){
       console.info('Status: ' + data.status);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###   HEART_RATE<sup>9+</sup>
@@ -303,11 +321,13 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 **示例：**
 
 ```js
+try {
 sensor.on(sensor.SensorId.HEART_RATE,function(data){
     console.info('Heart rate: ' + data.heartRate);
-},
-    {interval: 10000000}
-);
+}, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  HUMIDITY<sup>9+</sup>
@@ -329,11 +349,13 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?:
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  LINEAR_ACCELERATION<sup>9+</sup>
@@ -358,12 +380,15 @@ on(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometer
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-    }
-  );
+    }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  MAGNETIC_FIELD<sup>9+</sup>
@@ -385,13 +410,15 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup>
@@ -414,6 +441,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticField
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -421,9 +449,10 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticField
       console.info('X-coordinate bias: ' + data.biasX);
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ORIENTATION<sup>9+</sup>
@@ -445,13 +474,15 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;,opt
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.ORIENTATION,function(data){
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PEDOMETER<sup>9+</sup>
@@ -475,11 +506,13 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PEDOMETER_DETECTION<sup>9+</sup>
@@ -504,11 +537,13 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 **示例：**
 
 ```js
+try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PROXIMITY<sup>9+</sup>
@@ -530,11 +565,13 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 **示例：** 
 
 ```js
+try {
   sensor.on(sensor.SensorId.PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ROTATION_VECTOR<sup>9+</sup>
@@ -557,14 +594,16 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 **示例：** 
 
 ```js
+try {
   sensor.on(sensor.SensorId.ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
       console.info('Scalar quantity: ' + data.w);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### SIGNIFICANT_MOTION<sup>9+</sup>
@@ -587,11 +626,13 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 **示例：** 
 
 ```js
+try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ###  WEAR_DETECTION<sup>9+</sup>
@@ -614,11 +655,13 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 **示例：** 
 
 ```js
+try {
   sensor.on(sensor.SensorId.WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
-  },
-      {interval: 10000000}
-  );
+  }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ## sensor.once
@@ -643,12 +686,16 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 **示例：** 
 
 ```js
+try {
   sensor.once(sensor.SensorId.ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
     }
   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
@@ -671,6 +718,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;Acceleromete
 **示例：** 
 
 ```js
+try {
   sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
@@ -680,6 +728,9 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;Acceleromete
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### AMBIENT_LIGHT<sup>9+</sup>
@@ -700,10 +751,14 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 **示例：** 
 
 ```js
- sensor.once(sensor.SensorId.AMBIENT_LIGHT, function(data) {
-      console.info('Illumination: ' + data.intensity);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.AMBIENT_LIGHT, function(data) {
+       console.info('Illumination: ' + data.intensity);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### AMBIENT_TEMPERATURE<sup>9+</sup>
@@ -723,10 +778,14 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 **示例：** 
 
 ```js
- sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function(data) {
-      console.info('Temperature: ' + data.temperature);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, function(data) {
+       console.info('Temperature: ' + data.temperature);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### BAROMETER<sup>9+</sup>
@@ -746,10 +805,14 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 **示例：** 
 
 ```js
- sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
-      console.info('Atmospheric pressure: ' + data.pressure);
-    }
-  );
+try {
+   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
+       console.info('Atmospheric pressure: ' + data.pressure);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### GRAVITY<sup>9+</sup>
@@ -770,12 +833,16 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 **示例：**
 
 ```js
- sensor.once(sensor.SensorId.GRAVITY, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.GRAVITY, function(data) {
+       console.info('X-coordinate component: ' + data.x);
+       console.info('Y-coordinate component: ' + data.y);
+       console.info('Z-coordinate component: ' + data.z);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### GYROSCOPE<sup>9+</sup>
@@ -798,12 +865,16 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 **示例：**
 
 ```js
- sensor.once(sensor.SensorId.GYROSCOPE, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.GYROSCOPE, function(data) {
+       console.info('X-coordinate component: ' + data.x);
+       console.info('Y-coordinate component: ' + data.y);
+       console.info('Z-coordinate component: ' + data.z);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup>
@@ -828,15 +899,19 @@ SensorId.GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedRespon
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-);
+try {
+    sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, function(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### HALL<sup>9+</sup>
@@ -857,10 +932,14 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.HALL, function(data) {
-      console.info('Status: ' + data.status);
-    }
-);
+try {
+    sensor.once(sensor.SensorId.HALL, function(data) {
+        console.info('Status: ' + data.status);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### HEART_RATE<sup>9+</sup>
@@ -883,10 +962,14 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.HEART_BEAT_RATE, function(data) {
-      console.info('Heart rate: ' + data.heartRate);
-    }
-);
+try {
+    sensor.once(sensor.SensorId.HEART_BEAT_RATE, function(data) {
+        console.info('Heart rate: ' + data.heartRate);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### HUMIDITY<sup>9+</sup>
@@ -907,10 +990,14 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.HUMIDITY, function(data) {
-      console.info('Humidity: ' + data.humidity);
-    }
-);
+try {
+    sensor.once(sensor.SensorId.HUMIDITY, function(data) {
+        console.info('Humidity: ' + data.humidity);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### LINEAR_ACCELERATION<sup>9+</sup>
@@ -933,12 +1020,16 @@ once(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAcceleromet
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-  }
-);
+try {
+    sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### MAGNETIC_FIELD<sup>9+</sup>
@@ -959,12 +1050,16 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 **示例：**
 
 ```js
-  sensor.once(sensor.SensorId.MAGNETIC_FIELD, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.MAGNETIC_FIELD, function(data) {
+       console.info('X-coordinate component: ' + data.x);
+       console.info('Y-coordinate component: ' + data.y);
+       console.info('Z-coordinate component: ' + data.z);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup>
@@ -985,15 +1080,19 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticFie
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('X-coordinate bias: ' + data.biasX);
-      console.info('Y-coordinate bias: ' + data.biasY);
-      console.info('Z-coordinate bias: ' + data.biasZ);
-    }
-);
+try {
+    sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, function(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ORIENTATION<sup>9+</sup>
@@ -1014,12 +1113,16 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 **示例：**
 
 ```js
-  sensor.once(sensor.SensorId.ORIENTATION, function(data) {
-      console.info('The device rotates at an angle around the X axis: ' + data.beta);
-      console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-      console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.ORIENTATION, function(data) {
+       console.info('The device rotates at an angle around the X axis: ' + data.beta);
+       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PEDOMETER<sup>9+</sup>
@@ -1042,10 +1145,14 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.PEDOMETER, function(data) {
-    console.info('Steps: ' + data.steps);
-  }
-);
+try {
+    sensor.once(sensor.SensorId.PEDOMETER, function(data) {
+        console.info('Steps: ' + data.steps);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PEDOMETER_DETECTION<sup>9+</sup>
@@ -1068,10 +1175,14 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 **示例：**
 
 ```js
-sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function(data) {
-    console.info('Scalar data: ' + data.scalar);
-  }
-);
+try {
+    sensor.once(sensor.SensorId.PEDOMETER_DETECTION, function(data) {
+        console.info('Scalar data: ' + data.scalar);
+      }
+    );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### PROXIMITY<sup>9+</sup>
@@ -1092,10 +1203,14 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 **示例：**
 
 ```js
-  sensor.once(sensor.SensorId.PROXIMITY, function(data) {
-      console.info('Distance: ' + data.distance);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.PROXIMITY, function(data) {
+       console.info('Distance: ' + data.distance);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### ROTATION_VECTOR<sup>9+</sup>
@@ -1116,13 +1231,17 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 **示例：** 
 
 ```js
-  sensor.once(sensor.SensorId.ROTATION_VECTOR, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-      console.info('Scalar quantity: ' + data.w);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.ROTATION_VECTOR, function(data) {
+       console.info('X-coordinate component: ' + data.x);
+       console.info('Y-coordinate component: ' + data.y);
+       console.info('Z-coordinate component: ' + data.z);
+       console.info('Scalar quantity: ' + data.w);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### SIGNIFICANT_MOTION<sup>9+</sup>
@@ -1143,10 +1262,14 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 **示例：** 
 
 ```js
-  sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function(data) {
-      console.info('Scalar data: ' + data.scalar);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, function(data) {
+       console.info('Scalar data: ' + data.scalar);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ### WEAR_DETECTION<sup>9+</sup>
@@ -1167,10 +1290,14 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 **示例：** 
 
 ```js
-  sensor.once(sensor.SensorId.WEAR_DETECTION, function(data) {
-      console.info("Wear status: "+ data.value);
-    }
-  );
+try {
+   sensor.once(sensor.SensorId.WEAR_DETECTION, function(data) {
+       console.info("Wear status: "+ data.value);
+     }
+   );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
 ```
 
 ## sensor.off
@@ -1195,12 +1322,16 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('x-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('x-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.ACCELEROMETER, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.ACCELEROMETER, callback);
 ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>  
@@ -1223,15 +1354,19 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback?:Callback&lt;Acceleromete
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('X-coordinate bias: ' + data.biasX);
-    console.info('Y-coordinate bias: ' + data.biasY);
-    console.info('Z-coordinate bias: ' + data.biasZ);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+    }
+    sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback);
 ```
 
 ### AMBIENT_LIGHT<sup>9+</sup> 
@@ -1252,10 +1387,14 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Illumination: ' + data.intensity);
+try {
+    function callback(data) {
+        console.info('Illumination: ' + data.intensity);
+    }
+    sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback);
 ```
 
 ### AMBIENT_TEMPERATURE<sup>9+</sup> 
@@ -1276,10 +1415,14 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 **示例：**
 
 ```js
-function callback(data) {
-     console.info('Temperature: ' + data.temperature);
+try {
+    function callback(data) {
+        console.info('Temperature: ' + data.temperature);
+    }
+    sensor.off( sensor.SensorId.AMBIENT_TEMPERATURE, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off( sensor.SensorId.AMBIENT_TEMPERATURE, callback);
 ```
 
 ### BAROMETER<sup>9+</sup>  
@@ -1300,10 +1443,14 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 **示例：**
 
 ```js
-function callback(data) {
-     console.info('Atmospheric pressure: ' + data.pressure);
+try {
+    function callback(data) {
+        console.info('Atmospheric pressure: ' + data.pressure);
+    }
+    sensor.off(sensor.SensorId.BAROMETER, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.BAROMETER, callback);
 ```
 
 ### GRAVITY<sup>9+</sup> 
@@ -1324,12 +1471,16 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off( sensor.SensorId.GRAVITY, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off( sensor.SensorId.GRAVITY, callback);
 ```
 
 ### GYROSCOPE<sup>9+</sup> 
@@ -1352,12 +1503,16 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.GYROSCOPE, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.GYROSCOPE, callback);
 ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup> 
@@ -1380,12 +1535,16 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?:Callback&lt;GyroscopeUncali
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback);
 ```
 
 ### HALL<sup>9+</sup> 
@@ -1406,10 +1565,14 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Status: ' + data.status);
+try {
+    function callback(data) {
+        console.info('Status: ' + data.status);
+    }
+    sensor.off(sensor.SensorId.HALL, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.HALL, callback);
 ```
 
 ### HEART_RATE<sup>9+</sup> 
@@ -1432,10 +1595,14 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 **示例：**
 
 ```js
-function callback(data) {
-    console.info("Heart rate: " + data.heartRate);
+try {
+    function callback(data) {
+        console.info("Heart rate: " + data.heartRate);
+    }
+    sensor.off(sensor.SensorId.HEART_RATE, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.HEART_RATE, callback);
 ```
 
 ### HUMIDITY<sup>9+</sup> 
@@ -1456,10 +1623,14 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Humidity: ' + data.humidity);
+try {
+    function callback(data) {
+        console.info('Humidity: ' + data.humidity);
+    }
+    sensor.off(sensor.SensorId.HUMIDITY, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.HUMIDITY, callback);
 ```
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup> 
@@ -1482,12 +1653,16 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback);
 ```
 
 ### MAGNETIC_FIELD<sup>9+</sup> 
@@ -1508,12 +1683,16 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback);
 ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup> 
@@ -1534,15 +1713,19 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback?:Callback&lt;MagneticFie
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('X-coordinate bias: ' + data.biasX);
-    console.info('Y-coordinate bias: ' + data.biasY);
-    console.info('Z-coordinate bias: ' + data.biasZ);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('X-coordinate bias: ' + data.biasX);
+        console.info('Y-coordinate bias: ' + data.biasY);
+        console.info('Z-coordinate bias: ' + data.biasZ);
+    }
+    sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback);
 ```
 
 ### ORIENTATION<sup>9+</sup> 
@@ -1563,12 +1746,16 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('The device rotates at an angle around the X axis: ' + data.beta);
-    console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-    console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+try {
+    function callback(data) {
+        console.info('The device rotates at an angle around the X axis: ' + data.beta);
+        console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
+        console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
+    }
+    sensor.off(sensor.SensorId.ORIENTATION, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.ORIENTATION, callback);
 ```
 
 ### PEDOMETER<sup>9+</sup>
@@ -1591,10 +1778,14 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Steps: ' + data.steps);
+try {
+    function callback(data) {
+        console.info('Steps: ' + data.steps);
+    }
+    sensor.off(sensor.SensorId.PEDOMETER, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.PEDOMETER, callback);
 ```
 
 ### PEDOMETER_DETECTION<sup>9+</sup> 
@@ -1617,10 +1808,14 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Scalar data: ' + data.scalar);
+try {
+    function callback(data) {
+        console.info('Scalar data: ' + data.scalar);
+    }
+    sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback);
 ```
 
 ### PROXIMITY<sup>9+</sup>  
@@ -1641,10 +1836,14 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Distance: ' + data.distance);
+try {
+    function callback(data) {
+        console.info('Distance: ' + data.distance);
+    }
+    sensor.off(sensor.SensorId.PROXIMITY, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.PROXIMITY, callback);
 ```
 
 ### ROTATION_VECTOR<sup>9+</sup> 
@@ -1665,13 +1864,17 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-    console.info('Scalar quantity: ' + data.w);
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+        console.info('Scalar quantity: ' + data.w);
+    }
+    sensor.off(sensor.SensorId.ROTATION_VECTOR, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.ROTATION_VECTOR, callback);
 ```
 
 ### SIGNIFICANT_MOTION<sup>9+</sup> 
@@ -1692,10 +1895,14 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 **示例：**
 
 ```js
-function callback(data) {
-    console.info('Scalar data: ' + data.scalar);
+try {
+    function callback(data) {
+        console.info('Scalar data: ' + data.scalar);
+    }
+    sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback);
 ```
 
 ### WEAR_DETECTION<sup>9+</sup> 
@@ -1716,13 +1923,47 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 **示例：**
 
 ```js
-function accCallback(data) {
-    console.info('Wear status: ' + data.value);
+try {
+    function accCallback(data) {
+        console.info('Wear status: ' + data.value);
+    }
+    sensor.off(sensor.SensorId.WEAR_DETECTION, accCallback);
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-sensor.off(sensor.SensorId.WEAR_DETECTION, accCallback);
 ```
 
-## sensor.on
+## SensorId
+
+表示要订阅或取消订阅的传感器类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称                        | 默认值 | 说明                   |
+| --------------------------- | ------ | ---------------------- |
+| ACCELEROMETER               | 1      | 加速度传感器。         |
+| GYROSCOPE                   | 2      | 陀螺仪传感器。         |
+| AMBIENT_LIGHT               | 5      | 环境光传感器。         |
+| MAGNETIC_FIELD              | 6      | 磁场传感器。           |
+| BAROMETER                   | 8      | 气压计传感器。         |
+| HALL                        | 10     | 霍尔传感器。           |
+| PROXIMITY                   | 12     | 接近光传感器。         |
+| HUMIDITY                    | 13     | 湿度传感器。           |
+| ORIENTATION                 | 256    | 方向传感器。           |
+| GRAVITY                     | 257    | 重力传感器。           |
+| LINEAR_ACCELEROMETER        | 258    | 线性加速度传感器。     |
+| ROTATION_VECTOR             | 259    | 旋转矢量传感器。       |
+| AMBIENT_TEMPERATURE         | 260    | 环境温度传感器。       |
+| MAGNETIC_FIELD_UNCALIBRATED | 261    | 未校准磁场传感器。     |
+| GYROSCOPE_UNCALIBRATED      | 263    | 未校准陀螺仪传感器。   |
+| SIGNIFICANT_MOTION          | 264    | 有效运动传感器。       |
+| PEDOMETER_DETECTION         | 265    | 计步检测传感器。       |
+| PEDOMETER                   | 266    | 计步传感器。           |
+| HEART_RATE                  | 278    | 心率传感器。           |
+| WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
+| ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
+
+## sensor.on<sup>(deprecated)</sup>
 
 ### ACCELEROMETER<sup>(deprecated)</sup>
 
@@ -1730,7 +1971,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.ACCELEROMETER](#accelerometer9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -1809,7 +2050,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer_uncalibrated9) 
+从API Version9开始该接口不再维护，请使用 [sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -1843,7 +2084,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gravity9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.GRAVITY](#gravity9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1872,7 +2113,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.GYROSCOPE](#gyroscope9)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -1902,7 +2143,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#gyroscope_uncalibrated9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -1935,7 +2176,7 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#significant_motion9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2364,7 +2605,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
   );
   ```
 
-## sensor.once
+## sensor.once<sup>(deprecated)</sup>
 
 ### ACCELEROMETER<sup>(deprecated)</sup>
 
@@ -2955,7 +3196,7 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
   );
   ```
 
-## sensor.off
+## sensor.off<sup>(deprecated)</sup>
 
 ### ACCELEROMETER<sup>(deprecated)</sup>
 
