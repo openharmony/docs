@@ -32,7 +32,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 
 ## 示例
-### 示例一
+### 示例1
 Blank组件在横竖屏占满空余空间效果。
 ```ts
 // xxx.ets
@@ -60,7 +60,7 @@ struct BlankExample {
 ![zh-cn_image_0000001174104388](figures/zh-cn_image_0000001174104388.gif)
 
 
-### 示例二
+### 示例2
 Blank组件的父组件未设置宽度时，min参数的使用效果。
 
 ```ts

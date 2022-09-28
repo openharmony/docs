@@ -26,7 +26,7 @@
 ## 示例
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
-### 示例一
+### 示例1
 模糊属性的用法，blur内容模糊，backdropBlur背景模糊。
 ```ts
 // xxx.ets
@@ -65,7 +65,7 @@ struct BlurEffectsExample {
 
 ![textblur](figures/textblur.png)
 
-### 示例二
+### 示例2
 图片效果属性的用法，阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
 ```ts
 // xxx.ets
