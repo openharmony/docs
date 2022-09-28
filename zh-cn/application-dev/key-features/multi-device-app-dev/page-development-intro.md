@@ -19,6 +19,6 @@
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 开发多设备上同一页面时，建议开发者多使用[自定义组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-component-based-component.md)，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
+> - 开发多设备上同一页面时，建议开发者多使用[自定义组件](../../ui/ts-component-based-component.md)，既可以增加代码的可读性和可维护性，同时也可以尽可能的实现代码复用。
 > 
 > - 本章中涉及的示例代码均可以在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev)中获取，感兴趣的开发者可以自行下载、运行及查看效果。

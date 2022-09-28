@@ -13,11 +13,11 @@
 自适应布局和响应式布局常常需要借助容器类组件实现，或与容器类组件搭配使用。
 
 
-- 自适应布局常常需要借助[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)、[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)或[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)实现。
+- 自适应布局常常需要借助[Row组件](../../reference/arkui-ts/ts-container-row.md)、[Column组件](../../reference/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/arkui-ts/ts-container-flex.md)实现。
   
   ![image-20220922185907892](figures/image-20220922185907892.png)
   
-- 响应式布局常常与[GridRow组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)、[Grid组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)、[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)、[Swiper组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md)或[Tabs组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)搭配使用。
+- 响应式布局常常与[GridRow组件](../../reference/arkui-ts/ts-container-gridrow.md)、[Grid组件](../../reference/arkui-ts/ts-container-grid.md)、[List组件](../../reference/arkui-ts/ts-container-list.md)、[Swiper组件](../../reference/arkui-ts/ts-container-swiper.md)或[Tabs组件](../../reference/arkui-ts/ts-container-tabs.md)搭配使用。
   
   ![image-20220922190217247](figures/image-20220922190217247.png)
   

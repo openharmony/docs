@@ -49,6 +49,7 @@
     - [@ohos.application.formInfo (FormInfo)](js-apis-formInfo.md)
     - [@ohos.application.formProvider (FormProvider)](js-apis-formprovider.md)
     - [@ohos.application.missionManager (missionManager)](js-apis-missionManager.md)
+    - [@ohos.application.quickFixManager (quickFixManager)](js-apis-application-quickFixManager.md)
     - [@ohos.application.Want (Want)](js-apis-application-Want.md)
     - [@ohos.continuation.continuationManager (ContinuationExtraParams)](js-apis-continuation-continuationExtraParams.md)
     - [@ohos.continuation.continuationManager (continuationManager)](js-apis-continuation-continuationManager.md)
@@ -60,6 +61,7 @@
     - application/[ExtensionRunningInfo (ExtensionRunningInfo)](js-apis-extensionrunninginfo.md)
     - application/[MissionSnapshot (MissionSnapshot)](js-apis-application-MissionSnapshot.md)
     - application/[ProcessRunningInfo (ProcessRunningInfo)](js-apis-processrunninginfo.md)
+    - application/[ProcessRunningInformation (ProcessRunningInformation)](js-apis-processrunninginformation.md)
     - application/[shellCmdResult (ShellCmdResult)](js-apis-application-shellCmdResult.md)
     - continuation/[ContinuationResult (ContinuationResult)](js-apis-continuation-continuationResult.md)
 - 公共事件与通知
@@ -81,6 +83,7 @@
   - bundle/[ApplicationInfo (ApplicationInfo)](js-apis-bundle-ApplicationInfo.md)
   - bundle/[BundleInfo (BundleInfo)](js-apis-bundle-BundleInfo.md)
   - bundle/[BundleInstaller (BundleInstaller)](js-apis-bundle-BundleInstaller.md)
+  - bundle/[BundleStatusCallback (BundleStatusCallback)](js-apis-Bundle-BundleStatusCallback.md)
   - bundle/[CustomizeData (CustomizeData)](js-apis-bundle-CustomizeData.md)
   - bundle/[DispatchInfo (DispatchInfo)](js-apis-dispatchInfo.md)
   - bundle/[ElementName (ElementName)](js-apis-bundle-ElementName.md)
@@ -199,6 +202,7 @@
 - 系统基础能力
 
   - [@ohos.accessibility (辅助功能)](js-apis-accessibility.md)
+  - [@ohos.accessibility.config (系统辅助功能配置)](js-apis-accessibility-config.md)
   - [@ohos.faultLogger (故障日志获取)](js-apis-faultLogger.md)
   - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
@@ -231,6 +235,7 @@
   - [@ohos.multimodalInput.keyCode (键值)](js-apis-keycode.md)
   - [@ohos.multimodalInput.keyEvent (按键输入事件)](js-apis-keyevent.md)
   - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](js-apis-mouseevent.md)
+  - [@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
@@ -248,6 +253,7 @@
   - [@ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)
 - 语言基础类库
 
+  - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (xml转换JavaScript)](js-apis-convertxml.md)
   - [@ohos.process (获取进程相关的信息)](js-apis-process.md)
   - [@ohos.uri (URI字符串解析)](js-apis-uri.md)
