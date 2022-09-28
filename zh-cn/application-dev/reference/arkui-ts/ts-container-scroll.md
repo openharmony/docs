@@ -24,9 +24,9 @@ Scroll(scroller?: Scroller)
 
 | 名称             | 参数类型                                     | 描述        |
 | -------------- | ---------------------------------------- | --------- |
-| scrollable     | ScrollDirection                          | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
+| scrollable     | [ScrollDirection](#scrolldirection枚举说明)                        | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | 设置滚动条的颜色。 |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color)   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度。 |
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
 
@@ -186,10 +186,11 @@ struct ScrollExample {
           }, item => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical)
-      .scrollBar(BarState.On)
-      .scrollBarColor(Color.Gray)
-      .scrollBarWidth(30)
+      .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
+      .scrollBar(BarState.On)  // 滚动条常驻显示
+      .scrollBarColor(Color.Gray)  // 滚动条颜色
+      .scrollBarWidth(30) // 滚动条宽度
+      .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
       })
@@ -199,7 +200,7 @@ struct ScrollExample {
       .onScrollEnd(() => {
         console.info('Scroll Stop')
       })
-      
+
       Button('scroll 150')
         .onClick(() => { // 点击后下滑指定距离150.0vp
           this.scroller.scrollBy(0,150)
