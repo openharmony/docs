@@ -32,7 +32,8 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 
 ## 示例
-
+### 示例一
+Blank组件在横竖屏占满空余空间效果。
 ```ts
 // xxx.ets
 @Entry
@@ -59,6 +60,9 @@ struct BlankExample {
 ![zh-cn_image_0000001174104388](figures/zh-cn_image_0000001174104388.gif)
 
 
+### 示例二
+Blank组件的父组件未设置宽度时，min参数的使用效果。
+
 ```ts
 // xxx.ets
 @Entry
@@ -66,7 +70,7 @@ struct BlankExample {
 struct BlankExample {
   build() {
     Column({ space: 20 }) {
-      // blank父组件不设置宽度时，Blank世纪
+      // blank父组件不设置宽度时，Blank失效，可以通过设置min最小宽度填充固定宽度
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)
