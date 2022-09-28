@@ -1704,10 +1704,10 @@ image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
     imagePackerApi.packing(pixelMapApi, packOpts)
         .then( data => {
-	        console.log('Succeeded in packing the image.');
-	    }).catch(error => {
-	        console.log('Failed to pack the image..');
-	    })
+            console.log('Succeeded in packing the image.');
+        }).catch(error => {
+            console.log('Failed to pack the image..');
+        })
 })
 ```
 
