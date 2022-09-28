@@ -2202,7 +2202,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer_detection9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -2230,7 +2230,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#pedometer9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.PEDOMETER](#pedometer9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
@@ -2258,7 +2258,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用  [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_temperature9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2286,7 +2286,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2299,6 +2299,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -2315,7 +2316,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#magnetic_field_uncalibrated9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2347,7 +2348,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#proximity9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.PROXIMITY](#proximity9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2373,7 +2374,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#humidity9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.HUMIDITY](#humidity9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2401,7 +2402,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#barometer9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.BAROMETER](#barometer9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2429,11 +2430,12 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#hall9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.HALL](#hall9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的霍尔传感器类型为SENSOR_TYPE_ID_HALL。         |
@@ -2455,7 +2457,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#ambient_light9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2482,7 +2484,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#orientation9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.ORIENTATION](#orientation9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2556,7 +2558,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#rotation_vector9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2585,7 +2587,7 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#wear_detection9) 
+从API Version9开始该接口不再维护，请使用[sensor.on.WEAR_DETECTION](#wear_detection9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2613,7 +2615,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 监听加速度传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请使用 [zh-cn/application-dev/reference/apis/js-apis-sensor.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/e6186d7257de339c5ae79e5e1dd23d56139f7ddc/zh-cn/application-dev/reference/apis/js-apis-sensor.md#accelerometer9-1) 
+从API Version9开始该接口不再维护，请使用[sensor.on.ACCELEROMETER](#accelerometer9-1)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
