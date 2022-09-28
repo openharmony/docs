@@ -279,9 +279,9 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](../../reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不做展开介绍。
 > 
-> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/arkui-js/js-appendix-types.md#%E9%95%BF%E5%BA%A6%E7%B1%BB%E5%9E%8B)。
+> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/arkui-js/js-appendix-types.md#长度类型)。
 > 
-> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](../../reference/arkui-js/js-components-common-atomic-layout.md#%E5%8D%A0%E6%AF%94%E8%83%BD%E5%8A%9B)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
+> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](../../reference/arkui-js/js-components-common-atomic-layout.md#占比能力)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
 
 
 **示例：**
@@ -374,7 +374,7 @@ struct ProportionCapabilitySample {
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式同样提供了[aspect-ratio样式](../../reference/arkui-js/js-components-common-atomic-layout.md#%E5%9B%BA%E5%AE%9A%E6%AF%94%E4%BE%8B)，用于固定组件的宽高比。
+> 类Web开发范式同样提供了[aspect-ratio样式](../../reference/arkui-js/js-components-common-atomic-layout.md#固定比例)，用于固定组件的宽高比。
 
 
 **示例：**
@@ -604,7 +604,7 @@ struct ExtensionCapabilitySample2 {
 可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式同样支持[display-index样式](../../reference/arkui-js/js-components-common-atomic-layout.md#%E9%9A%90%E8%97%8F%E8%83%BD%E5%8A%9B)，用于设置布局优先级。
+> 类Web开发范式同样支持[display-index样式](../../reference/arkui-js/js-components-common-atomic-layout.md#隐藏能力)，用于设置布局优先级。
 
 **示例：**
 
