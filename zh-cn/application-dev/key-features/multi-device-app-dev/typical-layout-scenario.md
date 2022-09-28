@@ -36,7 +36,7 @@
 
 不同断点下，页签在页面中的位置及尺寸都有差异，可以结合响应式布局能力，设置不同断点下[Tab组件](../../reference/arkui-ts/ts-container-tabs.md)的barPosition、vertical、barWidth和barHeight属性实现目标效果。
 
-另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](../../reference/arkui-ts/ts-container-tabcontent.md#%E5%B1%9E%E6%80%A7)对应的CustomBuilder中的布局方向，实现目标效果。
+另外，页签栏中的文字和图片的相对位置不同，同样可以通过设置不同断点下[tabBar](../../reference/arkui-ts/ts-container-tabcontent.md#属性)对应的CustomBuilder中的布局方向，实现目标效果。
 
 
 **参考代码**
