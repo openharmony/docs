@@ -21,9 +21,9 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
 2. 创建拉起Ability的WantAgentInfo信息。详细的WantAgentInfo信息数据类型及包含的参数请见[WantAgentInfo文档](../reference/apis/js-apis-wantAgent.md#wantagentinfo)介绍。
 
    ```
-   private wantAgentObj = null	//用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
+   private wantAgentObj = null	// 用于保存创建成功的wantAgent对象，后续使用其完成触发的动作。
    
-   //wantAgentInfo
+   // wantAgentInfo
    var wantAgentInfo = {
        wants: [
            {
@@ -45,9 +45,9 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
 3. 创建发布公共事件的WantAgentInfo信息。
 
    ```
-   private wantAgentObj = null	//用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
+   private wantAgentObj = null	// 用于保存创建成功的WantAgent对象，后续使用其完成触发的动作。
    
-   //wantAgentInfo
+   // wantAgentInfo
    var wantAgentInfo = {
        wants: [
            {
@@ -64,7 +64,7 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
 4. 创建WantAgent，保存返回的WantAgent对象wantAgentObj，用于执行后续触发操作。
 
    ```
-   //创建WantAgent
+   // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, wantAgentObj) => {
        if (err.code) {
            console.error("[WantAgent]getWantAgent err=" + JSON.stringify(err))
@@ -78,7 +78,7 @@ WantAgent封装了一个行为意图信息，可以通过WantAgent.trigger接口
 5. 触发WantAgent。
 
    ```
-   //触发WantAgent。
+   // 触发WantAgent。
    var triggerInfo = {
        code:0
    }

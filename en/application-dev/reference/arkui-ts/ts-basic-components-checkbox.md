@@ -2,13 +2,9 @@
 
 The **\<Checkbox>** component is used to enable or disable an option.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -16,24 +12,28 @@ Not supported
 
 ## APIs
 
-Checkbox( name?: string,  group?: string )
+Checkbox(options?: {name?: string,  group?: string })
 
-- Parameters
-  | Name | Type| Mandatory | Default Value| Description|
-  | --------| --------| ------ | -------- | -------- |
-  | name    | string | No| - | Name of the check box.|
-  | group   | string | No| - | Group name of the check box.|
+**Parameters**
 
+| Name | Type| Mandatory | Description|
+| --------| --------| ------ | -------- |
+| name    | string | No| Name of the check box.|
+| group   | string | No| Group name of the check box.|
 
 ## Attributes
 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name         | Type| Default Value| Description|
-| ------------- | ------- | ------ | -------- |
-| select        | boolean   | false | Whether the check box is selected.|
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | - | Color of the check box when it is selected.|
+
+| Name         | Type| Description|
+| ------------- | ------- | -------- |
+| select        | boolean | Whether the check box is selected.<br>Default value: **false**|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the check box when it is selected.|
 
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following attributes are supported.
 
 | Name     | Description|
 | ----------| -------- |

@@ -183,6 +183,7 @@ Obtains state information about the current page.
 | Type                         | Description     |
 | --------------------------- | ------- |
 | [RouterState](#routerstate) | Page routing state.|
+
 **Example**
 
 ```js

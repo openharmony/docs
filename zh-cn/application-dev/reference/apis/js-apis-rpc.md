@@ -66,7 +66,8 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-   | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | object | [IRemoteObject](#iremoteobject) | 是 | 要序列化并写入MessageParcel的远程对象。 |
 
@@ -156,7 +157,8 @@ writeInterfaceToken(token: string): boolean
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
-   | 参数名 | 类型 | 必填 | 说明 |
+
+  | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | token | string | 是 | 字符串类型描述符。 |
 
@@ -2618,10 +2620,10 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -2645,10 +2647,10 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -2804,10 +2806,10 @@ isObjectDead(): boolean
 
 ### sendRequest<sup>(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -2871,10 +2873,10 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-1)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -3723,10 +3725,10 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
+
 > **说明：**
 > 从 API Version 8 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -3792,10 +3794,10 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
+sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
+
 > **说明：**
 > 从 API Version 9 开始废弃，建议使用[sendRequestAsync<sup>9+</sup>](#sendrequestasync9-2)替代。
-
-sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
 
@@ -3998,9 +4000,13 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```
 
 
-### onRemoteRequest
+### onRemoteRequest<sup>8+(deprecated)</sup>
+
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
+
+> **说明：**
+> 从 API Version 9 开始废弃，建议使用[onRemoteRequestEx<sup>9+</sup>](#onremoterequestex9)替代。
 
 sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。
 
@@ -4024,7 +4030,7 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
 
 **示例：**
 
-  ```
+  ```ets
   class MyDeathRecipient {
       onRemoteDied() {
           console.log("server died");
@@ -4055,8 +4061,190 @@ sendRequestAsync请求的响应处理函数，服务端在该函数里处理请�
       }
   }
   ```
+### onRemoteRequestEx<sup>9+</sup>
+
+onRemoteRequestEx(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean | Promise <boolean>
+
+> **说明：**
+>- 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
+>- 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
+
+sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
+
+**系统能力**：SystemCapability.Communication.IPC.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | code | number | 是 | 对端发送的服务请求码。 |
+  | data | [MessageParcel](#messageparcel) | 是 | 携带客户端调用参数的MessageParcel对象。 |
+  | reply | [MessageParcel](#messageparcel) | 是 | 写入结果的MessageParcel对象。 |
+  | option | [MessageOption](#messageoption) | 是 | 指示操作是同步还是异步。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
+  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。 |
 
 
+**重载onRemoteRequestEx方法同步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+  }
+  ```
+  **重载onRemoteRequestEx方法异步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
+**同时重载onRemoteRequestEx和onRemoteRequest方法同步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // 同时调用仅会执行onRemoteRequestEx
+      onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          
+          return true;
+      }
+  }
+  ```
+  **同时重载onRemoteRequestEx和onRemoteRequest方法异步处理请求示例：**
+
+  ```ets
+  class MyDeathRecipient {
+      onRemoteDied() {
+          console.log("server died");
+      }
+  }
+  class TestRemoteObject extends rpc.RemoteObject {
+      constructor(descriptor) {
+          super(descriptor);
+      }
+      addDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
+          return true;
+      }
+      isObjectDead(): boolean {
+          return false;
+      }
+      onRemoteRequest(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: sync onRemoteRequestEx is called");
+              return true;
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+      }
+      // 同时调用仅会执行onRemoteRequestEx
+      async onRemoteRequestEx(code, data, reply, option) {
+          if (code === 1) {
+              console.log("RpcServer: async onRemoteRequestEx is called");
+          } else {
+              console.log("RpcServer: unknown code: " + code);
+              return false;
+          }
+          await new Promise((resolve) => {
+            setTimeout(resolve, 100);
+          })
+          return true;
+      }
+  }
+  ```
 ### getCallingUid
 
 getCallingUid(): number

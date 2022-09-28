@@ -1,9 +1,11 @@
 # Text Picker Dialog Box
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+A text picker dialog box is a dialog box that allows users to select text from the given range.
 
-You can display a text picker in a dialog box to allow users to select text from the given range.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
@@ -11,29 +13,31 @@ None
 
 ## TextPickerDialog.show
 
-show(options: TextPickerDialogOptions)
+show(options?: TextPickerDialogOptions)
 
 Shows a text picker in the given settings.
 
 - TextPickerDialogOptions
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[] | Yes | - | Data selection range of the picker. |
-  | selected | number | No | First element | Index value of the selected item in the range. |
-  | defaultPickerItemHeight | number | No | - | Height of the default selected item in the picker. |
-  | onAccept | (value: TextPickerResult) => void | No | - | Callback invoked when the OK button in the dialog box is clicked. |
-  | onCancel | () => void | No | - | Triggered when the Cancel button in the dialog box is clicked. |
-  | onChange | (value: TextPickerResult) => void | No | - | Callback invoked when the selected item in the picker changes. |
+  | range | string[] \| [Resource](../../ui/ts-types.md#resource)| Yes| - | Data selection range of the picker.|
+  | selected | number | No| 0 | Index of the selected item in the range.|
+  | value       | string           | No   | -    | Value of the selected item. This parameter does not take effect when the **selected** parameter is set. If the value is not within the range, the first item in the range is used instead.|
+  | defaultPickerItemHeight | number \| string | No| - | Default height of an item in the picker.|
+  | onAccept | (value: TextPickerResult) => void | No| - | Callback invoked when the OK button in the dialog box is clicked.|
+  | onCancel | () => void | No| - | Callback invoked when the Cancel button in the dialog box is clicked.|
+  | onChange | (value: TextPickerResult) => void | No| - | Callback invoked when the selected item in the picker changes.|
 
 - TextPickerResult
-  | Name | Type | Description | 
+  | Name| Type| Description|
   | -------- | -------- | -------- |
-  | value | string | Text of the selected item. | 
-  | index | number | Index value of the selected item in the range. | 
+  | value | string | Value of the selected item.|
+  | index | number | Index of the selected item in the range.|
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct TextPickerDialogExample {

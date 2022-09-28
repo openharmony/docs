@@ -3,20 +3,14 @@
 设置组件的遮罩文本。
 
 >  **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
-
 
 ## 属性
 
-
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| overlay | title:&nbsp;string,<br/>options:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment枚举说明),<br/>offset?:&nbsp;{x:&nbsp;number,&nbsp;y:&nbsp;number}<br/>} | {<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。 |
+| 名称       | 参数类型                          | 描述                       |
+| ------- | ----------------------------- | ------------------------- |
+| overlay | value:&nbsp;string,<br/>options?:&nbsp;{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{<br>  x?:&nbsp;number,<br>  y?:&nbsp;number<br> }<br/>} | 在当前组件上，增加遮罩文本，布局与当前组件相同。<br>默认值：<br>{<br/>align:&nbsp;Alignment.Center,<br/>offset:&nbsp;{0,&nbsp;0}<br/>} |
 
 
 ## 示例

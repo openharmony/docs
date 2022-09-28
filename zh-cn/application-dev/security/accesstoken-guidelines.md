@@ -13,7 +13,7 @@
 > 当前场景下，应用申请的权限包括了user_grant权限，对这部分user_grant权限，可以先通过权限校验，判断当前调用者是否具备相应权限。
 >
 > 当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。
->
+
 ## 接口说明
 
 以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
@@ -35,8 +35,8 @@
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| ability   | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** FA模型            |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** Stage模型            |
+| ability   | 标识需要使用到该权限的Ability，标签为数组形式。   <br/>**适用模型：** FA模型            |
+| abilities | 标识需要使用到该权限的Ability，标签为数组形式。   <br/>**适用模型：** Stage模型            |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
 
 ### FA模型
@@ -88,10 +88,10 @@
         "name" : "ohos.permission.PERMISSION1",
         "reason": "$string:reason",
         "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
         }
       },
       {
@@ -101,7 +101,7 @@
           "abilities": [
             "FormAbility"
           ],
-        "when":"always"
+          "when":"always"
         }
       }
     ]
@@ -123,7 +123,7 @@
     "allowed-acls": [
       "ohos.permission.PERMISSION2"
     ]
-  },
+  }
 }
 ```
 

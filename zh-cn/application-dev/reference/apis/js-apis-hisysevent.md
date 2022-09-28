@@ -2,7 +2,7 @@
 
 本模块提供了系统事件打点能力，包括系统事件的埋点、落盘系统事件的订阅及已落盘的系统事件的查询能力。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块的接口为系统接口。
 
@@ -53,7 +53,7 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | info | [SysEventInfo](#syseventinfo) | 是 | 系统事件。 |
-| callback  | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。<br/>-&nbsp;0表示事件校验成功，事件正常异步写入事件文件；<br/>-&nbsp;正值表示事件打点存在异常，但可以正常写入；<br/>-&nbsp;负值表示事件打点失败。 |
+| callback  | AsyncCallback&lt;void&gt; | 是 | 回调函数，可以在回调函数中处理接口返回值。<br/>- 0表示事件校验成功，事件正常异步写入事件文件；<br/>- 正值表示事件打点存在异常，但可以正常写入；<br/>- 负值表示事件打点失败。 |
 
 **示例：**
 
@@ -181,7 +181,7 @@ addWatcher(watcher: Watcher): number
 
 | 类型    | 说明 |
 | ------- | -------------------------------------------------- |
-| number | 系统事件订阅结果。<br>-0&nbsp;表示订阅成功。<br>-负值&nbsp;表示订阅失败。 |
+| number | 系统事件订阅结果。<br>- 0表示订阅成功。<br>- 负值表示订阅失败。 |
 
 **示例：**
 
@@ -207,7 +207,7 @@ let ret = hiSysEvent.addWatcher(watcher)
 
 ## hiSysEvent.removeWatcher
 
-removeWatcher(wathcer: Watcher): number
+removeWatcher(watcher: Watcher): number
 
 取消订阅系统事件，接收[Watcher](#watcher)类型的对象作为事件参数。
 
@@ -225,7 +225,7 @@ removeWatcher(wathcer: Watcher): number
 
 | 类型    | 说明 |
 | ------- | ----------------------------------------------------------- |
-| number | 取消订阅系统事件的结果。<br>-0&nbsp;表示取消订阅成功。<br>-负值&nbsp;表示取消订阅失败。 |
+| number | 取消订阅系统事件的结果。<br>- 0表示取消订阅成功。<br>- 负值表示取消订阅失败。 |
 
 **示例：**
 
@@ -306,7 +306,7 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): number
 
 | 类型    | 说明                                                        |
 | ------- | ----------------------------------------------------------- |
-| number | 系统事件查询的结果。<br>-0&nbsp;表示查询成功.<br>-负值&nbsp;表示查询失败。 |
+| number | 系统事件查询的结果。<br>- 0表示查询成功.<br>- 负值表示查询失败。 |
 
 **示例：**
 

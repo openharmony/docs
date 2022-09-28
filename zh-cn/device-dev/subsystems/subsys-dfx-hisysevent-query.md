@@ -39,8 +39,8 @@ HiSysEvent提供了查询接口，支持开发者设置条件查询HiSysEvent事
 
 | 接口名称 | 描述 |
 | -------- | -------- |
-| void&nbsp;HiSysEventQueryCallBack::OnQuery(std::shared_ptr&lt;std::vector&lt;HiSysEventRecord&gt;&gt;&nbsp;sysEvents) | 接口功能：事件查询的回调。<br/>输入参数：<br/>-&nbsp;sysEvents：返回的事件集合。<br/>返回值：<br/>无。 |
-| void&nbsp;HiSysEventQueryCallBack::OnComplete(int32_t&nbsp;reason,&nbsp;int32_t&nbsp;total) | 接口功能：事件查询完成的回调。<br/>输入参数：<br/>-&nbsp;reason：查询结束返回原因，目前默认是0。<br/>-&nbsp;total：本次查询总共返回的事件总数量。<br/>返回值：<br/>无。 |
+| void&nbsp;HiSysEventQueryCallback::OnQuery(std::shared_ptr&lt;std::vector&lt;HiSysEventRecord&gt;&gt;&nbsp;sysEvents) | 接口功能：事件查询的回调。<br/>输入参数：<br/>-&nbsp;sysEvents：返回的事件集合。<br/>返回值：<br/>无。 |
+| void&nbsp;HiSysEventQueryCallback::OnComplete(int32_t&nbsp;reason,&nbsp;int32_t&nbsp;total) | 接口功能：事件查询完成的回调。<br/>输入参数：<br/>-&nbsp;reason：查询结束返回原因，目前默认是0。<br/>-&nbsp;total：本次查询总共返回的事件总数量。<br/>返回值：<br/>无。 |
 
 ### 开发实例
 
@@ -56,15 +56,15 @@ C++接口实例。
      实现对应的查询回调接口：
 
    ```
-   void HiSysEventQueryCallBack::OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents)
-   void HiSysEventQueryCallBack::OnComplete(int32_t reason, int32_t total)
+   void HiSysEventQueryCallback::OnQuery(std::shared_ptr<std::vector<HiSysEventRecord>> sysEvents)
+   void HiSysEventQueryCallback::OnComplete(int32_t reason, int32_t total)
    ```
 
      在相应的业务逻辑里面调用查询接口：
 
    ```
    HiSysEventManager::Query(struct QueryArg& queryArg, 
-       std::vector<QueryRule>& queryRules, std::shared_ptr<HiSysEventQueryCallBack> queryCallBack)
+       std::vector<QueryRule>& queryRules, std::shared_ptr<HiSysEventQueryCallback> queryCallBack)
    ```
 
      以下是查询所有系统事件的应用例子：
@@ -81,7 +81,7 @@ C++接口实例。
        if (sysEvents == nullptr) {
            return;
        }
-       for_each((*sysEvent).cbegin(), (*sysEvent).cend(), [](const HiSysEventRecord& event) {
+       for_each((*sysEvents).cbegin(), (*sysEvents).cend(), [](const HiSysEventRecord& event) {
            std::cout << event.AsJson() << std::endl;
        });
    }

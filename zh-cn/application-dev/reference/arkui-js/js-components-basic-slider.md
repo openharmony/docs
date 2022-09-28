@@ -94,6 +94,9 @@ export default {
     } else if (e.mode == "end") {
       this.value = e.value;
       this.endValue = e.value;
+    } else if (e.mode == "click) {
+      this.value = e.value;
+      this.currentValue = e.value;
     }
   }
 }

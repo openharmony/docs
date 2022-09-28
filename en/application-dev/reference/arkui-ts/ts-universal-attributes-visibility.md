@@ -2,30 +2,15 @@
 
 The visibility attribute controls whether a component is visible.
 
-> **NOTE**
+>  **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
-
-
 ## Attributes
 
-
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| visibility | Visibility | Visibility.Visible | Whether the component is visible. Note that even if a component is hidden, it needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../ui/ts-rending-control-syntax-if-else.md) instead under scenarios where consistently high performance is required. |
-
-
-- Visibility enums
-  | Name| Description|
-  | -------- | -------- |
-  | Hidden | The component is hidden, and a placeholder is used for it in the layout.|
-  | Visible | The component is visible.|
-  | None | The component is hidden. It is not involved in the layout, and no placeholder is used for it.|
+| Name        | Type                       | Description                                        |
+| ---------- | ---------------------------- | ------------------------------------------ |
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible. Note that even if a component is hidden, it needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../ui/ts-rending-control-syntax-if-else.md) instead under scenarios where consistently high performance is required.<br>Default value: **Visibility.Visible**|
 
 
 ## Example

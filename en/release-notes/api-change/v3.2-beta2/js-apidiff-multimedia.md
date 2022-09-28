@@ -46,7 +46,7 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.image | PixelMap | scale(x: number, y: number, callback: AsyncCallback\<void>): void;<br>scale(x: number, y: number): Promise\<void>; | Added|
 | ohos.multimedia.image | PixelMap | createAlphaPixelmap(): Promise\<PixelMap>;<br>createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void; | Added|
 | ohos.multimedia.image | PixelMap | opacity(rate: number, callback: AsyncCallback\<void>): void;<br>opacity(rate: number): Promise\<void>; | Added|
-| ohos.multimedia.image | PixelMap | getDensity():number; | Added|
+| ohos.multimedia.image | PixelMap | getDensity(): number; | Added|
 | ohos.multimedia.image | SourceOptions | sourceSize?: Size; | Added|
 | ohos.multimedia.image | SourceOptions | sourcePixelFormat?: PixelMapFormat; | Added|
 | ohos.multimedia.image | SourceOptions | sourceDensity: number; | Added|
@@ -55,11 +55,11 @@ The table below lists the APIs changes of the multimedia subsystem in OpenHarmon
 | ohos.multimedia.media | VideoPlayer | on(type: 'availableBitratesCollected', callback: (bitrates: Array\<number>) => void): void | Added|
 | ohos.multimedia.media | VideoPlayer | on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void; | Added|
 | ohos.multimedia.media | VideoPlayer | selectBitrate(bitrate: number): Promise\<number>;<br>selectBitrate(bitrate: number, callback: AsyncCallback\<number>): void; | Added|
-| ohos.multimedia.media | VideoPlayer | videoScaleType ?: VideoScaleType; | Added|
-| ohos.multimedia.media | VideoPlayer | audioInterruptMode ?: audio.InterruptMode; | Added|
+| ohos.multimedia.media | VideoPlayer | videoScaleType?: VideoScaleType; | Added|
+| ohos.multimedia.media | VideoPlayer | audioInterruptMode?: audio.InterruptMode; | Added|
 | ohos.multimedia.media | VideoPlayer | fdSrc: AVFileDescriptor; | Added|
 | ohos.multimedia.media | AudioPlayer | on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void; | Added|
-| ohos.multimedia.media | AudioPlayer | audioInterruptMode ?: audio.InterruptMode; | Added|
+| ohos.multimedia.media | AudioPlayer | audioInterruptMode?: audio.InterruptMode; | Added|
 | ohos.multimedia.media | AudioPlayer | fdSrc: AVFileDescriptor; | Added|
 | ohos.multimedia.media | AVFileDescriptor | length?: number | Added|
 | ohos.multimedia.media | AVFileDescriptor | offset?: number | Added|

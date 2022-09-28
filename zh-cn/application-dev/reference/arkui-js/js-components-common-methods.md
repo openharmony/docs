@@ -11,6 +11,7 @@
 animate( keyframes: Keyframes, options: Options)：void
 
 **参数：** 
+
 | 参数名       | 参数类型      | 必填   | 描述                                   |
 | --------- | --------- | ---- | ------------------------------------ |
 | keyframes | keyframes | 是    | 设置动画样式                               |
@@ -218,6 +219,7 @@ createIntersectionObserver(param?:  ObserverParam): Observer
 监听元素在当前页面的可见范围。
 
 **参数：** 
+
 | 参数名   | 参数类型          | 必填   | 描述             |
 | ----- | ------------- | ---- | -------------- |
 | param | ObserverParam | -    | 获取observer的回调。 |

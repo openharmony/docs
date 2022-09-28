@@ -99,7 +99,7 @@ Unsubscribes from events related to the screen state.
 **Example**
 ```js
 var callback = (data) => {
-    console.info('Unegister the callback for screen changes. Data: ' + JSON.stringify(data))
+    console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
 };
 screen.off("connect", callback);
 ```

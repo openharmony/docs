@@ -25,7 +25,7 @@ The table below lists the APIs changes of the bundle management framework in Ope
 | ohos.bundle | bundle | getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;<br>getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string>>; | Added|
 | ohos.bundle | bundle | getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string>>): void;<br>getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string>>; | Added|
 | ohos.bundle | bundle | getDispatcherVersion(callback: AsyncCallback\<DispatchInfo>): void;<br>getDispatcherVersion(): Promise\<DispatchInfo>; | Added|
-| ohos.bundle | bundle | getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag, callback: AsyncCallback\<pack.BundlePackInfo>): void;<br>getBundlePackInfo(bundleName: string, bundlePackFlag : pack.BundlePackFlag): Promise\<pack.BundlePackInfo>; | Added|
+| ohos.bundle | bundle | getBundlePackInfo(bundleName: string, bundlePackFlag: pack.BundlePackFlag, callback: AsyncCallback\<pack.BundlePackInfo>): void;<br>getBundlePackInfo(bundleName: string, bundlePackFlag: pack.BundlePackFlag): Promise\<pack.BundlePackInfo>; | Added|
 | ohos.bundle | SupportWindowMode | FLOATING = 2 | Added|
 | ohos.bundle | SupportWindowMode | SPLIT = 1 | Added|
 | ohos.bundle | SupportWindowMode | FULL_SCREEN = 0 | Added|
@@ -41,10 +41,10 @@ The table below lists the APIs changes of the bundle management framework in Ope
 | ohos.bundle | DisplayOrientation | LANDSCAPE_INVERTED | Added|
 | ohos.bundle | BundleFlag | GET_APPLICATION_INFO_WITH_CERTIFICATE_FINGERPRINT = 0x00000400 | Added|
 | ohos.bundle | BundleFlag | GET_BUNDLE_WITH_HASH_VALUE = 0x00000030 | Added|
-| ohos.bundle.defaultAppManager | defaultAppManager | resetDefaultApplication(type: string, userId?: number) : Promise\<void>;<br>resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;<br>resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void; | Added|
-| ohos.bundle.defaultAppManager | defaultAppManager | setDefaultApplication(type: string, elementName: ElementName, userId?: number) : Promise\<void>;<br>setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;<br>setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void; | Added|
-| ohos.bundle.defaultAppManager | defaultAppManager | getDefaultApplication(type: string, userId?: number) : Promise\<BundleInfo>;<br>getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>) : void;<br>getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>) : void; | Added|
-| ohos.bundle.defaultAppManager | defaultAppManager | isDefaultApplication(type: string) : Promise\<boolean>;<br>isDefaultApplication(type: string, callback: AsyncCallback\<boolean>) : void; | Added|
+| ohos.bundle.defaultAppManager | defaultAppManager | resetDefaultApplication(type: string, userId?: number): Promise\<void>;<br>resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>): void;<br>resetDefaultApplication(type: string, callback: AsyncCallback\<void>): void; | Added|
+| ohos.bundle.defaultAppManager | defaultAppManager | setDefaultApplication(type: string, elementName: ElementName, userId?: number): Promise\<void>;<br>setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>): void;<br>setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>): void; | Added|
+| ohos.bundle.defaultAppManager | defaultAppManager | getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>;<br>getDefaultApplication(type: string, userId: number, callback: AsyncCallback\<BundleInfo>): void;<br>getDefaultApplication(type: string, callback: AsyncCallback\<BundleInfo>): void; | Added|
+| ohos.bundle.defaultAppManager | defaultAppManager | isDefaultApplication(type: string): Promise\<boolean>;<br>isDefaultApplication(type: string, callback: AsyncCallback\<boolean>): void; | Added|
 | ohos.bundle.defaultAppManager | ApplicationType | PPT = "PPT" | Added|
 | ohos.bundle.defaultAppManager | ApplicationType | EXCEL = "EXCEL" | Added|
 | ohos.bundle.defaultAppManager | ApplicationType | WORD = "WORD" | Added|

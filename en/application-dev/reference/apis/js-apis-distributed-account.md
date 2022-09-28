@@ -19,6 +19,8 @@ getDistributedAccountAbility(): DistributedAccountAbility
 
 Obtains a **DistributedAccountAbility** instance.
 
+**System capability**: SystemCapability.Account.OsAccount
+
 - Return value
   | Type| Description|
   | -------- | -------- |

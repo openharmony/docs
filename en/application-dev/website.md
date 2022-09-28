@@ -4,10 +4,10 @@
 - Quick Start
   - Getting Started
     - [Preparations](quick-start/start-overview.md)
-    - [Getting Started with eTS in the Traditional Coding Approach](quick-start/start-with-ets.md)
-    - [Getting Started with eTS in the Low-Code Approach](quick-start/start-with-ets-low-code.md)
-    - [Getting Started with JavaScript in the Traditional Coding Approach](quick-start/start-with-js.md)
-    - [Getting Started with JavaScript in the Low-Code Approach](quick-start/start-with-js-low-code.md)
+    - [Getting Started with eTS in Stage Model](quick-start/start-with-ets-stage.md)
+    - [Getting Started with eTS in FA Model](quick-start/start-with-ets-fa.md)
+    - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
+
   - Development Fundamentals
     - [Application Package Structure Configuration File (FA Model)](quick-start/package-structure.md)
     - [Application Package Structure Configuration File (Stage Model)](quick-start/stage-structure.md)
@@ -33,6 +33,7 @@
     - Other
       - [WantAgent Development](ability/wantagent.md)
       - [Ability Assistant Usage](ability/ability-assistant-guidelines.md)
+      - [ContinuationManager Development](ability/continuationmanager.md)
       - [Test Framework Usage](ability/ability-delegator.md)
   - UI Development
     - [ArkUI Overview](ui/arkui-overview.md)
@@ -189,15 +190,10 @@
       - [Agent-Powered Scheduled Reminder Development](notification/background-agent-scheduled-reminder-guide.md)
     - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
-    - Window
-      - [Window Overview](windowmanager/window-overview.md)
-      - [Window Development](windowmanager/window-guidelines.md)
-    - Display
-      - [Display Overview](windowmanager/display-overview.md)
-      - [Display Development](windowmanager/display-guidelines.md)
-    - Screenshot
-      - [Screenshot Overview](windowmanager/screenshot-overview.md)
-      - [Screenshot Development](windowmanager/screenshot-guidelines.md)
+    - [Window Overview](windowmanager/window-overview.md)
+    - [Application Window Development (Stage Mode)](windowmanager/application-window-stage.md)
+    - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
+    - [System Window Development (Stage Model Only)](windowmanager/system-window-stage.md)
   - WebGL
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
@@ -261,6 +257,9 @@
     - Distributed Data Object
       - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
       - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
+    - Data Share
+      - [DataShare Overview](database/database-datashare-overview.md)
+      - [DataShare Development](database/database-datashare-guidelines.md)
   - Task Management
     - Background Task Management
       - [Background Task Management Overview](task-management/background-task-overview.md)
@@ -308,12 +307,12 @@
   - Native APIs
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - [Drawing Development](napi/drawing-guidelines.md)
-    - [Native Window Development](napi/native-window-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
+    - [Native Window Development](napi/native-window-guidelines.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - Component Reference (TypeScript-based Declarative Development Paradigm)
@@ -571,7 +570,7 @@
       - [slot](reference/arkui-js/js-components-custom-slot.md)
       - [Lifecycle Definition](reference/arkui-js/js-components-custom-lifecycle.md)
     - [Data Type Attributes](reference/arkui-js/js-appendix-types.md)
-  - APIs
+  - JS and TS APIs
     - [API Reference Document Description](reference/apis/development-intro.md)
     - Ability Framework
       - FA Model
@@ -589,6 +588,7 @@
         - [@ohos.application.ServiceExtensionAbility](reference/apis/js-apis-service-extension-ability.md)
         - [@ohos.application.StartOptions](reference/apis/js-apis-application-StartOptions.md)
         - [@ohos.application.StaticSubscriberExtensionAbility](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
+        - [@ohos.application.WindowExtensionAbility](reference/apis/js-apis-application-WindowExtensionAbility.md)
         - [AbilityContext](reference/apis/js-apis-ability-context.md)
         - [ApplicationContext](reference/apis/js-apis-application-applicationContext.md)
         - [AbilityStageContext](reference/apis/js-apis-abilitystagecontext.md)
@@ -602,16 +602,23 @@
         - [@ohos.ability.errorCode](reference/apis/js-apis-ability-errorCode.md)
         - [@ohos.ability.wantConstant](reference/apis/js-apis-ability-wantConstant.md)
         - [@ohos.application.abilityDelegatorRegistry](reference/apis/js-apis-abilityDelegatorRegistry.md)
+        - [@ohos.application.abilityManager](reference/apis/js-apis-application-abilityManager.md)
+        - [@ohos.application.AccessibilityExtensionAbility](reference/apis/js-apis-accessibility-extension-context.md)
+        - [@ohos.application.AccessibilityExtensionAbility](reference/apis/js-apis-application-AccessibilityExtensionAbility.md)
         - [@ohos.application.appManager](reference/apis/js-apis-appmanager.md)
         - [@ohos.application.Configuration](reference/apis/js-apis-configuration.md)
         - [@ohos.application.ConfigurationConstant](reference/apis/js-apis-configurationconstant.md)
+        - [@ohos.application.EnvironmentCallback](reference/apis/js-apis-application-EnvironmentCallback.md)
+        - [@ohos.application.errorManager](reference/apis/js-apis-errorManager.md)
         - [@ohos.application.formBindingData](reference/apis/js-apis-formbindingdata.md)
         - [@ohos.application.formError](reference/apis/js-apis-formerror.md)
         - [@ohos.application.formHost](reference/apis/js-apis-formhost.md)
         - [@ohos.application.formInfo](reference/apis/js-apis-formInfo.md)
-        - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
         - [@ohos.application.formProvider](reference/apis/js-apis-formprovider.md)
+        - [@ohos.application.missionManager](reference/apis/js-apis-missionManager.md)
         - [@ohos.application.Want](reference/apis/js-apis-application-Want.md)
+        - [@ohos.continuation.continuationManager](reference/apis/js-apis-continuation-continuationExtraParams.md)
+        - [@ohos.continuation.continuationManager](reference/apis/js-apis-continuation-continuationManager.md)
         - [@ohos.wantAgent](reference/apis/js-apis-wantAgent.md)
         - [abilityDelegator](reference/apis/js-apis-application-abilityDelegator.md)
         - [abilityDelegatorArgs](reference/apis/js-apis-application-abilityDelegatorArgs.md)
@@ -621,6 +628,7 @@
         - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
         - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
         - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
+        - [ContinuationResult](reference/apis/js-apis-continuation-continuationResult.md)
     - Common Event and Notification
       - [@ohos.commonEvent](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter](reference/apis/js-apis-emitter.md)
@@ -630,24 +638,36 @@
     - Bundle Management
       - [@ohos.bundle](reference/apis/js-apis-Bundle.md)
       - [@ohos.bundle.defaultAppManager](reference/apis/js-apis-bundle-defaultAppManager.md)
+      - [@ohos.bundle.innerBundleManager)](reference/apis/js-apis-Bundle-InnerBundleManager.md)
       - [@ohos.bundleState](reference/apis/js-apis-deviceUsageStatistics.md)
+      - [@ohos.distributedBundle](reference/apis/js-apis-Bundle-distributedBundle.md)
       - [@ohos.zlib](reference/apis/js-apis-zlib.md)
       - [AbilityInfo](reference/apis/js-apis-bundle-AbilityInfo.md)
       - [ApplicationInfo](reference/apis/js-apis-bundle-ApplicationInfo.md)
       - [BundleInfo](reference/apis/js-apis-bundle-BundleInfo.md)
+      - [BundleInstaller](reference/apis/js-apis-bundle-BundleInstaller.md)
       - [CustomizeData](reference/apis/js-apis-bundle-CustomizeData.md)
+      - [DispatchInfo](reference/apis/js-apis-dispatchInfo.md)
       - [ElementName](reference/apis/js-apis-bundle-ElementName.md)
       - [ExtensionAbilityInfo](reference/apis/js-apis-bundle-ExtensionAbilityInfo.md)
       - [HapModuleInfo](reference/apis/js-apis-bundle-HapModuleInfo.md)
+      - [LauncherAbilityInfo](reference/apis/js-apis-bundle-LauncherAbilityInfo.md)
       - [Metadata](reference/apis/js-apis-bundle-Metadata.md)
       - [ModuleInfo](reference/apis/js-apis-bundle-ModuleInfo.md)
+      - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
+      - [RemoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
+      - [ShortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
     - UI Page
       - [@ohos.animator](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery](reference/apis/js-apis-mediaquery.md)
       - [@ohos.prompt](reference/apis/js-apis-prompt.md)
       - [@ohos.router](reference/apis/js-apis-router.md)
+      - [@ohos.uiAppearance](reference/apis/js-apis-uiappearance.md)
     - Graphics
+      - [@ohos.animation.windowAnimationManager](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.display](reference/apis/js-apis-display.md)
+      - [@ohos.effectKit](reference/apis/js-apis-effectKit.md)
+      - [@ohos.screen](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot](reference/apis/js-apis-screenshot.md)
       - [@ohos.window](reference/apis/js-apis-window.md)
       - [webgl](reference/apis/js-apis-webgl.md)
@@ -664,6 +684,7 @@
       - [@ohos.resourceManager](reference/apis/js-apis-resource-manager.md)
     - Resource Scheduling
       - [@ohos.backgroundTaskManager](reference/apis/js-apis-backgroundTaskManager.md)
+      - [@ohos.distributedMissionManager](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.workScheduler](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - Custom Management
@@ -735,6 +756,7 @@
       - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
+      - [@ohos.systemTimer](reference/apis/js-apis-system-timer.md)
       - [Timer](reference/apis/js-apis-timer.md)
     - Device Management
       - [@ohos.batteryInfo](reference/apis/js-apis-battery-info.md)
@@ -812,3 +834,14 @@
       - [@system.storage](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator](reference/apis/js-apis-system-vibrate.md)
       - [console](reference/apis/js-apis-logs.md)
+  - Native APIs
+    - Standard Libraries Supported by Native APIs
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [libuv](reference/native-lib/third_party_libuv/libuv.md)
+      - [Native Standard Libraries Supported by Openharmony](reference/native-lib/third_party_libc/musl.md)
+      - Appendix
+        - [Native API Symbols Not Exported](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [EGL Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/egl-symbol.md)
+        - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
+- FAQs
+  - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)

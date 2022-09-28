@@ -16,7 +16,7 @@ import hidebug from '@ohos.hidebug';
 
 getNativeHeapSize(): bigint
 
-获取native heap内存的总大小。
+获取本应用堆内存的总大小。
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
@@ -26,7 +26,7 @@ getNativeHeapSize(): bigint
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| bigint | 返回native heap内存总大小，单位为kB。 |
+| bigint | 返回本应用堆内存总大小，单位为kB。 |
 
 
 **示例：**
@@ -39,17 +39,17 @@ getNativeHeapSize(): bigint
 
 getNativeHeapAllocatedSize(): bigint
 
-获取native heap内存的已分配内存大小。
+获取本应用堆内存的已分配内存大小。
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| bigint | 返回native heap内存的已分配内存，单位为kB。 |
+| bigint | 返回本应用堆内存的已分配内存，单位为kB。 |
 
 
 **示例：**
@@ -62,18 +62,17 @@ getNativeHeapAllocatedSize(): bigint
 
 getNativeHeapFreeSize(): bigint
 
-获取native heap内存的空闲内存大小。
+获取本应用堆内存的空闲内存大小。
 
 本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                            |
 | ------ | ------------------------------- |
-| bigint | 返回native heap内存的空闲内存，单位为kB。 |
-
+| bigint | 返回本应用堆内存的空闲内存，单位为kB。 |
 
 **示例：**
   ```js
@@ -85,16 +84,15 @@ getNativeHeapFreeSize(): bigint
 
 getPss(): bigint
 
-获取应用进程PSS内存大小。
+获取应用进程实际使用的物理内存大小。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| bigint | 返回应用进程PSS内存大小，单位为kB。 |
-
+| bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
 
 **示例：**
   ```js
@@ -110,8 +108,8 @@ getSharedDirty(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的共享脏内存大小，单位为kB。 |
@@ -130,8 +128,8 @@ getPrivateDirty(): bigint
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
@@ -146,17 +144,17 @@ getPrivateDirty(): bigint
 
 getCpuUsage(): number
 
-获取进程的cpu占用率。
+获取进程的CPU使用率。
 
 如占用率为50%，则返回0.5。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 获取进程的cpu占用率。 |
+| number | 获取进程的CPU使用率。 |
 
 
 **示例：**
@@ -168,7 +166,7 @@ getCpuUsage(): number
 
 startProfiling(filename : string) : void
 
-启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等顺序的调用方式。
+启动虚拟机Profiling方法跟踪，`startProfiling()`方法的调用需要与`stopProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -194,7 +192,7 @@ hidebug.stopProfiling();
 
 stopProfiling() : void
 
-停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等顺序的调用方式。
+停止虚拟机Profiling方法跟踪，`stopProfiling()`方法的调用需要与`startProfiling()`方法的调用一一对应，先开启后关闭，严禁使用`start->start->stop`，`start->stop->stop`，`start->start->stop->stop`等类似的顺序调用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -245,6 +243,7 @@ getServiceDump(serviceid : number) : string
 | serviceid | number | 是   | 基于该用户输入的service id获取系统服务信息。|
 
 **返回值：**
+
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | string | 返回dump的service信息文件的绝对路径。 |

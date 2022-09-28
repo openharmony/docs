@@ -9,10 +9,10 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 
 ## 使用说明
 
-​在使用eventHub的功能前，需要通过Ability实例的成员变量context获取。
+在使用eventHub的功能前，需要通过Ability实例的成员变量context获取。
 
 ```js
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability';
 export default class MainAbility extends Ability {
     func1(){
         console.log("func1 is called");
@@ -34,15 +34,15 @@ on(event: string, callback: Function): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 事件名称。 | 
-  | callback | Function | 是 | 事件回调，事件触发后运行。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | string | 是 | 事件名称。 |
+| callback | Function | 是 | 事件回调，事件触发后运行。 |
 
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -72,15 +72,15 @@ off(event: string, callback?: Function): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 事件名称。 | 
-  | callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | string | 是 | 事件名称。 |
+| callback | Function | 否 | 事件回调。如果不传callback，则取消订阅该事件下所有callback。 |
 
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -110,15 +110,15 @@ emit(event: string, ...args: Object[]): void;
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 | 
-  | -------- | -------- | -------- | -------- |
-  | event | string | 是 | 事件名称。 | 
-  | ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 | 
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | string | 是 | 事件名称。 |
+| ...args | Object[] | 是 | 可变参数，事件触发时，传递给回调函数的参数。 |
 
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {

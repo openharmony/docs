@@ -5,7 +5,7 @@
 
 Buffer对象用于表示固定长度的字节序列,是专门存放二进制数据的缓存区。
 
-**推荐使用场景：** 可用于处理大量二进制数据，处理图片、文件接收上传、网络协议等等
+**推荐使用场景：** 可用于处理大量二进制数据，处理图片、文件接收上传等等
 
 ## 导入模块
 
@@ -14,6 +14,16 @@ import buffer from '@ohos.buffer';
 ```
 
 ## Buffer
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | 是 | 否 | buffer的字节长度。 |
+| buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
+| byteOffset | number | 是 | 否 | 当前buffer所在内存池的偏移量。 |
 
 ### alloc
 
@@ -108,7 +118,7 @@ buf.fill(0);
 
 ### byteLength
 
-byteLength(string: string | Buffer | TypeArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
+byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
 根据不同的编码方法，返回字符串的字节数。
 
@@ -118,7 +128,7 @@ byteLength(string: string | Buffer | TypeArray | DataView | ArrayBuffer | Shared
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypeArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
+| string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
 | encoding | BufferEncoding | 否 | 编码方式。 默认值: 'utf-8' |
 
 **返回值：**
@@ -133,13 +143,13 @@ byteLength(string: string | Buffer | TypeArray | DataView | ArrayBuffer | Shared
 import buffer from '@ohos.buffer';
 
 let str = '\u00bd + \u00bc = \u00be';
-console.log('${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes');
+console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
 // 打印: ½ + ¼ = ¾: 9 characters, 12 bytes
 ```
 
 ### compare
 
-compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): number
+compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
 返回比较buf1和buf2的结果, 通常用于对Buffer实例的数组进行排序。
 
@@ -157,7 +167,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 如果buf1与buf2相同，则返回0<br/>如果排序时buf1位于buf2之后，则返回1<br/>如果排序时buf1位于buf2之前，则返回-1。 |
+| -1&nbsp;\|&nbsp;0&nbsp;\|&nbsp;1 | 如果buf1与buf2相同，则返回0<br/>如果排序时buf1位于buf2之后，则返回1<br/>如果排序时buf1位于buf2之前，则返回-1。 |
 
 **示例：**
 
@@ -166,8 +176,9 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
+let res = buf1.compare(buf2);
 
-console.log(buf1.compare(buf2));
+console.log(Number(res).toString());
 // 打印 1
 ```
 
@@ -200,12 +211,12 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
 let buf = buffer.concat([buf1, buf2]);
-console.log(buf); // <Buffer 31 32 33 34 61 62 63 64>
+console.log(buf.toString('hex')); // 3132333461626364
 ```
 
 ### from
 
-from(array: number[]): Buffer
+from(array: number[]): Buffer;
 
 根据指定数组创建新的Buffer实例。
 
@@ -228,11 +239,8 @@ from(array: number[]): Buffer
 ```ts
 import buffer from '@ohos.buffer';
 
-let arrayList = new ArrayList();
-
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
-console.log(buf);
-// 打印: <Buffer 62 75 66 66 65 72>
+console.log(buf.toString('hex')); // 627566666572
 ```
 
 ### from
@@ -268,9 +276,9 @@ let buf = buffer.from(ab, 0, 2);
 
 ### from
 
-from(data: Buffer | Uint8Array): Buffer
+from(buffer: Buffer | Uint8Array): Buffer
 
-创建并复制`data`数据到新的Buffer实例并返回。
+创建并复制`buffer`数据到新的Buffer实例并返回。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -278,7 +286,7 @@ from(data: Buffer | Uint8Array): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例数据。 |
+| buffer | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 实例数据。 |
 
 **返回值：**
 
@@ -327,7 +335,7 @@ let buf = buffer.from(new String('this is a test'));
 
 ### from
 
-from(string: string, encoding?: BufferEncoding): Buffer
+from(string: String, encoding?: BufferEncoding): Buffer
 
 根据指定编码格式的字符串，创建新的Buffer实例。
 
@@ -337,7 +345,7 @@ from(string: string, encoding?: BufferEncoding): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| string | string | 是 | 字符串 |
+| string | String | 是 | 字符串 |
 | encoding | BufferEncoding | 否 | 编码格式。 默认值: 'utf-8'。 |
 
 **返回值：**
@@ -416,10 +424,10 @@ isEncoding(encoding: string): boolean
 ```ts
 import buffer from '@ohos.buffer';
 
-console.log(Buffer.isEncoding('utf-8'));	// 打印: true
-console.log(Buffer.isEncoding('hex'));	// 打印: true
-console.log(Buffer.isEncoding('utf/8'));	// 打印: false
-console.log(Buffer.isEncoding(''));	// 打印: false
+console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
+console.log(buffer.isEncoding('hex').toString());	// 打印: true
+console.log(buffer.isEncoding('utf/8').toString());	// 打印: false
+console.log(buffer.isEncoding('').toString());	// 打印: false
 ```
 
 ### compare
@@ -436,9 +444,11 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要比较的实例对象。 |
 | targetStart | number | 否 | `target`实例中开始的偏移量。 默认值: 0。 |
-| targetEnd | number | 否 | `target`实例中结束的偏移量（不包括本身）。 默认值: target.lengt。 |
+| targetEnd | number | 否 | `target`实例中结束的偏移量（不包括本身）。 默认值: target.length。 |
 | sourceStart | number | 否 | `this`实例中开始的偏移量。 默认值: 0。 |
 | sourceEnd | number | 否 | `this`实例中结束的偏移量（不包括本身）。 默认值: buf.length。 |
+
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -452,9 +462,9 @@ import buffer from '@ohos.buffer';
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
 
-console.log(buf1.compare(buf2, 5, 9, 0, 4));	// 打印: 0
-console.log(buf1.compare(buf2, 0, 6, 4));	// 打印: -1
-console.log(buf1.compare(buf2, 5, 6, 5));	// 打印: 1
+console.log(buf1.compare(buf2, 5, 9, 0, 4).toString());	// 打印: 0
+console.log(buf1.compare(buf2, 0, 6, 4).toString());	// 打印: -1
+console.log(buf1.compare(buf2, 5, 6, 5).toString());	// 打印: 1
 ```
 
 ### copy
@@ -512,13 +522,13 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (let pair of buf.entries()) {
-  console.log(pair);
+  console.log(pair.toString());
 }
 ```
 
 ### equals
 
-equals(otherBuffer: Buffer | Uint8Array): boolean
+equals(otherBuffer: Uint8Array | Buffer): boolean
 
 比较`this`实例和otherBuffer实例是否相等。
 
@@ -528,7 +538,7 @@ equals(otherBuffer: Buffer | Uint8Array): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| otherBuffer | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 比较的目标对象。 |
+| otherBuffer | Uint8Array&nbsp;\|&nbsp;Buffer | 是 | 比较的目标对象。 |
 
 **返回值：**
 
@@ -545,8 +555,8 @@ let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
 let buf3 = buffer.from('ABCD');
 
-console.log(buf1.equals(buf2));	// 打印: true
-console.log(buf1.equals(buf3));	// 打印: false
+console.log(buf1.equals(buf2).toString());	// 打印: true
+console.log(buf1.equals(buf3).toString());	// 打印: false
 
 ```
 
@@ -611,8 +621,8 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.includes('this'));	// 打印: true
-console.log(buf.includes('be'));	// 打印: false
+console.log(buf.includes('this').toString());	// 打印: true
+console.log(buf.includes('be').toString());	// 打印: false
 ```
 
 ### indexOf
@@ -643,8 +653,8 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this is a buffer');
-console.log(buf.indexOf('this'));	// 打印: 0
-console.log(buf.indexOf('is'));		// 打印: 2
+console.log(buf.indexOf('this').toString());	// 打印: 0
+console.log(buf.indexOf('is').toString());		// 打印: 2
 ```
 
 ### keys
@@ -668,7 +678,7 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
 for (const key of buf.keys()) {
-  console.log(key);
+  console.log(key.toString());
 }
 ```
 
@@ -700,14 +710,14 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('this buffer is a buffer');
-console.log(buf.lastIndexOf('this'));	// 打印: 0
-console.log(buf.lastIndexOf('buffer'));	// 打印: 17
+console.log(buf.lastIndexOf('this').toString());	// 打印: 0
+console.log(buf.lastIndexOf('buffer').toString());	// 打印: 17
 ```
 
 
 ### readBigInt64BE
 
-readBigInt64BE(offset: number): number
+readBigInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的大端序64位整数。
 
@@ -717,13 +727,13 @@ readBigInt64BE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -732,14 +742,14 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64BE(0));
+console.log(buf.readBigInt64BE(0).toString());
 ```
 
 ### readBigInt64LE
 
-readBigInt64LE(offset: number): number
+readBigInt64LE(offset?: number): bigint
 
-从指定的`offset`处读取无符号的小端序64位整数。
+从指定的`offset`处读取有符号的小端序64位整数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -747,13 +757,13 @@ readBigInt64LE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -762,12 +772,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigInt64LE(0));
+console.log(buf.readBigInt64LE(0).toString());
 ```
 
 ### readBigUInt64BE
 
-readBigUInt64BE(offset: number): number
+readBigUInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的大端序64位整数。
 
@@ -777,13 +787,13 @@ readBigUInt64BE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -792,12 +802,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64BE(0));
+console.log(buf.readBigUInt64BE(0).toString());
 ```
 
 ### readBigUInt64LE
 
-readBigUInt64LE(offset: number): number
+readBigUInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
@@ -807,13 +817,13 @@ readBigUInt64LE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 读取出的内容。 |
+| bigint | 读取出的内容。 |
 
 **示例：**
 
@@ -822,12 +832,12 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
-console.log(buf.readBigUInt64LE(0));
+console.log(buf.readBigUInt64LE(0).toString());
 ```
 
 ### readDoubleBE
 
-readDoubleBE(offset: number): number
+readDoubleBE(offset?: number): number
 
 从指定`offset`处读取64位大端序双精度值。
 
@@ -837,7 +847,7 @@ readDoubleBE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -851,12 +861,12 @@ readDoubleBE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleBE(0));
+console.log(buf.readDoubleBE(0).toString());
 ```
 
 ### readDoubleLE
 
-readDoubleLE(offset: number): number
+readDoubleLE(offset?: number): number
 
 从指定`offset`处读取64位小端序双精度值。
 
@@ -866,7 +876,7 @@ readDoubleLE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -880,12 +890,12 @@ readDoubleLE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readDoubleLE(0));
+console.log(buf.readDoubleLE(0).toString());
 ```
 
 ### readFloatBE
 
-readFloatBE(offset: number): number
+readFloatBE(offset?: number): number
 
 从指定`offset`处读取32位大端序浮点数。
 
@@ -895,7 +905,7 @@ readFloatBE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -909,12 +919,12 @@ readFloatBE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatBE(0));
+console.log(buf.readFloatBE(0).toString());
 ```
 
 ### readFloatLE
 
-readFloatLE(offset: number): number
+readFloatLE(offset?: number): number
 
 从指定`offset`处读取32位小端序浮点数。
 
@@ -924,7 +934,7 @@ readFloatLE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -938,12 +948,12 @@ readFloatLE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
-console.log(buf.readFloatLE(0));
+console.log(buf.readFloatLE(0).toString());
 ```
 
 ### readInt8
 
-readInt8(offset: number): number
+readInt8(offset?: number): number
 
 从指定的`offset`处读取有符号的8位整数。
 
@@ -953,7 +963,7 @@ readInt8(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -967,13 +977,13 @@ readInt8(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0));	// 打印: -1
-console.log(buf.readInt8(1));	// 打印: 5
+console.log(buf.readInt8(0).toString());	// 打印: -1
+console.log(buf.readInt8(1).toString());	// 打印: 5
 ```
 
 ### readInt16BE
 
-readInt16BE(offset: number): number
+readInt16BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序16位整数。
 
@@ -983,7 +993,7 @@ readInt16BE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -996,13 +1006,13 @@ readInt16BE(offset: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log(buf.readInt16BE(0));	// 打印: 5
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16BE(0).toString());	// 打印: 5
 ```
 
 ### readInt16LE
 
-readInt16LE(offset: number): number
+readInt16LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序16位整数
 
@@ -1012,7 +1022,7 @@ readInt16LE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -1025,13 +1035,13 @@ readInt16LE(offset: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from([0, 5]);
-console.log(buf.readInt16BE(0));	// 打印: 1280
+let buf = buffer.from([0, 5]);
+console.log(buf.readInt16LE(0).toString());	// 打印: 1280
 ```
 
 ### readInt32BE
 
-readInt32BE(offset: number): number
+readInt32BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序32位整数
 
@@ -1041,7 +1051,7 @@ readInt32BE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -1055,12 +1065,12 @@ readInt32BE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32BE(0));	// 打印: 5
+console.log(buf.readInt32BE(0).toString());	// 打印: 5
 ```
 
 ### readInt32LE
 
-readInt32LE(offset: number): number
+readInt32LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序32位整数
 
@@ -1070,7 +1080,7 @@ readInt32LE(offset: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。 |
 
 **返回值：**
 
@@ -1084,7 +1094,7 @@ readInt32LE(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([0, 0, 0, 5]);
-console.log(buf.readInt32LE(0));	// 打印: 83886080
+console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
 ```
 
 ### readIntBE
@@ -1099,8 +1109,8 @@ readIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 读取的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 读取的字节数。 |
 
 
 **返回值：**
@@ -1114,9 +1124,9 @@ readIntBE(offset: number, byteLength: number): number
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = Buffer.from("ab");
+let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
-console.log(num); // 97
+console.log(num.toString()); // 97
 ```
 
 
@@ -1132,8 +1142,8 @@ readIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 读取的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 读取的字节数。 |
 
 
 **返回值：**
@@ -1153,7 +1163,7 @@ console.log(buf.readIntLE(0, 6).toString(16));
 
 ### readUInt8
 
-readUInt8(offset: number): number
+readUInt8(offset?: number): number
 
 从`offset`处读取8位无符号整型数。
 
@@ -1178,13 +1188,13 @@ readUInt8(offset: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([1, -2]);
-console.log(buf.readUInt8(0));
-console.log(buf.readUInt8(1));
+console.log(buf.readUInt8(0).toString());
+console.log(buf.readUInt8(1).toString());
 ```
 
 ### readUInt16BE
 
-readUInt16BE(offset: number): number
+readUInt16BE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的大端序16位整数。
 
@@ -1215,7 +1225,7 @@ console.log(buf.readUInt16BE(1).toString(16));
 
 ### readUInt16LE
 
-readUInt16LE(offset: number): number
+readUInt16LE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的小端序16位整数。
 
@@ -1246,7 +1256,7 @@ console.log(buf.readUInt16LE(1).toString(16));
 
 ### readUInt32BE
 
-readUInt32BE(offset: number): number
+readUInt32BE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的大端序32位整数。
 
@@ -1276,7 +1286,7 @@ console.log(buf.readUInt32BE(0).toString(16));
 
 ### readUInt32LE
 
-readUInt32LE(offset: number): number
+readUInt32LE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的小端序32位整数。
 
@@ -1316,8 +1326,8 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要读取的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要读取的字节数。 |
 
 
 **返回值：**
@@ -1347,8 +1357,8 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要读取的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要读取的字节数。 |
 
 
 **返回值：**
@@ -1423,10 +1433,10 @@ swap16(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap16();
-console.log(buf1);	// 打印: <Buffer 02 01 04 03 06 05 08 07>
+console.log(buf1.toString('hex'));	// 打印: 0201040306050807
 ```
 
 ### swap32
@@ -1450,10 +1460,10 @@ swap32(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 
 buf1.swap32();
-console.log(buf1);	// 打印: <Buffer 04 03 02 01 08 07 06 05>
+console.log(buf1.toString('hex'));	// 打印: 0403020108070605
 ```
 
 ### swap64
@@ -1477,9 +1487,9 @@ swap64(): Buffer
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
-console.log(buf1);	// 打印: <Buffer 01 02 03 04 05 06 07 08>
+console.log(buf1.toString('hex'));	// 打印: 0102030405060708
 buf1.swap64();
-console.log(buf1);	// 打印: <Buffer 08 07 06 05 04 03 02 01>
+console.log(buf1.toString('hex'));	// 打印: 0807060504030201
 ```
 
 ### toJSON
@@ -1503,9 +1513,8 @@ toJSON(): Object
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
-let buf2 = buffer.from(buf1.toJSON())
-let json = JSON.stringify(buf2);
-console.log(json);
+let obj = buf1.toJSON();
+console.log(JSON.stringify(obj))
 // 打印: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1564,8 +1573,8 @@ values(): IterableIterator&lt;number&gt;
 import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from('buffer');
-for (const value of buf.values()) {
-  console.log(value);
+for (let value of buf1.values()) {
+  console.log(value.toString());
 }
 ```
 
@@ -1584,7 +1593,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | str | string | 是 | 要写入Buffer的字符串。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 | length | number | 否 | 最大字节长度。 默认值: (buf.length - offset)。|
-| encoding | BufferEncoding | 否 | 字符编码。 默认值: 'utf8'。 |
+| encoding | BufferEncoding | 否 | 字符编码。 默认值: 'utf-8'。 |
 
 
 **返回值：**
@@ -1600,18 +1609,18 @@ import buffer from '@ohos.buffer';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
-console.log(`${len} bytes: ${buf.toString('utf8', 0, len)}`);
+console.log(`${len} bytes: ${buf.toString('utf-8', 0, len)}`);
 // 打印: 12 bytes: ½ + ¼ = ¾
 
-let buffer = Buffer.alloc(10);
-let length = buffer.write('abcd', 8);
+let buffer1 = buffer.alloc(10);
+let length = buffer1.write('abcd', 8);
 ```
 
 ### writeBigInt64BE
 
-writeBigInt64BE(value: number, offset?: number): number
+writeBigInt64BE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入大端序的64位BigInt型数据value
+从buf的offset偏移写入有符号的大端序64位BigInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1619,7 +1628,7 @@ writeBigInt64BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1640,9 +1649,9 @@ buf.writeBigInt64BE(0x0102030405060708n, 0);
 
 ### writeBigInt64LE
 
-writeBigInt64LE(value : number, offset? : number): number
+writeBigInt64LE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入小端序的64位BigInt型数据value
+从buf的offset偏移写入有符号的小端序64位BigInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1650,7 +1659,7 @@ writeBigInt64LE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1671,9 +1680,9 @@ buf.writeBigInt64LE(0x0102030405060708n, 0);
 
 ### writeBigUInt64BE
 
-writeBigUInt64BE(value : number, offset? : number): number
+writeBigUInt64BE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入大端序的64位BigUInt型数据value
+从buf的offset偏移写入无符号的大端序64位BigUInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1681,7 +1690,7 @@ writeBigUInt64BE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1702,9 +1711,9 @@ buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
 
 ### writeBigUInt64LE
 
-writeBigUInt64LE(value : number, offset? : number): number
+writeBigUInt64LE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入小端序的64位BigUInt型数据value
+从buf的offset偏移写入无符号的小端序64位BigUInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1712,7 +1721,7 @@ writeBigUInt64LE(value : number, offset? : number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入 buf 的数字。 |
+| value | bigint | 是 | 写入 buf 的数字。 |
 | offset | number | 否 | 偏移量。 默认值: 0。 |
 
 
@@ -1733,9 +1742,9 @@ buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
 
 ### writeDoubleBE
 
-writeDoubleBE(value : number, offset? : number): number
+writeDoubleBE(value: number, offset?: number): number
 
-从buf的offset偏移写入大端序的64位有符号双浮点型数据value
+从buf的offset偏移写入大端序的64位双浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1764,9 +1773,9 @@ buf.writeDoubleBE(123.456, 0);
 
 ### writeDoubleLE
 
-writeDoubleLE(value : number, offset? : number): number
+writeDoubleLE(value: number, offset?: number): number
 
-从buf的offset偏移写入小端序的64位有符号双浮点型数据value
+从buf的offset偏移写入小端序的64位双浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1795,9 +1804,9 @@ buf.writeDoubleLE(123.456, 0);
 
 ### writeFloatBE
 
-writeFloatBE(value : number, offset? : number): number
+writeFloatBE(value: number, offset?: number): number
 
-从buf的offset偏移写入大端序的32位有符号浮点型数据value
+从buf的offset偏移写入大端序的32位浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1827,9 +1836,9 @@ buf.writeFloatBE(0xcafebabe, 0);
 
 ### writeFloatLE
 
-writeFloatLE(value : number, offset? : number): number
+writeFloatLE(value: number, offset?: number): number
 
-从buf的offset偏移写入小端序的32位有符号浮点型数据value
+从buf的offset偏移写入小端序的32位浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1858,7 +1867,7 @@ buf.writeFloatLE(0xcafebabe, 0);
 
 ### writeInt8
 
-writeInt8(value : number, offset? : number): number
+writeInt8(value: number, offset?: number): number
 
 从buf的offset偏移写入8位有符号整型数据value
 
@@ -1891,7 +1900,7 @@ buf.writeInt8(-2, 1);
 
 ### writeInt16BE
 
-writeInt16BE(value : number, offset? : number): number
+writeInt16BE(value: number, offset?: number): number
 
 从buf的offset偏移写入大端序的16位有符号整型数据value
 
@@ -1923,7 +1932,7 @@ buf.writeInt16BE(0x0102, 0);
 
 ### writeInt16LE
 
-writeInt16LE(value : number, offset : number): number
+writeInt16LE(value: number, offset?: number): number
 
 从buf的offset偏移写入小端序的16位有符号整型数据value
 
@@ -1954,7 +1963,7 @@ buf.writeInt16LE(0x0304, 0);
 
 ### writeInt32BE
 
-writeInt32BE(value : number, offset : number): number
+writeInt32BE(value: number, offset?: number): number
 
 从buf的offset偏移写入大端序的32位有符号整型数据value
 
@@ -1986,7 +1995,7 @@ buf.writeInt32BE(0x01020304, 0);
 
 ### writeInt32LE
 
-writeInt32LE(value : number, offset : number): number
+writeInt32LE(value: number, offset?: number): number
 
 从buf的offset偏移写入小端序的32位有符号整型数据value
 
@@ -2017,7 +2026,7 @@ buf.writeInt32LE(0x05060708, 0);
 
 ### writeIntBE
 
-writeIntBE(value : number, offset : number, byteLength : number): number
+writeIntBE(value: number, offset: number, byteLength: number): number
 
 从buf的offset偏移写入大端序的有符号value数据,value字节长度为byteLength
 
@@ -2028,8 +2037,8 @@ writeIntBE(value : number, offset : number, byteLength : number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入 buf 的数字。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要写入的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要写入的字节数。 |
 
 
 **返回值：**
@@ -2050,7 +2059,7 @@ buf.writeIntBE(0x1234567890ab, 0, 6);
 
 ### writeIntLE
 
-writeIntLE(value : number, offset : number, byteLength : number): number
+writeIntLE(value: number, offset: number, byteLength: number): number
 
 从buf的offset偏移写入小端序的有符号value数据,value字节长度为byteLength
 
@@ -2061,8 +2070,8 @@ writeIntLE(value : number, offset : number, byteLength : number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入 buf 的数字。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要写入的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要写入的字节数。 |
 
 
 **返回值：**
@@ -2082,7 +2091,7 @@ buf.writeIntLE(0x1234567890ab, 0, 6);
 
 ### writeUInt8
 
-writeUInt8(value : number, offset : number): number
+writeUInt8(value: number, offset?: number): number
 
 从buf的offset偏移写入8位无符号整型数据value
 
@@ -2116,7 +2125,7 @@ buf.writeUInt8(0x42, 3);
 
 ### writeUInt16BE
 
-writeUInt16BE(value : number, offset : number): number
+writeUInt16BE(value: number, offset?: number): number
 
 从buf的offset偏移写入大端序的16位无符号整型数据value
 
@@ -2148,7 +2157,7 @@ buf.writeUInt16BE(0xbeef, 2);
 
 ### writeUInt16LE
 
-writeUInt16LE(value : number, offset : number): number
+writeUInt16LE(value: number, offset?: number): number
 
 从buf的offset偏移写入小端序的16位无符号整型数据value
 
@@ -2180,7 +2189,7 @@ buf.writeUInt16LE(0xbeef, 2);
 
 ### writeUInt32BE
 
-writeUInt32BE(value : number, offset : number): number
+writeUInt32BE(value: number, offset?: number): number
 
 从buf的offset偏移写入大端序的32位无符号整型数据value
 
@@ -2211,7 +2220,7 @@ buf.writeUInt32BE(0xfeedface, 0);
 
 ### writeUInt32LE
 
-writeUInt32LE(value : number, offset : number): number
+writeUInt32LE(value: number, offset?: number): number
 
 从buf的offset偏移写入小端序的32位无符号整型数据value
 
@@ -2242,7 +2251,7 @@ buf.writeUInt32LE(0xfeedface, 0);
 
 ### writeUIntBE
 
-writeUIntBE(value : number, offset : number, byteLength : number): number
+writeUIntBE(value: number, offset: number, byteLength: number): number
 
 从buf的offset偏移写入大端序的无符号value数据,value字节长度为byteLength
 
@@ -2253,8 +2262,8 @@ writeUIntBE(value : number, offset : number, byteLength : number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入 buf 的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要写入的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要写入的字节数。 |
 
 
 **返回值：**
@@ -2274,7 +2283,7 @@ buf.writeUIntBE(0x1234567890ab, 0, 6);
 
 ### writeUIntLE
 
-writeUIntLE(value : number, offset : number, byteLength : number): number
+writeUIntLE(value: number, offset: number, byteLength: number): number
 
 从buf的offset偏移写入小端序的无符号value数据,value字节长度为byteLength
 
@@ -2285,8 +2294,8 @@ writeUIntLE(value : number, offset : number, byteLength : number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入 buf 的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| byteLength | number | 否 | 要写入的字节数。 |
+| offset | number | 是 | 偏移量。 默认值: 0。 |
+| byteLength | number | 是 | 要写入的字节数。 |
 
 
 **返回值：**
@@ -2306,7 +2315,7 @@ buf.writeUIntLE(0x1234567890ab, 0, 6);
 
 ### transcode
 
-transcode(source : Buffer | Uint8Array, fromEnc : string, toEnc : string): Buffer
+transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 将给定的Buffer或Uint8Array实例从一种字符编码重新编码为另一种
 
@@ -2332,7 +2341,7 @@ transcode(source : Buffer | Uint8Array, fromEnc : string, toEnc : string): Buffe
 import buffer from '@ohos.buffer';
 
 let buf = buffer.alloc(50);
-let newBuf = buf.transcode(buffer.from('€'), 'utf8', 'ascii');
+let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```
 
@@ -2349,7 +2358,7 @@ console.log(newBuf.toString('ascii'));
 
 ### constructor
 
-constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options: Object)
+constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob[] , options?: Object)
 
 Blob的构造函数。
 
@@ -2368,7 +2377,7 @@ Blob的构造函数。
 ```ts
 import buffer from '@ohos.buffer';
 
-let blob1 = new buffer.Blob(['a', 'b', 'c']);
+let blob = new buffer.Blob(['a', 'b', 'c']);
 let blob1 = new buffer.Blob(['a', 'b', 'c'], {endings:'native', type: 'MIME'});
 ```
 
@@ -2390,7 +2399,8 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
   let blob = new buffer.Blob(['a', 'b', 'c']);
   let pro = blob.arrayBuffer();
   pro.then(val => {
-      console.log(val)
+    let uintarr = new Uint8Array(val);
+    console.log(uintarr.toString());
   });
   ```
 ### slice
@@ -2421,7 +2431,7 @@ slice(start?: number, end?: number, type?: string): Blob
   let blob3 = blob.slice(0, 2, "MIME");
   ```
 
-  ### text
+### text
 
 text(): Promise&lt;string&gt;
 

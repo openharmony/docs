@@ -2,14 +2,9 @@
 
 The **\<QRCode>** component is used to display a QR code.
 
->  **NOTE**
+> **NOTE**
 >
->  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -21,23 +16,25 @@ Not supported
 
 QRCode(value: string)
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes| - | Content of the QR code.|
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string | Yes| Content of the QR code.|
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | Black | Color of the QR code.|
-| backgroundColor | [ResourceColor](../../ui/ts-types.md) | - | Background color of the QR code.|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**|
 
 
 ## Events
 
-Among all the universal events, only the click event is supported.
+Among all the universal events, only the [click event](ts-universal-events-click.md) is supported.
 
 
 ## Example

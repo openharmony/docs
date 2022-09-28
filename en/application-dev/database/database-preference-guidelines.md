@@ -2,7 +2,7 @@
 
 > **NOTE**
 >
-> This feature is supported since API Version 9. For the versions earlier than API version 9, use [Lightweight Storage](../reference/apis/js-apis-data-storage.md) APIs.
+> This feature is supported since API version 9. For the versions earlier than API version 9, use [Lightweight Storage](../reference/apis/js-apis-data-storage.md) APIs.
 
 ## When to Use
 
@@ -88,8 +88,30 @@ Use the following APIs to delete a **Preferences** instance or data file.
 2. Obtain a **Preferences** instance.
 
    Read the specified file and load its data to the **Preferences** instance for data operations.
+   
+   FA model:
+
    ```js
-   let promise = data_preferences.getPreferences(this.context, 'mystore');
+   // Obtain the context.
+   import featureAbility from '@ohos.ability.featureAbility'
+   var context = featureAbility.getContext()
+
+   let promise = data_preferences.getPreferences(context, 'mystore');
+   ```
+
+   Stage model:
+
+   ```ts
+   // Obtain the context.
+   import Ability from '@ohos.application.Ability'
+   var context
+   class MainAbility extends Ability{
+       onWindowStageCreate(windowStage){
+           context = this.context
+       }
+   }
+
+   let promise = data_preferences.getPreferences(context, 'mystore');
    ```
 
 3. Write data.
@@ -115,12 +137,12 @@ Use the following APIs to delete a **Preferences** instance or data file.
 
    ```js
    promise.then((preferences) => {
-       let getPromise = preferences.get('startup', 'default');
-       getPromise.then((value) => {
-           console.info("The value of 'startup' is " + value);
-       }).catch((err) => {
-           console.info("Failed to get the value of 'startup'. Cause: " + err);
-       })
+     let getPromise = preferences.get('startup', 'default');
+     getPromise.then((value) => {
+       console.info("The value of 'startup' is " + value);
+     }).catch((err) => {
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+     })
    }).catch((err) => {
        console.info("Failed to get the preferences.")
    });
@@ -139,24 +161,24 @@ Use the following APIs to delete a **Preferences** instance or data file.
    Specify an observer as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.
 
    ```js
-    var observer = function (key) {
-        console.info("The key" + key + " changed.");
-    }
-    preferences.on('change', observer);
-    preferences.put('startup', 'auto', function (err) {
-        if (err) {
-            console.info("Failed to put the value of 'startup'. Cause: " + err);
-            return;
-        }
+   var observer = function (key) {
+       console.info("The key" + key + " changed.");
+   }
+   preferences.on('change', observer);
+   preferences.put('startup', 'auto', function (err) {
+       if (err) {
+           console.info("Failed to put the value of 'startup'. Cause: " + err);
+           return;
+       }
         console.info("Put the value of 'startup' successfully.");
-        preferences.flush(function (err) {
-            if (err) {
-                console.info("Failed to flush data. Cause: " + err);
-                return;
-            }
+       preferences.flush(function (err) {
+           if (err) {
+               console.info("Failed to flush data. Cause: " + err);
+               return;
+           }
             console.info("Flushed data successfully."); // The observer will be called.
-        })
-    })
+       })
+   })
    ```
 
 7. Delete the specified file.
@@ -164,10 +186,10 @@ Use the following APIs to delete a **Preferences** instance or data file.
    Use the **deletePreferences** method to delete the **Preferences** instance and its persistent file and backup and corrupted files. After the specified files are deleted, the application cannot use that instance to perform any data operation. Otherwise, data inconsistency will be caused. The deleted data and files cannot be restored.
 
    ```js
-    let proDelete = data_preferences.deletePreferences(context, 'mystore');
-    proDelete.then(() => {
+   let proDelete = data_preferences.deletePreferences(context, 'mystore');
+   proDelete.then(() => {
         console.info("Deleted data successfully.");
-    }).catch((err) => {
+   }).catch((err) => {
         console.info("Failed to delete data. Cause: " + err);
-    })
+   })
    ```

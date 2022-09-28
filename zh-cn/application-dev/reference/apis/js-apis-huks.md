@@ -798,6 +798,51 @@ function printLog(...data) {
   console.error(data.toString());
 }
 
+async function generateKey(alias) {
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  properties[5] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+  };
+  properties[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+    value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+  };
+  properties[7] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB
+  };
+  let options = {
+    properties: properties
+  };
+
+  await huks.generateKey(alias, options).then(async (data) => {
+    console.error(`generateKey data ${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`generateKey err: " + ${JSON.stringify(err)}`);
+  });;
+}
+
 async function attestKey() {
   let aliasString = keyAliasString;
   let aliasUint8 = stringToUint8Array(aliasString);
@@ -821,7 +866,7 @@ async function attestKey() {
   let options = {
     properties: properties
   };
-  generateKey(aliasString);
+  await generateKey(aliasString);
   huks.attestKey(aliasString, options, function (err, data) {
     printLog(`key attest result : ${JSON.stringify(data)}`);
   });
@@ -870,6 +915,51 @@ function printLog(...data) {
   console.error(data.toString());
 }
 
+async function generateKey(alias) {
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  properties[5] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+  };
+  properties[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+    value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+  };
+  properties[7] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB
+  };
+  let options = {
+    properties: properties
+  };
+
+  await huks.generateKey(alias, options).then(async (data) => {
+    console.error(`generateKey data ${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`generateKey err: " + ${JSON.stringify(err)}`);
+  });;
+}
+
 async function attestKey() {
   let aliasString = keyAliasString;
   let aliasUint8 = stringToUint8Array(aliasString);
@@ -893,7 +983,7 @@ async function attestKey() {
   let options = {
     properties: properties
   };
-  generateKey(aliasString);
+  await generateKey(aliasString);
   huks.attestKey(aliasString, options)
     .then((data) => {
       console.log(`test attestKey data: ${JSON.stringify(data)}`);
@@ -1347,7 +1437,7 @@ update(handle: number, token?: Uint8Array, options: HuksOptions, callback: Async
 
 update操作密钥接口，使用Callback回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.update<sup>9+</sup>](#huksupdate9)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.update<sup>9+</sup>](#huksupdate9-1)替代。
 
 **系统能力**： SystemCapability.Security.Huks
 

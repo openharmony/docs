@@ -24,7 +24,8 @@
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | 允许应用修改系统时区。                                       |
 | ohos.permission.<br>DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | 允许应用管理下载任务会话。                                   |
 | ohos.permission.COMMONEVENT_STICKY                       | normal       | system_grant | TRUE    | 允许应用发布粘性公共事件。                                   |
-| ohos.permission.SYSTEM_FLOAT_WINDOW                      | normal       | system_grant | TRUE    | 允许应用使用悬浮窗的能力。                                   |
+| ohos.permission.SYSTEM_FLOAT_WINDOW                      | system_basic | system_grant | TRUE    | 允许应用使用悬浮窗的能力。                                   |
+| ohos.permission.PRIVACY_WINDOW                           | system_basic | system_grant | TRUE    | 允许应用将窗口设置为隐私窗口，禁止截屏录屏。                   |
 | ohos.permission.POWER_MANAGER                            | system_core  | system_grant | TRUE    | 允许应用调用电源管理子系统的接口，休眠或者唤醒设备。         |
 | ohos.permission.REFRESH_USER_ACTION                      | system_basic | system_grant | TRUE    | 允许应用在收到用户事件时，重新计算超时时间。                 |
 | ohos.permission.POWER_OPTIMIZATION                       | system_basic | system_grant | TRUE    | 允许系统应用设置省电模式、获取省电模式的配置信息并接收配置变化的通知。 |
@@ -139,3 +140,8 @@
 | ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
 | ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |
 | ohos.permission.ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | 允许应用将Ability组件在后台启动并与该Ability建立通信连接。     |
+| ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | 允许应用上报风险数据至设备风险管理平台。                       |
+| ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | 允许应用获取设备风险状态。                                     |
+| ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | 允许应用获取风险详细数据。                                     |
+| ohos.permission.ACCESS_CERT_MANAGER_INTERNAL             | system_basic  | system_grant | FALSE   | 允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。            |
+| ohos.permission.ACCESS_CERT_MANAGER                      | normal        | system_grant | FALSE   | 允许应用进行私有凭据的相关操作、查询证书状态等操作。              |

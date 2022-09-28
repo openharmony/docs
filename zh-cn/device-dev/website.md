@@ -289,8 +289,8 @@
 - 子系统开发
 
   -  内核
-     - 轻量系统内核
-       - [内核概述](kernel/kernel-mini-overview.md)
+     - 轻量系统内核（LiteOS-M）
+       - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
          - [中断管理](kernel/kernel-mini-basic-interrupt.md)
          - [任务管理](kernel/kernel-mini-basic-task.md)
@@ -316,8 +316,8 @@
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
          - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
-     - 小型系统内核
-       - [内核概述](kernel/kernel-small-overview.md)
+     - 小型系统内核（LiteOS-A）
+       - [小型系统内核概述](kernel/kernel-small-overview.md)
        - 内核启动
          - [内核态启动](kernel/kernel-small-start-kernel.md)
          - [用户态启动](kernel/kernel-small-start-user.md)
@@ -437,16 +437,18 @@
            - [双向链表](kernel/kernel-small-apx-dll.md)
            - [位操作](kernel/kernel-small-apx-bitwise.md)
          - [标准库](kernel/kernel-small-apx-library.md)
-     - 标准系统内核
-       - [Linux内核概述](kernel/kernel-standard-overview.md)
+         - [内核编码规范](kernel/kernel-mini-appx-code.md)
+     - 标准系统内核（Linux）
+       - [标准系统内核概述](kernel/kernel-standard-overview.md)
        - [OpenHarmony开发板Patch使用指导](kernel/kernel-standard-patch.md)
-       - [Linux内核编译与构建指导](kernel/kernel-standard-build.md)
+       - [标准系统内核编译与构建指导](kernel/kernel-standard-build.md)
        - 内核增强特性
          - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
          - 任务调度
            - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   -  驱动
+     - [驱动概述](driver/driver-overview-foundation.md)
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
@@ -492,10 +494,12 @@
      - 外设驱动使用
        - [Audio](driver/driver-peripherals-audio-des.md)
        - [Camera](driver/driver-peripherals-camera-des.md)
+       - [Codec](driver/driver-peripherals-codec-des.md)
        - [Face_auth](driver/driver-peripherals-face_auth-des.md)
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
        - [Light](driver/driver-peripherals-light-des.md)
+       - [Motion](driver/driver-peripherals-motion-des.md)
        - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
        - [Sensor](driver/driver-peripherals-sensor-des.md)
        - [Touchscreen](driver/driver-peripherals-touch-des.md)
@@ -543,21 +547,7 @@
      - [公共基础库概述](subsystems/subsys-utils-overview.md)
      - [公共基础库开发指导](subsystems/subsys-utils-guide.md)
      - [公共基础库常见问题](subsystems/subsys-utils-faqs.md)
-  -  AI框架
-     - [概述](subsystems/subsys-aiframework-guide.md)
-     - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
-     - 技术规范
-       - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
-       - [命名规范](subsystems/subsys-aiframework-tech-name.md)
-       - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
-     - 开发指导
-       - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
-       - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
-       - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
-     - 开发示例
-       - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
-       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
-       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
+  -  [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
   -  数据管理
      - 关系型数据库
        - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)

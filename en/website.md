@@ -13,11 +13,9 @@
     -   [OpenHarmony v3.0.3 LTS (2022-04-08)](release-notes/OpenHarmony-v3.0.3-LTS.md)
     -   [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
     -   [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
-    
     -   [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
   
   - OpenHarmony 2.x Releases
-  
     -   [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     -   [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
   
@@ -32,7 +30,7 @@
   
 - API Differences
   
-  - OpenHamrony 3.2 Beta2
+  - OpenHarmony 3.2 Beta2
       - JS API Differences
         - [Ability framework](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
         - [Accessibility subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-accessibility.md)
@@ -61,6 +59,9 @@
         - [User IAM subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-user-authentication.md)
         - [Web subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-web.md)
         - [Window manager subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-window.md)
+      - ChangeLog
+        - [Updates Between OpenHarmony 3.2 Beta2 and OpenHarmony 3.2 Beta1](release-notes/api-change/v3.2-beta2/changelog-v3.2-beta2.md)
+        - [Adaptation Guide for the Application Sandbox](release-notes/api-change/v3.2-beta2/application-sandbox-adaptation-guide.md)  
   - OpenHarmony 3.2 Beta1
       - JS API Differences
         - [Ability framework](release-notes/api-change/v3.2-beta1/js-apidiff-ability.md)
@@ -118,17 +119,13 @@
   - OpenHarmony 3.1 Beta
       - [JS API Differences](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API Differences](release-notes/api-change/v3.1-beta/native-apidiff-v3.1-beta.md)
+      - [Updates Between OpenHarmony 3.1 Beta and OpenHarmony 3.0](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
   - OpenHarmony 3.0 LTS  
       - [JS API Differences](release-notes/api-change/v3.0-LTS/js-apidiff-v3.0-lts.md) 
   - OpenHarmony v2.2 Beta2 
       - [JS API Differences](release-notes/api-change/v2.2-beta2/js-apidiff-v2.2-beta2.md)
       - [Native API Differences](release-notes/api-change/v2.2-beta2/native-apidiff-v2.2-beta2.md)
-- ChangeLog
-  - OpenHamrony 3.2 Beta2
-      - [Updates Between OpenHarmony 3.2 Beta2 and OpenHarmony 3.2 Beta1](release-notes/changelog/v3.2-beta2/changelog-v3.2-beta2.md)
-      - [Adaptation Guide for the Application Sandbox](release-notes/changelog/v3.2-beta2/application-sandbox-adaptation-guide.md)  
-  - OpenHarmony 3.1 Beta 
-      - [Updates Between OpenHarmony 3.1 Beta and OpenHarmony 3.0](release-notes/api-change/v3.1-beta/changelog-v3.1-beta.md)
+
 - OpenHarmony Third-Party Components
   - [OpenHarmony Third-Party Components](third-party-components/third-party-components-introduction.md)  
   - [Using OpenHarmony JS and TS Third-Party Components](third-party-components/npm-third-party-guide.md)

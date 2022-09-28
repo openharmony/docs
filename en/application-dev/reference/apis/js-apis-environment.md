@@ -1,6 +1,6 @@
 # Environment
 
-This module provides JS APIs for obtaining the root directories of the storage and public files.
+The **Environment** module provides APIs for obtaining the root directories of the storage and public files.
 
 > **NOTE**
 >
@@ -21,13 +21,13 @@ Obtains the root directory of the storage. This API uses a promise to return the
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
-- Return value
+**Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;string&gt; | Promise returned with the root directory of the storage.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;string&gt; | Promise returned with the root directory of the storage.|
 
-- Example
+**Example**
 
   ```js
   environment.getStorageDataDir().then(function(path){
@@ -45,13 +45,13 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                       | Mandatory| Description                            |
-  | -------- | --------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of the storage.|
+| Name  | Type                       | Mandatory| Description                            |
+| -------- | --------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of the storage.|
 
-- Example
+**Example**
 
   ```js
   environment.getStorageDataDir(function(error, path){
@@ -67,13 +67,13 @@ Obtains the root directory of public files. This API uses a promise to return th
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
-- Return value
+**Return value**
 
-  | Type                 | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;string&gt; | Promise returned with the root directory of public files.|
+| Type                 | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;string&gt; | Promise returned with the root directory of public files.|
 
-- Example
+**Example**
 
   ```js
   environment.getUserDataDir().then(function(path){
@@ -91,13 +91,13 @@ Obtains the root directory of public files. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
-- Parameters
+**Parameters**
 
-  | Name  | Type                       | Mandatory| Description                            |
-  | -------- | --------------------------- | ---- | -------------------------------- |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of public files.|
-  
-- Example
+| Name  | Type                       | Mandatory| Description                            |
+| -------- | --------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of public files.|
+
+**Example**
 
   ```js
   environment.getUserDataDir(function(error, path){

@@ -1,6 +1,6 @@
-#    OS Account Management
+# OS Account Management
 
-The osAccount module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
+The **osAccount** module provides basic capabilities for managing operating system (OS) accounts, including adding, deleting, querying, setting, subscribing to, and enabling an OS account, and storing OS account data to disks.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -440,12 +440,10 @@ This is a system API and cannot be called by third-party applications.
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  var createIocalId;
-  osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    createIocalId = osAccountInfo.localId;
-  });
-  accountManager.removeOsAccount(createIocalId, (err)=>{
-    console.log("removeOsAccount err:" + JSON.stringify(err));
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
+    accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
+      console.log("removeOsAccount err:" + JSON.stringify(err));
+    });
   });
   ```
 
@@ -477,15 +475,12 @@ This is a system API and cannot be called by third-party applications.
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  var createIocalId;
-  osAccountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    createIocalId = osAccountInfo.localId;
-  });
-  createIocalId = osAccount.localId;
-  accountManager.removeOsAccount(createIocalId).then(() => {
-    console.log('removeOsAccount Success');
-  }).catch(() => {
-    console.log("removeOsAccount err: "  + JSON.stringify(err));
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+    accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
+      console.log('removeOsAccount Success');
+    }).catch(() => {
+      console.log("removeOsAccount err: "  + JSON.stringify(err));
+    });
   });
   ```
 
@@ -1097,7 +1092,7 @@ This is a system API and cannot be called by third-party applications.
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testName", osaccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+  accountManager.createOsAccount("testName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     console.log("createOsAccount err:" + JSON.stringify(err));
     console.log("createOsAccount osAccountInfo:" + JSON.stringify(osAccountInfo));
   });
@@ -1132,7 +1127,7 @@ This is a system API and cannot be called by third-party applications.
 
   ```js
   const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", osaccount.OsAccountType.NORMAL).then((accountInfo) => {
+  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
     console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
   }).catch((err) => {
     console.log("createOsAccount err: "  + JSON.stringify(err));
@@ -1164,7 +1159,7 @@ This is a system API and cannot be called by third-party applications.
   ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
+  accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
     console.log("createOsAccountForDomain err:" + JSON.stringify(err));
     console.log("createOsAccountForDomain osAccountInfo:" + JSON.stringify(osAccountInfo));
   });
@@ -1200,7 +1195,7 @@ This is a system API and cannot be called by third-party applications.
   ```js
   const accountManager = account_osAccount.getAccountManager();
   var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  accountManager.createOsAccountForDomain(osaccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
+  accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
     console.log("createOsAccountForDomain, account info: " + JSON.stringify(accountInfo));
   }).catch((err) => {
     console.log("createOsAccountForDomain err: "  + JSON.stringify(err));
@@ -1523,7 +1518,7 @@ This is a system API and cannot be called by third-party applications.
   "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
   "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
   "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
-  osAccountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
+  accountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
     console.log("setOsAccountProfilePhoto err:" + JSON.stringify(err));
   });
   ```
@@ -1765,8 +1760,9 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
+  const accountManager = account_osAccount.getAccountManager();
   var testUid = 1000000;
-  osAccountManager.getBundleIdFromUid(testUid,(err,bundleId)=>{
+  accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
     console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
     console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleId));
   });
@@ -1796,10 +1792,13 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
+  const accountManager = account_osAccount.getAccountManager();
   var testUid = 1000000;
-  var bundleIdInfo = await osAccountManager.getBundleIdFromUid(testUid).catch((err)=>{
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));})
-  console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleIdInfo));
+  accountManager.getBundleIdFromUid(testUid).then((result) => {
+    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(result));
+  }).catch((err)=>{
+    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
+  });
   ```
 
 ### isMainOsAccount<sup>9+</sup>
@@ -1809,6 +1808,8 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 Checks whether the current process belongs to the main OS account. This API uses an asynchronous callback to return the result.
 
 This is a system API and cannot be called by third-party applications.
+
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -1821,7 +1822,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  osAccountManager.isMainOsAccount((err,result)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.isMainOsAccount((err,result)=>{
     console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
     console.info("isMainOsAccount result:" + JSON.stringify(result));
   });
@@ -1834,6 +1836,8 @@ Checks whether the current process belongs to the main OS account. This API uses
 
 This is a system API and cannot be called by third-party applications.
 
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Return value**
@@ -1845,10 +1849,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  var result = await osAccountManager.isMainOsAccount().catch((err)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.isMainOsAccount().then((result) => {
+    console.info("isMainOsAccount result:" + JSON.stringify(result));
+  }).catch((err)=>{
     console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
   });
-  console.info("isMainOsAccount result:" + JSON.stringify(result));
   ```
 ### queryOsAccountConstraintSourceTypes<sup>9+</sup>
 
@@ -1873,7 +1879,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
     console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
     console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
   });
@@ -1907,14 +1914,19 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  var sourceTypeInfos = await osAccountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").catch((err)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));})
-  console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  const accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").then((result) => {
+    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(result));
+  }).catch((err)=>{
+    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
+  });
   ```
 
 ## UserAuth<sup>8+</sup>
 
 Provides APIs for user authentication.
+
+This is a system API and cannot be called by third-party applications.
 
 ### constructor<sup>8+</sup>
 
@@ -1922,12 +1934,13 @@ constructor()
 
 A constructor used to create an instance for user authentication.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  console.info('====>test for examples constructor success');
+  let userAuth = new account_osAccount.UserAuth();
   ```
 
 
@@ -1949,17 +1962,16 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  console.info('====>test for examples constructor success');
-  var version = userAuth.getVersion();
-  console.info('====>test for examples version is : ' + JSON.stringify(version));
+  let userAuth = new account_osAccount.UserAuth();
+  let version = userAuth.getVersion();
+  console.log("getVersion version = " + version);
   ```
 
 ### getAvailableStatus<sup>8+</sup>
 
 getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
-Checks whether the identity authentication function is available.
+Checks whether the identity authentication feature is available.
 
 This is a system API and cannot be called by third-party applications.
 
@@ -1971,23 +1983,22 @@ This is a system API and cannot be called by third-party applications.
 
 | Name          | Type                                          | Mandatory| Description                      |
 | --------------- | -----------------------------------------------| ---- | ------------------------- |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)             | Yes  | Authentication credential type.    |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>) | Yes  | Trust level of the authentication result.|
+| authType        | [AuthType](#authtype8)             | Yes  | Authentication credential type.    |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | Yes  | Trust level of the authentication result.|
 
 **Return value**
 
 | Type  | Description                                      |
 | :----- | :---------------------------------------- |
-| number | Result code(#ResultCode<sup>8+</sup>).| 
+| number | [Result code](#resultcode8).| 
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  console.info('====>test for examples constructor success');
-  let availableStatus = userAuth.getAvailableStatus(authType, authTrustLevel);
-  console.info('====>test for examples AvailabeStatus is : ' + JSON.stringify(availableStatus));
+  let userAuth = new account_osAccount.UserAuth();
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let status = userAuth.getAvailableStatus(authType, authTrustLevel);
+  console.log("getAvailableStatus status = " + status);
   ```
 
 ### getProperty<sup>8+</sup>
@@ -2006,26 +2017,30 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                                                   | Mandatory| Description                               |
 | -------- | ----------------------------------------------------------------------- | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>)                  | Yes  | Request information, including the authentication credential type and property list.|
-| callback | AsyncCallback&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | Yes  | Callback invoked to return the executor property obtained.       |
+| request  | [GetPropertyRequest](#getpropertyrequest8)                  | Yes  | Request information, including the authentication credential type and property list.|
+| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | Yes  | Callback invoked to return the executor property obtained.       |
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let keys = new Array();
-  keys[0] = osAccount.GetPropertyType.AUTH_SUB_TYPE;
-  keys[1] = osAccount.GetPropertyType.REMAIN_TIMES;
-  keys[2] = osAccount.GetPropertyType.FREEZING_TIME;
-  let getPropertyRequest = {authType, keys};
-  userAuth.getProperty(getPropertyRequest,function (propReq) {
-      console.log("====>test for examples getallAuthInfo AsyncCallback = " + JSON.stringify(propReq));
-  })
+  let userAuth = new account_osAccount.UserAuth();
+  let keys = [
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.REMAIN_TIMES,
+    account_osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    keys: keys
+  };
+  userAuth.getProperty(request, (err, result) => {
+    console.log("getProperty err = " + JSON.stringify(err));
+    console.log("getProperty result = " + JSON.stringify(result));
+  });
   ```
 
 ### getProperty<sup>8+</sup>
 
-getProperty(request: GetPropertyRequest): Promise<ExecutorProperty>;
+getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 Obtains the executor property based on the request. This API uses a promise to return the result.
 
@@ -2039,31 +2054,36 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                                  | Mandatory| Description                               |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
-| request  | [GetPropertyRequest](#GetPropertyRequest<sup>8+</sup>) | Yes  | Request information, including the authentication credential type and property list.|
+| request  | [GetPropertyRequest](#getpropertyrequest8) | Yes  | Request information, including the authentication credential type and property list.|
 
 **Return value**
 
 | Type                                                             | Description                                                |
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
-| Promise&lt;[ExecutorProperty](#ExecutorProperty<sup>8+</sup>)&gt; | Promise used to return the executor property obtained.|
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor property obtained.|
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let keys = new Array();
-  keys[0] = osAccount.GetPropertyType.AUTH_SUB_TYPE;
-  keys[1] = osAccount.GetPropertyType.REMAIN_TIMES;
-  keys[2] = osAccount.GetPropertyType.FREEZING_TIME;
-  let getPropertyRequest = {authType, keys};
-  userAuth.getProperty(getPropertyRequest).then((propReq) => {
-      console.log("====>test for examples getallAuthInfo AsyncCallback = " + JSON.stringify(propReq));
+  let userAuth = new account_osAccount.UserAuth();
+  let keys = [
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.REMAIN_TIMES,
+    account_osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    keys: keys
+  };
+  userAuth.getProperty(request).then((result) => {
+    console.log("getProperty result = " + JSON.stringify(result));
+  }).catch((err) => {
+    console.log("getProperty error = " + JSON.stringify(err));
   });
   ```
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest, callback: AsyncCallback<number>): void;
+setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;): void;
 
 Sets the property for the initialization algorithm. This API uses an asynchronous callback to return the result.
 
@@ -2077,24 +2097,26 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                                 | Mandatory| Description                                                                   |
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>)| Yes  | Request information, including the authentication credential type and key value to set.                                  |
-| callback | AsyncCallback&lt;number&gt;                           | Yes  | Callback invoked to return the [result code](#ResultCode<sup>8+</sup>).|
+| request  | [SetPropertyRequest](#setpropertyrequest8)| Yes  | Request information, including the authentication credential type and key value to set.                                  |
+| callback | AsyncCallback&lt;number&gt;                           | Yes  | Callback invoked to return the [result](#resultcode8).|
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let key = osAccount.SetPropertyType.INIT_ALGORITHM;
-  let setInfo = new Uint8Array();
-  let setPropertyRequest = {authType, key, setInfo};
-  userAuth.setProperty(setPropertyRequest,function (setProp) {
-      console.log("====>test for examples setProperty AsyncCallback = " + JSON.stringify(setProp));
+  let userAuth = new account_osAccount.UserAuth();
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+    setInfo: new Uint8Array([0])
+  };
+  userAuth.setProperty(request, (err, result) => {
+      console.log("setProperty error = " + JSON.stringify(err));
+      console.log("setProperty result = " + JSON.stringify(result));
   });
   ```
 
 ### setProperty<sup>8+</sup>
 
-setProperty(request: SetPropertyRequest): Promise<number>;
+setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 
 Sets the property for the initialization algorithm. This API uses a promise to return the result.
 
@@ -2108,23 +2130,26 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                                  | Mandatory| Description                                     |
 | -------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| request  | [SetPropertyRequest](#SetPropertyRequest<sup>8+</sup>) | Yes  | Request information, including the authentication credential type and the key value to set.|
+| request  | [SetPropertyRequest](#setpropertyrequest8) | Yes  | Request information, including the authentication credential type and the key value to set.|
 
 **Return value**
 
 | Type                 | Description                                                                                          |
 | :-------------------- | :-------------------------------------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the [result code](#ResultCode<sup>8+</sup>).|
+| Promise&lt;number&gt; | Promise used to return the [result](#resultcode8).|
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let key = osAccount.SetPropertyType.INIT_ALGORITHM;
-  let setInfo = new Uint8Array();
-  let setPropertyRequest = {authType, key, setInfo};
-  userAuth.setProperty(setPropertyRequest).then((setProp) => {
-      console.log("====>test for examples setProperty AsyncCallback = " + JSON.stringify(setProp));
+  let userAuth = new account_osAccount.UserAuth();
+  let request = {
+    authType: account_osAccount.AuthType.PIN,
+    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+    setInfo: new Uint8Array([0])
+  };
+  userAuth.setProperty(request).then((result) => {
+    console.log("setProperty result = " + JSON.stringify(result));
+  }).catch((err) => {
+    console.log("setProperty error = " + JSON.stringify(err));
   });
   ```
 
@@ -2145,9 +2170,9 @@ This is a system API and cannot be called by third-party applications.
 | Name          | Type                                                | Mandatory| Description                               |
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                                           | Yes | Challenge value, which is a random number used to improve security.|
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | Yes | Authentication credential type.                       |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | Yes | Trust level of the authentication result.              |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | Yes | Callback invoked to return the authentication result and obtained information. |
+| authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback invoked to return the authentication result and obtained information. |
 
 
 **Return value**
@@ -2158,22 +2183,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      }
+  let userAuth = new account_osAccount.UserAuth();
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  userAuth.auth(challenge, authType, authTrustLevel, {
+    onResult: function(result,extraInfo){
+        console.log("auth result = " + result);
+        console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
   });
   ```
 
@@ -2195,9 +2213,9 @@ This is a system API and cannot be called by third-party applications.
 | --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
 | userId          | number                                               | Yes | User ID.                       |
 | challenge       | Uint8Array                                           | Yes | Challenge value, which is a random number used to improve security.                         |
-| authType        | [AuthType](#AuthType<sup>8+</sup>)                   | Yes | Authentication credential type.                       |
-| authTrustLevel  | [AuthTrustLevel](#AuthTrustLevel<sup>8+</sup>)       | Yes | Trust level of the authentication result.              |
-| callback        | [IUserAuthCallback](#IUserAuthCallback<sup>8+</sup>) | Yes | Callback invoked to return the authentication result and obtained information. |
+| authType        | [AuthType](#authtype8)                   | Yes | Authentication credential type.                       |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | Yes | Trust level of the authentication result.              |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | Yes | Callback invoked to return the authentication result and obtained information. |
 
 
 **Return value**
@@ -2208,23 +2226,16 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
+  let userAuth = new account_osAccount.UserAuth();
   let userID = 100;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
+  let challenge = new Uint8Array([0]);
+  let authType = account_osAccount.AuthType.PIN;
+  let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.authUser(userID, challenge, authType, authTrustLevel, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples authUser result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples authUser extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples authUser onResult = ' + JSON.stringify(onresult));
-      }
+    onResult: function(result,extraInfo){
+        console.log("authUser result = " + result);
+        console.log("authUser extraInfo = " + JSON.stringify(extraInfo));
+    }
   });
   ```
 
@@ -2250,20 +2261,28 @@ This is a system API and cannot be called by third-party applications.
 
 | Type  | Description                                                      |
 | :----- | :-------------------------------------------------------- |
-| number | [Result code](#ResultCode<sup>8+</sup>).|
+| number | [Result code](#resultcode8).|
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let contextID = null;
-  let cancelAuthresult = null;
-  cancelAuthresult = userAuth.cancelAuth(contextID);
-  console.log("====>test for examples cancelAuthresult result = " + JSON.stringify(cancelAuthresult));
+  let userAuth = new account_osAccount.UserAuth();
+  let pinAuth = new account_osAccount.PINAuth();
+  let challenge = new Uint8Array([0]);
+  let contextID = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result);
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
+  let result = userAuth.cancelAuth(contextID);
+  console.log("cancelAuth result = " + result);
   ```
 
 ## PINAuth<sup>8+</sup>
 
-Provides methods for PIN authentication.
+Provides APIs for PIN authentication.
+
+This is a system API and cannot be called by third-party applications.
 
 ### constructor<sup>8+</sup>
 
@@ -2271,12 +2290,13 @@ constructor()
 
 A constructor used to create an instance for PIN authentication.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example**
   ```js
-  var pinAuth = new osAccount.PINAuth();
-  console.info('====>test for examples constructor success');
+  let pinAuth = new account_osAccount.PINAuth();
   ```
 
 ### registerInputer
@@ -2295,7 +2315,7 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                | Mandatory| Description              |
 | ----------| ----------------------------------- | --- | ------------------ |
-| inputer   | [IInputer](#IInputer<sup>8+</sup>)  | Yes | Callback invoked to obtain the PIN.|
+| inputer   | [IInputer](#iinputer8)  | Yes | Callback invoked to obtain the PIN.|
 
 **Return value**
 
@@ -2305,20 +2325,14 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          if (GetAuthSubType == 0) {
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
+  let pinAuth = new account_osAccount.PINAuth();
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
+  let result = pinAuth.registerInputer({
+      onGetData: (pinSubType, callback) => {
+        callback.onSetData(pinSubType, password);
       }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  });
+  console.log("registerInputer result = " + result);
   ```
 
 ### unregisterInputer
@@ -2335,13 +2349,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  var pinAuth = new osAccount.PinAuth();
+  let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
 
 ## UserIdentityManager<sup>8+</sup>
 
-Provides methods for user identity management.
+Provides APIs for user identity management.
+
+This is a system API and cannot be called by third-party applications.
 
 ### constructor<sup>8+</sup>
 
@@ -2349,12 +2365,13 @@ constructor()
 
 A constructor used to create an instance for user authentication.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  console.info('====>test for examples constructor success');
+  let userIDM = new account_osAccount.UserIdentityManager();
   ```
 
 ### openSession<sup>8+</sup>
@@ -2373,23 +2390,14 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                            | Mandatory| Description                             |
 | -------- | -------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the result. If **0** is returned, the operation failed. If the operation is successful, the challenge value (a non-zero value) will be returned.|
+| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the challenge value. If **0** is returned, the operation failed.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var challenge;
-  userIDM.openSession(function(err, data){
-      try{
-          console.log("====>test for examples before get challenge");
-          console.log("====>test for examples + " + data);
-          challenge = data;
-          console.log("====>test for examples end ");
-          console.log("====>test for examples after get challenge");
-      }
-      catch(e) {
-          console.info('====>test for examples openSession error = ' + JSON.stringify(e));
-      }
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession((err, challenge) => {
+      console.log("openSession error = " + JSON.stringify(err));
+      console.log("openSession challenge = " + JSON.stringify(challenge));
   });
   ```
 
@@ -2409,27 +2417,16 @@ This is a system API and cannot be called by third-party applications.
 
 | Type                     | Description                                                     |
 | :------------------------ | :------------------------------------------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result. If **0** is returned, the operation failed. If the operation is successful, the challenge value (a non-zero value) will be returned.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the challenge value. If **0** is returned, the operation failed.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var challenge;
-  userIDM.openSession().then((data) => {
-      try{
-          console.log("====>test for examples before get challenge");
-          console.log("====>test for examples + " + data);
-          challenge = data;
-          console.log("====>test for examples end ");
-          console.log("====>test for examples after get challenge");
-      }
-      catch(err) {
-          console.info('====>test for examples faceDemo openSession error1 = ' + JSON.stringify(err));
-      }
-  })
-  .catch((err) => {
-      console.info('====>test for examples faceDemo openSession error2 = ' + JSON.stringify(err));
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession().then((challenge) => {
+      console.info("openSession challenge = " + JSON.stringify(challenge));
+  }).catch((err) => {
+      console.info("openSession error = " + JSON.stringify(err));
+  });
   ```
 
 ### addCredential<sup>8+</sup>
@@ -2448,31 +2445,32 @@ This is a system API and cannot be called by third-party applications.
 
 | Name          | Type                                            | Mandatory| Description                           |
 | --------------- | ------------------------------------------------ | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)   | Yes | Credential information to add.                     |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)       | Yes | Callback invoked to return the result and obtained information. |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)   | Yes | Credential information to add. |
+| callback        | [IIdmCallback](#iidmcallback8)       | Yes | Callback invoked to return the result and obtained information. |
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.addCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.info('====>test for examples aaaaaaaaaaaaa');
-          console.info("====>test for examples addCredential result = " + result);
-          console.info("====>test for examples addCredential extraInfo = " + JSON.stringify(extraInfo));
-          console.log(result)
-          onresult.addCredresult= result;
-          if(extraInfo != undefined) {
-              onresult.credentialId = extraInfo.credentialId
-          } else {
-              onresult.credentialId = null;
-          }
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let pinAuth = new account_osAccount.PINAuth();
+  pinAuth.registerInputer({
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
+    }
+  });
+  let credentialInfo = {
+    credType: account_osAccount.AuthType.PIN,
+    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+    token: null
+  };
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.openSession((err, challenge) => {
+    userIDM.addCredential(credentialInfo, {
+      onResult: (result, extraInfo) => {
+        console.log("updateCredential result = " + result);
+        console.log("updateCredential extraInfo = " + extraInfo);
       }
-  })
+    });
+  });
   ```
 
 ### updateCredential<sup>8+</sup>
@@ -2491,30 +2489,41 @@ This is a system API and cannot be called by third-party applications.
 
 | Name          | Type                                             | Mandatory| Description                           |
 | --------------- | ------------------------------------------------- | --- | -------------------------------- |
-| credentialInfo  | [CredentialInfo](#CredentialInfo<sup>8+</sup>)    | Yes | New credential information.                   |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)        | Yes | Callback invoked to return the result and obtained information. |
+| credentialInfo  | [CredentialInfo](#credentialinfo8)    | Yes | New credential information.                   |
+| callback        | [IIdmCallback](#iidmcallback8)        | Yes | Callback invoked to return the result and obtained information. |
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples faceDemo updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples faceDemo updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let userAuth = new account_osAccount.UserAuth();
+  let pinAuth = new account_osAccount.PINAuth();
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let credentialInfo = {
+    credType: account_osAccount.AuthType.PIN,
+    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+    token: null
+  };
+  pinAuth.registerInputer({
+    onGetData: (pinSubType, callback) => {
+      callback.onSetData(pinSubType, password);
+    }
+  });
+  userIDM.openSession((err, challenge) => {
+    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL1, {
+      onResult: (result, extraInfo) => {
+        if (result != account_osAccount.ResultCode.SUCCESS) {
+          return;
+        }
+        credentialInfo.token = extraInfo.token;
+        userIDM.updateCredential(credentialInfo, {
+          onResult: (result, extraInfo) => {
+              console.log("updateCredential result = " + result);
+              console.log("updateCredential extraInfo = " + extraInfo);
           }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
+        });
       }
-  })
+    });
+  });
   ```
 
 ### closeSession<sup>8+</sup>
@@ -2531,7 +2540,7 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
+  let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
   ```
 
@@ -2557,13 +2566,14 @@ This is a system API and cannot be called by third-party applications.
 
 | Type  | Description                                                      |
 | :----- | :-------------------------------------------------------- |
-| number | [Result code](#ResultCode<sup>8+</sup>).|
+| number | [Result code](#resultcode8) indicating whether the operation is successful.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let challenge = 1;
-  let cancelresult = userIDM.cancel(challenge);
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let challenge = new Uint8Array([0]);
+  let result = userIDM.cancel(challenge);
+  console.log("cancel result: " + result);
   ```
 
 ### delUser<sup>8+</sup>
@@ -2583,28 +2593,18 @@ This is a system API and cannot be called by third-party applications.
 | Name   | Type                                      | Mandatory| Description                     |
 | -------- | ------------------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                                 | Yes | Authentication token.            |
-| callback | [IIdmCallback](#IIdmCallback<sup>8+</sup>) | Yes | Callback invoked to return the result.|
+| callback | [IIdmCallback](#iidmcallback8) | Yes | Callback invoked to return the result.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let onresult = {
-      delUserresult: null,
-      CredentialId: null,
-  }
-  let token = null;
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let token = new Uint8Array([0]);
   userIDM.delUser(token, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples  delUser result = " + result)
-          onresult.delUserresult = result
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicdelUser delUser = ' + JSON.stringify(onresult));
-      }
-  })
+    onResult: (result, extraInfo) => {
+      console.log("delUser result = " + result);
+      console.log("delUser extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
   ```
 
 ### delCred<sup>8+</sup>
@@ -2625,35 +2625,24 @@ This is a system API and cannot be called by third-party applications.
 | --------------- | ----------------------------------------------- | --- | ---------------------------|
 | credentialId    | Uint8Array                                      | Yes | Credential ID.                 |
 | token           | Uint8Array                                      | Yes | Authentication token.             |
-| callback        | [IIdmCallback](#IIdmCallback<sup>8+</sup>)      | Yes | Callback invoked to return the result.|
+| callback        | [IIdmCallback](#iidmcallback8)      | Yes | Callback invoked to return the result.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let onresult = {
-      delUserresult: null,
-      CredentialId: null,
-  }
-  let credentialId = 1;
-  let token = null;
-  userIDM.delCred(credentialId, token,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples delCred result = " + result)
-          onresult.delCredresult = result
-          console.log("====>test for examples delCred extraInfo = " + extraInfo)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.log("====>test for examples delCred onresult = " + JSON.stringify(onresult));
-      }
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  let credentialId = new Uint8Array([0]);
+  let token = new Uint8Array([0]);
+  userIDM.delCred(credentialId, token, {
+    onResult: (result, extraInfo) => {
+        console.log("delCred result = " + result);
+        console.log("delCred extraInfo = " + JSON.stringify(extraInfo));
+    }
+  });
   ```
 
 ### getAuthInfo<sup>8+</sup>
 
-getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;, authType?: AuthType): void;
+getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 Obtains authentication information. This API uses asynchronous callback to return the result.
 
@@ -2661,22 +2650,50 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_USER_IDM
+**Required permissions**: ohos.permission.USE_USER_IDM
 
 **Parameters**
 
 | Name   | Type                                              | Mandatory| Description                                               |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | Yes  | Callback invoked to return information about all enrolled credentials of the specified type of the user.|
-| authType | [AuthType](#AuthType<sup>8+</sup>) | No  | Authentication credential type.                                         |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return information about all enrolled credentials of the specified type.|
+
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var authType = osAccount.AuthType.PIN;
-  userIDM.getAuthInfo(authType, function (authInfo) {
-      console.log("====>test for examples getAuthInfo AsyncCallback = " + JSON.stringify(authInfo))
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo((err, result) => {
+    console.log("getAuthInfo err = " + JSON.stringify(err));
+    console.log("getAuthInfo result = " + JSON.stringify(result));
+  });
+  ```
+
+### getAuthInfo<sup>8+</sup>
+
+getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
+
+Obtains authentication information of the specified type. This API uses an asynchronous callback to return the result.
+
+This is a system API and cannot be called by third-party applications.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.USE_USER_IDM
+
+**Parameters**
+
+| Name   | Type                                              | Mandatory| Description                                               |
+| -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
+| authType | [AuthType](#authtype8) | Yes  | Authentication credential type.                                         |
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return information about all the user's enrolled credentials of the specified type.|
+
+**Example**
+  ```js
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo(account_osAccount.AuthType.PIN, (err, result) => {
+    console.log("getAuthInfo err = " + JSON.stringify(err));
+    console.log("getAuthInfo result = " + JSON.stringify(result));
+  });
   ```
 
 ### getAuthInfo<sup>8+</sup>
@@ -2689,36 +2706,41 @@ This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.MANAGE_USER_IDM
+**Required permissions**: ohos.permission.USE_USER_IDM
 
 **Parameters**
 
 | Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)  | No  | Authentication credential type.|
+| authType | [AuthType](#authtype8)  | No  | Authentication credential type.|
 
 **Return value**
 
 | Type                                        | Description                                                                      |
 | :------------------------------------------- | :------------------------------------------------------------------------ |
-| Promise&lt;Array&lt;[EnrolledCredInfo](#EnrolledCredInfo<sup>8+</sup>)&gt;&gt; | Promise used to return information about all enrolled credentials of the specified type of the user.|
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise used to return information about all the user's enrolled credentials of the specified type.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  var authType = osAccount.AuthType.PIN;
-  userIDM.getAuthInfo(authType).then((authInfo) => {
-      console.log("====>test for examples getAuthInfo AsyncCallback = " + JSON.stringify(authInfo))
-  })
+  let userIDM = new account_osAccount.UserIdentityManager();
+  userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result) => {
+    console.log("getAuthInfo result = " + JSON.stringify(result))
+  }).catch((err) => {
+    console.log("getAuthInfo error = " + JSON.stringify(err));
+  });
   ```
 
 ## IInputData<sup>8+</sup>
 
 Provides callbacks for PIN operations.
 
+This is a system API and cannot be called by third-party applications.
+
 ### onSetData<sup>8+</sup>
 
 onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
+
+This is a system API and cannot be called by third-party applications.
 
 Called to set data.
 
@@ -2728,42 +2750,37 @@ Called to set data.
 
 | Name     | Type                                    | Mandatory| Description                                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------------------------- |
-| pinSubType | [AuthSubType](#AuthSubType<sup>8+</sup>) | Yes  | Credential subtype.                           |
+| pinSubType | [AuthSubType](#authsubtype8) | Yes  | Credential subtype.                           |
 | data       | Uint8Array                               | Yes  | Data (credential) to set. The data is used for authentication and operations for adding and modifying credentials.|
 
 **Example**
   ```js
-  console.log("====>test for examples onCreate start ");
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  console.log("====>test for examples GetAuthSubType " + GetAuthSubType);
-  console.log("====>test for examples AuthSubType " + AuthSubType);
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          console.log("====>test for examples by GetAuthSubType " +GetAuthSubType );
-          if (GetAuthSubType == 0) {
-              console.log("====>test for examples GetAuthSubType == 0 ");
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              console.log("====>test for examples GetAuthSubType == 1 ");
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
-      }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let passwordNumber = new Uint8Array([1, 2, 3, 4]);
+  let inputer = {
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
+        } else {
+          callback.onSetData(pinSubType, password);
+        }
+    }
+  };
   ```
 
 ## IInputer<sup>8+</sup>
 
 Provides callbacks for the PIN input box.
 
+This is a system API and cannot be called by third-party applications.
+
 ### onGetData<sup>8+</sup>
 
-onGetData: (callback: IInputData) => void;
+onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 
 Called to obtain data.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2771,41 +2788,39 @@ Called to obtain data.
 
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| callback   | [IInputData](#IInputData<sup>8+</sup>)  | Yes  | Called to input the PIN.|
+| callback   | [IInputData](#iinputdata8)  | Yes  | Called to input the PIN.|
 
 **Example**
   ```js
-  console.log("====>test for examples onCreate start ");
-  var pinAuth = new osAccount.PINAuth();
-  var GetAuthSubType = 0;
-  var AuthSubType = osAccount.AuthSubType.PIN_SIX;
-  console.log("====>test for examples GetAuthSubType " + GetAuthSubType);
-  console.log("====>test for examples AuthSubType " + AuthSubType);
-  var Inputerdata = [0,1,3];
-  var registerresult = pinAuth.registerInputer({
-      onGetData: (GetAuthSubType, IInputData) => {
-          console.log("====>test for examples by GetAuthSubType " +GetAuthSubType );
-          if (GetAuthSubType == 0) {
-              console.log("====>test for examples GetAuthSubType == 0 ");
-              IInputData.onSetData(AuthSubType, Inputerdata)
-          } else {
-              console.log("====>test for examples GetAuthSubType == 1 ");
-              IInputData.onSetData(GetAuthSubType, Inputerdata);
-          }
-      }
-  })
-  console.log("====>test for examples RegisterInputer result is: " + registerresult);
+  let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
+  let passwordNumber = new Uint8Array([1, 2, 3, 4]);
+  let inputer = {
+    onGetData: (pinSubType, callback) => {
+        if (pinSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+          callback.onSetData(pinSubType, passwordNumber);
+        } else {
+          callback.onSetData(pinSubType, password);
+        }
+    }
+  };
+  let pinAuth = new account_osAccount.PINAuth();
+  let result = pinAuth.registerInputer(inputer);
+  console.log("registerInputer result: " + result);
   ```
 
 ## IUserAuthCallback<sup>8+</sup>
 
 Provides callbacks for user authentication.
 
+This is a system API and cannot be called by third-party applications.
+
 ### onResult<sup>8+</sup>
 
 onResult: (result: number, extraInfo: AuthResult) => void;
 
 Called to return the authentication result code.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -2814,27 +2829,16 @@ Called to return the authentication result code.
 | Name    | Type                                   | Mandatory| Description                |
 | --------- | --------------------------------------- | ---- | ------------------- |
 | result    | number                                   | Yes  | Authentication result code.|
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | Yes  | Specific authentication result information. If the authentication is successful, the authentication token is returned in **extrainfo**. If the authentication fails, the remaining authentication time is returned. If the authentication executor is locked, the freezing time is returned.|
+| extraInfo | [AuthResult](#authresult8)  | Yes  | Specific authentication result information. If the authentication is successful, the authentication token is returned in **extrainfo**. If the authentication fails, the remaining authentication time is returned. If the authentication executor is locked, the freezing time is returned.|
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result);
-          onresult.authresult = result;
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      }
-  });
+  let authCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result);
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ### onAcquireInfo?<sup>8+</sup>
@@ -2857,45 +2861,28 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  let userAuth = new osAccount.UserAuth();
-  let authType = osAccount.AuthType.PIN;
-  let challenge = 1;
-  let authTrustLevel = osAccount.AuthTrustLevel.ATL1;
-  let onresult = {
-      authresult: null,
-      authextr: null,
-  }
-  let onacquireinfo = {
-      authmodule : null,
-      authacquire : null,
-      authextr : null
-  }
-  userAuth.auth(challenge, authType,authTrustLevel,{
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples auth result = " + result)
-          onresult.authresult = result
-          console.log("====>test for examples auth extraInfo = " + JSON.stringify(extraInfo));
-          onresult.authextr = extraInfo;
-          console.info('====>test for examples auth onResult = ' + JSON.stringify(onresult));
-      },
-      onAcquireInfo:function (modulea,acquire,extr){
-          console.info('====>test for examples publicauth auth onAcquireInfo in');
-          onacquireinfo.authmodule = modulea;
-          onacquireinfo.authacquire = acquire;
-          onacquireinfo.authextr = extr;
-          console.log("====>test for examples auth module = " + JSON.stringify(modulea));
-          console.info('====>test for examples publicauth auth onAcquireInfo = ' + JSON.stringify(onacquireinfo));
-      }
-  });
+  let authCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("auth result = " + result)
+      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+    },
+    onAcquireInfo: (module, acquire, extraInfo) => {
+      console.log("auth module = " + module);
+      console.log("auth acquire = " + acquire);
+      console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ## IIdmCallback<sup>8+</sup>
 
 Provides callbacks for IDM.
 
+This is a system API and cannot be called by third-party applications.
+
 ### onResult<sup>8+</sup>
 
-onResult: (result: number, extraInfo: AuthResult) => void;
+onResult: (result: number, extraInfo: RequestResult) => void;
 
 Called to return the authentication result code.
 
@@ -2908,29 +2895,16 @@ This is a system API and cannot be called by third-party applications.
 | Name    | Type                                   | Mandatory| Description                    |
 | --------- | --------------------------------------- | ---- | ----------------------- |
 | result    | number                                  | Yes  | Authentication result code.   |
-| extraInfo | [AuthResult](#AuthResult<sup>8+</sup>)  | Yes  | Specific information to be transferred.|
+| extraInfo | [AuthResult](#authresult8)  | Yes  | Specific information to be transferred.|
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
-      }
-  })
+  var idmCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("callback result = " + result)
+      console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ### onAcquireInfo?<sup>8+</sup>
@@ -2953,79 +2927,66 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  var userIDM = new osAccount.UserIdentityManager();
-  let CredentialInfo = null;
-  let onresult = {
-      addCredresult: null,
-      credentialId: null,
-  }
-  let onacquireinfo = {
-      updateCredmodule : null,
-      updateCredacquire : null,
-      updateCredextr : null
-  }
-  userIDM.updateCredential(CredentialInfo, {
-      onResult: function(result,extraInfo){
-          console.log("====>test for examples updateCredential result = " + result)
-          onresult.updateCredresult = result
-          console.log("====>test for examples updateCredential credentialId = " + extraInfo.credentialId)
-          if(extraInfo != undefined) {
-              onresult.CredentialId = extraInfo.credentialId
-          } else {
-              onresult.CredentialId = null;
-          }
-          console.info('====>test for examples publicupdateCred updateCredential  onResult = ' + JSON.stringify(onresult));
-      },
-      onAcquireInfo:function (modulea,acquire,extr){
-          console.info('====>test for examples publicupdateCred updateCredential  onAcquireInfo in ');
-          onacquireinfo.updateCredmodule = modulea
-          onacquireinfo.updateCredacquire = acquire
-          onacquireinfo.updateCredextr = extr
-          console.info('====>test for examples updateCredential onacquireinfo = ' + JSON.stringify(onacquireinfo));
-          console.log("====>test for examples updateCredential module = " + modulea)
-      }
-  })
+  let idmCallback = {
+    onResult: (result, extraInfo) => {
+      console.log("callback result = " + result)
+      console.log("callback onResult = " + JSON.stringify(extraInfo));
+    },
+    onAcquireInfo: (module, acquire, extraInfo) => {
+      console.log("callback module = " + module);
+      console.log("callback acquire = " + acquire);
+      console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
+    }
+  };
   ```
 
 ## GetPropertyRequest<sup>8+</sup>
 
 Defines the request for obtaining property information.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name   | Type                                                         | Mandatory  | Description                  |
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)                            | Yes   | Authentication credential type.       |
-| keys     | Array&lt;[GetPropertyType](#GetPropertyType<sup>8+</sup>)&gt; | Yes   | An array of the types of the properties to obtain.|
+| authType | [AuthType](#authtype8)                            | Yes   | Authentication credential type.       |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | An array of the types of the properties to obtain.|
 
 ## SetPropertyRequest<sup>8+</sup>
 
 Defines the request for setting property information.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name   | Type                                            | Mandatory  | Description                |
 | -------- | ------------------------------------------------ | ----- | -------------------- |
-| authType | [AuthType](#AuthType<sup>8+</sup>)               | Yes   | Authentication credential type.    |
-| keys     | [SetPropertyType](#SetPropertyType<sup>8+</sup>) | Yes   | Type of the property to be set.|
+| authType | [AuthType](#authtype8)               | Yes   | Authentication credential type.    |
+| key     | [SetPropertyType](#setpropertytype8) | Yes   | Type of the property to set.|
 | setInfo  | Uint8Array                                       | Yes   | Information to set.    |
 
 ## ExecutorProperty<sup>8+</sup>
 
 Defines the executor property.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name       | Type                                    | Mandatory  | Description             |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | result       | number                                   | Yes   | Result.        |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | Yes   | Authentication credential subtype.|
+| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.|
 | remainTimes  | number                                   | No   | Remaining time.    |
 | freezingTime | number                                   | No   | Freezing time.    |
 
 ## AuthResult<sup>8+</sup>
 
 Defines the authentication result information.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3039,17 +3000,21 @@ Defines the authentication result information.
 
 Defines the credential information.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name       | Type                                    | Mandatory  | Description             |
 | ------------ | ---------------------------------------- | ----- | ----------------- |
-| credType     | [AuthType](#AuthType<sup>8+</sup>)       | Yes   | Authentication credential type.    |
-| credSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | Yes   | Credential subtype.  |
+| credType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.    |
+| credSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.  |
 | token        | Uint8Array                               | Yes   | Authentication token.    |
 
 ## RequestResult<sup>8+</sup>
 
 Defines the request result information.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3061,30 +3026,36 @@ Defines the request result information.
 
 Defines enrolled credential information.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name       | Type                                    | Mandatory  | Description             |
 | ------------ | ---------------------------------------- | ----- | ------------------- |
 | credentialId | Uint8Array                               | Yes   | Credential ID.      |
-| authType     | [AuthType](#AuthType<sup>8+</sup>)       | Yes   | Authentication credential type.  |
-| authSubType  | [AuthSubType](#AuthSubType<sup>8+</sup>) | Yes   | Credential subtype.|
-| templateId   | Uint8Array                               | Yes   | Credential template ID.    |
+| authType     | [AuthType](#authtype8)       | Yes   | Authentication credential type.  |
+| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Credential subtype.|
+| templateId   | Uint8Array                               | Yes   | Authentication credential template ID.    |
 
 ## GetPropertyType<sup>8+</sup>
 
 Enumerates the types of the properties to obtain.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name          | Default Value| Description     |
 | ------------- | ------ | --------- |
-| AUTH_SUB_TYPE | 1      | Authentication subtype.|
+| AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
 | REMAIN_TIMES  | 2      | Remaining time.  |
 | FREEZING_TIME | 3      | Freezing time.  |
 
 ## SetPropertyType<sup>8+</sup>
 
 Enumerates the types of the properties to set.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3094,7 +3065,9 @@ Enumerates the types of the properties to set.
 
 ## AuthType<sup>8+</sup>
 
-Enumerates the credential types.
+Enumerates the authentication credential types.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3105,7 +3078,9 @@ Enumerates the credential types.
 
 ## AuthSubType<sup>8+</sup>
 
-Enumerates the credential subtypes.
+Enumerates the authentication credential subtypes.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3121,6 +3096,8 @@ Enumerates the credential subtypes.
 
 Enumerates the trust levels of the authentication result.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name | Default Value| Description       |
@@ -3134,28 +3111,32 @@ Enumerates the trust levels of the authentication result.
 
 Enumerates the modules from which information is obtained.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name      | Default Value| Description                    |
 | --------- | ------ | ------------------------ |
-| FACE_AUTH | 1      | Information obtained from the face authentication module.|
+| FACE_AUTH | 1      | Face authentication module.|
 
 ## ResultCode<sup>8+</sup>
 
 Enumerates the authentication result codes.
 
+This is a system API and cannot be called by third-party applications.
+
 **System capability**: SystemCapability.Account.OsAccount
 
 | Name                   | Default Value| Description                                    |
 | ----------------------- | ----- | ---------------------------------------- |
-| SUCCESS                 | 0     | The authentication is successful or the authentication function is supported.            |
+| SUCCESS                 | 0     | The authentication is successful or the authentication feature is supported.            |
 | FAIL                    | 1     | The authentication executor failed to identify the user.                  |
 | GENERAL_ERROR           | 2     | Other errors.                           |
 | CANCELED                | 3     | The authentication is canceled.                      |
 | TIMEOUT                 | 4     | The authentication timed out.                      |
 | TYPE_NOT_SUPPORT        | 5     | The authentication credential type is not supported.                |
 | TRUST_LEVEL_NOT_SUPPORT | 6     | The authentication trust level is not supported.              |
-| BUSY                    | 7     | The authentication task is not available. Try again after a few seconds.|
+| BUSY                    | 7     | The authentication executor is busy. Try again after a few seconds.|
 | INVALID_PARAMETERS      | 8     | Incorrect parameters are detected.                         |
 | LOCKED                  | 9     | The authentication executor is locked.                    |
 | NOT_ENROLLED            | 10    | The authentication executor is not enrolled.                  |
@@ -3163,6 +3144,8 @@ Enumerates the authentication result codes.
 ## FaceTipsCode<sup>8+</sup>
 
 Enumerates the tip codes for facial authentication.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 
@@ -3180,9 +3163,11 @@ Enumerates the tip codes for facial authentication.
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | The face is not facing the device.                        |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | No face is detected.                        |
 
-## ingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>8+</sup>
 
 Enumerates the tip codes for fingerprint authentication.
+
+This is a system API and cannot be called by third-party applications.
 
 **System capability**: SystemCapability.Account.OsAccount
 

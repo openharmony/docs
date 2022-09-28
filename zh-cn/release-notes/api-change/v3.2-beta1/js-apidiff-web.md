@@ -4,11 +4,12 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，Web子系统
 
 ## 接口变更
 
-| 模块名* | 类名 | 函数* | 变更类型 |
+| 模块名 | 类名 | 函数 | 变更类型 |
 |---|---|---|---|
-| web | WebAttribute | "onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean): WebAttribute;" | 新增 |
+| web | WebAttribute | onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean): WebAttribute; | 新增 |
 | web | WebAttribute | webDebuggingAccess(webDebuggingAccess: boolean): WebAttribute; | 新增 |
 | web | WebAttribute | fileFromUrlAccess(fileFromUrlAccess: boolean): WebAttribute; | 新增 |
+| web | WebAttribute | onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => void): WebAttribute; | 新增 |
 | web | WebController | getCookieManager() : WebCookie | 新增 |
 | web | WebCookie | deleteExpiredCookie(): void; | 新增 |
 | web | WebCookie | deleteSessionCookie(): void; | 新增 |
@@ -22,6 +23,7 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，Web子系统
 | web | WebCookie | isFileURICookieAllowed(): boolean; | 新增 |
 | web | WebCookie | isThirdPartyCookieAllowed(): boolean; | 新增 |
 | web | WebCookie | isCookieAllowed(): boolean; | 新增 |
+| web | WebCookie | setCookie(url: string, value: string): boolean; | 新增 |
 | web | FileSelectorResult | handleFileList(fileList: Array\<string>): void; | 新增 |
 | web | FileSelectorResult | constructor(); | 新增 |
 | web | FileSelectorParam | isCapture(): boolean; | 新增 |

@@ -32,7 +32,7 @@ import hiAppEvent from '@ohos.hiAppEvent';
 
 事件参数为object类型，key为事件的参数名称，value为事件的参数值，其规格定义如下：
 
-- 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是0-9、a-z、下划线，不能以下划线开头或结尾。
+- 参数名为string类型，字符串非空且长度在16个字符以内，有效的字符是0-9、a-z、下划线，不能以下划线开头或结尾；
 - 参数值支持string、number、boolean、Array类型；
 - 参数值为string类型时，其长度需在8*1024个字符以内，超出会做截断处理；
 - 参数值为Array类型时，Array中的元素类型只能全为string、number、boolean中的一种，且元素个数需在100以内，超出会做丢弃处理；
@@ -266,7 +266,7 @@ hiAppEvent.configure({
 
 addWatcher(watcher: [Watcher](#watcher9)): [AppEventPackageHolder](#appeventpackageholder9)
 
-新增应用事件订阅者。
+添加应用事件订阅者。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -304,11 +304,8 @@ hiAppEvent.addWatcher({
             console.error("holder is null");
             return;
         }
-        while (true) {
-            let eventPkg = holder.takeNext();
-            if (eventPkg == null) {
-                return;
-            }
+        let eventPkg = null;
+        while ((eventPkg = holder.takeNext()) != null) {
             console.info("eventPkg.packageId=" + eventPkg.packageId);
             console.info("eventPkg.row=" + eventPkg.row);
             console.info("eventPkg.size=" + eventPkg.size);
@@ -324,15 +321,14 @@ let holder = hiAppEvent.addWatcher({
     name: "watcher2",
 });
 if (holder != null) {
-    let eventPkg = holder.takeNext();
-    if (eventPkg == null) {
-        return;
-    }
-    console.info("eventPkg.packageId=" + eventPkg.packageId);
-    console.info("eventPkg.row=" + eventPkg.row);
-    console.info("eventPkg.size=" + eventPkg.size);
-    for (const eventInfo of eventPkg.data) {
-        console.info("eventPkg.data=" + eventInfo);
+    let eventPkg = null;
+    while ((eventPkg = holder.takeNext()) != null) {
+        console.info("eventPkg.packageId=" + eventPkg.packageId);
+        console.info("eventPkg.row=" + eventPkg.row);
+        console.info("eventPkg.size=" + eventPkg.size);
+        for (const eventInfo of eventPkg.data) {
+            console.info("eventPkg.data=" + eventInfo);
+        }
     }
 }
 ```
@@ -408,15 +404,36 @@ hiAppEvent.removeWatcher(watcher);
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
+### constructor<sup>9+</sup>
+
+constructor(watcherName: string);
+
+类构造函数，在添加订阅时会被系统自动调用来创建一个订阅数据持有者对象并返回给开发者。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**示例：**
+
+```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
+```
+
 ### setSize<sup>9+</sup>
 
 setSize(size: number): void
 
 设置每次取出的应用事件包的数据大小阈值，单位为byte，默认值为512*1024。
 
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
 **示例：**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 holder.setSize(1000);
 ```
 
@@ -426,9 +443,14 @@ takeNext(): [AppEventPackage](#appeventpackage9)
 
 根据设置的数据大小阈值来取出订阅事件数据，当订阅事件数据全部被取出时返回null作为标识。
 
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
 **示例：**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 let eventPkg = holder.takeNext();
 ```
 

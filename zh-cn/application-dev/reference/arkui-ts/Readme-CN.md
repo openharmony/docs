@@ -1,4 +1,4 @@
-# 基于TS扩展的声明式开发范式
+# 基于eTS的声明式开发范式
 
 - 组件通用信息
     - 通用事件
@@ -40,6 +40,7 @@
         - [多态样式](ts-universal-attributes-polymorphic-style.md)
         - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
         - [背景模糊设置](ts-universal-attributes-backgroundBlurStyle.md)
+        - [分布式迁移标识](ts-universal-attributes-restoreId.md)
     - 手势处理
         - [绑定手势方法](ts-gesture-settings.md)
         - 基础手势
@@ -131,7 +132,7 @@
 - 画布组件
     - [Canvas](ts-components-canvas-canvas.md)
     - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
-    - [OffscreenCanvasRenderingConxt2D对象](ts-offscreencanvasrenderingcontext2d.md)
+    - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
     - [Lottie](ts-components-canvas-lottie.md)
     - [Path2D对象](ts-components-canvas-path2d.md)
     - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
@@ -158,4 +159,5 @@
         - [时间选择弹窗](ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](ts-methods-textpicker-dialog.md)
     - [菜单](ts-methods-menu.md)
-- [文档中涉及到的内置枚举值](ts-appendix-enums.md)
+- [枚举说明](ts-appendix-enums.md)
+- [类型说明](ts-types.md)

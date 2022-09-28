@@ -26,70 +26,30 @@
 | -------- | -------- | -------- |
 | ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | 持续监听传感器数据变化 |
 | ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | 获取一次传感器数据变化 |
-| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听 |
+| ohos.sensor | sensor.off(sensorType, callback?:AsyncCallback&lt;void&gt;): void | 注销传感器数据的监听 |
 
 
 ## 开发步骤
 
-1. 获取设备上传感器的数据，需要在“config.json”里面进行配置请求权限。具体如下：
-  
-   ```
-   "reqPermissions": [
-      {
-        "name": "ohos.permission.ACCELEROMETER",
-        "reason": "",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.GYROSCOPE",
-        "reason": "",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.ACTIVITY_MOTION",
-        "reason": "ACTIVITY_MOTION_TEST",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_HEALTH_DATA",
-        "reason": "HEALTH_DATA_TEST",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      }
-    ]
-   ```
+1. 获取设备上传感器的数据前，需要检查是否已经配置请求相应的权限。 <br>
+     系统提供的传感器权限有：
+   - ohos.permission.ACCELEROMETER
+
+   - ohos.permission.GYROSCOPE
+
+   - ohos.permission.ACTIVITY_MOTION
+
+   - ohos.permission.READ_HEALTH_DATA
+
+   具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
    
 2. 持续监听传感器数据变化。
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = " + data);// 调用成功，打印对应传感器的数据
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data){
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
+   });
    ```
    
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，持续监听传感器接口的结果如下图所示：
@@ -99,11 +59,8 @@
 3. 注销传感器数据监听。
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
-       console.info("Succeeded in unsubscribing from acceleration sensor data.");// 注销成功，返回打印结果
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER);
    ```
    
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，注销传感器成功结果如下图所示：
@@ -113,11 +70,10 @@
 4. 获取一次传感器数据变化。
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-           console.info("Data obtained successfully. data=" + data);// 获取数据成功，打印对应传感器的数据
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data) {
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
+   });
    ```
    
    以SensorType为SENSOR_TYPE_ID_ACCELEROMETER为例展示运行结果，获取数据成功日志如下图所示：
@@ -127,12 +83,13 @@
    若接口调用不成功，建议使用try/catch语句捕获代码中可能出现的错误信息。例如：
 
     ```
+   import sensor from "@ohos.sensor";
     try {
-      sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-          console.info("Data obtained successfully. data=" + data);// 获取数据成功，打印对应传感器的数据
+      sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data) {
+          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z);// 获取数据成功
       });
     } catch (error) {
-      console.error(error);
+      console.error("Get sensor data fail");
     }
     ```
 ## 相关实例

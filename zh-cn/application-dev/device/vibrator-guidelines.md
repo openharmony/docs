@@ -22,42 +22,7 @@
 
 ## 开发步骤
 
-1. 控制设备上的振动器，需要在`config.json`里面进行配置请求权限。具体如下：
-
-   ```
-   "reqPermissions": [
-       {
-           "name": "ohos.permission.ACCELEROMETER",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.VIBRATE",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.ACTIVITY_MOTION",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-   ]
-   ```
+1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
 
 2. 触发设备振动。
 

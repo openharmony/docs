@@ -89,19 +89,21 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 打开USB设备。
 
-需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device；再调用[usb.requestRight](#usbrequestright)获取设备请求权限。
+需要调用[usb.getDevices](#usbgetdevices)获取设备信息以及device，再调用[usb.requestRight](#usbrequestright)获取设备请求权限。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | device | [USBDevice](#usbdevice) | 是 | USB设备信息。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| device | [USBDevice](#usbdevice) | 是 | USB设备信息。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | 指定的传输通道对象。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Readonly&lt;[USBDevicePipe](#usbdevicepipe)&gt; | 指定的传输通道对象。 |
 
 **示例：**
 
@@ -119,14 +121,16 @@ hasRight(deviceName: string): boolean
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | 是 | 设备名称。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 设备名称。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | boolean | true表示有访问设备的权限，false表示没有访问设备的权限。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | true表示有访问设备的权限，false表示没有访问设备的权限。 |
 
 **示例：**
 
@@ -140,19 +144,21 @@ console.log(bool);
 
 requestRight(deviceName: string): Promise&lt;boolean&gt;
 
-请求软件包的临时权限以访问设备。
+请求软件包的临时权限以访问设备。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | deviceName | string | 是 | 设备名称。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceName | string | 是 | 设备名称。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;boolean&gt; | 获取到true则表示软件包的临时权限已访问成功，&nbsp;获取到false则表示软件包的临时权限已访问失败。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise对象，返回临时权限的申请结果。返回true表示临时权限申请成功；返回false则表示临时权限申请失败。 |
 
 **示例：**
 
@@ -174,16 +180,18 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): numbe
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-  | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
-  | force | boolean | 否 | 可选参数，是否强制获取。默认值false&nbsp;，表示不强制获取。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要获取接口的索引。 |
+| force | boolean | 否 | 可选参数，是否强制获取。默认值为false&nbsp;，表示不强制获取。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 注册通信接口成功返回0；注册通信接口失败返回其他错误码。 |
 
 **示例：**
 
@@ -203,15 +211,17 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-  | iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| iface | [USBInterface](#usbinterface) | 是 | 用于确定需要释放接口的索引。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 释放接口成功返回0；释放接口失败返回其他错误码。 |
 
 **示例：**
 
@@ -231,15 +241,17 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfig): number
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
-  | config | [USBConfig](#usbconfig) | 是 | 用于确定需要设置的配置。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| config | [USBConfig](#usbconfig) | 是 | 用于确定需要设置的配置。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 设置设备配置成功返回0；设置设备配置失败返回其他错误码。 |
 
 **示例：**
 
@@ -266,9 +278,10 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 | iface | [USBInterface](#usbinterface)   | 是   | 用于确定需要设置的接口。  |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 设置设备接口成功返回0；设置设备接口失败返回其他错误码。 |
 
 **示例：**
 
@@ -289,11 +302,12 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回获取的原始数据；失败返回undefined。 |
@@ -315,9 +329,10 @@ getFileDescriptor(pipe: USBDevicePipe): number
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定总线号和设备地址。 |
 
 **返回值：**
 
@@ -342,16 +357,18 @@ controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: nu
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-  | contrlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
-  | timeout | number | 否 | 超时时间，可选参数，默认为0不超时。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| contrlparam | [USBControlParams](#usbcontrolparams) | 是 | 控制传输参数。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 获取传输或接收到的数据块大小，&nbsp;获取到-1则表示异常。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
 
 **示例：**
 
@@ -372,17 +389,19 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-  | endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
-  | buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
-  | timeout | number | 否 | 超时时间，可选参数，默认为0不超时。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
+| buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | 获取传输或接收到的数据块大小，&nbsp;获取到-1则表示异常。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | Promise对象，获取传输或接收到的数据块大小。失败返回-1。 |
 
 **示例：**
 
@@ -406,14 +425,16 @@ closePipe(pipe: USBDevicePipe): number
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定USB设备消息控制通道。 |
 
 **返回值：**
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 关闭设备消息控制通道成功返回0；关闭设备消息控制通道失败返回其他错误码。 |
 
 **示例：**
 
@@ -426,7 +447,7 @@ console.log(`closePipe = ${ret}`);
 
 usbFunctionsFromString(funcs: string): number
 
-在设备模式下，将字符串形式的usb功能列表转化为数字掩码。
+在设备模式下，将字符串形式的USB功能列表转化为数字掩码。
 
 **系统接口：** 此接口为系统接口。
 
@@ -455,7 +476,7 @@ let ret = usb.usbFunctionsFromString(funcs);
 
 usbFunctionsToString(funcs: FunctionType): string
 
-在设备模式下，将数字掩码形式的usb功能列表转化为字符串。
+在设备模式下，将数字掩码形式的USB功能列表转化为字符串。
 
 **系统接口：** 此接口为系统接口。
 
@@ -465,7 +486,7 @@ usbFunctionsToString(funcs: FunctionType): string
 
 | 参数名 | 类型                           | 必填 | 说明              |
 | ------ | ------------------------------ | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype9) | 是   | usb功能数字掩码。 |
+| funcs  | [FunctionType](#functiontype9) | 是   | USB功能数字掩码。 |
 
 **返回值：**
 
@@ -498,9 +519,9 @@ setCurrentFunctions(funcs: FunctionType): Promise\<boolean\>
 
 **返回值：**
 
-| 类型               | 说明                                                   |
-| ------------------ | ------------------------------------------------------ |
-| Promise\<boolean\> | 设置USB功能列表是否成功，true表示成功，false表示失败。 |
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise对象，返回设置成功与否的结果。true表示设置成功，false表示设置失败。 |
 
 **示例：**
 
@@ -601,9 +622,9 @@ setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): 
 
 **返回值：**
 
-| 类型               | 说明           |
-| ------------------ | -------------- |
-| Promise\<boolean\> | 设置是否成功。 |
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Promise\<boolean\> | Promise对象，返回设置成功与否的结果。true表示设置成功，false表示设置失败。 |
 
 **示例：**
 
@@ -615,7 +636,7 @@ let ret = usb.getSupportedModes(0);
 
 通过USB发送和接收数据的端口。通过[USBInterface](#usbinterface)获取。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称            | 参数类型                                        | 说明            |
 | ------------- | ------------------------------------------- | ------------- |
@@ -632,7 +653,7 @@ let ret = usb.getSupportedModes(0);
 
 一个[USBConfig](#usbconfig)中可以含有多个USBInterface，每个USBInterface提供一个功能。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称               | 参数类型                                     | 说明                    |
 | ---------------- | ---------------------------------------- | --------------------- |
@@ -648,7 +669,7 @@ let ret = usb.getSupportedModes(0);
 
 USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称             | 参数类型                                             | 说明              |
 | -------------- | ------------------------------------------------ | --------------- |
@@ -664,7 +685,7 @@ USB配置，一个[USBDevice](#usbdevice)中可以含有多个配置。
 
 USB设备信息。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称               | 参数类型                                 | 说明         |
 | ---------------- | ------------------------------------ | ---------- |
@@ -686,7 +707,7 @@ USB设备信息。
 
 USB设备消息传输通道，用于确定设备。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称         | 参数类型   | 说明    |
 | ---------- | ------ | ----- |
@@ -697,7 +718,7 @@ USB设备消息传输通道，用于确定设备。
 
 控制传输参数。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称      | 参数类型                                            | 说明               |
 | ------- | ----------------------------------------------- | ---------------- |
@@ -714,7 +735,7 @@ USB设备端口。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称           | 参数类型                         | 说明                                |
 | -------------- | -------------------------------- | ----------------------------------- |
@@ -728,7 +749,7 @@ USB设备端口角色信息。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称             | 参数类型 | 说明                   |
 | ---------------- | -------- | ---------------------- |
@@ -740,7 +761,7 @@ USB设备端口角色信息。
 
 请求目标类型。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称                         | 值   | 说明   |
 | ---------------------------- | ---- | ------ |
@@ -753,7 +774,7 @@ USB设备端口角色信息。
 
 控制请求类型。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称                      | 值   | 说明   |
 | ------------------------- | ---- | ------ |
@@ -765,7 +786,7 @@ USB设备端口角色信息。
 
 请求方向。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称                        | 值   | 说明                     |
 | --------------------------- | ---- | ------------------------ |
@@ -778,7 +799,7 @@ USB设备侧功能。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称         | 值   | 说明       |
 | ------------ | ---- | ---------- |
@@ -799,7 +820,7 @@ USB端口模式类型。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称      | 值   | 说明                                                 |
 | --------- | ---- | ---------------------------------------------------- |
@@ -815,7 +836,7 @@ USB端口模式类型。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称   | 值   | 说明       |
 | ------ | ---- | ---------- |
@@ -829,7 +850,7 @@ USB端口模式类型。
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.USB.USBManager
+**系统能力：** SystemCapability.USB.USBManager
 
 | 名称   | 值   | 说明         |
 | ------ | ---- | ------------ |

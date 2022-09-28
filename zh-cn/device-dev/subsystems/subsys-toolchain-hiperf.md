@@ -138,8 +138,8 @@ Usage: hiperf record [options]
 | --no-inherit | 不监听目标线程或者进程启动的子线程。 | 
 | -p | 指定需要监听的进程。 | 
 | -t | 指定需要监听的线程。 | 
-| --offcpu | 监听cpu调度事件，它等价于&nbsp;--period&nbsp;1&nbsp;-e&nbsp;sched:sched_switch&nbsp;事件。 | 
-| -j&nbsp;&lt;_branch_filter1_&gt;[,_branch_filter2_]... | 监听分支预测事件。分支预测就是指令存在多个if&nbsp;else判定的情况下，cpu去预测下一步即将执行哪一条指令。 | 
+| --offcpu | 监听CPU调度事件，它等价于&nbsp;--period&nbsp;1&nbsp;-e&nbsp;sched:sched_switch&nbsp;事件。 | 
+| -j&nbsp;&lt;_branch_filter1_&gt;[,_branch_filter2_]... | 监听分支预测事件。分支预测就是指令存在多个if&nbsp;else判定的情况下，CPU去预测下一步即将执行哪一条指令。 | 
 | -s&nbsp;/&nbsp;--call-stack&nbsp;&lt;_fp&nbsp;\\|&nbsp;dwarf[,size]_&gt; | 设置用户栈的回栈方式，支持fp和dwarf两种方式。dwarf&nbsp;后面可以指定采样的用户堆栈大小，默认是&nbsp;65528。 | 
 | --delay-unwind | 延迟回栈，等到采样结束再进行回栈。 | 
 | --disable-unwind | 不进行回栈，用户的寄存器和堆栈数据会保存在perf.data中，供离线回栈使用。 | 

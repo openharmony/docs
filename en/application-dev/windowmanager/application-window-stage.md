@@ -56,17 +56,13 @@ In the stage model, the main window of an application is created and maintained 
 ### How to Develop
 
 1. Obtain the main window.
-   
    Call `getMainWindow` to obtain the main window of the application.
 
 2. Set the properties of the main window.
-
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the `touchable` property as an example.
 
 3. Load content for the main window.
-
    Call `loadContent` to load the page content to the main window.
-
 
 ```ts
 import Ability from '@ohos.application.Ability'
@@ -74,7 +70,7 @@ import Ability from '@ohos.application.Ability'
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         // 1. Obtain the main window of the application.
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -83,7 +79,7 @@ class MainAbility extends Ability {
             windowClass = data;
             console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
             // 2. Set the touchable property of the main window.
-            var isTouchable = true;
+            let isTouchable = true;
             windowClass.setTouchable(isTouchable, (err, data) => {
                 if (err.code) {
                     console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
@@ -113,31 +109,26 @@ You can create an application subwindow, such as a dialog box, and set its prope
 ### How to Develop
 
 1. Create or obtain a subwindow.
-   
    Call `createSubWindow` to create a subwindow.
-   
+
    Call `getSubWindow` to obtain a subwindow.
 
 2. Set the properties of the subwindow.
-
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
 
 3. Load content for the subwindow and show it.
-
    Call `loadContent` and `show` to load and display the content in the subwindow.
 
 4. Destroy the subwindow.
-
    When the subwindow is no longer needed, you can call `destroy` to destroy it.
-
-
+   
    ```ts
    import Ability from '@ohos.application.Ability'
    
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1. Create a subwindow.
-           var sub_windowClass = null;
+           let sub_windowClass = null;
            windowStage.createSubWindow("mySubWindow", (err, data) => {
                if (err.code) {
                    console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
@@ -210,26 +201,23 @@ To create a better video watching and gaming experience, you can use the immersi
 ### How to Develop
 
 1. Obtain the main window.
-   
    Call `getMainWindow` to obtain the main window of the application.
 
 2. Implement the immersive effect. You can use any of the following methods:
    - Method 1: Call `setFullScreen` to set the main window to be displayed in full screen. In this case, the navigation bar and status bar are hidden.
    - Method 2: Call `setSystemBarEnable` to hide the navigation bar and status bar.
-   - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemPropertites` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
+   - Method 3: Call `setLayoutFullScreen` to enable the full-screen mode for the main window layout. Call `setSystemProperties` to set the opacity, background color, text color, and highlighted icon of the navigation bar and status bar to ensure that their display effect is consistent with that of the main window.
 
 3. Load content for the immersive window and show it.
-
    Call `loadContent` and `show` to load and display the content in the immersive window.
-
-
+   
    ```ts
    import Ability from '@ohos.application.Ability'
    
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 1. Obtain the main window of the application.
-           var windowClass = null;
+           let windowClass = null;
            windowStage.getMainWindow((err, data) => {
                if (err.code) {
                    console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -239,7 +227,7 @@ To create a better video watching and gaming experience, you can use the immersi
                console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
    
                // 2. Use method 1 to implement the immersive effect.
-               var isFullScreen = true;
+               let isFullScreen = true;
                windowClass.setFullScreen(isFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
@@ -248,7 +236,7 @@ To create a better video watching and gaming experience, you can use the immersi
                    console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
                });
                // 2. Use method 2 to implement the immersive effect.
-               var names = [];
+               let names = [];
                windowClass.setSystemBarEnable(names, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar to be visible. Cause:' + JSON.stringify(err));
@@ -257,7 +245,7 @@ To create a better video watching and gaming experience, you can use the immersi
                    console.info('Succeeded in setting the system bar to be visible. Data: ' + JSON.stringify(data));
                });
                // 2. Use method 3 to implement the immersive effect.
-               var isLayoutFullScreen = true;
+               let isLayoutFullScreen = true;
                windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -265,7 +253,7 @@ To create a better video watching and gaming experience, you can use the immersi
                    }
                    console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
                });
-               var SystemBarProperties = {
+               let sysBarProps = {
                    statusBarColor: '#ff00ff',
                    navigationBarColor: '#00ff00',
                    // The following properties are supported since API version 7.
@@ -275,7 +263,7 @@ To create a better video watching and gaming experience, you can use the immersi
                    statusBarContentColor: '#ffffff',
                    navigationBarContentColor: '#ffffff'
                };
-               windowClass.setSystemBarProperties(SystemBarProperties, (err, data) => {
+               windowClass.setSystemBarProperties(sysBarProps, (err, data) => {
                    if (err.code) {
                        console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
                        return;
@@ -312,13 +300,10 @@ A floating window is created based on an existing task. It is always displayed i
 ### How to Develop
 
 1. Apply for permissions.
-   
    To create a floating window (of the `WindowType.TYPE_FLOAT` type), you must configure the `ohos.permission.SYSTEM_FLOAT_WINDOW` permission in the `requestPermissions` field of the `module.json5` file. For details about the file, see [Application Package Structure Configuration File](../quick-start/stage-structure.md).
 
    > **NOTE**
-   >
    > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
-
    
    ```json
    {
@@ -339,15 +324,12 @@ A floating window is created based on an existing task. It is always displayed i
    ```
 
 2. Create a floating window.
-
    Call `window.create` to create a floating window.
 
 3. Set properties for the floating window.
-
    After the floating window is created, you can set its properties, such as the size, position, background color, and brightness.
 
 4. Load content for the floating window and show it.
-
    Call `loadContent` and `show` to load and display the content in the floating window.
 
 5. Destroy the floating window.
@@ -362,8 +344,8 @@ A floating window is created based on an existing task. It is always displayed i
    class MainAbility extends Ability {
        onWindowStageCreate(windowStage) {
            // 2. Create a floating window.
-           var windowClass = null;
-           window.create(this.context, "floatWindow", window.WindowType.TYPE_FlOAT, (err, data) => {
+           let windowClass = null;
+           window.create(this.context, "floatWindow", window.WindowType.TYPE_FLOAT, (err, data) => {
                if (err.code) {
                    console.error('Failed to create the floatWindow. Cause: ' + JSON.stringify(err));
                    return;

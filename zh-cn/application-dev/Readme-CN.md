@@ -38,7 +38,7 @@
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
-    - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
+    - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)
@@ -50,6 +50,7 @@
           -   [Native API参考](reference/native-apis/Readme-CN.md)
           -   [标准库](reference/native-lib/third_party_libc/musl.md)
           -   [Node_API](reference/native-lib/third_party_napi/napi.md)
+- [常见问题](faqs/Readme-CN.md)
 - 贡献
     - [参与贡献](../contribute/贡献文档.md)
 

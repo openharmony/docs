@@ -5,7 +5,7 @@
 
 The Inter-Integrated Circuit (I2C) bus is a simple and bidirectional two-wire synchronous serial bus developed by Philips. In the Hardware Driver Foundation (HDF), the I2C module uses the unified service mode for API adaptation. In this mode, a device service is used as the I2C manager to handle external access requests in a unified manner, which is reflected in the configuration file. The unified service mode applies to the scenario where there are many device objects of the same type, for example, when the I2C module has more than 10 controllers. If the independent service mode is used, more device nodes need to be configured and memory resources will be consumed by services.
 
-  **Figure 1** Unified service mode
+**Figure 1** Unified service mode
 
   ![image](figures/unified-service-mode.png "I2C Unified Service Mode")
 
@@ -59,42 +59,46 @@ The I2C module adaptation involves the following steps:
 
 The following uses **i2c_hi35xx.c** as an example to present the information required for implementing device functions.
 
-1. Instantiate the driver entry.<br/>The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+1. Instantiate the driver entry.
+   
+   The driver entry must be a global variable of the **HdfDriverEntry** type (defined in **hdf_device_desc.h**), and the value of **moduleName** must be the same as that in **device_info.hcs**. In the HDF, the start address of each **HdfDriverEntry** object of all loaded drivers is collected to form a segment address space similar to an array for the upper layer to invoke.
+   
    Generally, the HDF calls the **Bind** function and then the **Init** function to load a driver. If **Init()** fails to be called, the HDF calls **Release()** to release driver resources and exit.
-
+   
    I2C driver entry example:
-
+   
    An I2C controller may be connected with multiple devices. You need to create a manager object in the HDF and publish a manager service to handle external access requests in a unified manner. Before a device is used, the manager service must be obtained first. Then, the manager service locates the target device based on the specified parameters.
-
+   
    The driver of the I2C manager is implemented by the core layer. Vendors do not need to care about the implementation of this part. However, the **Init** function must call the **I2cCntlrAdd** function of the core layer to implement corresponding features.
-
    
    ```
    struct HdfDriverEntry g_i2cDriverEntry = {
        .moduleVersion = 1,
        .Init = Hi35xxI2cInit,
        .Release = Hi35xxI2cRelease,
-       .moduleName = "hi35xx_i2c_driver",// (Mandatory) The value must be the same as that in the config.hcs file.
+       .moduleName = "hi35xx_i2c_driver",        // (Mandatory) The value must be the same as that in the config.hcs file.
    };
-   HDF_INIT(g_i2cDriverEntry);           // Call HDF_INIT to register the driver entry with the HDF.
-   
+   HDF_INIT(g_i2cDriverEntry);                   // Call HDF_INIT to register the driver entry with the HDF.
+      
    // Driver entry of the i2c_core.c manager service at the core layer
    struct HdfDriverEntry g_i2cManagerEntry = {
        .moduleVersion = 1,
        .Bind = I2cManagerBind,
        .Init = I2cManagerInit,
        .Release = I2cManagerRelease,
-       .moduleName = "HDF_PLATFORM_I2C_MANAGER",// This parameter corresponds to device0 in the device_info file.
+       .moduleName = "HDF_PLATFORM_I2C_MANAGER", // This parameter corresponds to device0 in the device_info file.
    };
    HDF_INIT(g_i2cManagerEntry);
    ```
+   
+      
 
 2. Add the **deviceNode** information to the **device_info.hcs** file and configure the device attributes in the **i2c_config.hcs** file. 
-   
+
    The **deviceNode** information is related to registration of the driver entry. The device attribute values are closely related to the driver implementation and the default values or value ranges of the **I2cCntlr** members at the core layer.
-   
+
    In the unified service mode, the first device node in the **device_info** file must be the I2C manager. The table below lists the settings of its parameters.
-   
+
    **Table 2** Settings of the I2C manager   
 
    | Parameter| Value|
@@ -102,12 +106,12 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
    | moduleName | **HDF_PLATFORM_I2C_MANAGER**|
    | serviceName | **HDF_PLATFORM_I2C_MANAGER**|
    | policy | **1** or **2**, depending on whether the service is published to the user mode.|
-   | deviceMatchAttr | This parameter is reserved.|
+   | deviceMatchAttr | Reserved|
 
-    Configure I2C controller information from the second node. This node specifies a type of I2C controllers rather than a specific I2C controller. The controllers are distinguishes by **busID** and **reg_pbase**, which can be seen in the **i2c_config** file.
+   Configure I2C controller information from the second node. This node specifies a type of I2C controllers rather than a specific I2C controller. The controllers are distinguishes by **busID** and **reg_pbase**, which can be seen in the **i2c_config** file.
 
    - **device_info.hcs** configuration example
-   
+
      
      ```
      root {
@@ -123,21 +127,21 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
              deviceMatchAttr = "hdf_platform_i2c_manager";
          }
          device1 :: deviceNode {
-              policy = 0;                                // The value 0 indicates that no service needs to be published.
-             priority = 55;                              // Driver startup priority.
-             permission = 0644;                          // Permission for the driver to create a device node.
+             policy = 0;                               // The value 0 indicates that no service needs to be published.
+             priority = 55;                             // Driver startup priority.
+             permission = 0644;                         // Permission for the driver to create a device node.
              moduleName = "hi35xx_i2c_driver";          // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
              serviceName = "HI35XX_I2C_DRIVER";         // (Mandatory) Unique name of the service published by the driver.
-              deviceMatchAttr = "hisilicon_hi35xx_i2c"; // (Mandatory) Used to configure the private data of the controller. The value must be the same as the controller information in i2c_config.hcs.
-                                                       //The specific controller information is stored in i2c_config.hcs.
+             deviceMatchAttr = "hisilicon_hi35xx_i2c"; // (Mandatory) Used to configure the private data of the controller. The value must be the same as the controller information in i2c_config.hcs.
+                                                        //The specific controller information is stored in i2c_config.hcs.
          }
          }
      }
      }
      ```
-   
+
    - **i2c_config.hcs** configuration example
-   
+
      
      ```
      root {
@@ -182,7 +186,7 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
           uint32_t clk;                     // (Optional) Customized.
           uint32_t freq;                    // (Optional) Customized.
           uint32_t irq;                     // (Optional) Customized.
-          uint32_t regBasePhy               // (Mandatory) Physical base address of the register.
+          uint32_t regBasePhy;              // (Mandatory) Physical base address of the register.
       };
       
       // I2cCntlr is a controller structure at the core layer. The Init function assigns values to the members of I2cCntlr.
@@ -205,19 +209,19 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
       };
       
       static const struct I2cLockMethod g_lockOps = {
-          .lock = Hi35xxI2cLock, // Lock function
-          .unlock = Hi35xxI2cUnlock,// Unlock function
+          .lock = Hi35xxI2cLock,     // Lock function
+          .unlock = Hi35xxI2cUnlock, // Unlock function
       };
       ```
    - **Init** function
 
-      Input parameter:
+      **Input parameter**:
 
       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
 
-      Return value:
+      **Return value**:
 
-      HDF_STATUS<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
+      **HDF_STATUS**<br/>The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
 
       **Table 3** HDF_STATUS
       
@@ -230,7 +234,7 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
       | HDF_SUCCESS | Transmission successful.|
       | HDF_FAILURE | Transmission failed.|
 
-      Function description:
+      **Function description**:
 
       Initializes the custom structure object and **I2cCntlr**, calls the **I2cCntlrAdd** function at the core layer, and mounts the VFS (optional).
 
@@ -255,20 +259,20 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
           ... 
           hi35xx->regBase = OsalIoRemap(hi35xx->regBasePhy, hi35xx->regSize); // Address mapping.
           ... 
-          Hi35xxI2cCntlrInit(hi35xx);         // (Mandatory) Initialize the I2C device.
+          Hi35xxI2cCntlrInit(hi35xx);           // (Mandatory) Initialize the I2C device.
           
-          hi35xx->cntlr.priv = (void *)node;  // (Mandatory) Device attributes.
-          hi35xx->cntlr.busId = hi35xx->bus; // (Mandatory) Initialize busId in I2cCntlr.
-           hi35xx->cntlr.ops = &g_method;      // (Mandatory) Hook the I2cMethod instance.
-           hi35xx->cntlr.lockOps = &g_lockOps; // (Mandatory) Hook the I2cLockMethod instance.
-          (void)OsalSpinInit(&hi35xx->spin); // (Mandatory) Initialize the lock.
-            ret = I2cCntlrAdd(&hi35xx->cntlr);  // (Mandatory) Call this function to set the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
+          hi35xx->cntlr.priv = (void *)node;    // (Mandatory) Device attributes.
+          hi35xx->cntlr.busId = hi35xx->bus;    // (Mandatory) Initialize busId in I2cCntlr.
+          hi35xx->cntlr.ops = &g_method;       // (Mandatory) Hook the I2cMethod instance.
+          hi35xx->cntlr.lockOps = &g_lockOps;  // (Mandatory) Hook the I2cLockMethod instance.
+          (void)OsalSpinInit(&hi35xx->spin);    // (Mandatory) Initialize the lock.
+          ret = I2cCntlrAdd(&hi35xx->cntlr);  // (Mandatory) Call this function to set the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
           ...
       #ifdef USER_VFS_SUPPORT
           (void)I2cAddVfsById(hi35xx->cntlr.busId);// (Optional) Mount the user-level VFS if required.
       #endif
           return HDF_SUCCESS;
-       __ERR__:                       // If the operation fails, execute the initialization functions reversely.
+       __ERR__:                                    // If the operation fails, execute the initialization functions reversely.
           if (hi35xx != NULL) {
               if (hi35xx->regBase != NULL) {
                   OsalIoUnmap((void *)hi35xx->regBase);
@@ -282,15 +286,15 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
       ```
    - **Release** function
 
-      Input parameter:
+      **Input parameter**:
 
       **HdfDeviceObject**, an interface parameter exposed by the driver, contains the .hcs information.
 
-      Return value:
+      **Return value**:
 
       No value is returned.
 
-      Function description:
+      **Function description**:
 
       Releases the memory and deletes the controller. This function assigns values to the **Release** function in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
 
