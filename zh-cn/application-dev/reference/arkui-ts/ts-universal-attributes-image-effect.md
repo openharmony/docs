@@ -66,7 +66,7 @@ struct BlurEffectsExample {
 ![textblur](figures/textblur.png)
 
 ### 示例2
-图片效果属性的用法，阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
+设置图片的效果，包括阴影，灰度，高光，饱和度，对比度，图像反转，叠色，色相旋转等。
 ```ts
 // xxx.ets
 @Entry

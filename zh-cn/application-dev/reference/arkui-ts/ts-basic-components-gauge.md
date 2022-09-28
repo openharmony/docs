@@ -21,7 +21,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 数据图表的值，图中指针指向位置。用于组件创建时数据图表值的预置。 |
+| value | number | 是 | 量规图的当前数据值，即图中指针指向位置。用于组件创建时量规图初始值的预置。 |
 | min | number | 否 | 当前数据段最小值。<br/>默认值：0 |
 | max | number | 否 | 当前数据段最大值。<br/>默认值：100 |
 
@@ -31,11 +31,11 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| value | number | 设置当前数据图表的值，用于组件创建完成后数据图表值的设置。<br/>默认值：0 |
+| value | number | 设置量规图的数据值，可用于动态修改量规图的数据值。<br/>默认值：0 |
 | startAngle | number | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：0 |
 | endAngle | number | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：360 |
-| colors | Array&lt;[ColorStop](#colorstop)&gt; | 设置图表的颜色，支持分段颜色设置。 |
-| strokeWidth | Length | 设置环形图表的环形厚度。 |
+| colors | Array&lt;[ColorStop](#colorstop)&gt; | 设置量规图的颜色，支持分段颜色设置。 |
+| strokeWidth | Length | 设置环形量规图的环形厚度。 |
 
 ## ColorStop
 

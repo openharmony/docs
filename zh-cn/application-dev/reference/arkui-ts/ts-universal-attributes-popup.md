@@ -45,8 +45,8 @@
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {

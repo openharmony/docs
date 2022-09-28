@@ -1,6 +1,6 @@
 # 触摸热区设置
 
-适用于支持通用点击事件、通用触摸事件、通用手势处理的组件的触摸热区设置。
+适用于支持通用点击事件、通用触摸事件、通用手势处理的组件。
 
 
 >  **说明：**
@@ -19,10 +19,10 @@
 ## Rectangle对象说明
 | 名称        | 类型                       | 必填   | 描述                             |
 | ------ | ----------------------------- | -----| -------------------------------- |
-| x      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左边沿的x轴坐标。<br/>默认值：0vp |
-| y      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件上边沿的y轴坐标。<br/>默认值：0vp |
-| width  | [Length](ts-types.md#length)  | 否   | 触摸热区的宽度。<br/>默认值：100% |
-| height | [Length](ts-types.md#length) | 否   | 触摸热区的高度。<br/>默认值：100% |
+| x      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的x轴坐标。<br/>默认值：0vp |
+| y      | [Length](ts-types.md#length)  | 否   | 触摸点相对于组件左上角的y轴坐标。<br/>默认值：0vp |
+| width  | [Length](ts-types.md#length)  | 否   | 触摸热区的宽度。<br/>默认值：'100%' |
+| height | [Length](ts-types.md#length) | 否   | 触摸热区的高度。<br/>默认值：'100%' |
 
   >  **说明：**
   >
@@ -30,7 +30,7 @@
   >
   >  width和height只能设置正值百分比。width：'100%'表示热区宽度设置为该组件本身的宽度。比如组件本身宽度是100vp，那么'100%'表示热区宽度也为100vp。height：'100%'表示热区高度设置为该组件本身的高度。
   >
-  >  百分比相对于组件本身宽高计算。
+  >  百分比相对于组件自身宽高进行计算。
 
 
 ## 示例
@@ -40,7 +40,7 @@
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = ""
+  @State text: string = "";
 
   build() {
     Column({ space: 20 }) {
@@ -49,7 +49,7 @@ struct TouchTargetExample {
       Button("button1")
         .responseRegion({ x: 0, y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button1 clicked'
+          this.text = 'button1 clicked';
         })
 
       // 热区宽度为按钮的一半，且右移一个按钮宽度，点击button2右侧左边，点击事件生效
@@ -57,14 +57,14 @@ struct TouchTargetExample {
       Button("button2")
         .responseRegion({ x: '100%', y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button2 clicked'
+          this.text = 'button2 clicked';
         })
       // 热区大小为整个按钮，且下移一个按钮高度，点击button3下方按钮大小区域，点击事件生效
       Text("{x:0,y:'100%',width:'100%',height:'100%'}")
       Button("button3")
         .responseRegion({ x: 0, y: '100%', width: '100%', height: '100%' })
         .onClick(() => {
-          this.text = 'button3 clicked'
+          this.text = 'button3 clicked';
         })
 
       Text(this.text).margin({ top: 50 })
