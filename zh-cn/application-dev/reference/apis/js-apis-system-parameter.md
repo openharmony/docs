@@ -165,6 +165,14 @@ setSync(key: string, value: string): void
 | key | string | 是 | 待设置的系统参数Key。 |
 | value | string | 是 | 待设置的系统参数值。 |
 
+**说明：**
+
+1、此接口只能用于系统应用的参数设置
+
+2、所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:
+
+https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md
+
 **示例：**
 
 ```ts
@@ -191,6 +199,14 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 | key | string | 是 | 待设置的系统参数Key。 |
 | value | string | 是 | 待设置的系统参数值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
+
+**说明：**
+
+1、此接口只能用于系统应用的参数设置
+
+2、所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:
+
+https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md
 
 **示例：**
 
@@ -228,6 +244,14 @@ set(key: string, value: string): Promise&lt;void&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise示例，用于异步获取结果。 |
+
+**说明：**
+
+1、此接口只能用于系统应用的参数设置
+
+2、所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:
+
+https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md
 
 **示例：**
 
