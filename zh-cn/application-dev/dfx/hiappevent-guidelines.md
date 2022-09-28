@@ -120,12 +120,12 @@
                  // 根据设置阈值大小去获取订阅事件包（返回的事件包对象为null，表示当前订阅数据被全部取出）
                  while ((eventPkg = holder.takeNext()) != null) {
                    // 对获取的订阅事件包进行解析，并将解析结果打印在Log界面
-                   console.info('HiAppEvent eventPkg.packageId=' + eventPkg.packageId);
-                   console.info('HiAppEvent eventPkg.row=' + eventPkg.row);
-                   console.info('HiAppEvent eventPkg.size=' + eventPkg.size);
+                   console.info(`HiAppEvent eventPkg.packageId=${eventPkg.packageId}`);
+                   console.info(`HiAppEvent eventPkg.row=${eventPkg.row}`);
+                   console.info(`HiAppEvent eventPkg.size=${eventPkg.size}`);
                    // 对订阅事件包中的事件字符串数组进行遍历解析
                    for (const eventInfo of eventPkg.data) {
-                     console.info('HiAppEvent eventPkg.data=' + eventInfo);
+                     console.info(`HiAppEvent eventPkg.data=${eventInfo}`);
                    }
                  }
                }
