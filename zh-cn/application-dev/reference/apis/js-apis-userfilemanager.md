@@ -278,6 +278,8 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 
 创建文件资源，使用callback方式返回结果。
 
+此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
@@ -314,6 +316,8 @@ async function createAssetDemoCallback() {
 createAsset(mediaType: MediaType, displayName: string, relativePath: string): Promise&lt;FileAsset>;
 
 创建文件资源，使用Promise方式返回结果。
+
+此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -355,6 +359,8 @@ async function createAssetDemoPromise() {
 deleteAsset(uri: string, callback: AsyncCallback&lt;void>): void;
 
 删除文件资源，使用callback方式返回结果。
+
+此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -405,6 +411,8 @@ deleteAsset(uri: string): Promise&lt;void>;
 
 创建文件资源，使用Promise方式返回结果。
 
+此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
@@ -453,13 +461,13 @@ async function deleteAssetDemoPromise() {
 
 ### getAlbums
 
-getAlbums(type: Array&lt;MediaType>, options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album>>): void;
+getAlbums(type: Array&lt;MediaType&gt;, options: MediaFetchOptions, callback: AsyncCallback<Array&lt;Album&gt;&gt;): void;
 
 获取相册列表，使用callback 方式返回结果。
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.READ_DOCUMENT
 
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **参数**
 
@@ -496,9 +504,9 @@ getAlbums(type: Array&lt;MediaType>, options: MediaFetchOptions): Promise<Array&
 
 获取相册列表，使用 promise 方式返回结果。
 
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
-
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.READ_DOCUMENT
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **参数**
 
@@ -539,7 +547,9 @@ getPrivateAlbum(type: VirtualAlbumType, callback: AsyncCallback<Array&lt;Virtual
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
 
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.READ_DOCUMENTS
 
@@ -589,7 +599,9 @@ getPrivateAlbum(type: VirtualAlbumType):  Promise<Array&lt;VirtualAlbum&gt;>
 
 获取系统相册，使用 Promise 方式返回系统相册的数组。
 
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.READ_DOCUMENTS
 
@@ -643,6 +655,8 @@ getActivePeers(callback: AsyncCallback<Array&lt;PeerInfo>>): void;
 
 获取在线对端设备的信息，使用callback方式返回异步结果。
 
+此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
 **参数：**
@@ -674,6 +688,8 @@ async function getActivePeersDemoCallback() {
 getActivePeers(): Promise<Array&lt;PeerInfo>>;
 
 获取在线对端设备的信息，使用promise方式返回异步结果。
+
+此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
@@ -710,6 +726,8 @@ getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo>>): void;
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
 
+此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
 **参数：**
@@ -741,6 +759,8 @@ async function getAllPeersDemoCallback() {
 getAllPeers(): Promise<Array&lt;PeerInfo>>;
 
 获取所有对端设备的信息，使用promise方式返回异步结果。
+
+此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
@@ -808,7 +828,7 @@ release(): Promise&lt;void&gt;
 释放UserFileManager实例。
 当后续不需要使用UserFileManager 实例中的方法时调用。
 
-**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **返回值：**
 
@@ -840,27 +860,9 @@ async function releaseDemoPromise() {
 
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| id                        | number                   | 是   | 否   | 文件资源编号                                           |
 | uri                       | string                   | 是   | 否   | 文件资源uri（如：dataability:///media/image/2)         |
-| mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
-| MediaType   | [MediaType](#mediatype) | 是   | 否   | 媒体类型                                               |
+| mediaType   | [MediaType](#mediatype) | 是   | 否   | 媒体类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |
-| title                     | string                   | 是   | 是   | 文件标题                                               |
-| relativePath | string                   | 是   | 是   | 相对公共目录路径                                       |
-| parent       | number                   | 是   | 否   | 父目录id                                               |
-| [size](#size)                      | number                   | 是   | 否   | 文件大小（单位：字节）                                 |
-| dateAdded                 | number                   | 是   | 否   | 添加日期（添加文件时间到1970年1月1日的秒数值）         |
-| dateModified              | number                   | 是   | 否   | 修改日期（修改文件时间到1970年1月1日的秒数值）         |
-| dateTaken                 | number                   | 是   | 否   | 拍摄日期（文件拍照时间到1970年1月1日的秒数值）         |
-| artist       | string                   | 是   | 否   | 作者                                                   |
-| audioAlbum   | string                   | 是   | 否   | 专辑                                                   |
-| width                     | number                   | 是   | 否   | 图片宽度（单位：像素）                                 |
-| height                    | number                   | 是   | 否   | 图片高度（单位：像素）                                 |
-| orientation               | number                   | 是   | 是   | 图片显示方向（顺时针旋转角度，如0，90，180  单位：度） |
-| duration     | number                   | 是   | 否   | 持续时间（单位：毫秒）                                   |
-| albumId                   | number                   | 是   | 否   | 文件所归属的相册编号                                   |
-| albumUri     | string                   | 是   | 否   | 文件所归属相册uri                                      |
-| albumName                 | string                   | 是   | 否   | 文件所归属相册名称                                     |
 
 
 ### isDirectory
@@ -868,8 +870,6 @@ async function releaseDemoPromise() {
 isDirectory(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断fileAsset是否为目录，使用callback方式返回异步结果。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -906,8 +906,6 @@ isDirectory():Promise&lt;boolean&gt;
 
 判断fileAsset是否为目录，使用Promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
-
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **返回值：**
@@ -920,8 +918,8 @@ isDirectory():Promise&lt;boolean&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let imageType = mediaLibrary.MediaType.IMAGE;
+    let fileKeyObj = userfile_manager.FileKey
+    let imageType = userfile_manager.MediaType.IMAGE;
     let getImageOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [imageType.toString()],
@@ -1201,7 +1199,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1238,7 +1236,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取文件的缩略图，传入缩略图尺寸，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1277,7 +1275,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 获取文件的缩略图，传入缩略图尺寸，使用promise方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1408,8 +1406,6 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断该文件是否为收藏文件，使用callback方式返回异步结果。
 
-**需要权限**：ohos.permission.READ_MEDIA
-
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **参数：**
@@ -1448,8 +1444,6 @@ async function example() {
 isFavorite():Promise&lt;boolean&gt;
 
 判断该文件是否为收藏文件，使用promise方式返回异步结果。
-
-**需要权限**：ohos.permission.READ_MEDIA
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2048,78 +2042,6 @@ async function example() {
 }
 ```
 
-### getAllObject
-
-getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
-
-获取文件检索结果中的所有文件资产。此方法使用Callback回调来返回FileAsset结果集。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**参数**：
-
-| 参数名       | 类型                                       | 必填   | 说明                   |
-| -------- | ---------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback<Array<[FileAsset](#fileasset)>> | 是    | 异步返回FileAsset列表之后的回调 |
-
-**示例**：
-
-```js
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + " DESC",
-        extendArgs: "",
-    };
-	  let userFileMgr = userfile_manager.getUserFileMgr(context);
-    let fetchFileResult = await userFileMgr.getFileAssets(getImageOp);
-    fetchFileResult.getAllObject((err, fileAsset) => {
-        if (err) {
-            console.error('Failed ');
-            return;
-        }
-        for (let i = 0; i < fetchFileResult.getCount(); i++) {
-            console.log('fileAsset.displayName : ' + fileAsset[i].displayName);
-        } 
-    })
-}
-```
-
-### getAllObject
-
-getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
-
-获取文件检索结果中的所有文件资产。此方法使用Promise来返回FileAsset结果集。
-
-**系统能力**：SystemCapability.FileManagement.UserFileManager.Core
-
-**返回值**：
-
-| 类型                                     | 说明                  |
-| ---------------------------------------- | --------------------- |
-| Promise<Array<[FileAsset](#fileasset)>> | 返回FileAsset对象列表 |
-
-**示例**：
-
-```js
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let getImageOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-        order: fileKeyObj.DATE_ADDED + " DESC",
-        extendArgs: "",
-    };
-	  let userFileMgr = userfile_manager.getUserFileMgr(context);
-    let fetchFileResult = await userFileMgr.getFileAssets(getImageOp);
-    var data = fetchFileResult.getAllObject();
-}
-```
-
 ## Album
 
 实体相册
@@ -2230,7 +2152,7 @@ getFileAssets(type: Array&lt;MediaType&gt;, callback: AsyncCallback&lt;FetchFile
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2269,7 +2191,7 @@ getFileAssets(type: Array&lt;MediaType&gt;, options: MediaFetchOptions, callback
 
 按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2313,7 +2235,7 @@ getFileAssets(type: Array&lt;MediaType&gt;, options?: MediaFetchOptions): Promis
 
 按照检索条件获取相册中的文件。此方法使用异步Promise来返回文件结果集。
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
 
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -2363,7 +2285,9 @@ getFileAssets(type: Array&lt;MediaType&gt;, options: MediaFetchOptions, callback
 
 按照检索条件获取虚拟相册中的文件。此方法使用Callback回调来返回文件结果集。
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
+此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENTS
 
 > 说明：
 > 本接口所需申请的分类的权限APL等级为system_basic。APL等级为normal的应用需要通过ACL证书方式申请，申请方式请参考[ACL说明](../../security/accesstoken-overview.md#访问控制列表acl说明)
@@ -2407,11 +2331,13 @@ async function virtualAlbumGetFileAssetsDemoCallback() {
 ```
 
 ### getFileAssets
-getFileAssets(type: Array&lt;MediaType&gt;, options?: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
+getFileAssets(type: Array&lt;MediaType&gt;, options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;;
 
-按照检索条件获取虚拟相册中的文件。此方法使用异步Promise来返回文件结果集。
+按照检索条件获取虚拟相中的文件。此方法使用异步Promise来返回文件结果集。
 
-**需要权限**：ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO 或 ohos.permission.WRITE_DOCUMENT
+此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENTS
 
 > 说明：
 > 本接口所需申请的分类的权限APL等级为system_basic。APL等级为normal的应用需要通过ACL证书方式申请，申请方式请参考[ACL说明](../../security/accesstoken-overview.md#访问控制列表acl说明)
@@ -2463,8 +2389,6 @@ async function virtualAlbumGetFileAssetsDemoPromise() {
 | deviceName | string                     | 是   | 否   | 注册设备的名称   |
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID |
 | isOnline   | boolean                    | 是   | 否   | 是否在线         |
-
-
 
 ## MediaType
 
@@ -2569,15 +2493,11 @@ async function virtualAlbumGetFileAssetsDemoPromise() {
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | selections              | string              | 是   | 是   | 是   | 检索条件，使用[FileKey](#filekey)中的枚举值作为检索条件的列名。示例：<br />selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?‘, |
 | selectionArgs           | Array&lt;string&gt; | 是   | 是   | 是   | 检索条件的值，对应selections中检索条件列的值。<br />示例：<br />selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | 是   | 是   | 否   | 检索结果排序方式，使用[FileKey](#filekey)中的枚举值作为检索结果排序的列，可以用升序或降序排列。示例：<br />升序排列：order: mediaLibrary.FileKey.DATE_ADDED + " AESC"<br />降序排列：order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
-| uri        | string              | 是   | 是   | 否   | 文件URI                                                      |
-| networkId  | string              | 是   | 是   | 否   | 注册设备网络ID                                               |
-| extendArgs | string              | 是   | 是   | 否   | 扩展的检索参数，目前没有扩展检索参数                         |
 
 ## Size
 
 图片尺寸。
-系统能力： 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
 | 名称     | 类型     | 可读   | 可写   | 说明       |
 | ------ | ------ | ---- | ---- | -------- |
@@ -2587,10 +2507,12 @@ async function virtualAlbumGetFileAssetsDemoPromise() {
 ## VirtualAlbumType
 枚举，系统相册或虚拟相册类型
 
+以下接口均为系统接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.FileManagement.UserFileManager.Core
 
 | 名称          |  说明               |
 | ------------- |  ------------------ |
-| TYPE_FAVORITE    | 系统相册：收藏夹相册 |
-| TYPE_TRASH       | 系统相册：回收站相册 |
+| TYPE_FAVORITE    | 系统相册：收藏夹相册<br/>该接口为系统接口。 |
+| TYPE_TRASH       | 系统相册：回收站相册<br/>该接口为系统接口。 |
 
