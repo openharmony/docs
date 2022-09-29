@@ -1667,7 +1667,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    imagePackerApi.packing(pixelmap, packOpts, data => { 
         console.log('Succeeded in packing the image.');
     })
 })
@@ -1702,7 +1702,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts)
+    imagePackerApi.packing(pixelmap, packOpts)
         .then( data => {
             console.log('Succeeded in packing the image.');
         }).catch(error => {
