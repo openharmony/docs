@@ -66,18 +66,19 @@ struct CheckboxExample {
   build() {
     Scroll() {
       Column() {
+        // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
             .selectedColor(0xed6f21)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("TextPicker::dialogResult is" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName))
             })
-          Text('select all').fontSize(20)
+          Text('Select All').fontSize(20)
         }
 
+        // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
-            .select(true)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
@@ -85,9 +86,9 @@ struct CheckboxExample {
           Text('Checkbox1').fontSize(20)
         }
 
+        // 选项2
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-            .select(false)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
@@ -95,9 +96,9 @@ struct CheckboxExample {
           Text('Checkbox2').fontSize(20)
         }
 
+        // 选项3
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox3', group: 'checkboxGroup' })
-            .select(true)
             .selectedColor(0x39a2db)
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
@@ -109,4 +110,8 @@ struct CheckboxExample {
   }
 }
 ```
-![](figures/checkboxgroup.gif)
+多选框组三种状态图示：
+
+![](figures/checkboxgroup1.png)
+![](figures/checkboxgroup2.png)
+![](figures/checkboxgroup3.png)
