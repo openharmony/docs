@@ -4488,5 +4488,3 @@ x509CrlEntry.getRevocationDate().then(date => {
     Console.log("getRevocationDate failed, errCode: " + error.code + ", errMsg: " + error.message);
 });
 ```
-
-<!--no_check-->
