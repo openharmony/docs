@@ -1076,9 +1076,9 @@ const data = new ArrayBuffer(112);
 const imageSourceApi = image.createImageSource(data);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1100,12 +1100,12 @@ createIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
-## image.createIncrementalSource<sup>9+</sup>
+## image.CreateIncrementalSource<sup>9+</sup>
 
-createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
+CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 通过缓冲区以增量的方式创建图片源实例。
 
@@ -1128,7 +1128,7 @@ createIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceIncrementalSApi = image.createIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1667,7 +1667,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts, data => { 
+    imagePackerApi.packing(pixelmap, packOpts, data => { 
         console.log('Succeeded in packing the image.');
     })
 })
@@ -1702,7 +1702,7 @@ let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelmap) => {
     let packOpts = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelMapApi, packOpts)
+    imagePackerApi.packing(pixelmap, packOpts)
         .then( data => {
             console.log('Succeeded in packing the image.');
         }).catch(error => {
