@@ -33,20 +33,25 @@ TapGesture(value?: { count?: number, fingers?: number })
 @Entry
 @Component
 struct TapGestureExample {
-  @State value: string = ''
+  @State value: string = '';
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('Click twice')
+    Column() {
+      // 单指双击文本触发手势事件
+      Text('Click twice').fontSize(28)
+        .gesture(
+        TapGesture({ count: 2 })
+          .onAction((event: GestureEvent) => {
+            this.value = JSON.stringify(event.fingerList[0]);
+          })
+        )
       Text(this.value)
     }
-    .height(200).width(300).padding(60).border({ width: 1 }).margin(30)
-    .gesture(
-      TapGesture({ count: 2 })
-        .onAction(() => {
-          this.value = 'TapGesture onAction'
-        })
-    )
+    .height(200)
+    .width(300)
+    .padding(20)
+    .border({ width: 3 })
+    .margin(30)
   }
 }
 ```

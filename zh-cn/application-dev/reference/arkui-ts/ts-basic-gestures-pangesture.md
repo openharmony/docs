@@ -73,30 +73,57 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 @Entry
 @Component
 struct PanGestureExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .translate({ x: this.offsetX, y: this.offsetY, z: 5 })
-    .gesture(
-      PanGesture({})
+    Column() {
+      Column() {
+        Text('PanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin(50)
+      .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
+      // 左右拖动触发该手势事件
+      .gesture(
+      PanGesture(this.panOption)
         .onActionStart((event: GestureEvent) => {
-          console.info('Pan start')
+          console.info('Pan start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.offsetX = event.offsetX
-          this.offsetY = event.offsetY
+          this.offsetX = this.positionX + event.offsetX;
+          this.offsetY = this.positionY + event.offsetY;
         })
         .onActionEnd(() => {
-          console.info('Pan end')
+          this.positionX = this.offsetX;
+          this.positionY = this.offsetY;
+          console.info('Pan end');
         })
-    )
+      )
+
+      Button('修改PanGesture触发条件')
+        .onClick(() => {
+          // 将PanGesture手势事件触发条件改为双指以任意方向拖动
+          this.panOption.setDirection(PanDirection.All);
+          this.panOption.setFingers(2);
+        })
+    }
   }
 }
 ```
 
-![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.gif)
+示意图：
+
+向左拖动：
+
+![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
+
+点击按钮修改PanGesture触发条件，双指向左下方拖动：
+
+ ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png)
