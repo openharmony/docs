@@ -25,26 +25,26 @@ Not supported
 
 ## APIs
 
-AbilityComponent(value: {want : Want})
+AbilityComponent(want: Want)
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| want | [Want](../../reference/apis/js-apis-application-Want.md) | Yes| - | Description of the default ability to load.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](../apis/js-apis-application-Want.md) | Yes| Description of the default ability to load.|
 
 
 ## Events
 
 ### onConnect
 
-onConnect()&nbsp;=&gt;&nbsp;void
+onConnect(callback:() =&gt; void)
 
 Called when this **\<AbilityComponent>** is started. You can then use APIs in the **\<AbilityComponent>**.
 
 ### onDisconnect
 
-onDisconnect()&nbsp;=&gt;&nbsp;void
+onDisconnect(callback:() =&gt; void)
 
 Called when this **\<AbilityComponent>** is destroyed.
 

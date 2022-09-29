@@ -8,7 +8,7 @@ Double-ended queue (deque) is a sequence container implemented based on the queu
 
 **Queue** follows the principle of FIFO only and allows element removal at the front and insertion at the rear.
 
-**Vector** supports insertion and deletion of elements in between, as well asat both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
+**Vector** supports insertion and deletion of elements in between, as well as at both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
 
 **Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 

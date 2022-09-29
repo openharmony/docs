@@ -357,7 +357,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  var data = new Date("October 13, 2020 11:13:00");
+  var data = new Date();
   systemTime.setDate(data,(error, data) => {       
       if (error) {            
       console.error('failed to systemTime.setDate because ' + JSON.stringify(error));           
@@ -393,7 +393,7 @@ setDate(date: Date): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  var data = new Date("October 13, 2020 11:13:00"); 
+  var data = new Date(); 
   systemTime.setDate(data).then((value) => {        
       console.log(`systemTime.setDate success data : ` + JSON.stringify(value));    
   }).catch((error) => {        

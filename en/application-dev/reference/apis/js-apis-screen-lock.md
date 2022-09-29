@@ -24,9 +24,10 @@ Checks whether the screen is locked. This API uses an asynchronous callback to r
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns **true** if the screen is locked; returns **false** otherwise.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the screen is locked; returns **false** otherwise.|
 
 **Example**
 
@@ -50,6 +51,7 @@ Checks whether the screen is locked. This API uses a promise to return the resul
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
@@ -77,9 +79,10 @@ Checks whether a device is in secure mode. This API uses an asynchronous callbac
 
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Returns **true** if the device is in secure mode; returns **false** otherwise.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the device is in secure mode; returns **false** otherwise.|
 
 **Example**
 
@@ -103,6 +106,7 @@ Checks whether a device is in secure mode. This API uses a promise to return the
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
@@ -130,9 +134,10 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation failed, an error message is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
@@ -156,6 +161,7 @@ Unlocks the screen. This API uses a promise to return the result.
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
@@ -173,7 +179,7 @@ Unlocks the screen. This API uses a promise to return the result.
 
 ## screenlock.lockScreen<sup>9+</sup>
 
-lockScreen(callback: AsyncCallback&lt;void&gt;): void
+lockScreen(callback: AsyncCallback&lt;boolean&gt;): void
 
 
 Locks the screen. This API uses an asynchronous callback to return the result.
@@ -184,9 +190,10 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation failed, an error message is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, an error message is returned.|
 
 **Example**
 
@@ -202,7 +209,7 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 
 ## screenlock.lockScreen<sup>9+</sup>
 
-lockScreen(): Promise&lt;void&gt;
+lockScreen(): Promise&lt;boolean&gt;
 
 Locks the screen. This API uses a promise to return the result.
 
@@ -238,6 +245,7 @@ Subscribes to screen lock status changes.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.|
@@ -262,6 +270,7 @@ Subscribes to screen lock status changes.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
@@ -285,6 +294,7 @@ Subscribes to screen lock status changes.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **"screenlockEnabled"**: Screen lock is enabled.|
@@ -310,6 +320,7 @@ Unsubscribes from screen lock status changes.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.<br>- **"screenlockEnabled"**: Screen lock is enabled.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
@@ -334,6 +345,7 @@ Sends an event to the screen lock service. This API uses an asynchronous callbac
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | String | Yes| Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
@@ -359,12 +371,14 @@ Sends an event to the screen lock service. This API uses a promise to return the
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | String | Yes| Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
 | parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **1**: The unlock failed.<br>- **2**: The unlock was canceled.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise\<boolean\> | Promise used to return the result.|

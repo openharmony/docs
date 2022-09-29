@@ -24,19 +24,21 @@ Prints the input content in a formatted string.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | format | string | Yes| Format of the string to print.|
 | ...args | Object[] | No| Data to format.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | String in the specified format.|
 
 **Example**
   ```js
-  var res = util.printf("%s", "hello world!");
+  let res = util.printf("%s", "hello world!");
   console.log(res);
   ```
 
@@ -50,19 +52,21 @@ Obtains detailed information about a system error code.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | errno | number | Yes| Error code generated.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | Detailed information about the error code.|
 
 **Example**
   ```js
-  var errnum = 10; // 10 is a system error code.
-  var result = util.getErrorString(errnum);
+  let errnum = 10; // 10 is a system error code.
+  let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
 
@@ -82,6 +86,7 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 | original | Function | Yes| Asynchronous function.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Function | Callback, in which the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter indicates the resolved value.|
@@ -91,8 +96,8 @@ Calls back an asynchronous function. In the callback, the first parameter indica
   async function promiseFn() {
       return Promise.reject('value');
   }
-  var err = "type err";
-  var cb = util.callbackWrapper(promiseFn);
+  let err = "type err";
+  let cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
       console.log(err);
       console.log(ret);
@@ -105,7 +110,6 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 > **NOTE**
->
 > This API is deprecated since API version 9. You are advised to use **[util.promisify9+](#utilpromisify9)** instead.
 
 Processes an asynchronous function and returns a promise version.
@@ -119,9 +123,10 @@ Processes an asynchronous function and returns a promise version.
 | original | Function | Yes| Asynchronous function.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
-| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise version.|
+| Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 ## util.promisify<sup>9+</sup>
 
@@ -132,11 +137,13 @@ Processes an asynchronous function and returns a promise.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | original | Function | Yes| Asynchronous function.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
@@ -154,6 +161,90 @@ Processes an asynchronous function and returns a promise.
   newPromiseObj({ err: "type error" }, {value:'HelloWorld'}).then(res => {
     console.log(res);
   })
+  ```
+
+## util.randomUUID<sup>9+</sup>
+
+randomUUID(entropyCache?: boolean): string
+
+Uses a secure random number generator to generate a random universally unique identifier (UUID) of RFC 4122 version 4.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | A string representing the UUID generated.|
+
+**Example**
+  ```js
+  let uuid = util.randomUUID(true);
+  console.log("RFC 4122 Version 4 UUID:" + uuid);
+  // Output:
+  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+  ```
+
+## util.randomBinaryUUID<sup>9+</sup>
+
+randomBinaryUUID(entropyCache?: boolean): Uint8Array
+
+Uses a secure random number generator to generate a random binary UUID of RFC 4122 version 4.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | A Uint8Array value representing the UUID generated.|
+
+**Example**
+  ```js
+  let uuid = util.randomBinaryUUID(true);
+  console.log(JSON.stringify(uuid));
+  // Output:
+  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+  ```
+
+## util.parseUUID<sup>9+</sup>
+
+parseUUID(uuid: string): Uint8Array
+
+Parses a UUID from a string, as described in RFC 4122 version 4.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| uuid | string | Yes| A string representing the UUID.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown.|
+
+**Example**
+  ```js
+  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+  console.log(JSON.stringify(uuid));
+  // Output:
+  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
   ```
 
 ## TextDecoder
@@ -178,6 +269,7 @@ A constructor used to create a **TextDecoder** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format.|
@@ -192,7 +284,7 @@ A constructor used to create a **TextDecoder** object.
 
 **Example**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
 
@@ -205,6 +297,7 @@ Decodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | Yes| Uint8Array to decode.|
@@ -217,14 +310,15 @@ Decodes the input content.
 | stream | boolean | No| Whether to allow data blocks in subsequent **decode()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | Data decoded.|
 
 **Example**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  var result = new Uint8Array(6);
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
   result[2] = 0xBF;
@@ -232,7 +326,50 @@ Decodes the input content.
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  var retStr = textDecoder.decode( result , {stream: false});
+  let retStr = textDecoder.decode( result , {stream: false});
+  console.log("retStr = " + retStr);
+  ```
+
+
+### decodeWithStream<sup>9+</sup>
+
+decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
+
+Decodes the input content.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | Yes| Uint8Array to decode.|
+| options | Object | No| Options related to decoding.|
+
+  **Table 2** options
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | Data decoded.|
+
+**Example**
+  ```js
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
+  result[0] = 0xEF;
+  result[1] = 0xBB;
+  result[2] = 0xBF;
+  result[3] = 0x61;
+  result[4] = 0x62;
+  result[5] = 0x63;
+  console.log("input num:");
+  let retStr = textDecoder.decodeWithStream( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -258,7 +395,7 @@ A constructor used to create a **TextEncoder** object.
 
 **Example**
   ```js
-  var textEncoder = new util.TextEncoder();
+  let textEncoder = new util.TextEncoder();
   ```
 
 
@@ -271,20 +408,22 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | string | Yes| String to encode.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Uint8Array | Encoded text.|
 
 **Example**
   ```js
-  var textEncoder = new util.TextEncoder();
-  var buffer = new ArrayBuffer(20);
-  var result = new Uint8Array(buffer);
+  let textEncoder = new util.TextEncoder();
+  let buffer = new ArrayBuffer(20);
+  let result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
 
@@ -298,22 +437,24 @@ Stores the UTF-8 encoded text.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | string | Yes| String to encode.|
 | dest | Uint8Array | Yes| **Uint8Array** instance used to store the UTF-8 encoded text.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Uint8Array | Encoded text.|
 
 **Example**
   ```js
-  var that = new util.TextEncoder()
-  var buffer = new ArrayBuffer(4)
-  var dest = new Uint8Array(buffer)
-  var result = new Object()
+  let that = new util.TextEncoder()
+  let buffer = new ArrayBuffer(4)
+  let dest = new Uint8Array(buffer)
+  let result = new Object()
   result = that.encodeInto('abcd', dest)
   ```
 
@@ -329,6 +470,7 @@ A constructor used to create a **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | numerator | number | Yes| Numerator, which is an integer.|
@@ -336,7 +478,7 @@ A constructor used to create a **RationalNumber** object.
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
+  let rationalNumber = new util.RationalNumber(1,2);
   ```
 
 
@@ -349,19 +491,21 @@ Creates a **RationalNumber** object based on the given string.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | rationalString | string | Yes| String used to create the **RationalNumber** object.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | object | **RationalNumber** object created.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
 
@@ -374,20 +518,22 @@ Compares this **RationalNumber** object with a given object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | another | RationalNumber | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.compareTo(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.compareTo(rational);
   ```
 
 
@@ -400,14 +546,15 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | An integer or a floating-point number.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.valueOf();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.valueOf();
   ```
 
 
@@ -420,20 +567,22 @@ Checks whether this **RationalNumber** object equals the given object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object used to compare with this **RationalNumber** object.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the two objects are equal; returns **false** otherwise.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.equals(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.equals(rational);
   ```
 
 
@@ -446,20 +595,22 @@ Obtains the greatest common divisor of two specified integers.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | number1 | number | Yes| The first integer used to get the greatest common divisor.|
 | number2 | number | Yes| The second integer used to get the greatest common divisor.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Greatest common divisor obtained.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = util.RationalNumber.getCommonDivisor(4,6);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
 
@@ -479,8 +630,8 @@ Obtains the numerator of this **RationalNumber** object.
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getNumerator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getNumerator();
   ```
 
 
@@ -493,14 +644,15 @@ Obtains the denominator of this **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Denominator of this **RationalNumber** object.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getDenominator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getDenominator();
   ```
 
 
@@ -513,14 +665,15 @@ Checks whether this **RationalNumber** object is **0**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the value of this **RationalNumber** object is **0**; returns **false** otherwise.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isZero();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isZero();
   ```
 
 
@@ -533,14 +686,15 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if this **RationalNumber** object is a NaN (the denominator and numerator are both **0**); returns **false** otherwise.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isNaN();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isNaN();
   ```
 
 
@@ -553,14 +707,15 @@ Checks whether this **RationalNumber** object represents a finite value.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if this **RationalNumber** object represents a finite value (the denominator is not **0**); returns **false** otherwise.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isFinite();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isFinite();
   ```
 
 
@@ -573,14 +728,15 @@ Obtains the string representation of this **RationalNumber** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**.|
 
 **Example**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.toString();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.toString();
   ```
 
 ## LruBuffer<sup>8+</sup>
@@ -595,10 +751,10 @@ Obtains the string representation of this **RationalNumber** object.
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(1,8);
-  var result = pro.length;
+  let result = pro.length;
   ```
 
 
@@ -611,13 +767,14 @@ A constructor used to create an **LruBuffer** instance. The default capacity of 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | capacity | number | No| Capacity of the **LruBuffer** to create.|
 
 **Example**
   ```js
-  var lrubuffer= new util.LruBuffer();
+  let lrubuffer= new util.LruBuffer();
   ```
 
 
@@ -630,14 +787,15 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | newCapacity | number | Yes| New capacity of the **LruBuffer**.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.updateCapacity(100);
+  let pro = new util.LruBuffer();
+  let result = pro.updateCapacity(100);
   ```
 
 
@@ -650,17 +808,18 @@ Obtains the string representation of this **LruBuffer** object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | String representation of this **LruBuffer** object.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   pro.remove(20);
-  var result = pro.toString();
+  let result = pro.toString();
   ```
 
 
@@ -673,14 +832,15 @@ Obtains the capacity of this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Capacity of this buffer.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.getCapacity();
+  let pro = new util.LruBuffer();
+  let result = pro.getCapacity();
   ```
 
 
@@ -694,9 +854,9 @@ Clears key-value pairs from this buffer. The **afterRemoval()** method will be c
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.length;
+  let result = pro.length;
   pro.clear();
   ```
 
@@ -710,15 +870,16 @@ Obtains the number of return values for **createDefault()**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Number of return values for **createDefault()**.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(1,8);
-  var result = pro.getCreateCount();
+  let result = pro.getCreateCount();
   ```
 
 
@@ -731,16 +892,17 @@ Obtains the number of times that the queried values are mismatched.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Number of times that the queried values are mismatched.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMissCount();
+  let result = pro.getMissCount();
   ```
 
 
@@ -753,17 +915,18 @@ Obtains the number of removals from this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Number of removals from the buffer.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.updateCapacity(2);
   pro.put(50,22);
-  var result = pro.getRemovalCount();
+  let result = pro.getRemovalCount();
   ```
 
 
@@ -776,16 +939,17 @@ Obtains the number of times that the queried values are matched.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Number of times that the queried values are matched.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMatchCount();
+  let result = pro.getMatchCount();
   ```
 
 
@@ -798,15 +962,16 @@ Obtains the number of additions to this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | number | Number of additions to the buffer.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.getPutCount();
+  let result = pro.getPutCount();
   ```
 
 
@@ -819,15 +984,16 @@ Checks whether this buffer is empty.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the buffer does not contain any value.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.isEmpty();
+  let result = pro.isEmpty();
   ```
 
 
@@ -840,20 +1006,22 @@ Obtains the value of the specified key.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | K | Yes| Key based on which the value is queried.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
-| V \| undefind | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V \| undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result  = pro.get(2);
+  let result  = pro.get(2);
   ```
 
 
@@ -866,22 +1034,23 @@ Adds a key-value pair to this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | K | Yes| Key of the key-value pair to add.|
 | value | V | Yes| Value of the key-value pair to add.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | V | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.put(2,10);
+  let pro = new util.LruBuffer();
+  let result = pro.put(2,10);
   ```
-
 
 ### values<sup>8+</sup>
 
@@ -892,17 +1061,18 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | V [] | All values in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
-  var result = pro.values();
+  let result = pro.values();
   ```
 
 
@@ -915,15 +1085,16 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | K [] | All keys in the buffer, listed from the most to the least recently accessed.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.keys();
+  let result = pro.keys();
   ```
 
 
@@ -936,20 +1107,22 @@ Removes the specified key and its value from this buffer.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | K | Yes| Key to remove.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
-| V \| undefind | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V \| undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.remove(20);
+  let result = pro.remove(20);
   ```
 
 
@@ -962,6 +1135,7 @@ Performs subsequent operations after a value is removed.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | isEvict | boolean | No| Whether the buffer capacity is insufficient. If the value is **true**, this method is called due to insufficient capacity.|
@@ -971,8 +1145,8 @@ Performs subsequent operations after a value is removed.
 
 **Example**
   ```js
-  var arr = [];
-  class ChildLruBuffer extends util.LruBuffer
+  let arr = [];
+  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
   {
   	constructor()
   	{
@@ -986,7 +1160,7 @@ Performs subsequent operations after a value is removed.
   		}
   	}
   }
-  var lru = new ChildLruBuffer();
+  let lru = new ChildLruBuffer();
   lru.afterRemoval(false,10,30,null);
   ```
 
@@ -1000,20 +1174,22 @@ Checks whether this buffer contains the specified key.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | K | Yes| Key to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.contains(20);
+  let result = pro.contains(20);
   ```
 
 
@@ -1026,19 +1202,21 @@ Creates a value if the value of the specified key is not available.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | K | Yes| Key of which the value is missing.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | V | Value of the key.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.createDefault(50);
+  let pro = new util.LruBuffer();
+  let result = pro.createDefault(50);
   ```
 
 
@@ -1051,15 +1229,16 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [K, V] | Iterable array.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.entries();
+  let result = pro.entries();
   ```
 
 
@@ -1072,15 +1251,16 @@ Obtains a two-dimensional array in key-value pairs.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [K, V] | Two-dimensional array in key-value pairs.|
 
 **Example**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro[Symbol.iterator]();
+  let result = pro[Symbol.iterator]();
   ```
 
 
@@ -1111,7 +1291,7 @@ class Temperature{
        // private readonly _temp: Temperature;
        this._temp = value;
     }
-    comapreTo(value){
+    compareTo(value){
        return this._temp >= value.getTemp();
     }
     getTemp(){
@@ -1133,6 +1313,7 @@ A constructor used to create a **Scope** object with the specified upper and low
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit of the **Scope** object.|
@@ -1140,9 +1321,9 @@ A constructor used to create a **Scope** object with the specified upper and low
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
   ```
 
 
@@ -1155,16 +1336,17 @@ Obtains a string representation that contains this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | String representation containing the **Scope**.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.toString();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.toString();
   ```
 
 
@@ -1177,23 +1359,25 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [Scope](#scope8) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
   range.intersect(rangeFir );
   ```
 
@@ -1207,24 +1391,26 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
 | upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [Scope](#scope8) | Intersection of this **Scope** and the given lower and upper limits.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.intersect(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.intersect(tempMiDF, tempMidS);
   ```
 
 
@@ -1244,10 +1430,10 @@ Obtains the upper limit of this **Scope**.
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getUpper();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getUpper();
   ```
 
 
@@ -1260,16 +1446,17 @@ Obtains the lower limit of this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [ScopeType](#scopetype8) | Lower limit of this **Scope**.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getLower();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getLower();
   ```
 
 
@@ -1282,12 +1469,14 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | Yes| Lower limit.|
 | upperObj | [ScopeType](#scopetype8) | Yes| Upper limit.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [Scope](#scope8) | Union set of this **Scope** and the given lower and upper limits.|
@@ -1295,12 +1484,12 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 **Example**
 
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF, tempMidS);
   ```
 
 
@@ -1313,24 +1502,26 @@ Obtains the union set of this **Scope** and the given **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [Scope](#scope8) | Union set of this **Scope** and the given **Scope**.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
-  var result = range.expand(rangeFir);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let result = range.expand(rangeFir);
   ```
 
 
@@ -1343,22 +1534,24 @@ Obtains the union set of this **Scope** and the given value.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [Scope](#scope8) | Union set of this **Scope** and the given value.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF);
   ```
 
 
@@ -1371,21 +1564,23 @@ Checks whether a value is within this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
   range.contains(tempMiDF);
   ```
 
@@ -1399,24 +1594,26 @@ Checks whether a range is within this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | Yes| **Scope** specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempLess = new Temperature(20);
-  var tempMore = new Temperature(45);
-  var rangeSec = new util.Scope(tempLess, tempMore);
-  var result = range.contains(rangeSec);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempLess = new Temperature(20);
+  let tempMore = new Temperature(45);
+  let rangeSec = new util.Scope(tempLess, tempMore);
+  let result = range.contains(rangeSec);
   ```
 
 
@@ -1429,22 +1626,24 @@ Limits a value to this **Scope**.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | Yes| Value specified.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
 
 **Example**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.clamp(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.clamp(tempMiDF);
   ```
 
 
@@ -1461,7 +1660,7 @@ A constructor used to create a **Base64** object.
 
 **Example**
   ```js
-  var base64 = new  util.Base64();
+  let base64 = new  util.Base64();
   ```
 
 
@@ -1474,20 +1673,22 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | Yes| Uint8Array to encode.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Uint8Array | Uint8Array encoded.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeSync(array);
   ```
 
 
@@ -1500,20 +1701,22 @@ Encodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | Yes| Uint8Array to encode.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | string | String encoded from the Uint8Array.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeToStringSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeToStringSync(array);
   ```
 
 
@@ -1526,20 +1729,22 @@ Decodes the input content.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array \| string | Yes| Uint8Array or string to decode.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Uint8Array | Uint8Array decoded.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var buff = 'czEz';
-  var result = that.decodeSync(buff);
+  let that = new util.Base64();
+  let buff = 'czEz';
+  let result = that.decodeSync(buff);
   ```
 
 
@@ -1552,20 +1757,22 @@ Encodes the input content asynchronously.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var rarray = new Uint8Array([99,122,69,122]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1583,19 +1790,21 @@ Encodes the input content asynchronously.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;string&gt; | String obtained after asynchronous encoding.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
       console.log(val)
   })
@@ -1611,20 +1820,22 @@ Decodes the input content asynchronously.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array \| string | Yes| Uint8Array or string to decode asynchronously.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
 
 **Example**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([99,122,69,122]);
-  var rarray = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([99,122,69,122]);
+  let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1646,7 +1857,7 @@ A constructor used to create a **Types** object.
 
 **Example**
   ```js
-  var type = new util.types();
+  let type = new util.types();
   ```
 
 
@@ -1659,19 +1870,21 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1686,19 +1899,21 @@ Checks whether the input value is of the **ArrayBufferView** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBufferView(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isArrayBufferView(new Int8Array([]));
   ```
 
 
@@ -1711,22 +1926,24 @@ Checks whether the input value is of the **arguments** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function foo() {
       var result = that.isArgumentsObject(arguments);
   }
-  var f = foo();
+  let f = foo();
   ```
 
 
@@ -1739,19 +1956,21 @@ Checks whether the input value is of the **ArrayBuffer** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1764,19 +1983,21 @@ Checks whether the input value is an asynchronous function.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is an asynchronous function; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isAsyncFunction(async function foo() {});
+  let that = new util.types();
+  let result = that.isAsyncFunction(async function foo() {});
   ```
 
 
@@ -1789,19 +2010,21 @@ Checks whether the input value is of the **Boolean** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isBooleanObject(new Boolean(true));
+  let that = new util.types();
+  let result = that.isBooleanObject(new Boolean(true));
   ```
 
 
@@ -1814,19 +2037,21 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isBoxedPrimitive(new Boolean(false));
+  let that = new util.types();
+  let result = that.isBoxedPrimitive(new Boolean(false));
   ```
 
 
@@ -1839,20 +2064,22 @@ Checks whether the input value is of the **DataView** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const ab = new ArrayBuffer(20);
-  var result = that.isDataView(new DataView(ab));
+  let result = that.isDataView(new DataView(ab));
   ```
 
 
@@ -1865,19 +2092,21 @@ Checks whether the input value is of the **Date** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Date** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isDate(new Date());
+  let that = new util.types();
+  let result = that.isDate(new Date());
   ```
 
 
@@ -1890,19 +2119,21 @@ Checks whether the input value is of the **native external** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **native external** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isExternal(true);
+  let that = new util.types();
+  let result = that.isExternal(true);
   ```
 
 
@@ -1915,19 +2146,21 @@ Checks whether the input value is of the **Float32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isFloat32Array(new Float32Array());
+  let that = new util.types();
+  let result = that.isFloat32Array(new Float32Array());
   ```
 
 
@@ -1940,19 +2173,21 @@ Checks whether the input value is of the **Float64Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isFloat64Array(new Float64Array());
+  let that = new util.types();
+  let result = that.isFloat64Array(new Float64Array());
   ```
 
 
@@ -1965,19 +2200,21 @@ Checks whether the input value is a generator function.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a generator function; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isGeneratorFunction(function* foo() {});
+  let that = new util.types();
+  let result = that.isGeneratorFunction(function* foo() {});
   ```
 
 
@@ -1990,21 +2227,23 @@ Checks whether the input value is a generator object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a generator object; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function* foo() {}
   const generator = foo();
-  var result = that.isGeneratorObject(generator);
+  let result = that.isGeneratorObject(generator);
   ```
 
 
@@ -2017,19 +2256,21 @@ Checks whether the input value is of the **Int8Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isInt8Array(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isInt8Array(new Int8Array([]));
   ```
 
 
@@ -2042,19 +2283,21 @@ Checks whether the input value is of the **Int16Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isInt16Array(new Int16Array([]));
+  let that = new util.types();
+  let result = that.isInt16Array(new Int16Array([]));
   ```
 
 
@@ -2067,19 +2310,21 @@ Checks whether the input value is of the **Int32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isInt32Array(new Int32Array([]));
+  let that = new util.types();
+  let result = that.isInt32Array(new Int32Array([]));
   ```
 
 
@@ -2092,19 +2337,21 @@ Checks whether the input value is of the **Map** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Map** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isMap(new Map());
+  let that = new util.types();
+  let result = that.isMap(new Map());
   ```
 
 
@@ -2117,20 +2364,22 @@ Checks whether the input value is of the **MapIterator** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const map = new Map();
-  var result = that.isMapIterator(map.keys());
+  let result = that.isMapIterator(map.keys());
   ```
 
 
@@ -2143,19 +2392,21 @@ Checks whether the input value is of the **Error** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Error** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isNativeError(new TypeError());
+  let that = new util.types();
+  let result = that.isNativeError(new TypeError());
   ```
 
 
@@ -2168,19 +2419,21 @@ Checks whether the input value is a number object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a number object; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isNumberObject(new Number(0));
+  let that = new util.types();
+  let result = that.isNumberObject(new Number(0));
   ```
 
 
@@ -2193,19 +2446,21 @@ Checks whether the input value is a promise.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a promise; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isPromise(Promise.resolve(1));
+  let that = new util.types();
+  let result = that.isPromise(Promise.resolve(1));
   ```
 
 
@@ -2218,21 +2473,23 @@ Checks whether the input value is a proxy.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a proxy; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const target = {};
   const proxy = new Proxy(target, {});
-  var result = that.isProxy(proxy);
+  let result = that.isProxy(proxy);
   ```
 
 
@@ -2245,19 +2502,21 @@ Checks whether the input value is of the **RegExp** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isRegExp(new RegExp('abc'));
+  let that = new util.types();
+  let result = that.isRegExp(new RegExp('abc'));
   ```
 
 
@@ -2270,19 +2529,21 @@ Checks whether the input value is of the **Set** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Set** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isSet(new Set());
+  let that = new util.types();
+  let result = that.isSet(new Set());
   ```
 
 
@@ -2295,20 +2556,22 @@ Checks whether the input value is of the **SetIterator** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const set = new Set();
-  var result = that.isSetIterator(set.keys());
+  let result = that.isSetIterator(set.keys());
   ```
 
 
@@ -2321,19 +2584,21 @@ Checks whether the input value is a string object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a string object; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isStringObject(new String('foo'));
+  let that = new util.types();
+  let result = that.isStringObject(new String('foo'));
   ```
 
 
@@ -2346,20 +2611,22 @@ Checks whether the input value is a symbol object.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is a symbol object; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const symbols = Symbol('foo');
-  var result = that.isSymbolObject(Object(symbols));
+  let result = that.isSymbolObject(Object(symbols));
   ```
 
 
@@ -2374,19 +2641,21 @@ Checks whether the input value is of the **TypedArray** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isTypedArray(new Float64Array([]));
+  let that = new util.types();
+  let result = that.isTypedArray(new Float64Array([]));
   ```
 
 
@@ -2399,19 +2668,21 @@ Checks whether the input value is of the **Uint8Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isUint8Array(new Uint8Array([]));
+  let that = new util.types();
+  let result = that.isUint8Array(new Uint8Array([]));
   ```
 
 
@@ -2424,19 +2695,21 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let that = new util.types();
+  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
 
 
@@ -2449,19 +2722,21 @@ Checks whether the input value is of the **Uint16Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isUint16Array(new Uint16Array([]));
+  let that = new util.types();
+  let result = that.isUint16Array(new Uint16Array([]));
   ```
 
 
@@ -2474,19 +2749,21 @@ Checks whether the input value is of the **Uint32Array** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isUint32Array(new Uint32Array([]));
+  let that = new util.types();
+  let result = that.isUint32Array(new Uint32Array([]));
   ```
 
 
@@ -2499,19 +2776,21 @@ Checks whether the input value is of the **WeakMap** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isWeakMap(new WeakMap());
+  let that = new util.types();
+  let result = that.isWeakMap(new WeakMap());
   ```
 
 
@@ -2524,17 +2803,128 @@ Checks whether the input value is of the **WeakSet** type.
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| Object to check.|
 
 **Return value**
+
 | Type| Description|
 | -------- | -------- |
 | boolean | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise.|
 
 **Example**
   ```js
-  var that = new util.types();
-  var result = that.isWeakSet(new WeakSet());
+  let that = new util.types();
+  let result = that.isWeakSet(new WeakSet());
+  ```
+
+
+### isBigInt64Array<sup>8+</sup>
+
+isBigInt64Array(value: Object): boolean
+
+Checks whether the input value is of the **BigInt64Array** type.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **BigInt64Array** type; returns **false** otherwise.|
+
+**Example**
+  ```js
+  let that = new util.types();
+  let result = that.isBigInt64Array(new BigInt64Array([]));
+  ```
+
+
+### isBigUint64Array<sup>8+</sup>
+
+isBigUint64Array(value: Object): boolean
+
+Checks whether the input value is of the **BigUint64Array** type.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **BigUint64Array** type; returns **false** otherwise.|
+
+**Example**
+  ```js
+  let that = new util.types();
+  let result = that.isBigUint64Array(new BigUint64Array([]));
+  ```
+
+
+### isModuleNamespaceObject<sup>8+</sup>
+
+isModuleNamespaceObject(value: Object): boolean
+
+Checks whether the input value is a module namespace object.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is a module namespace object; returns **false** otherwise.|
+
+**Example**
+  ```js
+  import url from '@ohos.url'
+  let that = new util.types();
+  let result = that.isModuleNamespaceObject(url);
+  ```
+
+
+### isSharedArrayBuffer<sup>8+</sup>
+
+isSharedArrayBuffer(value: Object): boolean
+
+Checks whether the input value is of the **SharedArrayBuffer** type.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object | Yes| Object to check.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if the input value is of the **SharedArrayBuffer** type; returns **false** otherwise.|
+
+**Example**
+  ```js
+  let that = new util.types();
+  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```

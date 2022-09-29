@@ -6,8 +6,6 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
 >
 >  This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-
 ## Rules 
 
  * Components in a container are aligned horizontally or vertically. 

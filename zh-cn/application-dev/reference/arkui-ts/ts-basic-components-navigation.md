@@ -24,9 +24,9 @@ Navigation()
 
 | 名称             | 参数类型                                     | 描述                                       |
 | -------------- | ---------------------------------------- | ---------------------------------------- |
-| title          | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md) | 页面标题。                                    |
+| title          | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面标题。                                    |
 | subTitle       | string                                   | 页面副标题。                                   |
-| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md)<sup>8+</sup> | 页面右上角菜单。      |
+| menus          | Array<NavigationMenuItem&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 页面右上角菜单。      |
 | titleMode      | NavigationTitleMode                      | 页面标题栏显示模式。<br/>默认值：NavigationTitleMode.Free |
 | toolBar        | object&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | 设置工具栏内容。<br/>items:&nbsp;工具栏所有项。     |
 | hideToolBar    | boolean                                  | 设置隐藏/显示工具栏：<br/>默认值：false<br/>true:&nbsp;隐藏工具栏。<br/>false:&nbsp;显示工具栏。 |

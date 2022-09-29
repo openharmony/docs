@@ -14,17 +14,18 @@
 
 ## 接口
 
-Rect(options?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
+Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 | 
-  | height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 | 
-  | radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 | 
-  | radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 | 
-  | radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 | 
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 | 
+| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 | 
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 | 
+| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 | 
+| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 | 
 
 
 ## 属性

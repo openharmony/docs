@@ -146,6 +146,7 @@
   - [@ohos.privacyManager](js-apis-privacyManager.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
+  - [@ohos.userIAM.faceAuth](js-apis-useriam-faceauth.md)
   - [@system.cipher](js-apis-system-cipher.md)
   
 - Data Management

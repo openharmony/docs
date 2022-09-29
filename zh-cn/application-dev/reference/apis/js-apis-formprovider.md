@@ -3,7 +3,7 @@
 FormProvider模块提供了卡片提供方相关接口的能力，包括更新卡片，设置卡片更新时间，获取卡片信息，请求发布卡片等。
 
 > **说明：**
-> 
+>
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -183,7 +183,7 @@ getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&l
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | formInfo.FormInfoFilter | 是 | 过滤卡片信息 |
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md#forminfofilter) | 是 | 过滤卡片信息 |
 | callback | AsyncCallback&lt;Array&lt;[FormInfo](./js-apis-formInfo.md#forminfo-1)&gt;&gt; | 是 | callback形式返回查询到的卡片信息。 |
 
 **示例：**
@@ -214,7 +214,7 @@ getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.For
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| filter | formInfo.FormInfoFilter | 否 | 过滤卡片信息 |
+| filter | [formInfo.FormInfoFilter](./js-apis-formInfo.md) | 否 | 过滤卡片信息 |
 
 **返回值：**
 

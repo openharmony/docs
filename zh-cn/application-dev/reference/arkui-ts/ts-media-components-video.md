@@ -62,9 +62,10 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 | onFinish(event:()&nbsp;=&gt;&nbsp;void)                      | 播放结束时触发该事件。                                       |
 | onError(event:()&nbsp;=&gt;&nbsp;void)                       | 播放失败时触发该事件。                                       |
 | onPrepared(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 视频准备完成时触发该事件，通过duration可以获取视频时长，单位为秒(s)。 |
-| onSeeking(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
-| onSeeked(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
-| onUpdate(callback:(event?:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
+| onSeeking(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条过程时上报时间信息，单位为s。                      |
+| onSeeked(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 操作进度条完成后，上报播放时间信息，单位为s。                |
+| onUpdate(callback:(event?:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void) | 播放进度变化时触发该事件，单位为s，更新时间间隔为250ms。     |
+| onFullscreenChange(callback:(event?:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void) | 在全屏播放与非全屏播放状态之间切换时触发该事件，返回值为true表示进入全屏播放状态，为false则表示非全屏播放。     |
 
 
 ## VideoController
@@ -158,7 +159,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: Resource = $rawfile('video1');
+  @State srcs: Resource = $rawfile('video1.mp4');
   @State previewUris: Resource = $r('app.media.img');
   @State currentProgressRates: number = 1;
   @State autoPlays: boolean = false;
@@ -201,7 +202,7 @@ struct VideoCreateComponent {
                 })
       Row() {
         Button("src").onClick(() => {
-            this.srcs = $rawfile('video2');
+            this.srcs = $rawfile('video2.mp4');
         });
         Button("previewUri").onClick(() => {
             this.previewUris = $r('app.media.img1');

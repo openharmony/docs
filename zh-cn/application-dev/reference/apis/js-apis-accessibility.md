@@ -173,6 +173,7 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 - **示例：**
 
   ```typescript
+  let  captionsManager = accessibility.getCaptionsManager();
   captionsManager.on('enableChange',(data) => {
       console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
   })
@@ -194,6 +195,7 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 - **示例：**
 
   ```typescript
+  let  captionsManager = accessibility.getCaptionsManager();
   captionsManager.on('styleChange',(data) => {
       console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
   })
@@ -215,6 +217,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 - **示例：**
 
   ```typescript
+  let  captionsManager = accessibility.getCaptionsManager();
   captionsManager.off('enableChange')
   ```
 
@@ -234,6 +237,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 - **示例：**
 
   ```typescript
+  let  captionsManager = accessibility.getCaptionsManager();
   captionsManager.off('styleChange')
   ```
 
@@ -361,11 +365,6 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
               console.info(item.id);
               console.info(item.name);
               console.info(item.description);
-              console.info(item.abilityTypes);
-              console.info(item.eventTypes);
-              console.info(item.capabilities);
-              console.info(item.packageName);
-              console.info(item.filterBundleNames);
               console.info(item.bundleName);
           }
       }).catch((error) => {
@@ -402,11 +401,6 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
           console.info(item.id);
           console.info(item.name);
           console.info(item.description);
-          console.info(item.abilityTypes);
-          console.info(item.eventTypes);
-          console.info(item.capabilities);
-          console.info(item.packageName);
-          console.info(item.filterBundleNames);
           console.info(item.bundleName);
       }
   })
@@ -429,7 +423,7 @@ getCaptionsManager(): CaptionsManager
 - **示例：**
 
   ```typescript
-  captionsManager = accessibility.getCaptionsManager()
+  let captionsManager = accessibility.getCaptionsManager()
   ```
 
 ## accessibility.on('accessibilityStateChange' | 'touchGuideStateChange')
@@ -603,7 +597,12 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 - **示例：**
 
   ```typescript
-  accessibility.sendEvent(this.eventInfo)
+  let eventInfo : accessibility.EventInfo = {
+      type: 'focus',
+      bundleName: 'bundle',
+      triggerAction: 'focus' 
+  }
+  accessibility.sendEvent(eventInfo)
       .then((data) => {
           console.info('success data:sendEvent : ' + JSON.stringify(data))
       }).catch((error) => {
@@ -629,7 +628,12 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 - **示例：**
 
   ```typescript
-  accessibility.sendEvent(this.eventInfo,(err, data) => {
+  let eventInfo : accessibility.EventInfo = {
+      type: 'focus',
+      bundleName: 'bundle',
+      triggerAction: 'focus' 
+  }
+  accessibility.sendEvent(eventInfo,(err, data) => {
       if (err) {
           console.error('failed to sendEvent because ' + JSON.stringify(err));
           return;

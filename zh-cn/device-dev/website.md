@@ -289,9 +289,8 @@
 - 子系统开发
 
   -  内核
-     - [内核概述](kernel/kernel-overview.md)
-     - 轻量系统内核
-       - [内核概述](kernel/kernel-mini-overview.md)
+     - 轻量系统内核（LiteOS-M）
+       - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
          - [中断管理](kernel/kernel-mini-basic-interrupt.md)
          - [任务管理](kernel/kernel-mini-basic-task.md)
@@ -317,8 +316,8 @@
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
          - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
-     - 小型系统内核
-       - [内核概述](kernel/kernel-small-overview.md)
+     - 小型系统内核（LiteOS-A）
+       - [小型系统内核概述](kernel/kernel-small-overview.md)
        - 内核启动
          - [内核态启动](kernel/kernel-small-start-kernel.md)
          - [用户态启动](kernel/kernel-small-start-user.md)
@@ -438,10 +437,11 @@
            - [双向链表](kernel/kernel-small-apx-dll.md)
            - [位操作](kernel/kernel-small-apx-bitwise.md)
          - [标准库](kernel/kernel-small-apx-library.md)
-     - 标准系统内核
-       - [Linux内核概述](kernel/kernel-standard-overview.md)
+         - [内核编码规范](kernel/kernel-mini-appx-code.md)
+     - 标准系统内核（Linux）
+       - [标准系统内核概述](kernel/kernel-standard-overview.md)
        - [OpenHarmony开发板Patch使用指导](kernel/kernel-standard-patch.md)
-       - [Linux内核编译与构建指导](kernel/kernel-standard-build.md)
+       - [标准系统内核编译与构建指导](kernel/kernel-standard-build.md)
        - 内核增强特性
          - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
          - 任务调度
@@ -499,6 +499,7 @@
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
        - [Light](driver/driver-peripherals-light-des.md)
+       - [Motion](driver/driver-peripherals-motion-des.md)
        - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
        - [Sensor](driver/driver-peripherals-sensor-des.md)
        - [Touchscreen](driver/driver-peripherals-touch-des.md)

@@ -1,54 +1,48 @@
 # Navigator
 
+The **\<Navigator>** component provides redirection.
 
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-The **\<Navigator>** component provides redirection to the target page.
-
-
-## Required Permissions
-
-None
-
-
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
 
 Navigator(value?: {target: string, type?: NavigationType})
 
-Creates a navigator.
+**Parameters**
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | string | Yes | - | Path of the target page to be redirected to. |
-  | type | NavigationType | No | NavigationType.Push | Navigation type. |
+| Name| Type      | Mandatory| Description                                      |
+| ------ | -------------- | ---- | ---------------------------------------------- |
+| target | string         | Yes  | Path of the target page to be redirected to.                      |
+| type   | NavigationType | No  | Navigation type.<br>Default value: **NavigationType.Push**|
 
-- NavigationType enums
-  | Name | Description |
-  | -------- | -------- |
-  | Push | Navigates to a specified page in the application. |
-  | Replace | Replaces the current page with another one in the application and destroys the current page. |
-  | Back | Returns to the previous page or a specified page. |
+## NavigationType
+
+| Name     | Description                        |
+| ------- | -------------------------- |
+| Push    | Navigates to a specified page in the application.              |
+| Replace | Replaces the current page with another one in the application and destroys the current page.|
+| Back    | Returns to the previous page or a specified page.             |
 
 
 ## Attributes
 
-| Name | Parameters | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| active | boolean | - | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect. |
-| params | Object | undefined | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page. |
+| Name  | Parameter   | Description                                                        |
+| ------ | ------- | ------------------------------------------------------------ |
+| active | boolean | Whether the **\<Navigator>** component is activated. If the component is activated, the corresponding navigation takes effect.|
+| params | object  | Data that needs to be passed to the target page during redirection. You can use **router.getParams()** to obtain the data on the target page.|
+| target | string         | Path of the target page to be redirected to.                      |
+| type   | NavigationType | Navigation mode.<br>Default value: **NavigationType.Push**|
 
 
 ## Example
-
 
 ```ts
 // Navigator.ets
@@ -75,7 +69,6 @@ struct NavigatorExample {
   }
 }
 ```
-
 
 ```ts
 // Detail.ets

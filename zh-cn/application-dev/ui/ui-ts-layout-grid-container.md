@@ -82,7 +82,7 @@
 
 ### 栅格容器内子组件的栅格设置
 
-栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offest表示列偏移量，指将组件放置在哪一个columns上。 如：
+栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offset表示列偏移量，指将组件放置在哪一个columns上。 如：
 
 ```ts
 GridContainer() {

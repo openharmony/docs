@@ -9,6 +9,9 @@ HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放�
 
 **推荐使用场景：** 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -25,6 +28,17 @@ import HashSet from '@ohos.util.HashSet';
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashSet的元素个数。 |
 
+**示例：**
+
+```ts
+let hashSet = new HashSet();
+hashSet.add(1);
+hashSet.add(2);
+hashSet.add(3);
+hashSet.add(4);
+hashSet.add(5);
+let res = hashSet.length;
+```
 
 ### constructor
 
@@ -87,9 +101,9 @@ has(value: T): boolean
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.has("squirrel");
+hashSet.add("squirrel");
+let result1 = hashSet.has("squirrel");
 ```
 
 
@@ -117,7 +131,7 @@ add(value: T): boolean
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.add("squirrel");
 ```
 
 
@@ -145,9 +159,9 @@ remove(value: T): boolean
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
-let result = hashSet.remove("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
+let result = hashSet.remove("sparrow");
 ```
 
 
@@ -163,8 +177,8 @@ clear(): void
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 hashSet.clear();
 ```
 
@@ -187,8 +201,8 @@ values(): IterableIterator&lt;T&gt;
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 let iter = hashSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -224,8 +238,8 @@ callbackfn的参数说明：
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("sdfs");
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+hashSet.add("sparrow");
+hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -249,8 +263,8 @@ entries(): IterableIterator<[T, T]>
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -279,8 +293,8 @@ while(temp != undefined) {
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 
 // 使用方法一：
 for (let item of hashSet) { 

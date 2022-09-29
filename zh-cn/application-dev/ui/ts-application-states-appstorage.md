@@ -64,21 +64,35 @@ struct ComponentA {
   }
 
   build() {
-    Row({ space: 20 }) {
-
-      Button(`${this.label}: ${this.varA}`)
-        .onClick(() => {
-          AppStorage.Set<number>('varA', AppStorage.Get<number>('varA') + 1)
-        })
-      Button(`lang: ${this.lang}`)
-        .onClick(() => {
-          if (this.lang === 'zh') {
-            AppStorage.Set<string>('languageCode', 'en')
-          } else {
-            AppStorage.Set<string>('languageCode', 'zh')
-          }
-          this.label = (this.lang === 'zh') ? '数' : 'Count'
-        })
+    Column(){
+      Row({ space: 20 }) {
+        Button(`${this.label}: ${this.varA}`)
+          .onClick(() => {
+            AppStorage.Set<number>('varA', AppStorage.Get<number>('varA') + 1)
+          })
+        Button(`lang: ${this.lang}`)
+          .onClick(() => {
+            if (this.lang === 'zh') {
+              AppStorage.Set<string>('languageCode', 'en')
+            } else {
+              AppStorage.Set<string>('languageCode', 'zh')
+            }
+            this.label = (this.lang === 'zh') ? '数' : 'Count'
+          })
+      }
+      .margin({ bottom: 50 })
+      Row(){
+        Button(`更改@StorageLink修饰的变量：${this.varA}`).fontSize(10)
+          .onClick(() => {
+            this.varA++
+          })
+      }.margin({ bottom: 50 })
+      Row(){
+        Button(`更改@StorageProp修饰的变量：${this.lang}`).fontSize(10)
+          .onClick(() => {
+            this.lang = 'test'
+          })
+      }
     }
   }
 }

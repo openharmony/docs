@@ -12,7 +12,7 @@
 
 ## 接口
 
-CheckboxGroup( group?: string )
+CheckboxGroup(options?: { group?: string })
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，相同group的Checkbox和CheckboxGroup为同一群组。
 
@@ -31,7 +31,7 @@ CheckboxGroup( group?: string )
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
 | selectAll | boolean | 设置是否全选。<br/>默认值：false |
-| selectedColor | [ResourceColor](ts-types.md) | 设置被选中或部分选中状态的颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置被选中或部分选中状态的颜色。 |
 
 ## 事件
 
@@ -39,7 +39,13 @@ CheckboxGroup( group?: string )
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange (callback: (names: Array&lt;string&gt;, status: SelectStatus) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。<br>- names：群组内所有被选中的多选框名称。<br>- status：选中状态。|
+| onChange (callback: (event: CheckboxGroupResult) => void ) |CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调。|
+
+## CheckboxGroupResult对象说明
+| 名称     | 类型   | 描述      |
+| ------ | ------ | ------- |
+| name   | Array&lt;string&gt; | 群组内所有被选中的多选框名称。 |
+| status | SelectStatus | 选中状态。 |
 
 ## SelectStatus枚举说明
 

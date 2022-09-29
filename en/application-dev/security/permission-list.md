@@ -24,7 +24,8 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.SET_TIME_ZONE                            | system_basic | system_grant | TRUE    | Allows an app to set the system time zone.                                      |
 | ohos.permission.<br>DOWNLOAD_SESSION_MANAGER                 | system_core  | system_grant | TRUE    | Allows an app to manage the download sessions.                                  |
 | ohos.permission.COMMONEVENT_STICKY                       | normal       | system_grant | TRUE    | Allows an app to publish sticky common events.                                  |
-| ohos.permission.SYSTEM_FLOAT_WINDOW                      | normal       | system_grant | TRUE    | Allows an app to be displayed in a floating window on top of other apps.                                  |
+| ohos.permission.SYSTEM_FLOAT_WINDOW                      | system_basic | system_grant | TRUE    | Allows an app to be displayed in a floating window on top of other apps.                                  |
+| ohos.permission.PRIVACY_WINDOW                           | system_basic | system_grant | TRUE    | Allows an app to set screens that cannot be captured or recorded.                  |
 | ohos.permission.POWER_MANAGER                            | system_core  | system_grant | TRUE    | Allows an app to hibernate or wake up the device by calling APIs.        |
 | ohos.permission.REFRESH_USER_ACTION                      | system_basic | system_grant | TRUE    | Allows an app to reset the screen timeout counter when a user input event occurs, such as pressing a key or touching the screen.                |
 | ohos.permission.POWER_OPTIMIZATION                       | system_basic | system_grant | TRUE    | Allows an app to set power saving mode, obtain configuration of the power saving mode, and receive notifications of the configuration changes.|
@@ -139,3 +140,6 @@ For details about permission usage examples, see [Access Control Development](ac
 | ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | Audio modification to the audio files in a user's directory.                              |
 | ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | Allows modification to the files in a user's directory.                                  |
 | ohos.permission.ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | Allows an app to start the Ability component in the background and establish a connection with it.    |
+| ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | Allows an app to report risk data for security guard.                      |
+| ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | Allows an app to obtain the device risk status.                                    |
+| ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | Allows an app to obtain detailed risk data.                                    |

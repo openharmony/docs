@@ -1395,7 +1395,7 @@ HksFinish对paramSet中参数的要求：
 
 > **说明**
 >
-> HUKS_ALG_AES的SIZE需要满足：协商后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
+> HUKS_ALG_AES的SIZE需要满足：派生后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
 >
 > 存储的 keyAlias 密钥别名最大为64字节
 

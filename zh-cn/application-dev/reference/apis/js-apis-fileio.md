@@ -24,7 +24,7 @@ import Ability from '@ohos.application.Ability';
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         let context = this.context;
-        let path = context.filesDir;
+        let pathDir = context.filesDir;
     }
 }
  ```
@@ -37,7 +37,7 @@ class MainAbility extends Ability {
  import featureAbility from '@ohos.ability.featureAbility';
  let context = featureAbility.getContext();
  context.getFilesDir().then((data) => {
-      let path = data;
+      let pathDir = data;
  })
  ```
  
@@ -66,7 +66,8 @@ stat(path: string): Promise&lt;Stat&gt;
 **示例：**
 
   ```js
-  fileio.stat(path).then(function(stat){
+  let filePath = pathDir + "test.txt";
+  fileio.stat(filePath).then(function(stat){
       console.info("getFileInfo succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("getFileInfo failed with error:"+ err);
@@ -76,7 +77,7 @@ stat(path: string): Promise&lt;Stat&gt;
 
 ## fileio.stat
 
-stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
+stat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 获取文件信息，使用callback异步回调。
 
@@ -92,7 +93,7 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```js
-  fileio.stat(path, function (err, stat) {
+  fileio.stat(pathDir, function (err, stat) {
       // example code in Stat
   });
   ```
@@ -100,7 +101,7 @@ stat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 ## fileio.statSync
 
-statSync(path:string): Stat
+statSync(path: string): Stat
 
 以同步方法获取文件的信息。
 
@@ -122,7 +123,7 @@ statSync(path:string): Stat
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path);
+  let stat = fileio.statSync(pathDir);
   // example code in Stat
   ```
 
@@ -150,7 +151,8 @@ opendir(path: string): Promise&lt;Dir&gt;
 **示例：**
 
   ```js
-  fileio.opendir(path).then(function(dir){
+  let dirPath = pathDir + "/testDir";
+  fileio.opendir(dirPath).then(function(dir){
       console.info("opendir succeed:"+ JSON.stringify(dir));
   }).catch(function(err){
       console.info("opendir failed with error:"+ err);
@@ -176,7 +178,7 @@ opendir(path: string, callback: AsyncCallback&lt;Dir&gt;): void
 **示例：**
 
   ```js
-  fileio.opendir(path, function (err, dir) { 
+  fileio.opendir(pathDir, function (err, dir) { 
       // example code in Dir struct
       // use read/readSync/close
   });
@@ -207,7 +209,7 @@ opendirSync(path: string): Dir
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   // example code in Dir struct
   // use read/readSync/close
   ```
@@ -237,7 +239,8 @@ access(path: string, mode?: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  fileio.access(path).then(function() {
+  let filePath = pathDir + "/test.txt";
+  fileio.access(filePath).then(function() {
       console.info("access succeed");
   }).catch(function(err){
       console.info("access failed with error:"+ err);
@@ -264,7 +267,8 @@ access(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  fileio.access(path, function (err) {
+  let filePath = pathDir + "/test.txt";
+  fileio.access(filePath, function (err) {
       // do something
   });
   ```
@@ -288,8 +292,9 @@ accessSync(path: string, mode?: number): void
 **示例：**
 
   ```js
+  let filePath = pathDir + "/test.txt";
   try {
-      fileio.accessSync(path);
+      fileio.accessSync(filePath);
   } catch(err) {
       console.info("accessSync failed with error:"+ err);
   }
@@ -298,7 +303,7 @@ accessSync(path: string, mode?: number): void
 
 ## fileio.close<sup>7+</sup>
 
-close(fd: number):Promise&lt;void&gt;
+close(fd: number): Promise&lt;void&gt;
 
 关闭文件，使用Promise异步回调。
 
@@ -319,7 +324,8 @@ close(fd: number):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.close(fd).then(function(){
       console.info("close file succeed");
   }).catch(function(err){
@@ -330,7 +336,7 @@ close(fd: number):Promise&lt;void&gt;
 
 ## fileio.close<sup>7+</sup>
 
-close(fd: number, callback:AsyncCallback&lt;void&gt;): void
+close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 关闭文件，使用callback异步回调。
 
@@ -346,7 +352,8 @@ close(fd: number, callback:AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.close(fd, function (err) {
       // do something
   });
@@ -370,14 +377,15 @@ closeSync(fd: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.closeSync(fd);
   ```
 
 
 ## fileio.copyFile
 
-copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;void&gt;
+copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt;void&gt;
 
 复制文件，使用Promise异步回调。
 
@@ -400,9 +408,9 @@ copyFile(src:string | number, dest:string | number, mode?:number):Promise&lt;voi
 **示例：**
 
   ```js
-  let src = path;
-  let dest = src + 'tgt';
-  fileio.copyFile(src, dest).then(function(){
+  let srcPath = pathDir + "srcDir/test.txt";
+  let dstPath = pathDir + "dstDir/test.txt";
+  fileio.copyFile(srcPath, dstPath).then(function(){
       console.info("copyFile succeed");
   }).catch(function(err){
       console.info("copyFile failed with error:"+ err);
@@ -430,9 +438,9 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 **示例：**
 
   ```js
-  let src = path;
-  let dest = src + 'tgt';
-  fileio.copyFile(src, dest, function (err) {
+  let srcPath = pathDir + "srcDir/test.txt";
+  let dstPath = pathDir + "dstDir/test.txt";
+  fileio.copyFile(srcPath, dstPath, function (err) {
       // do something
   });
   ```
@@ -457,15 +465,15 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 **示例：**
 
   ```js
-  let src = path;
-  let dest = src + 'tgt';
-  fileio.copyFileSync(src, dest);
+  let srcPath = pathDir + "srcDir/test.txt";
+  let dstPath = pathDir + "dstDir/test.txt";
+  fileio.copyFileSync(srcPath, dstPath);
   ```
 
 
 ## fileio.mkdir
 
-mkdir(path:string, mode?: number): Promise&lt;void&gt;
+mkdir(path: string, mode?: number): Promise&lt;void&gt;
 
 创建目录，使用Promise异步回调。
 
@@ -487,7 +495,8 @@ mkdir(path:string, mode?: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  fileio.mkdir(path).then(function() {
+  let dirPath = pathDir + '/testDir';
+  fileio.mkdir(dirPath).then(function() {
       console.info("mkdir succeed");
   }).catch(function (error){
       console.info("mkdir failed with error:"+ error);
@@ -514,7 +523,8 @@ mkdir(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  fileio.mkdir(path, function(err) {
+  let dirPath = pathDir + '/testDir';
+  fileio.mkdir(dirPath, function(err) {
     console.info("mkdir succeed");
   });
   ```
@@ -538,7 +548,8 @@ mkdirSync(path: string, mode?: number): void
 **示例：**
 
   ```js
-  fileio.mkdirSync(path);
+  let dirPath = path + '/testDir';
+  fileio.mkdirSync(dirPath);
   ```
 
 
@@ -567,7 +578,8 @@ open(path: string, flags?: number, mode?: number): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  fileio.open(path, 0o1, 0o0200).then(function(number){
+  let filePath = pathDir + "/test.txt";
+  fileio.open(filePath, 0o1, 0o0200).then(function(number){
       console.info("open file succeed");
   }).catch(function(err){
       console.info("open file failed with error:"+ err);
@@ -588,14 +600,15 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                          | 是   | 待打开文件的应用沙箱路径。                                   |
-| flags    | number                          | 是   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path不指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
-| mode     | number                          | 是   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
+| flags    | number                          | 否   | 打开文件的选项，必须指定如下选项中的一个，默认以只读方式打开：<br/>-&nbsp;0o0：只读打开。<br/>-&nbsp;0o1：只写打开。<br/>-&nbsp;0o2：读写打开。<br/>同时，也可给定如下选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;0o100：若文件不存在，则创建文件。使用该选项时必须指定第三个参数&nbsp;mode。<br/>-&nbsp;0o200：如果追加了0o100选项，且文件已经存在，则出错。<br/>-&nbsp;0o1000：如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。<br/>-&nbsp;0o2000：以追加方式打开，后续写将追加到文件末尾。<br/>-&nbsp;0o4000：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;0o200000：如果path不指向目录，则出错。<br/>-&nbsp;0o400000：如果path指向符号链接，则出错。<br/>-&nbsp;0o4010000：以同步IO的方式打开文件。 |
+| mode     | number                          | 否   | 若创建文件，则指定文件的权限，可给定如下权限，以按位或的方式追加权限，默认给定0o666。<br/>-&nbsp;0o666：所有者具有读、写权限，所有用户组具有读、写权限，其余用户具有读、写权限。<br/>-&nbsp;0o700：所有者具有读、写及可执行权限。<br/>-&nbsp;0o400：所有者具有读权限。<br/>-&nbsp;0o200：所有者具有写权限。<br/>-&nbsp;0o100：所有者具有可执行权限。<br/>-&nbsp;0o070：所有用户组具有读、写及可执行权限。<br/>-&nbsp;0o040：所有用户组具有读权限。<br/>-&nbsp;0o020：所有用户组具有写权限。<br/>-&nbsp;0o010：所有用户组具有可执行权限。<br/>-&nbsp;0o007：其余用户具有读、写及可执行权限。<br/>-&nbsp;0o004：其余用户具有读权限。<br/>-&nbsp;0o002：其余用户具有写权限。<br/>-&nbsp;0o001：其余用户具有可执行权限。 |
 | callback | AsyncCallback&nbsp;&lt;void&gt; | 是   | 异步打开文件之后的回调。                                     |
 
 **示例：**
 
   ```js
-  fileio.open(path, 0, function(err, fd) {
+  let filePath = pathDir + "/test.txt";
+  fileio.open(filePath, 0, function(err, fd) {
       // do something
   });
   ```
@@ -603,7 +616,7 @@ open(path: string, flags: number, mode: number, callback: AsyncCallback&lt;numbe
 
 ## fileio.openSync
 
-openSync(path:string, flags?:number, mode?:number): number
+openSync(path: string, flags?: number, mode?: number): number
 
 以同步方法打开文件。
 
@@ -626,12 +639,14 @@ openSync(path:string, flags?:number, mode?:number): number
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o102, 0o640);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   ```
   ```js
-  let fd = fileio.openSync(path, 0o102, 0o666);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o102, 0o666);
   fileio.writeSync(fd, 'hello world');
-  let fd1 = fileio.openSync(path, 0o2002);
+  let fd1 = fileio.openSync(filePath, 0o2002);
   fileio.writeSync(fd1, 'hello world');
   let num = fileio.readSync(fd1, new ArrayBuffer(4096), {position: 0});
   console.info("num == " + num);
@@ -667,7 +682,8 @@ read(fd: number, buffer: ArrayBuffer, options?: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o2);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf).then(function(readOut){
       console.info("read file data succeed");
@@ -702,7 +718,8 @@ read(fd: number, buffer: ArrayBuffer, options: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o2);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
   fileio.read(fd, buf, function (err, readOut) {
       if (readOut) {
@@ -742,7 +759,8 @@ readSync(fd: number, buffer: ArrayBuffer, options?: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o2);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o2);
   let buf = new ArrayBuffer(4096);
   let num = fileio.readSync(fd, buf);
   ```
@@ -771,7 +789,8 @@ rmdir(path: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  fileio.rmdir(path).then(function() {
+  let dirPath = pathDir + '/testDir';
+  fileio.rmdir(dirPath).then(function() {
       console.info("rmdir succeed");
   }).catch(function(err){
       console.info("rmdir failed with error:"+ err);
@@ -781,7 +800,7 @@ rmdir(path: string): Promise&lt;void&gt;
 
 ## fileio.rmdir<sup>7+</sup>
 
-rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
+rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除目录，使用callback异步回调。
 
@@ -797,7 +816,8 @@ rmdir(path: string, callback:AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  fileio.rmdir(path, function(err){
+  let dirPath = pathDir + '/testDir';
+  fileio.rmdir(dirPath, function(err){
       // do something
       console.info("rmdir succeed");
   });
@@ -821,13 +841,14 @@ rmdirSync(path: string): void
 **示例：**
 
   ```js
-  fileio.rmdirSync(path);
+  let dirPath = pathDir + '/testDir';
+  fileio.rmdirSync(dirPath);
   ```
 
 
 ## fileio.unlink
 
-unlink(path:string): Promise&lt;void&gt;
+unlink(path: string): Promise&lt;void&gt;
 
 删除文件，使用Promise异步回调。
 
@@ -848,7 +869,8 @@ unlink(path:string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  fileio.unlink(path).then(function(){
+  let filePath = pathDir + "/test.txt";
+  fileio.unlink(filePath).then(function(){
       console.info("remove file succeed");
   }).catch(function(error){
       console.info("remove file failed with error:"+ error);
@@ -858,7 +880,7 @@ unlink(path:string): Promise&lt;void&gt;
 
 ## fileio.unlink
 
-unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
+unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除文件，使用callback异步回调。
 
@@ -874,7 +896,8 @@ unlink(path:string, callback:AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  fileio.unlink(path, function(err) {
+  let filePath = pathDir + "/test.txt";
+  fileio.unlink(filePath, function(err) {
       console.info("remove file succeed");
   });
   ```
@@ -897,7 +920,8 @@ unlinkSync(path: string): void
 **示例：**
 
   ```js
-  fileio.unlinkSync(path);
+  let filePath = pathDir + "/test.txt";
+  fileio.unlinkSync(filePath);
   ```
 
 
@@ -931,7 +955,8 @@ write(fd: number, buffer: ArrayBuffer | string, options?: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world").then(function(number){
        console.info("write data to file succeed and size is:"+ number);
   }).catch(function(err){
@@ -965,7 +990,8 @@ write(fd: number, buffer: ArrayBuffer | string, options: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   fileio.write(fd, "hello, world", function (err, bytesWritten) {
       if (bytesWritten) {
          console.info("write data to file succeed and size is:"+ bytesWritten);
@@ -1004,7 +1030,8 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: {
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path, 0o100 | 0o2, 0o666);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath, 0o100 | 0o2, 0o666);
   let num = fileio.writeSync(fd, "hello, world");
   ```
 
@@ -1033,7 +1060,8 @@ hash(path: string, algorithm: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  fileio.hash(path, "sha256").then(function(str){
+  let filePath = pathDir + "/test.txt";
+  fileio.hash(filePath, "sha256").then(function(str){
       console.info("calculate file hash succeed:"+ str);
   }).catch(function(err){
       console.info("calculate file hash failed with error:"+ err);
@@ -1060,7 +1088,8 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 **示例：**
 
   ```js
-  fileio.hash(path, "sha256", function(err, hashStr) {
+  let filePath = pathDir + "/test.txt";
+  fileio.hash(filePath, "sha256", function(err, hashStr) {
       if (hashStr) {
           console.info("calculate file hash succeed:"+ hashStr);
       }
@@ -1070,7 +1099,7 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
 
 ## fileio.chmod<sup>7+</sup>
 
-chmod(path: string, mode: number):Promise&lt;void&gt;
+chmod(path: string, mode: number): Promise&lt;void&gt;
 
 改变文件权限，使用Promise异步回调。
 
@@ -1092,7 +1121,8 @@ chmod(path: string, mode: number):Promise&lt;void&gt;
 **示例：**
 
   ```js
-  fileio.chmod(path, 0o700).then(function() {
+  let filePath = pathDir + "/test.txt";
+  fileio.chmod(filePath, 0o700).then(function() {
       console.info("chmod succeed");
   }).catch(function(err){
       console.info("chmod failed with error:"+ err);
@@ -1119,7 +1149,8 @@ chmod(path: string, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  fileio.chmod(path, 0o700, function (err) {
+  let filePath = pathDir + "/test.txt";
+  fileio.chmod(filePath, 0o700, function (err) {
       // do something
   });
   ```
@@ -1143,7 +1174,8 @@ chmodSync(path: string, mode: number): void
 **示例：**
 
   ```js
-  fileio.chmodSync(path, 0o700);
+  let filePath = pathDir + "/test.txt";
+  fileio.chmodSync(filePath, 0o700);
   ```
 
 
@@ -1170,7 +1202,8 @@ fstat(fd: number): Promise&lt;Stat&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fstat(fd).then(function(stat){
       console.info("fstat succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
@@ -1197,7 +1230,8 @@ fstat(fd: number, callback: AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fstat(fd, function (err) {
       // do something
   });
@@ -1227,7 +1261,8 @@ fstatSync(fd: number): Stat
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let stat = fileio.fstatSync(fd);
   ```
 
@@ -1256,7 +1291,8 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.ftruncate(fd, 5).then(function(err) {    
       console.info("truncate file succeed");
   }).catch(function(err){
@@ -1267,7 +1303,7 @@ ftruncate(fd: number, len?: number): Promise&lt;void&gt;
 
 ## fileio.ftruncate<sup>7+</sup>
 
-ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
+ftruncate(fd: number, len: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件描述符截断文件，使用callback异步回调。
 
@@ -1278,13 +1314,14 @@ ftruncate(fd: number, len: number, callback:AsyncCallback&lt;void&gt;): void
   | 参数名      | 类型                        | 必填   | 说明               |
   | -------- | ------------------------- | ---- | ---------------- |
   | fd       | number                    | 是    | 待截断文件的文件描述符。     |
-  | len      | number                    | 是    | 文件截断后的长度，以字节为单位。 |
+  | len      | number                    | 否    | 文件截断后的长度，以字节为单位。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，本调用无返回值。  |
 
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let len = 5;
   fileio.ftruncate(fd, 5, function(err){
       // do something
@@ -1310,7 +1347,8 @@ ftruncateSync(fd: number, len?: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let len = 5;
   fileio.ftruncateSync(fd, len);
   ```
@@ -1340,8 +1378,9 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(path, len).then(function(){
+  fileio.truncate(filePath, len).then(function(){
       console.info("truncate file succeed");
   }).catch(function(err){
       console.info("truncate file failed with error:"+ err);
@@ -1351,7 +1390,7 @@ truncate(path: string, len?: number): Promise&lt;void&gt;
 
 ## fileio.truncate<sup>7+</sup>
 
-truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
+truncate(path: string, len: number, callback: AsyncCallback&lt;void&gt;): void
 
 基于文件路径截断文件，使用callback异步回调。
 
@@ -1362,14 +1401,15 @@ truncate(path: string, len: number, callback:AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
 | path     | string                    | 是   | 待截断文件的应用沙箱路径。       |
-| len      | number                    | 是   | 文件截断后的长度，以字节为单位。 |
+| len      | number                    | 否   | 文件截断后的长度，以字节为单位。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
 **示例：**
 
   ```js
+  let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncate(path, len, function(err){
+  fileio.truncate(filePath, len, function(err){
       // do something
   });
   ```
@@ -1393,8 +1433,9 @@ truncateSync(path: string, len?: number): void
 **示例：**
 
   ```js
+  let filePath = pathDir + "/test.txt";
   let len = 5;
-  fileio.truncateSync(path, len);
+  fileio.truncateSync(filePath, len);
   ```
 
 
@@ -1426,7 +1467,8 @@ readText(filePath: string, options?: {
 **示例：**
 
   ```js
-  fileio.readText(path).then(function(str) {
+  let filePath = pathDir + "/test.txt";
+  fileio.readText(filePath).then(function(str) {
       console.info("readText succeed:"+ str);
   }).catch(function(err){
       console.info("readText failed with error:"+ err);
@@ -1451,13 +1493,14 @@ readText(filePath: string, options: {
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | 是   | 待读取文件的应用沙箱路径。                                   |
-| options  | Object                      | 是   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;position，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度减去偏移长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回读取文件的内容。                         |
 
 **示例：**
 
   ```js
-  fileio.readText(path, { position: 1, encoding: 'UTF-8' }, function(err, str){
+  let filePath = pathDir + "/test.txt";
+  fileio.readText(filePath, { position: 1, encoding: 'UTF-8' }, function(err, str){
       // do something
   });
   ```
@@ -1491,7 +1534,8 @@ readTextSync(filePath: string, options?: {
 **示例：**
 
   ```js
-  let str = fileio.readTextSync(path, {position: 1, length: 3});
+  let filePath = pathDir + "/test.txt";
+  let str = fileio.readTextSync(filePath, {position: 1, length: 3});
   ```
 
 
@@ -1518,7 +1562,8 @@ lstat(path: string): Promise&lt;Stat&gt;
 **示例：**
 
   ```js
-  fileio.lstat(path).then(function(stat){
+  let filePath = pathDir + "/test.txt";
+  fileio.lstat(filePath).then(function(stat){
       console.info("get link status succeed:"+ JSON.stringify(stat));
   }).catch(function(err){
       console.info("get link status failed with error:"+ err);
@@ -1528,7 +1573,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 
 ## fileio.lstat<sup>7+</sup>
 
-lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
+lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
 
 获取链接信息，使用callback异步回调。
 
@@ -1544,7 +1589,8 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 **示例：**
 
   ```js
-  fileio.lstat(path, function (err, stat) {
+  let filePath = pathDir + "/test.txt";
+  fileio.lstat(filePath, function (err, stat) {
       // do something
   });
   ```
@@ -1552,7 +1598,7 @@ lstat(path:string, callback:AsyncCallback&lt;Stat&gt;): void
 
 ## fileio.lstatSync<sup>7+</sup>
 
-lstatSync(path:string): Stat
+lstatSync(path: string): Stat
 
 以同步方法获取链接信息。
 
@@ -1573,7 +1619,8 @@ lstatSync(path:string): Stat
 **示例：**
 
   ```js
-  let stat = fileio.lstatSync(path);
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.lstatSync(filePath);
   ```
 
 
@@ -1601,9 +1648,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let oldPath = path;
-  let newPath = oldPath + '123';
-  fileio.rename(oldPath, newPath).then(function() {
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/new.txt';
+  fileio.rename(srcFile, dstFile).then(function() {
       console.info("rename succeed");
   }).catch(function(err){
       console.info("rename failed with error:"+ err);
@@ -1630,9 +1677,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```js
-  let oldPath = path;
-  let newPath = oldPath + '123';
-  fileio.rename(oldPath, newPath, function(err){
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/new.txt';
+  fileio.rename(srcFile, dstFile, function(err){
   });
   ```
 
@@ -1655,9 +1702,9 @@ renameSync(oldPath: string, newPath: string): void
 **示例：**
 
   ```js
-  let oldPath = path;
-  let newPath = oldPath + '123';
-  fileio.renameSync(oldPath, newPath);
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/new.txt';
+  fileio.renameSync(srcFile, dstFile);
   ```
 
 
@@ -1684,7 +1731,8 @@ fsync(fd: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fsync(fd).then(function(){
       console.info("sync data succeed");
   }).catch(function(err){
@@ -1711,7 +1759,8 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fsync(fd, function(err){
       // do something
   });
@@ -1735,7 +1784,8 @@ fsyncSync(fd: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fsyncSync(fd);
   ```
 
@@ -1763,7 +1813,8 @@ fdatasync(fd: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fdatasync(fd).then(function(err) {
       console.info("sync data succeed");
   }).catch(function(err){
@@ -1774,7 +1825,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
 
 ## fileio.fdatasync<sup>7+</sup>
 
-fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
+fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 实现文件内容数据同步，使用callback异步回调。
 
@@ -1790,7 +1841,8 @@ fdatasync(fd: number, callback:AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fdatasync (fd, function (err) {
       // do something
   });
@@ -1814,7 +1866,8 @@ fdatasyncSync(fd: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let stat = fileio.fdatasyncSync(fd);
   ```
 
@@ -1843,9 +1896,9 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let target = path;
-  let srcPath = target + 'aaa';
-  fileio.symlink(target, srcPath).then(function() {
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/test';
+  fileio.symlink(srcFile, dstFile).then(function() {
       console.info("symlink succeed");
   }).catch(function(err){
       console.info("symlink failed with error:"+ err);
@@ -1872,9 +1925,9 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
   ```js
-  let target = path;
-  let srcPath = target + 'aaa';
-  fileio.symlink(target, srcPath, function (err) {
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/test';
+  fileio.symlink(srcFile, dstFile, function (err) {
       // do something
   });
   ```
@@ -1898,9 +1951,9 @@ symlinkSync(target: string, srcPath: string): void
 **示例：**
 
   ```js
-  let target = path;
-  let srcPath = target + 'aaa';
-  fileio.symlinkSync(target, srcPath);
+  let srcFile = pathDir + "/test.txt";
+  let dstFile = pathDir + '/test';
+  fileio.symlinkSync(srcFile, dstFile);
   ```
 
 
@@ -1929,8 +1982,9 @@ chown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path);
-  fileio.chown(path, stat.uid, stat.gid).then(function(){
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath);
+  fileio.chown(filePath, stat.uid, stat.gid).then(function(){
       console.info("chown succeed");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
@@ -1958,8 +2012,9 @@ chown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&gt
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path)
-  fileio.chown(path, stat.uid, stat.gid, function (err){
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath)
+  fileio.chown(filePath, stat.uid, stat.gid, function (err){
       // do something
   });
   ```
@@ -1984,8 +2039,9 @@ chownSync(path: string, uid: number, gid: number): void
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path)
-  fileio.chownSync(path, stat.uid, stat.gid);
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath)
+  fileio.chownSync(filePath, stat.uid, stat.gid);
   ```
 
 
@@ -2012,8 +2068,8 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  fileio.mkdtemp(path + "XXXX").then(function(path){
-      console.info("mkdtemp succeed:"+ path);
+  fileio.mkdtemp(pathDir + "/XXXXXX").then(function(pathDir){
+      console.info("mkdtemp succeed:"+ pathDir);
   }).catch(function(err){
       console.info("mkdtemp failed with error:"+ err);
   });
@@ -2038,7 +2094,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  fileio.mkdtemp(path + "XXXX", function (err, res) {
+  fileio.mkdtemp(pathDir + "/XXXXXX", function (err, res) {
       // do something
   });
   ```
@@ -2067,7 +2123,7 @@ mkdtempSync(prefix: string): string
 **示例：**
 
   ```js
-  let res = fileio.mkdtempSync(path + "XXXX");
+  let res = fileio.mkdtempSync(pathDir + "/XXXXXX");
   ```
 
 
@@ -2095,7 +2151,8 @@ fchmod(fd: number, mode: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let mode = 0o700;
   fileio.fchmod(fd, mode).then(function() {
       console.info("chmod succeed");
@@ -2124,7 +2181,8 @@ fchmod(fd: number, mode: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let mode = 0o700;
   fileio.fchmod(fd, mode, function (err) {
       // do something
@@ -2150,7 +2208,8 @@ fchmodSync(fd: number, mode: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let mode = 0o700;
    fileio.fchmodSync(fd, mode);
   ```
@@ -2180,7 +2239,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 **示例：**
 
   ```js
-  fileio.createStream(path, "r+").then(function(stream){
+  let filePath = pathDir + "/test.txt";
+  fileio.createStream(filePath, "r+").then(function(stream){
       console.info("createStream succeed");
   }).catch(function(err){
       console.info("createStream failed with error:"+ err);
@@ -2207,7 +2267,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 **示例：**
 
   ```js
-  fileio.createStream(path, "r+", function(err, stream){
+  let filePath = pathDir + "/test.txt";
+  fileio.createStream(filePath, "r+", function(err, stream){
       // do something
   });
   ```
@@ -2237,7 +2298,8 @@ createStreamSync(path: string, mode: string): Stream
 **示例：**
 
   ```js
-  let ss = fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss = fileio.createStreamSync(filePath, "r+");
   ```
 
 
@@ -2265,7 +2327,8 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fdopenStream(fd, "r+").then(function(stream){
       console.info("openStream succeed");
   }).catch(function(err){
@@ -2293,7 +2356,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   fileio.fdopenStream(fd, "r+", function (err, stream) {
       // do something
   });
@@ -2324,7 +2388,8 @@ fdopenStreamSync(fd: number, mode: string): Stream
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
   let ss = fileio.fdopenStreamSync(fd, "r+");
   ```
 
@@ -2354,8 +2419,9 @@ fchown(fd: number, uid: number, gid: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
-  let stat = fileio.statSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
+  let stat = fileio.statSync(filePath);
   fileio.fchown(fd, stat.uid, stat.gid).then(function() {
       console.info("chown succeed");
   }).catch(function(err){
@@ -2384,8 +2450,9 @@ fchown(fd: number, uid: number, gid: number, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
-  let stat = fileio.statSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
+  let stat = fileio.statSync(filePath);
   fileio.fchown(fd, stat.uid, stat.gid, function (err){
       // do something
   });
@@ -2411,8 +2478,9 @@ fchownSync(fd: number, uid: number, gid: number): void
 **示例：**
 
   ```js
-  let fd = fileio.openSync(path);
-  let stat = fileio.statSync(path);
+  let filePath = pathDir + "/test.txt";
+  let fd = fileio.openSync(filePath);
+  let stat = fileio.statSync(filePath);
   fileio.fchownSync(fd, stat.uid, stat.gid);
   ```
 
@@ -2442,8 +2510,9 @@ lchown(path: string, uid: number, gid: number): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path);
-  fileio.lchown(path, stat.uid, stat.gid).then(function() {
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath);
+  fileio.lchown(filePath, stat.uid, stat.gid).then(function() {
       console.info("chown succeed");
   }).catch(function(err){
       console.info("chown failed with error:"+ err);
@@ -2471,8 +2540,9 @@ lchown(path: string, uid: number, gid: number, callback: AsyncCallback&lt;void&g
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path);
-  fileio.lchown(path, stat.uid, stat.gid, function (err){
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath);
+  fileio.lchown(filePath, stat.uid, stat.gid, function (err){
       // do something
   });
   ```
@@ -2497,8 +2567,9 @@ lchownSync(path: string, uid: number, gid: number): void
 **示例：**
 
   ```js
-  let stat = fileio.statSync(path);
-  fileio.lchownSync(path, stat.uid, stat.gid);
+  let filePath = pathDir + "/test.txt";
+  let stat = fileio.statSync(filePath);
+  fileio.lchownSync(filePath, stat.uid, stat.gid);
   ```
 
 
@@ -2514,7 +2585,7 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| filename | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
+| filePath | string                            | 是   | 待监视文件的应用沙箱路径。                                   |
 | events   | Number                            | 是   | -&nbsp;1:&nbsp;监听文件或者目录是否发生重命名。<br/>-&nbsp;2：监听文件或者目录内容的是否修改。<br/>-&nbsp;3：两者都有。 |
 | callback | AsyncCallback&lt;number&nbsp;&gt; | 是   | 每发生变化一次，调用一次此函数。                             |
 
@@ -2527,8 +2598,8 @@ createWatcher(filename: string, events: number, callback: AsyncCallback&lt;numbe
 **示例：**
 
   ```js
-  let filename = path +"/test.txt";
-  fileio.createWatcher(filename, 1, function(number){
+  let filePath = pathDir +"/test.txt";
+  fileio.createWatcher(filePath, 1, function(number){
      console.info("Monitoring times: "+number);
   });
   
@@ -2589,7 +2660,8 @@ isBlockDevice(): boolean
 **示例：**
 
   ```js
-  let isBLockDevice = fileio.statSync(path).isBlockDevice();
+  let filePath = pathDir + "/test.txt";
+  let isBLockDevice = fileio.statSync(filePath).isBlockDevice();
   ```
 
 
@@ -2610,7 +2682,8 @@ isCharacterDevice(): boolean
 **示例：**
 
   ```js
-  let isCharacterDevice = fileio.statSync(path).isCharacterDevice();
+  let filePath = pathDir + "/test.txt";
+  let isCharacterDevice = fileio.statSync(filePath).isCharacterDevice();
   ```
 
 
@@ -2631,7 +2704,8 @@ isDirectory(): boolean
 **示例：**
 
   ```js
-  let isDirectory = fileio.statSync(path).isDirectory(); 
+  let dirPath = pathDir + "/test";
+  let isDirectory = fileio.statSync(dirPath).isDirectory(); 
   ```
 
 
@@ -2652,7 +2726,8 @@ isFIFO(): boolean
 **示例：**
 
   ```js
-  let isFIFO = fileio.statSync(path).isFIFO(); 
+  let filePath = pathDir + "/test.txt";
+  let isFIFO = fileio.statSync(filePath).isFIFO(); 
   ```
 
 
@@ -2673,7 +2748,8 @@ isFile(): boolean
 **示例：**
 
   ```js
-  let isFile = fileio.statSync(path).isFile();
+  let filePath = pathDir + "/test.txt";
+  let isFile = fileio.statSync(filePath).isFile();
   ```
 
 
@@ -2694,7 +2770,8 @@ isSocket(): boolean
 **示例：**
 
   ```js
-  let isSocket = fileio.statSync(path).isSocket(); 
+  let filePath = pathDir + "/test.txt";
+  let isSocket = fileio.statSync(filePath).isSocket(); 
   ```
 
 
@@ -2715,7 +2792,8 @@ isSymbolicLink(): boolean
 **示例：**
 
   ```js
-  let isSymbolicLink = fileio.statSync(path).isSymbolicLink(); 
+  let filePath = pathDir + "/test";
+  let isSymbolicLink = fileio.statSync(filePath).isSymbolicLink(); 
   ```
 
 
@@ -2735,8 +2813,8 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let filename = path +"/test.txt";
-  let watcher = fileio.createWatcher(filename, 1, function(number){
+  let filePath = path + "/test.txt";
+  let watcher = fileio.createWatcher(filePath, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop().then(function(){
@@ -2762,8 +2840,8 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let filename = path +"/test.txt";
-  let watcher = fileio.createWatcher(filename, 1, function(number){
+  let filePath = path +"/test.txt";
+  let watcher = fileio.createWatcher(filePath, 1, function(number){
       console.info("Monitoring times: "+number);
   });
   watcher.stop(function(){
@@ -2794,7 +2872,8 @@ close(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.close().then(function(){
       console.info("close fileStream succeed");
   }).catch(function(err){
@@ -2820,7 +2899,8 @@ close(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.close(function (err) {
       // do something
   });
@@ -2838,7 +2918,8 @@ closeSync(): void
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.closeSync();
   ```
 
@@ -2860,7 +2941,8 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.flush().then(function (){
       console.info("flush succeed");
   }).catch(function(err){
@@ -2886,7 +2968,8 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.flush(function (err) {
       // do something
   });
@@ -2904,7 +2987,8 @@ flushSync(): void
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.flushSync();
   ```
 
@@ -2938,7 +3022,8 @@ write(buffer: ArrayBuffer | string, options?: {
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.write("hello, world",{offset: 1,length: 5,position: 5,encoding :'utf-8'}).then(function (number){
       console.info("write succeed and size is:"+ number);
   }).catch(function(err){
@@ -2971,7 +3056,8 @@ write(buffer: ArrayBuffer | string, options: {
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath, "r+");
   ss.write("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'}, function (err, bytesWritten) {
       if (bytesWritten) {
          // do something
@@ -3010,7 +3096,8 @@ writeSync(buffer: ArrayBuffer | string, options?: {
 **示例：**
 
   ```js
-  let ss= fileio.createStreamSync(path,"r+");
+  let filePath = pathDir + "/test.txt";
+  let ss= fileio.createStreamSync(filePath,"r+");
   let num = ss.writeSync("hello, world", {offset: 1, length: 5, position: 5, encoding :'utf-8'});
   ```
 
@@ -3043,7 +3130,8 @@ read(buffer: ArrayBuffer, options?: {
 **示例：**
 
   ```js
-  let ss = fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.read(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5}).then(function (readOut){
       console.info("read data succeed");
       console.log(String.fromCharCode.apply(null, new Uint8Array(readOut.buffer)));
@@ -3076,7 +3164,8 @@ read(buffer: ArrayBuffer, options: {
 **示例：**
 
   ```js
-  let ss = fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss = fileio.createStreamSync(filePath, "r+");
   ss.read(new ArrayBuffer(4096),{offset: 1, length: 5, position: 5},function (err, readOut) {
       if (readOut) {
           console.info("read data succeed");
@@ -3114,7 +3203,8 @@ readSync(buffer: ArrayBuffer, options?: {
 **示例：**
 
   ```js
-  let ss = fileio.createStreamSync(path, "r+");
+  let filePath = pathDir + "/test.txt";
+  let ss = fileio.createStreamSync(filePath, "r+");
   let num = ss.readSync(new ArrayBuffer(4096), {offset: 1, length: 5, position: 5});
   ```
 
@@ -3275,7 +3365,7 @@ isBlockDevice(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isBLockDevice = dir.readSync().isBlockDevice();
   ```
 
@@ -3297,7 +3387,7 @@ isCharacterDevice(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isCharacterDevice = dir.readSync().isCharacterDevice(); 
   ```
 
@@ -3319,7 +3409,7 @@ isDirectory(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isDirectory = dir.readSync().isDirectory(); 
   ```
 
@@ -3341,7 +3431,7 @@ isFIFO(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isFIFO = dir.readSync().isFIFO(); 
   ```
 
@@ -3363,7 +3453,7 @@ isFile(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isFile = dir.readSync().isFile(); 
   ```
 
@@ -3385,7 +3475,7 @@ isSocket(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isSocket = dir.readSync().isSocket(); 
   ```
 
@@ -3407,6 +3497,23 @@ isSymbolicLink(): boolean
 **示例：**
 
   ```js
-  let dir = fileio.opendirSync(path);
+  let dir = fileio.opendirSync(pathDir);
   let isSymbolicLink = dir.readSync().isSymbolicLink();
   ```
+
+## Filter<sup>9+</sup>
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+文件过滤器配置项。
+
+| 名称        | 参数类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| suffix | Array&lt;string&gt;     | 文件后缀名，各个关键词OR关系。           |
+| displayName    | Array&lt;string&gt;     | 文件名模糊匹配，各个关键词OR关系。 |
+| mimeType    | Array&lt;string&gt; | mime类型匹配，各个关键词OR关系。       |
+| fileSizeOver    | number | 文件大小匹配，大于等于指定大小的文件。       |
+| lastModifiedAfter    | Date | 修改时间匹配，在指定时间点后的文件。       |
+| excludeMedia    | Boolean | 是否排除Media中已有的文件。       |

@@ -40,13 +40,14 @@ Creates a **Filter** instance based on the pixel map.
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let headFilter = effectKit.createEffect(pixelMap)
-    })
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+})
 ```
 
 ## effectKit.createColorPicker
@@ -72,14 +73,15 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts, (pixelMap) => {
-    effectKit.createColorPicker(pixelMap).then(colorPicker => {
-            console.info("color picker=" + colorPicker);
-    })
-    .catch(ex => console.error(".error=" + ex.toString()))
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap).then(colorPicker => {
+    console.info("color picker=" + colorPicker);
+  }).catch(ex => console.error(".error=" + ex.toString()))
 })
 ```
 
@@ -101,17 +103,19 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses an asyn
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts, (pixelMap) => {
-    effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
-        if(error) {
-            console.log('Failed to create color picker.');
-        } else {
-            console.log('Succeeded in creating color picker.');
-        }
-    }) 
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelMap) => {
+  effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
+    if (error) {
+      console.log('Failed to create color picker.');
+    } else {
+      console.log('Succeeded in creating color picker.');
+    }
+  })
 })
 ```
 
@@ -150,7 +154,7 @@ Obtains the main color of the image and writes the result to a **[Color](#color)
 
 ```js
 colorPicker.getMainColor().then(color => {
-    console.log('Succeeded in getting main color.')
+    console.log('Succeeded in getting main color.');
     console.info("color[ARGB]=" + color.alpha + "," + color.red + "," + color.green + "," + color.blue);
 }).catch(error => {
     console.log('Failed to get main color.');
@@ -205,17 +209,17 @@ Adds the blur effect to the filter linked list, and returns the head node of the
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let radius = 5;
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.blur(radius)
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 5;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius);
+  }
+})
 ```
 
 ### brightness
@@ -241,17 +245,17 @@ Adds the brightness effect to the filter linked list, and returns the head node 
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let bright = 0.5;
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.brightness(bright)
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let bright = 0.5;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.brightness(bright);
+  }
+})
 ```
 
 ### grayscale
@@ -271,16 +275,16 @@ Adds the grayscale effect to the filter linked list, and returns the head node o
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let headFilter = effectKit.createEffect(pixelMap)
-        if (headFilter != null) {
-            headFilter.grayscale()
-        }
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.grayscale();
+  }
+})
 ```
 
 ### getPixelMap
@@ -300,11 +304,11 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 **Example**
 
 ```js
-import image from "@ohos.multimedia.image"
+import image from "@ohos.multimedia.image";
+
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
-image.createPixelMap(color, opts)
-    .then((pixelMap) => {
-        let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap()
-    })
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
+})
 ```

@@ -21,10 +21,10 @@ Defines the wallpaper type.
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| WALLPAPER_LOCKSCREEN | Lock screen wallpaper. |
-| WALLPAPER_SYSTEM | Home screen wallpaper. |
+| WALLPAPER_LOCKSCREEN | Lock screen wallpaper.|
+| WALLPAPER_SYSTEM | Home screen wallpaper.|
 
 
 ## wallpaper.getColors
@@ -36,10 +36,11 @@ Obtains the main color information of the wallpaper of the specified type. This 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
 **Parameters**
-| Name | Type | Mandatory | Description |
+
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
-| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Yes | Callback used to return the main color information of the wallpaper. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Yes| Callback used to return the main color information of the wallpaper.|
 
 **Example**
 
@@ -64,15 +65,15 @@ Obtains the main color information of the wallpaper of the specified type. This 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Promise used to return the main color information of the wallpaper. |
+| Promise&lt;Array&lt;[RgbaColor](#rgbacolor)&gt;&gt; | Promise used to return the main color information of the wallpaper.|
 
 **Example**
 
@@ -95,10 +96,10 @@ Obtains the ID of the wallpaper of the specified type. This API uses an asynchro
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the wallpaper ID. If the wallpaper of the specified type is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1.|
 
 **Example**
 
@@ -124,15 +125,15 @@ Obtains the ID of the wallpaper of the specified type. This API uses a promise t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the wallpaper ID. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1. |
+| Promise&lt;number&gt; | Promise used to return the wallpaper ID. If this type of wallpaper is configured, a number greater than or equal to **0** is returned. Otherwise, **-1** is returned. The value ranges from -1 to 2^31-1.|
 
 **Example**
 
@@ -155,9 +156,9 @@ Obtains the minimum height of this wallpaper. This API uses an asynchronous call
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead. |
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead.|
 
 **Example**
 
@@ -183,9 +184,9 @@ Obtains the minimum height of this wallpaper. This API uses a promise to return 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead. |
+| Promise&lt;number&gt; | Promise used to return the minimum wallpaper height, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default height should be used instead.|
 
 **Example**
 
@@ -206,11 +207,12 @@ Obtains the minimum width of this wallpaper. This API uses an asynchronous callb
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
+
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead. |
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead.|
 
 **Example**
 
@@ -235,9 +237,9 @@ Obtains the minimum width of this wallpaper. This API uses a promise to return t
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promised used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead. |
+| Promise&lt;number&gt; | Promised used to return the minimum wallpaper width, in pixels. If the return value is **0**, no wallpaper is set. In this case, the default width should be used instead.|
 
 **Example**
 
@@ -260,9 +262,9 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Returns **true** if the application is allowed to change the wallpaper for the current user; returns **false** otherwise. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the application is allowed to change the wallpaper for the current user; returns **false** otherwise.|
 
 **Example**
 
@@ -287,9 +289,9 @@ Checks whether to allow the application to change the wallpaper for the current 
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Returns **true** if the application is allowed to change the wallpaper for the current user; returns **false** otherwise. |
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the application is allowed to change the wallpaper for the current user; returns **false** otherwise.|
 
 **Example**
 
@@ -312,9 +314,9 @@ Checks whether the user is allowed to set wallpapers. This API uses an asynchron
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes | Returns **true** if the user is allowed to set wallpapers; returns **false** otherwise. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if the user is allowed to set wallpapers; returns **false** otherwise.|
 
 **Example**
 
@@ -339,9 +341,9 @@ Checks whether the user is allowed to set wallpapers. This API uses a promise to
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;boolean&gt; | Returns **true** if the user is allowed to set wallpapers; returns **false** otherwise. |
+| Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if the user is allowed to set wallpapers; returns **false** otherwise.|
 
 **Example**
 
@@ -366,10 +368,10 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the result is returned. Otherwise, error information is returned. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, the result of removal is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -396,15 +398,15 @@ Resets the wallpaper of the specified type to the default wallpaper. This API us
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the result is returned. Otherwise, error information is returned. |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the result is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -429,16 +431,16 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI of a JPEG or PNG file, or bitmap of a PNG file. |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
-| callback | AsyncCallback&lt;void&gt; | Yes | Callback used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
+| source | string \|[PixelMap](js-apis-image.md#pixelmap7) |  | URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned.|
 
 **Example**
 
-```js
-// The source type is string.
+  ```js
+  //The source type is string.
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
   wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {    
       if (error) {        
@@ -448,7 +450,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
       console.log(`success to setWallpaper.`);
   });
   
-// The source type is image.PixelMap.
+  // The source type is image.PixelMap.
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -468,7 +470,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses an a
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-```
+  ```
 
 
 ## wallpaper.setWallpaper
@@ -483,21 +485,21 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string \| [PixelMap](js-apis-image.md#pixelmap7) | Yes | URI path of the JPEG or PNG file, or bitmap of the PNG file. |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| source | string \|[PixelMap](js-apis-image.md#pixelmap7) | Yes| URI of a JPEG or PNG file, or bitmap of a PNG file.|
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned. |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the setting result is returned. Otherwise, error information is returned.|
 
 **Example**
 
-```js
-// The source type is string.
+  ```js
+  // The source type is string.
   let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
   wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
       console.log(`success to setWallpaper.`);
@@ -505,7 +507,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
       console.error(`failed to setWallpaper because: ` + JSON.stringify(error));
   });
   
-// The source type is image.PixelMap.
+  // The source type is image.PixelMap.
   import image from '@ohos.multimedia.image';
   let imageSource = image.createImageSource("file://" + wallpaperPath);
   let opts = {
@@ -523,7 +525,7 @@ Sets a specified source as the wallpaper of a specified type. This API uses a pr
   }).catch((error) => {       
       console.error(`failed to createPixelMap because: ` + JSON.stringify(error));
   });
-```
+  ```
 
 ## wallpaper.getFile<sup>8+</sup>
 
@@ -537,10 +539,10 @@ Obtains the wallpaper of the specified type. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
-| callback | AsyncCallback&lt;number&gt; | Yes | Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -566,15 +568,15 @@ Obtains the wallpaper of the specified type. This API uses a promise to return t
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| wallpaperType | [WallpaperType](#wallpapertype) | Yes | Wallpaper type. |
+| wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned. |
+| Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the file descriptor ID to the wallpaper is returned. Otherwise, error information is returned.|
 
 **Example**
 
@@ -591,18 +593,20 @@ Obtains the wallpaper of the specified type. This API uses a promise to return t
 
 getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
-Obtains the pixel image for the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
+Obtains the pixel map for the wallpaper of the specified type. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](#wallpapertype) | Yes| Wallpaper type.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, the result is returned. Otherwise, error information is returned.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
 
 **Example**
 
@@ -618,11 +622,13 @@ Obtains the pixel image for the wallpaper of the specified type. This API uses a
 
 getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
-Obtains the pixel image for the wallpaper of the specified type. This API uses a promise to return the result.
+Obtains the pixel map for the wallpaper of the specified type. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_WALLPAPER
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -634,7 +640,7 @@ Obtains the pixel image for the wallpaper of the specified type. This API uses a
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, the result is returned. Otherwise, error information is returned.|
+| Promise&lt;void&gt; | Promise used to return the result. Returns the pixel map size of the wallpaper if the operation is successful; returns an error message otherwise.|
 
 **Example**
 
@@ -659,10 +665,10 @@ Subscribes to the wallpaper color change event.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to subscribe to. The value **colorChange** indicates subscribing to the wallpaper color change event. |
-| callback | function | Yes | Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>  Wallpaper type. |
+| type | string | Yes| Type of the event to subscribe to. The value **'colorChange'** indicates subscribing to the wallpaper color change event.|
+| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>Wallpaper type.|
 
 **Example**
 
@@ -684,10 +690,10 @@ Unsubscribes from the wallpaper color change event.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description |
+| Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes | Type of the event to unsubscribe from. The value **colorChange** indicates unsubscribing from the wallpaper color change event. |
-| callback | function | No |   Callback for the wallpaper color change event. If this parameter is not specified, all callbacks corresponding to the wallpaper color change event are invoked.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>  Wallpaper type. |
+| type | string | Yes| Type of the event to unsubscribe from. The value **colorChange** indicates unsubscribing from the wallpaper color change event.|
+| callback | function | No| Callback for the wallpaper color change event. If this parameter is not specified, all callbacks corresponding to the wallpaper color change event are invoked.<br>- colors<br>Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolor).<br>- wallpaperType<br>Wallpaper type.|
 
 **Example**
 
@@ -696,10 +702,10 @@ Unsubscribes from the wallpaper color change event.
       console.log(`wallpaper color changed.`);
   };
   wallpaper.on('colorChange', listener);
-// Unsubscribe from the listener.
-wallpaper.off('colorChange', listener);
-// Unsubscribe from all subscriptions of the colorChange type.
-wallpaper.off('colorChange');
+  // Unsubscribe from the listener.
+  wallpaper.off('colorChange', listener);
+  // Unsubscribe from all subscriptions of the colorChange type.
+  wallpaper.off('colorChange');
   ```
 
 
@@ -707,9 +713,9 @@ wallpaper.off('colorChange');
 
 **System capability**: SystemCapability.MiscServices.Wallpaper
 
-| Name | Type | Readable | Writable | Description |
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| red | number | Yes | Yes | Red color. The value ranges from 0 to 255. |
-| green | number | Yes | Yes | Green color. The value ranges from 0 to 255. |
-| blue | number | Yes | Yes | Blue color. The value ranges from 0 to 255. |
-| alpha | number | Yes | Yes | Alpha value. The value ranges from 0 to 255. |
+| red | number | Yes| Yes| Red color. The value ranges from 0 to 255.|
+| green | number | Yes| Yes| Green color. The value ranges from 0 to 255.|
+| blue | number | Yes| Yes| Blue color. The value ranges from 0 to 255.|
+| alpha | number | Yes| Yes| Alpha value. The value ranges from 0 to 255.|

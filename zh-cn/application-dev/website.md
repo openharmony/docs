@@ -184,9 +184,9 @@
     - [公共事件与通知概述](notification/notification-brief.md)
     - [公共事件开发指导](notification/common-event.md)
     - [通知开发指导](notification/notification-guidelines.md)
-    - 后台提醒
-      - [后台提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
-      - [后台提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
+    - 后台代理提醒
+      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
@@ -938,10 +938,11 @@
   - 接口参考（Native API）
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
-      - [Native_Bundle](reference/native-apis/_native___bundle.md)
       - [HiLog](reference/native-apis/_hi_log.md)
       - [NativeWindow](reference/native-apis/_native_window.md)
       - [Drawing](reference/native-apis/_drawing.md)
+      - [OH_NativeImage](reference/native-apis/_o_h___native_image.md)
+      - [NativeVsync](reference/native-apis/_native_vsync.md)
       - [Rawfile](reference/native-apis/rawfile.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
@@ -955,16 +956,24 @@
       - [drawing_text_typography.h](reference/native-apis/drawing__text__typography_8h.md)
       - [drawing_types.h](reference/native-apis/drawing__types_8h.md)
       - [external_window.h](reference/native-apis/external__window_8h.md)
+      - [image_pixel_map_napi.h](reference/native-apis/image__pixel__map__napi_8h.md)
       - [log.h](reference/native-apis/log_8h.md)
-      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle_8h.md)
+      - [native_buffer.h](reference/native-apis/native__buffer_8h.md)
+      - [native_image.h](reference/native-apis/native__image_8h.md)
       - [native_interface_xcomponent.h](reference/native-apis/native__interface__xcomponent_8h.md)
+      - [native_vsync.h](reference/native-apis/native__vsync_8h.md)
       - [raw_dir.h](reference/native-apis/raw__dir_8h.md)
+      - [raw_file_manager.h](reference/native-apis/raw__file__manager_8h.md)
       - [raw_file.h](reference/native-apis/raw__file_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+      - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
       - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
+      - [OH_NativeXComponent_MouseEvent](reference/native-apis/_o_h___native_x_component___mouse_event.md)
+      - [OH_NativeXComponent_MouseEvent_Callback](reference/native-apis/_o_h___native_x_component___mouse_event___callback.md)
       - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+      - [OhosPixelMapInfo](reference/native-apis/_ohos_pixel_map_info.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
     - 标准库
       - [Node_API](reference/native-lib/third_party_napi/napi.md)

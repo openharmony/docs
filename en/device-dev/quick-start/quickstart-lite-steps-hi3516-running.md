@@ -48,4 +48,4 @@ After the system is started, copy the executable file **helloworld** in the **ou
 
 ## Next
 
-Congratulations! You have finished all steps! Proceed to [develop a sample camera with a screen](https://gitee.com/openharmony/docs/blob/master/en/device-dev/guide/device-camera.md) to better familiarize yourself with OpenHarmony development.
+Congratulations! You have finished all steps! Proceed to [develop a sample camera with a screen](../guide/device-camera-control-overview.md) to better familiarize yourself with OpenHarmony development.

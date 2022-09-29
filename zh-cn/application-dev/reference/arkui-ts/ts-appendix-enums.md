@@ -8,6 +8,7 @@
 | Blue                     | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
 | Gray                     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
+| Grey                     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
 | Green                    | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) |
 | Orange                   | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) |
 | Pink                     | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) |
@@ -70,6 +71,7 @@
 | Press   | 鼠标按键按下。 |
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。     |
+| Hover    | 鼠标悬浮。     |
 
 ## Curve
 
@@ -135,11 +137,11 @@
 | 名称     | 描述                   |
 | -------- | ---------------------- |
 | Top      | 竖直方向上边缘         |
-| Center   | 竖直方向居中位置       |
+| Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃       |
 | Bottom   | 竖直方向下边缘         |
-| Baseline | 交叉轴方向文本基线位置 |
+| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃 |
 | Start    | 水平方向起始位置       |
-| Middle   | 水平方向居中位置       |
+| Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃       |
 | End      | 水平方向末尾位置       |
 
 ## Week
@@ -219,9 +221,9 @@
 
 | 名称   | 描述                 |
 | ------ | -------------------- |
-| Butt   | 分割线两端为平行线。 |
-| Round  | 分割线两端为半圆。   |
-| Square | 分割线两端为平行线。 |
+| Butt   | 分割线两端为平行线，不额外扩展。 |
+| Round  | 在分割线两端延伸半个圆，直径等于线宽。 |
+| Square | 在分割线两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
 
 ## Axis
 

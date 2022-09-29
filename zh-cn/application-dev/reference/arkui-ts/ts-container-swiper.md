@@ -14,7 +14,7 @@
 
 ## 接口
 
-Swiper(value:{controller?: SwiperController})
+Swiper(controller?: SwiperController)
 
 **参数：** 
 
