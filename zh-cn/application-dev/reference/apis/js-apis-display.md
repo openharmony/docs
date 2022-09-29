@@ -11,7 +11,6 @@
 import display from '@ohos.display';
 ```
 
-
 ## DisplayState
 
 显示设备的状态枚举。
@@ -65,61 +64,6 @@ import display from '@ohos.display';
 | boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
-## display.getDefaultDisplay
-
-getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
-
-获取当前默认的display对象，使用callback异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
-
-**示例：**
-
-```js
-var displayClass = null;
-display.getDefaultDisplay((err, data) => {
-    if (err.code) {
-        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-    displayClass = data;
-});
-```
-
-## display.getDefaultDisplay
-
-getDefaultDisplay(): Promise&lt;Display&gt;
-
-获取当前默认的display对象，使用Promise异步回调。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型                               | 说明                                           |
-| ---------------------------------- | ---------------------------------------------- |
-| Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的display对象。 |
-
-**示例：**
-
-```js
-var displayClass = null;
-let promise = display.getDefaultDisplay();
-promise.then((data) => {
-    displayClass = data;
-    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
-});
-```
-
 ## display.getDefaultDisplaySync<sup>9+</sup>
 
 getDefaultDisplaySync(): Display
@@ -137,12 +81,16 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```js
-var displayClass = display.getDefaultDisplaySync();
+try {
+    let displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+};
 ```
 
-## display.getAllDisplay
+## display.getAllDisplays<sup>9+</sup>
 
-getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
+getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 获取当前所有的display对象，使用callback异步回调。
 
@@ -150,14 +98,14 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                 | 必填 | 说明                            |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的display对象。 |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是 | 回调函数。返回当前所有的display对象。 |
 
 **示例：**
 
 ```js
-display.getAllDisplay((err, data) => {
+display.getAllDisplays((err, data) => {
     if (err.code) {
         console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
         return;
@@ -166,9 +114,9 @@ display.getAllDisplay((err, data) => {
 });
 ```
 
-## display.getAllDisplay
+## display.getAllDisplays<sup>9+</sup>
 
-getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 
 获取当前所有的display对象，使用Promise异步回调。
 
@@ -176,14 +124,14 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **返回值：**
 
-| 类型                                            | 说明                                                    |
+| 类型 | 说明 |
 | ----------------------------------------------- | ------------------------------------------------------- |
 | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
 
 **示例：**
 
 ```js
-let promise = display.getAllDisplay();
+let promise = display.getAllDisplays();
 promise.then((data) => {
     console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err) => {
@@ -216,25 +164,27 @@ hasPrivateWindow(displayId: number): boolean
 **示例：**
 
 ```js
-var displayClass = null;
-display.getDefaultDisplay((err, data) => {
-  if (err.code) {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+let displayClass = null;
+try {
+    displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
     return;
-  }
-  console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
-  displayClass = data;
-});
+};
 
-var ret = display.hasPrivateWindow(displayClass.id);
+try {
+    let ret = display.hasPrivateWindow(displayClass.id);
+} catch (exception) {
+    console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
+};
 if (ret == undefined) {
-  console.log("Failed to check  has privateWindow or not.");
+  console.log("Failed to check has privateWindow or not.");
 }
 if (ret) {
   console.log("There has privateWindow.");
 } else if (!ret) {
   console.log("There has no privateWindow.");
-}
+};
 ```
 
 ## display.on('add'|'remove'|'change')
@@ -255,10 +205,14 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```js
-var callback = (data) => {
+let callback = (data) => {
     console.info('Listening enabled. Data: ' + JSON.stringify(data));
 }
-display.on("add", callback);
+try {
+    display.on("add", callback);
+} catch (exception) {
+    console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -279,7 +233,129 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```js
-display.off("remove");
+try {
+    display.off("remove");
+} catch (exception) {
+    console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
+};
+```
+
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
+
+获取当前默认的display对象，使用callback异步回调。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
+
+**示例：**
+
+```js
+var displayClass = null;
+display.getDefaultDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+    displayClass = data;
+});
+```
+
+## display.getDefaultDisplay<sup>(deprecated)</sup>
+
+getDefaultDisplay(): Promise&lt;Display&gt;
+
+获取当前默认的display对象，使用Promise异步回调。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                               | 说明                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的display对象。 |
+
+**示例：**
+
+```js
+var displayClass = null;
+let promise = display.getDefaultDisplay();
+promise.then((data) => {
+    displayClass = data;
+    console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
+
+获取当前所有的display对象，使用callback异步回调。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                            |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的display对象。 |
+
+**示例：**
+
+```js
+display.getAllDisplay((err, data) => {
+    if (err.code) {
+        console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+});
+```
+
+## display.getAllDisplay<sup>(deprecated)</sup>
+
+getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
+
+获取当前所有的display对象，使用Promise异步回调。
+
+> **说明：**
+> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型                                            | 说明                                                    |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
+
+**示例：**
+
+```js
+let promise = display.getAllDisplay();
+promise.then((data) => {
+    console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
+}).catch((err) => {
+    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+});
 ```
 
 ## Display
@@ -312,6 +388,8 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
+**参数：**
+
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
@@ -321,11 +399,11 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 ```js
 displayClass.getCutoutInfo((err, data) => {
     if (err.code) {
-        console.error('Failed to get cutoutInfo. Cause: ' + JSON.stringify(err));
+        console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-})
+});
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;

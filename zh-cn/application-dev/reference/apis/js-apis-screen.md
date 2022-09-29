@@ -87,10 +87,14 @@ on(eventType: 'connect' | 'disconnect' | 'change', callback: Callback&lt;number&
 **示例：**
 
 ```js
-var callback = (data) => {
-    console.info('Register the callback for screen changes. Data: ' + JSON.stringify(data))
+try {
+    let callback = (data) => {
+        console.info('Register the callback for screen changes. Data: ' + JSON.stringify(data))
+    };
+    screen.on('connect', callback);
+} catch (exception) {
+    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
-screen.on("connect", callback);
 ```
 
 ## screen.off('connect' | 'disconnect' | 'change')
@@ -111,10 +115,14 @@ off(eventType: 'connect' | 'disconnect' | 'change', callback?: Callback&lt;numbe
 **示例：**
 
 ```js
-var callback = (data) => {
-    console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
+try {
+    let callback = (data) => {
+        console.info('Unregister the callback for screen changes. Data: ' + JSON.stringify(data))
+    };
+    screen.off('connect', callback);
+} catch (exception) {
+    console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
 };
-screen.off("connect", callback);
 ```
 
 ## screen.makeExpand
@@ -135,15 +143,19 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```js
-var groupId = null;
-screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
-  if (err.code) {
-    console.error('Failed to make screens as expand-screen. Cause:' + JSON.stringify(err));
-    return;
-  }
-  groupId = data;
-  console.info('Succeeded in making screens as expand-screen.Data:' + JSON.stringify(data));
-});
+try {
+    let groupId = null;
+    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}], (err, data) => {
+      if (err.code) {
+        console.error('Failed to make screens as expand-screen. Code:' + JSON.stringify(err));
+        return;
+      }
+      groupId = data;
+      console.info('Succeeded in making screens as expand-screen. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to make screens as expand-screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeExpand
@@ -169,11 +181,15 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 **示例：**
 
 ```js
-screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
-  console.info('Succeeded in making screens as expand-screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to make screens as expand-screen. Cause:' + JSON.stringify(err));
-});
+try {
+    screen.makeExpand([{screenId: 0, startX: 0, startY: 0}, {screenId: 1, startX: 1080, startY: 0}]).then((data) => {
+      console.info('Succeeded in making screens as expand-screen. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to make screens as expand-screen. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to make screens as expand-screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeMirror
@@ -195,15 +211,19 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 **示例：**
 
 ```js
-var mainScreenId = 0;
-var mirrorScreenIds = [1, 2, 3];
-screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
-  if (err.code) {
-    console.error('Failed to make screens as mirror-screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in making screens as mirror-screen.Data:' + JSON.stringify(data));
-});
+let mainScreenId = 0;
+let mirrorScreenIds = [1, 2, 3];
+try {
+    screen.makeMirror(mainScreenId, mirrorScreenIds, (err, data) => {
+      if (err.code) {
+        console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in making screens as mirror-screen. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.makeMirror
@@ -230,13 +250,17 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 **示例：**
 
 ```js
-var mainScreenId = 0;
-var mirrorScreenIds = [1, 2, 3];
-screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
-  console.info('Succeeded in making screens as mirror-screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to make screens as mirror-screen.Cause:' + JSON.stringify(err));
-});
+let mainScreenId = 0;
+let mirrorScreenIds = [1, 2, 3];
+try {
+    screen.makeMirror(mainScreenId, mirrorScreenIds).then((data) => {
+      console.info('Succeeded in making screens as mirror-screen. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to make screens as mirror-screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.createVirtualScreen
@@ -259,21 +283,25 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 **示例：**
 
 ```js
-var screenClass = null;
-screen.createVirtualScreen({
-  name: 'screen01',
-  width: 1080,
-  height: 2340,
-  density: 2,
-  surfaceId: ''
-}, (err, data) => {
-  if (err.code) {
-    console.error('Failed to create virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  screenClass = data;
-  console.info('Succeeded in creating virtual screen.Data:' + JSON.stringify(data));
-});
+let screenClass = null;
+try {
+    screen.createVirtualScreen({
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    }, (err, data) => {
+      if (err.code) {
+        console.error('Failed to create virtual screen. Code: ' + JSON.stringify(err));
+        return;
+      }
+      screenClass = data;
+      console.info('Succeeded in creating virtual screen. Data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to create virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.createVirtualScreen
@@ -301,19 +329,23 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 **示例：**
 
 ```js
-var screenClass = null;
-screen.createVirtualScreen({
-  name: 'screen01',
-  width: 1080,
-  height: 2340,
-  density: 2,
-  surfaceId: ''
-}).then((data) => {
-  screenClass = data;
-  console.info('Succeeded in creating virtual screen.Data:' + JSON.stringify(data));
-}).catch((err) => {
-  console.error('Failed to create virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenClass = null;
+try {
+    screen.createVirtualScreen({
+      name: 'screen01',
+      width: 1080,
+      height: 2340,
+      density: 2,
+      surfaceId: ''
+    }).then((data) => {
+      screenClass = data;
+      console.info('Succeeded in creating virtual screen. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+      console.error('Failed to create virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to create virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.destroyVirtualScreen
@@ -334,14 +366,18 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var screenId = 1;
-screen.destroyVirtualScreen(screenId, (err,data) => {
-  if (err.code) {
-    console.error('Failed to destroy virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in destroying virtual screen.');
-});
+let screenId = 1;
+try {
+    screen.destroyVirtualScreen(screenId, (err,data) => {
+      if (err.code) {
+        console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in destroying virtual screen.');
+    });
+} catch (exception) {
+    console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.destroyVirtualScreen
@@ -367,12 +403,16 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var screenId = 1;
-screen.destroyVirtualScreen(screenId).then((data) => {
-  console.info('Succeeded in destroying virtual screen.');
-}).catch((err) => {
-  console.error('Failed to destroy virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenId = 1;
+try {
+    screen.destroyVirtualScreen(screenId).then((data) => {
+      console.info('Succeeded in destroying virtual screen.');
+    }).catch((err) => {
+      console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to destroy virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setVirtualScreenSurface
@@ -396,15 +436,19 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 **示例：**
 
 ```js
-var screenId = 1;
-var surfaceId = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
-  if (err.code) {
-    console.error('Failed to Set surface for the virtual screen.Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in setting surface for the virtual screen.');
-});
+let screenId = 1;
+let surfaceId = '2048';
+try {
+  screen.setVirtualScreenSurface(screenId, surfaceId, (err,data) => {
+    if (err.code) {
+      console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting surface for the virtual screen.');
+  });
+} catch (exception) {
+    console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setVirtualScreenSurface
@@ -433,13 +477,17 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var screenId = 1;
-var surfaceId = '2048';
-screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
-  console.info('Succeeded in setting surface for the virtual screen.');
-}).catch((err) => {
-  console.error('Failed to Set surface for the virtual screen.Cause:' + JSON.stringify(err));
-});
+let screenId = 1;
+let surfaceId = '2048';
+try {
+    screen.setVirtualScreenSurface(screenId, surfaceId).then((data) => {
+      console.info('Succeeded in setting surface for the virtual screen.');
+    }).catch((err) => {
+      console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to Set surface for the virtual screen. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.isScreenRotationLocked
@@ -515,12 +563,16 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isLocked = false;
-screen.setScreenRotationLocked(isLocked).then((data) => {
-  console.info('Succeeded in setting whether to lock screen rotation');
-}).catch((err) => {
-  console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
-});
+let isLocked = false;
+try {
+    screen.setScreenRotationLocked(isLocked).then((data) => {
+      console.info('Succeeded in setting whether to lock screen rotation');
+    }).catch((err) => {
+      console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## screen.setScreenRotationLocked
@@ -541,14 +593,18 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 **示例：**
 
 ```js
-var isLocked = false;
-screen.setScreenRotationLocked(isLocked, (err, data) => {
-  if (err.code) {
-    console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in setting whether to lock screen rotation.');
-});
+let isLocked = false;
+try {
+    screen.setScreenRotationLocked(isLocked, (err, data) => {
+      if (err.code) {
+        console.error('Failed to set whether to lock screen rotation. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in setting whether to lock screen rotation.');
+    });
+} catch (exception) {
+    console.error('Failed to set whether to lock screen rotation. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## ExpandOption
@@ -609,13 +665,17 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
-    if (err.code) {
-        console.error('Failed to setOrientation VERTICAL. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting Orientation VERTICAL. data: ' + JSON.stringify(data));
-})
+try {
+    screenClass.setOrientation(screen.Orientation.VERTICAL, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting Orientation VERTICAL. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setOrientation
@@ -639,12 +699,16 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
-promise.then((data) => {
-    console.info('Succeeded in setting Orientation VERTICAL. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set Orientation VERTICAL. Cause: ' + JSON.stringify(err));
-})
+try {
+    let promise = screenClass.setOrientation(screen.Orientation.VERTICAL);
+    promise.then((data) => {
+        console.info('Succeeded in setting Orientation VERTICAL. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to set Orientation VERTICAL. Cause: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set Orientation VERTICAL. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setScreenActiveMode
@@ -663,14 +727,18 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```js
-var modeIndex = 0;
-screenClass.setScreenActiveMode(modeIndex, (err, data) => {
-    if (err.code) {
-        console.error('Failed to set ScreenActiveMode 0. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeeded in setting ScreenActiveMode 0. data: ' + JSON.stringify(data));
-})
+let modeIndex = 0;
+try {
+    screenClass.setScreenActiveMode(modeIndex, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in setting ScreenActiveMode 0. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setScreenActiveMode
@@ -694,13 +762,17 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var modeIndex = 0;
-let promise = screenClass.setScreenActiveMode(modeIndex);
-promise.then((data) => {
-    console.info('Succeeded in setting ScreenActiveMode 0. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set ScreenActiveMode 0. Cause: ' + JSON.stringify(err));
-})
+let modeIndex = 0;
+try {
+    let promise = screenClass.setScreenActiveMode(modeIndex);
+      promise.then((data) => {
+          console.info('Succeeded in setting ScreenActiveMode 0. Data: ' + JSON.stringify(data));
+      }).catch((err) => {
+          console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(err));
+      });
+} catch (exception) {
+    console.error('Failed to set ScreenActiveMode 0. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setDensityDpi
@@ -719,14 +791,18 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 **示例：**
 
 ```js
-var densityDpi = 320;
-screenClass.setDensityDpi(densityDpi, (err, data) => {
-    if (err.code) {
-        console.error('Failed to set DensityDpi 320. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('Succeed in setting DensityDpi 320. data: ' + JSON.stringify(data));
-})
+let densityDpi = 320;
+try {
+    screenClass.setDensityDpi(densityDpi, (err, data) => {
+        if (err.code) {
+            console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeed in setting DensityDpi 320. data: ' + JSON.stringify(data));
+    });
+} catch (exception) {
+    console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ### setDensityDpi
@@ -750,13 +826,17 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var densityDpi = 320;
-var promise = screenClass.setDensityDpi(densityDpi);
-promise.then((data) => {
-    console.info('Succeeded in setting DensityDpi 320. Data: ' + JSON.stringify(data));
-}).catch((err) => {
-    console.error('Failed to set DensityDpi 320. Cause: ' + JSON.stringify(err));
-})
+let densityDpi = 320;
+try {
+    let promise = screenClass.setDensityDpi(densityDpi);
+    promise.then((data) => {
+        console.info('Succeeded in setting DensityDpi 320. Data: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to set DensityDpi 320. Code: ' + JSON.stringify(exception));
+};
 ```
 
 ## Orientation
