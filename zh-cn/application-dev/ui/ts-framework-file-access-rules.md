@@ -10,11 +10,12 @@
 
 ## 示例
 ```
-common
-│  └─ utils
-│        └─ utils.ets
-└─ pages
-       └─ index.ets
+MainAbility  
+    ├─ common
+    │  └─ utils
+    │      └─ utils.ets        
+    └─pages
+          └─ index.ets
 ```
 如上所示，将utils放在common中,示例中index.ets访问utils.ets文件
 ```ts

@@ -68,4 +68,4 @@ struct SizeExample {
 }
 ```
 
-![Size.png](figures/Size.png)
+![size](figures/size.png)
