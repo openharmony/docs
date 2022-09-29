@@ -480,7 +480,7 @@ extensionAbility示例 :
                     "name": "ohos.extability.form",
                     "resource": "$profile:form_config", 
                 }
-            ],
+            ]
         }
     ]
 }

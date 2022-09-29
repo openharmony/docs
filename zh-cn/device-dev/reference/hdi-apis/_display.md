@@ -66,9 +66,9 @@
   | 枚举 | 描述 | 
 | -------- | -------- |
 | [DispErrCode](#disperrcode)&nbsp;{&nbsp;DISPLAY_SUCCESS&nbsp;=&nbsp;0,&nbsp;DISPLAY_FAILURE&nbsp;=&nbsp;-1,&nbsp;DISPLAY_FD_ERR&nbsp;=&nbsp;-2,&nbsp;DISPLAY_PARAM_ERR&nbsp;=&nbsp;-3,&nbsp;&nbsp;&nbsp;DISPLAY_NULL_PTR&nbsp;=&nbsp;-4,&nbsp;DISPLAY_NOT_SUPPORT&nbsp;=&nbsp;-5,&nbsp;DISPLAY_NOMEM&nbsp;=&nbsp;-6,&nbsp;DISPLAY_SYS_BUSY&nbsp;=&nbsp;-7,&nbsp;&nbsp;&nbsp;DISPLAY_NOT_PERM&nbsp;=&nbsp;-8&nbsp;} | 返回值类型定义。&nbsp;[更多...](#disperrcode) | 
-| [LayerType](#layertype)&nbsp;{&nbsp;LAYER_TYPE_GRAPHIC,&nbsp;LAYER_TYPE_OVERLAY,&nbsp;LAYER_TYPE_SDIEBAND,&nbsp;LAYER_TYPE_CURSOR,&nbsp;&nbsp;&nbsp;LAYER_TYPE_BUTT&nbsp;} | 图层类型定义。&nbsp;[更多...](#layertype) | 
+| [LayerType](#layertype)&nbsp;{&nbsp;LAYER_TYPE_GRAPHIC,&nbsp;LAYER_TYPE_OVERLAY,&nbsp;LAYER_TYPE_SIDEBAND,&nbsp;LAYER_TYPE_CURSOR,&nbsp;&nbsp;&nbsp;LAYER_TYPE_BUTT&nbsp;} | 图层类型定义。&nbsp;[更多...](#layertype) | 
 | {&nbsp;HBM_USE_CPU_READ&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;0),&nbsp;HBM_USE_CPU_WRITE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;1),&nbsp;HBM_USE_MEM_MMZ&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;2),&nbsp;HBM_USE_MEM_DMA&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;3),&nbsp;&nbsp;&nbsp;HBM_USE_MEM_SHARE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;4),&nbsp;HBM_USE_MEM_MMZ_CACHE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;5),&nbsp;HBM_USE_MEM_FB&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;6),&nbsp;HBM_USE_ASSIGN_SIZE&nbsp;=&nbsp;(1&nbsp;&lt;&lt;&nbsp;7)&nbsp;} | 缓冲区定义。[更多...](#anonymous-enum) | 
-| [PixelFormat](#pixelformat)&nbsp;{&nbsp;PIXEL_FMT_CLUT8&nbsp;=&nbsp;0,&nbsp;PIXEL_FMT_CLUT1,&nbsp;PIXEL_FMT_CLUT4,&nbsp;PIXEL_FMT_RGB_565,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_5658,&nbsp;PIXEL_FMT_RGBX_4444,&nbsp;PIXEL_FMT_RGBA_4444,&nbsp;PIXEL_FMT_RGB_444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBX_5551,&nbsp;PIXEL_FMT_RGBA_5551,&nbsp;PIXEL_FMT_RGB_555,&nbsp;PIXEL_FMT_RGBX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_8888,&nbsp;PIXEL_FMT_RGB_888,&nbsp;PIXEL_FMT_BGR_565,&nbsp;PIXEL_FMT_BGRX_4444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_4444,&nbsp;PIXEL_FMT_BGRX_5551,&nbsp;PIXEL_FMT_BGRA_5551,&nbsp;PIXEL_FMT_BGRX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_8888,&nbsp;PIXEL_FMT_YUV_422_I,&nbsp;PIXEL_FMT_YCBCR_422_SP,&nbsp;PIXEL_FMT_YCRCB_422_SP,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_SP,&nbsp;PIXEL_FMT_YCRCB_420_SP,&nbsp;PIXEL_FMT_YCBCR_422_P,&nbsp;PIXEL_FMT_YCRCB_422_P,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_P,&nbsp;PIXEL_FMT_YCRCB_420_P,&nbsp;PIXEL_FMT_YUYV_422_PKG,&nbsp;PIXEL_FMT_UYVY_422_PKG,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YVYU_422_PKG,&nbsp;PIXEL_FMT_VYUY_422_PKG,&nbsp;PIXEL_FMT_VENDER_MASK&nbsp;=&nbsp;0X7FFF0000,&nbsp;PIXEL_FMT_BUTT&nbsp;=&nbsp;0X7FFFFFFF&nbsp;} | 像素格式类型定义。&nbsp;[更多...](#pixelformat) | 
+| [PixelFormat](#pixelformat)&nbsp;{&nbsp;PIXEL_FMT_CLUT8&nbsp;=&nbsp;0,&nbsp;PIXEL_FMT_CLUT1,&nbsp;PIXEL_FMT_CLUT4,&nbsp;PIXEL_FMT_RGB_565,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_5658,&nbsp;PIXEL_FMT_RGBX_4444,&nbsp;PIXEL_FMT_RGBA_4444,&nbsp;PIXEL_FMT_RGB_444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBX_5551,&nbsp;PIXEL_FMT_RGBA_5551,&nbsp;PIXEL_FMT_RGB_555,&nbsp;PIXEL_FMT_RGBX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_RGBA_8888,&nbsp;PIXEL_FMT_RGB_888,&nbsp;PIXEL_FMT_BGR_565,&nbsp;PIXEL_FMT_BGRX_4444,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_4444,&nbsp;PIXEL_FMT_BGRX_5551,&nbsp;PIXEL_FMT_BGRA_5551,&nbsp;PIXEL_FMT_BGRX_8888,&nbsp;&nbsp;&nbsp;PIXEL_FMT_BGRA_8888,&nbsp;PIXEL_FMT_YUV_422_I,&nbsp;PIXEL_FMT_YCBCR_422_SP,&nbsp;PIXEL_FMT_YCRCB_422_SP,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_SP,&nbsp;PIXEL_FMT_YCRCB_420_SP,&nbsp;PIXEL_FMT_YCBCR_422_P,&nbsp;PIXEL_FMT_YCRCB_422_P,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YCBCR_420_P,&nbsp;PIXEL_FMT_YCRCB_420_P,&nbsp;PIXEL_FMT_YUYV_422_PKG,&nbsp;PIXEL_FMT_UYVY_422_PKG,&nbsp;&nbsp;&nbsp;PIXEL_FMT_YVYU_422_PKG,&nbsp;PIXEL_FMT_VYUY_422_PKG,&nbsp;PIXEL_FMT_VENDOR_MASK&nbsp;=&nbsp;0X7FFF0000,&nbsp;PIXEL_FMT_BUTT&nbsp;=&nbsp;0X7FFFFFFF&nbsp;} | 像素格式类型定义。&nbsp;[更多...](#pixelformat) | 
 | [TransformType](#transformtype)&nbsp;{&nbsp;ROTATE_NONE&nbsp;=&nbsp;0,&nbsp;ROTATE_90,&nbsp;ROTATE_180,&nbsp;ROTATE_270,&nbsp;&nbsp;&nbsp;ROTATE_BUTT&nbsp;} | 图层变换类型定义。&nbsp;[更多...](#transformtype) | 
 | [BlendType](#blendtype)&nbsp;{&nbsp;BLEND_NONE&nbsp;=&nbsp;0,&nbsp;BLEND_CLEAR,&nbsp;BLEND_SRC,&nbsp;BLEND_SRCOVER,&nbsp;&nbsp;&nbsp;BLEND_DSTOVER,&nbsp;BLEND_SRCIN,&nbsp;BLEND_DSTIN,&nbsp;BLEND_SRCOUT,&nbsp;&nbsp;&nbsp;BLEND_DSTOUT,&nbsp;BLEND_SRCATOP,&nbsp;BLEND_DSTATOP,&nbsp;BLEND_ADD,&nbsp;&nbsp;&nbsp;BLEND_XOR,&nbsp;BLEND_DST,&nbsp;BLEND_AKS,&nbsp;BLEND_AKD,&nbsp;&nbsp;&nbsp;BLEND_BUTT&nbsp;} | 显示内存类型定义。&nbsp;[更多...](#blendtype) | 
 | [RopType](#roptype)&nbsp;{&nbsp;ROP_BLACK&nbsp;=&nbsp;0,&nbsp;ROP_NOTMERGEPEN,&nbsp;ROP_MASKNOTPEN,&nbsp;ROP_NOTCOPYPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPENNOT,&nbsp;ROP_NOT,&nbsp;ROP_XORPEN,&nbsp;ROP_NOTMASKPEN,&nbsp;&nbsp;&nbsp;ROP_MASKPEN,&nbsp;ROP_NOTXORPEN,&nbsp;ROP_NOP,&nbsp;ROP_MERGENOTPEN,&nbsp;&nbsp;&nbsp;ROP_COPYPE,&nbsp;ROP_MERGEPENNOT,&nbsp;ROP_MERGEPEN,&nbsp;ROP_WHITE,&nbsp;&nbsp;&nbsp;ROP_BUTT&nbsp;} | 硬件加速支持的ROP操作类型。&nbsp;[更多...](#roptype) | 
@@ -78,7 +78,7 @@
 | [InterfaceType](#interfacetype)&nbsp;{&nbsp;DISP_INTF_HDMI&nbsp;=&nbsp;0,&nbsp;DISP_INTF_LCD,&nbsp;DISP_INTF_BT1120,&nbsp;DISP_INTF_BT656,&nbsp;&nbsp;&nbsp;DISP_INTF_YPBPR,&nbsp;DISP_INTF_RGB,&nbsp;DISP_INTF_CVBS,&nbsp;DISP_INTF_SVIDEO,&nbsp;&nbsp;&nbsp;DISP_INTF_VGA,&nbsp;DISP_INTF_MIPI,&nbsp;DISP_INTF_PANEL,&nbsp;DISP_INTF_BUTT&nbsp;} | 枚举接口类型。&nbsp;[更多...](#interfacetype) | 
 | [DispPowerStatus](#disppowerstatus)&nbsp;{&nbsp;POWER_STATUS_ON,&nbsp;POWER_STATUS_STANDBY,&nbsp;POWER_STATUS_SUSPEND,&nbsp;POWER_STATUS_OFF,&nbsp;&nbsp;&nbsp;POWER_STATUS_BUTT&nbsp;} | 枚举显示状态&nbsp;[更多...](#disppowerstatus) | 
 | [CompositionType](#compositiontype)&nbsp;{&nbsp;COMPOSITION_CLIENT,&nbsp;COMPOSITION_DEVICE,&nbsp;COMPOSITION_CURSOR,&nbsp;COMPOSITION_VIDEO,&nbsp;&nbsp;&nbsp;COMPOSITION_DEVICE_CLEAR,&nbsp;COMPOSITION_CLIENT_CLEAR,&nbsp;COMPOSITION_TUNNEL,&nbsp;COMPOSITION_BUTT&nbsp;} | 枚举特殊层的组合类型。&nbsp;[更多...](#compositiontype) | 
-| [ColorGamut](#colorgamut)&nbsp;{&nbsp;COLOR_GAMUT_INVALID&nbsp;=&nbsp;-1,&nbsp;COLOR_GAMUT_NATIVE&nbsp;=&nbsp;0,&nbsp;COLOR_GAMUT_SATNDARD_BT601&nbsp;=&nbsp;1,&nbsp;COLOR_GAMUT_STANDARD_BT709&nbsp;=&nbsp;2,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_DCI_P3&nbsp;=&nbsp;3,&nbsp;COLOR_GAMUT_SRGB&nbsp;=&nbsp;4,&nbsp;COLOR_GAMUT_ADOBE_RGB&nbsp;=&nbsp;5,&nbsp;COLOR_GAMUT_DISPLAY_P3&nbsp;=&nbsp;6,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_BT2020&nbsp;=&nbsp;7,&nbsp;COLOR_GAMUT_BT2100_PQ&nbsp;=&nbsp;8,&nbsp;COLOR_GAMUT_BT2100_HLG&nbsp;=&nbsp;9,&nbsp;COLOR_GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;10&nbsp;} | 色域类型枚举值&nbsp;[更多...](#colorgamut) | 
+| [ColorGamut](#colorgamut)&nbsp;{&nbsp;COLOR_GAMUT_INVALID&nbsp;=&nbsp;-1,&nbsp;COLOR_GAMUT_NATIVE&nbsp;=&nbsp;0,&nbsp;COLOR_GAMUT_STANDARD_BT601&nbsp;=&nbsp;1,&nbsp;COLOR_GAMUT_STANDARD_BT709&nbsp;=&nbsp;2,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_DCI_P3&nbsp;=&nbsp;3,&nbsp;COLOR_GAMUT_SRGB&nbsp;=&nbsp;4,&nbsp;COLOR_GAMUT_ADOBE_RGB&nbsp;=&nbsp;5,&nbsp;COLOR_GAMUT_DISPLAY_P3&nbsp;=&nbsp;6,&nbsp;&nbsp;&nbsp;COLOR_GAMUT_BT2020&nbsp;=&nbsp;7,&nbsp;COLOR_GAMUT_BT2100_PQ&nbsp;=&nbsp;8,&nbsp;COLOR_GAMUT_BT2100_HLG&nbsp;=&nbsp;9,&nbsp;COLOR_GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;10&nbsp;} | 色域类型枚举值&nbsp;[更多...](#colorgamut) | 
 | [GamutMap](#gamutmap)&nbsp;{&nbsp;GAMUT_MAP_CONSTANT&nbsp;=&nbsp;0,&nbsp;GAMUT_MAP_EXPANSION&nbsp;=&nbsp;1,&nbsp;GAMUT_MAP_HDR_CONSTANT&nbsp;=&nbsp;2,&nbsp;GAMUT_MAP_HDR_EXPANSION&nbsp;=&nbsp;3&nbsp;} | 枚举色域的映射类型&nbsp;[更多...](#gamutmap) | 
 | [ColorDataSpace](#colordataspace)&nbsp;{&nbsp;&nbsp;&nbsp;COLOR_DATA_SPACE_UNKNOWN&nbsp;=&nbsp;0,&nbsp;GAMUT_BT601&nbsp;=&nbsp;0x00000001,&nbsp;GAMUT_BT709&nbsp;=&nbsp;0x00000002,&nbsp;GAMUT_DCI_P3&nbsp;=&nbsp;0x00000003,&nbsp;&nbsp;&nbsp;GAMUT_SRGB&nbsp;=&nbsp;0x00000004,&nbsp;GAMUT_ADOBE_RGB&nbsp;=&nbsp;0x00000005,&nbsp;GAMUT_DISPLAY_P3&nbsp;=&nbsp;0x00000006,&nbsp;GAMUT_BT2020&nbsp;=&nbsp;0x00000007,&nbsp;&nbsp;&nbsp;GAMUT_BT2100_PQ&nbsp;=&nbsp;0x00000008,&nbsp;GAMUT_BT2100_HLG&nbsp;=&nbsp;0x00000009,&nbsp;GAMUT_DISPLAY_BT2020&nbsp;=&nbsp;0x0000000a,&nbsp;TRANSFORM_FUNC_UNSPECIFIED&nbsp;=&nbsp;0x00000100,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;=&nbsp;0x00000200,&nbsp;TRANSFORM_FUNC_SRGB&nbsp;=&nbsp;0x00000300,&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;=&nbsp;0x00000400,&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;=&nbsp;0x00000500,&nbsp;&nbsp;&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;=&nbsp;0x00000600,&nbsp;TRANSFORM_FUNC_GM2_8&nbsp;=&nbsp;0x00000700,&nbsp;TRANSFORM_FUNC_ST2084&nbsp;=&nbsp;0x00000800,&nbsp;TRANSFORM_FUNC_HLG&nbsp;=&nbsp;0x00000900,&nbsp;&nbsp;&nbsp;PRECISION_UNSPECIFIED&nbsp;=&nbsp;0x00010000,&nbsp;PRECISION_FULL&nbsp;=&nbsp;0x00020000,&nbsp;PRESION_LIMITED&nbsp;=&nbsp;0x00030000,&nbsp;PRESION_EXTENDED&nbsp;=&nbsp;0x00040000,&nbsp;&nbsp;&nbsp;BT601_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT601_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT601&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;BT709_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_LINEAR_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;&nbsp;&nbsp;BT709_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT709_SRGB_EXTENDED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRESION_EXTENDED,&nbsp;BT709_SMPTE170M_LIMITED&nbsp;=&nbsp;GAMUT_BT709&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRESION_LIMITED,&nbsp;DCI_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;DCI_P3_GAMMA26_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_6&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DISPLAY_P3_LINEAR_FULL&nbsp;=&nbsp;GAMUT_DISPLAY_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;DCI_P3_SRGB_FULL&nbsp;=&nbsp;GAMUT_DCI_P3&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;ADOBE_RGB_GAMMA22_FULL&nbsp;=&nbsp;GAMUT_ADOBE_RGB&nbsp;\|&nbsp;TRANSFORM_FUNC_GM2_2&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_LINEAR_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_LINEAR&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SRGB_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SRGB&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_SMPTE170M_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_SMPTE_170M&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;&nbsp;&nbsp;BT2020_HLG_FULL&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_HLG&nbsp;\|&nbsp;PRECISION_FULL,&nbsp;BT2020_ST2084_LIMITED&nbsp;=&nbsp;GAMUT_BT2020&nbsp;\|&nbsp;TRANSFORM_FUNC_ST2084&nbsp;\|&nbsp;PRESION_LIMITED&nbsp;} | 枚举颜色空间的类型&nbsp;[更多...](#colordataspace) | 
 | [HDRFormat](#hdrformat)&nbsp;{&nbsp;NOT_SUPPORT_HDR&nbsp;=&nbsp;0,&nbsp;DOLBY_VISION&nbsp;=&nbsp;1,&nbsp;HDR10&nbsp;=&nbsp;2,&nbsp;HLG&nbsp;=&nbsp;3,&nbsp;&nbsp;&nbsp;HDR10_PLUS&nbsp;=&nbsp;4,&nbsp;HDR_VIVID&nbsp;=&nbsp;5&nbsp;} | 枚举HDR格式&nbsp;[更多...](#hdrformat) | 
@@ -102,150 +102,150 @@
 
 ### 变量
 
-  | 变量 | 描述 | 
+| 变量 | 描述 |
 | -------- | -------- |
-| (&nbsp;[DeviceFuncs::RegHotPlugCallback](#reghotplugcallback)&nbsp;)([HotPlugCallback](#hotplugcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册热插拔事件回调。&nbsp;[更多...](#reghotplugcallback) | 
-| (&nbsp;[DeviceFuncs::RegDisplayVBlankCallback](#regdisplayvblankcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[VBlankCallback](#vblankcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册VBlank事件回调。&nbsp;[更多...](#regdisplayvblankcallback) | 
-| (&nbsp;[DeviceFuncs::RegDisplayRefreshCallback](#regdisplayrefreshcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[RefreshCallback](#refreshcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 刷新请求回调。&nbsp;[更多...](#regdisplayrefreshcallback) | 
-| (&nbsp;[DeviceFuncs::GetDisplayCapability](#getdisplaycapability)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DisplayCapability](_display_capability.md)&nbsp;\*info) | 获取显示设备能力集。&nbsp;[更多...](#getdisplaycapability) | 
-| (&nbsp;[DeviceFuncs::GetDisplaySupportedModes](#getdisplaysupportedmodes)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[DisplayModeInfo](_display_mode_info.md)&nbsp;\*modes) | 获取显示设备支持的显示模式信息。&nbsp;[更多...](#getdisplaysupportedmodes) | 
-| (&nbsp;[DeviceFuncs::GetDisplayMode](#getdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*modeId) | 获取显示设备当前的显示模式。&nbsp;[更多...](#getdisplaymode) | 
-| (&nbsp;[DeviceFuncs::SetDisplayMode](#setdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;modeId) | 设置显示设备的显示模式。&nbsp;[更多...](#setdisplaymode) | 
-| (&nbsp;[DeviceFuncs::GetDisplayPowerStatus](#getdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;\*status) | 获取显示设备当前的电源状态。&nbsp;[更多...](#getdisplaypowerstatus) | 
-| ([&nbsp;DeviceFuncs::SetDisplayPowerStatus](#setdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;status) | 设置显示设备当前的电源状态。&nbsp;[更多...](#setdisplaypowerstatus) | 
-| (&nbsp;[DeviceFuncs::GetDisplayBacklight](#getdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*level) | 获取显示设备当前的背光值。&nbsp;[更多...](#getdisplaybacklight) | 
-| (&nbsp;[DeviceFuncs::SetDisplayBacklight](#setdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;level) | 设置显示设备当前的背光值。&nbsp;[更多...](#setdisplaybacklight) | 
-| (&nbsp;[DeviceFuncs::GetDisplayProperty](#getdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;\*value) | 获得显示设备属性值。&nbsp;[更多...](#getdisplayproperty) | 
-| (&nbsp;[DeviceFuncs::SetDisplayProperty](#setdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;value) | 设置显示设备属性值。&nbsp;[更多...](#setdisplayproperty) | 
-| (&nbsp;[DeviceFuncs::PrepareDisplayLayers](#preparedisplaylayers)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;\*needFlushFb) | 显示设备合成前准备。&nbsp;[更多...](#preparedisplaylayers) | 
-| (&nbsp;[DeviceFuncs::GetDisplayCompChange](#getdisplaycompchange)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*Layers,&nbsp;int32_t&nbsp;\*type) | 获取显示设备合成类型有变化的layer。&nbsp;[更多...](#getdisplaycompchange) | 
-| (&nbsp;[DeviceFuncs::SetDisplayClientCrop](#setdisplayclientcrop)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的裁剪区域。&nbsp;[更多...](#setdisplayclientcrop) | 
-| (&nbsp;[DeviceFuncs::SetDisplayClientDestRect](#setdisplayclientdestrect)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的显示区域。&nbsp;[更多...](#setdisplayclientdestrect) | 
-| (&nbsp;[DeviceFuncs::SetDisplayClientBuffer](#setdisplayclientbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置显示设备的显示缓存。&nbsp;[更多...](#setdisplayclientbuffer) | 
-| (&nbsp;[DeviceFuncs::SetDisplayClientDamage](#setdisplayclientdamage)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;num,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的显示脏区。&nbsp;[更多...](#setdisplayclientdamage) | 
-| (&nbsp;[DeviceFuncs::SetDisplayVsyncEnabled](#setdisplayvsyncenabled)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;enabled) | 使能垂直同步信号。&nbsp;[更多...](#setdisplayvsyncenabled) | 
-| (&nbsp;[DeviceFuncs::GetDisplayReleaseFence](#getdisplayreleasefence)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*layers,&nbsp;int32_t&nbsp;\*fences) | 获取显示图层fence。&nbsp;[更多...](#getdisplayreleasefence) | 
-| (&nbsp;[DeviceFuncs::GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamuts) | 获取显示设备支持的色域信息。&nbsp;[更多...](#getdisplaysupportedcolorgamuts) | 
-| (&nbsp;[DeviceFuncs::GetDisplayColorGamut](#getdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamut) | 获取显示设备当前的色域模式。&nbsp;[更多...](#getdisplaycolorgamut) | 
-| (&nbsp;[DeviceFuncs::SetDisplayColorGamut](#setdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;gamut) | 设置显示设备当前的色域模式。&nbsp;[更多...](#setdisplaycolorgamut) | 
-| (&nbsp;[DeviceFuncs::GetDisplayGamutMap](#getdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamutMap) | 获取显示设备当前的色域映射模式。&nbsp;[更多...](#getdisplaygamutmap) | 
-| (&nbsp;[DeviceFuncs::SetDisplayGamutMap](#setdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;gamutMap) | 设置显示设备当前的色域映射模式。&nbsp;[更多...](#setdisplaygamutmap) | 
-| (&nbsp;[DeviceFuncs::SetDisplayColorTransform](#setdisplaycolortransform)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;float&nbsp;\*matrix) | 设置显示设备当前的4x4的颜色转换矩阵。&nbsp;[更多...](#setdisplaycolortransform) | 
-| (&nbsp;[DeviceFuncs::GetHDRCapabilityInfos](#gethdrcapabilityinfos)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[HDRCapability](_h_d_r_capability.md)&nbsp;\*info) | 获取显示设备支持的HDR属性信息。&nbsp;[更多...](#gethdrcapabilityinfos) | 
-| (&nbsp;[DeviceFuncs::GetSupportedMetadataKey](#getsupportedmetadatakey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[HDRMetadataKey](#hdrmetadatakey)&nbsp;\*keys) | 获取显示设备支持的&nbsp;HDRMetadataKey。&nbsp;[更多...](#getsupportedmetadatakey) | 
-| (&nbsp;[DeviceFuncs::Commit](#commit)&nbsp;)(uint32_t&nbsp;devId,&nbsp;int32_t&nbsp;\*fence) | 提交合成送显请求。&nbsp;[更多...](#commit) | 
-| (&nbsp;[DeviceFuncs::InvokeDisplayCmd](#invokedisplaycmd)&nbsp;)(uint32_t&nbsp;devId,...) | 调用显示设备命令。&nbsp;[更多...](#invokedisplaycmd) | 
-| ([&nbsp;DeviceFuncs::CreateVirtualDisplay](#createvirtualdisplay)&nbsp;)(uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format,&nbsp;uint32_t&nbsp;\*devId) | 创建虚拟显示设备。&nbsp;[更多...](#createvirtualdisplay) | 
-| (&nbsp;[DeviceFuncs::DestroyVirtualDisplay](#destroyvirtualdisplay)&nbsp;)(uint32_t&nbsp;devId) | 销毁虚拟显示设备。&nbsp;[更多...](#destroyvirtualdisplay) | 
-| (&nbsp;[DeviceFuncs::SetVirtualDisplayBuffer](#setvirtualdisplaybuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置虚拟屏的输出缓存。&nbsp;[更多...](#setvirtualdisplaybuffer) | 
-| (&nbsp;[DeviceFuncs::GetWriteBackFrame](#getwritebackframe)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;\*fence) | 获取显示设备的回写帧。&nbsp;[更多...](#getwritebackframe) | 
-| (&nbsp;[DeviceFuncs::CreateWriteBack](#createwriteback)&nbsp;)(uint32_t&nbsp;\*devId,&nbsp;uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format) | 对指定显示设备创建回写点。&nbsp;[更多...](#createwriteback) | 
-| (&nbsp;[DeviceFuncs::DestroyWriteBack](#destroywriteback)&nbsp;)(uint32_t&nbsp;devId) | 销毁指定显示设备的回写点。&nbsp;[更多...](#destroywriteback) | 
-| [DisplayInfo::width](#width-17) | 显示屏宽度 | 
-| [DisplayInfo::height](#height-17) | 显示屏高度 | 
-| [DisplayInfo::rotAngle](#rotangle) | 显示屏旋转角度 | 
-| [LayerInfo::width](#width-27) | 图层宽度 | 
-| [LayerInfo::height](#height-27) | 图层高度 | 
-| [LayerInfo::type](#type-13) | 图层类型，包括图形层、视频层和媒体播放模式 | 
-| [LayerInfo::bpp](#bpp) | 每像素所占bit数 | 
-| [LayerInfo::pixFormat](#pixformat-12) | 图层像素格式 | 
-| [LayerAlpha::enGlobalAlpha](#englobalalpha-12) | 全局alpha使能标志 | 
-| [LayerAlpha::enPixelAlpha](#enpixelalpha-12) | 像素alpha使能标志 | 
-| [LayerAlpha::alpha0](#alpha0-12) | alpha0值，取值范围：[0,&nbsp;255] | 
-| [LayerAlpha::alpha1](#alpha1-12) | alpha1值，取值范围：[0,&nbsp;255] | 
-| [LayerAlpha::gAlpha](#galpha) | 全局alpha值，取值范围：[0,&nbsp;255] | 
-| [BufferData::phyAddr](#phyaddr-12) | 物理内存地址 | 
-| [BufferData::virAddr](#viraddr) | 虚拟内存地址 | 
-| [LayerBuffer::fenceId](#fenceid) | buffer&nbsp;的fence号r | 
-| [LayerBuffer::width](#width-37) | buffer宽度 | 
-| [LayerBuffer::height](#height-37) | buffer高度 | 
-| [LayerBuffer::pitch](#pitch) | 一行数据所占字节数 | 
-| [LayerBuffer::pixFormat](#pixformat-22) | buffer像素格式r | 
-| [LayerBuffer::data](#data) | 图层buffer数据 | 
-| [LayerBuffer::hdl](#hdl) | 图层buffer句柄 | 
-| [IRect::x](#x-12) | 矩形框起始x坐标 | 
-| [IRect::y](#y-12) | 矩形框起始y坐标 | 
-| [IRect::w](#w) | 矩形框宽度 | 
-| [IRect::h](#h) | 矩形框高度 | 
-| [ISurface::phyAddr](#phyaddr-22) | 图像首地址 | 
-| [ISurface::height](#height-47) | 图像高度 | 
-| [ISurface::width](#width-47) | 图像宽度 | 
-| [ISurface::stride](#stride) | 图像跨度 | 
-| [ISurface::enColorFmt](#encolorfmt) | 图像格式 | 
-| [ISurface::bYCbCrClut](#bycbcrclut) | CLUT表是否位于&nbsp;YCbCr&nbsp;空间 | 
-| [ISurface::bAlphaMax255](#balphamax255) | 图像alpha最大值为255还是128 | 
-| [ISurface::bAlphaExt1555](#balphaext1555) | 是否使能1555的Alpha扩展 | 
-| [ISurface::alpha0](#alpha0-22) | Alpha0值，取值范围：[0,255] | 
-| [ISurface::alpha1](#alpha1-22) | Alpha1值，取值范围：[0,255] | 
-| [ISurface::cbcrPhyAddr](#cbcrphyaddr) | CbCr分量地址 | 
-| [ISurface::cbcrStride](#cbcrstride) | CbCr分量跨度 | 
-| [ISurface::clutPhyAddr](#clutphyaddr) | Clut表首地址，用作颜色扩展或颜色校正 | 
-| [ILine::x0](#x0) | 线条起点的x坐标 | 
-| [ILine::y0](#y0) | 线条起点的y坐标 | 
-| [ILine::x1](#x1) | 线条终点的x坐标 | 
-| [ILine::y1](#y1) | 线条终点的y坐标 | 
-| [ILine::color](#color-13) | 线条颜色 | 
-| [ICircle::x](#x-22) | 圆心x坐标 | 
-| [ICircle::y](#y-22) | 圆心y坐标r | 
-| [ICircle::r](#r) | 圆的半径 | 
-| [ICircle::color](#color-23) | 圆的颜色 | 
-| [Rectangle::rect](#rect) | 矩形区域 | 
-| [Rectangle::color](#color-33) | 矩形颜色 | 
-| [GfxOpt::enGlobalAlpha](#englobalalpha-22) | 全局alpha使能位 | 
-| [GfxOpt::globalAlpha](#globalalpha) | 全局alpha的值 | 
-| [GfxOpt::enPixelAlpha](#enpixelalpha-22) | 像素alpha使能位 | 
-| [GfxOpt::blendType](#blendtype) | 混合方式 | 
-| [GfxOpt::colorKeyFrom](#colorkeyfrom) | 色键模式 | 
-| [GfxOpt::enableRop](#enablerop) | Rop功能使能位 | 
-| [GfxOpt::colorRopType](#colorroptype) | 颜色的Rop类型 | 
-| [GfxOpt::alphaRopType](#alpharoptype) | Alpha的Rop类型 | 
-| [GfxOpt::enableScale](#enablescale) | 缩放功能使能位 | 
-| [GfxOpt::rotateType](#rotatetype) | 旋转类型 | 
-| [GfxOpt::mirrorType](#mirrortype) | 镜像类型 | 
-| [PropertyObject::name](#name-12)&nbsp;[PROPERTY_NAME_LEN] | 属性名称 | 
-| [PropertyObject::propId](#propid) | 属性ID | 
-| [PropertyObject::value](#value-12) | 属性值 | 
-| [DisplayCapability::name](#name-22)&nbsp;[PROPERTY_NAME_LEN] | 显示设备名称 | 
-| [DisplayCapability::type](#type-23) | 显示屏接口类型 | 
-| [DisplayCapability::phyWidth](#phywidth) | 物理宽度 | 
-| [DisplayCapability::phyHeight](#phyheight) | 物理高度 | 
-| [DisplayCapability::supportLayers](#supportlayers) | 支持的图层数 | 
-| [DisplayCapability::virtualDispCount](#virtualdispcount) | 支持的虚拟屏数 | 
-| [DisplayCapability::supportWriteBack](#supportwriteback) | 是否支持回写 | 
-| [DisplayCapability::propertyCount](#propertycount) | 属性数组大小 | 
-| [DisplayCapability::props](#props) | 属性数组 | 
-| [DisplayModeInfo::width](#width-57) | 像素宽度 | 
-| [DisplayModeInfo::height](#height-57) | 像素高度 | 
-| [DisplayModeInfo::freshRate](#freshrate) | 刷新速率 | 
-| [DisplayModeInfo::id](#id) | 模式ID | 
-| [AllocInfo::width](#width-67) | 申请内存宽度 | 
-| [AllocInfo::height](#height-67) | 申请内存高度 | 
-| [AllocInfo::usage](#usage-12) | 申请内存的使用场景 | 
-| [AllocInfo::format](#format-12) | 申请内存格式 | 
-| [AllocInfo::expectedSize](#expectedsize) | 申请内存大小 | 
-| [HDRCapability::formatCount](#formatcount) | 支持的HDR格式的数量 | 
-| [HDRCapability::formats](#formats) | 支持的HDR格式的数组首地址 | 
-| [HDRCapability::maxLum](#maxlum) | 最大的光亮度luminance值 | 
-| [HDRCapability::maxAverageLum](#maxaveragelum) | 最大的平均光亮度luminance值 | 
-| [HDRCapability::minLum](#minlum) | 最小的光亮度luminance值 | 
-| [HDRMetaData::key](#key) | HDR元数据关键字 | 
-| [HDRMetaData::value](#value-22) | 关键字对应的值 | 
-| [VerifyAllocInfo::width](#width-77) | 分配内存的宽度 | 
-| [VerifyAllocInfo::height](#height-77) | 分配内存的高度 | 
-| [VerifyAllocInfo::usage](#usage-22) | 内存的用处 | 
-| [VerifyAllocInfo::format](#format-22) | 分配内存的像素格式 | 
-| [PresentTimestamp::type](#type-33) | 上屏时间戳类型 | 
-| [PresentTimestamp::time](#time) | 类型对应的值 | 
-| [__attribute__::fd](#fd) | 句柄&nbsp;fd，-1代表不支持 | 
-| [__attribute__::reserveInts](#reserveints) | reserve数组的个数 | 
-| [__attribute__::reserve](#reserve)&nbsp;[0] | reserve数组 | 
-| [__attribute__::baseAddr](#baseaddr) | 内存的初始地址 | 
-| [__attribute__::yOffset](#yoffset) | Y的偏移量 | 
-| [__attribute__::uOffset](#uoffset) | U的偏移量 | 
-| [__attribute__::vOffset](#voffset) | V的偏移量 | 
-| [__attribute__::yStride](#ystride) | Y的stride信息 | 
-| [__attribute__::uvStride](#uvstride) | UV的stride信息 | 
-| [__attribute__::uvStep](#uvstep) | UV的step信息 | 
+| (&nbsp;[DeviceFuncs::RegHotPlugCallback](#reghotplugcallback)&nbsp;)([HotPlugCallback](#hotplugcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册热插拔事件回调。&nbsp;[更多...](#reghotplugcallback) |
+| (&nbsp;[DeviceFuncs::RegDisplayVBlankCallback](#regdisplayvblankcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[VBlankCallback](#vblankcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 注册VBlank事件回调。&nbsp;[更多...](#regdisplayvblankcallback) |
+| (&nbsp;[DeviceFuncs::RegDisplayRefreshCallback](#regdisplayrefreshcallback)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[RefreshCallback](#refreshcallback)&nbsp;callback,&nbsp;void&nbsp;\*data) | 刷新请求回调。&nbsp;[更多...](#regdisplayrefreshcallback) |
+| (&nbsp;[DeviceFuncs::GetDisplayCapability](#getdisplaycapability)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DisplayCapability](_display_capability.md)&nbsp;\*info) | 获取显示设备能力集。&nbsp;[更多...](#getdisplaycapability) |
+| (&nbsp;[DeviceFuncs::GetDisplaySupportedModes](#getdisplaysupportedmodes)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[DisplayModeInfo](_display_mode_info.md)&nbsp;\*modes) | 获取显示设备支持的显示模式信息。&nbsp;[更多...](#getdisplaysupportedmodes) |
+| (&nbsp;[DeviceFuncs::GetDisplayMode](#getdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*modeId) | 获取显示设备当前的显示模式。&nbsp;[更多...](#getdisplaymode) |
+| (&nbsp;[DeviceFuncs::SetDisplayMode](#setdisplaymode)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;modeId) | 设置显示设备的显示模式。&nbsp;[更多...](#setdisplaymode) |
+| (&nbsp;[DeviceFuncs::GetDisplayPowerStatus](#getdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;\*status) | 获取显示设备当前的电源状态。&nbsp;[更多...](#getdisplaypowerstatus) |
+| ([&nbsp;DeviceFuncs::SetDisplayPowerStatus](#setdisplaypowerstatus)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[DispPowerStatus](#disppowerstatus)&nbsp;status) | 设置显示设备当前的电源状态。&nbsp;[更多...](#setdisplaypowerstatus) |
+| (&nbsp;[DeviceFuncs::GetDisplayBacklight](#getdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*level) | 获取显示设备当前的背光值。&nbsp;[更多...](#getdisplaybacklight) |
+| (&nbsp;[DeviceFuncs::SetDisplayBacklight](#setdisplaybacklight)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;level) | 设置显示设备当前的背光值。&nbsp;[更多...](#setdisplaybacklight) |
+| (&nbsp;[DeviceFuncs::GetDisplayProperty](#getdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;\*value) | 获得显示设备属性值。&nbsp;[更多...](#getdisplayproperty) |
+| (&nbsp;[DeviceFuncs::SetDisplayProperty](#setdisplayproperty)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;id,&nbsp;uint64_t&nbsp;value) | 设置显示设备属性值。&nbsp;[更多...](#setdisplayproperty) |
+| (&nbsp;[DeviceFuncs::PrepareDisplayLayers](#preparedisplaylayers)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;\*needFlushFb) | 显示设备合成前准备。&nbsp;[更多...](#preparedisplaylayers) |
+| (&nbsp;[DeviceFuncs::GetDisplayCompChange](#getdisplaycompchange)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*Layers,&nbsp;int32_t&nbsp;\*type) | 获取显示设备合成类型有变化的layer。&nbsp;[更多...](#getdisplaycompchange) |
+| (&nbsp;[DeviceFuncs::SetDisplayClientCrop](#setdisplayclientcrop)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的裁剪区域。&nbsp;[更多...](#setdisplayclientcrop) |
+| (&nbsp;[DeviceFuncs::SetDisplayClientDestRect](#setdisplayclientdestrect)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的显示区域。&nbsp;[更多...](#setdisplayclientdestrect) |
+| (&nbsp;[DeviceFuncs::SetDisplayClientBuffer](#setdisplayclientbuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置显示设备的显示缓存。&nbsp;[更多...](#setdisplayclientbuffer) |
+| (&nbsp;[DeviceFuncs::SetDisplayClientDamage](#setdisplayclientdamage)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;num,&nbsp;[IRect](_i_rect.md)&nbsp;\*rect) | 设置显示设备的显示脏区。&nbsp;[更多...](#setdisplayclientdamage) |
+| (&nbsp;[DeviceFuncs::SetDisplayVsyncEnabled](#setdisplayvsyncenabled)&nbsp;)(uint32_t&nbsp;devId,&nbsp;bool&nbsp;enabled) | 使能垂直同步信号。&nbsp;[更多...](#setdisplayvsyncenabled) |
+| (&nbsp;[DeviceFuncs::GetDisplayReleaseFence](#getdisplayreleasefence)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;uint32_t&nbsp;\*layers,&nbsp;int32_t&nbsp;\*fences) | 获取显示图层fence。&nbsp;[更多...](#getdisplayreleasefence) |
+| (&nbsp;[DeviceFuncs::GetDisplaySupportedColorGamuts](#getdisplaysupportedcolorgamuts)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamuts) | 获取显示设备支持的色域信息。&nbsp;[更多...](#getdisplaysupportedcolorgamuts) |
+| (&nbsp;[DeviceFuncs::GetDisplayColorGamut](#getdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamut) | 获取显示设备当前的色域模式。&nbsp;[更多...](#getdisplaycolorgamut) |
+| (&nbsp;[DeviceFuncs::SetDisplayColorGamut](#setdisplaycolorgamut)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;gamut) | 设置显示设备当前的色域模式。&nbsp;[更多...](#setdisplaycolorgamut) |
+| (&nbsp;[DeviceFuncs::GetDisplayGamutMap](#getdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;\*gamutMap) | 获取显示设备当前的色域映射模式。&nbsp;[更多...](#getdisplaygamutmap) |
+| (&nbsp;[DeviceFuncs::SetDisplayGamutMap](#setdisplaygamutmap)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[ColorGamut](#colorgamut)&nbsp;gamutMap) | 设置显示设备当前的色域映射模式。&nbsp;[更多...](#setdisplaygamutmap) |
+| (&nbsp;[DeviceFuncs::SetDisplayColorTransform](#setdisplaycolortransform)&nbsp;)(uint32_t&nbsp;devId,&nbsp;const&nbsp;float&nbsp;\*matrix) | 设置显示设备当前的4x4的颜色转换矩阵。&nbsp;[更多...](#setdisplaycolortransform) |
+| (&nbsp;[DeviceFuncs::GetHDRCapabilityInfos](#gethdrcapabilityinfos)&nbsp;)(uint32_t&nbsp;devId,&nbsp;[HDRCapability](_h_d_r_capability.md)&nbsp;\*info) | 获取显示设备支持的HDR属性信息。&nbsp;[更多...](#gethdrcapabilityinfos) |
+| (&nbsp;[DeviceFuncs::GetSupportedMetadataKey](#getsupportedmetadatakey)&nbsp;)(uint32_t&nbsp;devId,&nbsp;uint32_t&nbsp;\*num,&nbsp;[HDRMetadataKey](#hdrmetadatakey)&nbsp;\*keys) | 获取显示设备支持的&nbsp;HDRMetadataKey。&nbsp;[更多...](#getsupportedmetadatakey) |
+| (&nbsp;[DeviceFuncs::Commit](#commit)&nbsp;)(uint32_t&nbsp;devId,&nbsp;int32_t&nbsp;\*fence) | 提交合成送显请求。&nbsp;[更多...](#commit) |
+| (&nbsp;[DeviceFuncs::InvokeDisplayCmd](#invokedisplaycmd)&nbsp;)(uint32_t&nbsp;devId,...) | 调用显示设备命令。&nbsp;[更多...](#invokedisplaycmd) |
+| ([&nbsp;DeviceFuncs::CreateVirtualDisplay](#createvirtualdisplay)&nbsp;)(uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format,&nbsp;uint32_t&nbsp;\*devId) | 创建虚拟显示设备。&nbsp;[更多...](#createvirtualdisplay) |
+| (&nbsp;[DeviceFuncs::DestroyVirtualDisplay](#destroyvirtualdisplay)&nbsp;)(uint32_t&nbsp;devId) | 销毁虚拟显示设备。&nbsp;[更多...](#destroyvirtualdisplay) |
+| (&nbsp;[DeviceFuncs::SetVirtualDisplayBuffer](#setvirtualdisplaybuffer)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;fence) | 设置虚拟屏的输出缓存。&nbsp;[更多...](#setvirtualdisplaybuffer) |
+| (&nbsp;[DeviceFuncs::GetWriteBackFrame](#getwritebackframe)&nbsp;)(uint32_t&nbsp;devId,&nbsp;BufferHandle&nbsp;\*buffer,&nbsp;int32_t&nbsp;\*fence) | 获取显示设备的回写帧。&nbsp;[更多...](#getwritebackframe) |
+| (&nbsp;[DeviceFuncs::CreateWriteBack](#createwriteback)&nbsp;)(uint32_t&nbsp;\*devId,&nbsp;uint32_t&nbsp;width,&nbsp;uint32_t&nbsp;height,&nbsp;int32_t&nbsp;\*format) | 对指定显示设备创建回写点。&nbsp;[更多...](#createwriteback) |
+| (&nbsp;[DeviceFuncs::DestroyWriteBack](#destroywriteback)&nbsp;)(uint32_t&nbsp;devId) | 销毁指定显示设备的回写点。&nbsp;[更多...](#destroywriteback) |
+| [DisplayInfo::width](#width-17) | 显示屏宽度 |
+| [DisplayInfo::height](#height-17) | 显示屏高度 |
+| [DisplayInfo::rotAngle](#rotangle) | 显示屏旋转角度 |
+| [LayerInfo::width](#width-27) | 图层宽度 |
+| [LayerInfo::height](#height-27) | 图层高度 |
+| [LayerInfo::type](#type-13) | 图层类型，包括图形层、视频层和媒体播放模式 |
+| [LayerInfo::bpp](#bpp) | 每像素所占bit数 |
+| [LayerInfo::pixFormat](#pixformat-12) | 图层像素格式 |
+| [LayerAlpha::enGlobalAlpha](#englobalalpha-12) | 全局Alpha使能标志 |
+| [LayerAlpha::enPixelAlpha](#enpixelalpha-12) | 像素Alpha使能标志 |
+| [LayerAlpha::alpha0](#alpha0-12) | Alpha0值，取值范围：[0,&nbsp;255] |
+| [LayerAlpha::alpha1](#alpha1-12) | Alpha1值，取值范围：[0,&nbsp;255] |
+| [LayerAlpha::gAlpha](#galpha) | 全局Alpha值，取值范围：[0,&nbsp;255] |
+| [BufferData::phyAddr](#phyaddr-12) | 物理内存地址 |
+| [BufferData::virAddr](#viraddr) | 虚拟内存地址 |
+| [LayerBuffer::fenceId](#fenceid) | buffer&nbsp;的fence号r |
+| [LayerBuffer::width](#width-37) | buffer宽度 |
+| [LayerBuffer::height](#height-37) | buffer高度 |
+| [LayerBuffer::pitch](#pitch) | 一行数据所占字节数 |
+| [LayerBuffer::pixFormat](#pixformat-22) | buffer像素格式r |
+| [LayerBuffer::data](#data) | 图层buffer数据 |
+| [LayerBuffer::hdl](#hdl) | 图层buffer句柄 |
+| [IRect::x](#x-12) | 矩形框起始x坐标 |
+| [IRect::y](#y-12) | 矩形框起始y坐标 |
+| [IRect::w](#w) | 矩形框宽度 |
+| [IRect::h](#h) | 矩形框高度 |
+| [ISurface::phyAddr](#phyaddr-22) | 图像首地址 |
+| [ISurface::height](#height-47) | 图像高度 |
+| [ISurface::width](#width-47) | 图像宽度 |
+| [ISurface::stride](#stride) | 图像跨度 |
+| [ISurface::enColorFmt](#encolorfmt) | 图像格式 |
+| [ISurface::bYCbCrClut](#bycbcrclut) | CLUT表是否位于YCbCr&nbsp;空间 |
+| [ISurface::bAlphaMax255](#balphamax255) | 图像Alpha最大值为255还是128 |
+| [ISurface::bAlphaExt1555](#balphaext1555) | 是否使能1555的Alpha扩展 |
+| [ISurface::alpha0](#alpha0-22) | Alpha0值，取值范围：[0,255] |
+| [ISurface::alpha1](#alpha1-22) | Alpha1值，取值范围：[0,255] |
+| [ISurface::cbcrPhyAddr](#cbcrphyaddr) | CbCr分量地址 |
+| [ISurface::cbcrStride](#cbcrstride) | CbCr分量跨度 |
+| [ISurface::clutPhyAddr](#clutphyaddr) | CLUT表首地址，用作颜色扩展或颜色校正 |
+| [ILine::x0](#x0) | 线条起点的x坐标 |
+| [ILine::y0](#y0) | 线条起点的y坐标 |
+| [ILine::x1](#x1) | 线条终点的x坐标 |
+| [ILine::y1](#y1) | 线条终点的y坐标 |
+| [ILine::color](#color-13) | 线条颜色 |
+| [ICircle::x](#x-22) | 圆心x坐标 |
+| [ICircle::y](#y-22) | 圆心y坐标r |
+| [ICircle::r](#r) | 圆的半径 |
+| [ICircle::color](#color-23) | 圆的颜色 |
+| [Rectangle::rect](#rect) | 矩形区域 |
+| [Rectangle::color](#color-33) | 矩形颜色 |
+| [GfxOpt::enGlobalAlpha](#englobalalpha-22) | 全局Alpha使能位 |
+| [GfxOpt::globalAlpha](#globalalpha) | 全局Alpha的值 |
+| [GfxOpt::enPixelAlpha](#enpixelalpha-22) | 像素Alpha使能位 |
+| [GfxOpt::blendType](#blendtype) | 混合方式 |
+| [GfxOpt::colorKeyFrom](#colorkeyfrom) | 色键模式 |
+| [GfxOpt::enableRop](#enablerop) | Rop功能使能位 |
+| [GfxOpt::colorRopType](#colorroptype) | 颜色的Rop类型 |
+| [GfxOpt::alphaRopType](#alpharoptype) | Alpha的Rop类型 |
+| [GfxOpt::enableScale](#enablescale) | 缩放功能使能位 |
+| [GfxOpt::rotateType](#rotatetype) | 旋转类型 |
+| [GfxOpt::mirrorType](#mirrortype) | 镜像类型 |
+| [PropertyObject::name](#name-12)&nbsp;[PROPERTY_NAME_LEN] | 属性名称 |
+| [PropertyObject::propId](#propid) | 属性ID |
+| [PropertyObject::value](#value-12) | 属性值 |
+| [DisplayCapability::name](#name-22)&nbsp;[PROPERTY_NAME_LEN] | 显示设备名称 |
+| [DisplayCapability::type](#type-23) | 显示屏接口类型 |
+| [DisplayCapability::phyWidth](#phywidth) | 物理宽度 |
+| [DisplayCapability::phyHeight](#phyheight) | 物理高度 |
+| [DisplayCapability::supportLayers](#supportlayers) | 支持的图层数 |
+| [DisplayCapability::virtualDispCount](#virtualdispcount) | 支持的虚拟屏数 |
+| [DisplayCapability::supportWriteBack](#supportwriteback) | 是否支持回写 |
+| [DisplayCapability::propertyCount](#propertycount) | 属性数组大小 |
+| [DisplayCapability::props](#props) | 属性数组 |
+| [DisplayModeInfo::width](#width-57) | 像素宽度 |
+| [DisplayModeInfo::height](#height-57) | 像素高度 |
+| [DisplayModeInfo::freshRate](#freshrate) | 刷新速率 |
+| [DisplayModeInfo::id](#id) | 模式ID |
+| [AllocInfo::width](#width-67) | 申请内存宽度 |
+| [AllocInfo::height](#height-67) | 申请内存高度 |
+| [AllocInfo::usage](#usage-12) | 申请内存的使用场景 |
+| [AllocInfo::format](#format-12) | 申请内存格式 |
+| [AllocInfo::expectedSize](#expectedsize) | 申请内存大小 |
+| [HDRCapability::formatCount](#formatcount) | 支持的HDR格式的数量 |
+| [HDRCapability::formats](#formats) | 支持的HDR格式的数组首地址 |
+| [HDRCapability::maxLum](#maxlum) | 最大的光亮度luminance值 |
+| [HDRCapability::maxAverageLum](#maxaveragelum) | 最大的平均光亮度luminance值 |
+| [HDRCapability::minLum](#minlum) | 最小的光亮度luminance值 |
+| [HDRMetaData::key](#key) | HDR元数据关键字 |
+| [HDRMetaData::value](#value-22) | 关键字对应的值 |
+| [VerifyAllocInfo::width](#width-77) | 分配内存的宽度 |
+| [VerifyAllocInfo::height](#height-77) | 分配内存的高度 |
+| [VerifyAllocInfo::usage](#usage-22) | 内存的用处 |
+| [VerifyAllocInfo::format](#format-22) | 分配内存的像素格式 |
+| [PresentTimestamp::type](#type-33) | 上屏时间戳类型 |
+| [PresentTimestamp::time](#time) | 类型对应的值 |
+| [__attribute__::fd](#fd) | 句柄&nbsp;fd，-1代表不支持 |
+| [__attribute__::reserveInts](#reserveints) | reserve数组的个数 |
+| [__attribute__::reserve](#reserve)&nbsp;[0] | reserve数组 |
+| [__attribute__::baseAddr](#baseaddr) | 内存的初始地址 |
+| [__attribute__::yOffset](#yoffset) | Y的偏移量 |
+| [__attribute__::uOffset](#uoffset) | U的偏移量 |
+| [__attribute__::vOffset](#voffset) | V的偏移量 |
+| [__attribute__::yStride](#ystride) | Y的stride信息 |
+| [__attribute__::uvStride](#uvstride) | UV的stride信息 |
+| [__attribute__::uvStep](#uvstep) | UV的step信息 |
 
 
 ## **详细描述**
@@ -284,7 +284,7 @@ typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
   | 名称 | 描述 | 
 | -------- | -------- |
 | devId | 输入参数，显示设备ID，此ID由HDI实现层生成，并通过当前回调接口传递给图形服务使用，用以标记当前连接的显示设备。 | 
-| connected | 输入参数，指明设备的连接状态，ture代表连接，false代表断开。 | 
+| connected | 输入参数，指明设备的连接状态，true代表连接，false代表断开。 | 
 | data | 输出参数，图形服务携带的私有数据，该参数携带的是RegHotPlugCallback接口注册时传递的私有数据地址，详情参考&nbsp;RegHotPlugCallback&nbsp;接口注册时传递的地址。 | 
 
 
@@ -463,7 +463,7 @@ enum ColorGamut
 | -------- | -------- |
 | COLOR_GAMUT_INVALID | 无效值 | 
 | COLOR_GAMUT_NATIVE | 默认值 | 
-| COLOR_GAMUT_SATNDARD_BT601 | Standard&nbsp;BT601类型 | 
+| COLOR_GAMUT_STANDARD_BT601 | Standard&nbsp;BT601类型 | 
 | COLOR_GAMUT_STANDARD_BT709 | Standard&nbsp;BT709类型 | 
 | COLOR_GAMUT_DCI_P3 | DCI&nbsp;P3类型 | 
 | COLOR_GAMUT_SRGB | SRGB类型 | 
@@ -690,7 +690,7 @@ enum LayerType
 | -------- | -------- |
 | LAYER_TYPE_GRAPHIC | 图形层 | 
 | LAYER_TYPE_OVERLAY | 视频层 | 
-| LAYER_TYPE_SDIEBAND | 媒体播放 | 
+| LAYER_TYPE_SIDEBAND | 媒体播放 | 
 | LAYER_TYPE_CURSOR | 光标层 | 
 | LAYER_TYPE_BUTT | 空图层 | 
 
@@ -761,7 +761,7 @@ enum PixelFormat
 | PIXEL_FMT_UYVY_422_PKG | UYVY422&nbsp;打包格式t | 
 | PIXEL_FMT_YVYU_422_PKG | YVYU422&nbsp;打包格式 | 
 | PIXEL_FMT_VYUY_422_PKG | VYUY422&nbsp;打包格式 | 
-| PIXEL_FMT_VENDER_MASK | vendor&nbsp;mask&nbsp;格式 | 
+| PIXEL_FMT_VENDOR_MASK | vendor&nbsp;mask&nbsp;格式 | 
 | PIXEL_FMT_BUTT | Invalid&nbsp;像素格式 | 
 
 
@@ -1108,7 +1108,7 @@ uint8_t LayerAlpha::alpha0
 
 **描述：**
 
-alpha0值，取值范围：[0, 255]
+Alpha0值，取值范围：[0, 255]
 
 
 ### alpha0 [2/2]
@@ -1132,7 +1132,7 @@ uint8_t LayerAlpha::alpha1
 
 **描述：**
 
-alpha1值，取值范围：[0, 255]
+Alpha1值，取值范围：[0, 255]
 
 
 ### alpha1 [2/2]
@@ -1180,7 +1180,7 @@ bool ISurface::bAlphaMax255
 
 **描述：**
 
-图像alpha最大值为255还是128
+图像Alpha最大值为255还是128
 
 
 ### baseAddr
@@ -1228,7 +1228,7 @@ bool ISurface::bYCbCrClut
 
 **描述：**
 
-CLUT表是否位于 YCbCr 空间
+CLUT表是否位于YCbCr空间
 
 
 ### cbcrPhyAddr
@@ -1264,7 +1264,7 @@ uint64_t ISurface::clutPhyAddr
 
 **描述：**
 
-Clut表首地址，用作颜色扩展或颜色校正
+CLUT表首地址，用作颜色扩展或颜色校正
 
 
 ### color [1/3]
@@ -1521,7 +1521,7 @@ bool LayerAlpha::enGlobalAlpha
 
 **描述：**
 
-全局alpha使能标志
+全局Alpha使能标志
 
 
 ### enGlobalAlpha [2/2]
@@ -1533,7 +1533,7 @@ bool GfxOpt::enGlobalAlpha
 
 **描述：**
 
-全局alpha使能位
+全局Alpha使能位
 
 
 ### enPixelAlpha [1/2]
@@ -1545,7 +1545,7 @@ bool LayerAlpha::enPixelAlpha
 
 **描述：**
 
-像素alpha使能标志
+像素Alpha使能标志
 
 
 ### enPixelAlpha [2/2]
@@ -1557,7 +1557,7 @@ bool GfxOpt::enPixelAlpha
 
 **描述：**
 
-像素alpha使能位
+像素Alpha使能位
 
 
 ### expectedSize
@@ -1665,7 +1665,7 @@ uint8_t LayerAlpha::gAlpha
 
 **描述：**
 
-全局alpha值，取值范围：[0, 255]
+全局Alpha值，取值范围：[0, 255]
 
 
 ### GetDisplayBacklight
@@ -2054,7 +2054,7 @@ uint32_t GfxOpt::globalAlpha
 
 **描述：**
 
-全局alpha的值
+全局Alpha的值
 
 
 ### h

@@ -1,27 +1,21 @@
 # Layout Constraints
 
+Layout constraints refer to constraints on the aspect ratio and display priority of components.
 
-> **NOTE**
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| aspectRatio | number | - | Aspect ratio of the current component. |
-| displayPriority | number | - | Display priority of the current component in the container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br/>**NOTE**<br/>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components. |
+| Name             | Type  | Description                                      |
+| --------------- | ------ | ---------------------------------------- |
+| aspectRatio     | number | Aspect ratio of the component.                             |
+| displayPriority | number | Display priority for the component in the layout container. When the space of the parent container is insufficient, the component with a lower priority is hidden.<br>**NOTE**<br>This attribute is valid only for the **\<Row>**, **\<Column>**, and **\<Flex>** (single-row) container components.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
@@ -72,11 +66,11 @@ struct AspectRatioExample {
 }
 ```
 
-  **Figure1** Portrait display
-  ![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
+**Figure 1** Portrait display
+![en-us_image_0000001256978379](figures/en-us_image_0000001256978379.gif)
 
-  **Figure2** Landscape display
-  ![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
+**Figure 2** Landscape display
+![en-us_image_0000001212218476](figures/en-us_image_0000001212218476.gif)
 
 ```ts
 class ContainerInfo {
@@ -131,4 +125,4 @@ struct DisplayPriorityExample {
 
 ```
 
-  ![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)
+![en-us_image_0000001212058504](figures/en-us_image_0000001212058504.gif)

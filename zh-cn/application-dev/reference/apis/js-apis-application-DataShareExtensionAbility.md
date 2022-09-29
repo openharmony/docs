@@ -47,7 +47,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
@@ -93,7 +93,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
@@ -138,7 +138,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
@@ -180,7 +180,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
@@ -223,7 +223,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;
@@ -268,7 +268,7 @@ import rdb from '@ohos.data.rdb';
 
 let DB_NAME = "DB00.db";
 let TBL_NAME = "TBL00";
-let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS ";
+let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
     + TBL_NAME
     + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, phoneNumber DOUBLE, isStudent BOOLEAN, Binary BINARY)";
 let rdbStore;

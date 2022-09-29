@@ -80,12 +80,16 @@ struct PatternLockExample {
         .backgroundColor(Color.White)
         .autoReset(true)
         .onPatternComplete((input: Array<number>) => {
-          if (input == null || input == undefined || input.length < 5) {
+          // 判断输出的密码格式
+          if (input === null || input === undefined || input.length < 5) {
             this.message = 'The password length needs to be greater than 5.'
+            // 重新触发该回调
             return
           }
+          // 判断密码长度是否大于0
           if (this.passwords.length > 0) {
-            if (this.passwords.toString() == input.toString()) {
+              // 判断俩次输入的密码是否相等
+            if (this.passwords.toString() === input.toString()) {
               this.passwords = input
               this.message = 'Set password successfully: ' + this.passwords.toString()
             } else {

@@ -14,7 +14,7 @@
 
 ## 接口
 
-Column(value?:{space?: string&nbsp;|&nbsp;number})
+Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 **参数：**
 

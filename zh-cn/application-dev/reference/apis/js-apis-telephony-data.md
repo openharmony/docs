@@ -63,9 +63,31 @@ promise.then((data) => {
 });
 ```
 
+## data.getDefaultCellularDataSlotIdSync
+
+getDefaultCellularDataSlotIdSync(): number
+
+获取默认移动数据的SIM卡
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ------ | -------------------------------------------------- |
+| number | 获取默认移动数据的SIM卡。<br />0：卡槽1。<br />1：卡槽2。 |
+
+**示例：**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
+```
+
 ## data.setDefaultCellularDataSlotId
 
-setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): void 
+setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): void 
 
 设置默认移动数据的SIM卡，使用callback方式作为异步方法。 
 
@@ -85,7 +107,7 @@ setDefaultCellularDataSlotId(slotId: number,callback: AsyncCallback\<void\>): vo
 **示例：**
 
 ```js
-data.setDefaultCellularDataSlotId(0,(err, data) => {
+data.setDefaultCellularDataSlotId(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -290,7 +312,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 **示例：**
 
 ```js
-data.isCellularDataRoamingEnabled(0,(err, data) => {
+data.isCellularDataRoamingEnabled(0, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```

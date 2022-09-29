@@ -30,7 +30,6 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 | 名称   | 参数类型  | 可读 | 可写 | 说明                   |
 | ------ | --------- | ---- | ---- | ---------------------- |
 | name   | string    | 是   | 是   | Worker的名称。         |
-| shared | boolean   | 是   | 是   | Worker是否可以被分享。 |
 
 
 ## Worker
@@ -50,7 +49,7 @@ Worker构造函数。
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | 是   | Worker执行脚本的url。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) workers目录与pages目录同级。<br/>(b) workers目录与pages目录不同级。
+| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>在FA和Stage模型下，DevEco Studio新建Worker工程路径分别存在以下两种情况：<br/>(a) worker脚本所在目录与pages目录同级。<br/>(b) worker脚本所在目录与pages目录不同级。
 | options   | [WorkerOptions](#workeroptions) | 否   | Worker构造的选项。                                           |
 
 **返回值：**
@@ -66,22 +65,23 @@ import worker from '@ohos.worker';
 // worker线程创建
 
 // FA模型-目录同级
-const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker"});
+const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker in FA model"});
 // FA模型-目录不同级（以workers目录放置pages目录前一级为例）
-const workerFAModel02 = new worker.Worker("../workers/worker.js", {name:"first worker"});
+const workerFAModel02 = new worker.Worker("../workers/worker.js");
 
 // Stage模型-目录同级
-const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts');
+const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
 // Stage模型-目录不同级（以workers目录放置pages目录后一级为例）
 const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
 
-// scriptURL——"entry/ets/workers/worker.ts"的解释：
-// entry: 为module.json5中module中name属性的值；
+// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
+// entry: 为module.json5文件中module的name属性对应的值；
 // ets: 表明当前使用的语言。
 ```
-同时，需在工程目录下build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
+同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
 
 (1) 目录同级( **不添加也可以** )
+
 FA模型:
 
 ```json
@@ -104,6 +104,7 @@ Stage模型:
   }
 ```
 (2) 目录不同级( **必须添加** )
+
 FA模型:
 ```json
   "buildOption": {
@@ -128,7 +129,7 @@ Stage模型:
 
 postMessage(message: Object, options?: PostMessageOptions): void
 
-向Worker线程发送消息，数据的传输采用结构化克隆算法。
+向Worker线程发送数据，数据类型必须是序列化所支持的类型。序列化支持类型见其他说明。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -163,8 +164,8 @@ on(type: string, listener: EventListener): void
 
 | 参数名   | 类型                            | 必填 | 说明             |
 | -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听事件的type。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调的事件。     |
+| type     | string                          | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistener) | 是   | 回调事件。      |
 
 **示例：**
 
@@ -188,8 +189,8 @@ once(type: string, listener: EventListener): void
 
 | 参数名   | 类型                            | 必填 | 说明             |
 | -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听事件的type。 |
-| listener | [EventListener](#eventlistener) | 是   | 回调的事件。     |
+| type     | string                          | 是   | 监听的事件类型。 |
+| listener | [EventListener](#eventlistener) | 是   | 回调事件。      |
 
 **示例：**
 
@@ -205,7 +206,7 @@ workerInstance.once("alert", (e)=>{
 
 off(type: string, listener?: EventListener): void
 
-删除Worker的事件监听。
+删除类型为type的事件监听。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -213,8 +214,8 @@ off(type: string, listener?: EventListener): void
 
 | 参数名   | 类型                            | 必填 | 说明                   |
 | -------- | ------------------------------- | ---- | ---------------------- |
-| type     | string                          | 是   | 需要删除事件的type。   |
-| listener | [EventListener](#eventlistener) | 否   | 需要删除的回调的事件。 |
+| type     | string                          | 是   | 需要删除的事件类型。   |
+| listener | [EventListener](#eventlistener) | 否   | 删除的回调事件。       |
 
 **示例：**
 
@@ -228,7 +229,7 @@ workerInstance.off("alert");
 
 terminate(): void
 
-关闭Worker线程，终止Worker接收消息。
+销毁Worker线程，终止Worker接收消息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -244,7 +245,7 @@ workerInstance.terminate();
 
 onexit?: (code: number) =&gt; void
 
-Worker对象的onexit属性表示Worker退出时被调用的事件处理程序，处理程序在宿主线程中执行。
+Worker对象的onexit属性表示Worker销毁时被调用的事件处理程序，处理程序在宿主线程中执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -353,7 +354,7 @@ addEventListener(type: string, listener: EventListener): void
 
 | 参数名   | 类型                            | 必填 | 说明             |
 | -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | 是   | 监听事件的type。 |
+| type     | string                          | 是   | 监听的事件类型。 |
 | listener | [EventListener](#eventlistener) | 是   | 回调的事件。     |
 
 **示例：**
@@ -378,8 +379,8 @@ removeEventListener(type: string, callback?: EventListener): void
 
 | 参数名   | 类型                            | 必填 | 说明                   |
 | -------- | ------------------------------- | ---- | ---------------------- |
-| type     | string                          | 是   | 需要删除事件的type。   |
-| callback | [EventListener](#eventlistener) | 否   | 需要删除的回调的事件。 |
+| type     | string                          | 是   | 需要删除的监听事件类型。 |
+| callback | [EventListener](#eventlistener) | 否   | 删除的回调事件。        |
 
 **示例：**
 
@@ -421,7 +422,7 @@ workerInstance.dispatchEvent({type:"alert"});
 
 removeAllListener(): void
 
-删除Worker的所有事件监听。
+删除Worker所有的事件监听。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -435,14 +436,14 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope
 
-Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口关闭Worker线程，DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscope)。
+Worker线程用于与宿主线程通信的类，通过postMessage接口发送消息给宿主线程、close接口销毁Worker线程。DedicatedWorkerGlobalScope类继承[WorkerGlobalScope](#workerglobalscope)。
 
 
 ### postMessage
 
 postMessage(messageObject: Object, options?: PostMessageOptions): void
 
-Worker向宿主线程发送消息。
+Worker线程向宿主线程发送消息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -450,7 +451,7 @@ Worker向宿主线程发送消息。
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至Worker的数据。                                         |
+| message | Object                                    | 是   | 发送至宿主线程的数据。                                         |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是ArrayBuffer的实例对象。transferList数组中不可传入null。 |
 
 **示例：**
@@ -480,7 +481,7 @@ parentPort.onmessage = function(e){
 
 close(): void
 
-关闭Worker线程，终止Worker接收消息。
+销毁Worker线程，终止Worker接收消息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -505,7 +506,7 @@ parentPort.onmessage = function(e) {
 
 onmessage?: (event: MessageEvent\<T>) =&gt; void
 
-DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过worker.postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
+DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -513,7 +514,7 @@ DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿
 
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent) | 否   | 收到的Worker消息数据。 |
+| event  | [MessageEvent](#messageevent) | 否   | 收到宿主线程发送的数据。 |
 
 **示例：**
 
@@ -583,7 +584,7 @@ parentPort.onmessageerror= function(e) {
 
 | 名称      | 参数类型 | 可读 | 可写 | 说明                               |
 | --------- | -------- | ---- | ---- | ---------------------------------- |
-| type      | string   | 是   | 否   | 指定事件的type。                   |
+| type      | string   | 是   | 否   | 指定事件的类型。                   |
 | timeStamp | number   | 是   | 否   | 事件创建时的时间戳（精度为毫秒）。 |
 
 
@@ -653,7 +654,7 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 
 | 名称 | 参数类型                                                     | 可读 | 可写 | 说明                                    |
 | ---- | ------------------------------------------------------------ | ---- | ---- | --------------------------------------- |
-| name | string                                                       | 是   | 否   | Worker的名字，有new&nbsp;Worker时指定。 |
+| name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscope)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。                 |
 
 
@@ -688,6 +689,20 @@ parentPort.onerror = function(e){
 ```
 
 ## 其他说明
+
+### 序列化支持类型
+| Type                | 备注                                                      | 是否支持             |
+| ------------------- | -------------------------------------------------------- | -------------------- |
+| All Primitive Type  | 不包括symbol                                              | 是                   |
+| Date                |                                                          | 是                   |
+| String              |                                                          | 是                   |
+| RegExp              |                                                          | 是                   |
+| Array               |                                                          | 是                   |
+| Map                 |                                                          | 是                   |
+| Set                 |                                                          | 是                   |
+| Object              | 只支持Create from literal的简单Object，不支持带function的  | 是                   |
+| ArrayBuffer         | 提供transfer能力                                          | 是                   |
+| TypedArray          |                                                          | 是                   |
 
 ### 内存模型
 Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。 

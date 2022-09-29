@@ -26,6 +26,7 @@ Obtains the localized script for the specified language.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | language     | string  | Yes   | Specified language.           |
@@ -33,6 +34,7 @@ Obtains the localized script for the specified language.
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Localized script for the specified language.|
@@ -53,6 +55,7 @@ Obtains the localized script for the specified country.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name         | Type     | Mandatory  | Description              |
 | ------------ | ------- | ---- | ---------------- |
 | country      | string  | Yes   | Specified country.           |
@@ -60,6 +63,7 @@ Obtains the localized script for the specified country.
 | sentenceCase | boolean | No   | Whether to use sentence case for the localized script.|
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Localized script for the specified country.|
@@ -80,11 +84,13 @@ Checks whether the localized script for the specified language is displayed from
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Description     |
 | ------ | ------ | ------- |
 | locale | string | Locale ID.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the localized script is displayed from right to left; returns **false** otherwise.|
@@ -105,6 +111,7 @@ Obtains the system language.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description     |
 | ------ | ------- |
 | string | System language ID.|
@@ -128,11 +135,13 @@ This is a system API.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name     | Type    | Description   |
 | -------- | ------ | ----- |
 | language | string | Language ID.|
 
 **Return value**
+
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -143,7 +152,7 @@ This is a system API.
   ```
 
 
-## i18n.getSystemLanguages
+## i18n.getSystemLanguages<sup>9+</sup>
 
 getSystemLanguages(): Array&lt;string&gt;
 
@@ -154,6 +163,7 @@ Obtains the list of system languages.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Return value**
+
 | Type                 | Description          |
 | ------------------- | ------------ |
 | Array&lt;string&gt; | List of the IDs of system languages.|
@@ -164,7 +174,7 @@ Obtains the list of system languages.
   ```
 
 
-## i18n.getSystemCountries
+## i18n.getSystemCountries<sup>9+</sup>
 
 getSystemCountries(language: string): Array&lt;string&gt;
 
@@ -175,11 +185,13 @@ Obtains the list of countries and regions supported for the specified language.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name     | Type    | Description   |
 | -------- | ------ | ----- |
 | language | string | Language ID.|
 
 **Return value**
+
 | Type                 | Description          |
 | ------------------- | ------------ |
 | Array&lt;string&gt; | List of the IDs of the countries and regions supported for the specified language.|
@@ -199,6 +211,7 @@ Obtains the system region.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description     |
 | ------ | ------- |
 | string | System region ID.|
@@ -222,11 +235,13 @@ This is a system API.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Description   |
 | ------ | ------ | ----- |
 | region | string | Region ID.|
 
 **Return value**
+
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -246,6 +261,7 @@ Obtains the system locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description     |
 | ------ | ------- |
 | string | System locale ID.|
@@ -269,11 +285,13 @@ This is a system API.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Description             |
 | ------ | ------ | --------------- |
 | locale | string | System locale ID, for example, **zh-CN**.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -284,7 +302,7 @@ This is a system API.
   ```
 
 
-## i18n.isSuggested
+## i18n.isSuggested<sup>9+</sup>
 
 isSuggested(language: string, region?: string): boolean
 
@@ -295,12 +313,14 @@ Checks whether the system language matches the specified region.
 **System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
+
 | Name     | Type    | Mandatory  | Description           |
 | -------- | ------ | ---- | ------------- |
 | language | string | Yes   | Valid language ID, for example, **zh**.|
 | region   | string | No   | Valid region ID, for example, **CN**. |
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the system language matches the specified region; returns **false** otherwise.|
@@ -320,12 +340,14 @@ Obtains a **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**.                |
 | type   | string | No   | Valid calendar type. Currently, the valid types are as follows: **buddhist**, **chinese**, **coptic**, **ethiopic**, **hebrew**, **gregory**, **indian**, **islamic\_civil**, **islamic\_tbla**, **islamic\_umalqura**, **japanese**, and **persian**. If this parameter is left unspecified, the default calendar type of the specified locale is used.|
 
 **Return value**
+
 | Type                    | Description   |
 | ---------------------- | ----- |
 | [Calendar](#calendar8) | **Calendar** object.|
@@ -348,6 +370,7 @@ Sets the date for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Description               |
 | ---- | ---- | ---- | ----------------- |
 | date | Date | Yes   | Date to be set for the **Calendar** object.|
@@ -369,6 +392,7 @@ Sets the date and time for this **Calendar** object. The value is represented by
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
 | time | number | Yes   | Number of milliseconds that have elapsed since the Unix epoch.|
@@ -389,6 +413,7 @@ Sets the year, month, day, hour, minute, and second for this **Calendar** object
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description    |
 | ------ | ------ | ---- | ------ |
 | year   | number | Yes   | Year to set. |
@@ -414,6 +439,7 @@ Sets the time zone of this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name     | Type    | Mandatory  | Description                       |
 | -------- | ------ | ---- | ------------------------- |
 | timezone | string | Yes   | Time zone, for example, **Asia/Shanghai**.|
@@ -434,6 +460,7 @@ Obtains the time zone of this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Time zone of the **Calendar** object.|
@@ -455,6 +482,7 @@ Obtains the start day of a week for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                   |
 | ------ | --------------------- |
 | number | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
@@ -475,6 +503,7 @@ Sets the start day of a week for this **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
 | value | number | No   | Start day of a week. The value **1** indicates Sunday, and the value **7** indicates Saturday.|
@@ -495,6 +524,7 @@ Obtains the minimum number of days in the first week of a year.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | number | Minimum number of days in the first week of a year.|
@@ -515,6 +545,7 @@ Sets the minimum number of days in the first week of a year.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description          |
 | ----- | ------ | ---- | ------------ |
 | value | number | No   | Minimum number of days in the first week of a year.|
@@ -535,11 +566,13 @@ Obtains the value of the specified field in the **Calendar** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
 | field | string | Yes   | Value of the specified field in the **Calendar** object. Currently, a valid field can be any of the following: **era**, **year**, **month**, **week\_of\_year**, **week\_of\_month**, **date**, **day\_of\_year**, **day\_of\_week**, **day\_of\_week\_in\_month**, **hour**, **hour\_of\_day**, **minute**, **second**, **millisecond**, **zone\_offset**, **dst\_offset**, **year\_woy**, **dow\_local**, **extended\_year**, **julian\_day**, **milliseconds\_in\_day**, **is\_leap\_month**.|
 
 **Return value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | number | Value of the specified field. For example, if the year in the internal date of this **Calendar** object is **1990**, the **get("year")** function will return **1990**.|
@@ -561,11 +594,13 @@ Obtains the name of the **Calendar** object displayed for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | Yes   | Locale for which the name of the **Calendar** object is displayed. For example, if **locale** is **en-US**, the name of the Buddhist calendar will be **Buddhist Calendar**.|
 
 **Return value**
+
 | Type    | Description                 |
 | ------ | ------------------- |
 | string | Name of the **Calendar** object displayed for the specified locale.|
@@ -586,11 +621,13 @@ Checks whether the specified date in this **Calendar** object is a weekend.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Description                                      |
 | ---- | ---- | ---- | ---------------------------------------- |
 | date | Date | No   | Specified date in this **Calendar** object. If this parameter is left unspecified, the system checks whether the current date in the **Calendar** object is a weekend.|
 
 **Return value**
+
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
 | boolean | Returns **true** if the date is a weekend; returns **false** if the date is a weekday.|
@@ -620,7 +657,7 @@ Parameters
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options of the **PhoneNumberFormat** object. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | No   | Options of the **PhoneNumberFormat** object. |
 
 **Example**
   ```js
@@ -637,11 +674,13 @@ Checks whether the format of the specified phone number is valid.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description       |
 | ------ | ------ | ---- | --------- |
 | number | string | Yes   | Phone number to be checked.|
 
 **Return value**
+
 | Type     | Description                                   |
 | ------- | ------------------------------------- |
 | boolean | Returns **true** if the phone number format is valid; returns **false** otherwise.|
@@ -662,11 +701,13 @@ Formats a phone number.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | number | string | Yes   | Phone number to be formatted.|
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Formatted phone number.|
@@ -686,12 +727,14 @@ Obtains the home location of a phone number.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | number | string | Yes   | Phone number.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Home location of the phone number.|
@@ -703,7 +746,7 @@ Obtains the home location of a phone number.
   ```
 
 
-## PhoneNumberFormatOptions<sup>8+</sup>
+## PhoneNumberFormatOptions<sup>9+</sup>
 
 Defines the options for this PhoneNumberFormat object.
 
@@ -726,18 +769,24 @@ Defines the measurement unit information.
 | measureSystem | string | Yes   | Yes   | Measurement system. The value can be **SI**,&nbsp;**US**, or&nbsp;**UK**.|
 
 
-## Util<sup>8+</sup>
+## Util<sup>(deprecated)</sup>
 
 
-### unitConvert<sup>8+</sup>
+### unitConvert<sup>(deprecated)</sup>
 
 static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 Converts one measurement unit into another and formats the unit based on the specified locale and style.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [unitConvert](#unitconvert9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name     | Type                    | Mandatory  | Description                                      |
 | -------- | ---------------------- | ---- | ---------------------------------------- |
 | fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
@@ -747,37 +796,10 @@ Converts one measurement unit into another and formats the unit based on the spe
 | style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
 
 **Return value**
+
 | Type    | Description                     |
 | ------ | ----------------------- |
 | string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
-
-**Example**
-  ```js
-  i18n.Util.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
-  ```
-
-### getDateOrder<sup>9+</sup>
-
-static getDateOrder(locale: string): string
-
-Obtains the sequence of the year, month, and day in the specified locale.
-
-**System capability**: SystemCapability.Global.I18n
-
-**Parameters**
-| Name     | Type                    | Mandatory  | Description                                      |
-| -------- | ---------------------- | ---- | ---------------------------------------- |
-| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
-
-**Return value**
-| Type    | Description                     |
-| ------ | ----------------------- |
-| string | Sequence of the year, month, and day.|
-
-**Example**
-  ```
-  i18n.Util.getDateOrder("zh-CN");
-  ```
 
 
 ## getInstance<sup>8+</sup>
@@ -789,11 +811,13 @@ Creates an **IndexUtil** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | No   | A string containing locale information, including the language, optional script, and region.|
 
 **Return value**
+
 | Type                      | Description                   |
 | ------------------------ | --------------------- |
 | [IndexUtil](#indexutil8) | **IndexUtil** object mapping to the specified locale.|
@@ -816,6 +840,7 @@ Obtains the index list for this **locale** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type                 | Description                |
 | ------------------- | ------------------ |
 | Array&lt;string&gt; | Index list for this **locale** object.|
@@ -836,6 +861,7 @@ Adds the index of the new **locale** object to the index list.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                          |
 | ------ | ------ | ---- | ---------------------------- |
 | locale | string | Yes   | A string containing locale information, including the language, optional script, and region.|
@@ -856,11 +882,13 @@ Obtains the index of a text object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description          |
 | ---- | ------ | ---- | ------------ |
 | text | string | Yes   | **text** object whose index is to be obtained.|
 
 **Return value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | string | Index of the **text** object.|
@@ -872,223 +900,250 @@ Obtains the index of a text object.
   ```
 
 
-## Character<sup>8+</sup>
+## Character<sup>(deprecated)</sup>
 
 
-### isDigit<sup>8+</sup>
+### isDigit<sup>(deprecated)</sup>
 
 static isDigit(char: string): boolean
 
 Checks whether the input character string is composed of digits.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isDigit](#isdigit9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
 | boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isdigit = i18n.Character.isDigit("1"); // Return true.
-  ```
 
 
-### isSpaceChar<sup>8+</sup>
+### isSpaceChar<sup>(deprecated)</sup>
 
 static isSpaceChar(char: string): boolean
 
 Checks whether the input character is a space.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isSpaceChar](#isspacechar9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
 | boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isspacechar = i18n.Character.isSpaceChar("a"); // Return false.
-  ```
 
 
-### isWhitespace<sup>8+</sup>
+### isWhitespace<sup>(deprecated)</sup>
 
 static isWhitespace(char: string): boolean
 
 Checks whether the input character is a white space.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isWhitespace](#iswhitespace9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                    |
 | ------- | -------------------------------------- |
 | boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isspacechar = i18n.Character.isSpaceChar("a"); // Return false.
-  ```
 
 
-### isRTL<sup>8+</sup>
+### isRTL<sup>(deprecated)</sup>
 
 static isRTL(char: string): boolean
 
 Checks whether the input character is of the right to left (RTL) language.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isRTL](#isrtl9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isrtl = i18n.Character.isRTL("a"); // Return false.
-  ```
 
 
-### isIdeograph<sup>8+</sup>
+### isIdeograph<sup>(deprecated)</sup>
 
 static isIdeograph(char: string): boolean
 
 Checks whether the input character is an ideographic character.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isIdeograph](#isideograph9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isideograph = i18n.Character.isIdeograph("a"); // Return false.
-  ```
 
 
-### isLetter<sup>8+</sup>
+### isLetter<sup>(deprecated)</sup>
 
 static isLetter(char: string): boolean
 
 Checks whether the input character is a letter.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isLetter](#isletter9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                  |
 | ------- | ------------------------------------ |
 | boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isletter = i18n.Character.isLetter("a"); // Return true.
-  ```
 
 
-### isLowerCase<sup>8+</sup>
+### isLowerCase<sup>(deprecated)</sup>
 
 static isLowerCase(char: string): boolean
 
 Checks whether the input character is a lowercase letter.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isLowerCase](#islowercase9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var islowercase = i18n.Character.isLowerCase("a"); // Return true.
-  ```
 
 
-### isUpperCase<sup>8+</sup>
+### isUpperCase<sup>(deprecated)</sup>
 
 static isUpperCase(char: string): boolean
 
 Checks whether the input character is an uppercase letter.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [isUpperCase](#isuppercase9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
 
-**Example**
-  ```js
-  var isuppercase = i18n.Character.isUpperCase("a"); // Return false.
-  ```
 
 
-### getType<sup>8+</sup>
+### getType<sup>(deprecated)</sup>
 
 static getType(char: string): string
 
 Obtains the type of the input character string.
 
+> **NOTE**
+> This API is deprecated since API version 9. You are advised to use [getType](#gettype9) instead.
+>
+> This API is supported since API version 8.
+
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
 | char | string | Yes   | Input character.|
 
 **Return value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | string | Type of the input character.|
 
-**Example**
-  ```js
-  var type = i18n.Character.getType("a");
-  ```
 
 
 ## i18n.getLineInstance<sup>8+</sup>
@@ -1100,11 +1155,13 @@ Obtains a [BreakIterator](#breakiterator8) object for text segmentation.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | locale | string | Yes   | Valid locale value, for example, **zh-Hans-CN**. The [BreakIterator](#breakiterator8) object segments text according to the rules of the specified locale.|
 
 **Return value**
+
 | Type                              | Description         |
 | -------------------------------- | ----------- |
 | [BreakIterator](#breakiterator8) | [BreakIterator](#breakiterator8) object used for text segmentation.|
@@ -1127,6 +1184,7 @@ Sets the text to be processed by the [BreakIterator](#breakiterator8) object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description                     |
 | ---- | ------ | ---- | ----------------------- |
 | text | string | Yes   | Text to be processed by the **BreakIterator** object.|
@@ -1147,6 +1205,7 @@ Obtains the text being processed by the [BreakIterator](#breakiterator8) object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                    |
 | ------ | ---------------------- |
 | string | Text being processed by the **BreakIterator** object.|
@@ -1168,6 +1227,7 @@ Obtains the position of the [BreakIterator](#breakiterator8) object in the text 
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                         |
 | ------ | --------------------------- |
 | number | Position of the **BreakIterator** object in the text being processed.|
@@ -1189,6 +1249,7 @@ Puts the [BreakIterator](#breakiterator8) object to the first text boundary, whi
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description               |
 | ------ | ----------------- |
 | number | Offset to the first text boundary of the processed text.|
@@ -1210,6 +1271,7 @@ Puts the [BreakIterator](#breakiterator8) object to the last text boundary, whic
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                |
 | ------ | ------------------ |
 | number | Offset of the last text boundary of the processed text.|
@@ -1231,11 +1293,13 @@ Moves the [BreakIterator](#breakiterator8) object backward by the specified numb
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
 | index | number | No   | Number of text boundaries by which the [BreakIterator](#breakiterator8) object is moved. A positive value indicates that the text boundary is moved backward, and a negative value indicates the opposite. If no index is specified, the index will be treated as **1**.|
 
 **Return value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved by the specified number of text boundaries. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
@@ -1259,6 +1323,7 @@ Moves the [BreakIterator](#breakiterator8) object to the previous text boundary.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | number | Position of the [BreakIterator](#breakiterator8) object in the text after it is moved to the previous text boundary. The value **-1** is returned if the position of the [BreakIterator](#breakiterator8) object is outside of the processed text after it is moved by the specified number of text boundaries.|
@@ -1282,11 +1347,13 @@ Moves the [BreakIterator](#breakiterator8) object to the text boundary after the
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description                                      |
 | ------ | ------ | ---- | ---------------------------------------- |
 | offset | number | Yes   | Offset to the position before the text boundary to which the [BreakIterator](#breakiterator8) object is moved.|
 
 **Return value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | number | The value **-1** is returned if the text boundary to which the [BreakIterator](#breakiterator8) object is moved is outside of the processed text.|
@@ -1310,11 +1377,13 @@ Checks whether the position specified by the offset is a text boundary. If **tru
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description         |
 | ------ | ------ | ---- | ----------- |
 | offset | number | Yes   | Position to check.|
 
 **Return value**
+
 | Type     | Description                             |
 | ------- | ------------------------------- |
 | boolean | Returns **true** if the position specified by the offset is a text boundary; returns **false** otherwise.|
@@ -1337,6 +1406,7 @@ Checks whether the 24-hour clock is used.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | Returns **true** if the 24-hour clock is used; returns **false** otherwise.|
@@ -1358,11 +1428,13 @@ Sets the 24-hour clock.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type     | Mandatory  | Description                                      |
 | ------ | ------- | ---- | ---------------------------------------- |
 | option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
 
 **Return value**
+
 | Type     | Description                           |
 | ------- | ----------------------------- |
 | boolean | Returns **true** if the 24-hour clock is enabled; returns **false** otherwise.|
@@ -1385,12 +1457,14 @@ Adds a preferred language to the specified position on the preferred language li
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
 | language | string | Yes   | Preferred language to add. |
 | index    | number | No   | Position to which the preferred language is added.|
 
 **Return value**
+
 | Type     | Description                           |
 | ------- | ----------------------------- |
 | boolean | Returns **true** if the preferred language is successfully added; returns **false** otherwise.|
@@ -1415,11 +1489,13 @@ Deletes a preferred language from the specified position on the preferred langua
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | --------------------- |
 | index | number | Yes   | Position of the preferred language to delete.|
 
 **Return value**
+
 | Type     | Description                           |
 | ------- | ----------------------------- |
 | boolean | Returns **true** if the preferred language is deleted; returns **false** otherwise.|
@@ -1441,6 +1517,7 @@ Obtains the list of preferred languages.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type                 | Description       |
 | ------------------- | --------- |
 | Array&lt;string&gt; | List of preferred languages.|
@@ -1460,6 +1537,7 @@ Obtains the first language in the preferred language list.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description            |
 | ------ | -------------- |
 | string | First language in the preferred language list.|
@@ -1479,6 +1557,7 @@ Obtains the preferred language of an application.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description            |
 | ------ | -------------- |
 | string | Preferred language of the application.|
@@ -1498,11 +1577,13 @@ Obtains the **TimeZone** object corresponding to the specified time zone ID.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
 | zondID | string | No   | Time zone ID.|
 
 **Return value**
+
 | Type      | Description          |
 | -------- | ------------ |
 | TimeZone | **TimeZone** object corresponding to the time zone ID.|
@@ -1525,6 +1606,7 @@ Obtains the ID of the specified **TimeZone** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | string | Time zone ID corresponding to the **TimeZone** object.|
@@ -1545,12 +1627,14 @@ Obtains the representation of a **TimeZone** object in the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
 | locale | string  | No   | System locale ID.               |
 | isDST  | boolean | No   | Whether to consider DST when obtaining the representation of the **TimeZone** object.|
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Representation of the **TimeZone** object in the specified locale.|
@@ -1571,6 +1655,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                 |
 | ------ | ------------------- |
 | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone.|
@@ -1591,6 +1676,7 @@ Obtains the offset between the time zone represented by a **TimeZone** object an
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                     |
 | ------ | ----------------------- |
 | number | Offset between the time zone represented by the **TimeZone** object and the UTC time zone at a certain time point.|
@@ -1610,6 +1696,7 @@ Obtains the list of time zone IDs supported by the system.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                      |
 | ------ | ----------------------- |
 | Array&lt;string&gt; | List of time zone IDs supported by the system.|
@@ -1629,6 +1716,7 @@ Obtains the list of time zone city IDs supported by the system.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description                      |
 | ------ | ----------------------- |
 | Array&lt;string&gt; | List of time zone city IDs supported by the system.|
@@ -1648,12 +1736,14 @@ Obtains the localized display of a time zone city in the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
 | cityID | string | Yes   | Time zone city ID.|
 | locale | string | Yes   | Locale ID.|
 
 **Return value**
+
 | Type    | Description                     |
 | ------ | ----------------------- |
 | string | Localized display of the time zone city in the specified locale.|
@@ -1673,11 +1763,13 @@ Obtains the **TimeZone** object corresponding to the specified time zone city ID
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
 | cityID | string | Yes   | Time zone city ID.|
 
 **Return value**
+
 | Type    | Description                     |
 | ------ | ----------------------- |
 | TimeZone | **TimeZone** object corresponding to the specified time zone city ID.|
@@ -1700,11 +1792,13 @@ This is a system API.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
 | flag | boolean | Yes   | Whether to turn on the local digit switch. The value **true** means to turn on the local digit switch, and the value **false** indicates the opposite.|
 
 **Return value**
+
 | Type      | Description          |
 | -------- | ------------ |
 | boolean | Result indicating whether the local digit switch is successfully set. The value **true** indicates that the local digit switch is successfully set, and the value **false** indicates the opposite.|
@@ -1724,6 +1818,7 @@ Checks whether the local digit switch is turned on.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type      | Description          |
 | -------- | ------------ |
 | boolean | Result indicating whether the local digit switch is turned on. The value **true** indicates that the local digit switch is turned on, and the value **false** indicates the opposite.|
@@ -1745,6 +1840,7 @@ Obtains a list of IDs supported by the **Transliterator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | string[] | List of IDs supported by the **Transliterator** object.|
@@ -1764,11 +1860,13 @@ Creates a **Transliterator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
 | id | string  | Yes   | ID supported by the **Transliterator** object.               |
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | [Transliterator](#transliterator9) | **Transliterator** object.|
@@ -1788,11 +1886,13 @@ Converts the input string from the source format to the target format.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type     | Mandatory  | Description                  |
 | ------ | ------- | ---- | -------------------- |
 | text | string  | Yes   | Input string.               |
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Target string.|
@@ -1801,4 +1901,299 @@ Converts the input string from the source format to the target format.
   ```
   var transliterator = i18n.Transliterator.getInstance("Any-Latn");
   transliterator.transform ("China");
+  ```
+
+## Unicode<sup>9+</sup>
+
+
+### isDigit<sup>9+</sup>
+
+static isDigit(char: string): boolean
+
+Checks whether the input character string is composed of digits.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a digit; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isdigit = i18n.Unicode.isDigit("1"); // Return true.
+  ```
+
+
+### isSpaceChar<sup>9+</sup>
+
+static isSpaceChar(char: string): boolean
+
+Checks whether the input character is a space.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a space; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isspacechar = i18n.Unicode.isSpaceChar("a"); // Return false.
+  ```
+
+
+### isWhitespace<sup>9+</sup>
+
+static isWhitespace(char: string): boolean
+
+Checks whether the input character is a white space.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                    |
+| ------- | -------------------------------------- |
+| boolean | Returns **true** if the input character is a white space; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var iswhitespace = i18n.Unicode.isWhitespace("a"); // Return false.
+  ```
+
+
+### isRTL<sup>9+</sup>
+
+static isRTL(char: string): boolean
+
+Checks whether the input character is of the right to left (RTL) language.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is of the RTL language; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isrtl = i18n.Unicode.isRTL("a"); // Return false.
+  ```
+
+
+### isIdeograph<sup>9+</sup>
+
+static isIdeograph(char: string): boolean
+
+Checks whether the input character is an ideographic character.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an ideographic character; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isideograph = i18n.Unicode.isIdeograph("a"); // Return false.
+  ```
+
+
+### isLetter<sup>9+</sup>
+
+static isLetter(char: string): boolean
+
+Checks whether the input character is a letter.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                  |
+| ------- | ------------------------------------ |
+| boolean | Returns **true** if the input character is a letter; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isletter = i18n.Unicode.isLetter("a"); // Return true.
+  ```
+
+
+### isLowerCase<sup>9+</sup>
+
+static isLowerCase(char: string): boolean
+
+Checks whether the input character is a lowercase letter.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is a lowercase letter; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var islowercase = i18n.Unicode.isLowerCase("a"); // Return true.
+  ```
+
+
+### isUpperCase<sup>9+</sup>
+
+static isUpperCase(char: string): boolean
+
+Checks whether the input character is an uppercase letter.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| boolean | Returns **true** if the input character is an uppercase letter; returns **false** otherwise.|
+
+**Example**
+  ```js
+  var isuppercase = i18n.Unicode.isUpperCase("a"); // Return false.
+  ```
+
+
+### getType<sup>9+</sup>
+
+static getType(char: string): string
+
+Obtains the type of the input character string.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description   |
+| ---- | ------ | ---- | ----- |
+| char | string | Yes   | Input character.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| string | Type of the input character.|
+
+**Example**
+  ```js
+  var type = i18n.Unicode.getType("a");
+  ```
+
+
+## I18NUtil<sup>9+</sup>
+
+
+### unitConvert<sup>9+</sup>
+
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+
+Converts one measurement unit into another and formats the unit based on the specified locale and style.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description                                      |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted.                                |
+| toUnit   | [UnitInfo](#unitinfo8) | Yes   | Measurement unit to be converted to.                                |
+| value    | number                 | Yes   | Value of the measurement unit to be converted.                            |
+| locale   | string                 | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.               |
+| style    | string                 | No   | Style used for formatting. The value can be **long**, **short**, or **narrow**.|
+
+**Return value**
+
+| Type    | Description                     |
+| ------ | ----------------------- |
+| string | Character string obtained after formatting based on the measurement unit specified by **toUnit**.|
+
+**Example**
+  ```js
+  i18n.I18NUtil.unitConvert({unit: "cup", measureSystem: "US"}, {unit: "liter", measureSystem: "SI"}, 1000, "en-US", "long");
+  ```
+
+
+### getDateOrder<sup>9+</sup>
+
+static getDateOrder(locale: string): string
+
+Obtains the sequence of the year, month, and day in the specified locale.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                       |
+| ------ | ------ | ---- | ------------------------- |
+| locale | string | Yes   | Locale used for formatting, for example, **zh-Hans-CN**.|
+
+**Return value**
+
+| Type    | Description                 |
+| ------ | ------------------- |
+| string | Sequence of the year, month, and day.|
+
+**Example**
+  ```js
+  i18n.I18NUtil.getDateOrder("zh-CN");
   ```
