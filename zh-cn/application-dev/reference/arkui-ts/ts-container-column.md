@@ -28,8 +28,8 @@ Column(value?:&nbsp;{space?: string&nbsp;|&nbsp;number})
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。当子组件与父组件宽度一样时无效。<br/>默认值：HorizontalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | 设置子组件在垂直方向上的对齐格式。当子组件与父组件高度一样时无效。<br/>默认值：FlexAlign.Start |
+| alignItems | [HorizontalAlign](ts-appendix-enums.md#horizontalalign) | 设置子组件在水平方向上的对齐格式。当子组件与父组件宽度一样时，子组件占满父组件宽度空间，效果不明显。<br/>默认值：HorizontalAlign.Center |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-container-flex.md) | 设置子组件在垂直方向上的对齐格式。当子组件与父组件高度一样时，子组件占满父组件高度空间，效果不明显。<br/>默认值：FlexAlign.Start |
 
 ## 示例
 

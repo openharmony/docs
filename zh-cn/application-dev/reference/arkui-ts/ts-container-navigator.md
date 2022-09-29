@@ -20,7 +20,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 
 | 参数名 | 参数类型       | 必填 | 参数描述                                       |
 | ------ | -------------- | ---- | ---------------------------------------------- |
-| target | string         | 是   | 指定跳转目标页面的路径。目标页面需加入main_pages.json文件中。       |
+| target | string         | 是   | 指定跳转目标页面的路径。     |
 | type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
 
 ## NavigationType枚举说明

@@ -27,8 +27,8 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。当子组件与父组件高度一样时无效。<br/>默认值：VerticalAlign.Center |
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。当子组件与父组件宽度一样时无效。<br/>FlexAlign.Start |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | 设置子组件在垂直方向上的对齐格式。当子组件与父组件高度一样时，子组件占满父组件高度空间，效果不明显。<br/>默认值：VerticalAlign.Center |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | 设置子组件在水平方向上的对齐格式。当子组件与父组件宽度一样时，子组件占满父组件宽度空间，效果不明显。<br/>FlexAlign.Start |
 
 
 ## 示例

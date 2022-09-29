@@ -12,7 +12,6 @@
  * 容器内子组件区分水平方向，垂直方向：  
    * 水平方向为left， middle， right，对应容器的HorizontalAlign.Start， HorizontalAlign.Center， HorizontalAlign.End。  
    * 垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom。
- * 子组件使用[alignRules](ts-universal-attributes-location.md)属性设置其上中下，左中右边界与外层容器或者设置了id的其他子组件的上中下，左中右对齐方式，具体参考示例。
  * 子组件可以将容器或者其他子组件设为锚点：  
    * 参与相对布局的容器内组件必须设置id，容器RelativeContainer的id固定为'__container__'。
    * 无id的子组件位置设置默认为容器左上方。

@@ -15,20 +15,26 @@
 
 方法1：Badge(value: { count: number, maxCount?: number, position?: BadgePosition, style: BadgeStyle})
 创建数字标记组件。
+**参数：**
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| count | number | 是 | 设置提醒消息数。 |
+| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br> 默认值：99 |
+| position | [BadgePosition](#badgeposition枚举说明) | 否 | 设置提示点显示位置。<br>默认值：BadgePosition.RightTop |
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+
 方法2：Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 根据字符串创建标记组件。
 
 **参数：**
 | 参数名 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| count | number | 是 | 设置提醒消息数。 |
-| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br> 默认值：99 |
+| -------- | -------- | -------- | -------- |
 | value | string | 是 | 提示内容的文本字符串。 |
 | position | [BadgePosition](#badgeposition枚举说明) | 否 | 设置提示点显示位置。<br>默认值：BadgePosition.RightTop |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 
-## BadgePosition枚举说明
+## BadgePosition枚举说明            
 | 名称 | 描述 |
   | -------- | -------- |
 | RightTop | 圆点显示在右上角。 |
@@ -50,8 +56,8 @@
 @Entry
 @Component
 struct BadgeExample {
-  @State counts: number = 1
-  @State message: string = 'new'
+  @State counts: number = 1;
+  @State message: string = 'new';
 
   build() {
     Column() {
@@ -66,7 +72,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++
+              this.counts++;
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
@@ -80,7 +86,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++
+              this.counts++;
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
@@ -95,7 +101,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++
+              this.counts++;
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
