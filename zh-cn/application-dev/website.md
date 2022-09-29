@@ -361,7 +361,8 @@
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
-  - 组件参考（基于TS扩展的声明式开发范式）
+  - [Syscap列表](reference/syscap-list.md)
+  - 组件参考（基于eTS的声明式开发范式）
     - 组件通用信息
       - 通用事件
         - [点击事件](reference/arkui-ts/ts-universal-events-click.md)
@@ -401,6 +402,8 @@
         - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+        - [背景模糊设置](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
+        - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -459,10 +462,13 @@
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
+      - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
+      - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
+      - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
       - [Navigator](reference/arkui-ts/ts-container-navigator.md)
       - [Panel](reference/arkui-ts/ts-container-panel.md)
       - [Refresh](reference/arkui-ts/ts-container-refresh.md)
@@ -516,7 +522,7 @@
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
     - [类型说明](reference/arkui-ts/ts-types.md)
-  - 组件参考（基于JS扩展的类Web开发范式）
+  - 组件参考（兼容JS的类Web开发范式）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
       - [通用样式](reference/arkui-js/js-components-common-styles.md)
@@ -716,6 +722,7 @@
         - [ExtensionRunningInfo (ExtensionRunningInfo)](reference/apis/js-apis-extensionrunninginfo.md)
         - [MissionSnapshot (MissionSnapshot)](reference/apis/js-apis-application-MissionSnapshot.md)
         - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
+        - [ProcessRunningInformation (ProcessRunningInformation)](reference/apis/js-apis-processrunninginformation.md)
         - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
         - [ContinuationResult (ContinuationResult)](reference/apis/js-apis-continuation-continuationResult.md)
     - 公共事件与通知
@@ -735,6 +742,7 @@
       - [ApplicationInfo (ApplicationInfo)](reference/apis/js-apis-bundle-ApplicationInfo.md)
       - [BundleInfo (BundleInfo)](reference/apis/js-apis-bundle-BundleInfo.md)
       - [BundleInstaller (BundleInstaller)](reference/apis/js-apis-bundle-BundleInstaller.md)
+      - [BundleStatusCallback (BundleStatusCallback)](reference/apis/js-apis-Bundle-BundleStatusCallback.md)
       - [CustomizeData (CustomizeData)](reference/apis/js-apis-bundle-CustomizeData.md)
       - [DispatchInfo (DispatchInfo)](reference/apis/js-apis-dispatchInfo.md)
       - [ElementName (ElementName)](reference/apis/js-apis-bundle-ElementName.md)
@@ -757,6 +765,7 @@
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.display (屏幕属性)](reference/apis/js-apis-display.md)
       - [@ohos.effectKit (图像效果)](reference/apis/js-apis-effectKit.md)
+      - [@ohos.graphics.colorSpaceManager（色彩管理）](reference/apis/js-apis-colorSpaceManager.md)
       - [@ohos.screen (屏幕)](reference/apis/js-apis-screen.md)
       - [@ohos.screenshot (屏幕截图)](reference/apis/js-apis-screenshot.md)
       - [@ohos.window (窗口)](reference/apis/js-apis-window.md)
@@ -767,7 +776,6 @@
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
-      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
@@ -779,12 +787,14 @@
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
-      - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
       - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterpriseDeviceManager (企业设备管理)](reference/apis/js-apis-enterprise-device-manager.md)
+      - [DeviceSettingsManager(设备设置管理)](reference/apis/js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
     - 安全
       - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
+      - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
     - 数据管理
@@ -803,24 +813,31 @@
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
       - [@ohos.fileManager (公共文件访问与管理)](reference/apis/js-apis-filemanager.md)
+      [@ohos.filemanagement.userfile_manager (用户数据管理)](reference/apis/js-apis-userfilemanager.md)
+      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.storageStatistics (应用空间统计)](reference/apis/js-apis-storage-statistics.md)
       - [@ohos.volumeManager (卷管理)](reference/apis/js-apis-volumemanager.md)
-      - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
+      - [@ohos.telephony.data (蜂窝数据)](reference/apis/js-apis-telephony-data.md)
       - [@ohos.telephony.observer (observer)](reference/apis/js-apis-observer.md)
       - [@ohos.telephony.radio (网络搜索)](reference/apis/js-apis-radio.md)
       - [@ohos.telephony.sim (SIM卡管理)](reference/apis/js-apis-sim.md)
       - [@ohos.telephony.sms (短信服务)](reference/apis/js-apis-sms.md)
-      - [@ohos.telephony.data (蜂窝数据)](reference/apis/js-apis-telephony-data.md)
     - 网络管理
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
+      - [@ohos.net.ethernet (以太网连接管理)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
-      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
+      - [@ohos.net.policy (网络策略管理)](reference/apis/js-apis-net-policy.md)
+      - [@ohos.net.sharing (网络共享管理)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
+      - [@ohos.net.statistics (网络流量管理)](reference/apis/js-apis-net-statistics.md)
+      - [@ohos.net.tlsSocket (TLSSocket连接)](reference/apis/js-apis-tlsSocket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
+      - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
       - [@ohos.bluetooth (蓝牙)](reference/apis/js-apis-bluetooth.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
@@ -830,8 +847,11 @@
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi (WLAN)](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext (WLAN)](reference/apis/js-apis-wifiext.md)
+      - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis/js-apis-nfctech.md)
+      - [tagSession (标准NFC-Tag TagSession)](reference/apis/js-apis-tagSession.md)
     - 系统基础能力
       - [@ohos.accessibility (辅助功能)](reference/apis/js-apis-accessibility.md)
+      - [@ohos.accessibility.config (系统辅助功能配置)](reference/apis/js-apis-accessibility-config.md)
       - [@ohos.faultLogger (故障日志获取)](reference/apis/js-apis-faultLogger.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
       - [@ohos.hichecker (检测模式)](reference/apis/js-apis-hichecker.md)
@@ -842,11 +862,13 @@
       - [@ohos.hiTraceMeter (性能打点)](reference/apis/js-apis-hitracemeter.md)
       - [@ohos.inputMethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
       - [@ohos.inputMethodEngine (输入法服务)](reference/apis/js-apis-inputmethodengine.md)
+      - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
+      - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
-      - [@ohos.systemTime (设置系统时间)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemTime (系统时区、时间)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemTimer(系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
-      - [@ohos.systemTimer(设置系统时间)](reference/apis/js-apis-system-timer.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
     - 设备管理
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
@@ -862,6 +884,7 @@
       - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
       - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
       - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
+      - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
@@ -877,6 +900,7 @@
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 语言基础类库
+      - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
       - [@ohos.process (获取进程相关的信息)](reference/apis/js-apis-process.md)
       - [@ohos.uri (URI字符串解析)](reference/apis/js-apis-uri.md)
@@ -929,9 +953,11 @@
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
       - [HiLog](reference/native-apis/_hi_log.md)
       - [NativeWindow](reference/native-apis/_native_window.md)
+      - [OH_NativeBuffer](reference/native-apis/_o_h___native_buffer.md)
       - [Drawing](reference/native-apis/_drawing.md)
       - [OH_NativeImage](reference/native-apis/_o_h___native_image.md)
       - [NativeVsync](reference/native-apis/_native_vsync.md)
+      - [Image](reference/native-apis/image.md)
       - [Rawfile](reference/native-apis/rawfile.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
@@ -962,8 +988,12 @@
       - [OH_NativeXComponent_MouseEvent_Callback](reference/native-apis/_o_h___native_x_component___mouse_event___callback.md)
       - [OH_NativeXComponent_TouchEvent](reference/native-apis/_o_h___native_x_component___touch_event.md)
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
+      - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
+      - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
       - [OhosPixelMapInfo](reference/native-apis/_ohos_pixel_map_info.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
+      - [Region](reference/native-apis/_region.md)
+      - [Rect](reference/native-apis/_rect.md)
     - 标准库
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
       - [libuv](reference/native-lib/third_party_libuv/libuv.md)
