@@ -710,7 +710,7 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): voi
 **示例：**
 
 ```js
-let name = '中国移动';
+let name = "中国移动";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```js
-let name = '中国移动';
+let name = "中国移动";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
@@ -1097,7 +1097,7 @@ setLockState(slotId: number, options: LockInfo, callback: AsyncCallback<LockStat
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 sim.setLockState(0, lockInfo, (err, data) => {
@@ -1136,7 +1136,7 @@ setLockState(slotId: number, options: LockInfo): Promise<LockStatusResponse\>
 ```js
 let lockInfo = {
     lockType: sim.LockType.PIN_LOCK,
-    password = "1234",
+    password: "1234",
     state: sim.LockState.LOCK_OFF
 };
 let promise = sim.setLockState(0, lockInfo);
@@ -2602,8 +2602,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback<L
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 sim.unlockSimLock(0, persoLockInfo, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2640,8 +2640,8 @@ unlockSimLock(slotId: number, lockInfo: PersoLockInfo): Promise<LockStatusRespon
 
 ```js
 let persoLockInfo = {
-    lockType = sim.PersoLockType.PN_PIN_LOCK,
-    password = "1234"
+    lockType: sim.PersoLockType.PN_PIN_LOCK,
+    password: "1234"
 };
 let promise = sim.unlockSimLock(0, persoLockInfo);
 promise.then(data => {

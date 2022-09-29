@@ -610,8 +610,8 @@ let updateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
-    pdu = "xxxxxxx",
-    smsc = "test"
+    pdu: "xxxxxxx",
+    smsc: "test"
 };
 sms.updateSimMessage(updateSimMessageOptions, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -650,8 +650,8 @@ let updateSimMessageOptions = {
     slotId: 0,
     msgIndex: 1,
     newStatus: sms.SimMessageStatus.SIM_MESSAGE_STATUS_FREE,
-    pdu = "xxxxxxx",
-    smsc = "test"
+    pdu: "xxxxxxx",
+    smsc: "test"
 };
 let promise = sms.updateSimMessage(updateSimMessageOptions);
 promise.then(data => {
@@ -1054,13 +1054,13 @@ encodeMms(mms: MmsInformation, callback: AsyncCallback<Array<number\>>): void
 
 ```js
 let mmsAcknowledgeInd = {
-    transactionId = "100",
-    version = 0x10,
-    reportAllowed = 128
+    transactionId: "100",
+    version: sms.MmsVersionType.MMS_VERSION_1_0,
+    reportAllowed: sms.ReportType.MMS_YES
 };
 let mmsInformation = {
-   messageType = 133,
-    mmsType = mmsAcknowledgeInd
+    messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
+    mmsType: mmsAcknowledgeInd
 };
 sms.encodeMms(mmsInformation, (err, data) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1096,10 +1096,10 @@ encodeMms(mms: MmsInformation): Promise<Array<number\>>
 let mmsAcknowledgeInd = {
     transactionId: "100",
     version: sms.MmsVersionType.MMS_VERSION_1_0,
-    reportAllowed = sms.ReportType.MMS_YES
+    reportAllowed: sms.ReportType.MMS_YES
 };
 let mmsInformation = {
-   messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
+    messageType: sms.MessageType.TYPE_MMS_ACKNOWLEDGE_IND,
     mmsType: mmsAcknowledgeInd
 };
 let promise = sms.encodeMms(mmsInformation);
