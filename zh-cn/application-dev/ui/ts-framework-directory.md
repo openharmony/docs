@@ -29,3 +29,12 @@ FA应用的eTS模块(entry/src/main)的典型开发目录结构如下：
 > - 资源目录resources文件夹位于src/main下，此目录下资源文件的详细规范以及子目录结构规范参看[资源文件的分类](../quick-start/basic-resource-file-categories.md)。
 >
 > - 页面支持导入TypeScript和JavaScript文件。
+
+**js标签配置:**
+
+ 开发框架需要在配置文件中标识相关的js标签，其中的每个元素代表一个JS模块的信息，包含了实例名称、页面路由、视图窗口等。 
+
+
+> **说明：**
+>
+> FA模型请参考 [表22 js对象的内部结构说明](../quick-start/package-structure.md#module对象的内部结构)。
