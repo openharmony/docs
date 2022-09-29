@@ -50,12 +50,17 @@ ellipse(options?: {width?: string | number, height?: string | number})
 @Component
 struct EllipseExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
-      // 在一个 150 * 80 的矩形框中绘制一个椭圆
+    Column({ space: 10 }) {
+      // 绘制一个 150 * 80 的椭圆
       Ellipse({ width: 150, height: 80 })
-      // 在一个 150 * 80 的矩形框中绘制一个椭圆
-      Ellipse().width(150).height(80)
-    }.width('100%').margin({ top: 5 })
+      // 绘制一个 150 * 100 、线条为蓝色的椭圆环
+      Ellipse()
+        .width(150)
+        .height(100)
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+    }.width('100%')
   }
 }
 ```
