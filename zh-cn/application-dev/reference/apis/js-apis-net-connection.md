@@ -16,7 +16,7 @@ import connection from '@ohos.net.connection'
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
-获取默认激活的数据网络，使用callback方式作为异步方法。可以使用[getNetCapabilities](#getNetCapabilities)去获取网络的类型、拥有的能力等信息。
+获取默认激活的数据网络，使用callback方式作为异步方法。可以使用[getNetCapabilities](##connection.getNetCapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -41,7 +41,7 @@ connection.getDefaultNet(function (error, netHandle) {
 
 getDefaultNet(): Promise\<NetHandle>
 
-获取默认激活的数据网络，使用Promise方式作为异步方法。可以使用[getNetCapabilities](#getNetCapabilities)去获取网络的类型、拥有的能力等信息。
+获取默认激活的数据网络，使用Promise方式作为异步方法。可以使用[getNetCapabilities](##connection.getNetCapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -65,7 +65,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 getDefaultNetSync(): NetHandle;
 
-使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#getNetCapabilities)去获取网络的类型、拥有的能力等信息。
+使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](##connection.getNetCapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -87,7 +87,7 @@ let netHandle = connection.getDefaultNetSync();
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#getDefaultNet)去获取。
+检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](##connection.getDefaultNet)去获取。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -112,7 +112,7 @@ connection.hasDefaultNet(function (error, has) {
 
 hasDefaultNet(): Promise\<boolean>
 
-检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#getDefaultNet)去获取。
+检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](##connection.getDefaultNet)去获取。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
