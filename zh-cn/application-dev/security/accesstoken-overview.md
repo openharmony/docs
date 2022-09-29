@@ -56,13 +56,13 @@ ATM (AccessTokenManager) 是OpenHarmony上基于AccessToken构建的统一的应
 
 应用使用权限校验的工作流程如图所示。
 
-![](figures/permission-verify-process.jpg)
+![](figures/permission-verify-process.png)
 
-1：应用APL等级与权限等级的匹配关系请参考[权限等级说明](#权限等级说明)。
+1：根据应用当前提供的接口是否涉及敏感的数据或者功能，使用应用权限对当前接口进行访问控制。
 
-2：权限的授权方式分为user_grant（用户授权）和system_grant（系统授权），具体请参考[权限类型说明](#权限类型说明)。
+2：应用可以在系统已经存在的权限中[访问控制列表（ACL）说明](#访问控制列表acl说明)选择适合的权限。比如应用提供的接口会涉及到联系人信息的话，推荐使用联系人相关的权限对接口进行保护。
 
-3：应用可以通过ACL（访问控制列表）方式申请高级别的权限，具体请参考[访问控制列表（ACL）说明](#访问控制列表acl说明)。
+3：应用可以使用权限校验接口对访问者进行鉴权，可参考[权限校验说明](permission-verify-guidelines.md)。
 
 ## 权限等级说明
 
