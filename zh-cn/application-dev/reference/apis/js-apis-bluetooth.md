@@ -223,7 +223,7 @@ cancelPairedDevice(deviceId: string): boolean
 
 删除配对的远程设备。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1293,7 +1293,7 @@ getConnectionDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let retArray = a2dpSrc.getConnectionDevices();
 ```
 
@@ -1322,7 +1322,7 @@ getDeviceState(device: string): ProfileConnectionState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1356,7 +1356,7 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE)
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1386,7 +1386,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let ret = a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1416,7 +1416,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1446,7 +1446,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1475,7 +1475,7 @@ getPlayingState(device: string): PlayingState
 **示例：**
 
 ```js
-let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE);
+let a2dpSrc = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_A2DP_SOURCE) as bluetooth.A2dpSourceProfile;
 let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1510,7 +1510,8 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1540,7 +1541,8 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 let ret = hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1570,7 +1572,8 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1600,7 +1603,8 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
-let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY);
+let hfpAg = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
+  bluetooth.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1617,7 +1621,7 @@ connect(device: string): boolean
 
 连接设备的HidHost服务。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1638,7 +1642,7 @@ connect(device: string): boolean
 **示例：**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1649,7 +1653,7 @@ disconnect(device: string): boolean
 
 断开连接设备的HidHost服务。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1670,7 +1674,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let hidHostProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHostProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 let ret = hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1700,7 +1704,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1730,7 +1734,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_HID_HOST);
+let hidHost = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_HID_HOST) as bluetooth.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1747,7 +1751,7 @@ disconnect(device: string): boolean
 
 断开连接设备的Pan服务。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1768,7 +1772,7 @@ disconnect(device: string): boolean
 **示例：**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 ```
 
@@ -1798,7 +1802,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -1828,7 +1832,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -1840,7 +1844,7 @@ setTethering(enable: boolean): void
 
 设置网络共享状态。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.DISCOVER_BLUETOOTH
 
@@ -1861,7 +1865,7 @@ setTethering(enable: boolean): void
 **示例：**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.setTethering(true);
 ```
 
@@ -1872,7 +1876,7 @@ isTetheringOn(): boolean
 
 获取网络共享状态。
 
-此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1885,7 +1889,7 @@ isTetheringOn(): boolean
 **示例：**
 
 ```js
-let panProfile = bluetooth.getProfile(bluetooth.ProfileId.PROFILE_PAN_NETWORK);
+let panProfile = bluetooth.getProfileInst(bluetooth.ProfileId.PROFILE_PAN_NETWORK) as bluetooth.PanProfile;
 let ret = panProfile.isTetheringOn();
 ```
 
@@ -2217,7 +2221,7 @@ function ReadCharacteristicReq(CharacteristicReadReq) {
   let characteristicUuid = CharacteristicReadReq.characteristicUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2294,10 +2298,10 @@ function WriteCharacteristicReq(CharacteristicWriteReq) {
   let needRsp = CharacteristicWriteReq.needRsp;
   let value =  new Uint8Array(CharacteristicWriteReq.value);
   let characteristicUuid = CharacteristicWriteReq.characteristicUuid;
-  
+
   cccValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferCCC};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2374,7 +2378,7 @@ function ReadDescriptorReq(DescriptorReadReq) {
   let descriptorUuid = DescriptorReadReq.descriptorUuid;
 
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
@@ -2454,7 +2458,7 @@ function WriteDescriptorReq(DescriptorWriteReq) {
 
   descValue[0] = value[0];
   let serverResponse = {deviceId: deviceId, transId: transId, status: 0, offset: offset, value:arrayBufferDesc};
-  
+
   let ret = gattServer.sendResponse(serverResponse);
   if (ret) {
     console.log('bluetooth sendResponse successfully');
