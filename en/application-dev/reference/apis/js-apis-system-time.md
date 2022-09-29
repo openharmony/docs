@@ -3,8 +3,8 @@
 The **systemTime** module provides system time and time zone features. You can use the APIs of this module to set and obtain the system time and time zone.
 
 > **NOTE**
->- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs of this module are system APIs and cannot be called by third-party applications.
+>
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -60,7 +60,7 @@ Sets the system time. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| time   | number | Yes  | Timestamp to set, in milliseconds. |
+| time   | number | Yes  | Timestamp to set, in milliseconds.|
 
 **Return value**
 
@@ -83,7 +83,7 @@ Sets the system time. This API uses a promise to return the result.
 
 ## systemTime.getCurrentTime<sup>8+</sup>
 
-getCurrentTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
 
@@ -93,13 +93,40 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.        |
 
 **Example**
 
   ```js
   systemTime.getCurrentTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getCurrentTime success data : ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getCurrentTime<sup>8+</sup>
+
+getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since the Unix epoch. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.        |
+
+**Example**
+
+  ```js
+  systemTime.getCurrentTime((error, data) => {
       if (error) {
           console.error(`failed to systemTime.getCurrentTime because ` + JSON.stringify(error));
           return;
@@ -121,7 +148,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br/>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
@@ -142,7 +169,7 @@ Obtains the time elapsed since the Unix epoch. This API uses a promise to return
 
 ## systemTime.getRealActiveTime<sup>8+</sup>
 
-getRealActiveTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system start, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
 
@@ -152,13 +179,40 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br/>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
 
 **Example**
 
   ```js
   systemTime.getRealActiveTime(true, (error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealActiveTimebecause ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealActiveTime success data : ` + JSON.stringify(data));
+  });
+  ```
+
+
+## systemTime.getRealActiveTime<sup>8+</sup>
+
+getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system start, excluding the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.|
+
+**Example**
+
+  ```js
+  systemTime.getRealActiveTime((error, data) => {
       if (error) {
           console.error(`failed to systemTime.getRealActiveTimebecause ` + JSON.stringify(error));
           return;
@@ -180,7 +234,7 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br/>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
@@ -201,7 +255,7 @@ Obtains the time elapsed since system start, excluding the deep sleep time. This
 
 ## systemTime.getRealTime<sup>8+</sup>
 
-getRealTime(isNano?: boolean, callback: AsyncCallback&lt;number&gt;): void
+getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses an asynchronous callback to return the result.
 
@@ -211,7 +265,7 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| isNano   | boolean                     | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano   | boolean                     | Yes  | Whether the time to return is in nanoseconds.<br/>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
 
 **Example**
@@ -229,6 +283,32 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 ## systemTime.getRealTime<sup>8+</sup>
 
+getRealTime(callback: AsyncCallback&lt;number&gt;): void
+
+Obtains the time elapsed since system start, including the deep sleep time. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time.  |
+
+**Example**
+
+  ```js
+  systemTime.getRealTime((error, data) => {
+      if (error) {
+          console.error(`failed to systemTime.getRealTime because ` + JSON.stringify(error));
+          return;
+      }
+      console.log(`systemTime.getRealTime success data: ` + JSON.stringify(data));
+  });
+  ```
+
+## systemTime.getRealTime<sup>8+</sup>
+
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 Obtains the time elapsed since system start, including the deep sleep time. This API uses a promise to return the result.
@@ -239,7 +319,7 @@ Obtains the time elapsed since system start, including the deep sleep time. This
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
+| isNano | boolean | No  | Whether the time to return is in nanoseconds.<br/>- **true**: in nanoseconds.<br>- **false**: in milliseconds. |
 
 **Return value**
 
@@ -278,7 +358,7 @@ Sets the system date. This API uses an asynchronous callback to return the resul
 **Example**
 
   ```js
-  var data = new Date("October 13, 2020 11:13:00");
+  var data = new Date();
   systemTime.setDate(data,(error, data) => {       
       if (error) {            
       console.error('failed to systemTime.setDate because ' + JSON.stringify(error));           
@@ -314,7 +394,7 @@ Sets the system date. This API uses a promise to return the result.
 **Example**
 
   ```js
-  var data = new Date("October 13, 2020 11:13:00"); 
+  var data = new Date(); 
   systemTime.setDate(data).then((value) => {        
       console.log(`systemTime.setDate success data : ` + JSON.stringify(value));    
   }).catch((error) => {        
