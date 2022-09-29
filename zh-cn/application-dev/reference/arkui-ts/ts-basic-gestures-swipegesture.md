@@ -69,4 +69,4 @@ struct SwipeGestureExample {
 }
 ```
 
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374559.gif)
+ ![zh-cn_image_0000001231374559.png](figures/zh-cn_image_0000001231374559.png) 
