@@ -5,7 +5,7 @@
 You can call the APIs provided by the **Camera** module to develop a distributed camera that provides the basic camera functions such as shooting and video recording.
 
 ## How to Develop
-Connect your calculator to a distributed device. Your calculator will call **getCameras()** to obtain the camera list and traverse the returned camera list to check **ConnctionType** of the **Camera** objects. If **ConnctionType** of a **Camera** object is **CAMERA_CONNECTION_REMOTE**, your calculator will use this object to create a **CameraInput** object. The subsequent call process is the same as that of the local camera development. For details about the local camera development, see [Camera Development](./camera.md).
+Connect your calculator to a distributed device. Your calculator will call **getCameras()** to obtain the camera list and traverse the returned camera list to check **ConnectionType** of the **Camera** objects. If **ConnectionType** of a **Camera** object is **CAMERA_CONNECTION_REMOTE**, your calculator will use this object to create a **CameraInput** object. The subsequent call process is the same as that of the local camera development. For details about the local camera development, see [Camera Development](./camera.md).
 
 For details about the APIs, see [Camera Management](../reference/apis/js-apis-camera.md).
 

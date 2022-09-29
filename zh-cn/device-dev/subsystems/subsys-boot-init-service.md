@@ -82,7 +82,7 @@
         "name" : "serviceName",
         "path" : ["/system/bin/serviceName"]
         "importance" : 1,                  // 服务进程提供优先级设置
-        "cpucore" : [0],                   // 服务进程提供cpu绑核功能
+        "cpucore" : [0],                   // 服务进程提供CPU绑核功能
         "critical" : [1, 5, 10],           // 服务提供抑制机制
         "apl" : "normal",                  // 系统服务进程设置其分布式Capability能力
         "d-caps" : ["OHOS_DMS"],           // 系统服务进程设置其分布式Capability能力

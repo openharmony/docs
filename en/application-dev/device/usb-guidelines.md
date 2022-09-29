@@ -1,12 +1,12 @@
 # USB Service Development
 
-The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
-
 ## When to Use
 
 In Host mode, you can obtain the list of connected devices, enable or disable the devices, manage device access permissions, and perform data transfer or control transfer.
 
 ## APIs
+
+The USB service provides the following functions: query of USB device list, bulk data transfer, control transfer, and access permission management.
 
 The following table lists the USB APIs currently available. For details, see the [API Reference](../reference/apis/js-apis-usb.md).
 
@@ -16,12 +16,12 @@ The following table lists the USB APIs currently available. For details, see the
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | hasRight(deviceName: string): boolean                        | Checks whether the user, for example, the application or system, has the device access permissions. The value **true** is returned if the user has the device access permissions; the value **false** is returned otherwise. |
 | requestRight(deviceName: string): Promise\<boolean>          | Requests the temporary permission for a given application to access the USB device. |
-| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by **getDevices()**. |
+| connectDevice(device: USBDevice): Readonly\<USBDevicePipe>   | Connects to the USB device based on the device information returned by `getDevices()`. |
 | getDevices(): Array<Readonly\<USBDevice>>                    | Obtains the USB device list.                                 |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
-| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface                                       |
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.       |
+| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface.                                       |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
 | closePipe(pipe: USBDevicePipe): number                       | Closes a USB device pipe.                                    |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |
@@ -30,7 +30,7 @@ The following table lists the USB APIs currently available. For details, see the
 
 ## How to Develop
 
-You can set a USB device as a host to connect to a device for data transfer. The development procedure is as follows:
+You can set a USB device as the USB host to connect to other USB devices for data transfer. The development procedure is as follows:
 
 1.  Obtain the USB device list.
 
@@ -113,7 +113,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
     Claim the corresponding interface from deviceList.
     interface1 must be one present in the device configuration.
     */
-    usb.claimInterface(pipe , interface1, true);
+    usb.claimInterface(pipe, interface1, true);
     ```
 
 4.  Perform data transfer.

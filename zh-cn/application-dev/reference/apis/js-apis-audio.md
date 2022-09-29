@@ -752,7 +752,7 @@ getRoutingManager(callback: AsyncCallback&lt;AudioRoutingManager&gt;): void
 
 **示例：**
 ```js
-await audioManager.getRoutingManager((err, callback) => {
+audioManager.getRoutingManager((err, callback) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
   }
@@ -3360,28 +3360,19 @@ AudioRenderChangeInfo数组，只读。
 import audio from '@ohos.multimedia.audio';
 
 var audioStreamManager;
-var audioStreamManagerCB;
 var resultFlag = false;
-
-async function getStreamManager(){
-  await audioManager.getStreamManager().then(async function (data) {
-    audioStreamManager = data;
-    console.info('Get AudioStream Manager : Success');
-  }).catch((err) => {
-    console.error(`Get AudioStream Manager : ERROR : ${err}`);
-  });
-}
+var audioManager = audio.getAudioManager();
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`Get AudioStream Manager : ERROR : ${err}`);
   } else {
-    audioStreamManagerCB = data;
+    audioStreamManager = data;
     console.info('Get AudioStream Manager : Success');
   }
 });
 
-audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
@@ -3434,6 +3425,16 @@ AudioCapturerChangeInfo数组，只读。
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
+let audioStreamManager;
+audioManager.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 var resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -3926,34 +3927,6 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-import featureAbility from '@ohos.ability.featureAbility'
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data)=> {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -3997,34 +3970,6 @@ write(buffer: ArrayBuffer): Promise\<number>
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-import featureAbility from '@ohos.ability.featureAbility'
-
-var audioStreamInfo = {
-  samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels:audio.AudioChannel.CHANNEL_2,
-  sampleFormat:audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType:audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data) => {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -4034,10 +3979,11 @@ audioRenderer.getBufferSize().then((data) => {
   });
 console.info(`BufferSize: ${bufferSize}`);
 var context = featureAbility.getContext();
+var path;
 async function getCacheDir(){
   path = await context.getCacheDir();
 }
-var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
+var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -4139,33 +4085,6 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data) => {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -4300,26 +4219,6 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags: 0
-}
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-let audioRenderer;
-async function createAudioRenderer(){
-  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
-}
-
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
   console.info('setInterruptMode Success!');
@@ -4345,27 +4244,6 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags: 0
-}
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-
-let audioRenderer;
-async function createAudioRenderer(){
-  audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
-}
-
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err, data)=>{
   if(err){
@@ -4740,33 +4618,6 @@ start(): Promise<void\>
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
-
-var audioCapturerOptions = {
-  streamInfo: audioStreamInfo,
-  capturerInfo: audioCapturerInfo
-}
-
-var audioCapturer;
-audio.createAudioCapturer(audioCapturerOptions).then((data) => {
-  audioCapturer = data;
-  console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
-  }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer Created: ERROR: ${err}`);
-  });
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
   console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');

@@ -4,19 +4,14 @@
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| id | string | '' | Unique ID you assigned to the component.|
+| Name  | Type    | Description                        |
+| -----| -------- | ----------------------------- |
+| id   | string   | Unique ID you assigned to the component.<br>Default value: **''**|
 
 
 ## APIs
@@ -28,15 +23,17 @@ getInspectorByKey(id: string): string
 
 Obtains all attributes of the component with the specified ID, excluding the information about child components.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes| - | ID of the component whose attributes are to be obtained.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | string | JSON string of the component attribute list.|
+| Name  | Type     | Mandatory    | Description       |
+| ---- | -------- | ---- | -------------|
+| id   | string   | Yes   | ID of the component whose attributes are to be obtained.|
+
+**Return value**
+
+| Type       | Description            |
+| -------| -------------- |
+| string | JSON string of the component attribute list.|
 
 ### getInspectorTree<sup>9+</sup>
 
@@ -44,11 +41,11 @@ getInspectorTree(): string
 
 Obtains the component tree and component attributes.
 
-- Return value
+**Return value**
 
-  | Type  | Description                              |
-  | ------ | ---------------------------------- |
-  | string | JSON string of the component tree and component attribute list.|
+| Type    | Description                           |
+| ------ | --------------------------- |
+| string | JSON string of the component tree and component attribute list.|
 
 ### sendEventByKey<sup>9+</sup>
 
@@ -56,17 +53,19 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 Sends an event to the component with the specified ID.
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description|
-  | -------- | -------- | -------- | -------- | -------- |
-  | id | string | Yes| - | ID of the component to which the event is to be sent.|
-  | action | number | Yes| - | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long-click event.|
-  | params | string | Yes| - | Event parameters. If there is no parameter, pass an empty string **""**.|
+**Parameters**
 
-- Return value
-  | Type| Description|
-  | -------- | -------- |
-  | boolean | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
+| Name      | Type     | Mandatory      | Description                        |
+| ------ | -------| ---- | -------------------------- |
+| id     | string | Yes   | ID of the component to which the event is to be sent.                     |
+| action | number | Yes   | Type of the event to be sent. The options are as follows:<br>- **10**: click event.<br>- **11**: long-click event.|
+| params | string | Yes   | Event parameters. If there is no parameter, pass an empty string **""**.           |
+
+**Return value**
+
+| Type         | Description                        |
+| -------- | --------------------------|
+| boolean  | Returns **true** if the component with the specified ID is found; returns **false** otherwise.|
 
 ### sendTouchEvent<sup>9+</sup>
 
@@ -74,17 +73,17 @@ sendTouchEvent(event: TouchObject): boolean
 
 Sends a touch event.
 
-- Parameters
+**Parameters**
 
-  | Name | Type       | Mandatory| Default Value| Description                                                        |
-  | ----- | ----------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | TouchObject | Yes  | -      | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
+| Name     | Type           | Mandatory | Description                                                        |
+| ----- | ----------- | ---- | ------------------------------------------------------------ |
+| event | TouchObject | Yes   | Location where a touch event is triggered. For details, see [TouchEvent](ts-universal-events-touch.md#touchevent).|
 
-- Return value
+**Return value**
 
-  | Type   | Description                                       |
-  | ------- | ------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                        |
+| ------- | ---------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendKeyEvent<sup>9+</sup>
 
@@ -92,17 +91,17 @@ sendKeyEvent(event: KeyEvent): boolean
 
 Sends a key event.
 
-- Parameters
+**Parameters**
 
-  | Name | Type    | Mandatory| Default Value| Description                                                        |
-  | ----- | -------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | KeyEvent | Yes  | -      | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
+| Name   | Type    | Mandatory     | Description                                                        |
+| ----- | -------- | ----  | ------------------------------------------------------------ |
+| event | KeyEvent | Yes    | Key event. For details, see [KeyEvent](ts-universal-events-key.md#keyevent).|
 
-- Return value
+**Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                          |
+| ------- | ------------------------------|
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ### sendMouseEvent<sup>9+</sup>
 
@@ -110,17 +109,17 @@ sendMouseEvent(event: MouseEvent): boolean
 
 Sends a mouse event.
 
-- Parameters
+**Parameters**
 
-  | Name | Type      | Mandatory| Default Value| Description                                                        |
-  | ----- | ---------- | ---- | ------ | ------------------------------------------------------------ |
-  | event | MouseEvent | Yes  | -      | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
+| Name    | Type      | Mandatory      | Description                                    |
+| ----- | ---------- | ----  | --------------------------------------- |
+| event | MouseEvent | Yes   | Mouse event. For details, see [MouseEvent](ts-universal-mouse-key.md#mouseevent).|
 
-- Return value
+**Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
-  | boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
+| Type     | Description                                |
+| ------- | ---------------------------------- |
+| boolean | Returns **true** if the event is sent successfully; returns **false** otherwise.|
 
 ## Example
 

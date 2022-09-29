@@ -286,4 +286,4 @@ The following table describes APIs available for obtaining device location infor
 
 Location subsystem
 
-[base_location](https://gitee.com/openharmony/base_location)
+[base_location](https://gitee.com/openharmony/base_location/blob/master/README.en.md)

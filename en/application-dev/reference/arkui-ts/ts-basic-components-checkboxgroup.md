@@ -12,7 +12,7 @@ None
 
 ## APIs
 
-CheckboxGroup( group?: string )
+CheckboxGroup(options?: { group?: string })
 
 Creates a check box group so that you can select or deselect all check boxes in the group at the same time. Check boxes and the check box group that share the group name belong to the same group.
 
@@ -31,15 +31,21 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | selectAll | boolean | Whether to select all.<br>Default value: **false**|
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | Color of the selected check box.|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected check box.|
 
 ## Events
 
-In addition to the universal events (ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
-| onChange (callback: (names: Array&lt;string&gt;, status: SelectStatus) => void ) |Triggered when the selection status of the check box group or any check box wherein changes.<br>- **names**: names of all selected check boxes in the group.<br>- **status**: selection status.|
+| onChange (callback: (event: CheckboxGroupResult) => void ) |Triggered when the selection status of the check box group or any check box wherein changes.|
+
+## CheckboxGroupResult
+| Name    | Type  | Description     |
+| ------ | ------ | ------- |
+| name   | Array&lt;string&gt; | Names of all the selected check boxes in the group.|
+| status | SelectStatus | Selected status.|
 
 ## SelectStatus
 

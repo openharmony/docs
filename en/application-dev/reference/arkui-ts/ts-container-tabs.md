@@ -2,7 +2,7 @@
 
 The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
->  **NOTE**
+>  **NOTE**<br>
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -14,7 +14,7 @@ This component can contain multiple [\<TabContent>](ts-container-tabcontent.md) 
 
 ## APIs
 
-Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
 **Parameters**
 
@@ -41,8 +41,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | vertical          | boolean | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
 | scrollable        | boolean | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
 | barMode           | BarMode | Tab bar layout mode. For details, see **BarMode**.<br>Default value: **BarMode.Fixed**|
-| barWidth          | number \| string<sup>8+</sup>  | Width of the tab bar.    |
-| barHeight         | number \| string<sup>8+</sup>  | Height of the tab bar.    |
+| barWidth          | number \| Length<sup>8+</sup>  | Width of the tab bar.    |
+| barHeight         | number \| Length<sup>8+</sup>  | Height of the tab bar.    |
 | animationDuration | number | Animation duration of the tab content.<br>Default value: **200**|
 
 ## BarMode
@@ -58,7 +58,7 @@ In addition to the universal events (ts-universal-events-click.md), the followin
 
 | Name| Description|
 | -------- | -------- |
-| onChange(callback: (index: number) =&gt; void) | Event triggered when a tab is switched.|
+| onChange(event: (index: number) =&gt; void) | Event triggered when a tab is switched.|
 
 ## TabsController
 

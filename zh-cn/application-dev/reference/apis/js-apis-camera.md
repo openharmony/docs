@@ -812,7 +812,7 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 
 | 名称     | 类型                           | 必填 | 说明                     |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取结果。 |
+| callback | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取可变焦距比范围，返回的数组包括其最小值和最大值。 |
 
 **示例：**
 
@@ -838,7 +838,7 @@ getZoomRatioRange\(\): Promise<Array<number\>\>
 
 | 类型                     | 说明                                        |
 | ------------------------ | ------------------------------------------- |
-| Promise<Array<number\>\> | 使用Promise的方式获取当前的可变焦距比范围。 |
+| Promise<Array<number\>\> | 使用Promise的方式获取当前的可变焦距比范围，返回的数组包括其最小值和最大值。 |
 
 **示例：**
 
