@@ -61,6 +61,28 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getDefaultNetSync
+
+getDefaultNetSync(): NetHandle;
+
+使用同步方法获取默认激活的数据网络。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| NetHandle | 以同步方式返回默认激活的数据网络。 |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
 ## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
