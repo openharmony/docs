@@ -100,5 +100,5 @@ struct Second {
   }
 }
 ```
-![text_clock](figures/text_clock.png)
+![text_clock](figures/text_clock.gif)
 
