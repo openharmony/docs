@@ -10,8 +10,7 @@
 
 ## 示例
 ```
-MainAbility  
-    ├─ common
+    |─ common
     │  └─ utils
     │      └─ utils.ets        
     └─pages
