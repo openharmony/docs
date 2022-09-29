@@ -59,11 +59,29 @@ Line(value?: {width?: string | number, height?: string | number})
 @Component
 struct LineExample {
   build() {
-    Column() {
-      Line().startPoint([0, 0]).endPoint([50, 100])
-      Line({ width: 50, height: 50 }).startPoint([0, 0]).endPoint([100, 100])
-      Line().width(200).height(200).startPoint([50, 50]).endPoint([150, 150])
-    }.margin({ top: 5 })
+    Column({ space: 10 }) {
+      // 线条绘制的起止点坐标均是相对于Line组件本身绘制区域的坐标
+      Line()
+        .startPoint([0, 0])
+        .endPoint([50, 100])
+        .backgroundColor('#F5F5F5')
+      Line()
+        .width(200)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([150, 150])
+        .strokeWidth(5)
+        .stroke(Color.Orange)
+        .strokeOpacity(0.5)
+        .backgroundColor('#F5F5F5')
+      // 当坐标点设置的值超出Line组件的宽高范围时，线条会画出组件绘制区域
+      Line({ width: 50, height: 50 })
+        .startPoint([0, 0])
+        .endPoint([100, 100])
+        .strokeWidth(3)
+        .strokeDashArray([1, 3])
+        .backgroundColor('#F5F5F5')
+    }
   }
 }
 ```
