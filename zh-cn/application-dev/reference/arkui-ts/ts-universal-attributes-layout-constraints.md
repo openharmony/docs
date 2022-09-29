@@ -22,7 +22,7 @@
 @Entry
 @Component
 struct AspectRatioExample {
-  private children: string[] = ['1', '2', '3', '4', '5', '6']
+  private children: string[] = ['1', '2', '3', '4', '5', '6'];
 
   build() {
     Column({ space: 20 }) {
@@ -77,13 +77,13 @@ struct AspectRatioExample {
 
 ```ts
 class ContainerInfo {
-  label: string = ''
-  size: string = ''
+  label: string = '';
+  size: string = '';
 }
 
 class ChildInfo {
-  text: string = ''
-  priority: number = 0
+  text: string = '';
+  priority: number = 0;
 }
 
 @Entry
@@ -102,14 +102,14 @@ struct DisplayPriorityExample {
     { text: '4\n(priority:1)', priority: 1 },
     { text: '5\n(priority:2)', priority: 2 }
   ]
-  @State currentIndex: number = 0
+  @State currentIndex: number = 0;
 
   build() {
     Column({ space: 10 }) {
       // 切换父级容器大小
       Button(this.container[this.currentIndex].label).backgroundColor(0x317aff)
         .onClick(() => {
-          this.currentIndex = (this.currentIndex + 1) % this.container.length
+          this.currentIndex = (this.currentIndex + 1) % this.container.length;
         })
       // 通过变量设置Flex父容器宽度
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
