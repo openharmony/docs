@@ -59,14 +59,26 @@ Polyline(value?: {width?: string | number, height?: string | number})
 @Component
 struct PolylineExample {
   build() {
-    Column({ space: 5 }) {
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(20,60)，到达终点(100, 100)
-        Polyline({ width: 100, height: 100 }).points([[0, 0], [20, 60], [100, 100]])
-        // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(0,100)，到达终点(100, 100)
-        Polyline().width(100).height(100).points([[0, 0], [0, 100], [100, 100]])
-      }.width('100%')
-    }.margin({ top: 5 })
+    Column({ space: 10 }) {
+      // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(20,60)，到达终点(100, 100)
+      Polyline({ width: 100, height: 100 })
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+      // 在 100 * 100 的矩形框中绘制一段折线，起点(20, 0)，经过(0,100)，到达终点(100, 90)
+      Polyline()
+        .width(100)
+        .height(100)
+        .fillOpacity(0)
+        .stroke(Color.Red)
+        .strokeWidth(8)
+        .points([[20, 0], [0, 100], [100, 90]])
+          // 设置折线拐角处为圆弧
+        .strokeLineJoin(LineJoinStyle.Round)
+          // 设置折线两端为半圆
+        .strokeLineCap(LineCapStyle.Round)
+    }.width('100%')
   }
 }
 ```
