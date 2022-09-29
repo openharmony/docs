@@ -10,6 +10,7 @@
   - [NativeVsync](_native_vsync.md)
   - [Image](image.md)
   - [Rawfile](rawfile.md)
+  - [MindSpore](_mind_spore.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -31,6 +32,13 @@
   - [raw_dir.h](raw__dir_8h.md)
   - [raw_file_manager.h](raw__file__manager_8h.md)
   - [raw_file.h](raw__file_8h.md)
+  - [context.h](context_8h.md)
+  - [data_type.h](data__type_8h.md)
+  - [format.h](format_8h.md)
+  - [model.h](model_8h.md)
+  - [status.h](status_8h.md)
+  - [tensor.h](tensor_8h.md)
+  - [types.h](types_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -45,3 +53,6 @@
   - [RawFileDescriptor](_raw_file_descriptor.md)
   - [Region](_region.md)
   - [Rect](_rect.md)
+  - [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md)
+  - [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md)
+  - [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md)
