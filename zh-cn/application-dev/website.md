@@ -37,13 +37,12 @@
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于TS扩展的声明式开发范式
+    - 基于eTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
       - 框架说明
         - 文件组织
           - [目录结构](ui/ts-framework-directory.md)
           - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
-        - [js标签配置](ui/ts-framework-js-tag.md)
         - 资源管理
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
@@ -108,7 +107,7 @@
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
       - [性能提升的推荐方法](ui/ts-performance-improvement-recommendation.md)
-    - 基于JS扩展的类Web开发范式
+    - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
         - [文件组织](ui/js-framework-file.md)
@@ -202,6 +201,7 @@
       - [音频播放开发指导](media/audio-playback.md)
       - [音频录制开发指导](media/audio-recorder.md)
       - [音频渲染开发指导](media/audio-renderer.md)
+      - [音频流管理开发指导](media/audio-stream-manager.md)
       - [音频采集开发指导](media/audio-capturer.md)
       - [OpenSL ES播放开发指导](media/opensles-playback.md)
       - [OpenSL ES录音开发指导](media/opensles-capture.md)
@@ -213,10 +213,12 @@
       - [图片开发指导](media/image.md)
     - 相机
       - [相机开发指导](media/camera.md)
+      - [分布式相机开发指导](remote-camera.md)
   - 安全
     - 访问控制
       - [访问控制开发概述](security/accesstoken-overview.md)
-      - [访问控制开发指导](security/accesstoken-guidelines.md)
+      - [访问控制授权申请指导](security/accesstoken-guidelines.md)
+      - [访问控制权限校验指导](security/permission-verify-guidelines.md)
       - [权限定义列表](security/permission-list.md)
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
@@ -301,71 +303,58 @@
     - [Intl开发指导](internationalization/intl-guidelines.md)
     - [I18n开发指导](internationalization/i18n-guidelines.md)
   - 一次开发，多端部署
-    - [前言](key-features/multi-device-app-dev/about-this-document.md)
+    - [前言](key-features/multi-device-app-dev/foreword.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
+    - [从一个例子开始](key-features/multi-device-app-dev/start-with-a-example.md)
     - 应用UX设计
       - [设计原则和要点](key-features/multi-device-app-dev/design-principles.md)
       - 应用架构设计
         - [应用导航结构设计要求](key-features/multi-device-app-dev/navigation-design.md)
         - [应用页面结构设计](key-features/multi-device-app-dev/page-design.md)
       - 界面布局
-        - [概述](key-features/multi-device-app-dev/layout-design-intro.md)
+        - [概述](key-features/multi-device-app-dev/interface-layout-design-intro.md)
         - 布局基础
-          - [栅格系统](key-features/multi-device-app-dev/layout-grid.md)
-          - [自适应布局](key-features/multi-device-app-dev/layout-adaptive.md)
-          - [响应式布局](key-features/multi-device-app-dev/layout-responsive.md)
-        - [布局基础运用案例](key-features/multi-device-app-dev/layout-design-cases.md)
+          - [栅格系统](key-features/multi-device-app-dev/design-grid.md)
+          - [自适应布局](key-features/multi-device-app-dev/design-adaptive-layout.md)
+          - [响应式布局](key-features/multi-device-app-dev/design-responsive-layout.md)
+        - [布局基础运用案例](key-features/multi-device-app-dev/design-layout-cases.md)
       - 人机交互
         - [交互基础](key-features/multi-device-app-dev/interaction-basics.md)
         - [常见输入方式](key-features/multi-device-app-dev/common-input-modes.md)
-        - [交互事件归一](key-features/multi-device-app-dev/design-interaction-events-unification.md)
+        - [交互事件归一](key-features/multi-device-app-dev/design-interaction-event-normalization.md)
       - 视觉风格
-        - [视觉基础](key-features/multi-device-app-dev/visual-style-basics.md)
+        - [视觉基础](key-features/multi-device-app-dev/visual-basics.md)
         - [色彩](key-features/multi-device-app-dev/visual-style-color.md)
         - [字体](key-features/multi-device-app-dev/visual-style-font.md)
         - [图标](key-features/multi-device-app-dev/visual-style-icon.md)
-      - [多态控件](key-features/multi-device-app-dev/design-polymorphic-components.md)
+      - [多态控件](key-features/multi-device-app-dev/design-polymorphic-controls.md)
       - [设计自检表](key-features/multi-device-app-dev/design-checklist.md)
-      - [资源](key-features/multi-device-app-dev/resource.md)
-    - [IDE使用](key-features/multi-device-app-dev/ide-usage.md)
-    - 一多能力的页面开发介绍
-      - 布局能力
-        - [布局能力简介](key-features/multi-device-app-dev/layout-intro.md)
-        - 自适应布局
-          - [自适应布局简介](key-features/multi-device-app-dev/adaptive-layout-intro.md)
-          - [拉伸能力](key-features/multi-device-app-dev/adaptive-layout-stretching.md)
-          - [均分能力](key-features/multi-device-app-dev/adaptive-layout-equalization.md)
-          - [占比能力](key-features/multi-device-app-dev/adaptive-layout-proportion.md)
-          - [缩放能力](key-features/multi-device-app-dev/adaptive-layout-scaling.md)
-          - [延伸能力](key-features/multi-device-app-dev/adaptive-layout-extension.md)
-          - [隐藏能力](key-features/multi-device-app-dev/adaptive-layout-hiding.md)
-          - [折行能力](key-features/multi-device-app-dev/adaptive-layout-wrapping.md)
-        - 响应式布局
-          - [栅格断点系统](key-features/multi-device-app-dev/grid-breakpoint.md)
-          - [媒体查询](key-features/multi-device-app-dev/media-query.md)
-          - [典型场景](key-features/multi-device-app-dev/responsive-layout-cases.md)
-      - [交互归一](key-features/multi-device-app-dev/interaction-events-unification.md)
-      - [多态组件](key-features/multi-device-app-dev/polymorphic-components.md)
-      - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
-    - [一多能力的功能开发介绍](key-features/multi-device-app-dev/development-intro.md)
-    - 案例应用
-      - 短信应用
-        - [概览](key-features/multi-device-app-dev/sms-intro.md)
-        - 会话详情页面
-          - [页面结构](key-features/multi-device-app-dev/sms-session-page-structure.md)
-          - [顶部标题栏](key-features/multi-device-app-dev/sms-session-page-title-bar.md)
-          - [底部输入栏](key-features/multi-device-app-dev/sms-session-page-input-field.md)
-          - [信息列表](key-features/multi-device-app-dev/sms-session-page-message-list.md)
-          - [组合成型](key-features/multi-device-app-dev/sms-session-page-combined.md)
-        - [总结](key-features/multi-device-app-dev/sms-session-summary.md)
-      - [桌面应用](key-features/multi-device-app-dev/cases-home-screen.md)
-    - [常见问题](key-features/multi-device-app-dev/faqs.md)
+      - [设计交付](key-features/multi-device-app-dev/design-delivery.md)
+      - [资源](key-features/multi-device-app-dev/design-resources.md)
+    - [工程管理](key-features/multi-device-app-dev/ide-using.md)
+    - 页面开发的一多能力介绍
+    - [简介](key-features/multi-device-app-dev/page-development-intro.md)
+    - 布局能力
+      - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
+      - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
+      - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
+      - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
+      - 典型页面场景
+        - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
+        - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
+    - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
+    - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
+    - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
+    - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
+    - [案例应用](key-features/multi-device-app-dev/case.md)
+    - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API的相关指导
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
     - [Window开发指导](napi/native-window-guidelines.md)
+    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md) 
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -985,3 +974,16 @@
         - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
 - 常见问题
   - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)
+  - [Ability框架开发常见问题](faqs/faqs-ability.md)
+  - [UI框架（JS）开发常见问题](faqs/faqs-ui-js.md)
+  - [UI框架（eTS）开发常见问题](faqs/faqs-ui-ets.md)
+  - [图形图像开发常见问题](faqs/faqs-graphics.md)
+  - [文件管理开发常见问题](faqs/faqs-file-management.md)
+  - [网络与连接开发常见问题](faqs/faqs-connectivity.md)
+  - [数据管理开发常见问题](faqs/faqs-data-management.md)
+  - [设备管理开发常见问题](faqs/faqs-device-management.md)
+  - [Native API使用常见问题](faqs/faqs-native.md)
+  - [三四方库使用常见问题](faqs/faqs-third-party-library.md)
+  - [IDE使用常见问题](faqs/faqs-ide.md)
+  - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
+  - [开发板使用常见问题](faqs/faqs-development-board.md)
