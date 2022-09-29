@@ -29,7 +29,7 @@ TextClock容器组件的控制器，可以将该控制器绑定到TextClock组�
 ### 导入对象
 
 ```ts
-controller: TextClockController = new TextClockController()
+controller: TextClockController = new TextClockController();
 ```
 
 ### start
@@ -68,9 +68,9 @@ stop()
 @Entry
 @Component
 struct Second {
-  @State accumulateTime: number = 0
+  @State accumulateTime: number = 0;
   // 导入对象
-  controller: TextClockController = new TextClockController()
+  controller: TextClockController = new TextClockController();
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Current milliseconds is ' + this.accumulateTime)
@@ -79,7 +79,7 @@ struct Second {
       TextClock({ timeZoneOffset: -8, controller: this.controller })
         .format('hms')
         .onDateChange((value: number) => {
-          this.accumulateTime = value
+          this.accumulateTime = value;
         })
         .margin(20)
         .fontSize(30)
@@ -87,12 +87,12 @@ struct Second {
         .margin({ bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller.start()
+          this.controller.start();
         })
       Button("stop TextClock")
         .onClick(() => {
           // 停止文本时钟
-          this.controller.stop()
+          this.controller.stop();
         })
     }
     .width('100%')
