@@ -24,8 +24,19 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | 纯文本内容的MIME类型定义。 |
 | MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI内容的MIME类型定义。 |
 | MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | PixelMap内容的MIME类型定义。 |
-| ValueType<sup>9+</sup> | string | 是 | 否 | 数值的类型定义。 |
 
+## ValueType
+
+用于表示允许的数据字段类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.MiscServices.Pasteboard
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 表示string的类型 |
+| image.PixelMap | 表示image.PixelMap的类型。 |
+| Want | 表示Want的类型|
+| ArrayBuffer | 表示ArrayBuffer的类型|
 
 ## pasteboard.createPlainTextData
 
@@ -163,7 +174,7 @@ createData(mimeType: string, value: ValueType): PasteData;
 **示例：**
 
   ```js
-  var dataXml = new ValueType
+  var dataXml = "aStringValueType"
   var pasteData = pasteboard.createData('app/xml', dataXml)
   ```
 
@@ -304,7 +315,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 **示例：**
 
   ```js
-  var dataXml = new ValueType(256)
+  var dataXml = "aStringValueType"
   var pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
   ```
 
@@ -743,7 +754,7 @@ addRecord(mimeType: string, value: ValueType): void
 
   ```js
   var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
-  var dataXml = new ValueType(256)
+  var dataXml = "aStringValueType"
   pasteData.addRecord('app/xml', dataXml);
   ```
 
@@ -1047,7 +1058,7 @@ var isRemove = pasteData.removeRecordAt(0);
 
 ### removeRecord<sup>9+</sup>
 
-removeRecord(index: number): boolean
+removeRecord(index: number): void
 
 移除剪贴板内容中指定下标的条目。
 
@@ -1059,17 +1070,11 @@ removeRecord(index: number): boolean
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 指定的下标。 |
 
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 成功移除返回true，失败返回false。 |
-
 **示例：**
 
 ```js
 var pasteData = pasteboard.createPlainTextData("hello");
-var isRemove = pasteData.removeRecord(0);
+pasteData.removeRecord(0);
 ```
 
 ### replaceRecordAt<sup>7+</sup>
@@ -1121,7 +1126,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 ```js
 var pasteData = pasteboard.createPlainTextData("hello");
 var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
-var isReplace = pasteData.replaceRecord(0, record);
+pasteData.replaceRecord(0, record);
 ```
 
 ## SystemPasteboard
