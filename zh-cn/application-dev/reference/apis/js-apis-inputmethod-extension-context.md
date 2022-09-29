@@ -47,10 +47,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
     let want = {
-      'bundleName': 'com.example.myapp',
-      'abilityName': 'MyAbility'};
-      this.context.startAbility(want, (err) => {
-      console.log('startAbility result:' + JSON.stringify(err));
+        'bundleName': 'com.example.myapp',
+        'abilityName': 'MyAbility'
+    };
+    this.context.startAbility(want, (err) => {
+        console.log('startAbility result:' + JSON.stringify(err));
     });
   ```
 
@@ -118,7 +119,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
   	windowMode: 0,
   };
   this.context.startAbility(want, options, (error) => {
-    console.log('error.code = ' + error.code)
+      console.log('error.code = ' + error.code)
   })
   ```
 
@@ -140,7 +141,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
 this.context.terminateSelf((err) => {
-  console.log('terminateSelf result:' + JSON.stringify(err));
+    console.log('terminateSelf result:' + JSON.stringify(err));
 });
   ```
 
