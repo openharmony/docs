@@ -32,6 +32,19 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 | ERR_KEYUSAGE_NO_CERTSIGN              | 17630006 | 证书的秘钥用途不含证书签名。  |
 | ERR_KEYUSAGE_NO_DIGITAL_SIGNATURE     | 17630007 |  证书的秘钥用途不含数字签名。 |
 
+## DataBlob
+buffer数组。
+ **系统能力：** SystemCapability.Security.CryptoFramework
+| 名称           | 类型           | 可读 | 可写 | 描述               |
+| -------------- | -------------- | ---- | ---- | ----------------|
+| data           | Uint8Array     | 是   | 是   | 数据。    |
+
+## DataArray
+buffer数组的列表。
+ **系统能力：** SystemCapability.Security.CryptoFramework
+| 名称           | 类型           | 可读 | 可写 | 描述               |
+| -------------- | -------------- | ---- | ---- | ----------------|
+| data           | Uint8Array     | 是   | 是   | 数据列表。    |
 
 ## EncodingFormat
 
@@ -56,7 +69,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 | 名称           | 类型           | 可读 | 可写 | 描述                              |
 | -------------- | -------------- | ---- | ---- | ----------------------------------|
 | data           | Uint8Array     | 是   | 是   | 传入的数据中，包含的证书数量。    |
-| encodingFormat | [EncodingFormat](#EncodingFormat) | 是   | 是   | 指明证书编码格式。 |
+| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。 |
 
 
 ## CertChainData
@@ -71,7 +84,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 | -------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
 | data           | Uint8Array     | 是   | 是   | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。   |
 | count          | number         | 是   | 是   | 传入的数据中，包含的证书数量。                             |
-| encodingFormat | [EncodingFormat](#EncodingFormat) | 是   | 是   | 指明证书编码格式。 |
+| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。 |
 
 
 ## cryptoFramework.createMac
@@ -877,8 +890,6 @@ promiseGenerateRand.then(randData => {
 
 加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，不需要构造其子类对象）。
 
-### 属性
-
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 描述                   |
@@ -889,8 +900,6 @@ promiseGenerateRand.then(randData => {
 
 适用于CBC、CTR、OFB、CFB模式，仅使用iv的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
 
-### 属性
-
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 描述                   |
@@ -900,8 +909,6 @@ promiseGenerateRand.then(randData => {
 ## GcmParamsSpec
 
 适用于GCM模式的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
-
-### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -914,8 +921,6 @@ promiseGenerateRand.then(randData => {
 ## CcmParamsSpec
 
 适用于CCM模式的加解密参数，在对称加解密时构造并传入[init()](#init-2)方法作为参数。
-
-### 属性
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
