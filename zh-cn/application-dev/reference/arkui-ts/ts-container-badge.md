@@ -15,6 +15,7 @@
 
 方法1：Badge(value: { count: number, maxCount?: number, position?: BadgePosition, style: BadgeStyle})
 创建数字标记组件。
+
 **参数：**
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
