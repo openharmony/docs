@@ -66,7 +66,7 @@
 
    如果应用在后台运行时也需要访问设备位置，除需要将应用声明为允许后台运行外，还必须申请ohos.permission.LOCATION_IN_BACKGROUND权限，这样应用在切入后台之后，系统可以继续上报位置信息。
 
-   开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../application-dev/security/accesstoken-guidelines.md)。
+   开发者可以在应用配置文件中声明所需要的权限，具体可参考[授权申请指导](../security/accesstoken-guidelines.md)。
 
 2. 导入geolocation模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
