@@ -43,17 +43,10 @@
 | icon-height | &lt;length&gt; | - | 否 | 设置圆形按钮内部图标的高，默认填满整个圆形按钮。<br/>>&nbsp;![icon-note.gif](public_sys-resources/icon-note.gif)&nbsp;**说明：**<br/>>&nbsp;icon使用svg图源时必须设置该样式。 |
 | radius | &lt;length&gt; | - | 否 | 按钮圆角半径。在圆形按钮类型下该样式优先于通用样式的width和height样式。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 胶囊按钮（type=capsule）时，不支持border相关样式；
-> 
-> - 圆形按钮（type=circle）时，不支持文本相关样式；
-> 
-> - 文本按钮（type=text）时，自适应文本大小，不支持尺寸设置（radius，width，height），背景透明不支持background-color样式。
-
 
 ### type设置为arc
 
-除支持[通用样式](../arkui-js/js-components-common-styles.md)中background-color、opacity、display、visibility、position、[left|top|right|bottom外，还支持如下样式：
+除支持[通用样式](../arkui-js/js-components-common-styles.md)中background-color、opacity、display、visibility、position、[left|top|right|bottom]外，还支持如下样式：
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |

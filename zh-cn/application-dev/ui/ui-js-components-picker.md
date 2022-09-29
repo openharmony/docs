@@ -11,7 +11,7 @@ Picker是滑动选择器组件，类型支持普通选择器、日期选择器�
 <!-- index.hml -->
 <div class="container">
   <picker>    picker  </picker>
-<div>
+</div>
 ```
 
 ```
