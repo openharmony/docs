@@ -2,7 +2,8 @@
 
 - 访问控制  
   - [访问控制（权限）开发概述](accesstoken-overview.md)
-  - [访问控制（权限）开发指导](accesstoken-guidelines.md)
+  - [访问控制授权申请指导](accesstoken-guidelines.md)
+  - [访问控制权限校验指导](permission-verify-guidelines.md)
   - [应用权限列表](permission-list.md)
 - 用户认证
   - [用户认证开发概述](userauth-overview.md)
