@@ -694,7 +694,7 @@ try {
     }
   );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -729,7 +729,7 @@ try {
     }
   );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -757,7 +757,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -784,7 +784,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -811,7 +811,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -841,7 +841,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -873,7 +873,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -910,7 +910,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -938,7 +938,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -968,7 +968,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -996,7 +996,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1028,7 +1028,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1058,7 +1058,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1091,7 +1091,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1121,7 +1121,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1151,7 +1151,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1181,7 +1181,7 @@ try {
       }
     );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1209,7 +1209,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1240,7 +1240,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1268,7 +1268,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1296,7 +1296,7 @@ try {
      }
    );
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1330,7 +1330,7 @@ try {
     }
     sensor.off(sensor.SensorId.ACCELEROMETER, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1365,7 +1365,7 @@ try {
     }
     sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1393,7 +1393,7 @@ try {
     }
     sensor.off(sensor.SensorId.AMBIENT_LIGHT, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1421,7 +1421,7 @@ try {
     }
     sensor.off( sensor.SensorId.AMBIENT_TEMPERATURE, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1449,7 +1449,7 @@ try {
     }
     sensor.off(sensor.SensorId.BAROMETER, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1479,7 +1479,7 @@ try {
     }
     sensor.off( sensor.SensorId.GRAVITY, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1511,7 +1511,7 @@ try {
     }
     sensor.off(sensor.SensorId.GYROSCOPE, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1543,7 +1543,7 @@ try {
     }
     sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1571,7 +1571,7 @@ try {
     }
     sensor.off(sensor.SensorId.HALL, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1601,7 +1601,7 @@ try {
     }
     sensor.off(sensor.SensorId.HEART_RATE, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1629,7 +1629,7 @@ try {
     }
     sensor.off(sensor.SensorId.HUMIDITY, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1661,7 +1661,7 @@ try {
     }
     sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1691,7 +1691,7 @@ try {
     }
     sensor.off(sensor.SensorId.MAGNETIC_FIELD, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1724,7 +1724,7 @@ try {
     }
     sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1754,7 +1754,7 @@ try {
     }
     sensor.off(sensor.SensorId.ORIENTATION, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1784,7 +1784,7 @@ try {
     }
     sensor.off(sensor.SensorId.PEDOMETER, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1814,7 +1814,7 @@ try {
     }
     sensor.off(sensor.SensorId.PEDOMETER_DETECTION, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1842,7 +1842,7 @@ try {
     }
     sensor.off(sensor.SensorId.PROXIMITY, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1873,7 +1873,7 @@ try {
     }
     sensor.off(sensor.SensorId.ROTATION_VECTOR, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1901,7 +1901,7 @@ try {
     }
     sensor.off(sensor.SensorId.SIGNIFICANT_MOTION, callback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -1929,7 +1929,7 @@ try {
     }
     sensor.off(sensor.SensorId.WEAR_DETECTION, accCallback);
 } catch(err) {
-      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -2010,6 +2010,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
