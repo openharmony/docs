@@ -43,7 +43,7 @@
 
 ## 响应手势事件
 
-组件通过gesture方法绑定手势对象，可以通过手势对象提供的事件相应响应手势操作。例如通过TapGesture对象的onAction事件响应点击事件。其余手势的事件定义见各个手势对象章节。
+组件通过gesture方法绑定手势对象，可以通过手势对象提供的事件相应响应手势操作。例如通过TapGesture对象的onAction事件响应点击事件。其余手势的事件定义见各个手势对象章节。若需绑定多种手势请使用 [组合手势](ts-combined-gestures.md)。
 
 - TapGesture事件说明
   | 名称 | 功能描述 |
@@ -77,8 +77,8 @@
   | 名称 | 类型 | 描述 |
   | -------- | -------- | -------- |
   | id | number | 手指的索引编号。 |
-  | globalX | number | 相对于设备屏幕左上角的x轴坐标。 |
-  | globalY | number | 相对于设备屏幕左上角的y轴坐标。 |
+  | globalX | number | 相对于应用窗口左上角的x轴坐标。 |
+  | globalY | number | 相对于应用窗口左上角的y轴坐标。 |
   | localX | number | 相对于当前组件元素左上角的x轴坐标。 |
   | localY | number | 相对于当前组件元素左上角的y轴坐标。 |
 
@@ -90,28 +90,51 @@
 @Entry
 @Component
 struct GestureSettingsExample {
-  @State value: string = ''
+  @State priorityTestValue: string = '';
+  @State parallelTestValue: string = '';
 
   build() {
-    Column(){
+    Column() {
       Column() {
-        Text('Click\n' + this.value)
+        Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
           TapGesture()
             .onAction(() => {
-              this.value = 'gesture onAction'
+              this.priorityTestValue += '\nText';
             }))
-      }.height(200).width(300).padding(60).border({ width: 1 })
-      //设置为priorityGesture时，会优先识别该绑定手势忽略内部gesture手势
+      }
+      .height(200)
+      .width(250)
+      .padding(20)
+      .margin(20)
+      .border({ width: 3 })
+      // 设置为priorityGesture时，点击文本会忽略Text组件的TapGesture手势事件，优先识别父组件Column的TapGesture手势事件
       .priorityGesture(
       TapGesture()
         .onAction((event: GestureEvent) => {
-          this.value = 'priorityGesture onAction' + '\ncomponent globalPos:('
-          + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-          + event.target.area.width + '\nheight:' + event.target.area.height
-        }), GestureMask.IgnoreInternal
-      )
-    }.padding(60)
+          this.priorityTestValue += '\nColumn';
+        }), GestureMask.IgnoreInternal)
+
+      Column() {
+        Text('TapGesture:' + this.parallelTestValue).fontSize(28)
+          .gesture(
+          TapGesture()
+            .onAction(() => {
+              this.parallelTestValue += '\nText';
+            }))
+      }
+      .height(200)
+      .width(250)
+      .padding(20)
+      .margin(20)
+      .border({ width: 3 })
+      // 设置为parallelGesture时，点击文本会同时触发子组件Text与父组件Column的TapGesture手势事件
+      .parallelGesture(
+      TapGesture()
+        .onAction((event: GestureEvent) => {
+          this.parallelTestValue += '\nColumn';
+        }), GestureMask.Normal)
+    }
   }
 }
 ```
