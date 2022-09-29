@@ -4,7 +4,7 @@
 
 
 > **说明：**
-> 在单个源文件中，最多可以使用10个@Preview装饰自定义组件，更多说明请参考[@Preview]( https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596#section146052489820 )。
+> 在单个源文件中，最多可以使用10个@Preview装饰自定义组件，更多说明请参考[查看eTS组件预览效果]( https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596#section146052489820 )。
 
 
 @Preview的用法如下：
