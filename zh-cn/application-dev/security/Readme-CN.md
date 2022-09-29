@@ -11,6 +11,9 @@
 - 密钥管理
   - [HUKS开发概述](huks-overview.md)
   - [HUKS开发指导](huks-guidelines.md)
+- 加密算法库框架
+  - [加密算法库框架概述](cryptoFramework-overview.md)
+  - [加密算法框架开发指导](cryptoFramework-guidelines.md)
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
