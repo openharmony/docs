@@ -213,7 +213,7 @@
       - [图片开发指导](media/image.md)
     - 相机
       - [相机开发指导](media/camera.md)
-      - [分布式相机开发指导](remote-camera.md)
+      - [分布式相机开发指导](media/remote-camera.md)
   - 安全
     - 访问控制
       - [访问控制开发概述](security/accesstoken-overview.md)
