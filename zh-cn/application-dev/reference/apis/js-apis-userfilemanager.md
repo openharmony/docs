@@ -726,6 +726,8 @@ getAllPeers(callback: AsyncCallback<Array&lt;PeerInfo>>): void;
 
 获取所有对端设备的信息，使用callback方式返回异步结果。
 
+此接口为系统接口。
+
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
 **参数：**
@@ -757,6 +759,8 @@ async function getAllPeersDemoCallback() {
 getAllPeers(): Promise<Array&lt;PeerInfo>>;
 
 获取所有对端设备的信息，使用promise方式返回异步结果。
+
+此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
@@ -2283,7 +2287,7 @@ getFileAssets(type: Array&lt;MediaType&gt;, options: MediaFetchOptions, callback
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENTS
 
 > 说明：
 > 本接口所需申请的分类的权限APL等级为system_basic。APL等级为normal的应用需要通过ACL证书方式申请，申请方式请参考[ACL说明](../../security/accesstoken-overview.md#访问控制列表acl说明)
@@ -2333,7 +2337,7 @@ getFileAssets(type: Array&lt;MediaType&gt;, options: MediaFetchOptions): Promise
 
 此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENT
+**需要权限**：ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO or ohos.permission.READ_DOCUMENTS
 
 > 说明：
 > 本接口所需申请的分类的权限APL等级为system_basic。APL等级为normal的应用需要通过ACL证书方式申请，申请方式请参考[ACL说明](../../security/accesstoken-overview.md#访问控制列表acl说明)
@@ -2509,6 +2513,6 @@ async function virtualAlbumGetFileAssetsDemoPromise() {
 
 | 名称          |  说明               |
 | ------------- |  ------------------ |
-| TYPE_FAVORITE    | 系统相册：收藏夹相册 |
-| TYPE_TRASH       | 系统相册：回收站相册 |
+| TYPE_FAVORITE    | 系统相册：收藏夹相册<br/>该接口为系统接口。 |
+| TYPE_TRASH       | 系统相册：回收站相册<br/>该接口为系统接口。 |
 
