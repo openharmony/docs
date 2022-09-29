@@ -6,13 +6,13 @@
 
   | 自适应布局类别 | 自适应布局能力 | 使用场景 | 实现方式 | 
 | -------- | -------- | -------- | -------- |
-| 自适应拉伸 | [拉伸能力](#拉伸能力) | 容器组件尺寸发生变化时，增加或减小的空间**全部分配**给容器组件内**指定区域**。 | [Flex布局](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)的flexGrow和flexShrink属性 | 
-|  | [均分能力](#均分能力) | 容器组件尺寸发生变化时，增加或减小的空间**均匀分配**给容器组件内**所有空白区域**。 | [Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)、[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)或[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly | 
+| 自适应拉伸 | [拉伸能力](#拉伸能力) | 容器组件尺寸发生变化时，增加或减小的空间**全部分配**给容器组件内**指定区域**。 | [Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)的flexGrow和flexShrink属性 | 
+|  | [均分能力](#均分能力) | 容器组件尺寸发生变化时，增加或减小的空间**均匀分配**给容器组件内**所有空白区域**。 | [Row组件](../../reference/arkui-ts/ts-container-row.md)、[Column组件](../../reference/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly | 
 | 自适应缩放 | [占比能力](#占比能力) | 子组件的宽或高**按照预设的比例**，随容器组件发生变化。 | 基于通用属性的两种实现方式：<br/>-&nbsp;将子组件的宽高设置为父组件宽高的百分比<br/>-&nbsp;layoutWeight属性 | 
-|  | [缩放能力](#缩放能力) | 子组件的宽高**按照预设的比例**，随容器组件发生变化，且变化过程中子组件的**宽高比不变**。 | [布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)的aspectRatio属性 | 
-| 自适应延伸 | [延伸能力](#延伸能力) | 容器组件内的子组件，按照其**在列表中的先后顺序**，随容器组件尺寸变化显示或隐藏。 | 基于容器组件的两种实现方式：<br/>-&nbsp;通过[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)实现<br/>-&nbsp;通过[Scroll组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md)配合[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)或[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)实现 | 
-|  | [隐藏能力](#隐藏能力) | 容器组件内的子组件，按照其**预设的显示优先级**，随容器组件尺寸变化显示或隐藏。**相同显示优先级的子组件同时显示或隐藏**。 | [布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)的displayPriority属性 | 
-| 自适应折行 | [折行能力](#折行能力) | 容器组件尺寸发生变化时，如果布局方向尺寸不足以显示完整内容，**自动换行**。 | [Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)的wrap属性设置为FlexWrap.Wrap | 
+|  | [缩放能力](#缩放能力) | 子组件的宽高**按照预设的比例**，随容器组件发生变化，且变化过程中子组件的**宽高比不变**。 | [布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)的aspectRatio属性 | 
+| 自适应延伸 | [延伸能力](#延伸能力) | 容器组件内的子组件，按照其**在列表中的先后顺序**，随容器组件尺寸变化显示或隐藏。 | 基于容器组件的两种实现方式：<br/>-&nbsp;通过[List组件](../../reference/arkui-ts/ts-container-list.md)实现<br/>-&nbsp;通过[Scroll组件](../../reference/arkui-ts/ts-container-scroll.md)配合[Row组件](../../reference/arkui-ts/ts-container-row.md)或[Column组件](../../reference/arkui-ts/ts-container-column.md)实现 | 
+|  | [隐藏能力](#隐藏能力) | 容器组件内的子组件，按照其**预设的显示优先级**，随容器组件尺寸变化显示或隐藏。**相同显示优先级的子组件同时显示或隐藏**。 | [布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)的displayPriority属性 | 
+| 自适应折行 | [折行能力](#折行能力) | 容器组件尺寸发生变化时，如果布局方向尺寸不足以显示完整内容，**自动换行**。 | [Flex组件](../../reference/arkui-ts/ts-container-flex.md)的wrap属性设置为FlexWrap.Wrap | 
 
 
 下面我们依次介绍这几种自适应布局能力。
@@ -24,20 +24,20 @@
 拉伸能力是指容器组件尺寸发生变化时，增加或减小的空间全部分配给容器组件内指定区域。
 
 
-拉伸能力通常通过[Flex布局](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
+拉伸能力通常通过[Flex布局](../../reference/arkui-ts/ts-universal-attributes-flex-layout.md)中的flexGrow和flexShrink属性实现，flexGrow和flexShink属性常与flexBasis属性搭配使用，故将这三个属性放在一起介绍。
 
 
   | 属性 | 类型 | 默认值 | 描述 | 
 | -------- | -------- | -------- | -------- |
 | flexGrow | number | 0 | 仅当父容器宽度大于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例拉伸，分配父容器的多余空间。 | 
 | flexShrink | number | 1 | 仅当父容器宽度小于所有子组件宽度的总和时，该属性生效。配置了此属性的子组件，按照比例收缩，分配父容器的不足空间。 | 
-| flexBasis | 'auto'&nbsp;\|&nbsp;[Length](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-types.md#length) | 'auto' | 设置组件在Flex容器中主轴方向上基准尺寸。'auto'意味着使用组件原始的尺寸，不做修改。<br/>flexBasis属性不是必须的，通过width或height也可以达到同样的效果。当flexBasis属性与width或height发生冲突时，以flexBasis属性为准。 | 
+| flexBasis | 'auto'&nbsp;\|&nbsp;[Length](../../reference/arkui-ts/ts-types.md#length) | 'auto' | 设置组件在Flex容器中主轴方向上基准尺寸。'auto'意味着使用组件原始的尺寸，不做修改。<br/>flexBasis属性不是必须的，通过width或height也可以达到同样的效果。当flexBasis属性与width或height发生冲突时，以flexBasis属性为准。 | 
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过[Blank组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-blank.md)实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效。
+> - 开发者期望将父容器的剩余空间全部分配给某空白区域时，也可以通过[Blank组件](../../reference/arkui-ts/ts-basic-components-blank.md)实现。注意仅当父组件为Row\Column\Flex组件时，Blank组件才会生效。
 > 
-> - 类Web开发范式也是通过flex-grow和flex-shrink实现拉伸能力，同时也支持配置flex-basis，详见[通用样式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-styles.md)。
+> - 类Web开发范式也是通过flex-grow和flex-shrink实现拉伸能力，同时也支持配置flex-basis，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)。
 > 
 > - 类Web开发范式没有提供blank组件，但可以通过div组件模拟blank组件的行为，如“&lt;div style='flex-grow: 1; flex-shrink: 0; flex-basis: 0'&gt;&lt;/div&gt;”。
 
@@ -167,13 +167,13 @@ struct FlexibleCapabilitySample2 {
 均分能力是指容器组件尺寸发生变化时，增加或减小的空间均匀分配给容器组件内所有空白区域。它常用于内容数量固定、均分显示的场景，比如工具栏、底部菜单栏等。
 
 
-均分能力可以通过将[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)、[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)或[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly实现，即子元素在父容器主轴方向等间距布局，相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
+均分能力可以通过将[Row组件](../../reference/arkui-ts/ts-container-row.md)、[Column组件](../../reference/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/arkui-ts/ts-container-flex.md)的justifyContent属性设置为FlexAlign.SpaceEvenly实现，即子元素在父容器主轴方向等间距布局，相邻元素之间的间距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 均分能力还可以通过其它方式实现，如使用[Grid网格组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)或在每个组件间添加Blank组件等。
+> - 均分能力还可以通过其它方式实现，如使用[Grid网格组件](../../reference/arkui-ts/ts-container-grid.md)或在每个组件间添加Blank组件等。
 > 
-> - 类Web开发范式中，通过将[div组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md)的justify-content属性设置为space-evenly来实现均分布局。
+> - 类Web开发范式中，通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的justify-content属性设置为space-evenly来实现均分布局。
 
 
 **示例：**
@@ -265,9 +265,9 @@ struct EquipartitionCapabilitySample {
 占比能力通常有两种实现方式：
 
 
-- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-types.md#length)。
+- 将子组件的宽高设置为父组件宽高的百分比，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)及[长度类型](../../reference/arkui-ts/ts-types.md#length)。
 
-- 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)。
+- 通过layoutWeight属性配置互为兄弟关系的组件在父容器主轴方向的布局权重，详见[尺寸设置](../../reference/arkui-ts/ts-universal-attributes-size.md)。
   - 当父容器尺寸确定时，其子组件按照开发者配置的权重比例分配父容器中主轴方向的空间。
   - 仅当父容器是Row、Colomn或者Flex时，layoutWeight属性才会生效。
   - 设置layoutWeight属性后，组件本身的尺寸会失效。比如同时设置了.width('40%')和.layoutWeight(1)，那么只有.layoutWeight(1)会生效。
@@ -277,11 +277,11 @@ layoutWeight存在使用限制，所以实际使用过程中大多通过将子�
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不做展开介绍。
+> - 占比能力在实际开发中使用的非常广泛，可以通过很多不同的方式实现占比能力，如还可以通过[Grid组件](../../reference/arkui-ts/ts-container-grid.md)的columnsTemplate属性设置网格容器中列的数量及其宽度比例，或通过配置子组件在栅格（本章后文将详细介绍栅格系统）中占据不同的列数来实现占比能力。本小节仅介绍最基础和常用的实现方式，局限性较大或比非常小众的实现方式，本文不做展开介绍。
 > 
-> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-appendix-types.md#%E9%95%BF%E5%BA%A6%E7%B1%BB%E5%9E%8B)。
+> - 类Web开发范式同样支持以百分比的形式设置组件的宽高，详见[通用样式](../../reference/arkui-js/js-components-common-styles.md)中关于width和height的介绍以及[长度类型介绍](../../reference/arkui-js/js-appendix-types.md#长度类型)。
 > 
-> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-atomic-layout.md#%E5%8D%A0%E6%AF%94%E8%83%BD%E5%8A%9B)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
+> - 与声明式开发范式中的layoutWeight属性类似，类Web开发范式提供了[flex-weight样式](../../reference/arkui-js/js-components-common-atomic-layout.md#占比能力)用于配置互为兄弟关系的组件在父容器主轴方向的布局权重。
 
 
 **示例：**
@@ -370,11 +370,11 @@ struct ProportionCapabilitySample {
 缩放能力通过使用百分比布局配合**固定宽高比**（aspectRatio属性）实现当容器尺寸发生变化时，内容自适应调整。
 
 
-可以访问[布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解aspectRatio属性的详细信息。
+可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解aspectRatio属性的详细信息。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式同样提供了[aspect-ratio样式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-atomic-layout.md#%E5%9B%BA%E5%AE%9A%E6%AF%94%E4%BE%8B)，用于固定组件的宽高比。
+> 类Web开发范式同样提供了[aspect-ratio样式](../../reference/arkui-js/js-components-common-atomic-layout.md#固定比例)，用于固定组件的宽高比。
 
 
 **示例：**
@@ -445,17 +445,17 @@ struct ScaleCapabilitySample {
 延伸能力通常有两种实现方式：
 
 
-- 通过[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)实现。
+- 通过[List组件](../../reference/arkui-ts/ts-container-list.md)实现。
 
-- 通过[Scroll组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-scroll.md)配合[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)或[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)实现。
+- 通过[Scroll组件](../../reference/arkui-ts/ts-container-scroll.md)配合[Row组件](../../reference/arkui-ts/ts-container-row.md)或[Column组件](../../reference/arkui-ts/ts-container-column.md)实现。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - List、Row或Column组件中子节点的在页面显示时就已经全部完成了布局计算及渲染，只不过受限于父容器尺寸，用户只能看到一部分。随着父容器尺寸增大，用户可以看到的子节点数目也相应的增加。用户还可以通过手指滑动触发列表滑动，查看被隐藏的子节点。
 > 
-> - 类Web开发范式同样可以使用[list组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-list.md)实现延伸能力。
+> - 类Web开发范式同样可以使用[list组件](../../reference/arkui-js/js-components-container-list.md)实现延伸能力。
 > 
-> - 类Web开发范式没有提供scroll组件，但可以将[div组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md)的overflow样式设置为scroll（即div组件主轴方向上子元素的尺寸超过div组件本身的尺寸时进行滚动显示）来模拟scroll组件的行为。
+> - 类Web开发范式没有提供scroll组件，但可以将[div组件](../../reference/arkui-js/js-components-container-div.md)的overflow样式设置为scroll（即div组件主轴方向上子元素的尺寸超过div组件本身的尺寸时进行滚动显示）来模拟scroll组件的行为。
 
 
 **示例：**
@@ -601,10 +601,10 @@ struct ExtensionCapabilitySample2 {
 
 隐藏能力通过设置**布局优先级**（displayPriority属性）来控制显隐，当布局主轴方向剩余尺寸不足以满足全部元素时，按照布局优先级大小，从小到大依次隐藏，直到容器能够完整显示剩余元素。具有相同布局优先级的元素将同时显示或者隐藏。
 
-可以访问[布局约束](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
+可以访问[布局约束](../../reference/arkui-ts/ts-universal-attributes-layout-constraints.md)，了解displayPriority属性的详细信息。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式同样支持[display-index样式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-atomic-layout.md#%E9%9A%90%E8%97%8F%E8%83%BD%E5%8A%9B)，用于设置布局优先级。
+> 类Web开发范式同样支持[display-index样式](../../reference/arkui-js/js-components-common-atomic-layout.md#隐藏能力)，用于设置布局优先级。
 
 **示例：**
 
@@ -692,10 +692,10 @@ struct HiddenCapabilitySample {
 
 折行能力通过使用 **Flex折行布局** （将wrap属性设置为FlexWrap.Wrap）实现，当横向布局尺寸不足以完整显示内容元素时，通过折行的方式，将元素显示在下方。
 
-可以访问[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
+可以访问[Flex组件](../../reference/arkui-ts/ts-container-flex.md)，了解Flex组件的详细用法。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式通过将[div组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-container-div.md)的flex-warp样式设置为wrap来使用折行能力。
+> 类Web开发范式通过将[div组件](../../reference/arkui-js/js-components-container-div.md)的flex-warp样式设置为wrap来使用折行能力。
 
 **示例：**
 
