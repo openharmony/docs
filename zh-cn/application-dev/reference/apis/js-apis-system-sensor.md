@@ -299,7 +299,7 @@ sensor.unsubscribeStepCounter();
 
 ## sensor.subscribeBarometer
 
-subcribeBarometer(Object): void
+subscribeBarometer(Object): void
 
 订阅气压传感器数据变化。针对同一个应用，多次点击调用时，会覆盖前面的调用效果，即仅最后一次调用生效。
 
