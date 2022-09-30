@@ -2530,6 +2530,119 @@ try {
 }
 ```
 
+## sensor.getSensorList<sup>9+</sup>
+
+ getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                           | 必填 | 说明             |
+| -------- | ---------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorList((error, data) => {
+    if (error) {
+        console.error('getSensorList failed');
+    } else {
+        console.info("getSensorList callback in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("getSensorList " + JSON.stringify(data[i]));
+        }
+    }
+});
+```
+
+## sensor.getSensorList<sup>9+</sup>
+
+ getSensorList(): Promise< Array&lt;Sensor&gt;>
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 参数名  | 类型                                     | 必填 | 说明             |
+| ------- | ---------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorList().then((data) => {
+    console.info("getSensorList promise in" + data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.info("getSensorList " + JSON.stringify(data[i]));
+     }
+}, (error)=>{
+    console.error('getSensorList failed');
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                    | 必填 | 说明             |
+| -------- | --------------------------------------- | ---- | ---------------- |
+| type     | SensorId                                | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+
+**示例：**
+
+```js
+ sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+     if (error) {
+         console.error('getSingleSensor failed');
+     } else {
+         console.info("getSingleSensor " + JSON.stringify(data));
+     }
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+ getSingleSensor(type: SensorId): Promise&lt;Sensor&gt;
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型     | 必填 | 说明         |
+| ------ | -------- | ---- | ------------ |
+| type   | SensorId | 是   | 传感器类型。 |
+
+**返回值：** 
+
+| 参数名  | 类型                              | 必填 | 说明             |
+| ------- | --------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+
+**示例：**
+
+```js
+sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+    console.info("getSingleSensor " + JSON.stringify(data));
+}, (error)=>{
+    console.error('getSingleSensor failed');
+});
+```
+
 ## SensorId<sup>9+</sup>
 
 表示要订阅或取消订阅的传感器类型。
@@ -2559,6 +2672,412 @@ try {
 | HEART_RATE                  | 278    | 心率传感器。           |
 | WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
 | ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
+
+## SensorType
+
+表示要订阅或取消订阅的传感器类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称                                                      | 默认值 | 说明                   |
+| --------------------------------------------------------- | ------ | ---------------------- |
+| SENSOR_TYPE_ID_ACCELEROMETER                              | 1      | 加速度传感器。         |
+| SENSOR_TYPE_ID_GYROSCOPE                                  | 2      | 陀螺仪传感器。         |
+| SENSOR_TYPE_ID_AMBIENT_LIGHT                              | 5      | 环境光传感器。         |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD                             | 6      | 磁场传感器。           |
+| SENSOR_TYPE_ID_BAROMETER                                  | 8      | 气压计传感器。         |
+| SENSOR_TYPE_ID_HALL                                       | 10     | 霍尔传感器。           |
+| SENSOR_TYPE_ID_PROXIMITY                                  | 12     | 接近光传感器。         |
+| SENSOR_TYPE_ID_HUMIDITY                                   | 13     | 湿度传感器。           |
+| SENSOR_TYPE_ID_ORIENTATION                                | 256    | 方向传感器。           |
+| SENSOR_TYPE_ID_GRAVITY                                    | 257    | 重力传感器。           |
+| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>(deprecated)</sup> | 258    | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER<sup>9+</sup>          | 258    | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_ROTATION_VECTOR                            | 259    | 旋转矢量传感器。       |
+| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE                        | 260    | 环境温度传感器。       |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED                | 261    | 未校准磁场传感器。     |
+| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED                     | 263    | 未校准陀螺仪传感器。   |
+| SENSOR_TYPE_ID_SIGNIFICANT_MOTION                         | 264    | 有效运动传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER_DETECTION                        | 265    | 计步检测传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER                                  | 266    | 计步传感器。           |
+| SENSOR_TYPE_ID_HEART_RATE<sup>(deprecated)</sup>          | 278    | 心率传感器。           |
+| SENSOR_TYPE_ID_HEART_BEAT_RATE<sup>9+</sup>               | 278    | 心率传感器。           |
+| SENSOR_TYPE_ID_WEAR_DETECTION                             | 280    | 佩戴检测传感器。       |
+| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED                 | 281    | 未校准加速度计传感器。 |
+
+
+## Response
+
+传感器数据的时间戳。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
+| --------- | -------- | ---- | ---- | ------------------------ |
+| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
+
+## Sensor<sup>9+</sup>
+
+指示传感器信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称            | 参数类型 | 说明                   |
+| --------------- | -------- | ---------------------- |
+| venderName      | string   | 传感器供应商。         |
+| firmwareVersion | string   | 传感器固件版本。       |
+| hardwareVersion | string   | 传感器硬件版本。       |
+| sensorId        | number   | 传感器类型id。         |
+| maxRange        | number   | 传感器的最大测量范围。 |
+| minSamplePeriod | number   | 允许的最小采样周期。   |
+| maxSamplePeriod | number   | 允许的最大采样周期。   |
+| precision       | number   | 传感器精度。           |
+| power           | number   | 传感器电源。           |
+
+## AccelerometerResponse
+
+加速度传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明                                 |
+| ---- | -------- | ---- | ---- | ------------------------------------ |
+| x    | number   | 是   | 是   | 施加在设备x轴的加速度，单位 : m/s2。 |
+| y    | number   | 是   | 是   | 施加在设备y轴的加速度，单位 : m/s2。 |
+| z    | number   | 是   | 是   | 施加在设备z轴的加速度，单位 : m/s2。 |
+
+
+## LinearAccelerometerResponse
+
+线性加速度传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
+| ---- | -------- | ---- | ---- | ---------------------------------------- |
+| x    | number   | 是   | 是   | 施加在设备x轴的线性加速度，单位 : m/s2。 |
+| y    | number   | 是   | 是   | 施加在设备y轴的线性加速度，单位 : m/s2。 |
+| z    | number   | 是   | 是   | 施加在设备z轴的线性加速度，单位 : m/s2。 |
+
+
+## AccelerometerUncalibratedResponse
+
+未校准加速度计传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
+| ----- | -------- | ---- | ---- | ------------------------------------------------ |
+| x     | number   | 是   | 是   | 施加在设备x轴未校准的加速度，单位 : m/s2。       |
+| y     | number   | 是   | 是   | 施加在设备y轴未校准的加速度，单位 : m/s2。       |
+| z     | number   | 是   | 是   | 施加在设备z轴未校准的加速度，单位 : m/s2。       |
+| biasX | number   | 是   | 是   | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。   |
+| biasY | number   | 是   | 是   | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
+| biasZ | number   | 是   | 是   | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。   |
+
+
+## GravityResponse
+
+重力传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明                                     |
+| ---- | -------- | ---- | ---- | ---------------------------------------- |
+| x    | number   | 是   | 是   | 施加在设备x轴的重力加速度，单位 : m/s2。 |
+| y    | number   | 是   | 是   | 施加在设备y轴的重力加速度，单位 : m/s2。 |
+| z    | number   | 是   | 是   | 施加在设备z轴的重力加速度，单位 : m/s2。 |
+
+
+## OrientationResponse
+
+方向传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明                              |
+| ----- | -------- | ---- | ---- | --------------------------------- |
+| alpha | number   | 是   | 是   | 设备围绕Z轴的旋转角度，单位：度。 |
+| beta  | number   | 是   | 是   | 设备围绕X轴的旋转角度，单位：度。 |
+| gamma | number   | 是   | 是   | 设备围绕Y轴的旋转角度，单位：度。 |
+
+
+## RotationVectorResponse
+
+旋转矢量传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明              |
+| ---- | -------- | ---- | ---- | ----------------- |
+| x    | number   | 是   | 是   | 旋转矢量x轴分量。 |
+| y    | number   | 是   | 是   | 旋转矢量y轴分量。 |
+| z    | number   | 是   | 是   | 旋转矢量z轴分量。 |
+| w    | number   | 是   | 是   | 标量。            |
+
+
+## GyroscopeResponse
+
+陀螺仪传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明                             |
+| ---- | -------- | ---- | ---- | -------------------------------- |
+| x    | number   | 是   | 是   | 设备x轴的旋转角速度，单位rad/s。 |
+| y    | number   | 是   | 是   | 设备y轴的旋转角速度，单位rad/s。 |
+| z    | number   | 是   | 是   | 设备z轴的旋转角速度，单位rad/s。 |
+
+
+## GyroscopeUncalibratedResponse
+
+未校准陀螺仪传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明                                       |
+| ----- | -------- | ---- | ---- | ------------------------------------------ |
+| x     | number   | 是   | 是   | 设备x轴未校准的旋转角速度，单位rad/s。     |
+| y     | number   | 是   | 是   | 设备y轴未校准的旋转角速度，单位rad/s。     |
+| z     | number   | 是   | 是   | 设备z轴未校准的旋转角速度，单位rad/s。     |
+| biasX | number   | 是   | 是   | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasY | number   | 是   | 是   | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
+| biasZ | number   | 是   | 是   | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
+
+
+## SignificantMotionResponse
+
+有效运动传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number   | 是   | 是   | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
+
+
+## ProximityResponse
+
+接近光传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称     | 参数类型 | 可读 | 可写 | 说明                                                   |
+| -------- | -------- | ---- | ---- | ------------------------------------------------------ |
+| distance | number   | 是   | 是   | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
+
+
+## LightResponse
+
+环境光传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明                   |
+| --------- | -------- | ---- | ---- | ---------------------- |
+| intensity | number   | 是   | 是   | 光强（单位：勒克斯）。 |
+
+
+## HallResponse
+
+霍尔传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
+
+
+## MagneticFieldResponse
+
+磁场传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
+| ---- | -------- | ---- | ---- | ---------------------------- |
+| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
+| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
+| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
+
+
+## MagneticFieldUncalibratedResponse
+
+未校准磁场传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明                                   |
+| ----- | -------- | ---- | ---- | -------------------------------------- |
+| x     | number   | 是   | 是   | x轴未校准环境磁场强度，单位 : μT。     |
+| y     | number   | 是   | 是   | y轴未校准环境磁场强度，单位 : μT。     |
+| z     | number   | 是   | 是   | z轴未校准环境磁场强度，单位 : μT。     |
+| biasX | number   | 是   | 是   | x轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasY | number   | 是   | 是   | y轴未校准环境磁场强度偏量，单位 : μT。 |
+| biasZ | number   | 是   | 是   | z轴未校准环境磁场强度偏量，单位 : μT。 |
+
+
+## PedometerResponse
+
+计步传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明             |
+| ----- | -------- | ---- | ---- | ---------------- |
+| steps | number   | 是   | 是   | 用户的行走步数。 |
+
+
+## HumidityResponse
+
+湿度传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称     | 参数类型 | 可读 | 可写 | 说明                                                      |
+| -------- | -------- | ---- | ---- | --------------------------------------------------------- |
+| humidity | number   | 是   | 是   | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
+
+
+## PedometerDetectionResponse
+
+计步检测传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
+| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
+| scalar | number   | 是   | 是   | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
+
+
+## AmbientTemperatureResponse
+
+温度传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称        | 参数类型 | 可读 | 可写 | 说明                       |
+| ----------- | -------- | ---- | ---- | -------------------------- |
+| temperature | number   | 是   | 是   | 环境温度（单位：摄氏度）。 |
+
+
+## BarometerResponse
+
+气压计传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称     | 参数类型 | 可读 | 可写 | 说明                     |
+| -------- | -------- | ---- | ---- | ------------------------ |
+| pressure | number   | 是   | 是   | 压力值（单位：帕斯卡）。 |
+
+
+## HeartRateResponse
+
+心率传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明                                    |
+| --------- | -------- | ---- | ---- | --------------------------------------- |
+| heartRate | number   | 是   | 是   | 心率值。测量用户的心率数值，单位：bpm。 |
+
+
+## WearDetectionResponse
+
+佩戴检测传感器数据，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 名称  | 参数类型 | 可读 | 可写 | 说明                                             |
+| ----- | -------- | ---- | ---- | ------------------------------------------------ |
+| value | number   | 是   | 是   | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
+
+
+## Options
+
+设置传感器上报频率。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称     | 参数类型 | 说明                                        |
+| -------- | -------- | ------------------------------------------- |
+| interval | number   | 表示传感器的上报频率，默认值为200000000ns。 |
+
+## RotationMatrixResponse
+
+设置旋转矩阵响应对象。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称        | 参数类型            | 可读 | 可写 | 说明       |
+| ----------- | ------------------- | ---- | ---- | ---------- |
+| rotation    | Array&lt;number&gt; | 是   | 是   | 旋转矩阵。 |
+| inclination | Array&lt;number&gt; | 是   | 是   | 倾斜矩阵。 |
+
+
+## CoordinatesOptions
+
+设置坐标选项对象。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明        |
+| ---- | -------- | ---- | ---- | ----------- |
+| x    | number   | 是   | 是   | x坐标方向。 |
+| y    | number   | 是   | 是   | y坐标方向。 |
+
+
+## GeomagneticResponse
+
+设置地磁响应对象，继承于[Response](#response)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称            | 参数类型 | 可读 | 可写 | 说明                                               |
+| --------------- | -------- | ---- | ---- | -------------------------------------------------- |
+| x               | number   | 是   | 是   | 地磁场的北分量。                                   |
+| y               | number   | 是   | 是   | 地磁场的东分量。                                   |
+| z               | number   | 是   | 是   | 地磁场的垂直分量。                                 |
+| geomagneticDip  | number   | 是   | 是   | 地磁倾角，即地球磁场线与水平面的夹角。             |
+| deflectionAngle | number   | 是   | 是   | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
+| levelIntensity  | number   | 是   | 是   | 地磁场的水平强度。                                 |
+| totalIntensity  | number   | 是   | 是   | 地磁场的总强度。                                   |
+
+## LocationOptions
+
+指示地理位置。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称      | 参数类型 | 可读 | 可写 | 说明       |
+| --------- | -------- | ---- | ---- | ---------- |
+| latitude  | number   | 是   | 是   | 纬度。     |
+| longitude | number   | 是   | 是   | 经度。     |
+| altitude  | number   | 是   | 是   | 海拔高度。 |
 
 ## sensor.on<sup>(deprecated)</sup>
 
@@ -4452,7 +4971,7 @@ function accCallback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
 ```
 
-## sensor.transformCoordinateSystem
+## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
@@ -4484,7 +5003,7 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
     }
  })
 ```
-## sensor.transformCoordinateSystem
+## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -4521,7 +5040,7 @@ const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x
 })
 ```
 
-## sensor.getGeomagneticField
+## sensor.getGeomagneticField<sup>(deprecated)</sup>
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
 
@@ -4551,7 +5070,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
 ```
-## sensor.getGeomagneticField
+## sensor.getGeomagneticField<sup>(deprecated)</sup>
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
 
@@ -4585,7 +5104,7 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
   })
   ```
 
-## sensor.getAltitude
+## sensor.getAltitude<sup>(deprecated)</sup>
 
 getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -4616,7 +5135,7 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
   });
   ```
 
-## sensor.getAltitude
+## sensor.getAltitude<sup>(deprecated)</sup>
 
 getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
@@ -4651,7 +5170,7 @@ getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
   ```
 
 
-## sensor.getGeomagneticDip
+## sensor.getGeomagneticDip<sup>(deprecated)</sup>
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
@@ -4681,7 +5200,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
   })
   ```
 
-## sensor.getGeomagneticDip
+## sensor.getGeomagneticDip<sup>(deprecated)</sup>
 
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
@@ -4714,7 +5233,7 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
   })
   ```
 
-## sensor. getAngleModify
+## sensor. getAngleModify<sup>(deprecated)</sup>
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
@@ -4748,7 +5267,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
   ```
 
 
-## sensor. getAngleModify
+## sensor. getAngleModify<sup>(deprecated)</sup>
 
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -4786,7 +5305,7 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
   ```
 
 
-## sensor.createRotationMatrix
+## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
@@ -4819,7 +5338,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
   ```
 
 
-## sensor.createRotationMatrix
+## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
 createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -4856,7 +5375,7 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;n
   ```
 
 
-## sensor.createQuaternion
+## sensor.createQuaternion<sup>(deprecated)</sup>
 
 createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
@@ -4889,7 +5408,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
   ```
 
 
-## sensor.createQuaternion
+## sensor.createQuaternion<sup>(deprecated)</sup>
 
 createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -4926,7 +5445,7 @@ createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numbe
   ```
 
 
-## sensor.getDirection
+## sensor.getDirection<sup>(deprecated)</sup>
 
 getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
@@ -4960,7 +5479,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
   ```
 
 
-## sensor.getDirection
+## sensor.getDirection<sup>(deprecated)</sup>
 
 getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -4997,7 +5516,7 @@ getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt
   ```
 
 
-## sensor.createRotationMatrix
+## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void
 
@@ -5028,7 +5547,7 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```
 
 
-## sensor.createRotationMatrix
+## sensor.createRotationMatrix<sup>(deprecated)</sup>
 
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
 
@@ -5061,522 +5580,3 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
           console.info('promise failed');
   })
   ```
-
-## sensor.getSensorList<sup>9+</sup>
-
- getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
-
-获取设备上的所有传感器信息。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：** 
-
-| 参数名   | 类型                                           | 必填 | 说明             |
-| -------- | ---------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
-
-**示例：** 
-
-```js
-sensor.getSensorList((error, data) => {
-    if (error) {
-        console.error('getSensorList failed');
-    } else {
-        console.info("getSensorList callback in" + data.length);
-        for (var i = 0; i < data.length; i++) {
-            console.info("getSensorList " + JSON.stringify(data[i]));
-        }
-    }
-});
-```
-
-## sensor.getSensorList<sup>9+</sup>
-
- getSensorList(): Promise< Array&lt;Sensor&gt;>
-
-获取设备上的所有传感器信息。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**返回值：** 
-
-| 参数名  | 类型                                     | 必填 | 说明             |
-| ------- | ---------------------------------------- | ---- | ---------------- |
-| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
-
-**示例：** 
-
-```js
-sensor.getSensorList().then((data) => {
-    console.info("getSensorList promise in" + data.length);
-    for (var i = 0; i < data.length; i++) {
-        console.info("getSensorList " + JSON.stringify(data[i]));
-     }
-}, (error)=>{
-    console.error('getSensorList failed');
-});
-```
-
-##  sensor.getSingleSensor<sup>9+</sup>
-
-getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
-
-获取指定类型的传感器信息。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：** 
-
-| 参数名   | 类型                                    | 必填 | 说明             |
-| -------- | --------------------------------------- | ---- | ---------------- |
-| type     | SensorId                                | 是   | 传感器类型。     |
-| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
-
-**示例：**
-
-```js
- sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
-     if (error) {
-         console.error('getSingleSensor failed');
-     } else {
-         console.info("getSingleSensor " + JSON.stringify(data));
-     }
-});
-```
-
-##  sensor.getSingleSensor<sup>9+</sup>
-
- getSingleSensor(type: SensorId): Promise&lt;Sensor&gt;
-
-获取指定类型的传感器信息。
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：** 
-
-| 参数名 | 类型     | 必填 | 说明         |
-| ------ | -------- | ---- | ------------ |
-| type   | SensorId | 是   | 传感器类型。 |
-
-**返回值：** 
-
-| 参数名  | 类型                              | 必填 | 说明             |
-| ------- | --------------------------------- | ---- | ---------------- |
-| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
-
-**示例：**
-
-```js
-sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
-    console.info("getSingleSensor " + JSON.stringify(data));
-}, (error)=>{
-    console.error('getSingleSensor failed');
-});
-```
-
-## SensorType
-
-表示要订阅或取消订阅的传感器类型。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称                                                      | 默认值 | 说明                   |
-| --------------------------------------------------------- | ------ | ---------------------- |
-| SENSOR_TYPE_ID_ACCELEROMETER                              | 1      | 加速度传感器。         |
-| SENSOR_TYPE_ID_GYROSCOPE                                  | 2      | 陀螺仪传感器。         |
-| SENSOR_TYPE_ID_AMBIENT_LIGHT                              | 5      | 环境光传感器。         |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD                             | 6      | 磁场传感器。           |
-| SENSOR_TYPE_ID_BAROMETER                                  | 8      | 气压计传感器。         |
-| SENSOR_TYPE_ID_HALL                                       | 10     | 霍尔传感器。           |
-| SENSOR_TYPE_ID_PROXIMITY                                  | 12     | 接近光传感器。         |
-| SENSOR_TYPE_ID_HUMIDITY                                   | 13     | 湿度传感器。           |
-| SENSOR_TYPE_ID_ORIENTATION                                | 256    | 方向传感器。           |
-| SENSOR_TYPE_ID_GRAVITY                                    | 257    | 重力传感器。           |
-| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>(deprecated)</sup> | 258    | 线性加速度传感器。     |
-| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER<sup>9+</sup>          | 258    | 线性加速度传感器。     |
-| SENSOR_TYPE_ID_ROTATION_VECTOR                            | 259    | 旋转矢量传感器。       |
-| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE                        | 260    | 环境温度传感器。       |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED                | 261    | 未校准磁场传感器。     |
-| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED                     | 263    | 未校准陀螺仪传感器。   |
-| SENSOR_TYPE_ID_SIGNIFICANT_MOTION                         | 264    | 有效运动传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER_DETECTION                        | 265    | 计步检测传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER                                  | 266    | 计步传感器。           |
-| SENSOR_TYPE_ID_HEART_RATE<sup>(deprecated)</sup>          | 278    | 心率传感器。           |
-| SENSOR_TYPE_ID_HEART_BEAT_RATE<sup>9+</sup>               | 278    | 心率传感器。           |
-| SENSOR_TYPE_ID_WEAR_DETECTION                             | 280    | 佩戴检测传感器。       |
-| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED                 | 281    | 未校准加速度计传感器。 |
-
-
-## Response
-
-传感器数据的时间戳。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
-| --------- | -------- | ---- | ---- | ------------------------ |
-| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
-
-## Sensor<sup>9+</sup>
-
-指示传感器信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称            | 参数类型 | 说明                   |
-| --------------- | -------- | ---------------------- |
-| venderName      | string   | 传感器供应商。         |
-| firmwareVersion | string   | 传感器固件版本。       |
-| hardwareVersion | string   | 传感器硬件版本。       |
-| sensorId        | number   | 传感器类型id。         |
-| maxRange        | number   | 传感器的最大测量范围。 |
-| minSamplePeriod | number   | 允许的最小采样周期。   |
-| maxSamplePeriod | number   | 允许的最大采样周期。   |
-| precision       | number   | 传感器精度。           |
-| power           | number   | 传感器电源。           |
-
-## AccelerometerResponse
-
-加速度传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明                     |
-| ---- | ------ | ---- | ---- | ---------------------- |
-| x    | number | 是    | 是    | 施加在设备x轴的加速度，单位 : m/s2。 |
-| y    | number | 是    | 是    | 施加在设备y轴的加速度，单位 : m/s2。 |
-| z    | number | 是    | 是    | 施加在设备z轴的加速度，单位 : m/s2。 |
-
-
-## LinearAccelerometerResponse
-
-线性加速度传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明                       |
-| ---- | ------ | ---- | ---- | ------------------------ |
-| x    | number | 是    | 是    | 施加在设备x轴的线性加速度，单位 : m/s2。 |
-| y    | number | 是    | 是    | 施加在设备y轴的线性加速度，单位 : m/s2。 |
-| z    | number | 是    | 是    | 施加在设备z轴的线性加速度，单位 : m/s2。 |
-
-
-## AccelerometerUncalibratedResponse
-
-未校准加速度计传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明                           |
-| ----- | ------ | ---- | ---- | ---------------------------- |
-| x     | number | 是    | 是    | 施加在设备x轴未校准的加速度，单位 : m/s2。    |
-| y     | number | 是    | 是    | 施加在设备y轴未校准的加速度，单位 : m/s2。    |
-| z     | number | 是    | 是    | 施加在设备z轴未校准的加速度，单位 : m/s2。    |
-| biasX | number | 是    | 是    | 施加在设备x轴未校准的加速度偏量，单位 : m/s2。  |
-| biasY | number | 是    | 是    | 施加在设备上y轴未校准的加速度偏量，单位 : m/s2。 |
-| biasZ | number | 是    | 是    | 施加在设备z轴未校准的加速度偏量，单位 : m/s2。  |
-
-
-## GravityResponse
-
-重力传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明                       |
-| ---- | ------ | ---- | ---- | ------------------------ |
-| x    | number | 是    | 是    | 施加在设备x轴的重力加速度，单位 : m/s2。 |
-| y    | number | 是    | 是    | 施加在设备y轴的重力加速度，单位 : m/s2。 |
-| z    | number | 是    | 是    | 施加在设备z轴的重力加速度，单位 : m/s2。 |
-
-
-## OrientationResponse
-
-方向传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明                |
-| ----- | ------ | ---- | ---- | ----------------- |
-| alpha | number | 是    | 是    | 设备围绕Z轴的旋转角度，单位：度。 |
-| beta  | number | 是    | 是    | 设备围绕X轴的旋转角度，单位：度。 |
-| gamma | number | 是    | 是    | 设备围绕Y轴的旋转角度，单位：度。 |
-
-
-## RotationVectorResponse
-
-旋转矢量传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明        |
-| ---- | ------ | ---- | ---- | --------- |
-| x    | number | 是    | 是    | 旋转矢量x轴分量。 |
-| y    | number | 是    | 是    | 旋转矢量y轴分量。 |
-| z    | number | 是    | 是    | 旋转矢量z轴分量。 |
-| w    | number | 是    | 是    | 标量。       |
-
-
-## GyroscopeResponse
-
-陀螺仪传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明                  |
-| ---- | ------ | ---- | ---- | ------------------- |
-| x    | number | 是    | 是    | 设备x轴的旋转角速度，单位rad/s。 |
-| y    | number | 是    | 是    | 设备y轴的旋转角速度，单位rad/s。 |
-| z    | number | 是    | 是    | 设备z轴的旋转角速度，单位rad/s。 |
-
-
-## GyroscopeUncalibratedResponse
-
-未校准陀螺仪传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明                       |
-| ----- | ------ | ---- | ---- | ------------------------ |
-| x     | number | 是    | 是    | 设备x轴未校准的旋转角速度，单位rad/s。   |
-| y     | number | 是    | 是    | 设备y轴未校准的旋转角速度，单位rad/s。   |
-| z     | number | 是    | 是    | 设备z轴未校准的旋转角速度，单位rad/s。   |
-| biasX | number | 是    | 是    | 设备x轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasY | number | 是    | 是    | 设备y轴未校准的旋转角速度偏量，单位rad/s。 |
-| biasZ | number | 是    | 是    | 设备z轴未校准的旋转角速度偏量，单位rad/s。 |
-
-
-## SignificantMotionResponse
-
-有效运动传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                       |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |
-| scalar | number | 是    | 是    | 表示剧烈运动程度。测量三个物理轴（x、y&nbsp;和&nbsp;z）上，设备是否存在大幅度运动；如果取值为1则代表存在大幅度运动，取值为0则代表没有大幅度运动。 |
-
-
-## ProximityResponse
-
-接近光传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称       | 参数类型   | 可读   | 可写   | 说明                           |
-| -------- | ------ | ---- | ---- | ---------------------------- |
-| distance | number | 是    | 是    | 可见物体与设备显示器的接近程度。0表示接近，1表示远离。 |
-
-
-## LightResponse
-
-环境光传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称        | 参数类型   | 可读   | 可写   | 说明          |
-| --------- | ------ | ---- | ---- | ----------- |
-| intensity | number | 是    | 是    | 光强（单位：勒克斯）。 |
-
-
-## HallResponse
-
-霍尔传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| ------ | -------- | ---- | ---- | ------------------------------------------------------------ |
-| status | number   | 是   | 是   | 显示霍尔状态。测量设备周围是否存在磁力吸引，0表示没有，大于0表示有。 |
-
-
-## MagneticFieldResponse
-
-磁场传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称 | 参数类型 | 可读 | 可写 | 说明                         |
-| ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 是   | 是   | x轴环境磁场强度，单位 : μT。 |
-| y    | number   | 是   | 是   | y轴环境磁场强度，单位 : μT。 |
-| z    | number   | 是   | 是   | z轴环境磁场强度，单位 : μT。 |
-
-
-## MagneticFieldUncalibratedResponse
-
-未校准磁场传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明                     |
-| ----- | ------ | ---- | ---- | ---------------------- |
-| x     | number | 是    | 是    | x轴未校准环境磁场强度，单位 : μT。   |
-| y     | number | 是    | 是    | y轴未校准环境磁场强度，单位 : μT。   |
-| z     | number | 是    | 是    | z轴未校准环境磁场强度，单位 : μT。   |
-| biasX | number | 是    | 是    | x轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasY | number | 是    | 是    | y轴未校准环境磁场强度偏量，单位 : μT。 |
-| biasZ | number | 是    | 是    | z轴未校准环境磁场强度偏量，单位 : μT。 |
-
-
-## PedometerResponse
-
-计步传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明       |
-| ----- | ------ | ---- | ---- | -------- |
-| steps | number | 是    | 是    | 用户的行走步数。 |
-
-
-## HumidityResponse
-
-湿度传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称       | 参数类型   | 可读   | 可写   | 说明                                   |
-| -------- | ------ | ---- | ---- | ------------------------------------ |
-| humidity | number | 是    | 是    | 湿度值。测量环境的相对湿度，以百分比&nbsp;(%)&nbsp;表示。 |
-
-
-## PedometerDetectionResponse
-
-计步检测传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称     | 参数类型   | 可读   | 可写   | 说明                                       |
-| ------ | ------ | ---- | ---- | ---------------------------------------- |
-| scalar | number | 是    | 是    | 计步器检测。检测用户的计步动作，如果取值为1则代表用户产生了计步行走的动作，取值为0则代表用户没有发生运动。 |
-
-
-## AmbientTemperatureResponse
-
-温度传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称          | 参数类型   | 可读   | 可写   | 说明            |
-| ----------- | ------ | ---- | ---- | ------------- |
-| temperature | number | 是    | 是    | 环境温度（单位：摄氏度）。 |
-
-
-## BarometerResponse
-
-气压计传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称       | 参数类型   | 可读   | 可写   | 说明           |
-| -------- | ------ | ---- | ---- | ------------ |
-| pressure | number | 是    | 是    | 压力值（单位：帕斯卡）。 |
-
-
-## HeartRateResponse
-
-心率传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称        | 参数类型   | 可读   | 可写   | 说明                    |
-| --------- | ------ | ---- | ---- | --------------------- |
-| heartRate | number | 是    | 是    | 心率值。测量用户的心率数值，单位：bpm。 |
-
-
-## WearDetectionResponse
-
-佩戴检测传感器数据，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-
-| 名称    | 参数类型   | 可读   | 可写   | 说明                        |
-| ----- | ------ | ---- | ---- | ------------------------- |
-| value | number | 是    | 是    | 表示设备是否被穿戴（1表示已穿戴，0表示未穿戴）。 |
-
-
-## Options
-
-设置传感器上报频率。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称       | 参数类型   | 说明                          |
-| -------- | ------ | --------------------------- |
-| interval | number | 表示传感器的上报频率，默认值为200000000ns。 |
-
-## RotationMatrixResponse
-
-设置旋转矩阵响应对象。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称          | 参数类型                | 可读   | 可写   | 说明    |
-| ----------- | ------------------- | ---- | ---- | ----- |
-| rotation    | Array&lt;number&gt; | 是    | 是    | 旋转矩阵。 |
-| inclination | Array&lt;number&gt; | 是    | 是    | 倾斜矩阵。 |
-
-
-## CoordinatesOptions
-
-设置坐标选项对象。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称   | 参数类型   | 可读   | 可写   | 说明     |
-| ---- | ------ | ---- | ---- | ------ |
-| x    | number | 是    | 是    | x坐标方向。 |
-| y    | number | 是    | 是    | y坐标方向。 |
-
-
-## GeomagneticResponse
-
-设置地磁响应对象，继承于[Response](#response)。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称              | 参数类型   | 可读   | 可写   | 说明                        |
-| --------------- | ------ | ---- | ---- | ------------------------- |
-| x               | number | 是    | 是    | 地磁场的北分量。                  |
-| y               | number | 是    | 是    | 地磁场的东分量。                  |
-| z               | number | 是    | 是    | 地磁场的垂直分量。                 |
-| geomagneticDip  | number | 是    | 是    | 地磁倾角，即地球磁场线与水平面的夹角。       |
-| deflectionAngle | number | 是    | 是    | 地磁偏角，即地磁北方向与正北方向在水平面上的角度。 |
-| levelIntensity  | number | 是    | 是    | 地磁场的水平强度。                 |
-| totalIntensity  | number | 是    | 是    | 地磁场的总强度。                  |
-
-## LocationOptions
-
-指示地理位置。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
-
-| 名称        | 参数类型   | 可读   | 可写   | 说明    |
-| --------- | ------ | ---- | ---- | ----- |
-| latitude  | number | 是    | 是    | 纬度。   |
-| longitude | number | 是    | 是    | 经度。   |
-| altitude  | number | 是    | 是    | 海拔高度。 |
