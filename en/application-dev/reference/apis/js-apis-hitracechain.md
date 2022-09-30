@@ -291,6 +291,7 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
+
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | id | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
