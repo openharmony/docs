@@ -5,7 +5,7 @@
 >
 >  To use eTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 >
->  For best possible results, use [DevEco Studio V3.0.0.991 Beta4](https://developer.harmonyos.com/cn/develop/deveco-studio#download_beta) for your development.
+>  For best possible results, use [DevEco Studio V3.0.0.993](https://developer.harmonyos.com/cn/develop/deveco-studio#download) for your development.
 
 
 ## Creating an eTS Project
@@ -128,7 +128,6 @@
       ![en-us_image_0000001311334932](figures/en-us_image_0000001311334932.png)
 
       > **NOTE**
-      >
       > You can also right-click the **pages** folder and choose **New** > **Page** from the shortcut menu. In this scenario, you do not need to manually configure page routes.
    - Configure the route for the second page, by setting **pages/second** under **module - js - pages** in the **config.json** The sample code is as follows: The sample code is as follows:
      
@@ -140,7 +139,7 @@
               "pages": [
                 "pages/index",
                 "pages/second"
-              ],
+              ]
               }
           ]
         }
@@ -188,7 +187,7 @@
 
 ## Implementing Page Redirection
 
-You can implement page redirection through the page router, which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
+You can implement page redirection through the [page router](../reference/apis/js-apis-router.md#routerpush), which finds the target page based on the page URL. Import the **router** module and then perform the steps below:
 
 1. Implement redirection from the first page to the second page.
 
@@ -288,7 +287,7 @@ You can implement page redirection through the page router, which finds the targ
 
 1. Connect the development board running the OpenHarmony standard system to the computer.
 
-2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signing**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
+2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signature**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
 
    ![06](figures/06.png)
 

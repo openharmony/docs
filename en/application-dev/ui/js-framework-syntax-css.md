@@ -85,11 +85,11 @@ The following is an example:
 
 ```css
 /* Page style xxx.css */
-/\* Set the style for all <div> components. \*/
+/* Set the style for all <div> components. */
 div {
   flex-direction: column;
 }
-/* Set the style for the component whose class is title. */
+/* Set the style for the component whose class is title.*/
 .title {
   font-size: 30px;
 }
@@ -101,11 +101,11 @@ div {
 .title, .content {
   padding: 5px;
 }
-/\* Set the style for all texts of components whose class is container.\*/
+/* Set the style for all texts of components whose class is container.*/
 .container text {
   color: \#007dff;
 }
-/\* Set the style for direct descendant texts of components whose class is container.\*/
+/* Set the style for direct descendant texts of components whose class is container.*/
 .container &gt; text {
   color: #fa2a2d;
 }

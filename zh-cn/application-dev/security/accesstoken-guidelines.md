@@ -1,4 +1,4 @@
-# 访问控制（权限）开发指导
+# 访问控制授权申请指导
 
 ## 场景介绍
 
@@ -13,14 +13,14 @@
 > 当前场景下，应用申请的权限包括了user_grant权限，对这部分user_grant权限，可以先通过权限校验，判断当前调用者是否具备相应权限。
 >
 > 当权限校验结果显示当前应用尚未被授权该权限时，再通过动态弹框授权方式给用户提供手动授权入口。
->
+
 ## 接口说明
 
-以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-abilityAccessCtrl.md)。
+以下仅列举本指导使用的接口，更多说明可以查阅[API参考](../reference/apis/js-apis-ability-context.md)。
 
 | 接口名                                                       | 描述                                             |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt; | 校验应用是否授予权限，使用Promise方式异步返回结果。 |
+| requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void; | 拉起弹窗请求用户授权。 |
 
 ## 权限申请声明
 
@@ -35,8 +35,8 @@
 | name      | 权限名称。                                                   |
 | reason    | 当申请的权限为user_grant权限时，此字段必填，描述申请权限的原因。 |
 | usedScene | 当申请的权限为user_grant权限时，此字段必填，描述权限使用的场景和时机。 |
-| ability   | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** FA模型            |
-| abilities | 标识需要使用到该权限的元能力，标签为数组形式。   <br/>**适用模型：** Stage模型            |
+| ability   | 标识需要使用到该权限的Ability，标签为数组形式。   <br/>**适用模型：** FA模型            |
+| abilities | 标识需要使用到该权限的Ability，标签为数组形式。   <br/>**适用模型：** Stage模型            |
 | when      | 标识权限使用的时机，值为"inuse/always"，表示为仅允许前台使用和前后台都可使用。 |
 
 ### FA模型
@@ -88,10 +88,10 @@
         "name" : "ohos.permission.PERMISSION1",
         "reason": "$string:reason",
         "usedScene": {
-                     "abilities": [
-                         "FormAbility"
-                     ],
-                     "when":"inuse"
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"inuse"
         }
       },
       {
@@ -101,7 +101,7 @@
           "abilities": [
             "FormAbility"
           ],
-        "when":"always"
+          "when":"always"
         }
       }
     ]
@@ -111,7 +111,7 @@
 
 ## ACL方式声明
 
-如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于应用此时应用的APL等级，用户的最佳做法是使用ACL方式。
+如上述示例所示，权限"ohos.permission.PERMISSION2"的权限等级为system_basic，高于此时应用的APL等级，用户的最佳做法是使用ACL方式。
 
 在配置文件声明的基础上，应用还需要在Profile文件中声明不满足申请条件部分的权限。Profile文件的字段说明可参考[HarmonyAppProvision配置文件的说明](../quick-start/app-provision-structure.md)。
 
@@ -123,7 +123,7 @@
     "allowed-acls": [
       "ohos.permission.PERMISSION2"
     ]
-  },
+  }
 }
 ```
 
@@ -137,15 +137,15 @@
 
 > **注意：**
 >
-> 不能把之前授予的状态持久化，每次访问受目标权限保护的接口前，都应该检查权限授权状态，因为用户在动态授予后可能通过设置取消应用的权限。
+> 不能把之前授予的状态持久化，每次访问受目标权限保护的接口前，都应该调用requestPermissionsFromUser接口请求权限，因为用户在动态授予后可能通过设置取消应用的权限。
 
 ## 完整示例
 
-对访问者进行权限校验的开发步骤为：
+请求用户授权权限的开发步骤为：
 
 1. 获取ability的上下文context。
-2. 调用requestPermissionsFromUser接口进行权限校验。
-3. 根据权限校验结果采取对应的措施。
+2. 调用requestPermissionsFromUser接口请求权限。运行过程中，该接口会根据应用是否已获得目标权限决定是否拉起动态弹框请求用户授权。
+3. 根据requestPermissionsFromUser接口返回值判断是否已获取目标权限。如果当前已经获取权限，则可以继续正常访问目标接口。
 
 ```js
   //ability的onWindowStageCreate生命周期

@@ -384,6 +384,26 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>7+</sup>
+
+isNrSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
 
 ## radio.isNrSupported<sup>8+</sup>
 
@@ -1100,12 +1120,12 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 let networkInformation={
     operatorName: "中国移动",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1144,12 +1164,12 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 let networkInformation={
     operatorName: "中国移动",
     operatorNumeric: "898600",
-    state: 1,
+    state: radio.NetworkInformationState.NETWORK_AVAILABLE,
     radioTech: "CS"
 }
 let networkSelectionModeOptions={
-    slotid: 0,
-    selectMode: 1,
+    slotId: 0,
+    selectMode: radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC,
     networkInformation: networkInformation,
     resumeSelection: true
 }
@@ -1190,7 +1210,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<void\>
+getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 获取网络搜索信息。使用Promise异步回调。
 
@@ -1586,7 +1606,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<void\>
+getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 获取首选网络。使用Promise异步回调。
 
@@ -1642,7 +1662,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 **示例：**
 
 ```js
-radio.getImsRegInfo(0, 1, (err, data) => {
+radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1675,7 +1695,7 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 **示例：**
 
 ```js
-let promise = radio.getImsRegInfo(0, 1);
+let promise = radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO);
 promise.then(data => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -1707,7 +1727,7 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 **示例：**
 
 ```js
-radio.on('imsRegStateChange', 0, 1, (err, data) => {
+radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1736,7 +1756,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 **示例：**
 
 ```js
-radio.off('imsRegStateChange', 0, 1, (err, data) => {
+radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -1819,10 +1839,10 @@ radio.off('imsRegStateChange', 0, 1, (err, data) => {
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务。     |
-| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用业务。     |
+| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务，包括数据业务、短信、通话等。     |
+| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用服务，包括数据业务、短信、通话等。     |
 | REG_STATE_EMERGENCY_CALL_ONLY | 2    | 设备只能使用紧急呼叫业务。 |
-| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭。         |
+| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭，modem下电，无法和网侧进行通信。      |
 
 
 ## NsaState

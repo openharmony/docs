@@ -28,6 +28,8 @@
     - application/[FormExtensionContext](js-apis-formextensioncontext.md)
     - application/[PermissionRequestResult](js-apis-permissionrequestresult.md)
     - application/[ServiceExtensionContext](js-apis-service-extension-context.md)
+    - [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md)
+    - [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md)
   - FA and Stage Models
     - [@ohos.ability.dataUriUtils](js-apis-DataUriUtils.md)
     - [@ohos.ability.errorCode](js-apis-ability-errorCode.md)
@@ -136,6 +138,7 @@
   - [@ohos.configPolicy](js-apis-config-policy.md)
   - [@ohos.enterpriseDeviceManager](js-apis-enterprise-device-manager.md)
   - [@ohos.EnterpriseAdminExtensionAbility](js-apis-EnterpriseAdminExtensionAbility.md)
+  - enterpriseDeviceManager/[DeviceSettingsManager](js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
   
 - Security
 
@@ -143,6 +146,7 @@
   - [@ohos.privacyManager](js-apis-privacyManager.md)
   - [@ohos.security.huks ](js-apis-huks.md)
   - [@ohos.userIAM.userAuth ](js-apis-useriam-userauth.md)
+  - [@ohos.userIAM.faceAuth](js-apis-useriam-faceauth.md)
   - [@system.cipher](js-apis-system-cipher.md)
   
 - Data Management

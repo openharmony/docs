@@ -1,15 +1,10 @@
 # Row
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **<Row\>** component lays out child components horizontally.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -19,32 +14,27 @@ Supported
 
 ## APIs
 
-Row(value:{space?: Length})
+Row(value?:{space?:  number | string })
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | space | Length | No| 0 | Space between two adjacent child components in the horizontal layout. | 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| space | string \| number | No| Space between two adjacent child components in the horizontal layout.<br>Default value: **0**|
 
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| alignItems | VerticalAlign | VerticalAlign.Center | Alignment mode of the child components in the vertical direction. |
-| justifyContent8+ | [FlexAlign](ts-container-flex.md) | FlexAlign.Start | Alignment mode of the child components in the horizontal direction. |
-
-- VerticalAlign enums
-  | Name | Description | 
-  | -------- | -------- |
-  | Top | Top aligned. | 
-  | Center | Center aligned. This is the default alignment mode. | 
-  | Bottom | Bottom aligned. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**|
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>FlexAlign.Start |
 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RowExample {
@@ -84,4 +74,4 @@ struct RowExample {
 }
 ```
 
-![en_image_0000001174422908](figures/row.png)
+![en_us_image_0000001174422908](figures/row.png)

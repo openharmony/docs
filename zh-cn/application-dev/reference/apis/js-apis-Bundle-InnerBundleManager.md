@@ -106,8 +106,8 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称                 | 类型                  | 必填 | 描述                                                 |
 | -------------------- | --------------------- | ---- | ---------------------------------------------------- |
-| type                 | "BundleStatusChange"  | 是   | 指示应执行命令。                                     |
-| bundleStatusCallback | BundleStatusCallback  | 是   | 指示要注册的回调。                                   |
+| type                 | string | 是   | 指示应执行命令，只支持BundleStatusChange。             |
+| bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | 是   | 指示要注册的回调。                                   |
 | callback             | AsyncCallback\<string> | 是   | 程序启动作为入参的回调函数，返回正确结果或错误信息。 |
 
 ## innerBundleManager.on
@@ -130,10 +130,10 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称                 | 类型                 | 必填 | 描述               |
-| -------------------- | -------------------- | ---- | ------------------ |
-| type                 | "BundleStatusChange" | 是   | 指示应执行命令。   |
-| bundleStatusCallback | BundleStatusCallback | 是   | 指示要注册的回调。 |
+| 名称                 | 类型                                                         | 必填 | 描述                                       |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| type                 | string                                                       | 是   | 指示应执行命令，只支持BundleStatusChange。 |
+| bundleStatusCallback | [BundleStatusCallback](js-apis-Bundle-BundleStatusCallback.md) | 是   | 指示要注册的回调。                         |
 
 **返回值：**
 
@@ -163,7 +163,7 @@ SystemCapability.BundleManager.BundleFramework
 
 | 名称     | 类型                  | 必填 | 描述                                                 |
 | -------- | --------------------- | ---- | ---------------------------------------------------- |
-| type     | "BundleStatusChange"  | 是   | 指示应执行命令。                                     |
+| type     | string | 是   | 指示应执行命令，只支持BundleStatusChange。               |
 | callback | AsyncCallback\<string> | 是   | 程序启动作为入参的回调函数，返回正确结果或错误信息。 |
 
 ## innerBundleManager.off
@@ -186,9 +186,9 @@ SystemCapability.BundleManager.BundleFramework
 
 **参数：**
 
-| 名称 | 类型                 | 必填 | 描述             |
-| ---- | -------------------- | ---- | ---------------- |
-| type | "BundleStatusChange" | 是   | 指示应执行命令。 |
+| 名称 | 类型   | 必填 | 描述                                       |
+| ---- | ------ | ---- | ------------------------------------------ |
+| type | string | 是   | 指示应执行命令，只支持BundleStatusChange。 |
 
 **返回值：**
 

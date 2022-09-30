@@ -1,6 +1,6 @@
 # Border
 
-The border attribute is used to set border styles for components.
+The border attributes are used to set border styles for components.
 
 >  **NOTE**
 >
@@ -8,83 +8,60 @@ The border attribute is used to set border styles for components.
 >
 >  The border of a component is displayed above the content of its child components since API version 9.
 
-## Required Permissions
-
-None
-
 
 ## Attributes
 
+| Name        | Type                                                    | Description                                                        |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| border       | {<br>width?: [Length](ts-types.md#length) \| EdgeWidths<sup>9+</sup>,<br>color?:  [ResourceColor](ts-types.md#resourcecolor) \| EdgeColors<sup>9+</sup>,<br>radius?:  [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup>,<br>style?: [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyles<sup>9+</sup><br>} | Unified border style.<br>- **width**: border width.<br>- **color**: border color.<br>- **radius**: radius of the rounded corner of the border.<br>- **style**: border style.|
+| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| EdgeStyles<sup>9+</sup> | Border style of an element.<br>Default value: **BorderStyle.Solid**          |
+| borderWidth  | [Length](ts-types.md#length) \| EdgeWidths<sup>9+</sup>     | Border width. The percentage format is not supported.                                        |
+| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| EdgeColors<sup>9+</sup> | Border color of an element.                                        |
+| borderRadius | [Length](ts-types.md#length) \| BorderRadiuses<sup>9+</sup> | Border radius. The percentage format is not supported.                                    |
 
-| Name        | Type     | Default Value                 | Description                    |
-| ------------ | ------------- | ----------------------- | ------------------------ |
-| border       | BorderOptions | -                       | Unified border style.  |
-| borderStyle  | BorderStyle   | BorderStyle.Solid | Border style of an element.|
-| borderWidth  | Length        | 0                       | Border width of an element.    |
-| borderColor  | [ResourceColor](../../ui/ts-types.md)         | -                       | Border color of an element.    |
-| borderRadius | Length \| BorderRadiuses<sup>9+</sup>        | 0                       | Border radius of an element.|
+## EdgeWidths<sup>9+</sup>
 
-- BorderOptions
+To reference this object, at least one parameter must be passed.
 
-  | Name| Type                                                    | Default Value           | Mandatory| Description  |
-  | -------- | ------------------------------------------------------------ | ----------------- | ---- | ---------- |
-  | width    | [Length](../../ui/ts-types.md) \| EdgeWidth<sup>9+</sup> | 0                 | No  | Border width.|
-  | color    | [ResourceColor](../../ui/ts-types.md) \| EdgeColor<sup>9+</sup> | 'Black'           | No  | Border color.|
-  | radius   | [Length](../../ui/ts-types.md) \| BorderRadiuses<sup>9+</sup> | 0                 | No  | Border radius.|
-  | style    | BorderStyle \| EdgeStyle<sup>9+</sup>                          | BorderStyle.Solid | No  | Border style.|
+| Name    | Type                        | Mandatory  | Description     |
+| ------ | ---------------------------- | ---- | ------- |
+| left   | [Length](ts-types.md#length) | No   | Width of the left border.|
+| right  | [Length](ts-types.md#length) | No   | Width of the right border.|
+| top    | [Length](ts-types.md#length) | No   | Width of the top border.|
+| bottom | [Length](ts-types.md#length) | No   | Width of the bottom border.|
 
+## EdgeColors<sup>9+</sup>
 
-- EdgeWidth<sup>9+</sup>
+To reference this object, at least one parameter must be passed.
 
-  To reference this object, at least one parameter must be passed.
+| Name    | Type                                    | Mandatory  | Description     |
+| ------ | ---------------------------------------- | ---- | ------- |
+| left   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left border.|
+| right  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right border.|
+| top    | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the top border.|
+| bottom | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the bottom border.|
 
-  | Name   | Type   | Mandatory | Default Value | Description                 |
-  | ------ | ------ | --------- | ------------- | --------------------------- |
-  | left   | length | No        | 0             | Width of the left border.   |
-  | right  | length | No        | 0             | Width of the right border.  |
-  | top    | length | No        | 0             | Width of the top border.    |
-  | bottom | length | No        | 0             | Width of the bottom border. |
+## BorderRadiuses<sup>9+</sup>
 
-- EdgeColor<sup>9+</sup>
+To reference this object, at least one parameter must be passed.
 
-  To reference this object, at least one parameter must be passed.
+| Name         | Type                        | Mandatory  | Description      |
+| ----------- | ---------------------------- | ---- | -------- |
+| topLeft     | [Length](ts-types.md#length) | No   | Radius of the upper-left rounded corner.|
+| topRight    | [Length](ts-types.md#length) | No   | Radius of the upper-right rounded corner.|
+| bottomLeft  | [Length](ts-types.md#length) | No   | Radius of the lower-left rounded corner.|
+| bottomRight | [Length](ts-types.md#length) | No   | Radius of the lower-right rounded corner.|
 
-  | Name  | Type                             | Mandatory| Default Value | Description          |
-  | ------ | ------------------------------------- | ---- | ------- | -------------- |
-  | left   | [ResourceColor](../../ui/ts-types.md) | No  | 'Black' | Color of the left border.|
-  | right  | [ResourceColor](../../ui/ts-types.md) | No  | 'Black' | Color of the right border.|
-  | top    | [ResourceColor](../../ui/ts-types.md) | No  | 'Black' | Color of the top border.|
-  | bottom | [ResourceColor](../../ui/ts-types.md) | No  | 'Black' | Color of the bottom border.|
+## EdgeStyles<sup>9+</sup>
 
-- BorderRadiuses<sup>9+</sup>
+To reference this object, at least one parameter must be passed.
 
-  To reference this object, at least one parameter must be passed.
-
-  | Name       | Type| Mandatory| Default Value| Description            |
-  | ----------- | -------- | ---- | ------ | ---------------- |
-  | topLeft     | length   | No  | 0      | Radius of the upper-left rounded corner.|
-  | topRight    | length   | No  | 0      | Radius of the upper-right rounded corner.|
-  | bottomLeft  | length   | No  | 0      | Radius of the lower-left rounded corner.|
-  | bottomRight | length   | No  | 0      | Radius of the lower-right rounded corner.|
-
-- EdgeStyle<sup>9+</sup>
-
-  To reference this object, at least one parameter must be passed.
-
-  | Name   | Type        | Mandatory | Default Value     | Description                 |
-  | ------ | ----------- | --------- | ----------------- | --------------------------- |
-  | left   | BorderStyle | No        | BorderStyle.Solid | Style of the left border.   |
-  | right  | BorderStyle | No        | BorderStyle.Solid | Style of the right border.  |
-  | top    | BorderStyle | No        | BorderStyle.Solid | Style of the top border.    |
-  | bottom | BorderStyle | No        | BorderStyle.Solid | Style of the bottom border. |
-- BorderStyle enums
-  
-  | Name| Description|
-  | -------- | -------- |
-  | Dotted | Dotted border. The radius of a dot is half of **borderWidth**.|
-  | Dashed | Dashed border.|
-  | Solid  | Solid border.|
-
+| Name    | Type                                    | Mandatory  | Description     |
+| ------ | ---------------------------------------- | ---- | ------- |
+| left   | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the left border.|
+| right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the right border.|
+| top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the top border.|
+| bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the bottom border.|
 
 ## Example
 
@@ -93,6 +70,7 @@ None
 @Entry
 @Component
 struct BorderExample {
+  
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {

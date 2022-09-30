@@ -483,7 +483,41 @@ getRecentlyUsedModules(maxNum?: number): Promise&lt;Array&lt;BundleActiveModuleI
 
 ## bundleState.getRecentlyUsedModules<sup>9+</sup>
 
-getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+getRecentlyUsedModules(callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
+
+查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（FA记录按时间由近及远排序）。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数**：
+
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+
+**示例**：
+
+  ```js
+    bundleState.getRecentlyUsedModules((err, res) => {
+        if(err) {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
+        } else {
+            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
+                for (let i = 0; i < res.length; i++) {
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
+                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
+                }
+            }
+    });
+  ```
+
+## bundleState.getRecentlyUsedModules<sup>9+</sup>
+
+getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;Array&lt;BundleActiveModuleInfo&gt;&gt;): void
 
 查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
 
@@ -497,7 +531,7 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | 否    | 返回条目的最大数量，最多支持1000条。若不填写，则默认为1000。  |
+| maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
 | callback | AsyncCallback&lt;Array&lt;[BundleActiveModuleInfo](#bundleactivemoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
@@ -513,19 +547,6 @@ getRecentlyUsedModules(maxNum?: number, callback: AsyncCallback&lt;Array&lt;Bund
                     console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
                 }
         }
-    });
-
-    // 无maxNum参数调用方式
-    bundleState.getRecentlyUsedModules((err, res) => {
-        if(err) {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback failed, because: ' + err.code);
-        } else {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback succeeded.');
-                for (let i = 0; i < res.length; i++) {
-                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback number : ' + (i + 1));
-                    console.log('BUNDLE_ACTIVE getRecentlyUsedModules callback result ' + JSON.stringify(res[i]));
-                }
-            }
     });
   ```
 
@@ -573,9 +594,9 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 ## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
 
-queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void
+queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
-可选参数。有参则查询指定bundleName对应应用的分组。无参数时查询当前应用的分组。使用callback形式返回其应用分组。
+查询当前应用的分组。使用callback形式返回其应用分组。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -587,23 +608,44 @@ queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;numb
 
 | 参数名        | 类型                    | 必填   | 说明                                       |
 | ---------- | --------------------- | ---- | ---------------------------------------- |
-| bundleName | string                | 否    | 可选参数。有此参数则查询指定bundleName对应应用的分组。无此参数时查询当前应用的分组。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。               |
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回当前应用的分组。               |
 
 **示例**：
 
 ```javascript
-//有bundleName的callback
-let bundleName = "com.ohos.camera";
-bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
+bundleState.queryAppUsagePriorityGroup((err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
     }
 });
-//无bundleName的callback
-bundleState.queryAppUsagePriorityGroup((err, res) => {
+```
+
+## bundleState.queryAppUsagePriorityGroup<sup>9+</sup>
+
+queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
+
+查询指定bundleName对应应用的分组。使用callback形式返回其应用分组。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数**：
+
+| 参数名        | 类型                    | 必填   | 说明                                       |
+| ---------- | --------------------- | ---- | ---------------------------------------- |
+| bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
+| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回制指定bundleName的应用分组。|
+
+**示例**：
+
+```javascript
+let bundleName = "com.ohos.camera";
+bundleState.queryAppUsagePriorityGroup(bundleName, (err, res) => {
     if(err) {
         console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
     } else {
@@ -687,7 +729,7 @@ bundleState.setBundleGroup(bundleName, newGroup, (err) => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
+registerGroupCallBack(groupCallback: Callback&lt;BundleActiveGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
 应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用Promise形式返回注册是否成功。
 
@@ -729,7 +771,7 @@ bundleState.registerGroupCallBack(onBundleGroupChanged).then( () => {
 
 ## bundleState.registerGroupCallBack<sup>9+</sup>
 
-registerGroupCallBack(callback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
+registerGroupCallBack(groupCallback: Callback&lt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[BundleActiveGroupCallbackInfo](#bundleactivegroupcallbackinfo9)信息。使用异步callback形式返回注册监听是否成功。
 
@@ -969,6 +1011,8 @@ FA的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 | 参数名                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
 | deviceId             | string                                   | 否    | FA所属deviceId。                 |
@@ -990,6 +1034,8 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
 | 参数名              | 类型     | 必填   | 说明          |
 | ---------------- | ------ | ---- | ----------- |
 | formName         | string | 是    | 卡片名称。       |
@@ -1003,6 +1049,8 @@ FA卡片的使用信息的属性集合。
 应用分组变化回调返回的属性集合
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
@@ -1032,20 +1080,6 @@ FA卡片的使用信息的属性集合。
 | fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-
-### merge
-
-merge(toMerge: BundleStateInfo): void
-
-合并相同包名的应用使用信息。
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**参数**：
-
-| 参数名     | 类型                                  | 必填   | 说明             |
-| ------- | ----------------------------------- | ---- | -------------- |
-| toMerge | [BundleStateInfo](#bundlestateinfo) | 是    | 相同包名的应用使用统计信息。 |
 
 ## BundleActiveState
 
@@ -1105,6 +1139,8 @@ merge(toMerge: BundleStateInfo): void
 提供应用分组的设置类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 | 名称                 | 默认值  | 说明                |
 | ------------------ | ---- | ----------------- |

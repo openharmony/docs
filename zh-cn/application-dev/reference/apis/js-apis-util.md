@@ -23,19 +23,21 @@ printf(format: string,  ...args: Object[]): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | format | string | 是 | 式样化字符串。 |
 | ...args | Object[] | 否 | 待式样化数据。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 按特定格式式样化后的字符串。 |
 
 **示例：**
   ```js
-  var res = util.printf("%s", "hello world!");
+  let res = util.printf("%s", "hello world!");
   console.log(res);
   ```
 
@@ -49,19 +51,21 @@ getErrorString(errno: number): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | errno | number | 是 | 系统发生错误产生的错误码。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 错误码对应的详细信息。 |
 
 **示例：**
   ```js
-  var errnum = 10; // 10 : a system error number
-  var result = util.getErrorString(errnum);
+  let errnum = 10; // 10 : a system error number
+  let result = util.getErrorString(errnum);
   console.log("result = " + result);
   ```
 
@@ -81,6 +85,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 | original | Function | 是 | 异步函数。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Function | 返回一个第一个参数是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数是已解决的回调函数。 |
@@ -90,8 +95,8 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
   async function promiseFn() {
       return Promise.reject('value');
   }
-  var err = "type err";
-  var cb = util.callbackWrapper(promiseFn);
+  let err = "type err";
+  let cb = util.callbackWrapper(promiseFn);
   cb((err, ret) => {
       console.log(err);
       console.log(ret);
@@ -111,25 +116,16 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | original | Function | 是 | 异步函数。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
-
-**示例：**
-  ```js
-  function aysnFun() {
-    return 0;
-  }
-  let newPromiseObj = util.promiseWrapper(aysnFun);
-  newPromiseObj().then(res => {
-    console.log(res);
-  })
-  ```
 
 ## util.promisify<sup>9+</sup>
 
@@ -140,11 +136,13 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | original | Function | 是 | 异步函数。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的函数。 |
@@ -173,11 +171,13 @@ randomUUID(entropyCache?: boolean): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示此UUID的字符串。 |
@@ -199,11 +199,13 @@ randomBinaryUUID(entropyCache?: boolean): Uint8Array
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 表示此UUID的Uint8Array值。 |
@@ -211,7 +213,7 @@ randomBinaryUUID(entropyCache?: boolean): Uint8Array
 **示例：**
   ```js
   let uuid = util.randomBinaryUUID(true);
-  console.log(uuid);
+  console.log(JSON.stringify(uuid));
   // 输出：
   // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
   ```
@@ -225,11 +227,13 @@ parseUUID(uuid: string): Uint8Array
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uuid | string | 是 | UUID字符串。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回表示此UUID的Uint8Array，如果解析失败，则抛出SyntaxError。 |
@@ -237,7 +241,7 @@ parseUUID(uuid: string): Uint8Array
 **示例：**
   ```js
   let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-  console.log(uuid);
+  console.log(JSON.stringify(uuid));
   // 输出：
   // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
   ```  
@@ -264,6 +268,7 @@ TextDecoder的构造函数。
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式。 |
@@ -278,7 +283,7 @@ TextDecoder的构造函数。
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
   ```
 
 
@@ -291,6 +296,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
@@ -303,14 +309,15 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 | stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 解码后的数据。 |
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  var result = new Uint8Array(6);
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
   result[2] = 0xBF;
@@ -318,7 +325,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  var retStr = textDecoder.decode( result , {stream: false});
+  let retStr = textDecoder.decode( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -332,6 +339,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
@@ -344,14 +352,15 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 | stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 解码后的数据。 |
 
 **示例：**
   ```js
-  var textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  var result = new Uint8Array(6);
+  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+  let result = new Uint8Array(6);
   result[0] = 0xEF;
   result[1] = 0xBB;
   result[2] = 0xBF;
@@ -359,7 +368,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
   result[4] = 0x62;
   result[5] = 0x63;
   console.log("input num:");
-  var retStr = textDecoder.decodeWithStream( result , {stream: false});
+  let retStr = textDecoder.decodeWithStream( result , {stream: false});
   console.log("retStr = " + retStr);
   ```
 
@@ -385,7 +394,7 @@ TextEncoder的构造函数。
 
 **示例：**
   ```js
-  var textEncoder = new util.TextEncoder();
+  let textEncoder = new util.TextEncoder();
   ```
 
 
@@ -398,20 +407,22 @@ encode(input?: string): Uint8Array
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | string | 是 | 需要编码的字符串。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
   ```js
-  var textEncoder = new util.TextEncoder();
-  var buffer = new ArrayBuffer(20);
-  var result = new Uint8Array(buffer);
+  let textEncoder = new util.TextEncoder();
+  let buffer = new ArrayBuffer(20);
+  let result = new Uint8Array(buffer);
   result = textEncoder.encode("\uD800¥¥");
   ```
 
@@ -425,22 +436,24 @@ encodeInto(input: string, dest: Uint8Array, ): { read: number; written: number }
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | string | 是 | 需要编码的字符串。 |
 | dest | Uint8Array | 是 | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回编码后的文本。 |
 
 **示例：**
   ```js
-  var that = new util.TextEncoder()
-  var buffer = new ArrayBuffer(4)
-  var dest = new Uint8Array(buffer)
-  var result = new Object()
+  let that = new util.TextEncoder()
+  let buffer = new ArrayBuffer(4)
+  let dest = new Uint8Array(buffer)
+  let result = new Object()
   result = that.encodeInto('abcd', dest)
   ```
 
@@ -456,6 +469,7 @@ RationalNumber的构造函数。
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | numerator | number | 是 | 分子，整数类型。 |
@@ -463,7 +477,7 @@ RationalNumber的构造函数。
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
+  let rationalNumber = new util.RationalNumber(1,2);
   ```
 
 
@@ -476,19 +490,21 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rationalString | string | 是 | 字符串格式。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | object | 返回有理数类的对象。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
   ```
 
 
@@ -501,20 +517,22 @@ compareTo​(another: RationalNumber): number​
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | another | RationalNumber | 是 | 其他的有理数对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 如果两个对象相等，则返回0；如果给定对象小于当前对象，则返回1；如果给定对象大于当前对象，则返回-1。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.compareTo(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.compareTo(rational);
   ```
 
 
@@ -527,14 +545,15 @@ valueOf(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回整数或者浮点数的值。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.valueOf();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.valueOf();
   ```
 
 
@@ -547,20 +566,22 @@ equals​(obj: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 其他类型对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果给定对象与当前对象相同，则返回true；否则返回false。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var rational = util.RationalNumber.createRationalFromString("3/4");
-  var result = rationalNumber.equals(rational);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let rational = util.RationalNumber.createRationalFromString("3/4");
+  let result = rationalNumber.equals(rational);
   ```
 
 
@@ -573,20 +594,22 @@ static getCommonDivisor​(number1: number,number2: number): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | number1 | number | 是 | 整数类型。 |
 | number2 | number | 是 | 整数类型。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回两个给定数字的最大公约数。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = util.RationalNumber.getCommonDivisor(4,6);
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = util.RationalNumber.getCommonDivisor(4,6);
   ```
 
 
@@ -606,8 +629,8 @@ getNumerator​(): number
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getNumerator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getNumerator();
   ```
 
 
@@ -620,14 +643,15 @@ getDenominator​(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回RationalNumber对象的分母的值。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.getDenominator();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.getDenominator();
   ```
 
 
@@ -640,14 +664,15 @@ isZero​():boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果当前对象表示的值为0，则返回true；否则返回false。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isZero();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isZero();
   ```
 
 
@@ -660,14 +685,15 @@ isNaN​(): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果分母和分子都为0，则返回true；否则返回false。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isNaN();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isNaN();
   ```
 
 
@@ -680,14 +706,15 @@ isFinite​():boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果分母不为0，则返回true；否则返回false。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.isFinite();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.isFinite();
   ```
 
 
@@ -700,14 +727,15 @@ toString​(): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回Numerator/Denominator格式的字符串，例如3/5，如果当前对象的分子和分母都为0，则返回NaN。 |
 
 **示例：**
   ```js
-  var rationalNumber = new util.RationalNumber(1,2);
-  var result = rationalNumber.toString();
+  let rationalNumber = new util.RationalNumber(1,2);
+  let result = rationalNumber.toString();
   ```
 
 ## LruBuffer<sup>8+</sup>
@@ -722,10 +750,10 @@ toString​(): string
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(1,8);
-  var result = pro.length;
+  let result = pro.length;
   ```
 
 
@@ -738,13 +766,14 @@ constructor(capacity?: number)
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | capacity | number | 否 | 指示要为缓冲区自定义的容量。 |
 
 **示例：**
   ```js
-  var lrubuffer= new util.LruBuffer();
+  let lrubuffer= new util.LruBuffer();
   ```
 
 
@@ -757,14 +786,15 @@ updateCapacity(newCapacity: number): void
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | newCapacity | number | 是 | 指示要为缓冲区自定义的容量。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.updateCapacity(100);
+  let pro = new util.LruBuffer();
+  let result = pro.updateCapacity(100);
   ```
 
 
@@ -777,17 +807,18 @@ toString(): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回对象的字符串表示形式。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
   pro.remove(20);
-  var result = pro.toString();
+  let result = pro.toString();
   ```
 
 
@@ -800,14 +831,15 @@ getCapacity(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回当前缓冲区的容量。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.getCapacity();
+  let pro = new util.LruBuffer();
+  let result = pro.getCapacity();
   ```
 
 
@@ -821,9 +853,9 @@ clear(): void
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.length;
+  let result = pro.length;
   pro.clear();
   ```
 
@@ -837,15 +869,16 @@ getCreateCount(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回createDefault()返回值的次数。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(1,8);
-  var result = pro.getCreateCount();
+  let result = pro.getCreateCount();
   ```
 
 
@@ -858,16 +891,17 @@ getMissCount(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回查询值不匹配的次数。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMissCount();
+  let result = pro.getMissCount();
   ```
 
 
@@ -880,17 +914,18 @@ getRemovalCount(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回从缓冲区中驱逐的次数。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.updateCapacity(2);
   pro.put(50,22);
-  var result = pro.getRemovalCount();
+  let result = pro.getRemovalCount();
   ```
 
 
@@ -903,16 +938,17 @@ getMatchCount(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回查询值匹配成功的次数。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.get(2);
-  var result = pro.getMatchCount();
+  let result = pro.getMatchCount();
   ```
 
 
@@ -925,15 +961,16 @@ getPutCount(): number
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 返回将值添加到缓冲区的次数。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.getPutCount();
+  let result = pro.getPutCount();
   ```
 
 
@@ -946,15 +983,16 @@ isEmpty(): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果当前缓冲区不包含任何值，则返回true。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.isEmpty();
+  let result = pro.isEmpty();
   ```
 
 
@@ -967,20 +1005,22 @@ get(key: K): V | undefined
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要查询的键。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefind | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
+| V&nbsp;\|&nbsp;undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result  = pro.get(2);
+  let result  = pro.get(2);
   ```
 
 
@@ -993,22 +1033,23 @@ put(key: K,value: V): V
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要添加的密钥。 |
 | value | V | 是 | 指示与要添加的键关联的值。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | V | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.put(2,10);
+  let pro = new util.LruBuffer();
+  let result = pro.put(2,10);
   ```
-
 
 ### values<sup>8+</sup>
 
@@ -1019,17 +1060,18 @@ values(): V[]
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | V&nbsp;[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
-  var result = pro.values();
+  let result = pro.values();
   ```
 
 
@@ -1042,15 +1084,16 @@ keys(): K[]
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | K&nbsp;[] | 按升序返回当前缓冲区中所有键的列表，从最近访问到最近最少访问。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.keys();
+  let result = pro.keys();
   ```
 
 
@@ -1063,20 +1106,22 @@ remove(key: K): V | undefined
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要删除的密钥。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefind | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
+| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.remove(20);
+  let result = pro.remove(20);
   ```
 
 
@@ -1089,6 +1134,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isEvict | boolean | 否 | 因容量不足而调用该方法时，参数值为true，其他情况为false。 |
@@ -1098,8 +1144,8 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
   ```js
-  var arr = [];
-  class ChildLruBuffer extends util.LruBuffer
+  let arr = [];
+  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
   {
   	constructor()
   	{
@@ -1113,7 +1159,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
   		}
   	}
   }
-  var lru = new ChildLruBuffer();
+  let lru = new ChildLruBuffer();
   lru.afterRemoval(false,10,30,null);
   ```
 
@@ -1127,20 +1173,22 @@ contains(key: K): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 表示要检查的键。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果缓冲区包含指定的键，则返回&nbsp;true。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.contains(20);
+  let result = pro.contains(20);
   ```
 
 
@@ -1153,19 +1201,21 @@ createDefault(key: K): V
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 表示丢失的键。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | V | 返回与键关联的值。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
-  var result = pro.createDefault(50);
+  let pro = new util.LruBuffer();
+  let result = pro.createDefault(50);
   ```
 
 
@@ -1178,15 +1228,16 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [K,&nbsp;V] | 返回一个可迭代数组。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro.entries();
+  let result = pro.entries();
   ```
 
 
@@ -1199,15 +1250,16 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
 
 **示例：**
   ```js
-  var pro = new util.LruBuffer();
+  let pro = new util.LruBuffer();
   pro.put(2,10);
-  var result = pro[Symbol.iterator]();
+  let result = pro[Symbol.iterator]();
   ```
 
 
@@ -1238,7 +1290,7 @@ class Temperature{
        // private readonly _temp: Temperature;
        this._temp = value;
     }
-    comapreTo(value){
+    compareTo(value){
        return this._temp >= value.getTemp();
     }
     getTemp(){
@@ -1260,6 +1312,7 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的下限。 |
@@ -1267,9 +1320,9 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
   ```
 
 
@@ -1282,16 +1335,17 @@ toString(): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回包含当前范围对象的字符串表示形式。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.toString();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.toString();
   ```
 
 
@@ -1304,23 +1358,25 @@ intersect(range: Scope): Scope
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [Scope](#scope8) | 返回给定范围和当前范围的交集。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
   range.intersect(rangeFir );
   ```
 
@@ -1334,24 +1390,26 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是 | 给定范围的上限。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [Scope](#scope8) | 返回当前范围与给定下限和上限范围的交集。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.intersect(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.intersect(tempMiDF, tempMidS);
   ```
 
 
@@ -1371,10 +1429,10 @@ getUpper(): ScopeType
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getUpper();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getUpper();
   ```
 
 
@@ -1387,16 +1445,17 @@ getLower(): ScopeType
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [ScopeType](#scopetype8) | 返回当前范围的下限值。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.getLower();
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.getLower();
   ```
 
 
@@ -1409,12 +1468,14 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是 | 给定范围的上限。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [Scope](#scope8) | 返回当前范围和给定下限和上限的并集。 |
@@ -1422,12 +1483,12 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 **示例：**
 
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF, tempMidS);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF, tempMidS);
   ```
 
 
@@ -1440,24 +1501,26 @@ expand(range: Scope): Scope
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [Scope](#scope8) | 返回包括当前范围和给定范围的并集。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var tempMidS = new Temperature(39);
-  var range = new util.Scope(tempLower, tempUpper);
-  var rangeFir = new util.Scope(tempMiDF, tempMidS);
-  var result = range.expand(rangeFir);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let tempMidS = new Temperature(39);
+  let range = new util.Scope(tempLower, tempUpper);
+  let rangeFir = new util.Scope(tempMiDF, tempMidS);
+  let result = range.expand(rangeFir);
   ```
 
 
@@ -1470,22 +1533,24 @@ expand(value: ScopeType): Scope
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入一个给定值。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [Scope](#scope8) | 返回包括当前范围和给定值的并集。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.expand(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.expand(tempMiDF);
   ```
 
 
@@ -1498,21 +1563,23 @@ contains(value: ScopeType): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入一个给定值。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果给定值包含在当前范围内返回true，否则返回false。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
   range.contains(tempMiDF);
   ```
 
@@ -1526,24 +1593,26 @@ contains(range: Scope): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scope8) | 是 | 传入一个给定范围。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var range = new util.Scope(tempLower, tempUpper);
-  var tempLess = new Temperature(20);
-  var tempMore = new Temperature(45);
-  var rangeSec = new util.Scope(tempLess, tempMore);
-  var result = range.contains(rangeSec);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let range = new util.Scope(tempLower, tempUpper);
+  let tempLess = new Temperature(20);
+  let tempMore = new Temperature(45);
+  let rangeSec = new util.Scope(tempLess, tempMore);
+  let result = range.contains(rangeSec);
   ```
 
 
@@ -1556,22 +1625,24 @@ clamp(value: ScopeType): ScopeType
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入的给定值。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
 
 **示例：**
   ```js
-  var tempLower = new Temperature(30);
-  var tempUpper = new Temperature(40);
-  var tempMiDF = new Temperature(35);
-  var range = new util.Scope(tempLower, tempUpper);
-  var result = range.clamp(tempMiDF);
+  let tempLower = new Temperature(30);
+  let tempUpper = new Temperature(40);
+  let tempMiDF = new Temperature(35);
+  let range = new util.Scope(tempLower, tempUpper);
+  let result = range.clamp(tempMiDF);
   ```
 
 
@@ -1588,7 +1659,7 @@ Base64的构造函数。
 
 **示例：**
   ```js
-  var base64 = new  util.Base64();
+  let base64 = new  util.Base64();
   ```
 
 
@@ -1601,20 +1672,22 @@ encodeSync(src: Uint8Array): Uint8Array
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 编码输入Uint8数组。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回编码后新分配的Uint8数组。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeSync(array);
   ```
 
 
@@ -1627,20 +1700,22 @@ encodeToStringSync(src: Uint8Array): string
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 编码输入Uint8数组。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回编码后的字符串。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var result = that.encodeToStringSync(array);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let result = that.encodeToStringSync(array);
   ```
 
 
@@ -1653,20 +1728,22 @@ decodeSync(src: Uint8Array | string): Uint8Array
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array&nbsp;\|&nbsp;string | 是 | 解码输入Uint8数组或者字符串。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Uint8Array | 返回解码后新分配的Uint8数组。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var buff = 'czEz';
-  var result = that.decodeSync(buff);
+  let that = new util.Base64();
+  let buff = 'czEz';
+  let result = that.decodeSync(buff);
   ```
 
 
@@ -1679,20 +1756,22 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 异步编码输入Uint8数组。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8数组。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
-  var rarray = new Uint8Array([99,122,69,122]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
+  let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1710,19 +1789,21 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 异步编码输入Uint8数组。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;string&gt; | 返回异步编码后的字符串。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
       console.log(val)
   })
@@ -1738,20 +1819,22 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array&nbsp;\|&nbsp;string | 是 | 异步解码输入Uint8数组或者字符串。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8数组。 |
 
 **示例：**
   ```js
-  var that = new util.Base64();
-  var array = new Uint8Array([99,122,69,122]);
-  var rarray = new Uint8Array([115,49,51]);
+  let that = new util.Base64();
+  let array = new Uint8Array([99,122,69,122]);
+  let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (var i = 0; i < rarray.length; i++) {        
           console.log(val[i].toString())
@@ -1773,7 +1856,7 @@ Types的构造函数。
 
 **示例：**
   ```js
-  var type = new util.types();
+  let type = new util.types();
   ```
 
 
@@ -1786,19 +1869,21 @@ isAnyArrayBuffer(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是ArrayBuffer类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1813,19 +1898,21 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的ArrayBufferView辅助类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBufferView(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isArrayBufferView(new Int8Array([]));
   ```
 
 
@@ -1838,22 +1925,24 @@ isArgumentsObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的arguments类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function foo() {
       var result = that.isArgumentsObject(arguments);
   }
-  var f = foo();
+  let f = foo();
   ```
 
 
@@ -1866,19 +1955,21 @@ isArrayBuffer(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的ArrayBuffer类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isArrayBuffer(new ArrayBuffer(0));
+  let that = new util.types();
+  let result = that.isArrayBuffer(new ArrayBuffer(0));
   ```
 
 
@@ -1891,19 +1982,21 @@ isAsyncFunction(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的异步函数类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isAsyncFunction(async function foo() {});
+  let that = new util.types();
+  let result = that.isAsyncFunction(async function foo() {});
   ```
 
 
@@ -1916,19 +2009,21 @@ isBooleanObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Boolean对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBooleanObject(new Boolean(true));
+  let that = new util.types();
+  let result = that.isBooleanObject(new Boolean(true));
   ```
 
 
@@ -1941,19 +2036,21 @@ isBoxedPrimitive(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Boolean或Number或String或Symbol对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBoxedPrimitive(new Boolean(false));
+  let that = new util.types();
+  let result = that.isBoxedPrimitive(new Boolean(false));
   ```
 
 
@@ -1966,20 +2063,22 @@ isDataView(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的DataView对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const ab = new ArrayBuffer(20);
-  var result = that.isDataView(new DataView(ab));
+  let result = that.isDataView(new DataView(ab));
   ```
 
 
@@ -1992,19 +2091,21 @@ isDate(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Date对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isDate(new Date());
+  let that = new util.types();
+  let result = that.isDate(new Date());
   ```
 
 
@@ -2017,19 +2118,21 @@ isExternal(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含native&nbsp;External类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isExternal(true);
+  let that = new util.types();
+  let result = that.isExternal(true);
   ```
 
 
@@ -2042,19 +2145,21 @@ isFloat32Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Float32Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isFloat32Array(new Float32Array());
+  let that = new util.types();
+  let result = that.isFloat32Array(new Float32Array());
   ```
 
 
@@ -2067,19 +2172,21 @@ isFloat64Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Float64Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isFloat64Array(new Float64Array());
+  let that = new util.types();
+  let result = that.isFloat64Array(new Float64Array());
   ```
 
 
@@ -2092,19 +2199,21 @@ isGeneratorFunction(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isGeneratorFunction(function* foo() {});
+  let that = new util.types();
+  let result = that.isGeneratorFunction(function* foo() {});
   ```
 
 
@@ -2117,21 +2226,23 @@ isGeneratorObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   function* foo() {}
   const generator = foo();
-  var result = that.isGeneratorObject(generator);
+  let result = that.isGeneratorObject(generator);
   ```
 
 
@@ -2144,19 +2255,21 @@ isInt8Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Int8Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt8Array(new Int8Array([]));
+  let that = new util.types();
+  let result = that.isInt8Array(new Int8Array([]));
   ```
 
 
@@ -2169,19 +2282,21 @@ isInt16Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Int16Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt16Array(new Int16Array([]));
+  let that = new util.types();
+  let result = that.isInt16Array(new Int16Array([]));
   ```
 
 
@@ -2194,19 +2309,21 @@ isInt32Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Int32Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isInt32Array(new Int32Array([]));
+  let that = new util.types();
+  let result = that.isInt32Array(new Int32Array([]));
   ```
 
 
@@ -2219,19 +2336,21 @@ isMap(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Map类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isMap(new Map());
+  let that = new util.types();
+  let result = that.isMap(new Map());
   ```
 
 
@@ -2244,20 +2363,22 @@ isMapIterator(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Map的Iterator类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const map = new Map();
-  var result = that.isMapIterator(map.keys());
+  let result = that.isMapIterator(map.keys());
   ```
 
 
@@ -2270,19 +2391,21 @@ isNativeError(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Error类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isNativeError(new TypeError());
+  let that = new util.types();
+  let result = that.isNativeError(new TypeError());
   ```
 
 
@@ -2295,19 +2418,21 @@ isNumberObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Number对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isNumberObject(new Number(0));
+  let that = new util.types();
+  let result = that.isNumberObject(new Number(0));
   ```
 
 
@@ -2320,19 +2445,21 @@ isPromise(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Promise类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isPromise(Promise.resolve(1));
+  let that = new util.types();
+  let result = that.isPromise(Promise.resolve(1));
   ```
 
 
@@ -2345,21 +2472,23 @@ isProxy(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Proxy类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const target = {};
   const proxy = new Proxy(target, {});
-  var result = that.isProxy(proxy);
+  let result = that.isProxy(proxy);
   ```
 
 
@@ -2372,19 +2501,21 @@ isRegExp(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的RegExp类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isRegExp(new RegExp('abc'));
+  let that = new util.types();
+  let result = that.isRegExp(new RegExp('abc'));
   ```
 
 
@@ -2397,19 +2528,21 @@ isSet(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Set类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isSet(new Set());
+  let that = new util.types();
+  let result = that.isSet(new Set());
   ```
 
 
@@ -2422,20 +2555,22 @@ isSetIterator(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Set的Iterator类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const set = new Set();
-  var result = that.isSetIterator(set.keys());
+  let result = that.isSetIterator(set.keys());
   ```
 
 
@@ -2448,19 +2583,21 @@ isStringObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的String对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isStringObject(new String('foo'));
+  let that = new util.types();
+  let result = that.isStringObject(new String('foo'));
   ```
 
 
@@ -2473,20 +2610,22 @@ isSymbolObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
+  let that = new util.types();
   const symbols = Symbol('foo');
-  var result = that.isSymbolObject(Object(symbols));
+  let result = that.isSymbolObject(Object(symbols));
   ```
 
 
@@ -2501,19 +2640,21 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的TypedArray包含的类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isTypedArray(new Float64Array([]));
+  let that = new util.types();
+  let result = that.isTypedArray(new Float64Array([]));
   ```
 
 
@@ -2526,19 +2667,21 @@ isUint8Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Uint8Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint8Array(new Uint8Array([]));
+  let that = new util.types();
+  let result = that.isUint8Array(new Uint8Array([]));
   ```
 
 
@@ -2551,19 +2694,21 @@ isUint8ClampedArray(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Uint8ClampedArray数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let that = new util.types();
+  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
   ```
 
 
@@ -2576,19 +2721,21 @@ isUint16Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Uint16Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint16Array(new Uint16Array([]));
+  let that = new util.types();
+  let result = that.isUint16Array(new Uint16Array([]));
   ```
 
 
@@ -2601,19 +2748,21 @@ isUint32Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Uint32Array数组类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isUint32Array(new Uint32Array([]));
+  let that = new util.types();
+  let result = that.isUint32Array(new Uint32Array([]));
   ```
 
 
@@ -2626,19 +2775,21 @@ isWeakMap(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的WeakMap类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isWeakMap(new WeakMap());
+  let that = new util.types();
+  let result = that.isWeakMap(new WeakMap());
   ```
 
 
@@ -2651,19 +2802,21 @@ isWeakSet(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的WeakSet类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isWeakSet(new WeakSet());
+  let that = new util.types();
+  let result = that.isWeakSet(new WeakSet());
   ```
 
 
@@ -2676,19 +2829,21 @@ isBigInt64Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的BigInt64Array类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBigInt64Array(new BigInt64Array([]));
+  let that = new util.types();
+  let result = that.isBigInt64Array(new BigInt64Array([]));
   ```
 
 
@@ -2701,19 +2856,21 @@ isBigUint64Array(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的BigUint64Array类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isBigUint64Array(new BigUint64Array([]));
+  let that = new util.types();
+  let result = that.isBigUint64Array(new BigUint64Array([]));
   ```
 
 
@@ -2726,11 +2883,13 @@ isModuleNamespaceObject(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的Module Namespace Object类型为true，反之为false。 |
@@ -2738,8 +2897,8 @@ isModuleNamespaceObject(value: Object): boolean
 **示例：**
   ```js
   import url from '@ohos.url'
-  var that = new util.types();
-  var result = that.isModuleNamespaceObject(url);
+  let that = new util.types();
+  let result = that.isModuleNamespaceObject(url);
   ```
 
 
@@ -2752,17 +2911,19 @@ isSharedArrayBuffer(value: Object): boolean
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
 **返回值：**
+
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 判断的结果，如果是内置包含的SharedArrayBuffer类型为true，反之为false。 |
 
 **示例：**
   ```js
-  var that = new util.types();
-  var result = that.isSharedArrayBuffer(new SharedArrayBuffer([]));
+  let that = new util.types();
+  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
   ```

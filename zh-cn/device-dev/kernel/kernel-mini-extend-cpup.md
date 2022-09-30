@@ -122,17 +122,17 @@ UINT32 ItCpupTest(VOID)
 
     usleep(100);
 
-    /* 获取当前系统cpu占用率 */
+    /* 获取当前系统CPU占用率 */
     cpupUse = LOS_SysCpuUsage();
     printf("the current system cpu usage is: %u.%u\n",
             cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT); 
 
     cpupUse = LOS_HistorySysCpuUsage(CPU_LESS_THAN_1S);
-    /* 获取指定任务的cpu占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
+    /* 获取指定任务的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
     printf("the history system cpu usage in all time：%u.%u\n",
            cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT);
     cpupUse = LOS_TaskCpuUsage(g_cpuTestTaskID);    
-    /* 获取指定历史任务在系统启动到现在的cpu占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
+    /* 获取指定历史任务在系统启动到现在的CPU占用率，该测试例程中指定的任务为以上创建的cpup测试任务 */    
     printf("cpu usage of the cpupTestTask:\n TaskID: %d\n usage: %u.%u\n",
            g_cpuTestTaskID, cpupUse / LOS_CPUP_PRECISION_MULT, cpupUse % LOS_CPUP_PRECISION_MULT); 
     cpupUse = LOS_HistoryTaskCpuUsage(g_cpuTestTaskID, CPU_LESS_THAN_1S);   

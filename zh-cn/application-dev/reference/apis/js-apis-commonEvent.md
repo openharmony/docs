@@ -66,15 +66,11 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_USER_STARTED                                    | usual.event.USER_STARTED                                    | 无                                                           | 表示用户已启动的公共事件的动作。      |
 | COMMON_EVENT_USER_BACKGROUND                                 | usual.event.USER_BACKGROUND                                 | 无                                                           | 表示用户已被带到后台的公共事件的动作。      |
 | COMMON_EVENT_USER_FOREGROUND                                 | usual.event.USER_FOREGROUND                                 | 无                                                           | 表示用户已被带到前台的公共事件的动作。        |
-| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_USERS                                 | 表示用户切换正在发生的公共事件的动作。      |
-| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | 表示要启动用户的公共事件的动作。        |
+| COMMON_EVENT_USER_SWITCHED                                   | usual.event.USER_SWITCHED                                   | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户切换正在发生的公共事件的动作。      |
+| COMMON_EVENT_USER_STARTING                                   | usual.event.USER_STARTING                                   | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS                        | 表示要启动用户的公共事件的动作。        |
 | COMMON_EVENT_USER_UNLOCKED                                   | usual.event.USER_UNLOCKED                                   | 无                                                           | 设备重启后解锁时，当前用户的凭据加密存储已解锁的公共事件的动作。     |
-| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_USERS                        | 表示要停止用户的公共事件的动作。    |
+| COMMON_EVENT_USER_STOPPING                                   | usual.event.USER_STOPPING                                   | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS                        | 表示要停止用户的公共事件的动作。    |
 | COMMON_EVENT_USER_STOPPED                                    | usual.event.USER_STOPPED                                    | 无                                                           | 表示用户已停止的公共事件的动作。    |
-| COMMON_EVENT_HWID_LOGIN                                      | common.event.HWID_LOGIN                                     | 无                                                           | 华为账号ID用户登录公共事件的动作。         |
-| COMMON_EVENT_HWID_LOGOUT                                     | common.event.HWID_LOGOUT                                    | 无                                                           | 华为帐号ID用户下线的公共事件动作。           |
-| COMMON_EVENT_HWID_TOKEN_INVALID                              | common.event.HWID_TOKEN_INVALID                             | 无                                                           | 华为帐号ID无效的公共事件的动作。       |
-| COMMON_EVENT_HWID_LOGOFF                                     | common.event.HWID_LOGOFF                                    | 无                                                           | 华为账号ID注销公共事件的动作。       |
 | COMMON_EVENT_WIFI_POWER_STATE                                | usual.event.wifi.POWER_STATE                                | 无                                                           | Wi-Fi状态公共事件的动作，如启用和禁用。      |
 | COMMON_EVENT_WIFI_SCAN_FINISHED                              | usual.event.wifi.SCAN_FINISHED                              | ohos.permission.LOCATION                                     | 表示Wi-Fi接入点已被扫描并证明可用的公共事件的操作。       |
 | COMMON_EVENT_WIFI_RSSI_VALUE                                 | usual.event.wifi.RSSI_VALUE                                 | ohos.permission.GET_WIFI_INFO                                | 表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。      |
@@ -133,8 +129,8 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_CHARGING                                        | usual.event.CHARGING                                        | 无                                                           | 表示系统开始为电池充电的公共事件的动作。    |
 | COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED                        | usual.event.DEVICE_IDLE_MODE_CHANGED                        | 无                                                           | 表示系统空闲模式已更改的公共事件的动作。    |
 | COMMON_EVENT_POWER_SAVE_MODE_CHANGED                         | usual.event.POWER_SAVE_MODE_CHANGED                         | 无                                                           | 表示系统节能模式更改的公共事件的动作。      |
-| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_USERS                                 | 表示用户已添加到系统中的公共事件的动作。        |
-| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_USERS                                 | 表示用户已从系统中删除的公共事件的动作。        |
+| COMMON_EVENT_USER_ADDED                                      | usual.event.USER_ADDED                                      | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户已添加到系统中的公共事件的动作。        |
+| COMMON_EVENT_USER_REMOVED                                    | usual.event.USER_REMOVED                                    | ohos.permission.MANAGE_LOCAL_ACCOUNTS                                 | 表示用户已从系统中删除的公共事件的动作。        |
 | COMMON_EVENT_ABILITY_ADDED                                   | usual.event.ABILITY_ADDED                                   | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示已添加能力的公共事件的动作。     |
 | COMMON_EVENT_ABILITY_REMOVED                                 | usual.event.ABILITY_REMOVED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示已删除能力的公共事件的动作。     |
 | COMMON_EVENT_ABILITY_UPDATED                                 | usual.event.ABILITY_UPDATED                                 | ohos.permission.LISTEN_BUNDLE_CHANGE                         | 表示能力已更新的公共事件的动作。     |
@@ -156,17 +152,17 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_USB_DEVICE_DETACHED                             | usual.event.hardware.usb.action.USB_DEVICE_DETACHED         | 无                                                           | 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。       | 
 | COMMON_EVENT_USB_ACCESSORY_ATTACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED      | 无                                                           | 表示已连接USB附件的公共事件的动作。       |
 | COMMON_EVENT_USB_ACCESSORY_DETACHED                          | usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED      | 无                                                           | 表示USB附件被卸载的公共事件的动作。     |
-| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为移除时发送此公共事件。     |
-| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为卸载时发送此公共事件。     |
-| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载时发送此公共事件。     |
-| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
-| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。     |
-| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 用户已表示希望删除外部存储介质时发送此公共事件。       |
-| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为移除时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为卸载时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载时发送此公共事件。     |
-| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
-| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.WRITE_USER_STORAGE 或 ohos.permission.READ_USER_STORAGE | 用户已表示希望删除外部存储介质时发送此公共事件。       |
+| COMMON_EVENT_DISK_REMOVED                                    | usual.event.data.DISK_REMOVED                               | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为移除时发送此公共事件。     |
+| COMMON_EVENT_DISK_UNMOUNTED                                  | usual.event.data.DISK_UNMOUNTED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为卸载时发送此公共事件。     |
+| COMMON_EVENT_DISK_MOUNTED                                    | usual.event.data.DISK_MOUNTED                               | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载时发送此公共事件。     |
+| COMMON_EVENT_DISK_BAD_REMOVAL                                | usual.event.data.DISK_BAD_REMOVAL                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
+| COMMON_EVENT_DISK_UNMOUNTABLE                                | usual.event.data.DISK_UNMOUNTABLE                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为插卡情况下无法挂载时发送此公共事件。     |
+| COMMON_EVENT_DISK_EJECT                                      | usual.event.data.DISK_EJECT                                 | ohos.permission.STORAGE_MANAGER | 用户已表示希望删除外部存储介质时发送此公共事件。       |
+| COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>                                  | usual.event.data.VOLUME_REMOVED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为移除时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>                                | usual.event.data.VOLUME_UNMOUNTED                           | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为卸载时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>                                  | usual.event.data.VOLUME_MOUNTED                             | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载时发送此公共事件。     |
+| COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>                              | usual.event.data.VOLUME_BAD_REMOVAL                         | ohos.permission.STORAGE_MANAGER | 外部存储设备状态变更为挂载状态下移除时发送此公共事件。       |
+| COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>                                    | usual.event.data.VOLUME_EJECT                               | ohos.permission.STORAGE_MANAGER | 用户已表示希望删除外部存储介质时发送此公共事件。       |
 | COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED                        | usual.event.data.VISIBLE_ACCOUNTS_UPDATED                   | ohos.permission.GET_APP_ACCOUNTS                             | 表示帐户可见更改的公共事件的动作。        |
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
@@ -174,6 +170,7 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
+| COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 指示快速修复应用的动作。      |
 
 
 ## CommonEvent.publish

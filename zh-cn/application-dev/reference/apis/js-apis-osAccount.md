@@ -1,4 +1,4 @@
-#    系统帐号管理
+# 系统帐号管理
 
 本模块提供管理系统帐号的一些基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能，提供系统帐号数据落盘的能力。
 
@@ -21,13 +21,14 @@ getAccountManager(): AccountManager
 **系统能力：** SystemCapability.Account.OsAccount
 
 **返回值：**
+
 | 类型                              | 说明                     |
 | --------------------------------- | ------------------------ |
 | [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
 
-**示例：**
+**示例：** 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   ```
 
 ## OsAccountType
@@ -65,12 +66,12 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | localId  | number                    | 是   | 要激活的系统帐号ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
 
-**示例：**激活ID为100的系统帐号
+**示例：** 激活ID为100的系统帐号
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.activateOsAccount(localId, (err)=>{
-    console.log("activateOsAccount err:" + JSON.stringify(err));
+    console.log('activateOsAccount err:' + JSON.stringify(err));
   });
   ```
 
@@ -98,14 +99,14 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**激活ID为100的系统帐号
+**示例：** 激活ID为100的系统帐号
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.activateOsAccount(localId).then(() => {
-    console.log("activateOsAccount success");
+    console.log('activateOsAccount success');
   }).catch((err) => {
-    console.log("activateOsAccount err:" + JSON.stringify(err));
+    console.log('activateOsAccount err:' + JSON.stringify(err));
   });
   ```
 
@@ -123,12 +124,12 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | --------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，支持多系统帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
-    console.log("isMultiOsAccountEnable err: " + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable err: ' + JSON.stringify(err));
     console.log('isMultiOsAccountEnable isEnabled: ' + isEnabled);
   });
   ```
@@ -147,14 +148,14 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，支持多系统帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log("isMultiOsAccountEnable err: "  + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable err: '  + JSON.stringify(err));
   });
   ```
 
@@ -175,14 +176,14 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 | localId  | number                       | 是   | 系统帐号ID。                                      |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，处于激活状态则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var osLocalId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId, (err, isActive)=>{
-    console.log("isOsAccountActived err:" + JSON.stringify(err));
-    console.log("isOsAccountActived isActive:" + isActive);
+    console.log('isOsAccountActived err:' + JSON.stringify(err));
+    console.log('isOsAccountActived isActive:' + isActive);
   });
   ```
 
@@ -208,15 +209,15 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，处于激活状态则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var osLocalId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId).then((isActive) => {
     console.log('isOsAccountActived, isActive: ' + isActive);
   }).catch((err) => {
-    console.log("isOsAccountActived err: "  + JSON.stringify(err));
+    console.log('isOsAccountActived err: '  + JSON.stringify(err));
   });
   ```
 
@@ -238,14 +239,14 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 | constraint | string                       | 是   | 指定的[约束](#系统帐号约束列表)名称。             |
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi", (err, isConstraintEnabled)=>{
-    console.log("isOsAccountConstraintEnable err:" + JSON.stringify(err));
-    console.log("isOsAccountConstraintEnable isConstraintEnabled:" + isConstraintEnabled);
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.isOsAccountConstraintEnable(localId, 'constraint.wifi', (err, isConstraintEnabled)=>{
+    console.log('isOsAccountConstraintEnable err:' + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable isConstraintEnabled:' + isConstraintEnabled);
   });
   ```
 
@@ -272,15 +273,15 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi").then((isConstraintEnabled) => {
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.isOsAccountConstraintEnable(localId, 'constraint.wifi').then((isConstraintEnabled) => {
     console.log('isOsAccountConstraintEnable, isConstraintEnabled: ' + isConstraintEnabled);
   }).catch((err) => {
-    console.log("isOsAccountConstraintEnable err: "  + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable err: '  + JSON.stringify(err));
   });
   ```
 
@@ -298,12 +299,12 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ----------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，是测试帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTest) => {
-    console.log("isTestOsAccount err: " + JSON.stringify(err));
+    console.log('isTestOsAccount err: ' + JSON.stringify(err));
     console.log('isTestOsAccount isTest: ' + isTest);
   });
   ```
@@ -322,14 +323,14 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，是测试帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTest) => {
     console.log('isTestOsAccount, isTest: ' + isTest);
   }).catch((err) => {
-    console.log("isTestOsAccount err: "  + JSON.stringify(err));
+    console.log('isTestOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -347,12 +348,12 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
-    console.log("isOsAccountVerified err: " + JSON.stringify(err));
+    console.log('isOsAccountVerified err: ' + JSON.stringify(err));
     console.log('isOsAccountVerified isVerified: ' + isVerified);
   });
   ```
@@ -374,12 +375,12 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 | localId  | number                       | 否   | 指定的系统帐号ID。                          |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
-    console.log("isOsAccountVerified err: " + JSON.stringify(err));
+    console.log('isOsAccountVerified err: ' + JSON.stringify(err));
     console.log('isOsAccountVerified isVerified: ' + isVerified);
   });
   ```
@@ -406,14 +407,14 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified) => {
     console.log('isOsAccountVerified, isVerified: ' + isVerified);
   }).catch((err) => {
-    console.log("isOsAccountVerified err: "  + JSON.stringify(err));
+    console.log('isOsAccountVerified err: '  + JSON.stringify(err));
   });
   ```
 
@@ -436,13 +437,13 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | localId  | number                    | 是   | 要删除的系统帐号ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
     accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
-      console.log("removeOsAccount err:" + JSON.stringify(err));
+      console.log('removeOsAccount err:' + JSON.stringify(err));
     });
   });
   ```
@@ -471,15 +472,15 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
       console.log('removeOsAccount Success');
     }).catch(() => {
-      console.log("removeOsAccount err: "  + JSON.stringify(err));
+      console.log('removeOsAccount err: '  + JSON.stringify(err));
     });
   });
   ```
@@ -505,13 +506,13 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | enable      | boolean                   | 是   | 设置(true)/删除(false)                       |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调结果。                                   |
 
-**示例：**给ID为100的系统帐号设置禁止使用wifi的约束
+**示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.setOsAccountConstraints(localId, ["constraint.wifi"], true, (err)=>{
-    console.log("setOsAccountConstraints err:" + JSON.stringify(err));
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.setOsAccountConstraints(localId, ['constraint.wifi'], true, (err)=>{
+    console.log('setOsAccountConstraints err:' + JSON.stringify(err));
   });
   ```
 
@@ -541,15 +542,15 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**删除ID为100的系统帐号的禁止使用wifi的约束
+**示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.setOsAccountConstraints(localId, ["constraint.location.set"], false).then(() => {
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
     console.log('setOsAccountConstraints Success');
   }).catch((err) => {
-    console.log("setOsAccountConstraints err: "  + JSON.stringify(err));
+    console.log('setOsAccountConstraints err: '  + JSON.stringify(err));
   });
   ```
 
@@ -573,14 +574,14 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 | localName | string                    | 是   | 帐号名。     |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
 
-**示例：**将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var newName = "demoName";
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let newName = 'demoName';
   accountManager.setOsAccountName(localId, newName, (err)=>{
-    console.debug("setOsAccountName err:" + JSON.stringify(err));
+    console.debug('setOsAccountName err:' + JSON.stringify(err));
   });
   ```
 
@@ -609,16 +610,16 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var nameLimit = "demoName";
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let nameLimit = 'demoName';
   accountManager.setOsAccountName(localId, nameLimit).then(() => {
     console.log('setOsAccountName Success');
   }).catch((err) => {
-    console.log("setOsAccountName err: "  + JSON.stringify(err));
+    console.log('setOsAccountName err: '  + JSON.stringify(err));
   });
   ```
 
@@ -638,13 +639,13 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是已创建的系统帐号的数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, accountCnt)=>{
-    console.log("obtains the number of all os accounts created err:" + JSON.stringify(err));
-    console.log("obtains the number of all os accounts created accountCnt:" + accountCnt);
+    console.log('obtains the number of all os accounts created err:' + JSON.stringify(err));
+    console.log('obtains the number of all os accounts created accountCnt:' + accountCnt);
   });
   ```
 
@@ -664,14 +665,14 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的系统帐号的数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((accountCnt) => {
     console.log('getCreatedOsAccountsCount, accountCnt: ' + accountCnt);
   }).catch((err) => {
-    console.log("getCreatedOsAccountsCount err: "  + JSON.stringify(err));
+    console.log('getCreatedOsAccountsCount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -689,12 +690,12 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, accountID) => {
-    console.log("getOsAccountLocalIdFromProcess err: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromProcess accountID: ' + accountID);
   });
   ```
@@ -713,14 +714,14 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((accountID) => {
     console.log('getOsAccountLocalIdFromProcess, accountID: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromProcess err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess err: '  + JSON.stringify(err));
   });
   ```
 
@@ -739,13 +740,13 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 | uid      | number                      | 是   | 进程uid。                                     |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是uid所属的系统帐号的帐号ID。 |
 
-**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
+**示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, accountID) => {
-    console.log("getOsAccountLocalIdFromUid err: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid err: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromUid: ' + accountID);
   });
   ```
@@ -770,15 +771,15 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是uid所属的系统帐号的帐号ID。 |
 
-**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
+**示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((accountID) => {
     console.log('getOsAccountLocalIdFromUid: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromUid err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid err: '  + JSON.stringify(err));
   });
   ```
 
@@ -799,13 +800,13 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。                                 |
 | callback   | AsyncCallback&lt;number&gt;             | 是   | 回调结果，返回的是和域帐号关联的系统帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  const accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, accountID) => {
-    console.log("getOsAccountLocalIdFromDomain: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromDomain: ' + accountID);
   });
   ```
@@ -832,15 +833,15 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是和域帐号关联的系统帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((accountID) => {
     console.log('getOsAccountLocalIdFromDomain: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromDomain err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain err: '  + JSON.stringify(err));
   });
   ```
 
@@ -860,13 +861,13 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是允许创建的系统帐号的最大数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber((err, maxCnt)=>{
-    console.log("queryMaxOsAccountNumber err:" + JSON.stringify(err));
-    console.log("queryMaxOsAccountNumber maxCnt:" + maxCnt);
+    console.log('queryMaxOsAccountNumber err:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber maxCnt:' + maxCnt);
   });
   ```
 
@@ -886,14 +887,14 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是允许创建的系统帐号的最大数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
     console.log('queryMaxOsAccountNumber, maxCnt: ' + maxCnt);
   }).catch((err) => {
-    console.log("queryMaxOsAccountNumber err: "  + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber err: '  + JSON.stringify(err));
   });
   ```
 
@@ -914,14 +915,14 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 | localId  | number                                   | 是   | 系统帐号ID。                                                 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
 
-**示例：**获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统帐号的全部约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
-    console.log("getOsAccountAllConstraints err:" + JSON.stringify(err));
-    console.log("getOsAccountAllConstraints:" + JSON.stringify(constraints));
+    console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
   });
   ```
 
@@ -947,15 +948,15 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 | :--------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
 
-**示例：**获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统帐号的全部约束
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
-    console.log("getOsAccountAllConstraints, constraints: " + constraints);
+    console.log('getOsAccountAllConstraints, constraints: ' + constraints);
   }).catch((err) => {
-    console.log("getOsAccountAllConstraints err: "  + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints err: '  + JSON.stringify(err));
   });
   ```
 
@@ -977,13 +978,13 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | 是   | 回调结果，返回的是已创建的所有系统帐号的信息列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts((err, accountArr)=>{
-    console.log("queryAllCreatedOsAccounts err:" + JSON.stringify(err));
-    console.log("queryAllCreatedOsAccounts accountArr:" + JSON.stringify(accountArr));
+    console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
+    console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
   });
   ```
 
@@ -1005,14 +1006,14 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 | :---------------------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的所有系统帐号的信息列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
     console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
   }).catch((err) => {
-    console.log("queryAllCreatedOsAccounts err: "  + JSON.stringify(err));
+    console.log('queryAllCreatedOsAccounts err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1030,15 +1031,15 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err, idArray)=>{
-    console.log("queryActivatedOsAccountIds err:" + JSON.stringify(err));
-    console.log("queryActivatedOsAccountIds idArray length:" + idArray.length);
-    for(var i=0;i<idArray.length;i++) {
-      console.info("activated os account id: " + idArray[i]);
+    console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
+    for(let i=0;i<idArray.length;i++) {
+      console.info('activated os account id: ' + idArray[i]);
     }
   });
   ```
@@ -1057,14 +1058,14 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 | :--------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err) => {
-    console.log("queryActivatedOsAccountIds err: "  + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1088,13 +1089,13 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | type      | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                     |
 | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    console.log("createOsAccount err:" + JSON.stringify(err));
-    console.log("createOsAccount osAccountInfo:" + JSON.stringify(osAccountInfo));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+    console.log('createOsAccount err:' + JSON.stringify(err));
+    console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
   });
   ```
 
@@ -1123,14 +1124,14 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
-    console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
+    console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("createOsAccount err: "  + JSON.stringify(err));
+    console.log('createOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1154,14 +1155,14 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                               |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
-    console.log("createOsAccountForDomain err:" + JSON.stringify(err));
-    console.log("createOsAccountForDomain osAccountInfo:" + JSON.stringify(osAccountInfo));
+    console.log('createOsAccountForDomain err:' + JSON.stringify(err));
+    console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
   });
   ```
 
@@ -1190,15 +1191,15 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
-    console.log("createOsAccountForDomain, account info: " + JSON.stringify(accountInfo));
+    console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("createOsAccountForDomain err: "  + JSON.stringify(err));
+    console.log('createOsAccountForDomain err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1218,13 +1219,13 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err, curAccountInfo)=>{
-    console.log("queryCurrentOsAccount err:" + JSON.stringify(err));
-    console.log("queryCurrentOsAccount curAccountInfo:" + JSON.stringify(curAccountInfo));
+    console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
+    console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
   });
   ```
 
@@ -1244,14 +1245,14 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
-    console.log("queryCurrentOsAccount, accountInfo: " + JSON.stringify(accountInfo));
+    console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("queryCurrentOsAccount err: "  + JSON.stringify(err));
+    console.log('queryCurrentOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1274,14 +1275,14 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 | localId  | number                                               | 是   | 要查询的系统帐号的ID                     |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是查到的系统帐号的信息。 |
 
-**示例：**查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统帐号信息
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.queryOsAccountById(localId, (err, accountInfo)=>{
-    console.log("queryOsAccountById err:" + JSON.stringify(err));
-    console.log("queryOsAccountById accountInfo:" + JSON.stringify(accountInfo));
+    console.log('queryOsAccountById err:' + JSON.stringify(err));
+    console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
   });
   ```
 
@@ -1309,15 +1310,15 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是查到的系统帐号的信息。 |
 
-**示例：**查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统帐号信息
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.queryOsAccountById(localId).then((accountInfo) => {
-    console.log("queryOsAccountById, accountInfo: " + JSON.stringify(accountInfo));
+    console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("queryOsAccountById err: "  + JSON.stringify(err));
+    console.log('queryOsAccountById err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1335,12 +1336,12 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号类型。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err, accountType) => {
-    console.log("getOsAccountTypeFromProcess err: " + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
   });
   ```
@@ -1359,14 +1360,14 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号类型。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err) => {
-    console.log("getOsAccountTypeFromProcess err: "  + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1386,12 +1387,12 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是分布式虚拟设备ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err, virtualID) => {
-    console.log("getDistributedVirtualDeviceId err: " + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
   });
   ```
@@ -1412,14 +1413,14 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是分布式虚拟设备ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err) => {
-    console.log("getDistributedVirtualDeviceId err: "  + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1442,14 +1443,14 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 | localId  | number                      | 是   | 系统帐号ID。                             |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是该系统帐号的头像信息。 |
 
-**示例：**获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统帐号的头像
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountProfilePhoto(localId, (err, photo)=>{
-    console.log("getOsAccountProfilePhoto err:" + JSON.stringify(err));
-    console.log("get photo:" + photo + " by localId: " + localId);
+    console.log('getOsAccountProfilePhoto err:' + JSON.stringify(err));
+    console.log('get photo:' + photo + ' by localId: ' + localId);
   });
   ```
 
@@ -1477,15 +1478,15 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的头像信息。 |
 
-**示例：**获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统帐号的头像
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
-    console.log("getOsAccountProfilePhoto: " + photo);
+    console.log('getOsAccountProfilePhoto: ' + photo);
   }).catch((err) => {
-    console.log("getOsAccountProfilePhoto err: "  + JSON.stringify(err));
+    console.log('getOsAccountProfilePhoto err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1509,17 +1510,17 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | photo    | string                    | 是   | 头像信息。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
 
-**示例：**给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统帐号设置头像
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
-  "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
-  "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
-  "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
+  'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
+  'q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo'+
+  '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   accountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
-    console.log("setOsAccountProfilePhoto err:" + JSON.stringify(err));
+    console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
   });
   ```
 
@@ -1548,19 +1549,19 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统帐号设置头像
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
-  "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
-  "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
-  "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
+  'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
+  'q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo'+
+  '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
-    console.log("setOsAccountProfilePhoto success");
+    console.log('setOsAccountProfilePhoto success');
   }).catch((err) => {
-    console.log("setOsAccountProfilePhoto err: "  + JSON.stringify(err));
+    console.log('setOsAccountProfilePhoto err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1579,14 +1580,14 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 | serialNumber | number                      | 是   | 帐号SN码。                                       |
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与SN码关联的系统帐号的帐号ID。 |
 
-**示例：**查询与SN码12345关联的系统帐号的ID
+**示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var serialNumber = 12345;
+  let accountManager = account_osAccount.getAccountManager();
+  let serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
-    console.log("ger localId err:" + JSON.stringify(err));
-    console.log("get localId:" + localId + " by serialNumber: " + serialNumber);
+    console.log('ger localId err:' + JSON.stringify(err));
+    console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
   });
   ```
 
@@ -1610,15 +1611,15 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与SN码关联的系统帐号的帐号ID。 |
 
-**示例：**查询与SN码12345关联的系统帐号的ID
+**示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var serialNumber = 12345;
+  let accountManager = account_osAccount.getAccountManager();
+  let serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
-    console.log("getOsAccountLocalIdBySerialNumber localId: " + localId);
+    console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdBySerialNumber err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1637,14 +1638,14 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 | localId  | number                      | 是   | 系统帐号ID。                               |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与该系统帐号关联的SN码。 |
 
-**示例：**获取ID为100的系统帐号关联的SN码
+**示例：** 获取ID为100的系统帐号关联的SN码
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
-    console.log("ger serialNumber err:" + JSON.stringify(err));
-    console.log("get serialNumber:" + serialNumber + " by localId: " + localId);
+    console.log('ger serialNumber err:' + JSON.stringify(err));
+    console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
   });
   ```
 
@@ -1668,15 +1669,15 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与该系统帐号关联的SN码。 |
 
-**示例：**获取ID为100的系统帐号关联的SN码
+**示例：** 获取ID为100的系统帐号关联的SN码
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
-    console.log("getSerialNumberByOsAccountLocalId serialNumber: " + serialNumber);
+    console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
   }).catch((err) => {
-    console.log("getSerialNumberByOsAccountLocalId err: "  + JSON.stringify(err));
+    console.log('getSerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1700,14 +1701,14 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
 | callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。   |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId){
-    console.log("receive localId:" + receiveLocalId);
+    console.log('receive localId:' + receiveLocalId);
   }
-  accountManager.on("activating", "osAccountOnOffNameA", onCallback);
+  accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   ```
 
 ### off
@@ -1730,14 +1731,14 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
 | callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   function offCallback(){
-    console.log("off enter")
+    console.log('off enter')
   }
-  accountManager.off("activating", "osAccountOnOffNameA", offCallback);
+  accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   ```
 
 ### getBundleIdFromUid<sup>9+</sup>
@@ -1757,14 +1758,14 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 | uid     | number | 是   |  进程uid。 |
 | callback | AsyncCallback&lt;number&gt;     | 是   | 回调结果，返回的是与uid对应的bundleId。                      |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var testUid = 1000000;
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid = 1000000;
   accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
-    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleId));
+    console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
+    console.info('getBundleIdFromUid bundleId:' + JSON.stringify(bundleId));
   });
   ```
 ### getBundleIdFromUid<sup>9+</sup>
@@ -1789,15 +1790,15 @@ getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与uid对应的bundleId。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var testUid = 1000000;
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid = 1000000;
   accountManager.getBundleIdFromUid(testUid).then((result) => {
-    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(result));
+    console.info('getBundleIdFromUid bundleId:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
+    console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
   });
   ```
 
@@ -1819,13 +1820,13 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt;     | 是   | 回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。                      |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMainOsAccount((err,result)=>{
-    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
-    console.info("isMainOsAccount result:" + JSON.stringify(result));
+    console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
+    console.info('isMainOsAccount result:' + JSON.stringify(result));
   });
   ```
 ### isMainOsAccount<sup>9+</sup>
@@ -1846,14 +1847,14 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMainOsAccount().then((result) => {
-    console.info("isMainOsAccount result:" + JSON.stringify(result));
+    console.info('isMainOsAccount result:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
+    console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
   });
   ```
 ### queryOsAccountConstraintSourceTypes<sup>9+</sup>
@@ -1876,13 +1877,13 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callbac
 | constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。                      |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
-    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
+    console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
+    console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
   });
   ```
 
@@ -1911,14 +1912,14 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").then((result) => {
-    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(result));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
+    console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
+    console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
   });
   ```
 
@@ -1938,7 +1939,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   ```
@@ -1960,11 +1961,11 @@ getVersion(): number;
 | :----- | :----------- |
 | number | 返回版本信息。|
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let version = userAuth.getVersion();
-  console.log("getVersion version = " + version);
+  console.log('getVersion version = ' + version);
   ```
 
 ### getAvailableStatus<sup>8+</sup>
@@ -1992,13 +1993,13 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 | :----- | :---------------------------------------- |
 | number | 返回验证[结果](#resultcode8)。 | 
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let authType = account_osAccount.AuthType.PIN;
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   let status = userAuth.getAvailableStatus(authType, authTrustLevel);
-  console.log("getAvailableStatus status = " + status);
+  console.log('getAvailableStatus status = ' + status);
   ```
 
 ### getProperty<sup>8+</sup>
@@ -2020,7 +2021,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 | request  | [GetPropertyRequest](#getpropertyrequest8)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
 | callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调结果，返回的是调用者属性。        |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let keys = [
@@ -2033,8 +2034,8 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
     keys: keys
   };
   userAuth.getProperty(request, (err, result) => {
-    console.log("getProperty err = " + JSON.stringify(err));
-    console.log("getProperty result = " + JSON.stringify(result));
+    console.log('getProperty err = ' + JSON.stringify(err));
+    console.log('getProperty result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2062,7 +2063,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
 | Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let keys = [
@@ -2075,9 +2076,9 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
     keys: keys
   };
   userAuth.getProperty(request).then((result) => {
-    console.log("getProperty result = " + JSON.stringify(result));
+    console.log('getProperty result = ' + JSON.stringify(result));
   }).catch((err) => {
-    console.log("getProperty error = " + JSON.stringify(err));
+    console.log('getProperty error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2100,7 +2101,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
 | callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let request = {
@@ -2109,8 +2110,8 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
     setInfo: new Uint8Array([0])
   };
   userAuth.setProperty(request, (err, result) => {
-      console.log("setProperty error = " + JSON.stringify(err));
-      console.log("setProperty result = " + JSON.stringify(result));
+      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2138,7 +2139,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 | :-------------------- | :-------------------------------------------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let request = {
@@ -2147,9 +2148,9 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
     setInfo: new Uint8Array([0])
   };
   userAuth.setProperty(request).then((result) => {
-    console.log("setProperty result = " + JSON.stringify(result));
+    console.log('setProperty result = ' + JSON.stringify(result));
   }).catch((err) => {
-    console.log("setProperty error = " + JSON.stringify(err));
+    console.log('setProperty error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2181,7 +2182,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | :--------- | :----------------- |
 | Uint8Array | 返回取消的上下文ID。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let challenge = new Uint8Array([0]);
@@ -2189,8 +2190,8 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.auth(challenge, authType, authTrustLevel, {
     onResult: function(result,extraInfo){
-        console.log("auth result = " + result);
-        console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+        console.log('auth result = ' + result);
+        console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2224,7 +2225,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | :--------- | :----------------- |
 | Uint8Array | 返回取消的上下文ID。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let userID = 100;
@@ -2233,8 +2234,8 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.authUser(userID, challenge, authType, authTrustLevel, {
     onResult: function(result,extraInfo){
-        console.log("authUser result = " + result);
-        console.log("authUser extraInfo = " + JSON.stringify(extraInfo));
+        console.log('authUser result = ' + result);
+        console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2263,19 +2264,19 @@ cancelAuth(contextID: Uint8Array): number;
 | :----- | :-------------------------------------------------------- |
 | number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth = new account_osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
   let contextID = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result);
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result);
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   let result = userAuth.cancelAuth(contextID);
-  console.log("cancelAuth result = " + result);
+  console.log('cancelAuth result = ' + result);
   ```
 
 ## PINAuth<sup>8+</sup>
@@ -2294,7 +2295,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   ```
@@ -2323,16 +2324,16 @@ registerInputer(inputer: IInputer): boolean;
 | :------ | :-------------------------------------------- |
 | boolean | 返回布尔值，true表示注册成功，false表示注册失败。 |
 
-**示例：**
+**示例：** 
   ```js
   let pinAuth = new account_osAccount.PINAuth();
-  let password = new Uint8Array([0, 0, 0, 0, 0];
+  let password = new Uint8Array([0, 0, 0, 0, 0]);
   let result = pinAuth.registerInputer({
       onGetData: (pinSubType, callback) => {
         callback.onSetData(pinSubType, password);
       }
   });
-  console.log("registerInputer result = " + result);
+  console.log('registerInputer result = ' + result);
   ```
 
 ### unregisterInputer
@@ -2347,7 +2348,7 @@ unregisterInputer(): void;
 
 **需要权限：** ohos.permission.ACCESS_PIN_AUTH
 
-**示例：**
+**示例：** 
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
@@ -2369,7 +2370,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   ```
@@ -2392,12 +2393,12 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 | -------- | -------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback&lt;Uint8Array&gt;  | 是   | 回调结果，返回的是挑战值，非0即成功，为0则失败。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err, challenge) => {
-      console.log("openSession error = " + JSON.stringify(err));
-      console.log("openSession challenge = " + JSON.stringify(challenge));
+      console.log('openSession error = ' + JSON.stringify(err));
+      console.log('openSession challenge = ' + JSON.stringify(challenge));
   });
   ```
 
@@ -2419,13 +2420,13 @@ openSession(): Promise&lt;Uint8Array&gt;;
 | :------------------------ | :------------------------------------------------------- |
 | Promise&lt;Uint8Array&gt; | Promise实例，用于获取异步返回结果，返回的是挑战值，非0即成功，为0则失败。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession().then((challenge) => {
-      console.info("openSession challenge = " + JSON.stringify(challenge));
+      console.info('openSession challenge = ' + JSON.stringify(challenge));
   }).catch((err) => {
-      console.info("openSession error = " + JSON.stringify(err));
+      console.info('openSession error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2448,7 +2449,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | credentialInfo  | [CredentialInfo](#credentialinfo8)   | 是  | 指示凭据信息。                      |
 | callback        | [IIdmCallback](#iidmcallback8)       | 是  | 回调结果，返回的是结果和获取信息。  |
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
@@ -2466,8 +2467,8 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
   userIDM.openSession((err, challenge) => {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log("updateCredential result = " + result);
-        console.log("updateCredential extraInfo = " + extraInfo);
+        console.log('updateCredential result = ' + result);
+        console.log('updateCredential extraInfo = ' + extraInfo);
       }
     });
   });
@@ -2492,7 +2493,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | credentialInfo  | [CredentialInfo](#credentialinfo8)    | 是  | 指示凭据信息。                    |
 | callback        | [IIdmCallback](#iidmcallback8)        | 是  | 回调结果，返回的是结果和获取信息。  |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let userAuth = new account_osAccount.UserAuth();
@@ -2509,7 +2510,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
     }
   });
   userIDM.openSession((err, challenge) => {
-    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL_1, {
+    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL1, {
       onResult: (result, extraInfo) => {
         if (result != account_osAccount.ResultCode.SUCCESS) {
           return;
@@ -2517,8 +2518,8 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
         credentialInfo.token = extraInfo.token;
         userIDM.updateCredential(credentialInfo, {
           onResult: (result, extraInfo) => {
-              console.log("updateCredential result = " + result);
-              console.log("updateCredential extraInfo = " + extraInfo);
+              console.log('updateCredential result = ' + result);
+              console.log('updateCredential extraInfo = ' + extraInfo);
           }
         });
       }
@@ -2538,7 +2539,7 @@ closeSession(): void;
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
@@ -2568,11 +2569,12 @@ cancel(challenge: Uint8Array): number;
 | :----- | :-------------------------------------------------------- |
 | number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
-  let challenge = 1;
-  let cancelresult = userIDM.cancel(challenge);
+  let challenge = new Uint8Array([0]);
+  let result = userIDM.cancel(challenge);
+  console.log('cancel result: ' + result);
   ```
 
 ### delUser<sup>8+</sup>
@@ -2594,14 +2596,14 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | token    | Uint8Array                                 | 是  | 身份验证令牌。             |
 | callback | [IIdmCallback](#iidmcallback8) | 是  | 回调结果，返回的是删除结果。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let token = new Uint8Array([0]);
   userIDM.delUser(token, {
     onResult: (result, extraInfo) => {
-      console.log("delUser result = " + result);
-      console.log("delUser extraInfo = " + JSON.stringify(extraInfo));
+      console.log('delUser result = ' + result);
+      console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2626,15 +2628,15 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | token           | Uint8Array                                      | 是  | 身份验证令牌。              |
 | callback        | [IIdmCallback](#iidmcallback8)      | 是  | 回调结果，返回的是删除结果。 |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let credentialId = new Uint8Array([0]);
   let token = new Uint8Array([0]);
   userIDM.delCred(credentialId, token, {
     onResult: (result, extraInfo) => {
-        console.log("delCred result = " + result);
-        console.log("delCred extraInfo = " + JSON.stringify(extraInfo));
+        console.log('delCred result = ' + result);
+        console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2649,7 +2651,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2658,12 +2660,12 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo((err, result) => {
-    console.log("getAuthInfo err = " + JSON.stringify(err));
-    console.log("getAuthInfo result = " + JSON.stringify(result));
+    console.log('getAuthInfo err = ' + JSON.stringify(err));
+    console.log('getAuthInfo result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2677,7 +2679,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2686,12 +2688,12 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | authType | [AuthType](#authtype8) | 是   | 认证类型。                                          |
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN, (err, result) => {
-    console.log("getAuthInfo err = " + JSON.stringify(err));
-    console.log("getAuthInfo result = " + JSON.stringify(result));
+    console.log('getAuthInfo err = ' + JSON.stringify(err));
+    console.log('getAuthInfo result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2705,7 +2707,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_IDM
+**需要权限：** ohos.permission.USE_USER_IDM
 
 **参数：**
 
@@ -2719,13 +2721,13 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | :------------------------------------------- | :------------------------------------------------------------------------ |
 | Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result) => {
-    console.log("getAuthInfo result = " + JSON.stringify(result))
+    console.log('getAuthInfo result = ' + JSON.stringify(result))
   }).catch((err) => {
-    console.log("getAuthInfo error = " + JSON.stringify(err));
+    console.log('getAuthInfo error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2752,7 +2754,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 | pinSubType | [AuthSubType](#authsubtype8) | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
@@ -2789,7 +2791,7 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 | ---------- | --------------------------------------- | ---- | --------------- |
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
@@ -2804,7 +2806,7 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
   };
   let pinAuth = new account_osAccount.PINAuth();
   let result = pinAuth.registerInputer(inputer);
-  console.log("registerInputer result: " + result);
+  console.log('registerInputer result: ' + result);
   ```
 
 ## IUserAuthCallback<sup>8+</sup>
@@ -2830,12 +2832,12 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | result    | number                                   | 是   | 表示身份认证结果代码。|
 | extraInfo | [AuthResult](#authresult8)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
 
-**示例：**
+**示例：** 
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result);
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result);
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
   ```
@@ -2858,16 +2860,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
 | extraInfo | any     | 是   | 保留参数。                     |
 
-**示例：**
+**示例：** 
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result)
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result)
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module, acquire, extraInfo) => {
-      console.log("auth module = " + module);
-      console.log("auth acquire = " + acquire);
+      console.log('auth module = ' + module);
+      console.log('auth acquire = ' + acquire);
       console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -2896,11 +2898,11 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
 | extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
 
-**示例：**
+**示例：** 
   ```js
-  var idmCallback = {
+  let idmCallback = {
     onResult: (result, extraInfo) => {
-      console.log("callback result = " + result)
+      console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -2924,16 +2926,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
 | extraInfo | any     | 是   | 保留参数。                     |
 
-**示例：**
+**示例：** 
   ```js
   let idmCallback = {
     onResult: (result, extraInfo) => {
-      console.log("callback result = " + result)
-      console.log("callback onResult = " + JSON.stringify(extraInfo));
+      console.log('callback result = ' + result)
+      console.log('callback onResult = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module, acquire, extraInfo) => {
-      console.log("callback module = " + module);
-      console.log("callback acquire = " + acquire);
+      console.log('callback module = ' + module);
+      console.log('callback acquire = ' + acquire);
       console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -3162,7 +3164,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面未朝向设备。                         |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | 表示未检测到人脸。                         |
 
-## ingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>8+</sup>
 
 枚举，指示指纹身份验证过程中提示代码。
 
@@ -3216,8 +3218,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 约束                                  | 说明                           |
 | ------------------------------------- | ------------------------------ |
-| constraint.wifi                       | 禁止使用wifi                   |
-| constraint.wifi.set                   | 禁止配置wifi                   |
+| constraint.wifi                       | 禁止使用Wi-Fi                  |
+| constraint.wifi.set                   | 禁止配置Wi-Fi                  |
 | constraint.locale.set                 | 禁止配置设备语言               |
 | constraint.app.accounts               | 禁止添加和删除应用帐号         |
 | constraint.apps.install               | 禁止安装应用                   |

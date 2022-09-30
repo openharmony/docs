@@ -1,14 +1,11 @@
 # 按键事件
 
-按键事件指组件与键盘、遥控器等按键设备交互时触发的事件。
+按键事件指组件与键盘、遥控器等按键设备交互时触发的事件，适用于所有可交互组件（默认可获焦），例如Button。对于Text，Image等不可获焦组件，可以设置focusable属性为true后使用按键事件。
 
 >  **说明：**
+>
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-## 权限列表
-
-无
 
 
 ## 事件
@@ -20,22 +17,16 @@
 
 ## KeyEvent对象说明
 
-- 属性
-  | 属性名称                                  | 类型                          | 描述                         |
-  | ------------------------------------- | --------------------------- | -------------------------- |
-  | type                                  | [KeyType](ts-appendix-enums.md#keytype)     | 按键的类型。                     |
-  | [keyCode](../apis/js-apis-keycode.md) | number                      | 按键的键码。                     |
-  | keyText                               | string                      | 按键的键值。                     |
-  | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
-  | deviceId                              | number                      | 触发当前按键的输入设备ID。             |
-  | metaKey                               | number                      | 按键发生时元键的状态，1表示按压态，0表示未按压态。 |
-  | timestamp                             | number                      | 按键发生时的时间戳。                 |
-
-
-- 接口
-  | 接口名称                         | 功能描述      |
-  | ---------------------------- | --------- |
-  | stopPropagation():&nbsp;void | 阻塞事件冒泡传递。 |
+| 名称                                    | 类型                                       | 描述                         |
+| ------------------------------------- | ---------------------------------------- | -------------------------- |
+| type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |
+| [keyCode](../apis/js-apis-keycode.md) | number                                   | 按键的键码。                     |
+| keyText                               | string                                   | 按键的键值。                     |
+| keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
+| deviceId                              | number                                   | 触发当前按键的输入设备ID。             |
+| metaKey                               | number                                   | 按键发生时元键的状态，1表示按压态，0表示未按压态。 |
+| timestamp                             | number                                   | 按键发生时的时间戳。                 |
+| stopPropagation                       | () => void                               | 阻塞事件冒泡传递。                  |
 
 
 ## 示例

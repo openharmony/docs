@@ -16,4 +16,4 @@ wifi init success!
 
 ## Next
 
-Congratulations! You have finished all steps! Proceed to [develop a sample WLAN product](https://gitee.com/openharmony/docs/blob/master/en/device-dev/guide/device-wlan.md) to better familiarize yourself with OpenHarmony development.
+Congratulations! You have finished all steps! Proceed to [develop a sample WLAN product](../guide/device-wlan-led-control.md) to better familiarize yourself with OpenHarmony development.

@@ -163,7 +163,7 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 | huksOptions       | HuksOptions | 是   | 用于存放生成key所需TAG。 |
 | encryptOptions    | HuksOptions | 是   | 用于存放导入key所需TAG。 |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -171,6 +171,7 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 /* 以生成RSA512密钥为例 */
 var srcKeyAlias = 'hukRsaKeyAlias';
 var srcKeyAliasSecond = 'huksRsaKeyAliasSecond';
+var exportKey;
 
 async function testImportExport() {
     /* 集成生成密钥参数集 */
@@ -293,7 +294,7 @@ AES128, AES192, AES256, RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, Hmac
 | genWrapOptions | HuksOptions | 是   | 用于存放生成加密协商key所需TAG。 |
 | importOptions  | HuksOptions | 是   | 用于存放导入加密key所需TAG。     |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。 
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。 
 
 **示例：**
 
@@ -543,7 +544,7 @@ function huksImportWrappedKey() {
 | encryptOptions | HuksOptions | 是   | 用于存放加密key所需TAG。 |
 | decryptOptions | HuksOptions | 是   | 用于存放解密key所需TAG。 |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。 
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。 
 
 **示例1：**
 
@@ -945,7 +946,7 @@ Update过程只将inData发送到Core中记录在ctx中，不进行Hash计算，
 | rsaSignOptionsSecond | HuksOptions | 是   | 用于存放签名key所需TAG。 |
 | rsaVerifyOptions     | HuksOptions | 是   | 用于存放验签key所需TAG。 |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -1175,7 +1176,7 @@ HksFinish对paramSet中参数的要求：
 | finishOptionsFrist  | HuksOptions | 是   | 用于存放协商key所需TAG。               |
 | finishOptionsSecond | HuksOptions | 是   | 用于存放协商key所需TAG，用于结果对比。 |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -1394,7 +1395,7 @@ HksFinish对paramSet中参数的要求：
 
 > **说明**
 >
-> HUKS_ALG_AES的SIZE需要满足：协商后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
+> HUKS_ALG_AES的SIZE需要满足：派生后的密钥长度（转换成bit）>=选择的HUKS_TAG_KEY_SIZE
 >
 > 存储的 keyAlias 密钥别名最大为64字节
 
@@ -1406,7 +1407,7 @@ HksFinish对paramSet中参数的要求：
 | huksOptions   | HuksOptions | 是   | 生成密钥参数集。 |
 | finishOptions | HuksOptions | 是   | 派生密钥参数集。 |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -1425,6 +1426,7 @@ function hkdfStringToUint8Array(str) {
 
 var deriveHkdfInData = "deriveHkdfTestIndata";
 var srcKeyAlias = "deriveHkdfKeyAlias";
+var handle;
 var HuksKeyDeriveKeySize = 32;
 
 async function testDerive() {
@@ -1455,7 +1457,7 @@ async function testDerive() {
     await huks.generateKey(srcKeyAlias, huksOptions).then((data) => {
         console.info('test generateKey data = ' + JSON.stringify(data));
     }).catch((err) => {
-        console.info(`test init err: " + ${JSON.stringify(data)}`);
+        console.info(`test init err: " + ${JSON.stringify(err)}`);
     });
 
     /* 调整init时的参数集 */
@@ -1497,7 +1499,7 @@ async function testDerive() {
     }
     finishProperties[6] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
-        value: stringToUint8Array(srcKeyAlias),
+        value: hkdfStringToUint8Array(srcKeyAlias),
     }
     finishProperties[7] = {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
@@ -1577,7 +1579,7 @@ HksInit对paramSet中参数的要求，其他三段式接口对paramSet无要求
 | srcKeyAlias | string      | 是   | 生成密钥别名。 |
 | huksOptions | HuksOptions | 是   | 密钥参数集。   |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -1691,7 +1693,7 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 | keyAlias | string      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
 | options  | HuksOptions | 是   | 用于获取证书时指定所需参数与数据。   |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 
@@ -1830,7 +1832,7 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 | keyAlias | string      | 是   | 密钥别名，存放待获取证书密钥的别名。 |
 | options  | HuksOptions | 是   | 用于获取证书时指定所需参数与数据。   |
 
-关于接口的具体信息，可在[API参考文档](..\reference\apis\js-apis-huks.md)中查看。
+关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
 
 **示例：**
 

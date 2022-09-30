@@ -18,7 +18,6 @@ This directory records the API changes in OpenHarmony 3.2 Beta1 over OpenHarmony
   - [Multimodal input subsystem](js-apidiff-multi-modal-input.md)
   - [Multimedia subsystem](js-apidiff-multimedia.md)
   - [Distributed scheduler subsystem](js-apidiff-resource-scheduler.md)
-  - [DSoftBus subsystem](js-apidiff-soft-bus.md)
   - [Test subsystem](js-apidiff-unitest.md)
   - [Web subsystem](js-apidiff-web.md)
   - [Window manager subsystem](js-apidiff-window.md)

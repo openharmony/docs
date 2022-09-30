@@ -33,3 +33,112 @@ In the  **target\_config.h**  file of the development board, configure the syste
 
   **Figure 2** Kernel startup process<br>
   ![](figures/kernel-startup-process.png "kernel-startup-process")
+## Directory Structure<a name="section161941989596"></a>
+
+The directory structure is as follows.
+
+```text
+/kernel/liteos_m
+├── arch                 # Code of the kernel instruction architecture layer
+│   ├── arm              # Code of the ARM32 architecture
+│   │   ├── arm9         # Code of the ARM9 architecture
+│   │   ├── cortex-m3    # Code of the cortex-m3 architecture
+│   │   ├── cortex-m33   # Code of the cortex-m33 architecture
+│   │   ├── cortex-m4    # Code of the cortex-m4 architecture
+│   │   ├── cortex-m7    # Code of the cortex-m7 architecture
+│   │   └── include      # Arm architecture public header file directory
+│   ├── csky             # Code of the csky architecture
+│   │   └── v2           # Code of the csky v2 architecture
+│   ├── include          # APIs exposed externally
+│   ├── risc-v           # Code of the risc-v architecture
+│   │   ├── nuclei       # Code of the nuclei system technology risc-v architecture
+│   │   └── riscv32      # Code of the risc-v architecture
+│   └── xtensa           # Code of the xtensa architecture
+│       └── lx6          # Code of the lx6 xtensa architecture
+├── components           # Optional components
+│   ├── backtrace        # Backtrace support
+│   ├── cppsupport       # C++ support
+│   ├── cpup             # CPU percent (CPUP)
+│   ├── dynlink          # Dynamic loading and linking
+│   ├── exchook          # Exception hooks
+│   ├── fs               # File systems
+│   ├── lmk              # Low memory killer functions
+│   ├── lms              # Lite memory sanitizer functions
+│   ├── net              # Networking functions
+│   ├── power            # Power management
+│   ├── shell            # Shell function
+│   ├── fs               # File systems
+│   └── trace            # Trace tool
+├── drivers              # driver Kconfig
+├── kal                  # Kernel abstraction layer
+│   ├── cmsis            # CMSIS API support
+│   └── posix            # POSIX API support
+├── kernel               # Minimum kernel function set
+│   ├── include          # APIs exposed externally
+│   └── src              # Source code of the minimum kernel function set
+├── testsuites           # Kernel testsuites
+├── tools                # Kernel tools
+├── utils                # Common directory
+```
+
+## Constraints<a name="section119744591305"></a>
+
+OpenHarmony LiteOS-M supports only C and C++.
+
+Applicable architecture: See the directory structure for the arch layer.
+
+As for dynamic loading module, the shared library to be loaded needs signature verification or source restriction to ensure security.
+
+## Usage<a name="section3732185231214"></a>
+
+The OpenHarmony LiteOS-M kernel build system is a modular build system based on Generate Ninja (GN) and Ninja. It supports module-based configuration, tailoring, and assembling, and helps you build custom products. This document describes how to build a LiteOS-M project based on GN and Ninja. For details about the methods such as GCC+gn, IAR, and Keil MDK, visit the community websites.
+
+### Setting Up the Environment
+
+Before setting up the environment for a development board, you must set up the basic system environment for OpenHarmony first. The basic system environment includes the OpenHarmony build environment and development environment. For details, see [Setting Up Development Environment](../quick-start/quickstart-lite-env-setup.md).
+
+### Obtaining the OpenHarmony Source Code
+
+For details about how to obtain the source code, see [Source Code Acquisition](../get-code/sourcecode-acquire.md). This document assumes that the clone directory is `~/openHarmony` after the complete OpenHarmony repository code is obtained.
+
+### Example projects
+
+Qemu simulator: `arm_mps2_an386、esp32、riscv32_virt、SmartL_E802`. For details about how to compile and run, see [qemu guide](https://gitee.com/openharmony/device_qemu).
+
+Bestechnic: `bes2600`. For details about how to compile and run, see [Bestechnic developer guide](https://gitee.com/openharmony/device_soc_bestechnic).
+
+### Community Porting Project Links
+
+The LiteOS-M kernel porting projects for specific development boards are provided by community developers. The following provides the links to these projects. If you have porting projects for more development boards, you can provide your links to share your projects.
+
+-   Cortex-M3:
+
+    - STM32F103 https://gitee.com/rtos_lover/stm32f103_simulator_keil
+
+        This repository provides the Keil project code for building the OpenHarmony LiteOS-M kernel based on the STM32F103 chip architecture. This code supports build in Keil MDK mode.
+
+-   Cortex-M4:
+
+    - STM32F429IGTb https://gitee.com/harylee/stm32f429ig_firechallenger
+
+        This repository provides the project code for porting the OpenHarmony LiteOS-M kernel to support the STM32F429IGTb development board. The code supports build in Ninja, GCC, and IAR modes.
+
+## Contribution<a name="section1371123476307"></a>
+
+[How to involve](../../contribute/contribution-process.md)
+
+[Commit message spec](https://gitee.com/openharmony/kernel_liteos_m/wikis/Commit%20message%E8%A7%84%E8%8C%83)
+
+[Liteos-M kernel coding style guide](https://gitee.com/openharmony/kernel_liteos_m/wikis/OpenHarmony%E8%BD%BB%E5%86%85%E6%A0%B8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83)
+
+How to contribute a chip based on Liteos-M kernel:
+
+[ Board-Level Directory Specifications](../porting/porting-chip-board-overview.md)
+
+[Mini System SoC Porting Guide](../porting/porting-minichip.md)
+
+## Repositories Involved<a name="section1371113476307"></a>
+
+[Kernel Subsystem](../../readme/kernel.md)
+
+[kernel\_liteos\_m](https://gitee.com/openharmony/kernel_liteos_m/blob/master/README.md)

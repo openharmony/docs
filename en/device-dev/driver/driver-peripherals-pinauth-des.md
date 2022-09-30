@@ -25,11 +25,11 @@ The identity authentication consists of User_auth and basic authentication servi
 
 - Executor role
 
-  - ​    Executor: independently completes the entire process of credential registration and identity authentication. The executor can collect, process, store, and compare data to complete the authentication.
+  - Executor: independently completes the entire process of credential registration and identity authentication. The executor can collect, process, store, and compare data to complete the authentication.
 
-  - ​    Collector: only collects data during user authentication. It needs to work with the authenticator to complete user authentication.
+  - Collector: only collects data during user authentication. It needs to work with the authenticator to complete user authentication.
 
-  - ​    Authenticator: only processes data, obtains the stored credential template, and compares it with the authentication information generated.
+  - Authenticator: only processes data, obtains the stored credential template, and compares it with the authentication information generated.
 
 - Executor type
 
@@ -56,7 +56,7 @@ The identity authentication consists of User_auth and basic authentication servi
 
 The Pin_auth driver provides basic PIN authentication capabilities for the upper-layer User_auth and Pin_auth service to ensure successful PIN authentication. You can develop drivers to call Hardware Device Interface (HDI) APIs based on the HDF and the chip you use.
 
-**Figure 2** Pin_auth service and pin_auth driver APIs
+**Figure 2** Pin_auth service and Pin_auth driver APIs
 
 ![image](figures/pin_auth_service_and_driver_interaction.png "interaction between the pin_auth service and driver")
 
@@ -93,24 +93,32 @@ The Pin_auth driver provides basic PIN authentication capabilities for the User_
 
 ### How to Develop
 
-The following uses the RK3568 platform as an example to demonstrate how to develop the Pin_auth driver. <br/>The directory structure is as follows:
+The following uses the RK3568 platform as an example to demonstrate how to develop the Pin_auth driver. 
 
-```
+The directory structure is as follows:
+
+```text
 // drivers/peripheral/pin_auth
 ├── BUILD.gn # Build script
 ├── bundle.json # Module description file
+├── test # Test cases
 └── hdi_service # Pin_auth driver implementation
     ├── BUILD.gn # Build script
-    ├── inc # Header files
-    └── src
-        ├── executor_impl.cpp # Implementation of authentication and enrollment APIs
-        ├── pin_auth_interface_driver.cpp # Pin_auth driver entry
-        └── pin_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
+    ├── adaptor # Implementation of related algorithms
+    ├── common # Implementation of common interfaces
+    ├── database # Database implementation
+    ├── main # Entry for implementing PIN-related functions
+    └── service # Entry for implementing the Pin_auth driver
+        ├── inc # Header files
+        └── src
+            ├── executor_impl.cpp # Implementation of authentication and enrollment APIs
+            ├── pin_auth_interface_driver.cpp # Pin_auth driver entry
+            └── pin_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
 ```
 
 The development procedure is as follows:
 
-1. Develop the Pin_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [pin_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_driver.cpp).
+1. Develop the Pin_auth driver based on the HDF. The **Bind()**, **Init()**, **Release()**, and **Dispatch()** functions are used. For details about the code, see [pin_auth_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_driver.cpp).
 
    ```c++
    // Create the PinAuthInterfaceService object by using the custom HdfPinAuthInterfaceHost object, which consists of the IoService object and HDI service.
@@ -212,7 +220,7 @@ The development procedure is as follows:
 
    
    
-1. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/pin_auth_interface_service.cpp).
+1. Obtain the executor list. For details about the code, see [pin_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/pin_auth_interface_service.cpp).
 
    ```c++
    // Executor implementation class
@@ -285,7 +293,7 @@ The development procedure is as follows:
    
    
    
-1. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/src/executor_impl.cpp).
+1. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/pin_auth/hdi_service/service/src/executor_impl.cpp).
 
    ```c++
    // Obtain executor information (example only).
@@ -334,8 +342,8 @@ The development procedure is as follows:
        }
    
        info.executorType = EXECUTOR_TYPE;
-       info.remainTimes = infoRet.remainTimes;
-       info.freezingTime = infoRet.freezingTime;
+       info.remainAttempts = infoRet.remainTimes;
+       info.lockoutDuration = infoRet.freezingTime;
    
        return HDF_SUCCESS;
    }
@@ -526,7 +534,8 @@ The development procedure is as follows:
 ### Verification
 Verify whether PIN authentication can be successfully performed on the RK3568 platform as follows:
 
-1. Set a PIN.<br/>
+1. Set a PIN.
+    
     Touch **Settings** > **Biometrics & passwords** > **Password**, and enter your password.
     
 2. Verify PIN authentication.

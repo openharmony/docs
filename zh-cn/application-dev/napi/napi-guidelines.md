@@ -17,12 +17,12 @@ js侧通过`import`引入native侧包含处理js逻辑的so，如：`import hell
 
 ### so命名规则
 
-* 每个模块对应一个so
-* 如模块名为`hello`，则so的名字为`libhello.so`，`napi_module`中`nm_modname`字段应为`hello`，大小写与模块名保持一致，应用使用时写作：`import hello from 'libhello.so'`
+* 每个模块对应一个so。
+* 如模块名为`hello`，则so的名字为`libhello.so`，`napi_module`中`nm_modname`字段应为`hello`，大小写与模块名保持一致，应用使用时写作：`import hello from 'libhello.so'`。
 
 ### js对象线程限制
 
-ark引擎会对js对象线程使用进行保护，不正确使用会引起应用crash。
+ark引擎会对js对象线程使用进行保护，使用不当会引起应用crash，因此需要遵循如下原则：
 
 * napi接口只能在js线程使用。
 * env与线程绑定，不能跨线程使用。native侧js对象只能在创建时的线程使用，即与线程所持有的env绑定。
@@ -90,7 +90,7 @@ export default storage;
 /***********************************************
  * Module export and register
  ***********************************************/
-static napi_value StorgeExport(napi_env env, napi_value exports)
+static napi_value StorageExport(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("get", JSStorageGet),
@@ -111,7 +111,7 @@ static napi_value StorgeExport(napi_env env, napi_value exports)
 static napi_module storage_module = {.nm_version = 1,
                                      .nm_flags = 0,
                                      .nm_filename = nullptr,
-                                     .nm_register_func = StorgeExport,
+                                     .nm_register_func = StorageExport,
                                      .nm_modname = "storage",
                                      .nm_priv = ((void*)0),
                                      .reserved = {0}};

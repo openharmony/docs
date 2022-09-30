@@ -1,21 +1,15 @@
 # GridItem
 
+The **\<GridItem>** component provides a single item in a grid.
 
-> **NOTE**<br>
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **&lt;GridItem&gt;** component provides a single item in a grid.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-This component can contain child components.
+Supported
 
 
 ## APIs
@@ -25,27 +19,27 @@ GridItem()
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| rowStart | number | - | Start row number of the component. |
-| rowEnd | number | - | End row number of the component. |
-| columnStart | number | - | Start column number of the component. |
-| columnEnd | number | - | End column number of the component. |
-| forceRebuild | boolean | false | Whether to re-create this node when the component is being built. |
-| selectable<sup>8+</sup> | boolean | true | Whether the current **&lt;GridItem&gt;** is selectable by the mouse.<br/>**NOTE**<br/>This attribute takes effect only when mouse frame selection is enabled for the parent **&lt;Grid&gt;** container. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| rowStart | number | Start row number of the component.|
+| rowEnd | number | End row number of the component.|
+| columnStart | number | Start column number of the component.|
+| columnEnd | number | End column number of the component.|
+| forceRebuild | boolean | Whether to re-create the component when it is being built.<br>Default value: **false**|
+| selectable<sup>8+</sup> | boolean | Whether the current grid item is selectable by the mouse.<br>> **NOTE**<br>> This attribute takes effect only when mouse frame selection is enabled for the parent **\<Grid>** container.<br>Default value: **true**|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onSelect(callback: (isSelected: boolean) =&gt; any)<sup>8+</sup> | Triggered when the selected state of the **&lt;GridItem&gt;** changes.<br/>**isSelected**: Returns **true** if the **&lt;GridItem&gt;** is selected by the mouse; returns **false** otherwise. |
+| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the grid item changes.<br>**isSelected**: Returns **true** if the grid item is selected by the mouse; returns **false** otherwise.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct GridItemExample {

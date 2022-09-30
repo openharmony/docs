@@ -13,6 +13,9 @@ LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合�
 
 **推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -92,7 +95,7 @@ add(obj: T): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = lightWeightSet.add("squirrel");
 ```
 
 
@@ -114,10 +117,10 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sfage");
+set.add("gull");
 let result = lightWeightSet.addAll(set);
 ```
 
@@ -146,10 +149,10 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let set = new LightWeightSet();
-set.add("sdfs");
+set.add("sparrow");
 let result = lightWeightSet.hasAll(set);
 ```
 
@@ -208,9 +211,9 @@ equal(obj: Object): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let obj = ["Ahfbrgrbgnutfodgorrogorgrogofdfdf", "sdfs"];
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["squirrel", "sparrow"];
 let result = lightWeightSet.equal(obj);
 ```
 
@@ -261,9 +264,9 @@ getIndexOf(key: T): number
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.getIndexOf("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.getIndexOf("sparrow");
 ```
 
 
@@ -291,9 +294,9 @@ remove(key: T): T
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
-let result = lightWeightSet.remove("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let result = lightWeightSet.remove("sparrow");
 ```
 
 
@@ -321,8 +324,8 @@ removeAt(index: number): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.removeAt(1);
 ```
 
@@ -351,8 +354,8 @@ getValueAt(index: number): T
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.getValueAt(1);
 ```
 
@@ -369,8 +372,8 @@ clear(): void
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 lightWeightSet.clear();
 ```
 
@@ -393,8 +396,8 @@ toString(): String
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toString();
 ```
 
@@ -417,8 +420,8 @@ toArray(): Array&lt;T&gt;
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let result = lightWeightSet.toArray();
 ```
 
@@ -441,8 +444,8 @@ values(): IterableIterator&lt;T&gt;
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.values();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -478,8 +481,8 @@ callbackfn的参数说明：
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("sdfs");
-lightWeightSet.add("dfsghsf");
+lightWeightSet.add("sparrow");
+lightWeightSet.add("gull");
 lightWeightSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -504,8 +507,8 @@ entries(): IterableIterator<[T, T]>
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 let iter = lightWeightSet.entries();
 let index = 0;
 while(index < lightWeightSet.length) {
@@ -533,8 +536,8 @@ while(index < lightWeightSet.length) {
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-lightWeightSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightSet.add("sdfs");
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
 
 // 使用方法一：
 for (let item of lightWeightSet) { 

@@ -26,9 +26,20 @@ Ability框架在API 8及更早版本使用FA模型。FA模型中Ability分为Pag
 应用独享独立进程，Ability独享独立线程，应用进程在Ability第一次启动时创建，并为启动的Ability创建线程，应用启动后再启动应用内其他Ability，会为每一个Ability创建相应的线程。每个Ability绑定一个独立的JSRuntime实例，因此Ability之间是隔离的。
 
 ![fa-threading-model](figures/fa-threading-model.png)
-## 相关实例
-针对Ability开发，有以下相关实例可供参考：
 
+## 应用包结构
+
+FA模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section4154183910141)。
+
+对FA模型的应用包结构的配置说明，请参考[应用包结构说明（FA模型）](../quick-start/package-structure.md)。
+
+
+
+## 相关实例
+
+针对FA模型下的Ability开发，有以下相关实例可供参考：
+
+- [`FaModel`：FA模型（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FaModel)
 - [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
 - [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
 - [`DistributeGraffiti`：分布式涂鸦（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/DistributedGraffiti)

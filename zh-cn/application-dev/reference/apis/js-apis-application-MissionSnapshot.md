@@ -14,7 +14,7 @@ MissionSnapshot模块提供设置与任务对应的任务快照的任务元素�
 ```js
 import ElementName from '@ohos.bundle';
 import image from '@ohos.multimedia.image';
-import missionManager from '@ohos.application.missionManager'
+import missionManager from '@ohos.application.missionManager';
 
   missionManager.getMissionInfos("", 10, (error, missions) => {
     console.log("getMissionInfos is called, error.code = " + error.code);

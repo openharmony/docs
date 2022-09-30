@@ -75,9 +75,9 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;[Display](#display)&gt; | 是 | 回调函数。返回当前默认的display对象。 |
 
 **示例：**
 
@@ -103,9 +103,9 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 
 **返回值：**
 
-  | 类型                               | 说明                                           |
-  | ---------------------------------- | ---------------------------------------------- |
-  | Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的display对象。 |
+| 类型                               | 说明                                           |
+| ---------------------------------- | ---------------------------------------------- |
+| Promise&lt;[Display](#display)&gt; | Promise对象。返回当前默认的display对象。 |
 
 **示例：**
 
@@ -150,9 +150,9 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 
 **参数：**
 
-  | 参数名   | 类型                                                 | 必填 | 说明                            |
-  | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的display对象。 |
+| 参数名   | 类型                                                 | 必填 | 说明                            |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------- |
+| callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是   | 回调函数。返回当前所有的display对象。 |
 
 **示例：**
 
@@ -176,9 +176,9 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 
 **返回值：**
 
-  | 类型                                            | 说明                                                    |
-  | ----------------------------------------------- | ------------------------------------------------------- |
-  | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
+| 类型                                            | 说明                                                    |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
 
 **示例：**
 
@@ -249,14 +249,14 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
 | callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
 
 ```js
 var callback = (data) => {
-    console.info('Listening enabled. Data: ' + JSON.stringify(data))
+    console.info('Listening enabled. Data: ' + JSON.stringify(data));
 }
 display.on("add", callback);
 ```
@@ -271,10 +271,10 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。<br/>- type为"remove"，表示移除显示设备事件。<br/>- type为"change"，表示改变显示设备事件。 |
-  | callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：PC上插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：PC上移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
+| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
 
 **示例：**
 
@@ -308,7 +308,7 @@ display.off("remove");
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
-获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用callback异步回调。
+获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用callback异步回调。建议应用布局规避该区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -330,7 +330,7 @@ displayClass.getCutoutInfo((err, data) => {
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 
-获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用Promise异步回调。
+获取挖孔屏、刘海屏、瀑布屏等不可用屏幕区域信息。使用Promise异步回调。建议应用布局规避该区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

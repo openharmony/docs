@@ -1,49 +1,26 @@
 # Text Style
 
-The text style attribute is used to set the style for text in a component.
 
-> **NOTE**
+The text style attributes are used to set the style for text in a component.
+
+>  **NOTE**
 >
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| fontColor | [ResourceColor](../../ui/ts-types.md) | - | Text color. |
-| fontSize | Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | - | Text size. If the value is of the number type, the unit fp is used. |
-| fontStyle | FontStyle | FontStyle.Normal | Font style of the text. |
-| fontWeight | number&nbsp;\|&nbsp;FontWeight&nbsp;\|&nbsp;string | FontWeight.FontWeightNormal | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>For common values of the **FontWeight** type, see **FontWeight** enums. |
-| fontFamily | string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md) | - | Font family of the text. Use commas (,) to separate multiple fonts. The priority the fonts is the sequence in which they are placed. An example value is **Arial, sans-serif**. |
-
-
-- FontStyle enums
-  | Name | Description |
-  | -------- | -------- |
-  | Normal | Standard font style. |
-  | Italic | Italic font style. |
-
-
-- FontWeight enums
-  | Name | Description |
-  | -------- | -------- |
-  | Lighter | The font weight is lighter. |
-  | Normal | The font weight is normal. |
-  | Regular | The font weight is regular. |
-  | Medium | The font weight is medium. |
-  | Bold | The font weight is bold. |
-  | Bolder | The font weight is bolder. |
+| Name        | Type                                     | Description                                   |
+| -----------| ---------------------------------------- | ------------------------------------ |
+| fontColor  | [ResourceColor](ts-types.md#resourcecolor)  | Font color.                                |
+| fontSize   | Length \| [Resource](ts-types.md#resource)  | Font size. If the value is of the number type, the unit fp is used.    |
+| fontStyle  | [FontStyle](ts-appendix-enums.md#fontstyle)  | Font style.<br>Default value: **FontStyle.Normal**        |
+| fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight. The string type supports only the string of the number type, for example, 400, "bold", "bolder", "lighter", "regular", and "medium", which correspond to the enumerated values in FontWeight.<br>Default value: **FontWeight.Normal** |
+| fontFamily | string \| [Resource](ts-types.md#resource)  | Font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

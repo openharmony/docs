@@ -38,11 +38,12 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 
 1. 获取设备列表。
+
    ```js
-   // 导入usb接口api包。
+   // 导入USB接口api包。
    import usb from '@ohos.usb';
    // 获取设备列表。
-   var deviceList = usb.getDevices();
+   let deviceList = usb.getDevices();
    /*
    deviceList结构示例
    [
@@ -85,20 +86,21 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
                    number: 1,
                    type: 3,
                    interfaceId: 0,
-                 },
-               ],
-             },
-           ],
-         },
-       ],
-     },
-   ],
+                 }
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   ]
    */
    ```
 
 2. 获取设备操作权限。
+
    ```js
-   var deviceName = deviceList[0].name;
+   let deviceName = deviceList[0].name;
    // 申请操作指定的device的操作权限。
    usb.requestRight(deviceName).then(hasRight => {
      console.info("usb device request right result: " + hasRight);
@@ -108,9 +110,10 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 3. 打开Device设备。
+
    ```js
    // 打开设备，获取数据传输通道。
-   var pipe = usb.connectDevice(deviceList[0]);
+   let pipe = usb.connectDevice(deviceList[0]);
    /*
     打开对应接口，在设备信息（deviceList）中选取对应的interface。
    interface1为设备配置中的一个接口。
@@ -119,6 +122,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 4. 数据传输。
+
    ```js
    /*
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
@@ -128,7 +132,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
-     var resultStr = this.ab2str(dataUint8Array); // uint8数据转string。
+     let resultStr = this.ab2str(dataUint8Array); // uint8数据转string。
      console.info("usb readData buffer : " + resultStr);
    } else {
      console.info("usb readData failed : " + dataLength);
@@ -149,11 +153,14 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    ```
 
 5. 释放接口，关闭设备。
+
    ```js
    usb.releaseInterface(pipe, interface1);
    usb.closePipe(pipe);
    ```
+
 ## 相关实例
+
 针对USB管理开发，有以下相关实例可供参考：
 
 - [`USBManager`：USB管理（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/USBManager)

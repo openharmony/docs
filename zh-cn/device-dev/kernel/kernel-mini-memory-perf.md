@@ -50,7 +50,7 @@ OpenHarmony LiteOS-A内核的Perf模块提供下面几种功能，接口详细�
    LOS_PerfNotifyHookReg(Example_PerfNotifyHook);
    ```
 
-4. 若perf采样的buffer涉及到cpu 跨cache，则用户可通过注册刷cache的钩子，进行cache同步。 示例如下：
+4. 若perf采样的buffer涉及到CPU跨cache，则用户可通过注册刷cache的钩子，进行cache同步。 示例如下：
      
    ```
    VOID Example_PerfFlushHook(VOID *addr, UINT32 size)

@@ -165,12 +165,12 @@ The HDMI module adaptation involves the following steps:
             platform :: host {
                  device_hdmi :: device {
                     device0 :: deviceNode {
-                        policy = 2;         // Publish services.
-                        priority = 20;     // Driver startup priority.
-                        permission = 0644; // Permission to create device nodes for the driver.
-                        serviceName = "HDF_PLATFORM_HDMI_0"; // (Mandatory) Unique name of the service published by the driver.
-                        moduleName = "hdmi_driver";         // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
-                        deviceMatchAttr = "adapter_hdmi_driver"; // (Mandatory) Controller private data, which must be same as that of the corresponding controller in hdmi_config.hcs.
+                        policy = 2;                               // Publish services.
+                        priority = 20;                            // Driver startup priority.
+                        permission = 0644;                        // Permission to create device nodes for the driver.
+                        serviceName = "HDF_PLATFORM_HDMI_0";      // (Mandatory) Unique name of the service published by the driver.
+                        moduleName = "hdmi_driver";               // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
+                        deviceMatchAttr = "adapter_hdmi_driver";  // (Mandatory) Controller private data, which must be same as that of the corresponding controller in hdmi_config.hcs.
                     }                                             // The specific controller information is in hdmi_config.hcs.
                  }
             }
@@ -183,12 +183,12 @@ The HDMI module adaptation involves the following steps:
          root {
              platform {
                 hdmi_config {
-                    template hdmi_controller {    // Template configuration. In the template, you can configure the common parameters shared by device nodes.
-                        match_attr = "";            // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
+                    template hdmi_controller {     // Template configuration. In the template, you can configure the common parameters shared by device nodes.
+                        match_attr = "";           // (Mandatory) The value must be the same as that of deviceMatchAttr in device_info.hcs.
                         index = 0;                 // (Mandatory) HDMI controller number.
-                        regBasePhy = 0x10100000; // (Mandatory) Physical base address of the register.
+                        regBasePhy = 0x10100000;   // (Mandatory) Physical base address of the register.
                         regSize = 0xd1;            // (Mandatory) Register bit width.
-                        irqNum = 100;            //(Mandatory) Interrupt request (IRQ) number.
+                        irqNum = 100;              //(Mandatory) Interrupt request (IRQ) number.
                         maxTmdsClock = 300;
                         videoTiming = 10;
                         quantization = 1;
@@ -241,7 +241,7 @@ The HDMI module adaptation involves the following steps:
         struct HdmiAdapterHost {
             struct HdmiCntlr *cntlr;        // (Mandatory) Control object at the core layer. The details are as follows:
             volatile unsigned char *regBase;// (Mandatory) Register base address.
-            uint32_t regBasePhy            // (Mandatory) Physical base address of the register.
+            uint32_t regBasePhy;            // (Mandatory) Physical base address of the register.
             uint32_t regSize;               // (Mandatory) Register bit width.
             uint32_t irqNum;                // (Mandatory) IRQ number.
         };
@@ -321,7 +321,7 @@ The HDMI module adaptation involves the following steps:
     
         **Return value**:
     
-        HDF_STATUS
+        **HDF_STATUS**
     
         The table below describes some status. For more information, see **HDF_STATUS** in the **/drivers/framework/include/utils/hdf_base.h** file.
     
@@ -356,17 +356,17 @@ The HDMI module adaptation involves the following steps:
                 HDF_LOGE("%s: malloc host failed!", __func__);
                 return HDF_ERR_MALLOC_FAIL;
             }
-            cntlr->priv = (void *)host;     // (Mandatory) Store host to the private data of cntlr.
-            cntlr->ops = &g_hdmiHostOps;     // (Mandatory) Connect to the HdmiCntlrOps instance.
-            cntlr->hdfDevObj = obj;          // (Mandatory) Prerequisites for conversion between HdfDeviceObject and HdmiCntlr.
-            obj->service = &cntlr->service; // (Mandatory) Prerequisites for conversion between HdfDeviceObject and HdmiCntlr.
+            cntlr->priv = (void *)host;              // (Mandatory) Store host to the private data of cntlr.
+            cntlr->ops = &g_hdmiHostOps;             // (Mandatory) Connect to the HdmiCntlrOps instance.
+            cntlr->hdfDevObj = obj;                  // (Mandatory) Prerequisites for conversion between HdfDeviceObject and HdmiCntlr.
+            obj->service = &cntlr->service;          // (Mandatory) Prerequisites for conversion between HdfDeviceObject and HdmiCntlr.
             ret = HdmiAdapterCntlrParse(cntlr, obj); // (Mandatory) Initialize cntlr. If the operation fails, execute goto __ERR.
             ... 
-            ret = HdmiAdapterHostParse(host, obj); // (Mandatory) Initialize the attributes of the host object. If the operation fails, execute goto__ERR.
+            ret = HdmiAdapterHostParse(host, obj);   // (Mandatory) Initialize the attributes of the host object. If the operation fails, execute goto__ERR.
             ...
             ret = HdmiAdapterHostInit(host, cntlr);  // Initialize the custom structure. If the operation fails, execute goto __ERR.
             ...
-            ret = HdmiCntlrAdd(cntlr);              // Call the functions at the core layer. If the operation fails, execute goto__ERR.
+            ret = HdmiCntlrAdd(cntlr);               // Call the functions at the core layer. If the operation fails, execute goto__ERR.
             ...
             HDF_LOGD("HdmiAdapterBind: success.");
             return HDF_SUCCESS;
@@ -385,7 +385,7 @@ The HDMI module adaptation involves the following steps:
     
         **Return value**:
     
-        HDF_STATUS
+        **HDF_STATUS**
     
         **Function description**:
     
@@ -412,16 +412,16 @@ The HDMI module adaptation involves the following steps:
        
         Releases the memory and deletes the controller. This function assigns values to the **Release** callback in the driver entry structure. If the HDF fails to call the **Init** function to initialize the driver, the **Release** function can be called to release driver resources.
        
+        > ![](../public_sys-resources/icon-note.gif) **NOTE**<br>
+        > All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.
         ```c
         static void HdmiAdapterRelease(struct HdfDeviceObject *obj)
         {
             struct HdmiCntlr *cntlr = NULL;
             ...
-            cntlr = (struct MmcCntlr *)obj->service;// Forcibly convert HdfDeviceObject to HdmiCntlr by using service. For details about the value assignment, see the Bind function.
+            cntlr = (struct HdmiCntlr *)obj->service;// Forcibly convert HdfDeviceObject to HdmiCntlr by using service. For details about the value assignment, see the Bind function.
             ...
             HimciDeleteHost((struct HimciAdapterHost *)cntlr->priv);// Customized memory release function. A forced conversion from HdmiCntlr to HimciAdapterHost is involved in the process.
         }
         ```
        
-        > ![](../public_sys-resources/icon-note.gif) **NOTE**<br> 
-        > All forced conversion operations for obtaining the corresponding object can be successful only when the **Init** function has the corresponding value assignment operations.

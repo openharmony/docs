@@ -20,7 +20,7 @@ The following table describes APIs available for obtaining device location infor
 | off(type: 'locationChange', callback?: Callback&lt;Location&gt;) : void | Unregisters the listener for location changes with the corresponding location request deleted.                    |
 | on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | Registers a listener for location service status change events.                                      |
 | off(type: 'locationServiceState', callback: Callback&lt;boolean&gt;) : void | Unregisters the listener for location service status change events.                                  |
-| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLoactionsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | Registers a listener for cached GNSS location reports.                                      |
+| on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;) : void; | Registers a listener for cached GNSS location reports.                                      |
 | off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Location&gt;&gt;) : void; | Unregisters the listener for cached GNSS location reports.                                  |
 | on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;) : void; | Registers a listener for satellite status change events.                                  |
 | off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;) : void; | Unregisters the listener for satellite status change events.                              |

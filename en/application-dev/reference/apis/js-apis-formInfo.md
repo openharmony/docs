@@ -3,7 +3,7 @@
 The **FormInfo** module provides widget information and state.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -96,10 +96,38 @@ Enumerates the widget parameters.
 
 | Name       | Value  | Description        |
 | ----------- | ---- | ------------ |
-| IDENTITY_KEY     | "ohos.extra.param.key.form_identity"    | ID of a widget.<br>**System API**: This is a system API and cannot be called by third-party applications.  |
+| IDENTITY_KEY<sup>9+</sup>     | "ohos.extra.param.key.form_identity"    | ID of a widget.<br>**System API**: This is a system API and cannot be called by third-party applications.  |
 | DIMENSION_KEY      | "ohos.extra.param.key.form_dimension"  | Widget dimension.  |
 | NAME_KEY       | "ohos.extra.param.key.form_name"   | Widget name.  |
 | MODULE_NAME_KEY        | "ohos.extra.param.key.module_name"   | Name of the module to which the widget belongs.  |
 | WIDTH_KEY        | "ohos.extra.param.key.form_width"   | Widget width.  |
 | HEIGHT_KEY         | "ohos.extra.param.key.form_height"   | Widget height.  |
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | Temporary widget.  |
+| ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | Ability name.  |
+| DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | Device ID.<br>This is a system API.  |
+| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | Key that specifies the target bundle name.|
+
+##  FormDimension
+
+Enumerates the widget dimensions.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Value  | Description        |
+| ----------- | ---- | ------------ |
+| Dimension_1_2<sup>9+</sup>      | 1   | 1 x 2.  |
+| Dimension_2_2<sup>9+</sup>      | 2   | 2 x 2.  |
+| Dimension_2_4<sup>9+</sup>      | 3   | 2 x 4.  |
+| Dimension_4_4<sup>9+</sup>      | 4   | 4 x 4.  |
+| Dimension_2_1<sup>9+</sup>      | 5   | 2 x 1.  |
+
+
+## FormInfoFilter
+
+Defines the widget information filter. Only the widget information that meets the filter is returned.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       |  Yes  | Description        |
+| ----------- | ---- | ------------ |
+| moduleName<sup>9+</sup>   | No  | Module name.|

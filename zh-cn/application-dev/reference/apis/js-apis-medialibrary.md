@@ -33,7 +33,8 @@ getMediaLibrary(context: Context): MediaLibrary
 **示例：（从API Version 9开始）**
 
 ```ts
-var media = mediaLibrary.getMediaLibrary(this.context);
+const context = getContext(this);
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 
 **示例：（API Version 8）**
@@ -41,8 +42,8 @@ var media = mediaLibrary.getMediaLibrary(this.context);
 ```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var context = featureAbility.getContext()
-var media = mediaLibrary.getMediaLibrary(context);
+let context = featureAbility.getContext();
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 ## mediaLibrary.getMediaLibrary
 
@@ -65,7 +66,7 @@ getMediaLibrary(): MediaLibrary
 **示例：**
 
 ```js
-var media = mediaLibrary.getMediaLibrary();
+let media = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary
@@ -91,23 +92,44 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 **示例：**
 
 ```js
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
-    if (fetchFileResult != undefined) {
-        console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
-        fetchFileResult.getAllObject((err, fileAssetList) => {
-            if (fileAssetList != undefined) {
-                fileAssetList.forEach(function(getAllObjectInfo){
-                    console.info("getAllObjectInfo.displayName :" + getAllObjectInfo.displayName);
-                });
-            }
-    	});
+media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
+    if (fetchFileResult == undefined) {
+        console.error('Failed to get fetchFileResult: ' + error);
+        return;
     }
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject((err, fileAsset) => {
+        if (fileAsset == undefined) {
+            console.error('Failed to get first object: ' + err);
+            return;
+        }
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject((err, fileAsset) => {
+                if (fileAsset == undefined) {
+                    console.error('Failed to get next object: ' + err);
+                    return;
+                }
+                console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            })
+        }
+    });
 });
 ```
 ### getFileAssets<sup>7+</sup>
@@ -135,16 +157,37 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 **示例：**
 
 ```js
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
-    console.info("getFileAssets successfully: image number is "+ fetchFileResult.getCount());
+media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject().then(function(fileAsset) {
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject().then(function(fileAsset) {
+                console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+            }).catch(function(err) {
+                console.error('Failed to get next object: ' + err);
+            })
+        }
+    }).catch(function(err) {
+        console.error('Failed to get first object: ' + err);
+    });
 }).catch(function(err){
-    console.info("getFileAssets failed with error:"+ err);
+    console.error("Failed to get file assets: " + err);
 });
 ```
 
@@ -273,7 +316,7 @@ deleteAsset(uri: string): Promise\<void>
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -292,8 +335,8 @@ deleteAsset(uri: string): Promise\<void>
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
@@ -321,7 +364,7 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+**需要权限**：ohos.permission.READ_MEDIA 和 ohos.permission.WRITE_MEDIA
 
 **系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
 
@@ -336,8 +379,8 @@ deleteAsset(uri: string, callback: AsyncCallback\<void>): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
     let option = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
         selectionArgs: [fileType.toString()],
@@ -760,7 +803,7 @@ startMediaSelect(option: MediaSelectOption, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
 ```js
-let option = {
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -800,7 +843,7 @@ startMediaSelect(option: MediaSelectOption): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
 ```js
-let option = {
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -1254,7 +1297,7 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd, (closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
                 console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
             } else {
                 console.info("=======asset.close success====>");
@@ -1307,7 +1350,7 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd).then((closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
                 console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
 
             } else {
@@ -1352,7 +1395,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail((err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1378,7 +1421,7 @@ getThumbnail(size: Size, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1390,7 +1433,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1421,7 +1464,7 @@ getThumbnail(size?: Size): Promise&lt;image.PixelMap&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1434,7 +1477,7 @@ async function example() {
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size)
     .then((pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail Successfull '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     })
     .catch((err) => {
         console.info('mediaLibraryTest : getThumbnail fail'+ err);
@@ -1463,7 +1506,7 @@ favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1505,7 +1548,7 @@ favorite(isFavorite: boolean): Promise&lt;void&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1543,7 +1586,7 @@ isFavorite(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1583,7 +1626,7 @@ isFavorite():Promise&lt;boolean&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1624,7 +1667,7 @@ trash(isTrash: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1669,7 +1712,7 @@ trash(isTrash: boolean): Promise&lt;void&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1707,7 +1750,7 @@ isTrash(callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1717,18 +1760,13 @@ async function example() {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.isTrash(isTrashCallBack);
-    function isTrashCallBack(err, isTrash) {
-            if (isTrash == true) {
-                console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-                asset.trash(true, istrashCallBack);
-
-            } else {
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessfull = ' + err);
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
-
-            }
-    }
+    asset.isTrash((err, isTrash) => {
+      if (isTrash == undefined) {
+        console.error('Failed to get trash state: ' + err);
+        return;
+      }
+      console.info('Get trash state success: ' + isTrash);
+    });
 }
 ```
 
@@ -1752,20 +1790,19 @@ isTrash():Promise&lt;boolean&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
       order: fileKeyObj.DATE_ADDED + " DESC",
-      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.isTrash().then(function(isTrash){
-        console.info("isTrash result:"+ isTrash);
+      console.info("isTrash result: " + isTrash);
     }).catch(function(err){
-        console.info("isTrash failed with error:"+ err);
+      console.error("isTrash failed with error: " + err);
     });
 }
 ```
@@ -1792,7 +1829,7 @@ getCount(): number
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let fileType = mediaLibrary.MediaType.FILE;
     let getFileCountOneOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1823,7 +1860,7 @@ isAfterLast(): boolean
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1861,7 +1898,7 @@ close(): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1892,7 +1929,7 @@ getFirstObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1929,7 +1966,7 @@ getFirstObject(): Promise&lt;FileAsset&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1964,7 +2001,7 @@ async function example() {
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2001,7 +2038,7 @@ async function example() {
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2034,7 +2071,7 @@ getLastObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2071,7 +2108,7 @@ getLastObject(): Promise&lt;FileAsset&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2103,7 +2140,7 @@ getPositionObject(index: number, callback: AsyncCallback&lt;FileAsset&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2146,7 +2183,7 @@ getPositionObject(index: number): Promise&lt;FileAsset&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2181,7 +2218,7 @@ getAllObject(callback: AsyncCallback&lt;Array&lt;FileAsset&gt;&gt;): void
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2191,11 +2228,13 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getAllObject((err, fileAsset) => {
-       if (err) {
+        if (err) {
            console.error('Failed ');
            return;
-       }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
+        }
+        for (let i = 0; i < fetchFileResult.getCount(); i++) {
+            console.log('fileAsset.displayName : ' + fileAsset[i].displayName);
+        } 
     })
 }
 ```
@@ -2218,7 +2257,7 @@ getAllObject(): Promise&lt;Array&lt;FileAsset&gt;&gt;
 
 ```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2392,7 +2431,7 @@ async function example() {
     let fileNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
-    }
+    };
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
@@ -2547,5 +2586,4 @@ async function example() {
 | ----- | ------ | ---- | -------------------- |
 | type  | string | 是    | 媒体类型，包括：image, video, media，当前仅支持media类型 |
 | count | number | 是    | 媒体选择，count = 1表示单选，count大于1表示多选。            |
-
 

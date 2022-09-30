@@ -9,6 +9,9 @@ Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能
 
 **推荐使用场景：** 一般符合先进后出的场景可以使用Stack。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -72,7 +75,7 @@ let result = stack.push("a");
 let result1 = stack.push(1);
 let b = [1, 2, 3];
 stack.push(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = stack.push(c);
 ```
 

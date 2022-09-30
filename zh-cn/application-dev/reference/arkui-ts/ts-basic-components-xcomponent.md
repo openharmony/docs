@@ -1,14 +1,13 @@
 # XComponent
 
-  > **说明：**
+可用于EGL/OpenGLES和媒体数据写入，并显示在XComponent组件。
 
-  > 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> **说明：**
+>
+> 该组件从API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-  可用于EGL/OpenGLES和媒体数据写入，并显示在XComponent组件。
+  
 
-## 权限列表
-
-  无
 
 ## 子组件
 
@@ -49,7 +48,7 @@ onDestroy(event: () => void )
 
 ## XComponentController
 
-xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，然后通过控制器带调用组件方法。
+xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，然后通过控制器来调用组件方法。
 
 ### 创建对象
 
@@ -59,7 +58,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 ### getXComponentSurfaceId
 
-getXComponentSurfaceId(): string
+getXComponentSurfaceId()
 
 获取XComponent对应Surface的ID，供@ohos接口使用，比如camera相关接口。
 
@@ -71,9 +70,10 @@ getXComponentSurfaceId(): string
 | ------ | ----------------------- |
 | string | XComponent持有Surface的ID。 |
 
+
 ### setXComponentSurfaceSize
 
-setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
+setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number})
 
 设置XComponent持有Surface的宽度和高度。
 
@@ -86,9 +86,10 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 | surfaceWidth  | number | 是    | XComponent持有Surface的宽度。 |
 | surfaceHeight | number | 是    | XComponent持有Surface的高度。 |
 
+
 ### getXComponentContext
 
-getXComponentContext(): Object
+getXComponentContext()
 
 获取XComponent实例对象的context。
 
@@ -97,6 +98,7 @@ getXComponentContext(): Object
 | 类型     | 描述                                       |
 | ------ | ---------------------------------------- |
 | Object | 获取XComponent实例对象的context，context包含的具体接口方法由开发者自定义。 |
+
 
 ## 示例
 

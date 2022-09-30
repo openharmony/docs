@@ -167,13 +167,27 @@ bash build/prebuilts_download.sh
 
 - 代码根目录下执行全量版本的编译命令：
 
+  Release版本 :
   ```shell
   ./build.sh --product-name {product_name}
   ```
-
+  Debug版本 :
+  ```shell
+  ./build.sh --product-name {product_name} --gn-args is_debug=true
+  ```
+  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块：
+  > 
+  > 
+  > ```
+  > ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+  > ```
+  > 
   {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
 
   编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
+
+
 
 - 编译命令支持选项：./build.sh 
 
@@ -182,7 +196,7 @@ bash build/prebuilts_download.sh
   --source-root-dir=SOURCE_ROOT_DIR                 # 指定路径
   --product-name=PRODUCT_NAME                       # 指定产品名
   --device-name=DEVICE_NAME                         # 指定装置名称
-  --target-cpu=TARGET_CPU                           # 指定cpu
+  --target-cpu=TARGET_CPU                           # 指定CPU
   --target-os=TARGET_OS                             # 指定操作系统
   -T BUILD_TARGET, --build-target=BUILD_TARGET      # 指定编译目标，可以指定多个
   --gn-args=GN_ARGS                                 # GN参数，支持指定多个
@@ -278,7 +292,7 @@ optional arguments:
   --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
   --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
   --keep-ninja-going    keeps ninja going until 1000000 jobs fail
-  --build-only-gn       only do gn parse, donot run ninja
+  --build-only-gn       only do gn parse, do not run ninja
   --log-level LOG_LEVEL
                         specifies the log level during compilationyou can select three levels: debug, info and error
   --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
@@ -312,6 +326,10 @@ optional arguments:
   -h, --help  show this help message and exit
 ```
 
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/Readme-CN.md)
+> - OpenHarmony还为开发者提供了Docker编译环境，可以省略编译工具的安装，具体使用请参考[Docker编译指导。](../get-code/gettools-acquire.md)
+
 ### 新增并编译不同配置
 
 根据上一节的配置规则新增相应配置并进行编译，主要包含产品、部件、芯片解决方案和模块四个粒度。具体如下：
@@ -328,6 +346,7 @@ optional arguments:
 ## 参考信息
 
 - [关于deps、external_deps的使用](subsys-build-reference.md#关于deps、external_deps的使用)
+- [Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)
 - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
 - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
 - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)

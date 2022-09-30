@@ -55,7 +55,7 @@ void* osThreadAttr_t::cb_mem
 
 **Description:**
 
-线程静态控制块指针
+用户指定的控制块指针
 
 
 ### cb_size
@@ -67,7 +67,7 @@ uint32_t osThreadAttr_t::cb_size
 
 **Description:**
 
-线程静态控制块大小，单位：字节
+用户指定的控制块大小，单位：字节
 
 
 ### name
@@ -115,7 +115,7 @@ void* osThreadAttr_t::stack_mem
 
 **Description:**
 
-线程栈指针
+用户指定的线程栈指针
 
 
 ### stack_size

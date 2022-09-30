@@ -1,160 +1,248 @@
 # OpenHarmony Device Development Documentation
 - [Device Development Guide](device-dev-guide.md)
-
 - Getting Started
   - Getting Started with Mini and Small Systems (IDE Mode, Recommended)
+
     - [Mini and Small System Overview](quick-start/quickstart-ide-lite-overview.md)
+
     - Environment Preparation
+
         - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quick-start/quickstart-ide-lite-env-setup-win-ubuntu.md)
+
         - [Obtaining Source Code](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
+
     - [Creating a Source Code Project](quick-start/quickstart-ide-lite-create-project.md)
+
     - Running a Hello World Program
+
         - Hi3861 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
+
             - [Building](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
+
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3861-burn.md)
+
             - [Networking](quick-start/quickstart-ide-lite-steps-hi3861-netconfig.md)
+
             - [Debugging and Verification](quick-start/quickstart-ide-lite-steps-hi3861-debug.md)
+
             - [Running](quick-start/quickstart-ide-lite-steps-hi3861-running.md)
+
         - Hi3516 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
+
             - [Building](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
+
             - [Burning](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
+
             - [Running](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
+
     - Appendix
+
         - [Introduction to the Hi3861 Development Board](quick-start/quickstart-ide-lite-introduction-hi3861.md)
+
         - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-lite-introduction-hi3516.md)
+
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
+
   - Getting Started with Mini and Small Systems (Installation Package Mode)
+
     - [Mini and Small System Overview](quick-start/quickstart-lite-overview.md)
+
     - [Environment Preparation](quick-start/quickstart-lite-env-setup.md)
+
     - Running a Hello World Program
+
         - Hi3861 Development Board
+
             - [Setting Up the Hi3861 Development Board Environment](quick-start/quickstart-lite-steps-hi3861-setting.md)
+
             - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
+
             - [Building](quick-start/quickstart-lite-steps-hi3861-building.md)
+
             - [Burning](quick-start/quickstart-lite-steps-hi3861-burn.md)
+
             - [Networking](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
+
             - [Debugging and Verification](quick-start/quickstart-lite-steps-hi3861-debug.md)
+
             - [Running](quick-start/quickstart-lite-steps-hi3861-running.md)
+
         - Hi3516 Development Board
+
             - [Setting Up the Hi3516 Development Board Environment](quick-start/quickstart-lite-steps-hi3516-setting.md)
+
             - [Writing a Hello World Program](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
+
             - [Building](quick-start/quickstart-lite-steps-hi3516-building.md)
+
             - [Burning](quick-start/quickstart-lite-steps-hi3516-burn.md)
+
             - [Running](quick-start/quickstart-lite-steps-hi3516-running.md)
+
     - FAQs
+
         - [Fixing hb Installation Issues](quick-start/quickstart-lite-faq-hb.md)
+
         - [Fixing Compilation Issues](quick-start/quickstart-lite-faq-compose.md)
+
         - [Fixing Burning Issues](quick-start/quickstart-lite-faq-burning.md)
+
     - Appendix
+
         - Introduction to Development Boards
+
             - [Introduction to the Hi3861 Development Board](quick-start/quickstart-lite-introduction-hi3861.md)
+
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-lite-introduction-hi3516.md)
+
         - [Reference](quick-start/quickstart-lite-reference.md)
+
         - [Burning Code by Using HiTool](quick-start/quickstart-lite-hitool.md)
+
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
+
   - Getting Started with Standard System (IDE Mode, Recommended)
+
     - [Standard System Overview](quick-start/quickstart-ide-standard-overview.md)
+
     - Environment Preparation
+
         - [Setting Up the Windows+Ubuntu Hybrid Build Environment](quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)
+
         - [Obtaining Source Code](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
+
     - [Creating a Source Code Project](quick-start/quickstart-ide-standard-create-project.md)
+
     - Running a Hello World Program
+
         - Hi3516 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-ide-standard-running-hi3516-create.md)
+
             - [Building](quick-start/quickstart-ide-standard-running-hi3516-build.md)
+
             - [Burning](quick-start/quickstart-ide-standard-running-hi3516-burning.md)
+
             - [Running](quick-start/quickstart-ide-standard-running-hi3516-running.md)
+
         - RK3568 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-ide-standard-running-rk3568-create.md)
+
             - [Building](quick-start/quickstart-ide-standard-running-rk3568-build.md)
+
             - [Burning](quick-start/quickstart-ide-standard-running-rk3568-burning.md)
+
             - [Running](quick-start/quickstart-ide-standard-running-rk3568-running.md)
+
     - Appendix
+
         - [Introduction to the Hi3516 Development Board](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
+
         - [Introduction to the RK3568 Development Board](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
+
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
+
   - Getting Started with Standard System (Installation Package Mode)
+
     - [Standard System Overview](quick-start/quickstart-standard-overview.md)
+
     - [Setting Up Environments for Standard System](quick-start/quickstart-standard-env-setup.md)
+
     - Running a Hello World Program
+
         - Hi3516 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-std-3516-create.md)
+
             - [Building](quick-start/quickstart-standard-running-hi3516-build.md)
+
             - [Burning](quick-start/quickstart-standard-running-hi3516-burning.md)
+
             - [Running](quick-start/quickstart-standard-running-hi3516-running.md)
+
         - RK3568 Development Board
+
             - [Writing a Hello World Program](quick-start/quickstart-standard-running-rk3568-create.md)
+
             - [Building](quick-start/quickstart-standard-running-rk3568-build.md)
+
             - [Burning](quick-start/quickstart-standard-running-rk3568-burning.md)
+
             - [Running](quick-start/quickstart-standard-running-rk3568-running.md)
+
     - FAQs
+
         - [Fixing hb Installation Issues](quick-start/quickstart-standard-faq-hb.md)
+
         - [Fixing Compilation Issues](quick-start/quickstart-standard-faq-compose.md)
+
         - [Fixing Burning Issues](quick-start/quickstart-standard-faq-burning.md)
+
     - Appendix
+
         - Introduction to Development Boards
+
             - [Introduction to the Hi3516 Development Board](quick-start/quickstart-standard-board-introduction-hi3516.md)
+
             - [Introduction to the RK3568 Development Board](quick-start/quickstart-standard-board-introduction-rk3568.md)
+
         - [Reference](quick-start/quickstart-standard-reference.md)
+
         - [Burning Code by Using HiTool](quick-start/quickstart-standard-hitool.md)
+
         - [Overall Description of Compilation Form Factors](quick-start/quickstart-build.md)
-
   - [Obtaining Source Code](get-code/sourcecode-acquire.md)
-  
-- Compatibility and Security
-
   - [Privacy Protection](security/security-privacy-protection.md)
   - [Security Guidelines](security/security-guidelines-overall.md)
 
 - Porting
-
-  - Mini System SoC Porting Guide
-
-    - Porting Preparations
-      - [Before You Start](porting/porting-chip-prepare-knows.md)
-      - [Building Adaptation Process](porting/porting-chip-prepare-process.md)
-    - Kernel Porting
-      - [Porting Overview](porting/porting-chip-kernel-overview.md)
-      - [Basic Kernel Adaptation](porting/porting-chip-kernel-adjustment.md)
-      - [Kernel Porting Verification](porting/porting-chip-kernel-verify.md)
-    - Board-Level OS Porting
-      - [Porting Overview](porting/porting-chip-board-overview.md)
-      - [Board-Level Driver Adaptation](porting/porting-chip-board-driver.md)
-      - [Implementation of APIs at the HAL](porting/porting-chip-board-hal.md)
-      - [System Modules](porting/porting-chip-board-component.md)
-      - [lwIP Module Adaptation](porting/porting-chip-board-lwip.md)
-      - [Third-party Module Adaptation](porting/porting-chip-board-bundle.md)
-      - [XTS](porting/porting-chip-board-xts.md)
-    - [FAQs](porting/porting-chip-faqs.md)
-
   - Small System SoC Porting Guide
 
     - Porting Preparations
+
       - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+
       - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+
     - Kernel Porting
+
       - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+
       - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+
     - Driver Porting
+
       - [Porting Overview](porting/porting-smallchip-driver-overview.md)
+
       - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+
       - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
 
   - Standard System SoC Porting Guide
 
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
+
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
 
   - Third-Party Library Porting Guide for Mini and Small Systems
+
     - [Overview](porting/porting-thirdparty-overview.md)
+
     - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+
     - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
 
   - Mini System SoC Porting Cases
+
     - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+
     - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
 
 - Subsystem Development
 
@@ -164,10 +252,7 @@
       - Basic Kernel
         - [Interrupt Management](kernel/kernel-mini-basic-interrupt.md)
         - [Task Management](kernel/kernel-mini-basic-task.md)
-        - Memory Management
-          - [Basic Concepts](kernel/kernel-mini-basic-memory-basic.md)
-          - [Static Memory](kernel/kernel-mini-basic-memory-static.md)
-          - [Dynamic Memory](kernel/kernel-mini-basic-memory-dynamic.md)
+        - [Memory Management](kernel/kernel-mini-basic-memory.md)
         - Kernel Communication Mechanisms
           - [Event](kernel/kernel-mini-basic-ipc-event.md)
           - [Mutex](kernel/kernel-mini-basic-ipc-mutex.md)
@@ -179,23 +264,16 @@
         - [C++ Support](kernel/kernel-mini-extend-support.md)
         - [CPUP](kernel/kernel-mini-extend-cpup.md)
         - [Dynamic Loading](kernel/kernel-mini-extend-dynamic-loading.md)
-        - File System
-          - [FAT](kernel/kernel-mini-extend-file-fat.md)
-          - [LittleFS](kernel/kernel-mini-extend-file-lit.md)
+        - [File System](kernel/kernel-mini-extend-file.md)
       - Kernel Debugging
-        - Memory Debugging
-          - [Memory Information Statistics](kernel/kernel-mini-memory-debug-mes.md)
-          - [Memory Leak Check](kernel/kernel-mini-memory-debug-det.md)
-          - [Memory Corruption Check](kernel/kernel-mini-memory-debug-cet.md)
+        - [Memory Debugging](kernel/kernel-mini-memory-debug.md)
         - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
         - [Trace](kernel/kernel-mini-memory-trace.md)
         - [LMS](kernel/kernel-mini-memory-lms.md)
       - Appendix
         - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
         - [Doubly Linked List](kernel/kernel-mini-appx-data-list.md)
-        - Standard Libraries
-          - [CMSIS Support](kernel/kernel-mini-appx-lib-cmsis.md)
-          - [POSIX Support](kernel/kernel-mini-appx-lib-posix.md)
+        - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
     - Kernel for Small Systems
       - [Kernel Overview](kernel/kernel-small-overview.md)
       - Kernel Startup
@@ -230,12 +308,7 @@
         - [LiteIPC](kernel/kernel-small-bundles-ipc.md)
         - File Systems
           - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
-          - Supported File Systems
-            - [FAT](kernel/kernel-small-bundles-fs-support-fat.md)
-            - [JFFS2](kernel/kernel-small-bundles-fs-support-jffs2.md)
-            - [NFS](kernel/kernel-small-bundles-fs-support-nfs.md)
-            - [Ramfs](kernel/kernel-small-bundles-fs-support-ramfs.md)
-            - [procfs](kernel/kernel-small-bundles-fs-support-procfs.md)
+          - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
           - [File System Adaptation](kernel/kernel-small-bundles-fs-new.md)
       - Debugging and Tools
         - Shell
@@ -313,15 +386,7 @@
           - [Memory Information Statistics](kernel/kernel-small-debug-memory-info.md)
           - [Memory Leak Check](kernel/kernel-small-debug-memory-leak.md)
           - [Memory Corruption Check](kernel/kernel-small-debug-memory-corrupt.md)
-        - User-Mode Memory Debugging
-          - [Basic Concepts](kernel/kernel-small-debug-user-concept.md)
-          - [Working Principles](kernel/kernel-small-debug-user-function.md)
-          - Usage
-            - [API Description](kernel/kernel-small-debug-user-guide-api.md)
-            - How to Use
-              - [Calling APIs](kernel/kernel-small-debug-user-guide-use-api.md)
-              - [Using the CLI](kernel/kernel-small-debug-user-guide-use-cli.md)
-          - [Typical Memory Problems](kernel/kernel-small-debug-user-faqs.md)
+        - [User-Mode Memory Debugging](kernel/kernel-small-debug-user.md)
         - Other Kernel Debugging Methods
           - [Dying Gasp](kernel/kernel-small-debug-trace-other-lastwords.md)
           - [Common Fault Locating Methods](kernel/kernel-small-debug-trace-other-faqs.md)
@@ -389,6 +454,7 @@
       - [Fingerprint Authentication](driver/driver-peripherals-fingerprint_auth-des.md)
       - [LCD](driver/driver-peripherals-lcd-des.md)
       - [Light](driver/driver-peripherals-light-des.md)
+      - [Motion](driver/driver-peripherals-motion-des.md)
       - [PIN Authentication](driver/driver-peripherals-pinauth-des.md)
       - [Sensor](driver/driver-peripherals-sensor-des.md)
       - [Touchscreen](driver/driver-peripherals-touch-des.md)
@@ -400,6 +466,21 @@
     - [Compilation and Building Guide](subsystems/subsys-build-all.md)
     - [Build System Coding Specifications and Best Practices](subsystems/subsys-build-gn-coding-style-and-best-practice.md)
     - [Building the Kconfig Visual Configuration](subsystems/subsys-build-gn-kconfig-visual-config-guide.md)
+    - References
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
+       - [Product Configuration Rules](subsystems/subsys-build-product.md#configuration-rules)
+       - [Subsystem Configuration Rules](subsystems/subsys-build-subsystem.md#configuration-rules)
+       - [Component Configuration Rules](subsystems/subsys-build-component.md#configuration-rules)
+       - [Module Configuration Rules](subsystems/subsys-build-module.md#configuration-rules)
+       - [Chipset Solution Configuration Rules](subsystems/subsys-build-chip_solution.md#configuration-rules)
+       - [Feature Configuration Rules](subsystems/subsys-build-feature.md#configuration-rules)
+       - [System Capabilities Configuration Rules](subsystems/subsys-build-syscap.md#configuring-system-capabilities-for-a-component)
+       - [deps and external_deps](subsystems/subsys-build-reference.md#deps-and-external_deps)
+       - [Information Collected by the Open Source Software Notice](subsystems/subsys-build-reference.md#information-collected-by-the-open-source-software-notice)
+       - [Parameters for Accelerating Local Build](subsystems/subsys-build-reference.md#parameters-for-accelerating-local-build)
+       - [Viewing Ninja Build Information](subsystems/subsys-build-reference.md#viewing-ninja-build-information)
+       - [HAP Build Guide](subsystems/subsys-build-gn-hap-compilation-guide.md)
+       - [FAQs](subsystems/subsys-build-FAQ.md)
   - [Distributed Remote Startup](subsystems/subsys-remote-start.md)
   - Graphics
     - [Graphics Overview](subsystems/subsys-graphics-overview.md)
@@ -464,9 +545,9 @@
     - [Security Overview](subsystems/subsys-security-overview.md)
     - [Development on Application Signature Verification](subsystems/subsys-security-sigverify.md)
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
-
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
+
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - init Module
@@ -500,9 +581,13 @@
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
+
     - [HPM Part Development](hpm-part/hpm-part-development.md)
+
     - [HPM Part Reference](hpm-part/hpm-part-reference.md)
+
 - Device Development Examples
+
   - Mini- and Small-System Devices
     - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
@@ -535,8 +620,9 @@
     - [Development Guidelines on Clock Apps](guide/device-clock-guide.md)
     - [Development Example for Platform Drivers](guide/device-driver-demo.md)
     - [Development Example for Peripheral Drivers](guide/device-outerdriver-demo.md)
-- Debugging
 
+
+- Debugging
   - [Test Case Development](subsystems/subsys-testguide-test.md)
   - Debugging Tools
     - [bytrace](subsystems/subsys-toolchain-bytrace-guide.md)
@@ -558,3 +644,11 @@
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
     - [System Applications](faqs/faqs-system-applications.md)
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 # ShellCmdResult
 
-ShellCmdResult模块提供Shell命令执行结果的能力。
+本模块提供Shell命令执行结果的能力。
 
 > **说明：**
 > 

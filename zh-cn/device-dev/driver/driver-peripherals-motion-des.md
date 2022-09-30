@@ -1,4 +1,4 @@
-# 手势识别
+# Motion
 
 ## 概述
 
@@ -6,22 +6,22 @@
 
 手势识别模块作为端侧设备不可或缺的一部分，为用户提供手势识别控制能力。当前支持的手势识别类型有拿起、翻转、摇一摇、旋转屏等。
 
-基于HDF（Hardware Driver Foundation）驱动框架开发的手势识别驱动，能够屏蔽硬件器件差异，为上层MSDP（Multimodal Sensor 
-Data Platform）服务层提供稳定的手势识别控制能力接口，包括手势识别使能/去使能、手势识别订阅/去订阅等。
+基于HDF（Hardware Driver Foundation）驱动框架开发的Motion驱动，能够屏蔽硬件器件差异，为上层MSDP（Multimodal Sensor 
+Data Platform）服务层提供稳定的手势识别控制能力接口，包括手势识别使能/去使能、手势识别订阅/取消订阅等。
 
-手势识别驱动框架如图1所示，上层为Framework层，提供MSDP服务，通过UHDF（User Hardware Driver Foundation）层的Motion Proxy与Motion Stub进行交互；而Motion Stub可调用Motion HDI实现类接口，从而实现上层服务的手势识别使能/去使能、手势识别订阅/去订阅等能力。
+Motion驱动框架如图1所示，上层为Framework层，提供MSDP服务，通过UHDF（User Hardware Driver Foundation）层的Motion Proxy与Motion Stub进行交互；而Motion Stub可调用Motion HDI实现类接口，从而实现上层服务的手势识别使能/去使能、手势识别订阅/取消订阅等能力。
 
-**图1** 手势识别驱动框架
+**图1** Motion驱动框架
 
-![1660105057660](figures/手势识别驱动框架图.png)
+![1660105057660](figures/Motion驱动框架图.png)
 
 ### 运作机制
 
-通过介绍手势识别驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如图2所示：
+通过介绍Motion驱动模型的加载以及运行流程，对模型内部关键组件以及关联组件之间的关系进行了划分，整体加载流程如图2所示：
 
-**图 2** 手势识别驱动运行图
+**图 2** Motion驱动运行图
 
-![1660122293156](figures/手势识别驱动运行图.png)
+![1660122293156](figures/Motion驱动运行图.png)
 
 1. MSDP：上层综合传感信息处理平台服务层，当HDI接口服务实例获取成功后可以直接调用Motion HDI接口。
 2. IDL：接口抽象层。MSDP服务层首先从Motion Proxy获取到Motion HDI接口服务实例。而Motion Proxy获取到的接口实例是由IService Manager进行分配。当MSDP服务层成功获取到Motion HDI接口服务实例后，MSDP服务层就可以直接调用Motion Proxy中的HDI接口，然后通过IPC（Inter-Process Communication）调用到Motion Stub，从而调用到Motion Service的接口。这部分是由工具自动生成的代码，不用器件厂商自己开发。
@@ -31,7 +31,7 @@ Data Platform）服务层提供稳定的手势识别控制能力接口，包括�
 
 ### 场景介绍
 
-手势识别驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能手势识别服务，订阅/取消订阅手势识别数据回调函数的功能。可应用于拿起、翻转、摇一摇、旋转屏等手势识别场景。
+Motion驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能手势识别服务，订阅/取消订阅手势识别数据回调函数的功能。可应用于拿起、翻转、摇一摇、旋转屏等手势识别场景。
 
 ### 接口说明
 

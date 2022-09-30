@@ -65,7 +65,7 @@
 
    ![zh-cn_image_0000001322167645.png](figures/zh-cn_image_0000001322167645.png)
    
-   安装完成后，当界面输出“Deveco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
+   安装完成后，当界面输出“DevEco Device Tool successfully installed.”时，表示DevEco Device Tool安装成功。
    
    ![zh-cn_image_0000001198722374](figures/zh-cn_image_0000001198722374.png)
 
@@ -163,7 +163,7 @@
 
 ### 远程连接Ubuntu环境
 
-1. 打开Windows系统的Visual Studio Code，点击![zh-cn_image_0000001238760373](figures/zh-cn_image_0000001238760373.png)，在REMOTE EXOPLORER页面点击+按钮。
+1. 打开Windows系统的Visual Studio Code，点击![zh-cn_image_0000001238760373](figures/zh-cn_image_0000001238760373.png)，在REMOTE EXPLORER页面点击+按钮。
 
    ![zh-cn_image_0000001215878922](figures/zh-cn_image_0000001215878922.png)
 

@@ -238,7 +238,7 @@ In the following table, "√" indicates that the corresponding file system suppo
 <td class="cellrowborder" valign="top" headers="mcps1.2.9.1.7 "><p id="p1947920415337"><a name="p1947920415337"></a><a name="p1947920415337"></a>×</p>
 </td>
 </tr>
-<tr id="row382917545412"><td class="cellrowborder" valign="top" headers="mcps1.2.9.1.1 "><p id="p158308546414"><a name="p158308546414"></a><a name="p158308546414"></a>readlink</p>
+<tr id="row382917545412"><td class="cellrowborder" valign="top" headers="mcps1.2.9.1.1 "><p id="p158308546414"><a name="p158308546414"></a><a name="p158308546414"></a>readline</p>
 </td>
 <td class="cellrowborder" valign="top" headers="mcps1.2.9.1.2 "><p id="p58301454144111"><a name="p58301454144111"></a><a name="p58301454144111"></a>Reads a soft link.</p>
 </td>

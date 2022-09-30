@@ -17,7 +17,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
     | Option| Description|
     | -------- | -------- |
-    | -r | Subscribes to real-time system events based on the default settings. When this option is specified, any real-time system event will be printed on the console.|
+    | -r | Subscription to real-time system events based on the default settings. When this option is specified, any real-time system event will be printed on the console.|
 
 - Command for enabling the debugging mode:
 
@@ -29,7 +29,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
     | Option| Description|
     | -------- | -------- |
-    | -d | Subscribes to real-time system events in debugging mode.|
+    | -d | Subscription to real-time system events in debugging mode.|
 
 - Command for subscribing to real-time system events by event tag:
 
@@ -96,7 +96,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
     | Option| Description|
     | -------- | -------- |
-    | -l | Queries historical system events based on the default settings. A maximum of 1,000 latest system events will be returned.|
+    | -l | Query of historical system events based on the default settings. A maximum of 10,000 system events will be returned.|
 
 - Command for querying historical system events within the specified period of time:
 
@@ -130,7 +130,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
     | Option| Description|
     | -------- | -------- |
-    | -m | Maximum number of historical system events that can be queried. The value ranges from **0** to **1000**. The number of returned system events is not more than the value of this parameter.|
+    | -m | Maximum number of historical system events that can be queried. The number of returned system events is not more than the value of this parameter.|
 
     Example:
 
@@ -151,7 +151,7 @@ The HiSysEvent tool is a command line tool preconfigured in the **/system/bin** 
 
     | Option| Description|
     | -------- | -------- |
-    | -v | Used with the subscription command **-r** and query command **-l**. If system event validity check is enabled, invalid content contained in system events will be highlighted in red.|
+    | -v | Used with the **-r** and **-l** commands. If system event validity check is enabled, invalid content contained in system events will be highlighted in red.|
 
     Example:
 

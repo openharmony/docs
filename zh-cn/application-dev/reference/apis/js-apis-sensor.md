@@ -29,7 +29,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -52,15 +52,15 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
   );
   ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，推荐使用sensor.on.LINEAR_ACCELEROMETER<sup>9+</sup>
+从API Version9开始该接口不再维护，请使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -71,25 +71,13 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
-**示例：** 
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
-  ```
-
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -117,7 +105,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -174,7 +162,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -202,7 +190,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -305,7 +293,7 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 
 ### AMBIENT_TEMPERATURE
 
-on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;AmbientTemperatureResponse&gt;,  options?: Options): void
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -319,6 +307,7 @@ on(type:SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambie
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
@@ -336,6 +325,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。 |
@@ -362,6 +352,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
@@ -422,6 +413,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。         |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
@@ -439,6 +431,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的气压计传感器类型为SENSOR_TYPE_ID_BAROMETER。   |
@@ -446,6 +439,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
 **示例：** 
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
@@ -528,34 +522,24 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
   );
   ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.on.HEART_BEAT_RATE<sup>9+</sup>
+从API Version9开始该接口不再维护，请使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate9)
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA 
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。   |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：** 
-
-```js
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE,function(data){
-    console.info("Heart rate: " + data.heartRate);
-},
-    {interval: 10000000}
-);
-```
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。          |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
@@ -643,11 +627,12 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 监听加速度传感器的数据变化一次。
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER。   |
@@ -663,33 +648,24 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
   );
   ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 监听线性加速度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.once.LINEAR_ACCELEROMETER<sup>9+</sup>
+从API Version9开始该接口不再维护，请用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELERATION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-**示例：** 
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
@@ -697,7 +673,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;L
 
 订阅一次线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -723,7 +699,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 
 监听未校准加速度传感器的数据变化一次。
 
-**需要权限**：ohos.permission.ACCELEROMETER ，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -776,7 +752,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 
 监听陀螺仪传感器的数据变化一次。
 
-**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -802,7 +778,7 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 监听未校准陀螺仪传感器的数据变化一次。
 
-**需要权限**：ohos.permission.GYROSCOPE ，该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -926,6 +902,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD。   |
@@ -977,6 +954,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。       |
@@ -1065,12 +1043,14 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                     |
 | -------- | ---------------------------------------- | ---- | -------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。 |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 是    | 注册一次环境光传感器的回调函数，上报的数据类型为LightResponse。 |
 
 **示例：** 
+
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, function(data) {
       console.info(' Illumination: ' + data.intensity);
@@ -1127,31 +1107,24 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
   );
   ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，推荐使用sensor.once.HEART_BEAT_RATE<sup>9+</sup>
+从API Version9开始该接口不再维护，请使用[sensor.once.HEART_BEAT_RATE](#heart_beat_rate9)
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA 
+**需要权限**：ohos.permission.HEART_RATE  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。       |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：** 
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, function(data) {
-      console.info("Heart rate: " + data.heartRate);
-    }
-  );
-  ```
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
@@ -1207,7 +1180,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER, 该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1235,7 +1208,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER, 该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1364,7 +1337,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE, 该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1392,7 +1365,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.GYROSCOPE, 该权限为系统权限
+**需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1438,15 +1411,15 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
 ```
 
-### HEART_RATE<sup>deprecated</sup>
+### HEART_RATE<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用sensor.off.HEART_BEAT_RATE<sup>9+</sup>
+从API Version9开始该接口不再维护，请使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate9)
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1456,15 +1429,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)[SensorType](#sensortype) | 是    | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：** 
-
-```js
-function callback(data) {
-    console.info("Heart rate: " + data.heartRate);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, callback);
-```
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
@@ -1516,15 +1480,15 @@ function callback(data) {
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 ```
 
-### LINEAR_ACCELERATION<sup>deprecated</sup>
+### LINEAR_ACCELERATION<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，推荐使用sensor.off.LINEAR_ACCELEROMETER<sup>9+</sup>
+从API Version9开始该接口不再维护，请使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1535,24 +1499,13 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 | type     | [SensorType](#sensortype)                | 是    | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
-**示例：** 
-
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback);
-```
-
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER，该权限为系统权限
+**需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -1880,11 +1833,11 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
-| 参数名             | 类型                                       | 必填   | 说明                |
-| --------------- | ---------------------------------------- | ---- | ----------------- |
-| locationOptions | [LocationOptions](#locationoptions)      | 是    | 地理位置。             |
-| timeMillis      | number                                   | 是    | 表示获取磁偏角的时间，单位为毫秒。 |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是    | 返回磁场信息。           |
+| 参数名          | 类型                                                         | 必填 | 说明                               |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
+| timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
 
 **示例：** 
 ```js
@@ -2338,13 +2291,10 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(err, data)  {
       if (err) {
-          console.error('SensorJsAPI--->Failed to register data, error code is: ' + err.code + ', message: ' +
-                        err.message);
+          console.error('error code is: ' + err.code + ', message: ' + err.message);
           return;
       }
-      for (var i=0; i < data.rotation.length; i++) {
-          console.info("data[" + i + "]: " + data[i])
-      }
+      console.info(JSON.stringify(data));
   })
   ```
 
@@ -2375,15 +2325,124 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   ```js
   const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info('createRotationMatrix_promise successed');
-          for (var i=0; i < data.rotation.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
-          }
+          console.info(JSON.stringify(data));
       }).catch((err) => {
           console.info('promise failed');
   })
   ```
 
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                           | 必填 | 说明             |
+| -------- | ---------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorLists((error, data) => {
+    if (error) {
+        console.error('getSensorLists failed');
+    } else {
+        console.info("getSensorLists callback in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("getSensorLists " + JSON.stringify(data[i]));
+        }
+    }
+});
+```
+
+## sensor.getSensorLists<sup>9+</sup>
+
+ getSensorLists(): Promise< Array&lt;Sensor&gt;>
+
+获取设备上的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**返回值：** 
+
+| 参数名  | 类型                                     | 必填 | 说明             |
+| ------- | ---------------------------------------- | ---- | ---------------- |
+| promise | Promise<Array&lt;[Sensor](#sensor9)&gt;> | 是   | 返回传感器列表。 |
+
+**示例：** 
+
+```js
+sensor.getSensorLists().then((data) => {
+    console.info("getSensorLists promise in" + data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.info("getSensorLists " + JSON.stringify(data[i]));
+     }
+}, (error)=>{
+    console.error('getSensorLists failed');
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                    | 必填 | 说明             |
+| -------- | --------------------------------------- | ---- | ---------------- |
+| type     | SensorType                              | 是   | 传感器类型。     |
+| callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+
+**示例：**
+
+```js
+ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+     if (error) {
+         console.error('getSingleSensor failed');
+     } else {
+         console.info("getSingleSensor " + JSON.stringify(data));
+     }
+});
+```
+
+##  sensor.getSingleSensor<sup>9+</sup>
+
+ getSingleSensor(type: SensorType): Promise&lt;Sensor&gt;
+
+获取指定类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名 | 类型       | 必填 | 说明         |
+| ------ | ---------- | ---- | ------------ |
+| type   | SensorType | 是   | 传感器类型。 |
+
+**返回值：** 
+
+| 参数名  | 类型                              | 必填 | 说明             |
+| ------- | --------------------------------- | ---- | ---------------- |
+| promise | Promise&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
+
+**示例：**
+
+```js
+sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+    console.info("getSingleSensor " + JSON.stringify(data));
+}, (error)=>{
+    console.error('getSingleSensor failed');
+});
+```
 
 ## SensorType
 
@@ -2392,31 +2451,31 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称                                       | 默认值  | 说明          |
-| ---------------------------------------- | ---- | ----------- |
-| SENSOR_TYPE_ID_ACCELEROMETER             | 1    | 加速度传感器。     |
-| SENSOR_TYPE_ID_GYROSCOPE                 | 2    | 陀螺仪传感器。     |
-| SENSOR_TYPE_ID_AMBIENT_LIGHT             | 5    | 环境光传感器。     |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD            | 6    | 磁场传感器。      |
-| SENSOR_TYPE_ID_BAROMETER                 | 8    | 气压计传感器。     |
-| SENSOR_TYPE_ID_HALL                      | 10   | 霍尔传感器。      |
-| SENSOR_TYPE_ID_PROXIMITY                 | 12   | 接近光传感器。     |
-| SENSOR_TYPE_ID_HUMIDITY                  | 13   | 湿度传感器。      |
-| SENSOR_TYPE_ID_ORIENTATION               | 256  | 方向传感器。      |
-| SENSOR_TYPE_ID_GRAVITY                   | 257  | 重力传感器。      |
-| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>deprecated</sup>       | 258  | 线性加速度传感器。   |
-| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER       | 258  | 线性加速度传感器。   |
-| SENSOR_TYPE_ID_ROTATION_VECTOR           | 259  | 旋转矢量传感器。    |
-| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE       | 260  | 环境温度传感器。    |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 261  | 未校准磁场传感器。   |
-| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED    | 263  | 未校准陀螺仪传感器。  |
-| SENSOR_TYPE_ID_SIGNIFICANT_MOTION        | 264  | 有效运动传感器。    |
-| SENSOR_TYPE_ID_PEDOMETER_DETECTION       | 265  | 计步检测传感器。    |
-| SENSOR_TYPE_ID_PEDOMETER                 | 266  | 计步传感器。      |
-| SENSOR_TYPE_ID_HEART_RATE<sup>deprecated</sup>                | 278  | 心率传感器。      |
-| SENSOR_TYPE_ID_HEART_BEAT_RATE                | 278  | 心率传感器。      |
-| SENSOR_TYPE_ID_WEAR_DETECTION            | 280  | 佩戴检测传感器。    |
-| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | 281  | 未校准加速度计传感器。 |
+| 名称                                                      | 默认值 | 说明                   |
+| --------------------------------------------------------- | ------ | ---------------------- |
+| SENSOR_TYPE_ID_ACCELEROMETER                              | 1      | 加速度传感器。         |
+| SENSOR_TYPE_ID_GYROSCOPE                                  | 2      | 陀螺仪传感器。         |
+| SENSOR_TYPE_ID_AMBIENT_LIGHT                              | 5      | 环境光传感器。         |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD                             | 6      | 磁场传感器。           |
+| SENSOR_TYPE_ID_BAROMETER                                  | 8      | 气压计传感器。         |
+| SENSOR_TYPE_ID_HALL                                       | 10     | 霍尔传感器。           |
+| SENSOR_TYPE_ID_PROXIMITY                                  | 12     | 接近光传感器。         |
+| SENSOR_TYPE_ID_HUMIDITY                                   | 13     | 湿度传感器。           |
+| SENSOR_TYPE_ID_ORIENTATION                                | 256    | 方向传感器。           |
+| SENSOR_TYPE_ID_GRAVITY                                    | 257    | 重力传感器。           |
+| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>(deprecated)</sup> | 258    | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER<sup>9+</sup>          | 258    | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_ROTATION_VECTOR                            | 259    | 旋转矢量传感器。       |
+| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE                        | 260    | 环境温度传感器。       |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED                | 261    | 未校准磁场传感器。     |
+| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED                     | 263    | 未校准陀螺仪传感器。   |
+| SENSOR_TYPE_ID_SIGNIFICANT_MOTION                         | 264    | 有效运动传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER_DETECTION                        | 265    | 计步检测传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER                                  | 266    | 计步传感器。           |
+| SENSOR_TYPE_ID_HEART_RATE<sup>(deprecated)</sup>          | 278    | 心率传感器。           |
+| SENSOR_TYPE_ID_HEART_BEAT_RATE<sup>9+</sup>               | 278    | 心率传感器。           |
+| SENSOR_TYPE_ID_WEAR_DETECTION                             | 280    | 佩戴检测传感器。       |
+| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED                 | 281    | 未校准加速度计传感器。 |
 
 
 ## Response
@@ -2425,10 +2484,26 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称        | 参数类型   | 可读   | 可写   | 说明           |
-| --------- | ------ | ---- | ---- | ------------ |
-| timestamp | number | 是    | 是    | 传感器数据上报的时间戳。 |
+| 名称      | 参数类型 | 可读 | 可写 | 说明                     |
+| --------- | -------- | ---- | ---- | ------------------------ |
+| timestamp | number   | 是   | 是   | 传感器数据上报的时间戳。 |
 
+## Sensor<sup>9+</sup>
+
+指示传感器信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+| 名称            | 参数类型 | 说明                   |
+| --------------- | -------- | ---------------------- |
+| sensorName      | string   | 传感器名称。           |
+| venderName      | string   | 传感器供应商。         |
+| firmwareVersion | string   | 传感器固件版本。       |
+| hardwareVersion | string   | 传感器硬件版本。       |
+| sensorTypeId    | number   | 传感器类型id。         |
+| maxRange        | number   | 传感器的最大测量范围。 |
+| precision       | number   | 传感器精度。           |
+| power           | number   | 传感器电源。           |
 
 ## AccelerometerResponse
 

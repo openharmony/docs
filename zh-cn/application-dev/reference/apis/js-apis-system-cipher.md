@@ -9,7 +9,7 @@
 
 
 ```js
-import cipher from '@system.cipher'
+import cipher from '@system.cipher';
 ```
 
 
@@ -165,7 +165,6 @@ export default {
          console.log(`operation complete!`);
         }
      });        
-    });    
   }
 }
 

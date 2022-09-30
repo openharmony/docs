@@ -24,7 +24,7 @@
 | -------- | -------- | -------- | -------- | -------- |
 | keyPoints | string | - | 是 | 一组关键帧的点位置，每帧的值为对象沿路径的距离比例。功能与animate属性中的values相同。 |
 | path | string | - | 是 | 定义运动的路径，使用与path组件d属性相同的语法。 |
-| rotate | [auto&nbsp;\|&nbsp;auto-reverse&nbsp;\|&nbsp;&lt;number&gt;] | auto | - | 设置动画对象的旋转方向 |
+| rotate | [auto&nbsp;\|&nbsp;auto-reverse&nbsp;\|&nbsp;&lt;number&gt;] | auto | 否 | 设置动画对象的旋转方向。 |
 
 
 ## 示例

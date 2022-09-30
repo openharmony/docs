@@ -358,7 +358,7 @@ httpRequest.once('headersReceive', (header) => {
 | 参数名         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
-| extraData      | string \| Object  \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>8+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>8+</sup> |
+| extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
 | header         | Object                                        | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
 | readTimeout    | number                                        | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
 | connectTimeout | number                                        | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
@@ -432,7 +432,7 @@ request方法回调函数的返回值类型。
 
 | 参数名               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string \| Object \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。错误码参考[Response错误码](#response常用错误码)。 |
 | header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
 | cookies<sup>8+</sup> | Array\<string\>                              | 是   | 服务器返回的 cookies。                                       |

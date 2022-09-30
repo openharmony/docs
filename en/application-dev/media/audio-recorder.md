@@ -16,7 +16,7 @@ During audio recording, audio signals are captured, encoded, and saved to files.
 
 ## How to Develop
 
-For details about the APIs, see [AudioRecorder in the Media API](../reference/apis/js-apis-media.md).
+For details about the APIs, see [AudioRecorder in the Media API](../reference/apis/js-apis-media.md#audiorecorder).
 
 ### Full-Process Scenario
 
@@ -185,4 +185,3 @@ export class AudioRecorderDemo {
   }
 }
 ```
-

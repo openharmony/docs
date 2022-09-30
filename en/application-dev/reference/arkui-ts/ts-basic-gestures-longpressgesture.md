@@ -1,44 +1,38 @@
 # LongPressGesture
 
+**LongPressGesture** is used to trigger a long press gesture, which requires one or more fingers with a minimum 500 ms hold-down time.
 
-> **NOTE**<br>
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
 
-LongPressGesture(options?: { fingers?: number, repeat?: boolean, duration?: number })
+LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number })
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 1 | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. |
-  | repeat | boolean | No | false | Whether to continuously trigger the event callback. |
-  | duration | number | No | 500 | Minimum hold-down time, in ms. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10.<br>Default value: **1**|
+| repeat | boolean | No| Whether to continuously trigger the event callback.<br>Default value: **false**|
+| duration | number | No| Minimum hold-down time, in ms.<br>Default value: **500**|
 
 
 ## Events
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| onAction((event?: GestureEvent) =&gt; void) | Callback invoked when a long press gesture is recognized. |
-| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for a long press gesture is lift. |
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a long press gesture is recognized. |
-
-- GestureEvent attributes related to the long press gesture
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | repeat | boolean | Whether the event is repeated. |
+| onAction(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when a long press gesture is recognized.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Callback invoked when the finger used for a long press gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after a long press gesture is recognized.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct LongPressGestureExample {

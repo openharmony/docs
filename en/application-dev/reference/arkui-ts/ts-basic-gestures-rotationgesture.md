@@ -1,45 +1,38 @@
 # RotationGesture
 
+**RotationGesture** is used to trigger a rotation gesture, which requires two to five fingers with a minimum 1-degree rotation angle.
 
-> **NOTE**<br>
-> This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## APIs
 
-RotationGesture(options?: { fingers?: number, angle?: number })
+RotationGesture(value?: { fingers?: number, angle?: number })
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | fingers | number | No | 2 | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. |
-  | angle | number | No | 1.0 | Minimum degree that can trigger the rotation gesture. |
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| fingers | number | No| Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5.<br>Default value: **2**|
+| angle | number | No| Minimum degree that can trigger the rotation gesture.<br>Default value: **1.0**|
 
 
 ## Events
 
-| Name | Description |
+| Parameter| Description|
 | -------- | -------- |
-| onActionStart((event?: GestureEvent) =&gt; void) | Callback invoked when a rotation gesture is recognized. |
-| onActionUpdate((event?: GestureEvent) =&gt; void) | Callback invoked during the movement of the rotation gesture. |
-| onActionEnd((event?: GestureEvent) =&gt; void) | Callback invoked when the finger used for the rotation gesture is lift. |
-| onActionCancel(event: () =&gt; void) | Callback invoked when a tap cancellation event is received after the rotation gesture is recognized. |
-
-- GestureEvent attributes related to the rotation gesture  
-  | Name | Type | Description |
-  | -------- | -------- | -------- |
-  | angle | number | Rotation angle. |
+| onActionStart(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when a rotation gesture is recognized.|
+| onActionUpdate(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the user moves the finger in a rotation gesture on the screen.|
+| onActionEnd(event:(event?: [GestureEvent](ts-gesture-settings.md)) =&gt; void) | Triggered when the finger used for the rotation gesture is lift.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the rotation gesture is recognized.|
 
 
 ## Example
 
-
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RotationGestureExample {

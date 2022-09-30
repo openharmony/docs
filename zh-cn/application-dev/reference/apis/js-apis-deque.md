@@ -11,6 +11,9 @@ Deque和[Queue](js-apis-queue.md)相比，Queue的特点是先进先出，只能
 
 **推荐使用场景：** 需要频繁在集合两端进行增删元素的操作时，推荐使用Deque。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -63,7 +66,7 @@ deque.insertFront("a");
 deque.insertFront(1);
 let b = [1, 2, 3];
 deque.insertFront(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 deque.insertFront(false);
 ```
 
@@ -89,7 +92,7 @@ deque.insertEnd("a");
 deque.insertEnd(1);
 let b = [1, 2, 3];
 deque.insertEnd(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 deque.insertEnd(false);
 ```
 
@@ -117,9 +120,9 @@ has(element: T): boolean
 
 ```ts
 let deque = new Deque();
-let result = deque.has("Ahfbrgrbgnutfodgorrogorg");
-deque.insertFront("Ahfbrgrbgnutfodgorrogorg");
-let result1 = deque.has("Ahfbrgrbgnutfodgorrogorg");
+let result = deque.has("squirrel");
+deque.insertFront("squirrel");
+let result1 = deque.has("squirrel");
 ```
 
 ### popFirst

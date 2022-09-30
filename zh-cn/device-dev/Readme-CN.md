@@ -38,7 +38,7 @@
   - [图形图像](subsystems/subsys-graphics-overview.md)	
   - [媒体](subsystems/subsys-multimedia-camera-overview.md)
   - [公共基础](subsystems/subsys-utils-overview.md)
-  - [AI框架](subsystems/subsys-aiframework-guide.md) 	
+  - [AI框架](subsystems/subsys-ai-aiframework-devguide.md) 	
   - [数据管理](subsystems/subsys-data-relational-database-overview.md)
   - [Sensor服务](subsystems/subsys-sensor-overview.md)
   - [USB服务](subsystems/subsys-usbservice-overview.md)

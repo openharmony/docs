@@ -2,15 +2,15 @@
 
 ## deps and external_deps
 
-When adding a module, you need to declare its dependencies in **BUILD.gn**. **deps** specifies dependent modules in the same component, and **external_deps** specifies dependent modules between components.
+When adding a module, you must declare its dependencies in **BUILD.gn**. **deps** specifies dependent modules in the same component, and **external_deps** specifies dependent modules between components.
 
 **Dependency Types**
 
 ![Dependency Types](figure/dependency_types.png)
 
-The dependency between modules can be classified into **desp** (left in the figure above) and **external_deps** (right in the figure above).
+The dependency between modules can be classified into **deps** (left in the figure above) and **external_deps** (right in the figure above).
 
-- **desp**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and modules 1 and 2 belong to the samp component. 
+- **deps**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and both modules 1 and 2 belong to the same component. 
 
 - **external_deps**: The dependent module to be added belongs to another component. For example, module 2 depends on module 1, and modules 1 and 2 belong to different components.
 
@@ -33,7 +33,7 @@ The dependency between modules can be classified into **desp** (left in the figu
       "GN target of module 1",
     ...
    ]                      # Intra-component dependency
-  part_name = "part1"       # (Mandatory) Name of the component to which the module belongs.
+  part_name = "part1"     # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -55,12 +55,12 @@ The dependency between modules can be classified into **desp** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                      # Inter-component dependency. The dependent module must be declared in **inner_kits** by the dependent component.
+    ]                      # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
     part_name = "part2"   # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The dependency between components must be written in the format of **Component name:Module name** in **external_deps**. The dependent module must be declared in **inner_kits**.
+  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The dependency between components must be written in the format of **Component_name:Module_name** in **external_deps**. The dependent module must be declared in **inner_kits**.
 
 ## Information Collected by the Open Source Software Notice
 
@@ -70,7 +70,7 @@ An open source software notice is a file related to the project open source. It 
 
 The notice collects only the licenses of the modules packaged in the image. For example, the licenses of the tools (such as Clang, Python, and Ninja) used during the build process are not collected.
 
-A static library itself is not packaged. However, if it is packaged into the system as part of a dynamic library or executable file, the license of the static library will be collected for completeness.
+A static library itself is not packaged. However, if it is packaged into the system as part of a dynamic library or an executable file, the license of the static library will be collected for completeness.
 
 The final **Notice.txt** file must include all licenses used by the files in the image and the mapping between modules and licenses.
 
@@ -92,14 +92,14 @@ Licenses are collected by priority, which ranges from 1 to 4 in descending order
 
 2. If there is no explicitly declared license, the build script searches for the **Readme.OpenSource** file in the directory of **BUILD.gn**, parses the file, and collects the obtained licenses. If the **Readme.OpenSource** file does not contain license information, an error will be reported.
 
-3. If the **Readme.OpenSource** file does not exist, the build script searches for the **License**, **Copyright**, and **Notice** files from the current directory to the root directory of the source code by default. If obtained license information will be used as the licenses of the module.
+3. If the **Readme.OpenSource** file does not exist, the build script searches for the **License**, **Copyright**, and **Notice** files from the current directory to the root directory of the source code by default. The obtained license information will be used as the licenses of the module.
 
 4. If no license is found, the default license (Apache License 2.0) will be used.
 
 Pay attention to the following:
 
-- For third-party open-source software, such as OpenSSL and ICU, **Readme.OpenSource** must be configured in the source code directory. Check whether **Readme.OpenSource** is in the same directory as **BUILD.gn** and whether the license configured in **Readme.OpenSource** is valid.
-- If the source code is not licensed under the Apache License 2.0, the corresponding license file must be provided in the source code directory or declared by **license_file** for the module.
+- For third-party open-source software, such as OpenSSL and ICU, **Readme.OpenSource** must be configured in the source code directory. Check whether **Readme.OpenSource** is in the same directory as **BUILD.gn** and whether the licenses configured in **Readme.OpenSource** are valid.
+- If the source code is not licensed under Apache License 2.0, the corresponding license file must be provided in the source code directory or declared in **license_file** for the module.
 - If the source code file added to **BUILD.gn** is not from the current directory, check whether the license in the repository where the source code file is located is the same as that in the repository of **BUILD.gn**.
 
 ## Parameters for Accelerating Local Build
@@ -107,22 +107,22 @@ Pay attention to the following:
 The following parameters can be added to the build command to speed up the build process:
 
 - **--ccache**
-  - Ccache caches the output of C/C++ compilation. If the compilation input remains unchanged the next time, the compilation can be skipped and the results can be taken from the cache.
+  - Ccache caches the output of C/C++ compilation. If the compilation input remains unchanged the next time, the compilation can be skipped and the output can be taken from the cache.
   - Installing ccache:
     - Quick installation: Run the **sudo apt-get install ccache** command.
     - Download the binary file from the [official website](https://ccache.dev/download.html) and configure the ccache path to the environment variable.
-  - Usage: Run the **./build.sh --product-name** *Product name* **--ccache** command.
+  - Usage: Run the **./build.sh --product-name** *Product_name* **--ccache** command.
 - **--fast-rebuild**
   - The compilation process includes preloader -> loader -> GN -> Ninja. If the GN and product configuration files are not modified locally, adding **--fast-rebuild** will start from Ninja directly.
-  - Usage: Run the **./build.sh --product-name** *Product name* **--fast-rebuild** command.
+  - Usage: Run the **./build.sh --product-name** *Product_name* **--fast-rebuild** command.
 - **enable_notice_collection=false**
   - Adding this parameter can skip the process of collecting the module licenses of the open-source software.
-  - Usage: Run the **./build.sh --product-name** *Product name* **--gn-args --enable_notice_collection=false --ccache** command.
+  - Usage: Run the **./build.sh --product-name** *Product_name* **--gn-args --enable_notice_collection=false --ccache** command.
 - **--build-target**
   - This parameter specifies the module to compile. You can obtain the module name as follows:
     - Pay attention to keywords such as **group**, **ohos_shared_library**, and **ohos_executable** in **BUILD.gn**.
-    - Run **./build.sh --product-name** *Product name* **--build-target** *Module name* **--build-only-gn** to generate **build.ninja** and locate the related module name in the file.
-  - Usage: Run the **./build.sh --product-name** *Product name* **--build-target ark_js_host_linux_tools_packages** command.
+    - Run **./build.sh --product-name** *Product_name* **--build-target** *Module_name* **--build-only-gn** to generate **build.ninja** and locate the related module name in the file.
+  - Usage: Run the **./build.sh --product-name** *Product_name* **--build-target ark_js_host_linux_tools_packages** command.
 
 ## Viewing Ninja Build Information
 

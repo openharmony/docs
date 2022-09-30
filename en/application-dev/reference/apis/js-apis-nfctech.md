@@ -1,9 +1,8 @@
-# Standard NFC Tag Technologies
+# NFC Tag Technologies
 
-The **nfctech** module provides methods for reading and writing tags that use different Near-Field Communication (NFC) technologies.
+The **nfctech** module provides APIs for reading and writing tags that use different Near-Field Communication (NFC) technologies.
 
 > **NOTE**
-> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## **Modules to Import**
@@ -14,7 +13,7 @@ import tag from '@ohos.nfc.tag';
 
 ## NfcATag
 
-Provides access to NFC-A (ISO 14443-3A) properties and I/O operations. **NfcATag** inherits from **TagSession**.
+Provides access to NFC-A (ISO 14443-3A) properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -74,7 +73,7 @@ console.log("atqa:" +atqa);
 
 ## NfcBTag
 
-Provides access to NFC-B (ISO 14443-3B) properties and I/O operations. **NfcBTag** inherits from **TagSession**.
+Provides access to NFC-B (ISO 14443-3B) properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -110,7 +109,7 @@ console.log("appData:" +appData);
 
 getRespProtocol(): number[]
 
-Obtains protocol information of this NFC-B tag.
+Obtains the protocol information of this NFC-B tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -134,7 +133,7 @@ console.log("appData:" +protocol);
 
 ## NfcFTag
 
-Provides access to NFC-F(JIS 6319-4) properties and I/O operations. **NfcFTag** inherits from **TagSession**.
+Provides access to NFC-F (JIS 6319-4) properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -144,7 +143,7 @@ The following describes the unique interfaces of **NfcFTag**.
 
 getSystemCode(): number[]
 
-Obtains the system code from the tag instance.
+Obtains the system code from this NFC-F tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -170,7 +169,7 @@ console.log("systemCode:" +systemCode);
 
 getPmm(): number[]
 
-Obtains the PMm (consisting of the IC code and manufacturer parameters) information from the tag instance.
+Obtains the PMm (consisting of the IC code and manufacturer parameters) information from this NFC-F tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -194,7 +193,7 @@ console.log("pmm:" +pmm);
 
 ## NfcVTag
 
-Provides access to NFC-V (ISO 15693) properties and I/O operations. **NfcVTag** inherits from **TagSession**.
+Provides access to NFC-V (ISO 15693) properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -204,7 +203,7 @@ The following describes the unique interfaces of **NfcVTag**.
 
 getResponseFlags(): number
 
-Obtains the response flags from the tag instance.
+Obtains the response flags from this NFC-V tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -230,7 +229,7 @@ console.log("flags:" +flags);
 
 getDsfId(): number
 
-Obtains the data storage format identifier (DSFID) from the tag instance.
+Obtains the data storage format identifier (DSFID) from this NFC-V tag.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -254,7 +253,7 @@ console.log("dsfId:" +dsfId);
 
 ## IsoDepTag<sup>9+</sup> 
 
-Provides access to ISO-DEP (ISO 14443-4) properties and I/O operations. **IsoDepTag** inherits from **TagSession**.
+Provides access to ISO-DEP (ISO 14443-4) properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -343,7 +342,7 @@ tag.getIsoDepTag(taginfo).isExtendedApduSupported().then(function (has) {
 
 isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
-Checks whether an extended application protocol data unit (APDU) is supported. This API uses an asynchronous callback to return the result.
+Checks whether an extended APDU is supported. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -367,7 +366,7 @@ tag.getIsoDepTag(taginfo).isExtendedApduSupported(function (error, has) {
 
 ## NdefTag<sup>9+</sup>
 
-Provides access to the tags in the NFC Data Exchange Format (NDEF). **NdefTag** inherits from **TagSession**.
+Provides access to the tags in the NFC Data Exchange Format (NDEF). This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -596,7 +595,7 @@ Reads the NDEF message from this tag. This API uses a promise to return the resu
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the message read.|
+| Promise\<[NdefMessage](#ndefmessage9)> | Promise used to return the NDEF message read.|
 
 **Example**
 
@@ -641,7 +640,7 @@ tag.NdefTag(taginfo).readNdef(function (error, ndefMessage) {
 
 writeNdef(msg: NdefMessage): Promise\<number>;
 
-Write an NDEF message to this tag. This API uses a promise to return the result.
+Writes an NDEF message to this tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -674,7 +673,7 @@ NdefTag.writeNdef(msg).then(function (netHandle) {
 
 writeNdef(msg: NdefMessage, callback: AsyncCallback\<number>): void
 
-Write an NDEF message to this tag. This API uses an asynchronous callback to return the result.
+Writes an NDEF message to this tag. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -728,7 +727,7 @@ tag.NdefTag(taginfo).canSetReadOnly().then(function (has) {
 
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
-canSetReadOnly()(callback: AsyncCallback&lt;boolean&gt;): void;
+canSetReadOnly(callback: AsyncCallback&lt;boolean&gt;): void;
 
 Checks whether this NDEF tag can be set to read-only. This API uses an asynchronous callback to return the result.
 
@@ -813,7 +812,7 @@ tag.NdefTag(taginfo).setReadOnly(function (error, errcode) {
 
 getNdefTagTypeString(type: [NfcForumType](#nfcforumtype9)): string
 
-Converts the NFC Forum Type to a byte array defined in the NFC Forum.
+Converts an NFC Forum Type to a byte array defined in the NFC Forum.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -852,7 +851,7 @@ let ndefTypeString= tag.NdefTag(taginfo).getNdefTagTypeString(type);
 
 ## MifareClassicTag <sup>9+</sup>
 
-Provides access to MIFARE Classic properties and I/O operations. **MifareClassicTag** inherits from **TagSession**.
+Provides access to MIFARE Classic properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -928,7 +927,7 @@ tag.MifareClassicTag(taginfo).authenticateSector(sectorIndex, key, function (err
 
 readSingleBlock(blockIndex: number): Promise\<string>
 
-Reads a block on the tag. The size of a block is 16 bytes. This API uses a promise to return the result.
+Reads a block (16 bytes) on the tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -962,7 +961,7 @@ tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex).then(function (data){
 
 readSingleBlock(blockIndex: number, callback: AsyncCallback\<string>): void
 
-Reads a block on the tag. The size of a block is 16 bytes. This API uses an asynchronous callback to return the result.
+Reads a block (16 bytes) on the tag. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -992,7 +991,7 @@ tag.MifareClassicTag(taginfo).readSingleBlock(blockIndex, function (error, data)
 
 writeSingleBlock(blockIndex: number, data: string): Promise\<number>
 
-Writes data to a block on the tag. The size of a block is 16 bytes. This API uses a promise to return the result.
+Writes data to a block on the tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1027,7 +1026,7 @@ tag.MifareClassicTag(taginfo).writeSingleBlock(blockIndex, data).then(function (
 
 writeSingleBlock(blockIndex: number, data: string, callback: AsyncCallback\<number>): void
 
-Writes data to a block on the tag. The size of a block is 16 bytes. This API uses an asynchronous callback to return the result.
+Writes data to a block on the tag. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1427,10 +1426,10 @@ let size = tag.MifareClassicTag(taginfo).getTagSize();
 
 | **Name**| **Value**|  **Description**|
 | -------- | -------- | -------- |
-| MC_SIZE_MINI | 320 |  Each tag has five sectors, and each sector has four blocks.|
-| MC_SIZE_1K  | 1024 |  Each tag has 16 sectors, and each sector has four blocks.|
-| MC_SIZE_2K   | 2048 |  Each tag has 32 sectors, and each sector has four blocks.|
-| MC_SIZE_4K   | 4096 |  Each tag has 40 sectors, and each sector has four blocks.|
+| MC_SIZE_MINI | 320 |  Each tag has 5 sectors, and each sector has 4 blocks.|
+| MC_SIZE_1K  | 1024 |  Each tag has 16 sectors, and each sector has 4 blocks.|
+| MC_SIZE_2K   | 2048 |  Each tag has 32 sectors, and each sector has 4 blocks.|
+| MC_SIZE_4K   | 4096 |  Each tag has 40 sectors, and each sector has 4 blocks.|
 
 ### MifareClassicTag.isEmulatedTag<sup>9+</sup>
 
@@ -1521,7 +1520,7 @@ let index = tag.MifareClassicTag(taginfo).getSectorIndex(blockIndex);
 
 ## MifareUltralightTag<sup>9+</sup>
 
-Provides access to MIFARE Ultralight properties and I/O operations. **MifareUltralightTag** inherits from **TagSession**.
+Provides access to MIFARE Ultralight properties and I/O operations. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -1531,7 +1530,7 @@ The following describes the unique interfaces of **MifareUltralightTag**.
 
 readMultiplePages(pageIndex: number): Promise\<string>
 
-Reads multiple pages. The size of each page is 4 bytes. This API uses a promise to return the result.
+Reads multiple pages (4 bytes per page). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1565,7 +1564,7 @@ tag.MifareUltralightTag(taginfo).readMultiplePages(pageIndex).then(function (dat
 
 readMultiplePages(pageIndex: number, callback: AsyncCallback\<string>): void
 
-Reads multiple pages. The size of each page is 4 bytes. This API uses an asynchronous callback to return the result.
+Reads multiple pages (4 bytes per page). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1594,7 +1593,7 @@ tag.MifareUltralightTag(taginfo).readMultiplePages(pageIndex, function (error, d
 
 writeSinglePages(pageIndex: number, data: string): Promise\<number>
 
-Writes a page of data. The size of each page is 4 bytes. This API uses a promise to return the result.
+Writes a page of data. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1628,7 +1627,7 @@ tag.MifareUltralightTag(taginfo).writeSinglePages(pageIndex, data).then(function
 
 writeSinglePages(pageIndex: number, data: string, callback: AsyncCallback\<number>): void
 
-Writes a page of data. The size of each page is 4 bytes. This API uses an asynchronous callback to return the result.
+Writes a page of data. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1658,7 +1657,7 @@ tag.MifareUltralightTag(taginfo).writeSinglePages(pageIndex, data, function (err
 
 getType(): MifareUltralightType
 
-Obtains the MIFARE Ultralight tag type, in bytes. For details, see [MifareUltralightType](#mifareultralighttype9).
+Obtains the MIFARE Ultralight tag type, in bytes.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -1689,7 +1688,7 @@ let type = tag.MifareUltralightType(taginfo).getType();
 
 ## NdefFormatableTag<sup>9+</sup>
 
-Provides methods for operating NDEF formattable tags. **NdefFormatableTag** inherits from **TagSession**.
+Provides APIs for operating NDEF formattable tags. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
@@ -1709,7 +1708,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to the tag. This API
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If it is **null**, the tag is formatted only and no data will be written.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
 
 **Return value**
 
@@ -1742,8 +1741,8 @@ Formats this tag as an NDEF tag, and writes an NDEF message to the tag. This API
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If it is **null**, the tag is formatted only and no data will be written.|
-| callback: AsyncCallback\<number> | Callback invoked to return the result.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only.|
+| callback | AsyncCallback\<number> |Yes|Callback invoked to return the result.|
 
 **Example**
 
@@ -1771,7 +1770,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If it is **null**, the tag is formatted only and no data will be written.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only (no data will be written).|
 
 **Return value**
 
@@ -1804,8 +1803,8 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If it is **null**, the tag is formatted only and no data will be written.|
-| callback: AsyncCallback\<number> | Callback invoked to return the result.|
+| message | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write when the formatting is successful. If this parameter is **null**, the tag is formatted only.|
+| callback | AsyncCallback\<number> |Yes|Callback invoked to return the result.|
 
 **Example**
 

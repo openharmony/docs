@@ -28,14 +28,14 @@ System applications also support notification-related configuration options, suc
 
 ## Available APIs
 
-Certain APIs can be invoked only by system applications that have been granted the **SystemCapability.Notification.Notification** permission. The APIs use either a callback or promise to return the result. The tables below list the APIs that use a callback, which provide same functions as their counterparts that use a promise. For details about the APIs, see the [API document](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-notification.md).
+Certain APIs can be called only by system applications that have been granted the **SystemCapability.Notification.Notification** permission. The APIs use either a callback or promise to return the result. The tables below list the APIs that use a callback, which provide the same functions as their counterparts that use a promise. For details about the APIs, see the [API document](../reference/apis/js-apis-notification.md).
 
 **Table 1** APIs for notification enabling
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback<boolean>): void | Checks whether notification is enabled.|
-| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback<void>): void | Sets whether to enable notification.    |
+| isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean>): void | Checks whether notification is enabled.|
+| enableNotification(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void | Sets whether to enable notification.    |
 
 If the notification function of an application is disabled, it cannot send notifications.
 
@@ -45,11 +45,11 @@ If the notification function of an application is disabled, it cannot send notif
 
 | API                                                      | Description            |
 | ------------------------------------------------------------ | ---------------- |
-| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback<void>): void | Subscribes to a notification with the subscription information specified.|
-| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | Subscribes to all notifications.    |
-| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback<void>): void | Unsubscribes from a notification.    |
+| subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void>): void | Subscribes to a notification with the subscription information specified.|
+| subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | Subscribes to all notifications.    |
+| unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void>): void | Unsubscribes from a notification.    |
 
-The subscription APIs support subscription to all notifications or notifications from specific applications.
+The subscription APIs support subscription to all notifications and notifications from specific applications.
 
 
 
@@ -69,10 +69,10 @@ The subscription APIs support subscription to all notifications or notifications
 
 | API                                                      | Description                    |
 | ------------------------------------------------------------ | ------------------------ |
-| publish(request: NotificationRequest, callback: AsyncCallback<void>): void | Publishes a notification.                |
-| publish(request: NotificationRequest, userId: number, callback: AsyncCallback<void>): void | Publishes a notification to the specified user.        |
-| cancel(id: number, label: string, callback: AsyncCallback<void>): void | Cancels a specified notification.          |
-| cancelAll(callback: AsyncCallback<void>): void;              | Cancels all notifications published by the application.|
+| publish(request: NotificationRequest, callback: AsyncCallback\<void>): void | Publishes a notification.                |
+| publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void>): void | Publishes a notification to the specified user.        |
+| cancel(id: number, label: string, callback: AsyncCallback\<void>): void | Cancels a specified notification.          |
+| cancelAll(callback: AsyncCallback\<void>): void;             | Cancels all notifications published by the application.|
 
 The **publish** API that carries **userId** can be used to publish notifications to subscribers of a specified user.
 
@@ -136,7 +136,7 @@ var subscriber = {
 Before publishing a notification, check whether the notification feature is enabled for your application. By default, the feature is disabled. The application calls **Notification.requestEnableNotification** to prompt the user to enable the feature.
 
 ```js
-Notification.requestEnableNotification() .then((data) => {
+Notification.requestEnableNotification().then((data) => {
 	console.info('===>requestEnableNotification success');
 }).catch((err) => {
 	console.error('===>requestEnableNotification failed because ' + JSON.stringify(err));
@@ -166,7 +166,7 @@ var notificationRequest = {
 }
 
 // Publish the notification.
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));
@@ -235,7 +235,7 @@ var notificationRequest = {
 }
 
 // Publish the notification.
-Notification.publish(notificationRequest) .then((data) => {
+Notification.publish(notificationRequest).then((data) => {
 	console.info('===>publish promise success req.id : ' + notificationRequest.id);
 }).catch((err) => {
 	console.error('===>publish promise failed because ' + JSON.stringify(err));

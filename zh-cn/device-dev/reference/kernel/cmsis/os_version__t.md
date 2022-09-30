@@ -15,8 +15,8 @@
 
   | 成员变量&nbsp;Name | 描述 | 
 | -------- | -------- |
-| [api](#api) | API接口版本号 | 
-| [kernel](#kernel) | 内核版本号 | 
+| [api](#api) | API接口版本号。 | 
+| [kernel](#kernel) | 内核版本号。 | 
 
 
 ## **详细描述**

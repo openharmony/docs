@@ -183,7 +183,7 @@ kernel/liteos_m/arch          # 不同版本路径有差异
    ```
    declare_args() {
      enable_ohos_kernel_liteos_m_cppsupport = true        # cpp支持
-     enable_ohos_kernel_liteos_m_cpup = true              # cpu占用率支持
+     enable_ohos_kernel_liteos_m_cpup = true              # CPU占用率支持
      enable_ohos_kernel_liteos_m_exchook = true           # 异常处理支持
      enable_ohos_kernel_liteos_m_kal = true               # kal接口支持
      enable_ohos_kernel_liteos_m_fs = true                # 文件系统支持

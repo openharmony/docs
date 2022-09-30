@@ -2,25 +2,20 @@
 
 The **zIndex** attribute sets the z-order of a component in the stacking context.
 
-> **NOTE**
-> This attribute is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
 
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| zIndex | number | 0 | Hierarchy of sibling components in a container. A larger value indicates a higher display level. |
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| zIndex | number | Hierarchy of sibling components in a container. A larger value indicates a higher display level.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
