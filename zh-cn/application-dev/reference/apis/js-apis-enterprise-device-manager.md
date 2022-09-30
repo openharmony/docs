@@ -669,7 +669,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-订阅系统事件。使用callback异步回调。
+订阅系统管理事件。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -681,7 +681,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件订阅成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件订阅成功err为null，否则为错误对象。 |
 
 **示例：**
 
@@ -702,7 +702,7 @@ enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events, (error) => {
 
 subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-订阅系统事件。使用Promise异步回调。
+订阅系统管理事件。使用Promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -739,7 +739,7 @@ enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
-取消订阅系统事件。使用callback异步回调。
+取消订阅系统管理事件。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -751,7 +751,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
 | managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件取消订阅成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当系统管理事件取消订阅成功err为null，否则为错误对象。 |
 
 **示例：**
 
@@ -772,7 +772,7 @@ enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
 
 unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
-取消订阅系统事件。使用callback异步回调。
+取消订阅系统管理事件。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -829,7 +829,7 @@ enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 
 ## ManagedEvent
 
-可订阅系统事件。
+可订阅系统管理事件。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager 
 
