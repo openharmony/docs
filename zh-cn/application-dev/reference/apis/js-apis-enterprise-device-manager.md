@@ -836,5 +836,5 @@ enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 | 名称                | 默认值  | 说明    |
 | ----------------- | ---- | ----- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0 | 应用安装事件。 |
-| MANAGED_EVENT_BUNDLE_REMOVED  | 2 | 应用卸载事件。 |
+| MANAGED_EVENT_BUNDLE_REMOVED  | 1 | 应用卸载事件。 |
 
