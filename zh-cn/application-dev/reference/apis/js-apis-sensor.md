@@ -210,7 +210,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;,options
 
 订阅校准的陀螺仪传感器数据。
 
-**需要权限**： ohos.permission.GYROSCOPE 
+**需要权限**：ohos.permission.GYROSCOPE 
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
@@ -243,7 +243,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 订阅未经校准的陀螺仪传感器数据
 
-**需要权限**： ohos.permission.GYROSCOPE 
+**需要权限**：ohos.permission.GYROSCOPE 
 
 **系统能力**：SystemCapability.Sensors.Sensor  
 
@@ -322,9 +322,9 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,option
 
 ```js
 try {
-sensor.on(sensor.SensorId.HEART_RATE,function(data){
-    console.info('Heart rate: ' + data.heartRate);
-}, {interval: 10000000} );
+    sensor.on(sensor.SensorId.HEART_RATE,function(data){
+        console.info('Heart rate: ' + data.heartRate);
+    }, {interval: 10000000} );
 } catch(err) {
       console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -948,7 +948,7 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 订阅一次心率传感器数据。
 
-**需要权限**： ohos.permission.READ_HEALTH_DATA 
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor 
 
@@ -2283,11 +2283,11 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 ```js
 try {
-sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(data) {
-    for (var i=0; i < data.length; i++) {
-        console.info("transformRotationMatrix  data[ " + i + "] = " + data[i]);
-    }
- })
+    sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(data) {
+        for (var i=0; i < data.length; i++) {
+            console.info("transformRotationMatrix  data[ " + i + "] = " + data[i]);
+        }
+    })
 } catch (err) {
         console.error('transformRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
 }
@@ -2547,16 +2547,16 @@ try {
 **示例：** 
 
 ```js
-sensor.getSensorList((error, data) => {
-    if (error) {
-        console.error('getSensorList failed');
-    } else {
+try {
+    sensor.getSensorList((data) => {
         console.info("getSensorList callback in" + data.length);
         for (var i = 0; i < data.length; i++) {
             console.info("getSensorList " + JSON.stringify(data[i]));
         }
-    }
-});
+    });
+} catch (err) {
+        console.error('getSensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+}
 ```
 
 ## sensor.getSensorList<sup>9+</sup>
@@ -2576,14 +2576,18 @@ sensor.getSensorList((error, data) => {
 **示例：** 
 
 ```js
-sensor.getSensorList().then((data) => {
-    console.info("getSensorList promise in" + data.length);
-    for (var i = 0; i < data.length; i++) {
-        console.info("getSensorList " + JSON.stringify(data[i]));
-     }
-}, (error)=>{
-    console.error('getSensorList failed');
-});
+try {
+    sensor.getSensorList().then((data) => {
+        console.info("getSensorList promise in" + data.length);
+        for (var i = 0; i < data.length; i++) {
+            console.info("getSensorList " + JSON.stringify(data[i]));
+        }
+    }, (error)=>{
+        console.error('getSensorList failed');
+    });
+} catch (err) {
+        console.error('getSensorList failed. Error code: ' + err.code + '; message: ' + err.message);
+}
 ```
 
 ##  sensor.getSingleSensor<sup>9+</sup>
@@ -2604,13 +2608,13 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 **示例：**
 
 ```js
- sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
-     if (error) {
-         console.error('getSingleSensor failed');
-     } else {
-         console.info("getSingleSensor " + JSON.stringify(data));
-     }
-});
+try {
+    sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) =>     {
+        console.info("getSingleSensor " + JSON.stringify(data));
+    });
+} catch (err) {
+        console.error('getSingleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+}
 ```
 
 ##  sensor.getSingleSensor<sup>9+</sup>
@@ -2636,11 +2640,15 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 **示例：**
 
 ```js
-sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
-    console.info("getSingleSensor " + JSON.stringify(data));
-}, (error)=>{
-    console.error('getSingleSensor failed');
-});
+try {
+    sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+        console.info("getSingleSensor " + JSON.stringify(data));
+    }, (error)=>{
+        console.error('getSingleSensor failed');
+    });
+} catch (err) {
+        console.error('getSingleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
+}
 ```
 
 ## SensorId<sup>9+</sup>
