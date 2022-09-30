@@ -680,7 +680,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件订阅成功err为null，否则为错误对象。 |
 
 **示例：**
@@ -713,7 +713,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 订阅事件数组。 |
 
 **返回值：**
 
@@ -750,7 +750,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 取消订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件取消订阅成功err为null，否则为错误对象。 |
 
 **示例：**
@@ -783,7 +783,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
-| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 取消订阅事件数组。 |
+| managedEvents  | Array\<[ManagedEvent](#managedevent)> | 是 | 取消订阅事件数组。 |
 
 **返回值：**
 
