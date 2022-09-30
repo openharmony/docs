@@ -207,7 +207,7 @@ let ret = hiSysEvent.addWatcher(watcher)
 
 ## hiSysEvent.removeWatcher
 
-removeWatcher(wathcer: Watcher): number
+removeWatcher(watcher: Watcher): number
 
 Removes a watcher used for event subscription.
 

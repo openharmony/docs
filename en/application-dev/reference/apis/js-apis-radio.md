@@ -384,6 +384,27 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>7+</sup>
+
+isNrSupported\(\): boolean
+
+Checks whether the current device supports 5G \(NR\).
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Return value**
+
+| Type   | Description                            |
+| ------- | -------------------------------- |
+| boolean | - **true**: The current device supports 5G \(NR\).<br>- **false**: The current device does not support 5G \(NR\).|
+
+**Example**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+``
+
 
 ## radio.isNrSupported<sup>8+</sup>
 
