@@ -25,7 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI内容的MIME类型定义。 |
 | MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | PixelMap内容的MIME类型定义。 |
 
-## ValueType
+## ValueType<sup>9+</sup>
 
 用于表示允许的数据字段类型。
 
@@ -34,15 +34,18 @@ import pasteboard from '@ohos.pasteboard';
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示string的类型 |
-| image.PixelMap | 表示image.PixelMap的类型。 |
-| Want | 表示Want的类型|
+| image.PixelMap<sup>7+</sup> | 表示[image.PixelMap](js-apis-image.md#pixelmap7)的类型。 |
+| Want<sup>7+</sup> | 表示[Want](js-apis-application-Want.md)的类型|
 | ArrayBuffer | 表示ArrayBuffer的类型|
 
-## pasteboard.createPlainTextData
+## pasteboard.createPlainTextData(deprecated)
 
 createPlainTextData(text: string): PasteData
 
 构建一个纯文本剪贴板内容对象。
+> **说明：**
+>
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData<sup>9+</sup>](#pasteboard.createData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -65,11 +68,14 @@ var pasteData = pasteboard.createPlainTextData("content");
 ```
 
 
-## pasteboard.createHtmlData<sup>7+</sup>
+## pasteboard.createHtmlData(deprecated)
 
 createHtmlData(htmlText: string): PasteData
 
 构建一个HTML剪贴板内容对象。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData<sup>9+</sup>](#pasteboard.createData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -93,11 +99,14 @@ var pasteData = pasteboard.createHtmlData(html);
 ```
 
 
-## pasteboard.createWantData<sup>7+</sup>
+## pasteboard.createWantData(deprecated)
 
 createWantData(want: Want): PasteData
 
 构建一个Want剪贴板内容对象。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData<sup>9+</sup>](#pasteboard.createData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -124,11 +133,14 @@ var pasteData = pasteboard.createWantData(object);
 ```
 
 
-## pasteboard.createUriData<sup>7+</sup>
+## pasteboard.createUriData(deprecated)
 
 createUriData(uri: string): PasteData
 
 构建一个URI剪贴板内容对象。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createData<sup>9+</sup>](#pasteboard.createData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -152,7 +164,7 @@ var pasteData = pasteboard.createUriData("dataability:///com.example.myapplicati
 
 ## pasteboard.createData<sup>9+</sup>
 
-createData(mimeType: string, value: ValueType): PasteData;
+createData(mimeType: string, value: ValueType): PasteData
 
 构建一个自定义类型的剪贴板内容对象。
 
@@ -163,7 +175,7 @@ createData(mimeType: string, value: ValueType): PasteData;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | ValueType | 是 | 自定义数据内容。 |
+| value | [ValueType](#ValueType<sup>9+</sup>) | 是 | 自定义数据内容。 |
 
 **返回值：**
 
@@ -174,16 +186,19 @@ createData(mimeType: string, value: ValueType): PasteData;
 **示例：**
 
   ```js
-  var dataXml = "aStringValueType"
-  var pasteData = pasteboard.createData('app/xml', dataXml)
+  var dataXml = 'aStringValueType';
+  var pasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 
-## pasteboard.createPlainTextRecord<sup>7+</sup>
+## pasteboard.createPlainTextRecord(deprecated)
 
 createPlainTextRecord(text: string): PasteDataRecord
 
 创建一条纯文本内容条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord<sup>9+</sup>](#pasteboard.createRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -206,11 +221,14 @@ var record = pasteboard.createPlainTextRecord("hello");
 ```
 
 
-## pasteboard.createHtmlTextRecord<sup>7+</sup>
+## pasteboard.createHtmlTextRecord(deprecated)
 
 createHtmlTextRecord(htmlText: string): PasteDataRecord
 
 创建一条HTML内容的条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord<sup>9+</sup>](#pasteboard.createRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -234,11 +252,14 @@ var record = pasteboard.createHtmlTextRecord(html);
 ```
 
 
-## pasteboard.createWantRecord<sup>7+</sup>
+## pasteboard.createWantRecord(deprecated)
 
 createWantRecord(want: Want): PasteDataRecord
 
 创建一条Want内容条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord<sup>9+</sup>](#pasteboard.createRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -265,11 +286,14 @@ var record = pasteboard.createWantRecord(object);
 ```
 
 
-## pasteboard.createUriRecord<sup>7+</sup>
+## pasteboard.createUriRecord(deprecated)
 
 createUriRecord(uri: string): PasteDataRecord
 
 创建一条URI内容的条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.createRecord<sup>9+</sup>](#pasteboard.createRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -304,7 +328,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | ValueType | 是 | 自定义数据内容。 |
+| value | [ValueType](#ValueType<sup>9+</sup>) | 是 | 自定义数据内容。 |
 
 **返回值：**
 
@@ -315,7 +339,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord;
 **示例：**
 
   ```js
-  var dataXml = "aStringValueType"
+  var dataXml = 'aStringValueType';
   var pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
   ```
 
@@ -389,11 +413,14 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 
-### convertToText<sup>7+</sup>
+### convertToText(deprecated)
 
 convertToText(): Promise&lt;string&gt;
 
 将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9<sup>9+</sup>](#convertToTextV9<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -414,12 +441,14 @@ record.convertToText().then((data) => {
 });
 ```
 
-
-### convertToText<sup>7+</sup>
+### convertToText(deprecated)
 
 convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 将一个PasteData中的内容强制转换为文本内容，使用callback异步回调。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9<sup>9+</sup>](#convertToTextV9<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -632,14 +661,16 @@ image.createPixelMap(buffer, opt).then((pixelMap) => {
 })
 ```
 
-
-### addTextRecord<sup>7+</sup>
+### addTextRecord(deprecated)
 
 addTextRecord(text: string): void
 
 向当前剪贴板内容中添加一条纯文本条目，并将MIME_TEXT_PLAIN添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord<sup>9+</sup>](#addRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -656,14 +687,16 @@ var pasteData = pasteboard.createPlainTextData("hello");
 pasteData.addTextRecord("good");
 ```
 
-
-### addHtmlRecord<sup>7+</sup>
+### addHtmlRecord(deprecated)
 
 addHtmlRecord(htmlText: string): void
 
 向当前剪贴板内容中添加一条HTML内容条目，并将MIMETYPE_TEXT_HTML添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord<sup>9+</sup>](#addRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -681,14 +714,16 @@ var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-
 pasteData.addHtmlRecord(html);
 ```
 
-
-### addWantRecord<sup>7+</sup>
+### addWantRecord(deprecated)
 
 addWantRecord(want: Want): void
 
 向当前剪贴板内容中添加一条Want条目，并将MIMETYPE_TEXT_WANT添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord<sup>9+</sup>](#addRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -709,14 +744,16 @@ var object = {
 pasteData.addWantRecord(object);
 ```
 
-
-### addUriRecord<sup>7+</sup>
+### addUriRecord(deprecated)
 
 addUriRecord(uri: string): void
 
 向当前剪贴板内容中添加一条URI条目，并将MIMETYPE_TEXT_URI添加到[PasteDataProperty](#pastedataproperty7)的mimeTypes中。入参均不能为空，否则添加失败。
 
 剪贴板内容中添加的条目达到数量上限512后，后续的添加操作无效。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[addRecord<sup>9+</sup>](#addRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -748,13 +785,13 @@ addRecord(mimeType: string, value: ValueType): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | mimeType | string | 是 | 自定义数据的MIME类型。 |
-| value | ValueType | 是 | 自定义数据内容。 |
+| value | [ValueType](#ValueType<sup>9+</sup>) | 是 | 自定义数据内容。 |
 
 **示例：**
 
   ```js
   var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
-  var dataXml = "aStringValueType"
+  var dataXml = 'aStringValueType';
   pasteData.addRecord('app/xml', dataXml);
   ```
 
@@ -877,11 +914,14 @@ pasteData.setProperty(prop);
 ```
 
 
-### getRecordAt<sup>7+</sup>
+### getRecordAt(deprecated)
 
 getRecordAt(index: number): PasteDataRecord
 
 获取剪贴板内容中指定下标的条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[getRecord<sup>9+</sup>](#getRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1002,11 +1042,14 @@ var hasType = pasteData.hasType(pasteboard.MIMETYPE_TEXT_PLAIN);
 ```
 
 
-### hasMimeType<sup>7+</sup>
+### hasMimeType(deprecated)
 
 hasMimeType(mimeType: string): boolean
 
 检查剪贴板内容中是否有指定的数据类型。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasType<sup>9+</sup>](#hasType<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1029,11 +1072,14 @@ var pasteData = pasteboard.createPlainTextData("hello");
 var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
 ```
 
-### removeRecordAt<sup>7+</sup>
+### removeRecordAt(deprecated)
 
 removeRecordAt(index: number): boolean
 
 移除剪贴板内容中指定下标的条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[replaceRecord<sup>9+</sup>](#replaceRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1077,11 +1123,14 @@ var pasteData = pasteboard.createPlainTextData("hello");
 pasteData.removeRecord(0);
 ```
 
-### replaceRecordAt<sup>7+</sup>
+### replaceRecordAt(deprecated)
 
 replaceRecordAt(index: number, record: PasteDataRecord): boolean
 
 替换剪贴板内容中指定下标的条目。
+> **说明：**
+>
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[replaceRecord<sup>9+</sup>](#replaceRecord<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1264,11 +1313,14 @@ systemPasteboard.setData(pasteData).then((data) => {
 });
 ```
 
-### getPasteData
+### getPasteData(deprecated)
 
 getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
+> **说明：**
+>
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData<sup>9+</sup>](#getData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -1291,11 +1343,14 @@ systemPasteboard.getPasteData((err, pasteData) => {
 });
 ```
 
-### getPasteData
+### getPasteData(deprecated)
 
 getPasteData(): Promise&lt;PasteData&gt;
 
 读取系统剪贴板内容，使用Promise异步回调。
+> **说明：**
+>
+> 从 API Version 6 开始支持，从 API Version 9 开始废弃，建议使用[getData<sup>9+</sup>](#getData<sup>9+</sup>)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
