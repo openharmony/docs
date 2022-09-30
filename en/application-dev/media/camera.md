@@ -54,7 +54,7 @@ await cameraManager.getCameras((err, cameras) => {
     cameraArray = cameras
 })
 
-for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex) {
+for(let cameraIndex = 0; cameraIndex < cameraArray.length; cameraIndex++) {
     console.log('cameraId : ' + cameraArray[cameraIndex].cameraId)                          // Obtain the camera ID.
     console.log('cameraPosition : ' + cameraArray[cameraIndex].cameraPosition)              // Obtain the camera position.
     console.log('cameraType : ' + cameraArray[cameraIndex].cameraType)                      // Obtain the camera type.
@@ -292,7 +292,7 @@ await captureSession.start().then(() => {
 ##### Switching a Session
 
 ```js
-// Stop the current session.
+// Stop the session.
 await captureSession.stop((err) => {
     if (err) {
         console.error('Failed to stop the session ${err.message}');
@@ -347,8 +347,8 @@ await captureSession.start().then(() => {
 
 ```js
 let settings = {
-    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH                                      // Set the image quality to high.
-    rotation: camera.ImageRotation.ROTATION_0,                                           // Set the image rotation angle to 0.
+    quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // Set the image quality to high.
+    rotation: camera.ImageRotation.ROTATION_0                                            // Set the image rotation angle to 0.
 }
 // Use the current photographing settings to take photos.
 photoOutput.capture(settings, (err) => {
@@ -395,7 +395,7 @@ await videoOutput.stop((err) => {
 #### Releasing Resources
 
 ```js
-// Stop the current session.
+// Stop the session.
 await captureSession.stop((err) => {
     if (err) {
         console.error('Failed to stop the session ${err.message}');

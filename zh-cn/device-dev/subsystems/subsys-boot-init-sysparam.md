@@ -98,6 +98,55 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
 
   ![UGO规则信息](figures/系统参数DAC.png)
 
+- 系统参数配置selinux策略
+
+  - 添加selinux标签
+
+    为系统参数添加selinux标签，首先需要在文件/base/security/selinux/sepolicy/base/public/parameter.te中定义标签，例如：
+
+    ```java
+    type servicectrl_param, parameter_attr
+    ```
+
+    标签定义完成后，在文件/base/security/selinux/sepolicy/base/public/parameter_contexts中添加和标签关联的系统参数前缀，这里以前缀ohos.servicectrl.为例：
+
+    ```java
+    ohos.servicectrl.           u:object_r:servicectrl_param:s0
+    ```
+
+  - 给init授权，允许map等操作，在文件/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te中补充下面内容：
+
+    ```java
+    allow servicectrl_param tmpfs:filesystem associate;
+    allow init servicectrl_param:file { map open read relabelto relabelfrom };
+    ```
+
+  - 设置写权限，这里允许init samgr hdf_devmgr 进行系统参数写：
+
+    ```java
+    allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
+    ```
+
+  - 设置读权限，如果只允许部分进程访问可单独对该进程授权：
+
+    ```java
+    allow { xxx } servicectrl_param:file { map open read };
+    ```
+
+  - 如果全部允许，则设置为：
+
+    ```java
+    allow { domain -limit_domain } servicectrl_param:file { map open read };
+    ```
+
+-  建议：
+
+   各个子系统只保留两个系统参数标签：
+
+   一个私有，用来控制系统参数设置
+
+   一个公有，允许所有服务进行访问
+
 -  默认参数加载
 
     系统参数的加载顺序如下：
@@ -110,6 +159,20 @@ OHOS系统参数为各系统服务提供简单易用的键值对访问接口，�
     | vendor参数 | /vendor/etc/param/*.para | 厂商定义的系统参数次优先级加载。                             |
     | system参数 | /system/etc/param/*.para | 加载各子系统定义的参数参数。如果系统参数已经存在，则忽略掉。 |
     | persist参数 | /data/parameters/ | 如果持久化参数存在，则最后加载持久化系统参数。持久化系统参数会覆盖加载的默认系统参数。 |
+
+#### 系统参数标签文件大小配置
+
+如果标签对应的系统参数个数多，超过5条时，需要配置系统参数标签文件的大小，默认大小（512），配置文件为/base/startup/init/services/etc/param/ohos.para.size
+
+配置规则：
+
+系统参数标签=大小
+
+例如：
+
+```java
+startup_init_param=40960
+```
 
 ### 约束与限制
 

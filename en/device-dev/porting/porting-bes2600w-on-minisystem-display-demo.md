@@ -75,7 +75,7 @@ kernel_version = "3.0.0"                --- Kernel version, which corresponds to
 
    ![hb set](figures/bes2600_hb_set.png)
 
-​		You can run the `hb env` command to view the selected precompilation environment variables.
+			You can run the `hb env` command to view the selected precompilation environment variables.
 
 ![hb env](figures/bes2600_hb_env.png)
 
@@ -106,7 +106,7 @@ export BOARD_COMPANY
 --- Convert ohos_device_company to the BOARD_COMPANY environment variable.
 ```
 
-Use the exported environment variables in the `//kernel/liteos_m/Kconfig` file. `Kconfiglib` uses `ulfalizer` to develop the Python-based version. In the [source code](https://github.com/ulfalizer/Kconfiglib), as drscribed in [function description](https://github.com/zephyrproject-rtos/zephyr/blob/main/scripts/kconfig/kconfiglib.py), the keyword `orsource` is used. In this keyword, `o` indicates `optional`, that is, the file is optional. `r` indicates `relative`, that is, the path of the file relative to the current file.
+Use the exported environment variables in the `//kernel/liteos_m/Kconfig` file. `Kconfiglib` uses `ulfalizer` to develop the Python-based version. In the [source code](https://github.com/ulfalizer/Kconfiglib), as described in [function description](https://github.com/zephyrproject-rtos/zephyr/blob/main/scripts/kconfig/kconfiglib.py), the keyword `orsource` is used. In this keyword, `o` indicates `optional`, that is, the file is optional. `r` indicates `relative`, that is, the path of the file relative to the current file.
 
 ```
 config SOC_COMPANY
@@ -868,7 +868,7 @@ static void DSoftBus(void)
 
     extern void InitSoftBusServer(void);
     if (osThreadNew((osThreadFunc_t) InitSoftBusServer, NULL, &attr) == NULL) {
-        printf("Falied to create WifiSTATask!\n");
+        printf("Failed to create WifiSTATask!\n");
     }
 }
 

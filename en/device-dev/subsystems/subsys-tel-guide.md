@@ -428,7 +428,7 @@ The following table describes the API for reporting modem events.
             case CALL_CLIR_SUPPRESSION:
                 clir = "i";
                 break; /* suppression */
-            case CALL_CLIR_SUBSCRIPTION_DEFUALT:
+            case CALL_CLIR_SUBSCRIPTION_DEFUALT1:
             default:
                 clir = "";
                 break; /* subscription default */

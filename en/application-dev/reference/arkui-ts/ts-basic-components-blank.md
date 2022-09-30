@@ -1,17 +1,10 @@
 # Blank
 
+The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent component is **\<Row>** or **\<Column>**.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-The **\<Blank>** component supports automatic filling of the empty part of the container along the main axis. This component is valid only when the parent component is **\<Row>** or **\<Column>**.
-
-
-## Required Permissions
-
-None
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -21,27 +14,24 @@ Not supported
 
 ## APIs
 
-Blank(min?:  Length)
+Blank(min?: number | string)
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | min | [Length](../../ui/ts-types.md) | No | 0 | Minimum size of the **&lt;Blank&gt;** component in the container along the main axis. |
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| min | number \| string | No| Minimum size of the **\<Blank>** component in the container along the main axis.<br>Default value: **0**|
 
 ## Attributes
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | 0xffffff | Color to fill the blank. |
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-> **NOTE**
->
-> Universal attribute methods are not supported.
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

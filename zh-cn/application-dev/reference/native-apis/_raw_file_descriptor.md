@@ -1,43 +1,34 @@
 # RawFileDescriptor
 
 
-## **Overview**
+## 概述
 
-**Related Modules:**
+提供rawfile文件描述符信息。
 
-[Rawfile](rawfile.md)
+RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor()](rawfile.md#oh_resourcemanager_getrawfiledescriptor)的输出参数，涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。
 
-**Description:**
-
-提供rawfile文件描述符信息
-
-RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](rawfile.md#ga8313a7d4bb361a98ced485346a9be4b1)的输出参数, 涵盖了rawfile文件的文件描述符以及在HAP包中的起始位置和长度。
-
-**Since:**
+**自从：**
 
 8
 
-**Version:**
+**相关模块：**
 
-1.0
-
-
-## **Summary**
+[Rawfile](rawfile.md)
 
 
-### Public Attributes
+## 汇总
 
-  | Public&nbsp;Attribute&nbsp;Name | Description | 
+
+### 成员变量
+
+  | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| fd |  | 
-| start |  | 
-| length |  | 
+| [fd](#fd) | rawfile文件描述符 | 
+| [start](#start) | rawfile在HAP包中的长度 | 
+| [length](#length) | rawfile在HAP包中的起始位置 | 
 
 
-## **Details**
-
-
-## **Member Data**
+## 结构体成员变量说明
 
 
 ### fd
@@ -47,7 +38,7 @@ RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor](rawfile.md#ga8313a
 int RawFileDescriptor::fd
 ```
 
-**Description:**
+**描述：**
 
 rawfile文件描述符
 
@@ -59,7 +50,7 @@ rawfile文件描述符
 long RawFileDescriptor::length
 ```
 
-**Description:**
+**描述：**
 
 rawfile在HAP包中的长度
 
@@ -71,6 +62,6 @@ rawfile在HAP包中的长度
 long RawFileDescriptor::start
 ```
 
-**Description:**
+**描述：**
 
 rawfile在HAP包中的起始位置

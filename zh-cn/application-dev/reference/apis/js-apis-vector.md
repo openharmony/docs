@@ -9,6 +9,9 @@ Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，�
 
 **推荐使用场景：** 当数据量大时，一般使用Vector来存取数据。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- T: Type, 类
+
 ## 导入模块
 
 ```ts
@@ -70,7 +73,7 @@ let result = vector.add("a");
 let result1 = vector.add(1);
 let b = [1, 2, 3];
 vector.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = vector.add(c);
 ```
 
@@ -122,9 +125,9 @@ has(element: T): boolean
 
 ```ts
 let vector = new Vector();
-let result = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-vector.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = vector.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = vector.has("squirrel");
+vector.add("squirrel");
+let result1 = vector.has("squirrel");
 ```
 
 ### getIndexOf

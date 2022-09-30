@@ -10,46 +10,46 @@ The OpenHarmony Compilation and Building subsystem provides a build framework ba
 
 ### Application Scope
 
-This guide is applicable to mini, small, and standard systems. The [Chipset Solution](subsys-build-chip_solution.md) applies to mini and small systems.
+This guide is applicable to mini, small, and standard systems. The [Chipset Solution](subsys-build-chip_solution.md) applies only to mini and small systems.
 
 ### Basic Concepts
 
 
 Learn the following basic concepts before you get started:
 
-- Platform
+- Platform 
 
   A platform consists of a development board and the kernel. The subsystems and components vary with the platform.
 
-- Product
+- Product 
 
   A product is a collection of components. The product image built can run on different development boards.
 
-- Subsystem
+- Subsystem 
 
   OpenHarmony is designed with a layered architecture, which consists of the kernel layer, system service layer, framework layer, and application layer from bottom up. For details, see [OpenHarmony Technical Architecture](https://gitee.com/openharmony#technical-architecture). System functions are built from components, subsystems, and then to the system. In a multi-device deployment, you can customize subsystems and components as required. A subsystem, as a logical concept, consists of the least required components.
 
-- Component
+- Component 
 
   A component is a reusable software binary unit that contains source code, configuration files, resource files, and build scripts. It can be built independently, integrated in binary mode, and tested independently. The chipset solution mentioned in this guide is a special component in nature.
 
-- Module
+- Module 
 
   A module is a target to build. A component can also be a target to build.
 
-- Feature
+- Feature 
 
   A component can provide differentiated functions through features.
 
-- GN
+- GN 
 
-  GN is used to build Ninja files.
+  GN is used to generate Ninja files.
 
-- Ninja
+- Ninja 
 
-  Ninja is a small high-speed building system.
+  Ninja is a small high-speed build system.
 
-- hb
+- hb 
 
   hb is an OpenHarmony command line tool used to execute build commands.
 
@@ -88,7 +88,7 @@ A product, component, and module can be built, but a subsystem cannot. The figur
 
 ### Constraints
 
-Currently, only Ubuntu18.04 and Ubuntu20.04 are supported (Ubuntu22.04 is not supported).
+Currently, only Ubuntu18.04 and Ubuntu20.04 are supported. Ubuntu22.04 is not supported.
 
 ### Environment Configuration
 
@@ -104,6 +104,7 @@ You must install the software packages required for build. The command is as fol
   apt-get update -y 
   apt-get install -y apt-utils binutils bison flex bc build-essential make mtd-utils gcc-arm-linux-gnueabi u-boot-tools python3.9.2 python3-pip git zip unzip curl wget gcc g++ ruby dosfstools mtools default-jre default-jdk scons python3-distutils perl openssl libssl-dev cpio git-lfs m4 ccache zlib1g-dev tar rsync liblz4-tool genext2fs binutils-dev device-tree-compiler e2fsprogs git-core gnupg gnutls-bin gperf lib32ncurses5-dev libffi-dev zlib* libelf-dev libx11-dev libgl1-mesa-dev lib32z1-dev xsltproc x11proto-core-dev libc6-dev-i386 libxml2-dev lib32z-dev libdwarf-dev 
   apt-get install -y grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools  pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5 libncurses5-dev libncursesw5 libstdc++6  gcc-arm-none-eabi vim ssh locales doxygen
+  apt-get install -y libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
   # The following modules must be installed for Python. You can obtain the **repo** file from the source code of the build environment mentioned in **Constraints**.
   chmod +x /usr/bin/repo 
   pip3 install --trusted-host https://repo.huaweicloud.com -i https://repo.huaweicloud.com/repository/pypi/simple requests setuptools pymongo kconfiglib pycryptodome ecdsa ohos-build pyyaml prompt_toolkit==1.0.14 redis json2html yagmail python-jenkins 
@@ -144,7 +145,7 @@ To ensure that chipset and product solutions are decoupled from OpenHarmony, you
 
 ├── __pycache__                   
 ├── build_scripts/              # Python scripts for build
-├── common/                      
+├── common/                       
 ├── config/                     # Build-related configuration
 ├── core
 │   └── gn/                     # BUILD.gn configuration
@@ -193,40 +194,40 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 1. Using the CLI
 
    Run the following command in the root directory of the source code to build a full distribution:
-
-   ```Shell
-   ./build.sh --product-name {product_name}
-   ```
-
-   **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
-
-   The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
-
-   The **./build.sh** command supports the following options:
-
-   ```shell
-   -h, --help                                        # Display help information and exit.
-   --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
-   --product-name=PRODUCT_NAME                       # Specify the product name.
-   --device-name=DEVICE_NAME                         # Specify the device name.
-   --target-cpu=TARGET_CPU                           # Specify the CPU.
-   --target-os=TARGET_OS                             # Specify the operating system.
-   -T BUILD_TARGET, --build-target=BUILD_TARGET      # Specify one or more targets to build.
-   --gn-args=GN_ARGS                                 # Specify GN parameters.
-   --ninja-args=NINJA_ARGS                           # Specify Ninja parameters.
-   -v, --verbose                                     # Display all commands used.
-   --keep-ninja-going                                # Keep Ninja going until 1,000,000 jobs fail.
-   --jobs=JOBS
-   --export-para=EXPORT_PARA
-   --build-only-gn                                   # Perform GN parsing and do not run Ninja.
-   --ccache                                          # (Optional) Use ccache for build. You need to install ccache locally.
-   --fast-rebuild                                    # Whether to allow fast rebuild. The default value is False.
-   --log-level=LOG_LEVEL                             # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
-   --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
-   --build-variant=BUILD_VARIANT                     #Specifies the device operation mode. The default value is user.
-   ```
-
    
+   ```shell
+    ./build.sh --product-name {product_name}
+   ```
+   
+   **{product_name}** specifies the product platform supported by the current distribution, for example, **hispark_taurus_standard**.
+   
+   The image generated is stored in the **out/{device_name}/packages/phone/images/** directory.
+   
+   The **./build.sh** command supports the following options:
+   
+   ```shell
+    -h, --help                                         # Display help information and exit.
+     --source-root-dir=SOURCE_ROOT_DIR                 # Specify the path.
+     --product-name=PRODUCT_NAME                       # Specify the product name.
+     --device-name=DEVICE_NAME                         # Specify the device name.
+     --target-cpu=TARGET_CPU                           # Specify the CPU.
+     --target-os=TARGET_OS                             # Specify the operating system.
+     -T BUILD_TARGET, --build-target=BUILD_TARGET      # Specify one or more targets to build.
+     --gn-args=GN_ARGS                                 # Specify GN parameters.
+     --ninja-args=NINJA_ARGS                           # Specify Ninja parameters.
+     -v, --verbose                                     # Display all commands used.
+     --keep-ninja-going                                # Keep Ninja going until 1,000,000 jobs fail.
+     --jobs=JOBS
+     --export-para=EXPORT_PARA
+     --build-only-gn                                   # Perform GN parsing and do not run Ninja.
+     --ccache                                          # (Optional) Use ccache for build. You need to install ccache locally.
+     --fast-rebuild                                    # Specify whether to allow fast rebuild. The default value is False.
+     --log-level=LOG_LEVEL                             # Specify the log level used in the build process. The options are debug, info, and error. The default value is info.
+     --device-type=DEVICE_TYPE                         # Specify the device type. The default value is default.
+     --build-variant=BUILD_VARIANT                     # Specify the device operation mode. The default value is user.
+   ```
+   
+    
 
 2. Using the hb tool
 
@@ -234,7 +235,7 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 
    **hb set**
 
-   Sets the product to build
+   Sets the product to build.
 
    ```shell
    hb set -h
@@ -257,7 +258,7 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 
    **hb env**
 
-   Displays the current settings.
+   Displays current settings.
 
    ```shell
    hb env
@@ -334,7 +335,7 @@ Then, run the build commands in command line (CLI) mode or hb mode.
 
    **hb clean**
 
-   Deletes all the files except **args.gn** and **build.log** in the **out** directory. To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**. By default, the files in the **out** directory are cleared.
+   Deletes all the files except **args.gn** and **build.log** in the **out** directory (default). To clear files in a specified directory, add the directory parameter to the command, for example, **hb clean out/board/product**.
 
    ```shell
    hb clean

@@ -11,7 +11,7 @@ For details, see [Window](../reference/apis/js-apis-window.md).
 
 | Instance| API| Description|
 | -------- | -------- | -------- |
-| Window static method| create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | Creates a system window when `ctx` is [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md).<br>-`ctx`: application context.<br>-`type`: window type. |
+| Window static method| create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): void | Creates a system window when `ctx` is [ServiceExtensionContext](../reference/apis/js-apis-service-extension-context.md).<br>-`ctx`: application context. <br>-`type`: window type. |
 | Window | resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void | Changes the window size.|
 | Window | moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
 | Window | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
@@ -47,14 +47,12 @@ This section uses the volume bar as an example to describe the steps for system 
 import ExtensionContext from '@ohos.application.ServiceExtensionAbility';
 import window from '@ohos.window';
 
-var windowClass = null;
-
 export default class ServiceExtensionAbility1 extends ExtensionContext {
     onCreate(want) {
         console.log("[Demo] MainAbility onCreate")
         globalThis.abilityWant = want;
         // 1. Create a volume bar window.
-        var windowClass = null;
+        let windowClass = null;
         window.create(this.context, "volume", window.WindowType.TYPE_VOLUME_OVERLAY, (err, data) => {
             if (err.code) {
                 console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));

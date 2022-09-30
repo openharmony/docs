@@ -8,8 +8,8 @@ wantConstant模块提供want中操作want常数和解释Flags说明的能力。
 
 ## 导入模块
 
-```
-import wantConstant from '@ohos.ability.wantConstant'
+```js
+import wantConstant from '@ohos.ability.wantConstant';
 ```
 
 ## wantConstant.Action
@@ -26,7 +26,7 @@ want操作的常数。
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | 指示启动提供无线网络设置的页面功能的操作，例如，Wi-Fi选项。    |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | 指示启动管理已安装应用程序的页面功能的操作。                  |
 | ACTION_APPLICATION_DETAILS_SETTINGS         | ohos.settings.application.details        | 指示启动显示指定应用程序详细信息的页面功能的操作。             |
-| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操做作。                          |
+| ACTION_SET_ALARM                            | ohos.want.action.setAlarm                | 指示启动页面功能以设置闹钟的操作。                          |
 | ACTION_SHOW_ALARMS                          | ohos.want.action.showAlarms              | 指示启动显示所有警报的页面功能的操作时钟。                     |
 | ACTION_SNOOZE_ALARM                         | ohos.want.action.snoozeAlarm             | 指示启动用于使闹钟睡眠的页面功能的操作。                       |
 | ACTION_DISMISS_ALARM                        | ohos.want.action.dismissAlarm            | 指示启动删除闹钟的页面功能的操作。                             |
@@ -48,7 +48,11 @@ want操作的常数。
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | 指示提供oauth服务的操作。                                     |
 |  ACTION_MARKET_DOWNLOAD <sup>9+</sup>    | ohos.want.action.marketDownload     | 表示从应用程序市场下载应用程序的的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 |  ACTION_MARKET_CROWDTEST <sup>9+</sup>    | ohos.want.action.marketCrowdTest     | 指示从应用程序市场众测应用程序的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
-
+|   DLP_PARAMS_SANDBOX<sup>9+</sup>    |ohos.dlp.params.sandbox  | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_BUNDLE_NAME<sup>9+</sup>    |ohos.dlp.params.bundleName  |指示DLP包名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_MODULE_NAME<sup>9+</sup>    |ohos.dlp.params.moduleName      |指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_ABILITY_NAME<sup>9+</sup>    |ohos.dlp.params.abilityName      |指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
+|   DLP_PARAMS_INDEX<sup>9+</sup>    |ohos.dlp.params.index      |指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。  |
 
 ## wantConstant.Entity
 

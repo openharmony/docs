@@ -5,7 +5,7 @@
 
 Buffer对象用于表示固定长度的字节序列,是专门存放二进制数据的缓存区。
 
-**推荐使用场景：** 可用于处理大量二进制数据，处理图片、文件接收上传、网络协议等等
+**推荐使用场景：** 可用于处理大量二进制数据，处理图片、文件接收上传等等
 
 ## 导入模块
 
@@ -14,6 +14,16 @@ import buffer from '@ohos.buffer';
 ```
 
 ## Buffer
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 参数类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | 是 | 否 | buffer的字节长度。 |
+| buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
+| byteOffset | number | 是 | 否 | 当前buffer所在内存池的偏移量。 |
 
 ### alloc
 
@@ -437,6 +447,8 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 | targetEnd | number | 否 | `target`实例中结束的偏移量（不包括本身）。 默认值: target.length。 |
 | sourceStart | number | 否 | `this`实例中开始的偏移量。 默认值: 0。 |
 | sourceEnd | number | 否 | `this`实例中结束的偏移量（不包括本身）。 默认值: buf.length。 |
+
+**返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -1608,7 +1620,7 @@ let length = buffer1.write('abcd', 8);
 
 writeBigInt64BE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入大端序的64位BigInt型数据value
+从buf的offset偏移写入有符号的大端序64位BigInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1639,7 +1651,7 @@ buf.writeBigInt64BE(0x0102030405060708n, 0);
 
 writeBigInt64LE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入小端序的64位BigInt型数据value
+从buf的offset偏移写入有符号的小端序64位BigInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1670,7 +1682,7 @@ buf.writeBigInt64LE(0x0102030405060708n, 0);
 
 writeBigUInt64BE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入大端序的64位BigUInt型数据value
+从buf的offset偏移写入无符号的大端序64位BigUInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1701,7 +1713,7 @@ buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
 
 writeBigUInt64LE(value: bigint, offset?: number): number
 
-从buf的offset偏移写入小端序的64位BigUInt型数据value
+从buf的offset偏移写入无符号的小端序64位BigUInt型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1732,7 +1744,7 @@ buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
 
 writeDoubleBE(value: number, offset?: number): number
 
-从buf的offset偏移写入大端序的64位有符号双浮点型数据value
+从buf的offset偏移写入大端序的64位双浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1763,7 +1775,7 @@ buf.writeDoubleBE(123.456, 0);
 
 writeDoubleLE(value: number, offset?: number): number
 
-从buf的offset偏移写入小端序的64位有符号双浮点型数据value
+从buf的offset偏移写入小端序的64位双浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1794,7 +1806,7 @@ buf.writeDoubleLE(123.456, 0);
 
 writeFloatBE(value: number, offset?: number): number
 
-从buf的offset偏移写入大端序的32位有符号浮点型数据value
+从buf的offset偏移写入大端序的32位浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1826,7 +1838,7 @@ buf.writeFloatBE(0xcafebabe, 0);
 
 writeFloatLE(value: number, offset?: number): number
 
-从buf的offset偏移写入小端序的32位有符号浮点型数据value
+从buf的offset偏移写入小端序的32位浮点型数据value
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2419,7 +2431,7 @@ slice(start?: number, end?: number, type?: string): Blob
   let blob3 = blob.slice(0, 2, "MIME");
   ```
 
-  ### text
+### text
 
 text(): Promise&lt;string&gt;
 

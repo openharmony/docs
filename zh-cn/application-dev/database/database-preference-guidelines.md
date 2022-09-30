@@ -55,15 +55,15 @@
 | ----------- | ----------------------- | ------------------------------------------- |
 | Preferences | flush(): Promise\<void> | 将Preferences实例通过异步线程回写入文件中。 |
 
-### 订阅数据变化
+### 订阅数据变更
 
-订阅数据变更者类，订阅的Key的值发生变更后，在执行flush方法后，会触发callback回调。
+订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，会触发callback回调。
 
 **表5** 首选项变化订阅接口
 
 | 类名        | 接口名                                                       | 描述           |
 | ----------- | ------------------------------------------------------------ | -------------- |
-| Preferences | on(type: 'change', callback: Callback<{ key : string }>): void | 订阅数据变化。 |
+| Preferences | on(type: 'change', callback: Callback<{ key : string }>): void | 订阅数据变更。 |
 | Preferences | off(type: 'change', callback: Callback<{ key : string }>): void | 注销订阅。     |
 
 ### 删除数据文件
@@ -88,8 +88,44 @@
 2. 获取Preferences实例。
 
    读取指定文件，将数据加载到Preferences实例，用于数据操作。
+
+   FA模型示例：
+
    ```js
-   let promise = data_preferences.getPreferences(this.context, 'mystore');
+   // 获取context
+   import featureAbility from '@ohos.ability.featureAbility'
+   let context = featureAbility.getContext();
+   
+   let preferences = null;
+   let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get preferences.");
+   })
+   ```
+
+   Stage模型示例：
+
+   ```ts
+   // 获取context
+   import Ability from '@ohos.application.Ability'
+   let context = null;
+   let preferences = null;
+   export default class MainAbility extends Ability {
+       onWindowStageCreate(windowStage){
+           context = this.context;
+       }
+   }
+   
+   let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get preferences.");
+   })
    ```
 
 3. 存入数据。
@@ -97,35 +133,27 @@
    使用put方法保存数据到缓存的实例中。
 
    ```js
-   promise.then((preferences) => {
-       let putPromise = preferences.put('startup', 'auto');
-       putPromise.then(() => {
-           console.info("Succeeded in putting the value of 'startup'.");
-       }).catch((err) => {
-           console.info("Failed to put the value of 'startup'. Cause: " + err);
-       })
+   let putPromise = preferences.put('startup', 'auto');
+   putPromise.then(() => {
+       console.info("Succeeded in putting the value of 'startup'.");
    }).catch((err) => {
-       console.info("Failed to get preferences.");
+       console.info("Failed to put the value of 'startup'. Cause: " + err);
    })
    ```
-
+   
 4. 读取数据。
 
    使用get方法读取数据。
 
    ```js
-   promise.then((preferences) => {
-     let getPromise = preferences.get('startup', 'default');
-     getPromise.then((value) => {
+   let getPromise = preferences.get('startup', 'default');
+   getPromise.then((value) => {
        console.info("The value of 'startup' is " + value);
-     }).catch((err) => {
-       console.info("Failed to get the value of 'startup'. Cause: " + err);
-     })
    }).catch((err) => {
-     console.info("Failed to get preferences.")
-   });
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+   })
    ```
-
+   
 5. 数据持久化。
 
    应用存入数据到Preferences实例后，可以通过flush方法将Preferences实例回写到文件中。
@@ -134,16 +162,17 @@
    preferences.flush();
    ```
 
-6. 订阅数据变化。
+6. 订阅数据变更。
 
-   应用订阅数据变化需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
+   应用订阅数据变更需要指定observer作为回调方法。订阅的Key的值发生变更后，当执行flush方法时，observer被触发回调。
 
    ```js
-   var observer = function (key) {
+   let observer = function (key) {
        console.info("The key" + key + " changed.");
    }
    preferences.on('change', observer);
-   preferences.put('startup', 'auto', function (err) {
+   // 数据产生变更，由'auto'变为'manual'
+   preferences.put('startup', 'manual', function (err) {
        if (err) {
            console.info("Failed to put the value of 'startup'. Cause: " + err);
            return;

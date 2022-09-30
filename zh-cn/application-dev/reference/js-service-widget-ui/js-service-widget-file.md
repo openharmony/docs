@@ -49,9 +49,15 @@ JS服务卡片(entry/src/main/js/Widget)的典型开发目录结构如下：
 
 > **说明：**
 > 当代码文件A需要引用代码文件B时：
-> 
+>
 > - 如果代码文件A和文件B位于同一目录，则代码文件B引用资源文件时可使用相对路径，也可使用绝对路径。
-> 
+>
 > - 如果代码文件A和文件B位于不同目录，则代码文件B引用资源文件时必须使用绝对路径。因为Webpack打包时，代码文件B的目录会发生变化。
-> 
+>
 > - 在json文件中定义的数据为资源文件路径时，需使用绝对路径。
+
+## 配置文件
+
+FA卡片需要在应用配置文件config.json中进行配置。详细的配置内容请参考[FA卡片配置文件说明](../../ability/fa-formability.md#配置卡片配置文件)。
+
+Stage卡片需要在应用配置文件module.json5中的extensionAbilities标签下，配置ExtensionAbility相关信息。详细的配置内容请参考[Stage卡片配置文件说明](../../ability/stage-formextension.md#配置卡片配置文件)。

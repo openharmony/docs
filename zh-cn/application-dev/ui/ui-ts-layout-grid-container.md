@@ -70,7 +70,7 @@
          Text('1')
            .useSizeType({
              xs: { span: 2, offset: 0 },
-             sm: { span: 2, offset: 0 },
+             sm: { span: 3, offset: 0 },
              md: { span: 6, offset: 2 },
              lg: { span: 8, offset: 2 },
            })
@@ -82,7 +82,7 @@
 
 ### 栅格容器内子组件的栅格设置
 
-栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offest表示列偏移量，指将组件放置在哪一个columns上。 如：
+栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offset表示列偏移量，指将组件放置在哪一个columns上。 如：
 
 ```ts
 GridContainer() {
@@ -90,7 +90,7 @@ GridContainer() {
      Text('1')
        .useSizeType({
          xs: { span: 2, offset: 0 },
-         sm: { span: 0, offset: 0 },
+         sm: { span: 2, offset: 0 },
          md: { span: 6, offset: 2 },
          lg: { span: 8, offset: 2 },
        })

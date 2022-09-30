@@ -1,11 +1,10 @@
 # Badge
 
-
 The **\<Badge>** component is a container that can be attached to another component for tagging.
 
-> **NOTE**
+>  **NOTE**
 >
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Required Permissions
@@ -20,45 +19,46 @@ This component supports only one child component.
 
 ## APIs
 
-Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style?: BadgeStyle})
+Method 1: Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
+
+Create a badge.
+
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| count | number | Yes| - | Number of notifications.|
+| position | BadgePosition | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
+| maxCount | number | No| 99 | Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.|
+| style | BadgeStyle | Yes| - | Style of the **<Badge>** component, including the text color, text size, badge color, and badge size.|
+
+Method 2: Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
+
+Creates a badge based on the given string.
 
 - Parameters
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | count | number | Yes | - | Number of prompt messages. |
-  | position | BadgePosition | No | BadgePosition.RightTop | Position to display the badge relative to the parent component. |
-  | maxCount | number | No | 99 | Maximum number of prompt messages. When the maximum number is reached, only **maxCount+** is displayed. |
-  | style | BadgeStyle | No | - | Style of the **\<Badge>** component, including the text color, text size, badge color, and badge size. |
-
-Badge(value: {value: string, position?: BadgePosition, style?: BadgeStyle})
-
-Creates a **\<Badge>** component based on the string.
-
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes | - | String of the content to prompt. |
-  | position | BadgePosition | No | BadgePosition.RightTop | Display position of the badge. |
-  | style | BadgeStyle | No | - | Style of the **\<Badge>** component, including the text color, text size, badge color, and badge size. |
+  | value | string | Yes| - | Prompt content.|
+  | position | BadgePosition | No| BadgePosition.RightTop | Position to display the badge relative to the parent component.|
+  | style | BadgeStyle | Yes| - | Style of the **<Badge>** component, including the text color, text size, badge color, and badge size.|
 
 - BadgeStyle
-  | Name | Type | Mandatory | Default Value | Description |
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | color | [ResourceColor](../../ui/ts-types.md) | No | Color.White | Text color. |
-  | fontSize | number \| string | No | 10 | Text size. |
-  | badgeSize | number \| string | Yes | - | Size of the badge. |
-  | badgeColor | [ResourceColor](../../ui/ts-types.md) | No | Color.Red | Color of the badge. |
+  | color | [ResourceColor](ts-types.md#resourcecolor) | No| Color.White | Text color.|
+  | fontSize | number \| string | No| 10 | Text size.|
+  | badgeSize | number \| string | Yes| - | Badge size.|
+  | badgeColor | [ResourceColor](ts-types.md#resourcecolor) | No| Color.Red | Badge color.|
 
 - BadgePosition enums
-  | Name | Description |
+  | Name| Description|
   | -------- | -------- |
-  | Right | The badge is vertically centered on the right of the parent component. |
-  | RightTop | The badge is displayed in the upper right corner of the parent component. |
-  | Left | The badge is vertically centered on the left of the parent component. |
+  | RightTop | The badge is displayed in the upper right corner of the parent component.|
+  | Right | The badge is vertically centered on the right of the parent component.|
+  | Left | The badge is vertically centered on the left of the parent component.|
 
 
 ## Example
-
 
 ```ts
 // xxx.ets
@@ -93,7 +93,7 @@ struct BadgeExample {
 
       Badge({
         value: ' ',
-        position: 1,
+        position: BadgePosition.Right,
         style: { badgeSize: 6, badgeColor: Color.Red }
       }) {
         Text('message')

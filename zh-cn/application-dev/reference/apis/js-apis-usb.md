@@ -395,7 +395,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
 | endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口。 |
 | buffer | Uint8Array | 是 | 用于写入或读取的缓冲区。 |
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。，可选参数，默认为0不超时。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时。|
 
 **返回值：**
 

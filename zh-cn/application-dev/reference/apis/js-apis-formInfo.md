@@ -105,7 +105,7 @@ import formInfo from '@ohos.application.formInfo';
 | TEMPORARY_KEY          | "ohos.extra.param.key.form_temporary"   | 临时卡片。   |
 | ABILITY_NAME_KEY<sup>9+</sup>   | "ohos.extra.param.key.ability_name"   | ability名称   |
 | DEVICE_ID_KEY<sup>9+</sup>      | "ohos.extra.param.key.device_id"   | 设备标识。<br/>此接口为系统接口。   |
-| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑包名称的键。<br/>此接口为系统接口。   |
+| BUNDLE_NAME_KEY<sup>9+</sup>      | "ohos.extra.param.key.bundle_name"   | 指示指定要获取的捆绑包名称的键。|
 
 ##  FormDimension
 

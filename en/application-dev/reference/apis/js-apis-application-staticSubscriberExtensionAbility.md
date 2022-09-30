@@ -26,7 +26,7 @@ Callback of the common event of a static subscriber.
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | event | CommonEventData | Yes| Common event of a static subscriber.| 
+  | event | [CommonEventData](js-apis-commonEvent.md#commoneventdata) | Yes| Common event of a static subscriber.| 
 
 **Example**
     

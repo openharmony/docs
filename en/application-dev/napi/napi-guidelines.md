@@ -89,7 +89,7 @@ Register four synchronous APIs (`getSync`, `setSync`, `removeSync`, and`clearSyn
 /***********************************************
  * Module export and register
  ***********************************************/
-static napi_value StorgeExport(napi_env env, napi_value exports)
+static napi_value StorageExport(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         DECLARE_NAPI_FUNCTION("get", JSStorageGet),
@@ -110,7 +110,7 @@ static napi_value StorgeExport(napi_env env, napi_value exports)
 static napi_module storage_module = {.nm_version = 1,
                                      .nm_flags = 0,
                                      .nm_filename = nullptr,
-                                     .nm_register_func = StorgeExport,
+                                     .nm_register_func = StorageExport,
                                      .nm_modname = "storage",
                                      .nm_priv = ((void*)0),
                                      .reserved = {0}};

@@ -92,7 +92,7 @@ For devices with 128 KB to 128 MB of memory, the OpenHarmony lite kernel is reco
 
 ### Mechanism<a name="section1378993720111"></a>
 
-Huawei Universal Keystore Service \(HUKS\) provides key and certificate management. For OpenHarmony, it mainly provides key management for HiChain \(the device identity authentication platform\). The following figure shows the functions of HUKS
+OpenHarmony Universal Keystore Service \(HUKS\) provides key and certificate management. For OpenHarmony, it mainly provides key management for HiChain \(the device identity authentication platform\). The following figure shows the functions of HUKS
 
 **Figure  3**  HUKS functions<a name="fig10710452133411"></a>  
 ![](figure/huks-functions.png "huks-functions")

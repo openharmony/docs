@@ -346,7 +346,7 @@ export default {
 
 ![zh-cn_image_0000001220635011](figures/zh-cn_image_0000001220635011.gif)
 
-通过改变playStat的属性实现动画状态的改变。
+通过改变playState的值实现动画状态的改变。
 
 ```html
 <!-- xxx.hml -->

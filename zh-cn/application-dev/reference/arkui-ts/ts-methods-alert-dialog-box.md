@@ -3,14 +3,15 @@
 显示警告弹窗组件，可设置文本内容与响应回调。
 
 >  **说明：**
+>
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| show | options:&nbsp;{&nbsp;paramObject1&nbsp;\|&nbsp;paramObject2} | - | 定义并显示AlertDialog组件。 |
+| 名称    | 参数类型  | 参数描述 |
+| ---- | --------------- | -------- |
+| show | AlertDialogParamWithConfirm&nbsp;\|&nbsp;AlertDialogParamWithButtons  | 定义并显示AlertDialog组件。 |
 
 - paramObject1参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -37,6 +38,20 @@
   | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
   | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。<br/>**说明：**<br/>当gridCount小于等于0时，弹窗宽度是固定的；大于0时，按照设置的数值显示宽度，最大值为4，若值为小数，则向下取整。 |
 
+## DialogAlignment枚举说明
+
+| 名称                       | 描述      |
+| ------------------------ | ------- |
+| Top                      | 垂直顶部对齐。 |
+| Center                   | 垂直居中对齐。 |
+| Bottom                   | 垂直底部对齐。 |
+| Default                  | 默认对齐。   |
+| TopStart<sup>8+</sup>    | 左上对齐。   |
+| TopEnd<sup>8+</sup>      | 右上对齐。   |
+| CenterStart<sup>8+</sup> | 左中对齐。   |
+| CenterEnd<sup>8+</sup>   | 右中对齐。   |
+| BottomStart<sup>8+</sup> | 左下对齐。   |
+| BottomEnd<sup>8+</sup>   | 右下对齐。   |
 
 ## 示例
 

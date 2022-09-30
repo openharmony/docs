@@ -319,7 +319,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 **示例：**
 
 ```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
+call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -403,7 +403,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 **示例：**
 
 ```js
-call.formatPhoneNumber("138xxxxxxxx",{
+call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 }, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -468,9 +468,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 **示例：**
 
 ```js
-call.formatPhoneNumberToE164("138xxxxxxxx",{
-    countryCode: "CN"
-}, (err, data) => {
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -504,9 +502,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 **示例：**
 
 ```js
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
-    countryCode: "CN"
-});
+let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
 promise.then(data => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -834,7 +830,7 @@ promise.then(data => {
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1703,7 +1699,7 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 **示例：**
 
 ```js
-isNewCallAllowedcall.on('mmiCodeResult', (err, data) => {
+call.on('mmiCodeResult', (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2072,10 +2068,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 **示例：**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-call.getCallTransferInfo(0, callTransferTyp, (err, data) => {
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2107,10 +2100,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 **示例：**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-let promise = call.getCallTransferInfo(0, callTransferTyp);
+let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
 promise.then(data => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2399,7 +2389,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, bluetoothAddress, (err, value) => {
+call.setAudioDevice(1, audioDeviceOptions, (err, value) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2463,7 +2453,10 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 **示例：**
 
 ```js
-call.joinConference(1, "138XXXXXXXX", (err, data) => {
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+call.joinConference(1, callNumberList, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2494,7 +2487,10 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 **示例：**
 
 ```js
-let promise = call.joinConference(1, "138XXXXXXXX");
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+let promise = call.joinConference(1, callNumberList);
 promise.then(data => {
     console.log(`joinConference success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
