@@ -665,6 +665,146 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 });
 ```
 
+## enterpriseDeviceManager.subscribeManagedEvent
+
+subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void;
+
+订阅系统事件。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 订阅事件数组。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件订阅成功err为null，否则为错误对象。 |
+
+**示例：**
+
+```js
+let wantTemp = {
+    bundleName: "bundleName",
+    abilityName: "abilityName",
+};
+let events = [0, 1];
+enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events, (error) => {
+    if (error) {
+        console.log("error code:" + error.code + " error message:" + error.message);
+    }
+});
+```
+
+## enterpriseDeviceManager.subscribeManagedEvent
+
+subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>;
+
+订阅系统事件。使用Promise异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 订阅事件数组。 |
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let wantTemp = {
+    bundleName: "bundleName",
+    abilityName: "abilityName",
+};
+let events = [0, 1];
+enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events).then(() => {
+}).catch((error) => {
+    console.log("error code:" + error.code + " error message:" + error.message);
+})
+```
+
+## enterpriseDeviceManager.unsubscribeManagedEvent
+
+unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void;
+
+取消订阅系统事件。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 取消订阅事件数组。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当系统事件取消订阅成功err为null，否则为错误对象。 |
+
+**示例：**
+
+```js
+let wantTemp = {
+    bundleName: "bundleName",
+    abilityName: "abilityName",
+};
+let events = [0, 1];
+enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
+    if (error) {
+        console.log("error code:" + error.code + " error message:" + error.message);
+    }
+});
+```
+
+## enterpriseDeviceManager.unsubscribeManagedEvent
+
+unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>;
+
+取消订阅系统事件。使用callback异步回调。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
+| managedEvents  | Array\<[ManagedEvent](#managedEvent)> | 是 | 取消订阅事件数组。 |
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let wantTemp = {
+    bundleName: "bundleName",
+    abilityName: "abilityName",
+};
+let events = [0, 1];
+enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
+}).catch((error) => {
+    console.log("error code:" + error.code + " error message:" + error.message);
+})
+```
+
 ## EnterpriseInfo
 
 设备管理员应用的企业信息
@@ -686,3 +826,15 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通管理员 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级管理员 |
+
+## ManagedEvent
+
+可订阅系统事件。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager 
+
+| 名称                | 默认值  | 说明    |
+| ----------------- | ---- | ----- |
+| MANAGED_EVENT_BUNDLE_ADDED | 0 | 应用安装事件。 |
+| MANAGED_EVENT_BUNDLE_REMOVED  | 2 | 应用卸载事件。 |
+
