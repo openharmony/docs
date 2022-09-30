@@ -108,9 +108,9 @@ export default {
 ![zh-cn_image_0000001227135613](figures/zh-cn_image_0000001227135613.gif)
 
 
-## 添加grild-col
+## 添加grid-col
 
-创建grid-container组件并添加grid-row，在grid-row组件内添加grild-col组件形成布局。
+创建grid-container组件并添加grid-row，在grid-row组件内添加grid-col组件形成布局。
 
 
 ```html

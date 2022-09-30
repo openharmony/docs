@@ -93,6 +93,8 @@ scrollEdge(value: Edge): void
 | value | [Edge](ts-appendix-enums.md#edge) | 是    | 滚动到的边缘位置。 |
 
 
+
+
 ### scrollPage
 
 scrollPage(value: { next: boolean, direction?: Axis }): void
