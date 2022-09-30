@@ -32,8 +32,6 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | -------- | -------- |
 | onAction(event:(event?:&nbsp;[GestureEvent](ts-gesture-settings.md))&nbsp;=&gt;&nbsp;void) | 滑动手势识别成功回调。 |
 
-
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374661.png)
 ## 示例
 
 ```ts
@@ -41,27 +39,31 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 @Entry
 @Component
 struct SwipeGestureExample {
-  @State rotateAngle : number = 0
-  @State speed : number = 1
+  @State rotateAngle: number = 0;
+  @State speed: number = 1;
 
   build() {
     Column() {
-      Text("SwipGesture speed ： " + this.speed)
-      Text("SwipGesture angle ： " + this.rotateAngle)
-    }
-    .position({x: 80, y: 200})
-    .border({width:2})
-    .width(260).height(260)
-    .rotate({x: 0, y: 0, z: 1, angle: this.rotateAngle})
-    .gesture(
-      SwipeGesture({fingers: 1, direction: SwipeDirection.Vertical})
+      Column() {
+        Text("SwipeGesture speed\n" + this.speed)
+        Text("SwipeGesture angle\n" + this.rotateAngle)
+      }
+      .border({ width: 3 })
+      .width(300)
+      .height(200)
+      .margin(100)
+      .rotate({ angle: this.rotateAngle })
+      // 单指竖直方向滑动时触发该事件
+      .gesture(
+      SwipeGesture({ direction: SwipeDirection.Vertical })
         .onAction((event: GestureEvent) => {
-          this.speed = event.speed
-          this.rotateAngle = event.angle
-      })
-    )
+          this.speed = event.speed;
+          this.rotateAngle = event.angle;
+        })
+      )
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374559.gif)
+![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374559.png)
