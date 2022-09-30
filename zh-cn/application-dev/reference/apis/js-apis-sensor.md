@@ -4458,6 +4458,8 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensor-transformrotationmatrix9) 
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4487,6 +4489,8 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensor-transformrotationmatrix9-1 )
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4523,9 +4527,12 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 获取地球上特定位置的地磁场。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.  getGeomagneticInfo](# sensorgetgeomagneticinfo9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名          | 类型                                                         | 必填 | 说明                               |
 | --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
