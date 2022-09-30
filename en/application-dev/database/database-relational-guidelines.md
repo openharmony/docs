@@ -16,8 +16,8 @@ The table below describes the APIs available for creating and deleting an RDB st
 
 | API| Description|
 | -------- | -------- |
-|getRdbStore(config:StoreConfig,version:number):Promise&lt;RdbStore&gt; | Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.<br>- **config**: configuration of the RDB store.<br>- **version**: version of the RDB store.|
-| deleteRdbStore(name:string):Promise&lt;void&gt; | Deletes an RDB store. This API uses a promise to return the result.<br>- **name**: name of the RDB store to delete.|
+|getRdbStore(config: StoreConfig, version: number): Promise&lt;RdbStore&gt; | Obtains an RDB store. This API uses a promise to return the result. You can set parameters for the RDB store based on service requirements and call APIs to perform data operations.<br>- **config**: configuration of the RDB store.<br>- **version**: version of the RDB store.|
+| deleteRdbStore(name: string): Promise&lt;void&gt; | Deletes an RDB store. This API uses a promise to return the result.<br>- **name**: name of the RDB store to delete.|
 
 ### Managing Data in an RDB Store
 
@@ -31,7 +31,7 @@ The **RDB** module provides APIs for inserting, deleting, updating, and querying
   
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | insert(name:string,values:ValuesBucket):Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **name**: name of the target table.<br>- **values**: data to be inserted into the table.|
+  | RdbStore | insert(name: string, values: ValuesBucket): Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **name**: name of the target table.<br>- **values**: data to be inserted into the table.|
   
 - **Updating Data**
   
@@ -41,7 +41,7 @@ The **RDB** module provides APIs for inserting, deleting, updating, and querying
   
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | update(values:ValuesBucket,rdbPredicates:RdbPredicates):Promise\<number> | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>Return value: number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **rdbPredicates**: conditions for updating data.|
+  | RdbStore | update(values: ValuesBucket, rdbPredicates: RdbPredicates): Promise\<number> | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>Return value: number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **rdbPredicates**: conditions for updating data.|
   
 - **Deleting Data**
   
@@ -51,7 +51,7 @@ The **RDB** module provides APIs for inserting, deleting, updating, and querying
   
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | delete(rdbPredicates:RdbPredicates):Promise\<number> | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>Return value: number of rows updated.<br>- **rdbPredicates**: conditions for deleting data.|
+  | RdbStore | delete(rdbPredicates: RdbPredicates): Promise\<number> | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>Return value: number of rows updated.<br>- **rdbPredicates**: conditions for deleting data.|
   
 - **Querying data**
 
@@ -64,8 +64,8 @@ The **RDB** module provides APIs for inserting, deleting, updating, and querying
 
   | Class| API| Description|
   | -------- | -------- | -------- |
-  | RdbStore | query(rdbPredicates:RdbPredicates,columns:Array):Promise&lt;ResultSet&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **rdbPredicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
-  | RdbStore | querySql(sql:string,bindArgs?:Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
+  | RdbStore | query(rdbPredicates: RdbPredicates, columns: Array): Promise&lt;ResultSet&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **rdbPredicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
+  | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
 
 ### Using Predicates
 
@@ -77,11 +77,11 @@ The table below lists common predicates. For more information about predicates, 
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbPredicates | equalTo(field:string,value:ValueType):RdbPredicates | Sets an **RdbPredicates** object to match the field with data type **ValueType** and value equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
-| RdbPredicates | notEqualTo(field:string,value:ValueType):RdbPredicates | Sets an **RdbPredicates** object to match the field with data type **ValueType** and value not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
-| RdbPredicates | or():RdbPredicates | Adds the OR condition to the **RdbPredicates** object.<br>- **RdbPredicates**: **RdbPredicates** with the OR condition.|
-| RdbPredicates | and():RdbPredicates | Adds the AND condition to the **RdbPredicates** object.<br>- **RdbPredicates**: **RdbPredicates** with the AND condition.|
-| RdbPredicates | contains(field:string,value:string):RdbPredicats | Sets an **RdbPredicates** object to match a string that contains the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
+| RdbPredicates | equalTo(field: string, value: ValueType): RdbPredicates | Sets an **RdbPredicates** object to match the field with data type **ValueType** and value equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
+| RdbPredicates | notEqualTo(field: string, value: ValueType): RdbPredicates | Sets an **RdbPredicates** object to match the field with data type **ValueType** and value not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
+| RdbPredicates | or(): RdbPredicates | Adds the OR condition to the **RdbPredicates** object.<br>- **RdbPredicates**: **RdbPredicates** with the OR condition.|
+| RdbPredicates | and(): RdbPredicates | Adds the AND condition to the **RdbPredicates** object.<br>- **RdbPredicates**: **RdbPredicates** with the AND condition.|
+| RdbPredicates | contains(field: string, value: string): RdbPredicats | Sets an **RdbPredicates** object to match a string that contains the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object created.|
 
 
 ### Using the Result Set
@@ -97,12 +97,12 @@ For details about how to use result set APIs, see [Result Set](../reference/apis
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| ResultSet | goToFirstRow():boolean | Moves to the first row of the result set.|
-| ResultSet | getString(columnIndex:number):string | Obtains the value in the form of a string based on the specified column and current row.|
-| ResultSet | getBlob(columnIndex:number):Uint8Array | Obtains the value in the form of a byte array based on the specified column and the current row.|
-| ResultSet | getDouble(columnIndex:number):number | Obtains the value in the form of double based on the specified column and current row.|
-| ResultSet | getLong(columnIndex:number):number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
-| ResultSet | close():void | Closes the result set.|
+| ResultSet | goToFirstRow(): boolean | Moves to the first row of the result set.|
+| ResultSet | getString(columnIndex:number): string | Obtains the value in the form of a string based on the specified column and current row.|
+| ResultSet | getBlob(columnIndex:number): Uint8Array | Obtains the value in the form of a byte array based on the specified column and the current row.|
+| ResultSet | getDouble(columnIndex:number): number | Obtains the value in the form of double based on the specified column and current row.|
+| ResultSet | getLong(columnIndex:number): number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
+| ResultSet | close(): void | Closes the result set.|
 
 
 
@@ -148,7 +148,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class| API| Description|
 | -------- | -------- | -------- |
-| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void;| Unregisters the observer of the specified type for the RDB store. This API uses a callback to return the result.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE** means to subscribe to remote data changes.<br>- **observer**: observer to unregister.|
+| RdbStore |off(event:'dataChange', type: SubscribeType, observer: Callback<Array\<string>>): void;| Unregisters the observer of the specified type for the RDB store. This method uses a callback to return the result.<br>- **type**: subscription type. **SUBSCRIBE_TYPE_REMOTE** means to subscribe to remote data changes.<br>- **observer**: observer to unregister.|
 
 
 ## How to Develop
