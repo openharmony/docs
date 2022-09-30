@@ -134,7 +134,7 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 getRoots( ) : Promise&lt;RootIterator&gt;
 
 以异步方法获取helper对象连接的文件管理服务类的设备根节点信息。使用Promise异步回调。
-该方法返回迭代器对象RootIterator，然后通过[next](#fileaccessrootiteratornext)方法返回[RootInfo](#rootinfo)。
+该方法返回迭代器对象RootIterator，然后通过[next](#rootiteratornext)方法返回[RootInfo](#rootinfo)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
