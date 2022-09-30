@@ -127,6 +127,7 @@
 - 安全
   - [@ohos.abilityAccessCtrl (访问控制管理)](js-apis-abilityAccessCtrl.md)
   - [@ohos.privacyManager (隐私管理)](js-apis-privacyManager.md)
+  - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
   - [@ohos.security.huks (通用密钥库系统)](js-apis-huks.md)
   - [@ohos.userIAM.faceAuth (人脸认证)](js-apis-useriam-faceauth.md)
   - [@ohos.userIAM.userAuth (用户认证)](js-apis-useriam-userauth.md)
