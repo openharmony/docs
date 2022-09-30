@@ -2021,7 +2021,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 ```js
 try {
-  sensor.getDeviceAltitude(0, 200, function(err, data)  {
+  sensor.getDeviceAltitude(0, 200, function(data)  {
           console.info("Successed to get getDeviceAltitude interface get data: " + data);
   });
 } catch (err) {
@@ -2084,7 +2084,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 ```js
 try {
-  sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+  sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
           console.info("Successed to get getInclination  interface get data: " + data);
   })
 } catch (err) {
@@ -2148,7 +2148,7 @@ try {
 
 ```js
 try {
-  sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
+  sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(data)  {
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -2215,7 +2215,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<A
 
 ```js
 try {
-  sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
+  sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data) {
       for (var i=0; i < data.length; i++) {
           console.info("data[" + i + "]: " + data[i]);
       }
@@ -4458,7 +4458,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
 
-[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensortransformrotationmatrix9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.transformRotationMatrix ](#sensortransformrotationmatrix9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4490,7 +4490,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
 
-[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensor-transformrotationmatrix9-1 )
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.transformRotationMatrix ](#sensortransformrotationmatrix9-1 )
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4527,9 +4527,9 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 获取地球上特定位置的地磁场。
 
-[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getGeomagneticInfo](# sensorgetgeomagneticinfo9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9)
 
-**系统能力**：SystemCapability.Sensors.Sensorlk - 
+**系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
 
@@ -4557,9 +4557,12 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 
 获取地球上特定位置的地磁场。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getGeomagneticInfo](#sensorgetgeomagneticinfo9-1)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名             | 类型                                  | 必填   | 说明                |
 | --------------- | ----------------------------------- | ---- | ----------------- |
 | locationOptions | [LocationOptions](#locationoptions) | 是    | 地理位置。             |
@@ -4587,6 +4590,8 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promi
 getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
 根据气压值获取设备所在的海拔高度。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4616,6 +4621,8 @@ getAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallbac
 getAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
 根据气压值获取设备所在的海拔高度。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getDeviceAltitude](#sensorgetdevicealtitude9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4650,6 +4657,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 
 根据倾斜矩阵计算地磁倾斜角。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getInclination](#sensorgetinclination9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4677,6 +4686,8 @@ getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallbac
 getGeomagneticDip(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
 根据倾斜矩阵计算地磁倾斜角。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getInclination](#sensorgetinclination9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4709,6 +4720,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 
 获取两个旋转矩阵之间的角度变化。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getAngleVariation](#sensorgetanglevariation9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4740,6 +4753,8 @@ getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Ar
 getAngleModify(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 获取两个旋转矩阵之间的角度变化。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getAngleVariation](#sensorgetanglevariation9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4777,6 +4792,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 
 将旋转矢量转换为旋转矩阵。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4807,6 +4824,8 @@ createRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallbac
 createRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将旋转矢量转换为旋转矩阵。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4843,6 +4862,8 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 
 将旋转矢量转换为四元数。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getQuaternion](#sensorgetquaternion9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4873,6 +4894,8 @@ createQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt
 createQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 将旋转矢量转换为四元数。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getQuaternion](#sensorgetquaternion9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4909,6 +4932,8 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 
 根据旋转矩阵计算设备的方向。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getOrientation](#sensorgetorientation9)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -4940,6 +4965,8 @@ getDirection(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;Arr
 getDirection(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
 根据旋转矩阵计算设备的方向。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getOrientation](#sensorgetorientation9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4976,6 +5003,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-2)
+
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
@@ -5004,6 +5033,8 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
+
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getRotationMatrix](#sensorgetrotationmatrix9-3)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
