@@ -667,7 +667,7 @@ enterpriseDeviceManager.getEnterpriseInfo(wantTemp).then((result) => {
 
 ## enterpriseDeviceManager.subscribeManagedEvent
 
-subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void;
+subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
 订阅系统事件。使用callback异步回调。
 
@@ -700,7 +700,7 @@ enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events, (error) => {
 
 ## enterpriseDeviceManager.subscribeManagedEvent
 
-subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>;
+subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
 订阅系统事件。使用Promise异步回调。
 
@@ -737,7 +737,7 @@ enterpriseDeviceManager.subscribeManagedEvent(wantTemp, events).then(() => {
 
 ## enterpriseDeviceManager.unsubscribeManagedEvent
 
-unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void;
+unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback: AsyncCallback\<void>): void
 
 取消订阅系统事件。使用callback异步回调。
 
@@ -770,7 +770,7 @@ enterpriseDeviceManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
 
 ## enterpriseDeviceManager.unsubscribeManagedEvent
 
-unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>;
+unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise\<void>
 
 取消订阅系统事件。使用callback异步回调。
 
