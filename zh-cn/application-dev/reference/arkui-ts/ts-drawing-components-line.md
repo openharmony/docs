@@ -24,17 +24,17 @@ Line(value?: {width?: string | number, height?: string | number})
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 0 | 宽度。 | 
-| height | string \| number | 否 | 0 | 高度。 | 
+| width | string \| number | 否 | 0 | 宽度。 |
+| height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | startPoint | Array&lt;Length&gt; | [0,&nbsp;0] | 否   | 直线起点坐标点(相对坐标)，单位vp。 |
 | endPoint   | Array&lt;Length&gt; | [0,&nbsp;0] | 否   | 直线终点坐标点(相对坐标)，单位vp。 |
@@ -86,4 +86,4 @@ struct LineExample {
 }
 ```
 
-![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.jpg)
+![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.png)
