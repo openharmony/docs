@@ -1,4 +1,4 @@
-# 后台提醒开发指导
+# 后台代理提醒开发指导
 
 ## 场景介绍
 
@@ -37,9 +37,7 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
    import reminderAgent from '@ohos.reminderAgent';
    import notification from '@ohos.notification';
    export default {
-       // JS工程写法：
-       // timer: {
-       // eTS工程写法：
+       // eTS工程：
        let timer : reminderAgent.ReminderRequestTimer = {
            reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
            triggerTimeInSeconds: 10,
@@ -69,9 +67,7 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
    日历实例定义：
 
     ```js
-    // JS工程写法：
-    // calendar: {
-    // eTS工程写法：
+    // eTS工程：
     let calendar : reminderAgent.ReminderRequestCalendar = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
         dateTime: {
@@ -117,9 +113,7 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
     闹钟实例定义：
 
     ```js
-    // JS工程写法：
-    // alarm: {
-    // eTS工程写法：
+    // eTS工程：
     let alarm : reminderAgent.ReminderRequestAlarm = {
         reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
         hour: 11,
