@@ -2598,7 +2598,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 | 参数名   | 类型                                    | 必填 | 说明             |
 | -------- | --------------------------------------- | ---- | ---------------- |
-| type     | SensorId                                | 是   | 传感器类型。     |
+| type     | [SensorId](#sensorid9)                  | 是   | 传感器类型。     |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
@@ -2623,9 +2623,9 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **参数：** 
 
-| 参数名 | 类型     | 必填 | 说明         |
-| ------ | -------- | ---- | ------------ |
-| type   | SensorId | 是   | 传感器类型。 |
+| 参数名 | 类型                   | 必填 | 说明         |
+| ------ | ---------------------- | ---- | ------------ |
+| type   | [SensorId](#sensorid9) | 是   | 传感器类型。 |
 
 **返回值：** 
 
