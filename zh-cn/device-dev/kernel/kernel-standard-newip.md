@@ -351,7 +351,7 @@ allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 
 ### 模板导入
 
-Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析。
+Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析，[NewIP报文解析模板](https://gitee.com/openharmony-sig/communication_sfc_newip/blob/master/tools/wireshark_cfg_for_newip_v1.3.lua)详见代码仓。
 
 报文解析模板配置文件的方法：
 
@@ -362,7 +362,7 @@ Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中
 NewIP报文解析模板添加样例：
 
 ```
-NewIP报文解析模板文件存放路径：
+NewIP报文解析模板存放路径：
 D:\tools\WireShark\wireshark_cfg_for_newip_v1.3.lua
 
 WireShark配置文件路径：
