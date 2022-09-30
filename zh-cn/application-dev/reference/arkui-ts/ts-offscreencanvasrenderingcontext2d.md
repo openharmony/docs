@@ -4,7 +4,7 @@
 >  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制绘制到canvas上，加快了绘制速度。
+使用OffscreenCanvasRenderingContext2D在Canvas上进行离屏绘制，绘制对象可以是矩形、文本、图片等。离屏绘制是指将需要绘制的内容先绘制在缓存区，然后将其转换成图片，一次性绘制到canvas上，加快了绘制速度。
 
 
 ## 接口
@@ -13,11 +13,11 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                           |
-| ------- | ---------------------------------------- | ---- | ---- | ------------------------------ |
-| width   | number                                   | 是    | -    | 离屏画布的宽度                        |
-| height  | number                                   | 是    | -    | 离屏画布的高度                        |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是    | -    | 见RenderingContextSettings接口描述。 |
+| 参数名  | 参数类型                                                     | 必填 | 参数描述                             |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
+| width   | number                                                       | 是   | 离屏画布的宽度                       |
+| height  | number                                                       | 是   | 离屏画布的高度                       |
+| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是   | 见RenderingContextSettings接口描述。 |
 
 
 ## 属性
