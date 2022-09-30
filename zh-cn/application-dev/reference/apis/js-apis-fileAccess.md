@@ -180,7 +180,7 @@ getRoots( ) : Promise&lt;RootIterator&gt;
 
 listFile(filter?: Filter) : FileIterator
 
-以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileaccessfileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某设备根节点开始，基于过滤器，获取第一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -231,7 +231,7 @@ listFile(filter?: Filter) : FileIterator
 
 scanFile(filter?: Filter) : FileIterator
 
-以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileaccessfileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某设备根节点开始，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -281,7 +281,7 @@ scanFile(filter?: Filter) : FileIterator
 
 listFile(filter?: Filter) : FileIterator
 
-以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileaccessfileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，获取下一级符合条件的文件(夹)信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -331,7 +331,7 @@ listFile(filter?: Filter) : FileIterator
 
 scanFile(filter?: Filter) : FileIterator;
 
-以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileaccessfileiteratornext)方法返回[FileInfo](#fileinfo)。
+以同步方法从某个目录，基于过滤器，递归获取符合条件的文件信息的迭代器对象FileIterator，然后通过[next](#fileiteratornext)方法返回[FileInfo](#fileinfo)。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
