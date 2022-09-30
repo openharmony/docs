@@ -20,13 +20,13 @@ Scroll(scroller?: Scroller)
 
 ## 属性
 
-| 名称             | 参数类型                                     | 描述                                       |
-| -------------- | ---------------------------------------- | ---------------------------------------- |
-| scrollable     | ScrollDirection                          | 设置滑动方法。<br/>默认值：ScrollDirection.Vertical |
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滑动条状态。<br/>默认值：BarState.Off            |
-| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | 设置滑动条的颜色。                                |
-| scrollBarWidth | string&nbsp;\|&nbsp;number               | 设置滑动条的宽度。                                |
-| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
+| 名称           | 参数类型                                      | 描述                                                         |
+| -------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| scrollable     | ScrollDirection                               | 设置滑动方法。<br/>默认值：ScrollDirection.Vertical          |
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate)     | 设置滑动条状态。<br/>默认值：BarState.Off                    |
+| scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color | 设置滑动条的颜色。                                           |
+| scrollBarWidth | string&nbsp;\|&nbsp;number                    | 设置滑动条的宽度。                                           |
+| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 
 ## ScrollDirection枚举说明
 
