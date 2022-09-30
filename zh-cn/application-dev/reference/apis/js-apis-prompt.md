@@ -32,6 +32,8 @@ prompt.showToast({
     duration: 2000,      
 });
   ```
+ ![zh-cn_image_0001](figures/zh-cn_image_0001.gif) 
+
 ## ShowToastOptions
 
 文本提示框的选项。
@@ -88,6 +90,8 @@ prompt.showDialog({
   })
   ```
 
+ ![zh-cn_image_0002](figures/zh-cn_image_0002.gif) 
+
 ## prompt.showDialog
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
@@ -126,6 +130,8 @@ prompt.showDialog({
   console.info('showDialog success callback, click button: ' + data.index);
 });
   ```
+
+ ![zh-cn_image_0004](figures/zh-cn_image_0004.gif) 
 
 ## ShowDialogOptions
 
@@ -188,6 +194,8 @@ prompt.showActionMenu({
 })
   ```
 
+ ![zh-cn_image_0005](figures/zh-cn_image_0005.gif) 
+
 ## prompt.showActionMenu
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
@@ -228,6 +236,8 @@ prompt.showActionMenu({
     console.info('showActionMenu error: ' + err);
   })
   ```
+ ![zh-cn_image_0006](figures/zh-cn_image_0006.gif) 
+
 ## ActionMenuOptions
 
 操作菜单的选项。

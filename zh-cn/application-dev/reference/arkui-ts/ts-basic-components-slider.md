@@ -59,7 +59,7 @@ Slider(options:{value?: number, min?: number, max?: number, step?: number, style
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。若返回值有小数，可使用Math.toFixed()将数据处理为想要的精度。<br/>mode：拖动状态。 |
 
 - SliderChangeMode枚举说明
   | 名称 | 值 | 描述 |

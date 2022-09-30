@@ -22,7 +22,7 @@
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层关闭dialog时的回调。 |
   | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
   | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
-  | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。 |
+  | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。<br/>**说明：**<br/>当gridCount小于等于0时，弹窗宽度是固定的；大于0时，按照设置的数值显示宽度，最大值为4，若值为小数，则向下取整。 |
 
 - paramObject2参数
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
@@ -35,7 +35,7 @@
   | cancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 点击遮障层关闭dialog时的回调。 |
   | alignment | [DialogAlignment](ts-methods-custom-dialog-box.md) | 否 | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。 |
   | offset | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型)<br/>} | 否 | - | 弹窗相对alignment所在位置的偏移量。 |
-  | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。 |
+  | gridCount | number | 否 | - | 弹窗容器宽度所占用栅格数。<br/>**说明：**<br/>当gridCount小于等于0时，弹窗宽度是固定的；大于0时，按照设置的数值显示宽度，最大值为4，若值为小数，则向下取整。 |
 
 
 ## 示例

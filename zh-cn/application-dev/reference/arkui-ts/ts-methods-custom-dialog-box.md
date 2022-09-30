@@ -26,18 +26,18 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
   | gridCount<sup>8+</sup> | number                                   | 否    | -                       | 弹窗宽度占栅格宽度的个数。          |
 
 - DialogAlignment枚举说明
-  | 名称                       | 描述      |
-  | ------------------------ | ------- |
-  | Top                      | 垂直顶部对齐。 |
-  | Center                   | 垂直居中对齐。 |
-  | Bottom                   | 垂直底部对齐。 |
-  | Default                  | 默认对齐。   |
-  | TopStart<sup>8+</sup>    | 左上对齐。   |
-  | TopEnd<sup>8+</sup>      | 右上对齐。   |
-  | CenterStart<sup>8+</sup> | 左中对齐。   |
-  | CenterEnd<sup>8+</sup>   | 右中对齐。   |
-  | BottomStart<sup>8+</sup> | 左下对齐。   |
-  | BottomEnd<sup>8+</sup>   | 右下对齐。   |
+  | 名称                     | 描述                                                   |
+  | ------------------------ | ------------------------------------------------------ |
+  | Top                      | 垂直顶部对齐。                                         |
+  | Center                   | 垂直居中对齐。                                         |
+  | Bottom                   | 垂直底部对齐。                                         |
+  | Default                  | 默认对齐。<br/>**说明：**<br/>与枚举值Center效果相同。 |
+  | TopStart<sup>8+</sup>    | 左上对齐。                                             |
+  | TopEnd<sup>8+</sup>      | 右上对齐。                                             |
+  | CenterStart<sup>8+</sup> | 左中对齐。                                             |
+  | CenterEnd<sup>8+</sup>   | 右中对齐。                                             |
+  | BottomStart<sup>8+</sup> | 左下对齐。                                             |
+  | BottomEnd<sup>8+</sup>   | 右下对齐。                                             |
 
 
 ## CustomDialogController
