@@ -715,6 +715,11 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 将指定资源设置为指定类型的壁纸。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#setImage9)代替。
+>
+> 从 API version 7开始支持
+
 **需要权限**：ohos.permission.SET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
@@ -768,6 +773,11 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 将指定资源设置为指定类型的壁纸。
+
+> **说明：**
+> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#setImage9)代替。
+>
+> 从 API version 7开始支持
 
 **需要权限**：ohos.permission.SET_WALLPAPER
 
@@ -1038,6 +1048,11 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 获取壁纸图片的像素图。
 
+> **说明：**
+> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#getImage9)代替。
+>
+> 从 API version 7开始支持
+
 **需要权限**：ohos.permission.GET_WALLPAPER
 
 **系统能力**: SystemCapability.MiscServices.Wallpaper
@@ -1066,6 +1081,11 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 获取壁纸图片的像素图。
+
+> **说明：**
+> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#getImage9)代替。
+>
+> 从 API version 7开始支持
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -1160,78 +1180,6 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
   }).catch((err) => {
       console.info('wallpaperXTS ===> testgetImagePromiseSystem err : ' + err);
       console.info('wallpaperXTS ===> testgetImagePromiseSystem err : ' + JSON.stringify(err));
-  });
-  ```
-
-
-## wallpaper.screenshotLiveWallpaper<sup>9+</sup>
-
-screenshotLiveWallpaper(scale: number, pixelFormat: image.PixelMapFormat, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
-
-截取当前屏幕壁纸，当前暂不支持该功能。
-
-**需要权限**：ohos.permission.CAPTURE_SCREEN
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | scale | number | 是 | 图片的缩放模式。 |
-  | pixelFormat | [PixelMap](js-apis-image.md#PixelMapFormat7) | 是 | 图片像素格式。 |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，调用成功则返回当前壁纸图片的像素图大小，调用失败则返回error信息。 |
-
-**示例：**
-  
-  ```js
-  import image from '@ohos.multimedia.image';
-  var pixelFormat = image.PixelMapFormat.UNKNOWN;
-  wallpaper.screenshotLiveWallpaper(0, pixelFormat, function (err, data) {
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperCallback err : ' + JSON.stringify(err));
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperCallback data : ' + JSON.stringify(data));
-  });
-  ```
-
-
-## wallpaper.screenshotLiveWallpaper<sup>9+</sup>
-
-screenshotLiveWallpaper(scale: number, pixelFormat: image.PixelMapFormat): Promise&lt;image.PixelMap&gt;
-
-截取当前屏幕壁纸, 当前暂不支持该功能。
-
-**需要权限**：ohos.permission.CAPTURE_SCREEN
-
-**系统能力**: SystemCapability.MiscServices.Wallpaper
-
-**系统接口**：此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | scale | number | 是 | 图片的缩放模式。 |
-  | pixelFormat | [PixelMap](js-apis-image.md#PixelMapFormat7) | 是 | 图片像素格式。 |
-
-**返回值：**
-
-  | 类型 | 说明 |
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 调用成功则返回当前壁纸图片的像素图大小，调用失败则返回error信息。 |
-
-**示例：**
-  
-  ```js
-  import image from '@ohos.multimedia.image';
-  var pixelFormat = image.PixelMapFormat.UNKNOWN;
-  wallpaper.screenshotLiveWallpaper(0, pixelFormat).then((data) => {
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperPromise data : ' + data);
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperPromise data : ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperPromise err : ' + err);
-      console.info('wallpaperXTS ===> screenShotLiveWallpaperPromise err : ' + JSON.stringify(err));
   });
   ```
 
