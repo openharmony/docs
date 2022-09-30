@@ -2001,7 +2001,7 @@ try {
 }
 ```
 
-## sensor. getDeviceAltitude<sup>9+</sup> 
+## sensor.getDeviceAltitude<sup>9+</sup> 
 
 getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -2029,7 +2029,7 @@ try {
 }
 ```
 
-## sensor. getDeviceAltitude<sup>9+</sup> 
+## sensor.getDeviceAltitude<sup>9+</sup> 
 
 getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
 
@@ -2065,7 +2065,7 @@ try {
 }
 ```
 
-## sensor. getInclination<sup>9+</sup> 
+## sensor.getInclination<sup>9+</sup> 
 
 getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
 
@@ -2092,7 +2092,7 @@ try {
 }
 ```
 
-## sensor. getInclination<sup>9+</sup> 
+## sensor.getInclination<sup>9+</sup> 
 
  getInclination(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
 
@@ -2127,7 +2127,7 @@ try {
 }
 ```
 
-## sensor. getAngleVariation<sup>9+</sup>
+## sensor.getAngleVariation<sup>9+</sup>
 
  getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
         callback: AsyncCallback<Array&lt;number&gt;>): void
@@ -2158,7 +2158,7 @@ try {
 }
 ```
 
-## sensor. getAngleVariation<sup>9+</sup>
+## sensor.getAngleVariation<sup>9+</sup>
 
 getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
 
@@ -2196,7 +2196,7 @@ try {
 }
 ```
 
-## sensor. getRotationMatrix<sup>9+</sup> 
+## sensor.getRotationMatrix<sup>9+</sup> 
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
 
@@ -2225,7 +2225,7 @@ try {
 }
 ```
 
-## sensor. getRotationMatrix<sup>9+</sup>
+## sensor.getRotationMatrix<sup>9+</sup>
 
 getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
 
@@ -2262,7 +2262,7 @@ try {
 }
 ```
 
-## sensor. transformRotationMatrix<sup>9+</sup> 
+## sensor.transformRotationMatrix<sup>9+</sup> 
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
         callback: AsyncCallback<Array&lt;number&gt;>): void
@@ -2293,7 +2293,7 @@ sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function
 }
 ```
 
-## sensor. transformRotationMatrix<sup>9+</sup>
+## sensor.transformRotationMatrix<sup>9+</sup>
 
 transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
 
@@ -2466,7 +2466,7 @@ try {
 }
 ```
 
-## sensor. getRotationMatrix<sup>9+</sup> 
+## sensor.getRotationMatrix<sup>9+</sup> 
 
 getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void 
 
@@ -2494,7 +2494,7 @@ try {
 }
 ```
 
-## sensor. getRotationMatrix<sup>9+</sup> 
+## sensor.getRotationMatrix<sup>9+</sup> 
 
 getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse>&gt;
 
@@ -4458,7 +4458,7 @@ transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: Co
 
 旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
 
-[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensor-transformrotationmatrix9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor. transformRotationMatrix ](# sensortransformrotationmatrix9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4527,9 +4527,9 @@ getGeomagneticField(locationOptions: LocationOptions, timeMillis: number, callba
 
 获取地球上特定位置的地磁场。
 
-[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.  getGeomagneticInfo](# sensorgetgeomagneticinfo9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.getGeomagneticInfo](# sensorgetgeomagneticinfo9)
 
-**系统能力**：SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensorlk - 
 
 **参数：** 
 
