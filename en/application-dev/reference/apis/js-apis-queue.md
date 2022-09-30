@@ -10,6 +10,9 @@ Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at bo
 
 **Recommended use case**: Use **Queue** in FIFO scenarios.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -72,7 +75,7 @@ let result1 = queue.add(1);
 queue.add(1);
 let b = [1, 2, 3];
 queue.add(b);
-let c = {name : "lala", age : "13"};
+let c = {name : "Dylon", age : "13"};
 let result3 = queue.add(c);
 ```
 
@@ -180,6 +183,7 @@ Obtains an iterator, each item of which is a JavaScript object.
 | IterableIterator&lt;T&gt; | Iterator obtained.|
 
 **Example**
+
 ```ts
 let queue = new Queue();
 queue.add(2);
