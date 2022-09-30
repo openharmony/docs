@@ -28,9 +28,13 @@ NewIP载荷传输效率，相比IPv4提高最少1%，相比IPv6提高最少2.33%
 
 ## 可变长报头格式
 
-NewIP灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
+NewIP WiFi灵活极简报文头如下图所示，通过LLC Header中的EtherType = 0xEADD标识NewIP灵活极简报文。Bitmap是一组由0和1组成的二进制序列，每个二进制位的数值用于表示特定目标特性的存在性。
 
 ![zh-cn_image-20220915140627223](figures/zh-cn_image-20220915140627223.png)
+
+NewIP Eth灵活极简报文头如下图所示，通过Eth头中的EtherType = 0xEADD标识NewIP灵活极简报文。
+
+![zh-cn_image-20220930113757464](figures/zh-cn_image-20220930113757464.png)
 
 1)	Dispatch：指示封装子类，数值0b0表示其为极简封装子类，长度为1比特；(0b表示后面数值为二进制)。
 
@@ -343,5 +347,45 @@ allow thread_xxx thread_xxx:socket { create bind connect listen accept read writ
 allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 ```
 
+## WireShark报文解析模板
 
+### 模板导入
 
+Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析。
+
+报文解析模板配置文件的方法：
+
+依次点击Help->About Wireshark->Folders，打开Global Configuration目录，编辑init.lua文件。在末尾添加dofile(DATA_DIR..”newip.lua”)，其中DATA_DIR即为newip.lua插件所在路径。
+
+![zh-cn_image-20220930141628922](figures/zh-cn_image-20220930141628922.png)
+
+NewIP报文解析模板添加样例：
+
+```
+NewIP报文解析模板文件存放路径：
+D:\tools\WireShark\wireshark_cfg_for_newip_v1.3.lua
+
+WireShark配置文件路径：
+C:\Program Files\Wireshark\init.lua
+
+在init.lua文件最后增加下面配置（window 11）
+dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip_v1.3.lua")
+```
+
+### 报文解析样例
+
+#### ARP请求
+
+![zh-cn_image-20220930142806235](figures/zh-cn_image-20220930142806235.png)
+
+#### ARP应答
+
+![zh-cn_image-20220930142858397](figures/zh-cn_image-20220930142858397.png)
+
+#### TCP握手
+
+![zh-cn_image-20220930142912014](figures/zh-cn_image-20220930142912014.png)
+
+#### TCP数据包
+
+![zh-cn_image-20220930142920255](figures/zh-cn_image-20220930142920255.png)
