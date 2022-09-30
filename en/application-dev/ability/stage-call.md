@@ -81,7 +81,7 @@ import Ability from '@ohos.application.Ability'
 ```ts
 export default class MySequenceable {
     num: number = 0
-    str: String = ""
+    str: string = ""
 
     constructor(num, string) {
         this.num = num

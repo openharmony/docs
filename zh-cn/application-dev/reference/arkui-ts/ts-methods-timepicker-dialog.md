@@ -5,11 +5,6 @@
 >  **说明：**
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-## 权限列表
-
-无
-
 ## TimePickerDialog.show
 
 show(options?: TimePickerDialogOptions)
@@ -58,7 +53,10 @@ struct TimePickerDialogExample01 {
   }
 }
 ```
+ ![zh-cn_image_0000001118642010](figures/zh-cn_image_0000001118642010.gif) 
+
 ### 时间滑动选择器（12小时制）示例
+
 ```ts
 // xxx.ets
 @Entry
@@ -87,3 +85,5 @@ struct TimePickerDialogExample02 {
   }
 }
 ```
+
+ ![zh-cn_image_0000001118642020](figures/zh-cn_image_0000001118642020.gif) 

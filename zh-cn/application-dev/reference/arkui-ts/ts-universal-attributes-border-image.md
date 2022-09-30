@@ -14,25 +14,15 @@
 
 ## BorderImageOption对象说明
 
-| 名称       | 类型                                                         | 描述                                                         |
-| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                                     |
-| slice      | [Length](ts-types.md#length)\| EdgeWidths                    | 设置图片边框切割宽度。<br/>**说明：**<br/>切分过程会将图像分割为9个区域：四个角、四个边以及中心区域。四个角的区域，用于组成最终图片边框图像的四个角；四个边区域，在最终的边框图像中重复、缩放或修改它们以匹配元素的大小；中心区域默认情况下会被丢弃，不进行填充。<br/>默认值：0 |
-| width      | [Length](ts-types.md#length)\| EdgeWidths                    | 设置图片边框宽度。<br/>默认值：0                             |
-| outset     | [Length](ts-types.md#length)\| EdgeWidths                    | 设置边框图片向外延伸距离。<br/>默认值：0                     |
-| RepeatMode | RepeatMode                                                   | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch      |
-| fill       | boolean                                                      | 设置边框图片中心填充。<br/>默认值：false                     |
+| 名称         | 类型                                     | 描述                                      |
+| ---------- | ---------------------------------------- | --------------------------------------- |
+| source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
+| slice      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
+| width      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
+| outset     | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
+| RepeatMode | RepeatMode                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
+| fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
 
-## EdgeWidths对象说明
-
-引用该对象时，至少传入一个参数。
-
-| 名称 | 参数类型 | 必填 |描述 |
-| -------- | -------- |-------- |-------- |
-| left | [Length](ts-types.md#length) | 否 | 左侧距离参数。 |
-| right | [Length](ts-types.md#length) | 否 | 右侧距离参数。 |
-| top | [Length](ts-types.md#length) | 否 | 上侧距离参数。 |
-| bottom | [Length](ts-types.md#length) | 否 | 下侧距离参数。 |
 
 ## RepeatMode枚举说明
 

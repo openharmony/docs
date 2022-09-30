@@ -789,7 +789,7 @@ definePermission仅支持系统应用配置，三方应用配置不生效。
 | 属性名称                | 含义                                                         | 数据类型 | 是否可缺省 |
 | ----------------------- | ------------------------------------------------------------ | -------- | ---------- |
 | name                    | 标识权限的名称                                               | 字符串   | 不可缺省   |
-| grantMode               | 标识权限的授予方式，该标签可缺省，缺省值为system_grant。<br />授予模式如下：<br />system_grant:安装后系统自动授予该权限。<br />user_grant:使用时动态申请，用户授权后才可使用。 | 字符串   | 不可缺省   |
+| grantMode               | 标识权限的授予方式，该标签可缺省，缺省值为system_grant。<br />授予模式如下：<br />system_grant:安装后系统自动授予该权限。<br />user_grant:使用时动态申请，用户授权后才可使用。 | 字符串   | 可缺省   |
 | availableLevel          | 标识权限限制门限。可选值为"system_code"，"system_basic"，"normal"，该标签有缺省值，缺省值为normal。权限范围如下：<br />system_core：系统核心权限。<br />system_basic：系统基础权限。<br />normal：普通权限。所有应用允许申请的权限 | 字符串   | 可缺省     |
 | provisionEnable         | 标识权限是否支持证书方式申请权限，包括高级别的权限，该标签有缺省值，缺省值为true。配置为true标识需要开发者可以通过provision方式申请权限。 | 布尔值   | 可缺省     |
 | distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限，该标签有缺省值，缺省值为false。 | 布尔值   | 可缺省     |

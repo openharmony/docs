@@ -4,6 +4,7 @@
 > 该模块从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
+
 ```js
 import userFileManager from '@ohos.filemanagement.userfile_manager';
 ```
@@ -36,6 +37,7 @@ getUserFileMgr(context: Context): UserFileManager
 const context = getContext(this);
 let userFileMgr = userfilemanager.getUserFileMgr(context);
 ```
+
 ## userFileManager.getUserFileMgr
 
 getUserFileMgr(): UserFileManager
@@ -59,9 +61,10 @@ getUserFileMgr(): UserFileManager
 ```js
 let userFileMgr = userfilemanager.getUserFileMgr();
 ```
-## UserFileManager
-### getPublicDirectory
 
+## UserFileManager
+
+### getPublicDirectory
 
 getPublicDirectory(type: DirectoryType, callback: AsyncCallback&lt;string>): void;
 
