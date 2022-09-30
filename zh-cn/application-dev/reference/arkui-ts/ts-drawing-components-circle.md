@@ -22,10 +22,10 @@
 Circle(options?: {width?: string | number, height?: string | number})
 
 ## 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 |
-  | height | string \| number | 否 | 0 | 高度。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 0 | 宽度。 |
+| height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
@@ -55,12 +55,18 @@ Circle(options?: {width?: string | number, height?: string | number})
 @Component
 struct CircleExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+    Column({ space: 10 }) {
       // 绘制一个直径为150的圆
       Circle({ width: 150, height: 150 })
-      // 绘制一个直径为150的圆
-      Circle().width(150).height(150)
-    }.width('100%').margin({ top: 5 })
+      // 绘制一个直径为150、线条为红色虚线的圆环（宽高设置不一致时以短边为直径）
+      Circle()
+        .width(150)
+        .height(200)
+        .fillOpacity(0)
+        .strokeWidth(3)
+        .stroke(Color.Red)
+        .strokeDashArray([1, 2])
+    }.width('100%')
   }
 }
 ```
