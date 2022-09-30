@@ -21,7 +21,7 @@ sensor模块提供订阅传感器数据基本能力，包括订阅、取消订�
 import sensor from '@ohos.sensor';
 ```
 
-## sensor.on
+## sensor.on<sup>9+</sup>
 
 ### ACCELEROMETER<sup>9+</sup>
 
@@ -360,10 +360,10 @@ try {
 
 ###  LINEAR_ACCELERATION<sup>9+</sup>
 
-on(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometerResponse&gt;,
+on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;,
         options?: Options): void
 
-订阅线性加速度传感器数据
+订阅线性加速度传感器数据。
 
 **需要权限**：ohos.permission.ACCELEROMETER 
 
@@ -373,7 +373,7 @@ on(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometer
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELERATION。          |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELEROMETER。         |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
@@ -664,7 +664,7 @@ try {
 }
 ```
 
-## sensor.once
+## sensor.once<sup>9+</sup>
 
 ### ACCELEROMETER<sup>9+</sup>
 
@@ -1002,7 +1002,7 @@ try {
 
 ### LINEAR_ACCELERATION<sup>9+</sup>
 
-once(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
+once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 订阅一次线性加速度传感器数据。
 
@@ -1014,7 +1014,7 @@ once(type: SensorId.LINEAR_ACCELERATION, callback: Callback&lt;LinearAcceleromet
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELERATION。                  |
+| type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELEROMETER。                 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：**
@@ -1284,7 +1284,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9)                                       | 是   | 佩戴检测传感器类型为                                         |
+| type     | [SensorId](#sensorid9)                                       | 是   | 佩戴检测传感器类型为WEAR_DETECTION。                         |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册一次穿戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
 
 **示例：** 
@@ -1300,7 +1300,7 @@ try {
 }
 ```
 
-## sensor.off
+## sensor.off<sup>9+</sup>
 
 ### ACCELEROMETER<sup>9+</sup> 
 
@@ -1933,6 +1933,603 @@ try {
 }
 ```
 
+## sensor.getGeomagneticInfo<sup>9+</sup> 
+
+getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callback: AsyncCallback&lt;GeomagneticResponse&gt;): void
+
+获取地球上特定位置的地磁场 。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名          | 类型                                                         | 必填 | 说明                               |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | 是   | 地理位置。                         |
+| timeMillis      | number                                                       | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 是   | 返回磁场信息。                     |
+
+**示例：** 
+
+```js
+try {
+    sensor.getGeomagneticInfo({latitude:80, longitude:0, altitude:0}, 1580486400000, function(data)  {
+    console.info('sensor_getGeomagneticInfo_callback x: ' + data.x + ',y: ' + data.y + ',z: ' +
+	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+    });
+} catch (err) {
+        console.error('getGeomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor.getGeomagneticInfo<sup>9+</sup> 
+
+getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
+
+获取地球上特定位置的地磁场 。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名          | 类型                                | 必填 | 说明                               |
+| --------------- | ----------------------------------- | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions) | 是   | 地理位置。                         |
+| timeMillis      | number                              | 是   | 表示获取磁偏角的时间，单位为毫秒。 |
+
+**返回值：** 
+
+| 类型                                                       | 说明           |
+| ---------------------------------------------------------- | -------------- |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | 返回磁场信息。 |
+
+**示例：** 
+
+```js
+try {
+      const promise = sensor.getGeomagneticInfo({latitude:80, longitude:0, altitude:0}, 1580486400000);
+      promise.then((data) => {
+          console.info('sensor_getGeomagneticInfo_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
+  	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
+  		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
+      }).catch((reason) => {
+          console.info('Operation failed.');
+  })
+} catch (err) {
+        console.error('getGeomagneticInfo failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getDeviceAltitude<sup>9+</sup> 
+
+getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncCallback&lt;number&gt;): void
+
+根据当前气压获取设备所在的海拔高度。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名          | 类型                        | 必填 | 说明                                  |
+| --------------- | --------------------------- | ---- | ------------------------------------- |
+| seaPressure     | number                      | 是   | 表示海平面气压值，单位为hPa。         |
+| currentPressure | number                      | 是   | 表示设备所在高度的气压值，单位为hPa。 |
+| callback        | AsyncCallback&lt;number&gt; | 是   | 返回设备所在的海拔高度，单位为米。    |
+
+**示例：**
+
+```js
+try {
+  sensor.getDeviceAltitude(0, 200, function(err, data)  {
+          console.info("Successed to get getDeviceAltitude interface get data: " + data);
+  });
+} catch (err) {
+        console.error('getDeviceAltitude failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getDeviceAltitude<sup>9+</sup> 
+
+getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;number&gt;
+
+根据当前气压获取设备所在的海拔高度。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名          | 类型   | 必填 | 说明                                  |
+| --------------- | ------ | ---- | ------------------------------------- |
+| seaPressure     | number | 是   | 表示海平面气压值，单位为hPa。         |
+| currentPressure | number | 是   | 表示设备所在高度的气压值，单位为hPa。 |
+
+**返回值：** 
+
+| 类型                  | 说明                                 |
+| --------------------- | ------------------------------------ |
+| Promise&lt;number&gt; | 返回设备所在的海拔高度（单位：米）。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getDeviceAltitude (0, 200);
+      promise.then((data) => {
+          console.info('sensor_getDeviceAltitude_Promise success', data);
+      }).catch((err) => {
+          console.error("Operation failed");
+  })
+} catch (err) {
+        console.error('getDeviceAltitude failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getInclination<sup>9+</sup> 
+
+getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
+
+从倾角矩阵计算地磁倾角的弧度。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名            | 类型                        | 必填 | 说明                         |
+| ----------------- | --------------------------- | ---- | ---------------------------- |
+| inclinationMatrix | Array&lt;number&gt;         | 是   | 表示倾斜矩阵。               |
+| callback          | AsyncCallback&lt;number&gt; | 是   | 返回地磁倾斜角，单位为弧度。 |
+
+**示例：** 
+
+```js
+try {
+  sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1], function(err, data)  {
+          console.info("Successed to get getInclination  interface get data: " + data);
+  })
+} catch (err) {
+        console.error('getInclination failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getInclination<sup>9+</sup> 
+
+ getInclination(inclinationMatrix: Array&lt;number&gt;): Promise&lt;number&gt;
+
+ 从倾角矩阵计算地磁倾角的弧度。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名            | 类型                | 必填 | 说明           |
+| ----------------- | ------------------- | ---- | -------------- |
+| inclinationMatrix | Array&lt;number&gt; | 是   | 表示倾斜矩阵。 |
+
+**返回值：** 
+
+| 类型                  | 说明                         |
+| --------------------- | ---------------------------- |
+| Promise&lt;number&gt; | 返回地磁倾斜角，单位为弧度。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info('getInclination_promise successed', data);
+      }).catch((err) => {
+           console.error("Operation failed");
+  })
+} catch (err) {
+        console.error('getInclination failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getAngleVariation<sup>9+</sup>
+
+ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;,
+        callback: AsyncCallback<Array&lt;number&gt;>): void
+
+得到两个旋转矩阵之间的角度变化。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名                | 类型                                     | 必填 | 说明                              |
+| --------------------- | ---------------------------------------- | ---- | --------------------------------- |
+| currentRotationMatrix | Array&lt;number&gt;                      | 是   | 表示当前旋转矩阵。                |
+| preRotationMatrix     | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回z、x、y轴方向的旋转角度变化。 |
+
+**示例：** 
+
+```js
+try {
+  sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87], function(err, data)  {
+      for (var i=0; i < data.length; i++) {
+          console.info("data[" + i + "]: " + data[i]);
+      }
+  })
+} catch (err) {
+        console.error('getAngleVariation failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getAngleVariation<sup>9+</sup>
+
+getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+
+得到两个旋转矩阵之间的角度变化。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名                | 类型                | 必填 | 说明               |
+| --------------------- | ------------------- | ---- | ------------------ |
+| currentRotationMatrix | Array&lt;number&gt; | 是   | 表示当前旋转矩阵。 |
+| preRotationMatrix     | Array&lt;number&gt; | 是   |                    |
+
+**返回值：** 
+
+| 类型                               | 说明                              |
+| ---------------------------------- | --------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回z、x、y轴方向的旋转角度变化。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
+      promise.then((data) => {
+          for (var i=0; i < data.length; i++) {
+              console.info("data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info("promise::catch", reason);
+  })
+} catch (err) {
+        console.error('getAngleVariation failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getRotationMatrix<sup>9+</sup> 
+
+getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void
+
+将旋转向量转换为旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名         | 类型                                     | 必填 | 说明           |
+| -------------- | ---------------------------------------- | ---- | -------------- |
+| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回旋转矩阵。 |
+
+**示例：** 
+
+```js
+try {
+  sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(err, data) {
+      for (var i=0; i < data.length; i++) {
+          console.info("data[" + i + "]: " + data[i]);
+      }
+  })
+} catch (err) {
+        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getRotationMatrix<sup>9+</sup>
+
+getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise<Array<number&gt;> 
+
+将旋转向量转换为旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名         | 类型                | 必填 | 说明           |
+| -------------- | ------------------- | ---- | -------------- |
+| rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+
+**返回值：**
+
+| 类型                               | 说明           |
+| ---------------------------------- | -------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回旋转矩阵。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          for (var i=0; i < data.length; i++) {
+              console.info("data[" + i + "]: " + data[i]);
+          }
+      }).catch((reason) => {
+          console.info("promise::catch", reason);
+  })
+} catch (err) {
+        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. transformRotationMatrix<sup>9+</sup> 
+
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions,
+        callback: AsyncCallback<Array&lt;number&gt;>): void
+
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名           | 类型                                      | 必填 | 说明                   |
+| ---------------- | ----------------------------------------- | ---- | ---------------------- |
+| inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。         |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。       |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | 是   | 返回转换后的旋转矩阵。 |
+
+**示例：** 
+
+```js
+try {
+sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(data) {
+    for (var i=0; i < data.length; i++) {
+        console.info("transformRotationMatrix  data[ " + i + "] = " + data[i]);
+    }
+ })
+} catch (err) {
+        console.error('transformRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. transformRotationMatrix<sup>9+</sup>
+
+transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise<Array&lt;number&gt;> 
+
+旋转提供的旋转矩阵，使其可以以不同的方式表示坐标系。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名           | 类型                                      | 必填 | 说明             |
+| ---------------- | ----------------------------------------- | ---- | ---------------- |
+| inRotationVector | Array&lt;number&gt;                       | 是   | 表示旋转矩阵。   |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | 是   | 表示坐标系方向。 |
+
+**返回值：**
+
+| 类型                               | 说明                   |
+| ---------------------------------- | ---------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回转换后的旋转矩阵。 |
+
+**示例：**
+
+```js
+try {
+    const promise = sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
+    promise.then((data) => {
+        for (var i=0; i < data.length; i++) {
+            console.info("transformRotationMatrix data[ " + i + "] = " + data[i]);
+        }
+    }).catch((err) => {
+           console.info("Operation failed");
+})
+} catch (err) {
+        console.error('transformRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor.getQuaternion<sup>9+</sup> 
+
+getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+
+将旋转向量转换为归一化四元数。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名         | 类型                                     | 必填 | 说明           |
+| -------------- | ---------------------------------------- | ---- | -------------- |
+| rotationVector | Array&lt;number&gt;                      | 是   | 表示旋转矢量。 |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回四元数。   |
+
+**示例：**
+
+```js
+try {
+    sensor.getQuaternion ([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data)  {
+      for (var i=0; i < data.length; i++) {
+          console.info("data[" + i + "]: " + data[i]);
+      }
+  })
+} catch (err) {
+        console.error('getQuaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor.getQuaternion<sup>9+</sup>
+
+getQuaternion(rotationVector: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+
+将旋转向量转换为归一化四元数。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名         | 类型                | 必填 | 说明           |
+| -------------- | ------------------- | ---- | -------------- |
+| rotationVector | Array&lt;number&gt; | 是   | 表示旋转矢量。 |
+
+**返回值：**
+
+| 类型                               | 说明         |
+| ---------------------------------- | ------------ |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回四元数。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
+      promise.then((data) => {
+          console.info('getQuaternionn_promise successed');
+          for (var i=0; i < data.length; i++) {
+              console.info("data[" + i + "]: " + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+} catch (err) {
+        console.error('getQuaternion failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor.getOrientation<sup>9+</sup>
+
+getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback<Array&lt;number&gt;>): void 
+
+根据旋转矩阵计算设备的方向。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名         | 类型                                     | 必填 | 说明                              |
+| -------------- | ---------------------------------------- | ---- | --------------------------------- |
+| rotationMatrix | Array&lt;number&gt;                      | 是   | 表示旋转矩阵。                    |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 返回围绕z、x、y轴方向的旋转角度。 |
+
+**示例：** 
+
+```js
+try {
+  sensor.getOrientation([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
+      console.info("SensorJsAPI--->Successed to get getOrientation interface get data: " + data);
+      for (var i = 1; i < data.length; i++) {
+          console.info("sensor_getOrientation_callback" + data[i]);
+      }
+  })
+} catch (err) {
+        console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor.getOrientation<sup>9+</sup>
+
+getOrientation(rotationMatrix: Array&lt;number&gt;): Promise<Array&lt;number&gt;> 
+
+根据旋转矩阵计算设备的方向。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名         | 类型                | 必填 | 说明           |
+| -------------- | ------------------- | ---- | -------------- |
+| rotationMatrix | Array&lt;number&gt; | 是   | 表示旋转矩阵。 |
+
+**返回值：**
+
+| 类型                               | 说明                              |
+| ---------------------------------- | --------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回围绕z、x、y轴方向的旋转角度。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getOrientation([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      promise.then((data) => {
+          console.info('sensor_getOrientation_Promise success', data);
+          for (var i = 1; i < data.length; i++) {
+              console.info("sensor_getOrientation_promise" + data[i]);
+          }
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+} catch (err) {
+        console.error('getOrientation failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getRotationMatrix<sup>9+</sup> 
+
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;, callback: AsyncCallback&lt;RotationMatrixResponse&gt;): void 
+
+根据重力矢量和地磁矢量计算旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名      | 类型                                                         | 必填 | 说明           |
+| ----------- | ------------------------------------------------------------ | ---- | -------------- |
+| gravity     | Array&lt;number&gt;                                          | 是   | 表示重力向量。 |
+| geomagnetic | Array&lt;number&gt;                                          | 是   | 表示地磁矢量。 |
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 是   | 返回旋转矩阵。 |
+
+**示例：**
+
+```js
+try {
+  sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(data)  {
+      console.info("sensor_getRotationMatrix_callback" + JSON.stringify(data));
+  })
+} catch (err) {
+        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
+## sensor. getRotationMatrix<sup>9+</sup> 
+
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse>&gt;
+
+根据重力矢量和地磁矢量计算旋转矩阵。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名      | 类型                | 必填 | 说明           |
+| ----------- | ------------------- | ---- | -------------- |
+| gravity     | Array&lt;number&gt; | 是   | 表示重力向量。 |
+| geomagnetic | Array&lt;number&gt; | 是   | 表示地磁矢量。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | 返回旋转矩阵。 |
+
+**示例：** 
+
+```js
+try {
+  const promise = sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
+      promise.then((data) => {
+          console.info("sensor_getRotationMatrix_callback" + JSON.stringify(data));
+      }).catch((err) => {
+          console.info('promise failed');
+  })
+} catch (err) {
+        console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
+}
+```
+
 ## SensorId<sup>9+</sup>
 
 表示要订阅或取消订阅的传感器类型。
@@ -1971,7 +2568,7 @@ on(type:  SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Acceler
 
 监听加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.ACCELEROMETER](#accelerometer9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.ACCELEROMETER](#accelerometer9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2003,7 +2600,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2019,7 +2616,8 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
-on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;LinearAccelerometerResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;,
+        options?: Options): void
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
@@ -2028,13 +2626,14 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;Lin
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | 是   | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
 
 **示例：**
+
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -2051,7 +2650,7 @@ on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback
 
 监听未校准加速度计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用 [sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用 [sensor.on.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2085,7 +2684,7 @@ on(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespons
 
 监听重力传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.GRAVITY](#gravity9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.GRAVITY](#gravity9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2114,13 +2713,14 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeRes
 
 监听陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.GYROSCOPE](#gyroscope9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.GYROSCOPE](#gyroscope9)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。   |
@@ -2144,13 +2744,14 @@ on(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback:Callback&lt;G
 
 监听未校准陀螺仪传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
@@ -2177,11 +2778,12 @@ on(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback: Callback&lt;Sig
 
 监听大幅动作传感器数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.SIGNIFICANT_MOTION](#significant_motion9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的大幅动作传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
@@ -2203,13 +2805,14 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback: Callback&lt;Pe
 
 监听计步检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.PEDOMETER_DETECTION](#pedometer_detection9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
@@ -2231,13 +2834,14 @@ on(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerRes
 
 监听计步传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.PEDOMETER](#pedometer9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.PEDOMETER](#pedometer9) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。   |
@@ -2259,7 +2863,7 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback:Callback&lt;Ambi
 
 监听环境温度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.AMBIENT_TEMPERATURE](#ambient_temperature9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2287,7 +2891,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magneti
 
 监听磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.MAGNETIC_FIELD](#magnetic_field9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2317,7 +2921,7 @@ on(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callbac
 
 监听未校准磁场传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2349,11 +2953,12 @@ on(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityRes
 
 监听接近光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.PROXIMITY](#proximity9) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.PROXIMITY](#proximity9) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的接近光传感器类型为SENSOR_TYPE_ID_PROXIMITY。   |
@@ -2375,7 +2980,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRespo
 
 监听湿度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.HUMIDITY](#humidity9)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.HUMIDITY](#humidity9)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2403,7 +3008,7 @@ on(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerRes
 
 监听气压计传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.BAROMETER](#barometer9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.BAROMETER](#barometer9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2431,7 +3036,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt;,
 
 监听霍尔传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.HALL](#hall9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.HALL](#hall9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2458,11 +3063,12 @@ on(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightRes
 
 监听环境光传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.AMBIENT_LIGHT](#ambient_light9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的环境光传感器类型为SENSOR_TYPE_ID_AMBIENT_LIGHT。 |
@@ -2485,11 +3091,12 @@ on(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientatio
 
 监听方向传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.ORIENTATION](#orientation9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.ORIENTATION](#orientation9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的方向传感器类型为SENSOR_TYPE_ID_ORIENTATION   |
@@ -2513,7 +3120,7 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -2528,20 +3135,21 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
-on(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
+on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,
+        options?: Options): void
 
 监听心率传感器数据变化一次。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。   |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。     |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：**
 
@@ -2559,11 +3167,12 @@ on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;Rotatio
 
 监听旋转矢量传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.ROTATION_VECTOR](#rotation_vector9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。 |
@@ -2588,11 +3197,12 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 
 监听佩戴检测传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API Version9开始该接口不再维护，请使用[sensor.on.WEAR_DETECTION](#wear_detection9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.on.WEAR_DETECTION](#wear_detection9)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。 |
@@ -2616,7 +3226,7 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 
 监听加速度传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.once.ACCELEROMETER](#accelerometer9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.once.ACCELEROMETER](#accelerometer9-1)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -2645,7 +3255,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
 **需要权限**：ohos.permission.ACCELERATION
 
@@ -2660,21 +3270,22 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
-once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 订阅一次线性加速度传感器数据。
 
-**需要权限**：ohos.permission.ACCELEROMETER
+**需要权限**：ohos.permission.ACCELERATION 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | 是   | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。  |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：**
+
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -2690,13 +3301,14 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callba
 
 监听未校准加速度传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-1)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 未校准加速度传感器类型为SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED。 |
@@ -2721,11 +3333,12 @@ once(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback: Callback&lt;GravityRespo
 
 监听重力传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.GRAVITY](#gravity9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.GRAVITY](#gravity9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                      |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 重力传感器类型为SENSOR_TYPE_ID_GRAVITY。         |
@@ -2747,13 +3360,14 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback: Callback&lt;GyroscopeR
 
 监听陀螺仪传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.GYROSCOPE](#gyroscope9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.GYROSCOPE](#gyroscope9-1)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE。       |
@@ -2775,13 +3389,14 @@ once(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,callback: Callback&l
 
 监听未校准陀螺仪传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-1)
 
 **需要权限**：ohos.permission.GYROSCOPE
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 未校准陀螺仪传感器类型为SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED。 |
@@ -2806,11 +3421,12 @@ once(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,callback: Callback&lt;Si
 
 监听有效运动传感器的数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.SIGNIFICANT_MOTION](#significant_motion9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.SIGNIFICANT_MOTION](#significant_motion9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 有效运动传感器类型为SENSOR_TYPE_ID_SIGNIFICANT_MOTION。 |
@@ -2830,13 +3446,14 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,callback: Callback&lt;P
 
 监听计步检测传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.PEDOMETER_DETECTION](#pedometer_detection9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.PEDOMETER_DETECTION](#pedometer_detection9-1)
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 计步检测传感器类型为SENSOR_TYPE_ID_PEDOMETER_DETECTION。 |
@@ -2856,13 +3473,14 @@ once(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback: Callback&lt;PedometerR
 
 监听计步器传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.PEDOMETER](#pedometer9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.PEDOMETER](#pedometer9-1)
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 计步传感器类型为SENSOR_TYPE_ID_PEDOMETER。        |
@@ -2882,7 +3500,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,callback: Callback&lt;A
 
 监听环境温度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.AMBIENT_TEMPERATURE](#ambient_temperature9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.AMBIENT_TEMPERATURE](#ambient_temperature9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2907,7 +3525,7 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback: Callback&lt;Magne
 
 监听磁场传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.MAGNETIC_FIELD](#magnetic_field9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.MAGNETIC_FIELD](#magnetic_field9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2934,11 +3552,12 @@ once(type: SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,callback: Callb
 
 监听未校准磁场传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 未校准磁场传感器类型为SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED。 |
@@ -2963,7 +3582,7 @@ once(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback: Callback&lt;ProximityR
 
 监听接近光传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.PROXIMITY](#proximity9-1) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.PROXIMITY](#proximity9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -2988,11 +3607,12 @@ once(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback: Callback&lt;HumidityRes
 
 监听湿度传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.HUMIDITY](#humidity9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.HUMIDITY](#humidity9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 湿度传感器类型为SENSOR_TYPE_ID_HUMIDITY。         |
@@ -3012,7 +3632,7 @@ once(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback: Callback&lt;BarometerR
 
 监听气压计传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.BAROMETER](#barometer9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.BAROMETER](#barometer9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3037,11 +3657,12 @@ once(type: SensorType.SENSOR_TYPE_ID_HALL, callback: Callback&lt;HallResponse&gt
 
 监听霍尔传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.HALL](#hall9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.HALL](#hall9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | [SensorType](#sensortype)                | 是    | 霍尔传感器类型为SENSOR_TYPE_ID_HALL。         |
@@ -3061,7 +3682,7 @@ once(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback: Callback&lt;LightR
 
 监听环境光传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.AMBIENT_LIGHT](#ambient_light9-1)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.AMBIENT_LIGHT](#ambient_light9-1)
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3087,11 +3708,12 @@ once(type: SensorType.SENSOR_TYPE_ID_ORIENTATION, callback: Callback&lt;Orientat
 
 监听方向传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.ORIENTATION](#orientation9-1) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.ORIENTATION](#orientation9-1) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 方向传感器类型为SENSOR_TYPE_ID_ORIENTATION。      |
@@ -3113,11 +3735,12 @@ once(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback: Callback&lt;Rota
 
 监听旋转矢量传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请用[sensor.once.ROTATION_VECTOR](#rotation_vector9-1)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请用[sensor.once.ROTATION_VECTOR](#rotation_vector9-1)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 旋转矢量传感器类型为SENSOR_TYPE_ID_ROTATION_VECTOR。 |
@@ -3140,7 +3763,7 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.once.HEART_BEAT_RATE](#heart_beat_rate9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.once.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEART_RATE  
 
@@ -3155,21 +3778,23 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
-once(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
+once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void		
 
 订阅一次心率传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.HEART_RATE 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。       |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | 是   | 心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。             |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：**
+
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, function(data) {
       console.info("Heart rate: " + data.heartRate);
@@ -3183,11 +3808,12 @@ once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearD
 
 监听佩戴检测传感器数据变化一次。
 
-从API Version9开始该接口不再维护，请使用[sensor.once.WEAR_DETECTION](#wear_detection9-1)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.once.WEAR_DETECTION](#wear_detection9-1)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：** 
+
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。 |
@@ -3209,7 +3835,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback?: Callback&lt;Accele
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.ACCELEROMETER](#accelerometer9-2)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.ACCELEROMETER](#accelerometer9-2)  
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -3239,7 +3865,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback?: Callb
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.ACCELEROMETER_UNCALIBRATED](#accelerometer_uncalibrated9-2) 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -3272,7 +3898,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback?: Callback&lt;LightR
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.AMBIENT_LIGHT](#ambient_light9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.AMBIENT_LIGHT](#ambient_light9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3298,7 +3924,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.AMBIENT_TEMPERATURE](#ambient_temperature9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.AMBIENT_TEMPERATURE](#ambient_temperature9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3324,7 +3950,7 @@ off(type: SensorType.SENSOR_TYPE_ID_BAROMETER, callback?: Callback&lt;BarometerR
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.BAROMETER](#barometer9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.BAROMETER](#barometer9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3350,7 +3976,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GRAVITY, callback?: Callback&lt;GravityRespo
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.GRAVITY](#gravity9-2)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.GRAVITY](#gravity9-2)  
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3378,7 +4004,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback?: Callback&lt;GyroscopeR
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.GYROSCOPE](#gyroscope9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.GYROSCOPE](#gyroscope9-2) 
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -3408,7 +4034,7 @@ off(type: SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback?: Callback&
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-2)  
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.GYROSCOPE_UNCALIBRATED](#gyroscope_uncalibrated9-2)  
 
 **需要权限**：ohos.permission.GYROSCOPE
 
@@ -3438,7 +4064,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HALL, callback?: Callback&lt;HallResponse&gt
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.HALL](#hall9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.HALL](#hall9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3464,7 +4090,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.HEART_BEAT_RATE](#heart_beat_rate9)
 
 **需要权限**：ohos.permission.HEALTH_DATA 
 
@@ -3472,27 +4098,27 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 **参数：** 
 
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)[SensorType](#sensortype) | 是    | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。 |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。      |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 ### HEART_BEAT_RATE<sup>9+</sup>
 
-off(type: SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
 
 取消订阅传感器数据。
 
-**需要权限**：ohos.permission.READ_HEALTH_DATA
+**需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)[SensorType](#sensortype) | 是    | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。 |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。 |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
 **示例：**
 
@@ -3509,7 +4135,7 @@ off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityRes
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.HUMIDITY](#humidity9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.HUMIDITY](#humidity9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3535,7 +4161,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9)
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9)
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -3550,7 +4176,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup>
 
-off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback?:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
 
@@ -3560,10 +4186,10 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback?: Callback&lt
 
 **参数：**
 
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | [SensorType](#sensortype)                | 是    | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype)                                    | 是   | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 
 **示例：**
 
@@ -3582,7 +4208,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback);
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.MAGNETIC_FIELD](#magnetic_field9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.MAGNETIC_FIELD](#magnetic_field9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3610,7 +4236,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.MAGNETIC_FIELD_UNCALIBRATED](#magnetic_field_uncalibrated9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3641,7 +4267,7 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callbac
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.ORIENTATION](#orientation9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.ORIENTATION](#orientation9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3669,7 +4295,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER, callback?: Callback&lt;PedometerR
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.PEDOMETER](#pedometer9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.PEDOMETER](#pedometer9-2) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -3697,7 +4323,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.PEDOMETER_DETECTION](#pedometer_detection9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.PEDOMETER_DETECTION](#pedometer_detection9-2) 
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION
 
@@ -3725,7 +4351,7 @@ off(type: SensorType.SENSOR_TYPE_ID_PROXIMITY, callback?: Callback&lt;ProximityR
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.PROXIMITY](#proximity9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.PROXIMITY](#proximity9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3751,7 +4377,7 @@ off(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback?: Callback&lt;Rota
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.ROTATION_VECTOR](#rotation_vector9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.ROTATION_VECTOR](#rotation_vector9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3780,7 +4406,7 @@ off(type: SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback?: Callback&lt;S
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.SIGNIFICANT_MOTION](#significant_motion9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.SIGNIFICANT_MOTION](#significant_motion9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -3806,7 +4432,7 @@ off(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback?: Callback&lt;WearD
 
 取消订阅传感器数据。
 
-从API Version9开始该接口不再维护，请使用[sensor.off.WEAR_DETECTION](#wear_detection9-2) 
+[newMethod](https://gitee.com/openharmony/docs/pulls/10074#newmethod)，请使用[sensor.off.WEAR_DETECTION](#wear_detection9-2) 
 
 **系统能力**：SystemCapability.Sensors.Sensor
 
@@ -4398,9 +5024,9 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
   })
   ```
 
-## sensor.getSensorLists<sup>9+</sup>
+## sensor.getSensorList<sup>9+</sup>
 
- getSensorLists(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
+ getSensorList(callback: AsyncCallback<Array&lt;Sensor&gt;>): void
 
 获取设备上的所有传感器信息。
 
@@ -4415,21 +5041,21 @@ createRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&
 **示例：** 
 
 ```js
-sensor.getSensorLists((error, data) => {
+sensor.getSensorList((error, data) => {
     if (error) {
-        console.error('getSensorLists failed');
+        console.error('getSensorList failed');
     } else {
-        console.info("getSensorLists callback in" + data.length);
+        console.info("getSensorList callback in" + data.length);
         for (var i = 0; i < data.length; i++) {
-            console.info("getSensorLists " + JSON.stringify(data[i]));
+            console.info("getSensorList " + JSON.stringify(data[i]));
         }
     }
 });
 ```
 
-## sensor.getSensorLists<sup>9+</sup>
+## sensor.getSensorList<sup>9+</sup>
 
- getSensorLists(): Promise< Array&lt;Sensor&gt;>
+ getSensorList(): Promise< Array&lt;Sensor&gt;>
 
 获取设备上的所有传感器信息。
 
@@ -4444,19 +5070,19 @@ sensor.getSensorLists((error, data) => {
 **示例：** 
 
 ```js
-sensor.getSensorLists().then((data) => {
-    console.info("getSensorLists promise in" + data.length);
+sensor.getSensorList().then((data) => {
+    console.info("getSensorList promise in" + data.length);
     for (var i = 0; i < data.length; i++) {
-        console.info("getSensorLists " + JSON.stringify(data[i]));
+        console.info("getSensorList " + JSON.stringify(data[i]));
      }
 }, (error)=>{
-    console.error('getSensorLists failed');
+    console.error('getSensorList failed');
 });
 ```
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
-getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
+getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 获取指定类型的传感器信息。
 
@@ -4466,13 +5092,13 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 | 参数名   | 类型                                    | 必填 | 说明             |
 | -------- | --------------------------------------- | ---- | ---------------- |
-| type     | SensorType                              | 是   | 传感器类型。     |
+| type     | SensorId                                | 是   | 传感器类型。     |
 | callback | AsyncCallback&lt;[Sensor](#sensor9)&gt; | 是   | 返回传感器信息。 |
 
 **示例：**
 
 ```js
- sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
+ sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) => {
      if (error) {
          console.error('getSingleSensor failed');
      } else {
@@ -4483,7 +5109,7 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 ##  sensor.getSingleSensor<sup>9+</sup>
 
- getSingleSensor(type: SensorType): Promise&lt;Sensor&gt;
+ getSingleSensor(type: SensorId): Promise&lt;Sensor&gt;
 
 获取指定类型的传感器信息。
 
@@ -4491,9 +5117,9 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **参数：** 
 
-| 参数名 | 类型       | 必填 | 说明         |
-| ------ | ---------- | ---- | ------------ |
-| type   | SensorType | 是   | 传感器类型。 |
+| 参数名 | 类型     | 必填 | 说明         |
+| ------ | -------- | ---- | ------------ |
+| type   | SensorId | 是   | 传感器类型。 |
 
 **返回值：** 
 
@@ -4504,7 +5130,7 @@ getSingleSensor(type: SensorType, callback: AsyncCallback&lt;Sensor&gt;): void
 **示例：**
 
 ```js
-sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
+sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
     console.info("getSingleSensor " + JSON.stringify(data));
 }, (error)=>{
     console.error('getSingleSensor failed');
@@ -4563,12 +5189,13 @@ sensor.getSingleSensor(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER).then((dat
 
 | 名称            | 参数类型 | 说明                   |
 | --------------- | -------- | ---------------------- |
-| sensorName      | string   | 传感器名称。           |
 | venderName      | string   | 传感器供应商。         |
 | firmwareVersion | string   | 传感器固件版本。       |
 | hardwareVersion | string   | 传感器硬件版本。       |
-| sensorTypeId    | number   | 传感器类型id。         |
+| sensorId        | number   | 传感器类型id。         |
 | maxRange        | number   | 传感器的最大测量范围。 |
+| minSamplePeriod | number   | 允许的最小采样周期。   |
+| maxSamplePeriod | number   | 允许的最大采样周期。   |
 | precision       | number   | 传感器精度。           |
 | power           | number   | 传感器电源。           |
 
