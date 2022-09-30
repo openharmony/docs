@@ -351,7 +351,7 @@ allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 
 ### 模板导入
 
-Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析，[NewIP报文解析模板](https://gitee.com/openharmony-sig/communication_sfc_newip/blob/master/tools/wireshark_cfg_for_newip_v1.3.lua)详见代码仓。
+Wireshark默认报文解析规则无法解析NewIP报文，在WireShark配置中添加NewIP报文解析模板可以实现NewIP报文解析，[NewIP报文解析模板](https://gitee.com/openharmony-sig/communication_sfc_newip/blob/master/tools/wireshark_cfg_for_newip.lua)详见代码仓。
 
 报文解析模板配置文件的方法：
 
@@ -363,13 +363,13 @@ NewIP报文解析模板添加样例：
 
 ```
 NewIP报文解析模板存放路径：
-D:\tools\WireShark\wireshark_cfg_for_newip_v1.3.lua
+D:\tools\WireShark\wireshark_cfg_for_newip.lua
 
 WireShark配置文件路径：
 C:\Program Files\Wireshark\init.lua
 
 在init.lua文件最后增加下面配置（window 11）
-dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip_v1.3.lua")
+dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip.lua")
 ```
 
 ### 报文解析样例
