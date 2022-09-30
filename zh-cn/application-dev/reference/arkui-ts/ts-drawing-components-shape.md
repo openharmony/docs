@@ -23,9 +23,9 @@ Shape(value?: PixelMap)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| value | PixelMap | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 | 
+| value | PixelMap | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
@@ -48,7 +48,9 @@ Shape(value?: PixelMap)
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 否 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 |
 
-## 示例1
+## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -142,8 +144,9 @@ struct ShapeExample {
 }
 ```
 
+![zh-cn_image_0000001184628104](figures/zh-cn_image_0000001184628104.png)
 
-## 示例2
+### 示例2
 
 ```ts
 // xxx.ets
@@ -222,3 +225,11 @@ struct ShapeMeshExample {
   }
 }
 ```
+
+示意图：
+
+![zh-cn_image1_0000001184628104](figures/zh-cn_image1_0000001184628104.png)
+
+手指触摸Shape组件时会显示mesh扭曲效果：
+
+![zh-cn_image2_0000001184628104](figures/zh-cn_image2_0000001184628104.png)
