@@ -5,10 +5,6 @@
 
 默认以00：00至23：59的时间区间创建滑动选择器，展示在弹窗上。
 
-## 权限列表
-
-无
-
 ## TimePickerDialog.show
 
 show(options?: TimePickerDialogOptions)
@@ -32,7 +28,7 @@ show(options?: TimePickerDialogOptions)
 @Entry
 @Component
 struct TimePickerDialogExample01 {
-  @State isUseMilitaryTime: boolean = true
+  @State isUseMilitaryTime: boolean = true;
 
   build() {
     Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center,
@@ -41,13 +37,13 @@ struct TimePickerDialogExample01 {
         TimePickerDialog.show({
           useMilitaryTime: this.isUseMilitaryTime,
           onAccept: (value: TimePickerResult) => {
-            console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
           },
           onCancel: () => {
-            console.info("TimePickerDialog:onCancel()")
+            console.info("TimePickerDialog:onCancel()");
           },
           onChange: (value: TimePickerResult) => {
-            console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
           }
         })
       })
@@ -55,13 +51,16 @@ struct TimePickerDialogExample01 {
   }
 }
 ```
+  ![zh-cn_image_0000001118642010](figures/zh-cn_image_0000001118642010.gif)  
+
 ### 时间滑动选择器（12小时制）示例
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TimePickerDialogExample02 {
-  @State isUseMilitaryTime: boolean = false
+  @State isUseMilitaryTime: boolean = false;
 
   build() {
     Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center,
@@ -70,13 +69,13 @@ struct TimePickerDialogExample02 {
         TimePickerDialog.show({
           useMilitaryTime: this.isUseMilitaryTime,
           onAccept: (value: TimePickerResult) => {
-            console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+            console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
           },
           onCancel: () => {
-            console.info("TimePickerDialog:onCancel()")
+            console.info("TimePickerDialog:onCancel()");
           },
           onChange: (value: TimePickerResult) => {
-            console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+            console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
           }
         })
       })
@@ -84,3 +83,5 @@ struct TimePickerDialogExample02 {
   }
 }
 ```
+
+ ![zh-cn_image_0000001118642020](figures/zh-cn_image_0000001118642020.gif)  
