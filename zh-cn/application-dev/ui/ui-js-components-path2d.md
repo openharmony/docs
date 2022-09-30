@@ -68,7 +68,7 @@ export default {
     path.moveTo(600, 535);
     path.arc(520, 450, 85, 0, 6);
     ctx.stroke(path);
-  },
+  }
 }
 ```
 
@@ -131,51 +131,66 @@ text{
 ```
 // xxx.js
 import prompt from '@system.prompt';
+
 export default {
-  data:{
-    ctx: null,
-    path1: null,
-    path2: null,
-    path3: null,
-    isAdd: "addPath2",
-    isChange: true,
-    textName: 'change'
-  },
-  onShow(){
-    this.ctx = this.$refs.canvas.getContext('2d',{antialias:true});
-    this.path1 = this.ctx.createPath2D();
-    this.path1.moveTo(200, 200);
-    this.path1.lineTo(400, 200);
-    this.path1.lineTo(400, 400);
-    this.path1.lineTo(200, 400);
-    this.path1.closePath();
-    this.path2 = this.ctx.createPath2D();
-    this.path2.arc(300, 300, 75, 0, 6.28)
-    this.ctx.stroke(this.path1);
-  },
-  addPath(){
-    if(this.isAdd == "addPath2"){
-      this.ctx.clearRect(0,0,600,600)
-      this.ctx.beginPath();
-      this.path2.addPath(this.path1)
-      this.ctx.stroke(this.path2);
-      this.isAdd = "clearPath2"
-    }else{
-      this.ctx.clearRect(0,0,600,600)
-      this.ctx.stroke(this.path1);      this.isAdd = "addPath2"
+    data: {
+        ctx: null,
+        path1: null,
+        path2: null,
+        path3: null,
+        isAdd: "addPath2",
+        isChange: true,
+        textName: 'change'
+    },
+    onShow() {
+        this.ctx = this.$refs.canvas.getContext('2d', {
+            antialias: true
+        });
+        this.path1 = this.ctx.createPath2D();
+        // 正方形
+        this.path1.moveTo(200, 200);
+        this.path1.lineTo(400, 200);
+        this.path1.lineTo(400, 400);
+        this.path1.lineTo(200, 400);
+        this.path1.closePath();
+        this.path2 = this.ctx.createPath2D();
+        // 圆形
+        this.path2.arc(300, 300, 75, 0, 6.28);
+        this.ctx.stroke(this.path1);
+    },
+    addPath() {
+        if (this.isAdd == "addPath2") {
+            // 删除指定指定区域的绘制内容
+            this.ctx.clearRect(0, 0, 600, 600);
+            this.ctx.beginPath();
+            // 将另一个的路径添加到当前路径对象中
+            this.path2.addPath(this.path1);
+            this.ctx.stroke(this.path2);
+            this.isAdd = "clearPath2";
+        } else {
+            this.ctx.clearRect(0, 0, 600, 600);
+            this.ctx.stroke(this.path1);
+            this.isAdd = "addPath2";
+        }
+    },
+    setTransform() {
+        if (this.isChange) {
+            this.ctx.clearRect(0, 0, 600, 600);
+            this.path3 = this.ctx.createPath2D();
+            this.path3.arc(150, 150, 100, 0, 6.28);
+            // 重置现有的变换矩阵并创建新的变换矩阵
+            this.path3.setTransform(2, 0.1, 0.1, 2, 0, 0);
+            this.ctx.stroke(this.path3);
+            this.isChange = !this.isChange;
+            this.textName = "back"
+        } else {
+            this.ctx.clearRect(0, 0, 600, 600);
+            this.path3.setTransform(0.5, -0.1, -0.1, 0.5, 0, 0);
+            this.ctx.stroke(this.path3);
+            this.isChange = !this.isChange;
+            this.textName = "change";
+        }
     }
-  },
-  setTransform(){
-    if(this.isChange){
-      this.ctx.clearRect(0,0,600,600)
-      this.path3 = this.ctx.createPath2D();
-      this.path3.arc(150, 150, 100, 0, 6.28)
-      this.path3.setTransform(2, 0.1, 0.1, 2, 0,0);      this.ctx.stroke(this.path3);      this.isChange =  !this.isChange;      this.textName = "back"
-    }else{
-      this.ctx.clearRect(0,0,600,600)
-      this.path3.setTransform(0.5, -0.1, -0.1, 0.5, 0,0);this.ctx.stroke(this.path3);this.isChange =  !this.isChange;      this.textName = "change"
-    }
-  },
 }
 ```
 

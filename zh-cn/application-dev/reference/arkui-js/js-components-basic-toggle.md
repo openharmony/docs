@@ -56,7 +56,7 @@
 
 ## 示例
 
-```
+```html
 <!-- xxx.hml -->
 <div style="flex-direction: column;">
   <text class="margin">1. Multiple choice example</text>
@@ -71,44 +71,61 @@
 </div>
 ```
 
-```
+```css
 /* xxx.css */
 .margin {
   margin: 7px;
 }
 ```
 
-```
+```js
 // xxx.js
 export default {
-  data: {
-    toggle_list: [
-      { "id":"1001", "name":"Living room", "checked":true },
-      { "id":"1002", "name":"Bedroom", "checked":false },
-      { "id":"1003", "name":"Second bedroom", "checked":false },
-      { "id":"1004", "name":"Kitchen", "checked":false },
-      { "id":"1005", "name":"Study", "checked":false },
-      { "id":"1006", "name":"Garden", "checked":false },
-      { "id":"1007", "name":"Bathroom", "checked":false },
-      { "id":"1008", "name":"Balcony", "checked":false },
-    ],
-    toggles: ["Living room","Bedroom","Kitchen","Study"],
-    idx: ""
-  },
-  allclick(arg) {
-    this.idx = arg
-  },
-  allchange(e) {
-    if (e.checked === true) {
-      for (var i = 0; i < this.toggle_list.length; i++) {
-        if (this.toggle_list[i].id === this.idx) {
-          this.toggle_list[i].checked = true
-        } else {
-          this.toggle_list[i].checked = false
+    data: {
+        toggle_list: [
+            {
+                "id": "1001", "name": "Living room", "checked": true
+            },
+            {
+                "id": "1002", "name": "Bedroom", "checked": false
+            },
+            {
+                "id": "1003", "name": "Second bedroom", "checked": false
+            },
+            {
+                "id": "1004", "name": "Kitchen", "checked": false
+            },
+            {
+                "id": "1005", "name": "Study", "checked": false
+            },
+            {
+                "id": "1006", "name": "Garden", "checked": false
+            },
+            {
+                "id": "1007", "name": "Bathroom", "checked": false
+            },
+            {
+                "id": "1008", "name": "Balcony", "checked": false
+            },
+        ],
+        toggles: ["Living room", "Bedroom", "Kitchen", "Study"],
+        idx: ""
+    },
+    allclick(arg) {
+        this.idx = arg;
+    },
+    allchange(e) {
+        if (e.checked != true) {
+            return;
         }
-      }
+        for (var i = 0; i < this.toggle_list.length; i++) {
+            if (this.toggle_list[i].id === this.idx) {
+                this.toggle_list[i].checked = true;
+            } else {
+                this.toggle_list[i].checked = false;
+            }
+        }
     }
-  }
 }
 ```
 

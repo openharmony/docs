@@ -17,14 +17,14 @@
 
 | 名称      | 属性类型                            | 描述                   |
 | --------- | ------------------------------- | -------------------- |
-| screenX   | number                          | 点击触点相对于屏幕左上角的x轴坐标。   |
-| screenY   | number                          | 点击触点相对于屏幕左上角的y轴坐标。   |
+| screenX   | number                          | 点击触点相对于应用窗口左上角的x轴坐标。 |
+| screenY   | number                          | 点击触点相对于应用窗口左上角的y轴坐标。 |
 | x         | number                          | 点击触点相对于当前组件左上角的x轴坐标。 |
 | y         | number                          | 点击触点相对于当前组件左上角的y轴坐标。 |
 | button    | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。                |
 | action    | [MouseAction](ts-appendix-enums.md#mouseaction) | 事件动作。                |
 | stopPropagation      | () => void | 阻塞事件冒泡。                         |
-| timestamp<sup>8+</sup> | number | 事件时间戳。                                  |
+| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。            |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | 事件输入设备。           |
 

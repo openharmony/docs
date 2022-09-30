@@ -14,27 +14,27 @@
 
 ## TouchEvent对象说明
 
-  | 名称                | 类型                                       | 描述           |
-  | ------------------- | ---------------------------------------- | ------------ |
-  | type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
-  | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
-  | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-  | stopPropagation      | () => void | 阻塞事件冒泡。 |
-  | timestamp<sup>8+</sup> | number | 事件时间戳。 |
-  | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
-  | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | 事件输入设备。 |
+| 名称                | 类型                                       | 描述           |
+| ------------------- | ---------------------------------------- | ------------ |
+| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
+| stopPropagation      | () => void | 阻塞事件冒泡。 |
+| timestamp<sup>8+</sup> | number | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md) | 触发手势事件的元素对象显示区域。 |
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md) | 事件输入设备。 |
 
 
 ## TouchObject对象说明
 
-| 名称    | 类型                          | 描述                  |
-| ------- | --------------------------- | ------------------- |
-| type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。            |
-| id      | number                      | 手指唯一标识符。            |
-| screenX | number                      | 触摸点相对于设备屏幕左边沿的X坐标。  |
-| screenY | number                      | 触摸点相对于设备屏幕上边沿的Y坐标。  |
-| x       | number                      | 触摸点相对于被触摸元素左边沿的X坐标。 |
-| y       | number                      | 触摸点相对于被触摸元素上边沿的Y坐标。 |
+| 名称    | 类型                                        | 描述                                  |
+| ------- | ------------------------------------------- | ------------------------------------- |
+| type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。                      |
+| id      | number                                      | 手指唯一标识符。                      |
+| screenX | number                                      | 触摸点相对于应用窗口左上角的X坐标。   |
+| screenY | number                                      | 触摸点相对于应用窗口左上角的Y坐标。   |
+| x       | number                                      | 触摸点相对于被触摸元素左边沿的X坐标。 |
+| y       | number                                      | 触摸点相对于被触摸元素上边沿的Y坐标。 |
 
 ## 示例
 

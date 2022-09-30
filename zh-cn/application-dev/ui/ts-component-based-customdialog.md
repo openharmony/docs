@@ -47,3 +47,5 @@ struct CustomDialogUser {
     }
 }
 ```
+
+ ![custom-dialog-demo](figures/custom-dialog-demo.gif) 
