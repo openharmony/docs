@@ -89,6 +89,31 @@ Called when the global configuration is updated.
       }
   }
   ```
+
+## AbilityStage.onMemoryLevel
+
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+
+Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | level | [AbilityConstant.MemoryLevel](js-apis-application-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+
+**Example**
+    
+  ```js
+  class MyAbilityStage extends AbilityStage {
+    onMemoryLevel(level) {
+        console.log('onMemoryLevel, level:' + JSON.stringify(level));
+    } 
+  }
+  ```
+
 ## AbilityStage.context
 
 context: AbilityStageContext;
