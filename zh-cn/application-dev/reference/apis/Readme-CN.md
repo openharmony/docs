@@ -158,7 +158,6 @@
   - [@ohos.contact (联系人)](js-apis-contact.md)
   - [@ohos.telephony.call (拨打电话)](js-apis-call.md)
   - [@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
-  - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.telephony.observer (observer)](js-apis-observer.md)
   - [@ohos.telephony.radio (网络搜索)](js-apis-radio.md)
   - [@ohos.telephony.sim (SIM卡管理)](js-apis-sim.md)
