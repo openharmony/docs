@@ -18,17 +18,17 @@ Polygon(value?: {width?: string | number, height?: string | number})
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 0 | 宽度。 | 
-| height | string \| number | 否 | 0 | 高度。 | 
+| width | string \| number | 否 | 0 | 宽度。 |
+| height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | points | Array&lt;Point&gt; | [] | 否 | 多边形的顶点坐标列表。 |
 | fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
@@ -81,4 +81,4 @@ struct PolygonExample {
 }
 ```
 
-![zh-cn_image_0000001174582856](figures/zh-cn_image_0000001174582856.gif)
+![zh-cn_image_0000001174582856](figures/zh-cn_image_0000001174582856.png)
