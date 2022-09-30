@@ -11,7 +11,7 @@ Table 1 @Provide
 | Decorator parameter | A constant of the string type, which is used to set an alias for a decorated variable. If an alias is specified, implement the data update for this alias. If there is no alias, use the variable name as the alias. @Provide("_alias_") is recommended. |
 | Synchronization mechanism | The @Provide decorated variable is similar to the @state variable. You can modify the variable to re-render the page. You can also modify the @Consume decorated variable to modify the @State decorated variable reversely. |
 | Initial value | The initial value must be set. |
-| Page re-rendering scenarios | The following will trigger page re-rendering:<br/>- Changes of variables in primitive types (boolean, string, and number)<br/>- Changes of the @Observed decorated classes or their attributes<br/>- Adding, deleting, or updatingelements in an array |
+| Page re-rendering scenarios | The following will trigger page re-rendering:<br/>- Changes of variables in primitive types (boolean, string, and number)<br/>- Changes of the @Observed decorated classes or their attributes<br/>- Adding, deleting, or updating elements in an array |
 
 
 Table 2 @Consume
@@ -34,44 +34,44 @@ The description of other attributes is the same as that of @Provide.
 @Entry
 @Component
 struct CompA {
-    @Provide("reviewVote") reviewVotes : number = 0;
+  @Provide("reviewVote") reviewVotes : number = 0;
 
-    build() {
-        Column() {
-            CompB()
-            Button() {
-                Text(`${this.reviewVotes}`)
-                    .fontSize(30)
-            }
-            .onClick(() => {
-                this.reviewVotes += 1;
-            })
-        }
+  build() {
+    Column() {
+      CompB()
+      Button() {
+        Text(`${this.reviewVotes}`)
+          .fontSize(30)
+      }
+      .onClick(() => {
+        this.reviewVotes += 1;
+      })
     }
+  }
 }
 
 @Component
 struct CompB {
-    build() {
-        Column() {
-            CompC()
-        }
+  build() {
+    Column() {
+      CompC()
     }
+  }
 }
 
 @Component
 struct CompC {
-    @Consume("reviewVote") reviewVotes : number;
-    build() {
-        Column() {
-            Button() {
-                Text(`${this.reviewVotes}`)
-                    .fontSize(30)
-            }
-            .onClick(() => {
-                this.reviewVotes += 1;
-            })
-        }
+  @Consume("reviewVote") reviewVotes : number;
+  build() {
+    Column() {
+      Button() {
+        Text(`${this.reviewVotes}`)
+          .fontSize(30)
+      }
+      .onClick(() => {
+         this.reviewVotes += 1;
+      })
     }
+  }
 }
 ```

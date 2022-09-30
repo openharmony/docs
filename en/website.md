@@ -30,7 +30,7 @@
   
 - API Differences
   
-  - OpenHamrony 3.2 Beta2
+  - OpenHarmony 3.2 Beta2
       - JS API Differences
         - [Ability framework](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
         - [Accessibility subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-accessibility.md)

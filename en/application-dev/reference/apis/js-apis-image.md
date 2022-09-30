@@ -92,7 +92,7 @@ Provides APIs to read or write image pixel map data and obtain image pixel map i
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
-Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If the pixel map is created in the BGRA_8888 format, the pixel map data read is the same as the original data.
+Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -123,7 +123,7 @@ pixelmap.readPixelsToBuffer(readBuffer).then(() => {
 
 readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
-Reads image pixel map data and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If the pixel map is created in the BGRA_8888 format, the pixel map data read is the same as the original data.
+Reads data of this pixel map and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -170,7 +170,12 @@ Reads image pixel map data in an area. This API uses a promise to return the dat
 **Example**
 
 ```js
-const area = new ArrayBuffer(400);
+const area = {
+    pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
 pixelmap.readPixels(area).then(() => {
     console.log('Succeeded in reading the image data in the area.'); // Called if the condition is met.
 }).catch(error => {
@@ -810,7 +815,7 @@ Crops this image based on the input size. This API uses an asynchronous callback
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -838,7 +843,7 @@ Crops this image based on the input size. This API uses a promise to return the 
 
 ```js
 async function () {
-	await pixelMap.crop(3x3);
+	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -910,7 +915,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
 
 **Return value**
 
@@ -937,7 +942,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported. |
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1569,7 +1574,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 | Name  | Type                              | Mandatory| Description                              |
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | Yes  | Image to pack.                    |
-| option   | [PackingOption](#packingoption)    | Yes  | Option for image packing.                    |
+| option   | [PackingOption](#packingoption)    | Yes  | Option for image packing.                     |
 | callback | AsyncCallback\<ArrayBuffer>        | Yes  | Callback used to return the packed data.|
 
 **Example**
@@ -2166,7 +2171,7 @@ Enumerates the scale modes of images.
 | Name           | Default Value| Description                                              |
 | --------------- | ------ | -------------------------------------------------- |
 | CENTER_CROP     | 1      | Scales the image so that it fills the requested bounds of the target and crops the extra.|
-| FIT_TARGET_SIZE | 2      | Reduces the image size to the dimensions of the target.                          |
+| FIT_TARGET_SIZE | 0      | Reduces the image size to the dimensions of the target.                          |
 
 ## SourceOptions<sup>9+</sup>
 
@@ -2231,7 +2236,7 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.                                         |
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp. |
 | quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
 
 ## GetImagePropertyOptions<sup>7+</sup>

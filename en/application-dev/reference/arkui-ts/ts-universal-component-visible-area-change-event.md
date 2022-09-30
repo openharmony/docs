@@ -4,17 +4,13 @@ The visible area change event of a component refers to the change in the visual 
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
 | onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | Called when the visual area of the component changes.<br>- **ratios**: threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>- **isVisible**: indicates whether the ratio of the component's visible area to its total area is greater than the threshold. The value **true** means that the ratio is greater than the threshold, and **false** means that the ratio is less than the threshold.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked.|
 
 

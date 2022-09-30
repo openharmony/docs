@@ -119,8 +119,6 @@ constructor()
 
 A constructor used to create an **authenticator** object.
 
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Return value**
@@ -279,7 +277,8 @@ Cancels an authentication.
 
   // contextId can be obtained using auth(). In this example, it is defined here.
   let contextId = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
-  let cancelCode = auth.cancel(contextId);
+  let auth = new userIAM_userAuth.UserAuth();
+  let cancelCode = auth.cancelAuth(contextId);
   if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
       console.info("cancel auth success");
   } else {
@@ -492,11 +491,10 @@ getAuthenticator(): Authenticator
 
 Obtains an **Authenticator** object for user authentication.
 
-**Required permissions**: ohos.permission.ACCESS_BIOMETRIC
-
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Return value**
+
 | Type                                     | Description        |
 | ----------------------------------------- | ------------ |
 | [Authenticator](#authenticatordeprecated) | **Authenticator** object obtained.|
@@ -516,7 +514,7 @@ Provides methods to manage an **Authenticator** object.
 
 ### execute<sup>(deprecated)</sup>
 
-execute(type: string, level: string, callback: AsyncCallback&lt;number&gt;): void
+execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
 > **NOTE**<br>
 > This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
@@ -531,8 +529,8 @@ Performs user authentication. This API uses asynchronous callback to return the 
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
-| level    | string                      | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
+| type     | AuthType                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level    | SecureLevel                      | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 | callback | AsyncCallback&lt;number&gt; | No  | Callback used to return the result.                                                  |
 
  Parameters returned in callback
@@ -543,19 +541,20 @@ Performs user authentication. This API uses asynchronous callback to return the 
 
 **Example**
   ```js
-  authenticator.execute("FACE_ONLY", "S2", (code)=>{
-      if (code == userIAM_userAuth.AuthenticationResult.SUCCESS) {
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2", (error, code)=>{
+      if (code === userIAM_userAuth.ResultCode.SUCCESS) {
           console.info("auth success");
           return;
       }
       console.error("auth fail, code = " + code);
-  })
+  });
   ```
 
 
 ### execute<sup>(deprecated)</sup>
 
-execute(type:string, level:string): Promise&lt;number&gt;
+execute(type:AuthType, level:SecureLevel): Promise&lt;number&gt;
 
 > **NOTE**<br>
 > This API is not longer maintained since API version 8. You are advised to use [auth](#auth8).
@@ -567,26 +566,28 @@ Performs user authentication. This API uses a promise to return the result.
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
-| level  | string | Yes  | Security level of the authentication. It can be S1 (lowest), S2, S3, or S4 (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
+| type   | AuthType | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| level  | SecureLevel | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 
 **Return value**
+
 | Type                 | Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the authentication result, which is a number. For details, see [AuthenticationResult](#authenticationresultdeprecated).|
 
 **Example**
 
-```js
-let authenticator = userIAM_userAuth.getAuthenticator();
-authenticator.execute("FACE_ONLY", "S2").then((code)=>{
-    console.info("auth success");
-}).catch((code)=>{
-    console.error("auth fail, code = " + code);
-});
-```
+  ```js
+  let authenticator = userIAM_userAuth.getAuthenticator();
+  authenticator.execute("FACE_ONLY", "S2").then((code)=>{
+      console.info("auth success");
+  }).catch((error)=>{
+      console.error("auth fail, code = " + error);
+  });
+  ```
 
 ## AuthenticationResult<sup>(deprecated)</sup>
 

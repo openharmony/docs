@@ -7,7 +7,7 @@
 <!-- comp.hml -->
 <div class="item">  
    <text class="text-style" onclick="childClicked">点击这里查看隐藏文本</text> 
-   <text class="text-style" if="{{showObj}}">hello world</text> 
+   <text class="text-style" if="{{ showObj }}">hello world</text> 
 </div>
 ```
 
@@ -28,6 +28,7 @@ export default {
 
 ```html
 <!-- xxx.hml -->
+<element name='comp' src='../../common/comp/comp.hml'></element>
 <div class="container">  
    <text>父组件：{{text}}</text> 
    <comp @event-type1="textClicked"></comp>  
@@ -46,3 +47,5 @@ export default {
   },
 }
 ```
+
+![EventParameters](figures/EventParameters.gif)

@@ -11,6 +11,10 @@ LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集�
 
 **推荐使用场景：** 当需要存取key-value键值对时，推荐使用占用内存更小的LightWeightMap。
 
+文档中存在泛型的使用,涉及以下泛型标记符:<br>
+- K: Key, 键<br>
+- V: Value, 值
+
 ## 导入模块
 
 ```ts
@@ -91,10 +95,10 @@ hasAll(map: LightWeightMap<K, V>): boolean
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
-map.set("sdfs", 356);
+map.set("sparrow", 356);
 let result = lightWeightMap.hasAll(map);
 ```
 
@@ -124,9 +128,9 @@ hasKey(key: K): boolean;
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasKey;
-lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = lightWeightMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+lightWeightMap.hasKey("squirrel");
+lightWeightMap.set("squirrel", 123);
+let result1 = lightWeightMap.hasKey("squirrel");
 ```
 
 
@@ -155,7 +159,7 @@ hasValue(value: V): boolean
 ```ts
 let lightWeightMap = new LightWeightMap();
 let result = lightWeightMap.hasValue(123);
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+lightWeightMap.set("squirrel", 123);
 let result1 = lightWeightMap.hasValue(123);
 ```
 
@@ -206,9 +210,9 @@ get(key: K): V
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.get("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.get("sparrow");
 ```
 
 
@@ -236,9 +240,9 @@ getIndexOfKey(key: K): number
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-let result = lightWeightMap.getIndexOfKey("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+let result = lightWeightMap.getIndexOfKey("sparrow");
 ```
 
 
@@ -266,8 +270,8 @@ getIndexOfValue(value: V): number
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getIndexOfValue(123);
 ```
 
@@ -296,8 +300,8 @@ getKeyAt(index: number): K
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getKeyAt(1);
 ```
 
@@ -320,8 +324,8 @@ setAll(map: LightWeightMap<K, V>): void
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let map = new LightWeightMap();
 lightWeightMap.setAll(map);
 ```
@@ -351,7 +355,7 @@ set(key: K, value: V): Object
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+let result = lightWeightMap.set("squirrel", 123);
 ```
 
 
@@ -379,9 +383,9 @@ remove(key: K): V
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
-lightWeightMap.remove("sdfs");
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
+lightWeightMap.remove("sparrow");
 ```
 
 
@@ -409,8 +413,8 @@ removeAt(index: number): boolean
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.removeAt(1);
 ```
 
@@ -440,8 +444,8 @@ setValueAt(index: number, newValue: V): boolean
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.setValueAt(1, 3546);
 ```
 
@@ -470,8 +474,8 @@ getValueAt(index: number): V
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let result = lightWeightMap.getValueAt(1);
 ```
 
@@ -488,8 +492,8 @@ clear(): void
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 lightWeightMap.clear();
 ```
 
@@ -512,8 +516,8 @@ keys(): IterableIterator&lt;K&gt;
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -541,8 +545,8 @@ values(): IterableIterator&lt;V&gt;
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -578,8 +582,8 @@ callbackfn的参数说明：
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("sdfs", 123);
-lightWeightMap.set("dfsghsf", 357);
+lightWeightMap.set("sparrow", 123);
+lightWeightMap.set("gull", 357);
 lightWeightMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -604,8 +608,8 @@ entries(): IterableIterator<[K, V]>
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 let iter = lightWeightMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -633,8 +637,8 @@ toString(): String
 
   ```ts
   let lightWeightMap = new LightWeightMap();
-  lightWeightMap.set("A", 123);
-  lightWeightMap.set("sdfs", 356);
+  lightWeightMap.set("squirrel", 123);
+  lightWeightMap.set("sparrow", 356);
   let iter = lightWeightMap.toString();
   ```
 
@@ -656,8 +660,8 @@ toString(): String
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-lightWeightMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-lightWeightMap.set("sdfs", 356);
+lightWeightMap.set("squirrel", 123);
+lightWeightMap.set("sparrow", 356);
 
 // 使用方法一：
 for (let item of lightWeightMap) { 

@@ -72,3 +72,5 @@ export default {
   textClicked () {},  
 }
 ```
+
+其他相关说明详见：[基本用法](./js-components-custom-basic-usage.md)。

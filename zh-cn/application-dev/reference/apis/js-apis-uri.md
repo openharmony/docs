@@ -46,7 +46,7 @@ constructor是URI的构造函数。
 **示例：**
 
 ```js
-var mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
+let mm = 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 new uri.URI(mm); // Output 'http://username:password@host:8080/directory/file?foo=1&bar=2#fragment';
 ```
 ```js

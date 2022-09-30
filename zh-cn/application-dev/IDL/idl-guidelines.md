@@ -7,7 +7,7 @@
 
 ![IDL-interface-description](./figures/IDL-interface-description.png)
 
-OpenHarmony IDL接口描述语言主要用于：
+ **OpenHarmony IDL接口描述语言主要用于：** 
 
 - 声明系统服务对外提供的服务接口，根据接口声明在编译时生成跨进程调用（IPC）或跨设备调用（RPC）的代理（Proxy）和桩（Stub）的C/C++代码或JS/TS代码。
 
@@ -17,7 +17,7 @@ OpenHarmony IDL接口描述语言主要用于：
 
 ![IPC-RPC-communication-model](./figures/IPC-RPC-communication-model.png)
 
-使用OpenHarmony IDL接口描述语言声明接口具有以下优点：
+ **使用OpenHarmony IDL接口描述语言声明接口具有以下优点：** 
 
 - OpenHarmony IDL中是以接口的形式定义服务，可以专注于定义而隐藏实现细节。
 
@@ -59,7 +59,7 @@ sequenceable namespace.typename
 sequenceable a.b..C.D
 ```
 
-上述声明在生成的的C++头文件中将被解析为如下代码：
+ 上述声明在生成的的C++头文件中将被解析为如下代码：
 
 ```cpp
 #include  “a/b/d.h”
@@ -81,15 +81,15 @@ import MySequenceable from "./my_sequenceable"
 需要注意的是，IDL并不负责该类型的代码实现，仅仅按照指定的形式引入该头文件或import指定模块，并使用该类型，因此开发者需要自行保证引入目录、命名空间及类型的正确性。
 
 #### 接口类型
-接口类型是指OpenHarmony IDL文件中定义的接口。对于当前IDL文件中定义的接口，可以直接使用它作为方法参数类型或返回值类型。而在其它OpenHarmony IDL文件中定义的接口，则需要在文件的头部进行前置声明。
+ 接口类型是指OpenHarmony IDL文件中定义的接口。对于当前IDL文件中定义的接口，可以直接使用它作为方法参数类型或返回值类型。而在其它OpenHarmony IDL文件中定义的接口，则需要在文件的头部进行前置声明。 
 
-C++中声明的形式与sequenceable类型相似，具体而言可以有如下形式：
+ C++中声明的形式与sequenceable类型相似，具体而言可以有如下形式： 
 
 ```cpp
 interface includedir..namespace.typename
 ```
 
-TS中声明的形式，具体而言可以有如下形式：
+ TS中声明的形式，具体而言可以有如下形式： 
 
 ```ts
 interface namespace.interfacename
@@ -495,7 +495,7 @@ function connectAbility: void {
 
 开发者可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。但是，必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持marshalling和unmarshalling方法。OpenHarmony 需要通过该marshalling和unmarshalling方法将对象序列化和反序列化成各进程能识别的对象。
 
-如需创建支持sequenceable 类型数据，开发者必须执行以下操作：
+ **如需创建支持sequenceable 类型数据，开发者必须执行以下操作：** 
 
 1. 实现marshalling方法，它会获取对象的当前状态并将其序列化后写入Parcel。
 2. 实现unmarshalling方法，它会从Parcel中反序列化出对象。

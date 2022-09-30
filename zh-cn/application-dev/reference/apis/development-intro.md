@@ -26,9 +26,11 @@ OpenHarmony中提供的接口，部分是仅供OEM厂商使用的system api，�
 - 如果某个模块的接口均为system api，会在文档开头说明：该模块接口为系统接口。
 - 如果某个接口为system api，会在具体的接口描述中说明：此接口为系统接口。
 
-普通应用即应用APL等级为normal的应用。默认情况下，应用的等级都为normal应用。
+普通应用即应用APL等级为normal的应用。应用等级默认为normal。
 
 APL等级的详细说明及如何将应用的APL等级声明为normal以上，请参考[访问控制开发概述-应用APL等级说明](../../security/accesstoken-overview.md#应用apl等级说明)。
+
+随DevEco下载的SDK为public-SDK，不包括系统接口。如需使用系统接口，需要将SDK替换为full-SDK，具体参考[full-SDK替换指南](../../quick-start/full-sdk-switch-guide.md)。
 
 ## 权限说明
 

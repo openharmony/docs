@@ -1,9 +1,11 @@
 # Date Picker Dialog Box
 
-> **NOTE**<br>
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+A date picker dialog box is a dialog box that allows users to select a date from the given range.
 
-You can display a date picker in a dialog box to allow users to select a date from the given range.
+>  **NOTE**
+>
+>  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
@@ -13,23 +15,24 @@ None
 
 show(options?: DatePickerDialogOptions)
 
-Displays a date picker dialog box.
+Shows a date picker dialog box.
 
-- options parameters
-  | Name | Type | Mandatory | Default Value | Description |
+- DatePickerDialogOptions
+  | Name| Type| Mandatory| Default Value| Description|
   | -------- | -------- | -------- | -------- | -------- |
-  | start | Date | No | Date('1970-1-1') | Start date of the picker. |
-  | end | Date | No | Date('2100-12-31') | End date of the picker. |
-  | selected | Date | No | Current system date | Date of the selected item. |
-  | lunar | boolean | No | false | Whether to display the lunar calendar. |
-  | onAccept | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No | - | Callback invoked when the OK button in the dialog box is clicked. |
-  | onCancel | () => void | No | - | Triggered when the Cancel button in the dialog box is clicked. |
-  | onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No | - | Callback invoked when the selected item in the picker changes. |
+  | start | Date | No| Date('1970-1-1') | Start date of the picker.|
+  | end | Date | No| Date('2100-12-31') | End date of the picker.|
+  | selected | Date | No| Current system date| Date of the selected item.|
+  | lunar | boolean | No| false | Whether to display the lunar calendar.|
+  | onAccept | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| - | Callback invoked when the OK button in the dialog box is clicked.|
+  | onCancel | () => void | No| - | Callback invoked when the Cancel button in the dialog box is clicked.|
+  | onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| - | Callback invoked when the selected item in the picker changes.|
 
 ## Example
 
 ### Date Picker Sample Code (With Lunar Calendar)
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerDialogExample01 {
@@ -62,7 +65,8 @@ struct DatePickerDialogExample01 {
 }
 ```
 ### Date Picker Sample Code (No Lunar Calendar)
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct DatePickerDialogExample02 {

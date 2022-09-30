@@ -268,12 +268,14 @@ export default {
   stepperChange(e){
     console.log("stepperChange"+e.index)
     prompt.showToast({
+      // index表示当前步骤的序号
       message: 'Previous step: '+e.prevIndex+"-------Current step:"+e.index
     })
   },
   stepperNext(e){
     console.log("stepperNext"+e.index)
     prompt.showToast({
+      // pendingIndex表示将要跳转的序号
       message: 'Current step:'+e.index+"-------Next step:"+e.pendingIndex
     })
     var index = {pendingIndex:e.pendingIndex }

@@ -1,62 +1,51 @@
 # Page Transition
 
-Customize the page transition animations by configuring the page entrance and exit components in the global **pageTransition** method.
+The page transition navigates users between pages. You can customize page transitions by configuring the page entrance and exit components in the global **pageTransition** API.
 
 > **NOTE**
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-| Name                 | Parameter    | Description                           |
-| ------------------- | ------ | ------------------------------- |
-| PageTransitionEnter | Object | Page entrance component, which is used to customize the entrance effect of the current page. For details, see animation parameters.|
-| PageTransitionExit  | Object | Page exit component, which is used to customize the exit effect of the current page. For details, see animation parameters.|
+| Name               | Parameter                                                        | Description                                                    |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| PageTransitionEnter | {<br>type: RouteType,<br>duration: number,<br>curve: Curve \| Curves,<br>delay: number<br>} | Page entrance animation.<br>- **type**:If this parameter is not set, the reverse playback effect as **pop** switches to **push** is used.<br>- **duration**: animation duration, in milliseconds.<br>- **curve**: animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>Default value: **Curve.Linear**<br>- **delay**: animation delay, in milliseconds. By default, the animation is played without delay.|
+| PageTransitionExit  | {<br>type: RouteType,<br>duration: number,<br>curve: Curve \| Curves,<br>delay: number<br>} | Page exit animation.<br>- **type**:If this parameter is not set, the reverse playback effect as **pop** switches to **push** is used.<br>- **duration**: animation duration, in milliseconds.<br>- **curve**: animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md).<br>Default value: **Curve.Linear**<br>- **delay**: animation delay, in milliseconds. By default, the animation is played without delay.|
 
+## RouteType enums
 
-- Animation parameters
-  | Name    | Type                     | Default Value   | Mandatory  | Description                                    |
-  | -------- | ------------------------- | ------ | ---- | ---------------------------------------- |
-  | type     | RouteType                 | -      | No   | Animation type. If this parameter is not set, the reverse playback effect as **pop** switches to **push** is used.                   |
-  | duration | number                    | 1000   | No   | Animation duration, in ms.                             |
-  | curve    | Curve \| Curves | Linear | No   | Animation curve. For details about the valid values, see [Curve](ts-animatorproperty.md).|
-  | delay    | number                    | 0      | No   | Animation delay, in ms. Delayed animation is disabled by default.                   |
-
-
-- RouteType enums
-  | Name| Description            |
-  | ---- | ---------------- |
-  | Pop  | Redirects to a specified page. When the user is redirected from page A to page B, page A is Exit+Push, and page B is Enter+Push.|
-  | Push | Redirects to the next page. When the user is redirected back from page B to page A, page A is Enter+Pop, and page B is Exit+Pop.|
+| Name| Description                                                        |
+| ---- | ------------------------------------------------------------ |
+| Pop  | Redirects to a specified page. When the user is redirected from page A to page B, page A is Exit+Push, and page B is Enter+Push.|
+| Push | Redirects to the next page. When the user is redirected back from page B to page A, page A is Enter+Pop, and page B is Exit+Pop.|
+| None | The page is not redirected.                                              |
 
 
 ## Attributes
 
-The **PageTransitionEnter** and **PageTransitionExit** parameters support the following attributes:
+| Name | Type                                                    | Mandatory| Description                                                    |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| slide     | SlideEffect                                                  | No  | Slide effect during page transition.<br>Default value: **SlideEffect.Right**|
+| translate | {<br>x? : number \| string,<br>y? : number \| string,<br>z? : number \| string<br>} | No  | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default.<br>- **x**: translation distance along the x-axis.<br>- **y**: translation distance along the y-axis.<br>- **z**: translation distance along the y-axis.|
+| scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | No  | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.<br>- **x**: scale ratio along the x-axis.<br>- **y**: scale ratio along the y-axis.<br>- **z**: scale ratio along the z-axis.<br>- **centerX** and **centerY**: scale center point.<br>- If the center point is 0, it refers to the upper left corner of the component.<br>|
+| opacity   | number                                                       | No  | Opacity, which is the opacity value of the start point of entrance or the end point of exit.<br>Default value: **1**|
 
-| Name     | Type                                    | Default Value              | Mandatory  | Description                                    |
-| --------- | ---------------------------------------- | ----------------- | ---- | ---------------------------------------- |
-| slide     | SlideEffect                              | SlideEffect.Right | No   | Slide effect during page transition. For details about the valid values, see **SlideEffect** enums.         |
-| translate | {<br>x? : number \| string,<br>y? : number \| string,<br>z? : number \| string<br>} | -                 | No   | Translation effect during page transition, which is the value of the start point of entrance and the end point of exit. When this parameter is set together with **slide**, the latter takes effect by default.|
-| scale     | {<br>x? : number,<br>y? : number,<br>z? : number,<br>centerX? : number \| string,<br>centerY? : number \| string<br>} | -                 | No   | Scaling effect during page transition, which is the value of the start point of entrance and the end point of exit.            |
-| opacity   | number                                   | 1                 | No   | Opacity, which is the opacity value of the start point of entrance or the end point of exit.                 |
+## SlideEffect
 
-- SlideEffect enums
-  | Name    | Description                       |
-  | ------ | ------------------------- |
-  | Left   | When set to Enter, slides in from the left. When set to Exit, slides out to the left.|
-  | Right  | When set to Enter, slides in from the right. When set to Exit, slides out to the right.|
-  | Top    | When set to Enter, slides in from the top. When set to Exit, slides out to the top.|
-  | Bottom | When set to Enter, slides in from the bottom. When set to Exit, slides out to the bottom.|
+| Name    | Description                       |
+| ------ | ------------------------- |
+| Left   | When set to Enter, slides in from the left. When set to Exit, slides out to the left.|
+| Right  | When set to Enter, slides in from the right. When set to Exit, slides out to the right.|
+| Top    | When set to Enter, slides in from the top. When set to Exit, slides out to the top.|
+| Bottom | When set to Enter, slides in from the bottom. When set to Exit, slides out to the bottom.|
 
 
 ## Events
 
-The **PageTransitionEnter** and **PageTransitionExit** parameters support the following events:
-
-| Name                                      | Description                               |
-| ---------------------------------------- | ----------------------------------- |
-| onEnter(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1.|
-| onExit(type: RouteType, progress: number) =&gt; void | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1.|
+| Name                                                        | Description                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| onEnter(event: (type?: RouteType, progress?: number) =&gt; void) | The callback input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.|
+| onExit(event: (type?: RouteType, progress?: number) =&gt; void) | The callback input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.|
 
 
 ## Example
@@ -70,16 +59,12 @@ Customization method 1: The entrance animation of the current page is configured
 struct PageTransitionExample1 {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
 
   build() {
   Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 // Customization method 1: Customize the transition process.
@@ -105,7 +90,6 @@ struct PageTransitionExample1 {
 struct AExample {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
@@ -141,16 +125,12 @@ Customization method 2: The entrance animation of the current page is configured
 struct PageTransitionExample {
   @State scale1: number = 1
   @State opacity1: number = 1
-  @State active: boolean = false
 
   build() {
     Column() {
       Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
         Image($r('app.media.bg1')).width("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale1 }).opacity(this.opacity1)
   }
 
@@ -172,16 +152,12 @@ struct PageTransitionExample {
 struct PageTransitionExample1 {
   @State scale2: number = 1
   @State opacity2: number = 1
-  @State active: boolean = false
-
+    
   build() {
     Column() {
       Navigator({ target: 'pages/index', type: NavigationType.Push }) {
         Image($r('app.media.bg2')).width  ("100%").height("100%")
       }
-      .onClick(() => {
-        this.active = true
-      })
     }.scale({ x: this.scale2 }).opacity(this.opacity2)
   }
 

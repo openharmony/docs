@@ -8,6 +8,7 @@
 | Blue                     | 0x0000ff | ![zh-cn_image_0000001174104404](figures/zh-cn_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a | ![zh-cn_image_0000001219744201](figures/zh-cn_image_0000001219744201.png) |
 | Gray                     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
+| Grey                     | 0x808080 | ![zh-cn_image_0000001174264376](figures/zh-cn_image_0000001174264376.png) |
 | Green                    | 0x008000 | ![zh-cn_image_0000001174422914](figures/zh-cn_image_0000001174422914.png) |
 | Orange                   | 0xffa500 | ![zh-cn_image_0000001219662661](figures/zh-cn_image_0000001219662661.png) |
 | Pink                     | 0xffc0cb | ![zh-cn_image_0000001219662663](figures/zh-cn_image_0000001219662663.png) |
@@ -70,6 +71,7 @@
 | Press   | 鼠标按键按下。 |
 | Release | 鼠标按键松开。 |
 | Move    | 鼠标移动。     |
+| Hover    | 鼠标悬浮。     |
 
 ## Curve
 
@@ -100,10 +102,12 @@
 
 ## FillMode
 
-| 名称     | 描述                             |
-| -------- | -------------------------------- |
-| None     | 播放完成后恢复初始状态。         |
-| Forwards | 播放完成后保持动画结束时的状态。 |
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| None      | 动画未执行时不会将任何样式应用于目标，动画播放完成之后恢复初始默认状态。 |
+| Forwards  | 目标将保留动画执行期间最后一个关键帧的状态。                 |
+| Backwards | 动画将在应用于目标时立即应用第一个关键帧中定义的值，并在delay期间保留此值。第一个关键帧取决于playMode，playMode为Normal或Alternate时为from的状态，playMode为Reverse或AlternateReverse时为to的状态。 |
+| Both      | 动画将遵循Forwards和Backwards的规则，从而在两个方向上扩展动画属性。 |
 
 ## PlayMode
 
@@ -133,11 +137,11 @@
 | 名称     | 描述                   |
 | -------- | ---------------------- |
 | Top      | 竖直方向上边缘         |
-| Center   | 竖直方向居中位置       |
+| Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃       |
 | Bottom   | 竖直方向下边缘         |
-| Baseline | 交叉轴方向文本基线位置 |
+| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃 |
 | Start    | 水平方向起始位置       |
-| Middle   | 水平方向居中位置       |
+| Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃       |
 | End      | 水平方向末尾位置       |
 
 ## Week
@@ -217,9 +221,9 @@
 
 | 名称   | 描述                 |
 | ------ | -------------------- |
-| Butt   | 分割线两端为平行线。 |
-| Round  | 分割线两端为半圆。   |
-| Square | 分割线两端为平行线。 |
+| Butt   | 分割线两端为平行线，不额外扩展。 |
+| Round  | 在分割线两端延伸半个圆，直径等于线宽。 |
+| Square | 在分割线两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
 
 ## Axis
 
@@ -245,7 +249,7 @@
 | End          | 元素在主轴方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。 |
 | SpaceBetween | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。 |
 | SpaceAround  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。 |
-| SpaceEvenly  | 距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 |
+| SpaceEvenly  | Flex主轴方向均匀分配弹性元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 |
 
 ## ItemAlign
 

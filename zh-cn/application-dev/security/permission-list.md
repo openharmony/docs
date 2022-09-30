@@ -140,3 +140,7 @@
 | ohos.permission.WRITE_AUDIO                              | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的音频文件。                               |
 | ohos.permission.WRITE_DOCUMENT                           | system_basic | user_grant   | TRUE    | 允许修改用户公共目录的文档。                                   |
 | ohos.permission.ABILITY_BACKGROUND_COMMUNICATION         | system_basic | system_grant | TRUE    | 允许应用将Ability组件在后台启动并与该Ability建立通信连接。     |
+| ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | 允许应用上报风险数据至设备风险管理平台。                       |
+| ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | 允许应用获取设备风险状态。                                     |
+| ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | 允许应用获取风险详细数据。                                     |
+

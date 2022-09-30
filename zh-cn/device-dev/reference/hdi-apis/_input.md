@@ -196,7 +196,7 @@ Input服务通过调用此接口获取操作Input设备的所有接口。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](#retstatus)。
 
 **Since：**
 
@@ -227,7 +227,7 @@ Input服务通过调用此接口释放操作Input设备的所有接口。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看**RetSatus**。
+其他值表示执行失败，具体错误码查看[RetStatus](#retstatus)。
 
 **Since：**
 

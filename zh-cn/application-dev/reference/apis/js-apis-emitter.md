@@ -16,19 +16,6 @@ import emitter from '@ohos.events.emitter'
 
 无
 
-## EventPriority
-
-用于表示事件被投递的优先级。
-
-**系统能力**:  以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
-
-| 名称      | 值   | 说明                                              |
-| --------- | ---- | ------------------------------------------------- |
-| IMMEDIATE | 0    | 表示事件被立即投递。                                |
-| HIGH      | 1    | 表示事件先于LOW优先级投递。                         |
-| LOW       | 2    | 表示事件优于IDLE优先级投递，事件的默认优先级是LOW。   |
-| IDLE      | 3    | 表示在没有其他事件的情况下，才投递该事件。            |
-
 ## emitter.on
 
 on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)\>): void
@@ -47,13 +34,13 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 **示例：**
 
 ```javascript
-var innerEvent = {
+let innerEvent = {
     eventId: 1
 };
-var callback = (eventData) => {
+function EmitterCallback(eventData) {
     console.info('callback');
-};
-emitter.on(innerEvent, callback);
+}
+emitter.on(innerEvent, EmitterCallback);
 ```
 
 ## emitter.once
@@ -74,13 +61,13 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 **示例：**
 
 ```javascript
-var innerEvent = {
+let innerEvent = {
     eventId: 1
 };
-var callback = (eventData) => {
+function EmitterCallback(eventData) {
     console.info('once callback');
 };
-emitter.once(innerEvent, callback);
+emitter.once(innerEvent, EmitterCallback);
 ```
 
 ## emitter.off
@@ -121,17 +108,30 @@ emit(event: InnerEvent, data?: EventData): void
 **示例：**
 
 ```javascript
-var eventData = {
+let eventData = {
     data: {
         "content": "c",
         "id": 1,
     }};
-var innerEvent = {
+let innerEvent = {
     eventId: 1,
     priority: emitter.EventPriority.HIGH
 };
 emitter.emit(innerEvent, eventData);
 ```
+
+## EventPriority
+
+用于表示事件被投递的优先级。
+
+**系统能力**:  以下各项对应的系统能力均为 SystemCapability.Notification.Emitter
+
+| 名称      | 值   | 说明                                                |
+| --------- | ---- | --------------------------------------------------- |
+| IMMEDIATE | 0    | 表示事件被立即投递。                                |
+| HIGH      | 1    | 表示事件先于LOW优先级投递。                         |
+| LOW       | 2    | 表示事件优于IDLE优先级投递，事件的默认优先级是LOW。 |
+| IDLE      | 3    | 表示在没有其他事件的情况下，才投递该事件。          |
 
 ## InnerEvent
 

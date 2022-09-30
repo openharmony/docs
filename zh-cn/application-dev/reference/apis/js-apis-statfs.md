@@ -34,10 +34,10 @@ getFreeBytes(path:string):Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getFreeBytes(path).then(function (number){
-      console.info("getFreeBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getFreeBytes failed with error:"+ err);
+  statfs.getFreeBytes(path).then(function (number) {
+      console.info("getFreeBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getFreeBytes failed with error:" + err);
   });
   ```
 
@@ -59,11 +59,11 @@ getFreeBytes(path:string, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-   import featureAbility from '@ohos.ability.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getFreeBytes(path, function(err, number){
-          console.info("getFreeBytes callback successfully:"+ number);
+      statfs.getFreeBytes(path, function (err, number) {
+          console.info("getFreeBytes callback successfully:" + number);
       });
   });
   ```
@@ -92,10 +92,10 @@ getTotalBytes(path: string): Promise&lt;number&gt;
 
   ```js
   let path = "/dev";
-  statfs.getTotalBytes(path).then(function (number){
-      console.info("getTotalBytes promise successfully:"+ number);
-  }).catch(function(err){
-      console.info("getTotalBytes failed with error:"+ err);
+  statfs.getTotalBytes(path).then(function (number) {
+      console.info("getTotalBytes promise successfully:" + number);
+  }).catch(function (err) {
+      console.info("getTotalBytes failed with error:" + err);
   });
   ```
 
@@ -120,8 +120,8 @@ getTotalBytes(path: string, callback: AsyncCallback&lt;number&gt;): void
   import featureAbility from '@ohos.ability.featureAbility';
   let context = featureAbility.getContext();
   context.getFilesDir().then(function (path) {
-      statfs.getTotalBytes(path, function(err, number){
-          console.info("getTotalBytes callback successfully:"+ number);
+      statfs.getTotalBytes(path, function(err, number) {
+          console.info("getTotalBytes callback successfully:" + number);
       });
   });
   ```

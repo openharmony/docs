@@ -45,55 +45,50 @@ Stage模型下的示例：
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let context = this.context
+        const kvManagerConfig = {
+            context: context,
+            bundleName: 'com.example.datamanagertest',
+            userInfo: {
+                userId: '0',
+                userType: distributedData.UserType.SAME_USER_ID
+            }
+        }
+        distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+            if (err) {
+                console.log("Failed to create KVManager: " + JSON.stringify(err));
+                return;
+            }
+            console.log("Succeeded in creating KVManager");
+            kvManager = manager;
+        });
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Succeeded in creating KVManager");
-      kvManager = manager;
-    });
-  }
 }
 ```
 
 FA模型下的示例：
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context.getApplicationContext(),
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+    context: context,
+    bundleName: 'com.example.datamanagertest',
+    userInfo: {
         userId: '0',
         userType: distributedData.UserType.SAME_USER_ID
-      }
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
+}
+distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+    if (err) {
         console.log("Failed to create KVManager: " + JSON.stringify(err));
         return;
-      }
-      console.log("Succeeded in creating KVManager");
-      kvManager = manager;
-    });
-  }
-}
+    }
+    console.log("Created KVManager");
+    kvManager = manager;
+});
 ```
 
 ## distributedData.createKVManager
@@ -123,55 +118,46 @@ Stage模型下的示例：
 import AbilityStage from '@ohos.application.Ability'
 let kvManager;
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context,
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
-      }
+    onCreate() {
+        console.log("MyAbilityStage onCreate")
+        let context = this.context
+        const kvManagerConfig = {
+            context: context,
+            bundleName: 'com.example.datamanagertest',
+            userInfo: {
+                userId: '0',
+                userType: distributedData.UserType.SAME_USER_ID
+            }
+        }
+        distributedData.createKVManager(kvManagerConfig).then((manager) => {
+            console.log("Succeeded in creating KVManager");
+            kvManager = manager;
+        }).catch((err) => {
+            console.log("Failed to create KVManager: " + JSON.stringify(err));
+        });
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Succeeded in creating KVManager");
-      kvManager = manager;
-    });
-  }
 }
 ```
 
 FA模型下的示例：
 ```js
-import AbilityStage from '@ohos.application.Ability'
+import featureAbility from '@ohos.ability.featureAbility'
 let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
-    console.log("MyAbilityStage onCreate")
-    let context = this.context
-    const kvManagerConfig = {
-      context: context.getApplicationContext(),
-      bundleName: 'com.example.datamanagertest',
-      userInfo: {
+let context = featureAbility.getContext()
+const kvManagerConfig = {
+    context: context,
+    bundleName: 'com.example.datamanagertest',
+    userInfo: {
         userId: '0',
         userType: distributedData.UserType.SAME_USER_ID
-      }
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-      if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-      }
-      console.log("Succeeded in creating KVManager");
-      kvManager = manager;
-    });
-  }
 }
+distributedData.createKVManager(kvManagerConfig).then((manager) => {
+    console.log("Succeeded in creating KVManager");
+    kvManager = manager;
+}).catch((err) => {
+    console.log("Failed to create KVManager: " + JSON.stringify(err));
+});
 ```
 
 ## KVManagerConfig
@@ -328,21 +314,21 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 let kvStore;
 let kvManager;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
- }
- try {
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
+}
+try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
-        console.log('closeKVStore success');
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+            console.log('closeKVStore success');
+        });
     });
 } catch (e) {
     console.log('closeKVStore e ' + e);
@@ -378,29 +364,29 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 let kvManager;
 let kvStore;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
 }
- try {
+try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
-        console.log('closeKVStore success');
-    }).catch((err) => {
-        console.log('closeKVStore err ' + JSON.stringify(err));
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+            console.log('closeKVStore success');
+        }).catch((err) => {
+            console.log('closeKVStore err ' + JSON.stringify(err));
+        });
     }).catch((err) => {
         console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
     });
- } catch (e) {
+} catch (e) {
     console.log('closeKVStore e ' + e);
-}  
+}
 ```
 
 
@@ -574,7 +560,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-订阅服务状态变更通知。
+订阅服务状态变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -590,7 +576,6 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 ```js
 let kvManager;
 try {
-    
     console.log('KVManagerOn');
     const deathCallback = function () {
         console.log('death callback call');
@@ -606,7 +591,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-取消订阅服务状态变更通知。
+取消订阅服务状态变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
 
@@ -666,16 +651,14 @@ KVStore数据库类型枚举。
 
 数据库的安全级别枚举。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | 表示数据库不设置安全级别。   |
-| S0  | 1 | 表示数据库的安全级别为公共级别。 |
-| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。 |
-| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。 |
-| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
-| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
+| NO_LEVEL  | 0 | 表示数据库不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| S0  | 1 | 表示数据库的安全级别为公共级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| S4  | 6 | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 
 
 ## Constants
@@ -1025,7 +1008,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved5 = resultSet.move();
+    const moved5 = resultSet.move(1);
     console.log("move succeed:" + moved5);
 } catch (e) {
     console.log("move failed: " + e);
@@ -1065,7 +1048,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved6 = resultSet.moveToPosition();
+    const moved6 = resultSet.moveToPosition(1);
     console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
     console.log("moveToPosition failed: " + e);
@@ -2600,7 +2583,7 @@ try {
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
 
-订阅指定类型的数据变更通知。
+订阅指定类型的数据变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2626,7 +2609,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2650,7 +2633,7 @@ kvStore.on('syncComplete', function (data) {
 
 off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 
-取消订阅数据变更通知。
+取消订阅数据变更通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2686,7 +2669,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅数据变更通知，此方法为同步方法。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4287,7 +4270,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4323,7 +4306,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5797,7 +5780,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-订阅同步完成事件回调通知。
+订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5833,7 +5816,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-取消订阅同步完成事件回调通知，该方法为同步方法。
+取消订阅同步完成事件回调通知，此方法为同步方法。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 

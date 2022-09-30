@@ -18,7 +18,7 @@ extraData代表发送请求的额外数据，支持如下数据：
 
 适用于：OpenHarmony SDK 3.2.2.5版本，API9 Stage模型
 
-错误码28代表CURLE_OPERATION_TIMEDOUT 。网络请求底层使用libcurl库，更多错误码可以查看相应文档。
+错误码28代表CURLE_OPERATION_TIMEDOUT，操作超时。网络请求底层使用libcurl库，更多错误码可以查看相应文档。
 
 参考文档：[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-http.md#response%E5%B8%B8%E7%94%A8%E9%94%99%E8%AF%AF%E7%A0%81)和[Curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 

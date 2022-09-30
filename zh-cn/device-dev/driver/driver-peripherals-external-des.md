@@ -677,7 +677,7 @@ WLAN驱动基于HDF框架和Platform框架开发，不区分OS和芯片平台，
         exit 0
         ```
 
-    - 新建udhcpd.conf文件（启动UDHCPD配置文件）并将以下内容复制到该文件中。
+    - 新建udhcpd.conf文件（启动UDHCPD配置文件）并将以下内容（其中opt dns x.x.x.x x.x.x.x配置了两个DNS服务器地址，开发者可按照实际情况自行配置）复制到该文件中。
 
         ```text
         start 192.168.12.2
@@ -691,7 +691,7 @@ WLAN驱动基于HDF框架和Platform框架开发，不区分OS和芯片平台，
         offer_time 60 #default: 60 (1 minute)
         min_lease 60 #defult: 60
         lease_file /vendor/etc/udhcpd.leases
-        opt dns 10.221.0.11 8.8.8.8
+        opt dns x.x.x.x x.x.x.x
         option subnet 255.255.255.0
         opt router 192.168.12.1
         ```
