@@ -23,4 +23,4 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
 ## Constraints
 
-When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect. The authorization mode of this permission is **system_grant**.
+When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect.
