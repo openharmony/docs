@@ -27,20 +27,20 @@ image.createPixelMap(color, opts, pixelmap => {
 
 // 用于读像素
 pixelmap.readPixels(area,(data) => {
- 	if(data !== null) {
-		var bufferArr = new Uint8Array(area.pixels);
+    if(data !== null) {
+        var bufferArr = new Uint8Array(area.pixels);
         var res = true;
         for (var i = 0; i < bufferArr.length; i++) {
-			console.info(' buffer ' + bufferArr[i]);
-			if(res) {
-				if(bufferArr[i] == 0) {
-					res = false;
-					console.log('readPixels end.');
+            console.info(' buffer ' + bufferArr[i]);
+            if(res) {
+                if(bufferArr[i] == 0) {
+                    res = false;
+                    console.log('readPixels end.');
                     break;
                 }
             }
         }
-	}
+    }
 })
  
 // 用于存像素
@@ -69,30 +69,30 @@ pixelmap.writePixels(area,() => {
             if(res) {
                 if (readArr[i] !== 0) {
                     res = false;
-					console.log('readPixels end.please check buffer');
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
-	})
+    })
 })
   
 // 用于写像素到缓冲区
 pixelmap.writeBufferToPixels(writeColor).then(() => {
     const readBuffer = new ArrayBuffer(96);
     pixelmap.readPixelsToBuffer(readBuffer).then (() => {
-    	var bufferArr = new Uint8Array(readBuffer);
-     	var res = true;
-     	for (var i = 0; i < bufferArr.length; i++) {
-     		if(res) {
-     			if (bufferArr[i] !== i) {
-     				res = false;
-					console.log('readPixels end.please check buffer');
+        var bufferArr = new Uint8Array(readBuffer);
+        var res = true;
+        for (var i = 0; i < bufferArr.length; i++) {
+            if(res) {
+                if (bufferArr[i] !== i) {
+                    res = false;
+                    console.log('readPixels end.please check buffer');
                     break;
                 }
             }
         }
-	})
+    })
 })
 
 // 用于获取图片信息
@@ -158,7 +158,6 @@ imageSourceApi.createPixelMap(decodingOptions, pixelmap => {
     console.log('Succeeded in creating pixelmap.');
 })
 
-
 // 用于promise创建pixelmap
 imageSourceApi.createPixelMap().then(pixelmap => {
     console.log('Succeeded in creating pixelmap.');
@@ -221,9 +220,9 @@ let packOpts = { format:["image/jpeg"], // 支持编码的格式为jpg
 // 用于编码
 imagePackerApi.packing(imageSourceApi, packOpts)
 .then( data => {
-        console.log('Succeeded in packing');
+    console.log('Succeeded in packing');
 })
-             
+         
 // 编码完成，释放imagepacker
 imagePackerApi.release();
 
