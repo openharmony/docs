@@ -12,6 +12,9 @@ When compared with **[LinkedList](js-apis-linkedlist.md)**, **ArrayList** is mor
 
 **Recommended use case**: Use **ArrayList** when elements in a container need to be frequently read.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -72,7 +75,7 @@ Adds an element at the end of this container.
   let result1 = arrayList.add(1);
   let b = [1, 2, 3];
   let result2 = arrayList.add(b);
-  let c = {name: "lala", age: "13"};
+  let c = {name: "Dylon", age: "13"};
   let result3 = arrayList.add(false);
   ```
 
@@ -124,9 +127,9 @@ Checks whether this container has the specified element.
 
 ```ts
 let arrayList = new ArrayList();
-let result = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-arrayList.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = arrayList.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = arrayList.has("squirrel");
+arrayList.add("squirrel");
+let result1 = arrayList.has("squirrel");
 ```
 
 ### getIndexOf
@@ -361,7 +364,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.forEach((value, index) => {
-  console.log("value:" + value, index);
+  console.log(`value:${value}`, index);
 });
 ```
 
@@ -623,14 +626,14 @@ arrayList.add(4);
 
 // Method 1:
 for (let item of arrayList) { 
-  console.log("value:" + item); 
+  console.log(`value:${item}`); 
 } 
 
 // Method 2:
 let iter = arrayList[Symbol.iterator]();
 let temp = iter.next().value;
 while(temp != undefined) {
-  console.log("value:" + temp);
+  console.log(`value:${temp}`);
   temp = iter.next().value;
 }
 ```

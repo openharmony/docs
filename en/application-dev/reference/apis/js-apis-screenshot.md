@@ -55,7 +55,7 @@ Describes the size of the screen region to capture.
 
 ## screenshot.save
 
-save(options?: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
+save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
@@ -67,7 +67,7 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [ScreenshotOptions](#screenshotoptions) | No  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
+| options  | [ScreenshotOptions](#screenshotoptions) | Yes  | Screenshot settings consist of **screenRect**, **imageSize**, **rotation**, and **displayId**. You can set the parameters separately.|
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
 
 **Example**
@@ -86,6 +86,35 @@ Takes a screenshot and saves it as a **PixelMap** object. This API uses an async
     "displayId": 0
   };
   screenshot.save(screenshotOptions, (err, pixelMap) => {
+    if (err) {
+        console.log('Failed to save screenshot: ' + JSON.stringify(err));
+        return;
+    }
+    console.log('Succeeded in saving sreenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+    pixelMap.release(); // Release the memory in time after the PixelMap is used.
+  });
+  ```
+
+## screenshot.save
+
+save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description                                                        |
+| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | Yes  | Callback used to return a **PixelMap** object.                                  |
+
+**Example**
+
+  ```js
+  screenshot.save((err, pixelMap) => {
     if (err) {
         console.log('Failed to save screenshot: ' + JSON.stringify(err));
         return;

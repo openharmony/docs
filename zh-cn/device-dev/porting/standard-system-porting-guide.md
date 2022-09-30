@@ -47,7 +47,7 @@ version：版本  必填
 
 type：配置的系统级别，包含（small，standard …) 必填
 
-target_cpu ：设备的cpu类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
+target_cpu ：设备的CPU类型（根据实际情况，这里的target_cpu也可能是arm64 、riscv、 x86等。） 必填
 
 ohos_version：操作系统版本  选填
 

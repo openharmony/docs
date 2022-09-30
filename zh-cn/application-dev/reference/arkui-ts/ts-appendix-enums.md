@@ -140,9 +140,9 @@
 | Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃       |
 | Bottom   | 竖直方向下边缘         |
 | Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃 |
-| Start<sup>(deprecated) </sup>    | 水平方向起始位置<br/> 从API version 9开始废弃       |
+| Start    | 水平方向起始位置       |
 | Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃       |
-| End<sup>(deprecated) </sup>      | 水平方向末尾位置<br/> 从API version 9开始废弃       |
+| End      | 水平方向末尾位置       |
 
 ## Week
 
@@ -249,7 +249,7 @@
 | End          | 元素在主轴方向尾部对齐，最后一个元素与行尾对齐，其他元素与后一个对齐。 |
 | SpaceBetween | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。 |
 | SpaceAround  | Flex主轴方向均匀分配弹性元素，相邻元素之间距离相同。第一个元素到行首的距离和最后一个元素到行尾的距离是相邻元素之间距离的一半。 |
-| SpaceEvenly  | 距、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 |
+| SpaceEvenly  | Flex主轴方向均匀分配弹性元素，相邻元素之间的距离、第一个元素与行首的间距、最后一个元素到行尾的间距都完全一样。 |
 
 ## ItemAlign
 

@@ -1,10 +1,10 @@
-# ProcessRunningInfo
+# ProcessRunningInfo<sup>(deprecated)</sup>
 
 The **ProcessRunningInfo** module provides process running information.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessRunningInformation<sup>9+</sup>](js-apis-processrunninginformation.md) instead.
+> - The initial APIs of this module are supported since API version 8.
 
 ## Usage
 
@@ -19,9 +19,9 @@ appManager.getProcessRunningInfos((error,data) => {
 
 ## Attributes
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
-  | Name| Type| Readable| Writable| Description| 
+| Name| Type| Readable| Writable| Description| 
 | -------- | -------- | -------- | -------- | -------- |
 | pid | number | Yes| No| Process ID.| 
 | uid | number | Yes| No| User ID.| 

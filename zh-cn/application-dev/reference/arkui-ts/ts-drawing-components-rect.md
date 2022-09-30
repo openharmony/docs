@@ -17,14 +17,15 @@
 Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 | 
-  | height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 | 
-  | radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 | 
-  | radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 | 
-  | radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 | 
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+| -------- | -------- | -------- | -------- | -------- |
+| width | string&nbsp;\|&nbsp;number | 否 | 0 | 宽度。 | 
+| height | string&nbsp;\|&nbsp;number | 否 | 0 | 高度。 | 
+| radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 否 | 0 | 圆角半径，支持分别设置四个角的圆角度数。 | 
+| radiusWidth | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角宽度。 | 
+| radiusHeight | string&nbsp;\|&nbsp;number | 否 | 0 | 圆角高度。 | 
 
 
 ## 属性
@@ -57,19 +58,30 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 @Component
 struct RectExample {
   build() {
-    Column({ space: 5 }) {
-      Text('normal').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制90% * 50矩形
+    Column({ space: 10 }) {
+      Text('normal').fontSize(11).fontColor(0xCCCCCC).width('90%')
+      // 绘制90% * 50的矩形
       Rect({ width: '90%', height: 50 })
-      // 绘制90% * 50矩形
-      Rect().width('90%').height(50)
+        .fill(Color.Pink)
+      // 绘制90% * 50的矩形框
+      Rect()
+        .width('90%')
+        .height(50)
+        .fillOpacity(0)
+        .stroke(Color.Red)
+        .strokeWidth(3)
 
-      Text('with rounded corners').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制90% * 50矩形, 圆角宽高20
-      Rect({ width: '90%', height: 50 }).radiusHeight(20).radiusWidth(20)
-      // 绘制90% * 50矩形, 圆角宽高20
-      Rect({ width: '90%', height: 50 }).radius(20)
-    }.width('100%').margin({ top: 5 })
+      Text('with rounded corners').fontSize(11).fontColor(0xCCCCCC).width('90%')
+      // 绘制90% * 80的矩形, 圆角宽高分别为40、20
+      Rect({ width: '90%', height: 80 })
+        .radiusHeight(20)
+        .radiusWidth(40)
+        .fill(Color.Pink)
+      // 绘制90% * 80的矩形, 圆角宽高为20
+      Rect({ width: '90%', height: 80 })
+        .radius(20)
+        .fill(Color.Pink)
+    }.width('100%').margin({ top: 10 })
   }
 }
 ```

@@ -144,7 +144,7 @@ getPrivateDirty(): bigint
 
 getCpuUsage(): number
 
-获取进程的cpu使用率。
+获取进程的CPU使用率。
 
 如占用率为50%，则返回0.5。
 
@@ -154,7 +154,7 @@ getCpuUsage(): number
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 获取进程的cpu使用率。 |
+| number | 获取进程的CPU使用率。 |
 
 
 **示例：**

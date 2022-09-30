@@ -1,14 +1,14 @@
-# Writing Instructions<a name="EN-US_TOPIC_0000001053707964"></a>
+# Writing Instructions
 
 This document describes the writing specifications for contributing OpenHarmony documents.
 
-## Naming Specifications<a name="section6823246189"></a>
+## Naming Specifications
 
 To submit a new document, create a new  **.md**  file in the  **doc**  directory of the project code on Gitee. The file name must be in the  _xxx-xxx_**.md**  format.
 
 For example, a document that describes writing specifications can be named  **write-standard.md**.
 
-## Content Specifications<a name="section650663210183"></a>
+## Content Specifications
 
 The content should be concise and intuitive. Introductory documents describe principles, architecture, and design ideas in a concise manner, and operation documents describe key steps to help other developers. Chinese is preferred. It is recommended that both Chinese and English be supported. The OpenHarmony will be updated continuously to ensure the synchronization between Chinese and English.
 
@@ -73,7 +73,8 @@ Pictures used in  **OpenHarmony\_DOCUMENTS/docs/quick-start/write-standard.md** 
 
 If a self-made picture is used, refer to the following figure to configure the color. The format can be  **png**,  **jpg**,  **gif**, and so on.
 
-**Figure  1**  Example<a name="fig952595173513"></a>  
+**Figure  1**  Example
+
 ![](figures/example.png "example")
 
 For screenshots, see the requirements below. If you need to highlight key information in the figure, add a red box or text remarks.
@@ -88,7 +89,7 @@ English font: Arial
 
 Font size: 10 pt
 
-**Figure  2** <a name="fig1472123913217"></a>  
+**Figure  2** 
 
 
 **Table**
@@ -109,38 +110,11 @@ Output
 
 **Table  1**  Parameters
 
-<a name="table163931041183019"></a>
-<table><thead align="left"><tr id="row1393134183014"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="p1539314418307"><a name="p1539314418307"></a><a name="p1539314418307"></a>Table</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="p1339324120303"><a name="p1339324120303"></a><a name="p1339324120303"></a>Type</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="p13932041133012"><a name="p13932041133012"></a><a name="p13932041133012"></a>Note</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="row1839304110309"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p4393174143014"><a name="p4393174143014"></a><a name="p4393174143014"></a>first</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p6393141133013"><a name="p6393141133013"></a><a name="p6393141133013"></a>standard</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p17393184112307"><a name="p17393184112307"></a><a name="p17393184112307"></a>None</p>
-</td>
-</tr>
-<tr id="row1039318412306"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p113941541103012"><a name="p113941541103012"></a><a name="p113941541103012"></a>second</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p83941841153016"><a name="p83941841153016"></a><a name="p83941841153016"></a>outstanding</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p1539404114305"><a name="p1539404114305"></a><a name="p1539404114305"></a>5</p>
-</td>
-</tr>
-<tr id="row6547101813118"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="p35483184313"><a name="p35483184313"></a><a name="p35483184313"></a>third</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="p1554821817318"><a name="p1554821817318"></a><a name="p1554821817318"></a>inside</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="p15548201819310"><a name="p15548201819310"></a><a name="p15548201819310"></a>with</p>
-</td>
-</tr>
-</tbody>
-</table>
+| Tables |    Type     | Note |
+| ------ | :---------: | ---: |
+| first  |  standard   | None |
+| second | outstanding |    5 |
+| third  |   inside    | with |
 
 **Code**
 

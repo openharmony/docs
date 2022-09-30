@@ -11,7 +11,7 @@ The **AbilityDelegatorArgs** module provides a global register to store the regi
 The ability delegator arguments are obtained by calling **getArguments** in **AbilityDelegatorRegistry**.
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 var args = AbilityDelegatorRegistry.getArguments();
 ```

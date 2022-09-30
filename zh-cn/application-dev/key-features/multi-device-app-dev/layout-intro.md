@@ -13,11 +13,11 @@
 自适应布局和响应式布局常常需要借助容器类组件实现，或与容器类组件搭配使用。
 
 
-- 自适应布局常常需要借助[Row组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-row.md)、[Column组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-column.md)或[Flex组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-flex.md)实现。
+- 自适应布局常常需要借助[Row组件](../../reference/arkui-ts/ts-container-row.md)、[Column组件](../../reference/arkui-ts/ts-container-column.md)或[Flex组件](../../reference/arkui-ts/ts-container-flex.md)实现。
   
   ![image-20220922185907892](figures/image-20220922185907892.png)
   
-- 响应式布局常常与[GridRow组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)、[Grid组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-grid.md)、[List组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)、[Swiper组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-swiper.md)或[Tabs组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)搭配使用。
+- 响应式布局常常与[GridRow组件](../../reference/arkui-ts/ts-container-gridrow.md)、[Grid组件](../../reference/arkui-ts/ts-container-grid.md)、[List组件](../../reference/arkui-ts/ts-container-list.md)、[Swiper组件](../../reference/arkui-ts/ts-container-swiper.md)或[Tabs组件](../../reference/arkui-ts/ts-container-tabs.md)搭配使用。
   
   ![image-20220922190217247](figures/image-20220922190217247.png)
   
@@ -25,13 +25,4 @@
 
 接下来将依次介绍自适应布局和响应式布局，同时结合实际，通过典型布局场景以及典型页面场景详细介绍两种布局能力的用法。
 
-## 相关实例
-
-针对一次开发，多端部署，有以下相关实例可供参考：
-
-- [`MusicAlbum`：一多音乐专辑主页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/MusicAlbum)
-- [`AppMarket`：一多应用市场首页（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AppMarket)
-- [`AdaptiveCapabilities`：多设备自适应能力（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/AdaptiveCapabilities)
-- [`JsAdaptiveCapabilities`：多设备自适应能力（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/JsAdaptiveCapabilities)
-- [一次开发多端部署（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)
 

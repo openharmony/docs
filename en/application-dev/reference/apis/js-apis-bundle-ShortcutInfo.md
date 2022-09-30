@@ -1,6 +1,6 @@
 # ShortcutInfo
 
-The **ShortcutInfo** module provides shortcut information defined in the configuration file.
+The **ShortcutInfo** module provides shortcut information defined in the configuration file. For details about the configuration in the FA model, see [config.json](../../quick-start/package-structure.md). For details about the configuration in the stage model, see [Internal Structure of the shortcuts Attribute](../../quick-start/stage-structure.md#internal-structure-of-the-shortcuts-attribute).
 
 > **NOTE**
 >

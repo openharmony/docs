@@ -1,4 +1,4 @@
-#    系统帐号管理
+# 系统帐号管理
 
 本模块提供管理系统帐号的一些基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能，提供系统帐号数据落盘的能力。
 
@@ -26,7 +26,7 @@ getAccountManager(): AccountManager
 | --------------------------------- | ------------------------ |
 | [AccountManager](#accountmanager) | 获取系统帐号能力的实例。 |
 
-**示例：**
+**示例：** 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   ```
@@ -66,7 +66,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | localId  | number                    | 是   | 要激活的系统帐号ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
 
-**示例：**激活ID为100的系统帐号
+**示例：** 激活ID为100的系统帐号
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
@@ -99,7 +99,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**激活ID为100的系统帐号
+**示例：** 激活ID为100的系统帐号
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
@@ -124,7 +124,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | --------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，支持多系统帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -148,7 +148,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，支持多系统帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -176,7 +176,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 | localId  | number                       | 是   | 系统帐号ID。                                      |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，处于激活状态则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -209,7 +209,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，处于激活状态则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -239,7 +239,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 | constraint | string                       | 是   | 指定的[约束](#系统帐号约束列表)名称。             |
 | callback   | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -273,7 +273,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，具有指定约束则返回true，否则返回false。 |
 
-**示例：**判断ID为100的系统帐号是否有禁止使用wifi的约束
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -299,7 +299,7 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ----------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，是测试帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -323,7 +323,7 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，是测试帐号则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -348,7 +348,7 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -375,7 +375,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 | localId  | number                       | 否   | 指定的系统帐号ID。                          |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -407,7 +407,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 | :--------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，已验证则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -437,7 +437,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 | localId  | number                    | 是   | 要删除的系统帐号ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。           |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -472,7 +472,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -506,7 +506,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | enable      | boolean                   | 是   | 设置(true)/删除(false)                       |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调结果。                                   |
 
-**示例：**给ID为100的系统帐号设置禁止使用wifi的约束
+**示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -542,7 +542,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**删除ID为100的系统帐号的禁止使用wifi的约束
+**示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -574,7 +574,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 | localName | string                    | 是   | 帐号名。     |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
 
-**示例：**将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -610,7 +610,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -639,7 +639,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是已创建的系统帐号的数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -665,7 +665,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的系统帐号的数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -690,7 +690,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -714,7 +714,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -740,7 +740,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 | uid      | number                      | 是   | 进程uid。                                     |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是uid所属的系统帐号的帐号ID。 |
 
-**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
+**示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -771,7 +771,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是uid所属的系统帐号的帐号ID。 |
 
-**示例：**查询值为12345678的uid所属的系统帐号的帐号ID
+**示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -800,7 +800,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。                                 |
 | callback   | AsyncCallback&lt;number&gt;             | 是   | 回调结果，返回的是和域帐号关联的系统帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
@@ -833,7 +833,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是和域帐号关联的系统帐号ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -861,7 +861,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------------------ |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是允许创建的系统帐号的最大数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -887,7 +887,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是允许创建的系统帐号的最大数量。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -915,7 +915,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 | localId  | number                                   | 是   | 系统帐号ID。                                                 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 回调结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
 
-**示例：**获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统帐号的全部约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -948,7 +948,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 | :--------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的全部[约束](#系统帐号约束列表)。 |
 
-**示例：**获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统帐号的全部约束
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -978,7 +978,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | 是   | 回调结果，返回的是已创建的所有系统帐号的信息列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1006,7 +1006,7 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 | :---------------------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是已创建的所有系统帐号的信息列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1031,7 +1031,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1058,7 +1058,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 | :--------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前处于激活状态的系统帐号的ID列表。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1089,7 +1089,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | type      | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                     |
 | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1124,7 +1124,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1155,7 +1155,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                               |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1191,7 +1191,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是新创建的系统帐号的信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1219,7 +1219,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1245,7 +1245,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1275,7 +1275,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 | localId  | number                                               | 是   | 要查询的系统帐号的ID                     |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调结果，返回的是查到的系统帐号的信息。 |
 
-**示例：**查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统帐号信息
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1310,7 +1310,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise实例，用于获取异步返回结果，返回的是查到的系统帐号的信息。 |
 
-**示例：**查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统帐号信息
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1336,7 +1336,7 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调结果，返回的是当前进程所属的系统帐号的帐号类型。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1360,7 +1360,7 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 | :--------------------------------------------- | :----------------------------------------------------------- |
 | Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise实例，用于获取异步返回结果，返回的是当前进程所属的系统帐号的帐号类型。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1387,7 +1387,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 | -------- | --------------------------- | ---- | ------------------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是分布式虚拟设备ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1413,7 +1413,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是分布式虚拟设备ID。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1443,7 +1443,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 | localId  | number                      | 是   | 系统帐号ID。                             |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调结果，返回的是该系统帐号的头像信息。 |
 
-**示例：**获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统帐号的头像
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1478,7 +1478,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;string&gt; | Promise实例，用于获取异步返回结果，返回的是该系统帐号的头像信息。 |
 
-**示例：**获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统帐号的头像
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1510,7 +1510,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | photo    | string                    | 是   | 头像信息。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
 
-**示例：**给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统帐号设置头像
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1549,7 +1549,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise实例，用于获取异步返回结果。 |
 
-**示例：**给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统帐号设置头像
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1580,7 +1580,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 | serialNumber | number                      | 是   | 帐号SN码。                                       |
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与SN码关联的系统帐号的帐号ID。 |
 
-**示例：**查询与SN码12345关联的系统帐号的ID
+**示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1611,7 +1611,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与SN码关联的系统帐号的帐号ID。 |
 
-**示例：**查询与SN码12345关联的系统帐号的ID
+**示例：** 查询与SN码12345关联的系统帐号的ID
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1638,7 +1638,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 | localId  | number                      | 是   | 系统帐号ID。                               |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调结果，返回的是与该系统帐号关联的SN码。 |
 
-**示例：**获取ID为100的系统帐号关联的SN码
+**示例：** 获取ID为100的系统帐号关联的SN码
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1669,7 +1669,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与该系统帐号关联的SN码。 |
 
-**示例：**获取ID为100的系统帐号关联的SN码
+**示例：** 获取ID为100的系统帐号关联的SN码
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1701,7 +1701,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
 | callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。   |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1731,7 +1731,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
 | callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1758,7 +1758,7 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 | uid     | number | 是   |  进程uid。 |
 | callback | AsyncCallback&lt;number&gt;     | 是   | 回调结果，返回的是与uid对应的bundleId。                      |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1790,7 +1790,7 @@ getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回的是与uid对应的bundleId。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1820,7 +1820,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt;     | 是   | 回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。                      |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1847,7 +1847,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise实例，用于获取异步返回结果，回调结果，返回的是当前进程是否处于主用户，是则返回true，否则返回false。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1877,7 +1877,7 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callbac
 | constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。                      |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1912,7 +1912,7 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 | :-------------------- | :----------------------------------------------------------- |
 | Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
 
-**示例：**
+**示例：** 
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
@@ -1939,7 +1939,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   ```
@@ -1961,7 +1961,7 @@ getVersion(): number;
 | :----- | :----------- |
 | number | 返回版本信息。|
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let version = userAuth.getVersion();
@@ -1993,7 +1993,7 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 | :----- | :---------------------------------------- |
 | number | 返回验证[结果](#resultcode8)。 | 
 
-**示例：** 
+**示例：**  
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let authType = account_osAccount.AuthType.PIN;
@@ -2021,7 +2021,7 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 | request  | [GetPropertyRequest](#getpropertyrequest8)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
 | callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调结果，返回的是调用者属性。        |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let keys = [
@@ -2063,7 +2063,7 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
 | Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise实例，用于获取异步返回结果，返回的是调用者属性。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let keys = [
@@ -2101,7 +2101,7 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
 | callback | AsyncCallback&lt;number&gt;                           | 是   | 回调结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let request = {
@@ -2139,7 +2139,7 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 | :-------------------- | :-------------------------------------------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise实例，用于获取异步返回结果，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let request = {
@@ -2182,7 +2182,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | :--------- | :----------------- |
 | Uint8Array | 返回取消的上下文ID。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let challenge = new Uint8Array([0]);
@@ -2225,7 +2225,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | :--------- | :----------------- |
 | Uint8Array | 返回取消的上下文ID。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let userID = 100;
@@ -2264,7 +2264,7 @@ cancelAuth(contextID: Uint8Array): number;
 | :----- | :-------------------------------------------------------- |
 | number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth = new account_osAccount.PINAuth();
@@ -2295,7 +2295,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   ```
@@ -2324,7 +2324,7 @@ registerInputer(inputer: IInputer): boolean;
 | :------ | :-------------------------------------------- |
 | boolean | 返回布尔值，true表示注册成功，false表示注册失败。 |
 
-**示例：**
+**示例：** 
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
@@ -2348,7 +2348,7 @@ unregisterInputer(): void;
 
 **需要权限：** ohos.permission.ACCESS_PIN_AUTH
 
-**示例：**
+**示例：** 
   ```js
   let pinAuth = new account_osAccount.PINAuth();
   pinAuth.unregisterInputer();
@@ -2370,7 +2370,7 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
-**示例：** 
+**示例：**  
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   ```
@@ -2393,7 +2393,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 | -------- | -------------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback&lt;Uint8Array&gt;  | 是   | 回调结果，返回的是挑战值，非0即成功，为0则失败。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err, challenge) => {
@@ -2420,7 +2420,7 @@ openSession(): Promise&lt;Uint8Array&gt;;
 | :------------------------ | :------------------------------------------------------- |
 | Promise&lt;Uint8Array&gt; | Promise实例，用于获取异步返回结果，返回的是挑战值，非0即成功，为0则失败。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession().then((challenge) => {
@@ -2449,7 +2449,7 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | credentialInfo  | [CredentialInfo](#credentialinfo8)   | 是  | 指示凭据信息。                      |
 | callback        | [IIdmCallback](#iidmcallback8)       | 是  | 回调结果，返回的是结果和获取信息。  |
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let pinAuth = new account_osAccount.PINAuth();
@@ -2493,7 +2493,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | credentialInfo  | [CredentialInfo](#credentialinfo8)    | 是  | 指示凭据信息。                    |
 | callback        | [IIdmCallback](#iidmcallback8)        | 是  | 回调结果，返回的是结果和获取信息。  |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let userAuth = new account_osAccount.UserAuth();
@@ -2539,7 +2539,7 @@ closeSession(): void;
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.closeSession();
@@ -2569,7 +2569,7 @@ cancel(challenge: Uint8Array): number;
 | :----- | :-------------------------------------------------------- |
 | number | 返回一个[数字](#resultcode8)，指示取消是否成功。 |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let challenge = new Uint8Array([0]);
@@ -2596,7 +2596,7 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | token    | Uint8Array                                 | 是  | 身份验证令牌。             |
 | callback | [IIdmCallback](#iidmcallback8) | 是  | 回调结果，返回的是删除结果。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let token = new Uint8Array([0]);
@@ -2628,7 +2628,7 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | token           | Uint8Array                                      | 是  | 身份验证令牌。              |
 | callback        | [IIdmCallback](#iidmcallback8)      | 是  | 回调结果，返回的是删除结果。 |
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let credentialId = new Uint8Array([0]);
@@ -2660,7 +2660,7 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo((err, result) => {
@@ -2688,7 +2688,7 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 | authType | [AuthType](#authtype8) | 是   | 认证类型。                                          |
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN, (err, result) => {
@@ -2721,7 +2721,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 | :------------------------------------------- | :------------------------------------------------------------------------ |
 | Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise实例，用于获取异步返回结果，返回的是当前用户指定类型的所有已注册凭据信息。|
 
-**示例：**
+**示例：** 
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result) => {
@@ -2754,7 +2754,7 @@ onSetData: (pinSubType: AuthSubType, data: Uint8Array) => void;
 | pinSubType | [AuthSubType](#authsubtype8) | 是   | 用于认证的凭据子类型。                            |
 | data       | Uint8Array                               | 是   | 要设置的数据是凭据，用来在认证、添加、修改凭据操作。 |
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
@@ -2791,7 +2791,7 @@ onGetData: (pinSubType: AuthSubType, callback: IInputData) => void;
 | ---------- | --------------------------------------- | ---- | --------------- |
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
 
-**示例：**
+**示例：** 
   ```js
   let password = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber = new Uint8Array([1, 2, 3, 4]);
@@ -2832,7 +2832,7 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 | result    | number                                   | 是   | 表示身份认证结果代码。|
 | extraInfo | [AuthResult](#authresult8)  | 是   | 表示不同情况下的具体信息，如果认证通过，则在extrainfo中返回认证令牌，如果身份验证失败，则在extrainfo中返回剩余的身份验证时间，如果身份验证执行器被锁定，冻结时间将在extrainfo中返回。|
 
-**示例：**
+**示例：** 
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
@@ -2860,7 +2860,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
 | extraInfo | any     | 是   | 保留参数。                     |
 
-**示例：**
+**示例：** 
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
@@ -2898,7 +2898,7 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 | result    | number                                  | 是   | 表示身份认证结果代码。    |
 | extraInfo | [AuthResult](#authresult8)  | 是   | 针对不同情况传递具体信息。|
 
-**示例：**
+**示例：** 
   ```js
   let idmCallback = {
     onResult: (result, extraInfo) => {
@@ -2926,7 +2926,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | acquire   | number  | 是   | 指示不同身份验证执行器的tip代码。|
 | extraInfo | any     | 是   | 保留参数。                     |
 
-**示例：**
+**示例：** 
   ```js
   let idmCallback = {
     onResult: (result, extraInfo) => {
@@ -3164,7 +3164,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | FACE_AUTH_TIP_POOR_GAZE       | 10    | 表示面未朝向设备。                         |
 | FACE_AUTH_TIP_NOT_DETECTED    | 11    | 表示未检测到人脸。                         |
 
-## ingerprintTips<sup>8+</sup>
+## FingerprintTips<sup>8+</sup>
 
 枚举，指示指纹身份验证过程中提示代码。
 
@@ -3218,8 +3218,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 约束                                  | 说明                           |
 | ------------------------------------- | ------------------------------ |
-| constraint.wifi                       | 禁止使用wifi                   |
-| constraint.wifi.set                   | 禁止配置wifi                   |
+| constraint.wifi                       | 禁止使用Wi-Fi                  |
+| constraint.wifi.set                   | 禁止配置Wi-Fi                  |
 | constraint.locale.set                 | 禁止配置设备语言               |
 | constraint.app.accounts               | 禁止添加和删除应用帐号         |
 | constraint.apps.install               | 禁止安装应用                   |

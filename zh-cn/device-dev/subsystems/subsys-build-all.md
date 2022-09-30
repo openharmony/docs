@@ -175,14 +175,19 @@ bash build/prebuilts_download.sh
   ```shell
   ./build.sh --product-name {product_name} --gn-args is_debug=true
   ```
-  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块 ：
-  ```
-  ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
-  ```
-
+  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块：
+  > 
+  > 
+  > ```
+  > ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+  > ```
+  > 
   {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
 
   编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
+
+
 
 - 编译命令支持选项：./build.sh 
 
@@ -191,7 +196,7 @@ bash build/prebuilts_download.sh
   --source-root-dir=SOURCE_ROOT_DIR                 # 指定路径
   --product-name=PRODUCT_NAME                       # 指定产品名
   --device-name=DEVICE_NAME                         # 指定装置名称
-  --target-cpu=TARGET_CPU                           # 指定cpu
+  --target-cpu=TARGET_CPU                           # 指定CPU
   --target-os=TARGET_OS                             # 指定操作系统
   -T BUILD_TARGET, --build-target=BUILD_TARGET      # 指定编译目标，可以指定多个
   --gn-args=GN_ARGS                                 # GN参数，支持指定多个
@@ -320,6 +325,10 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
 ```
+
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/Readme-CN.md)
+> - OpenHarmony还为开发者提供了Docker编译环境，可以省略编译工具的安装，具体使用请参考[Docker编译指导。](../get-code/gettools-acquire.md)
 
 ### 新增并编译不同配置
 

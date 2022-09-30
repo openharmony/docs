@@ -2,14 +2,9 @@
 
 The **\<PatternLock>** component allows users to use a pattern password for authentication. It enters the input state once being touched, and exits the input state and sends the entered password to the application once the finger leaves the screen.
 
-> **NOTE**
-> 
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -19,36 +14,38 @@ Not supported
 
 PatternLock(controller?: PatternLockController)
 
-- Parameters
+**Parameters**
 
-  | Name | Type | Mandatory | Default Value | Description |
-  | ---- | ---- | ---- | ------ | ----------------------- |
-  | controller | [PatternLockController](#patternlockcontroller) | No  | null | Controller of a component to reset the component status. |
+| Name    | Type                                       | Mandatory| Description                                                        |
+| ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| controller | [PatternLockController](#patternlockcontroller) | No  | Controller of a component to reset the component status.<br>Default value: **null**|
 
 ## Attributes
 
 Except for **backgroundColor**, universal attributes are not supported.
 
-| Name | Type | Default Value | Description |
-| ---- | ---- | ------------- | ----------- |
-| sideLength | Length | 300vp | Width and height (same value) of the component. The minimum value is **0**. |
-| circleRadius | Length | 14vp | Radius of a grid dot. |
-| regularColor | [ResourceColor](../../ui/ts-types.md) | Color.Black | Fill color of the grid dot in unselected state. |
-| selectedColor | [ResourceColor](../../ui/ts-types.md) | Color.Black | Fill color of the grid dot in selected state. |
-| activeColor | [ResourceColor](../../ui/ts-types.md) | Color.Black | Fill color of the grid dot in active state. |
-| pathColor | [ResourceColor](../../ui/ts-types.md) | Color.Blue  | Path color. |
-| pathStrokeWidth | Length | 34vp | Width of the path stroke. The minimum value is **0**. |
-| autoReset| boolean | true | Whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete. The value **true** means that the user can reset the component status by touching the component again after the input is complete, and **false** means the opposite. |
+| Name           | Type                             | Description                                                        |
+| --------------- | ------------------------------------- | ------------------------------------------------------------ |
+| sideLength      | [Length](ts-types.md#length) | Width and height (same value) of the component. The minimum value is **0**.<br>Default value: **300vp**|
+| circleRadius    | [Length](ts-types.md#length) | Radius of the grid dot.<br>Default value: **14vp**                       |
+| regularColor    | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in unselected state.<br>Default value: **Color.Black**|
+| selectedColor   | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in selected state.<br>Default value: **Color.Black**|
+| activeColor     | [ResourceColor](ts-types.md#resourcecolor) | Fill color of the grid dot in active state.<br>Default value: **Color.Black**|
+| pathColor       | [ResourceColor](ts-types.md#resourcecolor) | Path color.<br>Default value: **Color.Blue**                     |
+| pathStrokeWidth | number \| string            | Width of the path stroke. The minimum value is **0**.<br>Default value: **34vp**          |
+| autoReset       | boolean                               | Whether to allow the user to reset the component status (that is, clear the input) by touching the component again after the input is complete. The value **true** means that the user can reset the component status by touching the component again after the input is complete, and **false** means the opposite.<br>Default value: **true**|
 
 ## Events
 
-| Name | Description |
-| ---- | ----------- |
-| onPatternComplete(callback: (input: Array\<number\>) => void) | Invoked when the pattern password input is complete.<br>**input** is an array of digits that represent the connected dots in the pattern (0 to 8) and are arranged in the same sequence as the dots are connected. |
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+
+| Name                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| onPatternComplete(callback: (input: Array\<number\>) => void) | Invoked when the pattern password input is complete.<br>**input** is an array of digits that represent the connected dots in the pattern (0 to 8) and are arranged in the same sequence as the dots are connected.|
 
 ## PatternLockController
 
-Controller bound to the **\<PatternLock>** component for resetting the component status.
+Implements the controller bound to the **\<PatternLock>** component for resetting the component status.
 
 ### Objects to Import
 

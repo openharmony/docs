@@ -6,10 +6,6 @@ The **\<Search>** component provides an input area for users to search.
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions
-
-None
-
 ## Child Components
 
 Not supported
@@ -18,25 +14,27 @@ Not supported
 
 Search(options?: { value?: string; placeholder?: string; icon?: string; controller?: SearchController })
 
-- Parameters
+**Parameters**
 
-  | Name        | Type            | Mandatory  | Default Value | Description                                    |
-  | ----------- | ---------------- | ---- | ---- | ---------------------------------------- |
-  | value       | string           | No   | -    | Text input in the search text box.                                  |
-  | placeholder | string           | No   | -    | Text displayed when there is no input.                              |
-  | icon        | string           | No   | -    | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
-  | controller  | SearchController | No   | -    | Controller.                                    |
-
+| Name     | Type        | Mandatory| Description                                                    |
+| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
+| value       | string           | No  | Text input in the search text box.                                                |
+| placeholder | string           | No  | Text displayed when there is no input.                                        |
+| icon        | string           | No  | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
+| controller  | SearchController | No  | Controller.                                                    |
 
 ## Attributes
 
-| Name                     | Type                                    | Default Value | Description                   |
-| ----------------------- | ---------------------------------------- | ---- | --------------------- |
-| searchButton            | string                                   | –   | Text on the search button located next to the search text box. By default, there is no search button.|
-| placeholderColor        | [ResourceColor](../../ui/ts-types.md)    | -    | Placeholder text color.     |
-| placeholderFont         | [Font](../../ui/ts-types.md)             | -    | Placeholder text style.   |
-| textFont                | [Font](../../ui/ts-types.md)             | -    | Text font for the search text box.          |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-basic-components-text.md) | CopyOptions.CrossDevice | Whether copy and paste is allowed.|
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                   | Type                                        | Description                                          |
+| ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
+| searchButton            | string                                           | Text on the search button located next to the search text box. By default, there is no search button.    |
+| placeholderColor        | [ResourceColor](ts-types.md#resourcecolor) | Placeholder text color.                         |
+| placeholderFont         | [Font](ts-types.md#font) | Placeholder text style.                     |
+| textFont                | [Font](ts-types.md#font)     | Text font for the search text box.                        |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.                          |
+| textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode.<br>Default value: **TextAlign.Start**|
 
 ## Events
 
@@ -62,13 +60,11 @@ caretPosition(value: number): void
 
 Sets the position of the caret.
 
-- Parameters
+**Parameters**
 
-  | Name  | Type  | Mandatory  | Default Value | Description             |
-  | ----- | ------ | ---- | ---- | ----------------- |
-  | value | number | Yes   | -    | Length from the start of the character string to the position where the caret is located.|
-
-
+| Name| Type| Mandatory| Description                          |
+| ------ | -------- | ---- | ---------------------------------- |
+| value  | number   | Yes  | Length from the start of the character string to the position where the caret is located.|
 
 ##  Example
 

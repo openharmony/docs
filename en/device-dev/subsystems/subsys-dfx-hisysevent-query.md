@@ -15,27 +15,27 @@ HiSysEvent allows you to query system events by specifying search criteria. For 
 >
 > For details about the **HiSysEventRecord** argument in the **OnQuery()** method of **HiSysEventQueryCallback**, see Table 5 in [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md).
 
-  **Table 1** Description of the HiSysEvent query API
+**Table 1** Description of the HiSysEvent query API
 
-| API| Description|
-| -------- | -------- |
+| API | Description |
+| --- | ----------- |
 | int32_t HiSysEventManager::Query(struct QueryArg&amp; arg, std::vector&lt;QueryRule&gt;&amp; rules, std::shared_ptr&lt;HiSysEventQueryCallback&gt; callback) | Queries system events by specifying search criteria such as the time segment, event domain, and event name.<br>Input arguments:<br>- **arg**: event query parameter.<br>- **rules**: rules for event filtering.<br>- **callback**: callback object for event query.<br>Return value:<br>- **0**: Query is successful.<br>- A negative value: Query has failed.|
 
-  **Table 2** Description of QueryArg
+**Table 2** Description of QueryArg
 
-| Attribute| Description|
-| -------- | -------- |
+| Attribute | Description |
+| --------- | ----------- |
 | beginTime | Start time, in the **long long int** format.|
 | endTime | End time, in the **long long int** format.|
 | maxEvents | Maximum number of returned events, in the **int** format.|
 
-  **Table 3** Description of QueryRule
+**Table 3** Description of QueryRule
 
 | API| Description|
 | -------- | -------- |
 | QueryRule(const std::string&amp; domain, const std::vector&lt;std::string&gt;&amp; eventList) | Constructor used to create a **QueryRule** object.<br>Input arguments:<br>- **domain**: domain to which the event of the **QueryRule** object belongs, in the string format. By default, an empty string indicates that the domain is successfully matched.<br>- **eventList**: event name list, in the **std::vector&lt;std::string&gt;** format. By default, an empty string indicates that the event names on the list are successfully matched.|
 
-  **Table 4** Description of HiSysEventQueryCallback
+**Table 4** Description of HiSysEventQueryCallback
 
 | API| Description|
 | -------- | -------- |
@@ -60,7 +60,7 @@ HiSysEvent allows you to query system events by specifying search criteria. For 
    void HiSysEventQueryCallback::OnComplete(int32_t reason, int32_t total)
    ```
 
-     Invoke the query API in the corresponding service logic.
+     Call the query API in the corresponding service logic.
 
    ```
    HiSysEventManager::Query(struct QueryArg& queryArg, 
@@ -93,7 +93,7 @@ HiSysEvent allows you to query system events by specifying search criteria. For 
    } // namespace HiviewDFX
    } // namespace OHOS
    
-   // Invoke the query callback API to obtain system events.
+   // Call the query callback API to obtain system events.
    auto queryCallBack = std::make_shared<HiSysEventToolQuery>();
    struct QueryArg args(clientCmdArg.beginTime, clientCmdArg.endTime, clientCmdArg.maxEvents);
    std::vector<QueryRule> rules;

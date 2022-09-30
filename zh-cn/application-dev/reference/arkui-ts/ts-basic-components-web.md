@@ -564,6 +564,36 @@ userAgent(userAgent: string)
   }
   ```
 
+### webDebuggingAccess<sup>9+</sup>
+
+webDebuggingAccess(webDebuggingAccess: boolean)
+
+设置是否启用网页调试功能。
+
+**参数：**
+
+| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
+| --------- | ------ | ---- | ---- | --------- |
+| webDebuggingAccess | boolean | 是    | false    | 设置是否启用网页调试功能。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State webDebuggingAccess: boolean = true;
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(this.webDebuggingAccess)
+      }
+    }
+  }
+  ```
+
 >  **说明：**
 >
 >  通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
@@ -1686,6 +1716,75 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   }
   ```
 
+### onFullScreenEnter<sup>9+</sup>
+
+onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+
+通知开发者web组件进入全屏模式。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9)           | 用于退出全屏模式的函数句柄。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    handler: FullScreenExitHandler = null;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onFullScreenEnter((event) => {
+          console.log("onFullScreenEnter...");
+          this.handler = event.handler;
+        })
+      }
+    }
+  }
+  ```
+
+### onFullScreenExit<sup>9+</sup>
+
+onFullScreenExit(callback: () => void)
+
+通知开发者web组件退出全屏模式。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 退出全屏模式时的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    handler: FullScreenExitHandler = null;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onFullScreenExit(() => {
+          console.log("onFullScreenExit...");
+          this.handler.exitFullScreen();
+        })
+        .onFullScreenEnter((event) => {
+          this.handler = event.handler;
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -1765,6 +1864,16 @@ handlePromptConfirm(result: string): void
 | 参数名    | 参数类型   | 必填   | 默认值  | 参数描述        |
 | ------ | ------ | ---- | ---- | ----------- |
 | result | string | 是    | -    | 用户输入的对话框内容。 |
+
+## FullScreenExitHandler<sup>9+</sup>
+
+通知开发者Web组件退出全屏。示例代码参考[onFullScreenEnter事件](#onfullscreenenter9)。
+
+### exitFullScreen<sup>9+</sup>
+
+exitFullScreen(): void
+
+通知开发者Web组件退出全屏。
 
 ## WebResourceError
 
