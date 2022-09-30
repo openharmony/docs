@@ -320,7 +320,7 @@
    }
    ```
 
-   自定义组件提供了两个生命周期的回调接口aboutToAppear和aboutToDisappear。aboutToAppear的执行时机在创建自定义组件后，执行自定义组件build方法之前。aboutToDisappear在自定义组件的去初始化的时机执行。
+​    自定义组件提供了两个生命周期的回调接口aboutToAppear和aboutToDisappear。aboutToAppear的执行时机在创建自定义组件后，执行自定义组件build方法之前。aboutToDisappear在自定义组件销毁之前的时机执行。 
 
    ![zh-cn_image_0000001215113569](figures/zh-cn_image_0000001215113569.png)
 
