@@ -773,7 +773,7 @@ clearRect(x: number, y: number, w: number, h: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#ffffff')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
             this.context.fillRect(0,0,500,500)
