@@ -71,7 +71,7 @@ Defines a **HiTraceId** object.
 
 ## hiTraceChain.begin
 
-begin(name: string, flags: number = HiTraceFlag.DEFAULT): HiTraceId
+begin(name: string, flags?: number): HiTraceId
 
 Starts call chain tracing. This API works in synchronous manner.
 
@@ -82,7 +82,7 @@ Starts call chain tracing. This API works in synchronous manner.
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | name  | string | Yes| Traced service name. |
-| flags | number | Yes| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
+| flags | number | No| Trace flag combination. For details, see [HiTraceFlag](#hitraceflag). |
 
 **Return Value**
 
@@ -113,7 +113,7 @@ Stops call chain tracing. This API works in synchronous manner.
 **Example**
 
 ```js
-let asyncTraceId = hiTraceChain.begin("business");
+let asyncTraceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // End the call chain tracing after the service logic is executed for several times.
 hiTraceChain.end(asyncTraceId);
 ```
@@ -135,7 +135,7 @@ Obtains the trace ID. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Obtain the current trace ID after the service logic is executed for several times.
 let curTraceId = hiTraceChain.getId();
 ```
@@ -158,7 +158,7 @@ Sets a trace ID. This API works in synchronous manner.
 
 ```js
 let asyncTraceId;
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Set the current trace ID after the service logic is executed for several times.
 hiTraceChain.setId(asyncTraceId);
 ```
@@ -174,7 +174,7 @@ Clears the trace ID. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Clear the current trace ID after the service logic is executed for several times.
 hiTraceChain.clearId();
 ```
@@ -196,7 +196,7 @@ Creates a trace span. This API works in synchronous manner.
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 // Create a trace span after the service logic is executed for several times.
 let spanTraceId = hiTraceChain.createSpan();
 ```
@@ -249,7 +249,7 @@ Checks whether a **HiTraceId** instance is valid. This API works in synchronous 
 **Example**
 
 ```js
-let traceId = hiTraceChain.begin("business");
+let traceId = hiTraceChain.begin("business", hiTraceChain.HiTraceFlag.DEFAULT);
 let traceIdIsvalid = hiTraceChain.isValid(traceId);
 ```
 
@@ -291,6 +291,7 @@ Enables the specified trace flag in the **HiTraceId** instance. This API works i
 **System capability**: SystemCapability.HiviewDFX.HiTrace
 
 **Parameters**
+
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | id | [HiTraceId](#hitraceid) | Yes | **HiTraceId** instance. |
