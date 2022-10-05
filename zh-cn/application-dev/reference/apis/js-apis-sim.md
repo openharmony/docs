@@ -710,7 +710,7 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback<void\>\): voi
 **示例：**
 
 ```js
-let name = "中国移动";
+let name = "ShowName";
 sim.setShowName(0, name, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
@@ -744,7 +744,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```js
-let name = "中国移动";
+let name = "ShowName";
 let promise = sim.setShowName(0, name);
 promise.then(data => {
     console.log(`setShowName success, promise: data->${JSON.stringify(data)}`);
