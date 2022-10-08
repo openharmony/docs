@@ -162,7 +162,7 @@ connection.getAllNets(function (error, nets) {
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
-获取所有处于连接状态的网络列表，使用promise方式作为异步方法。
+获取所有处于连接状态的网络列表，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -336,7 +336,7 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用promise方式作为异步方法。
+使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -351,7 +351,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -398,7 +398,7 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用promise方式作为异步方法。
+使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -413,7 +413,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -522,7 +522,7 @@ enableAirplaneMode(): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -571,7 +571,7 @@ disableAirplaneMode(): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -890,7 +890,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 | 类型           | 说明                   |
 | -------------- | ---------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 
