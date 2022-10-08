@@ -163,9 +163,9 @@ Only one **AudioRecorder** instance can be created per device.
 
 **Return value**
 
-| Type                                     | Description                               |
-| ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance created.|
+| Type                                      | Description                                                  |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance created. |
 
 **Example**
 
@@ -275,15 +275,15 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name                           | Type                               | Readable| Writable| Description                                                        |
-| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                              | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)  | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
-| loop                            | boolean                             | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
-| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9)    | Yes  | Yes  | Audio interruption mode.                                             |
-| currentTime                     | number                              | Yes  | No  | Current audio playback position, in ms.                      |
-| duration                        | number                              | Yes  | No  | Audio duration, in ms.                                |
-| state                           | [AudioState](#audiostate)           | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
+| Name                           | Type                                                  | Readable| Writable| Description                                                        |
+| ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
+| loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
+| currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
+| duration                        | number                                                 | Yes  | No  | Audio duration, in ms.                                |
+| state                           | [AudioState](#audiostate)                              | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
 ### play<a name=audioplayer_play></a>
 
 play(): void
@@ -442,7 +442,7 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error,  ) => {
+audioPlayer.getTrackDescription((error, arrlist) => {
     if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
@@ -680,7 +680,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.INTERNET|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
 | fdSrc<sup>9+</sup> | [AVFileDescriptor](#avfiledescriptor9) | Yes| Yes| Description of a video file. This attribute is required when video resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | Yes  | Yes  | Video scale type.      |
@@ -1795,7 +1795,7 @@ Subscribes to the audio recording events.
 ```js
 let audioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1850,7 +1850,7 @@ Subscribes to audio recording error events. After an error event is reported, yo
 
 ```js
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1974,29 +1974,13 @@ let videoConfig = {
 }
 
 // asyncallback
-let videoRecorder = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('prepare', () => {
-    videoRecorder.prepare(videoConfig, (err) => {
-        if (err == null) {
-            console.info('prepare success');
-        } else {
-            console.info('prepare failed and error is ' + err.message);
-        }
-    });
-});
-
-media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // Trigger the 'prepare' event.
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message);
+        console.info('prepare failed and error is ' + err.message);
     }
-});
+})
 ```
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
@@ -2047,21 +2031,10 @@ let videoConfig = {
 }
 
 // promise
-let videoRecorder = null;
-media.createVideoRecorder().then((recorder) => {
-    if (recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        videoRecorder.prepare(videoConfig).then(() => {
-            console.info('prepare success');
-        }).catch((err) => {
-            console.info('prepare failed and catch error is ' + err.message);
-        });
-    } else {
-        console.info('createVideoRecorder failed');
-    }
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
 }).catch((err) => {
-    console.info('catch err error message is ' + err.message);
+    console.info('prepare failed and catch error is ' + err.message);
 });
 ```
 
@@ -2475,11 +2448,10 @@ Subscribes to video recording error events. After an error event is reported, yo
 **Example**
 
 ```js
+// This event is reported when an error occurs during the retrieval of videoRecordState.
 videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
     console.info(`audio error called, error: ${error}`); 
-}
-// This event is reported when an error occurs during the retrieval of videoRecordState.
-});
+})
 ```
 
 ## VideoRecordState<sup>9+</sup>
