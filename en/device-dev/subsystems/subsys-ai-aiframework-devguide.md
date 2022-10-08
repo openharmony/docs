@@ -153,17 +153,11 @@ retCode = ProcessDecode(dataInfo, arg1, arg2, arg3) // The number of parameters 
 
 > **NOTE**
 > 
-
 > - The sequence of parameters must be the same during encoding and decoding.
-
 > - After encoding, the memory used by **dataInfo** needs to be manually released by the caller.
-
 > - The memory is managed and released separately on the server and the client.
-
 > - If a pointer contains the shared memory, no extra processing is required.
-
 > - If other types of pointers are used, you need to dereference them before using **ProcessEncode** or **ProcessDecode**.
-
 > - The codec module has not been adapted to the **class** data type and therefore it is not recommended.
 
 
@@ -462,9 +456,7 @@ The preceding code implements the **IPlugin** APIs provided by the server. The f
 
 > **NOTE**
 > 
-
 > - The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
-
 > - The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
 
 
