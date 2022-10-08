@@ -1,14 +1,14 @@
 # Matrix Transformation
 
 
-> **NOTE**<br>
+> **NOTE**
+>
 > This animation is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
 
-
-```
+```ts
 import matrix4 from '@ohos.matrix4'
 ```
 
@@ -23,45 +23,45 @@ None
 init(array: Array&lt;number&gt;): Object
 
 
-Matrix constructor, which is used to create a 4x4 matrix by using the input parameter. Column-major order is used.
+Implements a 4x4 matrix by using the input parameter. The column-major order is used.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | array | Array&lt;number&gt; | Yes | [1, 0, 0, 0,<br/>0, 1, 0, 0,<br/>0, 0, 1, 0,<br/>0, 0, 0, 1] | A number array whose length is 16 (4 x 4). For details, see the parameter description. |
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
   | Object | 4x4 matrix object created based on the input parameter. |
 
 - Parameter description
-    | Name | Type | Mandatory | Description |
+  | Name | Type | Mandatory | Description |
   | -------- | -------- | -------- | -------- |
-  | m00 | number | Yes | Scaling value of the x-axis. Defaults to **1** for the unit matrix. |
-  | m01 | number | Yes | The second value, which is affected by the rotation of the x, y, and z axes. |
-  | m02 | number | Yes | The third value, which is affected by the rotation of the x, y, and z axes. |
+  | m00 | number | Yes | Scaling value along the x-axis. Defaults to **1** for the identity matrix. |
+  | m01 | number | Yes | The second value, which is affected by the rotation along the x, y, and z axes. |
+  | m02 | number | Yes | The third value, which is affected by the rotation along the x, y, and z axes. |
   | m03 | number | Yes | Meaningless. |
-  | m10 | number | Yes | The fifth value, which is affected by the rotation of the x, y, and z axes. |
-  | m11 | number | Yes | Scaling value of the y-axis. Defaults to **1** for the unit matrix. |
-  | m12 | number | Yes | The seventh value, which is affected by the rotation of the x, y, and z axes. |
+  | m10 | number | Yes | The fifth value, which is affected by the rotation along the x, y, and z axes. |
+  | m11 | number | Yes | Scaling value along the y-axis. Defaults to **1** for the identity matrix. |
+  | m12 | number | Yes | The seventh value, which is affected by the rotation along the x, y, and z axes. |
   | m13 | number | Yes | Meaningless. |
-  | m20 | number | Yes | The ninth value, which is affected by the rotation of the x, y, and z axes. |
-  | m21 | number | Yes | The tenth value, which is affected by the rotation of the x, y, and z axes. |
-  | m22 | number | Yes | Scaling value of the z-axis. Defaults to **1** for the unit matrix. |
+  | m20 | number | Yes | The ninth value, which is affected by the rotation along the x, y, and z axes. |
+  | m21 | number | Yes | The tenth value, which is affected by the rotation along the x, y, and z axes. |
+  | m22 | number | Yes | Scaling value along the z-axis. Defaults to **1** for the identity matrix. |
   | m23 | number | Yes | Meaningless. |
-  | m30 | number | Yes | Translation value of the x-axis, in px. Defaults to **0** for the unit matrix. |
-  | m31 | number | Yes | Translation value of the y-axis, in px. Defaults to **0** for the unit matrix. |
-  | m32 | number | Yes | Translation value of the z-axis, in px. Defaults to **0** for the unit matrix. |
+  | m30 | number | Yes | Translation value along the x-axis, in px. Defaults to **0** for the identity matrix. |
+  | m31 | number | Yes | Translation value along the y-axis, in px. Defaults to **0** for the identity matrix. |
+  | m32 | number | Yes | Translation value along the z-axis, in px. Defaults to **0** for the identity matrix. |
   | m33 | number | Yes | Valid in homogeneous coordinates, presenting the perspective projection effect. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   // Create a 4x4 matrix.
-  let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+  let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                             0.0, 1.0, 0.0, 0.0,
                             0.0, 0.0, 1.0, 0.0,
                             0.0, 0.0, 0.0, 1.0])
@@ -73,20 +73,20 @@ Matrix constructor, which is used to create a 4x4 matrix by using the input para
 identity(): Object
 
 
-Matrix initialization function. Can return a unit matrix object.
+Performs matrix initialization. This API returns an identity matrix object.
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
-  | Object | Unit matrix object. |
+  | Object | Identity matrix object. |
 
 - Example
   
-  ```
+  ```ts
   // The effect of matrix 1 is the same as that of matrix 2.
-  import Matrix4 from '@ohos.matrix4'
-  let matrix = Matrix4.init([1.0, 0.0, 0.0, 0.0,
+  import matrix4 from '@ohos.matrix4'
+  let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0,
                             0.0, 1.0, 0.0, 0.0,
                             0.0, 0.0, 1.0, 0.0,
                             0.0, 0.0, 0.0, 1.0])
@@ -99,22 +99,22 @@ Matrix initialization function. Can return a unit matrix object.
 copy(): Object
 
 
-Matrix copy function, which is used to copy the current matrix object.
+Copies this matrix object.
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
-  | Object | Copy object of the current matrix. |
+  | Object | Copy of the current matrix object. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:100})
+    private matrix1 = matrix4.identity().translate({x:100})
     private matrix2 = this.matrix1.copy().scale({x:2})
     build() {
       Column() {
@@ -143,28 +143,28 @@ Matrix copy function, which is used to copy the current matrix object.
 combine(matrix: Matrix4): Object
 
 
-Matrix overlay function, which is used to overlay the effects of two matrices to generate a new matrix object.
+Combines this matrix object with another to generate a new matrix object.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | matrix | Matrix4 | Yes | - | Matrix object to be overlaid. |
+  | matrix | Matrix4 | Yes | - | Matrix object to combine. |
 
 - Return value
     | Type | Description |
   | -------- | -------- |
-  | Object | Object after matrix overlay. |
+  | Object | Object after the combination. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:200}).copy()
-    private matrix2 = Matrix4.identity().scale({x:2}).copy()
+    private matrix1 = matrix4.identity().translate({x:200}).copy()
+    private matrix2 = matrix4.identity().scale({x:2}).copy()
     build() {
       Column() {
        // Translate the x-axis by 100 pixels and then scale it up or down by 2x.
@@ -185,21 +185,21 @@ Matrix overlay function, which is used to overlay the effects of two matrices to
 invert(): Object
 
 
-Matrix inverse function. Can return an inverse matrix of the current matrix object, that is, get an opposite effect.
+Inverts this matrix object.
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
   | Object | Inverse matrix object of the current matrix. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   // The effect of matrix 1 (width scaled up by 2x) is opposite to that of matrix 2 (width scaled down by 2x).
-  let matrix1 = Matrix4.identity().scale({x:2})
-  let matrix2 = matrix1.invert()
+  let matrix1 = matrix4.identity().scale({x:2})
+  let matrix2 = matrix1.copy().invert()
   ```
 
 
@@ -208,15 +208,15 @@ Matrix inverse function. Can return an inverse matrix of the current matrix obje
 translate({x?: number, y?: number, z?: number}): Object
 
 
-Matrix translation function, which is used to add the translation effect to the x, y, and z axes of the current matrix.
+Translates this matrix object along the x, y, and z axes.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | No | 0 | Translation distance of the x-axis, in px. |
-  | y | number | No | 0 | Translation distance of the y-axis, in px. |
-  | z | number | No | 0 | Translation distance of the z-axis, in px. |
+  | x | number | No | 0 | Translation distance along the x-axis, in px. |
+  | y | number | No | 0 | Translation distance along the y-axis, in px. |
+  | z | number | No | 0 | Translation distance along the z-axis, in px. |
 
 
 - Return value
@@ -226,12 +226,12 @@ Matrix translation function, which is used to add the translation effect to the 
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().translate({x:100, y:200, z:30})
+    private matrix1 = matrix4.identity().translate({x:100, y:200, z:30})
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -250,32 +250,32 @@ Matrix translation function, which is used to add the translation effect to the 
 scale({x?: number, y?: number, z?: number, centerX?: number, centerY?: number}): Object
 
 
-Matrix scaling function, which is used to add the scaling effect to the x, y, and z axes of the current matrix.
+Scales this matrix object along the x, y, and z axes.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
-  | x | number | No | 1 | Scaling multiple of the x-axis. |
-  | y | number | No | 1 | Scaling multiple of the y-axis. |
-  | z | number | No | 1 | Scaling multiple of the z-axis. |
+  | x | number | No | 1 | Scaling multiple along the x-axis. |
+  | y | number | No | 1 | Scaling multiple along the y-axis. |
+  | z | number | No | 1 | Scaling multiple along the z-axis. |
   | centerX | number | No | 0 | X coordinate of the center point. |
   | centerY | number | No | 0 | Y coordinate of the center point. |
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
   | Object | Matrix object after the scaling effect is added. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
+    private matrix1 = matrix4.identity().scale({x:2, y:3, z:4, centerX:50, centerY:50})
     build() {
       Column() { 
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -294,11 +294,11 @@ Matrix scaling function, which is used to add the scaling effect to the x, y, an
 rotate({x?: number, y?: number, z?: number, angle?: number, centerX?: Length, centerY?: Length}): Object
 
 
-Matrix rotation function, which is used to add the rotation effect to the x, y, and z axes of the current matrix.
+Rotates this matrix object along x, y, and z axes.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | x | number | No | 1 | X coordinate of the rotation axis vector. |
   | y | number | No | 1 | Y coordinate of the rotation axis vector. |
@@ -309,18 +309,18 @@ Matrix rotation function, which is used to add the rotation effect to the x, y, 
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
   | Object | Matrix object after the rotation effect is added. |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
+    private matrix1 = matrix4.identity().rotate({x:1, y:1, z:2, angle:30})
     build() {
       Column() {
         Image($r("app.media.bg1")).transform(this.matrix1)
@@ -339,30 +339,30 @@ Matrix rotation function, which is used to add the rotation effect to the x, y, 
 transformPoint(point: Point): Point
 
 
-Matrix point transformation function, which is used to apply the current transformation effect to a coordinate point.
+Applies this transformation effect to a coordinate point.
 
 
 - Parameters
-    | Name | Type | Mandatory | Default Value | Description |
+  | Name | Type | Mandatory | Default Value | Description |
   | -------- | -------- | -------- | -------- | -------- |
   | point | Point | Yes | - | Point to be transformed. |
 
 
 - Return value
-    | Type | Description |
+  | Type | Description |
   | -------- | -------- |
   | Point | Point object after matrix transformation |
 
 - Example
   
-  ```
-  import Matrix4 from '@ohos.matrix4'
+  ```ts
+  import matrix4 from '@ohos.matrix4'
   import prompt from '@system.prompt'
   
   @Entry
   @Component
   struct Test {
-    private matrix1 = Matrix4.identity().transformPoint([100, 10])
+    private matrix1 = matrix4.identity().transformPoint([100, 10])
     build() {
       Column() {
        Button("get Point")
