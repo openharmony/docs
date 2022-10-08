@@ -557,7 +557,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrestore9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
 >
 > 从 API version 7开始支持。
 
