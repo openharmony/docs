@@ -10,11 +10,11 @@
 
 | 名称                                       | 支持冒泡 | 功能描述                                     |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#DragEvent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#DragItemInfo说明) | 否    | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按150毫秒(ms)可触发拖拽事件。优先级：长按手势配置时间小于等于150毫秒(ms)时，长按手势优先触发，否则拖拽事件优先触发。 |
-| onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#DragEvent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#DragEvent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#DragEvent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#DragEvent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。 |
+| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明) | 否    | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>返回值：当前跟手效果所拖拽的对象，用于显示拖拽时的提示组件。<br/>长按150毫秒(ms)可触发拖拽事件。优先级：长按手势配置时间小于等于150毫秒(ms)时，长按手势优先触发，否则拖拽事件优先触发。 |
+| onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
+| onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
+| onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。<br/>当监听了onDrop事件时，此事件才有效。 |
+| onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent对象说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否    | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见extraParams说明。 |
 
 ## DragItemInfo说明
 
@@ -25,11 +25,11 @@
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
 
-## extraParam说明
+## extraParams说明
 
   用于返回组件在拖拽中需要用到的额外信息。
 
-  extraParam是Json对象转换的string字符串，可以通过Json.parse转换的Json对象获取如下属性。
+  extraParams是Json对象转换的string字符串，可以通过Json.parse转换的Json对象获取如下属性。
 
 | 名称          | 类型   | 描述                                       |
 | ------------- | ------ | ---------------------------------------- |
