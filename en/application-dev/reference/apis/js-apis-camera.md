@@ -812,7 +812,7 @@ Obtains the zoom ratio range. This API uses an asynchronous callback to return t
 
 | Name    | Type                          | Mandatory| Description                    |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback<Array<number\>\> | Yes  | Callback used to return an array containing the minimum and maximum zoom ratios.|
 
 **Example**
 
@@ -838,7 +838,7 @@ Obtains the zoom ratio range. This API uses a promise to return the result.
 
 | Type                    | Description                                       |
 | ------------------------ | ------------------------------------------- |
-| Promise<Array<number\>\> | Promise used to return the zoom ratio range.|
+| Promise<Array<number\>\> | Promise used to return an array containing the minimum and maximum zoom ratios.|
 
 **Example**
 

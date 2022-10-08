@@ -9,8 +9,8 @@
 
 | 名称                | 参数                                                         | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| PageTransitionEnter | {<br/>type: RouteType,<br/>duration: number,<br/>curve: Curve&nbsp;\|&nbsp;Curves,<br>delay: number<br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
-| PageTransitionExit  | {<br/>type: RouteType,<br/>duration: number,<br/>curve: Curve&nbsp;\|&nbsp;Curves,<br/>delay: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，有效值参见[Curve](ts-animatorproperty.md)&nbsp;。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
+| PageTransitionEnter | {<br/>type: RouteType,<br/>duration: number,<br/>curve: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br>delay: number<br/>} | 设置当前页面的自定义入场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播。<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线。string类型的取值支持"ease"、"ease-in"、"ease-out"、"ease-in-out"、"extreme-deceleration"、"fast-out-linear-in"、"fast-out-slow-in"、"friction"、"linear"、"linear-out-slow-in"、"rhythm"、"sharp"、"smooth"。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
+| PageTransitionExit  | {<br/>type: RouteType,<br/>duration: number,<br/>curve: [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;string,<br/>delay: number<br/>} | 设置当前页面的自定义退场动效。<br/>-&nbsp;type：不配置时表明pop为push时效果的逆播<br/>-&nbsp;duration：动画的时长，单位为毫秒。<br/>-&nbsp;curve：动画曲线，string类型取值与PageTransitionEnter相同。<br/>&nbsp;默认值：Curve.Linear<br/>-&nbsp;delay：动画延迟时长，单位为毫秒，默认不延迟播放。 |
 
 ## RouteType枚举说明
 

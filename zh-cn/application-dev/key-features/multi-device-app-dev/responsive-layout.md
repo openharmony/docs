@@ -45,7 +45,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/stage-ability.md)生命周期回调中，获取并记录[窗口](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)对象。
+1. 在Ability的[onWindowStageCreate](../../ability/stage-ability.md)生命周期回调中，获取并记录[窗口](../../reference/apis/js-apis-window.md)对象。
    
    ```
    // MainAbility.ts
@@ -126,11 +126,11 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ui-ts-layout-mediaquery.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/ui-ts-layout-mediaquery.md)的相关介绍了解更详细的用法。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-mediaquery.md)和[css媒体查询](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
+> 类Web开发范式，支持在js文件和css文件中使用媒体查询，请查看[js媒体查询](../../reference/apis/js-apis-mediaquery.md)和[css媒体查询](../../reference/arkui-js/js-components-common-mediaquery.md)了解详细用法。
 
 
 **示例：**
@@ -276,7 +276,7 @@ struct MediaQuerySample {
 | ![zh-cn_image_0000001336486244](figures/zh-cn_image_0000001336486244.jpg) | ![zh-cn_image_0000001386646685](figures/zh-cn_image_0000001386646685.jpg) | 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - ArkUI在API 9对栅格组件做了重构，推出了新的栅格组件[GridRow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridrow.md)和[GridCol](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridcol.md)，同时原有的[GridContainer组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-gridcontainer.md)及[栅格设置](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-grid.md)已经废弃。
+> - ArkUI在API 9对栅格组件做了重构，推出了新的栅格组件[GridRow](../../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../../reference/arkui-ts/ts-container-gridcol.md)，同时原有的[GridContainer组件](../../reference/arkui-ts/ts-container-gridcontainer.md)及[栅格设置](../../reference/arkui-ts/ts-universal-attributes-grid.md)已经废弃。
 > 
 > - 本文中提到的栅格组件，如无特别说明，都是指GridRow和GridCol组件。
 
@@ -383,7 +383,7 @@ struct GridRowSample2 {
 栅格组件columns默认为12列，gutter默认为0，同时支持开发者根据实际需要定义不同断点下的columns数量以及gutter长度。特别的，在栅格组件实际使用过程中，常常会发生多个元素占据的列数相加超过总列数而折行的场景。栅格组件还允许开发者分别定义水平方向的gutter（相邻两列之间的间距）和垂直方向的gutter（折行时相邻两行之间的间距）。
 
 
-  考虑到[组件通用属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-size.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
+  考虑到[组件通用属性](../../reference/arkui-ts/ts-universal-attributes-size.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
 - margin区域在栅格组件的边界外，padding区域在栅格组件的边界内。
 
 - 栅格组件的backgroundColor会影响padding区域，但不会影响margin区域。

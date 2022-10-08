@@ -80,7 +80,7 @@ background: repeating-linear-gradient(direction/angle, color, color, ...);
 
      ```css
        /* 从左向右重复渐变，重复渐变区域30px（60-30）透明度0.5 */
-       background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30px,rgba(0, 0, 255, .5) 60px);
+       background: repeating-linear-gradient(to right, rgba(255, 255, 0, 1) 30vp,rgba(0, 0, 255, .5) 60vp);
      ```
 
     ![444](figures/444.PNG)

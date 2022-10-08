@@ -18,11 +18,11 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
   | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br/>\|&nbsp;[LongPressGesture](ts-basic-gestures-longpressgesture.md)<br/>\|&nbsp;[PanGesture](ts-basic-gestures-pangesture.md)<br/>\|&nbsp;[PinchGesture](ts-basic-gestures-pinchgesture.md)<br/>\|&nbsp;[RotationGesture](ts-basic-gestures-rotationgesture.md) | 是 | - | 可变长参数，1个或者多个基础手势类型，这些手势会被组合识别。 |
 
 ## GestureMode枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | Sequence | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。当有一个手势识别失败时，所有手势识别失败。 |
-  | Parallel | 并发识别，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。 |
-  | Exclusive | 互斥识别，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。 |
+| 名称 | 描述 |
+| -------- | -------- |
+| Sequence | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。当有一个手势识别失败时，所有手势识别失败。 |
+| Parallel | 并发识别，注册的手势同时识别，直到所有手势识别结束，手势识别互相不影响。 |
+| Exclusive | 互斥识别，注册的手势同时识别，若有一个手势识别成功，则结束手势识别。 |
 
 
 ## 事件
@@ -94,4 +94,12 @@ struct GestureGroupExample {
 }
 ```
 
-![zh-cn_image_0000001174104384](figures/zh-cn_image_0000001174104384.gif)
+示意图：
+
+按顺序首先触发长按事件：
+
+![zh-cn_image_0000001174104384](figures/zh-cn_image_0000001174104384.png)
+
+按顺序首先触发长按事件，长按事件识别结束之后，其次触发拖动事件，向右下方拖动：
+
+ ![zh-cn_image1_0000001174104384](figures/zh-cn_image1_0000001174104384.png) 

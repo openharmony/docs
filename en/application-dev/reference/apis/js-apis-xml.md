@@ -339,8 +339,8 @@ let strXml =
 let arrayBuffer = new ArrayBuffer(strXml.length);
 let bufView = new Uint8Array(arrayBuffer);
 let strLen = strXml.length;
-for (var i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);
+for (var tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
 }
 let that = new xml.XmlPullParser(arrayBuffer);
 let arrTag = {};

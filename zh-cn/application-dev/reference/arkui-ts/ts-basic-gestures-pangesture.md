@@ -1,3 +1,5 @@
+
+
 # PanGesture
 
 用于触发拖动手势事件，滑动的最小距离为5vp时拖动手势识别成功。
@@ -118,4 +120,12 @@ struct PanGestureExample {
 }
 ```
 
-![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.gif)
+示意图：
+
+向左拖动：
+
+![zh-cn_image_0000001174264374](figures/zh-cn_image_0000001174264374.png) 
+
+点击按钮修改PanGesture触发条件，双指向左下方拖动：
+
+ ![zh-cn_image1_0000001174264374](figures/zh-cn_image1_0000001174264374.png) 
