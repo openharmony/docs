@@ -256,8 +256,6 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
-
 **需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
@@ -290,8 +288,6 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
-
 **需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
@@ -321,8 +317,6 @@ vibrator.vibrate(1000,function(error){
 vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 按照预置振动效果触发马达振动。
-
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -357,8 +351,6 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
-
 **需要权限**：ohos.permission.VIBRATE
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
@@ -387,8 +379,6 @@ vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
 stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
-
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1) 代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -421,9 +411,7 @@ vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
 
 stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
-按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
-
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9) 代替。
+按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。 
 
 **需要权限**：ohos.permission.VIBRATE
 
