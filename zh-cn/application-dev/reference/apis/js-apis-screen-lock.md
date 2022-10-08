@@ -21,9 +21,9 @@ isScreenLocked(callback: AsyncCallback&lt;boolean&gt;): void
 判断屏幕是否锁屏，使用callback作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.isScreenLockedSync<sup>9+</sup>](#isScreenLockedSync9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.isLocked<sup>9+</sup>](#isLocked9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -53,9 +53,9 @@ isScreenLocked(): Promise&lt;boolean&gt;
 判断屏幕是否锁屏，使用Promise作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.isScreenLockedSync<sup>9+</sup>](#isScreenLockedSync9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.isLocked<sup>9+</sup>](#isLocked9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -108,9 +108,9 @@ isSecureMode(callback: AsyncCallback&lt;boolean&gt;): void
 判断设备是否处于安全模式下，使用callback作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.isSecureModeSync<sup>9+</sup>](#isSecureModeSync9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.isSecure<sup>9+</sup>](#isSecure9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -140,9 +140,9 @@ isSecureMode(): Promise&lt;boolean&gt;
 判断设备是否处于安全模式下，使用Promise作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.isSecureModeSync<sup>9+</sup>](#isSecureModeSync9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.isSecure<sup>9+</sup>](#isSecure9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -195,9 +195,9 @@ unlockScreen(callback: AsyncCallback&lt;void&gt;): void
 解锁屏幕，使用callback作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.unlockScreenWithException<sup>9+</sup>](#unlockScreenWithException9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.unlock<sup>9+</sup>](#unlock9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
@@ -227,9 +227,9 @@ unlockScreen(): Promise&lt;void&gt;
 解锁屏幕，使用Promise作为异步方法。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[screenlock.unlockScreenWithException<sup>9+</sup>](#unlockScreenWithException9)代替。
+> 从API version 9开始废弃。建议使用[screenlock.unlock<sup>9+</sup>](#unlock9)代替。
 >
-> 从 API version 7开始支持
+> 从 API version 7开始支持。
 
 **系统能力**: SystemCapability.MiscServices.ScreenLock
 
