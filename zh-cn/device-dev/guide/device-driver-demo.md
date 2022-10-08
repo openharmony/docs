@@ -430,8 +430,8 @@ HDF_INIT(g_sampleI2cDriverEntry);
 
 2. 编译及烧录。
 
-   - 安装包方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-ide-standard-running-hi3516-build.md)和[烧录](../quick-start/quickstart-ide-standard-running-hi3516-burning.md)。
+   - 安装包方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-appendix-hi3516-pkg.md#编译)和[烧录](../quick-start/quickstart-appendix-hi3516-pkg.md#烧录)。
 
-   - IDE方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-standard-running-hi3516-build.md)和[烧录](../quick-start/quickstart-standard-running-hi3516-burning.md)。
+   - IDE方式具体操作请参考标准系统快速入门[编译](../quick-start/quickstart-appendix-hi3516-ide.md#编译)和[烧录](../quick-start/quickstart-appendix-hi3516-ide.md#烧录)。
 
 
