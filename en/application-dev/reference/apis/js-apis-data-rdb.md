@@ -29,7 +29,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or function.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 | callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes| Callback invoked to return the RDB store obtained.|
@@ -37,8 +37,13 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 **Example**
 
 ```js
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db"}
-data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
+data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
     if (err) {
         console.info("Failed to get RdbStore, err: " + err)
         return
@@ -59,7 +64,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or function.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
 | config | [StoreConfig](#storeconfig) | Yes| Configuration of the RDB store.|
 | version | number | Yes| RDB store version.|
 
@@ -72,8 +77,13 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 **Example**
 
 ```js
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// Call getRdbStore.
 const STORE_CONFIG = { name: "RdbTest.db" }
-let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
+let promise = data_rdb.getRdbStore(context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
     console.log("Got RdbStore successfully.")
 }).catch((err) => {
@@ -92,13 +102,18 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or function.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
 | name | string | Yes| Name of the RDB store to delete.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
 
 **Example**
 ```js
-data_rdb.deleteRdbStore(this.context, "RdbTest.db", function (err, rdbStore) {
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// Call deleteRdbStore.
+data_rdb.deleteRdbStore(context, "RdbTest.db", function (err) {
     if (err) {
         console.info("Failed to delete RdbStore, err: " + err)
         return
@@ -118,7 +133,7 @@ Deletes an RDB store. This API uses a promise to return the result.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| context | Context | Yes| Context of the application or function.<br>See [Context](js-apis-Context.md) for versions earlier than API version 9.<br>See [Context](js-apis-ability-context.md) for API version 9 or later.|
+| context | [Context](js-apis-Context.md) | Yes| Application context.|
 | name | string | Yes| Name of the RDB store to delete.|
 
 **Return value**
@@ -128,7 +143,12 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 **Example**
 ```js
-let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility'
+var context = featureAbility.getContext()
+
+// Call deleteRdbStore.
+let promise = data_rdb.deleteRdbStore(context, "RdbTest.db")
 promise.then(()=>{
     console.log("Deleted RdbStore successfully.")
 }).catch((err) => {
@@ -166,7 +186,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 
-Connects to the specified remote devices on the network during distributed database synchronization.
+Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -191,7 +211,7 @@ predicates.inDevices(['12345678abcde'])
 inAllDevices(): RdbPredicates
 
 
-Connects to all remote devices on the network during distributed database synchronization.
+Sets an **RdbPredicates** to specify all remote devices on the network to connect during distributed database synchronization.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -780,14 +800,7 @@ Sets an **RdbPredicates** to filter out duplicate records.
 **Example**
 ```js
 let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
-predicates.equalTo("NAME", "Rose").distinct("NAME")
-let promise = rdbStore.query(predicates, ["NAME"])
-promise.then((resultSet) => {
-    console.log("resultSet column names:" + resultSet.columnNames)
-    console.log("resultSet column count:" + resultSet.columnCount)
-}).catch((err) => {
-    console.log("query err.")
-})
+predicates.equalTo("NAME", "Rose").distinct()
 ```
 
 
@@ -1434,7 +1447,7 @@ try {
 
 setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a list of distributed tables. This API uses an asynchronous callback to return the result.
+Sets distributed tables. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1460,7 +1473,7 @@ rdbStore.setDistributedTables(["EMPLOYEE"], function (err) {
 
  setDistributedTables(tables: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Sets a list of distributed tables. This API uses a promise to return the result.
+Sets distributed tables. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
