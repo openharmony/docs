@@ -12,7 +12,7 @@
 无
 
 
-## 接口说明
+## 接口
 
 Progress(options: {value: number, total?: number, type?: ProgressType})
 
