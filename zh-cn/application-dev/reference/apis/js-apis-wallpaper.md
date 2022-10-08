@@ -97,7 +97,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 
 ## wallpaper.getColorsSync<sup>9+</sup>
 
-getColorsSync(wallpaperType: WallpaperType): Arrayy&lt;RgbaColory&lt;;
+getColorsSync(wallpaperType: WallpaperType): Arrayy&lt;RgbaColory&gt;;
 
 获取指定类型壁纸的主要颜色信息。
 
@@ -215,6 +215,7 @@ getIdSync(wallpaperType: WallpaperType): number;
 
   ```js
   var id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
+  ```
 
 
 ## wallpaper.getMinHeight
@@ -556,7 +557,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrecovery9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrestore9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -591,7 +592,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrecovery9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.restore<sup>9+</sup>](#wallpaperrestore9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -622,9 +623,9 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
   ```
 
 
-## wallpaper.recovery<sup>9+</sup>
+## wallpaper.restore<sup>9+</sup>
 
-recovery(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+restore(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
@@ -642,19 +643,19 @@ recovery(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
   
   ```js
-  wallpaper.recovery(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
+  wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error, data) => {
       if (error) {
-          console.error(`failed to recovery because: ` + JSON.stringify(error));
+          console.error(`failed to restore because: ` + JSON.stringify(error));
           return;
       }
-      console.log(`success to recovery.`);
+      console.log(`success to restore.`);
   });
   ```
 
 
-## wallpaper.recovery<sup>9+</sup>
+## wallpaper.restore<sup>9+</sup>
 
-recovery(wallpaperType: WallpaperType): Promise&lt;void&gt;
+restore(wallpaperType: WallpaperType): Promise&lt;void&gt;
 
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
@@ -677,10 +678,10 @@ recovery(wallpaperType: WallpaperType): Promise&lt;void&gt;
 **示例：**
   
   ```js
-  wallpaper.recovery(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to recovery.`);
+  wallpaper.restore(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
+      console.log(`success to restore.`);
   }).catch((error) => {
-      console.error(`failed to recovery because: ` + JSON.stringify(error));
+      console.error(`failed to restore because: ` + JSON.stringify(error));
   });
   ```
 
