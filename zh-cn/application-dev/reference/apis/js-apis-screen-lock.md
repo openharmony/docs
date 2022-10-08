@@ -93,11 +93,7 @@ isLocked(): boolean;
 **示例**：
 
   ```js
-  screenlock.isLocked().then((data) => {
-      console.log('isLocked success: data -> ${JSON.stringify(data)}');
-  }).catch((err) => {
-      console.error('isLocked fail：err -> ${JSON.stringify(err)}');
-  });
+  var isLocked = screenlock.isLocked();
   ```
 
 
@@ -180,11 +176,7 @@ isSecure(): boolean;
 **示例**：
 
   ```js
-  screenlock.isSecure().then((data) => {
-      console.log('isSecure success: data -> ${JSON.stringify(data)}');
-  }).catch((err) => {
-      console.error('isSecure fail：err -> ${JSON.stringify(err)}');
-  });
+  var isSecure = screenlock.isSecure();
   ```
 
 

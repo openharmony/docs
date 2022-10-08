@@ -118,11 +118,7 @@ getColorsSync(wallpaperType: WallpaperType): Arrayy&lt;RgbaColory&lt;;
 **示例**：
 
   ```js
-  wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log('success to getColors.');
-  }).catch((err) => {
-      console.error('failed to getColors because: ' + JSON.stringify(error));
-  });
+  var colors = wallpaper.getColorsSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
   ```
 
 
@@ -218,11 +214,7 @@ getIdSync(wallpaperType: WallpaperType): number;
 **示例**：
 
   ```js
-  wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log('success to getIdSync: ' +  JSON.stringify(data));
-  }).catch((err) => {
-      console.error('failed to getIdSync because: ' + JSON.stringify(error));
-  });
+  var id = wallpaper.getIdSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
 
 
 ## wallpaper.getMinHeight
@@ -304,11 +296,7 @@ getMinHeightSync(): number
 **示例：**
   
   ```js
-  wallpaper.getMinHeightSync().then((data) => {
-      console.log(`success to getMinHeightSync: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getMinHeightSync because: ` + JSON.stringify(error));
-  });
+  var minHeight = wallpaper.getMinHeightSync();
   ```
 
 
@@ -391,11 +379,7 @@ getMinWidthSync(): number
 **示例：**
   
   ```js
-  wallpaper.getMinWidthSync().then((data) => {
-      console.log(`success to getMinWidthSync: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getMinWidthSync because: ` + JSON.stringify(error));
-  });
+  var minWidth = wallpaper.getMinWidthSync();
   ```
 
 
@@ -478,11 +462,7 @@ isChangeAllowed(): boolean
 **示例：**
   
   ```js
-  wallpaper.isChangeAllowed().then((data) => {
-      console.log(`success to isChangeAllowed: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to isChangeAllowed because: ` + JSON.stringify(error));
-  });
+  var isChangeAllowed = wallpaper.isChangeAllowed();
   ```
 
 
@@ -565,11 +545,7 @@ isUserChangeAllowed(): boolean
 **示例：**
   
   ```js
-  wallpaper.isUserChangeAllowed().then((data) => {
-      console.log(`success to isUserChangeAllowed: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to isUserChangeAllowed because: ` + JSON.stringify(error));
-  });
+  var isUserChangeAllowed = wallpaper.isUserChangeAllowed();
   ```
 
 
@@ -1034,11 +1010,7 @@ getFileSync(wallpaperType: WallpaperType): number;
 **示例：**
   
   ```js
-  wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data) => {
-      console.log(`success to getFileSync: ` + JSON.stringify(data));
-  }).catch((error) => {
-      console.error(`failed to getFileSync because: ` + JSON.stringify(error));
-  });
+  var file = wallpaper.getFileSync(wallpaper.WallpaperType.WALLPAPER_SYSTEM);
   ```
 
 
