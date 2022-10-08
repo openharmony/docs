@@ -151,19 +151,20 @@ retCode = ProcessEncode(dataInfo, arg1, arg2, arg3) // The number of parameters 
 retCode = ProcessDecode(dataInfo, arg1, arg2, arg3) // The number of parameters can be flexible.
 ```
 
-Note:
+> **NOTE**
+> 
 
-- The sequence of parameters must be the same during encoding and decoding.
+> - The sequence of parameters must be the same during encoding and decoding.
 
-- After encoding, the memory used by **dataInfo** needs to be manually released by the caller.
+> - After encoding, the memory used by **dataInfo** needs to be manually released by the caller.
 
-- The memory is managed and released separately on the server and the client.
+> - The memory is managed and released separately on the server and the client.
 
-- If a pointer contains the shared memory, no extra processing is required.
+> - If a pointer contains the shared memory, no extra processing is required.
 
-- If other types of pointers are used, you need to dereference them before using **ProcessEncode** or **ProcessDecode**.
+> - If other types of pointers are used, you need to dereference them before using **ProcessEncode** or **ProcessDecode**.
 
-- The codec module has not been adapted to the **class** data type and therefore it is not recommended.
+> - The codec module has not been adapted to the **class** data type and therefore it is not recommended.
 
 
 #### Rule: Release the memory used by the encoded or decoded parameters in the SDK. Otherwise, a memory leakage occurs.
@@ -459,11 +460,12 @@ The preceding code implements the **IPlugin** APIs provided by the server. The f
 | AieClientGetOption | GetOption | Obtains algorithm-related configuration items. For KWS, this API can obtain the input and output scale of the KWS model. The input scale is the MFCC feature (fixed value: **4000**) required by the KWS model, and the output scale is the confidence (fixed value: **2**) of the result.|
 | AieClientRelease | Release | Releases the algorithm model. For KWS, this API releases the specified algorithm model and clears the dynamic memory in the feature processor.|
 
-   Note:
+> **NOTE**
+> 
 
-   1. The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
+> - The **AieClientInit** and **AieClientDestroy** APIs are used to connect to and disconnect from the server, respectively. They are not called in the plug-in algorithm and therefore do not need to be defined in the plug-in.
 
-   2. The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
+> - The KWS plug-in needs to use the **PLUGIN\_INTERFACE\_IMPL** statement to expose the function pointer. Otherwise, the plug-in cannot be properly loaded.
 
 
    ```
