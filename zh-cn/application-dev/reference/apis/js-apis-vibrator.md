@@ -49,7 +49,7 @@ try {
         }
     });
 } catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
 ```
 
@@ -92,7 +92,7 @@ try {
         console.log("error.code" + error.code + "error.message" + error.message);
     })
 } catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
@@ -125,7 +125,7 @@ try {
         }
     })
 } catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
@@ -161,7 +161,7 @@ try {
         console.log("error.code" + error.code + "error.message" + error.message);
     });
 } catch(err) {
-      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+      console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
   ```
 
