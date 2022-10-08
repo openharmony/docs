@@ -6,6 +6,7 @@ The Distributed Data Service (DDS) implements synchronization of application dat
 
 
 ## Available APIs
+
 For details about the APIs related to distributed data, see [Distributed Data Management](../reference/apis/js-apis-distributed-data.md).
 
 
@@ -13,13 +14,13 @@ For details about the APIs related to distributed data, see [Distributed Data Ma
 
 | API                                                    | Description                                           |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| createKVManager(config:KVManagerConfig,callback:AsyncCallback&lt;KVManager&gt;):void<br>createKVManager(config:KVManagerConfig):Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
-| getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options,callback:AsyncCallback&lt;T&gt;):void<br>getKVStore&lt;TextendsKVStore&gt;(storeId:string,options:Options):Promise&lt;T&gt; | Obtains a KV store with the specified **Options** and **storeId**.|
-| put(key:string,value:Uint8Array\|string\|number\|boolean,callback:AsyncCallback&lt;void&gt;):void<br>put(key:string,value:Uint8Array\|string\|number\|boolean):Promise&lt;void> | Inserts and updates data.                               |
-| delete(key:string,callback:AsyncCallback&lt;void&gt;):void<br>delete(key:string):Promise&lt;void> | Deletes data.                                     |
-| get(key:string,callback:AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;):void<br>get(key:string):Promise&lt;Uint8Array\|string\|boolean\|number> | Queries data.                                     |
-| on(event:'dataChange',type:SubscribeType,observer:Callback&lt;ChangeNotification&gt;):void<br>on(event:'syncComplete',syncCallback:Callback&lt;Array&lt;[string,number]&gt;&gt;):void | Subscribes to data changes in the KV store.                       |
-| sync(deviceIdList:string[],mode:SyncMode,allowedDelayMs?:number):void | Triggers database synchronization in manual mode.                 |
+| createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt;): void<br>createKVManager(config: KVManagerConfig): Promise&lt;KVManager> | Creates a **KVManager** object for database management.|
+| getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void<br>getKVStore&lt;TextendsKVStore&gt;(storeId: string, options: Options): Promise&lt;T&gt; | Obtains a KV store with the specified **Options** and **storeId**.|
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void<br>put(key: string, value: Uint8Array\|string\|number\|boolean): Promise&lt;void> | Inserts and updates data.                               |
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void<br>delete(key: string): Promise&lt;void> | Deletes data.                                     |
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void<br>get(key: string): Promise&lt;Uint8Array\|string\|boolean\|number> | Queries data.                                     |
+| on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;ChangeNotification&gt;): void<br>on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string,number]&gt;&gt;): void | Subscribes to data changes in the KV store.                       |
+| sync(deviceIdList: string[], mode: SyncMode, allowedDelayMs?: number): void | Triggers database synchronization in manual mode.                 |
 
 
 
@@ -29,19 +30,50 @@ For details about the APIs related to distributed data, see [Distributed Data Ma
 The following uses a single KV store as an example to describe the development procedure.
 
 1. Import the distributed data module.
+
    ```js
    import distributedData from '@ohos.data.distributedData';
    ```
+2. Apply for the required permission if data synchronization is required.
 
-2. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
-   
-   (1) Create a **KvManagerConfig** object based on the application context.
+   You need to configure the request permission in the **config.json** file. The sample code is as follows:
 
-   (2) Create a **KvManager** instance.
-   
+    ```json
+     {
+       "module": {
+           "reqPermissions": [
+               {
+                  "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+               }
+           ]
+       }
+     }
+    ```
+   This permission must also be granted by the user when the application is started for the first time. The sample code is as follows:
+
+    ```js
+    import featureAbility from '@ohos.ability.featureAbility';
+	
+    function grantPermission() {
+        console.info('grantPermission');
+        let context = featureAbility.getContext();
+        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
+            console.info(`result.requestCode=${result.requestCode}`)
+    
+        })
+        console.info('end grantPermission');
+    }
+    
+    grantPermission();
+    ```
+
+3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
+
+   1. Create a **kvManagerConfig** object based on the application context.
+   2. Create a **kvManager** instance.
+
    The sample code is as follows:
-   
-   ```
+   ```js
    let kvManager;
    try {
        const kvManagerConfig = {
@@ -63,13 +95,11 @@ The following uses a single KV store as an example to describe the development p
        console.log("An unexpected error occurred. Error:" + e);
    }
    ```
-      
-   
-3. Create and obtain a single KV store.
 
-   (1) Declare the ID of the single KV store to create.
+4. Create and obtain a single KV store.
 
-   (2) Create a single KV store. You are advised to disable automatic synchronization (**autoSync:false**) and call **sync** when a synchronization is required.
+   1. Declare the ID of the single KV store to create.
+   2. Create a single KV store. You are advised to disable automatic synchronization (`autoSync:false`) and call `sync` when a synchronization is required.
 
    The sample code is as follows:
    ```js
@@ -99,8 +129,9 @@ The following uses a single KV store as an example to describe the development p
    > **NOTE**
    >
    > For data synchronization between networked devices, you are advised to open the distributed KV store during application startup to obtain the database handle. With this database handle (`kvStore` in this example), you can perform operations, such as inserting data into the KV store, without creating the KV store repeatedly during the lifecycle of the handle.
+   
+5. Subscribe to changes in the distributed data.
 
-4. Subscribe to changes in the distributed data.<br/>
    The following is the sample code for subscribing to the data changes of a single KV store:
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
@@ -108,11 +139,10 @@ The following uses a single KV store as an example to describe the development p
    });
    ```
 
-5. Write data to the single KV store.
+6. Write data to the single KV store.
 
-   (1) Construct the key and value to be written into the single KV store.
-
-   (2) Write key-value pairs into the single KV store.
+   1. Construct the `Key` and `Value` to be written into the single KV store.
+   2. Write key-value pairs into the single KV store.
 
    The following is the sample code for writing key-value pairs of the string type into the single KV store:
 
@@ -132,11 +162,10 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-6. Query data in the single KV store.
+7. Query data in the single KV store.
 
-   (1) Construct the key to be queried from the single KV store.
-
-   (2) Query data from the single KV store.
+   1. Construct the `Key` to be queried from the single KV store.
+   2. Query data from the single KV store.
 
    The following is the sample code for querying data of the string type from the single KV store:
    ```js
@@ -158,7 +187,8 @@ The following uses a single KV store as an example to describe the development p
    }
    ```
 
-7. Synchronize data to other devices.<br/>
+8. Synchronize data to other devices.
+
    Select the devices in the same network and the synchronization mode to synchronize data.
 
    > **NOTE**
