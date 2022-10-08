@@ -824,11 +824,8 @@ This is a system API.
 **Example**
 
 ```js
-let promise = call.reject(1);
-promise.then(data => {
-    console.log(`reject success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+call.reject(1, (error, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2810,10 +2807,11 @@ This is a system API.
 
 | Name                | Value  | Description        |
 | -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | Headset device.    |
-| DEVICE_SPEAKER       | 1    | Speaker device.|
-| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
+| DEVICE_EARPIECE      | 0    | Earpiece.    |
+| DEVICE_SPEAKER       | 1    | Speaker.|
+| DEVICE_WIRED_HEADSET | 2    | Wired headset.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
+| DEVICE_MIC           | 4    | Microphone. |
 
 ## CallRestrictionType<sup>8+</sup>
 

@@ -19,7 +19,7 @@
 | [width_](_camera.md#width-12) | 图像宽度。 | 
 | [height_](_camera.md#height-12) | 图像高度。 | 
 | [format_](_camera.md#format) | 图像格式。 | 
-| [datasapce_](_camera.md#dataspace) | 图像颜色空间。 | 
+| [dataspace_](_camera.md#dataspace) | 图像颜色空间。 | 
 | [intent_](_camera.md#intent) | 流类型。 | 
 | [tunneledMode_](_camera.md#tunneledmode) | 隧道模式，值为true时开启，false关闭。 | 
 | [bufferQueue_](_camera.md#bufferqueue) | 图形提供的生产者句柄。 | 

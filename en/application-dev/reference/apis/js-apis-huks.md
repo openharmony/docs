@@ -59,8 +59,8 @@ Enumerates the error codes.
 | HUKS_ERROR_NEW_ROOT_KEY_MATERIAL_EXIST | -36   |New root key material exists.|
 | HUKS_ERROR_UPDATE_ROOT_KEY_MATERIAL_FAIL | -37   |Failed to update the root key material.|
 | HUKS_ERROR_VERIFICATION_FAILED | -38   |Failed to verify the certificate chain.|
-| HUKS_ERROR_GET_USERIAM_SECINFO_FAILED<sup>9+</sup> | -40 |Failed to obtain the security attribute information of the current user.|
-| HUKS_ERROR_GET_USERIAM_AUTHINFO_FAILED<sup>9+</sup> | -41 |Failed to obtain the authentication information of the current user.|
+| HUKS_ERROR_GET_USERIAM_SECINFO_FAILED<sup>9+</sup> | -40 |Failed to obtain the security attribute information of the user.|
+| HUKS_ERROR_GET_USERIAM_AUTHINFO_FAILED<sup>9+</sup> | -41 |Failed to obtain the authentication information of the user.|
 | HUKS_ERROR_USER_AUTH_TYPE_NOT_SUPPORT<sup>9+</sup> | -42 |The access control of the current authentication type is not supported.|
 | HUKS_ERROR_KEY_AUTH_FAILED<sup>9+</sup> | -43 |The access control authentication has failed.|
 | HUKS_ERROR_DEVICE_NO_CREDENTIAL<sup>9+</sup> | -44 |No credential has been enrolled for the device.|
@@ -154,7 +154,7 @@ Enumerates the cipher modes.
 
 | Name         | Value  | Description                 |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | Electronic Code bLock (ECB) mode|
+| HUKS_MODE_ECB | 1    | Electronic Code BLock (ECB) mode|
 | HUKS_MODE_CBC | 2    | Cipher Block Chaining (CBC) mode|
 | HUKS_MODE_CTR | 3    | Counter (CTR) mode|
 | HUKS_MODE_OFB | 4    | Output Feedback (OFB) mode|
@@ -297,7 +297,7 @@ Enumerates the user authentication types.
 
 ## HuksAuthAccessType<sup>9+</sup>
 
-Enumerates access control types.
+Enumerates the access control types.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -320,7 +320,7 @@ Enumerates the types of the challenges generated when a key is used.
 
 ## HuksChallengePosition<sup>9+</sup>
 
-Enumerates the positions of the 8-byte custom challenges.
+Enumerates the positions of the 8-byte valid value in a custom challenge generated.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -363,90 +363,90 @@ Enumerates the tags used to invoke parameters.
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name                                         | Value                                    | Description                                                  |
-| -------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
-| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                                                 |
-| HUKS_TAG_ALGORITHM                           | HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.                                                   |
-| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of a key.                                            |
-| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.                                                    |
-| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.                                            |
-| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.                                           |
-| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.                                                 |
-| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.                                                    |
-| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.                              |
-| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.                     |
-| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.                                                          |
-| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.                 |
-| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.                          |
-| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.                            |
-| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.                     |
-| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.                                         |
-| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.                                 |
-| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.                                   |
-| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.               |
-| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.                |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.                      |
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.                     |
-| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                            |
-| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                                                   |
-| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                                     |
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.                                    |
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite used when a wrapped key is imported.         |
-| HUKS_TAG_ACTIVE_DATETIME                     | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Reserved.                                                    |
-| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Reserved.                                                    |
-| HUKS_TAG_USAGE_EXPIRE_DATETIME               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Reserved.                                                    |
-| HUKS_TAG_CREATION_DATETIME                   | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Reserved.                                                    |
-| HUKS_TAG_ALL_USERS                           | ksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.                                                    |
-| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | Reserved.                                                    |
-| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.                                                    |
-| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set two of **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, and **HKS_USER_AUTH_TYPE_FACE**. |
-| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Reserved.                                                    |
-| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Reserved.                                                    |
-| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>   | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9). |
-| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup>   | HuksTagType.HUKS_TAG_TYPE_UINT \| 308    | Signature type of the key generated or imported.             |
-| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>         | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9). |
-| HUKS_TAG_CHALLENGE_POS<sup>9+</sup>          | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | Position of the 8-bypte custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9). |
-| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.                     |
+| Name                                        | Value                                      | Description                                  |
+| -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
+| HUKS_TAG_INVALID                             | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | Invalid tag.                       |
+| HUKS_TAG_ALGORITHM                           | HUKS_TAG_TYPE_UINT \| 1                  | Algorithm.                       |
+| HUKS_TAG_PURPOSE                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | Purpose of a key.                   |
+| HUKS_TAG_KEY_SIZE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | Key size.                   |
+| HUKS_TAG_DIGEST                              | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | Digest algorithm.                   |
+| HUKS_TAG_PADDING                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | Padding algorithm.                   |
+| HUKS_TAG_BLOCK_MODE                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | Cipher mode.                   |
+| HUKS_TAG_KEY_TYPE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | Key type.                   |
+| HUKS_TAG_ASSOCIATED_DATA                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | Associated authentication data.           |
+| HUKS_TAG_NONCE                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | Field for key encryption and decryption.                |
+| HUKS_TAG_IV                                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | IV.                |
+| HUKS_TAG_INFO                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | Information generated during key derivation.                |
+| HUKS_TAG_SALT                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | Salt value used for key derivation.                |
+| HUKS_TAG_PWD                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | Password used for key derivation.            |
+| HUKS_TAG_ITERATION                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | Number of iterations for key derivation.            |
+| HUKS_TAG_KEY_GENERATE_TYPE                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | Key generation type.               |
+| HUKS_TAG_DERIVE_MAIN_KEY                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | Main key for key derivation.              |
+| HUKS_TAG_DERIVE_FACTOR                       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | Factor for key derivation.            |
+| HUKS_TAG_DERIVE_ALG                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | Type of the algorithm used for key derivation.            |
+| HUKS_TAG_AGREE_ALG                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | Type of the algorithm used for key agreement.            |
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | Public key alias used in key agreement.            |
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | Private key alias used in key agreement.            |
+| HUKS_TAG_AGREE_PUBLIC_KEY                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | Public key used in key agreement.                |
+| HUKS_TAG_KEY_ALIAS                           | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | Key alias.                        |
+| HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                  |
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.                    |
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite used when a wrapped key is imported.                |
+| HUKS_TAG_ACTIVE_DATETIME                     | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Reserved.                                |
+| HUKS_TAG_ORIGINATION_EXPIRE_DATETIME         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Reserved.                                |
+| HUKS_TAG_USAGE_EXPIRE_DATETIME               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Reserved.                                |
+| HUKS_TAG_CREATION_DATETIME                   | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | Reserved.                                |
+| HUKS_TAG_ALL_USERS                           | ksTagType.HUKS_TAG_TYPE_BOOL \| 301      | Reserved.                                |
+| HUKS_TAG_USER_ID                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | Reserved.                                |
+| HUKS_TAG_NO_AUTH_REQUIRED                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | Reserved.                                |
+| HUKS_TAG_USER_AUTH_TYPE                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | User authentication type. For details, see [HuksUserAuthType](#huksuserauthtype9). This parameter must be set together with [HuksAuthAccessType](#huksauthaccesstype9). You can set a maximum of two user authentication types at a time. For example, if **HuksAuthAccessType** is **HKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL**, you can set the authentication type to **HKS_USER_AUTH_TYPE_FACE**, **HKS_USER_AUTH_TYPE_FINGERPRINT**, or their combination.|
+| HUKS_TAG_AUTH_TIMEOUT                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | Reserved.                                |
+| HUKS_TAG_AUTH_TOKEN                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | Reserved.                                |
+| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 307 | Access control type. For details, see [HuksAuthAccessType](#huksauthaccesstype9). This parameter must be set together with [HuksUserAuthType](#huksuserauthtype9).|
+| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | Signature type of the key generated or imported.|
+| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).|
+| HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).|
+| HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.           |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.                      |
-| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.                                         |
-| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Device ID.                                                   |
-| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.                                  |
-| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | Device SN.                                                   |
-| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | Device IMEI.                                                 |
-| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Device MEID.                                                 |
-| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Device manufacturer.                                         |
-| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.                                                |
-| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.                           |
-| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | Device SOCID.                                                |
-| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Device UDID.                                                 |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security credential used in the attestation.                 |
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.                 |
-| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.    |
-| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.                                            |
-| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                                    |
-| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                                    |
-| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.                                                    |
-| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.                                                    |
-| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.                                             |
-| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.                                                    |
-| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.                                                    |
-| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.                                                    |
-| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.                                                    |
-| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.                                                |
-| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.                                                    |
-| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.                                                    |
-| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.                                                    |
-| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.                                                    |
-| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.                                                    |
-| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.                                                 |
-| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.                                                    |
-| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Reserved.                                                    |
-| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.                                                    |
-| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.                                                  |
-| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.                                              |
-| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.                                                    |
-| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.                                                    |
-| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.                                                    |
+| HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.                     |
+| HUKS_TAG_ATTESTATION_ID_DEVICE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | Device ID.                    |
+| HUKS_TAG_ATTESTATION_ID_PRODUCT              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | Product name of the device.                   |
+| HUKS_TAG_ATTESTATION_ID_SERIAL               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 506   | Device SN.                      |
+| HUKS_TAG_ATTESTATION_ID_IMEI                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 507   | Device IMEI.                    |
+| HUKS_TAG_ATTESTATION_ID_MEID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | Device MEID.                    |
+| HUKS_TAG_ATTESTATION_ID_MANUFACTURER         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | Device manufacturer.                    |
+| HUKS_TAG_ATTESTATION_ID_MODEL                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | Device model.                      |
+| HUKS_TAG_ATTESTATION_ID_ALIAS                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | Key alias used in the attestation.         |
+| HUKS_TAG_ATTESTATION_ID_SOCID                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | Device SOCID.                     |
+| HUKS_TAG_ATTESTATION_ID_UDID                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | Device UDID.                      |
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | Security credential used in the attestation.         |
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | Version information used in the attestation.           |
+| HUKS_TAG_IS_KEY_ALIAS                        | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | Whether to use the alias passed in during key generation.|
+| HUKS_TAG_KEY_STORAGE_FLAG                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | Key storage mode.               |
+| HUKS_TAG_IS_ALLOWED_WRAP                     | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | Reserved.                                |
+| HUKS_TAG_KEY_WRAP_TYPE                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | Reserved.                                |
+| HUKS_TAG_KEY_AUTH_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | Reserved.                                |
+| HUKS_TAG_KEY_ROLE                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | Reserved.                                |
+| HUKS_TAG_KEY_FLAG                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | Flag of the key.                   |
+| HUKS_TAG_IS_ASYNCHRONIZED                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | Reserved.                                |
+| HUKS_TAG_SECURE_KEY_ALIAS                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved.                                |
+| HUKS_TAG_SECURE_KEY_UUID                     | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved.                                |
+| HUKS_TAG_KEY_DOMAIN                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.                                |
+| HUKS_TAG_PROCESS_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name.                   |
+| HUKS_TAG_PACKAGE_NAME                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved.                                |
+| HUKS_TAG_ACCESS_TIME                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved.                                |
+| HUKS_TAG_USES_TIME                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | Reserved.                                |
+| HUKS_TAG_CRYPTO_CTX                          | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | Reserved.                                |
+| HUKS_TAG_KEY                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | Reserved.                                |
+| HUKS_TAG_KEY_VERSION                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | Key version.                   |
+| HUKS_TAG_PAYLOAD_LEN                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | Reserved.                                |
+| HUKS_TAG_AE_TAG                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | Reserved.                                |
+| HUKS_TAG_IS_KEY_HANDLE                       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | Reserved.                                |
+| HUKS_TAG_OS_VERSION                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | OS version.               |
+| HUKS_TAG_OS_PATCHLEVEL                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | OS patch level.           |
+| HUKS_TAG_SYMMETRIC_KEY_DATA                  | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | Reserved.                                |
+| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | Reserved.                                |
+| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | Reserved.                                |
 
 ## huks.generateKey
 
@@ -502,7 +502,7 @@ huks.generateKey(keyAlias, options, function (err, data){});
 
 generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Generates a key. This API uses a promise to return the result asynchronously.
+Generates a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -580,7 +580,7 @@ huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
 
 deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Deletes a key. This API uses a promise to return the result asynchronously.
+Deletes a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -700,7 +700,7 @@ huks.importKey(keyAlias, options, function (err, data){});
 
 importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Imports a key in plaintext. This API uses a promise to return the result asynchronously.
+Imports a key in plaintext. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -773,7 +773,7 @@ Obtains the certificate used to verify a key. This API uses an asynchronous call
 
 | Name          | Type                                     | Mandatory| Description                                              |
 | ---------------- | ----------------------------------------- | ---- | -------------------------------------------------- |
-| keyAlias         | string                                    | Yes  | Alias of the key. The certificate to be obtained stores the key.   |
+| keyAlias         | string                                    | Yes  | Alias of the key. The certificate to be obtained stores the key. |
 | options          | [HuksOptions](#huksoptions)               | Yes  | Parameters and data required for obtaining the certificate.     |
 | callback         | AsyncCallback\<[HuksResult](#huksresult)> | Yes  | Callback used to return the result. If the operation is successful, **HUKS_SUCCESS** will be returned. If the operation fails, an error code will be returned.|
 
@@ -796,6 +796,51 @@ function stringToUint8Array(str) {
 
 function printLog(...data) {
   console.error(data.toString());
+}
+
+async function generateKey(alias) {
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  properties[5] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+  };
+  properties[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+    value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+  };
+  properties[7] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB
+  };
+  let options = {
+    properties: properties
+  };
+
+  await huks.generateKey(alias, options).then(async (data) => {
+    console.error(`generateKey data ${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`generateKey err: " + ${JSON.stringify(err)}`);
+  });;
 }
 
 async function attestKey() {
@@ -821,7 +866,7 @@ async function attestKey() {
   let options = {
     properties: properties
   };
-  generateKey(aliasString);
+  await generateKey(aliasString);
   huks.attestKey(aliasString, options, function (err, data) {
     printLog(`key attest result : ${JSON.stringify(data)}`);
   });
@@ -870,6 +915,51 @@ function printLog(...data) {
   console.error(data.toString());
 }
 
+async function generateKey(alias) {
+  let properties = new Array();
+  properties[0] = {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_RSA
+  };
+  properties[1] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+  };
+  properties[2] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+  };
+  properties[3] = {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  };
+  properties[4] = {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  };
+  properties[5] = {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+  };
+  properties[6] = {
+    tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+    value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+  };
+  properties[7] = {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB
+  };
+  let options = {
+    properties: properties
+  };
+
+  await huks.generateKey(alias, options).then(async (data) => {
+    console.error(`generateKey data ${JSON.stringify(data)}`);
+  }).catch((err) => {
+    console.error(`generateKey err: " + ${JSON.stringify(err)}`);
+  });;
+}
+
 async function attestKey() {
   let aliasString = keyAliasString;
   let aliasUint8 = stringToUint8Array(aliasString);
@@ -893,7 +983,7 @@ async function attestKey() {
   let options = {
     properties: properties
   };
-  generateKey(aliasString);
+  await generateKey(aliasString);
   huks.attestKey(aliasString, options)
     .then((data) => {
       console.log(`test attestKey data: ${JSON.stringify(data)}`);
@@ -1096,7 +1186,7 @@ function huksImportWrappedKey() {
 
 importWrappedKey(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Imports a wrapped key. This API uses a promise to return the result asynchronously.
+Imports a wrapped key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1159,7 +1249,7 @@ huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 
 exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Exports a key. This API uses a promise to return the result asynchronously.
+Exports a key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1218,7 +1308,7 @@ huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
 
 getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
-Obtains key properties. This API uses a promise to return the result asynchronously.
+Obtains key properties. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1277,7 +1367,7 @@ huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
 
 isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
-Checks whether a key exists. This API uses a promise to return the result asynchronously.
+Checks whether a key exists. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1311,7 +1401,7 @@ var result = huks.isKeyExist(keyAlias, emptyOptions);
 
 init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
-Initializes a key. This API uses an asynchronous callback to return the result.
+Initializes the data for a key operation. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1328,7 +1418,7 @@ Initializes a key. This API uses an asynchronous callback to return the result.
 
 init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
-Initializes a key. This API uses a promise to return the result asynchronously.
+Initializes the data for a key operation. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1345,9 +1435,9 @@ Initializes a key. This API uses a promise to return the result asynchronously.
 
 update(handle: number, token?: Uint8Array, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Updates a key. This API uses an asynchronous callback to return the result.
+Updates the key operation data by segment. This API uses an asynchronous callback to return the result.
 
->  **NOTE**<br>This API is discarded since API version 9. You are advised to use [huks.update<sup>9+</sup>].
+>  **NOTE**<br>This API is deprecated since API version 9. You are advised to use [huks.update<sup>9+</sup>](#huksupdate9-1).
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1364,9 +1454,9 @@ Updates a key. This API uses an asynchronous callback to return the result.
 
 update(handle: number, token?: Uint8Array, options: HuksOptions) : Promise\<HuksResult>
 
-Updates a key. This API uses a promise to return the result asynchronously.
+Updates the key operation data by segment. This API uses a promise to return the result.
 
->  **NOTE**<br>This API is discarded since API version 9. You are advised to use [huks.update<sup>9+</sup>](#huksupdate9).
+>  **NOTE**<br>This API is discarded since API version 9. You are advised to use [huks.update<sup>9+</sup>](#huksupdate9-2).
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1383,7 +1473,7 @@ Updates a key. This API uses a promise to return the result asynchronously.
 
 update(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-Updates a key. This API uses an asynchronous callback to return the result.
+Updates the key operation by segment. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1400,7 +1490,7 @@ Updates a key. This API uses an asynchronous callback to return the result.
 
 update(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksResult>) : void
 
-Updates a key. This API uses an asynchronous callback to return the result.
+Updates the key operation by segment. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1417,7 +1507,7 @@ Updates a key. This API uses an asynchronous callback to return the result.
 
 update(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
 
-Updates a key. This API uses a promise to return the result asynchronously.
+Updates the key operation by segment. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1451,7 +1541,7 @@ Completes the key operation and releases resources. This API uses an asynchronou
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-Completes the key operation and releases resources. This API uses a promise to return the result asynchronously.
+Completes the key operation and releases resources. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1485,7 +1575,7 @@ Completes the key operation and releases resources. This API uses an asynchronou
 
 finish(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
 
-Completes the key operation and releases resources. This API uses a promise to return the result asynchronously.
+Completes the key operation and releases resources. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1722,7 +1812,7 @@ struct Index {
 
 abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
-Aborts the use of the key. This API uses a promise to return the result asynchronously.
+Aborts the use of the key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Huks
 
@@ -1976,7 +2066,7 @@ Defines the HUKS handle structure.
 | ---------- | ---------------- | ---- | -------- |
 | errorCode  | number           | Yes  | Error code.|
 | handle    | number       | Yes| Value of the handle.|
-| token | Uint8Array | No| Challenge information obtained after the [init](#huksinit) operation.|
+| token | Uint8Array | No| Challenge obtained after the [init](#huksinit) operation.|
 
 
 ## HuksResult

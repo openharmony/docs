@@ -29,14 +29,17 @@ For easier maintenance and evolution, comply with the following principles when 
 1. Make sure the software comes from a clearly defined upstream community.
 2. Provide a sound reason for software introduction. If the software to be introduced already exists in the OpenHarmony project, reuse it to avoid maintenance complexity caused by coexistence of multiple versions.
 3. Introduce the software in the form of source code, rather than binary files. If a piece of software needs to be introduced in the form of binary files, the PMC should review the request and make a decision.
-4. Make sure the software can be correctly built on the OpenHarmony project. If the software has dependency software that has not been introduced, or the running or build of the software depends on a component that cannot be introduced, the PMC should review the request and make a decision.
-5. Place the software in an independent code repository or directory and name it in the format of **third_party_*****softwareName***, where *softwareName* must be an official name.
+4. Make sure the software can be correctly built on the OpenHarmony project. If the software has dependency software that has not been introduced, or the running or build of the software depends on a component that cannot be introduced, the SIG-Architecture should review the request and make a decision.
+5. Place the software in an independent code repository and name it in the format of **third_party**_**softwareName**, where *softwareName* must be an official name.
 6. Retain the directory structure, license, and copyright information of the official code repository of the software. Do not modify the original license and copyright information.
 7. Do not introduce any software version that has not been officially released, for example, the Beta version.
 8. Do not introduce any software version that has high-risk vulnerabilities and does not provide solutions.
 9. If you need to modify the software, place the new code in the software repository and ensure that the new code meets the license requirements of the software. Retain the original license for the modified files, and use the same license for the new files (recommended).
 10. Provide the **README.OpenSource** file in the root directory of the software repository. Include the following information in the file: software name, license, license file location, version, upstream community address of the corresponding version, software maintenance owner, function description, and introduction reason.
-11. Make sure the software you introduce is under the custody of a domain SIG. In principle, the PMC will deny the introduction of a piece of software without the confirmation of the SIG QA and the corresponding domain SIG. When introducing multiple pieces of software at a time, you can ask the PMC to hold a temporary review meeting between SIGs for faster introduction. If you want to introduce a piece of software but fail to meet the preceding requirements, send an email to law@openatom.org.
+11. Make sure the software you introduce is under the custody of a domain SIG. In principle, the SIG-Architecture will deny the introduction of a piece of software without the confirmation of the SIG-Compliance and the corresponding domain SIG. When introducing multiple pieces of software at a time, you can ask the PMC to hold a temporary review meeting between SIGs for faster introduction. If you want to introduce a piece of software but fail to meet the preceding requirements, send an email to oh-legal@openatom.io.
+12. When software introduction depends on other dependency software, it is not allowed to nest the dependency software in the subdirectory of the software introduction, and all dependency softwares must be placed in separate repository, and name it in the format of **third_party_*****softwareName***, because nested placement of dependency software may lead to multiple versions of the same software, old versions of security vulnerabilities cannot be fixed in a timely, and will risk the opensource compliance issues.
+    - Dependency software are named in the compiled BUILD.gn with part name by prefixing the newly software introduction name, e.g. part_name = "software_introduction_name_dependency software_name".
+    - The inter-component dependencies between software introduction and dependency software are resolved via external_deps.
 
 ### Software Introduction Process
 
@@ -48,7 +51,7 @@ For easier maintenance and evolution, comply with the following principles when 
 | Source| Check whether the software is downloaded from its official website or source specified on the official website.|
 | Community activeness| 1. Do not introduce software from a community or organization that notifies users of software maintenance termination by releasing a bullet, modifying the software repository status, or moving the software repository in a specified directory.<br>2. Do not introduce software from an individual, a small community, or an organization that has not released a version (either official or test version) within two years, does not have a clear version roadmap, or does not respond to any valid bug or pull request in the community.<br>3. Do not introduce software from a community that is not longer maintained or does not respond to any operating status related issue or email for more than half a year.|
 | Security vulnerability| 1. Search for disclosed security vulnerabilities in the industry, and check whether solutions are provided if there are high-risk vulnerabilities in the software.|
-| Software name| 1. Name the repository in the format of **third_party_*****softwareName***, where *softwareName* must be the same as the official name.<br>2. Do not use the sub-module name of the software as the software name.<br>3. If the software has development libraries in multiple languages, add prefixes such as **python-** to the official software name for standardized management.|
+| Software name| 1. Name the repository in the format of **third_party**_**softwareName**, where **softwareName** must be the same as the official name.<br>2. Do not use the sub-module name of the software as the software name.<br>3. If the software has development libraries in multiple languages, add prefixes such as **python-** to the official software name for standardized management.|
 | Official website information| 1. Describe the official website of the software in the request. If there is no official website, provide the project URL on a mainstream code hosting platform. Dot not use the hosting library addresses such as Maven, mvnrepository, and SpringSource.<br>2. Provide the official download address of the software version source package for traceability. If a binary package is required, provide the official download address of the binary package.|
 | License| 1. Check whether the software to be introduced has a license.<br>2. Check whether the imported license is consistent with the license of the corresponding version on the official website of the software.<br>3. Exercise caution when introducing open-source software with high-risk licenses. Before introducing the software, fully evaluate the risk and attach the analysis conclusion in the request.|
 
@@ -60,7 +63,7 @@ Follow the process described in the [SIG Management Regulations](https://gitee.c
 
 | Check Item| Description| Self-Check Result Example|
 | :----- | :----- | :----- |
-| Software name| Provide the official name of the software and the repository name to which the software is introduced. The repository name is in the format of **third_party_*****softwareName***.| third_party_*softwareName*|
+| Software name| Provide the official name of the software and the repository name to which the software is introduced. The repository name is in the format of **third_party**_**softwareName**.| third_party_**softwareName**|
 | Official website| Provide the official website link of the software.| https://softwaresite |
 | Software version| Provide the version number of the software to be introduced. The version number must be an official version number released by the community. Do not modify the version number or introduce a version that is not officially released.| 1.0.0 |
 | Software version release date| Provide the official release date of the software version.| 2021.01.01 |
@@ -189,7 +192,7 @@ Refer to the [SIG Management Regulations](https://gitee.com/openharmony/communit
 * Ruby License
 * Eclipse Public License 2.0: EPL 2.0
 
-If you want to introduce the software that complies with the unrecommended licenses listed in **4** or other licenses that are not mentioned, send an email to law@openatom.org.
+If you want to introduce the software that complies with the unrecommended licenses listed in **4** or other licenses that are not mentioned, send an email to oh-legal@openatom.io.
 
 ## Software Exit and Exit Principles
 

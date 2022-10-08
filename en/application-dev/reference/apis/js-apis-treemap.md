@@ -12,6 +12,10 @@
 
 Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
 
+This topic uses the following to identify the use of generics:
+- K: Key
+- V: Value
+
 ## Modules to Import
 
 ```ts
@@ -96,9 +100,9 @@ Checks whether this container has the specified key.
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-let result1 = treeMap.hasKey("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = treeMap.hasKey("squirrel");
+treeMap.set("squirrel", 123);
+let result1 = treeMap.hasKey("squirrel");
 ```
 
 
@@ -127,7 +131,7 @@ Checks whether this container has the specified value.
 ```ts
 let treeMap = new TreeMap();
 let result = treeMap.hasValue(123);
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+treeMap.set("squirrel", 123);
 let result1 = treeMap.hasValue(123);
 ```
 
@@ -156,9 +160,9 @@ Obtains the value of the specified key in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-let result = treeMap.get("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+let result = treeMap.get("sparrow");
 ```
 
 
@@ -180,8 +184,8 @@ Obtains the first key in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let result = treeMap.getFirstKey();
 ```
 
@@ -204,8 +208,8 @@ Obtains the last key in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let result = treeMap.getLastKey();
 ```
 
@@ -228,8 +232,8 @@ Adds all elements in a **TreeMap** instance to this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let map = new TreeMap();
 treeMap.setAll(map);
 ```
@@ -260,7 +264,7 @@ Adds an element to this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
+treeMap.set("squirrel", 123);
 ```
 
 
@@ -288,9 +292,9 @@ Removes the element with the specified key from this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.remove("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.remove("sparrow");
 ```
 
 
@@ -318,10 +322,10 @@ Obtains the key that is placed in front of the input key in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.set("zdfgsd", 356);
-let result = treeMap.getLowerKey("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getLowerKey("sparrow");
 ```
 
 
@@ -349,10 +353,10 @@ Obtains the key that is placed next to the input key in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
-treeMap.set("zdfgsd", 356);
-let result = treeMap.getHigherKey("sdfs");
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
+treeMap.set("gander", 356);
+let result = treeMap.getHigherKey("sparrow");
 ```
 
 ### replace
@@ -380,8 +384,8 @@ Replaces an element in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("sdfs", 123);
-let result = treeMap.replace("sdfs", 357);
+treeMap.set("sparrow", 123);
+let result = treeMap.replace("sparrow", 357);
 ```
 
 
@@ -397,8 +401,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 treeMap.clear();
 ```
 
@@ -421,8 +425,8 @@ Obtains an iterator that contains all the keys in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.keys();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -450,8 +454,8 @@ Obtains an iterator that contains all the values in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -487,8 +491,8 @@ callbackfn
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("sdfs", 123);
-treeMap.set("dfsghsf", 357);
+treeMap.set("sparrow", 123);
+treeMap.set("gull", 357);
 treeMap.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -513,8 +517,8 @@ Obtains an iterator that contains all the elements in this container.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 let iter = treeMap.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -542,8 +546,8 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 ```ts
 let treeMap = new TreeMap();
-treeMap.set("Ahfbrgrbgnutfodgorrogorgrogofdfdf", 123);
-treeMap.set("sdfs", 356);
+treeMap.set("squirrel", 123);
+treeMap.set("sparrow", 356);
 
 // Method 1:
 for (let item of treeMap) { 

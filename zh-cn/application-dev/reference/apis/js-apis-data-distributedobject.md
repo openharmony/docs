@@ -18,7 +18,7 @@ import distributedObject from '@ohos.data.distributedDataObject';
 createDistributedObject(source: object): DistributedObject
 
 
-创建一个分布式对象。
+创建一个分布式数据对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
@@ -26,13 +26,13 @@ createDistributedObject(source: object): DistributedObject
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | source | object | 是 | 设置distributedObject的属性。 |
+  | source | object | 是 | 设置分布式数据对象的属性。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [DistributedObject](#distributedobject) | 创建完成的分布式对象。 |
+| [DistributedObject](#distributedobject) | 创建完成的分布式数据对象。 |
 
 **示例：**
 
@@ -88,7 +88,7 @@ revokeSave接口回调信息。
 
 ## DistributedObject
 
-表示一个分布式对象。
+表示一个分布式数据对象。
 
 ### setSessionId
 
@@ -104,7 +104,7 @@ setSessionId(sessionId?: string): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | sessionId | string | 否 | 分布式对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
+  | sessionId | string | 否 | 分布式数据对象在可信组网中的标识ID。如果要退出分布式组网，设置为""或不设置均可。 |
 
 **返回值：**
 
@@ -117,9 +117,9 @@ setSessionId(sessionId?: string): boolean
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});;
-//g_object加入分布式组网
+// g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId());
-//设置为""退出分布式组网
+// 设置为""退出分布式组网
 g_object.setSessionId("");
 ```
 
@@ -127,7 +127,7 @@ g_object.setSessionId("");
 
 on(type: 'change', callback: Callback<{ sessionId: string, fields: Array&lt;string&gt; }>): void
 
-监听分布式对象的变更。
+监听分布式数据对象的变更。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
@@ -175,9 +175,9 @@ off(type: 'change', callback?: Callback<{ sessionId: string, fields: Array&lt;st
 ```js
 import distributedObject from '@ohos.data.distributedDataObject';  
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false, parent:{mother:"jack mom",father:"jack Dad"}});
-//删除数据变更回调changeCallback
+// 删除数据变更回调changeCallback
 g_object.off("change", globalThis.changeCallback);
-//删除所有的数据变更回调
+// 删除所有的数据变更回调
 g_object.off("change");
 ```
 
@@ -185,7 +185,7 @@ g_object.off("change");
 
 on(type: 'status', callback: Callback<{ sessionId: string, networkId: string, status: 'online' | 'offline' }>): void
 
-监听分布式对象的上下线。
+监听分布式数据对象的上下线。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject。
 
@@ -231,9 +231,9 @@ var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, is
 globalThis.statusCallback = (sessionId, networkId, status) => {
     globalThis.response += "status changed " + sessionId + " " + status + " " + networkId;
 }
-//删除上下线回调changeCallback
+// 删除上下线回调changeCallback
 g_object.off("status",globalThis.statusCallback);
-//删除所有的上下线回调
+// 删除所有的上下线回调
 g_object.off("status");
 ```
 
@@ -266,7 +266,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local", (status, result)=>{
+g_object.save("local", (status, result) => {
     console.log("save status = " + status);
     console.log("save callback");
     console.info("save sessionId: " + result.sessionId);
@@ -309,12 +309,12 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.save("local").then((result)=>{
+g_object.save("local").then((result) => {
     console.log("save callback");
     console.info("save sessionId " + result.sessionId);
     console.info("save version " + result.version);
     console.info("save deviceId " + result.deviceId);
-}, ()=>{
+}, () => {
     console.error("save failed");
 });
 ```
@@ -342,7 +342,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave((result, data) =>{
+g_object.revokeSave((result, data) => {
   console.log("revokeSave callback");
 });
 ```
@@ -370,10 +370,10 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
 import distributedObject from '@ohos.data.distributedDataObject';
 var g_object = distributedObject.createDistributedObject({name:"Amy", age:18, isVis:false});
 g_object.setSessionId("123456");
-g_object.revokeSave().then((result)=>{
+g_object.revokeSave().then((result) => {
     console.log("revokeSave callback");
     console.log("sessionId" + result.sessionId);
-}, ()=>{
+}, () => {
     console.error("revokeSave failed");
 });
 ```

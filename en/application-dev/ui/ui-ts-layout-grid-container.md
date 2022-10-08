@@ -8,7 +8,7 @@ As a tool to provide layout auxiliary lines, the grid system is handy in graphic
 2. Provides a unified positioning method for the system to ensure layout consistency among modules on different devices.
 3. Provides a flexible spacing adjustment method for applications to keep up with layout in special scenarios.
 
-To implement grid layout, the declarative paradigm provides the [GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md) grid container component, which works with the common attribute useSizeType of its subcomponents to implement grid layout.
+To implement grid layout, the declarative paradigm provides the [\<GridContainer>](../reference/arkui-ts/ts-container-gridcontainer.md) component, which works with the **useSizeType** attribute of its child components to implement grid layout.
 
 ## Grid System
 
@@ -19,10 +19,15 @@ The grid system works in terms of gutter, margin, and column.
 
 
 1. Gutter:
+   
    Spacing between elements. You can define different clutter values for different device sizes as part of the overall grid layout specifications. For better results, make sure the gutter is not greater than the margin.
+   
 2. Margin:
+
    Spacing around an item in the grid container. You can define different margin values for different device sizes as part of the overall grid layout specifications.
+
 3. Column:
+
    Main tool for positioning items in the grid layout. The grid container is divided into various numbers of columns based on the device size. The width per column is calculated based on the total number of columns while respecting the margin and clutter specifications.
 
 
@@ -30,7 +35,7 @@ The grid system works in terms of gutter, margin, and column.
 
 Breakpoints in the grid system are set in terms of the device's screen pixel density. The grid system defines a set of breakpoint rules based on the mapping between the numbers of columns and device screen widths.
 
-Depending on the screen width, devices are classified into different width types. The table below provides the mappings of the grid breakpoint ranges, device width types, default total number of columns, margins, and gutters.
+Depending on the screen width, devices are classified into different width types. The table below provides the mappings of the grid breakpoint ranges, device width types, default total number of columns, margin, and gutter.
 
 
 | Grid Breakpoint Range             | Device Width Type| Description       | columns | gutter | margin |
@@ -48,13 +53,15 @@ Create a grid container, define the grid layout, and set the number of columns f
 
 Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})` API to create a grid container. All child components in the grid container follow the grid layout.
 
-- Use the **columns**, **gutter**, and **margin** parameters to define your grid layout. In the sample below, the grid container is divided into six columns, with the gutter (spacing between columns) of 10 vp and the margin (spacing around a column) of 20 vp.
+- Use the **columns**, **gutter**, and **margin** parameters to define your grid layout.
+
+  In the example below, the grid container is divided into six columns, with the gutter (spacing between columns) of 10 vp and the margin (spacing around a column) of 20 vp.
 
   ```ts
   GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
   ```
 
-  In the sample below, the grid container does not have any parameter set. In this case, it follows the default layout, as in the case when sizeType is set to SizeType.Auto.
+  In the example below, the grid container does not have any parameter set. In this case, it follows the default layout, as in the case when **sizeType** is set to **SizeType.Auto**.
 
   ```ts
   GridContainer() {}
@@ -62,7 +69,7 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
 
   On a small-sized device (**SizeType.SM**), the grid container is divided into four columns by default, with the gutter of 24 vp and the margin of 24 vp. On a medium-sized device (**SizeType.MD**), the grid container is divided into eight columns by default, with the gutter of 24 vp and the margin of 32 vp.
 
-- You can also use **sizeType** to configure child components in the grid container to follow the grid settings for a specific device width type, as shown below:
+- You can also use **sizeType** to configure child components in the grid container to follow the grid settings of a specific device width type, as shown below:
 
   ```ts
   GridContainer({ sizeType: SizeType.SM }) {
@@ -70,7 +77,7 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
          Text('1')
            .useSizeType({
              xs: { span: 2, offset: 0 },
-             sm: { span: 2, offset: 0 },
+             sm: { span: 3, offset: 0 },
              md: { span: 6, offset: 2 },
              lg: { span: 8, offset: 2 },
            })
@@ -78,11 +85,11 @@ Use the `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeTyp
     }
   ```
 
-  In the preceding example, the **\<Text>** component uses the grid setting of the **SizeType.SM** type regardless of the actual width type of the device. That is, the **\<Text>** component occupies three columns and is placed in the first column.
+  In the preceding example, the **\<Text>** component uses the grid settings of the **SizeType.SM** type regardless of the actual device width type. That is, the **\<Text>** component takes up three columns and is placed in the first column.
 
 ### Grid Settings of Child Components in the Grid Container
 
-Use the universal attribute **useSizeType** to configure the positioning of child components in the grid container. **span** indicates the number of columns occupied by the child component. **offset** indicates the column offset, that is, the column where the component is located. The sample code is as follows:
+Use the universal attribute **useSizeType** to configure how child components are positioned in the grid container. **useSizeType** comes with the **span** and **offset** sub-attributes. **span** indicates the number of columns occupied by the child component; **offset** indicates the column offset, that is, the column where the component is located. The sample code is as follows:
 
 ```ts
 GridContainer() {
@@ -90,16 +97,16 @@ GridContainer() {
      Text('1')
        .useSizeType({
          xs: { span: 2, offset: 0 },
-         sm: { span: 0, offset: 0 },
+         sm: { span: 2, offset: 0 },
          md: { span: 6, offset: 2 },
          lg: { span: 8, offset: 2 },
        })
    }
 }
 ```
-In the preceding example, `sm: { span: 2, offset: 0 }` indicates that on a medium-sized device, the **\<Text>** component occupies two columns and is placed in the first column of the grid container.
+In the preceding example, `sm: { span: 2, offset: 0 }` indicates that on a medium-sized device, the **\<Text>** component takes up two columns and is placed in the first column of the grid container.
 
-![en-us_image_0000001218108718](figures/en-us_image_0000001218108719.png)
+![en-us_image_0000001218108719](figures/en-us_image_0000001218108719.png)
 
 ## Example Scenario
 

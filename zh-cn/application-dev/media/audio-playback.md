@@ -18,7 +18,7 @@
 
 ## 开发步骤
 
-详细API含义可参考：[媒体服务API文档AudioPlayer](../reference/apis/js-apis-media.md)
+详细API含义可参考：[媒体服务API文档AudioPlayer](../reference/apis/js-apis-media.md#audioplayer)
 
 ### 全流程场景
 

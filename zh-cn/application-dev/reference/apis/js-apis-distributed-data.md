@@ -314,21 +314,21 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore, callback: AsyncCa
 let kvStore;
 let kvManager;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
- }
- try {
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
+}
+try {
     kvManager.getKVStore('storeId', options, async function (err, store) {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
-        console.log('closeKVStore success');
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore, function (err, data) {
+            console.log('closeKVStore success');
+        });
     });
 } catch (e) {
     console.log('closeKVStore e ' + e);
@@ -364,29 +364,29 @@ closeKVStore(appId: string, storeId: string, kvStore: KVStore): Promise&lt;void&
 let kvManager;
 let kvStore;
 const options = {
-    createIfMissing : true,
-    encrypt : false,
-    backup : false,
-    autoSync : true,
-    kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
-    securityLevel : distributedData.SecurityLevel.S2,
+    createIfMissing: true,
+    encrypt: false,
+    backup: false,
+    autoSync: true,
+    kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
+    schema: '',
+    securityLevel: distributedData.SecurityLevel.S2,
 }
- try {
+try {
     kvManager.getKVStore('storeId', options).then(async (store) => {
-    console.log('getKVStore success');
-    kvStore = store;
-    kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
-        console.log('closeKVStore success');
-    }).catch((err) => {
-        console.log('closeKVStore err ' + JSON.stringify(err));
-    });
+        console.log('getKVStore success');
+        kvStore = store;
+        kvManager.closeKVStore('appId', 'storeId', kvStore).then(() => {
+            console.log('closeKVStore success');
+        }).catch((err) => {
+            console.log('closeKVStore err ' + JSON.stringify(err));
+        });
     }).catch((err) => {
         console.log('CloseKVStore getKVStore err ' + JSON.stringify(err));
     });
- } catch (e) {
+} catch (e) {
     console.log('closeKVStore e ' + e);
-}  
+}
 ```
 
 
@@ -576,7 +576,6 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 ```js
 let kvManager;
 try {
-    
     console.log('KVManagerOn');
     const deathCallback = function () {
         console.log('death callback call');
@@ -1009,7 +1008,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved5 = resultSet.move();
+    const moved5 = resultSet.move(1);
     console.log("move succeed:" + moved5);
 } catch (e) {
     console.log("move failed: " + e);
@@ -1049,7 +1048,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved6 = resultSet.moveToPosition();
+    const moved6 = resultSet.moveToPosition(1);
     console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
     console.log("moveToPosition failed: " + e);

@@ -319,7 +319,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options: EmergencyNumberOptions, ca
 **示例：**
 
 ```js
-call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, value) => {
+call.isEmergencyPhoneNumber("112", {slotId: 1}, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -403,7 +403,7 @@ formatPhoneNumber\(phoneNumber: string, options: NumberFormatOptions, callback: 
 **示例：**
 
 ```js
-call.formatPhoneNumber("138xxxxxxxx",{
+call.formatPhoneNumber("138xxxxxxxx", {
     countryCode: "CN"
 }, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -468,9 +468,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string, callback: Asy
 **示例：**
 
 ```js
-call.formatPhoneNumberToE164("138xxxxxxxx",{
-    countryCode: "CN"
-}, (err, data) => {
+call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -504,9 +502,7 @@ formatPhoneNumberToE164\(phoneNumber: string, countryCode: string\): Promise<str
 **示例：**
 
 ```js
-let promise = call.formatPhoneNumberToE164("138xxxxxxxx", {
-    countryCode: "CN"
-});
+let promise = call.formatPhoneNumberToE164("138xxxxxxxx", "CN");
 promise.then(data => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -800,7 +796,7 @@ call.reject(rejectMessageOptions, (err, data) => {
 
 ## call.reject<sup>7+</sup>
 
-reject(callId: number, callback: AsyncCallback<void\>): <void\>
+reject(callId: number, callback: AsyncCallback\<void>): void
 
 拒绝来电。使用callback异步回调。
 
@@ -815,26 +811,17 @@ reject(callId: number, callback: AsyncCallback<void\>): <void\>
 | callId   | number                    | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
-**返回值：**
-
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回结果。 |
-
 **示例：**
 
 ```js
-let promise = call.reject(1);
-promise.then(data => {
-    console.log(`reject success, promise: data->${JSON.stringify(data)}`);
-}).catch(err => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+call.reject(1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 拒绝来电。使用callback异步回调。
 
@@ -1628,8 +1615,8 @@ on\(type: 'callDetailsChange', callback: Callback<CallAttributeOptions\>\): void
 **示例：**
 
 ```js
-call.on('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1653,8 +1640,8 @@ on\(type: 'callEventChange', callback: Callback<CallEventOptions\>\): void
 **示例：**
 
 ```js
-call.on('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1678,8 +1665,8 @@ on\(type: 'callDisconnectedCause', callback: Callback<DisconnectedDetails\>): vo
 **示例：**
 
 ```js
-call.on('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1703,8 +1690,8 @@ on\(type: 'mmiCodeResult', callback: Callback<MmiCodeResults\>\): void
 **示例：**
 
 ```js
-isNewCallAllowedcall.on('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.on('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1728,8 +1715,8 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 **示例：**
 
 ```js
-call.off('callDetailsChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDetailsChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1753,8 +1740,8 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 **示例：**
 
 ```js
-call.off('callEventChange', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callEventChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1778,8 +1765,8 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 **示例：**
 
 ```js
-call.off('callDisconnectedCause', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('callDisconnectedCause', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1803,8 +1790,8 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 **示例：**
 
 ```js
-call.off('mmiCodeResult', (err, data) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+call.off('mmiCodeResult', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2072,10 +2059,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType, callback: AsyncCall
 **示例：**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-call.getCallTransferInfo(0, callTransferTyp, (err, data) => {
+call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2107,10 +2091,7 @@ getCallTransferInfo\(slotId: number, type: CallTransferType): Promise<CallTransf
 **示例：**
 
 ```js
-let callTransferTyp={
-    CallTransferType: 1
-}
-let promise = call.getCallTransferInfo(0, callTransferTyp);
+let promise = call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY);
 promise.then(data => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {
@@ -2399,7 +2380,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, bluetoothAddress, (err, value) => {
+call.setAudioDevice(1, audioDeviceOptions, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2463,7 +2444,10 @@ joinConference(mainCallId: number, callNumberList: Array<string\>, callback: Asy
 **示例：**
 
 ```js
-call.joinConference(1, "138XXXXXXXX", (err, data) => {
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+call.joinConference(1, callNumberList, (err, data) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
@@ -2494,7 +2478,10 @@ joinConference(mainCallId: number, callNumberList: Array<string\>): Promise<void
 **示例：**
 
 ```js
-let promise = call.joinConference(1, "138XXXXXXXX");
+let callNumberList: Array<string> = [
+    "138XXXXXXXX"
+];
+let promise = call.joinConference(1, callNumberList);
 promise.then(data => {
     console.log(`joinConference success, promise: data->${JSON.stringify(data)}`);
 }).catch(err => {

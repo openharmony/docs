@@ -7,13 +7,6 @@
 > 该组件从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-
-
-## 权限列表
-
-无
-
-
 ## 子组件
 
 可以包含GridCol子组件。
@@ -27,7 +20,7 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 |-----|-----|----|----|
 |gutter|Length \| GutterOption|   否  |栅格布局间距，x代表水平方向。|
 |columns| number \| GridRowColumnOption |  否  |设置布局列数。|
-|breakpoints|BreakPoints|  否  |用于设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
+|breakpoints|BreakPoints|  否  |设置断点值的断点数列以及基于窗口或容器尺寸的相应参照。|
 |direction|GridRowDirection|   否  |栅格布局排列方向。|
 
 ## GutterOption
@@ -67,8 +60,8 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value  | Array<string> | 否  | 用于设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
-| reference  | BreakpointsReference | 否    | -    | 竖直gutter option。      |
+| value  | Array&lt;string&gt; | 否  | 设置断点位置的单调递增数组。<br>默认值：["320vp", "520vp", "840vp"]    |
+| reference  | BreakpointsReference | 否    | 断点切换参照物。 |
 ```ts
   // 启用xs、sm、md共3个断点
   breakpoints: {value: ["100vp", "200vp"]}
@@ -130,8 +123,6 @@ onBreakpointChange(callback: (breakpoints: string) => void)
 | 参数名   | 参数类型   | 必填   | 说明   |
 | ----- | ------ | ---- | ---------------------------------------- |
 |breakpoints| string |是|断点发生变化时触发回调<br>取值为`"xs"`、`"sm"`、`"md"`、`"lg"`、`"xl"`、`"xxl"`。|
-
-
 
 ## 示例
 

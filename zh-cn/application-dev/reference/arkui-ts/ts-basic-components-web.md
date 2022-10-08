@@ -26,7 +26,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
-| src        | [ResourceStr](../../ui/ts-types.md)                           | 是    | 网页资源地址。 |
+| src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
 | controller | [WebController](#webcontroller) | 否    | 控制器。    |
 
 **示例：**
@@ -559,6 +559,36 @@ userAgent(userAgent: string)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .userAgent(this.userAgent)
+      }
+    }
+  }
+  ```
+
+### webDebuggingAccess<sup>9+</sup>
+
+webDebuggingAccess(webDebuggingAccess: boolean)
+
+设置是否启用网页调试功能。
+
+**参数：**
+
+| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
+| --------- | ------ | ---- | ---- | --------- |
+| webDebuggingAccess | boolean | 是    | false    | 设置是否启用网页调试功能。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State webDebuggingAccess: boolean = true;
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(this.webDebuggingAccess)
       }
     }
   }
@@ -1293,7 +1323,7 @@ onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebReso
 
 | 类型                                       | 说明                          |
 | ---------------------------------------- | --------------------------- |
-| [WebResourceResponse](#webresourceresponse) | 返回响应数据为空表示按原来方式加载，否则加载响应数据。 |
+| [WebResourceResponse](#webresourceresponse) | 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载。 |
 
 **示例：**
 
@@ -1411,6 +1441,114 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
     }
   }
   ```
+### onSslErrorEventReceive<sup>9+</sup>
+
+onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+**参数：**
+
+| 参数名     | 参数类型                           | 参数描述             |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [SslErrorHandler](#sslerrorhandler9) | 通知Web组件用户操作行为。 |
+| error   | [SslError](#sslerror9枚举说明)        | 错误码。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onSslErrorEventReceive((event) => {
+            AlertDialog.show({
+              title: 'onSslErrorEventReceive',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.handleConfirm();
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel();
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
+### onClientAuthenticationRequest<sup>9+</sup>
+
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+
+通知用户收到SSL客户端证书请求事件。
+
+**参数：**
+
+| 参数名   | 参数类型                             | 参数描述             |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。|
+| host    | string          | 请求证书服务器的主机名。 |
+| port    | number          | 请求证书服务器的端口号。 |
+| keyTypes| Array<string>   | 可接受的非对称秘钥类型。 |
+| issuers | Array<string>   | 与私钥匹配的证书可接受颁发者。|
+
+  **示例：**
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'onClientAuthenticationRequest',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.cancel();
+                }
+              },
+              cancel: () => {
+                event.handler.ignore();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
 ### onPermissionRequest<sup>9+</sup>
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
@@ -1490,10 +1628,10 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .onContextMenuShow((event) => {
+          .onContextMenuShow((event) => {
             console.info("x coord = " + event.param.x());
             console.info("link url = " + event.param.getLinkUrl());
-            return false;
+            return true;
         })
       }
     }
@@ -1572,6 +1710,75 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
               event.geolocation.invoke(event.origin, false, true);
             }
           })
+        })
+      }
+    }
+  }
+  ```
+
+### onFullScreenEnter<sup>9+</sup>
+
+onFullScreenEnter(callback: (event: { handler: FullScreenExitHandler }) => void)
+
+通知开发者web组件进入全屏模式。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| handler     | [FullScreenExitHandler](#fullscreenexithandler9)           | 用于退出全屏模式的函数句柄。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    handler: FullScreenExitHandler = null;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onFullScreenEnter((event) => {
+          console.log("onFullScreenEnter...");
+          this.handler = event.handler;
+        })
+      }
+    }
+  }
+  ```
+
+### onFullScreenExit<sup>9+</sup>
+
+onFullScreenExit(callback: () => void)
+
+通知开发者web组件退出全屏模式。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 退出全屏模式时的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    handler: FullScreenExitHandler = null;
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller:this.controller })
+        .onFullScreenExit(() => {
+          console.log("onFullScreenExit...");
+          this.handler.exitFullScreen();
+        })
+        .onFullScreenEnter((event) => {
+          this.handler = event.handler;
         })
       }
     }
@@ -1657,6 +1864,16 @@ handlePromptConfirm(result: string): void
 | 参数名    | 参数类型   | 必填   | 默认值  | 参数描述        |
 | ------ | ------ | ---- | ---- | ----------- |
 | result | string | 是    | -    | 用户输入的对话框内容。 |
+
+## FullScreenExitHandler<sup>9+</sup>
+
+通知开发者Web组件退出全屏。示例代码参考[onFullScreenEnter事件](#onfullscreenenter9)。
+
+### exitFullScreen<sup>9+</sup>
+
+exitFullScreen(): void
+
+通知开发者Web组件退出全屏。
 
 ## WebResourceError
 
@@ -2016,6 +2233,51 @@ isHttpAuthInfoSaved(): boolean
 | 类型      | 说明                        |
 | ------- | ------------------------- |
 | boolean | 存在密码认证成功返回true，其他返回false。 |
+
+## SslErrorHandler<sup>9+</sup>
+
+Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerroreventreceive9)。
+
+### handleCancel<sup>9+</sup>
+
+handleCancel(): void
+
+通知Web组件取消此请求。
+
+### handleConfirm<sup>9+</sup>
+
+handleConfirm(): void
+
+通知Web组件继续使用SSL证书。
+
+## ClientAuthenticationHandler<sup>9+</sup>
+
+Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onclientauthenticationrequest9)。
+
+### confirm<sup>9+</sup>
+
+confirm(priKeyFile : string, certChainFile : string): void
+
+通知Web组件使用指定的私钥和客户端证书链。
+
+**参数：**
+
+| 参数名         | 参数类型 | 必填   | 参数描述        |
+| --------      | ------   | ----  | ----------     |
+| priKeyFile    | string   | 是    | 存放私钥的文件，包含路径和文件名。|
+| certChainFile | string   | 是    | 存放证书链的文件，包含路径和文件名。|
+
+### cancel<sup>9+</sup>
+
+cancel(): void
+
+通知Web组件取消相同host和port服务器发送的客户端证书请求事件。同时，相同host和port服务器的请求，不重复上报该事件。
+
+### ignore<sup>9+</sup>
+
+ignore(): void
+
+通知Web组件忽略本次请求。
 
 ## PermissionRequest<sup>9+</sup>
 
@@ -3076,6 +3338,60 @@ clearHistory(): void
         Button('clearHistory')
           .onClick(() => {
             this.controller.clearHistory();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearSslCache
+
+clearSslCache(): void
+
+清除Web组件记录的SSL证书错误事件对应的用户操作行为。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearSslCache')
+          .onClick(() => {
+            this.controller.clearSslCache();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearClientAuthenticationCache
+
+clearClientAuthenticationCache(): void
+
+清除Web组件记录的客户端证书请求事件对应的用户操作行为。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearClientAuthenticationCache')
+          .onClick(() => {
+            this.controller.clearClientAuthenticationCache();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -4701,6 +5017,17 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Img           | HTML::img标签。             |
 | Map           | 地理地址。                    |
 | Unknown       | 未知内容。                    |
+
+## SslError<sup>9+</sup>枚举说明
+
+onSslErrorEventReceive接口返回的SSL错误的具体原因。
+
+| 名称           | 描述                  |
+| -------------- | -----------------    |
+| Invalid        | 一般错误。            |
+| HostMismatch   | 主机名不匹配。        |
+| DateInvalid    | 证书日期无效。        |
+| Untrusted      | 证书颁发机构不受信任。 |
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 

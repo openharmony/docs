@@ -158,7 +158,7 @@ orsource "../../device/soc/*/Kconfig.liteos_m.series"
 orsource "../../device/soc/*/Kconfig.liteos_m.soc"
 ```
 
-3. 在`//device/borad/talkweb`下参考如下目录结构创建相应的Kconfig文件：
+3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
 ```
 .
@@ -637,7 +637,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    
        sources += [
            "Src/main.c",
-   +       "Src/dprintf.c",
+           "Src/dprintf.c",
            "Src/stm32f4xx_hal_msp.c",
            "Src/stm32f4xx_it.c",
            "Src/system_stm32f4xx.c",

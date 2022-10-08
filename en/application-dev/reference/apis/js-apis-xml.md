@@ -32,9 +32,9 @@ A constructor used to create an **XmlSerializer** instance.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 ```
 
 
@@ -56,9 +56,9 @@ Sets an attribute.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setAttributes("importance", "high");  
 ```
 
@@ -80,9 +80,9 @@ Adds an empty element.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.addEmptyElement("b"); // => <b/>
 ```
 
@@ -98,9 +98,9 @@ Sets a declaration.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setDeclaration() // => <?xml version="1.0" encoding="utf-8"?>;
 ```
 
@@ -122,8 +122,8 @@ Writes the start tag based on the given element name.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("notel");
 thatSer.endElement();// => '<notel/>';
 ```
@@ -140,9 +140,9 @@ Writes the end tag of the element.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var bufView = new DataView(arrayBuffer);
-var thatSer = new xml.XmlSerializer(bufView);
+let arrayBuffer = new ArrayBuffer(1024);
+let bufView = new DataView(arrayBuffer);
+let thatSer = new xml.XmlSerializer(bufView);
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("table");
 thatSer.setAttributes("importance", "high");
@@ -169,8 +169,8 @@ Sets the namespace for an element tag.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDeclaration();
 thatSer.setNamespace("h", "http://www.w3.org/TR/html4/");
 thatSer.startElement("note");
@@ -194,8 +194,8 @@ Sets the comment.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setComment("Hi!");
 thatSer.endElement(); // => '<note>\r\n  <!--Hi!-->\r\n</note>';
@@ -219,8 +219,8 @@ Sets CDATA attributes.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1028);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1028);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setCDATA('root SYSTEM') // => '<![CDATA[root SYSTEM]]>';
 ```
 
@@ -242,8 +242,8 @@ Sets **Text**.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.startElement("note");
 thatSer.setAttributes("importance", "high");
 thatSer.setText("Happy1");
@@ -268,8 +268,8 @@ Sets **DocType**.
 **Example**
 
 ```js
-var arrayBuffer = new ArrayBuffer(1024);
-var thatSer = new xml.XmlSerializer(arrayBuffer);
+let arrayBuffer = new ArrayBuffer(1024);
+let thatSer = new xml.XmlSerializer(arrayBuffer);
 thatSer.setDocType('root SYSTEM'); // => '<!DOCTYPE root SYSTEM>';
 ```
 
@@ -295,20 +295,20 @@ Creates and returns an **XmlPullParser** object. The **XmlPullParser** object pa
 **Example**
 
 ```js
-var strXml =
+let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
             '    <title>Happy</title>' +
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
-var bufView = new Uint8Array(arrayBuffer);
-var strLen = strXml.length;
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
 for (var i = 0; i < strLen; ++i) {
     bufView[i] = strXml.charCodeAt(i);// Set the ArrayBuffer mode.
 }
-var that = new xml.XmlPullParser(arrayBuffer);
+let that = new xml.XmlPullParser(arrayBuffer);
 ```
 
 
@@ -329,37 +329,37 @@ Parses XML information.
 **Example**
 
 ```js
-var strXml =
+let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
             '    <title>Happy</title>' +
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-var arrayBuffer = new ArrayBuffer(strXml.length*2);
-var bufView = new Uint8Array(arrayBuffer);
-var strLen = strXml.length;
-for (var i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);
+let arrayBuffer = new ArrayBuffer(strXml.length);
+let bufView = new Uint8Array(arrayBuffer);
+let strLen = strXml.length;
+for (var tmp = 0; tmp < strLen; ++tmp) {
+    bufView[tmp] = strXml.charCodeAt(tmp);
 }
-var that = new xml.XmlPullParser(arrayBuffer);
-var arrTag = {};
-var str = "";
-var i = 0;
+let that = new xml.XmlPullParser(arrayBuffer);
+let arrTag = {};
+let str = "";
+let i = 0;
 function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
     str += arrTag[i];
     i++;
     return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
 }
-var options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
 console.log(str);
 // Output:
 // key:0 value:0key:2 value:1key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:10 value:1key:2 value:2key:4 value:2key:3 value:2key:3 value:1key:1 value:0
-// Notes:
-// The key represents the current event type, and the value represents the depth of the current parsing. You can know the parsed event according to EVENTTYPE. For example, the result 'key: value' in this example means:
-// 0(START_DOCUMENT):0(Parse to the START_DOCUMENT, and the depth is 0), 2(START_TAG):1(Parse to the START_TAG node, and the depth is 1), 10(WHITESPACE):1(Parse to the WHITESPACE space, and the depth is 1), 2(START_TAG):2(Parse to the START_TAG title, and the depth is 2), ...
+// Note:
+// key indicates the event type, and value indicates the parsing depth. You can learn the specific parsed event based on EVENTTYPE. In this example, key: value means:
+// 0(START_DOCUMENT):0 (START_DOCUMENT is being parsed, and the depth is 0), 2(START_TAG):1 (START_TAG is being parsed, and the depth is 1), 10(WHITESPACE):1 (WHITESPACE is being parsed, and the depth is 1), 2(START_TAG):2 (START_TAG is being parsed, and the depth is 2), ...
 ```
 
 
@@ -387,7 +387,7 @@ Provides APIs to manage the parsed XML information.
 
 getColumnNumber(): number
 
-Obtains the column line number, which starts from 1.
+Obtains the column line number, starting from 1.
 
 **System capability**: SystemCapability.Utils.Lang
 

@@ -29,11 +29,22 @@ zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md @li-yan339 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-overview.md @Austin23 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-makefile.md @Austin23 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-cmake.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-all.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guide.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-product.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-zh-cn/device-dev/subsystems/subsystem.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-component.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-module.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-chip_solution.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-feature.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-syscap.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-FAQ.md  @Austin23 @chenmudan
 zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
@@ -210,6 +221,7 @@ zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-display.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-effectKit.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @ge-yafang
@@ -219,7 +231,7 @@ zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-intl.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @HelloCrease
@@ -305,6 +317,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-update.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-usb.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.mdd @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vibrator.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
@@ -353,3 +366,6 @@ zh-cn/application-dev/reference/js-service-widget-ui @HelloCrease
 zh-cn/application-dev/website.md @zengyawen
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
+zh-cn/application-dev/reference/apis/Readme-CN.md @zengyawen

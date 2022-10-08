@@ -16,48 +16,13 @@ For details about the APIs, see [Vibrator](../reference/apis/js-apis-vibrator.md
 | ohos.vibrator | vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified duration. This API uses a callback to return the result.     |
 | ohos.vibrator | vibrate(effectId: EffectId): Promise&lt;void&gt; | Triggers vibration with the specified effect. This API uses a promise to return the result. |
 | ohos.vibrator | vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void | Triggers vibration with the specified effect. This API uses a callback to return the result.|
-| ohos.vibrator | stop(stopMode: VibratorStopMode): Promise&lt;void&gt; | Stops vibration. This API uses a promise to return the result.                          |
+| ohos.vibrator | stop(stopMode: VibratorStopMode): Promise&lt;void&gt;| Stops vibration. This API uses a promise to return the result.                          |
 | ohos.vibrator | stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void | Stops vibration. This API uses a callback to return the result.                          |
 
 
 ## How to Develop
 
-1. Declare the permissions required for controlling vibrators on the hardware device in the `config.json` file.  
-
-   ```
-   "reqPermissions": [
-       {
-           "name": "ohos.permission.ACCELEROMETER",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.VIBRATE",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-       {
-           "name": "ohos.permission.ACTIVITY_MOTION",
-           "reason": "",
-           "usedScene": {
-               "ability": [
-                   ".MainAbility"
-               ],
-               "when": "inuse"
-           }
-       },
-   ]
-   ```
+1. Before using the vibrator on a device, you must declare the **ohos.permission.VIBRATE** permission. For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
 
 2. Trigger the device to vibrate.
 

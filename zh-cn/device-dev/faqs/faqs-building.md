@@ -4,7 +4,7 @@
 ## 轻量和小型系统
 
 
-### 编译构建过程中，提示“usr/sbin/ninja: invalid option -- w”
+### 提示“usr/sbin/ninja: invalid option -- w”
 
 - **现象描述：**
 
@@ -19,7 +19,7 @@
   卸载环境中ninja和gn，按照[获取工具](../get-code/gettools-ide.md)。
 
 
-### 编译构建过程中，提示“/usr/bin/ld: cannot find -lncurses”
+### 提示“/usr/bin/ld: cannot find -lncurses”
 
 - **现象描述：**
   
@@ -36,7 +36,7 @@
   ```
 
 
-### 编译构建过程中，提示“line 77: mcopy: command not found”
+### 提示“line 77: mcopy: command not found”
 
 - **现象描述：** 
 
@@ -53,7 +53,7 @@
   ```
 
 
-### 编译构建过程中，提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”
+### 提示“riscv32-unknown-elf-gcc: error trying to exec 'cc1': execvp: No such file or directory”
 
 - **现象描述：**
   
@@ -74,7 +74,7 @@
   使用chmod命令修改目录权限为755。
 
 
-### 编译构建过程中，提示“No module named 'Crypto'”
+### 提示“No module named 'Crypto'”
 
 - **现象描述：**
 
@@ -98,7 +98,7 @@
       ```
 
 
-### 编译构建过程中，提示“xx.sh : xx unexpected operator”
+### 提示“xx.sh : xx unexpected operator”
 
 - **现象描述：**
 
@@ -116,7 +116,7 @@
   ```
 
 
-### 编译构建过程中，提示“Could not find a version that satisfies the requirement six&gt;=1.9.0”
+### 提示“Could not find a version that satisfies the requirement six&gt;=1.9.0”
 
 - **现象描述**
 
@@ -146,7 +146,7 @@
   完成上述安装后，重新构建。
 
 
-### 编译构建过程中，提示找不到“-lgcc”
+### 提示找不到“-lgcc”
 
 - **现象描述**
 
@@ -176,7 +176,7 @@
   ```
 
 
-### 编译构建过程中，提示找不到“python”
+### 提示找不到“python”
 
 - **现象描述**
 
@@ -223,7 +223,7 @@
   ![zh-cn_image_0000001243320787](figures/zh-cn_image_0000001243320787.png)
 
 
-### 编译构建过程中，提示找不到“python3”
+### 提示找不到“python3”
 
 - **现象描述**
 

@@ -38,7 +38,9 @@
         - [Component ID](ts-universal-attributes-component-id.md)
         - [Touch Target](ts-universal-attributes-touch-target.md)
         - [Polymorphic Style](ts-universal-attributes-polymorphic-style.md)
+        - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
         - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
+        - [restoreId](ts-universal-attributes-restoreId.md)
     - Gesture Processing
         - [Gesture Binding Methods](ts-gesture-settings.md)
         - Basic Gestures
@@ -97,10 +99,13 @@
     - [Counter](ts-container-counter.md)
     - [Flex](ts-container-flex.md)
     - [GridContainer](ts-container-gridcontainer.md)
+    - [GridCol](ts-container-gridcol.md)
+    - [GridRow](ts-container-gridrow.md)
     - [Grid](ts-container-grid.md)
     - [GridItem](ts-container-griditem.md)
     - [List](ts-container-list.md)
     - [ListItem](ts-container-listitem.md)
+    - [ListItemGroup](ts-container-listitemgroup.md)
     - [Navigator](ts-container-navigator.md)        
     - [Panel](ts-container-panel.md)
     - [Refresh](ts-container-refresh.md)

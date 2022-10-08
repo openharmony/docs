@@ -176,8 +176,8 @@ WLAN热点信息。
 | band | number | 只读 | WLAN接入点的频段。 |
 | frequency | number | 只读 | WLAN接入点的频率。 |
 | channelWidth | number | 只读 | WLAN接入点的带宽。 |
-| centerFrequency0<sup>9+</sup> | number | 只读 | 中心频点。 |
-| centerFrequency1<sup>9+</sup> | number | 只读 | 中心频点。 |
+| centerFrequency0<sup>9+</sup> | number | 只读 | 热点的中心频率。 |
+| centerFrequency1<sup>9+</sup> | number | 只读 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems<sup>9+</sup> | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 只读 | 信息元素。 |
 | timestamp | number | 只读 | 时间戳。 |
 
@@ -1857,16 +1857,15 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   ```js
   import wifi from '@ohos.wifi';
   
-  var WIFI_POWER_STATE = "wifiStateChange";
   var recvPowerNotifyFunc = result => {
       console.info("Receive power state change event: " + result);
   }
   
   // Register event
-  wifi.on(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.on("wifiStateChange", recvPowerNotifyFunc);
   
   // Unregister event
-  wifi.off(WIFI_POWER_STATE, recvPowerNotifyFunc);
+  wifi.off("wifiStateChange", recvPowerNotifyFunc);
   ```
 
 

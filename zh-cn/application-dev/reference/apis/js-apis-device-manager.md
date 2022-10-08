@@ -361,18 +361,18 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 - 示例：
   ```js
-  //生成发现标识，随机数确保每次调用发现接口的标识不一致
+  // 生成发现标识，随机数确保每次调用发现接口的标识不一致
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
   var subscribeInfo = {
       "subscribeId": subscribeId,
-      "mode": 0xAA, //主动模式
-      "medium": 0,  //自动发现类型，同时支持多种发现类型
-      "freq": 2,    //高频率
+      "mode": 0xAA, // 主动模式
+      "medium": 0,  // 自动发现类型，同时支持多种发现类型
+      "freq": 2,    // 高频率
       "isSameAccount": false,
       "isWakeRemote": false,
       "capability": 1
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo); //当有设备发现时，通过deviceFound回调通知给应用程序
+  dmInstance.startDeviceDiscovery(subscribeInfo); // 当有设备发现时，通过deviceFound回调通知给应用程序
   ```
 
 ### startDeviceDiscovery9+</sup>
@@ -391,13 +391,13 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 - 示例：
   ```js
-  //生成发现标识，随机数确保每次调用发现接口的标识不一致
+  // 生成发现标识，随机数确保每次调用发现接口的标识不一致
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
   var subscribeInfo = {
       "subscribeId": subscribeId,
-      "mode": 0xAA, //主动模式
-      "medium": 0,  //自动发现类型，同时支持多种发现类型
-      "freq": 2,    //高频率
+      "mode": 0xAA, // 主动模式
+      "medium": 0,  // 自动发现类型，同时支持多种发现类型
+      "freq": 2,    // 高频率
       "isSameAccount": false,
       "isWakeRemote": false,
       "capability": 1
@@ -411,7 +411,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
         }
     ]
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); //当有设备发现时，通过deviceFound回调通知给应用程序
+  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // 当有设备发现时，通过deviceFound回调通知给应用程序
   ```
   
 ### stopDeviceDiscovery
@@ -429,7 +429,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 - 示例：
   ```js
-  //入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
+  // 入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
   dmInstance.stopDeviceDiscovery(subscribeId);
   ```
 
@@ -448,15 +448,15 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 - 示例：
   ```js
-  //生成发布标识，随机数确保每次调用发布接口的标识不一致
+  // 生成发布标识，随机数确保每次调用发布接口的标识不一致
   var publishId = Math.floor(Math.random() * 10000 + 1000);
   var publishInfo = {
       "publishId": publishId,
-      "mode": 0xAA, //主动模式
-      "freq": 2,    //高频率
-      "ranging": 1  //支持发现时测距
+      "mode": 0xAA, // 主动模式
+      "freq": 2,    // 高频率
+      "ranging": 1  // 支持发现时测距
   };
-  dmInstance.publishDeviceDiscovery(publishInfo); //当有发布结果时，通过回调通知给应用程序
+  dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
   ```
   
 ### unPublishDeviceDiscovery9+</sup>
@@ -474,7 +474,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 - 示例：
   ```js
-  //入参需要和publishDeviceDiscovery接口传入的publishId配对使用
+  // 入参需要和publishDeviceDiscovery接口传入的publishId配对使用
   dmInstance.unPublishDeviceDiscovery(publishId);
   ```
 
@@ -495,14 +495,14 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 - 示例：
   ```js
-  //认证的设备信息，可以从发现的结果中获取
+  // 认证的设备信息，可以从发现的结果中获取
   var deviceInfo ={
       "deviceId": "XXXXXXXX",
       "deviceName": "",
       deviceType: 0x0E
   };
   let authParam = {
-      "authType": 1, //认证类型： 1 - 无账号PIN码认证
+      "authType": 1, // 认证类型： 1 - 无账号PIN码认证
       "extraInfo": {} 
   }
   dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {

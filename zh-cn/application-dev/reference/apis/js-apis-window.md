@@ -303,8 +303,8 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 **示例：**
 
 ```js
-var windowClass = null;
-window.create("first", window.WindowType.TYPE_APP,(err,data) => {
+let windowClass = null;
+window.create('first', window.WindowType.TYPE_APP,(err,data) => {
     if(err.code){
         console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(err));
         return;
@@ -340,8 +340,8 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-var windowClass = null;
-let promise = window.create("first", window.WindowType.TYPE_APP);
+let windowClass = null;
+let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in creating the subWindow. Data: ' + JSON.stringify(data));
@@ -372,8 +372,8 @@ create(ctx: Context, id: string, type: WindowType, callback: AsyncCallback&lt;Wi
 **示例：**
 
 ```js
-var windowClass = null;
- window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+let windowClass = null;
+ window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
         console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
@@ -411,8 +411,8 @@ create(ctx: Context, id: string, type: WindowType): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-var windowClass = null;
-let promise = window.create(this.context, "alertWindow", window.WindowType.TYPE_SYSTEM_ALERT);
+let windowClass = null;
+let promise = window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data)=> {
     windowClass = data;
     console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
@@ -439,8 +439,8 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```js
-var windowClass = null;
- window.find("alertWindow", (err, data) => {
+let windowClass = null;
+ window.find('alertWindow', (err, data) => {
    if (err.code) {
        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
        return;
@@ -473,8 +473,8 @@ find(id: string): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-var windowClass = null;
-let promise = window.find("alertWindow");
+let windowClass = null;
+let promise = window.find('alertWindow');
 promise.then((data)=> {
  	windowClass = data;
     console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
@@ -502,7 +502,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 window.getTopWindow((err, data) => {
     if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -532,7 +532,7 @@ getTopWindow(): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
  	windowClass = data;
@@ -560,7 +560,7 @@ getTopWindow(ctx: Context, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 window.getTopWindow(this.context, (err, data) => {
     if (err.code) {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -594,7 +594,7 @@ getTopWindow(ctx: Context): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-var windowClass = null;
+let windowClass = null;
 let promise = window.getTopWindow(this.context);
 promise.then((data)=> {
  	windowClass = data;
@@ -626,7 +626,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 import display from '@ohos.display'
 import window from '@ohos.window'
 
-var displayClass = null;
+let displayClass = null;
 display.getDefaultDisplay((err, data) => {
     if(err.code) {
         return;
@@ -669,7 +669,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 import display from '@ohos.display'
 import window from '@ohos.window'
 
-var displayClass = null;
+let displayClass = null;
 display.getDefaultDisplay((err, data) => {
     if(err.code) {
         return;
@@ -1259,7 +1259,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_APP;
 windowClass.setWindowType(type, (err, data) => {
   if (err.code) {
       console.error('Failed to set the window type. Cause: ' + JSON.stringify(err));
@@ -1298,7 +1298,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var type = window.WindowType.TYPE_APP;
+let type = window.WindowType.TYPE_APP;
 let promise = windowClass.setWindowType(type);
 promise.then((data)=> {
     console.info('Succeeded in setting the window type. Data: ' + JSON.stringify(data));
@@ -1376,7 +1376,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```js
-var type = window.AvoidAreaType.TYPE_SYSTEM;
+let type = window.AvoidAreaType.TYPE_SYSTEM;
 windowClass.getAvoidArea(type, (err, data) => {
     if (err.code) {
         console.error('Failed to obtain the area. Cause:' + JSON.stringify(err));
@@ -1409,7 +1409,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```js
-var type = window.AvoidAreaType.TYPE_SYSTEM;
+let type = window.AvoidAreaType.TYPE_SYSTEM;
 let promise = windowClass.getAvoidArea(type);
 promise.then((data)=> {
     console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
@@ -1436,7 +1436,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var isFullScreen = true;
+let isFullScreen = true;
 windowClass.setFullScreen(isFullScreen, (err, data) => {
     if (err.code) {
         console.error('Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
@@ -1469,7 +1469,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isFullScreen = true;
+let isFullScreen = true;
 let promise = windowClass.setFullScreen(isFullScreen);
 promise.then((data)=> {
     console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
@@ -1496,7 +1496,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
-var isLayoutFullScreen= true;
+let isLayoutFullScreen= true;
 windowClass.setLayoutFullScreen(isLayoutFullScreen, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
@@ -1529,7 +1529,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isLayoutFullScreen = true;
+let isLayoutFullScreen = true;
 let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
 promise.then((data)=> {
     console.info('Succeeded in setting the window layout to full-screen mode. Data: ' + JSON.stringify(data));
@@ -1550,14 +1550,14 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| names    | Array                     | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为["status",&nbsp;"navigation"]；不设置，则默认不显示。 |
+| names    | Array                     | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例：**
 
 ```js
 // 此处以不显示导航栏、状态栏为例
-var names = [];
+let names = [];
 windowClass.setSystemBarEnable(names, (err, data) => {
     if (err.code) {
         console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
@@ -1579,7 +1579,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明                                                         |
 | ------ | ----- | ---- | ------------------------------------------------------------ |
-| names  | Array | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为["status",&nbsp;"navigation"]；不设置，则默认不显示。 |
+| names  | Array | 是   | 设置状态栏和导航栏是否显示。<br>例如，需全部显示，该参数设置为['status',&nbsp;'navigation']；不设置，则默认不显示。 |
 
 **返回值：**
 
@@ -1591,7 +1591,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 ```js
 // 此处以不显示导航栏、状态栏为例
-var names = [];
+let names = [];
 let promise = windowClass.setSystemBarEnable(names);
 promise.then((data)=> {
     console.info('Succeeded in setting the system bar to be invisible. Data: ' + JSON.stringify(data));
@@ -1618,7 +1618,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 **示例：**
 
 ```js
-var SystemBarProperties={
+let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     //以下两个属性从API Version7开始支持
@@ -1660,7 +1660,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 **示例：**
 
 ```js
-var SystemBarProperties={
+let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
     //以下两个属性从API Version7开始支持
@@ -1696,7 +1696,7 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```js
-var orientation = window.Orientation.AUTO_ROTATION;
+let orientation = window.Orientation.AUTO_ROTATION;
 windowClass.setPreferredOrientation(orientation, (err, data) => {
     if (err.code) {
         console.error('Failed to set window orientation. Cause: ' + JSON.stringify(err));
@@ -1729,7 +1729,7 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var orientation = window.Orientation.AUTO_ROTATION;
+let orientation = window.Orientation.AUTO_ROTATION;
 let promise = windowClass.setPreferredOrientation(orientation);
 promise.then((data)=> {
     console.info('Succeeded in setting the window orientation. Data: ' + JSON.stringify(data));
@@ -1756,7 +1756,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-windowClass.loadContent("pages/page2/page2", (err, data) => {
+windowClass.loadContent('pages/page2/page2', (err, data) => {
    if (err.code) {
          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
          return;
@@ -1788,7 +1788,7 @@ loadContent(path: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let promise = windowClass.loadContent("pages/page2/page2");
+let promise = windowClass.loadContent('pages/page2/page2');
 promise.then((data)=> {
     console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
@@ -1820,9 +1820,9 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2",this.storage,(err, data) => {
+        windowStage.loadContent('pages/page2',this.storage,(err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -1863,10 +1863,10 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.loadContent("pages/page2",this.storage);
+        let windowClass = null;
+        let promise = windowStage.loadContent('pages/page2',this.storage);
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
@@ -2199,7 +2199,7 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 **示例：**
 
 ```js
-var callback = ()=>{
+let callback = ()=>{
     console.info('screenshot happened');
 }
 windowClass.on('screenshot', callback)
@@ -2276,7 +2276,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, c
 ```js
 class MyDeathRecipient {
     onRemoteDied() {
-        console.log("server died");
+        console.log('server died');
     }
 }
 class TestRemoteObject extends rpc.RemoteObject {
@@ -2293,7 +2293,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
-let token = new TestRemoteObject("testObject");
+let token = new TestRemoteObject('testObject');
 windowClass.bindDialogTarget(token, () => {
     console.info('Dialog Window Need Destroy.');
 }, (err, data) => {
@@ -2333,7 +2333,7 @@ bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;): 
 ```js
 class MyDeathRecipient {
     onRemoteDied() {
-        console.log("server died");
+        console.log('server died');
     }
 }
 class TestRemoteObject extends rpc.RemoteObject {
@@ -2350,7 +2350,7 @@ class TestRemoteObject extends rpc.RemoteObject {
         return false;
     }
 }
-let token = new TestRemoteObject("testObject");
+let token = new TestRemoteObject('testObject');
 let promise = windowClass.bindDialogTarget(token, () => {
     console.info('Dialog Window Need Destroy.');
 });
@@ -2539,7 +2539,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var color = '#00ff33';
+let color = '#00ff33';
 windowClass.setBackgroundColor(color, (err, data) => {
     if (err.code) {
         console.error('Failed to set the background color. Cause: ' + JSON.stringify(err));
@@ -2561,7 +2561,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如"#00FF00"或"#FF00FF00"。 |
+| color  | string | 是   | 需要设置的背景色，为十六进制颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
 
 **返回值：**
 
@@ -2572,7 +2572,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var color = '#00ff33';
+let color = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
 promise.then((data)=> {
     console.info('Succeeded in setting the background color. Data: ' + JSON.stringify(data));
@@ -2600,7 +2600,7 @@ setWakeUpScreen(wakeUp: boolean): void;
 **示例：**
 
 ```js
-var wakeUp = true;
+let wakeUp = true;
 windowClass.setWakeUpScreen(wakeUp);
 ```
 
@@ -2622,7 +2622,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var brightness = 1;
+let brightness = 1;
 windowClass.setBrightness(brightness, (err, data) => {
     if (err.code) {
         console.error('Failed to set the brightness. Cause: ' + JSON.stringify(err));
@@ -2655,7 +2655,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var brightness = 1;
+let brightness = 1;
 let promise = windowClass.setBrightness(brightness);
 promise.then((data)=> {
     console.info('Succeeded in setting the brightness. Data: ' + JSON.stringify(data));
@@ -2748,7 +2748,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var isFocusable= true;
+let isFocusable= true;
 windowClass.setFocusable(isFocusable, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to be focusable. Cause:' + JSON.stringify(err));
@@ -2781,7 +2781,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isFocusable= true;
+let isFocusable= true;
 let promise = windowClass.setFocusable(isFocusable);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to be focusable. Data: ' + JSON.stringify(data));
@@ -2808,7 +2808,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```js
-var isKeepScreenOn = true;
+let isKeepScreenOn = true;
 windowClass.setKeepScreenOn(isKeepScreenOn, (err, data) => {
     if (err.code) {
         console.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
@@ -2841,7 +2841,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isKeepScreenOn = true;
+let isKeepScreenOn = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then((data) => {
     console.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(data));
@@ -2934,7 +2934,7 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```js
-var isPrivacyMode = true;
+let isPrivacyMode = true;
 windowClass.setPrivacyMode(isPrivacyMode, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to privacy mode. Cause:' + JSON.stringify(err));
@@ -2968,7 +2968,7 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isPrivacyMode = true;
+let isPrivacyMode = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to privacy mode. Data: ' + JSON.stringify(data));
@@ -2992,7 +2992,7 @@ setSnapshotSkip(isSkip: boolean): void
 | ------------- | ------- | ---- | -------------------- |
 | isSkip | boolean | 是   | 截屏录屏是否忽略当前窗口，默认为false。<br>true表示忽略当前窗口，false表示不忽略当前窗口。</br> |
 ```js
-var isSkip = true;
+let isSkip = true;
 windowClass.setSnapshotSkip(isSkip);
 ```
 
@@ -3014,7 +3014,7 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var isTouchable = true;
+let isTouchable = true;
 windowClass.setTouchable(isTouchable, (err, data) => {
     if (err.code) {
         console.error('Failed to set the window to be touchable. Cause:' + JSON.stringify(err));
@@ -3048,7 +3048,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isTouchable = true;
+let isTouchable = true;
 let promise = windowClass.setTouchable(isTouchable);
 promise.then((data)=> {
     console.info('Succeeded in setting the window to be touchable. Data: ' + JSON.stringify(data));
@@ -3077,7 +3077,7 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```js
-var isForbidSplitMove = true;
+let isForbidSplitMove = true;
 windowClass.setForbidSplitMove(isForbidSplitMove, (err, data) => {
     if (err.code) {
         console.error('Failed to forbid window moving in split screen mode. Cause:' + JSON.stringify(err));
@@ -3113,12 +3113,12 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var isForbidSplitMove = true;
+let isForbidSplitMove = true;
 let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
 promise.then((data)=> {
     console.info('Succeeded in forbidding window moving in split screen mode. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
-    console.error('Failed to forbidd window moving in split screen mode. Cause: ' + JSON.stringify(err));
+    console.error('Failed to forbid window moving in split screen mode. Cause: ' + JSON.stringify(err));
 });
 ```
 
@@ -3329,7 +3329,7 @@ scale(scaleOptions: ScaleOptions): void
 **示例：**
 
 ```js
-var obj : window.ScaleOptions = {
+let obj : window.ScaleOptions = {
   x : 2.0,
   y : 1.0,
   pivotX = 0.5;
@@ -3357,7 +3357,7 @@ rotate(rotateOptions: RotateOptions): void
 **示例：**
 
 ```js
-var obj : window.RotateOptions = {
+let obj : window.RotateOptions = {
   x : 1.0,
   y : 1.0,
   z : 45.0,
@@ -3386,7 +3386,7 @@ translate(translateOptions: TranslateOptions): void
 **示例：**
 
 ```js
-var obj : window.TranslateOptions = {
+let obj : window.TranslateOptions = {
   x : 100.0,
   y : 0.0,
   z : 0.0
@@ -3427,7 +3427,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }    
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -3491,7 +3491,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -3526,7 +3526,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         let promise = windowStage.getMainWindow();
         promise.then((data)=> {
         windowClass = data;
@@ -3561,8 +3561,8 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        windowStage.createSubWindow("mySubWindow", (err, data) => {
+        let windowClass = null;
+        windowStage.createSubWindow('mySubWindow', (err, data) => {
             if (err.code) {
                 console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
                 return;
@@ -3603,8 +3603,8 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.createSubWindow("mySubWindow");
+        let windowClass = null;
+        let promise = windowStage.createSubWindow('mySubWindow');
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -3637,7 +3637,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         windowStage.getSubWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
@@ -3672,7 +3672,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        var windowClass = null;
+        let windowClass = null;
         let promise = windowStage.getSubWindow();
         promise.then((data)=> {
             windowClass = data;
@@ -3709,9 +3709,9 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2",this.storage,(err, data) => {
+        windowStage.loadContent('pages/page2',this.storage,(err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -3753,10 +3753,10 @@ class myAbility extends Ability {
     storage : LocalStorage
     onWindowStageCreate(windowStage) {
         this.storage = new LocalStorage();
-        this.storage.setOrCreate("storageSimpleProp",121);
+        this.storage.setOrCreate('storageSimpleProp',121);
         console.log('onWindowStageCreate');
-        var windowClass = null;
-        let promise = windowStage.loadContent("pages/page2",this.storage);
+        let windowClass = null;
+        let promise = windowStage.loadContent('pages/page2',this.storage);
         promise.then((data)=> {
             windowClass = data;
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
@@ -3791,7 +3791,7 @@ import Ability from '@ohos.application.Ability';
 class myAbility extends Ability {
     onWindowStageCreate(windowStage) {
         console.log('onWindowStageCreate');
-        windowStage.loadContent("pages/page2", (err, data) => {
+        windowStage.loadContent('pages/page2', (err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
@@ -3959,7 +3959,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
         iterations: 1, // 播放次数
         playMode: PlayMode.Normal, // 动画模式
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -4010,7 +4010,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }  
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0
@@ -4056,7 +4056,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
             context.completeTransition(true)
         }  
       }, () => {
-        var obj : window.TranslateOptions = {
+        let obj : window.TranslateOptions = {
           x : 100.0,
           y : 0.0,
           z : 0.0

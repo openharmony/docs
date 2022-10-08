@@ -25,16 +25,16 @@ URLSearchParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | 否 | 入参对象。<br/>-&nbsp;string[][]：字符串二维数组<br/>-&nbsp;Record&lt;string,&nbsp;string&gt;：对象列表<br/>-&nbsp;string：字符串<br/>-&nbsp;URLSearchParams：对象 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象 |
 
 **示例：**
 
 ```js
-var objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
-var objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
-var objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
-var urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
-var params = new Url.URLSearchParams(urlObject.search);
+let objectParams = new Url.URLSearchParams([ ['user1', 'abc1'], ['query2', 'first2'], ['query3', 'second3'] ]);
+let objectParams1 = new Url.URLSearchParams({"fod" : '1' , "bard" : '2'});
+let objectParams2 = new Url.URLSearchParams('?fod=1&bard=2');
+let urlObject = new Url.URL('https://developer.mozilla.org/?fod=1&bard=2');
+let params = new Url.URLSearchParams(urlObject.search);
 ```
 
 
@@ -127,12 +127,12 @@ entries(): IterableIterator<[string, string]>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | 返回一个ES6的迭代器。 |
+| IterableIterator&lt;[string, string]&gt; | 返回一个ES6的迭代器。 |
 
 **示例：**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
+let searchParamsObject = new Url.URLSearchParams("keyName1=valueName1&keyName2=valueName2"); 
 for (var pair of searchParamsObject .entries()) { // Show keyName/valueName pairs
     console.log(pair[0]+ ', '+ pair[1]);
 }
@@ -191,14 +191,14 @@ get(name: string): string | null
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回第一个值。 |
-| null | 如果没找到，返回&nbsp;null。 |
+| null | 如果没找到，返回 null。 |
 
 **示例：**
 
 ```js
-var paramsOject = new Url.URLSearchParams('name=Jonathan&age=18'); 
-var name = paramsOject.get("name"); // is the string "Jonathan" 
-var age = parseInt(paramsOject.get("age"), 10); // is the number 18
+let paramsObject = new Url.URLSearchParams('name=Jonathan&age=18'); 
+let name = paramsObject.get("name"); // is the string "Jonathan" 
+let age = parseInt(paramsObject.get("age"), 10); // is the number 18
 ```
 
 
@@ -266,7 +266,7 @@ sort(): void
 **示例：**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
+let searchParamsObject = new Url.URLSearchParams("c=3&a=9&b=4&d=2"); // Create a test URLSearchParams object
 searchParamsObject.sort(); // Sort the key/value pairs
 console.log(searchParamsObject.toString()); // Display the sorted query string // Output a=9&b=2&c=3&d=4
 ```
@@ -289,7 +289,7 @@ keys(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+let searchParamsObject = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
 for (var key of searchParamsObject .keys()) { // Output key-value pairs
     console.log(key);
 }
@@ -313,8 +313,8 @@ values(): IterableIterator&lt;string&gt;
 **示例：**
 
 ```js
-var searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
-for (var value of searchParams.values()) { 
+let searchParams = new Url.URLSearchParams("key1=value1&key2=value2"); // Create a URLSearchParamsObject object for testing
+for (var value of searchParams.values()) {
     console.log(value);
 }
 ```
@@ -332,13 +332,13 @@ for (var value of searchParams.values()) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | 返回一个ES6的迭代器。 |
+| IterableIterator&lt;[string, string]&gt; | 返回一个ES6的迭代器。 |
 
 **示例：**
 
 ```js
 const paramsObject = new Url.URLSearchParams('fod=bay&edg=bap');
-for (const [name, value] of paramsObject) { 
+for (const [name, value] of paramsObject) {
     console.log(name, value); 
 } 
 ```
@@ -403,16 +403,16 @@ URL的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 入参对象。 |
-| base | string&nbsp;\|&nbsp;URL | 否 | 入参字符串或者对象。<br/>-&nbsp;string：字符串<br/>-&nbsp;URL：字符串或对象 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
 
 **示例：**
 
 ```js
-var mm = 'http://username:password@host:8080';
-var a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
-var b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
+let mm = 'http://username:password@host:8080';
+let a = new Url.URL("/", mm); // Output 'http://username:password@host:8080/';
+let b = new Url.URL(mm); // Output 'http://username:password@host:8080/';
 new Url.URL('path/path1', b); // Output 'http://username:password@host:8080/path/path1';
-var c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
+let c = new Url.URL('/path/path1', b);  // Output 'http://username:password@host:8080/path/path1'; 
 new Url.URL('/path/path1', c); // Output 'http://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', a); // Output 'http://username:password@host:8080/path/path1';
 new Url.URL('/path/path1', "https://www.exampleUrl/fr-FR/toto"); // Output https://www.exampleUrl/path/path1
@@ -441,7 +441,7 @@ toString(): string
 
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+url.toString();
 ```
 
 
@@ -462,5 +462,5 @@ toJSON(): string
 **示例：**
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON()
+url.toJSON();
 ```

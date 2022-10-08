@@ -7,12 +7,10 @@
         - 文件组织
             - [目录结构](ts-framework-directory.md)
             - [应用代码文件访问规则](ts-framework-file-access-rules.md)
-        - [js标签配置](ts-framework-js-tag.md)
         - 资源管理
             - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
             - [资源访问](ts-resource-access.md)
         - [像素单位](ts-pixel-units.md)
-        - [类型定义](ts-types.md)
     - 声明式语法
         - [描述规范使用说明](ts-syntax-intro.md)
         - 通用UI描述规范
@@ -73,7 +71,7 @@
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
     - [性能提升的推荐方法](ts-performance-improvement-recommendation.md)
-
+    
 - UI开发（兼容JS的类Web开发范式）
     - [概述](ui-js-overview.md)
     - 框架说明

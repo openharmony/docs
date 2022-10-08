@@ -1,204 +1,70 @@
 # OpenHarmony设备开发文档
 - [设备开发导读](device-dev-guide.md)
 - 快速开始
-  - 轻量和小型系统快速入门（IDE方式，推荐）
-
-      - [轻量与小型系统入门概述](quick-start/quickstart-ide-lite-overview.md)
-
-      - 准备轻量与小型系统环境
-
-          - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-lite-env-setup-win-ubuntu.md)
-
-          - [获取源码](quick-start/quickstart-ide-lite-sourcecode-acquire.md)
-
-      - [导入源码工程](quick-start/quickstart-ide-lite-create-project.md)
-
-      - 运行“Hello World”
-
-          - Hi3861开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3861-helloworld.md)
-
-              - [编译](quick-start/quickstart-ide-lite-steps-hi3861-building.md)
-
-              - [烧录](quick-start/quickstart-ide-lite-steps-hi3861-burn.md)
-
-              - [联网](quick-start/quickstart-ide-lite-steps-hi3861-netconfig.md)
-
-              - [调试验证](quick-start/quickstart-ide-lite-steps-hi3861-debug.md)
-
-              - [运行](quick-start/quickstart-ide-lite-steps-hi3861-running.md)
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-lite-steps-hi3516-helloworld.md)
-
-              - [编译](quick-start/quickstart-ide-lite-steps-hi3516-building.md)
-
-              - [烧录](quick-start/quickstart-ide-lite-steps-hi3516-burn.md)
-
-              - [运行](quick-start/quickstart-ide-lite-steps-hi3516-running.md)
-
-      - 附录
-
-          - [Hi3861开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3861.md)
-
-          - [Hi3516开发板介绍](quick-start/quickstart-ide-lite-introduction-hi3516.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 轻量和小型系统快速入门（安装包方式）
-
-      - [轻量与小型系统入门概述](quick-start/quickstart-lite-overview.md)
-
-      - [搭建轻量与小型系统环境](quick-start/quickstart-lite-env-setup.md)
-
-      - 运行“Hello World”
-
-          - Hi3861开发板
-
-              - [安装Hi3861开发板环境](quick-start/quickstart-lite-steps-hi3861-setting.md)
-
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3861-helloworld.md)
-
-              - [编译](quick-start/quickstart-lite-steps-hi3861-building.md)
-
-              - [烧录](quick-start/quickstart-lite-steps-hi3861-burn.md)
-
-              - [联网](quick-start/quickstart-lite-steps-hi3861-netconfig.md)
-
-              - [调试验证](quick-start/quickstart-lite-steps-hi3861-debug.md)
-
-              - [运行](quick-start/quickstart-lite-steps-hi3861-running.md)
-
-          - Hi3516开发板
-
-              - [安装Hi3516开发板环境](quick-start/quickstart-lite-steps-hi3516-setting.md)
-
-              - [编写“Hello World”程序](quick-start/quickstart-lite-steps-hi3516-helloworld.md)
-
-              - [编译](quick-start/quickstart-lite-steps-hi3516-building.md)
-
-              - [烧录](quick-start/quickstart-lite-steps-hi3516-burn.md)
-
-              - [运行](quick-start/quickstart-lite-steps-hi3516-running.md)
-
-      - 常见问题
-
-          - [hb安装异常](quick-start/quickstart-lite-faq-hb.md)
-
-          - [编译异常](quick-start/quickstart-lite-faq-compose.md)
-
-          - [烧录异常](quick-start/quickstart-lite-faq-burning.md)
-
-      - 附录
-
-          - 开发板介绍
-
-              - [Hi3861开发板介绍](quick-start/quickstart-lite-introduction-hi3861.md)
-
-              - [Hi3516开发板介绍](quick-start/quickstart-lite-introduction-hi3516.md)
-
-          - [参考信息](quick-start/quickstart-lite-reference.md)
-
-          - [使用HiTool烧录代码](quick-start/quickstart-lite-hitool.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 标准系统快速入门（IDE方式，推荐）
-
-      - [标准系统入门概述](quick-start/quickstart-ide-standard-overview.md)
-
-      - 准备标准系统环境
-
-          - [搭建Windows+Ubuntu混合开发环境](quick-start/quickstart-ide-standard-env-setup-win-ubuntu.md)
-
-          - [获取源码](quick-start/quickstart-ide-standard-sourcecode-acquire.md)
-
-      - [导入源码工程](quick-start/quickstart-ide-standard-create-project.md)
-
-      - 运行“Hello World”
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-standard-running-hi3516-create.md)
-
-              - [编译](quick-start/quickstart-ide-standard-running-hi3516-build.md)
-
-              - [烧录](quick-start/quickstart-ide-standard-running-hi3516-burning.md)
-
-              - [运行](quick-start/quickstart-ide-standard-running-hi3516-running.md)
-
-          - RK3568开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-ide-standard-running-rk3568-create.md)
-
-              - [编译](quick-start/quickstart-ide-standard-running-rk3568-build.md)
-
-              - [烧录](quick-start/quickstart-ide-standard-running-rk3568-burning.md)
-
-              - [运行](quick-start/quickstart-ide-standard-running-rk3568-running.md)
-
-      - 附录
-
-          - [Hi3516开发板介绍](quick-start/quickstart-ide-standard-board-introduction-hi3516.md)
-
-          - [RK3568开发板介绍](quick-start/quickstart-ide-standard-board-introduction-rk3568.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
-
-  - 标准系统快速入门（安装包方式）
-
-      - [标准系统入门概述](quick-start/quickstart-standard-overview.md)
-
-      - [搭建标准系统环境](quick-start/quickstart-standard-env-setup.md)
-
-      - 运行“Hello World”
-
-          - Hi3516开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-std-3516-create.md)
-
-              - [编译](quick-start/quickstart-standard-running-hi3516-build.md)
-
-              - [烧录](quick-start/quickstart-standard-running-hi3516-burning.md)
-
-              - [运行](quick-start/quickstart-standard-running-hi3516-running.md)
-
-          - RK3568开发板
-
-              - [编写“Hello World”程序](quick-start/quickstart-standard-running-rk3568-create.md)
-
-              - [编译](quick-start/quickstart-standard-running-rk3568-build.md)
-
-              - [烧录](quick-start/quickstart-standard-running-rk3568-burning.md)
-
-              - [运行](quick-start/quickstart-standard-running-rk3568-running.md)
-
-      - 常见问题
-
-          - [hb安装异常](quick-start/quickstart-standard-faq-hb.md)
-
-          - [编译异常](quick-start/quickstart-standard-faq-compose.md)
-
-          - [烧录异常](quick-start/quickstart-standard-faq-burning.md)
-
-      - 附录
-
-          - 开发板介绍
-
-              - [Hi3516开发板介绍](quick-start/quickstart-standard-board-introduction-hi3516.md)
-
-              - [RK3568开发板介绍](quick-start/quickstart-standard-board-introduction-rk3568.md)
-
-          - [参考信息](quick-start/quickstart-standard-reference.md)
-
-          - [使用HiTool烧录代码](quick-start/quickstart-standard-hitool.md)
-
-          - [编译形态整体说明](quick-start/quickstart-build.md)
+  - [快速入门概述](quick-start/quickstart-overview.md)
+  - 基于IDE开发
+    - 搭建开发环境
+      - [搭建Windows环境](quick-start/quickstart-ide-env--win.md)
+      - [搭建Ubuntu环境](quick-start/quickstart-ide-env-ubuntu.md)
+      - [配置远程访问环境](quick-start/quickstart-ide-env-remote.md)
+    - [创建工程并获取源码](quick-start/quickstart-ide-import-project.md)
+    - 轻量系统（基于Hi3861开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3861-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3861-build.md)
+      - [烧录](quick-start/quickstart-ide-3861-burn.md)
+      - [运行](quick-start/quickstart-ide-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3516-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3516-build.md)
+      - [烧录](quick-start/quickstart-ide-3516-burn.md)
+      - [运行](quick-start/quickstart-ide-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-ide-3568-helloworld.md)
+      - [编译](quick-start/quickstart-ide-3568-build.md)
+      - [烧录](quick-start/quickstart-ide-3568-burn.md)
+      - [运行](quick-start/quickstart-ide-3568-running.md)
+  - 基于命令行开发
+    - 搭建开发环境
+      - [准备开发环境](quick-start/quickstart-pkg-prepare.md)
+      - [安装库和工具集](quick-start/quickstart-pkg-install_package.md)
+      - [获取源码](quick-start/quickstart-pkg-sourcecode.md)
+      - [安装编译工具](quick-start/quickstart-pkg-install_tool.md)
+    - 轻量系统（基于Hi3861开发板）
+      - [安装Hi3861开发板特有环境](quick-start/quickstart-pkg-3861-tool.md)
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3861-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3861-build.md)
+      - [烧录](quick-start/quickstart-pkg-3861-burn.md)
+      - [运行](quick-start/quickstart-pkg-3861-running.md)
+    - 小型系统（基于Hi3516开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3516-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3516-build.md)
+      - [烧录](quick-start/quickstart-pkg-3516-burn.md)
+      - [运行](quick-start/quickstart-pkg-3516-running.md)
+    - 标准系统（基于RK3568开发板）
+      - [编写“Hello World”程序](quick-start/quickstart-pkg-3568-helloworld.md)
+      - [编译](quick-start/quickstart-pkg-3568-build.md)
+      - [烧录](quick-start/quickstart-pkg-3568-burn.md)
+      - [运行](quick-start/quickstart-pkg-3568-running.md)
+    - 常用信息
+      - [配置代理](quick-start/quickstart-pkg-common-proxy.md)
+      - [使用build.sh脚本编译源码](quick-start/quickstart-pkg-common-build.md)
+      - [hb安装异常处理](quick-start/quickstart-pkg-common-hberr.md)
+      - [编译异常处理](quick-start/quickstart-pkg-common-builderr.md)
+      - [烧录异常处理](quick-start/quickstart-pkg-common-burnerr.md)
+  - 附录
+    - [Hi3516开发板介绍](quick-start/quickstart-appendix-hi3516.md)
+    - [Hi3861开发板介绍](quick-start/quickstart-appendix-hi3861.md)
+    - [RK3568开发板介绍](quick-start/quickstart-appendix-rk3568.md)
+    - [编译形态整体说明](quick-start/quickstart-appendix-compiledform.md)
+    - [Hi3516标准系统入门（IDE方式）](quick-start/quickstart-appendix-hi3516-ide.md)
+    - [Hi3516标准系统入门（命令行方式）](quick-start/quickstart-appendix-hi3516-pkg.md)
+  
   - [获取源码](get-code/sourcecode-acquire.md)
     - [隐私保护](security/security-privacy-protection.md)
     - [安全指南](security/security-guidelines-overall.md)
+- 隐私和安全
+  - [隐私保护](security/security-privacy-protection.md)
+  - [安全指南](security/security-guidelines-overall.md)
 
 - 移植
 
@@ -289,8 +155,8 @@
 - 子系统开发
 
   -  内核
-     - 轻量系统内核
-       - [内核概述](kernel/kernel-mini-overview.md)
+     - 轻量系统内核（LiteOS-M）
+       - [轻量系统内核概述](kernel/kernel-mini-overview.md)
        - 基础内核
          - [中断管理](kernel/kernel-mini-basic-interrupt.md)
          - [任务管理](kernel/kernel-mini-basic-task.md)
@@ -316,8 +182,8 @@
          - [内核编码规范](kernel/kernel-mini-appx-code.md)
          - [双向链表](kernel/kernel-mini-appx-data-list.md)
          - [标准库支持](kernel/kernel-mini-appx-lib.md)
-     - 小型系统内核
-       - [内核概述](kernel/kernel-small-overview.md)
+     - 小型系统内核（LiteOS-A）
+       - [小型系统内核概述](kernel/kernel-small-overview.md)
        - 内核启动
          - [内核态启动](kernel/kernel-small-start-kernel.md)
          - [用户态启动](kernel/kernel-small-start-user.md)
@@ -437,16 +303,19 @@
            - [双向链表](kernel/kernel-small-apx-dll.md)
            - [位操作](kernel/kernel-small-apx-bitwise.md)
          - [标准库](kernel/kernel-small-apx-library.md)
-     - 标准系统内核
-       - [Linux内核概述](kernel/kernel-standard-overview.md)
+         - [内核编码规范](kernel/kernel-mini-appx-code.md)
+     - 标准系统内核（Linux）
+       - [标准系统内核概述](kernel/kernel-standard-overview.md)
        - [OpenHarmony开发板Patch使用指导](kernel/kernel-standard-patch.md)
-       - [Linux内核编译与构建指导](kernel/kernel-standard-build.md)
+       - [标准系统内核编译与构建指导](kernel/kernel-standard-build.md)
        - 内核增强特性
          - [Enhanced SWAP特性介绍](kernel/kernel-standard-mm-eswap.md)
+         - [NewIP内核协议栈介绍](kernel/kernel-standard-newip.md)
          - 任务调度
            - [关联线程组调度](kernel/kernel-standard-sched-rtg.md)
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   -  驱动
+     - [驱动概述](driver/driver-overview-foundation.md)
      - HDF驱动框架
        - [HDF开发概述](driver/driver-hdf-overview.md)
        - [驱动开发](driver/driver-hdf-development.md)
@@ -497,6 +366,7 @@
        - [Fingerprint_auth](driver/driver-peripherals-fingerprint_auth-des.md)
        - [LCD](driver/driver-peripherals-lcd-des.md)
        - [Light](driver/driver-peripherals-light-des.md)
+       - [Motion](driver/driver-peripherals-motion-des.md)
        - [Pin_auth](driver/driver-peripherals-pinauth-des.md)
        - [Sensor](driver/driver-peripherals-sensor-des.md)
        - [Touchscreen](driver/driver-peripherals-touch-des.md)
@@ -544,21 +414,7 @@
      - [公共基础库概述](subsystems/subsys-utils-overview.md)
      - [公共基础库开发指导](subsystems/subsys-utils-guide.md)
      - [公共基础库常见问题](subsystems/subsys-utils-faqs.md)
-  -  AI框架
-     - [概述](subsystems/subsys-aiframework-guide.md)
-     - [搭建环境](subsystems/subsys-aiframework-envbuild.md)
-     - 技术规范
-       - [代码管理规范](subsystems/subsys-aiframework-tech-codemanage.md)
-       - [命名规范](subsystems/subsys-aiframework-tech-name.md)
-       - [接口开发规范](subsystems/subsys-aiframework-tech-interface.md)
-     - 开发指导
-       - [SDK开发过程](subsystems/subsys-aiframework-devguide-sdk.md)
-       - [插件的开发过程](subsystems/subsys-aiframework-devguide-plugin.md)
-       - [配置文件的开发过程](subsystems/subsys-aiframework-devguide-conf.md)
-     - 开发示例
-       - [唤醒词识别SDK的开发示例](subsystems/subsys-aiframework-demo-sdk.md)
-       - [唤醒词识别插件的开发示例](subsystems/subsys-aiframework-demo-plugin.md)
-       - [唤醒词识别配置文件的开发示例](subsystems/subsys-aiframework-demo-conf.md)
+  -  [AI框架开发指导](subsystems/subsys-ai-aiframework-devguide.md)
   -  数据管理
      - 关系型数据库
        - [关系型数据库概述](subsystems/subsys-data-relational-database-overview.md)
@@ -590,6 +446,8 @@
      - [IPC通信鉴权开发指导](subsystems/subsys-security-communicationverify.md)
      - [设备安全等级管理开发指导](subsystems/subsys-security-devicesecuritylevel.md)
      - [OpenHarmony通用密钥库系统开发指导](subsystems/subsys-security-huks-guide.md)
+     - [应用特权配置指导](subsystems/subsys-app-privilege-config-guide.md)
+     - [预置应用配置指导](subsystems/subsys-preinstall-app-config-guide.md)
   -  启动恢复
      - [启动恢复子系统概述](subsystems/subsys-boot-overview.md)
      - init启动引导组件
@@ -634,13 +492,6 @@
     - WLAN连接类产品
       - [LED外设控制](guide/device-wlan-led-control.md)
       - [集成三方SDK](guide/device-wlan-sdk.md)
-    - 无屏摄像头类产品
-      - 摄像头控制
-        - [概述](guide/device-iotcamera-control-overview.md)
-        - 示例开发
-          - [拍照开发指导](guide/device-iotcamera-control-demo-photodevguide.md)
-          - [录像开发指导](guide/device-iotcamera-control-demo-videodevguide.md)
-        - [应用实例](guide/device-iotcamera-control-example.md)
     - 带屏摄像头类产品
       - 屏幕和摄像头控制
         - [概述](guide/device-camera-control-overview.md)
@@ -686,10 +537,9 @@
     - [内核常见问题](faqs/faqs-kernel.md)
     - [移植常见问题](faqs/faqs-porting.md)
     - [启动恢复常见问题](faqs/faqs-startup.md)
-    - [系统应用常见问题](faqs/faqs-system-applications.md)
-  
+    - [系统应用常见问题](faqs/faqs-system-applications.md) 
   - HDI接口参考
-    - 模块
+   - 模块
       - [Audio](reference/hdi-apis/_audio.md)
       - [Battery](reference/hdi-apis/battery.md)
       - [Camera](reference/hdi-apis/_camera.md)
@@ -912,4 +762,17 @@
         - [VerifyAllocInfo](reference/hdi-apis/_verify_alloc_info.md)
         - [VibratorInterface](reference/hdi-apis/_vibrator_interface.md)
         - [VideoPortCap](reference/hdi-apis/_video_port_cap.md)
+   
+  - CMSIS API参考
+    - [CMSIS](reference/kernel/cmsis/_c_m_s_i_s-_r_t_o_s.md)
+    - 结构体
+        - [osEventFlagsAttr_t](reference/kernel/cmsis/os_event_flags_attr__t.md)
+        - [osMemoryPoolAttr_t](reference/kernel/cmsis/os_memory_pool_attr__t.md)
+        - [osMessageQueueAttr_t](reference/kernel/cmsis/os_message_queue_attr__t.md)
+        - [osMutexAttr_t](reference/kernel/cmsis/os_mutex_attr__t.md)
+        - [osSemaphoreAttr_t](reference/kernel/cmsis/os_semaphore_attr__t.md)
+        - [osThreadAttr_t](reference/kernel/cmsis/os_thread_attr__t.md)
+        - [osTimerAttr_t](reference/kernel/cmsis/os_timer_attr__t.md)
+        - [osVersion_t](reference/kernel/cmsis/os_version__t.md)
 
+   

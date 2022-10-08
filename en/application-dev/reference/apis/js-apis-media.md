@@ -45,7 +45,7 @@ let audioPlayer = media.createAudioPlayer();
 
 createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
-Creates a **VideoPlayer** instance in asynchronous mode. This API uses a callback to return the result.
+Creates a **VideoPlayer** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -53,7 +53,7 @@ Creates a **VideoPlayer** instance in asynchronous mode. This API uses a callbac
 
 | Name  | Type                                       | Mandatory| Description                          |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the **VideoPlayer** instance created.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | Yes  | Callback used to return the **VideoPlayer** instance, which can be used to manage and play video media.|
 
 **Example**
 
@@ -65,7 +65,7 @@ media.createVideoPlayer((error, video) => {
        videoPlayer = video;
        console.info('video createVideoPlayer success');
    } else {
-       console.info(`video createVideoPlayer fail, error:${error.message}`);
+       console.info(`video createVideoPlayer fail, error:${error}`);
    }
 });
 ```
@@ -74,7 +74,7 @@ media.createVideoPlayer((error, video) => {
 
 createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
-Creates a **VideoPlayer** instance in asynchronous mode. This API uses a promise to return the result.
+Creates a **VideoPlayer** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -82,7 +82,7 @@ Creates a **VideoPlayer** instance in asynchronous mode. This API uses a promise
 
 | Type                                 | Description                               |
 | ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the **VideoPlayer** instance created.|
+| Promise<[VideoPlayer](#videoplayer8)> | Promise used to return the **VideoPlayer** instance, which can be used to manage and play video media.|
 
 **Example**
 
@@ -97,7 +97,7 @@ media.createVideoPlayer().then((video) => {
        console.info('video createVideoPlayer fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -126,7 +126,7 @@ let audioRecorder = media.createAudioRecorder();
 
 createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>): void
 
-Creates a **VideoRecorder** instance in asynchronous mode. This API uses a callback to return the result.
+Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
 Only one **AudioRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -135,7 +135,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the **VideoRecorder** instance created.|
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | Yes  | Callback used to return the **VideoRecorder** instance, which can be used to record video media.|
 
 **Example**
 
@@ -147,7 +147,7 @@ media.createVideoRecorder((error, video) => {
        videoRecorder = video;
        console.info('video createVideoRecorder success');
    } else {
-       console.info(`video createVideoRecorder fail, error:${error.message}`);
+       console.info(`video createVideoRecorder fail, error:${error}`);
    }
 });
 ```
@@ -156,7 +156,7 @@ media.createVideoRecorder((error, video) => {
 
 createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
-Creates a **VideoRecorder** instance in asynchronous mode. This API uses a promise to return the result.
+Creates a **VideoRecorder** instance. This API uses a promise to return the result.
 Only one **AudioRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -165,7 +165,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 | Type                                     | Description                               |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance created.|
+| Promise<[VideoRecorder](#videorecorder9)> | Promise used to return the **VideoRecorder** instance, which can be used to record video media.|
 
 **Example**
 
@@ -180,7 +180,7 @@ media.createVideoRecorder().then((video) => {
        console.info('video createVideoRecorder fail');
    }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -275,15 +275,15 @@ For details about the audio playback demo, see [Audio Playback Development](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name                           | Type                               | Readable| Writable| Description                                                        |
-| ------------------------------- | ----------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                              | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.INTERNET (The latter is required only when online resources are used.)|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#interruptmode9) | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br> <br>**Required permissions**: ohos.permission.READ_MEDIA|
-| loop                            | boolean                             | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
-| audioInterruptMode<sup>9+</sup> | [InterruptMode](#interruptmode9)    | Yes  | Yes  | Audio interruption mode.                                              |
-| currentTime                     | number                              | Yes  | No  | Current audio playback position, in ms.                      |
-| duration                        | number                              | Yes  | No  | Audio duration, in ms.                                |
-| state                           | [AudioState](#audiostate)           | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
+| Name                           | Type                                                  | Readable| Writable| Description                                                        |
+| ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MPEG-3, OGG, and WAV) are supported.<br>**Examples of supported URI schemes**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>If the file is an independent music file, use **src=fd://xx**.<br>|
+| loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
+| currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
+| duration                        | number                                                 | Yes  | No  | Audio duration, in ms.                                |
+| state                           | [AudioState](#audiostate)                              | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
 ### play<a name=audioplayer_play></a>
 
 play(): void
@@ -421,7 +421,7 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
-Obtains the audio track information. This API uses a callback to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
+Obtains the audio track information. This API uses an asynchronous callback to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -448,7 +448,7 @@ audioPlayer.getTrackDescription((error, arrlist) => {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -477,7 +477,7 @@ function printfDescription(obj) {
         console.info('audio value is ' + property);
     }
 }
-
+let arrayDescription = null
 audioPlayer.getTrackDescription().then((arrlist) => {
     if (arrlist != null) {
         arrayDescription = arrlist;
@@ -485,7 +485,7 @@ audioPlayer.getTrackDescription().then((arrlist) => {
         console.log('audio getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`audio catchCallback, error:${error.message}`);
+   console.info(`audio catchCallback, error:${error}`);
 });
 
 for (let i = 0; i < arrayDescription.length; i++) {
@@ -529,12 +529,14 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed. |
+| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed.|
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
 
 ```js
+import fileio from '@ohos.fileio'
+
 let audioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
 audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
     console.info('audio set source success');
@@ -570,17 +572,15 @@ audioPlayer.on('finish', () => {               // Set the 'finish' event callbac
     audioPlayer.stop();                        // Stop the playback and trigger the 'stop' event callback.
 });
 audioPlayer.on('error', (error) => {           // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 
 // Set the FD (local playback) of the video file selected by the user.
-let fdPath = 'fd://'
+let fdPath = 'fd://';
 // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" command.
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fileIO.open(path).then(fdNumber) => {
-   fdPath = fdPath + '' + fdNumber;
+fileio.open(path).then((fdValue) => {
+   fdPath = fdPath + '' + fdValue;
    console.info('open fd success fd is' + fdPath);
 }, (err) => {
    console.info('open fd failed err is' + err);
@@ -602,20 +602,20 @@ Subscribes to the **'timeUpdate'** event.
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | ----------------- | ---- | ------------------------------------------------------------ |
-| type     | string            | Yes  | Event type, which is **'timeUpdate'** in this case.<br>The **'timeUpdate'** event is triggered when the [seek()](#audioplayer_seek) API is called.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. The input parameter of the callback is the time when the seek operation is successful.            |
+| type     | string            | Yes  | Event type, which is **'timeUpdate'** in this case.<br>The **'timeUpdate'** event is triggered when the audio playback starts after an audio playback timestamp update.|
+| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. The input parameter is the updated timestamp.            |
 
 **Example**
 
 ```js
-audioPlayer.on('timeUpdate', (seekDoneTime) => {    // Set the 'timeUpdate' event callback.
-    if (seekDoneTime == null) {
-        console.info('audio seek fail');
+audioPlayer.on('timeUpdate', (newTime) => {    // Set the 'timeUpdate' event callback.
+    if (newTime == null) {
+        console.info('audio timeUpadate fail');
         return;
     }
-    console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
+    console.log('audio timeUpadate success. seekDoneTime: ' + newTime);
 });
-audioPlayer.seek(30000); // Seek to 30000 ms.
+audioPlayer.play();    // The 'timeUpdate' event is triggered when the playback starts.
 ```
 
 ### on('error')
@@ -637,9 +637,7 @@ Subscribes to audio playback error events. After an error event is reported, you
 
 ```js
 audioPlayer.on('error', (error) => {      // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);      // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);      // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
+    console.info(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'error' event.
 ```
@@ -650,38 +648,25 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name              | Type  | Description                                          |
-| ------------------ | ------ | ---------------------------------------------- |
-| idle               | string |  No audio playback is in progress. The audio player is in this state after the **'dataload'** or **'reset'** event is triggered.|
-| playing            | string | Audio playback is in progress. The audio player is in this state after the **'play'** event is triggered.          |
-| paused             | string | Audio playback is paused. The audio player is in this state after the **'pause'** event is triggered.         |
-| stopped            | string | Audio playback is stopped. The audio player is in this state after the **'stop'** event is triggered.     |
-| error<sup>8+</sup> | string | Audio playback is in the error state.                                    |
+| Name   | Type  | Description                                          |
+| ------- | ------ | ---------------------------------------------- |
+| idle    | string |  No audio playback is in progress. The audio player is in this state after the **'dataload'** or **'reset'** event is triggered.|
+| playing | string | Audio playback is in progress. The audio player is in this state after the **'play'** event is triggered.          |
+| paused  | string | Audio playback is paused. The audio player is in this state after the **'pause'** event is triggered.         |
+| stopped | string | Audio playback is stopped. The audio player is in this state after the **'stop'** event is triggered.     |
+| error   | string | Audio playback is in the error state.                                    |
 
 ## AVFileDescriptor<sup>9+</sup>
 
 Describes audio and video file resources. It is used to specify a particular resource for playback based on its offset and length within a file.
 
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
-
-**Parameters**
+**System capability**: SystemCapability.Multimedia.Media.Core
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fd     | number | Yes  | Resource handle, which is obtained by calling **resourceManager.getRawFileDescriptor**.      |
 | offset | number | Yes  | Resource offset, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
 | length | number | Yes  | Resource length, which needs to be entered based on the preset resource information. An invalid value causes a failure to parse audio and video resources.|
-
-## InterruptMode<sup>9+</sup>
-
-Describes the audio interruption mode.
-
-**System capability**: SystemCapability.Multimedia.Media.AudioPlayer
-
-| Name                        | Default Value| Description      |
-| ---------------------------- | ------ | ---------- |
-| SHARE_MODE      | 0      | Shared mode.|
-| INDEPENDENT_MODE| 1      | Independent mode.    |
 
 ## VideoPlayer<sup>8+</sup>
 
@@ -695,11 +680,11 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 | Name                    | Type                              | Readable| Writable| Description                                                        |
 | ------------------------ | ---------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.INTERNET (The latter is required only when online resources are used.)|
-| fdSrc<sup>9+</sup> | [AVFileDescriptor](#interruptmode9) | Yes| Yes| Description of a video file. This attribute is required when video resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>**Note**:<br>**Required permissions**: ohos.permission.READ_MEDIA|
+| url<sup>8+</sup>         | string                             | Yes  | Yes  | Video media URL. The mainstream video formats (MPEG-4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URIs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
+| fdSrc<sup>9+</sup> | [AVFileDescriptor](#avfiledescriptor9) | Yes| Yes| Description of a video file. This attribute is required when video resources of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music resources consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>        | boolean                            | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>        | [VideoScaleType](#videoscaletype9)                   | Yes  | Yes  | Video scale type.      |
-| audioInterruptMode<sup>9+</sup>        | [InterruptMode](#interruptmode9)                   | Yes  | Yes  | Audio interruption mode.      |
+| audioInterruptMode<sup>9+</sup>        | [audio.InterruptMode](js-apis-audio.md#interruptmode9)  | Yes  | Yes  | Audio interruption mode.      |
 | currentTime<sup>8+</sup> | number                             | Yes  | No  | Current video playback position, in ms.                      |
 | duration<sup>8+</sup>    | number                             | Yes  | No  | Video duration, in ms. The value **-1** indicates the live mode.            |
 | state<sup>8+</sup>       | [VideoPlayState](#videoplaystate8) | Yes  | No  | Video playback state.                                            |
@@ -710,7 +695,7 @@ For details about the video playback demo, see [Video Playback Development](../.
 
 setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
-Sets **SurfaceId**. This API uses a callback to return the result.
+Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
 *Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
 
@@ -726,6 +711,7 @@ Sets **SurfaceId**. This API uses a callback to return the result.
 **Example**
 
 ```js
+let surfaceId = null;
 videoPlayer.setDisplaySurface(surfaceId, (err) => {
     if (err == null) {
         console.info('setDisplaySurface success!');
@@ -760,10 +746,11 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 **Example**
 
 ```js
+let surfaceId = null;
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
     console.info('setDisplaySurface success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -771,7 +758,7 @@ videoPlayer.setDisplaySurface(surfaceId).then(() => {
 
 prepare(callback: AsyncCallback\<void>): void
 
-Prepares for video playback. This API uses a callback to return the result.
+Prepares for video playback. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -813,7 +800,7 @@ Prepares for video playback. This API uses a promise to return the result.
 videoPlayer.prepare().then(() => {
     console.info('prepare success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -821,7 +808,7 @@ videoPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void;
 
-Starts to play video resources. This API uses a callback to return the result.
+Starts to play video resources. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -863,7 +850,7 @@ Starts to play video resources. This API uses a promise to return the result.
 videoPlayer.play().then(() => {
     console.info('play success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -871,7 +858,7 @@ videoPlayer.play().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-Pauses video playback. This API uses a callback to return the result.
+Pauses video playback. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -913,7 +900,7 @@ Pauses video playback. This API uses a promise to return the result.
 videoPlayer.pause().then(() => {
     console.info('pause success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -921,7 +908,7 @@ videoPlayer.pause().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-Stops video playback. This API uses a callback to return the result.
+Stops video playback. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -963,7 +950,7 @@ Stops video playback. This API uses a promise to return the result.
 videoPlayer.stop().then(() => {
     console.info('stop success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -971,7 +958,7 @@ videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-Switches the video resource to be played. This API uses a callback to return the result.
+Switches the video resource to be played. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1013,7 +1000,7 @@ Switches the video resource to be played. This API uses a promise to return the 
 videoPlayer.reset().then(() => {
     console.info('reset success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1021,7 +1008,7 @@ videoPlayer.reset().then(() => {
 
 seek(timeMs: number, callback: AsyncCallback\<number>): void
 
-Seeks to the specified playback position. The next key frame at the specified position is played. This API uses a callback to return the result.
+Seeks to the specified playback position. The next key frame at the specified position is played. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1049,7 +1036,7 @@ videoPlayer.seek(seekTime, (err, result) => {
 
 seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
-Seeks to the specified playback position. This API uses a callback to return the result.
+Seeks to the specified playback position. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1066,8 +1053,7 @@ Seeks to the specified playback position. This API uses a callback to return the
 ```js
 import media from '@ohos.multimedia.media'
 let seekTime = 5000;
-let seekMode = media.SeekMode.SEEK_NEXT_SYNC;
-videoPlayer.seek(seekTime, seekMode, (err, result) => {
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err, result) => {
     if (err == null) {
         console.info('seek success!');
     } else {
@@ -1100,17 +1086,18 @@ Seeks to the specified playback position. If **mode** is not specified, the next
 **Example**
 
 ```js
+import media from '@ohos.multimedia.media'
 let seekTime = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime) => { // seekDoneTime indicates the position after the seek operation is complete.
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 
-videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
+videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
     console.info('seek success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1118,7 +1105,7 @@ videoPlayer.seek(seekTime, seekMode).then((seekDoneTime) => {
 
 setVolume(vol: number, callback: AsyncCallback\<void>): void
 
-Sets the volume. This API uses a callback to return the result.
+Sets the volume. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1166,10 +1153,10 @@ Sets the volume. This API uses a promise to return the result.
 
 ```js
 let vol = 0.5;
-videoPlayer.setVolume(vol).then() => {
+videoPlayer.setVolume(vol).then(() => {
     console.info('setVolume success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1177,7 +1164,7 @@ videoPlayer.setVolume(vol).then() => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases the video playback resource. This API uses a callback to return the result.
+Releases the video playback resource. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1216,10 +1203,10 @@ Releases the video playback resource. This API uses a promise to return the resu
 **Example**
 
 ```js
-videoPlayer.release().then() => {
+videoPlayer.release().then(() => {
     console.info('release success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1227,7 +1214,7 @@ videoPlayer.release().then() => {
 
 getTrackDescription(callback: AsyncCallback<Array\<MediaDescription>>): void
 
-Obtains the video track information. This API uses a callback to return the result.
+Obtains the video track information. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1249,12 +1236,12 @@ function printfDescription(obj) {
 }
 
 videoPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist) != null) {
+    if ((arrlist) != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
         }
     } else {
-        console.log(`video getTrackDescription fail, error:${error.message}`);
+        console.log(`video getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1292,7 +1279,7 @@ videoPlayer.getTrackDescription().then((arrlist) => {
         console.log('video getTrackDescription fail');
     }
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 for (let i = 0; i < arrayDescription.length; i++) {
     printfDescription(arrayDescription[i]);
@@ -1303,7 +1290,7 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
-Sets the video playback speed. This API uses a callback to return the result.
+Sets the video playback speed. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -1355,10 +1342,10 @@ Sets the video playback speed. This API uses a promise to return the result.
 import media from '@ohos.multimedia.media'
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
-videoPlayer.setSpeed(speed).then() => {
+videoPlayer.setSpeed(speed).then(() => {
     console.info('setSpeed success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1414,10 +1401,10 @@ Selects a bit rate from available ones, which can be obtained by calling [availa
 
 ```js
 let bitrate = 1024000;
-videoPlayer.selectBitrate(bitrate).then() => {
+videoPlayer.selectBitrate(bitrate).then(() => {
     console.info('selectBitrate success');
 }).catch((error) => {
-   console.info(`video catchCallback, error:${error.message}`);
+   console.info(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -1534,9 +1521,7 @@ Subscribes to video playback error events. After an error event is reported, you
 
 ```js
 videoPlayer.on('error', (error) => {      // Set the 'error' event callback.
-    console.info(`video error called, errName is ${error.name}`);      // Print the error name.
-    console.info(`video error called, errCode is ${error.code}`);      // Print the error code.
-    console.info(`video error called, errMessage is ${error.message}`);// Print the detailed description of the error type.
+    console.info(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  // Set an incorrect URL to trigger the 'error' event.
 ```
@@ -1619,33 +1604,27 @@ Enumerates the video scale modes.
 
 ## MediaDescription<sup>8+</sup>
 
-### [key : string] : Object
-
 Defines media information in key-value mode.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
-| Name | Type  | Description                                                        |
-| ----- | ------ | ------------------------------------------------------------ |
-| key   | string | Key of the media information. For details about the keys, see [MediaDescriptionKey](#mediadescriptionkey8).|
-| value | any    | Value of the key. For details about the values, see [MediaDescriptionKey](#mediadescriptionkey8).|
-
 **Example**
 
 ```js
+import media from '@ohos.multimedia.media'
 function printfItemDescription(obj, key) {
     let property = obj[key];
-    console.info('audio key is ' + key);
-    console.info('audio value is ' + property);
+    console.info('audio key is ' + key); // Specify a key. For details about the keys, see [MediaDescriptionKey].
+    console.info('audio value is ' + property); // Obtain the value of the key. The value can be any type. For details about the types, see [MediaDescriptionKey].
 }
-
+let audioPlayer = media.createAudioPlayer();
 audioPlayer.getTrackDescription((error, arrlist) => {
     if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
+            printfItemDescription(arrlist[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
         }
     } else {
-        console.log(`audio getTrackDescription fail, error:${error.message}`);
+        console.log(`audio getTrackDescription fail, error:${error}`);
     }
 });
 ```
@@ -1808,15 +1787,15 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset. |
+| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resource is released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
 
 ```js
-let audiorecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
+let audioRecorder = media.createAudioRecorder();                                  // Create an AudioRecorder instance.
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1825,9 +1804,7 @@ let audioRecorderConfig = {
     location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('error', (error) => {                                             // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);
-    console.info(`audio error called, errCode is ${error.code}`);
-    console.info(`audio error called, errMessage is ${error.message}`);
+    console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // Set the 'prepare' event callback.
     console.log('prepare success');
@@ -1872,12 +1849,19 @@ Subscribes to audio recording error events. After an error event is reported, yo
 **Example**
 
 ```js
+let audioRecorderConfig = {
+    audioEncoder : media.AudioEncoder.AAC_LC,
+    audioEncodeBitRate : 22050,
+    audioSampleRate : 22050,
+    numberOfChannels : 2,
+    format : media.AudioOutputFormat.AAC_ADTS,
+    uri : 'fd://xx',                                                     // The file must be created by the caller and granted with proper permissions.
+    location : { latitude : 30, longitude : 130},
+}
 audioRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
+    console.info(`audio error called, error: ${error}`); 
 });
-audioRecorder.prepare();                                                  // Do no set any parameter in prepare and trigger the 'error' event callback.
+audioRecorder.prepare(audioRecorderConfig);                            // Do no set any parameter in prepare and trigger the 'error' event callback.
 ```
 
 ## AudioRecorderConfig
@@ -1951,7 +1935,7 @@ For details about the video recording demo, see [Video Recording Development](..
 
 prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
 
-Sets video recording parameters in asynchronous mode. This API uses a callback to return the result.
+Sets video recording parameters. This API uses an asynchronous callback to return the result.
 
 **Required permissions:** ohos.permission.MICROPHONE
 
@@ -1990,36 +1974,20 @@ let videoConfig = {
 }
 
 // asyncallback
-let videoRecorder = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('prepare', () => {
-    videoRecorder.prepare(videoConfig, (err) => {
-        if (err == null) {
-            console.info('prepare success');
-        } else {
-            console.info('prepare failed and error is ' + err.message);
-        }
-    });
-});
-
-media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // Trigger the 'prepare' event.
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message);
+        console.info('prepare failed and error is ' + err.message);
     }
-});
+})
 ```
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
 
 prepare(config: VideoRecorderConfig): Promise\<void>;
 
-Sets video recording parameters in asynchronous mode. This API uses a promise to return the result.
+Sets video recording parameters. This API uses a promise to return the result.
 
 **Required permissions:** ohos.permission.MICROPHONE
 
@@ -2063,18 +2031,6 @@ let videoConfig = {
 }
 
 // promise
-let videoRecorder = null;
-media.createVideoRecorder().then((recorder) => {
-    if (recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-    } else {
-        console.info('createVideoRecorder failed');
-    }
-}).catch((err) => {
-    console.info('catch err error message is ' + err.message);
-});
-
 videoRecorder.prepare(videoConfig).then(() => {
     console.info('prepare success');
 }).catch((err) => {
@@ -2150,7 +2106,7 @@ videoRecorder.getInputSurface().then((surfaceId) => {
 
 start(callback: AsyncCallback\<void>): void;
 
-Starts video recording in asynchronous mode. This API uses a callback to return the result.
+Starts video recording. This API uses an asynchronous callback to return the result.
 
 This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) are called, because the data source must pass data to the surface first.
 
@@ -2179,7 +2135,7 @@ videoRecorder.start((err) => {
 
 start(): Promise\<void>;
 
-Starts video recording in asynchronous mode. This API uses a promise to return the result.
+Starts video recording. This API uses a promise to return the result.
 
 This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) are called, because the data source must pass data to the surface first.
 
@@ -2206,7 +2162,7 @@ videoRecorder.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void;
 
-Pauses video recording in asynchronous mode. This API uses a callback to return the result.
+Pauses video recording. This API uses an asynchronous callback to return the result.
 
 This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
 
@@ -2235,7 +2191,7 @@ videoRecorder.pause((err) => {
 
 pause(): Promise\<void>;
 
-Pauses video recording in asynchronous mode. This API uses a promise to return the result.
+Pauses video recording. This API uses a promise to return the result.
 
 This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
 
@@ -2262,7 +2218,7 @@ videoRecorder.pause().then(() => {
 
 resume(callback: AsyncCallback\<void>): void;
 
-Resumes video recording in asynchronous mode. This API uses a callback to return the result.
+Resumes video recording. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2289,7 +2245,7 @@ videoRecorder.resume((err) => {
 
 resume(): Promise\<void>;
 
-Resumes video recording in asynchronous mode. This API uses a promise to return the result.
+Resumes video recording. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2314,7 +2270,7 @@ videoRecorder.resume().then(() => {
 
 stop(callback: AsyncCallback\<void>): void;
 
-Stops video recording in asynchronous mode. This API uses a callback to return the result.
+Stops video recording. This API uses an asynchronous callback to return the result.
 
 To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
 
@@ -2343,7 +2299,7 @@ videoRecorder.stop((err) => {
 
 stop(): Promise\<void>;
 
-Stops video recording in asynchronous mode. This API uses a promise to return the result.
+Stops video recording. This API uses a promise to return the result.
 
 To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
 
@@ -2370,7 +2326,7 @@ videoRecorder.stop().then(() => {
 
 release(callback: AsyncCallback\<void>): void;
 
-Releases the video recording resource in asynchronous mode. This API uses a callback to return the result.
+Releases the video recording resource. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2397,7 +2353,7 @@ videoRecorder.release((err) => {
 
 release(): Promise\<void>;
 
-Releases the video recording resource in asynchronous mode. This API uses a promise to return the result.
+Releases the video recording resource. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2422,7 +2378,7 @@ videoRecorder.release().then(() => {
 
 reset(callback: AsyncCallback\<void>): void;
 
-Resets video recording in asynchronous mode. This API uses a callback to return the result.
+Resets video recording. This API uses an asynchronous callback to return the result.
 
 To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
 
@@ -2451,7 +2407,7 @@ videoRecorder.reset((err) => {
 
 reset(): Promise\<void>;
 
-Resets video recording in asynchronous mode. This API uses a promise to return the result.
+Resets video recording. This API uses a promise to return the result.
 
 To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
 
@@ -2492,12 +2448,10 @@ Subscribes to video recording error events. After an error event is reported, yo
 **Example**
 
 ```js
-videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
-    console.info(`audio error called, errName is ${error.name}`);       // Print the error name.
-    console.info(`audio error called, errCode is ${error.code}`);       // Print the error code.
-    console.info(`audio error called, errMessage is ${error.message}`); // Print the detailed description of the error type.
-});
 // This event is reported when an error occurs during the retrieval of videoRecordState.
+videoRecorder.on('error', (error) => {                                  // Set the 'error' event callback.
+    console.info(`audio error called, error: ${error}`); 
+})
 ```
 
 ## VideoRecordState<sup>9+</sup>
@@ -2528,7 +2482,7 @@ Describes the video recording parameters.
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | Yes  | Video recording profile.                                         |
 | rotation        | number                                         | No  | Rotation angle of the recorded video.                                        |
 | location        | [Location](#location)                          | No  | Geographical location of the recorded video.                                        |
-| url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) <br>**Required permissions**: ohos.permission.READ_MEDIA|
+| url             | string                                         | Yes  | Video output URL. Supported: fd://xx (fd number)<br>![](figures/en-us_image_url.png) |
 
 ## AudioSourceType<sup>9+</sup>
 

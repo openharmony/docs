@@ -19,7 +19,7 @@
 | [width_](_camera.md#width-22) | 图像宽度。 | 
 | [height_](_camera.md#height-22) | 图像高度。 | 
 | [overrideFormat_](_camera.md#overrideformat) | 重写的图像格式。 | 
-| [overrideDatasapce_](_camera.md#overridedataspace) | 重写的图像颜色空间 | 
+| [overrideDatasapce_](_camera.md#overridedataspace) | 重写的图像颜色空间。| 
 | [producerUsage_](_camera.md#producerusage) | 重写后的生产者的使用方式。 | 
 | [producerBufferCount_](_camera.md#producerbuffercount) | 重写后的生产者缓存数量。 | 
 | [maxBatchCaptureCount_](_camera.md#maxbatchcapturecount) | 连拍支持的最大捕获帧数量。 | 

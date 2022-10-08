@@ -1,9 +1,13 @@
 # Internationalization – Intl
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N interfaces defined in ECMA 402. For details about the enhanced I18N capabilities, see [I18N](js-apis-i18n.md).
+This module provides basic I18N capabilities, such as time and date formatting, number formatting, and string sorting, through the standard I18N APIs defined in ECMA 402.
+
+The [I18N](js-apis-i18n.md) module provides enhanced I18N capabilities through supplementary APIs that are not defined in ECMA 402. It works with the Intl module to provide a complete suite of I18N capabilities.
+
+>  **NOTE**
+>  
+>  The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -56,6 +60,7 @@ Creates a Locale object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name    | Type           | Mandatory  | Description                          |
 | ------- | ------------- | ---- | ---------------------------- |
 | locale  | string        | Yes   | A string containing locale information, including the language, optional script, and region.|
@@ -76,6 +81,7 @@ Converts locale information to a string.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | string | String containing locale information.|
@@ -96,6 +102,7 @@ Maximizes information of the **Locale** object. If the script and locale informa
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type               | Description        |
 | ----------------- | ---------- |
 | [Locale](#locale) | **Locale** object with the maximized information.|
@@ -116,6 +123,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type               | Description        |
 | ----------------- | ---------- |
 | [Locale](#locale) | **Locale** object with the minimized information.|
@@ -127,7 +135,7 @@ Minimizes information of the **Locale** object. If the script and locale informa
   ```
 
 
-## LocaleOptions
+## LocaleOptions<sup>9+</sup>
 
 Represents the locale options.
 
@@ -169,6 +177,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name    | Type                                 | Mandatory  | Description                          |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | Yes   | A string containing locale information, including the language, optional script, and region.|
@@ -195,11 +204,13 @@ Formats the specified date and time.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Description     |
 | ---- | ---- | ---- | ------- |
 | date | Date | Yes   | Date and time to be formatted.|
 
 **Return Value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | string | A string containing the formatted date and time.|
@@ -221,12 +232,14 @@ Formats the specified date range.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name      | Type  | Mandatory  | Description      |
 | --------- | ---- | ---- | -------- |
 | startDate | Date | Yes   | Start date and time to be formatted.|
 | endDate   | Date | Yes   | End date and time to be formatted.|
 
 **Return Value**
+
 | Type    | Description            |
 | ------ | -------------- |
 | string | A string containing the formatted date and time range.|
@@ -249,6 +262,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type                                 | Description                           |
 | ----------------------------------- | ----------------------------- |
 | [DateTimeOptions](#datetimeoptions) | Formatting options for **DateTimeFormat** objects.|
@@ -260,7 +274,7 @@ Obtains the formatting options for **DateTimeFormat** object.
   ```
 
 
-## DateTimeOptions
+## DateTimeOptions<sup>9+</sup>
 
 Provides the options for the **DateTimeFormat** object.
 
@@ -335,11 +349,13 @@ Formats a number.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description  |
 | ------ | ------ | ---- | ---- |
 | number | number | Yes   | Number to be formatted.|
 
 **Return Value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Formatted number.|
@@ -361,6 +377,7 @@ Obtains the options of the **NumberFormat** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type                             | Description                         |
 | ------------------------------- | --------------------------- |
 | [NumberOptions](#numberoptions) | Formatting options for **NumberFormat** objects.|
@@ -373,7 +390,7 @@ Obtains the options of the **NumberFormat** object.
   ```
 
 
-## NumberOptions
+## NumberOptions<sup>9+</sup>
 
 Provides the device capability.
 
@@ -449,12 +466,14 @@ Compares two strings based on the sorting policy of the **Collator** object.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name   | Type    | Mandatory  | Description          |
 | ------ | ------ | ---- | ------------ |
 | first  | string | Yes   | First string to compare. |
 | second | string | Yes   | Second string to compare.|
 
 **Return Value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | number | Comparison result. If the value is a negative number, the first string is before the second string. If the value of number is **0**, the first string is equal to the second string. If the value of number is a positive number, the first string is after the second string.|
@@ -475,6 +494,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type                                 | Description               |
 | ----------------------------------- | ----------------- |
 | [CollatorOptions](#collatoroptions) | Properties of the **Collator** object.|
@@ -486,7 +506,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
   ```
 
 
-## CollatorOptions<sup>8+</sup><a name=collatoroptions></a>
+## CollatorOptions<sup>9+</sup>
 
 Represents the properties of a **Collator** object.
 
@@ -549,11 +569,13 @@ Obtains a string that represents the singular-plural type of the specified numbe
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name | Type    | Mandatory  | Description          |
 | ---- | ------ | ---- | ------------ |
 | n    | number | Yes   | Number for which the singular-plural type is to be obtained.|
 
 **Return Value**
+
 | Type    | Description                                      |
 | ------ | ---------------------------------------- |
 | string | Singular-plural type. The value can be any of the following: **one**, **two**, **few**, **many**, **others**.|
@@ -565,7 +587,7 @@ Obtains a string that represents the singular-plural type of the specified numbe
   ```
 
 
-## PluralRulesOptions<sup>8+</sup><a name=pluralrulesoptions></a>
+## PluralRulesOptions<sup>9+</sup>
 
 Represents the properties of a **PluralRules** object.
 
@@ -607,7 +629,8 @@ Creates a **RelativeTimeFormat** object.
 
 **System capability**: SystemCapability.Global.I18n
 
-Parameters
+**Parameters**
+
 | Name    | Type                                      | Mandatory  | Description                          |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
@@ -628,12 +651,14 @@ Formats the value and unit based on the specified locale and formatting options.
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | Yes   | Value to format.                             |
 | unit  | string | Yes   | Unit to format. The value can be any of the following: **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, **second**.|
 
 **Return Value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Relative time after formatting.|
@@ -654,12 +679,14 @@ Returns an array of RelativeTimeFormat objects in parts for locale-aware formatt
 **System capability**: SystemCapability.Global.I18n
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | Yes   | Value to format.                             |
 | unit  | string | Yes   | Unit to format. The value can be any of the following: **year**, **quarter**, **month**, **week**, **day**, **hour**, **minute**, **second**.|
 
 **Return Value**
+
 | Type                 | Description                         |
 | ------------------- | --------------------------- |
 | Array&lt;object&gt; | An array of **RelativeTimeFormat** objects in parts.|
@@ -680,6 +707,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
 **System capability**: SystemCapability.Global.I18n
 
 **Return Value**
+
 | Type                                      | Description                               |
 | ---------------------------------------- | --------------------------------- |
 | [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | Formatting options for **RelativeTimeFormat** objects.|
@@ -691,7 +719,7 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>8+</sup><a name=relativetimeformatinputoptions></a>
+## RelativeTimeFormatInputOptions<sup>9+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
 

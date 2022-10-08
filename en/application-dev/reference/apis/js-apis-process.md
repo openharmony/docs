@@ -64,8 +64,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('ls');
-var result = child.wait();
+let child = process.runCmd('ls');
+let result = child.wait();
 result.then(val=>{
     console.log("result = " + val);
 })
@@ -91,8 +91,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('ls');
-var result = child.wait();
+let child = process.runCmd('ls');
+let result = child.wait();
 child.getOutput().then(val=>{
     console.log("child.getOutput = " + val);
 })
@@ -118,8 +118,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('madir test.text');
-var result = child.wait();
+let child = process.runCmd('madir test.text');
+let result = child.wait();
 child.getErrorOutput().then(val=>{
     console.log("child.getErrorOutput= " + val);
 })
@@ -139,7 +139,7 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('sleep 5; ls');
+let child = process.runCmd('sleep 5; ls');
 child.close();
 ```
 
@@ -163,7 +163,7 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('sleep 5; ls');
+let child = process.runCmd('sleep 5; ls');
 child.kill(9);
 ```
 
@@ -185,7 +185,7 @@ Checks whether this process is isolated.
 **Example**
 
 ```js
-var result = process.isIsolatedProcess();
+let result = process.isIsolatedProcess();
 ```
 
 
@@ -212,7 +212,7 @@ Checks whether a UID belongs to this app.
 **Example**
 
 ```js
-var result = process.isAppUid(688);
+let result = process.isAppUid(688);
 ```
 
 
@@ -233,7 +233,7 @@ Checks whether this process is running in a 64-bit environment.
 **Example**
 
 ```js
-var result = process.is64Bit();
+let result = process.is64Bit();
 ```
 
 
@@ -260,7 +260,7 @@ Obtains the process UID based on the process name.
 **Example**
 
 ```js
-var pres = process.getUidForName("tool")
+let pres = process.getUidForName("tool")
 ```
 
 
@@ -287,8 +287,8 @@ Obtains the thread priority based on the specified TID.
 **Example**
 
 ```js
-var tid = process.tid;
-var pres = process.getThreadPriority(tid);
+let tid = process.tid;
+let pres = process.getThreadPriority(tid);
 ```
 
 
@@ -309,7 +309,7 @@ Obtains the duration, in milliseconds, from the time the system starts to the ti
 **Example**
 
 ```js
-var realtime = process.getStartRealtime();
+let realtime = process.getStartRealtime();
 ```
 
 ## process.getPastCpuTime<sup>8+</sup>
@@ -329,7 +329,7 @@ Obtains the CPU time (in milliseconds) from the time the process starts to the c
 **Example**
 
 ```js
-var result = process.getPastCpuTime() ;
+let result = process.getPastCpuTime() ;
 ```
 
 
@@ -356,8 +356,8 @@ Obtains the system configuration.
 **Example**
 
 ```js
-var _SC_ARG_MAX = 0
-var pres = process.getSystemConfig(_SC_ARG_MAX)
+let _SC_ARG_MAX = 0
+let pres = process.getSystemConfig(_SC_ARG_MAX)
 ```
 
 
@@ -384,7 +384,7 @@ Obtains the value of an environment variable.
 **Example**
 
 ```js
-var pres = process.getEnvironmentVar("PATH")
+let pres = process.getEnvironmentVar("PATH")
 ```
 
 
@@ -422,8 +422,8 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var child = process.runCmd('ls', { maxBuffer : 2 });
-var result = child.wait();
+let child = process.runCmd('ls', { maxBuffer : 2 });
+let result = child.wait();
 child.getOutput.then(val=>{
     console.log("child.getOutput = " + val);
 })
@@ -505,7 +505,7 @@ This is a system API and cannot be called by third-party applications.
 process.on("data", (e)=>{
     console.log("data callback");
 })
-var result = process.off("data");
+let result = process.off("data");
 ```
 
 
@@ -545,7 +545,7 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
 ```js
-var path = process.cwd();
+let path = process.cwd();
 ```
 
 
@@ -589,7 +589,7 @@ Obtains the running time of this process.
 **Example**
 
 ```js
-var time = process.uptime();
+let time = process.uptime();
 ```
 
 
@@ -617,6 +617,6 @@ Sends a signal to the specified process to terminate it.
 **Example**
 
 ```js
-var pres = process.pid
-var result = process.kill(28, pres)
+let pres = process.pid
+let result = process.kill(28, pres)
 ```

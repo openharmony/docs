@@ -119,8 +119,10 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 10000, (error, data) => {
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime, (error, data) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
@@ -156,8 +158,10 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 10000).then((data) => {
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime).then((data) => {
             console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
@@ -190,9 +194,11 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 100000)
-        systemTimer.stoptTimer(timerId, 10000, (error, data) => {
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
+        systemTimer.stoptTimer(timerId, (error, data) => {
             if (error) {
                 console.error(`failed to systemTime.startTimer ` + JSON.stringify(error));
                 return;
@@ -227,9 +233,11 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 100000)
-        systemTimer.stoptTimer(timerId, 10000).then((data) => {
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
+        systemTimer.stoptTimer(timerId).then((data) => {
             console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
@@ -262,8 +270,10 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 100000)
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
         systemTimer.destroyTimer(timerId, (error, data) => {
             if (error) {
@@ -300,10 +310,12 @@ export default {
             type: systemTimer.TIMER_TYPE_REALTIME,
             repeat:false
         }
-        let timerId = systemTimer.Timer(options)
-        systemTimer.startTimer(timerId, 100000)
+        let timerId = systemTimer.createTimer(options)
+		let triggerTime = new Date().getTime()
+        triggerTime += 3000
+        systemTimer.startTimer(timerId, triggerTime)
         systemTimer.stopTimer(timerId)
-        systemTimer.destroytTimer(timerId, 10000).then((data) => {
+        systemTimer.destroyTimer(timerId, 10000).then((data) => {
             console.log(`systemTime.startTimer success data : ` + JSON.stringify(data));
         }).catch((error) => {
             console.error(`failed to systemTime.startTimer because ` + JSON.stringify(error));
@@ -318,10 +330,10 @@ createTimer的初始化选项。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
-| 参数名   | 类型              | 必填 | 说明                                                                                            |
-| -------- | ------------------| ---- | ----------------------------------------------------------------------------------------------- |
-| type     | number            | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
-| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                          |
-| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                                   |
-| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起应用MainAbility,暂不支持拉起ServiceAbility)     |
-
+| 参数名   | 类型              | 必填 | 说明                                                                                                                      |
+| -------- | ------------------| ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| type     | number            | 是   | const TIMER_TYPE_REALTIME: 设置为系统启动时间定时器(当设置系统时间超过定时器启动时间，定时器则失效)，否则为walltime定时器; <br/>const TIMER_TYPE_WAKEUP: 设置为唤醒定时器，否则为非唤醒; <br/>const TIMER_TYPE_EXACT: 设置为精准定时器，否则为非精准定时器; <br/>const TIMER_TYPE_IDLE: number: 设置为IDLE模式定时器，否则为非IDLE模式定时器（暂不支持） |
+| repeat   | boolean           | 是   | true 为循环定时器，false为单次定时器。                                                                                    |
+| interval | number            | 否   | 如果是循环定时器，repeat值应大于5000毫秒，非重复定时器置为0。                                                             |
+| wantAgent| wantAgent         | 否   | 设置通知的wantagent，定时器到期后通知。(支持拉起应用MainAbility,暂不支持拉起ServiceAbility)                               |
+| callback | number            | 是   | 以回调函数的形式返回定时器的ID     |

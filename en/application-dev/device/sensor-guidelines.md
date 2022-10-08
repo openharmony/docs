@@ -26,70 +26,30 @@
 | -------- | -------- | -------- |
 | ohos.sensor | sensor.on(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to data changes of a type of sensor.|
 | ohos.sensor | sensor.once(sensorType, callback:AsyncCallback&lt;Response&gt;): void | Subscribes to only one data change of a type of sensor.|
-| ohos.sensor | sensor.off(sensorType, callback:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
+| ohos.sensor | sensor.off(sensorType, callback?:AsyncCallback&lt;void&gt;): void | Unsubscribes from sensor data changes.|
 
 
 ## How to Develop
 
-1. To obtain data from a type of sensor, configure the requested permissions in the **config.json** file.  
-  
-   ```
-   "reqPermissions": [
-      {
-        "name": "ohos.permission.ACCELEROMETER",
-        "reason": "",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.GYROSCOPE",
-        "reason": "",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.ACTIVITY_MOTION",
-        "reason": "ACTIVITY_MOTION_TEST",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      },
-      {
-        "name": "ohos.permission.READ_HEALTH_DATA",
-        "reason": "HEALTH_DATA_TEST",
-        "usedScene": {
-          "ability": [
-            "sensor.index.MainAbility",
-            ".MainAbility"
-          ],
-          "when": "inuse"
-        }
-      }
-    ]
-   ```
+1. Before obtaining data from a type of sensor, check whether the required permission has been configured.<br>
+     The system provides the following sensor-related permissions:
+   - ohos.permission.ACCELEROMETER
+
+   - ohos.permission.GYROSCOPE
+
+   - ohos.permission.ACTIVITY_MOTION
+
+   - ohos.permission.READ_HEALTH_DATA
+
+   For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
    
 2. Subscribe to data changes of a type of sensor.
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.on(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data){
-          console.info("Subscription succeeded. data = " + data); // The call is successful, and the obtained sensor data is printed.
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data){
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+   });
    ```
    
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
@@ -99,11 +59,8 @@
 3. Unsubscribe from sensor data changes.
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.off(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function() {
-       console.info("Succeeded in unsubscribing from acceleration sensor data."); // The unsubscription is successful, and the result is printed.
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER);
    ```
    
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
@@ -113,11 +70,10 @@
 4. Subscribe to only one data change of a type of sensor.
   
    ```
-   import sensor from "@ohos.sensor"
-   sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-           console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
-     }
-   );
+   import sensor from "@ohos.sensor";
+   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data) {
+      console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
+   });
    ```
    
    The following figure shows the successful call result when **SensorType** is **SENSOR_TYPE_ID_ACCELEROMETER**.
@@ -127,11 +83,12 @@
    If the API fails to be called, you are advised to use the **try/catch** statement to capture error information that may occur in the code. Example:
 
     ```
+   import sensor from "@ohos.sensor";
     try {
-      sensor.once(sensor.sensorType.SENSOR_TYPE_ACCELEROMETER,function(data) {
-          console.info("Data obtained successfully. data=" + data); // The call is successful, and the obtained sensor data is printed.
+      sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, function(data) {
+          console.info("Data obtained successfully. x: " + data.x + "y: " + data.y + "z: " + data.z); // Data is obtained.
       });
     } catch (error) {
-      console.error(error);
+      console.error("Failed to get sensor data");
     }
     ```

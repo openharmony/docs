@@ -134,7 +134,7 @@ onVisibilityChange(newStatus: { [key: string]: number }): void
 **示例：**
 
   ```js
-    import formBindingData from '@ohos.application.formBindingData'
+  import formBindingData from '@ohos.application.formBindingData'
   export default class MyFormExtension extends FormExtension {
       onVisibilityChange(newStatus) {
           console.log('FormExtension onVisibilityChange, newStatus:' + newStatus);

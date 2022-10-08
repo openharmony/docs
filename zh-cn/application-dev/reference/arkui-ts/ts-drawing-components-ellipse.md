@@ -1,15 +1,10 @@
 # Ellipse
 
->  **说明：**
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
 椭圆绘制组件。
 
-
-## 权限列表
-
-无
+>  **说明：**
+>
+>  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -21,12 +16,12 @@
 
 ellipse(options?: {width?: string | number, height?: string | number})
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 | 
-  | height | string \| number | 否 | 0 | 高度。 | 
+**参数:**
 
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| width | string \| number | 否 | 宽度。<br/>默认值：0 |
+| height | string \| number | 否 | 高度。<br/>默认值：0 |
 
 ## 属性
 
@@ -34,15 +29,15 @@ ellipse(options?: {width?: string | number, height?: string | number})
 
 | 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 |设置线条颜色。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 |设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
 | strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
@@ -55,12 +50,17 @@ ellipse(options?: {width?: string | number, height?: string | number})
 @Component
 struct EllipseExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
-      // 在一个 150 * 70 的矩形框中绘制一个椭圆
+    Column({ space: 10 }) {
+      // 绘制一个 150 * 80 的椭圆
       Ellipse({ width: 150, height: 80 })
-      // 在一个 150 * 70 的矩形框中绘制一个椭圆
-      Ellipse().width(150).height(80)
-    }.width('100%').margin({ top: 5 })
+      // 绘制一个 150 * 100 、线条为蓝色的椭圆环
+      Ellipse()
+        .width(150)
+        .height(100)
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+    }.width('100%')
   }
 }
 ```

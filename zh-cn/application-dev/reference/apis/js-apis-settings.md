@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```ts
+```js
 import settings from '@ohos.settings';
 ```
 
@@ -203,9 +203,9 @@ getURI(name: string, callback: AsyncCallback\<object>): void
 **示例**：
 
 ```js
- settings.getUri(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
-   console.log(`callback:uri -> ${JSON.stringify(uri)}`)
- })
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS, (uri) => {
+    console.log(`callback:uri -> ${JSON.stringify(uri)}`)
+})
 ```
 
 ## setting.getURI
@@ -231,9 +231,9 @@ getURI(name: string): Promise\<object>
 **示例**：
 
 ```js
- settings.getUri(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
-   console.log(`promise:uri -> ${JSON.stringify(uri)}`)
- })
+settings.getURI(settings.display.SCREEN_BRIGHTNESS_STATUS).then((uri) => {
+    console.log(`promise:uri -> ${JSON.stringify(uri)}`)
+})
 ```
 
 ## setting.getValue
@@ -255,15 +255,17 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string, callback: AsyncCall
 **示例**：
 
 ```js
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
-   if (err) {
-     console.error(`Failed to get the setting. ${err.message} `);
-     return;
-   }
-   console.log(`callback:value -> ${JOSN.stringify(value)}`)
- });
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
+    if (err) {
+        console.error(`Failed to get the setting. ${err.message} `);
+        return;
+    }
+    console.log(`callback:value -> ${JSON.stringify(value)}`)
+});
 ```
 
 ## setting.getValue
@@ -290,11 +292,13 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 **示例**：
 
 ```js
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-   console.log(`promise:value -> ${JOSN.stringify(value)}`)
- });
+import featureAbility from '@ohos.ability.featureAbility';
+
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.getValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
+    console.log(`promise:value -> ${JSON.stringify(value)}`)
+});
 ```
 
 ## settings.setValue
@@ -302,6 +306,8 @@ getValue(dataAbilityHelper: DataAbilityHelper, name: string): Promise\<object>
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, callback: AsyncCallback\<boolean>): void
 
 将数据项名称及数据项的值保存到数据库中。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -317,14 +323,14 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 **示例**：
 
 ```js
- import featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
- //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
-   console.log('Callback return whether value is set.');
- });
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
+    console.log('Callback return whether value is set.');
+});
 ```
 
 ## settings.setValue
@@ -332,6 +338,8 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object, call
 setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Applications.settings.Core
 
@@ -352,14 +360,14 @@ setValue(dataAbilityHelper: DataAbilityHelper, name: string, value: object): Pro
 **示例**：
 
 ```js
- import featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
- //更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-   console.log('Callback return whether value is set.');
- });
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+settings.setValue(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
+    console.log('Callback return whether value is set.');
+});
 ```
 
 ## settings.enableAirplaneMode
@@ -380,19 +388,19 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
- isEnabled =true;
- enableAirplaneMode(isEnabled, (err) => {
-   if(err) {
-     console.log('Failed to enable AirplaneMode.');
-     return;
-   }
-   console.log('Return true if enable.');
- })
+let isEnabled = true;
+settings.enableAirplaneMode(isEnabled, (err) => {
+    if (err) {
+        console.log('Failed to enable AirplaneMode.');
+        return;
+    }
+    console.log('Return true if enable.');
+})
 ```
 
 ## settings.enableAirplaneMode
 
-enableAirplaneMode(enable: boolean): Promise<void>
+enableAirplaneMode(enable: boolean): Promise\<void>
 
 启用或禁用飞行模式。使用Promise异步回调。
 
@@ -413,14 +421,12 @@ enableAirplaneMode(enable: boolean): Promise<void>
 **示例**：
 
 ```js
- isEnabled =true;
- enableAirplaneMode(isEnabled).then((err) => {
-   if(err) {
-     console.log('Failed to enable AirplaneMode.');
-     return;
-   }
-   console.log('Return true if enable.');
- });
+let isEnabled = true;
+settings.enableAirplaneMode(isEnabled).then(() => {
+  console.log('Succeeded in enabling AirplaneMode.');
+}).catch((err) => {
+  console.log(`Failed to enable AirplaneMode. Cause: ${err}`);
+})
 ```
 
 ## settings.canShowFloating
@@ -440,9 +446,9 @@ canShowFloating(callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```js
- canShowFloating((status) => {
-   console.log('Checks whether a specified application can show as float window.');
- });
+settings.canShowFloating((status) => {
+    console.log('Checks whether a specified application can show as float window.');
+});
 ```
 
 ## settings.canShowFloating
@@ -462,9 +468,9 @@ canShowFloating(): Promise\<boolean>
 **示例**：
 
 ```js
- canShowFloating().then((status) => {
-   console.log('Checks whether a specified application can show as float window.');
- });
+settings.canShowFloating().then((status) => {
+    console.log('Checks whether a specified application can show as float window.');
+});
 ```
 
 ## settings.getUriSync<sup>8+</sup>
@@ -490,8 +496,8 @@ getUriSync(name: string): string
 **示例**：
 
 ```js
- // 获取数据项的URI
- let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+// 获取数据项的URI
+let urivar = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
 ```
 
 ## settings.getValueSync<sup>8+</sup>
@@ -519,12 +525,12 @@ getValueSync(dataAbilityHelper: DataAbilityHelper, name: string, defValue: strin
 **示例**：
 
 ```js
- import featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
- //获取数据项亮度的值（该数据项在数据库中已存在）
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
+//获取数据项亮度的值（该数据项在数据库中已存在）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+let value = settings.getValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.setValueSync<sup>8+</sup>
@@ -556,10 +562,10 @@ setValueSync(dataAbilityHelper: DataAbilityHelper, name: string, value: string):
 **示例**：
 
 ```js
- import featureAbility from '@ohos.ability.featureAbility';
+import featureAbility from '@ohos.ability.featureAbility';
 
- //更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
- let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
- let helper = featureAbility.acquireDataAbilityHelper(uri);
- let ret = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+//更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
+let uri = settings.getUriSync(settings.display.SCREEN_BRIGHTNESS_STATUS);
+let helper = featureAbility.acquireDataAbilityHelper(uri);
+let ret = settings.setValueSync(helper, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```

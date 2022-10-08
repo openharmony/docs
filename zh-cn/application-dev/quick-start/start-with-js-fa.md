@@ -11,7 +11,7 @@
 
    ![01](figures/01.png)
 
-2. 进入配置工程界面，**Compile SDK**选择“**8**”（**Complie SDK**选择“**9**”时注意同步选择 **Model** 为“**FA**”，此处以选择“**8**”为例），**Language**选择“**JS**”，其他参数保持默认设置即可。
+2. 进入配置工程界面，**Compile SDK**选择“**8**”（**Compile SDK**选择“**9**”时注意同步选择 **Model** 为“**FA**”，此处以选择“**8**”为例），**Language**选择“**JS**”，其他参数保持默认设置即可。
 
    ![04](figures/04.png)
 
@@ -175,7 +175,7 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过[页面路由router](../ui/ui-js-building-ui-routes.md)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md#routerpush)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
 

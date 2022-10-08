@@ -21,7 +21,7 @@
 | [option](#option) | 传感器量程精度可选配置。 | 
 | [mode](#mode) | 传感器工作模式。 | 
 | [data](#data) | 传感器数据地址。 | 
-| [dataLen](#section0442151664211) | 传感器数据长度。 | 
+| [dataLen](#datalen) | 传感器数据长度。 | 
 
 
 ## **详细描述**
@@ -110,7 +110,7 @@ int32_t SensorEvents::version
 传感器算法版本号。
 
 
-### h2dataLen
+### dataLen
 
   
 ```
