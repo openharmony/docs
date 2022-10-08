@@ -256,6 +256,12 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。返回true表示屏幕解锁成功，返回false表示屏幕解锁失败。 | 
 
+**错误信息**：
+
+  | 值 | 说明 | 
+  | -------- | -------- |
+  | 401 | 表示参数传入错误。 | 
+
 **示例**：
   
   ```js
