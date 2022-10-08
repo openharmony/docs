@@ -19,7 +19,7 @@
 
 ```ts
 // xxx.ets
-import prompt from '@system.prompt';
+import prompt from '@ohos.prompt';
 
 @Entry
 @Component
