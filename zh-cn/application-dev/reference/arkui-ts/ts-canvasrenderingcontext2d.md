@@ -771,7 +771,7 @@ clearRect(x: number, y: number, w: number, h: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#ffffff')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
             this.context.fillRect(0,0,500,500)
@@ -1831,7 +1831,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 setTransform(a: number, b: number, c: number, d: number, e: number, f: number): void
 
-setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **参数：**
 

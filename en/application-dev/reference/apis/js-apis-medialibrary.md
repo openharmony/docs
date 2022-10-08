@@ -2,10 +2,10 @@
 
 > **NOTE**
 >
-> This component is supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 6. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
-```
+```js
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 ```
 
@@ -33,17 +33,18 @@ This API can be used only in the stage model.
 
 **Example (from API version 9)**
 
-```
-var media = mediaLibrary.getMediaLibrary(this.context);
+```ts
+const context = getContext(this);
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 
 **Example (API version 8)**
 
-```
+```js
 import featureAbility from '@ohos.ability.featureAbility';
 
-var context = featureAbility.getContext()
-var media = mediaLibrary.getMediaLibrary(context);
+let context = featureAbility.getContext();
+let media = mediaLibrary.getMediaLibrary(context);
 ```
 ## mediaLibrary.getMediaLibrary
 
@@ -68,7 +69,7 @@ This API can be used only in the FA model.
 **Example**
 
 ```js
-var media = mediaLibrary.getMediaLibrary();
+let media = mediaLibrary.getMediaLibrary();
 ```
 
 ## MediaLibrary
@@ -93,24 +94,45 @@ Obtains file assets (also called files). This API uses an asynchronous callback 
 
 **Example**
 
-```
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+```js
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp, (error, fetchFileResult) => {
-    if (fetchFileResult != undefined) {
-        console.info('mediaLibraryTest : ASSET_CALLBACK fetchFileResult success');
-        fetchFileResult.getAllObject((err, fileAssetList) => {
-            if (fileAssetList != undefined) {
-                fileAssetList.forEach(function(getAllObjectInfo){
-                    console.info("getAllObjectInfo.displayName :" + getAllObjectInfo.displayName);
-                });
-            }
-    	});
+media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
+    if (fetchFileResult == undefined) {
+        console.error('Failed to get fetchFileResult: ' + error);
+        return;
     }
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject((err, fileAsset) => {
+        if (fileAsset == undefined) {
+            console.error('Failed to get first object: ' + err);
+            return;
+        }
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject((err, fileAsset) => {
+                if (fileAsset == undefined) {
+                    console.error('Failed to get next object: ' + err);
+                    return;
+                }
+                console.log('fileAsset.displayName ' + i + ': ' + fileAsset.displayName);
+            })
+        }
+    });
 });
 ```
 ### getFileAssets<sup>7+</sup>
@@ -137,17 +159,38 @@ Obtains file assets. This API uses a promise to return the result.
 
 **Example**
 
-```
-let fileKeyObj = mediaLibrary.FileKey
-let imageType = mediaLibrary.MediaType.IMAGE
-let imagesfetchOp = {
+```js
+let fileKeyObj = mediaLibrary.FileKey;
+let imageType = mediaLibrary.MediaType.IMAGE;
+let imagesFetchOp = {
     selections: fileKeyObj.MEDIA_TYPE + '= ?',
     selectionArgs: [imageType.toString()],
 };
-media.getFileAssets(imagesfetchOp).then(function(fetchFileResult){
-    console.info("getFileAssets successfully: image number is "+ fetchFileResult.getCount());
+media.getFileAssets(imagesFetchOp).then(function(fetchFileResult) {
+    const count = fetchFileResult.getCount();
+    if (count < 0) {
+        console.error('Failed to get count from fetchFileResult: count: ' + count);
+        return;
+    }
+    if (count == 0) {
+        console.info('The count of fetchFileResult is zero');
+        return;
+    }
+    console.info('Get fetchFileResult success, count: ' + count);
+    fetchFileResult.getFirstObject().then(function(fileAsset) {
+        console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+        for (let i = 1; i < count; i++) {
+            fetchFileResult.getNextObject().then(function(fileAsset) {
+                console.log('fileAsset.displayName ' + ': ' + fileAsset.displayName);
+            }).catch(function(err) {
+                console.error('Failed to get next object: ' + err);
+            })
+        }
+    }).catch(function(err) {
+        console.error('Failed to get first object: ' + err);
+    });
 }).catch(function(err){
-    console.info("getFileAssets failed with error:"+ err);
+    console.error("Failed to get file assets: " + err);
 });
 ```
 
@@ -168,7 +211,7 @@ Subscribes to the media library changes. This API uses an asynchronous callback 
 
 **Example**
 
-```
+```js
 media.on('imageChange', () => {
     // image file had changed, do something
 })
@@ -190,13 +233,13 @@ Unsubscribes from the media library changes. This API uses an asynchronous callb
 
 **Example**
 
-```
+```js
 media.off('imageChange', () => {
     // stop listening success
 })
 ```
 
-### createAsset <sup>8+</sup>
+### createAsset<sup>8+</sup>
 
 createAsset(mediaType: MediaType, displayName: string, relativePath: string, callback: AsyncCallback&lt;FileAsset&gt;): void
 
@@ -217,7 +260,7 @@ Creates a media asset. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```
+```js
 async function example() {
     // Create an image file in callback mode.
     let mediaType = mediaLibrary.MediaType.IMAGE;
@@ -259,13 +302,108 @@ Creates a media asset. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA).then(function(dicResult){
     console.info("getPublicDirectory successfully:"+ JSON.stringify(dicResult));
 }).catch(function(err){
     console.info("getPublicDirectory failed with error:"+ err);
 });
+```
+
+### deleteAsset<sup>8+</sup>
+
+deleteAsset(uri: string): Promise\<void>
+
+Deletes a file asset. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+
+**Parameters**
+
+| Name     | Type                          | Mandatory  | Description             |
+| -------- | ---------------------------- | ---- | --------------- |
+| uri | string | Yes   | URI of the file asset to delete.|
+
+**Return value**
+| Type                 | Description                  |
+| ------------------- | -------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Example**
+
+```js
+async function example() {
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
+    let option = {
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [fileType.toString()],
+    };
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    const fetchFileResult = await media.getFileAssets(option);
+    let asset = await fetchFileResult.getFirstObject();
+    if (asset == undefined) {
+        console.error('asset not exist')
+        return
+    }
+    media.deleteAsset(asset.uri).then(() => {
+        console.info("deleteAsset successfully");
+    }).catch((err) => {
+        console.info("deleteAsset failed with error:"+ err);
+    });
+}
+```
+
+### deleteAsset<sup>8+</sup>
+deleteAsset(uri: string, callback: AsyncCallback\<void>): void
+
+Deletes a file asset. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA and ohos.permission.WRITE_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+
+**Parameters**
+
+| Name     | Type                          | Mandatory  | Description             |
+| -------- | ---------------------------- | ---- | --------------- |
+| uri | string | Yes   | URI of the file asset to delete.|
+|callback |AsyncCallback\<void>| Yes |Callback used to return the result.|
+
+**Example**
+
+```js
+async function example() {
+    let fileKeyObj = mediaLibrary.FileKey;
+    let fileType = mediaLibrary.MediaType.FILE;
+    let option = {
+        selections: fileKeyObj.MEDIA_TYPE + '= ?',
+        selectionArgs: [fileType.toString()],
+    };
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    const fetchFileResult = await media.getFileAssets(option);
+    let asset = await fetchFileResult.getFirstObject();
+    if (asset == undefined) {
+        console.error('asset not exist')
+        return
+    }
+    media.deleteAsset(asset.uri, (err) => {
+        if (err != undefined) {
+            console.info("deleteAsset successfully");
+        } else {
+            console.info("deleteAsset failed with error:"+ err);
+        }
+    });
+}
 ```
 
 ### getPublicDirectory<sup>8+</sup>
@@ -285,7 +423,7 @@ Obtains a public directory. This API uses an asynchronous callback to return the
 
 **Example**
 
-```
+```js
 let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
 media.getPublicDirectory(DIR_CAMERA, (err, dicResult) => {
     if (dicResult == 'Camera/') {
@@ -318,7 +456,7 @@ Obtains a public directory. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 async function example() {
     let DIR_CAMERA = mediaLibrary.DirectoryType.DIR_CAMERA;
     const dicResult = await media.getPublicDirectory(DIR_CAMERA);
@@ -349,7 +487,7 @@ Obtains the albums. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```
+```js
 let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
@@ -389,7 +527,7 @@ Obtains the albums. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 let AlbumNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
@@ -418,7 +556,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Example**
 
-```
+```js
 var media = mediaLibrary.getMediaLibrary(context);
 media.release((err) => {
     // do something
@@ -442,7 +580,7 @@ Call this API when you no longer need to use the APIs in the **MediaLibrary** in
 
 **Example**
 
-```
+```js
 media.release()
 ```
 
@@ -467,7 +605,7 @@ Stores a media asset. This API uses an asynchronous callback to return the URI t
 
 **Example**
 
-  ```
+```js
 let option = {
     src : "/data/storage/el2/base/haps/entry/image.png",
     mimeType : "image/*",
@@ -481,7 +619,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option, (err, value) => {
     console.log("Media asset stored.");
     // Obtain the URI that stores the media asset.
 });
-  ```
+```
 
 
 ### storeMediaAsset<sup>(deprecated)</sup>
@@ -510,7 +648,7 @@ Stores a media asset. This API uses a promise to return the URI that stores the 
 
 **Example**
 
-  ```
+```js
 let option = {
     src : "/data/storage/el2/base/haps/entry/image.png",
     mimeType : "image/*",
@@ -522,7 +660,7 @@ mediaLibrary.getMediaLibrary().storeMediaAsset(option).then((value) => {
 }).catch((err) => {
     console.log("An error occurred when storing the media assets.");
 });
-  ```
+```
 
 
 ### startImagePreview<sup>(deprecated)</sup>
@@ -547,7 +685,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 **Example**
 
-  ```
+```js
 let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
@@ -566,7 +704,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index, (err) => {
     }
     console.log("Succeeded in previewing the images.");
 });
-  ```
+```
 
 
 ### startImagePreview<sup>(deprecated)</sup>
@@ -590,7 +728,7 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 **Example**
 
-  ```
+```js
 let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
@@ -608,7 +746,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, (err) => {
     }
     console.log("Succeeded in previewing the images.");
 });
-  ```
+```
 
 
 ### startImagePreview<sup>(deprecated)</sup>
@@ -638,7 +776,7 @@ Starts image preview, with the first image to preview specified. This API can be
 
 **Example**
 
-  ```
+```js
 let images = [
     "dataability:///media/xxxx/2",
     "dataability:///media/xxxx/3"
@@ -655,7 +793,7 @@ mediaLibrary.getMediaLibrary().startImagePreview(images, index).then(() => {
 }).catch((err) => {
     console.log("An error occurred when previewing the images.");
 });
-  ```
+```
 
 
 ### startMediaSelect<sup>(deprecated)</sup>
@@ -674,13 +812,13 @@ Starts media selection. This API uses an asynchronous callback to return the lis
 
 | Name     | Type                                      | Mandatory  | Description                                  |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| option   | [MediaSelectOption](#mediaselectoption)  | Yes   | Media selection option.                             |
+| option   | [MediaSelectOption](#mediaselectoptiondeprecated)  | Yes   | Media selection option.                             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the list of URIs (starting with **dataability://**) that store the selected media assets.|
 
 **Example**
 
-  ```
-let option = {
+```js
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -692,7 +830,7 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option, (err, value) => {
     console.log("Media asset selected.");
     // Obtain the media selection value.
 });
-  ```
+```
 
 
 ### startMediaSelect<sup>(deprecated)</sup>
@@ -711,7 +849,7 @@ Starts media selection. This API uses a promise to return the list of URIs that 
 
 | Name   | Type                                     | Mandatory  | Description     |
 | ------ | --------------------------------------- | ---- | ------- |
-| option | [MediaSelectOption](#mediaselectoption) | Yes   | Media selection option.|
+| option | [MediaSelectOption](#mediaselectoptiondeprecated) | Yes   | Media selection option.|
 
 **Return value**
 
@@ -721,8 +859,8 @@ Starts media selection. This API uses a promise to return the list of URIs that 
 
 **Example**
 
-  ```
-let option = {
+```js
+let option : mediaLibrary.MediaSelectOption = {
     type : "media",
     count : 2
 };
@@ -733,7 +871,155 @@ mediaLibrary.getMediaLibrary().startMediaSelect(option).then((value) => {
     console.log("An error occurred when selecting the media assets.");
 });
 
-  ```
+```
+### getActivePeers<sup>8+</sup>
+
+getActivePeers(): Promise\<Array\<PeerInfo>>;
+
+Obtains information about online peer devices. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**Return value**
+
+| Type                 | Description                  |
+| ------------------- | -------------------- |
+|  Promise\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+
+**Example**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getActivePeers().then((devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed info is undefined!')
+        }
+    }).catch((err) => {
+        console.info("get distributed info failed with error:" + err);
+    });
+}
+```
+
+### getActivePeers<sup>8+</sup>
+
+getActivePeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
+
+Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**Return value**
+
+| Type                 | Description                  |
+| ------------------- | -------------------- |
+| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return the online peer devices, in an array of **PeerInfo** objects.|
+
+**Example**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getActivePeers((err, devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed fail, message = ' + err)
+        }
+    })
+}
+```
+
+
+### getAllPeers<sup>8+</sup>
+
+getAllPeers(): Promise\<Array\<PeerInfo>>;
+
+Obtains information about all peer devices. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**Return value**
+
+| Type                 | Description                  |
+| ------------------- | -------------------- |
+|  Promise\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+
+**Example**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getAllPeers().then((devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+                console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed info is undefined!')
+        }
+    }).catch((err) => {
+        console.info("get distributed info failed with error:" + err);
+    });
+}
+```
+
+### getAllPeers<sup>8+</sup>
+
+getAllPeers(callback: AsyncCallback\<Array\<PeerInfo>>): void;
+
+Obtains information about online peer devices. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
+
+**Return value**
+
+| Type                 | Description                  |
+| ------------------- | -------------------- |
+| callback: AsyncCallback\<Array\<PeerInfo>> | Promise used to return all peer devices, in an array of **PeerInfo** objects.|
+
+**Example**
+
+```js
+async function example() {
+    const context = getContext(this);
+    var media = mediaLibrary.getMediaLibrary(context);
+    media.getAllPeers((err, devicesInfo) => {
+        if (devicesInfo != undefined) {
+            for (let i = 0; i < devicesInfo.length; i++) {
+            console.info('get distributed info ' + devicesInfo[i].deviceName + devicesInfo[i].networkId);
+            }
+        } else {
+            console.info('get distributed fail, message = ' + err)
+        }
+    })
+}
+```
 
 ## FileAsset<sup>7+</sup>
 
@@ -786,7 +1072,7 @@ Checks whether this file asset is a directory. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -822,7 +1108,7 @@ Checks whether this file asset is a directory. This API uses a promise to return
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -860,7 +1146,7 @@ Commits the modification in this file asset to the database. This API uses an as
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -897,7 +1183,7 @@ Commits the modification in this file asset to the database. This API uses a pro
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -937,7 +1223,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 **Example**
 
-```
+```js
 async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -981,7 +1267,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 async function example() {
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let DIR_IMAGE = mediaLibrary.DirectoryType.DIR_IMAGE;
@@ -1016,7 +1302,7 @@ Closes this file asset. This API uses an asynchronous callback to return the res
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -1032,7 +1318,7 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd, (closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
                 console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
             } else {
                 console.info("=======asset.close success====>");
@@ -1069,7 +1355,7 @@ Closes this file asset. This API uses a promise to return the result.
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -1085,7 +1371,7 @@ async function example() {
         console.info('File fd!' + fd);
         asset.close(fd).then((closeErr) => {
             if (closeErr != undefined) {
-                console.info('mediaLibraryTest : close : FAIL ' + closeErr.message);
+                console.info('mediaLibraryTest : close : FAIL ' + closeErr);
                 console.info('mediaLibraryTest : ASSET_CALLBACK : FAIL');
 
             } else {
@@ -1117,7 +1403,7 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 **Example**
 
-```
+```js
 async function example() {
     let fileKeyObj = mediaLibrary.FileKey
     let imageType = mediaLibrary.MediaType.IMAGE;
@@ -1130,7 +1416,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail((err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1154,9 +1440,9 @@ Obtains the thumbnail of this file asset, with the thumbnail size passed. This A
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1168,7 +1454,7 @@ async function example() {
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size, (err, pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     });
 }
 ```
@@ -1197,9 +1483,9 @@ Obtains the thumbnail of this file asset, with the thumbnail size passed. This A
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1212,7 +1498,7 @@ async function example() {
     const asset = await fetchFileResult.getFirstObject();
     asset.getThumbnail(size)
     .then((pixelmap) => {
-        console.info('mediaLibraryTest : getThumbnail successful '+ pixelmap);
+        console.info('mediaLibraryTest : getThumbnail Successful '+ pixelmap);
     })
     .catch((err) => {
         console.info('mediaLibraryTest : getThumbnail fail'+ err);
@@ -1239,9 +1525,9 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1281,9 +1567,9 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1319,9 +1605,9 @@ Checks whether this file asset is favorited. This API uses an asynchronous callb
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1359,9 +1645,9 @@ Checks whether this file asset is favorited. This API uses a promise to return t
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1400,9 +1686,9 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1445,9 +1731,9 @@ Files in the trash are not actually deleted. You can set **isTrash** to **false*
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1483,9 +1769,9 @@ Checks whether this file asset is in the trash. This API uses an asynchronous ca
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1495,18 +1781,13 @@ async function example() {
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
-    asset.isTrash(isTrashCallBack);
-    function isTrashCallBack(err, isTrash) {
-            if (isTrash == true) {
-                console.info('mediaLibraryTest : ASSET_CALLBACK ASSET_CALLBACK isTrash = ' + isTrash);
-                asset.trash(true, istrashCallBack);
-
-            } else {
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash Unsuccessful = ' + err);
-                console.info('mediaLibraryTest : ASSET_CALLBACK isTrash : FAIL');
-
-            }
-    }
+    asset.isTrash((err, isTrash) => {
+      if (isTrash == undefined) {
+        console.error('Failed to get trash state: ' + err);
+        return;
+      }
+      console.info('Get trash state success: ' + isTrash);
+    });
 }
 ```
 
@@ -1528,22 +1809,21 @@ Checks whether this file asset is in the trash. This API uses a promise to retur
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
       selectionArgs: [imageType.toString()],
       order: fileKeyObj.DATE_ADDED + " DESC",
-      extendArgs: "",
     };
     const fetchFileResult = await media.getFileAssets(getImageOp);
     const asset = await fetchFileResult.getFirstObject();
     asset.isTrash().then(function(isTrash){
-        console.info("isTrash result:"+ isTrash);
+      console.info("isTrash result: " + isTrash);
     }).catch(function(err){
-        console.info("isTrash failed with error:"+ err);
+      console.error("isTrash failed with error: " + err);
     });
 }
 ```
@@ -1568,9 +1848,9 @@ Obtains the total number of files in the result set.
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let fileType = mediaLibrary.MediaType.FILE;
     let getFileCountOneOp = {
         selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1599,9 +1879,9 @@ Checks whether the cursor is in the last row of the result set.
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1637,9 +1917,9 @@ Releases and invalidates this **FetchFileResult** instance. Other APIs in this i
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1668,9 +1948,9 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1705,9 +1985,9 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1740,9 +2020,9 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1777,9 +2057,9 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1810,9 +2090,9 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1847,9 +2127,9 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1879,9 +2159,9 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1922,9 +2202,9 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1934,9 +2214,9 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getPositionObject(1) .then(function (fileAsset){
-        console.log('[Demo] fileAsset.displayName : ' + fileAsset.displayName);
+        console.log('fileAsset.displayName : ' + fileAsset.displayName);
     }).catch(function (err) {
-        console.info("[Demo] getFileAssets failed with error:" + err);
+        console.info("getFileAssets failed with error:" + err);
     });
 }
 ```
@@ -1957,9 +2237,9 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -1969,11 +2249,13 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     fetchFileResult.getAllObject((err, fileAsset) => {
-       if (err) {
+        if (err) {
            console.error('Failed ');
            return;
-       }
-       console.log('fileAsset.displayName : ' + fileAsset.displayName);
+        }
+        for (let i = 0; i < fetchFileResult.getCount(); i++) {
+            console.log('fileAsset.displayName : ' + fileAsset[i].displayName);
+        } 
     })
 }
 ```
@@ -1994,9 +2276,9 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Example**
 
-```
+```js
 async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
+    let fileKeyObj = mediaLibrary.FileKey;
     let imageType = mediaLibrary.MediaType.IMAGE;
     let getImageOp = {
       selections: fileKeyObj.MEDIA_TYPE + '= ?',
@@ -2045,7 +2327,7 @@ Commits the modification in the album attributes to the database. This API uses 
 
 **Example**
 
-```
+```js
 async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
@@ -2082,7 +2364,7 @@ Commits the modification in the album attributes to the database. This API uses 
 
 **Example**
 
-```
+```js
 async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
@@ -2118,7 +2400,7 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 **Example**
 
-```
+```js
 async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
@@ -2161,7 +2443,7 @@ Obtains the file assets in this album. This API uses a promise to return the res
 
 **Example**
 
-```
+```js
 async function example() {
     let AlbumNoArgsfetchOp = {
         selections: '',
@@ -2170,7 +2452,7 @@ async function example() {
     let fileNoArgsfetchOp = {
     selections: '',
     selectionArgs: [],
-    }
+    };
     const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
     const album = albumList[0];
     album.getFileAssets(fileNoArgsfetchOp).then(function(albumFetchFileResult){
@@ -2184,7 +2466,8 @@ async function example() {
 ## PeerInfo<sup>8+</sup>
 
 Describes information about a registered device.
-This is a system API.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -2256,7 +2539,8 @@ Enumerates directory types.
 ## DeviceType<sup>8+</sup>
 
 Enumerates device types.
-This is a system API.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.MediaLibrary.DistributedCore
 
@@ -2280,7 +2564,7 @@ Describes options for fetching media files.
 | ----------------------- | ------------------- | ---- | ---- | ---- | ------------------------------------------------------------ |
 | selections              | string              | Yes  | Yes  | Yes  | Conditions for fetching files. The enumerated values in [FileKey](#filekey8) are used as the column names of the conditions. Example:<br>selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ? OR ' +mediaLibrary.FileKey.MEDIA_TYPE + '= ?', |
 | selectionArgs           | Array&lt;string&gt; | Yes  | Yes  | Yes  | Value of the condition, which corresponds to the value of the condition column in **selections**.<br>Example:<br>selectionArgs: [mediaLibrary.MediaType.IMAGE.toString(), mediaLibrary.MediaType.VIDEO.toString()], |
-| order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC" |
+| order                   | string              | Yes  | Yes  | No  | Sorting mode of the search results, which can be ascending or descending. The enumerated values in [FileKey](#filekey8) are used as the columns for sorting the search results. Example:<br>Ascending: order: mediaLibrary.FileKey.DATE_ADDED + " ASC"<br>Descending: order: mediaLibrary.FileKey.DATE_ADDED + " DESC"|
 | uri<sup>8+</sup>        | string              | Yes  | Yes  | No  | File URI.                                                     |
 | networkId<sup>8+</sup>  | string              | Yes  | Yes  | No  | Network ID of the registered device.                                              |
 | extendArgs<sup>8+</sup> | string              | Yes  | Yes  | No  | Extended parameters for fetching the files. Currently, no extended parameters are available.                        |
@@ -2288,6 +2572,7 @@ Describes options for fetching media files.
 ## Size<sup>8+</sup>
 
 Describes the image size.
+
 **System capability**: SystemCapability.Multimedia.MediaLibrary.Core
 
 | Name    | Type    | Readable  | Writable  | Description      |

@@ -17,7 +17,7 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | 命令 | 命令格式和示例 | 说明 |
 | :----------  |  :----------  |:--------|
 | init group test [stage] | init group test | stage参见ServiceStatus。 |
-| param ls [-r] [name] | 显示系统参数，例如：<br>查看usb系统参数：begetctl param ls persist.sys.usb    | 无 |
+| param ls [-r] [name] | 显示系统参数，例如：<br>查看USB系统参数：begetctl param ls persist.sys.usb    | 无 |
 | param get [name] | 获取系统参数信息，例如：<br>begetctl param get 或 param get | 无 |
 | param set name value| 设置系统参数，例如：<br>begetctl param set ohos.servicectrl.display 1 或 param set ohos.servicectrl.display 1| 无 |
 | param wait name [value] [timeout] | 等待系统参数，例如：<br>begetctl param wait persist.sys.usb.config hdc 或 param wait persist.sys.usb.config hdc | timeout默认值：30秒 |

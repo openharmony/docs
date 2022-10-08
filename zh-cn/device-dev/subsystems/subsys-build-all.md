@@ -196,7 +196,7 @@ bash build/prebuilts_download.sh
   --source-root-dir=SOURCE_ROOT_DIR                 # 指定路径
   --product-name=PRODUCT_NAME                       # 指定产品名
   --device-name=DEVICE_NAME                         # 指定装置名称
-  --target-cpu=TARGET_CPU                           # 指定cpu
+  --target-cpu=TARGET_CPU                           # 指定CPU
   --target-os=TARGET_OS                             # 指定操作系统
   -T BUILD_TARGET, --build-target=BUILD_TARGET      # 指定编译目标，可以指定多个
   --gn-args=GN_ARGS                                 # GN参数，支持指定多个

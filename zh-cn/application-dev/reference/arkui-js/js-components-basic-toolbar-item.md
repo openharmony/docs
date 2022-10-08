@@ -3,7 +3,7 @@
 >  **说明：**
 >  从API version 5开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-工具栏子组件。作为工具栏组件的子组件，用于展示工具栏上的一个操作选项。
+工具栏[toolbar](js-components-basic-toolbar.md)子组件。 用于展示工具栏上的一个操作选项。 
 
 
 ## 子组件
@@ -59,13 +59,13 @@
 
 ```html
 <!-- xxx.hml -->
-<toolbar style="position: fixed; bottom: 0px; ">    
-   <toolbar-item icon='common/Icon/location.png' value='Option 1' >   </toolbar-item>
-   <toolbar-item icon='common/Icon/heart.png' value='Option 2'>   </toolbar-item>    
-   <toolbar-item icon='common/Icon/diamond.png' value='Option 3'  >   </toolbar-item>    
-   <toolbar-item icon='common/Icon/heart.png' value='Option 4' >   </toolbar-item>    
-   <toolbar-item icon='common/Icon/heart.png' value='Option 5' >   </toolbar-item>
-   <toolbar-item icon='common/Icon/heart.png' value='Option 6'>   </toolbar-item> 
+<toolbar style="position : fixed; bottom : 0px;">
+    <toolbar-item icon='common/Icon/location.png' value='Option 1'></toolbar-item>
+    <toolbar-item icon='common/Icon/heart.png' value='Option 2'></toolbar-item>
+    <toolbar-item icon='common/Icon/diamond.png' value='Option 3'></toolbar-item>
+    <toolbar-item icon='common/Icon/heart.png' value='Option 4'></toolbar-item>
+    <toolbar-item icon='common/Icon/heart.png' value='Option 5'></toolbar-item>
+    <toolbar-item icon='common/Icon/heart.png' value='Option 6'></toolbar-item>
 </toolbar>
 ```
 

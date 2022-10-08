@@ -16,7 +16,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发滑动的最少手指数，默认为1，最小为1指，最大为10指。<br/>默认值：1 |
-| direction | SwipeDirection | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
+| direction | [SwipeDirection](#swipedirection枚举说明) | 否 | 触发滑动手势的滑动方向。<br/>默认值：SwipeDirection.All |
 | speed | number | 否 | 识别滑动的最小速度（默认为100VP/秒）。<br/>默认值：100 |
 
 ## SwipeDirection枚举说明
@@ -69,4 +69,4 @@ struct SwipeGestureExample {
 }
 ```
 
-![zh-cn_image_0000001231374559](figures/zh-cn_image_0000001231374559.gif)
+ ![zh-cn_image_0000001231374559.png](figures/zh-cn_image_0000001231374559.png) 

@@ -47,7 +47,6 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 @Entry
 @Component
 struct ActionSheetExample {
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
@@ -58,26 +57,26 @@ struct ActionSheetExample {
             confirm: {
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled')
+                console.log('Get Alert Dialog handled');
               }
             },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.error('apples')
+                  console.log('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.error('bananas')
+                  console.log('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.error('pears')
+                  console.log('pears');
                 }
               }
             ]

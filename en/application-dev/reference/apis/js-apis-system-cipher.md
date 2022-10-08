@@ -25,7 +25,7 @@ Encrypts or decrypts data using RSA.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
+| action | string | Yes| Action to perform. The options are as follows:<br>- encrypt<br>- decrypt |
 | text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text that meets the following requirement:<br> Maximum text length = Key length/8 - 66<br>For example, if the key is of 1024 bytes, the text to be encrypted cannot exceed 62 bytes (1024/8 -66 = 62).<br> The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
 | key | string | Yes| RSA key. The key is used as a public key in encryption and a private key in decryption.|
 | transformation | string | No| RSA padding. The default value is **RSA/None/OAEPWithSHA256AndMGF1Padding**.|
@@ -109,7 +109,7 @@ Encrypts or decrypts data using AES.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | string | Yes| Action to perform. The options are as follows:<br>-&nbsp;encrypt<br>-&nbsp;decrypt|
+| action | string | Yes| Action to perform. The options are as follows:<br>- encrypt<br>- decrypt |
 | text | string | Yes| Text to be encrypted or decrypted.<br> The text to be encrypted must be common text. The text to be decrypted must be binary text encoded in Base64. The default format is used for Base64 encoding.|
 | key | string | Yes| Key used for encryption or decryption. It is a string encoded in Base64.|
 | transformation | string | No| Encryption mode and padding of the AES algorithm. The default value is **AES/CBC/PKCS5Padding**.|
@@ -165,7 +165,6 @@ export default {
          console.log(`operation complete!`);
         }
      });        
-    });    
   }
 }
 

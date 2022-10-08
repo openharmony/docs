@@ -23,6 +23,7 @@ Enables the WLAN hotspot.
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Return value**
+
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -39,6 +40,7 @@ Disables the WLAN hotspot.
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Return value**
+
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
@@ -55,6 +57,7 @@ Obtains the supported power models. This API uses a promise to return the result
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Return value**
+
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;Array&lt;[PowerModel](#powermodel)&gt;&gt; | Promise used to return the power models obtained.|
@@ -84,6 +87,7 @@ Obtains the supported power models. This API uses an asynchronous callback to re
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is 0 and **data** is the power models obtained. If **err** is not **0**, an error has occurred.|
@@ -100,6 +104,7 @@ Obtains the power model. This API uses a promise to return the result.
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Return value**
+
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;[PowerModel](#powermodel)&gt; | Promise used to return the power model obtained.|
@@ -116,6 +121,7 @@ Obtains the power model. This API uses an asynchronous callback to return the re
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
@@ -132,11 +138,13 @@ setPowerModel(model: PowerModel) : boolean;
 **System capability**: SystemCapability.Communication.WiFi.AP.Extension
 
 **Parameters**
+
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | model | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Power model to set.|
 
 **Return value**
+
   | **Type**| **Description**|
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|

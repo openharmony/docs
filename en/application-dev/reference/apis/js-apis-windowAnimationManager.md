@@ -2,7 +2,6 @@
 The **WindowAnimationManager** module provides APIs to listen for application start/exit events and window minimization/maximization events and associate animations with these events.
 
 >  **NOTE**
->
 >  The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  The APIs provided by this module are system APIs.
@@ -32,7 +31,7 @@ Before using other APIs of **windowAnimationManager**, you must call this API to
 **Example**
 
 ```js
-var controller = {
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -89,8 +88,8 @@ Minimizes the window that displays the animation. This API uses an asynchronous 
 **Example**
 
 ```js
-var target: WindowAnimationTarget = undefined;
-var controller = {
+let target: WindowAnimationTarget = undefined;
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
@@ -128,7 +127,7 @@ var controller = {
 
 windowAnimationManager.setController(controller)
 
-var finishedCallback = null;
+let finishedCallback = null;
 windowAnimationManager.minimizeWindowWithAnimation(target, (err, data) => {
     if (err.code) {
         console.error('Failed to minimize the window target. Cause: ' + JSON.stringify(err));
@@ -165,8 +164,8 @@ Minimizes the window that displays the animation. This API uses a promise to ret
 **Example**
 
 ```js
-var target: WindowAnimationTarget = undefined;
-var controller = {
+let target: WindowAnimationTarget = undefined;
+let controller = {
     onStartAppFromLauncher(startingWindowTarget: windowAnimationManager.WindowAnimationTarget, finishCallback: windowAnimationManager.WindowAnimationFinishedCallback): void {
         console.log('onStartAppFromLauncher, the startingWindowTarget is: ' + startingWindowTarget);
         finishCallback.onAnimationFinish();
