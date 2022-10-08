@@ -57,7 +57,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
-on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback:Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
+on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;,options?: Options): void
 
 订阅未校准的加速度计传感器数据。
 
@@ -423,8 +423,7 @@ try {
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup>
 
-on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticFieldUncalibratedResponse&gt;,
-        options?: Options): void
+on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;, options?: Options): void
 
 订阅未校准的磁场传感器数据
 
@@ -700,7 +699,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>
 
-once(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback:Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 订阅一次未校准的加速度计传感器数据。
 
@@ -768,6 +767,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 一次订阅环境温度传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
+
 **参数：** 
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -795,6 +795,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 订阅一次气压计传感器数据。
 
 **系统能力**：SystemCapability.Sensors.Sensor
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -879,9 +880,7 @@ try {
 
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup>
 
-once(type: 
-
-SensorId.GYROSCOPE_UNCALIBRATED,callback:Callback&lt;GyroscopeUncalibratedResponse&gt;): void
+once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
 一次订阅未校准的陀螺仪传感器数据。
 
@@ -1064,7 +1063,7 @@ try {
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup>
 
-once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback:Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 订阅一次未经校准的磁场传感器数据。
 
@@ -1336,7 +1335,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>  
 
-off(type: SensorId.ACCELEROMETER_UNCALIBRATED,callback?:Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 取消订阅未校准的加速度计传感器数据。
 
@@ -1517,7 +1516,7 @@ try {
 
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup> 
 
-off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?:Callback&lt;GyroscopeUncalibratedResponse&gt;): void
+off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
  取消订阅未校准的陀螺仪传感器数据。
 
@@ -1697,7 +1696,7 @@ try {
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup> 
 
-off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED,callback?:Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 取消订阅未校准的磁场传感器数据。
 
@@ -2496,7 +2495,7 @@ try {
 
 ## sensor.getRotationMatrix<sup>9+</sup> 
 
-getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse>&gt;
+getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;,): Promise&lt;RotationMatrixResponse&gt;
 
 根据重力矢量和地磁矢量计算旋转矩阵。
 
@@ -2681,38 +2680,36 @@ try {
 | WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
 | ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
 
-## SensorType
+## SensorType<sup>(deprecated)</sup>
 
 表示要订阅或取消订阅的传感器类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
-| 名称                                                      | 默认值 | 说明                   |
-| --------------------------------------------------------- | ------ | ---------------------- |
-| SENSOR_TYPE_ID_ACCELEROMETER                              | 1      | 加速度传感器。         |
-| SENSOR_TYPE_ID_GYROSCOPE                                  | 2      | 陀螺仪传感器。         |
-| SENSOR_TYPE_ID_AMBIENT_LIGHT                              | 5      | 环境光传感器。         |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD                             | 6      | 磁场传感器。           |
-| SENSOR_TYPE_ID_BAROMETER                                  | 8      | 气压计传感器。         |
-| SENSOR_TYPE_ID_HALL                                       | 10     | 霍尔传感器。           |
-| SENSOR_TYPE_ID_PROXIMITY                                  | 12     | 接近光传感器。         |
-| SENSOR_TYPE_ID_HUMIDITY                                   | 13     | 湿度传感器。           |
-| SENSOR_TYPE_ID_ORIENTATION                                | 256    | 方向传感器。           |
-| SENSOR_TYPE_ID_GRAVITY                                    | 257    | 重力传感器。           |
-| SENSOR_TYPE_ID_LINEAR_ACCELERATION<sup>(deprecated)</sup> | 258    | 线性加速度传感器。     |
-| SENSOR_TYPE_ID_LINEAR_ACCELEROMETER<sup>9+</sup>          | 258    | 线性加速度传感器。     |
-| SENSOR_TYPE_ID_ROTATION_VECTOR                            | 259    | 旋转矢量传感器。       |
-| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE                        | 260    | 环境温度传感器。       |
-| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED                | 261    | 未校准磁场传感器。     |
-| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED                     | 263    | 未校准陀螺仪传感器。   |
-| SENSOR_TYPE_ID_SIGNIFICANT_MOTION                         | 264    | 有效运动传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER_DETECTION                        | 265    | 计步检测传感器。       |
-| SENSOR_TYPE_ID_PEDOMETER                                  | 266    | 计步传感器。           |
-| SENSOR_TYPE_ID_HEART_RATE<sup>(deprecated)</sup>          | 278    | 心率传感器。           |
-| SENSOR_TYPE_ID_HEART_BEAT_RATE<sup>9+</sup>               | 278    | 心率传感器。           |
-| SENSOR_TYPE_ID_WEAR_DETECTION                             | 280    | 佩戴检测传感器。       |
-| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED                 | 281    | 未校准加速度计传感器。 |
+| 名称                                       | 默认值 | 说明                   |
+| ------------------------------------------ | ------ | ---------------------- |
+| SENSOR_TYPE_ID_ACCELEROMETER               | 1      | 加速度传感器。         |
+| SENSOR_TYPE_ID_GYROSCOPE                   | 2      | 陀螺仪传感器。         |
+| SENSOR_TYPE_ID_AMBIENT_LIGHT               | 5      | 环境光传感器。         |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD              | 6      | 磁场传感器。           |
+| SENSOR_TYPE_ID_BAROMETER                   | 8      | 气压计传感器。         |
+| SENSOR_TYPE_ID_HALL                        | 10     | 霍尔传感器。           |
+| SENSOR_TYPE_ID_PROXIMITY                   | 12     | 接近光传感器。         |
+| SENSOR_TYPE_ID_HUMIDITY                    | 13     | 湿度传感器。           |
+| SENSOR_TYPE_ID_ORIENTATION                 | 256    | 方向传感器。           |
+| SENSOR_TYPE_ID_GRAVITY                     | 257    | 重力传感器。           |
+| SENSOR_TYPE_ID_LINEAR_ACCELERATION         | 258    | 线性加速度传感器。     |
+| SENSOR_TYPE_ID_ROTATION_VECTOR             | 259    | 旋转矢量传感器。       |
+| SENSOR_TYPE_ID_AMBIENT_TEMPERATURE         | 260    | 环境温度传感器。       |
+| SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | 261    | 未校准磁场传感器。     |
+| SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED      | 263    | 未校准陀螺仪传感器。   |
+| SENSOR_TYPE_ID_SIGNIFICANT_MOTION          | 264    | 有效运动传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER_DETECTION         | 265    | 计步检测传感器。       |
+| SENSOR_TYPE_ID_PEDOMETER                   | 266    | 计步传感器。           |
+| SENSOR_TYPE_ID_HEART_RATE                  | 278    | 心率传感器。           |
+| SENSOR_TYPE_ID_WEAR_DETECTION              | 280    | 佩戴检测传感器。       |
+| SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED  | 281    | 未校准加速度计传感器。 |
 
 
 ## Response
@@ -2733,6 +2730,7 @@ try {
 
 | 名称            | 参数类型 | 说明                   |
 | --------------- | -------- | ---------------------- |
+| sensorName      | string   | 传感器名称。           |
 | venderName      | string   | 传感器供应商。         |
 | firmwareVersion | string   | 传感器固件版本。       |
 | hardwareVersion | string   | 传感器硬件版本。       |
@@ -4468,7 +4466,7 @@ off(type: SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback?: Callback&lt;
 function callback(data) {
      console.info('Temperature: ' + data.temperature);
 }
-sensor.off( sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
+sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
 ```
 
 ### BAROMETER<sup>(deprecated)</sup>
