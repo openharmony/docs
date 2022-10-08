@@ -33,7 +33,7 @@ getColors(wallpaperType: WallpaperType, callback: AsyncCallback&lt;Array&lt;Rgba
 获取指定类型壁纸的主要颜色信息。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#getColorsSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -66,7 +66,7 @@ getColors(wallpaperType: WallpaperType): Promise&lt;Array&lt;RgbaColor&gt;&gt;
 获取指定类型壁纸的主要颜色信息。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#getColorsSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getColorsSync<sup>9+</sup>](#wallpapergetcolorssync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -133,7 +133,7 @@ getId(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
 获取指定类型壁纸的ID。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#getIdSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -166,7 +166,7 @@ getId(wallpaperType: WallpaperType): Promise&lt;number&gt;
 获取指定类型壁纸的ID。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#getIdSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getIdSync<sup>9+</sup>](#wallpapergetidsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -232,7 +232,7 @@ getMinHeight(callback: AsyncCallback&lt;number&gt;): void
 获取壁纸的最小高度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#getMinHeightSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -264,7 +264,7 @@ getMinHeight(): Promise&lt;number&gt;
 获取壁纸的最小高度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#getMinHeightSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getMinHeightSync<sup>9+</sup>](#wallpapergetminheightsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -319,7 +319,7 @@ getMinWidth(callback: AsyncCallback&lt;number&gt;): void
 获取壁纸的最小宽度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#getMinWidthSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -351,7 +351,7 @@ getMinWidth(): Promise&lt;number&gt;
 获取壁纸的最小宽度值。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#getMinWidthSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getMinWidthSync<sup>9+</sup>](#wallpapergetminwidthsync9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -406,7 +406,7 @@ isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
 是否允许应用改变当前用户的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#isChangeAllowed9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -438,7 +438,7 @@ isChangePermitted(): Promise&lt;boolean&gt;
 是否允许应用改变当前用户的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#isChangeAllowed9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.isChangeAllowed<sup>9+</sup>](#wallpaperischangeallowed9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -493,7 +493,7 @@ isOperationAllowed(callback: AsyncCallback&lt;boolean&gt;): void
 是否允许用户设置壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#isUserChangeAllowed9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -525,7 +525,7 @@ isOperationAllowed(): Promise&lt;boolean&gt;
 是否允许用户设置壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#isUserChangeAllowed9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.isUserChangeAllowed<sup>9+</sup>](#wallpaperisuserchangeallowed9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -580,7 +580,7 @@ reset(wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#recovery9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrecovery9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -615,7 +615,7 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 移除指定类型的壁纸，恢复为默认显示的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#recovery9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.recovery<sup>9+</sup>](#wallpaperrecovery9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -716,7 +716,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 将指定资源设置为指定类型的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#setImage9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -775,7 +775,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 将指定资源设置为指定类型的壁纸。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#setImage9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.setImage<sup>9+</sup>](#wallpapersetimage9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -944,7 +944,7 @@ getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): vo
 获取指定类型的壁纸文件。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#getFileSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
 >
 > 从 API version 8开始支持。
 
@@ -978,7 +978,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
 获取指定类型的壁纸文件。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#getFileSync9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getFileSync<sup>9+</sup>](#wallpapergetfilesync9)代替。
 >
 > 从 API version 8开始支持。
 
@@ -1009,7 +1009,7 @@ getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
   ```
 
 
-## wallpaper.getFileSync<sup>8+</sup>
+## wallpaper.getFileSync<sup>9+</sup>
 
 getFileSync(wallpaperType: WallpaperType): number;
 
@@ -1049,7 +1049,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 获取壁纸图片的像素图。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#getImage9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 >
 > 从 API version 7开始支持。
 
@@ -1083,7 +1083,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 获取壁纸图片的像素图。
 
 > **说明：**
-> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#getImage9)代替。
+> 从API version 9开始废弃。建议使用[wallpaper.getImage<sup>9+</sup>](#wallpapergetimage9)代替。
 >
 > 从 API version 7开始支持。
 
