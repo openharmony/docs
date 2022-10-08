@@ -10,7 +10,7 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
   **Figure 1** Vibrator in Misc devices
 
-![en-us_image_0000001180249428.png](figures/en-us_image_0000001180249428.png)
+![0752d302-aeb9-481a-bb8f-e5524eb61eeb](figures/0752d302-aeb9-481a-bb8f-e5524eb61eeb.png)
 
 - Vibrator API: provides basic vibrator APIs, including the APIs for obtaining the vibrator list, querying the vibrator by effect, and triggering and stopping vibration.
 
@@ -23,4 +23,7 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 
 ## Constraints
 
-When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect. The authorization mode of this permission is **system_grant**.
+When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect.
+
+
+
