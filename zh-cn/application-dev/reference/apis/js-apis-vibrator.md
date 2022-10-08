@@ -43,9 +43,9 @@ try {
         usage: 'alarm'
     }, (error)=>{
         if(error){
-            console.log("vibrate fail, error.code:" + error.code + ",error.message:" + error.message);
+            console.log('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
         }else{
-            console.log("Callback returned to indicate a successful vibration.");
+            console.log('Callback returned to indicate a successful vibration.');
         }
     });
 } catch(err) {
@@ -87,9 +87,9 @@ try {
         id: 0,
         usage: 'alarm'
     }).then(()=>{
-        console.log("Promise returned to indicate a successful vibration");
+        console.log('Promise returned to indicate a successful vibration');
     }).catch((error)=>{
-        console.log("error.code" + error.code + "error.message" + error.message);
+        console.log('error.code' + error.code + 'error.message' + error.message);
     })
 } catch(err) {
       console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
@@ -119,9 +119,9 @@ stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback<&it;void&it;>)
 try {
     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
         if(error){
-            console.log("error.code" + error.code + "error.message" + error.message);
+            console.log('error.code' + error.code + 'error.message' + error.message);
         }else{
-            console.log("Callback returned to indicate successful.");
+            console.log('Callback returned to indicate successful.');
         }
     })
 } catch(err) {
@@ -156,193 +156,13 @@ stopVibration(stopMode: VibratorStopMode): Promise<&it;void&it;>
   ```js
 try {
     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
-    console.log("Promise returned to indicate a successful vibration.");
+    console.log('Promise returned to indicate a successful vibration.');
     }, (error)=>{
-        console.log("error.code" + error.code + "error.message" + error.message);
+        console.log('error.code' + error.code + 'error.message' + error.message);
     });
 } catch(err) {
       console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
 }
-  ```
-
-## vibrator.vibrate<sup>(deprecated)</sup>
-
-vibrate(duration: number): Promise&lt;void&gt;
-
-按照指定持续时间触发马达振动。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | 是   | 马达振动时长, 单位ms。 |
-
-**返回值：** 
-
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**示例：** 
-
-  ```js
-  vibrator.vibrate(1000).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code"+error.code+"error.message"+error.message);
-  });
-  ```
-
-## vibrator.vibrate<sup>(deprecated)</sup>
-
-vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
-
-按照指定持续时间触发马达振动。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-| 参数名   | 类型                      | 必填 | 说明                                                       |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
-
-**示例：** 
-
-  ```js
-  vibrator.vibrate(1000,function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate a successful vibration.");
-      }
-  })
-  ```
-
-
-## vibrator.vibrate<sup>(deprecated)</sup>
-
-vibrate(effectId: EffectId): Promise&lt;void&gt;
-
-按照预置振动效果触发马达振动。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-| 参数名   | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID。 |
-
-**返回值：** 
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**示例：** 
-  ```js
-  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code" + error.code + "error.message" + error.message);
-  });
-  ```
-
-
-## vibrator.vibrate<sup>(deprecated)</sup>
-
-vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
-
-按照指定振动效果触发马达振动。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-| 参数名   | 类型                      | 必填 | 说明                                                       |
-| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
-| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
-
-**示例：** 
-
-  ```js
-  vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate a successful vibration.");
-      }
-  })
-  ```
-
-## vibrator.stop<sup>(deprecated)</sup>
-
-stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
-
-按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-
-| 参数名   | 类型                                  | 必填 | 说明                     |
-| -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
-
-**返回值：** 
-
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**示例：** 
-
-  ```js
-  vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
-      console.log("Promise returned to indicate a successful vibration.");
-  }, (error)=>{
-      console.log("error.code" + error.code + "error.message" + error.message);
-  });
-  ```
-
-
-## vibrator.stop<sup>(deprecated)</sup>
-
-stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
-
-按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
-
-**需要权限**：ohos.permission.VIBRATE
-
-**系统能力**：SystemCapability.Sensors.MiscDevice
-
-**参数：** 
-| 参数名   | 类型                                  | 必填 | 说明                                                         |
-| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。                                     |
-| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
-
-**示例：** 
-
-  ```js
-  vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
-      if(error){
-          console.log("error.code" + error.code + "error.message" + error.message);
-      }else{
-          console.log("Callback returned to indicate successful.");
-      }
-  })
   ```
 
 ## EffectId
@@ -430,3 +250,200 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 | physicalFeedback | string | 用于物理反馈振动的场景。       |
 | simulateReality  | string | 用于模拟现实振动的场景。       |
 
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(duration: number): Promise&lt;void&gt;
+
+按照指定持续时间触发马达振动。
+
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| duration | number | 是   | 马达振动时长, 单位ms。 |
+
+**返回值：** 
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.vibrate(1000).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
+
+按照指定持续时间触发马达振动。
+
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                      | 必填 | 说明                                                       |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| duration | number                    | 是   | 马达振动时长, 单位ms。                                     |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.vibrate(1000,function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+  ```
+
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(effectId: EffectId): Promise&lt;void&gt;
+
+按照预置振动效果触发马达振动。
+
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| effectId | [EffectId](#effectid) | 是   | 预置的振动效果ID。 |
+
+**返回值：** 
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+
+## vibrator.vibrate<sup>(deprecated)</sup>
+
+vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
+
+按照指定振动效果触发马达振动。
+
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                      | 必填 | 说明                                                       |
+| -------- | ------------------------- | ---- | ---------------------------------------------------------- |
+| effectId | [EffectId](#effectid)     | 是   | 预置的振动效果ID。                                         |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.vibrate(vibrator.EffectId.EFFECT_CLOCK_TIMER, function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate a successful vibration.');
+    }
+})
+  ```
+
+## vibrator.stop<sup>(deprecated)</sup>
+
+stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
+
+按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
+
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                                  | 必填 | 说明                     |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。 |
+
+**返回值：** 
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET).then(()=>{
+    console.log('Promise returned to indicate a successful vibration.');
+}, (error)=>{
+    console.log('error.code' + error.code + 'error.message' + error.message);
+});
+  ```
+
+
+## vibrator.stop<sup>(deprecated)</sup>
+
+stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
+
+按照要停止指定的振动模式来停止马达的振动。如果要停止的振动模式与触发马达振动时的模式不相同，则调用本接口会失败。
+
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9) 代替。
+
+**需要权限**：ohos.permission.VIBRATE
+
+**系统能力**：SystemCapability.Sensors.MiscDevice
+
+**参数：** 
+
+| 参数名   | 类型                                  | 必填 | 说明                                                         |
+| -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | 是   | 马达停止指定的振动模式。                                     |
+| callback | AsyncCallback&lt;void&gt;             | 否   | 回调函数。当马达停止振动成功，err为undefined，否则为错误对象。 |
+
+**示例：** 
+
+  ```js
+vibrator.stop(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_PRESET, function(error){
+    if(error){
+        console.log('error.code' + error.code + 'error.message' + error.message);
+    }else{
+        console.log('Callback returned to indicate successful.');
+    }
+})
+  ```
