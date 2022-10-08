@@ -108,9 +108,11 @@ pixelmap.release(()=>{
 })
 
 // 用于创建imagesource(uri)
+let path = '/data/local/tmp/test.jpg';
 const imageSourceApi = image.createImageSource(path);
 
 // 用于创建imagesource(fd)
+let fd = 29;
 const imageSourceApi = image.createImageSource(fd);
 
 // 用于创建imagesource(data)
@@ -137,7 +139,7 @@ imagePackerApi.release();
 ### 解码场景
 
 ```js
-/data/local/tmp/test.jpg // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.jpg'; // 设置创建imagesource的路径
 
 // 用路径创建imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.jpg'
@@ -195,7 +197,7 @@ catch(error => {
 ### 编码场景
 
 ```js
-/data/local/tmp/test.png // 设置创建imagesource的路径
+let path = '/data/local/tmp/test.png'; // 设置创建imagesource的路径
 
 // 用于设置imagesource
 const imageSourceApi = image.createImageSource(path); // '/data/local/tmp/test.png'
@@ -232,7 +234,7 @@ imageSourceApi.getImageInfo(imageInfo => {
 })
 
 // 用于更新增量数据
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {})
+imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error, data)=> {})
 
 ```
 
@@ -249,7 +251,7 @@ public async init(surfaceId: any) {
     // 获取Surface ID
     var surfaceId = await receiver.getReceivingSurfaceId();
 
-    // 注册Surface的监听，在suface的buffer准备好后触发
+    // 注册Surface的监听，在surface的buffer准备好后触发
     receiver.on('imageArrival', () => {
         // 去获取Surface中最新的buffer
         receiver.readNextImage((err, img) => {
