@@ -56,5 +56,3 @@ struct KeyEventExample {
   }
 }
 ```
-
-![zh-cn_image_0000001174264364](figures/zh-cn_image_0000001174264364.gif)
