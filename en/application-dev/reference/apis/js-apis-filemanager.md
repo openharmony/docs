@@ -22,6 +22,7 @@ Obtains information about the root album or directory in asynchronous mode. This
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | options | Object | No| The options are as follows:<br>- &nbsp;**dev**: See [DevInfo](#devinfo). It is **dev = {name: "local"}** by default if not specified. Currently, only 'local' is supported.|
@@ -83,6 +84,7 @@ Obtains information about the second-level album or files in asynchronous mode. 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | path | string | Yes| URI of the directory to query.|
@@ -169,6 +171,7 @@ Creates a file in the specified path in asynchronous mode. This API uses a promi
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Parameters**
+
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | filename | string | Yes| Name of the file to create.|

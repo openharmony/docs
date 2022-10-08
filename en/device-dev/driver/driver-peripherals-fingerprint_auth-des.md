@@ -108,7 +108,7 @@ The fingerprint_auth driver provides stable basic fingerprint authentication cap
 | API                                                      | Description                |
 | ------------------------------------------------------------ | ------------------------ |
 | IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | Called to return the operation result.    |
-| IExecutorCallback::OnAcquireInfo(int32_t code, const std::vector<uint8_t>& extraInfo) | Called to return the interaction information about the operation process.|
+| IExecutorCallback::OnTip(int32_t code, const std::vector<uint8_t>& extraInfo) | Called to return the interaction information about the operation process.|
 
 ### How to Develop
 

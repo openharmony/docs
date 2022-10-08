@@ -52,7 +52,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -81,7 +81,7 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 | 类型                                  | 说明                                |
 | ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -134,7 +134,7 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 异步创建视频录制实例回调方法。 |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
@@ -164,7 +164,7 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 | 类型                                      | 说明                                |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | 异步创建视频录制实例Promise返回值。 |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
@@ -441,7 +441,7 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error,  ) => {
+audioPlayer.getTrackDescription((error, arrlist) => {
     if (arrlist != null) {
         for (let i = 0; i < arrlist.length; i++) {
             printfDescription(arrlist[i]);
@@ -1794,7 +1794,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 ```js
 let audioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1849,7 +1849,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1973,29 +1973,13 @@ let videoConfig = {
 }
 
 // asyncallback
-let videoRecorder = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('prepare', () => {
-    videoRecorder.prepare(videoConfig, (err) => {
-        if (err == null) {
-            console.info('prepare success');
-        } else {
-            console.info('prepare failed and error is ' + err.message);
-        }
-    });
-});
-
-media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // prepare事件触发
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message);
+        console.info('prepare failed and error is ' + err.message);
     }
-});
+})
 ```
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
@@ -2046,21 +2030,10 @@ let videoConfig = {
 }
 
 // promise
-let videoRecorder = null;
-media.createVideoRecorder().then((recorder) => {
-    if (recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        videoRecorder.prepare(videoConfig).then(() => {
-            console.info('prepare success');
-        }).catch((err) => {
-            console.info('prepare failed and catch error is ' + err.message);
-        });
-    } else {
-        console.info('createVideoRecorder failed');
-    }
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
 }).catch((err) => {
-    console.info('catch err error message is ' + err.message);
+    console.info('prepare failed and catch error is ' + err.message);
 });
 ```
 
@@ -2474,11 +2447,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
+// 当获取videoRecordState接口出错时通过此订阅事件上报
 videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
     console.info(`audio error called, error: ${error}`); 
-}
-// 当获取videoRecordState接口出错时通过此订阅事件上报
-});
+})
 ```
 
 ## VideoRecordState<sup>9+</sup>

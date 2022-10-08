@@ -3,35 +3,25 @@
 The **\<LoadingProgress>** component is used to create a loading animation.
 
 >  **NOTE**
->
->  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
+> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
 LoadingProgress()
 
-Creates a **LoadingProgress** instance.
-
-
+Creates a **\<LoadingProgress>** component.
 
 ## Attributes
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| color | [ResourceColor](../../ui/ts-types.md) | - | Foreground color of the loading progress bar.|
-
-
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Foreground color of the **\<LoadingProgress>** component.|
 
 ## Example
 

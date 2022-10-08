@@ -1,22 +1,15 @@
 # Shape
 
->  **NOTE**
-> 
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Shape>** component is the parent component of the drawing components. The attributes described in this topic are universal attributes supported by all the drawing components.
 
 
 1. Drawing components use **\<Shape>** as their parent to implement the effect similar to SVG.
 
-
 2. The **\<Shape>** component is used independently to draw a specific shape.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -41,15 +34,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | No| View port of the shape.|
-| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Color of the fill area.|
-| fillOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Opacity of the fill area.|
-| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | No| Stroke color.|
+| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Color of the fill area.|
+| fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Opacity of the fill area.|
+| stroke | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Stroke color.|
 | strokeDashArray | Array&lt;Length&gt; | [] | No| Stroke dash.|
 | strokeDashOffset | number \| string | 0 | No| Offset of the start point for drawing the stroke.|
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | No| Cap style of the stroke.|
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | No| Join style of the stroke.|
 | strokeMiterLimit | number \| string | 4 | No| Limit value when the sharp angle is drawn as a miter.|
-| strokeOpacity | number \| string \| [Resource](../../ui/ts-types.md#resource-type)| 1 | No| Stroke opacity.|
+| strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Stroke opacity.|
 | strokeWidth | number \| string | 1 | No| Stroke width.|
 | antiAlias | boolean | true | No| Whether anti-aliasing is enabled.|
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | No| Mesh effect. The first parameter is an array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap. The second parameter is the number of columns in the mesh matrix. The third parameter is the number of rows in the mesh matrix.|

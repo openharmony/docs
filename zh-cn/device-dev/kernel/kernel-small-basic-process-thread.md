@@ -74,7 +74,7 @@ OpenHarmony 任务管理模块提供任务创建、任务延时、任务挂起�
 | 任务调度的控制 | -&nbsp;LOS_TaskLock：锁任务调度<br/>-&nbsp;LOS_TaskUnlock：解锁任务调度 | 
 | 任务优先级的控制 | -&nbsp;LOS_CurTaskPriSet：设置当前任务的优先级<br/>-&nbsp;LOS_TaskPriSet：设置指定任务的优先级<br/>-&nbsp;LOS_TaskPriGet：获取指定任务的优先级 | 
 | 任务信息获取 | -&nbsp;LOS_CurTaskIDGet：获取当前任务的ID<br/>-&nbsp;LOS_TaskInfoGet：获取指定任务的信息 | 
-| 任务绑核操作 | -&nbsp;LOS_TaskCpuAffiSet：绑定指定任务到指定cpu上运行，仅在多核下使用<br/>-&nbsp;LOS_TaskCpuAffiGet：获取指定任务的绑核信息，仅在多核下使用 | 
+| 任务绑核操作 | -&nbsp;LOS_TaskCpuAffiSet：绑定指定任务到指定CPU上运行，仅在多核下使用<br/>-&nbsp;LOS_TaskCpuAffiGet：获取指定任务的绑核信息，仅在多核下使用 | 
 | 任务调度参数的控制 | -&nbsp;LOS_GetTaskScheduler：获取指定任务的调度策略<br/>-&nbsp;LOS_SetTaskScheduler:设置指定任务的调度参数，包括优先级和调度策略 | 
 | 系统支持的最大任务数 | LOS_GetSystemTaskMaximum | 
 

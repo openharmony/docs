@@ -2,58 +2,36 @@
 
 A click event is triggered when a component is clicked.
 
-> **NOTE**
+>  **NOTE**
 >
-> This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-## Required Permissions
-
-None
+>  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Events
 
-| Name | Bubbling Supported | Description |
-| -------- | -------- | -------- |
-| onClick(callback: (event?: ClickEvent) =&gt; void) | No | Called when a click event occurs. For details about the event parameters, see **ClickEvent**. |
-
+| Name                                      | Bubbling Supported| Description                             |
+| ---------------------------------------- | ---- | --------------------------------- |
+| onClick(event: (event?: ClickEvent) =&gt; void) | No   | Called when a click event occurs. For details about the event parameters, see **ClickEvent**.|
 
 ## ClickEvent
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| screenX | number | X coordinate of the click relative to the left edge of the screen. |
-| screenY | number | Y coordinate of the click relative to the upper edge of the screen. |
-| x | number | X coordinate of the click relative to the left edge of the component being clicked. |
-| y | number | Y coordinate of the click relative to the upper edge of the component being clicked. |
-| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Target element that is clicked. |
-| timestamp | number | Timestamp of the event. |
+| Name           | Type                                | Description                                                    |
+| ------------------- | ------------------------------------ | -------------------------------------------------------- |
+| screenX             | number                               | X coordinate of the click relative to the upper left corner of the application window.                     |
+| screenY             | number                               | Y coordinate of the click relative to the upper left corner of the application window.                     |
+| x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.                   |
+| y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.                   |
+| target<sup>8+</sup> | [EventTarget](#eventtarget8) | Target element that is clicked.                                        |
+| timestamp           | number                               | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 
 ## EventTarget<sup>8+</sup>
 
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| area | [Area](#area8) | Area information of the target element.|
+| Name  | Type                     | Description        |
+| ---- | ------------------------- | ---------- |
+| area | [Area](ts-types.md#area8) | Area information of the target element.|
 
-## Area<sup>8+</sup>
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| width | number | Width of the target element, in vp. |
-| height | number | Height of the target element, in vp. |
-| position | Position | Position of the upper left corner of the target element relative to that of the parent element. |
-| globalPosition | Position | Position of the upper left corner of the target element relative to that of the page. |
-
-## Position<sup>8+</sup>
-
-| Name | Type | Description |
-| -------- | -------- | -------- |
-| x | number | X-coordinate, in vp. |
-| y | number | Y-coordinate, in vp. |
 
 
 ## Example
-
 
 ```ts
 // xxx.ets

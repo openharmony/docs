@@ -2,7 +2,7 @@
 
 The **\<Video>** component is used to play a video and control its playback.
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -24,9 +24,9 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](../../ui/ts-types.md)                   | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
-| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| **PlaybackSpeed.Speed_Forward_1_00_X** |
-| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](../../ui/ts-types.md) | No  | Path of the preview image.                                            |
+| src                 | string \| [Resource](ts-types.md#resource)                   | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
+| currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| PlaybackSpeed.Speed_Forward_1_00_X |
+| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md#resource) | No  | Path of the preview image.                                            |
 | controller          | [VideoController](#videocontroller)                          | No  | Controller.                                                    |
 
 ## PlaybackSpeed<sup>8+</sup>
@@ -62,9 +62,10 @@ In addition to the universal events (ts-universal-events-click.md), the followin
 | onFinish(event:() =&gt; void)                      | Triggered when the video playback is finished.                                      |
 | onError(event:() =&gt; void)                       | Triggered when the video playback fails.                                      |
 | onPrepared(callback:(event?: { duration: number }) =&gt; void) | Triggered when video preparation is complete. The video duration (in seconds) is obtained from **duration**.|
-| onSeeking(callback:(event?: { duration: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                     |
-| onSeeked(callback:(event?: { duration: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.               |
-| onUpdate(callback:(event?: { duration: number }) =&gt; void) | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.    |
+| onSeeking(callback:(event?: { time: number }) =&gt; void) | Triggered to report the time (in seconds) when the progress bar is being dragged.                     |
+| onSeeked(callback:(event?: { time: number }) =&gt; void) | Triggered to report the playback time (in seconds) when the user finishes dragging the progress bar.               |
+| onUpdate(callback:(event?: { time: number }) =&gt; void) | Triggered once per 250 ms when the playback progress changes. The unit of the current playback time is second.    |
+| onFullscreenChange(callback:(event?: { fullscreen: boolean }) =&gt; void) | Triggered when the playback mode is switched between full-screen mode and non-full-screen mode. The value **true** means that the playback is in full-screen mode, and **false** means that the playback is non-full-screen mode.    |
 
 
 ## VideoController
@@ -158,7 +159,7 @@ Sets the video playback position with the specified seek mode.
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: Resource = $rawfile('video1');
+  @State srcs: Resource = $rawfile('video1.mp4');
   @State previewUris: Resource = $r('app.media.img');
   @State currentProgressRates: number = 1;
   @State autoPlays: boolean = false;
@@ -201,7 +202,7 @@ struct VideoCreateComponent {
                 })
       Row() {
         Button("src").onClick(() => {
-            this.srcs = $rawfile('video2');
+            this.srcs = $rawfile('video2.mp4');
         });
         Button("previewUri").onClick(() => {
             this.previewUris = $r('app.media.img1');

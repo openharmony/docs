@@ -231,7 +231,7 @@ zh-cn/application-dev/reference/apis/js-apis-audio.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-camera.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-image.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-i18n.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-intl.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-resource-manager.md @HelloCrease
@@ -317,6 +317,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-update.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-usb.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.mdd @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vibrator.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
@@ -365,3 +366,6 @@ zh-cn/application-dev/reference/js-service-widget-ui @HelloCrease
 zh-cn/application-dev/website.md @zengyawen
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
+zh-cn/application-dev/reference/apis/Readme-CN.md @zengyawen

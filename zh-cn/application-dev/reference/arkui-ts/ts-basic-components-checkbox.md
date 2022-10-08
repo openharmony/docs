@@ -29,7 +29,7 @@ Checkbox(options?:&nbsp;{name?: string,  group?: string })
 | 名称          | 参数类型 | 描述 |
 | ------------- | ------- | -------- |
 | select        | boolean | 设置多选框是否选中。<br/>默认值：false |
-| selectedColor | [ResourceColor](ts-types.md) | 设置多选框选中状态颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置多选框选中状态颜色。 |
 
 ## 事件
 

@@ -24,11 +24,11 @@ Scroll(scroller?: Scroller)
 
 | 名称             | 参数类型                                     | 描述        |
 | -------------- | ---------------------------------------- | --------- |
-| scrollable     | ScrollDirection                          | 设置滚动方法。<br/>默认值：ScrollDirection.Vertical |
+| scrollable     | ScrollDirection                          | 设置滚动方向。<br/>默认值：ScrollDirection.Vertical |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Color   | 设置滚动条的颜色。 |
 | scrollBarWidth | string&nbsp;\|&nbsp;number         | 设置滚动条的宽度。 |
-| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.Spring |
+| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | 设置滑动效果，目前支持的滑动效果参见EdgeEffect的枚举说明。<br/>默认值：EdgeEffect.None |
 
 ## ScrollDirection枚举说明
 | 名称       | 描述                     |
@@ -53,7 +53,7 @@ Scroll(scroller?: Scroller)
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，目前支持绑定到List、Scroll、ScrollBar上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar上。
 
 
 ### 导入对象
@@ -140,7 +140,7 @@ scrollToIndex(value: number): void
 | value  | number   | 是   | 要滑动到的列表项在列表中的索引值。 |
 
 
-### scrollBy
+### scrollBy<sup>9+</sup>
 
 scrollBy(dx: Length, dy: Length): void
 

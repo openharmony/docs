@@ -5,7 +5,7 @@
 分布式相机模块支持相机相关基础功能介绍说明。
 
 ## 开发步骤
-在计算器中连接分布式设备，在获取相机列表时getCameras()，遍历返回的列表，判断对应Camera对象中的ConnctionType是否等于CAMERA_CONNECTION_REMOTE,若等于则使用此对象创建camerainput，之后调用与本地相机使用一样。参考：[相机开发指导](./camera.md)
+在计算器中连接分布式设备，在获取相机列表时getCameras()，遍历返回的列表，判断对应Camera对象中的ConnectionType是否等于CAMERA_CONNECTION_REMOTE,若等于则使用此对象创建camerainput，之后调用与本地相机使用一样。参考：[相机开发指导](./camera.md)
 
 详细API含义请参考：[相机管理API文档](../reference/apis/js-apis-camera.md)
 

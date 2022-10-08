@@ -16,7 +16,7 @@ import connection from '@ohos.net.connection'
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
-获取默认激活的数据网络，使用callback方式作为异步方法。
+获取默认激活的数据网络，使用callback方式作为异步方法。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -41,7 +41,7 @@ connection.getDefaultNet(function (error, netHandle) {
 
 getDefaultNet(): Promise\<NetHandle>
 
-获取默认激活的数据网络，使用Promise方式作为异步方法。
+获取默认激活的数据网络，使用Promise方式作为异步方法。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -61,11 +61,35 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getDefaultNetSync
+
+getDefaultNetSync(): NetHandle;
+
+使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| NetHandle | 以同步方式返回默认激活的数据网络。 |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
 ## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-检查默认数据网络是否被激活，使用callback方式作为异步方法。
+检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -88,7 +112,9 @@ connection.hasDefaultNet(function (error, has) {
 
 hasDefaultNet(): Promise\<boolean>
 
-检查默认数据网络是否被激活，使用Promise方式作为异步方法。
+检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -280,8 +306,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）
-与连接管理不一致。
+向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
 使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
@@ -310,8 +335,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）
-与连接管理不一致。
+向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
 使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
@@ -344,7 +368,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与连接管理不一致。
+向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
 使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
@@ -373,7 +397,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与连接管理不一致。
+向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
 使用promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
@@ -796,6 +820,108 @@ netConnection.unregister(function (error) {
 | ------ | ------ | ------------------------- |
 | netId  | number | 网络ID，必须大于等于100。 |
 
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void;
+
+将TCPSocket或UDPSocket绑定到当前网络，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名      | 类型                     | 必填 | 说明                            |
+| ----------- | ------------------------ | ---- | -------------------------------|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
+| callback    | AsyncCallback\<void>      | 是   | 回调函数                        |
+
+**示例：**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if (socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(udp, function (error, data) {
+            console.log(JSON.stringify(error))
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
+### bindSocket
+
+bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
+
+将TCPSocket或UDPSockett绑定到当前网络，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名          | 类型                  | 必填  | 说明                           |
+| --------------- | --------------------- | ---- | ------------------------------ |
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
+
+**返回值：**
+
+| 类型           | 说明                   |
+| -------------- | ---------------------- |
+| Promise\<void> | 以Promise形式返回结果。 |
+
+**示例：**
+
+```js
+connection.getDefaultNet().then(function (netHandle) {
+    var tcp = socket.constructTCPSocketInstance();
+    var udp = socket.constructUDPSocketInstance();
+    let socketType = "xxxx";
+    if(socketType == "TCPSocket") {
+        tcp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+        })
+    } else {
+        udp.on('message', callback);
+        udp.bind({
+            address: "xxxx", port: xxxx, family: xxxx
+        }, err => {
+            udp.on('message', (data) => {
+            console.log(JSON.stringify(data))
+            });
+            netHandle.bindSocket(tcp).then(err, data) {
+            console.log(JSON.stringify(data))
+            });
+        })
+     }
+}
+```
+
 ### getAddressesByName
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
@@ -929,7 +1055,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | 参数名                  | 类型                                | 说明                                                         |
 | ----------------------- | ----------------------------------- | ------------------------------------------------------------ |
 | netCapabilities         | [NetCapabilities](#netcapabilities) | 存储数据网络的传输能力和承载类型。                           |
-| bearerPrivateIdentifier | string                              | 网络标识符，WIFI网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
+| bearerPrivateIdentifier | string                              | 网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
 ## NetCapabilities
 
@@ -956,7 +1082,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
 | NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被连接管理成功验证，该能力由连接管理模块设置。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
 
 ## NetBearType
 

@@ -12,4 +12,4 @@
 - [三四方库使用常见问题](faqs-third-party-library.md)
 - [IDE使用常见问题](faqs-ide.md)
 - [hdc_std命令使用常见问题](faqs-hdc-std.md)
-- [开发板](faqs-development-board.md)
+- [开发板使用常见问题](faqs-development-board.md)

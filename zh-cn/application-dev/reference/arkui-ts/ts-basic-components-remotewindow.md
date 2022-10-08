@@ -18,10 +18,10 @@ RemoteWindow(target: WindowAnimationTarget)
 
 通过窗口动画对象创建组件。
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | target | [WindowAnimationTarget](#windowanimationtarget) | 是 | - | 需要控制的动画窗口的描述。 |
+**参数:**
+| 参数名 | 参数类型 | 必填  | 参数描述 |
+| -------- | -------- | --------------- | -------- |
+| target | [WindowAnimationTarget](#windowanimationtarget) | 是   | 需要控制的动画窗口的描述。 |
 
 ## WindowAnimationTarget
 目标窗口，用来远程控制实现动画。

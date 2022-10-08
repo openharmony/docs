@@ -53,7 +53,7 @@ The following uses the RTL8720 development board provided by Realtek as an examp
 
 2. Create a directory for kernel adaptation and configure the **config.gni** file of the development board.
 
-   For example, to adapt the LiteOS-A kernel to the RTL8720 development board, configure the **device/board/realtek/rtl8720/liteo_a/config.gni** file as follows:
+   For example, to adapt the LiteOS-A kernel to the RTL8720 development board, configure the **device/board/realtek/rtl8720/liteos_a/config.gni** file as follows:
 
    ```shell
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
@@ -73,7 +73,7 @@ The following uses the RTL8720 development board provided by Realtek as an examp
    # Note: The default toolchain is "ohos-clang". It's not mandatory if you use the default toochain.
    board_toolchain = "gcc-arm-none-eabi"
    
-   # The toolchain path instatlled, it's not mandatory if you have added toolchian path to your ~/.bashrc.
+   # The toolchain path instatlled, it's not mandatory if you have added toolchain path to your ~/.bashrc.
    board_toolchain_path =
        rebase_path("//prebuilts/gcc/linux-x86/arm/gcc-arm-none-eabi/bin",
                    root_build_dir)

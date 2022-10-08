@@ -1,14 +1,14 @@
 # Web
 
+The **<Web\>** component can be used to display web pages.
+
 > **NOTE**
 >
 > - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 > - You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
 
-The **<Web\>** component can be used to display web pages.
-
 ## Required Permissions
-ohos.permission.INTERNET, required only for accessing online web pages
+To use online resources, the application must have the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
 
 ## Child Components
 
@@ -16,32 +16,60 @@ Not supported
 
 ## APIs
 
-Web(options: { src: string, controller?: WebController })
+Web(options: { src: ResourceStr, controller: WebController })
+
+> **NOTE**
+>
+> Transition animation is not supported.
 
 **Parameters**
-| Name       | Type                           | Mandatory  | Default Value | Description   |
-| ---------- | ------------------------------- | ---- | ---- | ------- |
-| src        | string                          | Yes   | -    | Address of a web page resource.|
-| controller | [WebController](#webcontroller) | No   | -    | Controller.   |
+
+| Name       | Type                           | Mandatory  | Description   |
+| ---------- | ------------------------------- | ---- | ------- |
+| src        | [ResourceStr](ts-types.md)                           | Yes   | Address of a web page resource.|
+| controller | [WebController](#webcontroller) | No   | Controller.   |
 
 **Example**
+
+  Loading Online Web Pages
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
       }
     }
   }
   ```
 
-> **NOTE**<br>
->
-> Transition animation is not supported.
+  Loading Local Web Pages
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+      }
+    }
+  }
+  ```
+
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+      <body>
+          <p>Hello World</p>
+      </body>
+  </html>
+  ```
 
 ## Attributes
 
@@ -54,21 +82,23 @@ domStorageAccess(domStorageAccess: boolean)
 Sets whether to enable the DOM Storage API. By default, this feature is disabled.
 
 **Parameters**
+
 | Name             | Type   | Mandatory  | Default Value | Description                                |
 | ---------------- | ------- | ---- | ---- | ------------------------------------ |
 | domStorageAccess | boolean | Yes   | false | Whether to enable the DOM Storage API.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .domStorageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .domStorageAccess(true)
       }
     }
   }
@@ -81,21 +111,23 @@ fileAccess(fileAccess: boolean)
 Sets whether to enable the access to the file system in the application. By default, this feature is disabled. Access to the files specified through [$rawfile(filepath/filename)](../../ui/ts-resource-access.md) are not affected by this attribute.
 
 **Parameters**
+
 | Name       | Type   | Mandatory  | Default Value | Description                                    |
 | ---------- | ------- | ---- | ---- | ---------------------------------------- |
-| fileAccess | boolean | Yes   | true | Whether to enable the access to the file system in the application. |
+| fileAccess | boolean | Yes   | true | Whether to enable the access to the file system in the application.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .fileAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .fileAccess(true)
       }
     }
   }
@@ -108,21 +140,23 @@ fileFromUrlAccess(fileFromUrlAccess: boolean)
 Sets whether to allow the use of JavaScript scripts on web pages for access to content in the application file system. By default, this feature is disabled. Access to the files specified through [$rawfile(filepath/filename)](../../ui/ts-resource-access.md) are not affected by this attribute.
 
 **Parameters**
+
 | Name              | Type   | Mandatory  | Default Value  | Description                                    |
 | ----------------- | ------- | ---- | ----- | ---------------------------------------- |
-| fileFromUrlAccess | boolean | Yes   | false | Whether to allow the use of JavaScript scripts on web pages for access to content in the application file system. |
+| fileFromUrlAccess | boolean | Yes   | false | Whether to allow the use of JavaScript scripts on web pages for access to content in the application file system. By default, this feature is disabled.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .fileFromUrlAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .fileFromUrlAccess(true)
       }
     }
   }
@@ -135,9 +169,10 @@ imageAccess(imageAccess: boolean)
 Sets whether to enable automatic image loading. By default, this feature is enabled.
 
 **Parameters**
+
 | Name        | Type   | Mandatory  | Default Value | Description           |
 | ----------- | ------- | ---- | ---- | --------------- |
-| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading. |
+| imageAccess | boolean | Yes   | true | Whether to enable automatic image loading. By default, this feature is enabled.|
 
 **Example**
   ```ts
@@ -145,11 +180,11 @@ Sets whether to enable automatic image loading. By default, this feature is enab
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .imageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .imageAccess(true)
       }
     }
   }
@@ -163,19 +198,22 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 Injects a JavaScript object into the window. Methods of this object can be invoked in the window. The parameters cannot be updated.
 
 **Parameters**
+
 | Name       | Type           | Mandatory  | Default Value | Description                     |
 | ---------- | --------------- | ---- | ---- | ------------------------- |
 | object     | object          | Yes   | -    | Object to be registered. Methods can be declared, but not attributes.   |
 | name       | string          | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
 | methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
+| controller | [WebController](#webcontroller) | No   | -    | Controller.   |
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -189,13 +227,13 @@ Injects a JavaScript object into the window. Methods of this object can be invok
     }
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
-        .javaScriptProxy({
-          object: this.testObj,
-          name: "objName",
-          methodList: ["test", "toString"],
-          controller: this.controller,
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
         })
       }
     }
@@ -209,21 +247,23 @@ javaScriptAccess(javaScriptAccess: boolean)
 Sets whether JavaScript scripts can be executed. By default, JavaScript scripts can be executed.
 
 **Parameters**
+
 | Name             | Type   | Mandatory  | Default Value | Description               |
 | ---------------- | ------- | ---- | ---- | ------------------- |
 | javaScriptAccess | boolean | Yes   | true | Whether JavaScript scripts can be executed.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .javaScriptAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
       }
     }
   }
@@ -236,22 +276,24 @@ mixedMode(mixedMode: MixedMode)
 Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. By default, this feature is disabled.
 
 **Parameters**
+
 | Name      | Type                       | Mandatory  | Default Value | Description     |
 | --------- | --------------------------- | ---- | ---- | --------- |
-| mixedMode | [MixedMode](#mixedmode)| Yes   | -    | Mixed content to load.|
+| mixedMode | [MixedMode](#mixedmode)| Yes   | MixedMode.None | Mixed content to load.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:MixedMode = MixedMode.All;
+    controller: WebController = new WebController();
+    @State mode: MixedMode = MixedMode.All;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .mixedMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mixedMode(this.mode)
       }
     }
   }
@@ -264,21 +306,23 @@ onlineImageAccess(onlineImageAccess: boolean)
 Sets whether to enable access to online images through HTTP and HTTPS. By default, this feature is enabled.
 
 **Parameters**
+
 | Name              | Type   | Mandatory  | Default Value | Description            |
 | ----------------- | ------- | ---- | ---- | ---------------- |
 | onlineImageAccess | boolean | Yes   | true | Whether to enable access to online images through HTTP and HTTPS.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onlineImageAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onlineImageAccess(true)
       }
     }
   }
@@ -291,21 +335,23 @@ zoomAccess(zoomAccess: boolean)
 Sets whether to enable zoom gestures. By default, this feature is enabled.
 
 **Parameters**
+
 | Name       | Type   | Mandatory  | Default Value | Description         |
 | ---------- | ------- | ---- | ---- | ------------- |
 | zoomAccess | boolean | Yes   | true | Whether to enable zoom gestures.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .zoomAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .zoomAccess(true)
       }
     }
   }
@@ -318,21 +364,23 @@ overviewModeAccess(overviewModeAccess: boolean)
 Sets whether to load web pages by using the overview mode. By default, this feature is enabled.
 
 **Parameters**
+
 | Name               | Type   | Mandatory  | Default Value | Description           |
 | ------------------ | ------- | ---- | ---- | --------------- |
-| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode|
+| overviewModeAccess | boolean | Yes   | true | Whether to load web pages by using the overview mode.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .overviewModeAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overviewModeAccess(true)
       }
     }
   }
@@ -345,21 +393,23 @@ databaseAccess(databaseAccess: boolean)
 Sets whether to enable database access. By default, this feature is disabled.
 
 **Parameters**
+
 | Name           | Type   | Mandatory  | Default Value | Description             |
 | -------------- | ------- | ---- | ---- | ----------------- |
-| databaseAccess | boolean | Yes   | false | Whether to enable database access. |
+| databaseAccess | boolean | Yes   | false | Whether to enable database access.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .databaseAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .databaseAccess(true)
       }
     }
   }
@@ -372,21 +422,53 @@ geolocationAccess(geolocationAccess: boolean)
 Sets whether to enable geolocation access. By default, this feature is enabled.
 
 **Parameters**
+
 | Name           | Type   | Mandatory  | Default Value | Description             |
 | -------------- | ------- | ---- | ---- | ----------------- |
-| geolocationAccess | boolean | Yes   | true    | Whether to enable geolocation access. |
+| geolocationAccess | boolean | Yes   | true    | Whether to enable geolocation access.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .geolocationAccess(true)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .geolocationAccess(true)
+      }
+    }
+  }
+  ```
+
+### mediaPlayGestureAccess
+
+mediaPlayGestureAccess(access: boolean)
+
+Sets whether a manual click is required for video playback.
+
+**Parameters**
+
+| Name      | Type  | Mandatory  | Default Value | Description     |
+| --------- | ------ | ---- | ---- | --------- |
+| access | boolean | Yes   | true    | Whether a manual click is required for video playback.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State access: boolean = true;
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .mediaPlayGestureAccess(this.access)
       }
     }
   }
@@ -399,22 +481,24 @@ cacheMode(cacheMode: CacheMode)
 Sets the cache mode.
 
 **Parameters**
+
 | Name      | Type                       | Mandatory  | Default Value | Description     |
 | --------- | --------------------------- | ---- | ---- | --------- |
 | cacheMode | [CacheMode](#cachemode)| Yes   | CacheMode.Default | Cache mode to set.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State mode:CacheMode = CacheMode.None;
+    controller: WebController = new WebController();
+    @State mode: CacheMode = CacheMode.None;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .cacheMode(this.mode)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .cacheMode(this.mode)
       }
     }
   }
@@ -427,22 +511,24 @@ textZoomRatio(textZoomRatio: number)
 Sets the text zoom ratio of the page. The default value is **100**, which indicates 100%.
 
 **Parameters**
+
 | Name         | Type  | Mandatory  | Default Value | Description           |
 | ------------ | ------ | ---- | ---- | --------------- |
 | textZoomRatio | number | Yes   | 100 | Text zoom ratio to set.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    @State atio:number = 150;
+    controller: WebController = new WebController();
+    @State atio: number = 150;
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .textZoomRatio(this.atio)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomRatio(this.atio)
       }
     }
   }
@@ -455,30 +541,32 @@ userAgent(userAgent: string)
 Sets the user agent.
 
 **Parameters**
+
 | Name      | Type  | Mandatory  | Default Value | Description     |
 | --------- | ------ | ---- | ---- | --------- |
 | userAgent | string | Yes   | -    | User agent to set.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     @State userAgent:string = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36';
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .userAgent(this.userAgent)
+        Web({ src: 'www.example.com', controller: this.controller })
+          .userAgent(this.userAgent)
       }
     }
   }
   ```
 
->  **NOTE**<br>
+>  **NOTE**
 >
->  Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
+>  Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
 
 ## Events
 
@@ -491,6 +579,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 Triggered when **alert()** is invoked to display an alert dialog box on the web page.
 
 **Parameters**
+
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
 | url     | string                | URL of the web page where the dialog box is displayed.|
@@ -498,26 +587,34 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 | result  | [JsResult](#jsresult) | The user's operation. |
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onAlert((event) => {
             AlertDialog.show({
-              title: 'title',
+              title: 'onAlert',
               message: 'text',
-              confirm: {
-                value: 'onAlert',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
                 action: () => {
                   event.result.handleConfirm()
                 }
@@ -537,9 +634,10 @@ Triggered when **alert()** is invoked to display an alert dialog box on the web 
 
 onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResult }) => boolean)
 
-Triggered when the current page is about to exit after the user refreshes or closes the page.
+Triggered when the current page is about to exit after the user refreshes or closes the page. If the user refreshes the page, this callback is triggered only when the page has obtained focus.
 
 **Parameters**
+
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
 | url     | string                | URL of the web page where the dialog box is displayed.|
@@ -547,11 +645,13 @@ Triggered when the current page is about to exit after the user refreshes or clo
 | result  | [JsResult](#jsresult) | The user's operation. |
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -565,8 +665,26 @@ Triggered when the current page is about to exit after the user refreshes or clo
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url);
             console.log("event.message:" + event.message);
-            console.log("event.result:" + event.result);
-            return false;
+            AlertDialog.show({
+              title: 'onBeforeUnload',
+              message: 'text',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
           })
       }
     }
@@ -580,6 +698,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 Triggered when **confirm()** is invoked by the web page.
 
 **Parameters**
+
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
 | url     | string                | URL of the web page where the dialog box is displayed.|
@@ -587,11 +706,13 @@ Triggered when **confirm()** is invoked by the web page.
 | result  | [JsResult](#jsresult) | The user's operation. |
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -607,10 +728,16 @@ Triggered when **confirm()** is invoked by the web page.
             console.log("event.message:" + event.message);
             console.log("event.result:" + event.result);
             AlertDialog.show({
-              title: 'title',
+              title: 'onConfirm',
               message: 'text',
-              confirm: {
-                value: 'onConfirm',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
                 action: () => {
                   event.result.handleConfirm()
                 }
@@ -631,6 +758,7 @@ Triggered when **confirm()** is invoked by the web page.
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
 
 **Parameters**
+
 | Name    | Type                 | Description           |
 | ------- | --------------------- | --------------- |
 | url     | string                | URL of the web page where the dialog box is displayed.|
@@ -638,27 +766,49 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 | result  | [JsResult](#jsresult) | The user's operation. |
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
 | boolean | If the callback returns **false**, the default dialog box is displayed. If the callback returns **true**, a system application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to notify the **\<Web>** component of the user's operation.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+  
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onPrompt((event) => {
-          console.log("url:" + event.url);
-          console.log("message:" + event.message);
-          console.log("value:" + event.value);
-          console.log("result:" + event.result);
-          return true;
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPrompt((event) => {
+            console.log("url:" + event.url);
+            console.log("message:" + event.message);
+            console.log("value:" + event.value);
+            AlertDialog.show({
+              title: 'onPrompt',
+              message: 'text',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.result.handleCancel()
+                }
+              },
+              secondaryButton: {
+                value: 'ok',
+                action: () => {
+                  event.result.handleConfirm()
+                }
+              },
+              cancel: () => {
+                event.result.handleCancel()
+              }
+            })
+            return true;
+          })
+      }
     }
   }
   ```
@@ -670,16 +820,19 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 Triggered to notify the host application of a JavaScript console message.
 
 **Parameters**
+
 | Name    | Type                             | Description     |
 | ------- | --------------------------------- | --------- |
 | message | [ConsoleMessage](#consolemessage) | Console message.|
 
 **Return value**
+
 | Type     | Description                                 |
 | ------- | ----------------------------------- |
 | boolean | Returns **true** if the message will not be printed to the console; returns **false** otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -707,6 +860,7 @@ Triggered to notify the host application of a JavaScript console message.
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
 
 **Parameters**
+
 | Name               | Type         | Description                               |
 | ------------------ | ------------- | ----------------------------------- |
 | url                | string        | URL for the download task.                          |
@@ -715,6 +869,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 | contentLength      | contentLength | Length of the content returned by the server.                        |
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -744,12 +899,14 @@ onErrorReceive(callback: (event?: { request: WebResourceRequest, error: WebResou
 Triggered when an error occurs during web page loading. For better results, simplify the implementation logic in the callback.
 
 **Parameters**
+
 | Name    | Type                                    | Description           |
 | ------- | ---------------------------------------- | --------------- |
 | request | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.     |
 | error   | [WebResourceError](#webresourceerror)    | Encapsulation of a web page resource loading error.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -786,12 +943,14 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 Triggered when an HTTP error (the response code is greater than or equal to 400) occurs during web page resource loading.
 
 **Parameters**
+
 | Name    | Type                                    | Description           |
 | ------- | ---------------------------------------- | --------------- |
 | request | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.     |
 | error   | [WebResourceError](#webresourceerror)    | Encapsulation of a web page resource loading error.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -836,11 +995,13 @@ onPageBegin(callback: (event?: { url: string }) => void)
 Triggered when the web page starts to be loaded. This API is triggered only for the main frame content, and not for the iframe or frameset content.
 
 **Parameters**
+
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
 | url  | string | URL of the page.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -867,11 +1028,13 @@ onPageEnd(callback: (event?: { url: string }) => void)
 Triggered when the web page loading is complete. This API is triggered only for the main frame content.
 
 **Parameters**
+
 | Name | Type  | Description     |
 | ---- | ------ | --------- |
 | url  | string | URL of the page.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -897,11 +1060,13 @@ onProgressChange(callback: (event?: { newProgress: number }) => void)
 Triggered when the web page loading progress changes.
 
 **Parameters**
+
 | Name        | Type  | Description                 |
 | ----------- | ------ | --------------------- |
 | newProgress | number | New loading progress. The value is an integer ranging from 0 to 100.|
 
-  **Example**
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -927,11 +1092,13 @@ onTitleReceive(callback: (event?: { title: string }) => void)
 Triggered when the document title of the web page is changed.
 
 **Parameters**
+
 | Name  | Type  | Description         |
 | ----- | ------ | ------------- |
 | title | string | Document title.|
 
-  **Example**
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -957,12 +1124,14 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
 Triggered when loading of the web page is complete. This API is used by an application to update the historical link it accessed.
 
 **Parameters**
+
 | Name        | Type   | Description                             |
 | ----------- | ------- | --------------------------------- |
 | url         | string  | URL to be accessed.                          |
-| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded, and **false** means that the page is newly loaded.|
+| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh](#refresh) API, and **false** means the opposite.|
 
-  **Example**
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -974,7 +1143,7 @@ Triggered when loading of the web page is complete. This API is used by an appli
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onRefreshAccessedHistory((event) => {
-            console.log('url:' + event.url + ' isReload:' + event.refreshed);
+            console.log('url:' + event.url + ' isReload:' + event.isRefreshed);
           })
       }
     }
@@ -988,11 +1157,13 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 Triggered when the rendering process exits abnormally.
 
 **Parameters**
+
 | Name             | Type                                    | Description            |
 | ---------------- | ---------------------------------------- | ---------------- |
 | renderExitReason | [RenderExitReason](#renderexitreason)| Cause for the abnormal exit of the rendering process.|
 
-  **Example**
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1013,17 +1184,25 @@ Triggered when the rendering process exits abnormally.
 
 ### onShowFileSelector<sup>9+</sup>
 
-onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => void)
+onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector: FileSelectorParam }) => boolean)
 
 Triggered to process an HTML form whose input type is **file**, in response to the tapping of the **Select File** button.
 
 **Parameters**
+
 | Name         | Type                                    | Description             |
 | ------------ | ---------------------------------------- | ----------------- |
 | result       | [FileSelectorResult](#fileselectorresult9) | File selection result to be sent to the **\<Web>** component.|
 | fileSelector | [FileSelectorParam](#fileselectorparam9) | Information about the file selector.      |
 
-  **Example**
+**Return value**
+
+| Type     | Description                                 |
+| ------- | ----------------------------------- |
+| boolean | The value **true** means that the pop-up window provided by the system is displayed. The value **true** means that the default web pop-up window is displayed.|
+
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1066,11 +1245,13 @@ onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => b
 Triggered when the **\<Web>** component is about to access a URL. This API is used to determine whether to block the access.
 
 **Parameters**
+
 | Name | Type                                    | Description     |
 | ---- | ---------------------------------------- | --------- |
 | data | string / [WebResourceRequest](#webresourcerequest) | URL information.|
 
 **Return value**
+
 | Type     | Description                      |
 | ------- | ------------------------ |
 | boolean | Returns **true** if the access is blocked; returns **false** otherwise.|
@@ -1098,27 +1279,30 @@ Triggered when the **\<Web>** component is about to access a URL. This API is us
 
 ### onInterceptRequest<sup>9+</sup>
 
-onInterceptRequest9+(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
+onInterceptRequest(callback: (event?: { request: WebResourceRequest}) => WebResourceResponse)
 
 Triggered when the **\<Web>** component is about to access a URL. This API is used to block the URL and return the response data.
 
 **Parameters**
+
 | Name    | Type                                    | Description       |
 | ------- | ---------------------------------------- | ----------- |
 | request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
 
 **Return value**
+
 | Type                                      | Description                         |
 | ---------------------------------------- | --------------------------- |
-| [WebResourceResponse](#webresourceresponse) | Returns null if the original loading mode is used; returns the response data otherwise.|
+| [WebResourceResponse](#webresourceresponse) | If response data is returned, the data is loaded based on the response data. If no response data is returned, null is returned, indicating that the data is loaded in the original mode.|
 
-  **Example**
+**Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
     responseweb: WebResourceResponse = new WebResourceResponse();
     heads:Header[] = new Array();
     @State webdata: string = "<!DOCTYPE html>\n" +
@@ -1132,7 +1316,7 @@ Triggered when the **\<Web>** component is about to access a URL. This API is us
     "</html>"
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
+        Web({ src: 'www.example.com', controller: this.controller })
           .onInterceptRequest((event) => {
             console.log('url:' + event.request.getRequestUrl());
             var head1:Header = {
@@ -1165,6 +1349,7 @@ onHttpAuthRequest(callback: (event?: { handler: HttpAuthHandler, host: string, r
 Triggered when an HTTP authentication request is received.
 
 **Parameters**
+
 | Name    | Type                                | Description            |
 | ------- | ------------------------------------ | ---------------- |
 | handler | [HttpAuthHandler](#httpauthhandler9) | The user's operation.  |
@@ -1172,50 +1357,168 @@ Triggered when an HTTP authentication request is received.
 | realm   | string                               | Realm to which HTTP authentication credentials apply. |
 
 **Return value**
+
 | Type     | Description                   |
 | ------- | --------------------- |
-| boolean | Returns **true** if the authentication is successful; returns **false** otherwise. |
+| boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
   // xxx.ets
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
-    httpAuth:boolean = false;
+    controller: WebController = new WebController();
+    httpAuth: boolean = false;
+  
     build() {
       Column() {
-        Web({ src:'www.example.com', controller:this.controller })
-        .onHttpAuthRequest((event) => {
-          AlertDialog.show({
-            title: 'title',
-            message: 'text',
-            confirm: {
-              value: 'onConfirm',
-              action: () => {
-                this.httpAuth = event.handler.isHttpAuthInfoSaved();
-                if (this.httpAuth == false) {
-                  web.WebDataBase.saveHttpAuthCredentials(
-                   event.host,
-                   event.realm,
-                   "2222",
-                   "2222"
-                  )
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onHttpAuthRequest((event) => {
+            AlertDialog.show({
+              title: 'onHttpAuthRequest',
+              message: 'text',
+              primaryButton: {
+                value: 'cancel',
+                action: () => {
                   event.handler.cancel();
                 }
+              },
+              secondaryButton: {
+                value: 'ok',
+                action: () => {
+                  this.httpAuth = event.handler.isHttpAuthInfoSaved();
+                  if (this.httpAuth == false) {
+                    web_webview.WebDataBase.saveHttpAuthCredentials(
+                      event.host,
+                      event.realm,
+                      "2222",
+                      "2222"
+                    )
+                    event.handler.cancel();
+                  }
+                }
+              },
+              cancel: () => {
+                event.handler.cancel();
               }
-            },
-            cancel: () => {
-             event.handler.cancel();
-            }
+            })
+            return true;
           })
-          return true;
-        })
+      }
     }
   }
   ```
+### onSslErrorEventReceive<sup>9+</sup>
+
+onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslError }) => void)
+
+Invoked when an SSL error occurs during resource loading.
+
+**Parameters**
+
+| Name    | Type                          | Description            |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [SslErrorHandler](#sslerrorhandler9) | The user's operation.|
+| error   | [SslError](#sslerror9)       | Error code.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onSslErrorEventReceive((event) => {
+            AlertDialog.show({
+              title: 'onSslErrorEventReceive',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.handleConfirm();
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.handleCancel();
+                }
+              },
+              cancel: () => {
+                event.handler.handleCancel();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
+### onClientAuthenticationRequest<sup>9+</sup>
+
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+
+Invoked when an SSL client certificate request is received.
+
+**Parameters**
+
+| Name  | Type                            | Description            |
+| ------- | ------------------------------------ | ----------------    |
+| handler | [ClientAuthenticationHandler](#clientauthenticationhandler9) | The user's operation.|
+| host    | string          | Host name of the server that requests a certificate.|
+| port    | number          | Port number of the server that requests a certificate.|
+| keyTypes| Array<string>   | Acceptable asymmetric private key types.|
+| issuers | Array<string>   | Issuer of the certificate that matches the private key.|
+
+  **Example**
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onClientAuthenticationRequest((event) => {
+            AlertDialog.show({
+              title: 'onClientAuthenticationRequest',
+              message: 'text',
+              primaryButton: {
+                value: 'confirm',
+                action: () => {
+                  event.handler.confirm("/system/etc/user.pk8", "/system/etc/chain-user.pem");
+                }
+              },
+              secondaryButton: {
+                value: 'cancel',
+                action: () => {
+                  event.handler.cancel();
+                }
+              },
+              cancel: () => {
+                event.handler.ignore();
+              }
+            })
+            return true;
+          })
+      }
+    }
+  }
+  ```
+
 ### onPermissionRequest<sup>9+</sup>
 
 onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
@@ -1223,6 +1526,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
 Invoked when a permission request is received.
 
 **Parameters**
+
 | Name    | Type                                | Description            |
 | ------- | ------------------------------------ | ---------------- |
 | request | [PermissionRequest](#permissionrequest9) | The user's operation.  |
@@ -1234,25 +1538,150 @@ Invoked when a permission request is received.
   @Entry
   @Component
   struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onPermissionRequest((event) => {
+            AlertDialog.show({
+              title: 'title',
+              message: 'text',
+              primaryButton: {
+                value: 'deny',
+                action: () => {
+                  event.request.deny();
+                }
+              },
+              secondaryButton: {
+                value: 'onConfirm',
+                action: () => {
+                  event.request.grant(event.request.getAccessibleResource());
+                }
+              },
+              cancel: () => {
+                event.request.deny();
+              }
+            })
+          })
+      }
+    }
+  }
+  ```
+
+### onContextMenuShow<sup>9+</sup>
+
+onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
+
+Invoked when a context menu is displayed upon a long press on a specific element (such as an image or link).
+
+**Parameters**
+
+| Name    | Type                                | Description            |
+| ------- | ------------------------------------ | ---------------- |
+| param   | [WebContextMenuParam](#webcontextmenuparam9)   | Parameters related to the context menu.|
+| result  | [WebContextMenuResult](#webcontextmenuresult9) | Result of the context menu.|
+
+**Return value**
+
+| Type    | Description                  |
+| ------ | -------------------- |
+| boolean | The value **true** means a custom menu, and **false** means the default menu.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onContextMenuShow((event) => {
+            console.info("x coord = " + event.param.x());
+            console.info("link url = " + event.param.getLinkUrl());
+            return true;
+        })
+      }
+    }
+  }
+  ```
+
+### onScroll<sup>9+</sup>
+
+onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
+
+Invoked when the scrollbar of the page scrolls.
+
+**Parameters**
+
+| Name    | Type                                | Description            |
+| ------- | ------------------------------------ | ---------------- |
+| xOffset   | number   | Position of the scrollbar on the x-axis.|
+| yOffset  | number | Position of the scrollbar on the y-axis.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onScroll((event) => {
+            console.info("x = " + event.xOffset);
+            console.info("y = " + event.yOffset);
+        })
+      }
+    }
+  }
+  ```
+
+### onGeolocationShow
+
+onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
+
+Invoked when a request to obtain the geolocation information is received.
+
+**Parameters**
+
+| Name     | Type                        | Description         |
+| ----------- | ------------------------------- | ---------------- |
+| origin      | string                          | Index of the origin.    |
+| geolocation | [JsGeolocation](#jsgeolocation) | The user's operation.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
     controller:WebController = new WebController();
     build() {
       Column() {
         Web({ src:'www.example.com', controller:this.controller })
-        .onPermissionRequest((event) => {
+        .geolocationAccess(true)
+        .onGeolocationShow((event) => {
           AlertDialog.show({
             title: 'title',
             message: 'text',
             confirm: {
               value: 'onConfirm',
               action: () => {
-                event.request.grant(event.request.getAccessibleResource());
+                event.geolocation.invoke(event.origin, true, true);
               }
             },
             cancel: () => {
-             event.request.deny();
+              event.geolocation.invoke(event.origin, false, true);
             }
           })
         })
+      }
     }
   }
   ```
@@ -1268,6 +1697,7 @@ getLineNumber(): number
 Obtains the number of rows in this console message.
 
 **Return value**
+
 | Type    | Description                  |
 | ------ | -------------------- |
 | number | Number of rows in the console message.|
@@ -1279,9 +1709,10 @@ getMessage(): string
 Obtains the log information of this console message.
 
 **Return value**
+
 | Type    | Description                    |
 | ------ | ---------------------- |
-| string | Log information about this console message.|
+| string | Log information of this console message.|
 
 ### getMessageLevel
 
@@ -1290,6 +1721,7 @@ getMessageLevel(): MessageLevel
 Obtains the level of this console message.
 
 **Return value**
+
 | Type                               | Description                    |
 | --------------------------------- | ---------------------- |
 | [MessageLevel](#messagelevel)| Level of the console message.|
@@ -1301,6 +1733,7 @@ getSourceId(): string
 Obtains the path and name of the web page source file.
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Path and name of the web page source file.|
@@ -1328,6 +1761,7 @@ handlePromptConfirm(result: string): void
 Notifies the **\<Web>** component of the user's confirm operation in the dialog box as well as the dialog box content.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Default Value | Description       |
 | ------ | ------ | ---- | ---- | ----------- |
 | result | string | Yes   | -    | User input in the dialog box.|
@@ -1343,6 +1777,7 @@ getErrorCode(): number
 Obtains the error code for resource loading.
 
 **Return value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | number | Error code for resource loading.|
@@ -1354,6 +1789,7 @@ getErrorInfo(): string
 Obtains error information about resource loading.
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | string | Error information about resource loading.|
@@ -1369,6 +1805,7 @@ getResponseHeader() : Array\<Header\>
 Obtains the information about the resource request header.
 
 **Return value**
+
 | Type                        | Description        |
 | -------------------------- | ---------- |
 | Array\<[Header](#header)\> | Information about the resource request header.|
@@ -1380,6 +1817,7 @@ getRequestUrl(): string
 Obtains the URL of the resource request.
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | URL of the resource request.|
@@ -1391,6 +1829,7 @@ isMainFrame(): boolean
 Checks whether the resource request is in the main frame.
 
 **Return value**
+
 | Type     | Description              |
 | ------- | ---------------- |
 | boolean | Whether the resource request is in the main frame.|
@@ -1402,9 +1841,10 @@ isRedirect(): boolean
 Checks whether the resource request is redirected by the server.
 
 **Return value**
+
 | Type     | Description              |
 | ------- | ---------------- |
-| boolean | Whether the resource request is redirected by the server. |
+| boolean | Whether the resource request is redirected by the server.|
 
 ### isRequestGesture
 
@@ -1413,9 +1853,10 @@ isRequestGesture(): boolean
 Checks whether the resource request is associated with a gesture (for example, a tap).
 
 **Return value**
+
 | Type     | Description                  |
 | ------- | -------------------- |
-| boolean | Whether the resource request is associated with a gesture (for example, a tap). |
+| boolean | Whether the resource request is associated with a gesture (for example, a tap).|
 
 ## Header
 
@@ -1438,6 +1879,7 @@ getReasonMessage(): string
 Obtains the status code description of the resource response.
 
 **Return value**
+
 | Type    | Description           |
 | ------ | ------------- |
 | string | Status code description of the resource response.|
@@ -1449,6 +1891,7 @@ getResponseCode(): number
 Obtains the status code of the resource response.
 
 **Return value**
+
 | Type    | Description         |
 | ------ | ----------- |
 | number | Status code of the resource response.|
@@ -1460,6 +1903,7 @@ getResponseData(): string
 Obtains the data in the resource response.
 
 **Return value**
+
 | Type    | Description       |
 | ------ | --------- |
 | string | Data in the resource response.|
@@ -1471,6 +1915,7 @@ getResponseEncoding(): string
 Obtains the encoding string of the resource response.
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Encoding string of the resource response.|
@@ -1482,6 +1927,7 @@ getResponseHeader() : Array\<Header\>
 Obtains the resource response header.
 
 **Return value**
+
 | Type                        | Description      |
 | -------------------------- | -------- |
 | Array\<[Header](#header)\> | Resource response header.|
@@ -1493,6 +1939,7 @@ getResponseMimeType(): string
 Obtains the MIME type of the resource response.
 
 **Return value**
+
 | Type    | Description                |
 | ------ | ------------------ |
 | string | MIME type of the resource response.|
@@ -1504,6 +1951,7 @@ setResponseData(data: string)
 Sets the data in the resource response.
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | ----------- |
 | data | string | Yes   | -    | Resource response data to set.|
@@ -1515,6 +1963,7 @@ setResponseEncoding(encoding: string)
 Sets the encoding string of the resource response.
 
 **Parameters**
+
 | Name     | Type  | Mandatory  | Default Value | Description        |
 | -------- | ------ | ---- | ---- | ------------ |
 | encoding | string | Yes   | -    | Encoding string to set.|
@@ -1526,6 +1975,7 @@ setResponseMimeType(mimeType: string)
 Sets the MIME type of the resource response.
 
 **Parameters**
+
 | Name     | Type  | Mandatory  | Default Value | Description                |
 | -------- | ------ | ---- | ---- | -------------------- |
 | mimeType | string | Yes   | -    | MIME type to set.|
@@ -1537,6 +1987,7 @@ setReasonMessage(reason: string)
 Sets the status code description of the resource response.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Default Value | Description           |
 | ------ | ------ | ---- | ---- | --------------- |
 | reason | string | Yes   | -    | Status code description to set.|
@@ -1548,6 +1999,7 @@ setResponseHeader(header: Array\<Header\>)
 Sets the resource response header.
 
 **Parameters**
+
 | Name   | Type                      | Mandatory  | Default Value | Description      |
 | ------ | -------------------------- | ---- | ---- | ---------- |
 | header | Array\<[Header](#header)\> | Yes   | -    | Resource response header to set.|
@@ -1559,6 +2011,7 @@ setResponseCode(code: number)
 Sets the status code of the resource response.
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Default Value | Description         |
 | ---- | ------ | ---- | ---- | ------------- |
 | code | number | Yes   | -    | Status code to set.|
@@ -1574,6 +2027,7 @@ handleFileList(fileList: Array\<string\>): void
 Instructs the **\<Web>** component to select a file.
 
 **Parameters**
+
 | Name     | Type           | Mandatory  | Default Value | Description        |
 | -------- | --------------- | ---- | ---- | ------------ |
 | fileList | Array\<string\> | Yes   | -    | List of files to operate.|
@@ -1589,6 +2043,7 @@ getTitle(): string
 Obtains the title of the file selector.
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | string | Title of the file selector.|
@@ -1600,6 +2055,7 @@ getMode(): FileSelectorMode
 Obtains the mode of the file selector.
 
 **Return value**
+
 | Type                                      | Description         |
 | ---------------------------------------- | ----------- |
 | [FileSelectorMode](#fileselectormode)| Mode of the file selector.|
@@ -1611,6 +2067,7 @@ getAcceptType(): Array\<string\>
 Obtains the file filtering type.
 
 **Return value**
+
 | Type             | Description       |
 | --------------- | --------- |
 | Array\<string\> | File filtering type.|
@@ -1622,6 +2079,7 @@ isCapture(): boolean
 Checks whether multimedia capabilities are invoked.
 
 **Return value**
+
 | Type     | Description          |
 | ------- | ------------ |
 | boolean | Whether multimedia capabilities are invoked.|
@@ -1650,6 +2108,7 @@ Performs HTTP authentication with the user name and password provided by the use
 | pwd      | string | Yes   | -    | HTTP authentication password. |
 
 **Return value**
+
 | Type     | Description                   |
 | ------- | --------------------- |
 | boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
@@ -1661,9 +2120,55 @@ isHttpAuthInfoSaved(): boolean
 Uses the password cached on the server for authentication.
 
 **Return value**
+
 | Type     | Description                       |
 | ------- | ------------------------- |
 | boolean | Returns **true** if the authentication is successful; returns **false** otherwise.|
+
+## SslErrorHandler<sup>9+</sup>
+
+Implements an **SslErrorHandler** object. For details about the sample code, see [onSslErrorEventReceive Event](#onsslerroreventreceive9).
+
+### handleCancel<sup>9+</sup>
+
+handleCancel(): void
+
+Instructs the web component to cancel the request.
+
+### handleConfirm<sup>9+</sup>
+
+handleConfirm(): void
+
+Instructs the web component to continue using the SSL certificate.
+
+## ClientAuthenticationHandler<sup>9+</sup>
+
+Defines a **ClientAuthenticationHandler** object returned by the web component. For details about the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+
+### confirm<sup>9+</sup>
+
+confirm(priKeyFile : string, certChainFile : string): void
+
+Instructs the web component to use the specified private key and client certificate chain.
+
+**Parameters**
+
+| Name        | Type| Mandatory  | Description       |
+| --------      | ------   | ----  | ----------     |
+| priKeyFile    | string   | Yes   | File that stores the private key, including the directory and file name.|
+| certChainFile | string   | Yes   | File that stores the certificate chain, including the directory and file name.|
+
+### cancel<sup>9+</sup>
+
+cancel(): void
+
+Instructs the web component to cancel the client certificate request sent by the same host and port server. No additional event will be reported for requests from the same host and port server.
+
+### ignore<sup>9+</sup>
+
+ignore(): void
+
+Instructs the web component to ignore this request.
 
 ## PermissionRequest<sup>9+</sup>
 
@@ -1711,6 +2216,116 @@ Grants the permission for resources requested by the web page.
 | --------- | --------------- | ---- | ----- | ---------------------- |
 | resources | Array\<string\> | Yes  | -     | List of accessible resources requested by the web page.|
 
+## WebContextMenuParam<sup>9+</sup>
+
+Provides the information about the context menu that is displayed when a page element is long pressed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
+
+### x<sup>9+</sup>
+
+x(): number
+
+X coordinate of the context menu.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
+
+### y<sup>9+</sup>
+
+y(): number
+
+Y coordinate of the context menu.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| number | If the display is normal, a non-negative integer is returned. Otherwise, **-1** is returned.|
+
+### getLinkUrl<sup>9+</sup>
+
+getLinkUrl(): string
+
+Obtains the URL of the destination link.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| string | If it is the link that is being long pressed, the URL that has passed the security check is returned.|
+
+### getUnfilterendLinkUrl<sup>9+</sup>
+
+getUnfilterendLinkUrl(): string
+
+Obtains the URL of the destination link.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| string | If it is the link that is being long pressed, the original URL is returned.|
+
+### getSourceUrl<sup>9+</sup>
+
+getSourceUrl(): string
+
+Obtain the source URL.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| string | If the selected element has the **src** attribute, the URL in the **src** is returned.|
+
+### existsImageContents<sup>9+</sup>
+
+existsImageContents(): boolean
+
+Checks whether image content exists.
+
+**Return value**
+
+| Type           | Description                    |
+| --------------- | ----------------------- |
+| boolean | The value **true** means that there is image content in the element being long pressed, and **false** means the opposite.|
+
+## WebContextMenuResult<sup>9+</sup>
+
+Defines the response event executed when a context menu is displayed. For details about the sample code, see [onContextMenuShow](#oncontextmenushow9).
+
+### closeContextMenu<sup>9+</sup>
+
+closeContextMenu(): void
+
+Closes this context menu. This API must be called when no operations in **WebContextMenuResult** are performed.
+
+### copyImage<sup>9+</sup>
+
+copyImage(): void
+
+Copies the image specified in **WebContextMenuParam**.
+
+## JsGeolocation
+
+Implements the **PermissionRequest** object. For details about the sample code, see [onGeolocationShow Event](#ongeolocationshow).
+
+### invoke
+
+invoke(origin: string, allow: boolean, retain: boolean): void
+
+Sets the geolocation permission status of a web page.
+
+**Parameters**
+
+| Name    | Type| Mandatory| Default Value| Description              |
+| --------- | ------- | ---- | ----- | ---------------------- |
+| origin    | string  | Yes  | -     | Index of the source.    |
+| allow     | boolean | Yes  | -     | Geolocation permission status.|
+| retain    | boolean | Yes  | -     | Whether the geolocation permission status can be saved to the system. The **[GeolocationPermissions](#geolocationpermissions9)** API can be used to manage the geolocation permission status saved to the system.|
+
 ## WebController
 
 Defines a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
@@ -1728,6 +2343,7 @@ requestFocus()
 Requests focus for this web page.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1754,11 +2370,13 @@ accessBackward(): boolean
 Checks whether going to the previous page can be performed on the current page.
 
 **Return value**
+
 | Type     | Description                   |
 | ------- | --------------------- |
 | boolean | Returns **true** if going to the previous page can be performed on the current page; returns **false** otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1786,11 +2404,13 @@ accessForward(): boolean
 Checks whether going to the next page can be performed on the current page.
 
 **Return value**
+
 | Type     | Description                   |
 | ------- | --------------------- |
 | boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1824,11 +2444,13 @@ Indicates whether a specific number of steps forward or backward can be performe
 | step | number | Yes   | -    | Number of the steps to take. A positive number means to going forward, and a negative number means to going backward.|
 
 **Return value**
+
 | Type     | Description       |
 | ------- | --------- |
 | boolean | Whether to go forward or backward from the current page.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1857,6 +2479,7 @@ backward(): void
 Goes to the previous page based on the history stack. This API is generally used together with **accessBackward**.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1883,6 +2506,7 @@ forward(): void
 Goes to the next page based on the history stack. This API is generally used together with **accessForward**.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1909,24 +2533,29 @@ backOrForward(step: number): void
 Performs a specific number of steps forward or backward on the current page based on the history stack. No redirection will be performed if the corresponding page does not exist in the history stack.
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Default Value | Description       |
 | ---- | ------ | ---- | ---- | ----------- |
 | step | number | Yes   | -    | Number of the steps to take.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
   @Component
   struct WebComponent {
-    controller:WebController = new WebController();
+    controller: WebController = new WebController();
+    @State step: number = -2;
+  
     build() {
       Column() {
         Button('backOrForward')
-        .onClick(() => {
-          this.controller.backOrForward();
-        })
-        Web({ src:'www.example.com', controller:this.controller })
+          .onClick(() => {
+            this.controller.backOrForward(this.step);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
     }
   }
   ```
@@ -1938,11 +2567,13 @@ deleteJavaScriptRegister(name: string)
 Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refresh) API.
 
 **Parameters**
+
 | Name | Type  | Mandatory  | Default Value | Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | name | string | Yes   | -    | Name of the registered JavaScript object, which can be used to invoke the corresponding object on the application side from the web side.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -1970,11 +2601,13 @@ getHitTest(): HitTestType
 Obtains the element type of the area being clicked.	
 
 **Return value**
+
 | Type                             | Description         |
 | ------------------------------- | ----------- |
 | [HitTestType](#hittesttype)| Element type of the area being clicked.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2001,11 +2634,13 @@ getHitTestValue(): HitTestValue
 Obtains the element information of the area being clicked.
 
 **Return value**
+
 | Type                            | Description        |
 | ------------------------------ | ---------- |
 | [HitTestValue](#hittestvalue9) | Element information of the area being clicked.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2033,11 +2668,13 @@ getWebId(): number
 Obtains the index value of this **\<Web>** component, which can be used for **\<Web>** component management.
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | number | Index value of the current **\<Web>** component.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2064,11 +2701,13 @@ getTitle(): string
 Obtains the title of the current web page.
 
 **Return value**
+
 | Type    | Description      |
 | ------ | -------- |
 | string | Title of the current web page.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2095,11 +2734,13 @@ getPageHeight(): number
 Obtains the height of the current web page.
 
 **Return value**
+
 | Type    | Description        |
 | ------ | ---------- |
 | number | Height of the current web page.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2126,11 +2767,13 @@ getDefaultUserAgent(): string
 Obtains the default user agent of the current web page.
 
 **Return value**
+
 | Type    | Description     |
 | ------ | ------- |
 | string | Default user agent.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2162,6 +2805,7 @@ If **baseUrl** is set to a data URL, the encoded string will be loaded by the **
 If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
 
 **Parameters**
+
 | Name       | Type  | Mandatory  | Default Value | Description                                    |
 | ---------- | ------ | ---- | ---- | ---------------------------------------- |
 | data       | string | Yes   | -    | Character string obtained after being Base64 or URL encoded.             |
@@ -2171,6 +2815,7 @@ If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be proces
 | historyUrl | string | No   | -    | Historical record URL. If this parameter is not empty, it can be managed in historical records to implement page going backward and forward. This parameter is invalid when **baseUrl** is left empty.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2205,12 +2850,14 @@ The object injected through **loadUrl** is valid only in the current document. I
 The object injected through **registerJavaScriptProxy** is still valid on a new page redirected through **loadUrl**.
 
 **Parameters**
+
 | Name    | Type                      | Mandatory  | Default Value | Description          |
 | ------- | -------------------------- | ---- | ---- | -------------- |
 | url     | string                     | Yes   | -    | URL to load.    |
 | headers | Array\<[Header](#header)\> | No   | []   | Additional HTTP request header of the URL.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2237,6 +2884,7 @@ onActive(): void
 Invoked to instruct the **\<Web>** component to enter the foreground, active state.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2263,6 +2911,7 @@ onInactive(): void
 Invoked to instruct the **\<Web>** component to enter the inactive state.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2288,11 +2937,13 @@ zoom(factor: number): void
 Sets a zoom factor for the current web page.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Description                          |
 | ------ | ------ | ---- | ------------------------------ |
 | factor | number | Yes   | Zoom factor to set. A positive value indicates zoom-in, and a negative value indicates zoom-out.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2319,11 +2970,13 @@ zoomIn(): boolean
 Zooms in on the current web page by 20%.
 
 **Return value**
+
 | Type     | Description         |
 | ------- | ----------- |
 | boolean | Operation result.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2350,11 +3003,13 @@ zoomOut(): boolean
 Zooms out the current web page by 20%.
 
 **Return value**
+
 | Type     | Description         |
 | ------- | ----------- |
 | boolean | Operation result.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2382,6 +3037,7 @@ refresh()
 Invoked to instruct the **\<Web>** component to refresh the web page.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2408,6 +3064,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 Registers a JavaScript object and invokes the methods of the object in the window. You must invoke the [refresh](#refresh) API for the registration to take effect.
 
 **Parameters**
+
 | Name       | Type           | Mandatory  | Default Value | Description                                    |
 | ---------- | --------------- | ---- | ---- | ---------------------------------------- |
 | object     | object          | Yes   | -    | Application-side JavaScript object to be registered. Methods can be declared, but not attributes. The parameters and return value can only be of the string, number, or Boolean type.|
@@ -2415,6 +3072,7 @@ Registers a JavaScript object and invokes the methods of the object in the windo
 | methodList | Array\<string\> | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2472,12 +3130,14 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 Asynchronously executes a JavaScript script. This API uses a callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be executed in **onPageEnd**.
 
 **Parameters**
+
 | Name     | Type                    | Mandatory  | Default Value | Description                                    |
 | -------- | ------------------------ | ---- | ---- | ---------------------------------------- |
 | script   | string                   | Yes   | -    | JavaScript script.                           |
 | callback | (result: string) => void | No   | -    | Callback used to return the result. Returns **null** if the JavaScript script fails to be executed or no value is returned.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2529,6 +3189,7 @@ stop()
 Stops page loading.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2555,6 +3216,7 @@ clearHistory(): void
 Clears the browsing history.
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2574,6 +3236,60 @@ Clears the browsing history.
   }
   ```
 
+### clearSslCache
+
+clearSslCache(): void
+
+Clears user operation corresponding to the SSL certificate error event recorded by the web component.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearSslCache')
+          .onClick(() => {
+            this.controller.clearSslCache();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### clearClientAuthenticationCache
+
+clearClientAuthenticationCache(): void
+
+Clears the user operation corresponding to the client certificate request event recorded by the web component.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+
+    build() {
+      Column() {
+        Button('clearClientAuthenticationCache')
+          .onClick(() => {
+            this.controller.clearClientAuthenticationCache();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ### getCookieManager<sup>9+</sup>
 
 getCookieManager(): WebCookie
@@ -2581,11 +3297,13 @@ getCookieManager(): WebCookie
 Obtains the cookie management object of the **\<Web>** component.
 
 **Return value**
+
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
 | WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2605,6 +3323,123 @@ Obtains the cookie management object of the **\<Web>** component.
   }
   ```
 
+### createWebMessagePorts<sup>9+</sup>
+
+createWebMessagePorts(): Array\<WebMessagePort\>
+
+Creates web message ports.
+
+**Return value**
+
+
+| Type                             | Description           |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | Array of web message ports.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+    build() {
+      Column() {
+        Button('createWebMessagePorts')
+          .onClick(() => {
+            this.ports = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.ports.length)
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### postMessage<sup>9+</sup>
+
+postMessage(options: { message: WebMessageEvent, uri: string}): void
+
+Sends a web message to an HTML5 page.
+
+**Parameters**
+
+| Name       | Type           | Mandatory  | Default Value | Description                     |
+| ---------- | --------------- | ---- | ---- | ------------------------- |
+| message     | [WebMessageEvent](#webmessageevent9)          | Yes   | -    |Message to send, including data and the message port.|
+| uri       | string          | Yes   | -    | URI to receive the message.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+    build() {
+      Column() {
+        Button('postMessage')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage({message: msgEvent, uri: "*"});
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  // xxx.js
+  var h5Port;
+  window.addEventListener('message', function(event){
+    if (event.data == '__init_ports__') {
+      if(event.ports[0] != null) {
+        h5Port = event.ports[0];
+        h5Port.onmessage = function(event) {
+          console.log('receive message from ets, on message:' + event.data);
+        }
+      }
+    }
+  })
+  ```
+
+### getUrl<sup>9+</sup>
+
+getUrl(): string
+
+Obtains the URL of the current page.
+
+**Return value**
+
+| Type                             | Description           |
+| ------------------------------- | ------------- |
+| string | URL of the current page.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getUrl')
+          .onClick(() => {
+            console.log("url: " + this.controller.getUrl());
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## HitTestValue<sup>9+</sup>
 Implements the **HitTestValue** object. For details about the sample code, see [getHitTestValue](#gethittestvalue9).
 
@@ -2614,6 +3449,7 @@ getType(): HitTestType
 Obtains the element type of the area being clicked.
 
 **Return value**
+
 | Type                             | Description           |
 | ------------------------------- | ------------- |
 | [HitTestType](#hittesttype)| Element type of the area being clicked.|
@@ -2624,6 +3460,7 @@ getExtra(): string
 Obtains the extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link.
 
 **Return value**
+
 | Type    | Description          |
 | ------ | ------------ |
 | string | Extra information of the area being clicked.|
@@ -2636,20 +3473,23 @@ Manages behavior of cookies in **\<Web>** components. All **\<Web>** components 
 ### setCookie<sup>9+</sup>
 setCookie(url: string, value: string): boolean
 
-Sets the cookie. This API returns the result synchronously.
+Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
 **Parameters**
+
 | Name  | Type  | Mandatory  | Default Value | Description             |
 | ----- | ------ | ---- | ---- | ----------------- |
 | url   | string | Yes   | -    | URL of the cookie to set.|
 | value | string | Yes   | -    | Value of the cookie to set.        |
 
 **Return value**
+
 | Type     | Description           |
 | ------- | ------------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2676,11 +3516,13 @@ saveCookieSync(): boolean
 Saves this cookie in the memory to the drive. This API returns the result synchronously.
 
 **Return value**
+
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Operation result.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -2701,6 +3543,417 @@ Saves this cookie in the memory to the drive. This API returns the result synchr
   }
   ```
 
+### getCookie<sup>9+</sup>
+getCookie(url: string): string
+
+Obtains the cookie value corresponding to the specified URL.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| url   | string | Yes   | -    | URL of the cookie value to obtain.|
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| string | Cookie value corresponding to the specified URL.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('getCookie')
+          .onClick(() => {
+            let value = webview.WebCookieManager.getCookie('www.example.com');
+            console.log("value: " + value);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### setCookie<sup>9+</sup>
+setCookie(url: string, value: string): boolean
+
+Sets a cookie value for the specified URL.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| url   | string | Yes   | -    | URL of the cookie to set.|
+| value   | string | Yes   | -    | Cookie value to set.|
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('setCookie')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.setCookie('www.example.com', 'a=b');
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### saveCookieSync<sup>9+</sup>
+saveCookieSync(): boolean
+
+Saves cookies in the memory to the drive. This API is synchronous.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Operation result.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('saveCookieSync')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.saveCookieSync();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### saveCookieAsync<sup>9+</sup>
+saveCookieAsync(): Promise\<boolean>
+
+Saves cookies in the memory to the drive. This API uses a promise to return the value.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| Promise\<boolean> | Promise used to return the result.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('saveCookieAsync')
+          .onClick(() => {
+            web_webview.WebCookieManager.saveCookieAsync()
+              .then (function(result) {
+                console.log("result: " + result);
+              })
+              .catch(function(error) {
+                console.error("error: " + error);
+              });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### saveCookieAsync<sup>9+</sup>
+saveCookieAsync(callback: AsyncCallback\<boolean>): void
+
+Saves cookies in the memory to the drive. This API uses an asynchronous callback to return the value.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| callback   | AsyncCallback\<boolean> | Yes   | -    | Callback used to return the operation result.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('saveCookieAsync')
+          .onClick(() => {
+            web_webview.WebCookieManager.saveCookieAsync(function(result) {
+              console.log("result: " + result);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### isCookieAllowed<sup>9+</sup>
+isCookieAllowed(): boolean
+
+Checks whether the **WebCookieManager** instance has the permission to send and receive cookies.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('isCookieAllowed')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.isCookieAllowed();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### putAcceptCookieEnabled<sup>9+</sup>
+putAcceptCookieEnabled(accept: boolean): void
+
+Sets whether the **WebCookieManager** instance has the permission to send and receive cookies.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| accept   | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('putAcceptCookieEnabled')
+          .onClick(() => {
+            web_webview.WebCookieManager.putAcceptCookieEnabled(false);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### isThirdPartyCookieAllowed<sup>9+</sup>
+isThirdCookieAllowed(): boolean
+
+Checks whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('isThirdPartyCookieAllowed')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.isThirdPartyCookieAllowed();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### putAcceptThirdPartyCookieEnabled<sup>9+</sup>
+putAcceptThirdPartyCookieEnabled(accept: boolean): void
+
+Sets whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| accept   | boolean | Yes   | -    | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('putAcceptThirdPartyCookieEnabled')
+          .onClick(() => {
+            web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(false);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### existCookie<sup>9+</sup>
+existCookie(): boolean
+
+Checks whether cookies exist.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| boolean | Whether cookies exist.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('existCookie')
+          .onClick(() => {
+            let result = web_webview.WebCookieManager.existCookie();
+            console.log("result: " + result);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteEntireCookie<sup>9+</sup>
+deleteEntireCookie(): void
+
+Deletes all cookies.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('deleteEntireCookie')
+          .onClick(() => {
+            web_webview.WebCookieManager.deleteEntireCookie();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteSessionCookie<sup>9+</sup>
+deleteSessionCookie(): void
+
+Deletes all session cookies.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+  
+    build() {
+      Column() {
+        Button('deleteSessionCookie')
+          .onClick(() => {
+            webview.WebCookieManager.deleteSessionCookie();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
 ## WebDataBase<sup>9+</sup>
 Implements the **WebDataBase** object.
 
@@ -2708,17 +3961,19 @@ Implements the **WebDataBase** object.
 
 static existHttpAuthCredentials(): boolean
 
-Checks whether any HTTP authentication credentials exist in the cache. This API returns the result synchronously.
+Checks whether any saved HTTP authentication credentials exist. This API is synchronous.
 
 **Return value**
+
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | Returns **true** if any HTTP authentication credentials exist in the cache; returns **false** otherwise.|
+| boolean | Whether any saved HTTP authentication credentials exist. Returns **true** if any saved HTTP authentication credentials exist exists; returns **false** otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2728,7 +3983,7 @@ Checks whether any HTTP authentication credentials exist in the cache. This API 
       Column() {
         Button('existHttpAuthCredentials')
           .onClick(() => {
-            let result = web.WebDataBase.existHttpAuthCredentials();
+            let result = web_webview.WebDataBase.existHttpAuthCredentials();
             console.log('result: ' + result);
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -2744,9 +3999,10 @@ static deleteHttpAuthCredentials(): void
 Deletes all HTTP authentication credentials saved in the cache. This API returns the result synchronously.
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2756,7 +4012,7 @@ Deletes all HTTP authentication credentials saved in the cache. This API returns
       Column() {
         Button('deleteHttpAuthCredentials')
           .onClick(() => {
-            web.WebDataBase.deleteHttpAuthCredentials();
+            web_webview.WebDataBase.deleteHttpAuthCredentials();
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2768,23 +4024,26 @@ Deletes all HTTP authentication credentials saved in the cache. This API returns
 
 static getHttpAuthCredentials(host: string, realm: string): Array\<string\>
 
-Obtains the HTTP authentication credentials for a given host and realm. This API returns the result synchronously.
+Retrieves HTTP authentication credentials for a given host and domain. This API is synchronous.
 
 **Parameters**
+
 | Name  | Type  | Mandatory  | Default Value | Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
 | host  | string | Yes   | -    | Host for which you want to obtain the HTTP authentication credentials.|
 | realm | string | Yes   | -    | Realm for which you want to obtain the HTTP authentication credentials. |
 
 **Return value**
+
 | Type             | Description                    |
 | --------------- | ---------------------- |
 | Array\<string\> | Returns the array of the matching user names and passwords if the operation is successful; returns an empty array otherwise.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2796,7 +4055,7 @@ Obtains the HTTP authentication credentials for a given host and realm. This API
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            this.username_password = web.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
+            this.username_password = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm);
             console.log('num: ' + this.username_password.length);
             ForEach(this.username_password, (item) => {
               console.log('username_password: ' + item);
@@ -2815,17 +4074,19 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 Saves HTTP authentication credentials for a given host and realm. This API returns the result synchronously.
 
 **Parameters**
+
 | Name     | Type  | Mandatory  | Default Value | Description            |
 | -------- | ------ | ---- | ---- | ---------------- |
-| host     | string | Yes   | -    | Host to which HTTP authentication credentials apply.|
+| host     | string | Yes   | -    | Host for which you want to obtain the HTTP authentication credentials.|
 | realm    | string | Yes   | -    | Realm to which HTTP authentication credentials apply. |
 | username | string | Yes   | -    | User name.            |
 | password | string | Yes   | -    | Password.             |
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2836,7 +4097,275 @@ Saves HTTP authentication credentials for a given host and realm. This API retur
       Column() {
         Button('saveHttpAuthCredentials')
           .onClick(() => {
-            web.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+            web_webview.WebDataBase.saveHttpAuthCredentials(this.host, this.realm, "Stromgol", "Laroche");
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## GeolocationPermissions<sup>9+</sup>
+
+Defines a **GeolocationPermissions** object.
+
+### allowGeolocation<sup>9+</sup>
+
+static allowGeolocation(origin: string): void
+
+Allows the specified source to use the geolocation information.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | Yes  | -     | Index of the source.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('allowGeolocation')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.allowGeolocation(this.origin);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteGeolocation<sup>9+</sup>
+
+static deleteGeolocation(origin: string): void
+
+Clears the geolocation permission status of a specified source.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | Yes  | -     | Index of the source.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('deleteGeolocation')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.deleteGeolocation(this.origin);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### deleteAllGeolocation<sup>9+</sup>
+
+static deleteAllGeolocation(): void
+
+Clears the geolocation permission status of all sources.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('deleteAllGeolocation')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.deleteAllGeolocation();
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getAccessibleGeolocation<sup>9+</sup>
+
+static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean\>): void
+
+Obtains the geolocation permission status of the specified source. This API uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | Yes  | -     | Index of the origin.|
+| callback | AsyncCallback\<boolean\> | Yes| - | Callback used to return the geolocation permission status of the specified source. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified source is not found.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('getAccessibleGeolocationAsync')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin, (error, result) => {
+              if (error) {
+                console.log('getAccessibleGeolocationAsync error: ' + JSON.stringify(error));
+                return;
+              }
+              console.log('getAccessibleGeolocationAsync result: ' + result);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getAccessibleGeolocation<sup>9+</sup>
+
+static getAccessibleGeolocation(origin: string): Promise\<boolean\>
+
+Obtains the geolocation permission status of the specified source. This API uses a promise to return the result.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| origin   | string   | Yes  | -     | Index of the origin.|
+
+**Return value**
+
+| Type              | Description                                 |
+| ------------------ | ------------------------------------ |
+| Promise\<boolean\> | Promise used to return the geolocation permission status of the specified source. If the operation is successful, the value **true** means that the geolocation permission is granted, and **false** means the opposite. If the operation fails, the geolocation permission status of the specified source is not found.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    origin: string = "file:///";
+    build() {
+      Column() {
+        Button('getAccessibleGeolocationPromise')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.getAccessibleGeolocation(this.origin).then(result => {
+              console.log('getAccessibleGeolocationPromise result: ' + result);
+            }).catch(error => {
+              console.log('getAccessibleGeolocationPromise error: ' + JSON.stringify(error));
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getStoredGeolocation<sup>9+</sup>
+
+static getStoredGeolocation(callback: AsyncCallback\<Array\<string\>\>): void
+
+Obtains the geolocation permission status of all sources. This API uses an asynchronous callback to return the result.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| callback | AsyncCallback\<Array\<string\>\> | Yes| - | Callback used to return the geolocation permission status of all sources.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getStoredGeolocationAsync')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
+              if (error) {
+                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                return;
+              }
+              let origins_str: string = origins.join();
+              console.log('getStoredGeolocationAsync origins: ' + origins_str);
+            });
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### getStoredGeolocation<sup>9+</sup>
+
+static getStoredGeolocation(): Promise\<Array\<string\>\>
+
+Obtains the geolocation permission status of all sources. This API uses a promise to return the result.
+
+**Parameters**
+
+| Name   | Type| Mandatory| Default Value| Description      |
+| -------- | -------- | ---- | ----- | ------------- |
+| callback | AsyncCallback\<Array\<string\>\> | Yes| - | Callback used to return the geolocation permission status of all sources.|
+
+**Return value**
+
+| Type                      | Description                                 |
+| -------------------------- | ------------------------------------ |
+| Promise\<Array\<string\>\> | Promise used to return the geolocation permission status of all sources.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Button('getStoredGeolocationPromise')
+          .onClick(() => {
+            web_webview.GeolocationPermissions.getStoredGeolocation().then(origins => {
+              let origins_str: string = origins.join();
+              console.log('getStoredGeolocationPromise origins: ' + origins_str);
+            }).catch(error => {
+                console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+            });
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }
@@ -2852,9 +4381,10 @@ static deleteAllData(): void
 Deletes all data in the Web SQL database.
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2863,7 +4393,7 @@ Deletes all data in the Web SQL database.
       Column() {
         Button('deleteAllData')
           .onClick(() => {
-            web.WebStorage.deleteAllData();
+            web_webview.WebStorage.deleteAllData();
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -2878,14 +4408,16 @@ static deleteOrigin(origin : string): void
 Deletes all data in the specified origin.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | origin | string | Yes   | Index of the origin.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2895,7 +4427,7 @@ Deletes all data in the specified origin.
       Column() {
         Button('getHttpAuthCredentials')
           .onClick(() => {
-            web.WebStorage.deleteOrigin(this.origin);
+            web_webview.WebStorage.deleteOrigin(this.origin);
           })
         Web({ src: 'www.example.com', controller: this.controller })
         .databaseAccess(true)
@@ -2905,19 +4437,21 @@ Deletes all data in the specified origin.
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<[WebStorageOrigin]>>) : void
+static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
 
 Obtains information about all origins that are currently using the Web SQL database. This API uses an asynchronous callback to return the result.
 
 **Parameters**
+
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | callback | AsyncCallback<Array<[WebStorageOrigin](#webstorageorigin9)>> | Yes   | Callback used to return the information about the origins. For details, see **WebStorageOrigin**.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2927,7 +4461,7 @@ Obtains information about all origins that are currently using the Web SQL datab
       Column() {
         Button('getOrigins')
           .onClick(() => {
-            web.WebStorage.getOrigins((error, origins) => {
+            web_webview.WebStorage.getOrigins((error, origins) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
@@ -2947,7 +4481,7 @@ Obtains information about all origins that are currently using the Web SQL datab
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<[WebStorageOrigin]>>
+static getOrigins() : Promise<Array<WebStorageOrigin>>
 
 Obtains information about all origins that are currently using the Web SQL database. This API uses a promise to return the result.
 
@@ -2958,9 +4492,10 @@ Obtains information about all origins that are currently using the Web SQL datab
 | Promise<Array<[WebStorageOrigin](#webstorageorigin9)>> | Promise used to return the information about the origins. For details, see **WebStorageOrigin**.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -2970,7 +4505,7 @@ Obtains information about all origins that are currently using the Web SQL datab
       Column() {
         Button('getOrigins')
           .onClick(() => {
-            web.WebStorage.getOrigins()
+            web_webview.WebStorage.getOrigins()
               .then(origins => {
                 for (let i = 0; i < origins.length; i++) {
                   console.log('origin: ' + origins[i].origin);
@@ -2995,15 +4530,17 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 Obtains the storage quota of an origin in the Web SQL database, in bytes. This API uses an asynchronous callback to return the result.
 
 **Parameters**
+
 | Name     | Type                  | Mandatory  | Description       |
 | -------- | ---------------------- | ---- | --------- |
 | origin   | string                 | Yes   | Index of the origin.|
 | callback | AsyncCallback\<number> | Yes   | Callback used to return the storage quota of the origin.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3013,7 +4550,7 @@ Obtains the storage quota of an origin in the Web SQL database, in bytes. This A
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginQuota(this.origin, (error, quota) => {
+            web_webview.WebStorage.getOriginQuota(this.origin, (error, quota) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
@@ -3034,19 +4571,22 @@ static getOriginQuota(origin : string) : Promise\<number>
 Obtains the storage quota of an origin in the Web SQL database, in bytes. This API uses a promise to return the result.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | origin | string | Yes   | Index of the origin.|
 
 **Return value**
+
 | Type              | Description                     |
 | ---------------- | ----------------------- |
 | Promise\<number> | Promise used to return the storage quota of the origin.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3056,7 +4596,7 @@ Obtains the storage quota of an origin in the Web SQL database, in bytes. This A
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginQuota(this.origin)
+            web_webview.WebStorage.getOriginQuota(this.origin)
               .then(quota => {
                 console.log('quota: ' + quota);
               })
@@ -3077,15 +4617,17 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 Obtains the storage usage of an origin in the Web SQL database, in bytes. This API uses an asynchronous callback to return the result.
 
 **Parameters**
+
 | Name     | Type                  | Mandatory  | Description        |
 | -------- | ---------------------- | ---- | ---------- |
 | origin   | string                 | Yes   | Index of the origin.|
 | callback | AsyncCallback\<number> | Yes   | Callback used to return the storage usage of the origin.  |
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3095,12 +4637,12 @@ Obtains the storage usage of an origin in the Web SQL database, in bytes. This A
       Column() {
         Button('getOriginUsage')
           .onClick(() => {
-            web.WebStorage.getOriginUsage(this.origin, (error, usage) => {
+            web_webview.WebStorage.getOriginUsage(this.origin, (error, usage) => {
               if (error) {
                 console.log('error: ' + error);
                 return;
               }
-              consloe.log('usage: ' + usage);
+              console.log('usage: ' + usage);
             })
           })
         Web({ src: 'www.example.com', controller: this.controller })
@@ -3116,19 +4658,22 @@ static getOriginUsage(origin : string) : Promise\<number>
 Obtains the storage usage of an origin in the Web SQL database, in bytes. This API uses a promise to return the result.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | origin | string | Yes   | Index of the origin.|
 
 **Return value**
+
 | Type              | Description                    |
 | ---------------- | ---------------------- |
 | Promise\<number> | Promise used to return the storage usage of the origin.|
 
 **Example**
+
   ```ts
   // xxx.ets
-  import web from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3138,7 +4683,7 @@ Obtains the storage usage of an origin in the Web SQL database, in bytes. This A
       Column() {
         Button('getOriginQuota')
           .onClick(() => {
-            web.WebStorage.getOriginUsage(this.origin)
+            web_webview.WebStorage.getOriginUsage(this.origin)
               .then(usage => {
                 console.log('usage: ' + usage);
               })
@@ -3165,6 +4710,7 @@ Searches the web page for content that matches the keyword specified by **'searc
 | searchString | string | Yes   | -    | Search keyword.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -3204,6 +4750,7 @@ clearMatches(): void
 Clears the matches found through [searchAllAsync](#searchallasync9).
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -3237,6 +4784,7 @@ Searches for and highlights the next match.
 
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -3271,6 +4819,7 @@ Invoked to notify the caller of the search result on the web page.
 | isDoneCounting     | boolean       | Whether the search operation on the current page is complete. This API may be called multiple times until **isDoneCounting** is **true**.|
 
 **Example**
+
   ```ts
   // xxx.ets
   @Entry
@@ -3295,6 +4844,7 @@ Invoked to notify the caller of the search result on the web page.
 Provides usage information about the Web SQL database.
 
 **Parameters**
+
 | Name   | Type  | Mandatory  | Description        |
 | ------ | ------ | ---- | ---------- |
 | origin | string | Yes   | Index of the origin.|
@@ -3359,11 +4909,22 @@ Explains why the rendering process exits.
 | Map           | Geographical address.                   |
 | Unknown       | Unknown content.                   |
 
+## SslError<sup>9+</sup>
+
+Enumerates the error codes returned by **onSslErrorEventReceive** API.
+
+| Name          | Description                 |
+| -------------- | -----------------    |
+| Invalid        | Minor error.           |
+| HostMismatch   | The host name does not match.       |
+| DateInvalid    | The certificate has an invalid date.       |
+| Untrusted      | The certificate issuer is not trusted.|
+
 ## ProtectedResourceType<sup>9+</sup>
 
 | Name     | Description           | Remarks          |
 | --------- | -------------- | -------------- |
-| MidiSysex | MIDI SYSEX resources| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
 
 ## WebAsyncController
 
@@ -3378,7 +4939,7 @@ webAsyncController: WebAsyncController = new WebAsyncController(webController);
 
 ### storeWebArchive<sup>9+</sup>
 
-storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
+storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback<string>): void
 
 Saves the current web page. This API uses an asynchronous callback to return the result.
 
@@ -3386,15 +4947,15 @@ Saves the current web page. This API uses an asynchronous callback to return the
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null.|
-| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.<br>The value **false** means not to automatically generate a file name.|
-| callback | AsyncCallback\<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
+| baseName | string | Yes| Save path. The value cannot be null.
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.
+| callback | AsyncCallback<string> | Yes   | Callback used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
 
   ```ts
   // xxx.ets
-  import WebAsyncController from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3403,7 +4964,7 @@ Saves the current web page. This API uses an asynchronous callback to return the
       Column() {
         Button('saveWebArchive')
           .onClick(() => {
-            let webAsyncController = new WebAsyncController(this.controller);
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
             webAsyncController.storeWebArchive("/data/storage/el2/base/", true, (filename) => {
               if (filename != null) {
                 console.info(`save web archive success: ${filename}`)
@@ -3418,7 +4979,7 @@ Saves the current web page. This API uses an asynchronous callback to return the
 
 ### storeWebArchive<sup>9+</sup>
 
-storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
+storeWebArchive(baseName: string, autoName: boolean): Promise<string>
 
 Stores the current web page. This API uses an asynchronous callback to return the result.
 
@@ -3426,20 +4987,20 @@ Stores the current web page. This API uses an asynchronous callback to return th
 
 | Name     | Type                                    | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| baseName | string | Yes| Save path. The value cannot be null.|
-| autoName | boolean | Yes| Determines whether to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.<br>The value **false** means not to automatically generate a file name.|
+| baseName | string | Yes| Save path. The value cannot be null.
+| autoName | boolean | Yes| Whether to automatically generate a file name.<br>The value **false** means not to automatically generate a file name.<br>The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.
 
 **Return value**
 
-| Type             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| Promise\<string> | Promise used to return the save path if the operation is successful and null otherwise. |
+| Type                                      | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise<string> | Promise used to return the save path if the operation is successful and null otherwise.|
 
 **Example**
 
   ```ts
   // xxx.ets
-  import WebAsyncController from '@ohos.web';
+  import web_webview from '@ohos.web.webview'
   @Entry
   @Component
   struct WebComponent {
@@ -3448,13 +5009,234 @@ Stores the current web page. This API uses an asynchronous callback to return th
       Column() {
         Button('saveWebArchive')
           .onClick(() => {
-            let webAsyncController = new WebAsyncController(this.controller);
+            let webAsyncController = new web_webview.WebAsyncController(this.controller);
             webAsyncController.storeWebArchive("/data/storage/el2/base/", true)
               .then(filename => {
                 if (filename != null) {
                   console.info(`save web archive success: ${filename}`)
                 }
               })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+## WebMessagePort<sup>9+</sup>
+
+Defines a **WebMessagePort** instance, which can can be used to send and receive messages.
+
+### close<sup>9+</sup>
+close(): void
+
+Disables this message port.
+
+### postMessageEvent<sup>9+</sup>
+postMessageEvent(message: WebMessageEvent): void
+
+Sends messages.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| message   | [WebMessageEvent](#webmessageevent9) | Yes   | -    | Message to send.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+
+    build() {
+      Column() {
+        Button('postMessageEvent')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to html5");
+            this.ports[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+### onMessageEvent<sup>9+</sup>
+onMessageEvent(callback: (result: string) => void): void
+
+Registers a callback to receive messages from an HTML5 page.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| callback   | function | Yes   | -    | Callback for receiving messages.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+
+    build() {
+      Column() {
+        Button('onMessageEvent')
+          .onClick(() => {
+            this.ports[0].onMessageEvent((result: string) => {
+              console.log("received message from html5, on message:" + result);
+            })
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+
+## WebMessageEvent<sup>9+</sup>
+
+Implements the **WebMessageEvent** object to encapsulate the message and port.
+
+### getData<sup>9+</sup>
+getData(): string
+
+Obtains the messages stored in this object.
+
+**Return value**
+
+| Type                             | Description           |
+| ------------------------------- | ------------- |
+| string | Message stored in the object of this type.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("message event data");
+            var messageData = msgEvent.getData();
+            console.log("message is:" + messageData);
+          })
+      }
+    }
+  }
+  ```
+
+### setData<sup>9+</sup>
+setData(data: string): void
+
+Sets the message in this object.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| data   | string | Yes   | -    | Message to send.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+
+    build() {
+      Column() {
+        Button('setData')
+          .onClick(() => {
+            var msg = new WebMessageEvent();
+            msg.setData("post message from ets to HTML5");
+            this.ports[0].postMessageEvent(msg);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+### getPorts<sup>9+</sup>
+getPorts(): Array\<WebMessagePort\>
+
+Obtains the message port stored in this object.
+
+**Return value**
+
+| Type                             | Description           |
+| ------------------------------- | ------------- |
+| Array\<[WebMessagePort](#webmessageport9)\> | Message port stored in the object of this type.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    ports: WebMessagePort[] = null;
+    build() {
+      Column() {
+        Button('getPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[0]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setPorts(sendPortArray);
+            var getPorts = msgEvent.getPorts();
+            console.log("Ports is:" + getPorts);
+          })
+      }
+    }
+  }
+  ```
+
+### setPorts<sup>9+</sup>
+setPorts(ports: Array\<WebMessagePort\>): void
+
+Sets the message port in this object.
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Default Value | Description             |
+| ----- | ------ | ---- | ---- | ----------------- |
+| ports   | Array\<[WebMessagePort](#webmessageport9)\> | Yes   | -    | Message port.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    ports: WebMessagePort[] = null;
+  
+    build() {
+      Column() {
+        Button('setPorts')
+          .onClick(() => {
+            var sendPortArray = new Array(this.ports[1]);
+            var msgEvent = new WebMessageEvent();
+            msgEvent.setData("__init_ports__");
+            msgEvent.setPorts(sendPortArray);
+            this.controller.postMessage({message: msgEvent, uri: "*"});
           })
         Web({ src: 'www.example.com', controller: this.controller })
       }

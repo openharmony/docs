@@ -12,6 +12,9 @@ Both **PlainArray** and **[LightWeightMap](js-apis-lightweightmap.md)** are used
 
 **Recommended use case**: Use **PlainArray** when you need to store KV pairs whose keys are of the **number** type.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -93,7 +96,7 @@ Checks whether this container contains the specified key.
 ```ts
 let plainArray = new PlainArray();
 plainArray.has(1);
-plainArray.add(1, "sddfhf");
+plainArray.add(1, "squirrel");
 let result1 = plainArray.has(1);
 ```
 
@@ -122,8 +125,8 @@ Obtains the value of the specified key in this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
 ```
 
@@ -152,8 +155,8 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
 ```
 
@@ -182,9 +185,9 @@ Obtains the index of the first occurrence of an element with the specified value
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
-let result = plainArray.getIndexOfValue("sddfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.getIndexOfValue("squirrel");
 ```
 
 
@@ -212,8 +215,8 @@ Obtains the key of the element at the specified position in this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
 ```
 
@@ -241,8 +244,8 @@ Obtains the value of an element at the specified position in this container.
 
   ```ts
   let plainArray = new PlainArray();
-  plainArray.add(1, "sddfhf");
-  plainArray.add(2, "sffdfhf");
+  plainArray.add(1, "squirrel");
+  plainArray.add(2, "sparrow");
   let result = plainArray.getKeyAt(1);
   ```
 
@@ -264,8 +267,8 @@ Clones this container and returns a copy. The modification to the copy does not 
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
 ```
 
@@ -289,7 +292,7 @@ Adds an element to this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
+plainArray.add(1, "squirrel");
 ```
 
 
@@ -317,8 +320,8 @@ Removes an element with the specified key from this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.remove(2);
 let result = plainArray.remove(2);
 ```
@@ -348,8 +351,8 @@ Removes an element at the specified position from this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.removeAt(1);
 let result = plainArray.removeAt(1);
 ```
@@ -380,8 +383,8 @@ Removes elements in a specified range from this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
 ```
 
@@ -405,8 +408,8 @@ Sets a value for an element at the specified position in this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
 ```
 
@@ -429,8 +432,8 @@ Obtains a string that contains all elements in this container.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 let result = plainArray.toString();
 ```
 
@@ -447,8 +450,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.clear();
 ```
 
@@ -479,8 +482,8 @@ callbackfn
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 plainArray.forEach((value, index) => {
   console.log("value:" + value, index);
 });
@@ -505,8 +508,8 @@ Obtains an iterator object that contains key-value pairs, where the key is of th
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.add(1, "sddfhf");
-plainArray.add(2, "sffdfhf");
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
 
 // Method 1:
 for (let item of plainArray) { 

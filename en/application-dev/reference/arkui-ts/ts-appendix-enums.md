@@ -8,6 +8,7 @@
 | Blue                     | 0x0000ff | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) |
 | Brown                    | 0xa52a2a | ![en-us_image_0000001219744201](figures/en-us_image_0000001219744201.png) |
 | Gray                     | 0x808080 | ![en-us_image_0000001174264376](figures/en-us_image_0000001174264376.png) |
+| Grey                     | 0x808080 | ![en-us_image_0000001174264376](figures/en-us_image_0000001174264376.png) |
 | Green                    | 0x008000 | ![en-us_image_0000001174422914](figures/en-us_image_0000001174422914.png) |
 | Orange                   | 0xffa500 | ![en-us_image_0000001219662661](figures/en-us_image_0000001219662661.png) |
 | Pink                     | 0xffc0cb | ![en-us_image_0000001219662663](figures/en-us_image_0000001219662663.png) |
@@ -70,6 +71,7 @@
 | Press   | The mouse button is pressed.|
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.    |
+| Hover    | The mouse pointer is hovered on an element.    |
 
 ## Curve
 
@@ -100,10 +102,12 @@
 
 ## FillMode
 
-| Name    | Description                            |
-| -------- | -------------------------------- |
-| None     | After the playback is complete, the animation restores to the initial state.        |
-| Forwards | After the playback is complete, the animation remains in the end state.|
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| None      | Before execution, the animation does not apply any styles to the target component. After execution, the animation restores the target component to its default state.|
+| Forwards  | The target component retains the state set by the last keyframe encountered during execution of the animation.                |
+| Backwards | The animation applies the values defined in the first relevant keyframe once it is applied to the target component, and retains the values during the period set by **delay**. The first relevant keyframe depends on the value of **playMode**. If **playMode** is **Normal** or **Alternate**, the first relevant keyframe is in the **from** state. If **playMode** is **Reverse** or **AlternateReverse**, the first relevant keyframe is in the **to** state.|
+| Both      | The animation follows the rules for both **Forwards** and **Backwards**, extending the animation attributes in both directions.|
 
 ## PlayMode
 
@@ -133,11 +137,11 @@
 | Name    | Description                  |
 | -------- | ---------------------- |
 | Top      | Top edge in the vertical direction.        |
-| Center   | Center position in the vertical direction.      |
+| Center<sup>(deprecated) </sup>   | Center position in the vertical direction.<br> This API is deprecated since API version 9.      |
 | Bottom   | Bottom edge in the vertical direction.        |
-| Baseline | Text baseline position in the cross axis direction.|
+| Baseline<sup>(deprecated) </sup> | Text baseline position in the cross axis direction.<br> This API is deprecated since API version 9.|
 | Start    | Start position in the horizontal direction.      |
-| Middle   | Center position in the horizontal direction.      |
+| Middle<sup>(deprecated) </sup>   | Center position in the horizontal direction.<br>This API is deprecated since API version 9.      |
 | End      | End position in the horizontal direction.      |
 
 ## Week
@@ -217,9 +221,9 @@
 
 | Name  | Description                |
 | ------ | -------------------- |
-| Butt   | The ends of dividing lines are butt.|
-| Round  | The ends of dividing lines are rounded.  |
-| Square | The ends of dividing lines are butt.|
+| Butt   | The ends of the line are squared off, and the line does not extend beyond its two endpoints.|
+| Round  | The line is extended at the endpoints by a half circle whose diameter is equal to the line width.|
+| Square | The line is extended at the endpoints by a rectangle whose width is equal to half the line width and height equal to the line width.|
 
 ## Axis
 
@@ -251,12 +255,12 @@
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration in the Flex container is used.                                    |
-| Start    | The elements are in the Flex container, top-aligned in the cross-axis direction.                      |
-| Center   | The elements are in the Flex container, centered in the cross-axis direction.                      |
-| End      | The elements are in the Flex container, bottom-aligned in the cross-axis direction.                      |
-| Stretch  | The elements are in the Flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size.|
-| Baseline | The elements are in the Flex container, text baseline aligned in the cross-axis direction.                  |
+| Auto     | The default configuration in the flex container is used.                                    |
+| Start    | The elements are in the flex container, top-aligned in the cross-axis direction.                      |
+| Center   | The elements are in the flex container, centered in the cross-axis direction.                      |
+| End      | The elements are in the flex container, bottom-aligned in the cross-axis direction.                      |
+| Stretch  | The elements are in the flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size.|
+| Baseline | The elements are in the flex container, text baseline aligned in the cross-axis direction.                  |
 
 ## FlexDirection
 
@@ -271,9 +275,9 @@
 
 | Name       | Description                                             |
 | ----------- | ------------------------------------------------- |
-| NoWrap      | The child components in the **\<Flex>** component are arranged in a single line, and they cannot overflow.  |
-| Wrap        | The child components in the **\<Flex>** component are arranged in multiple lines, and they may overflow.    |
-| WrapReverse | The child components in the **\<Flex>** component are reversely arranged in multiple lines, and they may overflow.|
+| NoWrap      | The child components in the flex container are arranged in a single line, and they cannot overflow.  |
+| Wrap        | The child components in the flex container are arranged in multiple lines, and they may overflow.    |
+| WrapReverse | The child components in the flex container are reversely arranged in multiple lines, and they may overflow.|
 
 ## VerticalAlign
 
@@ -417,7 +421,7 @@
 
 | Name       | Description                |
 | ----------- | -------------------- |
-| Default     | Both the node and its child node respond to the hit test of a touch event, and other nodes blocked by the node are not considered during the hit test.  |
-| Block       | The node responds to the hit test of a touch event, and its child node and other nodes blocked by the node are not considered during the hit test.       |
-| Transparent | Both the node and its child node respond to the hit test of a touch event, and other nodes blocked by the node are also considered during the hit test.|
-| None        | The node does not respond to the hit test of a touch event, but its child nodes are considered during the hit test.|
+| Default     | Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test.  |
+| Block       | The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the hit test.       |
+| Transparent | Both the node and its child node respond to the hit test of a touch event, and its sibling node is also considered during the hit test.|
+| None        | The node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.|

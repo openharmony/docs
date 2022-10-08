@@ -22,15 +22,16 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询当前应用的使用优先级群组。callback形式。 |
 | function queryAppUsagePriorityGroup(): Promise&lt;number&gt;; | 查询当前应用的使用优先级群组。promise形式。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
-| function getRecentlyUsedModules(maxNum? : number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录，若不填写maxNum参数，则默认maxNum值为1000。 |
+| function getRecentlyUsedModules(callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
+| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
 | function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function queryAppUsagePriorityGroup(bundleName? : string, callback: AsyncCallback&lt;number&gt;): void | 查询当前调用者应用或者指定应用的使用优先级群组。callback形式。 |
+| function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | 查询指定应用的使用优先级群组。callback形式。 |
 | function queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
 | function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
 | function setBundleGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
-| function registerGroupCallBack(callback: Callback&gt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
-| function registerGroupCallBack(callback: Callback&gt;BundleActiveGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
+| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
+| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
 | function unRegisterGroupCallBack(callback: AsyncCallback&gt;boolean&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
 | function unRegisterGroupCallBack(): Promise&gt;boolean&gt;; | 解除应用分组监听回调，以promise形式返回。 |
 
@@ -325,14 +326,14 @@ import stats from '@ohos.bundleState';
      ```js
      import stats from '@ohos.bundleState'
 
-     // 无参异步方法promise方式
+     // 无bundleName异步方法promise方式
      stats.queryAppUsagePriorityGroup().then(res => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
      }).catch(err => {
          console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
      });
 
-     // 无参异步方法callback方式
+     // 无bundleName异步方法callback方式
      stats.queryAppUsagePriorityGroup((err, res) => {
          if (err) {
              console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback failed. because: ' + err.code);
@@ -340,16 +341,16 @@ import stats from '@ohos.bundleState';
              console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup callback succeeded. result: ' + JSON.stringify(res));
          }
      });
-
-     // 有参异步promise方式
-     stats.queryAppUsagePriorityGroup(this.bundleName).then(res => {
+    let bundleName = "com.ohos.camera";
+     // 有bundleName异步promise方式
+     stats.queryAppUsagePriorityGroup(bundleName).then(res => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
      }).catch(err => {
          console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
      });
 
-     // 有参异步方法callback方式
-     stats.queryAppUsagePriorityGroup(this.bundleName, (err, res) => {
+     // 有bundleName异步方法callback方式
+     stats.queryAppUsagePriorityGroup(bundleName, (err, res) => {
          if (err) {
              console.log('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
          } else {

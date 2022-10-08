@@ -64,14 +64,14 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 对于要求能力集，开发者修改时要十分慎重，修改不当会导致应用无法分发到目标设备上。
 
 ```json
-/* syscap.json */
+// syscap.json
 {
 	"devices": {
-		"general": [            /*每一个典型设备对应一个syscap支持能力集，可配置多个典型设备*/
+		"general": [            // 每一个典型设备对应一个syscap支持能力集，可配置多个典型设备
 			"default",
 			"car"
 		],
-		"custom": [             /*厂家自定义设备*/
+		"custom": [             // 厂家自定义设备
 			{
 				"某自定义设备": [
 					"SystemCapability.Communication.SoftBus.Core"
@@ -79,14 +79,14 @@ IDE 会根据创建的工程所支持的设置自动配置联想能力集和要�
 			}
 		]
 	},
-	"development": {             /*addedSysCaps内的sycap集合与devices中配置的各设备支持的syscap集合的并集共同构成联想能力集*/
+	"development": {             // addedSysCaps内的sycap集合与devices中配置的各设备支持的syscap集合的并集共同构成联想能力集
 		"addedSysCaps": [
 			"SystemCapability.Location.Location.Lite"
 		]
 	},
-	"production": {              /*用于生成rpcid，慎重添加，可能导致应用无法分发到目标设备上*/
-		"addedSysCaps": [],      //devices中配置的各设备支持的syscap集合的交集，添加addedSysCaps集合再除去removedSysCaps集合，共同构成要求能力集
-		"removedSysCaps": []     //当该要求能力集为某设备的子集时，应用才可被分发到该设备上
+	"production": {              // 用于生成rpcid，慎重添加，可能导致应用无法分发到目标设备上
+		"addedSysCaps": [],      // devices中配置的各设备支持的syscap集合的交集，添加addedSysCaps集合再除去removedSysCaps集合，共同构成要求能力集
+		"removedSysCaps": []     // 当该要求能力集为某设备的子集时，应用才可被分发到该设备上
 	}
 }
 ```

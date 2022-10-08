@@ -93,7 +93,7 @@ option涉及以下命令：
   hdc_std  -t  _key_  shell  （-t后面添加的_key_ 需要替换为上面查询的设备信息）
 
   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-  > 一台开发机可支持多个设备连接，每个设备有其唯一的设备标识，如果通过网络与设备连接,其标识为IP地址:port格式，如果通过usb连接则标识为设备sn号。该命令需要跟随具体操作命令。
+  > 一台开发机可支持多个设备连接，每个设备有其唯一的设备标识，如果通过网络与设备连接,其标识为IP地址:port格式，如果通过USB连接则标识为设备sn号。该命令需要跟随具体操作命令。
 
 - **checkserver**
   用于获取client-server版本。
@@ -279,7 +279,7 @@ hdc_std -s severIP:8710 list targets
   ```
 
 - **tmode usb**
-  执行后设备端对应daemon进程重启，并首先选用usb连接方式。
+  执行后设备端对应daemon进程重启，并首先选用USB连接方式。
 
     **表10** 命令说明
   
@@ -297,7 +297,7 @@ hdc_std -s severIP:8710 list targets
   ```
 
 - **tmode port port-number**
-  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择usb连接。
+  执行后设备端对应daemon进程重启，并优先使用网络方式连接设备，如果连接设备失败，再选择USB连接。
 
     **表11** 命令说明
   

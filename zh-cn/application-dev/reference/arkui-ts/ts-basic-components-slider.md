@@ -42,9 +42,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑块的颜色。 |
-| trackColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的背景颜色。 |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor8) | 设置滑轨的已滑动颜色。 |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 |
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动颜色。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false |
 | showTips | boolean | 设置滑动时是否显示气泡提示百分比。<br/>默认值：false |
 | trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。 |
@@ -56,7 +56,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。<br/>mode：拖动状态。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider滑动时触发事件回调。<br/>value：当前进度值。若返回值有小数，可使用Math.toFixed()将数据处理为想要的精度。<br/>mode：拖动状态。 |
 
 ## SliderChangeMode枚举说明
 

@@ -26,7 +26,7 @@
 | -------- | -------------------------------------- |
 | string   | 需要显式指定像素单位，如'10px'，也可设置百分比字符串，如'100%'。 |
 | number   | 默认单位vp。                                |
-| [Resource](#resource) | 使用引入资源的方式，引入系统资源或者应用资源中的尺寸。            |
+| [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的尺寸。            |
 
 ## ResourceStr
 
@@ -35,7 +35,7 @@
 | 类型       | 说明                           |
 | -------- | ---------------------------- |
 | string   | 字符串类型。                       |
-| [Resource](#resource) | 使用引入资源的方式，引入系统资源或者应用资源中的字符串。 |
+| [Resource](#resource) | 资源引用类型，引入系统资源或者应用资源中的字符串。 |
 
 ## Padding
 
@@ -43,10 +43,10 @@
 
 | 名称     | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| top    | [Length](#length) | 否    | 组件内元素距组件顶部的尺寸。  |
-| right  | [Length](#length) | 否    | 组件内元素距组件右边界的尺寸。 |
-| bottom | [Length](#length) | 否    | 组件内元素距组件底部的尺寸。  |
-| left   | [Length](#length) | 否    | 组件内元素距组件左边界的尺寸。 |
+| top    | [Length](#length)  | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
+| right  | [Length](#length)  | 否    | 右内边距，组件内元素距组件右边界的尺寸。 |
+| bottom | [Length](#length)  | 否    | 下内边距，组件内元素距组件底部的尺寸。  |
+| left   | [Length](#length)  | 否    | 左内边距，组件内元素距组件左边界的尺寸。 |
 
 ## Margin
 
@@ -54,10 +54,10 @@
 
 | 名称     | 类型     | 必填   | 说明              |
 | ------ | ------ | ---- | --------------- |
-| top    | [Length](#length) | 否    | 组件外元素距组件顶部的尺寸。  |
-| right  | [Length](#length) | 否    | 组件外元素距组件右边界的尺寸。 |
-| bottom | [Length](#length) | 否    | 组件外元素距组件底部的尺寸。  |
-| left   | [Length](#length) | 否    | 组件外元素距组件左边界的尺寸。 |
+| top    | [Length](#length)  | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
+| right  | [Length](#length)  | 否    | 右外边距，组件右边界距组件外元素的尺寸。 |
+| bottom | [Length](#length)  | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
+| left   | [Length](#length)  | 否    | 坐外边距，组件左边界距组件外元素的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
@@ -87,10 +87,10 @@
 
 | 名称     | 类型            | 必填   | 说明       |
 | ------ | ------------- | ---- | -------- |
-| top    | [ResourceColor](#resourcecolor8) | 否    | 组件上边框颜色。 |
-| right  | [ResourceColor](#resourcecolor8) | 否    | 组件右边框颜色。 |
-| bottom | [ResourceColor](#resourcecolor8) | 否    | 组件下边框颜色。 |
-| left   | [ResourceColor](#resourcecolor8) | 否    | 组件左边框颜色。 |
+| top    | [ResourceColor](#resourcecolor) | 否    | 组件上边框颜色。 |
+| right  | [ResourceColor](#resourcecolor) | 否    | 组件右边框颜色。 |
+| bottom | [ResourceColor](#resourcecolor) | 否    | 组件下边框颜色。 |
+| left   | [ResourceColor](#resourcecolor) | 否    | 组件左边框颜色。 |
 
 ## EdgeStyles<sup>9+</sup>
 
@@ -113,16 +113,16 @@
 | dx   | [Length](#length) | 是    | 水平方向偏移量。 |
 | dy   | [Length](#length) | 是    | 竖直方向偏移量。 |
 
-## ResourceColor<sup>8+</sup>
+## ResourceColor
 
 颜色类型，用于描述资源颜色类型。
 
-| 类型                                       | 说明                          |
-| ---------------------------------------- | --------------------------- |
-| [Color](ts-appendix-enums.md#color) | 颜色枚举值。                      |
-| number                                   | HEX格式颜色。                    |
-| string                                   | rgb或者rgba格式颜色。              |
-| [Resource](#resource)                                 | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
+| 类型                                      | 说明                                             |
+| ---------------------------------------- | ------------------------------------------------- |
+| [Color](ts-appendix-enums.md#color)      | 颜色枚举值。                                       |
+| number                                   | HEX格式颜色。                                      |
+| string                                   | rgb或者rgba格式颜色。                              |
+| [Resource](#resource)                    | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
 
 ## LengthConstrain
 
@@ -194,7 +194,7 @@
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | 否    | 边框宽度。   |
-| color  | [ResourceColor](#resourcecolor8) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
+| color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | 否    | 边框圆角半径。 |
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
 

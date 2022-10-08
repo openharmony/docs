@@ -1,4 +1,4 @@
-# 一多能力的功能开发介绍
+# 功能开发的一多能力介绍
 
 
 应用开发至少包含两部分工作：UI页面开发和底层功能开发（部分需要联网的应用还会涉及服务端开发）。如“打开设备NFC”功能，除了开发页面，还需要调用系统API开启NFC。前面章节主要介绍了如何解决页面适配的问题，本章节主要介绍应用如何解决设备系统能力差异的兼容问题。
@@ -57,7 +57,7 @@ OpenHarmony支持的设备类型分为两大类：
 
 IDE中提供了API的联想功能，方便开发者使用系统能力。当开发者选择多个设备类型时，API的联想范围就是选择类型设备提供的API的并集，如同时支撑默认设备和平板，API的联想范围就是默认设备和平板支持的API的并集。API的联想效果如下：
 
-![zh-cn_image_0000001267334018](figures/zh-cn_image_0000001267334018.gif)
+![Video_20220408101413](figures/Video_20220408101413.gif)
 
 
 ## 动态逻辑判断
@@ -67,15 +67,30 @@ IDE中提供了API的联想功能，方便开发者使用系统能力。当开�
   
 ```
 import geolocation from'@ohos.geolocation';
- const isLocationAvailable =canIUse('SystemCapability.Location.Location');
- if (isLocationAvailable) {
-   console.log('该设备支持位置信息');
-   geolocation.getCurrentLocation((location) => {
-     console.log(location.latitude, location.longitude);
-   })
- } else {
-   console.log('该设备不支持位置信息');
- }
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'unknown';
+  aboutToAppear() {
+    if (canIUse('SystemCapability.Location.Location')) {
+      geolocation.getCurrentLocation().then((location) => {
+        this.message = 'current location: ' + JSON.stringify(location)
+      })
+    } else {
+      this.message = 'This device does not have the ability to get location.'
+    }
+  }
+
+  build() {
+    Row() {
+      Text(this.message).fontSize(24)
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**

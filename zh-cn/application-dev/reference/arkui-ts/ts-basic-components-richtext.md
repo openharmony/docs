@@ -1,13 +1,12 @@
 # RichText
 
->  **说明：**
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
 富文本组件，解析并显示HTML格式文本。
 
-## 权限列表
+>  **说明：**
+>
+> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-无
+
 
 ## 子组件
 
@@ -17,12 +16,12 @@
 
 RichText(content:string)
 
-- 参数
+**参数:**
 
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | content | string | 是 | - | 表示HTML格式的字符串。 |
- 
+| 参数名 | 参数类型 | 必填  | 参数描述 |
+| ------- | -------- | ------------- | -------- |
+| content | string | 是   | 表示HTML格式的字符串。 |
+
 
 ## 事件
 
@@ -48,33 +47,35 @@ RichText(content:string)
 | \<script>\</script> | 用于定义客户端文本，比如JavaScript。 | \<script>document.write("Hello World!")\</script> |
 
 ## 示例
+
 示例效果请以真机运行为准，当前IDE预览器不支持。
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct RichTextExample {
-  @State data: string = "<h1 style='text-align: center;'>h1标题</h1>" +
-                        "<h1 style='text-align: center;'><i>h1斜体</i></h1>" +
-                        "<h1 style='text-align: center;'><u>h1下划线</u></h1>" +
-                        "<h2 style='text-align: center;'>h2标题</h2>" +
-                        "<h3 style='text-align: center;'>h3标题</h3>" +
-                        "<p style='text-align: center;'>p常规</p><hr/>" +
-                        "<div style='width: 500px;height: 500px;border: 1px solid;margin: 0auto;'>" +
-                        "<p style='font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)'>字体大小35px,行高45px</p>" +
-                        "<p style='background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;'>" +
-                        "<p>这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字</p>"
+  @State data: string = '<h1 style="text-align: center;">h1标题</h1>' +
+  '<h1 style="text-align: center;"><i>h1斜体</i></h1>' +
+  '<h1 style="text-align: center;"><u>h1下划线</u></h1>' +
+  '<h2 style="text-align: center;">h2标题</h2>' +
+  '<h3 style="text-align: center;">h3标题</h3>' +
+  '<p style="text-align: center;">p常规</p><hr/>' +
+  '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
+  '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">字体大小35px,行高45px</p>' +
+  '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
+  '<p>这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字</p>';
 
   build() {
-    Flex({direction: FlexDirection.Column,alignItems: ItemAlign.Center,
-    justifyContent: FlexAlign.Center }){
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center }) {
       RichText(this.data)
-      .onStart(()=>{
-        console.info("RichText onStart")
-      })
-      .onComplete(()=>{
-        console.info("RichText onComplete")
-      })
+        .onStart(() => {
+          console.info('RichText onStart');
+        })
+        .onComplete(() => {
+          console.info('RichText onComplete');
+        })
     }
   }
 }
