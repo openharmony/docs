@@ -500,7 +500,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback used to return the KV store IDs obtained. |
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the KV store IDs obtained. |
 
 **Example**
 
@@ -600,7 +600,7 @@ Unsubscribes from service status changes. This API returns the result synchronou
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event. |
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event.|
 
 
 **Example**
@@ -1008,7 +1008,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved5 = resultSet.move();
+    const moved5 = resultSet.move(1);
     console.log("move succeed:" + moved5);
 } catch (e) {
     console.log("move failed: " + e);
@@ -1048,7 +1048,7 @@ try {
     }).catch((err) => {
         console.log('getResultSet failed: ' + err);
     });
-    const moved6 = resultSet.moveToPosition();
+    const moved6 = resultSet.moveToPosition(1);
     console.log("moveToPosition succeed: " + moved6);
 } catch (e) {
     console.log("moveToPosition failed: " + e);
@@ -2520,7 +2520,7 @@ Deletes a backup file. This API uses an asynchronous callback to return the resu
 
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
+| files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants). |
 | callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the name of the backup file deleted and the operation result.                |
 
 **Example**
@@ -2609,7 +2609,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization complete events. This API returns the result synchronously.
+Subscribes to synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3615,7 +3615,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |Key prefix to match. |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs obtained. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs obtained. |
 
 **Example**
 
@@ -4270,7 +4270,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to the synchronization complete events. This API returns the result synchronously.
+Subscribes to synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4306,7 +4306,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization complete events. This API returns the result synchronously.
+Unsubscribes from synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4404,7 +4404,7 @@ class KvstoreModel {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -4617,7 +4617,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
 
 **Example**
 
@@ -4696,7 +4696,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback used to return the KV pairs obtained.   |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4802,7 +4802,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
 
 **Example**
 
@@ -5699,7 +5699,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5738,7 +5738,7 @@ try {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview] (../../database/database-mdds-overview.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of the distributed data service, see [Distributed Data Service Overview](../../database/database-mdds-overview.md).
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5816,7 +5816,7 @@ try {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from the synchronization complete events. This API returns the result synchronously.
+Unsubscribes from synchronization complete events. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
