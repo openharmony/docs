@@ -2021,7 +2021,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 ```js
 try {
   sensor.getDeviceAltitude(0, 200, function(data)  {
-          console.info("Successed to get getDeviceAltitude interface get data: " + data);
+          console.info('Successed to get getDeviceAltitude interface get data: ' + data);
   });
 } catch (err) {
         console.error('getDeviceAltitude failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2084,7 +2084,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 ```js
 try {
   sensor.getInclination ([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
-          console.info("Successed to get getInclination  interface get data: " + data);
+          console.info('Successed to get getInclination  interface get data: ' + data);
   })
 } catch (err) {
         console.error('getInclination failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2185,10 +2185,10 @@ try {
   const promise = sensor.getAngleVariation([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
           for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
+              console.info('data[' + i + ']: ' + data[i]);
           }
       }).catch((reason) => {
-          console.info("promise::catch", reason);
+          console.info('promise::catch ', reason);
   })
 } catch (err) {
         console.error('getAngleVariation failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2216,7 +2216,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<A
 try {
   sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data) {
       for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
+          console.info('data[' + i + ']: ' + data[i]);
       }
   })
 } catch (err) {
@@ -2251,10 +2251,10 @@ try {
   const promise = sensor.getRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
           for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
+              console.info('data[' + i + ']: ' + data[i]);
           }
       }).catch((reason) => {
-          console.info("promise::catch", reason);
+          console.info('promise::catch ', reason);
   })
 } catch (err) {
         console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2284,7 +2284,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 try {
     sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, function(data) {
         for (var i=0; i < data.length; i++) {
-            console.info("transformRotationMatrix  data[ " + i + "] = " + data[i]);
+            console.info('transformRotationMatrix  data[' + i + '] = ' + data[i]);
         }
     })
 } catch (err) {
@@ -2320,7 +2320,7 @@ try {
     const promise = sensor.transformRotationMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
         for (var i=0; i < data.length; i++) {
-            console.info("transformRotationMatrix data[ " + i + "] = " + data[i]);
+            console.info('transformRotationMatrix  data[' + i + '] = ' + data[i]);
         }
     }).catch((err) => {
            console.info("Operation failed");
@@ -2351,7 +2351,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback<Array
 try {
     sensor.getQuaternion ([0.20046076, 0.21907, 0.73978853, 0.60376877], function(data)  {
       for (var i=0; i < data.length; i++) {
-          console.info("data[" + i + "]: " + data[i]);
+          console.info('data[' + i + ']: ' + data[i]);
       }
   })
 } catch (err) {
@@ -2387,7 +2387,7 @@ try {
       promise.then((data) => {
           console.info('getQuaternionn_promise successed');
           for (var i=0; i < data.length; i++) {
-              console.info("data[" + i + "]: " + data[i]);
+              console.info('data[' + i + ']: ' + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2419,7 +2419,7 @@ try {
   sensor.getOrientation([1, 0, 0, 0, 1, 0, 0, 0, 1], function(data)  {
       console.info("SensorJsAPI--->Successed to get getOrientation interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
-          console.info("sensor_getOrientation_callback" + data[i]);
+          console.info('sensor_getOrientation_callback ' + data[i]);
       }
   })
 } catch (err) {
@@ -2455,7 +2455,7 @@ try {
       promise.then((data) => {
           console.info('sensor_getOrientation_Promise success', data);
           for (var i = 1; i < data.length; i++) {
-              console.info("sensor_getOrientation_promise" + data[i]);
+              console.info('sensor_getOrientation_promise ' + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
@@ -2486,7 +2486,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 ```js
 try {
   sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], function(data)  {
-      console.info("sensor_getRotationMatrix_callback" + JSON.stringify(data));
+      console.info('sensor_getRotationMatrix_callback ' + JSON.stringify(data));
   })
 } catch (err) {
         console.error('getRotationMatrix failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2520,7 +2520,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 try {
   const promise = sensor.getRotationMatrix ([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
       promise.then((data) => {
-          console.info("sensor_getRotationMatrix_callback" + JSON.stringify(data));
+          console.info('sensor_getRotationMatrix_callback ' + JSON.stringify(data));
       }).catch((err) => {
           console.info('promise failed');
   })
@@ -2548,7 +2548,7 @@ try {
 ```js
 try {
     sensor.getSensorList((data) => {
-        console.info("getSensorList callback in" + data.length);
+        console.info('getSensorList callback in ' + data.length);
         for (var i = 0; i < data.length; i++) {
             console.info("getSensorList " + JSON.stringify(data[i]));
         }
@@ -2577,7 +2577,7 @@ try {
 ```js
 try {
     sensor.getSensorList().then((data) => {
-        console.info("getSensorList promise in" + data.length);
+        console.info('getSensorList promise in ' + data.length);
         for (var i = 0; i < data.length; i++) {
             console.info("getSensorList " + JSON.stringify(data[i]));
         }
@@ -2609,7 +2609,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 ```js
 try {
     sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER, (error, data) =>     {
-        console.info("getSingleSensor " + JSON.stringify(data));
+        console.info('getSingleSensor ' + JSON.stringify(data));
     });
 } catch (err) {
         console.error('getSingleSensor failed. Error code: ' + err.code + '; message: ' + err.message);
@@ -2641,7 +2641,7 @@ try {
 ```js
 try {
     sensor.getSingleSensor(sensor.SensorId.SENSOR_TYPE_ID_ACCELEROMETER).then((data) => {
-        console.info("getSingleSensor " + JSON.stringify(data));
+        console.info('getSingleSensor '+ JSON.stringify(data));
     }, (error)=>{
         console.error('getSingleSensor failed');
     });
