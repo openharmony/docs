@@ -52,7 +52,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   | 参数名   | 类型                                              | 必填 | 说明                                 |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
+  | callback | callback: AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷信息之后的回调 |
 
 **示例：**
 
@@ -110,7 +110,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | callback:AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
+  | callback | callback: AsyncCallback&lt;boolean&gt; | 是   | 挂载指定卷之后的回调 |
 
 **示例：**
 
@@ -154,7 +154,7 @@ unmount(volumeId: string): Promise&lt;boolean&gt;
 
 ## volumemanager.unmount
 
-unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
+unmount(volumeId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 异步卸载指定卷，以callback方式返回。
 
@@ -167,7 +167,7 @@ unmount(volumeId: string, callback:AsyncCallback&lt;boolean&gt;):void
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | 是   | 卷id                 |
-  | callback | callback:AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
+  | callback | callback: AsyncCallback&lt;boolean&gt; | 是   | 卸载指定卷之后的回调 |
 
 **示例：**
 
@@ -226,7 +226,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | 是   | 卷uuid                 |
-  | callback | callback:AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
+  | callback | callback: AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷信息之后的回调 |
 
 **示例：**
 
@@ -347,7 +347,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | 是   | 卷uuid            |
   | description | string                                 | 是   | 卷描述            |
-  | callback   | callback:AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
+  | callback   | callback: AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
 
 **示例：**
 
@@ -410,7 +410,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | 是   | 卷id                |
   | fsType    | string | 是   | 文件系统类型 |
-  | callback | callback:AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
+  | callback | callback: AsyncCallback&lt;void&gt;  | 是   | 对指定卷格式化后的回调  |
 
 **示例：**
 
@@ -473,7 +473,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | 是   | 卷所属的磁盘id      |
   | type     | number                                  | 是   | 分区类型           |
-  | callback | callback:AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
+  | callback | callback: AsyncCallback&lt;void&gt;   | 是   | 对磁盘进行分区      |
 
 **示例：**
 
