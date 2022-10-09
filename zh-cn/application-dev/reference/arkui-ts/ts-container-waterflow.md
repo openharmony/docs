@@ -1,6 +1,8 @@
 # WaterFlow
 
+
 瀑布流容器，由“行”和“列”分割的单元格所组成，通过容器自身的排列规则，将不同大小的“项目”自上而下，如瀑布般紧密布局。
+
 
 > **说明：**
 > 该组件从API Version 9 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
@@ -8,153 +10,185 @@
 
 ## 子组件
 
+
 包含[FlowItem](ts-container-flowitem.md)子组件。
 
 
 ## 接口
 
-WaterFlow(*options*?: {footer?: CustomBuilder, scroller?: Scroller;})
+
+WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller;})
 
 - 参数
 
   | 参数名     | 参数类型                                        | 必填 | 默认值 | 参数描述                                     |
   | ---------- | ----------------------------------------------- | ---- | ------ | -------------------------------------------- |
   | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | -  | 设置WaterFlow尾部组件。  |
-  | scroller | [Scroller](ts-container-scroll.md#Scroller) | 否   | -   | 可滚动组件的控制器。用于与可滚动组件进行绑定。 |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | -   | 可滚动组件的控制器，与可滚动组件绑定。 |
+
 
 ## 属性
 
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| columnsTemplate | string | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br>默认值：'1fr' |
-| rowsTemplate | string | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>默认值：'1fr' |
-| itemConstraintSize | [ConstraintSizeOptions](../../ui/ts-types.md#ConstraintSizeOptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
+| columnsTemplate | string | 设置当前网格布局列的数量，不设置时默认1列。<br/>例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。并支持[auto-fill](#auto-fill说明)。<br>默认值：'1fr' |
+| rowsTemplate | string | 设置当前网格布局行的数量，不设置时默认1行。<br/>例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。并支持[auto-fill](#auto-fill说明)。<br/>默认值：'1fr' |
+| itemConstraintSize | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 设置约束尺寸，子组件布局时，进行尺寸范围限制。               |
 | columnsGap | Length |设置列与列的间距。 <br>默认值：0|
 | rowsGap | Length |设置行与行的间距。<br> 默认值：0|
-| layoutDirection | [FlexDirection](./ts-appendix-enums.md#FlexDirection) |设置布局的主轴方向。|
+| layoutDirection | [FlexDirection](ts-appendix-enums.md#flexdirection) |设置布局的主轴方向。|
+
 
 ## 事件
+
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
 
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onReachStart(event: () => void) | 瀑布流组件到达起始位置时触发。 |
 | onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
 
+
+## auto-fill说明
+
+WaterFlow的columnsTemplate、rowsTemplate属性的auto-fill仅支持以下格式：
+
+```css
+repeat(auto-fill, track-size)
+```
+
+其中repeat、auto-fill为关键字。track-size为行高或者列宽，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效行高或者列宽。
+
+
 ## 示例
 
-```typescript
+
+```ts
 // WaterFlowDataSource.ets
 
-export class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
-
-  public totalCount(): number {
-    return 0
-  }
-
-  public getData(index: number): any {
-    return undefined
-  }
-
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      this.listeners.push(listener)
-    }
-  }
-
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      this.listeners.splice(pos, 1)
-    }
-  }
-
-  notifyDataReload(): void {
-    this.listeners.forEach(listener => {
-      listener.onDataReloaded()
-    })
-  }
-
-  notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataAdded(index)
-    })
-  }
-
-  notifyDataChange(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataChanged(index)
-    })
-  }
-
-  notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataDeleted(index)
-    })
-  }
-
-  notifyDataMove(from: number, to: number): void {
-    this.listeners.forEach(listener => {
-      listener.onDataMoved(from, to)
-    })
-  }
-}
-
-export class WaterFlowDataSource extends BasicDataSource {
-  constructor() {
-    super()
-    for (let i = 0; i <= 100; i++) {
-      this.dataArray.push(i);
-    }
-  }
+// 实现IDataSource接口的对象，用于瀑布流组件加载数据
+export class WaterFlowDataSource implements IDataSource {
 
   private dataArray: number[] = []
+  private listeners: DataChangeListener[] = []
 
+  constructor() {
+      for (let i = 0; i <= 100; i++) {
+          this.dataArray.push(i);
+      }
+  }
+
+  // 获取索引对应的数据
   public getData(index: number): any {
-    return this.dataArray[index]
+      return this.dataArray[index]
   }
 
-  public triggerDataSourceUpdated(index): void {
-    this.notifyDataChange(index)
+  // 通知控制器数据重新加载
+  notifyDataReload(): void {
+      this.listeners.forEach(listener => {
+          listener.onDataReloaded()
+      })
   }
 
-  public loadData(index: number): void {
-    this.triggerDataSourceUpdated(index)
+  // 通知控制器数据增加
+  notifyDataAdd(index: number): void {
+      this.listeners.forEach(listener => {
+          listener.onDataAdded(index)
+      })
   }
 
+  // 通知控制器数据变化
+  notifyDataChange(index: number): void {
+      this.listeners.forEach(listener => {
+          listener.onDataChanged(index)
+      })
+  }
+
+  // 通知控制器数据删除
+  notifyDataDelete(index: number): void {
+      this.listeners.forEach(listener => {
+          listener.onDataDeleted(index)
+      })
+  }
+
+  // 通知控制器数据位置变化
+  notifyDataMove(from: number, to: number): void {
+      this.listeners.forEach(listener => {
+          listener.onDataMoved(from, to)
+      })
+  }
+
+  // 获取数据总数
   public totalCount(): number {
-    return this.dataArray.length
+      return this.dataArray.length
   }
 
-  public Delete1stItem(): void {
-    this.dataArray.splice(0, 1)
-    this.notifyDataDelete(0)
+  // 注册改变数据的控制器
+  registerDataChangeListener(listener: DataChangeListener): void {
+      if (this.listeners.indexOf(listener) < 0) {
+          this.listeners.push(listener)
+      }
   }
 
-  public Delete2ndItem(): void{
-    this.dataArray.splice(1, 1)
-    this.notifyDataDelete(1)
+  // 注销改变数据的控制器
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+      const pos = this.listeners.indexOf(listener);
+      if (pos >= 0) {
+          this.listeners.splice(pos, 1)
+      }
   }
 
-  public DeleteLastItem(): void{
-    this.dataArray.splice(-1, 1)
-    this.notifyDataDelete(this.dataArray.length)
+  // 增加数据
+  public Add1stItem(): void{
+      this.dataArray.splice(0, 0, this.dataArray.length)
+      this.notifyDataAdd(0)
   }
 
+  // 在数据尾部增加一个元素
+  public AddLastItem(): void{
+      this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
+      this.notifyDataAdd(this.dataArray.length-1)
+  }
+
+  // 在指定索引位置增加一个元素
   public AddItem(index: number): void{
-    this.dataArray.splice(index, 0, this.dataArray.length)
-    this.notifyDataAdd(index)
+      this.dataArray.splice(index, 0, this.dataArray.length)
+      this.notifyDataAdd(index)
   }
 
+  // 删除第一个元素
+  public Delete1stItem(): void {
+      this.dataArray.splice(0, 1)
+      this.notifyDataDelete(0)
+  }
+
+  // 删除第二个元素
+  public Delete2ndItem(): void{
+      this.dataArray.splice(1, 1)
+      this.notifyDataDelete(1)
+  }
+
+  // 删除最后一个元素
+  public DeleteLastItem(): void{
+      this.dataArray.splice(-1, 1)
+      this.notifyDataDelete(this.dataArray.length)
+  }
+
+  // 重新加载数据
   public Reload(): void{
-    this.dataArray.splice(1, 1);
-    this.dataArray.splice(3, 2);
-    this.notifyDataReload();
+      this.dataArray.splice(1, 1);
+      this.dataArray.splice(3, 2);
+      this.notifyDataReload();
   }
 }
 ```
 
-```typescript
+```ts
 // WaterflowDemo.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
@@ -168,6 +202,7 @@ struct WaterflowDemo {
   scroller: Scroller = new Scroller();
   datasource: WaterFlowDataSource = new WaterFlowDataSource();
 
+  // 计算flow item宽/高  
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
@@ -225,4 +260,4 @@ struct WaterflowDemo {
 }
 ```
 
-![zh-cn_image_WaterFlow.gif](figures/WaterFlow.gif)
+![zh-cn_image_WaterFlow.gif](figures/waterflow.gif)
