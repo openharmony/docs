@@ -130,7 +130,7 @@ listener.on('change', onPortrait)
     }
   
     aboutToAppear() {
-      portraitFunc = this.onPortrait.bind(this) //bind current js instance
+      portraitFunc = this.onPortrait.bind(this) //绑定当前应用实例
       this.listener.on('change', portraitFunc)
     }
   

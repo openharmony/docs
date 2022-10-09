@@ -80,3 +80,5 @@ struct RichTextExample {
   }
 }
 ```
+
+ ![richText](figures/richText.png) 

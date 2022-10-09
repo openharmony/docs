@@ -50,18 +50,41 @@ The following uses a single KV store as an example to describe the development p
    This permission must also be granted by the user when the application is started for the first time. The sample code is as follows:
 
     ```js
+    // FA model
     import featureAbility from '@ohos.ability.featureAbility';
-	
+
     function grantPermission() {
-        console.info('grantPermission');
-        let context = featureAbility.getContext();
-        context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, function (result) {
-            console.info(`result.requestCode=${result.requestCode}`)
-    
-        })
-        console.info('end grantPermission');
+    console.info('grantPermission');
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666).then((data) => {
+        console.info('success: ${data}');
+    }).catch((error) => {
+        console.info('failed: ${error}');
+    })
     }
-    
+
+    grantPermission();
+
+    // Stage model
+    import Ability from '@ohos.application.Ability';
+
+    let context = null;
+
+    function grantPermission() {
+    class MainAbility extends Ability {
+        onWindowStageCreate(windowStage) {
+        let context = this.context;
+        }
+    }
+
+    let permissions = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+    context.requestPermissionsFromUser(permissions).then((data) => {
+        console.log('success: ${data}');
+    }).catch((error) => {
+        console.log('failed: ${error}');
+    });
+    }
+
     grantPermission();
     ```
 
@@ -73,25 +96,39 @@ The following uses a single KV store as an example to describe the development p
    The sample code is as follows:
 
    ```js
+   // Obtain the context of the FA model.
+   import featureAbility from '@ohos.ability.featureAbility';
+   let context = featureAbility.getContext();
+
+   // Obtain the context of the stage model.
+   import AbilityStage from '@ohos.application.Ability';
+   let context = null;
+   class MainAbility extends AbilityStage{
+      onWindowStageCreate(windowStage){
+        context = this.context;
+      }
+   }
+
    let kvManager;
    try {
      const kvManagerConfig = {
        bundleName: 'com.example.datamanagertest',
        userInfo: {
+         context:context,
          userId: '0',
          userType: distributedData.UserType.SAME_USER_ID
        }
      }
      distributedData.createKVManager(kvManagerConfig, function (err, manager) {
        if (err) {
-         console.log("createKVManager err: " + JSON.stringify(err));
+         console.log('Failed to create KVManager: ${error}');
          return;
        }
-       console.log("createKVManager success");
+       console.log('Created KVManager successfully');
        kvManager = manager;
      });
    } catch (e) {
-     console.log("An unexpected error occurred. Error: " + e);
+     console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -115,14 +152,14 @@ The following uses a single KV store as an example to describe the development p
      };
      kvManager.getKVStore('storeId', options, function (err, store) {
        if (err) {
-         console.log("getKVStore err: " + JSON.stringify(err));
+         console.log('Failed to get KVStore: ${err}');
          return;
        }
-       console.log("getKVStore success");
+       console.log('Got KVStore successfully');
        kvStore = store;
      });
    } catch (e) {
-     console.log("An unexpected error occurred. Error: " + e);
+     console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -136,7 +173,7 @@ The following uses a single KV store as an example to describe the development p
 
    ```js
    kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_ALL, function (data) {
-       console.log("dataChange callback call data: " + JSON.stringify(data));
+       console.log("dataChange callback call data:  ${data}");
    });
    ```
 
@@ -153,13 +190,13 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.log('Failed to put data:  ${error}');
                return;
            }
-           console.log("put success");
+           console.log('Put data successfully');
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error: " + e);
+       console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -176,16 +213,16 @@ The following uses a single KV store as an example to describe the development p
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
            if (err != undefined) {
-               console.log("put err: " + JSON.stringify(err));
+               console.log('Failed to put data:  ${error}');
                return;
            }
-           console.log("put success");
+           console.log('Put data successfully');
            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err, data) {
-               console.log("get success data: " + data);
+               console.log('Got data successfully:  ${data}');
            });
        });
    } catch (e) {
-       console.log("An unexpected error occurred. Error: " + e);
+       console.log('An unexpected error occurred. Error:  ${e}');
    }
    ```
 
@@ -204,7 +241,7 @@ The following uses a single KV store as an example to describe the development p
    
    let devManager;
    // Create deviceManager.
-   deviceManager.createDeviceManager("bundleName", (err, value) => {
+   deviceManager.createDeviceManager('bundleName', (err, value) => {
        if (!err) {
            devManager = value;
            // deviceIds is obtained by deviceManager by calling getTrustedDeviceListSync().
@@ -219,7 +256,7 @@ The following uses a single KV store as an example to describe the development p
                // 1000 indicates that the maximum delay is 1000 ms.
                kvStore.sync(deviceIds, distributedData.SyncMode.PUSH_ONLY, 1000);
            } catch (e) {
-                console.log("An unexpected error occurred. Error: " + e);
+                console.log('An unexpected error occurred. Error:  ${e}');
            }
        }
    });

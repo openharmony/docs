@@ -35,7 +35,7 @@
 | maskColor                | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 提示气泡遮障层的颜色。                                          |
 | popupColor               | [ResourceColor](ts-types.md#resourcecolor)  | 否   | 提示气泡的颜色。                                               |
 | enableArrow              | boolean                                      | 否   | 是否显示箭头。<br/>从API Version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，但气泡高度小于箭头的宽度（32vp），则实际不会显示箭头。<br/>默认值：true |
-| autoCancel               | boolean                                      | 否   | 页面有操作时，是否自动关闭气泡<br/>默认值：true                        |
+| autoCancel               | boolean                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true                        |
 | onStateChange            | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。 |
 
 
