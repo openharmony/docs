@@ -37,15 +37,6 @@
 | position | [BadgePosition](#badgeposition枚举说明) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
-## BadgeStyle对象说明
-
-| 名称 | 类型 | 必填 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md) | 否 | Color.White | 文本颜色。 |
-| fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
-| badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
-| badgeColor | [ResourceColor](ts-types.md) | 否 | Color.Red | badge的颜色。 |
-
 ## BadgePosition枚举说明
 
 | 名称 | 描述 |

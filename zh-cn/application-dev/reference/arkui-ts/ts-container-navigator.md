@@ -72,7 +72,7 @@ struct NavigatorExample {
 
 ```ts
 // Detail.ets
-import router from '@system.router'
+import router from '@ohos.router'
 
 @Entry
 @Component

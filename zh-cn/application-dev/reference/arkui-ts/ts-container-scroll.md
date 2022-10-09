@@ -161,6 +161,7 @@ scrollBy(dx: Length, dy: Length): void
 
 
 ## 示例
+### 示例1
 
 ```ts
 // xxx.ets
@@ -228,7 +229,7 @@ struct ScrollExample {
 
 ![zh-cn_image_0000001174104386](figures/zh-cn_image_0000001174104386.gif)
 
-
+### 示例2
 ```ts
 @Entry
 @Component
