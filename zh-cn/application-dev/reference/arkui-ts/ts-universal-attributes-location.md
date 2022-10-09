@@ -21,7 +21,7 @@
 
 
 ## 示例
-
+### 示例1
 ```ts
 // xxx.ets
 @Entry
@@ -74,6 +74,7 @@ struct PositionExample1 {
 
 ![align.png](figures/align.png)
 
+### 示例2
 ```ts
 // xxx.ets
 @Entry

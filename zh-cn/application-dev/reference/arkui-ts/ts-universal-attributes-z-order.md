@@ -40,7 +40,10 @@ struct ZIndexExample {
 }
 ```
 Stack容器内子组件不设置zIndex的效果
+
 ![nozindex.png](figures/nozindex.png)
+
 Stack容器子组件设置zIndex后效果
+
 ![zindex.png](figures/zindex.png)
 
