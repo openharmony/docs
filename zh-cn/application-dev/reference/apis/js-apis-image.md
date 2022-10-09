@@ -39,9 +39,11 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 const color = new ArrayBuffer(96);
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts)
-    .then((pixelmap) => {
-        })
+image.createPixelMap(color, opts).then((pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+}).catch(error => {
+    console.log('Failed to create pixelmap.');
+})
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -260,12 +262,7 @@ image.createPixelMap(color, opts)
         }
 
         pixelmap.writePixels(area).then(() => {
-            const readArea = { pixels: new ArrayBuffer(8),
-                offset: 0,
-                stride: 8,
-                // region.size.width + x < opts.width, region.size.height + y < opts.height
-                region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-            }        
+		    console.info('Succeeded to write pixelmap into the specified area.');
         })
     }).catch(error => {
         console.log('error: ' + error);
@@ -290,17 +287,20 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const area = new ArrayBuffer(400);
+const area = { pixels: new ArrayBuffer(8),
+    offset: 0,
+    stride: 8,
+    region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+}
+let bufferArr = new Uint8Array(area.pixels);
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
 pixelmap.writePixels(area, (error) => {
     if (error != undefined) {
 		console.info('Failed to write pixelmap into the specified area.');
 	} else {
-	    const readArea = {
-            pixels: new ArrayBuffer(20),
-            offset: 0,
-            stride: 8,
-            region: { size: { height: 1, width: 2 }, x: 0, y: 0 },
-        }
+		console.info('Succeeded to write pixelmap into the specified area.');
 	}
 })
 ```
@@ -329,9 +329,11 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 ```js
 const color = new ArrayBuffer(96);
-const pixelMap = new ArrayBuffer(400);
 let bufferArr = new Uint8Array(color);
-pixelMap.writeBufferToPixels(color).then(() => {
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
+pixelmap.writeBufferToPixels(color).then(() => {
     console.log("Succeeded in writing data from a buffer to a PixelMap.");
 }).catch((err) => {
     console.error("Failed to write data from a buffer to a PixelMap.");
@@ -357,9 +359,11 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 ```js
 const color = new ArrayBuffer(96);
-const pixelMap = new ArrayBuffer(400);
 let bufferArr = new Uint8Array(color);
-pixelMap.writeBufferToPixels(color, function(err) {
+for (var i = 0; i < bufferArr.length; i++) {
+    bufferArr[i] = i + 1;
+}
+pixelmap.writeBufferToPixels(color, function(err) {
     if (err) {
         console.error("Failed to write data from a buffer to a PixelMap.");
         return;
@@ -386,12 +390,21 @@ getImageInfo(): Promise\<ImageInfo>
 **示例：**
 
 ```js
-const pixelMap = new ArrayBuffer(400);
-pixelMap.getImageInfo().then(function(info) {
-    console.log("Succeeded in obtaining the image pixel map information.");
-}).catch((err) => {
-    console.error("Failed to obtain the image pixel map information.");
-});
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+image.createPixelMap(color, opts).then(pixelmap => {
+    if (pixelmap == undefined) {
+        console.error("Failed to obtain the image pixel map information.");
+    }
+    pixelmap.getImageInfo().then(imageInfo => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
+})
 ```
 
 ### getImageInfo<sup>7+</sup>
@@ -411,8 +424,20 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例:**
 
 ```js
-pixelmap.getImageInfo((imageInfo) => { 
-    console.log("Succeeded in obtaining the image pixel map information.");
+const color = new ArrayBuffer(96);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts, (err, pixelmap) => {
+    if (pixelmap == undefined) {
+        console.error("Failed to obtain the image pixel map information.");
+    }
+    pixelmap.getImageInfo((err, imageInfo) => {
+        if (imageInfo == undefined) {
+            console.error("Failed to obtain the image pixel map information.");
+        }
+        if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
+            console.log("Succeeded in obtaining the image pixel map information.");
+        }
+    })
 })
 ```
 
@@ -499,9 +524,15 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.opacity(0.5);
-}
+var rate = 0.5;
+pixelmap.opacity(rate, (err) => {
+	if (err) {
+        console.error("Failed to set opacity.");
+        return;
+    } else {
+        console.log("Succeeded in setting opacity.");
+	}
+})
 ```
 
 ### opacity<sup>9+</sup>
@@ -527,8 +558,8 @@ opacity(rate: number): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.opacity(0.5);
+async function Demo() {
+    await pixelmap.opacity(0.5);
 }
 ```
 
@@ -549,13 +580,9 @@ createAlphaPixelmap(): Promise\<PixelMap>
 **示例：**
 
 ```js
-pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
-    if (alphaPixelMap == undefined) {
-        console.info('Failed to obtain new pixel map.');
-    } else {
-        console.info('Succeed in obtaining new pixel map.');
-    }
-})
+async function Demo() {
+    await pixelmap.createAlphaPixelmap();
+}   
 ```
 
 ### createAlphaPixelmap<sup>9+</sup>
@@ -575,14 +602,13 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```js
-let pixelMap = await imageSource.createPixelMap();
-if (pixelMap != undefined) {
-    pixelMap.createAlphaPixelmap(async (err, alphaPixelMap) => {
-        console.info('Failed to obtain new pixel map.');    
-    })
-} else {
-    console.info('Succeed in obtaining new pixel map.');
-}
+pixelmap.createAlphaPixelmap((err, alphaPixelMap) => {
+    if (alphaPixelMap == undefined) {
+        console.info('Failed to obtain new pixel map.');
+    } else {
+        console.info('Succeed in obtaining new pixel map.');
+    }
+})
 ```
 
 ### scale<sup>9+</sup>
@@ -604,8 +630,8 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.scale(2.0, 1.0);
+async function Demo() {
+	await pixelmap.scale(2.0, 1.0);
 }
 ```
 
@@ -633,8 +659,8 @@ scale(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.scale(2.0, 1.0);
+async function Demo() {
+	await pixelmap.scale(2.0, 1.0);
 }
 ```
 
@@ -657,8 +683,8 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.translate(3.0, 1.0);
+async function Demo() {
+	await pixelmap.translate(3.0, 1.0);
 }
 ```
 
@@ -686,8 +712,8 @@ translate(x: number, y: number): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.translate(3.0, 1.0);
+async function Demo() {
+	await pixelmap.translate(3.0, 1.0);
 }
 ```
 
@@ -709,8 +735,8 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.rotate(90.0);
+async function Demo() {
+	await pixelmap.rotate(90.0);
 }
 ```
 
@@ -737,8 +763,8 @@ rotate(angle: number): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.rotate(90.0);
+async function Demo() {
+	await pixelmap.rotate(90.0);
 }
 ```
 
@@ -761,8 +787,8 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.flip(false, true);
+async function Demo() {
+	await pixelmap.flip(false, true);
 }
 ```
 
@@ -790,8 +816,8 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.flip(false, true);
+async function Demo() {
+	await pixelmap.flip(false, true);
 }
 ```
 
@@ -813,8 +839,8 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+async function Demo() {
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -841,8 +867,8 @@ crop(region: Region): Promise\<void>
 **示例：**
 
 ```js
-async function () {
-	await pixelMap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
+async function Demo() {
+	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
 
@@ -863,15 +889,10 @@ release():Promise\<void>
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-    pixelmap.release().then(() => {
-	    console.log('Succeeded in releasing pixelmap object.');
-    }).catch(error => {
-	    console.log('Failed to release pixelmap object.');
-    })
+pixelmap.release().then(() => {
+	console.log('Succeeded in releasing pixelmap object.');
+}).catch(error => {
+	console.log('Failed to release pixelmap object.');
 })
 ```
 
@@ -892,13 +913,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-    pixelmap.release().then(() => {
-	    console.log('Succeeded in releasing pixelmap object.');
-    })
+pixelmap.release(() => {
+    console.log('Succeeded in releasing pixelmap object.');
 })
 ```
 
@@ -953,7 +969,8 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource('/sdcard/test.jpg');
+var sourceOptions = { sourceDensity: 120 };
+let imageSource = image.createImageSource('test.png', sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1006,7 +1023,8 @@ createImageSource(fd: number, options: SourceOptions): ImageSource
 **示例：**
 
 ```js
-const imageSourceApi = image.createImageSource(fd);
+var sourceOptions = { sourceDensity: 120 };
+const imageSourceApi = image.createImageSource(0, sourceOptions);
 ```
 
 ## image.createImageSource<sup>9+</sup>
@@ -1082,7 +1100,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.CreateIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1110,7 +1128,7 @@ CreateIncrementalSource(buf: ArrayBuffer, options?: SourceOptions): ImageSource
 
 ```js
 const buf = new ArrayBuffer(96);
-const imageSourceApi = image.CreateIncrementalSource(buf);
+const imageSourceIncrementalSApi = image.CreateIncrementalSource(buf);
 ```
 
 ## ImageSource
@@ -1123,7 +1141,7 @@ const imageSourceApi = image.CreateIncrementalSource(buf);
 
 | 名称             | 类型           | 可读 | 可写 | 说明                                                         |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，wbmp，bmp，gif，webp，heif等。 |
+| supportedFormats | Array\<string> | 是   | 否   | 支持的图片格式，包括：png，jpeg，bmp，gif，webp，RAW。 |
 
 ### getImageInfo
 
@@ -1281,7 +1299,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 **示例：**
 
 ```js
-const property = new ArrayBuffer(400);
+let property = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty("BitsPerSample",property,(error,data) => { 
     if(error) {
         console.log('Failed to get the value of the specified attribute key of the image.');
@@ -1315,11 +1333,10 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "120")
-            .then(() => {
-                const w = imageSourceApi.getImageProperty("ImageWidth")
-                console.info('w', w);
-            })
+imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
+    const w = imageSourceApi.getImageProperty("ImageWidth")
+    console.info('w', w);
+})
 ```
 
 ### modifyImageProperty<sup>9+</sup>
@@ -1371,9 +1388,9 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 
 ```js
 const array = new ArrayBuffer(100);
-imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
-            console.info('Succeeded in updating data.');
-        })
+imageSourceApi.updateData(array, false, 0, 10).then(data => {
+    console.info('Succeeded in updating data.');
+})
 ```
 
 
@@ -1399,11 +1416,11 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 
 ```js
 const array = new ArrayBuffer(100);
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
-            if(data !== undefined){
-                console.info('Succeeded in updating data.');     
-            }
-		})
+imageSourceApi.updateData(array, false, 0, 10,(error,data )=> {
+    if(data !== undefined){
+        console.info('Succeeded in updating data.');     
+    }
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1476,7 +1493,15 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```js
-const decodingOptions = new ArrayBuffer(400);
+let decodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
     console.log('Succeeded in creating pixelmap object.');
 })
@@ -1550,7 +1575,7 @@ const imagePackerApi = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例，当前支持格式有：jpeg webp。
 
 ### 属性
 
@@ -1579,8 +1604,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```js
+const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
-const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
 
@@ -1608,8 +1633,8 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
+const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 }
-const imageSourceApi = new ArrayBuffer(400);
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
         console.log('packing succeeded.');
@@ -1637,10 +1662,14 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 **示例：**
 
 ```js
-let packOpts = { format:"image/jpeg", quality:98 }
-const pixelMapApi = new ArrayBuffer(400);
-imagePackerApi.packing(pixelMapApi, packOpts, data => { 
-    console.log('Succeeded in packing the image.');
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap) => {
+    let packOpts = { format:"image/jpeg", quality:98 }
+    imagePackerApi.packing(pixelmap, packOpts, data => { 
+        console.log('Succeeded in packing the image.');
+    })
 })
 ```
 
@@ -1668,14 +1697,18 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```js
-let packOpts = { format:"image/jpeg", quality:98 }
-const pixelMapApi = new ArrayBuffer(400);
-imagePackerApi.packing(pixelMapApi, packOpts)
-    .then( data => {
-	    console.log('Succeeded in packing the image.');
-	}).catch(error => {
-	    console.log('Failed to pack the image..');
-	})
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap) => {
+    let packOpts = { format:"image/jpeg", quality:98 }
+    imagePackerApi.packing(pixelmap, packOpts)
+        .then( data => {
+            console.log('Succeeded in packing the image.');
+        }).catch(error => {
+            console.log('Failed to pack the image..');
+        })
+})
 ```
 
 ### release
@@ -1761,7 +1794,7 @@ var receiver = image.createImageReceiver(8192, 8, 4, 8);
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称     | 类型                         | 可读 | 可写 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
@@ -1990,7 +2023,7 @@ receiver.release().then(() => {
 
 ### 属性
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 类型               | 可读 | 可写 | 说明                                               |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
@@ -2105,20 +2138,20 @@ img.release().then(() =>{
 
 表示图片指定区域内的数据。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                    |
+| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4                      |
 | region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
 表示图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
@@ -2128,7 +2161,7 @@ img.release().then(() =>{
 
 表示图片尺寸。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称   | 类型   | 可读 | 可写 | 说明           |
 | ------ | ------ | ---- | ---- | -------------- |
@@ -2139,33 +2172,33 @@ img.release().then(() =>{
 
 枚举，图片像素格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                   | 默认值 | 描述              |
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888。 |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888。 |
+| RGBA_8888              | 3      | 格式为RGBA_8888   |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888   |
 
 ## AlphaType<sup>9+</sup>
 
 枚举，图像的透明度类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称     | 默认值 | 描述                    |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha。          |
-| UNPREMUL | 3      | RGB不前乘alpha。        |
+| PREMUL   | 2      | RGB前乘alpha           |
+| UNPREMUL | 3      | RGB不前乘alpha         |
 
 ## ScaleMode<sup>9+</sup>
 
 枚举，图像的缩放模式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称            | 默认值 | 描述                                               |
 | --------------- | ------ | -------------------------------------------------- |
@@ -2176,7 +2209,7 @@ img.release().then(() =>{
 
 ImageSource的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 类型                               | 可读 | 可写 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
@@ -2189,7 +2222,7 @@ ImageSource的初始化选项。
 
 PixelMap的初始化选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称                     | 类型                               | 可读 | 可写 | 说明           |
 | ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
@@ -2203,7 +2236,7 @@ PixelMap的初始化选项。
 
 图像解码设置选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称               | 类型                               | 可读 | 可写 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
@@ -2219,7 +2252,7 @@ PixelMap的初始化选项。
 
 表示区域信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称 | 类型          | 可读 | 可写 | 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
@@ -2231,18 +2264,18 @@ PixelMap的初始化选项。
 
 表示图片打包选项。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImagePacker
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。  |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp  |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100 |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
 表示查询图片属性的索引。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageSource
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 | 名称         | 类型   | 可读 | 可写 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
@@ -2253,7 +2286,7 @@ PixelMap的初始化选项。
 
 枚举，Exif（Exchangeable image file format）图片信息。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称              | 默认值                  | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
@@ -2270,7 +2303,7 @@ PixelMap的初始化选项。
 
 枚举，图片格式。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称         | 默认值 | 描述                 |
 | ------------ | ------ | -------------------- |
@@ -2281,20 +2314,20 @@ PixelMap的初始化选项。
 
 枚举，图像的组件类型。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.ImageReceiver
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 | 名称  | 默认值 | 描述        |
 | ----- | ------ | ----------- |
 | YUV_Y | 1      | 亮度信息。  |
 | YUV_U | 2      | 色度信息。  |
 | YUV_V | 3      | 色度信息。  |
-| JPEG  | 4      | Jpeg 类型。 |
+| JPEG  | 4      | JPEG 类型。 |
 
 ## Component<sup>9+</sup>
 
 描述图像颜色分量。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.Core
 
 | 名称          | 类型                             | 可读 | 可写 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |

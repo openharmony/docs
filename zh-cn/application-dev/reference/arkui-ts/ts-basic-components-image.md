@@ -52,6 +52,7 @@ Image(src: string | PixelMap | Resource)
 >  **说明：**
 >
 >  使用快捷组合键对Image组件复制的前提是，该组件必须处于获焦状态。将Image组件的属性focusable设置为true，即可使用TAB键将焦点切换到Image组件上，再将Image组件的focusOnTouch属性设置为true，即可实现点击获焦。
+>  图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate、animateMotion、animateTransform。
 
 ### ImageInterpolation
 
@@ -348,3 +349,53 @@ struct ImageExample3 {
 ```
 
 ![zh-cn_image_0000001205972610](figures/zh-cn_image_0000001205972610.gif)
+
+###  渲染沙箱路径图片
+
+```
+import fileio from '@ohos.fileio';
+import image from '@ohos.multimedia.image';
+
+const EMPTY_PATH = 'file://';
+
+@Entry
+@Component
+struct LoadImageExample {
+  @State fileContent: string = '';
+  @State path: string = EMPTY_PATH;
+  @State accountInfoHeadPic: any = '';
+
+  build() {
+    Column() {
+      Button('读取沙箱图片')
+        .margin({ bottom: 10 })
+        .onClick(() => {
+          try {
+            this.path = EMPTY_PATH;
+            let context = getContext(this);
+            let path = context.getApplicationContext().filesDir + '/icon.png';
+            console.log(`读取沙箱图片=========>${path}`);
+            let fd = fileio.openSync(path, 0o100, 0o666);
+            console.log(`create file========>${fd}`);
+            let srcPath = context.bundleCodeDir + '/entry/resource/base/media/icon.png';
+            fileio.copyFileSync(srcPath, path);
+            console.log(`error:=============>${e.message}`);
+          }
+        })
+      Button('读取资源图片')
+        .margin({ bottom: 10 })
+        .onClick(() => {
+          this.path = EMPTY_PATH;
+          this.path += getContext(this.bundleCodeDir + '/entry/resource/base/media/icon.png');
+        })
+      Text(`图片路径:${this.path}`)
+        .fontSize(20)
+        .margin({ bottom: 10 })
+      Image(this.path)
+        .width(100)
+        .height(100)
+    }
+    .width('100%').height('100%')
+  }
+}
+```

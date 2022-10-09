@@ -564,6 +564,36 @@ userAgent(userAgent: string)
   }
   ```
 
+### webDebuggingAccess<sup>9+</sup>
+
+webDebuggingAccess(webDebuggingAccess: boolean)
+
+设置是否启用网页调试功能。
+
+**参数：**
+
+| 参数名       | 参数类型   | 必填   | 默认值  | 参数描述      |
+| --------- | ------ | ---- | ---- | --------- |
+| webDebuggingAccess | boolean | 是    | false    | 设置是否启用网页调试功能。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    @State webDebuggingAccess: boolean = true;
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .webDebuggingAccess(this.webDebuggingAccess)
+      }
+    }
+  }
+  ```
+
 >  **说明：**
 >
 >  通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。

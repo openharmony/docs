@@ -1428,7 +1428,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 
 setTransform(scaleX: number, skewX: number, skewY: number, scale: number, translateX: number, translateY: number): void
 
-setTransfrom方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
+setTransform方法使用的参数和transform()方法相同，但setTransform()方法会重置现有的变换矩阵并创建新的变换矩阵。
 
 **参数：** 
 

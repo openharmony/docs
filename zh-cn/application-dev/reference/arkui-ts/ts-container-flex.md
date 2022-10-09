@@ -242,8 +242,6 @@ struct FlexExample4 {
 
 ![zh-cn_image_0000001174422904](figures/zh-cn_image_0000001174422904.jpg)
 
-![zh-cn_image_0000001219662653](figures/zh-cn_image_0000001219662653.gif)
-
 ```ts
 // xxx.ets
 @Component

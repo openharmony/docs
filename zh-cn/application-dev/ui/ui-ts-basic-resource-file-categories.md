@@ -4,7 +4,7 @@
 
 ## resources目录
 
-应用的资源文件（字符串、图片、音频等）统一存放于resources目录下，便于开发者使用和维护。resources目录包括两大类目录，一类为base目录与限定词目录，另一类为rawfile目录，详见resources目录分类。
+应用的资源文件（字符串、图片、音频等）统一存放于resources目录下，便于开发者使用和维护。resources目录包括两大类目录，一类为base目录与限定词目录，另一类为rawfile目录，详见resources目录分类，stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
 
   资源目录示例：
 

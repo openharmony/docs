@@ -14,23 +14,23 @@ The data provider can directly use the **DataShare** framework to share data wit
 Before you get started, familiarize yourself with the following concepts:
 
 
-- Data provider
+- **Data provider**
 
   An application that provides data and implements related services. It is also called a producer or server.
 
-- Data consumer
+- **Data consumer**
 
   An application that accesses the data or services provided by a data provider. It is also called a client.
 
-- Value bucket (**ValuesBucket**)
+- **ValuesBucket**
 
   One or more data records stored in the form of key-value (KV) pairs. The keys are of the string type. The values can be of the number, string, Boolean, or Unit8Array type.
 
-- Result set
+- **Result set**
   
   A collection of query results. Flexible data access modes are provided for users to obtain data.
   
-- Predicate
+- **Predicate**
   
   Conditions specified for updating, deleting, or querying data in the database.
 

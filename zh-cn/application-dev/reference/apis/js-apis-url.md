@@ -25,7 +25,7 @@ URLSearchParams的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| init | string[][]&nbsp;\|&nbsp;Record&lt;string,&nbsp;string&gt;&nbsp;\|&nbsp;string&nbsp;\|&nbsp;URLSearchParams | 否 | 入参对象。<br/>-&nbsp;string[][]：字符串二维数组<br/>-&nbsp;Record&lt;string,&nbsp;string&gt;：对象列表<br/>-&nbsp;string：字符串<br/>-&nbsp;URLSearchParams：对象 |
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象 |
 
 **示例：**
 
@@ -127,7 +127,7 @@ entries(): IterableIterator<[string, string]>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | 返回一个ES6的迭代器。 |
+| IterableIterator&lt;[string, string]&gt; | 返回一个ES6的迭代器。 |
 
 **示例：**
 
@@ -191,7 +191,7 @@ get(name: string): string | null
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 返回第一个值。 |
-| null | 如果没找到，返回&nbsp;null。 |
+| null | 如果没找到，返回 null。 |
 
 **示例：**
 
@@ -332,7 +332,7 @@ for (var value of searchParams.values()) {
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[string,&nbsp;string]&gt; | 返回一个ES6的迭代器。 |
+| IterableIterator&lt;[string, string]&gt; | 返回一个ES6的迭代器。 |
 
 **示例：**
 
@@ -403,7 +403,7 @@ URL的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 入参对象。 |
-| base | string&nbsp;\|&nbsp;URL | 否 | 入参字符串或者对象。<br/>-&nbsp;string：字符串<br/>-&nbsp;URL：字符串或对象 |
+| base | string \| URL | 否 | 入参字符串或者对象。<br/>- string：字符串<br/>- URL：字符串或对象 |
 
 **示例：**
 
@@ -441,7 +441,7 @@ toString(): string
 
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString()
+url.toString();
 ```
 
 
@@ -462,5 +462,5 @@ toJSON(): string
 **示例：**
 ```js
 const url = new Url.URL('http://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON()
+url.toJSON();
 ```

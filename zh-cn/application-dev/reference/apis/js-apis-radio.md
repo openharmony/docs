@@ -384,6 +384,26 @@ promise.then(data => {
 });
 ```
 
+## radio.isNrSupported<sup>7+</sup>
+
+isNrSupported\(\): boolean
+
+判断当前设备是否支持5G\(NR\)。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型    | 说明                             |
+| ------- | -------------------------------- |
+| boolean | - true：支持<br/>- false：不支持 |
+
+**示例：**
+
+```js
+let result = radio.isNrSupported();
+console.log("Result: "+ result);
+```
 
 ## radio.isNrSupported<sup>8+</sup>
 
@@ -1819,10 +1839,10 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, (err, data) =
 
 | 名称                          | 值   | 说明                       |
 | ----------------------------- | ---- | -------------------------- |
-| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务。     |
-| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用业务。     |
+| REG_STATE_NO_SERVICE          | 0    | 设备不能使用任何服务，包括数据业务、短信、通话等。     |
+| REG_STATE_IN_SERVICE          | 1    | 设备可以正常使用服务，包括数据业务、短信、通话等。     |
 | REG_STATE_EMERGENCY_CALL_ONLY | 2    | 设备只能使用紧急呼叫业务。 |
-| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭。         |
+| REG_STATE_POWER_OFF           | 3    | 蜂窝无线电已关闭，modem下电，无法和网侧进行通信。      |
 
 
 ## NsaState

@@ -92,6 +92,8 @@ prompt.showDialog({
   })
 ```
 
+ ![zh-cn_image_0002](figures/zh-cn_image_0002.gif) 
+
 ## prompt.showDialog
 
 showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSuccessResponse&gt;):void 
@@ -131,6 +133,8 @@ prompt.showDialog({
   console.info('showDialog success callback, click button: ' + data.index);
 });
 ```
+
+ ![zh-cn_image_0004](figures/zh-cn_image_0004.gif) 
 
 ## ShowDialogOptions
 
@@ -194,6 +198,8 @@ prompt.showActionMenu({
   console.info('showActionMenu success callback, click button: ' + data.index);
 })
 ```
+
+ ![zh-cn_image_0005](figures/zh-cn_image_0005.gif) 
 
 ## prompt.showActionMenu
 

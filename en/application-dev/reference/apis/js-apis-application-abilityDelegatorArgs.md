@@ -11,7 +11,7 @@ The **AbilityDelegatorArgs** module provides a global register to store the regi
 The ability delegator arguments are obtained by calling **getArguments** in **AbilityDelegatorRegistry**.
 
 ```js
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 var args = AbilityDelegatorRegistry.getArguments();
 ```
@@ -24,7 +24,7 @@ Describes the ability delegator arguments.
 
 | Name               | Type                  | Readable| Writable| Description                                                        |
 | ------------------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string                 | Yes  | Yes  | Bundle name of the application to test. |
-| parameters          | {[key:string]: string} | Yes  | Yes  | Parameters of the unit test that is started currently. |
-| testCaseNames       | string                 | Yes  | Yes  | Test case names. |
-| testRunnerClassName | string                 | Yes  | Yes  | Names of the test case executors. |
+| bundleName          | string                 | Yes  | Yes  | Bundle name of the application to test.|
+| parameters          | {[key:string]: string} | Yes  | Yes  | Parameters of the unit test that is started currently.|
+| testCaseNames       | string                 | Yes  | Yes  | Test case names.|
+| testRunnerClassName | string                 | Yes  | Yes  | Names of the test case executors.|

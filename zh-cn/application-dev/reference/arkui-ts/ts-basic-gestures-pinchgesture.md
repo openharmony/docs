@@ -36,28 +36,42 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 @Entry
 @Component
 struct PinchGestureExample {
-  @State scaleValue: number = 1
+  @State scaleValue: number = 1;
+  @State pinchValue: number = 1;
+  @State pinchX: number = 0;
+  @State pinchY: number = 0;
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text('PinchGesture scale:' + this.scaleValue)
-    }
-    .height(100).width(200).padding(20).border({ width: 1 }).margin(80)
-    .scale({ x: this.scaleValue, y: this.scaleValue, z: this.scaleValue })
-    .gesture(
-      PinchGesture()
+    Column() {
+      Column() {
+        Text('PinchGesture scale:\n' + this.scaleValue)
+        Text('PinchGesture center:\n(' + this.pinchX + ',' + this.pinchY + ')')
+      }
+      .height(200)
+      .width(300)
+      .padding(20)
+      .border({ width: 3 })
+      .margin({ top: 100 })
+      .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
+      // 三指捏合触发该手势事件
+      .gesture(
+      PinchGesture({ fingers: 3 })
         .onActionStart((event: GestureEvent) => {
-          console.info('Pinch start')
+          console.info('Pinch start');
         })
         .onActionUpdate((event: GestureEvent) => {
-          this.scaleValue = event.scale
+          this.scaleValue = this.pinchValue * event.scale;
+          this.pinchX = event.pinchCenterX;
+          this.pinchY = event.pinchCenterY;
         })
         .onActionEnd(() => {
-          console.info('Pinch end')
+          this.pinchValue = this.scaleValue;
+          console.info('Pinch end');
         })
-    )
+      )
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001174582848](figures/zh-cn_image_0000001174582848.gif)
+![zh-cn_image_0000001174582848](figures/zh-cn_image_0000001174582848.png)
