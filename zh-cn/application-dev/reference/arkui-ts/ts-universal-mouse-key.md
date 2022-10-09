@@ -1,3 +1,7 @@
+
+
+
+
 # 鼠标事件
 
 在鼠标的单个动作触发多个事件时，事件的顺序是固定的，鼠标事件默认透传。
@@ -104,3 +108,13 @@ struct MouseEventExample {
   }
 }
 ```
+
+示意图：
+
+鼠标悬浮时改变文本内容与背景颜色：
+
+ ![mouse](figures/mouse.png) 
+
+鼠标点击时：
+
+![mouse1](figures/mouse1.png)
