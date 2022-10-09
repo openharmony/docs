@@ -832,7 +832,7 @@ getVolumeGroupInfos();
 | TONE_TYPE_COMMON_SUPERVISORY_DIAL                 | 100    | 呼叫监听音，拨号音。           |
 | TONE_TYPE_COMMON_SUPERVISORY_BUSY                 | 101    | 通话监听音，忙。               |
 | TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫管理音，拥塞。             |
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫管理音，RADIO ACK。        |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫管理音，无线电 ACK。        |
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监控音，无线电不可用。      |
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监听音，呼叫等待。         |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监听音，铃声。             |
