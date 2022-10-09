@@ -34,8 +34,8 @@ import pasteboard from '@ohos.pasteboard';
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示string的类型。 |
-| image.PixelMap<sup>9+</sup> | 表示[image.PixelMap](js-apis-image.md#pixelmap9)的类型。 |
-| Want<sup>9+</sup> | 表示[Want](js-apis-application-Want.md)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](js-apis-image.md#pixelmap7)的类型。 |
+| Want | 表示[Want](js-apis-application-Want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 
 ## pasteboard.createData<sup>9+</sup>
