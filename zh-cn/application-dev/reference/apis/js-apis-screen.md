@@ -28,6 +28,14 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 | -------- | --------------------------------------------------- | ---- | -------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Screen](#screen)&gt;&gt; | 是   | 回调函数。返回当前获取的屏幕对象集合。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -55,6 +63,14 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 | 类型                                          | 说明                                      |
 | --------------------------------------------- | ----------------------------------------- |
 | Promise&lt;Array&lt;[Screen](#screen)&gt;&gt; | Promise对象。返回当前获取的屏幕对象集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
 
 **示例：**
 
@@ -140,6 +156,14 @@ makeExpand(options:Array&lt;ExpandOption&gt;, callback: AsyncCallback&lt;number&
 | options  | Array&lt;[ExpandOption](#expandoption)&gt; | 是   | 设置扩展屏幕的参数集合。         |
 | callback | Callback&lt;number&gt;                     | 是   | 回调函数。返回扩展屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -178,6 +202,14 @@ makeExpand(options:Array&lt;ExpandOption&gt;): Promise&lt;number&gt;
 | --------------------- | ----------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回扩展屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -207,6 +239,14 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncC
 | mainScreen   | number                      | 是   | 主屏幕id。          |
 | mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。       |
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回镜像屏幕的群组id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
 
 **示例：**
 
@@ -247,6 +287,14 @@ makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;): Promise&lt;numb
 | --------------------- | ----------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回镜像屏幕的群组id。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -279,6 +327,14 @@ createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Scre
 | -------- | ------------------------------------------- | ---- | ---------------------------------- |
 | options  | [VirtualScreenOption](#virtualscreenoption) | 是   | 用于创建虚拟屏幕的参数。           |
 | callback | AsyncCallback&lt;[Screen](#screen)&gt;      | 是   | 回调函数，返回创建的虚拟屏幕对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
 
 **示例：**
 
@@ -326,6 +382,14 @@ createVirtualScreen(options:VirtualScreenOption): Promise&lt;Screen&gt;
 | -------------------------------- | ------------------------------------- |
 | Promise&lt;[Screen](#screen)&gt; | Promise对象。返回创建的虚拟屏幕对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -362,6 +426,14 @@ destroyVirtualScreen(screenId:number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | screenId | number                    | 是   | 屏幕的id。                                                   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当销毁虚拟屏幕成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------- |
+| 1400002 | This operation is not access. |
 
 **示例：**
 
@@ -400,6 +472,14 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------------- |
+| 1400002 | This operation is not access. |
+
 **示例：**
 
 ```js
@@ -432,6 +512,14 @@ setVirtualScreenSurface(screenId:number, surfaceId: string, callback: AsyncCallb
 | screenId  | number                    | 是   | 屏幕的id。                                                   |
 | surfaceId | string                    | 是   | surface的id。                                                |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置虚拟屏幕surface成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
 
 **示例：**
 
@@ -473,6 +561,14 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
 
 **示例：**
 
@@ -662,6 +758,14 @@ setOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): v
 | orientation | [Orientation](#orientation) | 是   | 屏幕方向。                                                   |
 | callback    | AsyncCallback&lt;void&gt;   | 是   | 回调函数。当设置屏幕方向成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
+
 **示例：**
 
 ```js
@@ -696,6 +800,14 @@ setOrientation(orientation: Orientation): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
+
 **示例：**
 
 ```js
@@ -723,6 +835,14 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | modeIndex | number                    | 是   | 模式索引。                                                   |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
 
 **示例：**
 
@@ -759,6 +879,14 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
+
 **示例：**
 
 ```js
@@ -787,6 +915,14 @@ setDensityDpi(densityDpi: number, callback: AsyncCallback&lt;void&gt;): void;
 | ---------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | densityDpi | number                    | 是   | 像素密度。支持的输入范围为80-640。                           |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕的像素密度成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
 
 **示例：**
 
@@ -822,6 +958,14 @@ setDensityDpi(densityDpi: number): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
 
 **示例：**
 

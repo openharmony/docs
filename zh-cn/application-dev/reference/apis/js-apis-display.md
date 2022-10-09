@@ -78,6 +78,14 @@ getDefaultDisplaySync(): Display
 | ------------------------------| ----------------------------------------------|
 | [Display](#display) | 返回默认的display对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
@@ -102,10 +110,20 @@ getAllDisplays(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[Display](#display)&gt;&gt; | 是 | 回调函数。返回当前所有的display对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
+let displayClass = null;
 display.getAllDisplays((err, data) => {
+    displayClass = data;
     if (err.code) {
         console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
         return;
@@ -128,11 +146,21 @@ getAllDisplays(): Promise&lt;Array&lt;Display&gt;&gt;
 | ----------------------------------------------- | ------------------------------------------------------- |
 | Promise&lt;Array&lt;[Display](#display)&gt;&gt; | Promise对象。返回当前所有的display对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
+let displayClass = null;
 let promise = display.getAllDisplays();
 promise.then((data) => {
+    displayClass = data;
     console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err) => {
     console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
@@ -143,7 +171,7 @@ promise.then((data) => {
 
 hasPrivateWindow(displayId: number): boolean
 
-查询指定display对象上是否有可见的隐私窗口。可通过[setPrivacyMode](js-apis-window.md#setprivacymode7)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
+查询指定display对象上是否有可见的隐私窗口。可通过[setWindowPrivacyMode()](js-apis-window.md#setwindowprivacymode9)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
 
 **系统接口：** 此接口为系统接口。
 
@@ -160,6 +188,14 @@ hasPrivateWindow(displayId: number): boolean
 | 类型                             | 说明                                                                    |
 | -------------------------------- |-----------------------------------------------------------------------|
 |boolean | 查询的display对象上是否有可见的隐私窗口。<br>true表示此display对象上有可见的隐私窗口，false表示此display对象上没有可见的隐私窗口。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 1400003 | This window manager service work abnormally. |
 
 **示例：**
 
@@ -247,6 +283,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 获取当前默认的display对象，使用callback异步回调。
 
 > **说明：**
+> 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -260,7 +297,7 @@ getDefaultDisplay(callback: AsyncCallback&lt;Display&gt;): void
 **示例：**
 
 ```js
-var displayClass = null;
+let displayClass = null;
 display.getDefaultDisplay((err, data) => {
     if (err.code) {
         console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
@@ -278,6 +315,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 获取当前默认的display对象，使用Promise异步回调。
 
 > **说明：**
+> 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -291,7 +329,7 @@ getDefaultDisplay(): Promise&lt;Display&gt;
 **示例：**
 
 ```js
-var displayClass = null;
+let displayClass = null;
 let promise = display.getDefaultDisplay();
 promise.then((data) => {
     displayClass = data;
@@ -308,6 +346,7 @@ getAllDisplay(callback: AsyncCallback&lt;Array&lt;Display&gt;&gt;): void
 获取当前所有的display对象，使用callback异步回调。
 
 > **说明：**
+> 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -337,6 +376,7 @@ getAllDisplay(): Promise&lt;Array&lt;Display&gt;&gt;
 获取当前所有的display对象，使用Promise异步回调。
 
 > **说明：**
+> 
 > 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getAllDisplays()](#displaygetalldisplays9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
@@ -361,7 +401,7 @@ promise.then((data) => {
 ## Display
 屏幕实例。描述display对象的属性和方法。
 
-下列API示例中都需先使用[getAllDisplay()](#displaygetalldisplay)、[getDefaultDisplay()](#displaygetdefaultdisplay)、[getDefaultDisplaySync()](#displaygetdefaultdisplaysync)中的任一方法获取到Display实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getAllDisplays()](#displaygetalldisplays9)、[getDefaultDisplaySync()](#displaygetdefaultdisplaysync9)中的任一方法获取到Display实例，再通过此实例调用对应方法。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -394,9 +434,23 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。当获取信息成功，err为undefined，data为获取到的CutoutInfo对象；否则err为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
+try {
+    let displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+};
+
 displayClass.getCutoutInfo((err, data) => {
     if (err.code) {
         console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
@@ -418,9 +472,23 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;[CutoutInfo](#cutoutinfo9)&gt; | Promise对象，返回描述不可用屏幕区域的CutoutInfo对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | This is invalid screen. |
+
 **示例：**
 
 ```js
+try {
+    let displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+};
+
 let promise = displayClass.getCutoutInfo();
 promise.then((data) => {
     console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
