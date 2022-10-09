@@ -834,12 +834,10 @@ getVolumeGroupInfos();
 | TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫管理音，拥塞。             |
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫管理音，无线电路径确认。    |
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监控音，无线电路径不可用。  |
-| TONE_TYPE_COMMON_SUPERVISORY_ERROR                | 105    | 通话管理音，错误/特殊信息。     |
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监听音，呼叫等待。         |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监听音，铃声。             |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。         |
 | TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，正确确认。           |
-| TONE_TYPE_COMMON_PROPRIETARY_NACK                 | 202    | 专有声调，否定确认。           |
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，提示音。             |
 | TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有音调，一般双重哔声。        |
 
