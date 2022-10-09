@@ -41,6 +41,10 @@ Image(src: string | PixelMap | Resource)
 | autoResize            | boolean                                  | true     | 是否需要在图片解码过程中对图源做resize操作，该操作会根据显示区域的尺寸决定用于绘制的图源尺寸，有利于减少内存占用。 |
 | syncLoad<sup>8+</sup> | boolean                                  | false    | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。  |
 
+>  **说明：**
+>
+>  图片设置svg图源时，支持的标签范围有限，目前支持的svg标签包括svg、rect、circle、ellipse、path、line、polyline、polygon、animate、animateMotion、animateTransform。
+
 ## ImageInterpolation枚举说明
 
 | 名称     | 描述                       |
