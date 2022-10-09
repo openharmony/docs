@@ -2,17 +2,19 @@
 
 ## Overview<a name="section3986195420436"></a>
 
-HiTrace tracks the call chain with the same  **traceid**  throughout the inter-device, inter-process, and inter-thread service processes. It associates and displays the call relationship and various output information during the entire process, helping you analyze and locate faults and optimize the system.
+HiTraceChain tracks the call chain with the same  **traceid**  throughout the inter-device, inter-process, and inter-thread service processes. It associates and displays the call relationship and various output information during the entire process, helping you analyze and locate faults and optimize the system.
 
 ## Use Cases<a name="section134561822574"></a>
 
-HiTrace can be used for the following purposes:
+HiTraceChain can be used for the following purposes:
 
--   Associates and reports service process information \(such as logs and events\) on the device.
--   Displays and analyzes reported information on the cloud to facilitate fault location.
+- Associates and reports service process information \(such as logs and events\) on the device.
+
+- Displays and analyzes reported information on the cloud to facilitate fault location.
+
 -   Works with the IDE to debug the detailed service process and time consumption distribution for system optimization.
 
-    **Figure  1**  Use cases of HiTrace<a name="fig179241023125715"></a>  
+    **Figure  1**  Use cases of HiTraceChain<a name="fig179241023125715"></a>  
     ![](figure/use-cases-of-hitrace.png "use-cases-of-hitrace")
 
 
@@ -33,9 +35,9 @@ HiTrace can be used for the following purposes:
 
 ## Available APIs<a name="section1517945334617"></a>
 
-HiTrace provides C++ and C APIs. The upper-layer services mainly use HiTrace to start and stop call chain tracing.
+HiTraceChain provides C++ and C APIs. The upper-layer services mainly use HiTraceChain to start and stop call chain tracing.
 
-HiTrace is implemented at layer C. It works by transferring  **traceid**  throughout the service calling process. Before service processing, HiTrace sets  **traceid**  in the thread local storage \(TLS\) of the calling thread. During service processing, HiTrace obtains  **traceid**  from the contextual TLS of the calling thread and automatically adds it to the log and event information. After service processing is complete, HiTrace clears  **traceid**  from the TLS of the calling thread.
+HiTraceChain is implemented at layer C. It works by transferring  **traceid**  throughout the service calling process. Before service processing, HiTraceChain sets  **traceid**  in the thread local storage \(TLS\) of the calling thread. During service processing, HiTraceChain obtains  **traceid**  from the contextual TLS of the calling thread and automatically adds it to the log and event information. After service processing is complete, HiTraceChain clears  **traceid**  from the TLS of the calling thread.
 
 ### Java, C++, and C APIs<a name="section932504474"></a>
 
@@ -56,7 +58,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 <td class="cellrowborder" valign="top" width="46.04%" headers="mcps1.2.4.1.3 "><p id="p19219151413589"><a name="p19219151413589"></a><a name="p19219151413589"></a><strong id="b989888034"><a name="b989888034"></a><a name="b989888034"></a>API</strong></p>
 </td>
 </tr>
-<tr id="row1219111415585"><td class="cellrowborder" rowspan="8" valign="top" width="12.540000000000001%" headers="mcps1.2.4.1.1 "><p id="p15219101455812"><a name="p15219101455812"></a><a name="p15219101455812"></a>HiTrace</p>
+<tr id="row1219111415585"><td class="cellrowborder" rowspan="8" valign="top" width="12.540000000000001%" headers="mcps1.2.4.1.1 "><p id="p15219101455812"><a name="p15219101455812"></a><a name="p15219101455812"></a>HiTraceChain</p>
 <p id="p1945616211310"><a name="p1945616211310"></a><a name="p1945616211310"></a></p>
 <p id="p1645619231317"><a name="p1645619231317"></a><a name="p1645619231317"></a></p>
 <p id="p94562024134"><a name="p94562024134"></a><a name="p94562024134"></a></p>
@@ -67,42 +69,42 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </td>
 <td class="cellrowborder" valign="top" width="41.42%" headers="mcps1.2.4.1.2 "><p id="p821971495820"><a name="p821971495820"></a><a name="p821971495820"></a>HiTraceId Begin(const std::string&amp; name, int flags)</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.04%" headers="mcps1.2.4.1.3 "><p id="p2219914195817"><a name="p2219914195817"></a><a name="p2219914195817"></a>HiTraceIdStruct HiTraceBegin(const char* name, int flags)</p>
+<td class="cellrowborder" valign="top" width="46.04%" headers="mcps1.2.4.1.3 "><p id="p2219914195817"><a name="p2219914195817"></a><a name="p2219914195817"></a>HiTraceIdStruct HiTraceChainBegin(const char* name, int flags)</p>
 </td>
 </tr>
 <tr id="row16219171417584"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p021971414588"><a name="p021971414588"></a><a name="p021971414588"></a>void End(const HiTraceId&amp; id)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p16219191435814"><a name="p16219191435814"></a><a name="p16219191435814"></a>void HiTraceEnd(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p16219191435814"><a name="p16219191435814"></a><a name="p16219191435814"></a>void HiTraceChainEnd(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row02191414115819"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p42191143585"><a name="p42191143585"></a><a name="p42191143585"></a>HiTraceId GetId();</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1221901419588"><a name="p1221901419588"></a><a name="p1221901419588"></a>HiTraceIdStruct HiTraceGetId()</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1221901419588"><a name="p1221901419588"></a><a name="p1221901419588"></a>HiTraceIdStruct HiTraceChainGetId()</p>
 </td>
 </tr>
 <tr id="row11219131415582"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p6219111415812"><a name="p6219111415812"></a><a name="p6219111415812"></a>void SetId(const HiTraceId&amp; id)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p221971465818"><a name="p221971465818"></a><a name="p221971465818"></a>void HiTraceSetId(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p221971465818"><a name="p221971465818"></a><a name="p221971465818"></a>void HiTraceChainSetId(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row162191814105815"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p12191147586"><a name="p12191147586"></a><a name="p12191147586"></a>void ClearId()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p18219181445813"><a name="p18219181445813"></a><a name="p18219181445813"></a>void HiTraceClearId()</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p18219181445813"><a name="p18219181445813"></a><a name="p18219181445813"></a>void HiTraceChainClearId()</p>
 </td>
 </tr>
 <tr id="row12219151475812"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1721981418580"><a name="p1721981418580"></a><a name="p1721981418580"></a>HiTraceId CreateSpan()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1121981420584"><a name="p1121981420584"></a><a name="p1121981420584"></a>HiTraceIdStruct HiTraceCreateSpan()</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1121981420584"><a name="p1121981420584"></a><a name="p1121981420584"></a>HiTraceIdStruct HiTraceChainCreateSpan()</p>
 </td>
 </tr>
 <tr id="row1721911140582"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p18219514195814"><a name="p18219514195814"></a><a name="p18219514195814"></a>void Tracepoint(HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p3219914175813"><a name="p3219914175813"></a><a name="p3219914175813"></a>void HiTraceTracepoint(HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p3219914175813"><a name="p3219914175813"></a><a name="p3219914175813"></a>void HiTraceChainTracepoint(HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...)</p>
 </td>
 </tr>
 <tr id="row521911410582"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p2219101415814"><a name="p2219101415814"></a><a name="p2219101415814"></a>void Tracepoint(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2220141413584"><a name="p2220141413584"></a><a name="p2220141413584"></a>void HiTraceTracepointEx(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p2220141413584"><a name="p2220141413584"></a><a name="p2220141413584"></a>void HiTraceChainTracepointEx(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceIdStruct* pId, const char* fmt, ...)</p>
 </td>
 </tr>
 <tr id="row8220181411586"><td class="cellrowborder" rowspan="14" valign="top" width="12.540000000000001%" headers="mcps1.2.4.1.1 "><p id="p522018149588"><a name="p522018149588"></a><a name="p522018149588"></a>HiTraceId</p>
@@ -122,72 +124,72 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </td>
 <td class="cellrowborder" valign="top" width="41.42%" headers="mcps1.2.4.1.2 "><p id="p102201914105811"><a name="p102201914105811"></a><a name="p102201914105811"></a>HiTraceId();</p>
 </td>
-<td class="cellrowborder" valign="top" width="46.04%" headers="mcps1.2.4.1.3 "><p id="p16220161419581"><a name="p16220161419581"></a><a name="p16220161419581"></a>void HiTraceInitId(HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" width="46.04%" headers="mcps1.2.4.1.3 "><p id="p16220161419581"><a name="p16220161419581"></a><a name="p16220161419581"></a>void HiTraceChainInitId(HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row8220191405817"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p162201314155813"><a name="p162201314155813"></a><a name="p162201314155813"></a>HiTraceId(const uint8_t* pIdArray, int len)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p122011425814"><a name="p122011425814"></a><a name="p122011425814"></a>HiTraceIdStruct HiTraceBytesToId(const uint8_t* pIdArray, int len)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p122011425814"><a name="p122011425814"></a><a name="p122011425814"></a>HiTraceIdStruct HiTraceChainBytesToId(const uint8_t* pIdArray, int len)</p>
 </td>
 </tr>
 <tr id="row1522041435820"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1422012146587"><a name="p1422012146587"></a><a name="p1422012146587"></a>bool IsValid()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1322016149586"><a name="p1322016149586"></a><a name="p1322016149586"></a>int HiTraceIsValid(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1322016149586"><a name="p1322016149586"></a><a name="p1322016149586"></a>int HiTraceChainIsValid(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row8220714155810"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p322021485814"><a name="p322021485814"></a><a name="p322021485814"></a>bool IsFlagEnabled(HiTraceFlag flag)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922010148583"><a name="p922010148583"></a><a name="p922010148583"></a>int HiTraceIsFlagEnabled(const HiTraceIdStruct* pId, HiTraceFlag flag)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922010148583"><a name="p922010148583"></a><a name="p922010148583"></a>int HiTraceChainIsFlagEnabled(const HiTraceIdStruct* pId, HiTraceFlag flag)</p>
 </td>
 </tr>
 <tr id="row12220161485814"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1122011140588"><a name="p1122011140588"></a><a name="p1122011140588"></a>void EnableFlag(HiTraceFlag flag)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p152201146583"><a name="p152201146583"></a><a name="p152201146583"></a>void HiTraceEnableFlag(HiTraceIdStruct* pId, HiTraceFlag flag)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p152201146583"><a name="p152201146583"></a><a name="p152201146583"></a>void HiTraceChainEnableFlag(HiTraceIdStruct* pId, HiTraceFlag flag)</p>
 </td>
 </tr>
 <tr id="row922061411589"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p202208143588"><a name="p202208143588"></a><a name="p202208143588"></a>int GetFlags()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p182206142587"><a name="p182206142587"></a><a name="p182206142587"></a>int HiTraceGetFlags(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p182206142587"><a name="p182206142587"></a><a name="p182206142587"></a>int HiTraceChainGetFlags(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row82204145589"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p12201414205815"><a name="p12201414205815"></a><a name="p12201414205815"></a>void SetFlags(int flags)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p162201514175813"><a name="p162201514175813"></a><a name="p162201514175813"></a>void HiTraceSetFlags(HiTraceIdStruct* pId, int flags)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p162201514175813"><a name="p162201514175813"></a><a name="p162201514175813"></a>void HiTraceChainSetFlags(HiTraceIdStruct* pId, int flags)</p>
 </td>
 </tr>
 <tr id="row152204143585"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p722113147580"><a name="p722113147580"></a><a name="p722113147580"></a>uint64_t GetChainId()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p322119149584"><a name="p322119149584"></a><a name="p322119149584"></a>uint64_t HiTraceGetChainId(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p322119149584"><a name="p322119149584"></a><a name="p322119149584"></a>uint64_t HiTraceChainGetChainId(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row1221214175815"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p922131445815"><a name="p922131445815"></a><a name="p922131445815"></a>void SetChainId(uint64_t chainId)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922101411588"><a name="p922101411588"></a><a name="p922101411588"></a>void HiTraceSetChainId(HiTraceIdStruct* pId, uint64_t chainId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922101411588"><a name="p922101411588"></a><a name="p922101411588"></a>void HiTraceChainSetChainId(HiTraceIdStruct* pId, uint64_t chainId)</p>
 </td>
 </tr>
 <tr id="row1922115142588"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1122141414588"><a name="p1122141414588"></a><a name="p1122141414588"></a>uint64_t GetSpanId()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p32211145584"><a name="p32211145584"></a><a name="p32211145584"></a>uint64_t HiTraceGetSpanId(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p32211145584"><a name="p32211145584"></a><a name="p32211145584"></a>uint64_t HiTraceChainGetSpanId(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row4221171414587"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p10221191412588"><a name="p10221191412588"></a><a name="p10221191412588"></a>void SetSpanId(uint64_t spanId)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p42211614105810"><a name="p42211614105810"></a><a name="p42211614105810"></a>void HiTraceSetSpanId(HiTraceIdStruct* pId, uint64_t spanId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p42211614105810"><a name="p42211614105810"></a><a name="p42211614105810"></a>void HiTraceChainSetSpanId(HiTraceIdStruct* pId, uint64_t spanId)</p>
 </td>
 </tr>
 <tr id="row322171425818"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p1722111418582"><a name="p1722111418582"></a><a name="p1722111418582"></a>uint64_t GetParentSpanId()</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8221314195817"><a name="p8221314195817"></a><a name="p8221314195817"></a>uint64_t HiTraceGetParentSpanId(const HiTraceIdStruct* pId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p8221314195817"><a name="p8221314195817"></a><a name="p8221314195817"></a>uint64_t HiTraceChainGetParentSpanId(const HiTraceIdStruct* pId)</p>
 </td>
 </tr>
 <tr id="row622114147589"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p92219145589"><a name="p92219145589"></a><a name="p92219145589"></a>void SetParentSpanId(uint64_t parentSpanId)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922191435813"><a name="p922191435813"></a><a name="p922191435813"></a>void HiTraceSetParentSpanId(HiTraceIdStruct* pId, uint64_t parentSpanId)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p922191435813"><a name="p922191435813"></a><a name="p922191435813"></a>void HiTraceChainSetParentSpanId(HiTraceIdStruct* pId, uint64_t parentSpanId)</p>
 </td>
 </tr>
 <tr id="row5221614135814"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p11221121435820"><a name="p11221121435820"></a><a name="p11221121435820"></a>int ToBytes(uint8_t* pIdArray, int len)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1122131415814"><a name="p1122131415814"></a><a name="p1122131415814"></a>int HiTraceIdToBytes(const HiTraceIdStruct* pId, uint8_t* pIdArray, int len)</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p1122131415814"><a name="p1122131415814"></a><a name="p1122131415814"></a>int HiTraceChainIdToBytes(const HiTraceIdStruct* pId, uint8_t* pIdArray, int len)</p>
 </td>
 </tr>
 </tbody>
@@ -206,7 +208,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </th>
 </tr>
 </thead>
-<tbody><tr id="row383911183378"><td class="cellrowborder" rowspan="8" valign="top" width="9.8%" headers="mcps1.2.4.1.1 "><p id="p10839318133713"><a name="p10839318133713"></a><a name="p10839318133713"></a>HiTrace</p>
+<tbody><tr id="row383911183378"><td class="cellrowborder" rowspan="8" valign="top" width="9.8%" headers="mcps1.2.4.1.1 "><p id="p10839318133713"><a name="p10839318133713"></a><a name="p10839318133713"></a>HiTraceChain</p>
 <p id="p1544019164131"><a name="p1544019164131"></a><a name="p1544019164131"></a></p>
 <p id="p14440191615134"><a name="p14440191615134"></a><a name="p14440191615134"></a></p>
 <p id="p6440161631310"><a name="p6440161631310"></a><a name="p6440161631310"></a></p>
@@ -217,7 +219,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </td>
 <td class="cellrowborder" valign="top" width="31.430000000000003%" headers="mcps1.2.4.1.2 "><p id="p198391118193717"><a name="p198391118193717"></a><a name="p198391118193717"></a>HiTraceId Begin(const std::string&amp; name, int flags)</p>
 </td>
-<td class="cellrowborder" valign="top" width="58.77%" headers="mcps1.2.4.1.3 "><p id="p684013182375"><a name="p684013182375"></a><a name="p684013182375"></a>Starts HiTrace, generates a <strong id="b2063619462230"><a name="b2063619462230"></a><a name="b2063619462230"></a>HiTraceId</strong> object, and sets it in the TLS of the calling thread.</p>
+<td class="cellrowborder" valign="top" width="58.77%" headers="mcps1.2.4.1.3 "><p id="p684013182375"><a name="p684013182375"></a><a name="p684013182375"></a>Starts HiTraceChain, generates a <strong id="b2063619462230"><a name="b2063619462230"></a><a name="b2063619462230"></a>HiTraceId</strong> object, and sets it in the TLS of the calling thread.</p>
 <p id="p1384081812377"><a name="p1384081812377"></a><a name="p1384081812377"></a>Input arguments:</p>
 <a name="ul1537854218177"></a><a name="ul1537854218177"></a><ul id="ul1537854218177"><li><strong id="b1566312131676"><a name="b1566312131676"></a><a name="b1566312131676"></a>name</strong>: Indicates the name of the service process.</li><li><strong id="b75512128711"><a name="b75512128711"></a><a name="b75512128711"></a>flags</strong>: Indicates tracing flags, which can be used in combination. <a name="ul18842248101915"></a><a name="ul18842248101915"></a><ul id="ul18842248101915"><li>HITRACE_FLAG_INCLUDE_ASYNC: Traces both synchronous and asynchronous calls. By default, only synchronous calls are traced.</li><li><strong id="b724616241477"><a name="b724616241477"></a><a name="b724616241477"></a>HITRACE_FLAG_DONOT_CREATE_SPAN</strong>: Do not create a span. By default, a span is created.</li><li><strong id="b136181926479"><a name="b136181926479"></a><a name="b136181926479"></a>HITRACE_FLAG_TP_INFO</strong>: Outputs the tracepoint information. By default, the information is not output.</li><li><strong id="b358818291777"><a name="b358818291777"></a><a name="b358818291777"></a>HITRACE_FLAG_NO_BE_INFO</strong>: Do not output the start and end information. By default, the information is output.</li><li><strong id="b38571331974"><a name="b38571331974"></a><a name="b38571331974"></a>HITRACE_FLAG_DONOT_ENABLE_LOG</strong>: Do not associate logs for output. By default, logs are associated for output.</li><li><strong id="b17320371870"><a name="b17320371870"></a><a name="b17320371870"></a>HITRACE_FLAG_FAULT_TRIGGER</strong>: Triggers tracing by fault. By default, tracing is triggered normally.</li><li><strong id="b876915381711"><a name="b876915381711"></a><a name="b876915381711"></a>HITRACE_FLAG_D2D_TP_INFO</strong>: Outputs the device-to-device tracepoint information. By default, the information is not output.</li><li><strong id="b66510421776"><a name="b66510421776"></a><a name="b66510421776"></a>HITRCE_FLAG_DEFAULT</strong>: Indicates the default flag.</li></ul>
 </li><li>Output arguments: none</li><li>Return value: Returns a valid <strong id="b7411101522917"><a name="b7411101522917"></a><a name="b7411101522917"></a>HiTraceId</strong> object if call chain tracing is triggered successfully; returns an invalid object otherwise.</li></ul>
@@ -226,7 +228,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </tr>
 <tr id="row16840101803720"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p13840191893718"><a name="p13840191893718"></a><a name="p13840191893718"></a>void End(const HiTraceId&amp; id)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p3840181820372"><a name="p3840181820372"></a><a name="p3840181820372"></a>Stops HiTrace based on the <strong id="b1605239122415"><a name="b1605239122415"></a><a name="b1605239122415"></a>HiTraceId</strong> object returned by the <strong id="b7610183992419"><a name="b7610183992419"></a><a name="b7610183992419"></a>Begin</strong> API, and clears the <strong id="b1610173918241"><a name="b1610173918241"></a><a name="b1610173918241"></a>HiTraceId</strong> object in the TLS of the calling thread.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p3840181820372"><a name="p3840181820372"></a><a name="p3840181820372"></a>Stops HiTraceChain based on the <strong id="b1605239122415"><a name="b1605239122415"></a><a name="b1605239122415"></a>HiTraceId</strong> object returned by the <strong id="b7610183992419"><a name="b7610183992419"></a><a name="b7610183992419"></a>Begin</strong> API, and clears the <strong id="b1610173918241"><a name="b1610173918241"></a><a name="b1610173918241"></a>HiTraceId</strong> object in the TLS of the calling thread.</p>
 <p id="p9840718103720"><a name="p9840718103720"></a><a name="p9840718103720"></a>Input arguments:</p>
 <a name="ul2917140133015"></a><a name="ul2917140133015"></a><ul id="ul2917140133015"><li><strong id="b8201185118711"><a name="b8201185118711"></a><a name="b8201185118711"></a>id</strong>: Indicates the <strong id="b2071183114331"><a name="b2071183114331"></a><a name="b2071183114331"></a>HiTraceId</strong> object.</li></ul>
 <p id="p14840151803718"><a name="p14840151803718"></a><a name="p14840151803718"></a>Output arguments: none</p>
@@ -268,7 +270,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </tr>
 <tr id="row198401118123714"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p178411618183711"><a name="p178411618183711"></a><a name="p178411618183711"></a>void Tracepoint(HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p88419184373"><a name="p88419184373"></a><a name="p88419184373"></a>Outputs HiTrace call chain information based on the information type. The information includes the timestamp and <strong id="b185817437323"><a name="b185817437323"></a><a name="b185817437323"></a>HiTraceId</strong> object information of the span.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p88419184373"><a name="p88419184373"></a><a name="p88419184373"></a>Outputs HiTraceChain call chain information based on the information type. The information includes the timestamp and <strong id="b185817437323"><a name="b185817437323"></a><a name="b185817437323"></a>HiTraceId</strong> object information of the span.</p>
 <p id="p1984116184376"><a name="p1984116184376"></a><a name="p1984116184376"></a>Input arguments:</p>
 <a name="ul18619103153812"></a><a name="ul18619103153812"></a><ul id="ul18619103153812"><li><strong id="b7818831083"><a name="b7818831083"></a><a name="b7818831083"></a>type</strong>: Indicates the information type. The options are as follows:<a name="ul1941510328297"></a><a name="ul1941510328297"></a><ul id="ul1941510328297"><li><strong id="b18809161180"><a name="b18809161180"></a><a name="b18809161180"></a>HITRACE_TP_CS</strong>: Client Send, which indicates the messages sent by the synchronous/asynchronous communication client.</li><li><strong id="b327281271319"><a name="b327281271319"></a><a name="b327281271319"></a>HITRACE_TP_SR</strong>: Server Receive, which indicates the messages received by the server in synchronous/asynchronous communication.</li><li><strong id="b10154742682"><a name="b10154742682"></a><a name="b10154742682"></a>HITRACE_TP_SS</strong>: Server Send, which indicates the response messages sent by the server in synchronous communication.</li><li><strong id="b152598127810"><a name="b152598127810"></a><a name="b152598127810"></a>HITRACE_TP_CR</strong>: Client Receive, which indicates the response messages received by the synchronous communication client.</li><li><strong id="b82631512817"><a name="b82631512817"></a><a name="b82631512817"></a>HITRACE_TP_GENERAL</strong>: Indicates the common output information.</li></ul>
 </li><li><strong id="b117401716584"><a name="b117401716584"></a><a name="b117401716584"></a>id</strong>: Indicates the ID of the current span.</li><li><strong id="b392172019813"><a name="b392172019813"></a><a name="b392172019813"></a>fmt</strong>: Indicates the string describing the format variable parameter.</li><li><strong id="b986771717818"><a name="b986771717818"></a><a name="b986771717818"></a>args</strong>: Indicates the variable parameter.</li></ul>
@@ -278,7 +280,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 </tr>
 <tr id="row11841191811379"><td class="cellrowborder" valign="top" headers="mcps1.2.4.1.1 "><p id="p08411318163716"><a name="p08411318163716"></a><a name="p08411318163716"></a>void Tracepoint(HiTraceCommunicationMode mode, HiTraceTracepointType type, const HiTraceId&amp; id, const char* fmt, ...)</p>
 </td>
-<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p68411618153713"><a name="p68411618153713"></a><a name="p68411618153713"></a>Outputs HiTrace call chain information based on the communication mode and information type. The information includes the timestamp and <strong id="b8151210123912"><a name="b8151210123912"></a><a name="b8151210123912"></a>HiTraceId</strong> object information of the span.</p>
+<td class="cellrowborder" valign="top" headers="mcps1.2.4.1.2 "><p id="p68411618153713"><a name="p68411618153713"></a><a name="p68411618153713"></a>Outputs HiTraceChain call chain information based on the communication mode and information type. The information includes the timestamp and <strong id="b8151210123912"><a name="b8151210123912"></a><a name="b8151210123912"></a>HiTraceId</strong> object information of the span.</p>
 <p id="p98418189375"><a name="p98418189375"></a><a name="p98418189375"></a>Input arguments:</p>
 <a name="ul914264413811"></a><a name="ul914264413811"></a><ul id="ul914264413811"><li><strong id="b76471824183"><a name="b76471824183"></a><a name="b76471824183"></a>mode</strong>: Indicates the communication mode. The options are as follows:<a name="ul137382469451"></a><a name="ul137382469451"></a><ul id="ul137382469451"><li><strong id="b13732297812"><a name="b13732297812"></a><a name="b13732297812"></a>HITRACE_CM_DEFAULT</strong>: default communication mode used when no communication mode is specified</li><li><strong id="b1820115271789"><a name="b1820115271789"></a><a name="b1820115271789"></a>HITRACE_CM_THREAD</strong>: inter-thread communication</li><li><strong id="b27781831488"><a name="b27781831488"></a><a name="b27781831488"></a>HITRACE_CM_PROCESS</strong>: inter-process communication</li><li><strong id="b15657113313819"><a name="b15657113313819"></a><a name="b15657113313819"></a>HITRACE_CM_DEVICE</strong>: inter-device communication</li></ul>
 </li><li><strong id="b172723513812"><a name="b172723513812"></a><a name="b172723513812"></a>type</strong>: Indicates the information type. The options are as follows:<a name="ul19648426458"></a><a name="ul19648426458"></a><ul id="ul19648426458"><li><strong id="b26421037382"><a name="b26421037382"></a><a name="b26421037382"></a>HITRACE_TP_CS</strong>: Client Send, which indicates the messages sent by the synchronous/asynchronous communication client.</li><li><strong id="b66504018818"><a name="b66504018818"></a><a name="b66504018818"></a>HITRACE_TP_SR</strong>: Server Receive, which indicates the messages received by the server in synchronous/asynchronous communication.</li><li><strong id="b285283761"><a name="b285283761"></a><a name="b285283761"></a>HITRACE_TP_SS</strong>: Server Send, which indicates the response messages sent by the server in synchronous communication.</li><li><strong id="b148684447814"><a name="b148684447814"></a><a name="b148684447814"></a>HITRACE_TP_CR</strong>: Client Receive, which indicates the response messages received by the synchronous communication client.</li><li><strong id="b17875164618816"><a name="b17875164618816"></a><a name="b17875164618816"></a>HITRACE_TP_GENERAL</strong>: Indicates the common output information.</li></ul>
@@ -428,7 +430,7 @@ HiTrace is implemented at layer C. It works by transferring  **traceid**  throug
 
 ## Call Chain Processing<a name="section11257133933"></a>
 
-Inter-device, inter-process, and inter-thread calls are implemented through the communication mechanism.  **HiTrace**  requires transfer of  **traceid**  in the communication mechanism.
+Inter-device, inter-process, and inter-thread calls are implemented through the communication mechanism.  **HiTraceChain**  requires transfer of  **traceid**  in the communication mechanism.
 
 Some built-in communication mechanisms \(such as ZIDL\) of OpenHarmony already support the transfer of  **traceid**.
 
@@ -475,25 +477,25 @@ The process is as follows:
 
 1.  Develop the source code.
 
-    Include the  **hitrace**  header file in the class definition header file or class implementation source file. For example:
+    Include the  **hitracechain**  header file in the class definition header file or class implementation source file. For example:
 
     ```
-    #include "hitrace/trace.h"
+    #include "hitrace/tracechain.h"
     ```
 
     Add the code to start and stop call chain tracing in the class implementation source file.
 
     ```
     using namespace OHOS::HiviewDFX;
-    HiTraceId traceId = HiTrace::Begin("MyServiceFlow", HITRACE_FLAG_DEFAULT);
+    auto traceId = HiTraceChain::Begin("MyServiceFlow", HITRACE_FLAG_DEFAULT);
     ...
-    HiTrace::End(traceId);
+    HiTraceChain::End(traceId);
     ```
 
 2.  Configure compilation information. Specifically, add the subsystem SDK dependency to  **BUILD.gn**.
 
     ```
-    external_deps = [ "hiviewdfx:libhitrace" ]
+    external_deps = [ "hiviewdfx:libhitracechain" ]
     ```
 
 
@@ -501,24 +503,24 @@ The process is as follows:
 
 1.  Develop the source code.
 
-    Include the  **hitrace**  header file in the source file.
+    Include the  **hitracechain**  header file in the source file.
 
     ```
-    #include "hitrace/trace.h"
+    #include "hitrace/tracechain.h"
     ```
 
     Add the code to start and stop call chain tracing in the class implementation source file.
 
     ```
-    HiTraceIdStruct traceId = HiTraceBegin("MyServiceFlow", HITRACE_FLAG_DEFAULT);
+    HiTraceIdStruct traceId = HiTraceChainBegin("MyServiceFlow", HITRACE_FLAG_DEFAULT);
     ...
-    HiTraceEnd(traceId);
+    HiTraceChainEnd(traceId);
     ```
 
 2.  Configure compilation information. Specifically, add the subsystem SDK dependency to  **BUILD.gn**.
 
     ```
-    external_deps = [ "hiviewdfx:libhitrace" ]
+    external_deps = [ "hiviewdfx:libhitracechain" ]
     ```
 
 
