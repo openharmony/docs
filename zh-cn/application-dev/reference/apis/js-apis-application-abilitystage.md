@@ -52,7 +52,7 @@ onAcceptWant(want: Want): string;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | string | 用户返回一个ability标识，如果之前启动过次标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
+  | string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
 
 **示例：**
     
