@@ -122,9 +122,9 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 
 | 名称  | 说明                    |
 | -----  | ----------------------- |
-| InApp  |表示仅允许同应用内粘贴。  |
-| LocalDevice  |表示允许在此设备中任何应用内粘贴。  |
-| CrossDevice  |表示允许跨设备在任何应用内粘贴。  |
+| InApp  |表示仅允许同应用内粘贴。 |
+| LocalDevice  |表示允许在此设备中任何应用内粘贴。 |
+| CrossDevice  |表示允许跨设备在任何应用内粘贴。 |
 
 ## pasteboard.createHtmlData<sup>(deprecated)</sup>
 
@@ -490,7 +490,7 @@ convertToText(): Promise&lt;string&gt;
 将一个PasteData中的内容强制转换为文本内容，使用Promise异步回调。
 > **说明：**
 >
-> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9](##converttotextv99-1)替代。
+> 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[convertToTextV9](#converttotextv99-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -510,7 +510,6 @@ record.convertToText().then((data) => {
     console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));
 });
 ```
-
 
 ## PasteData
 
@@ -1224,7 +1223,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 ```js
 systemPasteboard.clearData((err, data) => { 
     if (err) {        
-        console.error('Failed to clear the pasteboard. Cause: ' + JSON.stringify(err));        
+        console.error('Failed to clear the pasteboard. Cause: ' + JSON.stringify(err));
         return;    
     }
     console.info('Succeeded in clearing the pasteboard.');
@@ -1539,6 +1538,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9)替代。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1567,6 +1567,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[hasData](#hasdata9-1)替代。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
@@ -1593,6 +1594,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9)替代。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
@@ -1623,6 +1625,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[setData](#setdata9-1)替代。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **参数：**
