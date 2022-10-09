@@ -505,7 +505,7 @@ async function createTonePlayer(){
 | STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                 | 1      | 音频。     |
 | STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
-| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音助理。 |
+| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音播报。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
 
 ## FocusType<sup>9+</sup>
