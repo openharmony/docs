@@ -144,19 +144,19 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   // 增加数据
-  public Add1stItem(): void{
+  public Add1stItem(): void {
       this.dataArray.splice(0, 0, this.dataArray.length)
       this.notifyDataAdd(0)
   }
 
   // 在数据尾部增加一个元素
-  public AddLastItem(): void{
+  public AddLastItem(): void {
       this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
       this.notifyDataAdd(this.dataArray.length-1)
   }
 
   // 在指定索引位置增加一个元素
-  public AddItem(index: number): void{
+  public AddItem(index: number): void {
       this.dataArray.splice(index, 0, this.dataArray.length)
       this.notifyDataAdd(index)
   }
@@ -168,19 +168,19 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   // 删除第二个元素
-  public Delete2ndItem(): void{
+  public Delete2ndItem(): void {
       this.dataArray.splice(1, 1)
       this.notifyDataDelete(1)
   }
 
   // 删除最后一个元素
-  public DeleteLastItem(): void{
+  public DeleteLastItem(): void {
       this.dataArray.splice(-1, 1)
       this.notifyDataDelete(this.dataArray.length)
   }
 
   // 重新加载数据
-  public Reload(): void{
+  public Reload(): void {
       this.dataArray.splice(1, 1);
       this.dataArray.splice(3, 2);
       this.notifyDataReload();
