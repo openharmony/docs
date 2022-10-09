@@ -728,9 +728,9 @@ ndef.writeNdef(ndefMessage, (err, data)=> {
 
 ### NdefTag.canSetReadOnly<sup>9+</sup>
 
-canSetReadOnly(): Promise\<boolean>
+canSetReadOnly(): boolean
 
-检查ndef标签是否可以设置为只读，使用promise方式作为异步方法。
+检查NDEF标签是否可以设置为只读。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -740,7 +740,7 @@ canSetReadOnly(): Promise\<boolean>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | true: NDEF标签可设置为只读， false: NDEF标签不可设置为只读。 |
+| boolean| true: NDEF标签可设置为只读， false: NDEF标签不可设置为只读。 |
 
 **示例：**
 
@@ -748,43 +748,8 @@ canSetReadOnly(): Promise\<boolean>
 import tag from '@ohos.nfc.tag';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag', has obtained the 'ndef' correctly.
-ndef.canSetReadOnly()
-    .then((data) => {
-        console.log("ndef canSetReadOnly data: " + data);
-    }).catch((err)=> {
-        console.log("ndef canSetReadOnly err: " + err);
-    });
-```
-
-### NdefTag.canSetReadOnly<sup>9+</sup>
-
-canSetReadOnly(callback: AsyncCallback&lt;boolean&gt;): void;
-
-检查ndef标签是否可以设置为只读，使用callback方式作为异步方法。
-
-**需要权限**：ohos.permission.NFC_TAG
-
-**系统能力**：SystemCapability.Communication.NFC
-
-**参数：**
-
-| 参数名   | 类型                    | 必填 | 说明                                   |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，NDEF标签可设置为只读，返回true。 |
-
-**示例：**
-
-```js
-import tag from '@ohos.nfc.tag';
-
-// see 'tag.TagInfo' at 'js-apis-nfcTag', has obtained the 'ndef' correctly.
-ndef.canSetReadOnly((err, data)=> {
-	if (err) {
-		console.log("ndef canSetReadOnly err: " + err);
-	} else {
-		console.log("ndef canSetReadOnly data: " + data);
-	}
-});
+var canSetReadOnly = ndef.canSetReadOnly();
+console.log("ndef canSetReadOnly: " + canSetReadOnly);
 ```
 
 ### NdefTag.setReadOnly<sup>9+</sup>
