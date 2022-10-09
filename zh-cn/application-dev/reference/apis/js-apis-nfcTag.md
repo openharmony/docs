@@ -312,7 +312,7 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 | TNF_UNKNOWN  | 0x05 | Unknown。|
 | TNF_UNCHANGED | 0x06 | Unchanged (see section 2.3.3)。|
 
-## RtdType<sup>9+</sup>
+## NDEF Record RTD类型定义
 NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **需要权限**：ohos.permission.NFC_TAG
@@ -320,8 +320,8 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 **系统能力**：SystemCapability.Communication.NFC.Core
 | **参数名** | **常量值** |  **说明** |
 | -------- | -------- | -------- |
-| RTD_TEXT | 常量 'T' |  文本类型的NDEF Record。|
-| RTD_URI  | 常量 'U' |  URI类型的NDEF Record。|
+| RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。|
+| RTD_URI<sup>9+</sup>  | [0x55] | URI类型的NDEF Record。|
 
 ## NfcForumType<sup>9+</sup>
 NFC Forum标准里面Tag类型的定义。

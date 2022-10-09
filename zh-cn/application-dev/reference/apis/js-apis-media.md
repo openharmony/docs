@@ -52,7 +52,7 @@ createVideoPlayer(callback: AsyncCallback\<[VideoPlayer](#videoplayer8)>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                           |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 异步创建视频播放实例回调方法。 |
+| callback | AsyncCallback<[VideoPlayer](#videoplayer8)> | 是   | 回调函数。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -81,7 +81,7 @@ createVideoPlayer(): Promise<[VideoPlayer](#videoplayer8)>
 
 | 类型                                  | 说明                                |
 | ------------------------------------- | ----------------------------------- |
-| Promise<[VideoPlayer](#videoplayer8)> | 异步创建视频播放实例Promise返回值。 |
+| Promise<[VideoPlayer](#videoplayer8)> | Promise对象。异步返回VideoPlayer实例，可用于管理和播放视频媒体。 |
 
 **示例：**
 
@@ -134,7 +134,7 @@ createVideoRecorder(callback: AsyncCallback\<[VideoRecorder](#videorecorder9)>):
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 异步创建视频录制实例回调方法。 |
+| callback | AsyncCallback<[VideoRecorder](#videorecorder9)> | 是   | 回调函数。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
@@ -164,7 +164,7 @@ createVideoRecorder(): Promise<[VideoRecorder](#videorecorder9)>
 
 | 类型                                      | 说明                                |
 | ----------------------------------------- | ----------------------------------- |
-| Promise<[VideoRecorder](#videorecorder9)> | 异步创建视频录制实例Promise返回值。 |
+| Promise<[VideoRecorder](#videorecorder9)> | Promise对象。异步返回VideoRecorder实例，可用于录制视频媒体。 |
 
 **示例：**
 
@@ -228,7 +228,7 @@ Codec MIME类型枚举。
 | VIDEO_MPEG2  | 'video/mpeg2'         | 表示视频/mpeg2类型。     |
 | VIDEO_MPEG4  | 'video/mp4v-es'       | 表示视频/mpeg4类型。     |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | 表示视频/vp8类型。       |
-| AUDIO_AAC    | "audio/mp4a-latm"     | 表示音频/mp4a-latm类型。 |
+| AUDIO_AAC    | 'audio/mp4a-latm'     | 表示音频/mp4a-latm类型。 |
 | AUDIO_VORBIS | 'audio/vorbis'        | 表示音频/vorbis类型。    |
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 
@@ -240,16 +240,16 @@ Codec MIME类型枚举。
 
 | 名称                     | 值              | 说明                                                         |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | 表示轨道序号，其对应键值类型为number。                       |
-| MD_KEY_TRACK_TYPE        | "track_type"    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
-| MD_KEY_CODEC_MIME        | "codec_mime"    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | "duration"      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
-| MD_KEY_BITRATE           | "bitrate"       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
-| MD_KEY_WIDTH             | "width"         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_HEIGHT            | "height"        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_FRAME_RATE        | "frame_rate"    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
+| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
+| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -441,10 +441,10 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error,  ) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -477,9 +477,9 @@ function printfDescription(obj) {
     }
 }
 let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+audioPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('audio getTrackDescription fail');
     }
@@ -1234,10 +1234,10 @@ function printfDescription(obj) {
     }
 }
 
-videoPlayer.getTrackDescription((error, arrlist) => {
-    if ((arrlist) != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+videoPlayer.getTrackDescription((error, arrList) => {
+    if ((arrList) != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`video getTrackDescription fail, error:${error}`);
@@ -1271,9 +1271,9 @@ function printfDescription(obj) {
 }
 
 let arrayDescription;
-videoPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+videoPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('video getTrackDescription fail');
     }
@@ -1617,10 +1617,10 @@ function printfItemDescription(obj, key) {
     console.info('audio value is ' + property); //对应key值得value。其类型可为任意类型，具体key对应value的类型可参考[MediaDescriptionKey]
 }
 let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  //打印出每条轨道MD_KEY_TRACK_TYPE的值
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -1794,7 +1794,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 ```js
 let audioRecorder = media.createAudioRecorder();                                  // 创建一个音频录制实例
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1849,7 +1849,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```js
 let audioRecorderConfig = {
-    audioEncoder : media.AudioEncoder.AAC_LC, ,
+    audioEncoder : media.AudioEncoder.AAC_LC,
     audioEncodeBitRate : 22050,
     audioSampleRate : 22050,
     numberOfChannels : 2,
@@ -1973,29 +1973,13 @@ let videoConfig = {
 }
 
 // asyncallback
-let videoRecorder = null;
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
-
-eventEmitter.on('prepare', () => {
-    videoRecorder.prepare(videoConfig, (err) => {
-        if (err == null) {
-            console.info('prepare success');
-        } else {
-            console.info('prepare failed and error is ' + err.message);
-        }
-    });
-});
-
-media.createVideoRecorder((err, recorder) => {
-    if (err == null && recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        eventEmitter.emit('prepare');                                        // prepare事件触发
+videoRecorder.prepare(videoConfig, (err) => {
+    if (err == null) {
+        console.info('prepare success');
     } else {
-        console.info('createVideoRecorder failed and error is ' + err.message);
+        console.info('prepare failed and error is ' + err.message);
     }
-});
+})
 ```
 
 ### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
@@ -2046,21 +2030,10 @@ let videoConfig = {
 }
 
 // promise
-let videoRecorder = null;
-media.createVideoRecorder().then((recorder) => {
-    if (recorder != null) {
-        videoRecorder = recorder;
-        console.info('createVideoRecorder success');
-        videoRecorder.prepare(videoConfig).then(() => {
-            console.info('prepare success');
-        }).catch((err) => {
-            console.info('prepare failed and catch error is ' + err.message);
-        });
-    } else {
-        console.info('createVideoRecorder failed');
-    }
+videoRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
 }).catch((err) => {
-    console.info('catch err error message is ' + err.message);
+    console.info('prepare failed and catch error is ' + err.message);
 });
 ```
 
@@ -2474,11 +2447,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```js
+// 当获取videoRecordState接口出错时通过此订阅事件上报
 videoRecorder.on('error', (error) => {                                  // 设置'error'事件回调
     console.info(`audio error called, error: ${error}`); 
-}
-// 当获取videoRecordState接口出错时通过此订阅事件上报
-});
+})
 ```
 
 ## VideoRecordState<sup>9+</sup>
@@ -2560,8 +2532,8 @@ videoRecorder.on('error', (error) => {                                  // 设�
 
 | 名称        | 值    | 说明                  |
 | ----------- | ----- | --------------------- |
-| CFT_MPEG_4  | "mp4" | 视频的容器格式，MP4。 |
-| CFT_MPEG_4A | "m4a" | 音频的容器格式，M4A。 |
+| CFT_MPEG_4  | 'mp4' | 视频的容器格式，MP4。 |
+| CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。 |
 
 ## Location
 

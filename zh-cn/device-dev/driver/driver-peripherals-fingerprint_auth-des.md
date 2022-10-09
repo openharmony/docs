@@ -104,7 +104,7 @@ Fingerprint_auth驱动的主要工作是为上层用户认证框架和Fingerprin
 | 接口名                                                       | 功能介绍                 |
 | ------------------------------------------------------------ | ------------------------ |
 | IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的最终结果。     |
-| IExecutorCallback::OnAcquireInfo(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
+| IExecutorCallback::OnTip(int32_t code, const std::vector<uint8_t>& extraInfo) | 返回操作的过程交互信息。 |
 
 ### 开发步骤
 

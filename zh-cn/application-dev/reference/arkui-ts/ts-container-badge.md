@@ -18,7 +18,7 @@
 
 ## 接口
 
-方法1：Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
+**方法1：** Badge(value: {count: number, position?: BadgePosition, maxCount?: number, style: BadgeStyle})
 
 创建数字标记组件。
 
@@ -26,35 +26,38 @@
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | count | number | 是 | - | 设置提醒消息数。 |
-| position | BadgePosition | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
+| position | [BadgePosition](#badgeposition枚举说明) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
 | maxCount | number | 否 | 99 | 最大消息数，超过最大消息时仅显示maxCount+。 |
-| style | BadgeStyle | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
-方法2： Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
+**方法2：** Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
 根据字符串创建标记组件。
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | 是 | - | 提示内容的文本字符串。 |
-  | position | BadgePosition | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
-  | style | BadgeStyle | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+**参数：**
 
-- BadgeStyle对象说明
-  | 名称 | 类型 | 必填 | 默认值 | 描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | color | [ResourceColor](ts-types.md) | 否 | Color.White | 文本颜色。 |
-  | fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
-  | badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
-  | badgeColor | [ResourceColor](ts-types.md) | 否 | Color.Red | badge的颜色。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| value | string | 是 | - | 提示内容的文本字符串。 |
+| position | [BadgePosition](#badgeposition枚举说明) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
-- BadgePosition枚举说明
-  | 名称 | 描述 |
-  | -------- | -------- |
-  | RightTop | 圆点显示在右上角。 |
-  | Right | 圆点显示在右侧纵向居中。 |
-  | Left | 圆点显示在左侧纵向居中。 |
+## BadgeStyle对象说明
+
+| 名称 | 类型 | 必填 | 默认值 | 描述 |
+| -------- | -------- | -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md) | 否 | Color.White | 文本颜色。 |
+| fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
+| badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
+| badgeColor | [ResourceColor](ts-types.md) | 否 | Color.Red | badge的颜色。 |
+
+## BadgePosition枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| RightTop | 圆点显示在右上角。 |
+| Right | 圆点显示在右侧纵向居中。 |
+| Left | 圆点显示在左侧纵向居中。 |
 
 
 ## 示例

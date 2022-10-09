@@ -24,7 +24,7 @@ initCurve(curve?: Curve)：ICurve
 
 | 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  | [Curve](#curve枚举说明) | 否   | Curve.Linear | 曲线类型。 |
+| curve  | [Curve](ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
 
 **返回值：**
 
@@ -175,7 +175,7 @@ init(curve?: Curve): string
 
 | 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  |[Curve](#curve枚举说明) | 否   | Curve.Linear | 曲线类型。 |
+| curve  |[Curve](ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
 
 
 ## Curves.steps<sup>(deprecated)</sup>
@@ -225,26 +225,6 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 | mass      | number | 是    | 质量。弹性系统的受力对象，会对弹性系统产生惯性影响。质量越大，震荡的幅度越大，恢复到平衡位置的速度越慢。 |
 | stiffness | number | 是    | 刚度。是物体抵抗施加的力而形变的程度。在弹性系统中，刚度越大，抵抗变形的能力越强，恢复到平衡位置的速度就越快。 |
 | damping   | number | 是    | 阻尼。是一个纯数，无真实的物理意义，用于描述系统在受到扰动后震荡及衰减的情形。阻尼越大，弹性运动的震荡次数越少、震荡幅度越小。 |
-
-
-## Curve枚举说明
-
-| 名称                  | 描述                                       |
-| ------------------- | ---------------------------------------- |
-| Linear              | 表示动画从头到尾的速度都是相同的。                        |
-| Ease                | 表示动画以低速开始，然后加快，在结束前变慢，CubicBezier(0.25,&nbsp;0.1,&nbsp;0.25,&nbsp;1.0)。 |
-| EaseIn              | 表示动画以低速开始，CubicBezier(0.42,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
-| EaseOut             | 表示动画以低速结束，CubicBezier(0.0,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
-| EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42,&nbsp;0.0,&nbsp;0.58,&nbsp;1.0)。 |
-| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;1.0,&nbsp;1.0)。 |
-| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0)。 |
-| Sharp               | 锐利曲线，cubic-bezier(0.33,&nbsp;0.0,&nbsp;0.67,&nbsp;1.0)。 |
-| Rhythm              | 节奏曲线，cubic-bezier(0.7,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-| Smooth              | 平滑曲线，cubic-bezier(0.4,&nbsp;0.0,&nbsp;0.4,&nbsp;1.0)。 |
-| Friction            | 阻尼曲线，CubicBezier(0.2,&nbsp;0.0,&nbsp;0.2,&nbsp;1.0)。 |
-
 
 ## 整体示例
 

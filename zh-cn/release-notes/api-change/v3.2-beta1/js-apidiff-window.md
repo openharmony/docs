@@ -4,6 +4,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，窗口管理
 
 ## 接口变更
 
+
+
 | 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |---|---|---|---|
 | ohos.screen | ScreenModeInfo | refreshRate: number; | 新增 |
@@ -20,6 +22,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，窗口管理
 | ohos.screen | Orientation | UNSPECIFIED = 0 | 新增 |
 | ohos.screen | Screen | setScreenActiveMode(modeIndex: number, callback: AsyncCallback\<void>): void;<br>setScreenActiveMode(modeIndex: number): Promise\<void>; | 新增 |
 | ohos.screen | Screen | setOrientation(orientation: Orientation, callback: AsyncCallback\<void>): void;<br>setOrientation(orientation: Orientation): Promise\<void>; | 新增 |
+| ohos.screen | Screen | on(eventType: 'connect' \| 'disconnect' \| 'change', callback: Callback<number>): void; | 新增 |
+| ohos.screen | Screen | off(eventType: 'connect' \| 'disconnect' \| 'change', callback?: Callback<number>): void; | 新增 |
 | ohos.screen | Screen | readonly orientation: Orientation; | 新增 |
 | ohos.screen | Screen | readonly activeModeIndex: number; | 新增 |
 | ohos.screen | Screen | readonly supportedModeInfo: Array\<ScreenModeInfo>; | 新增 |
@@ -36,6 +40,8 @@ OpenHarmony 3.2 Beta1版本相较于OpenHarmony 3.1 Release版本，窗口管理
 | ohos.window | WindowStage | getSubWindow(): Promise\<Array\<Window>>;<br>getSubWindow(callback: AsyncCallback\<Array\<Window>>): void; | 新增 |
 | ohos.window | WindowStage | createSubWindow(name: string): Promise\<Window>;<br>createSubWindow(name: string, callback: AsyncCallback\<Window>): void; | 新增 |
 | ohos.window | WindowStage | getMainWindow(): Promise\<Window>;<br>getMainWindow(callback: AsyncCallback\<Window>): void; | 新增 |
+| ohos.window | WindowStage | on(eventType: 'windowStageEvent', callback: Callback<WindowStageEventType>): void; | 新增 |
+| ohos.window | WindowStage | off(eventType: 'windowStageEvent', callback?: Callback<WindowStageEventType>): void; | 新增 |
 | ohos.window | WindowStageEventType | BACKGROUND | 新增 |
 | ohos.window | WindowStageEventType | INACTIVE | 新增 |
 | ohos.window | WindowStageEventType | ACTIVE | 新增 |

@@ -73,6 +73,9 @@ function listener(data) {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
+// 监听输入设备的热插拔事件
+inputDevice.on("change", listener);
+
 // 单独取消listener的监听。
 inputDevice.off("change", listener);
 

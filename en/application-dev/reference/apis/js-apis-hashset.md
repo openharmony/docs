@@ -10,6 +10,9 @@ Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted o
 
 **Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
+This topic uses the following to identify the use of generics:
+- T: Type
+
 ## Modules to Import
 
 ```ts
@@ -26,6 +29,17 @@ import HashSet from '@ohos.util.HashSet';
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | Yes| No| Number of elements in a hash set (called container later).|
 
+**Example**
+
+```ts
+let hashSet = new HashSet();
+hashSet.add(1);
+hashSet.add(2);
+hashSet.add(3);
+hashSet.add(4);
+hashSet.add(5);
+let res = hashSet.length;
+```
 
 ### constructor
 
@@ -88,9 +102,9 @@ Checks whether this container contains the specified element.
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-let result1 = hashSet.has("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.has("squirrel");
+hashSet.add("squirrel");
+let result1 = hashSet.has("squirrel");
 ```
 
 
@@ -118,7 +132,7 @@ Adds an element to this container.
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+let result = hashSet.add("squirrel");
 ```
 
 
@@ -146,9 +160,9 @@ Removes an element from this container.
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
-let result = hashSet.remove("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
+let result = hashSet.remove("sparrow");
 ```
 
 
@@ -164,8 +178,8 @@ Clears this container and sets its length to **0**.
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 hashSet.clear();
 ```
 
@@ -188,8 +202,8 @@ Obtains an iterator that contains all the values in this container.
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 let iter = hashSet.values();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -225,8 +239,8 @@ callbackfn
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("sdfs");
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
+hashSet.add("sparrow");
+hashSet.add("squirrel");
 hashSet.forEach((value, key) => {
   console.log("value:" + value, key);
 });
@@ -250,8 +264,8 @@ Obtains an iterator that contains all the elements in this container.
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp = iter.next().value;
 while(temp != undefined) {
@@ -280,8 +294,8 @@ Obtains an iterator, each item of which is a JavaScript object.
 
 ```ts
 let hashSet = new HashSet();
-hashSet.add("Ahfbrgrbgnutfodgorrogorgrogofdfdf");
-hashSet.add("sdfs");
+hashSet.add("squirrel");
+hashSet.add("sparrow");
 
 // Method 1:
 for (let item of hashSet) { 

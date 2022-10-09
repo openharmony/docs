@@ -16,7 +16,7 @@ import connection from '@ohos.net.connection'
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
-获取默认激活的数据网络，使用callback方式作为异步方法。
+获取默认激活的数据网络，使用callback方式作为异步方法。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -41,7 +41,7 @@ connection.getDefaultNet(function (error, netHandle) {
 
 getDefaultNet(): Promise\<NetHandle>
 
-获取默认激活的数据网络，使用Promise方式作为异步方法。
+获取默认激活的数据网络，使用Promise方式作为异步方法。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -61,12 +61,35 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
+## connection.getDefaultNetSync
+
+getDefaultNetSync(): NetHandle;
+
+使用同步方法获取默认激活的数据网络。可以使用[getNetCapabilities](#connectiongetnetcapabilities)去获取网络的类型、拥有的能力等信息。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| NetHandle | 以同步方式返回默认激活的数据网络。 |
+
+**示例：**
+
+```js
+let netHandle = connection.getDefaultNetSync();
+```
+
 ## connection.hasDefaultNet
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
-检查默认数据网络是否被激活，使用callback方式作为异步方法。
-默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
+检查默认数据网络是否被激活，使用callback方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -89,8 +112,9 @@ connection.hasDefaultNet(function (error, has) {
 
 hasDefaultNet(): Promise\<boolean>
 
-检查默认数据网络是否被激活，使用Promise方式作为异步方法。
-默认数据网络：以太网>Wi-Fi>蜂窝，当只有一个网络为连接状态时，当前连接网络为默认数据网络。
+检查默认数据网络是否被激活，使用Promise方式作为异步方法。如果有默认数据网路，可以使用[getDefaultNet](#connectiongetdefaultnet)去获取。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -138,7 +162,7 @@ connection.getAllNets(function (error, nets) {
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
-获取所有处于连接状态的网络列表，使用promise方式作为异步方法。
+获取所有处于连接状态的网络列表，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
@@ -312,7 +336,7 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用promise方式作为异步方法。
+使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -327,7 +351,7 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -374,7 +398,7 @@ connection.getDefaultNet().then(function (netHandle) {
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。
-使用promise方式作为异步方法。
+使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO 和 ohos.permission.INTERNET
 
@@ -389,7 +413,7 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | 以Promise形式返回执行结果。 |
+| Promise&lt;void&gt; | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -498,7 +522,7 @@ enableAirplaneMode(): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -547,7 +571,7 @@ disableAirplaneMode(): Promise\<void>
 
 | 类型                                        | 说明                          |
 | ------------------------------------------- | ----------------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 
@@ -866,7 +890,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 | 类型           | 说明                   |
 | -------------- | ---------------------- |
-| Promise\<void> | 以Promise形式返回结果。 |
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **示例：**
 

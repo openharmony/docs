@@ -53,7 +53,7 @@ The following uses the RTL8720 development board provided by Realtek as an examp
 
 2. Create a directory for kernel adaptation and configure the **config.gni** file of the development board.
 
-   For example, to adapt the LiteOS-A kernel to the RTL8720 development board, configure the **device/board/realtek/rtl8720/liteo_a/config.gni** file as follows:
+   For example, to adapt the LiteOS-A kernel to the RTL8720 development board, configure the **device/board/realtek/rtl8720/liteos_a/config.gni** file as follows:
 
    ```shell
    # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
