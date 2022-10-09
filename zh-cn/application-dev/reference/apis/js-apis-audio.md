@@ -254,6 +254,78 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 });
 ```
 
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
+
+获取音频渲染器。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**：
+
+| 参数名   | 类型                                             | 必填 | 说明            |
+| -------- | ----------------------------------------------- | ---- | -------------- |
+| options  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 配置渲染器。     |
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | 是   | 音频渲染器对象。 |
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+
+var audioRendererInfo = {
+	"contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+	"streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+	"rendererFlags": 0
+}
+var tonePlayer;
+
+audio.createTonePlayer(audioRendererInfo, (err, data) => {
+  console.info(`callback call createTonePlayer: audioRendererInfo: ${audioRendererInfo}`);
+  if (err) {
+    console.error(`callback call createTonePlayer return error: ${err.message}`);
+  } else {
+    console.info(`callback call createTonePlayer return data: ${data}`);
+    tonePlayer = data;
+  }
+});
+```
+
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
+
+获取音频渲染器。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名  | 类型                                           | 必填 | 说明         |
+| :------ | :---------------------------------------------| :--- | :----------- |
+| options | [AudioRendererInfo](#audiorendererinfo8)      | 是   | 配置音频渲染器信息。 |
+
+**返回值：**
+
+| 类型                                      | 说明              |
+| ----------------------------------------- | ---------------- |
+| Promise<[TonePlayer](#toneplayer9)>       | 音频渲染器对象。   |
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+async function getGroupManager(){
+  var audioRendererInfo = {
+    "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags": 0
+  }
+  let tonePlayer = await audio.createTonePlayer(this.audioRendererInfo);
+}
+```
+
 ## AudioVolumeType
 
 枚举，音频流类型。
@@ -433,6 +505,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                 | 1      | 音频。     |
 | STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
+| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音助理广播使用。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
 
 ## FocusType<sup>9+</sup>
@@ -716,6 +789,7 @@ getVolumeGroupInfos();
 | :------------------------------ | :----- | :--------------------- |
 | SOURCE_TYPE_INVALID             | -1     | 无效的音频源。         |
 | SOURCE_TYPE_MIC                 | 0      | Mic音频源。            |
+| SOURCE_TYPE_VOICE_RECOGNITION   | 1      | 语音识别源类型。        |
 | SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
@@ -731,6 +805,43 @@ getVolumeGroupInfos();
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
 
+## ToneType <sup>9+</sup>
+
+枚举，播放机的音调类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
+
+| 名称                                              | 默认值 | 描述                          |
+| :------------------------------------------------ | :----- | :----------------------------|
+| TONE_TYPE_DIAL_0                                  | 0      | 键0的DTMF音。                 |
+| TONE_TYPE_DIAL_1                                  | 1      | 键1的DTMF音。                 |
+| TONE_TYPE_DIAL_2                                  | 2      | 键2的DTMF音。                 |
+| TONE_TYPE_DIAL_3                                  | 3      | 键3的DTMF音。                 |
+| TONE_TYPE_DIAL_4                                  | 4      | 键4的DTMF音。                 |
+| TONE_TYPE_DIAL_5                                  | 5      | 键5的DTMF音。                 |
+| TONE_TYPE_DIAL_6                                  | 6      | 键6的DTMF音。                 |
+| TONE_TYPE_DIAL_7                                  | 7      | 键7的DTMF音。                 |
+| TONE_TYPE_DIAL_8                                  | 8      | 键8的DTMF音。                 |
+| TONE_TYPE_DIAL_9                                  | 9      | 键9的DTMF音。                 |
+| TONE_TYPE_DIAL_S                                  | 10     | 键*的DTMF音。                 |
+| TONE_TYPE_DIAL_P                                  | 11     | 键#的DTMF音。                 |
+| TONE_TYPE_DIAL_A                                  | 12     | 键A的DTMF音。                 |
+| TONE_TYPE_DIAL_B                                  | 13     | 键B的DTMF音。                 |
+| TONE_TYPE_DIAL_C                                  | 14     | 键C的DTMF音。                 |
+| TONE_TYPE_DIAL_D                                  | 15     | 键D的DTMF音。                 |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL                 | 100    | 呼叫监听音，拨号音。           |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY                 | 101    | 通话监听音，忙。               |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫管理音，拥塞。             |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫管理音，无线电路径确认。    |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监控音，无线电路径不可用。  |
+| TONE_TYPE_COMMON_SUPERVISORY_ERROR                | 105    | 通话管理音，错误/特殊信息。     |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监听音，呼叫等待。         |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监听音，铃声。             |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。         |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，正确确认。           |
+| TONE_TYPE_COMMON_PROPRIETARY_NACK                 | 202    | 专有声调，否定确认。           |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，提示音。             |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有音调，一般双重哔声。        |
 
 ## AudioManager
 
@@ -5038,5 +5149,224 @@ audioCapturer.on('stateChange', (state) => {
   if (state == 2) {
     console.info('audio capturer state is: STATE_RUNNING');
   }
+});
+```
+
+## TonePlayer<sup>9+</sup>
+
+提供播放DTMF音调，呼叫监管音调和专有音调的方法。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+### load<sup>9+</sup>
+
+load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
+
+加载DTMF音调配置。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名         | 类型                        | 必填 | 说明                            |
+| :------------- | :-------------------------- | :--- | :------------------------ ---- |
+| type           | ToneType                    | 是   | 配置的音调类型。                   |
+| callback       | AsyncCallback<ArrayBuffer\> | 是   | 使用callback方式异步返回缓冲区。 |
+
+**示例：**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
+  if (err) {
+    console.error(`callback call load failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call load success');
+  }
+});
+```
+
+### load<sup>9+</sup>
+
+load(type: ToneType): Promise&lt;void&gt;
+
+加载DTMF音调配置。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名         | 类型       | 必填  |  说明             |
+| :------------- | :-------- | :---  | ---------------- |
+| type           | ToneType  | 是    | 配置的音调类型。  |
+
+**返回值：**
+
+| 类型            | 说明                        |
+| :--------------| :-------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
+  console.info('promise call load ');
+}).catch(() => {
+  console.error('promise call load fail');
+});
+```
+
+### start<sup>9+</sup>
+
+start(callback: AsyncCallback&lt;void&gt;): void
+
+启动DTMF音调播放。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.start((err) => {
+  if (err) {
+    console.error(`callback call start failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call start success');
+  }
+});
+```
+
+### start<sup>9+</sup>
+
+start(): Promise&lt;void&gt;
+
+启动DTMF音调播放。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.start().then(() => {
+  console.info('promise call start');
+}).catch(() => {
+  console.error('promise call start fail');
+});
+```
+
+### stop<sup>9+</sup>
+
+stop(callback: AsyncCallback&lt;void&gt;): void
+
+停止当前正在播放的音调。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.stop((err) => {
+  if (err) {
+    console.error(`callback call stop error: ${err.message}`);
+    return;
+  } else {
+    console.error('callback call stop success ');
+  }
+});
+```
+
+### stop<sup>9+</sup>
+
+stop(): Promise&lt;void&gt;
+
+停止当前正在播放的音调。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.stop().then(() => {
+  console.info('promise call stop finish');
+}).catch(() => {
+  console.error('promise call stop fail');
+});
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback&lt;void&gt;): void
+
+释放与此TonePlay对象关联的资源。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| :------- | :------------------- | :--- | :---------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。  |
+
+**示例：**
+
+```js
+tonePlayer.release((err) => {
+  if (err) {
+    console.error(`callback call release failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call release success ');
+  }
+});
+```
+
+### release<sup>9+</sup>
+
+release(): Promise&lt;void&gt;
+
+释放与此TonePlay对象关联的资源。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.release().then(() => {
+  console.info('promise call release');
+}).catch(() => {
+  console.error('promise call release fail');
 });
 ```
