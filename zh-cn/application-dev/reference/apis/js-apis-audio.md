@@ -258,7 +258,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
 
-获取音频渲染器。使用callback方式异步返回结果。
+创建DTMF播放器。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -275,9 +275,9 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 import audio from '@ohos.multimedia.audio';
 
 var audioRendererInfo = {
-	"contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
-	"streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
-	"rendererFlags": 0
+  "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+  "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+  "rendererFlags": 0
 }
 var tonePlayer;
 
@@ -296,7 +296,7 @@ audio.createTonePlayer(audioRendererInfo, (err, data) => {
 
 createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
-获取音频渲染器。使用Promise方式异步返回结果。
+创建DTMF播放器。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
