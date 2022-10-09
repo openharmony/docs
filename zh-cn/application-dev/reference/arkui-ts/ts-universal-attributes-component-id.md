@@ -22,6 +22,7 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 getInspectorByKey(id: string): string
 
 获取指定id的组件的所有属性，不包括子组件信息。
+此接口为系统接口。
 
 **参数:**
 
@@ -40,6 +41,7 @@ getInspectorByKey(id: string): string
 getInspectorTree(): string
 
 获取组件树及组件属性。
+此接口为系统接口。
 
 **返回值:**
 
@@ -52,6 +54,7 @@ getInspectorTree(): string
 sendEventByKey(id: string, action: number, params: string): boolean
 
 给指定id的组件发送事件。
+此接口为系统接口。
 
 **参数:**
 
@@ -72,6 +75,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 sendTouchEvent(event: TouchObject): boolean
 
 发送触摸事件。
+此接口为系统接口。
 
 **参数:**
 
@@ -90,6 +94,7 @@ sendTouchEvent(event: TouchObject): boolean
 sendKeyEvent(event: KeyEvent): boolean
 
 发送按键事件。
+此接口为系统接口。
 
 **参数:**
 
@@ -108,6 +113,7 @@ sendKeyEvent(event: KeyEvent): boolean
 sendMouseEvent(event: MouseEvent): boolean
 
 发送鼠标事件。
+此接口为系统接口。
 
 **参数：**
 
