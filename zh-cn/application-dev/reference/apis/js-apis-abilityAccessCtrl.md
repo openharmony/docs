@@ -36,9 +36,9 @@ var AtManager = abilityAccessCtrl.createAtManager();
 
 管理访问控制模块的实例。
 
-### verifyAccessToken
+### checkAccessToken<sup>9+</sup>
 
-verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
+checkAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
 校验应用是否授予权限，使用Promise方式异步返回结果。
 
@@ -55,17 +55,24 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;GrantStatus&gt; | Promise实例，用于获取异步返回的授权状态结果。 |
+| Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
 
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
-let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+import privacyManager from '@ohos.abilityAccessCtrl';
+
+let AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    AtManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+        console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
+    }).catch((err) => {
+        console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### verifyAccessTokenSync<sup>9+</sup>
@@ -100,7 +107,7 @@ console.log(`data->${JSON.stringify(data)}`);
 
 ### grantUserGrantedPermission
 
-grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
+grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;void&gt;
 
 授予应用user grant权限，使用Promise方式异步返回结果。
 
@@ -114,7 +121,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
 | permissionName | string              | 是   | 被授予的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -122,23 +129,30 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回的授权操作结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
+import privacyManager from '@ohos.abilityAccessCtrl';
+
+let AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
-let promise = AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+try {
+    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
+        console.log('grantUserGrantedPermission success');
+    }).catch((err) => {
+        console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### grantUserGrantedPermission
 
-grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
+grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;void&gt;): void
 
 授予应用user grant权限，使用callback回调异步返回结果。
 
@@ -152,29 +166,35 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。           |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得           |
 | permissionName | string              | 是   | 被授予的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
-| callback | AsyncCallback&lt;number&gt; | 是 | 检查授予应用user grant权限的操作结果同步的回调。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 检查授予应用user grant权限的操作结果同步的回调。 |
 
 **示例：**
 
 ```js
+import privacyManager from '@ohos.abilityAccessCtrl';
+
 var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
-AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
-    if (err) {
-        console.log(`callback: err->${JSON.stringify(err)}`);
-    } else {
-        console.log(`callback: data->${JSON.stringify(data)}`);
-    }
-});
+try {
+    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (data, err) => {
+        if (err) {
+            console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+        } else {
+            console.log('grantUserGrantedPermission success');
+        }
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### revokeUserGrantedPermission
 
-revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;number&gt;
+revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;void&gt;
 
 撤销应用user grant权限，使用Promise方式异步返回结果。
 
@@ -188,7 +208,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
 | permissionName | string              | 是   | 被撤销的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
 
@@ -196,23 +216,30 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回的授权操作结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
+import privacyManager from '@ohos.abilityAccessCtrl';
+
+let AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
-let promise = AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag);
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+try {
+    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
+        console.log('revokeUserGrantedPermission success');
+    }).catch((err) => {
+        console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### revokeUserGrantedPermission
 
-revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;number&gt;): void
+revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;void&gt;): void
 
 撤销应用user grant权限，使用callback回调异步返回结果。
 
@@ -226,24 +253,30 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
 | permissionName | string              | 是   | 被撤销的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
-| callback | AsyncCallback&lt;number&gt; | 是 | 检查撤销应用user grant权限的操作结果同步的回调。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 检查撤销应用user grant权限的操作结果同步的回调。 |
 
 **示例：**
 
 ```js
+import privacyManager from '@ohos.abilityAccessCtrl';
+
 var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
-AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
-    if (err) {
-        console.log(`callback: err->${JSON.stringify(err)}`);
-    } else {
-        console.log(`callback: data->${JSON.stringify(data)}`);
-    }
-});
+try {
+    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (data, err) => {
+        if (err) {
+            console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
+        } else {
+            console.log('revokeUserGrantedPermission success');
+        }
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### getPermissionFlags
@@ -262,24 +295,32 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。            |
+| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
 | permissionName | string              | 是   | 查询的权限名称。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回的查询结果。 |
+| Promise&lt;number&gt; | Promise对象。返回查询结果。 |
 
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
-let tokenID = 0;
-let promise = AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
-promise.then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+import privacyManager from '@ohos.abilityAccessCtrl';
+
+let AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let permissionFlag = 1;
+try {
+    AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+        console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
+    }).catch((err) = > {
+        console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ### getVersion<sup>9+</sup>
@@ -296,7 +337,7 @@ getVersion(): Promise&lt;number&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise实例，用于获取异步返回的版本号。 |
+| Promise&lt;number&gt; | Promise对象。返回查询到的版本号。 |
 
 **示例：**
 
@@ -334,18 +375,15 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNa
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-function OnPermissionStateChanged(data){
-    console.debug("receive permission state change, data:" + JSON.stringify(data));
-}
 let atManager = abilityAccessCtrl.createAtManager();
-let type: 'permissionStateChange' = 'permissionStateChange';
 let tokenIDList: Array<number> = [];
 let permissionNameList: Array<string> = [];
-try{
-    atManager.on(type, tokenIDList, permissionNameList, OnPermissionStateChanged);
-}
-catch(err){
-    console.error("on err:" + JSON.stringify(err));
+try {
+    atManager.on('permissionStateChange', tokenIDList, permissionNameList, (data) => {
+        console.debug("receive permission state change, data:" + JSON.stringify(data));
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -376,15 +414,49 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionN
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let type: 'permissionStateChange' = 'permissionStateChange';
 let tokenIDList: Array<number> = [];
 let permissionNameList: Array<string> = [];
-try{
-    atManager.off(type, tokenIDList, permissionNameList);
+try {
+    atManager.off('permissionStateChange', tokenIDList, permissionNameList);
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
 }
-catch(err){
-    console.error("off err:" + JSON.stringify(err));
-}
+```
+
+### verifyAccessToken<sup>(deprecated)</sup>
+
+verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
+
+校验应用是否授予权限，使用Promise方式异步返回结果。
+
+> **说明：** 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                       |
+| -------- | -------------------  | ---- | ------------------------------------------ |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得              |
+| permissionName | string | 是   | 需要校验的权限名称。 |
+
+**返回值：**
+
+| 类型          | 说明                                |
+| :------------ | :---------------------------------- |
+| Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
+
+**示例：**
+
+```js
+import privacyManager from '@ohos.abilityAccessCtrl';
+
+var AtManager = abilityAccessCtrl.createAtManager();
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+promise.then(data => {
+    console.log(`promise: data->${JSON.stringify(data)}`);
+});
 ```
 
 ### GrantStatus
