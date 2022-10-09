@@ -837,8 +837,8 @@ getVolumeGroupInfos();
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监听音，呼叫等待。         |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监听音，铃声。             |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。         |
-| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，正确确认。           |
-| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，提示音。             |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |
 | TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有音调，一般双重哔声。        |
 
 ## AudioManager
