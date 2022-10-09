@@ -316,7 +316,7 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
 ```js
 import audio from '@ohos.multimedia.audio';
-async function getGroupManager(){
+async function createTonePlayer(){
   var audioRendererInfo = {
     "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
     "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
@@ -505,7 +505,7 @@ async function getGroupManager(){
 | STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
 | STREAM_USAGE_MEDIA                 | 1      | 音频。     |
 | STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
-| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音助理广播使用。 |
+| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音助理。 |
 | STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
 
 ## FocusType<sup>9+</sup>
@@ -789,7 +789,7 @@ getVolumeGroupInfos();
 | :------------------------------ | :----- | :--------------------- |
 | SOURCE_TYPE_INVALID             | -1     | 无效的音频源。         |
 | SOURCE_TYPE_MIC                 | 0      | Mic音频源。            |
-| SOURCE_TYPE_VOICE_RECOGNITION   | 1      | 语音识别源类型。        |
+| SOURCE_TYPE_VOICE_RECOGNITION   | 1      | 语音识别源。        |
 | SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
@@ -5171,7 +5171,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
 | type           | ToneType                    | 是    | 配置的音调类型。                 |
-| callback       | AsyncCallback<ArrayBuffer\> | 是    | 使用callback方式异步返回缓冲区。 |
+| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回缓冲区。 |
 
 **示例：**
 
