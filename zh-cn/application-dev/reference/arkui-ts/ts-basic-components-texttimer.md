@@ -22,7 +22,7 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 **参数:**
 
 | 参数名     | 参数类型     | 必填  | 参数描述                   |
-| ----------- | -------- | -------- | -------- | -------- |
+| ----------- | -------- | -------- | -------- |
 | isCountDown | boolean  | 否   | 是否倒计时。<br/>默认值：false |
 | count       | number   | 否   | 倒计时时间（isCountDown为true时生效），单位为毫秒。<br/>-&nbsp;count&lt;=0时，使用默认值为倒计时初始值。<br/>-&nbsp;count&gt;0时，count值为倒计时初始值。<br/>默认值：60000 |
 | controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
