@@ -248,9 +248,48 @@ struct sockaddr_nin {
 };
 ```
 
+## NewIP开发说明
+
+目前只在鸿蒙Linux-5.10内核支持NewIP内核协议栈，只能在用户态人工配置NewIP地址和路由到内核，两台设备可以通过路由器WiFi连接，也可以通过Eth网线直接连接。如果想配置NewIP地址和路由后自动切换到NewIP内核协议栈通信，应用可以参考下面蓝框中描述。
+
+![zh-cn_image-20221009112548444](figures/zh-cn_image-20221009112548444.png)
+
+上图中NewIP地址，路由配置程序可以参考[代码仓examples代码](https://gitee.com/openharmony-sig/communication_sfc_newip/tree/master/examples)，根据CPU硬件差异更改Makefile中CC定义编译成二级制文件后推送到开发板，参考上图命令给设备配置NewIP地址和路由。
+
+| 文件名             | 功能                                                   |
+| ------------------ | ------------------------------------------------------ |
+| nip_addr.c         | NewIP可变长地址配置demo代码（可配置任意有效NewIP地址） |
+| nip_route.c        | NewIP路由配置demo代码（可配置任意有效NewIP地址）       |
+| check_nip_enable.c | 获取本机NewIP能力                                      |
+
+设备1上查看NewIP地址和路由：
+
+```sh
+dev-1@localhost:~# cat /proc/net/nip_addr
+01          wlan0
+dev-1@localhost:~#
+dev-1@localhost:~#
+dev-1@localhost:~# cat /proc/net/nip_route
+02      ff09       1 wlan0        # 到设备2的路由
+01      01      2149580801 wlan0  # 本机自发自收路由
+```
+
+设备2上查看NewIP地址和路由：
+
+```sh
+dev-2@localhost:~# cat /proc/net/nip_addr
+02          wlan0
+dev-2@localhost:~#
+dev-2@localhost:~#
+dev-2@localhost:~#
+dev-2@localhost:~# cat /proc/net/nip_route
+01      ff09       1 wlan0        # 到设备1的路由
+02      02      2149580801 wlan0  # 本机自发自收路由
+```
+
 ## NewIP收发包代码示例
 
-NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，NewIP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony-sig/communication_sfc_newip/tree/master/examples)。
+NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如下，NewIP协议栈用户态接口使用方法可以参考[代码仓examples代码](https://gitee.com/openharmony-sig/communication_sfc_newip/tree/master/examples)。demo代码内配置固定地址和路由，执行编译后二进制程序时不需要人工指定地址和路由。
 
 | 文件名                | 功能                          |
 | --------------------- | ----------------------------- |
@@ -272,7 +311,7 @@ NewIP可变长地址配置，路由配置，UDP/TCP收发包demo代码链接如�
 
 3、执行“ifconfig xxx up”开启网卡设备，xxx表示网卡名，比如eth0，wlan0。
 
-4、在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
+4、在设备1的sh下执行“./nip_addr_cfg_demo server”给服务端配置0xDE00（2字节）变长地址，在设备2的sh下执。行“./nip_addr_cfg_demo client”给客户端配置0x50（1字节）变长地址，通过“cat /proc/net/nip_addr”查看内核地址配置结果。
 
 5、在设备1的sh下执行“./nip_route_cfg_demo server”给服务端配置路由，在设备2的sh下执行“./nip_route_cfg_demo client”给客户端配置路由，通过“cat /proc/net/nip_route”查看内核路由配置结果。
 
