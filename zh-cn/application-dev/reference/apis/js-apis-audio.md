@@ -262,7 +262,7 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
-**参数：**：
+**参数：**
 
 | 参数名   | 类型                                             | 必填 | 说明            |
 | -------- | ----------------------------------------------- | ---- | -------------- |
@@ -5168,10 +5168,10 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名         | 类型                        | 必填 | 说明                            |
-| :------------- | :-------------------------- | :--- | :------------------------ ---- |
-| type           | ToneType                    | 是   | 配置的音调类型。                   |
-| callback       | AsyncCallback<ArrayBuffer\> | 是   | 使用callback方式异步返回缓冲区。 |
+| 参数名          | 类型                        | 必填  | 说明                            |
+| :--------------| :-------------------------- | :-----| :------------------------------ |
+| type           | ToneType                    | 是    | 配置的音调类型。                 |
+| callback       | AsyncCallback<ArrayBuffer\> | 是    | 使用callback方式异步返回缓冲区。 |
 
 **示例：**
 
