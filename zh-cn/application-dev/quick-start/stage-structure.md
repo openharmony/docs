@@ -68,6 +68,7 @@ app.json示例：
 | keepAlive                      | 标识应用是否始终保持运行状态，仅支持系统应用配置，三方应用配置不生效。标签值为布尔类型，如果为true，应用将始终保持为运行状态，并且在系统启动的时候会被系统启动起来，应用进程退出后，系统也会重新启动该应用进程。 | 布尔值   | 可缺省，缺省值为false。                     |
 | userDataClearable              | 标识是否允许应用清除用户数据，仅支持系统应用配置，三方应用配置不生效，该字段从API8开始支持。 | 布尔值   | 可缺省，缺省值为true。                      |
 | accessible                     | 标识应用的安装目录是否是可访问的，仅支持系统应用配置，三方应用配置不生效。配置为true表示安装目录可以被三方应用访问，false表示不能被三方应用访问。 | 布尔值   | 可缺省，缺省值为false。                     |
+| multiProjects | 标识当前工程是否支持多工程。 | 布尔值 | 可缺省，缺省值为false。 |
 | 设备类型                       | 该标签可以配置多个，表示具体设备上的特殊配置信息，具体的设备类型有："tablet"、"tv"、"wearable"、"car"，可能包含的字段有：minAPIVersion、distributedNotificationEnabled、keepAlive、removable。 | 对象     | 该标签可缺省，缺省值使用app下面相关的字段。 |
 
 ### module对象内部结构
