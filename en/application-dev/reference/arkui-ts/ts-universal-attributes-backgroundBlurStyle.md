@@ -14,11 +14,11 @@ You can apply background blur effects to a component.
 
 ## BlurStyle
 
-  | Name      | Description     |
-  | ------- | ---------- |
-  | Thin    | Thin material.    |
-  | Regular | Regular material. |
-  | Thick   | Thick material.      |
+| Name      | Description     |
+| ------- | ---------- |
+| Thin    | Thin material.    |
+| Regular | Regular material. |
+| Thick   | Thick material.      |
 
 ## Example
 
