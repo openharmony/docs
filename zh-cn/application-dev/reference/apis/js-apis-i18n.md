@@ -16,38 +16,11 @@ import i18n from '@ohos.i18n';
 ```
 
 
-## i18n.getDisplayLanguage
+## System<sup>9+</sup>
 
-getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+### getDisplayCountry<sup>9+</sup>
 
-获取指定语言的本地化显示文本。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名          | 类型      | 必填   | 说明               |
-| ------------ | ------- | ---- | ---------------- |
-| language     | string  | 是    | 指定语言。            |
-| locale       | string  | 是    | 显示指定语言的区域ID。     |
-| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
-
-**返回值：** 
-
-| 类型     | 说明            |
-| ------ | ------------- |
-| string | 指定语言的本地化显示文本。 |
-
-**示例：** 
-  ```js
-  i18n.getDisplayLanguage("zh", "en-GB", true);
-  i18n.getDisplayLanguage("zh", "en-GB");
-  ```
-
-
-## i18n.getDisplayCountry
-
-getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
 
 获取指定国家的本地化显示文本。
 
@@ -67,10 +40,666 @@ getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): stri
 | ------ | ------------- |
 | string | 指定国家的本地化显示文本。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
 **示例：** 
   ```js
-  i18n.getDisplayCountry("zh-CN", "en-GB", true);
-  i18n.getDisplayCountry("zh-CN", "en-GB");
+  try {
+    var displayCountry = i18n.System.getDisplayCountry("zh-CN", "en-GB");
+  } catch(error) {
+    console.error(`call System.getDisplayCountry failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getDisplayLanguage<sup>9+</sup>
+
+static getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+
+获取指定语言的本地化显示文本。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | 是    | 指定语言。            |
+| locale       | string  | 是    | 显示指定语言的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+
+**返回值：** 
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定语言的本地化显示文本。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var displayLanguage = i18n.System.getDisplayLanguage("zh", "en-GB");
+  } catch(error) {
+    console.error(`call System.getDisplayLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLanguages<sup>9+</sup>
+
+static getSystemLanguages(): Array&lt;string&gt;
+
+获取系统支持的语言列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型                  | 说明           |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | 系统支持的语言ID列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var systemLanguages = i18n.System.getSystemLanguages();
+  } catch(error) {
+    console.error(`call System.getSystemLanguages failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemCountries<sup>9+</sup>
+
+static getSystemCountries(language: string): Array&lt;string&gt;
+
+获取针对输入语言系统支持的区域列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型     | 说明    |
+| -------- | ------ | ----- |
+| language | string | 语言ID。 |
+
+**返回值：** 
+
+| 类型                  | 说明           |
+| ------------------- | ------------ |
+| Array&lt;string&gt; | 系统支持的区域ID列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var systemCountries = i18n.System.getSystemCountries('zh');
+  } catch(error) {
+    console.error(`call System.getSystemCountries failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### isSuggested<sup>9+</sup>
+
+static isSuggested(language: string, region?: string): boolean
+
+判断当前语言和区域是否匹配。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型     | 必填   | 说明            |
+| -------- | ------ | ---- | ------------- |
+| language | string | 是    | 合法的语言ID，例如zh。 |
+| region   | string | 否    | 合法的地区ID，例如CN  |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var res = i18n.System.isSuggested('zh', 'CN');
+  } catch(error) {
+    console.error(`call System.isSuggested failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLanguage<sup>9+</sup>
+
+static getSystemLanguage(): string
+
+获取系统语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统语言ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var systemLanguage = i18n.System.getSystemLanguage();
+  } catch(error) {
+    console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemLanguage<sup>9+</sup>
+
+static setSystemLanguage(language: string): void
+
+设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型     | 说明    |
+| -------- | ------ | ----- |
+| language | string | 语言ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    i18n.System.setSystemLanguage('zh');
+  } catch(error) {
+    console.error(`call System.setSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemRegion<sup>9+</sup>
+
+static getSystemRegion(): string
+
+获取系统地区。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统地区ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var systemRegion = i18n.System.getSystemRegion();
+  } catch(error) {
+    console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemRegion<sup>9+</sup>
+
+static setSystemRegion(region: string): void
+
+设置系统区域。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型     | 说明    |
+| ------ | ------ | ----- |
+| region | string | 地区ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    i18n.System.setSystemRegion('CN');
+  } catch(error) {
+    console.error(`call System.setSystemRegion failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getSystemLocale<sup>9+</sup>
+
+static getSystemLocale(): string
+
+获取系统区域。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统区域ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var systemLocale = i18n.System.getSystemLocale();
+  } catch(error) {
+    console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setSystemLocale<sup>9+</sup>
+
+static setSystemLocale(locale: string): void
+
+设置系统Locale。
+
+此接口为系统接口。 
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型     | 说明              |
+| ------ | ------ | --------------- |
+| locale | string | 指定区域ID，例如zh-CN。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    i18n.System.setSystemLocale('zh-CN');
+  } catch(error) {
+    console.error(`call System.setSystemLocale failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### is24HourClock<sup>9+</sup>
+
+static is24HourClock(): boolean
+
+判断系统时间是否为24小时制。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var is24HourClock = i18n.System.is24HourClock();
+  } catch(error) {
+    console.error(`call System.is24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### set24HourClock<sup>9+</sup>
+
+static set24HourClock(option: boolean): void
+
+修改系统时间的24小时制设置。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型      | 必填   | 说明                                       |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  // 将系统时间设置为24小时制
+  try {
+    i18n.System.set24HourClock(true);
+  } catch(error) {
+    console.error(`call System.set24HourClock failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### addPreferredLanguage<sup>9+</sup>
+
+static addPreferredLanguage(language: string, index?: number): void
+
+在系统偏好语言列表中的指定位置添加偏好语言。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型     | 必填   | 说明         |
+| -------- | ------ | ---- | ---------- |
+| language | string | 是    | 待添加的偏好语言。  |
+| index    | number | 否    | 偏好语言的添加位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  // 将语言zh-CN添加到系统偏好语言列表中
+  var language = 'zh-CN';
+  var index = 0;
+  try {
+    i18n.System.addPreferredLanguage(language, index);
+  } catch(error) {
+    console.error(`call System.addPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### removePreferredLanguage<sup>9+</sup>
+
+static removePreferredLanguage(index: number): void
+
+删除系统偏好语言列表中指定位置的偏好语言。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明                    |
+| ----- | ------ | ---- | --------------------- |
+| index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  // 删除系统偏好语言列表中的第一个偏好语言
+  var index = 0;
+  try {
+    i18n.System.removePreferredLanguage(index);
+  } catch(error) {
+    console.error(`call System.removePreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getPreferredLanguageList<sup>9+</sup>
+
+static getPreferredLanguageList(): Array&lt;string&gt;
+
+获取系统偏好语言列表。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型                  | 说明        |
+| ------------------- | --------- |
+| Array&lt;string&gt; | 系统偏好语言列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var preferredLanguageList = i18n.System.getPreferredLanguageList();
+  } catch(error) {
+    console.error(`call System.getPreferredLanguageList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getFirstPreferredLanguage<sup>9+</sup>
+
+static getFirstPreferredLanguage(): string
+
+获取偏好语言列表中的第一个偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明             |
+| ------ | -------------- |
+| string | 偏好语言列表中的第一个语言。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var firstPreferredLanguage = i18n.System.getFirstPreferredLanguage();
+  } catch(error) {
+    console.error(`call System.getFirstPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getAppPreferredLanguage<sup>9+</sup>
+
+static getAppPreferredLanguage(): string
+
+获取应用的偏好语言。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明       |
+| ------ | -------- |
+| string | 应用的偏好语言。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```js
+  try {
+    var appPreferredLanguage = i18n.System.getAppPreferredLanguage();
+  } catch(error) {
+    console.error(`call System.getAppPreferredLanguage failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### setUsingLocalDigit<sup>9+</sup>
+
+static setUsingLocalDigit(flag: boolean): void
+
+设置是否打开本地数字开关。
+
+此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| flag | boolean | 是    | true表示打开本地数字开关，false表示关闭本地数字开关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```ts
+  try {
+    i18n.System.setUsingLocalDigit(true);
+  } catch(error) {
+    console.error(`call System.setUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getUsingLocalDigit<sup>9+</sup>
+
+static getUsingLocalDigit(): boolean
+
+获取系统当前是否打开本地数字开关。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 890001  | Unspported para value.                |
+
+**示例：** 
+  ```ts
+  try {
+    var status = i18n.System.getUsingLocalDigit();
+  } catch(error) {
+    console.error(`call System.getUsingLocalDigit failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 
@@ -98,235 +727,6 @@ isRTL(locale: string): boolean
   ```js
   i18n.isRTL("zh-CN");// 中文不是RTL语言，返回false
   i18n.isRTL("ar-EG");// 阿语是RTL语言，返回true
-  ```
-
-
-## i18n.getSystemLanguage
-
-getSystemLanguage(): string
-
-获取系统语言。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型     | 说明      |
-| ------ | ------- |
-| string | 系统语言ID。 |
-
-**示例：** 
-  ```js
-  i18n.getSystemLanguage();
-  ```
-
-
-## i18n.setSystemLanguage
-
-setSystemLanguage(language: string): boolean
-
-设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名      | 类型     | 说明    |
-| -------- | ------ | ----- |
-| language | string | 语言ID。 |
-
-**返回值：** 
-
-| 类型      | 说明                                    |
-| ------- | ------------------------------------- |
-| boolean | 返回true，表示系统语言设置成功；返回false，表示系统语言设置失败。 |
-
-**示例：** 
-  ```js
-  i18n.setSystemLanguage('zh');
-  ```
-
-
-## i18n.getSystemLanguages<sup>9+</sup>
-
-getSystemLanguages(): Array&lt;string&gt;
-
-获取系统支持的语言列表。
-
-此接口为系统接口。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型                  | 说明           |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | 系统支持的语言ID列表。 |
-
-**示例：** 
-  ```js
-  i18n.getSystemLanguages();
-  ```
-
-
-## i18n.getSystemCountries<sup>9+</sup>
-
-getSystemCountries(language: string): Array&lt;string&gt;
-
-获取针对输入语言系统支持的区域列表。
-
-此接口为系统接口。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名      | 类型     | 说明    |
-| -------- | ------ | ----- |
-| language | string | 语言ID。 |
-
-**返回值：** 
-
-| 类型                  | 说明           |
-| ------------------- | ------------ |
-| Array&lt;string&gt; | 系统支持的区域ID列表。 |
-
-**示例：** 
-  ```js
-  i18n.getSystemCountries('zh');
-  ```
-
-
-## i18n.getSystemRegion
-
-getSystemRegion(): string
-
-获取系统地区。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型     | 说明      |
-| ------ | ------- |
-| string | 系统地区ID。 |
-
-**示例：** 
-  ```js
-  i18n.getSystemRegion();
-  ```
-
-
-## i18n.setSystemRegion
-
-setSystemRegion(region: string): boolean
-
-设置系统区域。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名    | 类型     | 说明    |
-| ------ | ------ | ----- |
-| region | string | 地区ID。 |
-
-**返回值：** 
-
-| 类型      | 说明                                    |
-| ------- | ------------------------------------- |
-| boolean | 返回true，表示系统区域设置成功；返回false，表示系统区域设置失败。 |
-
-**示例：** 
-  ```js
-  i18n.setSystemRegion('CN');
-  ```
-
-
-## i18n.getSystemLocale
-
-getSystemLocale(): string
-
-获取系统区域。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型     | 说明      |
-| ------ | ------- |
-| string | 系统区域ID。 |
-
-**示例：** 
-  ```js
-  i18n.getSystemLocale();
-  ```
-
-
-## i18n.setSystemLocale
-
-setSystemLocale(locale: string): boolean
-
-设置系统Locale。
-
-此接口为系统接口。 
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名    | 类型     | 说明              |
-| ------ | ------ | --------------- |
-| locale | string | 指定区域ID，例如zh-CN。 |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true，表示系统Locale设置成功；返回false，表示系统Locale设置失败。 |
-
-**示例：** 
-  ```js
-  i18n.setSystemLocale('zh-CN');
-  ```
-
-
-## i18n.isSuggested<sup>9+</sup>
-
-isSuggested(language: string, region?: string): boolean
-
-判断当前语言和区域是否匹配。
-
-此接口为系统接口。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名      | 类型     | 必填   | 说明            |
-| -------- | ------ | ---- | ------------- |
-| language | string | 是    | 合法的语言ID，例如zh。 |
-| region   | string | 否    | 合法的地区ID，例如CN  |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true，表示当前语言和地区匹配；返回false，表示当前语言和地区不匹配。 |
-
-**示例：** 
-  ```js
-  i18n.isSuggested('zh', 'CN');
   ```
 
 
@@ -770,39 +1170,6 @@ getLocationName(number: string, locale: string): string
 | measureSystem | string | 是    | 是    | 单位的度量体系，取值包括："SI",&nbsp;"US",&nbsp;"UK"。 |
 
 
-## Util<sup>(deprecated)</sup>
-
-
-### unitConvert<sup>(deprecated)</sup>
-
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
-
-将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
-
-> **说明：** 
-> 从API version 9开始废弃。建议使用[unitConvert](#unitconvert9)代替。
->
-> 从 API version 8开始支持。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名      | 类型                     | 必填   | 说明                                       |
-| -------- | ---------------------- | ---- | ---------------------------------------- |
-| fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
-| toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
-| value    | number                 | 是    | 要被转换的单位的数量值。                             |
-| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-
-**返回值：** 
-
-| 类型     | 说明                      |
-| ------ | ----------------------- |
-| string | 按照toUnit的单位格式化后，得到的字符串。 |
-
-
 ## getInstance<sup>8+</sup>
 
 getInstance(locale?:string): IndexUtil
@@ -899,243 +1266,6 @@ getIndex(text: string): string
   var indexUtil= i18n.getInstance("zh-CN");
   indexUtil.getIndex("hi");  // 返回hi
   ```
-
-
-## Character<sup>(deprecated)</sup>
-
-
-### isDigit<sup>(deprecated)</sup>
-
-static isDigit(char: string): boolean
-
-判断字符串char是否是数字。
-
-> **说明：** 
-> 从API version 9开始废弃。建议使用[isDigit](#isdigit9)代替。
->
-> 从 API version 8开始支持。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                   |
-| ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
-
-
-### isSpaceChar<sup>(deprecated)</sup>
-
-static isSpaceChar(char: string): boolean
-
-判断字符串char是否是空格符。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isSpaceChar](#isspacechar9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                     |
-| ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
-
-
-### isWhitespace<sup>(deprecated)</sup>
-
-static isWhitespace(char: string): boolean
-
-判断字符串char是否是空白符。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isWhitespace](#iswhitespace9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                     |
-| ------- | -------------------------------------- |
-| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
-
-
-### isRTL<sup>(deprecated)</sup>
-
-static isRTL(char: string): boolean
-
-判断字符串char是否是从右到左语言的字符。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isRTL](#isrtl9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
-
-
-### isIdeograph<sup>(deprecated)</sup>
-
-static isIdeograph(char: string): boolean
-
-判断字符串char是否是表意文字。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isIdeograph](#isideograph9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
-
-
-### isLetter<sup>(deprecated)</sup>
-
-static isLetter(char: string): boolean
-
-判断字符串char是否是字母。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isLetter](#isletter9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                   |
-| ------- | ------------------------------------ |
-| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
-
-
-### isLowerCase<sup>(deprecated)</sup>
-
-static isLowerCase(char: string): boolean
-
-判断字符串char是否是小写字母。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isLowerCase](#islowercase9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
-
-
-### isUpperCase<sup>(deprecated)</sup>
-
-static isUpperCase(char: string): boolean
-
-判断字符串char是否是大写字母。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[isUpperCase](#isuppercase9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
-
-
-### getType<sup>(deprecated)</sup>
-
-static getType(char: string): string
-
-获取输入字符串的一般类别值。
-
-> **说明：**
-> 从API version 9开始废弃。建议使用[getType](#gettype9)代替。
->
-> 从 API version 8开始支持
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型     | 必填   | 说明    |
-| ---- | ------ | ---- | ----- |
-| char | string | 是    | 输入字符。 |
-
-**返回值：** 
-
-| 类型     | 说明          |
-| ------ | ----------- |
-| string | 输入字符的一般类别值。 |
 
 
 ## i18n.getLineInstance<sup>8+</sup>
@@ -1389,177 +1519,6 @@ isBoundary(offset: number): boolean
   ```
 
 
-## i18n.is24HourClock<sup>7+</sup>
-
-is24HourClock(): boolean
-
-判断系统时间是否为24小时制。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
-
-**示例：** 
-  ```js
-  var is24HourClock = i18n.is24HourClock();
-  ```
-
-
-## i18n.set24HourClock<sup>7+</sup>
-
-set24HourClock(option: boolean): boolean
-
-修改系统时间的24小时制设置。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名    | 类型      | 必填   | 说明                                       |
-| ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
-
-**返回值：** 
-
-| 类型      | 说明                            |
-| ------- | ----------------------------- |
-| boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
-
-**示例：** 
-  ```js
-  // 将系统时间设置为24小时制
-  var success = i18n.set24HourClock(true);
-  ```
-
-
-## i18n.addPreferredLanguage<sup>8+</sup>
-
-addPreferredLanguage(language: string, index?: number): boolean
-
-在系统偏好语言列表中的指定位置添加偏好语言。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名      | 类型     | 必填   | 说明         |
-| -------- | ------ | ---- | ---------- |
-| language | string | 是    | 待添加的偏好语言。  |
-| index    | number | 否    | 偏好语言的添加位置。 |
-
-**返回值：** 
-
-| 类型      | 说明                            |
-| ------- | ----------------------------- |
-| boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
-
-**示例：** 
-  ```js
-  // 将语言zh-CN添加到系统偏好语言列表中
-  var language = 'zh-CN';
-  var index = 0;
-  var success = i18n.addPreferredLanguage(language, index);
-  ```
-
-
-## i18n.removePreferredLanguage<sup>8+</sup>
-
-removePreferredLanguage(index: number): boolean
-
-删除系统偏好语言列表中指定位置的偏好语言。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名   | 类型     | 必填   | 说明                    |
-| ----- | ------ | ---- | --------------------- |
-| index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
-
-**返回值：** 
-
-| 类型      | 说明                            |
-| ------- | ----------------------------- |
-| boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
-
-**示例：** 
-  ```js
-  // 删除系统偏好语言列表中的第一个偏好语言
-  var index = 0;
-  var success = i18n.removePreferredLanguage(index);
-  ```
-
-
-## i18n.getPreferredLanguageList<sup>8+</sup>
-
-getPreferredLanguageList(): Array&lt;string&gt;
-
-获取系统偏好语言列表。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型                  | 说明        |
-| ------------------- | --------- |
-| Array&lt;string&gt; | 系统偏好语言列表。 |
-
-**示例：** 
-  ```js
-  var preferredLanguageList = i18n.getPreferredLanguageList();
-  ```
-
-
-## i18n.getFirstPreferredLanguage<sup>8+</sup>
-
-getFirstPreferredLanguage(): string
-
-获取偏好语言列表中的第一个偏好语言。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型     | 说明             |
-| ------ | -------------- |
-| string | 偏好语言列表中的第一个语言。 |
-
-**示例：** 
-  ```js
-  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
-  ```
-
-
-## i18n.getAppPreferredLanguage<sup>9+</sup>
-
-getAppPreferredLanguage(): string
-
-获取应用的偏好语言。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型     | 说明       |
-| ------ | -------- |
-| string | 应用的偏好语言。 |
-
-**示例：** 
-  ```js
-  var appPreferredLanguage = i18n.getAppPreferredLanguage();
-  ```
-
-
 ## i18n.getTimeZone<sup>7+</sup>
 
 getTimeZone(zoneID?: string): TimeZone
@@ -1770,56 +1729,6 @@ static getTimezoneFromCity(cityID: string): TimeZone
 **示例：** 
   ```ts
   var timezone = i18n.TimeZone.getTimezoneFromCity("Shanghai");
-  ```
-
-
-## i18n.setUsingLocalDigit<sup>9+</sup>
-
-setUsingLocalDigit(flag: boolean): boolean
-
-设置是否打开本地数字开关。
-
-此接口为系统接口。
-
-**需要权限**：ohos.permission.UPDATE_CONFIGURATION
-
-**系统能力**：SystemCapability.Global.I18n
-
-**参数：** 
-
-| 参数名  | 类型      | 必填   | 说明                              |
-| ---- | ------- | ---- | ------------------------------- |
-| flag | boolean | 是    | true表示打开本地数字开关，false表示关闭本地数字开关。 |
-
-**返回值：** 
-
-| 类型      | 说明                                  |
-| ------- | ----------------------------------- |
-| boolean | true表示本地数字开关设置成功，false表示本地数字开关设置失败。 |
-
-**示例：** 
-  ```ts
-  var status = i18n.setUsingLocalDigit(true);
-  ```
-
-
-## i18n.getUsingLocalDigit<sup>9+</sup>
-
-getUsingLocalDigit(): boolean
-
-获取系统当前是否打开本地数字开关。
-
-**系统能力**：SystemCapability.Global.I18n
-
-**返回值：** 
-
-| 类型      | 说明                                       |
-| ------- | ---------------------------------------- |
-| boolean | true表示系统当前已打开本地数字开关，false表示系统当前未打开本地数字开关。 |
-
-**示例：** 
-  ```ts
-  var status = i18n.getUsingLocalDigit();
   ```
 
 
@@ -2193,3 +2102,534 @@ static getDateOrder(locale: string): string
   ```js
   i18n.I18NUtil.getDateOrder("zh-CN");
   ```
+
+
+## i18n.getDisplayCountry<sup>(deprecated)</sup>
+
+getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
+
+获取指定国家的本地化显示文本。
+
+从API version 9开始不再维护，建议使用[System.getDisplayCountry](#getdisplaycountry9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| country      | string  | 是    | 指定国家。            |
+| locale       | string  | 是    | 显示指定国家的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+
+**返回值：** 
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定国家的本地化显示文本。 |
+
+**示例：** 
+  ```js
+  i18n.getDisplayCountry("zh-CN", "en-GB", true);
+  i18n.getDisplayCountry("zh-CN", "en-GB");
+  ```
+
+
+## i18n.getDisplayLanguage<sup>(deprecated)</sup>
+
+getDisplayLanguage(language: string, locale: string, sentenceCase?: boolean): string
+
+获取指定语言的本地化显示文本。
+
+从API version 9开始不再维护，建议使用[System.getDisplayLanguage](#getdisplaylanguage9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名          | 类型      | 必填   | 说明               |
+| ------------ | ------- | ---- | ---------------- |
+| language     | string  | 是    | 指定语言。            |
+| locale       | string  | 是    | 显示指定语言的区域ID。     |
+| sentenceCase | boolean | 否    | 本地化显示文本是否要首字母大写。 |
+
+**返回值：** 
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 指定语言的本地化显示文本。 |
+
+**示例：** 
+  ```js
+  i18n.getDisplayLanguage("zh", "en-GB", true);
+  i18n.getDisplayLanguage("zh", "en-GB");
+  ```
+
+
+## i18n.getSystemLanguage<sup>(deprecated)</sup>
+
+getSystemLanguage(): string
+
+获取系统语言。
+
+从API version 9开始不再维护，建议使用[System.getSystemLanguage](#getsystemlanguage9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统语言ID。 |
+
+**示例：** 
+  ```js
+  i18n.getSystemLanguage();
+  ```
+
+
+## i18n.getSystemRegion<sup>(deprecated)</sup>
+
+getSystemRegion(): string
+
+获取系统地区。
+
+从API version 9开始不再维护，建议使用[System.getSystemRegion](#getsystemregion9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统地区ID。 |
+
+**示例：** 
+  ```js
+  i18n.getSystemRegion();
+  ```
+
+
+## i18n.getSystemLocale<sup>(deprecated)</sup>
+
+getSystemLocale(): string
+
+获取系统区域。
+
+从API version 9开始不再维护，建议使用[System.getSystemLocale](#getsystemlocale9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明      |
+| ------ | ------- |
+| string | 系统区域ID。 |
+
+**示例：** 
+  ```js
+  i18n.getSystemLocale();
+  ```
+
+
+## i18n.is24HourClock<sup>(deprecated)</sup>
+
+is24HourClock(): boolean
+
+判断系统时间是否为24小时制。
+
+从API version 9开始不再维护，建议使用[System.is24HourClock](#is24hourclock9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true，表示系统24小时开关开启；返回false，表示系统24小时开关关闭。 |
+
+**示例：** 
+  ```js
+  var is24HourClock = i18n.is24HourClock();
+  ```
+
+
+## i18n.set24HourClock<sup>(deprecated)</sup>
+
+set24HourClock(option: boolean): boolean
+
+修改系统时间的24小时制设置。
+
+从API version 9开始不再维护，建议使用[System.set24HourClock](#set24hourclock9)代替。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名    | 类型      | 必填   | 说明                                       |
+| ------ | ------- | ---- | ---------------------------------------- |
+| option | boolean | 是    | option为true，表示开启系统24小时制开关；返回false，表示关闭系统24小时开关。 |
+
+**返回值：** 
+
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示修改成功；返回false，表示修改失败。 |
+
+**示例：** 
+  ```js
+  // 将系统时间设置为24小时制
+  var success = i18n.set24HourClock(true);
+  ```
+
+
+## i18n.addPreferredLanguage<sup>(deprecated)</sup>
+
+addPreferredLanguage(language: string, index?: number): boolean
+
+在系统偏好语言列表中的指定位置添加偏好语言。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[System.addPreferredLanguage](#addpreferredlanguage9)代替。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型     | 必填   | 说明         |
+| -------- | ------ | ---- | ---------- |
+| language | string | 是    | 待添加的偏好语言。  |
+| index    | number | 否    | 偏好语言的添加位置。 |
+
+**返回值：** 
+
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示添加成功；返回false，表示添加失败。 |
+
+**示例：** 
+  ```js
+  // 将语言zh-CN添加到系统偏好语言列表中
+  var language = 'zh-CN';
+  var index = 0;
+  var success = i18n.addPreferredLanguage(language, index);
+  ```
+
+
+## i18n.removePreferredLanguage<sup>(deprecated)</sup>
+
+removePreferredLanguage(index: number): boolean
+
+删除系统偏好语言列表中指定位置的偏好语言。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[System.removePreferredLanguage](#removepreferredlanguage9)代替。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明                    |
+| ----- | ------ | ---- | --------------------- |
+| index | number | 是    | 待删除偏好语言在系统偏好语言列表中的位置。 |
+
+**返回值：** 
+
+| 类型      | 说明                            |
+| ------- | ----------------------------- |
+| boolean | 返回true，表示删除成功；返回false，表示删除失败。 |
+
+**示例：** 
+  ```js
+  // 删除系统偏好语言列表中的第一个偏好语言
+  var index = 0;
+  var success = i18n.removePreferredLanguage(index);
+  ```
+
+
+## i18n.getPreferredLanguageList<sup>(deprecated)</sup>
+
+getPreferredLanguageList(): Array&lt;string&gt;
+
+获取系统偏好语言列表。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getPreferredLanguageList](#getpreferredlanguagelist9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型                  | 说明        |
+| ------------------- | --------- |
+| Array&lt;string&gt; | 系统偏好语言列表。 |
+
+**示例：** 
+  ```js
+  var preferredLanguageList = i18n.getPreferredLanguageList();
+  ```
+
+
+## i18n.getFirstPreferredLanguage<sup>(deprecated)</sup>
+
+getFirstPreferredLanguage(): string
+
+获取偏好语言列表中的第一个偏好语言。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[System.getFirstPreferredLanguage](#getfirstpreferredlanguage9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：** 
+
+| 类型     | 说明             |
+| ------ | -------------- |
+| string | 偏好语言列表中的第一个语言。 |
+
+**示例：** 
+  ```js
+  var firstPreferredLanguage = i18n.getFirstPreferredLanguage();
+  ```
+
+
+## Util<sup>(deprecated)</sup>
+
+
+### unitConvert<sup>(deprecated)</sup>
+
+static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+
+将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[unitConvert](#unitconvert9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明                                       |
+| -------- | ---------------------- | ---- | ---------------------------------------- |
+| fromUnit | [UnitInfo](#unitinfo8) | 是    | 要被转换的单位。                                 |
+| toUnit   | [UnitInfo](#unitinfo8) | 是    | 要转换为的单位。                                 |
+| value    | number                 | 是    | 要被转换的单位的数量值。                             |
+| locale   | string                 | 是    | 格式化时使用的区域参数，如：zh-Hans-CN。                |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
+
+**返回值：** 
+
+| 类型     | 说明                      |
+| ------ | ----------------------- |
+| string | 按照toUnit的单位格式化后，得到的字符串。 |
+
+
+## Character<sup>(deprecated)</sup>
+
+
+### isDigit<sup>(deprecated)</sup>
+
+static isDigit(char: string): boolean
+
+判断字符串char是否是数字。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isDigit](#isdigit9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是数字，返回false表示输入的字符不是数字。 |
+
+
+### isSpaceChar<sup>(deprecated)</sup>
+
+static isSpaceChar(char: string): boolean
+
+判断字符串char是否是空格符。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isSpaceChar](#isspacechar9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空格符，返回false表示输入的字符不是空格符。 |
+
+
+### isWhitespace<sup>(deprecated)</sup>
+
+static isWhitespace(char: string): boolean
+
+判断字符串char是否是空白符。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isWhitespace](#iswhitespace9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                     |
+| ------- | -------------------------------------- |
+| boolean | 返回true表示输入的字符是空白符，返回false表示输入的字符不是空白符。 |
+
+
+### isRTL<sup>(deprecated)</sup>
+
+static isRTL(char: string): boolean
+
+判断字符串char是否是从右到左语言的字符。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isRTL](#isrtl9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是从右到左语言的字符，返回false表示输入的字符不是从右到左语言的字符。 |
+
+
+### isIdeograph<sup>(deprecated)</sup>
+
+static isIdeograph(char: string): boolean
+
+判断字符串char是否是表意文字。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isIdeograph](#isideograph9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是表意文字，返回false表示输入的字符不是表意文字。 |
+
+
+### isLetter<sup>(deprecated)</sup>
+
+static isLetter(char: string): boolean
+
+判断字符串char是否是字母。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isLetter](#isletter9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                   |
+| ------- | ------------------------------------ |
+| boolean | 返回true表示输入的字符是字母，返回false表示输入的字符不是字母。 |
+
+
+### isLowerCase<sup>(deprecated)</sup>
+
+static isLowerCase(char: string): boolean
+
+判断字符串char是否是小写字母。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isLowerCase](#islowercase9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是小写字母，返回false表示输入的字符不是小写字母。 |
+
+
+### isUpperCase<sup>(deprecated)</sup>
+
+static isUpperCase(char: string): boolean
+
+判断字符串char是否是大写字母。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[isUpperCase](#isuppercase9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
+| boolean | 返回true表示输入的字符是大写字母，返回false表示输入的字符不是大写字母。 |
+
+
+### getType<sup>(deprecated)</sup>
+
+static getType(char: string): string
+
+获取输入字符串的一般类别值。
+
+从API version 8开始支持，从API version 9开始不再维护，建议使用[getType](#gettype9)代替。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明    |
+| ---- | ------ | ---- | ----- |
+| char | string | 是    | 输入字符。 |
+
+**返回值：** 
+
+| 类型     | 说明          |
+| ------ | ----------- |
+| string | 输入字符的一般类别值。 |
