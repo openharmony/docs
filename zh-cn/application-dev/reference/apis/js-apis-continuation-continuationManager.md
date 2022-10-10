@@ -10,15 +10,17 @@ continuationManager模块提供了流转/协同入口管理服务能力，包括
 
 ## 导入模块
 
-```js
+```ts
 import continuationManager from '@ohos.continuation.continuationManager'
 ```
 
-## continuationManager.register
+## continuationManager.register<sup>(deprecated)</sup>
 
 register(callback: AsyncCallback\<number>): void;
 
 注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -30,7 +32,7 @@ register(callback: AsyncCallback\<number>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = -1;
   continuationManager.register((err, data) => {
     if (err.code != 0) {
@@ -42,11 +44,13 @@ register(callback: AsyncCallback\<number>): void;
   });
   ```
 
-## continuationManager.register
+## continuationManager.register<sup>(deprecated)</sup>
 
 register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void;
 
 连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
 
 **系统能力**：SystemCapability.Ability.DistributedAbilityManager
 
@@ -59,7 +63,7 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
 
 **示例：**
 
-  ```js
+  ```ts
   let token = -1;
   let continuationExtraParams = {
     deviceType: ["00E"]
@@ -74,9 +78,116 @@ register(options: ContinuationExtraParams, callback: AsyncCallback\<number>): vo
   });
   ```
 
-## continuationManager.register
+## continuationManager.register<sup>(deprecated)</sup>
 
 register(options?: ContinuationExtraParams): Promise\<number>;
+
+连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[registerContinuation](#continuationmanagerregistercontinuation9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<number> | Promise形式返回流转管理服务连接后生成的token。 |
+
+**示例：**
+
+  ```ts
+  let token = -1;
+  let continuationExtraParams = {
+    deviceType: ["00E"]
+  };
+  continuationManager.register(continuationExtraParams)
+    .then((data) => {
+      console.info('register finished, ' + JSON.stringify(data));
+      token = data;
+    })
+    .catch((err) => {
+      console.error('register failed, cause: ' + JSON.stringify(err));
+    });
+  ```
+
+## continuationManager.registerContinuation<sup>9+</sup>
+
+registerContinuation(callback: AsyncCallback\<number>): void;
+
+注册流转管理服务，并获取对应的注册token，无过滤条件，使用AsyncCallback方式作为异步方法。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
+
+**示例：**
+
+  ```ts
+  let token = -1;
+  try {
+    continuationManager.registerContinuation((err, data) => {
+      if (err.code != 0) {
+        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('registerContinuation finished, ' + JSON.stringify(data));
+      token = data;
+    });
+  } catch (err) {
+    console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+  }
+  ```
+
+## continuationManager.registerContinuation<sup>9+</sup>
+
+registerContinuation(options: ContinuationExtraParams, callback: AsyncCallback\<number>): void;
+
+连接流转管理服务，并获取对应的注册token，使用AsyncCallback方式作为异步方法。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
+  | callback | AsyncCallback\<number> | 是 | AsyncCallback形式返回流转管理服务连接后生成的token。 |
+
+**示例：**
+
+  ```ts
+  let token = -1;
+  let continuationExtraParams = {
+    deviceType: ["00E"]
+  };
+  try {
+    continuationManager.registerContinuation(continuationExtraParams, (err, data) => {
+      if (err.code != 0) {
+        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('registerContinuation finished, ' + JSON.stringify(data));
+      token = data;
+    });
+  } catch (err) {
+    console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+  }
+  ```
+
+## continuationManager.registerContinuation<sup>9+</sup>
+
+registerContinuation(options?: ContinuationExtraParams): Promise\<number>;
 
 连接流转管理服务，并获取对应的注册token，使用Promise方式作为异步方法。
 
@@ -96,20 +207,25 @@ register(options?: ContinuationExtraParams): Promise\<number>;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = -1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
-  continuationManager.register(continuationExtraParams)
-    .then((data) => {
-      console.info('register finished, ' + JSON.stringify(data));
-      token = data;
-    })
-    .catch((err) => {
-      console.error('register failed, cause: ' + JSON.stringify(err));
-    });
+  try {
+    continuationManager.register(continuationExtraParams)
+      .then((data) => {
+        console.info('registerContinuation finished, ' + JSON.stringify(data));
+        token = data;
+      })
+      .catch((err) => {
+        console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+      });
+  } catch (err) {
+    console.error('registerContinuation failed, cause: ' + JSON.stringify(err));
+  }
   ```
+
 
 ## continuationManager.on("deviceConnect")<sup>(deprecated)</sup>
 
@@ -130,7 +246,7 @@ on(type: "deviceConnect", callback: Callback\<ContinuationResult>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   continuationManager.on("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -157,7 +273,7 @@ on(type: "deviceDisconnect", callback: Callback\<string>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   continuationManager.on("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -182,7 +298,7 @@ off(type: "deviceConnect", callback?: Callback\<ContinuationResult>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   continuationManager.off("deviceConnect", (data) => {
     console.info('onDeviceConnect deviceId: ' + JSON.stringify(data.id));
     console.info('onDeviceConnect deviceType: ' + JSON.stringify(data.type));
@@ -209,7 +325,7 @@ off(type: "deviceDisconnect", callback?: Callback\<string>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   continuationManager.off("deviceDisconnect", (data) => {
     console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data));
   });
@@ -233,16 +349,20 @@ on(type: "deviceConnect", token: number, callback: Callback\<Array\<Continuation
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.on("deviceConnect", token, (data) => {
-    console.info('onDeviceConnect len: ' + data.length);
-    for (let i = 0; i < data.length; i++) {
-      console.info('onDeviceConnect deviceId: ' + JSON.stringify(data[i].id));
-      console.info('onDeviceConnect deviceType: ' + JSON.stringify(data[i].type));
-      console.info('onDeviceConnect deviceName: ' + JSON.stringify(data[i].name));
-    }
-  });
+  try {
+    continuationManager.on("deviceConnect", token, (data) => {
+      console.info('onDeviceConnect len: ' + data.length);
+      for (let i = 0; i < data.length; i++) {
+        console.info('onDeviceConnect deviceId: ' + JSON.stringify(data[i].id));
+        console.info('onDeviceConnect deviceType: ' + JSON.stringify(data[i].type));
+        console.info('onDeviceConnect deviceName: ' + JSON.stringify(data[i].name));
+      }
+    });
+  } catch (err) {
+    console.error('on failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
 ## continuationManager.on("deviceDisconnect")<sup>9+</sup>
@@ -263,15 +383,19 @@ on(type: "deviceDisconnect", token: number, callback: Callback\<Array\<string>>)
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.on("deviceDisconnect", token, (data) => {
-    console.info('onDeviceDisconnect len: ' + data.length);
-    for (let i = 0; i < data.length; i++) {
-      console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data[i]));
-    }
-    console.info('onDeviceDisconnect finished.');
-  });
+  try {
+    continuationManager.on("deviceDisconnect", token, (data) => {
+      console.info('onDeviceDisconnect len: ' + data.length);
+      for (let i = 0; i < data.length; i++) {
+        console.info('onDeviceDisconnect deviceId: ' + JSON.stringify(data[i]));
+      }
+      console.info('onDeviceDisconnect finished.');
+    });
+  } catch (err) {
+    console.error('on failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
 ## continuationManager.off("deviceConnect")<sup>9+</sup>
@@ -291,9 +415,13 @@ off(type: "deviceConnect", token: number): void;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.off("deviceConnect", token);
+  try {
+    continuationManager.off("deviceConnect", token);
+  } catch (err) {
+    console.error('off failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
 ## continuationManager.off("deviceDisconnect")<sup>9+</sup>
@@ -313,14 +441,121 @@ off(type: "deviceDisconnect", token: number): void;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.off("deviceDisconnect", token);
+  try {
+    continuationManager.off("deviceDisconnect", token);
+  } catch (err) {
+    console.error('off failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
-## continuationManager.startDeviceManager
+## continuationManager.startDeviceManager<sup>(deprecated)</sup>
 
 startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
+
+拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerondeviceconnect9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  continuationManager.startDeviceManager(token, (err, data) => {
+    if (err.code != 0) {
+      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+  });
+  ```
+
+## continuationManager.startDeviceManager<sup>(deprecated)</sup>
+
+startDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void;
+
+拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 是 | 过滤可选择设备列表的额外参数。 |
+  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  let continuationExtraParams = {
+    deviceType: ["00E"]
+  };
+  continuationManager.startDeviceManager(token, continuationExtraParams, (err, data) => {
+    if (err.code != 0) {
+      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+  });
+  ```
+
+## continuationManager.startDeviceManager<sup>(deprecated)</sup>
+
+startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>;
+
+拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[startContinuationDeviceManager](#continuationmanagerstartcontinuationdevicemanager9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 否 | 过滤可选择设备列表的额外参数，该参数可缺省|
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  let continuationExtraParams = {
+    deviceType: ["00E"]
+  };
+  continuationManager.startDeviceManager(token, continuationExtraParams)
+    .then((data) => {
+      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+    })
+    .catch((err) => {
+      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+    });
+  ```
+
+## continuationManager.startContinuationDeviceManager<sup>9+</sup>
+
+startContinuationDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，无过滤条件，使用AsyncCallback方式作为异步方法。
 
@@ -335,20 +570,24 @@ startDeviceManager(token: number, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.startDeviceManager(token, (err, data) => {
-    if (err.code != 0) {
-      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
-  });
+  try {
+    continuationManager.startContinuationDeviceManager(token, (err, data) => {
+      if (err.code != 0) {
+        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
-## continuationManager.startDeviceManager
+## continuationManager.startContinuationDeviceManager<sup>9+</sup>
 
-startDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void;
+startContinuationDeviceManager(token: number, options: ContinuationExtraParams, callback: AsyncCallback\<void>): void;
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用AsyncCallback方式作为异步方法。
 
@@ -364,23 +603,27 @@ startDeviceManager(token: number, options: ContinuationExtraParams, callback: As
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
-  continuationManager.startDeviceManager(token, continuationExtraParams, (err, data) => {
-    if (err.code != 0) {
-      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
-  });
+  try {
+    continuationManager.startContinuationDeviceManager(token, continuationExtraParams, (err, data) => {
+      if (err.code != 0) {
+        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
-## continuationManager.startDeviceManager
+## continuationManager.startContinuationDeviceManager<sup>9+</sup>
 
-startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>;
+startContinuationDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<void>;
 
 拉起设备选择模块，可显示组网内可选择设备列表信息，使用Promise方式作为异步方法。
 
@@ -401,23 +644,98 @@ startDeviceManager(token: number, options?: ContinuationExtraParams): Promise\<v
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
   let continuationExtraParams = {
     deviceType: ["00E"]
   };
-  continuationManager.startDeviceManager(token, continuationExtraParams)
+  try {
+    continuationManager.startContinuationDeviceManager(token, continuationExtraParams)
+      .then((data) => {
+        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+      })
+      .catch((err) => {
+        console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+      });
+  } catch (err) {
+    console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
+  }
+  ```
+
+## continuationManager.updateConnectStatus<sup>(deprecated)</sup>
+
+updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void;
+
+通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | deviceId | string | 是 | 设备ID。 |
+  | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
+  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  let deviceId: string = "test deviceId";
+  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+    if (err.code != 0) {
+      console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+  });
+  ```
+
+## continuationManager.updateConnectStatus<sup>(deprecated)</sup>
+
+updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>;
+
+通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[updateContinuationState](#continuationmanagerupdatecontinuationstate9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | deviceId | string | 是 | 设备ID。 |
+  | status | [DeviceConnectState](#deviceconnectstate) | 是 | 设备连接状态。 |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  let deviceId: string = "test deviceId";
+  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
     .then((data) => {
-      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+      console.info('updateConnectStatus finished, ' + JSON.stringify(data));
     })
     .catch((err) => {
-      console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
+      console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
     });
   ```
 
-## continuationManager.updateConnectStatus
+## continuationManager.updateContinuationState<sup>9+</sup>
 
-updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void;
+updateContinuationState(token: number, deviceId: string, status: DeviceConnectState, callback: AsyncCallback\<void>): void;
 
 通知设备选择模块，更新当前的连接状态，使用AsyncCallback方式作为异步方法。
 
@@ -434,21 +752,25 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState,
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
   let deviceId: string = "test deviceId";
-  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
-    if (err.code != 0) {
-      console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('updateConnectStatus finished, ' + JSON.stringify(data));
-  });
+  try {
+    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+      if (err.code != 0) {
+        console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('updateContinuationState finished, ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
-## continuationManager.updateConnectStatus
+## continuationManager.updateContinuationState<sup>9+</sup>
 
-updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>;
+updateContinuationState(token: number, deviceId: string, status: DeviceConnectState): Promise\<void>;
 
 通知设备选择模块，更新当前的连接状态，使用Promise方式作为异步方法。
 
@@ -470,21 +792,91 @@ updateConnectStatus(token: number, deviceId: string, status: DeviceConnectState)
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
   let deviceId: string = "test deviceId";
-  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
+  try {
+    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
+      .then((data) => {
+        console.info('updateContinuationState finished, ' + JSON.stringify(data));
+      })
+      .catch((err) => {
+        console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+      });
+  } catch (err) {
+    console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
+  }
+  ```
+
+
+## continuationManager.unregister<sup>(deprecated)</sup>
+
+unregister(token: number, callback: AsyncCallback\<void>): void;
+
+解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+  | callback | AsyncCallback\<void> | 是 | AsyncCallback形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  continuationManager.unregister(token, (err, data) => {
+    if (err.code != 0) {
+      console.error('unregister failed, cause: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('unregister finished, ' + JSON.stringify(data));
+  });
+  ```
+
+## continuationManager.unregister<sup>(deprecated)</sup>
+
+unregister(token: number): Promise\<void>;
+
+解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
+
+> 从API Version 9开始不再维护，建议使用[unregisterContinuation](#continuationmanagerunregistercontinuation9)替代。
+
+**系统能力**：SystemCapability.Ability.DistributedAbilityManager
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | token | number | 是 | 注册后的token。 |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise形式返回接口调用结果。 |
+
+**示例：**
+
+  ```ts
+  let token = 1;
+  continuationManager.unregister(token)
     .then((data) => {
-      console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+      console.info('unregister finished, ' + JSON.stringify(data));
     })
     .catch((err) => {
-      console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
+      console.error('unregister failed, cause: ' + JSON.stringify(err));
     });
   ```
 
-## continuationManager.unregister
+## continuationManager.unregisterContinuation<sup>9+</sup>
 
-unregister(token: number, callback: AsyncCallback\<void>): void;
+unregisterContinuation(token: number, callback: AsyncCallback\<void>): void;
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用AsyncCallback方式作为异步方法。
 
@@ -499,20 +891,24 @@ unregister(token: number, callback: AsyncCallback\<void>): void;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.unregister(token, (err, data) => {
-    if (err.code != 0) {
-      console.error('unregister failed, cause: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('unregister finished, ' + JSON.stringify(data));
-  });
+  try {
+    continuationManager.unregisterContinuation(token, (err, data) => {
+      if (err.code != 0) {
+        console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+  }
   ```
 
-## continuationManager.unregister
+## continuationManager.unregisterContinuation<sup>9+</sup>
 
-unregister(token: number): Promise\<void>;
+unregisterContinuation(token: number): Promise\<void>;
 
 解注册流转管理服务，传入注册时获取的token进行解注册，使用Promise方式作为异步方法。
 
@@ -532,16 +928,21 @@ unregister(token: number): Promise\<void>;
 
 **示例：**
 
-  ```js
+  ```ts
   let token = 1;
-  continuationManager.unregister(token)
-    .then((data) => {
-      console.info('unregister finished, ' + JSON.stringify(data));
-    })
-    .catch((err) => {
-      console.error('unregister failed, cause: ' + JSON.stringify(err));
-    });
+  try {
+    continuationManager.unregisterContinuation(token)
+      .then((data) => {
+        console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+      })
+      .catch((err) => {
+        console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+      });
+  } catch (err) {
+    console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
+  }
   ```
+
 
 ## DeviceConnectState
 
