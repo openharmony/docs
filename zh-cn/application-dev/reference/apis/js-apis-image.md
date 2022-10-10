@@ -1771,7 +1771,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式。             |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -1952,7 +1952,7 @@ receiver.readNextImage().then(img => {
 })
 ```
 
-### on('imageArrival')<sup>9+</sup>
+### on<sup>9+</sup>
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
