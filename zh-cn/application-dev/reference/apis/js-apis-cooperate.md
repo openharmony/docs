@@ -19,16 +19,18 @@ enable(enable: boolean, callback: AsyncCallback\<void>): void
 
 键鼠穿越开关开启或关闭，使用callback异步回调。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**: SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
 **参数**：
 
-| 参数名   | 类型                | 必填 | 说明                                                         |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| enable   | boolean             | 是   | 键鼠穿越开关开启或关闭状态。true: 键鼠穿越开关开启; false: 键鼠穿越开关关闭。 |
-| callback | AsyncCallback<void> | 是   | 异步回调函数。当键鼠穿越开关开启或关闭成功，err为undefined，否则为错误对象。 |
+| 参数名    | 类型                       | 必填  | 说明                                                                |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------------- |
+| enable   | boolean                   | 是   | 键鼠穿越开关开启或关闭状态。true: 键鼠穿越开关开启; false: 键鼠穿越开关关闭。
+| callback | AsyncCallback\<void>       | 是   | 异步回调函数。当键鼠穿越开关开启或关闭成功，err为undefined，否则为错误对象。                                |
 
- **示例**：
+
+
+**示例**：
 
 ```js
 try {
@@ -50,7 +52,7 @@ enable(enable: boolean): Promise\<void>
 
 键鼠穿越开关开启或关闭，使用Promise方式作为异步方法。
 
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDeviceCooperate
+**系统能力**： SystemCapability.MultimodalInput.Input.InputDeviceCooperate
 
 **参数**：
 
@@ -58,11 +60,15 @@ enable(enable: boolean): Promise\<void>
 | --------- | ------- | ---- | -------------------------------------------------------------------                 |
 | enable    | boolean | 是   | 键鼠穿越开关开启或关闭状态。true: 键鼠穿越开关开启; false: 键鼠穿越开关关闭。                   |
 
+
+
 **返回值**：
 
 | 参数                 | 说明                     |
 | ------------------- | ------------------------------- |
 | Promise\<void>      | Promise实例，用于异步获取结果。        |
+
+
 
 **示例**：
 
@@ -93,6 +99,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 | callback             | AsyncCallback\<void>         |  是    | 异步回调函数。当键鼠穿越启动成功，err为undefined，否则为错误对象。|
+
+
 
 **示例**：
 
@@ -125,11 +133,15 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 | sinkDeviceDescriptor | string                       |  是   | 键鼠穿越目标设备描述符。             |
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 
+
+
 **返回值**：
 
 | 参数名                  | 说明                             |
 | ---------------------- | ------------------------------- |
 | Promise\<void>         | Promise实例，用于异步获取结果。       |
+
+
 
 **示例**：
 
@@ -159,6 +171,8 @@ stop(callback: AsyncCallback\<void>): void
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | callback             | AsyncCallback\<void>         |  是   | 异步回调函数，返回查询结果。        |
 
+
+
 **示例**：
 
 ```js
@@ -187,7 +201,7 @@ stop(): Promise\<void>
 
 | 参数名                | 说明                            |
 | --------             | ----------------------------   |
-| Promise\<void>       |  Promise实例，用于异步获取结果。      |
+| Promise\<void>       |  Promise实例，用于异步获取结果。      | 
 
 **示例**：
 
@@ -248,11 +262,15 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 | --------             | ---------                    | ----  | ----------------------------    |
 | deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。            |
 
+
+
 **返回值**：
 
 | 参数                        | 说明                     |
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise实例，用于异步获取结果。        |
+
+
 
 **示例**：
 
@@ -282,6 +300,8 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 | --------             | ----------------------------                                    | ---- | ----------------------------   |
 | type                 | string                                                          |  是  | 注册类型，'cooperation'。         |
 | callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 异步回调函数，接收键鼠穿越事件消息。    |
+
+
 
 **示例**：
 
@@ -313,6 +333,8 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 | --------             | ----------------------------                                     | ----   | ----------------------------   |
 | type                 | string                                                           |  是    | 注册类型，'cooperation'。         |
 | callback             | AsyncCallback<void> |  否  | 异步回调函数，用于返回结果。 |
+
+
 
 **示例**：
 
