@@ -1454,6 +1454,7 @@ clear(): Promise&lt;void&gt;
 > **说明：**
 >
 > 从 API Version 7 开始支持，从 API Version 9 开始废弃，建议使用[pasteboard.clearData](#cleardata9-1)替代。
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 **返回值：**
