@@ -1,6 +1,6 @@
 # Popup控制
 
-设置组件点击时弹出的气泡框状态。
+给组件绑定popup弹窗，并设置弹窗内容，交互逻辑和显示状态。
 
 >  **说明：**
 >
@@ -12,7 +12,7 @@
 
 | 名称           | 参数类型                             | 描述                                        |
 | ---------- | ------------------------------------- | --------------------------------------- |
-| bindPopup  | show:&nbsp;boolean,<br/>popup:&nbsp;PopupOptions&nbsp;\|&nbsp;CustomPopupOptions<sup>8+</sup> | 给组件绑定Popup，点击弹出弹窗。<br/>show:&nbsp;创建页面弹窗提示是否默认显示，默认值为false。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| bindPopup  | show:&nbsp;boolean,<br/>popup:&nbsp;[PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 给组件绑定Popup弹窗，设置参数show为true弹出弹框。<br/>show:&nbsp;弹窗显示状态，默认值为false，隐藏弹窗。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
 
 ## PopupOptions类型说明
 
@@ -40,81 +40,80 @@
 
 
 ## 示例
-
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PopupExample {
-  @State noHandlePopup: boolean = false
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
+  // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image('/resource/ic_public_thumbsup.svg').width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
-    }.width(100).height(50).backgroundColor(Color.White)
+    }.width(100).height(50).padding(5)
   }
 
   build() {
     Flex({ direction: FlexDirection.Column }) {
-      Button('no handle popup')
+      // PopupOptions 类型设置弹框内容
+      Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup
+          this.handlePopup = !this.handlePopup //点击展示弹框
         })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
           placementOnTop: false,
+          // 第一个按钮
+          primaryButton: {
+            value: 'confirm',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('ok Button click')
+            }
+          },
+          // 第二个按钮
+          secondaryButton: {
+            value: 'cancle',
+            action: () => {
+              this.handlePopup = !this.handlePopup
+              console.info('cancle Button click')
+            }
+          },
           onStateChange: (e) => {
             console.info(e.isVisible.toString())
             if (!e.isVisible) {
-              this.noHandlePopup = false
+              this.handlePopup = false
             }
           }
         })
         .position({ x: 100, y: 50 })
 
-      Button('with handle popup')
-        .onClick(() => {
-          this.handlePopup = !this.handlePopup
-        })
-        .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
-          placementOnTop: true,
-          primaryButton: {
-            value: 'ok',
-            action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('secondaryButton click')
-            }
-          },
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-          }
-        })
-        .position({ x: 100, y: 200 })
 
-      Button('custom popup')
+      // CustomPopupOptions 类型设置弹框内容
+      Button('CustomPopupOptions')
         .onClick(() => {
           this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
-          placement: Placement.Bottom,
+          placement: Placement.Top,
           maskColor: 0x33000000,
-          popupColor: Color.White,
+          popupColor: Color.Yellow,
           enableArrow: true,
+          autoCancel: true,
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false
             }
           }
         })
-        .position({ x: 100, y: 350 })
+        .position({ x: 80, y: 200 })
     }.width('100%').padding({ top: 5 })
   }
 }
 ```
 
-![zh-cn_image_0000001187055946](figures/zh-cn_image_0000001187055946.gif)
+![figures/popup.gif](figures/popup.gif)
