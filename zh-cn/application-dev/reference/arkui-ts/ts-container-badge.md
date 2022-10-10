@@ -6,11 +6,6 @@
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
-
-无
-
-
 ## 子组件
 
 支持单个子组件。
@@ -42,15 +37,6 @@
 | position | [BadgePosition](#badgeposition枚举说明) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
-## BadgeStyle对象说明
-
-| 名称 | 类型 | 必填 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md) | 否 | Color.White | 文本颜色。 |
-| fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
-| badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
-| badgeColor | [ResourceColor](ts-types.md) | 否 | Color.Red | badge的颜色。 |
-
 ## BadgePosition枚举说明
 
 | 名称 | 描述 |
@@ -59,6 +45,13 @@
 | Right | 圆点显示在右侧纵向居中。 |
 | Left | 圆点显示在左侧纵向居中。 |
 
+## BadgeStyle对象说明
+| 名称 | 类型 | 必填 | 默认值 | 描述 |
+  | -------- | -------- | -------- | -------- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | Color.White | 文本颜色。 |
+| fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
+| badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
+| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | Color.Red | badge的颜色。 |
 
 ## 示例
 
@@ -67,44 +60,92 @@
 @Entry
 @Component
 struct BadgeExample {
-  @State counts: number = 1
-  @State message: string = 'new'
+  @State counts: number = 1;
+  @State message: string = 'new';
 
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
-      Badge({
-        count: this.counts,
-        maxCount: 99,
-        style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
-      }) {
-        Button('message')
-          .onClick(() => {
-            this.counts++
-          })
-          .width(100).height(50).backgroundColor(0x317aff)
-      }.width(100).height(50)
+    Column() {
+      Text('numberBadge').width('80%')
+      Row({ space: 10 }) {
+        // 数字上标，maxCount默认99,超过99展示99+
+        Badge({
+          count: this.counts,
+          maxCount: 99,
+          position: BadgePosition.RightTop,
+          style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
+        }) {
+          Button('message')
+            .onClick(() => {
+              this.counts++;
+            })
+            .width(100).height(50).backgroundColor(0x317aff)
+        }.width(100).height(50)
 
-      Badge({
-        value: this.message,
-        style: { color: 0xFFFFFF, fontSize: 9, badgeSize: 20, badgeColor: Color.Blue }
-      }) {
-        Text('message')
-          .width(80).height(50).fontSize(16).lineHeight(37)
-          .borderRadius(10).textAlign(TextAlign.Center).backgroundColor(0xF3F4ED)
-      }.width(80).height(50)
+        // 数字上标
+        Badge({
+          count: this.counts,
+          maxCount: 99,
+          position: BadgePosition.Left,
+          style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
+        }) {
+          Button('message')
+            .onClick(() => {
+              this.counts++;
+            })
+            .width(100).height(50).backgroundColor(0x317aff)
+        }.width(100).height(50)
 
-      Badge({
-        value: ' ',
-        position: BadgePosition.Right,
-        style: { badgeSize: 6, badgeColor: Color.Red }
-      }) {
-        Text('message')
-          .width(90).height(50).fontSize(16).lineHeight(37)
-          .borderRadius(10).textAlign(TextAlign.Center).backgroundColor(0xF3F4ED)
-      }.width(90).height(50)
-    }.width('100%').margin({ top: 5 })
+
+        // 数字上标
+        Badge({
+          count: this.counts,
+          maxCount: 99,
+          position: BadgePosition.Right,
+          style: { color: 0xFFFFFF, fontSize: 16, badgeSize: 20, badgeColor: Color.Red }
+        }) {
+          Button('message')
+            .onClick(() => {
+              this.counts++;
+            })
+            .width(100).height(50).backgroundColor(0x317aff)
+        }.width(100).height(50)
+      }.margin(10)
+
+      Text('stringBadge').width('80%')
+      Row({ space: 30 }) {
+        Badge({
+          value: this.message,
+          style: { color: 0xFFFFFF, fontSize: 9, badgeSize: 20, badgeColor: Color.Blue }
+        }) {
+          Text('message')
+            .width(80)
+            .height(50)
+            .fontSize(16)
+            .lineHeight(37)
+            .borderRadius(10)
+            .textAlign(TextAlign.Center)
+            .backgroundColor(0xF3F4ED)
+        }.width(80).height(50)
+
+        // value为空，设置圆点标记
+        Badge({
+          value: '',
+          position: BadgePosition.Right,
+          style: { badgeSize: 6, badgeColor: Color.Red }
+        }) {
+          Text('message')
+            .width(90)
+            .height(50)
+            .fontSize(16)
+            .lineHeight(37)
+            .borderRadius(10)
+            .textAlign(TextAlign.Center)
+            .backgroundColor(0xF3F4ED)
+        }.width(90).height(50)
+      }.margin(10)
+    }
   }
 }
 ```
 
-![zh-cn_image_0000001219864147](figures/zh-cn_image_0000001219864147.gif)
+![badge](figures/badge.png)

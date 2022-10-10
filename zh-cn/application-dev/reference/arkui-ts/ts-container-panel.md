@@ -27,8 +27,8 @@ Panel(show: boolean)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| type | PanelType | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
-| mode | PanelMode | 设置可滑动面板的初始状态。 |
+| type | [PanelType](#paneltype枚举说明) | 设置可滑动面板的类型。<br/>默认值：PanelType.Foldable |
+| mode | [PanelMode](#panelmode枚举说明) | 设置可滑动面板的初始状态。 |
 | dragBar | boolean | 设置是否存在dragbar，true表示存在，false表示不存在。<br/>默认值：true |
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度，默认为屏幕尺寸的一半。 |
