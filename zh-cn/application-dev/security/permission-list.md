@@ -148,3 +148,4 @@
 | ohos.permission.ACCESS_CERT_MANAGER_INTERNAL             | system_basic  | system_grant | FALSE   | 允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。            |
 | ohos.permission.ACCESS_CERT_MANAGER                      | normal        | system_grant | FALSE   | 允许应用进行私有凭据的相关操作、查询证书状态等操作。              |
 | ohos.permission.ACCESS_PUSH_SERVICE                      | system_basic  | system_grant | TRUE    | 允许应用访问推送服务的Ability。                                     |
+| ohos.permission.RECEIVER_STARTUP_COMPLETED               | system_basic  | system_grant | FALSE   | 允许应用订阅开机广播。                                     |
