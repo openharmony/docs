@@ -2,9 +2,9 @@
 
 路由容器组件，提供路由跳转能力。
 
->  **说明：**
+> **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -16,14 +16,12 @@
 
 Navigator(value?: {target: string, type?: NavigationType})
 
-创建路由组件。
-
 **参数：**
 
 | 参数名 | 参数类型       | 必填 | 参数描述                                       |
 | ------ | -------------- | ---- | ---------------------------------------------- |
-| target | string         | 是   | 指定跳转目标页面的路径。                       |
-| type   | NavigationType | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
+| target | string         | 是   | 指定跳转目标页面的路径。     |
+| type   | [NavigationType](#navigationtype枚举说明) | 否   | 指定路由方式。<br/>默认值：NavigationType.Push |
 
 ## NavigationType枚举说明
 
@@ -33,22 +31,25 @@ Navigator(value?: {target: string, type?: NavigationType})
 | Replace | 用应用内的某个页面替换当前页面，并销毁被替换的页面。 |
 | Back    | 返回上一页面或指定的页面。              |
 
+
 ## 属性
 
 | 名称   | 参数    | 描述                                                         |
 | ------ | ------- | ------------------------------------------------------------ |
 | active | boolean | 当前路由组件是否处于激活状态，处于激活状态时，会生效相应的路由操作。 |
-| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用router.getParams()获得。 |
+| params | object  | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../apis/js-api-router.md#routergetparams)获得。 |
+| target | string         | 设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。                         |
+| type   | [NavigationType](#navigationtype枚举说明)  | 设置路由方式。<br/>默认值：NavigationType.Push |
 
 
 ## 示例
 
-```
-// Navigator Page
+```ts
+// Navigator.ets
 @Entry
 @Component
 struct NavigatorExample {
-  @State active: boolean = false
+  @State active: boolean = false;
   @State Text: object = {name: 'news'}
 
   build() {
@@ -56,27 +57,28 @@ struct NavigatorExample {
       Navigator({ target: 'pages/container/navigator/Detail', type: NavigationType.Push }) {
         Text('Go to ' + this.Text['name'] + ' page')
             .width('100%').textAlign(TextAlign.Center)
-      }.params({ text: this.Text })
+      }.params({ text: this.Text }) // 传参数到Detail页面
 
       Navigator() {
         Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
       }.active(this.active)
       .onClick(() => {
-        this.active = true
+        this.active = true;
       })
     }.height(150).width(350).padding(35)
   }
 }
 ```
 
-```
-// Detail Page
-import router from '@system.router'
+```ts
+// Detail.ets
+import router from '@ohos.router'
 
 @Entry
 @Component
 struct DetailExample {
-  @State text: any = router.getParams().text
+  // 接收Navigator.ets的传参
+  @State text: any = router.getParams().text;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
@@ -93,8 +95,8 @@ struct DetailExample {
 
 ```
 
-```
-// Back Page
+```ts
+// Back.ets
 @Entry
 @Component
 struct BackExample {
