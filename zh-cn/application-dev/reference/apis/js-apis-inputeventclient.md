@@ -16,9 +16,10 @@ InputEventClient模块提供了注入按键能力。
 import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ```
 
-## inputEventClient.injectKeyEvent<sup>9+</sup>
 
-injectKeyEvent({ KeyEvent: KeyEvent }): void;
+## inputEventClient.injectEvent
+
+injectEvent({KeyEvent: KeyEvent}): void
 
 注入按键，KeyEvent为注入按键的描述信息。
 
@@ -26,13 +27,13 @@ injectKeyEvent({ KeyEvent: KeyEvent }): void;
 
 **参数：**
 
-| 参数     | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| KeyEvent | [KeyEvent](#keyevent) | 是   | 注入按键的描述信息 |
+| 参数       | 类型                    | 必填   | 说明        |
+| -------- | --------------------- | ---- | --------- |
+| KeyEvent | [KeyEvent](#keyevent) | 是    | 注入按键的描述信息 |
 
 **示例：**
 
-```
+```js
 try {
   var keyEvent = {
     isPressed: true,
@@ -66,31 +67,3 @@ try {
 | keyCode         | number  | 是    | 按键键值      |
 | keyDownDuration | number  | 是    | 按键按下持续时间  |
 | isIntercepted   | boolean | 是    | 按键是否可以被拦截 |
-
-## inputEventClient.injectEvent<sup>(deprecated)</sup>
-
-injectEvent({KeyEvent: KeyEvent}): void
-
-注入按键，KeyEvent为注入按键的描述信息。
-
-从API version 9 开始不再维护，建议使用[inputEventClient.injectKeyEvent](#inputEventClientinjectKeyEvent9)代替。
-
-**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
-
-**参数：**
-
-| 参数     | 类型                  | 必填 | 说明               |
-| -------- | --------------------- | ---- | ------------------ |
-| KeyEvent | [KeyEvent](#keyevent) | 是   | 注入按键的描述信息 |
-
-**示例：**
-
-```js
-let keyEvent = {
-    isPressed: true,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
-}
-let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
-```
