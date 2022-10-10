@@ -21,6 +21,21 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 | timeZoneOffset | number   | 否     | 设置时区偏移量。<br>取值范围为[-14, 12]，表示东十二区到西十二区，其中负值表示东时区，正值表示西时区，比如东八区为-8。<br>对横跨国际日界线的国家或地区，用-13（UTC+13）和-14（UTC+14）来保证整个国家或者区域处在相同的时间，当设置的值不在取值范围内时，将使用当前系统的时区偏移量。<br/>默认值：当前系统的时区偏移量 |
 | controller     | [TextClockController](#textclockcontroller) | 否      | 绑定一个控制器，用来控制文本时钟的状态。|
 
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称   | 参数类型    | 描述                                                         |
+| ------ | --------------- | ------------------------------------------------------------ |
+| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。<br/>若格式未匹配，则使用默认值。<br/>默认值： 'hms'|
+
+## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
+| 名称                                         | 功能描述                                                     |
+| -------------------------------------------- | ------------------------------------------------------------ |
+| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件最小回调间隔为秒。<br/>- value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
 
 ## TextClockController
 
@@ -43,24 +58,6 @@ start()
 stop()
 
 停止文本时钟。
-
-
-## 属性
-
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
-
-| 名称   | 参数类型    | 描述                                                         |
-| ------ | --------------- | ------------------------------------------------------------ |
-| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。<br/>默认值： 'hms'|
-
-## 事件
-
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
-
-| 名称                                         | 功能描述                                                     |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| onDateChange(event: (value: number) => void) | 提供时间变化回调，该事件最小回调间隔为秒。<br /> value: Unix Time Stamp，即自1970年1月1日（UTC）起经过的毫秒数。 |
-
 
 ## 示例
 
@@ -101,4 +98,3 @@ struct Second {
 }
 ```
 ![text_clock](figures/text_clock.gif)
-
