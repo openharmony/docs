@@ -54,7 +54,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise<void>;
 示例：
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-import bundle from '../@ohos.bundle';
+import bundle from '@ohos.bundle';
 
 export default {
   onCreate() {
@@ -71,13 +71,13 @@ export default {
 }
 ```
 
-## Stage模型和Context详细介绍
+## Stage模型的Context详细介绍
 
 ​        Stage模型有如下几类Context：
 
 ### application/Context
 
-​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
+​        application/Context是基类Context。里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createModuleContext等。
 
 **d.ts声明**
 
