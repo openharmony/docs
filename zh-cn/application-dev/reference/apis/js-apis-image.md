@@ -2017,6 +2017,228 @@ receiver.release().then(() => {
 })
 ```
 
+## image.createImageCreator<sup>9+</sup>
+
+createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
+
+通过宽、高、图片格式、容量创建ImageCreator实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| width    | number | 是   | 图像的默认宽度。       |
+| height   | number | 是   | 图像的默认高度。       |
+| format   | number | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
+| capacity | number | 是   | 同时访问的最大图像数。 |
+
+**返回值：**
+
+| 类型                           | 说明                                    |
+| ------------------------------ | --------------------------------------- |
+| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |    
+
+**示例：**
+
+```js
+var creator = image.createImageCreator(8192, 8, 4, 8);
+```
+
+## ImageCreator<sup>9+</sup>
+
+图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
+在调用以下方法前需要先创建ImageCreator实例。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+| 名称     | 类型                         | 可读 | 可写 | 说明               |
+| -------- | ---------------------------- | ---- | ---- | ------------------ |
+| capacity | number                       | 是   | 否   | 同时访问的图像数。 |
+| format   | [ImageFormat](#imageformat9) | 是   | 否   | 图像格式。         |
+
+### dequeueImage<sup>9+</sup>
+
+dequeueImage(callback: AsyncCallback\<Image>): void
+
+从空闲队列中获取buffer图片，用于绘制UI内容，并使用callback返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称          | 类型                                    | 必填 | 说明                 |
+| ------------- | ---------------------------------------| ---- | -------------------- |
+| callback      | AsyncCallback\<Image>                   | 是   | 回调函数，返回最新图片。 |
+
+**示例：**
+
+```js
+creator.dequeueImage((err, img) => {
+    if (err) {
+        console.info('dequeueImage succeeded.');
+    }
+    console.info('dequeueImage failed.'));
+});
+```
+
+### dequeueImage<sup>9+</sup>
+
+dequeueImage(): Promise\<Image>
+
+从空闲队列中获取buffer图片，用于绘制UI内容，并使用promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**返回值：**
+
+| 类型             | 说明           |
+| --------------- | ------------- |
+| Promise\<Image> | 返回绘制的图像。 |
+
+**示例：**
+
+```js
+creator.dequeueImage().then(img => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.log('dequeueImage failed: ' + error);
+})
+```
+
+### queueImage<sup>9+</sup>
+
+queueImage(interface: Image, callback: AsyncCallback\<void>): void
+
+将绘制好的图片放入Dirty队列，并使用callback返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称          | 类型                     | 必填 | 说明                 |
+| ------------- | -------------------------| ---- | -------------------- |
+| interface     | Image                    | 是   | 绘制好的buffer图像。 |
+| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+creator.queueImage(img, (err) => {
+    if (err) {
+        console.info('dequeueImage failed: ' + err);
+    }
+    console.info('dequeueImage succeeded');
+})
+```
+
+### queueImage<sup>9+</sup>
+
+queueImage(interface: Image): Promise\<void>
+
+将绘制好的图片放入Dirty队列，并使用promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称          | 类型     | 必填 | 说明                |
+| ------------- | --------| ---- | ------------------- |
+| interface     | Image   | 是   | 绘制好的buffer图像。 |
+
+**返回值：**
+
+| 类型            | 说明           |
+| -------------- | ------------- |
+| Promise\<void> | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+creator.queueImage(img).then(() => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.info('dequeueImage failed: ' + error);
+})
+```
+
+### on<sup>9+</sup>
+
+on(type: 'imageRelease', callback: AsyncCallback\<void>): void
+
+监听imageRelease事件，并使用callback返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称          | 类型                     | 必填 | 说明                 |
+| ------------- | -------------------------| ---- | -------------------- |
+| type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
+| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+creator.on('imageRelease', (err) => {
+    if (err) {
+        console.info('on faild' + err);
+    }
+    console.info('on succeeded');
+})
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+释放当前图像，并使用callback返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 名称           | 类型                     | 必填 | 说明                 |
+| ------------- | -------------------------| ---- | -------------------- |
+| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+creator.release((err) => {
+    if (err) {
+        console.info('release failed: ' + err);
+    }
+    console.info('release succeeded');
+});
+```
+### release<sup>9+</sup>
+
+release(): Promise\<void>
+
+释放当前图像，并使用promise返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**返回值：**
+
+| 类型            | 说明           |
+| -------------- | ------------- |
+| Promise\<void> | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```js
+creator.release().then(() => {
+    console.info('release succeeded');
+}).catch(error => {
+    console.info('release failed');
+})
+```
+
 ## Image<sup>9+</sup>
 
 提供基本的图像操作，包括获取图像信息、读写图像数据。调用[readNextImage](#readnextimage9)和[readLatestImage](#readlatestimage9)接口时会返回image。
@@ -2144,7 +2366,7 @@ img.release().then(() =>{
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
 | offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4                      |
+| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                   |
 | region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
@@ -2156,6 +2378,7 @@ img.release().then(() =>{
 | 名称 | 类型          | 可读 | 可写 | 说明       |
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | 是   | 是   | 图片大小。 |
+| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。 |
 
 ## Size
 
@@ -2178,8 +2401,13 @@ img.release().then(() =>{
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | 未知格式。        |
 | RGB_565                | 2      | 格式为RGB_565     |
-| RGBA_8888              | 3      | 格式为RGBA_8888   |
-| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888   |
+| RGBA_8888              | 3      | 格式为RGBA_8888 |
+| BGRA_8888<sup>9+</sup> | 4      | 格式为BGRA_8888 |
+| RGB_888<sup>9+</sup>   | 5      | 格式为RGB_888   |
+| ALPHA_8<sup>9+</sup>   | 6      | 格式为ALPHA_8   |
+| RGBA_F16<sup>9+</sup>  | 7      | 格式为RGBA_F16  |
+| NV21<sup>9+</sup>      | 8      | 格式为NV21      |
+| NV12<sup>9+</sup>      | 9      | 格式为NV12      |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2191,8 +2419,8 @@ img.release().then(() =>{
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
 | OPAQUE   | 1      | 没有alpha或图片全透明。 |
-| PREMUL   | 2      | RGB前乘alpha           |
-| UNPREMUL | 3      | RGB不前乘alpha         |
+| PREMUL   | 2      | RGB前乘alpha。         |
+| UNPREMUL | 3      | RGB不前乘alpha。       |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -2247,6 +2475,7 @@ PixelMap的初始化选项。
 | desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。       |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
+| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
 
 ## Region<sup>7+</sup>
 
@@ -2268,8 +2497,9 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：jpeg webp  |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100 |
+| format  | string | 是   | 是   | 目标格式。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M |
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2296,8 +2526,14 @@ PixelMap的初始化选项。
 | IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。               |
 | GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。               |
 | GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。     |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。     |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00     |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec.|
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。     |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400     |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8     |
+
 
 ## ImageFormat<sup>9+</sup>
 
