@@ -1952,7 +1952,7 @@ receiver.readNextImage().then(img => {
 })
 ```
 
-### on('imageArrival')<sup>9+</sup>
+### on<sup>9+</sup>
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
