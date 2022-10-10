@@ -7,6 +7,7 @@
 - [AudioManager](#audiomanager)：音频管理。
 - [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
 - [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
+- [TonePlayer](#toneplayer9)：用于管理和播放DTMF（Dual Tone Multi Frequency，双音多频）音调，如拨号音、通话回铃音等。
 
 >  **说明：**
 >  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -500,13 +501,13 @@ async function createTonePlayer(){
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                               | 默认值 | 描述       |
-| ---------------------------------- | ------ | ---------- |
-| STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
-| STREAM_USAGE_MEDIA                 | 1      | 音频。     |
-| STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
-| STREAM_USAGE_VOICE_ASSISTANT       | 3      | 语音播报。 |
-| STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
+| 名称                                      | 默认值 | 描述       |
+| ------------------------------------------| ------ | ---------- |
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
+| STREAM_USAGE_MEDIA                        | 1      | 音频。     |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 |
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 |
+| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
 
 ## FocusType<sup>9+</sup>
 
@@ -785,12 +786,12 @@ getVolumeGroupInfos();
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                            | 默认值 | 描述                   |
-| :------------------------------ | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID             | -1     | 无效的音频源。         |
-| SOURCE_TYPE_MIC                 | 0      | Mic音频源。            |
-| SOURCE_TYPE_VOICE_RECOGNITION   | 1      | 语音识别源。        |
-| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。 |
+| 名称                                         | 默认值 | 描述                   |
+| :------------------------------------------- | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
+| SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。        |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -804,42 +805,6 @@ getVolumeGroupInfos();
 | AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
-
-## ToneType <sup>9+</sup>
-
-枚举，播放机的音调类型。
-
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
-
-| 名称                                              | 默认值 | 描述                          |
-| :------------------------------------------------ | :----- | :----------------------------|
-| TONE_TYPE_DIAL_0                                  | 0      | 键0的DTMF音。                 |
-| TONE_TYPE_DIAL_1                                  | 1      | 键1的DTMF音。                 |
-| TONE_TYPE_DIAL_2                                  | 2      | 键2的DTMF音。                 |
-| TONE_TYPE_DIAL_3                                  | 3      | 键3的DTMF音。                 |
-| TONE_TYPE_DIAL_4                                  | 4      | 键4的DTMF音。                 |
-| TONE_TYPE_DIAL_5                                  | 5      | 键5的DTMF音。                 |
-| TONE_TYPE_DIAL_6                                  | 6      | 键6的DTMF音。                 |
-| TONE_TYPE_DIAL_7                                  | 7      | 键7的DTMF音。                 |
-| TONE_TYPE_DIAL_8                                  | 8      | 键8的DTMF音。                 |
-| TONE_TYPE_DIAL_9                                  | 9      | 键9的DTMF音。                 |
-| TONE_TYPE_DIAL_S                                  | 10     | 键*的DTMF音。                 |
-| TONE_TYPE_DIAL_P                                  | 11     | 键#的DTMF音。                 |
-| TONE_TYPE_DIAL_A                                  | 12     | 键A的DTMF音。                 |
-| TONE_TYPE_DIAL_B                                  | 13     | 键B的DTMF音。                 |
-| TONE_TYPE_DIAL_C                                  | 14     | 键C的DTMF音。                 |
-| TONE_TYPE_DIAL_D                                  | 15     | 键D的DTMF音。                 |
-| TONE_TYPE_COMMON_SUPERVISORY_DIAL                 | 100    | 呼叫监听音，拨号音。           |
-| TONE_TYPE_COMMON_SUPERVISORY_BUSY                 | 101    | 通话监听音，忙。               |
-| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫管理音，拥塞。             |
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫管理音，无线电 ACK。        |
-| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监控音，无线电不可用。      |
-| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监听音，呼叫等待。         |
-| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监听音，铃声。             |
-| TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。         |
-| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
-| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |
-| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有声调，双重蜂鸣声。          |
 
 ## AudioManager
 
@@ -3258,6 +3223,91 @@ audioManager.getRoutingManager((err,AudioRoutingManager)=>{
 });
 ```
 
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输入设备类。               |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调，返回选择输入设备结果。 |
+
+**示例：**
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select input devices result callback: SUCCESS'); }
+    });
+  });
+}
+```
+
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+**系统接口：** 该接口为系统接口
+
+选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输入设备类。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise返回选择输入设备结果。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor =[{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
+      console.info('Select input devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
+  });
+}
+```
+
 ### selectOutputDevice<sup>9+</sup>
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
@@ -5150,11 +5200,45 @@ audioCapturer.on('stateChange', (state) => {
 });
 ```
 
+## ToneType <sup>9+</sup>
+
+枚举，播放器的音调类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
+
+| 名称                                              | 默认值 | 描述                          |
+| :------------------------------------------------ | :----- | :----------------------------|
+| TONE_TYPE_DIAL_0                                  | 0      | 键0的DTMF音。                 |
+| TONE_TYPE_DIAL_1                                  | 1      | 键1的DTMF音。                 |
+| TONE_TYPE_DIAL_2                                  | 2      | 键2的DTMF音。                 |
+| TONE_TYPE_DIAL_3                                  | 3      | 键3的DTMF音。                 |
+| TONE_TYPE_DIAL_4                                  | 4      | 键4的DTMF音。                 |
+| TONE_TYPE_DIAL_5                                  | 5      | 键5的DTMF音。                 |
+| TONE_TYPE_DIAL_6                                  | 6      | 键6的DTMF音。                 |
+| TONE_TYPE_DIAL_7                                  | 7      | 键7的DTMF音。                 |
+| TONE_TYPE_DIAL_8                                  | 8      | 键8的DTMF音。                 |
+| TONE_TYPE_DIAL_9                                  | 9      | 键9的DTMF音。                 |
+| TONE_TYPE_DIAL_S                                  | 10     | 键*的DTMF音。                 |
+| TONE_TYPE_DIAL_P                                  | 11     | 键#的DTMF音。                 |
+| TONE_TYPE_DIAL_A                                  | 12     | 键A的DTMF音。                 |
+| TONE_TYPE_DIAL_B                                  | 13     | 键B的DTMF音。                 |
+| TONE_TYPE_DIAL_C                                  | 14     | 键C的DTMF音。                 |
+| TONE_TYPE_DIAL_D                                  | 15     | 键D的DTMF音。                 |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL                 | 100    | 呼叫监管音调，拨号音。          |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY                 | 101    | 呼叫监管音调，忙。              |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫监管音调，拥塞。            |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫监管音调，无线电 ACK。      |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监管音调，无线电不可用。     |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监管音调，呼叫等待。        |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监管音调，铃声。            |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。          |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有声调，双重蜂鸣声。          |
+
 ## TonePlayer<sup>9+</sup>
 
-提供播放DTMF音调，呼叫监管音调和专有音调的方法。
-
-### 属性
+提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Tone
 
@@ -5170,7 +5254,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
-| type           | ToneType                    | 是    | 配置的音调类型。                 |
+| type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
 | callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回缓冲区。 |
 
 **示例：**
@@ -5196,9 +5280,9 @@ load(type: ToneType): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名         | 类型       | 必填  |  说明             |
-| :------------- | :-------- | :---  | ---------------- |
-| type           | ToneType  | 是    | 配置的音调类型。  |
+| 参数名         | 类型                    | 必填  |  说明             |
+| :------------- | :--------------------- | :---  | ---------------- |
+| type           | ToneType(#tonetype9)   | 是    | 配置的音调类型。  |
 
 **返回值：**
 
