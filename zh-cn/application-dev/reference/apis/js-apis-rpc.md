@@ -1143,7 +1143,7 @@ writeParcelable(val: Parcelable): void
 
   | 参数名 | 类型                      | 必填 | 说明                 |
   | ------ | ------------------------- | ---- | -------------------- |
-  | val    | [Parcelable](#parcelable) | 是   | 要写入的可序列对象。 |
+  | val    | Parcelable | 是   | 要写入的可序列对象。 |
 
 **异常：**
 
@@ -1195,7 +1195,7 @@ readParcelable(dataIn: Parcelable) : void
 
   | 参数名 | 类型                      | 必填 | 说明                                      |
   | ------ | ------------------------- | ---- | ----------------------------------------- |
-  | dataIn | [Parcelable](#Parcelable) | 是   | 需要从MessageSequence读取成员变量的对象。 |
+  | dataIn | Parcelable | 是   | 需要从MessageSequence读取成员变量的对象。 |
 
 **异常：**
 
@@ -5768,10 +5768,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
-> **说明：**
-> 从 API Version 8 开始废弃，建议使用[sendMessageRequest<sup>9+</sup>](#sendmessagerequest)替代。
-
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
