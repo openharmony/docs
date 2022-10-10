@@ -103,7 +103,7 @@
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
   - [HiLog\_Lite Development](subsys-dfx-hilog-lite.md)
-  - [HiTrace Development](subsys-dfx-hitrace.md)
+  - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
