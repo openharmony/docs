@@ -68,6 +68,7 @@ struct PopupExample {
         .bindPopup(this.noHandlePopup, {
           message: 'content1 content1',
           placementOnTop: false,
+          showInSubWindow:true,
           onStateChange: (e) => {
             console.info(e.isVisible.toString())
             if (!e.isVisible) {
@@ -84,6 +85,7 @@ struct PopupExample {
         .bindPopup(this.handlePopup, {
           message: 'content2 content2',
           placementOnTop: true,
+          showInSubWindow:false,
           primaryButton: {
             value: 'ok',
             action: () => {
@@ -107,6 +109,7 @@ struct PopupExample {
           maskColor: 0x33000000,
           popupColor: Color.White,
           enableArrow: true,
+          showInSubWindow:false,
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false
