@@ -22,24 +22,9 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 | cancel                 | ()&nbsp;=&gt;&nbsp;void                            | 否              | 点击遮障层退出时的回调。           |
 | autoCancel             | boolean                                            | 否              | 是否允许点击遮障层退出。<br>默认值：true           |
 | alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明)           | 否              | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default        |
-| offset                 | {<br/>dx:&nbsp;Length&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;Length&nbsp;&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否    | 弹窗相对alignment所在位置的偏移量。 |
+| offset                 | [Offset](ts-types.md#offset) | 否    | 弹窗相对alignment所在位置的偏移量。 |
 | customStyle            | boolean                                  | 否                    | 弹窗容器样式是否自定义。<br>默认值：false           |
-| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。              |
-
-## DialogAlignment枚举说明
-
-| 名称                     | 描述                                                   |
-| ------------------------ | ------------------------------------------------------ |
-| Top                      | 垂直顶部对齐。                                         |
-| Center                   | 垂直居中对齐。                                         |
-| Bottom                   | 垂直底部对齐。                                         |
-| Default                  | 默认对齐。<br/>**说明：**<br/>与枚举值Center效果相同。 |
-| TopStart<sup>8+</sup>    | 左上对齐。                                             |
-| TopEnd<sup>8+</sup>      | 右上对齐。                                             |
-| CenterStart<sup>8+</sup> | 左中对齐。                                             |
-| CenterEnd<sup>8+</sup>   | 右中对齐。                                             |
-| BottomStart<sup>8+</sup> | 左下对齐。                                             |
-| BottomEnd<sup>8+</sup>   | 右下对齐。                                             |
+| gridCount<sup>8+</sup> | number                                   | 否                    | 弹窗宽度占栅格宽度的个数。<br/>**说明：**<br/>当gridCount小于等于0时，弹窗宽度是固定的；大于0时，按照设置的数值显示宽度，最大值为4，若值为小数，则向下取整。              |
 
 
 ## CustomDialogController
@@ -101,23 +86,81 @@ struct CustomDialogExample {
   }
 }
 
+@CustomDialog
+struct customStyleExample {
+  @Link textValue: string
+  @Link inputValue: string
+  controller: CustomDialogController
+  cancel: () => void
+  confirm: () => void
+
+  build() {
+    Column() {
+      Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+      TextInput({ placeholder: '', text: this.textValue }).height(60).width('90%')
+        .onChange((value: string) => {
+          this.textValue = value
+        })
+      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('cancel')
+          .onClick(() => {
+            this.controller.close()
+            this.cancel()
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            this.inputValue = this.textValue
+            this.controller.close()
+            this.confirm()
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
+    }.width('96%')
+  }
+}
+
 @Entry
 @Component
 struct CustomDialogUser {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({ cancel: this.onCancel, confirm: this.onAccept, textValue: $textValue, inputValue: $inputValue }),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
     cancel: this.existApp,
-    autoCancel: true
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 4,
+    customStyle: false // 弹窗底色为白色，宽度受gridCount属性影响
+  })
+  customerStyleController: CustomDialogController = new CustomDialogController({
+    builder: customStyleExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+      textValue: $textValue,
+      inputValue: $inputValue
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 },
+    gridCount: 2,
+    customStyle: true // 弹窗底色为透明，宽度受@CustomDialog修饰的组件容器属性影响
   })
 
   onCancel() {
     console.info('Callback when the first button is clicked')
   }
+
   onAccept() {
     console.info('Callback when the second button is clicked')
   }
+
   existApp() {
     console.info('Click the callback in the blank area')
   }
@@ -128,6 +171,10 @@ struct CustomDialogUser {
         .onClick(() => {
           this.dialogController.open()
         }).backgroundColor(0x317aff)
+      Button('customStyle')
+        .onClick(() => {
+          this.customerStyleController.open()
+        }).backgroundColor(0x317aff).margin({ top: 5 })
     }.width('100%').margin({ top: 5 })
   }
 }

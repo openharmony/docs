@@ -71,11 +71,11 @@ reset()
 @Component
 struct TextTimerExample {
   textTimerController: TextTimerController = new TextTimerController()
-  @State format: string = 'HH:mm:ss.SS'
+  @State format: string = 'mm:ss.SS'
 
   build() {
     Column() {
-      TextTimer({controller: this.textTimerController})
+      TextTimer({ controller: this.textTimerController, isCountDown: true, count: 30000 })
         .format(this.format)
         .fontColor(Color.Black)
         .fontSize(50)

@@ -21,10 +21,10 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| title      | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是     |  弹窗标题。 |
-| message    | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是     | 弹窗内容。  |
+| title      | [ResourceStr](ts-types.md#resourcestr) | 是     |  弹窗标题。 |
+| message    | [ResourceStr](ts-types.md#resourcestr) | 是     | 弹窗内容。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true |
-| confirm    | {<br/>value:&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
+| confirm    | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的文本内容和点击回调。<br>默认值：<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。   |
 | alignment  | [DialogAlignment](ts-methods-custom-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
 | offset     | {<br/>dx:&nbsp;Length,<br/>dy:&nbsp;Length<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
@@ -34,8 +34,8 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 
 | 参数名 | 参数类型                                                     | 必填 | 参数描述          |
 | ------ | ------------------------------------------------------------ | ---- | ----------------- |
-| title  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 选项的文本内容。       |
-| icon   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 选项的图标，默认无图标显示。     |
+| title  | [ResourceStr](ts-types.md#resourcestr) | 是   | 选项的文本内容。       |
+| icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 选项的图标，默认无图标显示。     |
 | action | ()=&gt;void                                          | 是   | 选项选中的回调。 |
 
 
@@ -43,7 +43,6 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource,&nbsp;message: string&nbsp
 
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct ActionSheetExample {
@@ -54,12 +53,18 @@ struct ActionSheetExample {
           ActionSheet.show({
             title: 'ActionSheet title',
             message: 'message',
+            autoCancel: true,
             confirm: {
               value: 'Confirm button',
               action: () => {
                 console.log('Get Alert Dialog handled');
               }
             },
+            cancel: () => {
+              console.log('actionSheet canceled');
+            },
+            alignment: DialogAlignment.Center,
+            offset: { dx: -20, dy: 150 },
             sheets: [
               {
                 title: 'apples',

@@ -61,48 +61,45 @@ struct MenuExample {
 #### 自定义内容菜单
 
 ```ts
-// xxx.ets
-import router from '@system.router';
-
 @Entry
 @Component
 struct MenuExample {
+  @State listData: number[] = [0, 0, 0]
+
   @Builder MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-      Text('text1')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .textAlign(TextAlign.Center)
+      ForEach(this.listData, (item, index) => {
+        Column() {
+          Row() {
+            Image($r("app.media.icon")).width(20).height(20).margin({ right: 5 })
+            Text(`Menu${index + 1}`).fontSize(20)
+          }
+          .width('100%')
+          .height(30)
+          .justifyContent(FlexAlign.Center)
+          .align(Alignment.Center)
+          .onClick(() => {
+            console.info(`Menu${index + 1} Clicked!`)
+          })
 
-      Divider().height(10)
-
-      Text('text2')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .textAlign(TextAlign.Center)
-
-      Divider().height(10)
-
-      Button('Next')
-        .fontSize(20)
-        .width(100)
-        .height(50)
-        .onClick(() => {
-          router.push({ uri: 'pages/details' })
-        })
-
+          if (index != this.listData.length - 1) {
+            Divider().height(10).width('80%').color('#ccc')
+          }
+        }.padding(5).height(40)
+      })
     }.width(100)
   }
 
   build() {
     Column() {
       Text('click for menu')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .bindMenu(this.MenuBuilder)
     }
+    .height('100%')
     .width('100%')
-    .margin({ top: 5 })
-    .bindMenu(this.MenuBuilder)
+    .backgroundColor('#f0f0f0')
   }
 }
 ```
