@@ -16,10 +16,9 @@ InputEventClient模块提供了注入按键能力。
 import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ```
 
+## inputEventClient.injectKeyEvent<sup>9+</sup>
 
-## inputEventClient.injectEvent
-
-injectEvent({KeyEvent: KeyEvent}): void
+injectKeyEvent({ KeyEvent: KeyEvent }): void;
 
 注入按键，KeyEvent为注入按键的描述信息。
 
@@ -27,20 +26,31 @@ injectEvent({KeyEvent: KeyEvent}): void
 
 **参数：**
 
-| 参数       | 类型                    | 必填   | 说明        |
-| -------- | --------------------- | ---- | --------- |
-| KeyEvent | [KeyEvent](#keyevent) | 是    | 注入按键的描述信息 |
+| 参数     | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| KeyEvent | [KeyEvent](#keyevent) | 是   | 注入按键的描述信息 |
 
 **示例：**
 
-```js
-let keyEvent = {
+```
+try {
+  var keyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
+  }
+  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent });
+  var keyEvent1 = {
+    isPressed: false,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  };
+  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent1 });
+} catch (error) {
+  console.info("injectKeyEvent " + error.code + " " + error.message);
 }
-let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
 ```
 
 
@@ -56,3 +66,31 @@ let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
 | keyCode         | number  | 是    | 按键键值      |
 | keyDownDuration | number  | 是    | 按键按下持续时间  |
 | isIntercepted   | boolean | 是    | 按键是否可以被拦截 |
+
+## inputEventClient.injectEvent<sup>(deprecated)</sup>
+
+injectEvent({KeyEvent: KeyEvent}): void
+
+注入按键，KeyEvent为注入按键的描述信息。
+
+从API version 9 开始不再维护，建议使用[inputEventClient.injectKeyEvent](#inputEventClientinjectKeyEvent9)代替。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**参数：**
+
+| 参数     | 类型                  | 必填 | 说明               |
+| -------- | --------------------- | ---- | ------------------ |
+| KeyEvent | [KeyEvent](#keyevent) | 是   | 注入按键的描述信息 |
+
+**示例：**
+
+```js
+let keyEvent = {
+    isPressed: true,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+}
+let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
+```
