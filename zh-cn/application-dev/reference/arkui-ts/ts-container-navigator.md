@@ -49,7 +49,7 @@ Navigator(value?: {target: string, type?: NavigationType})
 @Entry
 @Component
 struct NavigatorExample {
-  @State active: boolean = false
+  @State active: boolean = false;
   @State Text: object = {name: 'news'}
 
   build() {
@@ -63,7 +63,7 @@ struct NavigatorExample {
         Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
       }.active(this.active)
       .onClick(() => {
-        this.active = true
+        this.active = true;
       })
     }.height(150).width(350).padding(35)
   }
@@ -78,7 +78,7 @@ import router from '@ohos.router'
 @Component
 struct DetailExample {
   // 接收Navigator.ets的传参
-  @State text: any = router.getParams().text
+  @State text: any = router.getParams().text;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
