@@ -267,8 +267,8 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 
 | 参数名   | 类型                                             | 必填 | 说明            |
 | -------- | ----------------------------------------------- | ---- | -------------- |
-| options  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 配置渲染器。     |
-| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | 是   | 音频渲染器对象。 |
+| options  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 配置音频渲染器信息。|
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | 是   | 回调函数，回调返回音频渲染器对象。|
 
 **示例：**
 
@@ -309,9 +309,9 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 
 **返回值：**
 
-| 类型                                      | 说明              |
-| ----------------------------------------- | ---------------- |
-| Promise<[TonePlayer](#toneplayer9)>       | 音频渲染器对象。   |
+| 类型                                      | 说明                             |
+| ----------------------------------------- | -------------------------------- |
+| Promise<[TonePlayer](#toneplayer9)>       | Promise对象，返回音频渲染器对象。   |
 
 **示例：**
 
@@ -5239,8 +5239,6 @@ audioCapturer.on('stateChange', (state) => {
 ## TonePlayer<sup>9+</sup>
 
 提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。
-
-**系统能力：** SystemCapability.Multimedia.Audio.Tone
 
 ### load<sup>9+</sup>
 
