@@ -43,14 +43,14 @@ Codec模块接口定义中使用的自定义数据类型，包括编解码类型
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [SAMPLE_FMT_NUM](codec.md#ga9bda75c363e9bcff915cdd521dd7ba84)&nbsp;&nbsp;&nbsp;32 | 采样格式最大值。 | 
-| [UUID_LENGTH](codec.md#ga9226162b034cc837cd977f0fcf611c2c)&nbsp;&nbsp;&nbsp;128 | 定义UUID长度。 | 
-| [PIX_FORMAT_NUM](codec.md#gadb8c6478388b68c09835ebe093a8920a)&nbsp;&nbsp;&nbsp;16 | 支持的像素格式数组大小。 | 
-| [SAMPLE_FORMAT_NUM](codec.md#gaf958b9cc535f6260e2e8b7ce42c89946)&nbsp;&nbsp;&nbsp;12 | 支持的音频采样格式数组大小。 | 
-| [SAMPLE_RATE_NUM](codec.md#ga0d905eaa05b4b6fcec76924eb795d7fe)&nbsp;&nbsp;&nbsp;16 | 支持的音频采样率数组大小。 | 
-| [CHANNEL_NUM](codec.md#ga6511732d5b29a6781cf38783157f21e1)&nbsp;&nbsp;&nbsp;16 | 支持的音频通道数组大小。 | 
-| [NAME_LENGTH](codec.md#gaf71324c57f05ff9e24bd384925dd6b17)&nbsp;&nbsp;&nbsp;32 | 组件名称大小。 | 
-| [PROFILE_NUM](codec.md#gaab6353cb3662bdc672ae8ab90df529ce)&nbsp;&nbsp;&nbsp;256 | 支持的profile数组大小。 | 
+| [SAMPLE_FMT_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;32 | 采样格式最大值。 | 
+| [UUID_LENGTH](codec.md#宏定义)&nbsp;&nbsp;&nbsp;128 | 定义UUID长度。 | 
+| [PIX_FORMAT_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;16 | 支持的像素格式数组大小。 | 
+| [SAMPLE_FORMAT_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;12 | 支持的音频采样格式数组大小。 | 
+| [SAMPLE_RATE_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;16 | 支持的音频采样率数组大小。 | 
+| [CHANNEL_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;16 | 支持的音频通道数组大小。 | 
+| [NAME_LENGTH](codec.md#宏定义)&nbsp;&nbsp;&nbsp;32 | 组件名称大小。 | 
+| [PROFILE_NUM](codec.md#宏定义)&nbsp;&nbsp;&nbsp;256 | 支持的profile数组大小。 | 
 
 
 ### 枚举
