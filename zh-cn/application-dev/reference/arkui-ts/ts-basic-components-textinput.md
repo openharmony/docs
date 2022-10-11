@@ -27,7 +27,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## 属性
 
-除支持通用属性以及[文本样式设置](ts-universal-attributes-text-style.md)的属性外，还支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
@@ -71,6 +71,8 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Inline    | 内联输入风格。文本选中底板高度与输入框高度相同。      |
 
 ## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 | 名称                                       | 功能描述                                     |
 | ---------------------------------------- | ---------------------------------------- |
