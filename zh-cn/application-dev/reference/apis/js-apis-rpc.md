@@ -2395,10 +2395,10 @@ readException(): void
   let reply = rpc.MessageSequence.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequestAsync(1, data, reply, option)
+  proxy.sendMessageRequest(1, data, reply, option)
       .then(function(errCode) {
           if (errCode === 0) {
-              console.log("sendRequestAsync got result");
+              console.log("sendMessageRequest got result");
               try {
                   reply.readException();
               } catch(error) {
@@ -2408,12 +2408,12 @@ readException(): void
               let msg = reply.readString();
               console.log("RPCTest: reply msg: " + msg);
           } else {
-              console.log("RPCTest: sendRequestAsync failed, errCode: " + errCode);
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
           }
       }).catch(function(e) {
-          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
           data.reclaim();
           reply.reclaim();
       });
@@ -4912,20 +4912,20 @@ readException(): void
   let reply = rpc.MessageParcel.create();
   data.writeInt(1);
   data.writeString("hello");
-  proxy.sendRequestAsync(1, data, reply, option)
+  proxy.sendMessageRequest(1, data, reply, option)
       .then(function(errCode) {
           if (errCode === 0) {
-              console.log("sendRequestAsync got result");
+              console.log("sendMessageRequest got result");
               reply.readException();
               let msg = reply.readString();
               console.log("RPCTest: reply msg: " + msg);
           } else {
-              console.log("RPCTest: sendRequestAsync failed, errCode: " + errCode);
+              console.log("RPCTest: sendMessageRequest failed, errCode: " + errCode);
           }
       }).catch(function(e) {
-          console.log("RPCTest: sendRequestAsync got exception: " + e.message);
+          console.log("RPCTest: sendMessageRequest got exception: " + e.message);
       }).finally (() => {
-          console.log("RPCTest: sendRequestAsync ends, reclaim parcel");
+          console.log("RPCTest: sendMessageRequest ends, reclaim parcel");
           data.reclaim();
           reply.reclaim();
       });
@@ -6089,7 +6089,7 @@ isObjectDead(): boolean
 
 sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options : MessageOption): boolean
 
-以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendRequestAsync<sup>9+</sup>替代。
+以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。建议使用sendMessageRequest<sup>9+</sup>替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7756,7 +7756,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 onRemoteRequest(code : number, data : MessageParcel, reply: MessageParcel, options : MessageOption): boolean
 
-sendRequestAsync请求的响应处理函数，服务端在该函数里处理请求，回复结果。建议使用onRemoteRequestEx<sup>9+</sup>替代。
+sendMessageRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。建议使用onRemoteRequestEx<sup>9+</sup>替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7817,7 +7817,7 @@ onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence,
 >* 开发者应优先选择重载onRemoteRequestEx方法，其中可以自由实现同步和异步的消息处理。
 >* 开发者同时重载onRemoteRequest和onRemoteRequestEx方法时，仅onRemoteRequestEx方法生效。
 
-sendRequestAsync请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
+sendMessageRequest请求的响应处理函数，服务端在该函数里同步或异步地处理请求，回复结果。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
