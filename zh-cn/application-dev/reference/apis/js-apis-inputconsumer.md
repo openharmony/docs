@@ -36,7 +36,8 @@ on(type: "key", keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 **示例：** 
 
 ```js
-let keyOptions = { preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0 }
+// 18为电源键键值
+let keyOptions = { preKeys: [], finalKey: 18, isFinalKeyDown: true, finalKeyDownDuration: 0 }
 let callback = function (keyOptions) {
   console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
     "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
@@ -68,7 +69,8 @@ off(type: "key", keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 **示例：** 
 
 ```js
-let keyOptions = { preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0 }
+// 18为电源键键值
+let keyOptions = { preKeys: [], finalKey: 18, isFinalKeyDown: true, finalKeyDownDuration: 0 }
 let callback = function (keyOptions) {示例：**
   console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey,
     "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
