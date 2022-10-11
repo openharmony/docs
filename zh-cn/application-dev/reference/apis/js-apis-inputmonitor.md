@@ -182,7 +182,7 @@ try {
 ```js
 try {
   inputMonitor.on("touch", (event) => {
-    // 消费触摸输入事件
+    // 若返回true，表示本次操作后续所有事件不再分发到窗口，事件都由监听者消费。
     return false;
   });
   inputMonitor.off("touch");
