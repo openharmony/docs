@@ -46,16 +46,16 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| **HDI_VGU_SCALAR_IS_FLOAT**&nbsp;&nbsp;&nbsp;1 |  | 
+| HDI_VGU_SCALAR_IS_FLOAT&nbsp;&nbsp;&nbsp;1 | VGU标量是否为浮点型 | 
 
 
 ### 类型定义
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| **VGUScalar** |  | 
-| [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001424061937.xml#xref1262016237273,link:zh-cn_topic_0000001369548746.xml#section469245920231](zh-cn_topic_0000001369548746.xml#section469245920231) | 像素格式。 | 
-| [ERROR:Invalid&nbsp;link:zh-cn_topic_0000001424061937.xml#xref1242115582710,link:zh-cn_topic_0000001369548746.xml#section9701742192518](zh-cn_topic_0000001369548746.xml#section9701742192518) | 混合操作类型。 | 
+| [VGUScalar](_display.md#vguscalar) | VGU标量 | 
+| [VGUPixelFormat](_display.md#vgupixelformat) | 像素格式。 | 
+| [VGUBlendType](_display.mdvgublendtype) | 混合操作类型。 | 
 
 
 ### 枚举
