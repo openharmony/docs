@@ -13,27 +13,6 @@
 import rpc from '@ohos.rpc';
 ```
 
-## ErrorCode<sup>9+</sup>
-
-  从API version 9起，IPC支持异常返回功能。错误码对应数值及含义见下表。
-
-  | 错误码 | 数值 | 描述 |
-  | ----- | ---- | ----- |
-  | CHECK_PARAM_ERROR | 401 | 参数校验错误 |
-  | OS_MMAP_ERROR | 1900001 | 调用系统调用mmap失败 |
-  | OS_IOCTL_ERROR | 1900002 | 调用系统调用ioctl失败 |
-  | WRITE_TO_ASHMEM_ERROR | 1900003 | 共享内存写入数据失败 |
-  | READ_FROM_ASHMEM_ERROR | 1900004 | 读取共享内存数据失败 |
-  | ONLY_PROXY_OBJECT_PERMITTED_ERROR | 1900005 | IPCproxy对象许可错误 |
-  | ONLY_REMOTE_OBJECT_PERMITTED_ERROR | 1900006 | IPC远程对象许可错误 |
-  | COMMUNICATION_ERROR | 1900007 | IPC通信失败 |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 1900008 | 封装的IPC对象为空 |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 1900009 | 写入MessageSequence失败 |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 1900010 | 读取MessageSequence数据失败 |
-  | PARCEL_MEMORY_ALLOC_ERROR | 1900011 | 序列化内存分配失败 |
-  | CALL_JS_METHOD_ERROR | 1900012 | 调用JS方法失败 |
-  | OS_DUP_ERROR | 1900013 | 调用系统调用dup失败 |
-
 
 ## MessageSequence<sup>9+</sup>
 
