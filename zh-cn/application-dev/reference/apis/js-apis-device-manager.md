@@ -42,15 +42,19 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
   | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是    | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
 - 示例：
-  ```
-  deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {     
+  ```js
+  try {
+    deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {
       if (err) { 
-          console.info("createDeviceManager err:" + JSON.stringify(err));    
-          return;
+        console.error("createDeviceManager err:" + err.code + ",errorMessage:" + err.message);
+        return;
       }
       console.info("createDeviceManager success");
       let dmInstance = data;
-  });
+    });
+  } catch(err) {
+    console.error("createDeviceManager err:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ## DeviceInfo
@@ -216,7 +220,11 @@ release(): void
 
 - 示例：
   ```js
-  dmInstance.release();
+  try {
+    dmInstance.release();
+  } catch (err) {
+    console.error("[myApiTest]release errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -236,6 +244,11 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 - 示例：
   ```js
   var deviceInfoList = dmInstance.getTrustedDeviceListSync();
+  try {
+    var deviceInfoList = dmInstance.getTrustedDeviceListSync();
+  } catch (err) {
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -254,11 +267,17 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 - 示例：
   ```js
-  dmInstance.getTrustedDeviceList((err, data) => {
-      console.log("getTrustedDeviceList err: " + JSON.stringify(err));
+  try {
+    dmInstance.getTrustedDeviceList((err, data) => {
+      if (err) {
+        console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+        return;
+      }
       console.log('get trusted device info: ' + JSON.stringify(data));
-    }
-  );
+      });
+  } catch (err) {
+    console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### getTrustedDeviceList<sup>8+</sup>
@@ -281,6 +300,15 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
   }).catch((err) => {
       console.log("getTrustedDeviceList err: " + JSON.stringify(err));
   });
+  try {
+    dmInstance.getTrustedDeviceList().then((data) => {
+      console.log('[myApiTest]get trusted device info: ' + JSON.stringify(data));
+      }).catch((err) => {
+        console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+      });
+    } catch (err) {
+      console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+    }
   ```
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
@@ -298,7 +326,11 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 - 示例：
   ```js
-  var deviceInfo = dmInstance.getLocalDeviceInfoSync();
+  try {
+    var deviceInfo = dmInstance.getLocalDeviceInfoSync();
+  } catch (err) {
+    console.error("getLocalDeviceInfoSync errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -317,11 +349,16 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 - 示例：
   ```js
-  dmInstance.getLocalDeviceInfo((err, data) => {
-      console.log("getLocalDeviceInfo err: " + JSON.stringify(err));
-      console.log('get local device info: ' + JSON.stringify(data));
+  try {
+    this.dmInstance.getLocalDeviceInfo((err, data) => {
+    if (err) {
+      console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
     }
-  );
+      console.log('get local device info: ' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### getLocalDeviceInfo<sup>8+</sup>
@@ -339,11 +376,15 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 - 示例：
   ```js
-  dmInstance.getLocalDeviceInfo().then((data) => { 
+  try {
+    dmInstance.getLocalDeviceInfo().then((data) => {
       console.log('get local device info: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log("getLocalDeviceInfo err: " + JSON.stringify(err));
-  });
+    }).catch((err) => {
+      console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+    });
+  } catch (err) {
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### startDeviceDiscovery8+</sup>
@@ -372,7 +413,11 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
       "isWakeRemote": false,
       "capability": 1
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo); // 当有设备发现时，通过deviceFound回调通知给应用程序
+  try {
+    dmInstance.startDeviceDiscovery(subscribeInfo); // 当有设备发现时，通过deviceFound回调通知给应用程序
+  } catch (err) {
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### startDeviceDiscovery9+</sup>
@@ -411,7 +456,11 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
         }
     ]
   };
-  dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // 当有设备发现时，通过deviceFound回调通知给应用程序
+  try {
+    dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // 当有设备发现时，通过deviceFound回调通知给应用程序
+  } catch (err) {
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
   
 ### stopDeviceDiscovery
@@ -430,7 +479,11 @@ stopDeviceDiscovery(subscribeId: number): void
 - 示例：
   ```js
   // 入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
-  dmInstance.stopDeviceDiscovery(subscribeId);
+  try {
+    dmInstance.stopDeviceDiscovery(subscribeId);
+  } catch (err) {
+    console.error("stopDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### publishDeviceDiscovery9+</sup>
@@ -456,7 +509,11 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
       "freq": 2,    // 高频率
       "ranging": 1  // 支持发现时测距
   };
-  dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
+  try {
+    dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
+  } catch (err) {
+    console.error("publishDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
   
 ### unPublishDeviceDiscovery9+</sup>
@@ -475,7 +532,11 @@ unPublishDeviceDiscovery(publishId: number): void
 - 示例：
   ```js
   // 入参需要和publishDeviceDiscovery接口传入的publishId配对使用
-  dmInstance.unPublishDeviceDiscovery(publishId);
+  try {
+    dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
+  } catch (err) {
+    console.error("publishDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### authenticateDevice
@@ -505,14 +566,18 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
       "authType": 1, // 认证类型： 1 - 无账号PIN码认证
       "extraInfo": {} 
   }
-  dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
+  try {
+    dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
       if (err) {
-          console.info(TAG + "authenticateDevice err:" + JSON.stringify(err));
+          console.error("authenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
           return;
       }
       console.info(TAG + "authenticateDevice result:" + JSON.stringify(data));
       token = data.pinToken;
-  });
+    });
+  } catch (err) {
+    console.error("authenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### unAuthenticateDevice<sup>8+</sup>
@@ -530,7 +595,11 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 - 示例：
   ```js
-  dmInstance.unAuthenticateDevice(deviceInfo);
+  try {
+    dmInstance.unAuthenticateDevice(deviceInfo);
+  } catch (err) {
+    console.error("unAuthenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -555,13 +624,17 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
     "token": xxxxxx,
     "extraInfo": {}
   }
-  dmInstance.verifyAuthInfo(authInfo, (err, data) => {
+  try {
+    dmInstance.verifyAuthInfo(authInfo, (err, data) => {
     if (err) {
-        console.info(TAG + "verifyAuthInfo err:" + JSON.stringify(err));
+        console.error("verifyAuthInfo errCode:" + err.code + ",errorMessage:" + err.message);
         return;
     }
     console.info(TAG + "verifyAuthInfo result:" + JSON.stringify(data));
-  });
+    });
+  } catch (err) {
+    console.error("verifyAuthInfo errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -581,10 +654,13 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 - 示例：
   ```js
-  dmInstance.on('deviceStateChange', (data) => {      
-        console.info("deviceStateChange on:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('deviceStateChange', (data) => {
+      console.info("deviceStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceStateChange errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -604,10 +680,13 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 - 示例：
   ```js
-  dmInstance.off('deviceStateChange', (data) => {      
-        console.info('deviceStateChange' + JSON.stringify(data));
-     }
-  );
+  try {
+    dmInstance.off('deviceStateChange', (data) => {
+      console.info('deviceStateChange' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceStateChange errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -627,10 +706,13 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 - 示例：
   ```js
-  dmInstance.on('deviceFound', (data) => {
-        console.info("deviceFound:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('deviceFound', (data) => {
+      console.info("deviceFound:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceFound errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### off('deviceFound')
@@ -649,10 +731,13 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 - 示例：
   ```js
-  dmInstance.off('deviceFound', (data) => {      
-        console.info('deviceFound' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('deviceFound', (data) => {
+      console.info('deviceFound' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceFound errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### on('discoverFail')
@@ -671,10 +756,13 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 - 示例：
   ```js
-  dmInstance.on('discoverFail', (data) => {
+  try {
+    dmInstance.on('discoverFail', (data) => {
         this.log("discoverFail on:" + JSON.stringify(data));
-      }
-  );
+      });
+  } catch (err) {
+    console.error("discoverFail errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### off('discoverFail')
@@ -693,10 +781,13 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 - 示例：
   ```js
-  dmInstance.off('deviceFound', (data) => {      
-        console.info('deviceFound' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('discoverFail', (data) => {
+      console.info('discoverFail' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("discoverFail errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### on('publishSuccess')9+</sup>
@@ -715,10 +806,13 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 - 示例：
   ```js
-  dmInstance.on('publishSuccess', (data) => {
-        console.info("publishSuccess:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('publishSuccess', (data) => {
+      console.info("publishSuccess:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishSuccess errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### off('publishSuccess')9+</sup>
@@ -737,10 +831,13 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 - 示例：
   ```js
-  dmInstance.off('publishSuccess', (data) => {      
-        console.info('publishSuccess' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('publishSuccess', (data) => {
+      console.info('publishSuccess' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishSuccess errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### on('publishFail')9+</sup>
@@ -759,10 +856,13 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 - 示例：
   ```js
-  dmInstance.on('publishFail', (data) => {
-        this.log("publishFail on:" + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.on('publishFail', (data) => {
+      this.log("publishFail on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishFail errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### off('publishFail')9+</sup>
@@ -781,10 +881,13 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 - 示例：
   ```js
-  dmInstance.off('publishFail', (data) => {      
-        console.info('publishFail' + JSON.stringify(data));
-      }
-  );
+  try {
+    dmInstance.off('publishFail', (data) => {
+      console.info('publishFail' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("publishFail errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 ### on('serviceDie')
@@ -803,10 +906,13 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 - 示例：
   ```js
-  dmInstance.on("serviceDie", () => {      
-        console.info("serviceDie on");
-     }
-  );
+  try {
+    dmInstance.on("serviceDie", () => {
+      console.info("serviceDie on");
+    });
+  } catch (err) {
+    console.error("serviceDie errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
 
 
@@ -826,8 +932,11 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 - 示例：
   ```js
-  dmInstance.off("serviceDie", () => {      
-        console.info("serviceDie off");
-    }
-  );
+  try {
+    dmInstance.off("serviceDie", () => {
+      console.info("serviceDie off");
+    });
+  } catch (err) {
+    console.error("serviceDie errCode:" + err.code + ",errorMessage:" + err.message);
+  }
   ```
