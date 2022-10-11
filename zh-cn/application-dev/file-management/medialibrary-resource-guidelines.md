@@ -334,56 +334,6 @@ async function example() {
 }
 ```
 
-## 删除媒体资源
-
-<<<<<<< HEAD
-通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deleteasset8-1)可以删除媒体资源。
-=======
-通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deletaasset8)可以删除媒体资源。
->>>>>>> 7c01fb3ac4b74ec772549e01acedc86cea5f32d0
-
-> **说明：**<br/>
->
-> deleteAsset为系统接口，仅限系统应用使用。普通应用建议使用trash将媒体资源放入回收站，具体参考[将文件放入回收站](#将文件放入回收站)。
-
-**前提条件** 
-
-- 获取媒体库mediaLibrary实例。
-- 申请媒体库读写权限“ohos.permission.WRITE_MEDIA”。
-
-下面以删除文件检索结果中第一个文件为例。
-
-**开发步骤**
-
-1. 建立检索条件，用于获取目的相册下的图片资源。
-2. 调用getFileAssets获取目标图片资源。
-3. 调用getFirstObject获取第一张图片，即要删除的图片对象。
-4. 调用deleteAsset删除文件。
-
-```ts
-async function example() {
-    let fileKeyObj = mediaLibrary.FileKey
-    let fileType = mediaLibrary.MediaType.FILE
-    let option = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [fileType.toString()],
-    };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    const fetchFileResult = await media.getFileAssets(option);
-    let asset = await fetchFileResult.getFirstObject();
-    if (asset == undefined) {
-      console.error('asset not exist')
-      return
-    }
-    media.deleteAsset(asset.uri).then(function() {
-        console.info("deleteAsset successfully");
-    }).catch(function(err){
-        console.info("deleteAsset failed with error:"+ err);
-    });
-}
-```
-
 ## 重命名媒体资源
 
 重命名修改的是文件的FileAsset.displayName属性，即文件的显示文件名，包含文件后缀。
