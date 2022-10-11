@@ -12,13 +12,13 @@
 
 ArkCompiler JS Runtime分成两个部分，分别是JS编译工具链与JS运行时。JS工具链将JS源码编译成方舟字节码\(ArkCompiler Bytecode\)，JS运行时负责执行生成的方舟字节码\(后续如无特殊说明，字节码特指方舟字节码\)。
 
-图1 JS编译工具链架构：
+**图1** JS编译工具链架构：
 
 ![](figures/zh-cn_image_ark_frontend.png)
 
 ArkCompiler JS Runtime的源码编译器接收JS源码的输入，再由ts2abc（将JavaScript文件转换为字节码的工具）生成abc文件。
 
-图2 JS运行时\(Ark-JS-Runtime\)架构：
+**图2** JS运行时\(Ark-JS-Runtime\)架构：
 
 ![](figures/zh-cn_image_ark-js-arch.png)
 
@@ -73,9 +73,9 @@ JS Runtime主要由四个子系统组成：
 
 ```
 /ark
-├── js_runtime       # JS运行时组件
-├── runtime_core     # 运行时公共组件
-└── ts2abc           # JS语言的前端工具
+├── ets_runtime       # JS运行时组件
+├── runtime_core      # 运行时公共组件
+└── ets_frontend       # JS语言的前端工具
 ```
 
 ## 使用指南<a name="section18393638195820"></a>
@@ -84,8 +84,8 @@ JS Runtime主要由四个子系统组成：
 
 ## 相关仓<a name="section1371113476307"></a>
 
-[ark\_runtime\_core](https://gitee.com/openharmony/ark_runtime_core)
+[arkcompiler\_runtime\_core](https://gitee.com/openharmony/arkcompiler_runtime_core)
 
-[ark\_js\_runtime](https://gitee.com/openharmony/ark_js_runtime)
+[arkcompiler\_ets\_runtime](https://gitee.com/openharmony/arkcompiler_ets_runtime)
 
-[ark\_ts2abc](https://gitee.com/openharmony/ark_ts2abc)
+[arkcompiler\_ets\_frontend](https://gitee.com/openharmony/arkcompiler_ets_frontend)

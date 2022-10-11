@@ -15,7 +15,7 @@ import privacyManager from '@ohos.privacyManager';
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number): Promise&lt;number&gt;
+addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number): Promise&lt;void&gt;
 
 受应用权限保护的应用在被其他服务、应用调用时，可以使用该接口增加一条权限使用记录。使用Promise异步回调。
 权限使用记录包括：调用方的应用身份标识、使用的应用权限名称，和其访问本应用成功、失败的次数。
@@ -28,7 +28,7 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 调用方的应用身份标识。              |
+| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。              |
 | permissionName | string | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
@@ -37,27 +37,28 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回`0`表示成功增加记录，返回`-1`表示失败。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```js
-import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(data => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(() => {
+        console.log('addPermissionUsedRecord success');
+    }).catch((err) => {
+        console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
     });
-})
-
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number, callback: AsyncCallback&lt;number&gt;): void
+addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: number, failCount: number, callback: AsyncCallback&lt;void&gt;): void
 
 受应用权限保护的应用在被其他服务、应用调用时，可以使用该接口增加一条权限使用记录。使用callback异步回调。
 权限使用记录包括：调用方的应用身份标识、使用的应用权限名称，和其访问本应用成功、失败的次数。
@@ -70,26 +71,29 @@ addPermissionUsedRecord(tokenID: number, permissionName: string, successCount: n
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 调用方的应用身份标识。              |
+| tokenID   |  number   | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。              |
 | permissionName | string | 是   | 应用权限名称。 |
 | successCount | number | 是   | 访问成功的次数。 |
 | failCount | number | 是   | 访问失败的次数。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。返回`0`表示成功增加记录，返回`-1`表示失败。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **示例：**
 
 ```js
-import bundle from '@ohos.bundle';
 import privacyManager from '@ohos.privacyManager';
 
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    var tokenID = appInfo.accessTokenId; // 可以通过getApplicationInfo获取accessTokenId
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
-        console.log(`callback: data->${JSON.stringify(data)}`);
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (data, err) => {
+        if (err) {
+            console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+        } else {
+            console.log('addPermissionUsedRecord success');
+        }
     });
-})
-
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ## privacyManager.getPermissionUsedRecords
@@ -117,6 +121,8 @@ getPermissionUsedRecords(request: PermissionUsedRequest): Promise&lt;PermissionU
 **示例：**
 
 ```js
+import privacyManager from '@ohos.privacyManager';
+
 let request = {
     "tokenId": 1,
     "isRemote": false,
@@ -127,9 +133,15 @@ let request = {
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-privacyManager.getPermissionUsedRecords(request).then(data => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
+try {
+    privacyManager.getPermissionUsedRecords(request).then((data) => {
+        console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
+    }).catch((err) => {
+        console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
 ## privacyManager.getPermissionUsedRecords
@@ -152,6 +164,8 @@ getPermissionUsedRecords(request: PermissionUsedRequest, callback: AsyncCallback
 **示例：**
 
 ```js
+import privacyManager from '@ohos.privacyManager';
+
 let request = {
     "tokenId": 1,
     "isRemote": false,
@@ -162,174 +176,174 @@ let request = {
     "endTime": 1,
     "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-privacyManager.getPermissionUsedRecords(request, (err, data) => {
-    console.log(`promise: data->${JSON.stringify(data)}`);
-});
-```
-
-## privacyManager.startUsingPermission<sup>9+</sup>
-
-startUsingPermission(tokenID: number, permissionName: string): Promise&lt;number&gt;
-
-应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。
-
-**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-**参数：**
-
-| 参数名          | 类型   | 必填 | 说明                                  |
-| -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | 是   | 调用方的应用身份标识，获取方法参照示例。 |
-| permissionName | string | 是   | 需要使用的权限名。                     |
-
-**返回值：**
-
-| 类型          | 说明                                    |
-| ------------- | --------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回开始使用权限的结果。|
-
-**示例：**
-
-```js
-import bundle from '@ohos.bundle';
-import privacyManager from '@ohos.privacyManager';
-
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    let tokenID = appInfo.accessTokenId;
-    let permissionName = "ohos.permission.CAMERA";
-    privacyManager.startUsingPermission(tokenID, permissionName).then(data => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`Error: err->${JSON.stringify(err)}`);
-    });
-})
-
-```
-
-## privacyManager.startUsingPermission<sup>9+</sup>
-
-startUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;number&gt;): void
-
-应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。
-
-**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-**参数：**
-
-| 参数名          | 类型                  | 必填 | 说明                                  |
-| -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | 是   | 调用方的应用身份标识，获取方法参照示例。 |
-| permissionName | string                | 是   | 需要使用的权限名。                     |
-| callback       | AsyncCallback&lt;number&gt; | 是   | 异步回调，返回开始使用权限的结果。 |
-
-**示例：**
-
-```js
-import bundle from '@ohos.bundle';
-import privacyManager from '@ohos.privacyManager';
-
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    let tokenID = appInfo.accessTokenId;
-    let permissionName = "ohos.permission.CAMERA";
-    privacyManager.startUsingPermission(tokenID, permissionName, (err, data)=> {
+try {
+    privacyManager.getPermissionUsedRecords(request, (err, data) => {
         if (err) {
-            console.log(`Error: err->${JSON.stringify(err)}`);
-        } else {S
-            console.log(`promise: data->${JSON.stringify(data)}`);
-        }
-    });
-})
-
-```
-
-## privacyManager.stopUsingPermission<sup>9+</sup>
-
-stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;number&gt;
-
-应用停止使用某项权限，与Start对应，由系统服务调用。
-
-**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-**参数：**
-
-| 参数名          | 类型   | 必填 | 说明                                  |
-| -------------- | ------ | ---- | ------------------------------------ |
-| tokenID        | number | 是   | 调用方的应用身份标识，获取方法参照示例。 |
-| permissionName | string | 是   | 需要使用的权限名。                     |
-
-**返回值：**
-
-| 类型          | 说明                                    |
-| ------------- | --------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回停止使用权限的结果。|
-
-**示例：**
-
-```js
-import bundle from '@ohos.bundle';
-import privacyManager from '@ohos.privacyManager';
-
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    let tokenID = appInfo.accessTokenId;
-    let permissionName = "ohos.permission.CAMERA";
-    privacyManager.stopUsingPermission(tokenID, permissionName).then(data => {
-        console.log(`promise: data->${JSON.stringify(data)}`);
-    }).catch(err => {
-        console.log(`Error: err->${JSON.stringify(err)}`);
-    });
-})
-
-```
-
-## privacyManager.stopUsingPermission<sup>9+</sup>
-
-stopUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;number&gt;): void
-
-应用停止使用某项权限，与Start对应，由系统服务调用。
-
-**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-**参数：**
-
-| 参数名          | 类型                  | 必填 | 说明                                  |
-| -------------- | --------------------- | ---- | ------------------------------------ |
-| tokenID        | number                | 是   | 调用方的应用身份标识，获取方法参照示例。 |
-| permissionName | string                | 是   | 需要使用的权限名。                      |
-| callback       | AsyncCallback&lt;number&gt; | 是   | 异步回调，返回停止使用权限的结果。 |
-
-**示例：**
-
-```js
-import bundle from '@ohos.bundle';
-import privacyManager from '@ohos.privacyManager';
-
-let bundleName = "com.ohos.permissionmanager"; // change to your bundle name
-bundle.getApplicationInfo(bundleName, 16).then(appInfo => {
-    let tokenID = appInfo.accessTokenId;
-    let permissionName = "ohos.permission.CAMERA";
-    privacyManager.stopUsingPermission(tokenID, permissionName, (err, data)=> {
-        if (err) {
-            console.log(`Error: err->${JSON.stringify(err)}`);
+            console.log(`getPermissionUsedRecords fail, err->${JSON.stringify(err)}`);
         } else {
-            console.log(`promise: data->${JSON.stringify(data)}`);
+            console.log(`getPermissionUsedRecords success, data->${JSON.stringify(data)}`);
         }
     });
-})
-
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
 ```
 
-## privacyManager.on<sup>9+</sup>
+## privacyManager.startUsingPermission
+
+startUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+
+应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名          | 类型   | 必填 | 说明                                  |
+| -------------- | ------ | ---- | ------------------------------------ |
+| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
+| permissionName | string | 是   | 需要使用的权限名。                     |
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。|
+
+**示例：**
+
+```js
+import privacyManager from '@ohos.privacyManager';
+
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+        console.log('startUsingPermission success');
+    }).catch((err) => {
+        console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+```
+
+## privacyManager.startUsingPermission
+
+startUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;void&gt;): void
+
+应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名          | 类型                  | 必填 | 说明                                  |
+| -------------- | --------------------- | ---- | ------------------------------------ |
+| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
+| permissionName | string                | 是   | 需要使用的权限名。                     |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 异步回调，返回开始使用权限的结果。 |
+
+**示例：**
+
+```js
+import privacyManager from '@ohos.privacyManager';
+
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (data, err) => {
+        if (err) {
+            console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+        } else {
+            console.log('startUsingPermission success');
+        }
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+```
+
+## privacyManager.stopUsingPermission
+
+stopUsingPermission(tokenID: number, permissionName: string): Promise&lt;void&gt;
+
+应用停止使用某项权限，与Start对应，由系统服务调用。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名          | 类型   | 必填 | 说明                                  |
+| -------------- | ------ | ---- | ------------------------------------ |
+| tokenID        | number | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
+| permissionName | string | 是   | 需要使用的权限名。                     |
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。|
+
+**示例：**
+
+```js
+import privacyManager from '@ohos.privacyManager';
+
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+        console.log('stopUsingPermission success');
+    }).catch((err) => {
+        console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+```
+
+## privacyManager.stopUsingPermission
+
+stopUsingPermission(tokenID: number, permissionName: string, callback: AsyncCallback&lt;void&gt;): void
+
+应用停止使用某项权限，与Start对应，由系统服务调用。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名          | 类型                  | 必填 | 说明                                  |
+| -------------- | --------------------- | ---- | ------------------------------------ |
+| tokenID        | number                | 是   | 调用方的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。 |
+| permissionName | string                | 是   | 需要使用的权限名。                      |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 异步回调，返回停止使用权限的结果。 |
+
+**示例：**
+
+```js
+import privacyManager from '@ohos.privacyManager';
+
+let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
+try {
+    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (data, err) => {
+        if (err) {
+            console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+        } else {
+            console.log('stopUsingPermission success');
+        }
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
+}
+```
+
+## privacyManager.on
 
 on(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback: Callback&lt;ActiveChangeResponse&gt;): void
 
@@ -347,27 +361,24 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback:
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
 | permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限使用状态变化。           |
-| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse9)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
+| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 是 | 订阅指定权限使用状态变更事件的回调。 |
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-function OnPermissionUseStateChanged(data){
-    console.debug("receive permission state change, data:" + JSON.stringify(data));
-}
-let type: 'activeStateChange' = 'activeStateChange';
 let permissionNameList: Array<string> = [];
-try{
-    privacyManager.on(type, permissionNameList, OnPermissionUseStateChanged);
-}
-catch(err){
-    console.error("on err:" + JSON.stringify(err));
+try {
+    atManager.on('activeStateChange', permissionNameList, (data) => {
+        console.debug("receive permission state change, data:" + JSON.stringify(data));
+    });
+} catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
-## privacyManager.off<sup>9+</sup>
+## privacyManager.off
 
 off(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
 
@@ -385,20 +396,18 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;string&gt;, callback
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'activeStateChange'，权限使用状态变更事件。   |
 | permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
-| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+| callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **示例：**
 
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let type: 'activeStateChange' = 'activeStateChange';
 let permissionNameList: Array<string> = [];
-try{
-    privacyManager.off(type, permissionNameList);
-}
-catch(err){
-    console.error("off err:" + JSON.stringify(err));
+try {
+    privacyManager.off('activeStateChange', permissionNameList);
+}catch(err) {
+    console.log(`catch err->${JSON.stringify(err)}`);
 }
 ```
 
@@ -485,7 +494,7 @@ catch(err){
 | timestamp | number         | 否    | 访问时的时间戳，单位：ms。 |
 | accessDuration  | number         | 否    | 访问时长，单位：ms。                                 |
 
-## PermissionActiveStatus<sup>9+</sup>
+## PermissionActiveStatus
 
 表示权限使用状态类型的枚举。
 
@@ -497,7 +506,7 @@ catch(err){
 | PERM_ACTIVE_IN_FOREGROUND | 1      | 表示前台使用权限。 |
 | PERM_ACTIVE_IN_BACKGROUND | 2      | 表示后台使用权限。 |
 
-## ActiveChangeResponse<sup>9+</sup>
+## ActiveChangeResponse
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.Security.AccessToken
 
@@ -506,4 +515,4 @@ catch(err){
 | tokenId        | number                 | 是   | 否   | 调用方的应用身份标识    |
 | permissionName | string                 | 是   | 否   | 使用状态发生变化的权限名 |
 | deviceId       | string                 | 是   | 否   | 设备号                 |
-| activeStatus   | [PermissionActiveStatus](#permissionactivestatus9) | 是   | 否   | 权限使用状态类型        |
+| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态类型        |

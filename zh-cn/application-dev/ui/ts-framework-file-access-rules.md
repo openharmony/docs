@@ -7,16 +7,8 @@
 
 
 
-
 ## 示例
-```
-common
-│  └─ utils
-│        └─ utils.ets
-└─ pages
-       └─ index.ets
-```
-如上所示，将utils放在common中,示例中index.ets访问utils.ets文件
+示例页面位于pages目录中，在pages同级目录common中存放utils，从示例xxx.ets访问utils.ets文件方法如下：
 ```ts
 // xxx.ets
 import { FoodData, FoodList } from "../common/utils/utils";

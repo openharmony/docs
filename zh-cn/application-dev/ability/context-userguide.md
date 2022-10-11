@@ -10,7 +10,7 @@
   只有app/Context中的方法属于FA模型对应的Context。该模式下，应用级别的Context和Ability级别的Context都是该类型的实例，如果在应用级别的Context里面调用了Ability级别的方法，会产生错误。所以开发者需要注意Context实例所代表的实际含义。
 
 - Stage模型  
-  除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型和Context详细介绍](#stage模型和context详细介绍)中进行说明。
+  除了app/Context之外的Context都属于Stage模型，分别有application/Context、application/ApplicationContext、application/AbilityStageContext、application/ExtensionContext、application/AbilityContext、application/FormExtensionContext等Context。这些Context的介绍及使用方式将会在[Stage模型的Context详细介绍](#stage模型的context详细介绍)中进行说明。
 
 ![contextIntroduction](figures/contextIntroduction.png)
 
@@ -54,7 +54,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise<void>;
 示例：
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-import bundle from '../@ohos.bundle';
+import bundle from '@ohos.bundle';
 
 export default {
   onCreate() {
@@ -71,13 +71,13 @@ export default {
 }
 ```
 
-## Stage模型和Context详细介绍
+## Stage模型的Context详细介绍
 
 ​        Stage模型有如下几类Context：
 
 ### application/Context
 
-​        application/Context类型的Context是基类Context，里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createBundleContext等。
+​        application/Context是基类Context。里面提供了应用的一些基础信息：resourceManager、applicationInfo、cacheDir、area等，还有应用的一些基本方法：createModuleContext等。
 
 **d.ts声明**
 

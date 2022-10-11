@@ -10,17 +10,17 @@
 
 | 名称         | 参数类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
-| borderImage     | BorderImageOption | 图片边框或者渐变色边框设置接口。                            |
+| borderImage     | [BorderImageOption](#borderimageoption对象说明) | 图片边框或者渐变色边框设置接口。                            |
 
 ## BorderImageOption对象说明
 
 | 名称         | 类型                                     | 描述                                      |
 | ---------- | ---------------------------------------- | --------------------------------------- |
 | source     | string \| [Resource](ts-types.md#resource) \| [linearGradient](ts-universal-attributes-gradient-color.md) | 边框图源或者渐变色设置。                            |
-| slice      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
-| width      | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
-| outset     | [Length](ts-types.md#length)\| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
-| RepeatMode | RepeatMode                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
+| slice      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框切割宽度。<br/>默认值：0                   |
+| width      | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置图片边框宽度。<br/>默认值：0                     |
+| outset     | [Length](ts-types.md#length) \| [EdgeWidths](ts-types.md#edgewidths9) | 设置边框图片向外延伸距离。<br/>默认值：0                 |
+| repeat | [RepeatMode](#repeatmode枚举说明)                               | 设置边框图片的重复方式。<br/>默认值：RepeatMode.Stretch |
 | fill       | boolean                                  | 设置边框图片中心填充。<br/>默认值：false               |
 
 
@@ -45,7 +45,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text('This is\nborderImage.').textAlign(TextAlign.Center)
+        Text('This is borderImage.').textAlign(TextAlign.Center)
           .borderImage({
             source: "borderOrigin.png",
             slice: {top:"31%", bottom:"31%", left:"31%", right:"31%"},
@@ -53,7 +53,7 @@ struct Index {
             outset: {top:"5px", bottom:"5px", left:"5px", right:"5px"},
             repeat: RepeatMode.Repeat,
             fill: false
-          });
+          })
       }
       .width('100%')
     }
@@ -70,20 +70,21 @@ struct Index {
 @Entry
 @Component
 struct Index {
-
   build() {
     Row() {
       Column() {
-        Text('This is\ngradient color.').textAlign(TextAlign.Center)
+        Text('This is gradient color.').textAlign(TextAlign.Center)
           .borderImage({
-            source: {angle:90,
+            source: {
+              angle: 90,
               direction: GradientDirection.Left,
-              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]},
-            slice: {top:10, bottom:10, left:10, right:10},
-            width: {top:"10px", bottom:"10px", left: "10px", right:"10px"},
+              colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]
+            },
+            slice: { top: 10, bottom: 10, left: 10, right: 10 },
+            width: { top: "10px", bottom: "10px", left: "10px", right: "10px" },
             repeat: RepeatMode.Stretch,
             fill: false
-          });
+          })
       }
       .width('100%')
     }
