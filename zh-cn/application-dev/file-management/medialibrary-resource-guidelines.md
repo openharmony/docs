@@ -336,7 +336,11 @@ async function example() {
 
 ## 删除媒体资源
 
+<<<<<<< HEAD
 通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deleteasset8-1)可以删除媒体资源。
+=======
+通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deletaasset8)可以删除媒体资源。
+>>>>>>> 7c01fb3ac4b74ec772549e01acedc86cea5f32d0
 
 > **说明：**<br/>
 >
