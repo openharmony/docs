@@ -383,7 +383,7 @@ async function example() {
 
 ## 删除媒体资源
 
-通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deletaasset8-1)可以删除媒体资源。
+通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deletaasset8)可以删除媒体资源。
 
 > **说明：**<br/>
 >
