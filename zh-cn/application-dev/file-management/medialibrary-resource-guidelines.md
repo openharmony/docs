@@ -262,53 +262,6 @@ async function getFirstThumbnailPromise() {
 }
 ```
 
-### 获取相册中所有图片的缩略图
-
-当应用需要提供某个相册里所有图片/视频供用户选择时，可以选择提供缩略图。
-
-与获取单张缩略图的区别是，需要使用getAllObject获取图片/视频数组。
-
-下面以获取720*720的图片缩略图为例。
-
-```ts
-function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
-async function getThumbnailNumberPromise() {
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    let fileKeyObj = mediaLibrary.FileKey;
-    let imageType = mediaLibrary.MediaType.IMAGE;
-    let imagesFetchOp = {
-        selections: fileKeyObj.MEDIA_TYPE + '= ?',
-        selectionArgs: [imageType.toString()],
-    }
-
-    let size = { width: 720, height: 720 };
-    const fetchFileResult = await media.getFileAssets(imagesFetchOp);
-    if (fetchFileResult != undefined) {
-        const count = fetchFileResult.getCount();
-        const assetList = await fetchFileResult.getAllObject();
-        for (let i = 0; i < count; i++) {
-            sleep(10).then(() => {
-                assetList[i].getThumbnail(size).then((pixelMap) => {
-                    pixelMap.getImageInfo().then((info) => {
-                        console.info("Thumbnail width: " + info.size.width + " height: " + info.size.height);
-                    }).catch((err) => {
-                        console.info("getImageInfo failed with error:" + err);
-                    });
-                }).catch((err) => {
-                    console.info("getImageInfo failed with error:" + err);
-                });
-            })
-        }
-    } else {
-        console.info("get image failed with error");
-    }
-}
-```
-
 ## 创建媒体资源
 
 通过接口[MediaLibrary.createAsset](../reference/apis/js-apis-medialibrary.md#createasset8-1)可以创建媒体资源。
@@ -383,7 +336,7 @@ async function example() {
 
 ## 删除媒体资源
 
-通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deletaasset8-1)可以删除媒体资源。
+通过[MediaLibrary.deleteAsset](../reference/apis/js-apis-medialibrary.md#deleteasset8-1)可以删除媒体资源。
 
 > **说明：**<br/>
 >

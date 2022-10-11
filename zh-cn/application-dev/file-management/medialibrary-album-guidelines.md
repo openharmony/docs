@@ -55,57 +55,6 @@ async function example() {
 }
 ```
 
-## 删除相册
-
-当删除相册的所有媒体资源时，相册自动删除，通过[FileAsset.deleteAsset](../reference/apis/js-apis-medialibrary.md#deleteasset8-1)可以删除媒体资源。
-
-> **说明：**<br/>
->
-> deleteAsset为系统接口，仅限系统应用使用。
-
-**前提条件** 
-
-- 获取媒体库mediaLibrary实例。
-- 申请媒体库读写权限“ohos.permission.WRITE_MEDIA”。
-
-**开发步骤**
-
-1. 建立检索条件，用于获取目标相册。
-2. 调用getAlbums获取相册列表。
-3. 建立检索条件，用于获取相册下的目标图片资源。
-4. 调用getFileAssets获取目标图片资源。
-5. 调用getAllObject获取相册下的全部图片。
-6. 调用deleteAsset删除全部图片。
-
-```ts
-async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const context = getContext(this);
-    var media = mediaLibrary.getMediaLibrary(context);
-    let albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    let album = albumList[0];
-    if (album != undefined) {
-        let fetchOpt = {
-            selections: mediaLibrary.FileKey.MEDIA_TYPE + '= ?',
-            selectionArgs: [mediaLibrary.MediaType.IMAGE.toString()],
-        };
-        let fetchFileResult = await album.getFileAssets(fetchOpt);
-        fetchFileResult.getAllObject().then(function(fileAssetList){
-            for (let i = 0; i < fileAssetList.length; ++i) {
-                media.deleteAsset(fileAssetList[i].uri).then(function() {
-                    console.info("removeAlbum successfully");
-                }).catch(function(err){
-                    console.info("removeAlbum failed with error:"+ err);
-                });
-            }
-        })
-    }
-}
-```
-
 ## 重命名相册
 
 重命名修改的是相册的FileAsset.albumName属性，即相册名称。修改后再通过[Album.commitModify](../reference/apis/js-apis-medialibrary.md#commitmodify8-3)更新到数据库中。
@@ -143,4 +92,3 @@ async function example() {
     });
 }
 ```
-
