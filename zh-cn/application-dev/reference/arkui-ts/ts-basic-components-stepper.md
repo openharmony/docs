@@ -67,7 +67,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.firstState)
             .onClick(() => {
-              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip
+              this.firstState = this.firstState === ItemState.Skip ? ItemState.Normal : ItemState.Skip;
             })
         }.width('100%')
       }
@@ -83,7 +83,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.secondState)
             .onClick(() => {
-              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled
+              this.secondState = this.secondState === ItemState.Disabled ? ItemState.Normal : ItemState.Disabled;
             })
         }.width('100%')
       }
@@ -100,7 +100,7 @@ struct StepperExample {
             .margin({ top: 250, bottom: 50 })
           Button('change status:' + this.thirdState)
             .onClick(() => {
-              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting
+              this.thirdState = this.thirdState === ItemState.Waiting ? ItemState.Normal : ItemState.Waiting;
             })
         }.width('100%')
       }
