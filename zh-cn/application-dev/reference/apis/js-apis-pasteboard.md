@@ -684,6 +684,11 @@ addRecord(mimeType: string, value: ValueType): void
 | mimeType | string | 是 | 自定义数据的MIME类型。 |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
 
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900002 | if the count of records in PasteData exceeds MAX_RECORD_NUM. |
+
 **示例：**
 
   ```js
@@ -798,6 +803,12 @@ getRecord(index: number): PasteDataRecord
 | -------- | -------- |
 | [PasteDataRecord](#pastedatarecord7) | 指定下标的条目。 |
 
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900001 | if type of index is not number. |
+| 12900002 | if index is out of the record count of PasteData. |
+
 **示例：**
 
 ```js
@@ -888,6 +899,11 @@ removeRecord(index: number): void
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 指定的下标。 |
 
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900002 | if index is out of the record count of PasteData. |
+
 **示例：**
 
 ```js
@@ -909,6 +925,11 @@ replaceRecord(index: number, record: PasteDataRecord): void
 | -------- | -------- | -------- | -------- |
 | index | number | 是 | 指定的下标。 |
 | record | [PasteDataRecord](#pastedatarecord7) | 是 | 新条目的内容。 |
+
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900002 | if index is out of the record count of PasteData. |
 
 **示例：**
 
@@ -1269,6 +1290,11 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 | data | [PasteData](#pastedata) | 是 | PasteData对象。 |
 | callback | AsyncCallback&lt;void> | 是 | 回调函数。当写入成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900003 | if another setData is being processed or the system prohibits copying. |
+
 **示例：**
 
 ```js
@@ -1303,6 +1329,11 @@ setData(data: PasteData): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900003 | if another setData is being processed or the system prohibits copying. |
+
 **示例：**
 
 ```js
@@ -1328,6 +1359,11 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;[PasteData](#pastedata)&gt; | 是 | 回调函数。当读取成功，err为undefined，data为返回的系统剪贴板数据；否则返回错误对象。 |
+
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900003 | if another getData is being processed. |
 
 **示例：**
 
@@ -1355,6 +1391,11 @@ getData(): Promise&lt;PasteData&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;[PasteData](#pastedata)&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 12900003 | if another getData is being processed. |
 
 **示例：**
 
