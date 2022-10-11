@@ -63,27 +63,10 @@ struct PopupExample {
       // PopupOptions 类型设置弹框内容
       Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup;
-        })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
-          placementOnTop: false,
-          showInSubWindow:true,
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-            if (!e.isVisible) {
-              this.noHandlePopup = false;
-            }
-          }
-        })
-        .position({ x: 100, y: 50 })
-
-      Button('with handle popup')
-        .onClick(() => {
           this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
+          message: 'This is a popup with PopupOptions',
           placementOnTop: true,
           showInSubWindow:false,
           primaryButton: {
@@ -122,7 +105,7 @@ struct PopupExample {
           maskColor: 0x33000000,
           popupColor: Color.Yellow,
           enableArrow: true,
-          showInSubWindow:false,
+          showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
               this.customPopup = false;
