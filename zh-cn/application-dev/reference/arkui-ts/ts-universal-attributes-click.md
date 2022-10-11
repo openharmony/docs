@@ -22,22 +22,22 @@
 @Entry
 @Component
 struct TouchAbleExample {
-  @State text1: string = ''
-  @State text2: string = ''
+  @State text1: string = '';
+  @State text2: string = '';
 
   build() {
     Stack() {
       Rect()
         .fill(Color.Gray).width(150).height(150)
         .onClick(() => {
-          console.info(this.text1 = 'Rect Clicked')
+          console.info(this.text1 = 'Rect Clicked');
         })
         .overlay(this.text1, { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
       Ellipse()
         .fill(Color.Pink).width(150).height(80)
         .touchable(false) // 点击Ellipse区域，不会打印 “Ellipse Clicked”
         .onClick(() => {
-          console.info(this.text2 = 'Ellipse Clicked')
+          console.info(this.text2 = 'Ellipse Clicked');
         })
         .overlay(this.text2, { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
     }.margin(100)
