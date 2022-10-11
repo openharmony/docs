@@ -54,8 +54,8 @@ Input模块驱动接口声明。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [MAX_INPUT_DEV_NUM](#maxinputdevnum)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
-| [CHIP_INFO_LEN](#chipinfolen)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
+| [MAX_INPUT_DEV_NUM](#max_input_dev_num)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
+| [CHIP_INFO_LEN](#CHIP_INFO_LEN)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
 | [CHIP_NAME_LEN](#chipnamelen)&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
 | [VENDOR_NAME_LEN](#vendornamelen)&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
 | [DEV_NAME_LEN](#devnamelen)&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
