@@ -301,12 +301,12 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
   });
   try {
     dmInstance.getTrustedDeviceList().then((data) => {
-      console.log('[myApiTest]get trusted device info: ' + JSON.stringify(data));
+      console.log('get trusted device info: ' + JSON.stringify(data));
       }).catch((err) => {
-        console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+        console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
     });
   } catch (err) {
-      console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+      console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
   }
   ```
 
