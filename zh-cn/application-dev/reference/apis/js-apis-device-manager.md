@@ -22,7 +22,7 @@
 
 ## 导入模块
 
-```
+```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 ```
 
