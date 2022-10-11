@@ -54,17 +54,17 @@ Input模块驱动接口声明。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [MAX_INPUT_DEV_NUM](#maxinputdevnum)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
-| [CHIP_INFO_LEN](#chipinfolen)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
-| [CHIP_NAME_LEN](#chipnamelen)&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
-| [VENDOR_NAME_LEN](#vendornamelen)&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
-| [DEV_NAME_LEN](#devnamelen)&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
-| [SELF_TEST_RESULT_LEN](#selftestresultlen)&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
-| [DEV_MANAGER_SERVICE_NAME](#devmanagerservicename)&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
-| [DIV_ROUND_UP](#divroundup)(nr,&nbsp;d)&nbsp;&nbsp;&nbsp;(((nr)&nbsp;+&nbsp;(d)&nbsp;-&nbsp;1)&nbsp;/&nbsp;(d)) | 向上取整计算公式。 | 
-| [BYTE_HAS_BITS](#bytehasbits)&nbsp;&nbsp;&nbsp;8 | 一个字节所包含的比特数。 | 
-| [BITS_TO_UINT64](#bitstouint64)(count)&nbsp;&nbsp;&nbsp;[DIV_ROUND_UP](#divroundup)(count,&nbsp;[BYTE_HAS_BITS](#bytehasbits)&nbsp;\*&nbsp;sizeof(uint64_t)) | 比特与64位无符号整数的转换公式。 | 
-| [HDF_FF_CNT](#hdfffcnt)&nbsp;&nbsp;&nbsp;(0x7f&nbsp;+&nbsp;1) | Input设备发送力反馈命令的数量最大值。 | 
+| [MAX_INPUT_DEV_NUM](#max_input_dev_num)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
+| [CHIP_INFO_LEN](#chip_info_len)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
+| [CHIP_NAME_LEN](#chip_name_len)&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
+| [VENDOR_NAME_LEN](#vendor_name_len)&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
+| [DEV_NAME_LEN](#dev_name_len)&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
+| [SELF_TEST_RESULT_LEN](#self_test_result_len)&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
+| [DEV_MANAGER_SERVICE_NAME](#dev_manager_service_name)&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
+| [DIV_ROUND_UP](#div_round_up)(nr,&nbsp;d)&nbsp;&nbsp;&nbsp;(((nr)&nbsp;+&nbsp;(d)&nbsp;-&nbsp;1)&nbsp;/&nbsp;(d)) | 向上取整计算公式。 | 
+| [BYTE_HAS_BITS](#byte_has_bits)&nbsp;&nbsp;&nbsp;8 | 一个字节所包含的比特数。 | 
+| [BITS_TO_UINT64](#bits_to_uint64)(count)&nbsp;&nbsp;&nbsp;[DIV_ROUND_UP](#div_round_up)(count,&nbsp;[BYTE_HAS_BITS](#byte_has_bits)&nbsp;\*&nbsp;sizeof(uint64_t)) | 比特与64位无符号整数的转换公式。 | 
+| [HDF_FF_CNT](#hdf_ff_cnt)&nbsp;&nbsp;&nbsp;(0x7f&nbsp;+&nbsp;1) | Input设备发送力反馈命令的数量最大值。 | 
 
 
 ### 枚举
