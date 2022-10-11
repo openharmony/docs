@@ -223,7 +223,7 @@ release(): void
   try {
     dmInstance.release();
   } catch (err) {
-    console.error("[myApiTest]release errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("release errCode:" + err.code + ",errorMessage:" + err.message);
   }
   ```
 
@@ -243,7 +243,6 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 - 示例：
   ```js
-  var deviceInfoList = dmInstance.getTrustedDeviceListSync();
   try {
     var deviceInfoList = dmInstance.getTrustedDeviceListSync();
   } catch (err) {
@@ -274,7 +273,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
         return;
       }
       console.log('get trusted device info: ' + JSON.stringify(data));
-      });
+    });
   } catch (err) {
     console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
   }
@@ -305,10 +304,10 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
       console.log('[myApiTest]get trusted device info: ' + JSON.stringify(data));
       }).catch((err) => {
         console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
-      });
-    } catch (err) {
+    });
+  } catch (err) {
       console.error("[myApiTest]getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
-    }
+  }
   ```
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
@@ -759,7 +758,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
   try {
     dmInstance.on('discoverFail', (data) => {
         this.log("discoverFail on:" + JSON.stringify(data));
-      });
+    });
   } catch (err) {
     console.error("discoverFail errCode:" + err.code + ",errorMessage:" + err.message);
   }
