@@ -73,7 +73,7 @@ Camera模块涉及相机设备的操作、流的操作、离线流的操作和�
   | 名称 | 描述 | 
 | -------- | -------- |
 | package&nbsp;ohos.hdi.camera.v1_0 | Camera设备接口的包路径。 | 
-| sequenceable&nbsp;ohos.hdi.camera.v1_0.BufferProducerSequenceable |  | 
+| sequenceable&nbsp;ohos.hdi.camera.v1_0.BufferProducerSequenceable | ohos.hdi.camera.v1_0序列，可用缓冲区生成器。 | 
 
 
 ## **枚举类型说明**
