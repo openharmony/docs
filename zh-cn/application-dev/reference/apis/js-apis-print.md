@@ -50,16 +50,16 @@ SystemCapability.Print.print
 let files: Array<string> = ['./data/app/sample.pdf'];
 print.print(files,(err, task) => {
     task.on('blocked', () => {
-        console.info("print task blocked")
+        console.info("print task block")
     });
     task.on('success', () => {
         console.info("print task success")
     });
     task.on('failed', () => {
-        console.info("print task failed")
+        console.info("print task fail")
     });
     task.on('cancelled', () => {
-        console.info("print task cancelled")
+        console.info("print task cancel")
     });
 });
   ```
@@ -96,16 +96,16 @@ SystemCapability.Print.print
 let files: Array<string> = ['./data/app/sample.pdf'];
 print.print(files).then((task) => {
     task.on('blocked', () => {
-        console.info("print task blocked")
+        console.info("print task block")
     });
     task.on('success', () => {
         console.info("print task success")
     });
     task.on('failed', () => {
-        console.info("print task failed")
+        console.info("print task fail")
     });
     task.on('cancelled', () => {
-        console.info("print task cancelled")
+        console.info("print task cancel")
     });
 });
   ```
@@ -169,7 +169,7 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-print.queryExtensionAbilityInfos()
+print.queryAllPrinterExtensionInfos()
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
@@ -179,7 +179,7 @@ print.queryExtensionAbilityInfos()
 
 ## print.startDiscoverPrinter
 
-startDiscoverPrinter(extensionList: Array<number>, callback: AsyncCallback<boolean>): void;
+startDiscoverPrinter(extensionList: Array<string>, callback: AsyncCallback<boolean>): void;
 
 发现打印机（callback形式）。
 
@@ -195,13 +195,13 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | extensionList |  Array<number>| 否 | 扩展ID。|
+  | extensionList |  Array<string>| 否 | 扩展ID。|
   | callback  | AsyncCallback<boolean> | 是    | 被指定的回调方法。      | 
 
 **示例：**
     
 ```js
-let extensionList: number[] = [1,2];
+let extensionList = ['1001','1002'];
 print.startDiscoverPrinter(extensionList, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -212,7 +212,7 @@ print.startDiscoverPrinter(extensionList, (err, data) => {
 ```
 ## print.startDiscoverPrinter
 
-startDiscoverPrinter(extensionList: Array<number>): Promise<boolean>;
+startDiscoverPrinter(extensionList: Array<string>): Promise<boolean>;
 
 发现打印机（promise形式）。
 
@@ -228,7 +228,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | extensionList |  Array<number>| 否 | 扩展ID。|
+  | extensionList |  Array<string>| 否 | 扩展ID。|
 
 **返回值：**
 
@@ -239,7 +239,7 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let extensionList: number[] = [1,2];
+let extensionList  = ['1001','1002'];
 print.startDiscoverPrinter(extensionList)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -315,10 +315,9 @@ print.stopDiscoverPrinter().then((data) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
-
 ## print.connectPrinter
 
-connectPrinter(printerId: number, callback: AsyncCallback<boolean>): void;
+connectPrinter(printerId: string, callback: AsyncCallback<boolean>): void;
 
 发现打印机（callback形式）。
 
@@ -334,13 +333,13 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 否 | 打印机ID。|
+  | printerId |  string| 否 | 打印机ID。|
   | callback  | AsyncCallback<boolean> | 是    | 被指定的回调方法。      | 
 
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.connectPrinter(printerId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -351,7 +350,7 @@ print.connectPrinter(printerId, (err, data) => {
 ```
 ## print.connectPrinter
 
- connectPrinter(printerId: number): Promise<boolean>;
+ connectPrinter(printerId: string): Promise<boolean>;
 
 发现打印机（promise形式）。
 
@@ -367,7 +366,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 否 | 打印机ID。|
+  | printerId |  string| 否 | 打印机ID。|
 
 **返回值：**
 
@@ -378,7 +377,7 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.connectPrinter(printerId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -390,7 +389,7 @@ print.connectPrinter(printerId)
 
 ## print.disconnectPrinter
 
-disconnectPrinter(printerId: number, callback: AsyncCallback<boolean>): void;
+disconnectPrinter(printerId: string, callback: AsyncCallback<boolean>): void;
 
 断开连接打印机（callback形式）。
 
@@ -406,13 +405,13 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 否 | 打印机ID。|
+  | printerId |  string| 否 | 打印机ID。|
   | callback  | AsyncCallback<boolean> | 是    | 被指定的回调方法。      | 
 
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.disconnectPrinter(printerId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -423,7 +422,7 @@ print.disconnectPrinter(printerId, (err, data) => {
 ```
 ## print.disconnectPrinter
 
-disconnectPrinter(printerId: number): Promise<boolean>;
+disconnectPrinter(printerId: string): Promise<boolean>;
 
 发现打印机（promise形式）。
 
@@ -439,7 +438,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 否 | 打印机ID。|
+  | printerId |  string| 否 | 打印机ID。|
 
 **返回值：**
 
@@ -450,7 +449,7 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.disconnectPrinter(printerId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -459,10 +458,9 @@ print.disconnectPrinter(printerId)
 })
 
 ```
-
 ## print.queryPrinterCapability
 
-queryPrinterCapability(printerId: number, callback: AsyncCallback\<PrinterCapability>): void;
+queryPrinterCapability(printerId: string, callback: AsyncCallback\<PrinterCapability>): void;
 
 查询打印机能力（callback形式）。
 
@@ -478,13 +476,13 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 是 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
   | callback  | AsyncCallback\<[PrinterCapability](#printerCapability)> | 是    | 被指定的回调方法。      | 
 
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.queryPrinterCapability(printerId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -493,9 +491,10 @@ print.queryPrinterCapability(printerId, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
+
 ## print.queryPrinterCapability
 
-queryPrinterCapability(printerId: number): Promise<PrinterCapability>      
+queryPrinterCapability(printerId: string): Promise<PrinterCapability>      
 
 查询打印机能力（promise形式）。
 
@@ -511,7 +510,7 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId |  number| 是 | 打印机ID。|
+  | printerId |  string| 是 | 打印机ID。|
 
 **返回值：**
 
@@ -522,7 +521,7 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printerId  = 1;
+let printerId  = '1001';
 print.queryPrinterCapability(printerId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -531,7 +530,6 @@ print.queryPrinterCapability(printerId)
 })
 
 ```
-
 ## print.startPrintJob
 
 startPrintJob(jobinfo: PrintJob, callback: AsyncCallback<boolean>): void;
@@ -580,8 +578,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -592,6 +590,7 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:''
 }
 
 print.startPrintJob(PrintJob, (err, data) => {
@@ -655,8 +654,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -667,6 +666,7 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:'string'
 }
  
 print.startPrintJob(PrintJob).then((data)=>{
@@ -723,8 +723,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -735,8 +735,8 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:'string'
 }
-
 print.cancelPrintJob(printJob, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -798,8 +798,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -810,8 +810,8 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:''
 }
- 
 print.cancelPrintJob(printJob).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
@@ -866,8 +866,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -878,6 +878,7 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:'string'
 }
 
 print.requestPrintPreview(printJob, (err, data) => {
@@ -941,8 +942,8 @@ let previewAttribute = {
 }
 let printJob = {
   files:['D:/dev/a.docx'],
-  jobId:3,
-  printerId: 2,      // printer id to take charge of printing
+  jobId:'1001',
+  printerId: '2001',      // printer id to take charge of printing
   jobState: printerState,  // current print job state
   copyNumber: 3,      // copies of document list
   pageRange: printerRange,
@@ -953,6 +954,7 @@ let printJob = {
   duplexMode: 1,    // duplex mode
   margin: printMargin,    // current margin setting
   preview: previewAttribute,  // preview setting
+  option:'string'
 }
  
 print.requestPrintPreview(printJob).then((data)=>{
@@ -961,6 +963,7 @@ print.requestPrintPreview(printJob).then((data)=>{
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
+
 ## print.on(type: 'printerStateChange')
 
 on(type: 'printerStateChange', callback: (state: PrinterState, info: PrinterInfo) => void): void;
@@ -987,25 +990,25 @@ SystemCapability.Print.print
 ```js
 print.on('printerStateChange', (state, info) => {
     if (state == print.PrinterState.PRINTER_ADDED) {
-        console.info("printer added. info: " + JSON.stringify(info));
+        console.info("printer is added. info: " + JSON.stringify(info));
     }
     if (state == print.PrinterState.PRINTER_REMOVED) {
-        console.info("printer removed. info: " + JSON.stringify(info));
+        console.info("printer is removed. info: " + JSON.stringify(info));
     }
-    if (state == print.PrinterState.PRINTER_IDLE) {
-        console.info("printer idle. info: " + JSON.stringify(info));
+    if (state == print.PrinterState.PRINTER_UPDATED) {
+        console.info("printer is updated. info: " + JSON.stringify(info));
     }
-    if (state == print.PrinterState.PRINTER_PRINTING) {
-        console.info("printer printing. info: " + JSON.stringify(info));
+    if (state == print.PrinterState.PRINTER_CONNECTED) {
+        console.info("printer is connected. info: " + JSON.stringify(info));
     }
-    if (state == print.PrinterState.PRINTER_BLOCKED) {
-        console.info("printer blocked. info: " + JSON.stringify(info));
+    if (state == print.PrinterState.PRINTER_DISCONNECTED) {
+        console.info("printer is disConnected. info: " + JSON.stringify(info));
     }
-    if (state == print.PrinterState.PRINTER_BUSY) {
-        console.info("printer busy. info: " + JSON.stringify(info));
+    if (state == print.PrinterState.PRINTER_RUNNING) {
+        console.info("printer is running. info: " + JSON.stringify(info));
     }
-    if (state == print.PrinterState.PRINTER_FAILED) {
-        console.info("printer failed. info: " + JSON.stringify(info));
+    if (state == print.PrinterState.PRINTER_UNKNOWN) {
+        console.info("printer is unknown. info: " + JSON.stringify(info));
     }
 });
 ```
@@ -1064,32 +1067,29 @@ SystemCapability.Print.print
     
 ```js
 print.on('jobStateChange', (state, info) => {
-    if (state == print.PrintJobState.PRINT_JOB_CREATED) {
-        console.info("the print job is created. info:"+JSON.stringify(info));
+    if (state == print.PrintJobState.PRINT_JOB_PREPARE) {
+        console.info("the print job is prepare. info:"+JSON.stringify(info));
     }
    if (state == print.PrintJobState.PRINT_JOB_QUEUED) {
        console.info("the print job is queued. info:"+JSON.stringify(info));
     }
-   if (state == print.PrintJobState.PRINT_JOB_PRINTING) {
-       console.info("the print job is printing. info:"+JSON.stringify(info));
+   if (state == print.PrintJobState.PRINT_JOB_RUNNING) {
+       console.info("the print job is running. info:"+JSON.stringify(info));
     }
    if (state == print.PrintJobState.PRINT_JOB_BLOCKED) {
        console.info("the print job is blocked. info:"+JSON.stringify(info));
     }
-   if (state == print.PrintJobState.PRINT_JOB_SUCCESS) {
-       console.info("the print job is success. info:"+JSON.stringify(info));
+   if (state == print.PrintJobState.PRINT_JOB_COMPLETED) {
+       console.info("the print job is completed. info:"+JSON.stringify(info));
     }
-   if (state == print.PrintJobState.PRINT_JOB_FAILED) {
-      console.info("the print job is failed. info:"+JSON.stringify(info));
-    }
-   if (state == print.PrintJobState.PRINT_JOB_cancelled) {
-     console.info("the print job is cancelled. info:"+JSON.stringify(info));
+   if (state == print.PrintJobState.PRINT_JOB_UNKNOWN) {
+      console.info("the print job is unknown. info:"+JSON.stringify(info));
     }
 });
 ```
 ## print.off('jobStateChange')
 
-off(type: 'jobStateChange', callback: (boolean) => void): void;
+ off(type: 'jobStateChange', callback?: (boolean) => void): void;
 
 取消订阅printerStateChange事件
 
@@ -1116,6 +1116,65 @@ print.off('jobStateChange', (err, data) => {
 }
 
 ```
+
+## print.on('extInfoChange')
+
+on(type: 'extInfoChange', callback: (extensionId: string, info: string) => void): void;
+
+订阅打印任务子状态变化事件。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | type | string| 是 | 监听打印任务状态的变化。|
+  | callback  | (extensionId: string, info: string) => void| 是    | 被指定的回调结果。      | 
+
+**示例：**
+    
+```js
+print.on('extInfoChange', (extensionId, info) => {
+     console.info("extInfoChange on. info:"+JSON.stringify(info));
+});
+```
+
+## print.off('extInfoChange')
+
+off(type: 'extInfoChange', callback?: (boolean) => void): void;
+
+订阅打印任务子状态变化事件。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | type | string| 是 | 监听打印任务状态的变化。|
+  | callback  | (info: string) => void | 是    | 被指定的回调结果。      | 
+
+**示例：**
+    
+```js
+print.off('extInfoChange', (info) => {
+      console.info("extInfoChange off. info:"+JSON.stringify(info));
+});
+```
+
 ## print.addPrinters
 
 addPrinters(printers: Array\<PrinterInfo>, callback: AsyncCallback<boolean>): void;
@@ -1140,26 +1199,56 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
+ 
+let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
  let printer1 = {
-            printerId: 1, // printer id
-            printerName: 'string', // printer name
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
             printerIcon: 1, // resource id of printer icon
             printerState: 1, // current printer state
-            description: 'string', // printer description
-            capability: PrinterCapability,
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: 'string'  
         }
-let printer2 = {
-            printerId: 2, // printer id
-            printerName: 'char', // printer name
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
             printerIcon: 2, // resource id of printer icon
             printerState: 2, // current printer state
-            description: 'char', // printer description
-            capability: PrinterCapability,
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: 'string'  
         }
 
-let printers = [printer1, printer2]
-
-print.addPrinters(printers, (err, data) => {
+ let printers = [printer1, printer2]
+ print.addPrinters(printers, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1196,30 +1285,59 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printer1 = {
-            printerId: 1, // printer id
-            printerName: 'string', // printer name
+  let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
+ let printer1 = {
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
             printerIcon: 1, // resource id of printer icon
             printerState: 1, // current printer state
-            description: 'string', // printer description
-            capability: PrinterCapability,
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: ''  
         }
-let printer2 = {
-            printerId: 2, // printer id
-            printerName: 'char', // printer name
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
             printerIcon: 2, // resource id of printer icon
             printerState: 2, // current printer state
-            description: 'char', // printer description
-            capability: PrinterCapability,
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: ''  
         }
 
-let printers = [printer1, printer2]
-
-print.addPrinters(printers).then((data)=>{
+ let printers = [printer1, printer2]
+ print.addPrinters(printers).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+ }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+ })
 ```
 
 ## print.removePrinters
@@ -1246,26 +1364,55 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
+  let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
  let printer1 = {
-            printerId: 1, // printer id
-            printerName: 'string', // printer name
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
             printerIcon: 1, // resource id of printer icon
             printerState: 1, // current printer state
-            description: 'string', // printer description
-            capability: PrinterCapability,
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: ''  
         }
-let printer2 = {
-            printerId: 2, // printer id
-            printerName: 'char', // printer name
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
             printerIcon: 2, // resource id of printer icon
             printerState: 2, // current printer state
-            description: 'char', // printer description
-            capability: PrinterCapability,
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: ''  
         }
 
-let printers = [printer1, printer2]
-
-print.removePrinters(printers, (err, data) => {
+ let printers = [printer1, printer2]
+ print.removePrinters(printers, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1302,34 +1449,228 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let printer1 = {
-            printerId: 1, // printer id
-            printerName: 'string', // printer name
+ let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
+ let printer1 = {
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
             printerIcon: 1, // resource id of printer icon
             printerState: 1, // current printer state
-            description: 'string', // printer description
-            capability: PrinterCapability,
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: ''  
         }
-let printer2 = {
-            printerId: 2, // printer id
-            printerName: 'char', // printer name
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
             printerIcon: 2, // resource id of printer icon
             printerState: 2, // current printer state
-            description: 'char', // printer description
-            capability: PrinterCapability,
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: ''  
         }
 
-let printers = [printer1, printer2]
-
-print.removePrinters(printers).then((data)=>{
+ let printers = [printer1, printer2]
+ print.removePrinters(printers).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
-}).catch((error) => {
+ }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
-})
+ })
 ```
+
+## print.updatePrinters
+
+updatePrinters(printers: Array<PrinterInfo>, callback: AsyncCallback<boolean>): void;
+
+更新打印机（callback形式）。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | printers |  Array\<[PrinterInfo](#PrinterInfo)>| 是 | 打印机信息。|
+  | callback |  AsyncCallback<boolean> | 是    | 被指定的回调结果。      | 
+
+**示例：**
+    
+```js
+  let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
+ let printer1 = {
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
+            printerIcon: 1, // resource id of printer icon
+            printerState: 1, // current printer state
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: ''  
+        }
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
+            printerIcon: 2, // resource id of printer icon
+            printerState: 2, // current printer state
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: ''  
+        }
+
+ let printers = [printer1, printer2]
+ print.updatePrinters(printers, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
+```
+## print.updatePrinters
+
+updatePrinters(printers: Array<PrinterInfo>): Promise<boolean>;
+  
+更新打印机（promise形式）。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | printers |  Array\<[PrinterInfo](#printerInfo)>| 是 | 打印机信息。|
+
+**返回值：**
+
+  | 类型 |  说明 | 
+  | -------- | -------- |
+  | Promise<boolean>  | Promise形式返回执行结果。      | 
+
+**示例：**
+    
+```js
+ let printerPageSizeArr = [
+            {
+             id: '1',
+             name: 'string',
+             width: 200,
+             height: 200,
+            }
+        ]
+ let printMargin = {
+            top: 1,
+            bottom: 2,
+            left: 1,
+            right: 1,
+        }
+ let printerResolutionArr = [
+            {
+             id: 2,
+             horizontalDpi: 2,
+             verticalDpi: 1,
+            }
+        ]
+  let printerCapability = {
+            minMargin: printMargin,
+            pageSize: printerPageSizeArr,
+            resolution: printerResolutionArr,
+            colorMode: 1,
+            duplexMode: 2,
+        }
+ let printer1 = {
+            printerId: '1001', // printer id
+            printerName: '打印机2', // printer name
+            printerIcon: 1, // resource id of printer icon
+            printerState: 1, // current printer state
+            description: '打印机1', // printer description
+            capability: printerCapability,
+            option: ''  
+        }
+ let printer2 = {
+            printerId: '1002', // printer id
+            printerName: '打印机1', // printer name
+            printerIcon: 2, // resource id of printer icon
+            printerState: 2, // current printer state
+            description: '打印机2', // printer description
+            capability: printerCapability,
+            option: ''  
+        }
+
+ let printers = [printer1, printer2]
+ print.updatePrinters(printers).then((data)=>{
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+ }).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+ })
+```
+
 ## print.updatePrinterState
 
-updatePrinterState(printerId: number, state: PrinterState, callback: AsyncCallback<boolean>): void;
+updatePrinterState(printerId: string, state: PrinterState,callback: AsyncCallback<boolean>): void;
 
 更新打印机状态（callback形式）。
 
@@ -1345,16 +1686,16 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId | number| 是 | 打印机Id。|
+  | printerId | string| 是 | 打印机Id。|
   | state | [PrinterState](#printerState)| 是 | 打印机状态。|
   | callback |  AsyncCallback<boolean> | 是    | 被指定的回调结果。      | 
 
 **示例：**
     
 ```js
-let printerId = 3;
-let printerState = print.PrinterState.PRINTER_ADDED;
-print.updatePrinterState(printerId,printerState, (err, data) => {
+let printerId = '1002';
+let printerState = 1;
+print.updatePrinterState(printerId, printerState, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1364,7 +1705,7 @@ print.updatePrinterState(printerId,printerState, (err, data) => {
 ```
 ## print.updatePrinterState
 
-updatePrinterState(printerId: number, state: PrinterState): Promise<boolean>;
+ updatePrinterState(printerId: string, state: PrinterState): Promise<boolean>;
   
 更新打印机状态（promise形式）。
 
@@ -1380,8 +1721,10 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | printerId | number| 是 | 打印机Id。|
+  | printerId | string| 是 | 打印机Id。|
   | state | [PrinterState](#printerState)| 是 | 打印机状态。|
+  
+  
 
 **返回值：**
 
@@ -1393,8 +1736,7 @@ SystemCapability.Print.print
     
 ```js
 let printerId = 3;
-let printerState = print.PrinterState.PRINTER_ADDED;
-
+let printerState = 1;
 print.updatePrinterState(printerId,printerState).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
@@ -1403,7 +1745,7 @@ print.updatePrinterState(printerId,printerState).then((data)=>{
 ```
 ## print.updatePrintJobState
 
-updatePrintJobState(jobId: number, state: PrintJobState, callback: AsyncCallback<boolean>): void;
+updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState, callback: AsyncCallback<boolean>): void;
 
 更新打印任务状态（callback形式）。
 
@@ -1419,16 +1761,18 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | jobId | number| 是 | 打印任务Id。|
+  | jobId | string| 是 | 打印任务Id。|
   | state | [PrintJobState](#printJobState)| 是 | 打印任务状态。|
+  | subState | [PrintJobSubState](#printJobSubState)| 是 | 打印任务状态。|
   | callback |  AsyncCallback<boolean> | 是    | 被指定的回调结果。      | 
 
 **示例：**
     
 ```js
-let jobId = 3;
-let printJobState = print.PrintJobState.PRINT_JOB_CREATED;
-print.updatePrintJobState(jobId,printJobState, (err, data) => {
+let jobId = '1002';
+let printJobState = 1;
+let printJobSubState =2;
+print.updatePrintJobState(jobId, printJobState, printJobSubState, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1438,7 +1782,7 @@ print.updatePrintJobState(jobId,printJobState, (err, data) => {
 ```
 ## print.updatePrintJobState
 
-updatePrintJobState(jobId: number, state: PrintJobState): Promise<boolean>;
+updatePrintJobState(jobId: string, state: PrintJobState, subState: PrintJobSubState): Promise<boolean>;
   
 更新打印任务状态（promise形式）。
 
@@ -1454,9 +1798,10 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | jobId | number| 是 | 打印任务Id。|
+   | jobId | string| 是 | 打印任务Id。|
   | state | [PrintJobState](#printJobState)| 是 | 打印任务状态。|
-
+  | subState | [PrintJobSubState](#printJobSubState)| 是 | 打印任务状态。|
+ 
 **返回值：**
 
   | 类型 |  说明 | 
@@ -1466,19 +1811,90 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let jobId = 3;
-let printJobState = print.PrintJobState.PRINT_JOB_CREATED;
-
-print.updatePrintJobState(jobId,printJobState).then((data)=>{
+let jobId = '1002';
+let printJobState = 1;
+let printJobSubState =2;
+print.updatePrintJobState(jobId, printJobState, printJobSubState).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
 })
 ```
 
-## print.openFile
+## print.updateExtensionInfo
 
-openFile(uri: string, callback: AsyncCallback<number>): void;
+updateExtensionInfo(info: string, callback: AsyncCallback<boolean>): void;
+
+更新扩展信息（callback形式）。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | info |string| 是 | 扩展信息。|
+  | callback |  AsyncCallback<boolean> | 是    | 被指定的回调结果。      | 
+
+**示例：**
+    
+```js
+let info = 'string';
+print.updateExtensionInfo(info, (err, data) => {
+    if (err) {
+        console.error('Operation failed. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Operation successful. Data:' + JSON.stringify(data));
+ })
+```
+## print.updateExtensionInfo
+
+updateExtensionInfo(info: string): Promise<boolean>;
+  
+更新扩展信息（promise形式）。
+
+**需要权限：**
+
+ohos.permission.MANAGE_PRINT_JOB
+
+**系统能力**：
+
+SystemCapability.Print.print
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 | 
+  | -------- | -------- | -------- | -------- |
+  | extensionId | string| 是 | 扩展ID。|
+  | info |string| 是 | 扩展信息。|
+ 
+**返回值：**
+
+  | 类型 |  说明 | 
+  | -------- | -------- |
+  | Promise<boolean>  | Promise形式返回执行结果。      | 
+
+**示例：**
+    
+```js
+let info = 'string';
+print.updateExtensionInfo(info).then((data)=>{
+    console.info('Operation successful. Data: ' + JSON.stringify(data));
+}).catch((error) => {
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+})
+```
+
+## print.readFile
+
+readFile(config: ReadConfig, callback: AsyncCallback<ArrayBuffer>): void;
 
 打开文件（callback形式）。
 
@@ -1494,14 +1910,18 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | uri | string| 是 | 文件地址。|
-  | callback |  AsyncCallback<number> | 是    | 被指定的回调结果。      | 
+  | config | [ReadConfig](#readConfig)| 是 | 文件配置信息。|
+  | callback | AsyncCallback<Array<byte>> | 是    | 被指定的回调结果。      | 
 
 **示例：**
     
 ```js
-let uri = '';
-print.openFile(uri, (err, data) => {
+let readConfig = {
+                  file: '',
+		          offset: 1,
+		          max: 3,
+                 }
+print.readFile(readConfig, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
         return;
@@ -1509,9 +1929,9 @@ print.openFile(uri, (err, data) => {
     console.info('Operation successful. Data:' + JSON.stringify(data));
  })
 ```
-## print.openFile
+## print.readFile
 
-openFile(uri: string): Promise<number>;
+readFile(config: ReadConfig): Promise<ArrayBuffer>;
   
 打开文件（promise形式）。
 
@@ -1527,19 +1947,21 @@ SystemCapability.Print.print
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
-  | uri | string| 是 | 文件地址。|
+  | config | [ReadConfig](#readConfig)| 是 | 文件配置信息。|
 
 **返回值：**
 
   | 类型 |  说明 | 
   | -------- | -------- |
-  | Promise<number>  | Promise形式返回执行结果。      | 
+  |  Promise<Array<byte>>  | Promise形式返回执行结果。      | 
 
 **示例：**
     
 ```js
-let uri = '';
-print.openFile(uri).then((data)=>{
+let readConfig = {file: '';
+		          offset: 1,
+		          max: 3,}
+print.readFile(readConfig).then((data)=>{
     console.info('Operation successful. Data: ' + JSON.stringify(data));
 }).catch((error) => {
     console.error('Operation failed. Cause: ' + JSON.stringify(error));
@@ -1574,25 +1996,23 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let files: Array<string> = ['./data/app/sample.pdf'];
-print.print(files).then((task) => {
-    task.on('blocked', () => {
-        console.info("print task blocked")
+   print.PrintTask.on('block', () => {
+        console.info("print task block")
     });
-    task.on('success', () => {
+    print.PrintTask.on('success', () => {
         console.info("print task success")
     });
-    task.on('failed', () => {
-        console.info("print task failed")
+    print.PrintTask.on('fail', () => {
+        console.info("print task fail")
     });
-    task.on('cancelled', () => {
-        console.info("print task cancelled")
+    print.PrintTask.on('cancel', () => {
+        console.info("print task cancel")
     });
-});
+ 
   ```
 ## PrintTask.off
     
-off(type: 'blocked' | 'success' | 'failed' | 'cancelled', callback?: () => void): void;
+ off(type: 'blocked' | 'success' | 'failed' | 'cancelled', callback?: (boolean) => void): void;
 
 取消订阅打印任务状态变化事件。
 
@@ -1614,21 +2034,19 @@ SystemCapability.Print.print
 **示例：**
     
 ```js
-let files: Array<string> = ['./data/app/sample.pdf'];
-print.print(files).then((task) => {
-    task.off('blocked', () => {
-        console.info("print task blocked")
+    print.PrintTask.off('block', () => {
+        console.info("print task block")
     });
-    task.off('success', () => {
+    print.PrintTask.off('success', () => {
         console.info("print task success")
     });
-    task.off('failed', () => {
-        console.info("print task failed")
+    print.PrintTask.off('fail', () => {
+        console.info("print task fail")
     });
-    task.off('cancelled', () => {
-        console.info("print task cancelled")
+    print.PrintTask.off('cancel', () => {
+        console.info("print task cancel")
     });
-});
+
   ```
 
 ## PrintMargin
@@ -1655,7 +2073,7 @@ print.print(files).then((task) => {
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
 | startPage                | 只读   | number        | 是    | 开始页。                     |
 | endPage                | 只读   | number        | 是    | 结束页。                     |
-| pages                | 只读   | number        | 是    | 总页数。                     |
+| pages                | 只读   |  Array<number>        | 是    | 总页数。                     |
 
 ## PreviewAttribute
 
@@ -1676,7 +2094,7 @@ print.print(files).then((task) => {
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| id                | 只读   | number       | 是    | 分辨率ID。                     
+| id                | 只读   | string       | 是    | 分辨率ID。                     
 | horizontalDpi                | 只读   | number        | 是    | 水平DPI。                     |
 | verticalDpi                | 只读   | number        | 是    | 垂直DPI。                     |
 
@@ -1688,8 +2106,8 @@ print.print(files).then((task) => {
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| id                | 只读   | number       | 是    | ID。                     
-| name                | 只读   | number        | 是    | 名称。                     |
+| id                | 只读   | string       | 是    | ID。                     
+| name                | 只读   | string        | 是    | 名称。                     |
 | width                | 只读   | number        | 是    | 宽度。                     |
 | height                | 只读   | number        | 是    | 高度。                     |
 
@@ -1714,12 +2132,13 @@ print.print(files).then((task) => {
 
 | 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
 | ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
-| printerId                | 只读   |  number       | 是    | 打印机id。        |             
+| printerId                | 只读   |  string       | 是    | 打印机id。        |             
 | printerName                | 只读   | string       | 是    | 打印机名称。|                     
 | printerIcon                | 只读   |  number      | 是    | 打印机按钮。|
 | printerState                | 只读   | [PrinterState](#PrinterState)         | 是    | 打印机状态。                     
 | description                | 只读   | string        | 是    | 打印机描述。                     |
-| capability                | 只读   |  [PrinterCapability](#printerCapability)        | 是    | 打印机能力。                     
+| capability                | 只读   |  [PrinterCapability](#printerCapability)        | 否    | 打印机能力。   |
+| option                | 只读   | string        | 否    | json对象。   |                  
 
 ## PrintJob
 
@@ -1735,12 +2154,13 @@ print.print(files).then((task) => {
 | jobState                | 只读   |  [PrintJobState](#printJobState)        | 是    | 任务状态。                     
 | copyNumber                | 只读   | number        | 是    | 打印份数。                     |
 | pageRange                | 只读   | [PrinterRange](#printerRange)       | 是    | 打印范围。                     |
-| isSequential                | 只读   | boolean       | 否    | 是否按顺序。                     |
-| pageSize                | 只读   | [PrinterPageSize](#printerPageSize)         | 否    | 纸张大小。                     | isLandscape                | 只读   | boolean       | 否    | 是否垂直居中。    |
-| colorMode                | 只读   | number        | 否    | 色彩模式。                     |
-| duplexMode                | 只读   | number        | 否    | 双面模式。                     |
-| margin                | 只读   |  [PrintMargin](#printMargin)        | 否    | 打印边距。                     |
-| preview                | 只读   |  [PreviewAttribute](#previewAttribute)        | 否    | 预览设置。         |
+| isSequential                | 只读   | boolean       | 是    | 是否按顺序。                     |
+| pageSize                | 只读   | [PrinterPageSize](#printerPageSize)         | 是    | 纸张大小。                     | isLandscape                | 只读   | boolean       | 是    | 是否垂直居中。    |
+| colorMode                | 只读   | number        | 是    | 色彩模式。                     |
+| duplexMode                | 只读   | number        | 是    | 双面模式。                     |
+| margin                | 只读   |  [PrintMargin](#printMargin)        | 是    | 打印边距。                     |
+| preview                | 只读   |  [PreviewAttribute](#previewAttribute)        | 是   | 预览设置。         |
+| option                | 只读   | string        | 否    | json对象。   |   
      
 ## PrinterState
 
@@ -1752,11 +2172,11 @@ print.print(files).then((task) => {
 | ------------------------------------ | ---------- | ---------------------------------------- |
 | PRINTER_ADDED         | 1 | 打印机添加。                         |
 | PRINTER_REMOVED       | 2 | 打印机删除。                         |
-| PRINTER_IDLE          | 3 | 打印机空闲。                               |
-| PRINTER_PRINTING      | 4 | 打印机打印中。                  |
-| PRINTER_BLOCKED              | 5 |打印机阻塞。                            |
-| PRINTER_BUSY            | 6 | 打印机繁忙。                              |
-| PRINTER_FAILED | 7 | 打印机故障|    
+| PRINTER_UPDATE_CAP       | 3 | 打印机更新。                         |
+| PRINTER_CONNECTED          | 4 | 打印机已连接。                               |
+| PRINTER_DISCONNECTED      | 5 | 打印机断开连接。                  |
+| PRINTER_RUNNING              | 6 |打印机运行终。                            |
+| PRINTER_UNKNOWN            | 7 | 未知状态。                              |
                     
 ## PrintJobState
 
@@ -1766,14 +2186,64 @@ print.print(files).then((task) => {
 
 | 变量                                   | 值         | 说明                                       |
 | ------------------------------------ | ---------- | ---------------------------------------- |
-| PRINT_JOB_CREATED        | 1 | 打印任务创建。                         |
-| PRINT_JOB_QUEUED       | 2 | 加入打印任务队列。                         |
-| PRINT_JOB_PRINTING          | 3 | 打印任务执行中。                               |
+| PRINT_JOB_PREPARE        | 1 | 打印任务准备。                         |
+| PRINT_JOB_QUEUED       | 2 | 开始打印任务。                         |
+| PRINT_JOB_RUNNING          | 3 | 打印任务执行中。                               |
 | PRINT_JOB_BLOCKED            | 4 | 打印任务阻塞。                  |
-| PRINT_JOB_SUCCESS              | 5 | 打印任务成功。                            |
-| PRINT_JOB_FAILED            | 6 | 打印任务失败。                              |
-| PRINT_JOB_cancelled | 7 | 打印任务取消。|   
+| PRINT_JOB_COMPLETED              | 5 | 打印任务完成。                            |
+| PRINT_JOB_UNKNOWN | 6 | 打印任务未知状态。|   
 
+## PrintJobSubState
+
+打印任务子状态枚举
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Print.print
+
+| 变量                                   | 值         | 说明                                       |
+| ------------------------------------ | ---------- | ---------------------------------------- |
+| PRINT_JOB_SUCCESS        | 0 | 打印任务成功。                         |
+| PRINT_JOB_FAILED       | 1 | 打印任务失败。                         |
+| PRINT_JOB_CANCELLED          | 2 | 打印任务取消。                               |
+| PRINT_JOB_FILE_CORRUPT            | 3 | 已损坏。                  |
+| PRINT_JOB_BLOCK_OFFLINE              | 4 | 打印任务离线。                            |
+| PRINT_JOB_BLOCK_BUSY | 5 | 打印任务繁忙。|   
+| PRINT_JOB_BLOCK_CANCELLED | 6 | 打印任务已取消。|   
+| PRINT_JOB_BLOCK_OUT_OF_PAPER | 7 | 用纸量不足。|   
+| PRINT_JOB_BLOCK_OUT_OF_INK | 8 | 墨水用完了。|   
+| PRINT_JOB_BLOCK_OUT_OF_TONER | 9 | 碳粉用完。|   
+| PRINT_JOB_BLOCK_JAMMED | 10 | 卡纸。|   
+| PRINT_JOB_BLOCK_DOOR_OPEN | 11 | 盖子打开。|   
+| PRINT_JOB_BLOCK_SERVICE_REQUEST | 12 | 服务请求。|   
+| PRINT_JOB_BLOCK_LOW_ON_INK | 13 | 墨水不足。|   
+| PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | 碳粉不足。|   
+| PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | 墨水太少。|   
+| PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | 认证失败。|   
+| PRINT_JOB_BLOCK_UNKNOWN | 17 | 未知状态。|   
+
+## PrinterExtensionInfo
+打印扩展信息,继承ExtensionAbilityInfo
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Print.print
+
+| 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
+| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
+| extensionId                | 只读   | string      | 是    |打印机分机的扩展标识。        |             
+| vendorId                | 只读   |  string       | 是    | 扩展的供应商id。|                     
+| vendorName                | 只读   |  string       | 是    | 供应商名称。|
+| vendorIcon                | 只读   |  number        | 是    | 供应商的资源id。|              
+| version                | 只读   | string        | 是    | 当前打印机扩展的版本。                     |
+ 
+## ReadConfig
+文件配置
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Print.print
+
+| 名称                  | 读写属性 | 类型                   | 必填   | 描述                                     |
+| ------------------- | ---- | -------------------- | ---- | -------------------------------------- |
+| file                | 只读   | string      | 是    |文件地址。        |             
+| offset                | 只读   |  number       | 否    | 偏移量。|                     
+| max                | 只读   |  number       | 否    | 最大偏移量。|
+ 
 
 # PrintExtensionAbility
 
