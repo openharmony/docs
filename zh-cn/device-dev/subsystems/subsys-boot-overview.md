@@ -341,6 +341,6 @@
 
 有些开发板没有采用ramdisk启动引导，直接通过内核挂载system.img。此场景需要修改productdefine中的产品配置文件，通过"enable_ramdisk"开关关闭ramdisk生成，init也不会从ramdisk里二次启动到system。
 
-此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下，并且执行/etc/init.cfg入口脚本文件；而没有ramdisk时，没有chroot过程，切init执行的入口启动脚本是init.without_two_stages.cfg文件。
+此场景的主要启动过程与上述流程类似，只是有ramdisk时，init会把system.img挂载到/usr目录，然后chroot到/usr下；而没有ramdisk时，没有chroot过程，但是都会读取init.cfg文件从而执行脚本。
 
 对于无ramdisk的启动加载，即system as root. 在bootloader阶段将根文件系统所在的块设备通过bootargs传给内核，如root=/dev/mmcblk0p5，rootfstype=ext4。内核在初始化根文件系统时，解析bootargs中root，完成根文件系统的挂载。
