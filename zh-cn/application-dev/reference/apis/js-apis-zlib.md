@@ -1,22 +1,23 @@
 # Zip模块(JS端SDK接口)
 
+本模块提供压缩解压缩文件的能力
+
 > **说明：** 
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 使用限制
-
-无。
 ## 导入模块
 
 ```javascript
 import zlib from '@ohos.zlib';
 ```
 
-## zlib.zipFile
-zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
+## zlib.zipFile<sup>(deprecated)</sup>
+ zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 压缩接口（Promise形式）。
+
+> 从api9开始不再维护，建议使用[zlib.compressFile](#zlibcompressfile9)
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -76,11 +77,13 @@ zlib.zipFile(inFile , outFile, options).then((data) => {
 });
 ```
 
-## zlib.unzipFile
+## zlib.unzipFile<sup>(deprecated)</sup>
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 解压文件，解压完成返回执行结果（Promise形式）。
+
+> 从api9开始不再看护，建议使用[zlib.decompressFile](#zlibdecompressfile9)
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -117,6 +120,193 @@ zlib.unzipFile(inFile, outFile, options).then((data) => {
     console.log("catch((err)=>" + err);
 })
 	
+```
+
+## zlib.compressFile<sup>9+</sup>
+
+**function** compressFile(inFile: **string**, outFile: **string**, options: Options, callback: AsyncCallback<**void**>): **void**;
+
+压缩文件，压缩的结果通过callback返回。成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 描述                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile                 | string              | 是   | 指定的解压文件路径                                           |
+| options                 | [Options](#options) | 是   | 压缩的配置参数                                               |
+| AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数                                             |
+
+**相关错误码**
+
+| 错误码 | 错误信息                               |
+| ------ | -------------------------------------- |
+| 401    | wrong param type                       |
+| 900001 | The Input source file is invalid.      |
+| 900002 | The Input destination file is invalid. |
+
+**示例**
+
+```javascript
+// 【压缩例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib'
+var inFile = "/xxx/filename.xxx";
+var outFile = "/xxx/xxx.zip";
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.compressFile(inFile, outFile, options, (errData) => {
+        if (erData != null) {
+            console.log("errData is " + errData.errCode + " " + errData.message)
+        }
+    })
+} catch(errData => {
+    console.log("catch err " + errData.errCode + " " + errData.message)
+})
+```
+
+**function** compressFile(inFile:**string**, outFile:**string**, options: Options): Promise<**void**>;
+
+压缩文件，压缩的结果通过promise返回，成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 描述                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定压缩的文件夹路径或者文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile                 | string              | 是   | 指定的解压文件路径                                           |
+| options                 | [Options](#options) | 是   | 压缩的配置参数                                               |
+| AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数                                             |
+
+**相关错误码**
+
+| 错误码 | 错误信息                               |
+| ------ | -------------------------------------- |
+| 401    | wrong param type                       |
+| 900001 | The Input source file is invalid.      |
+| 900002 | The Input destination file is invalid. |
+
+```javascript
+// 【压缩例子2】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib'
+var inFile = "/xxx/filename.xxx";
+var outFile = "/xxx/xxx.zip";
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+
+try {
+    zlib.compressFile(inFile, outFile, options).then(data => {
+        console.info("compressFile success")
+    }).catch(errData => {
+        console.info("catch err " + errData.errCode + " " + errData.message)
+    })
+} catch(errData => {
+    console.log("catch err " + errData.errCode + " " + errData.message)
+})
+```
+
+
+
+## zlib.decompressFile<sup>9+</sup>
+
+**function** decompressFile(inFile: **string**, outFile: **string**, options: Options, callback: AsyncCallback<**void**>): **void**;
+
+解压文件，解压的结果通过callback返回，成功时返回null，失败时返回错误码。
+
+**参数：**
+
+| 参数名                  | 类型                | 必填 | 描述                                                         |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile                  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile                 | string              | 是   | 指定的解压后的目录路径                                       |
+| options                 | [Options](#options) | 是   | 解压的配置参数                                               |
+| AsyncCallback<**void**> | callback            | 否   | 解压是的回调函数                                             |
+
+**相关错误码**
+
+| 错误码 | 错误信息                               |
+| ------ | -------------------------------------- |
+| 401    | wrong param type                       |
+| 900001 | The Input source file is invalid.      |
+| 900002 | The Input destination file is invalid. |
+
+**示例**
+
+```javascript
+// 【解压缩例子1】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib'
+var inFile = "/xx/xxx.zip";
+var outFile = "/xxx";
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+try {
+    zlib.decompressFile(inFile, outFile, options, (errData) => {
+        if (erData != null) {
+            console.log("errData is " + errData.errCode + " " + errData.message)
+        }
+    })
+} catch(errData => {
+    console.log("catch err " + errData.errCode + " " + errData.message)
+})
+```
+
+**function** decompressFile(inFile: **string**, outFile: **string**, options: Options): Promise<**void**>;
+
+解压文件，解压的结果通过promise返回，成功时返回null，失败时返回错误码。
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 描述                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFile  | string              | 是   | 指定的待解压缩文件的文件路径，对应的路径参考[FA模型](js-apis-Context.md)，[stage模型](js-apis-application-context.md) |
+| outFile | string              | 是   | 指定的解压后的目录路径                                       |
+| options | [Options](#options) | 是   | 解压时的配置参数                                             |
+
+**相关错误码**
+
+| 错误码 | 错误信息                               |
+| ------ | -------------------------------------- |
+| 401    | wrong param type                       |
+| 900001 | The Input source file is invalid.      |
+| 900002 | The Input destination file is invalid. |
+
+```javascript
+// 【解压缩例子2】
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取
+import zlib from '@ohos.zlib'
+var inFile = "/xx/xxx.zip";
+var outFile = "/xxx";
+var options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+try {
+    zlib.compressFile(inFile, outFile, options).then(data => {
+        console.info("compressFile success")
+    }).catch(errData => {
+        console.info("catch err " + errData.errCode + " " + errData.message)
+    })
+} catch(errData => {
+    console.log("catch err " + errData.errCode + " " + errData.message)
+})
 ```
 
 ## Options
