@@ -41,7 +41,7 @@ OpenHarmony也提供了一系列可选的系统组件，方便设备开发者按
 | 进阶开发        | 结合系统能力开发智能设备                                     | -&nbsp;[WLAN连接类产品](guide/device-wlan-led-control.md)<br/>-&nbsp;[带屏摄像头类产品](guide/device-camera-control-overview.md) |
 | 移植适配        | -&nbsp;针对特定芯片做移植适配<br/>-&nbsp;对三方库进行移植适配<br/>-&nbsp;三方厂商移植案例<br/> | -&nbsp;[轻量系统芯片移植指导](porting/porting-minichip-overview.md)<br/>-&nbsp;[小型系统芯片移植指导](porting/porting-smallchip-prepare-needs.md)<br/>-&nbsp;[轻量和小型系统三方库移植指导](porting/porting-thirdparty-overview.md)<br/>   - [带屏解决方案之恒玄芯片移植案例](porting/porting-bes2600w-on-minisystem-display-demo.md)<br/>    - [Combo解决方案之ASR芯片移植案例](porting/porting-asr582x-combo-demo.md)<br/>    - [物联网解决方案之芯海cst85芯片移植案例](porting/porting-cst85f01-combo-demo.md)<br/>    - [轻量系统STM32F407芯片移植案例](porting/porting-stm32f407-on-minisystem-eth.md)<br/>    - [Combo解决方案之W800芯片移植案例](porting/porting-w800-combo-demo.md)<br/> - [小型设备STM32MP1芯片移植案例](porting/porting-stm32mp15xx-on-smallsystem.md) |
 | 贡献组件        | 为OpenHarmony贡献功能组件                                    | -&nbsp;[HPM&nbsp;Part&nbsp;介绍](hpm-part/hpm-part-about.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;开发指导](hpm-part/hpm-part-development.md)<br/>-&nbsp;[HPM&nbsp;Part&nbsp;参考](hpm-part/hpm-part-reference.md) |
-| 参考            | 为开发者提供常见的问题解答和HDI接口参考                      | -&nbsp;[常见问题](faqs/faqs-overview.md)<br/>-&nbsp;[HDI接口参考](reference/hdi-apis/Readme-CN.md) |
+| 参考            | 为开发者提供常见的问题解答、HDI接口参考和  CMSIS API参考                    | -&nbsp;[常见问题](faqs/faqs-overview.md)<br/>-&nbsp;[HDI接口参考](reference/hdi-apis/Readme-CN.md) <br/>-&nbsp;[CMSIS API参考](reference/kernel/cmsis/Readme-CN.md)|
 
 **表 2**  标准系统开发指导（参考内存≥128MiB）
 | 学习路径 | 开发者业务 | 相关文档 |
