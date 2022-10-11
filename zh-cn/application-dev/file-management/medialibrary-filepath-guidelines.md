@@ -138,7 +138,7 @@ async function copySandbox2Public() {
     try {
         var arrayBuffer = new ArrayBuffer(4096);
         await fileio.read(fdPubRead, arrayBuffer);
-        var content_pub = String.fromCharCode(...new Uint8Array(arrayBuffer));
+        var content_pub = String.fromCharCode(new Uint8Array(arrayBuffer));
         fileAsset.close(fdPubRead);
     } catch (err) {
         console.log('read text failed, message = ', err);
