@@ -4,9 +4,19 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块从API version 9开始支持异常返回功能，错误码及含义见异常错误码对照表。
+> 本模块从API version 9开始支持异常返回功能。
 
-## 异常错误码对照表
+
+## 导入模块
+
+```
+import rpc from '@ohos.rpc';
+```
+
+## ErrorCode<sup>9+</sup>
+
+  从API version 9起，IPC支持异常返回功能。错误码对应数值及含义见下表。
+
   | 错误码 | 数值 | 描述 |
   | ----- | ---- | ----- |
   | CHECK_PARAM_ERROR | 401 | 参数校验错误 |
@@ -25,25 +35,20 @@
   | OS_DUP_ERROR | 1900013 | 调用系统调用dup失败 |
 
 
-## 导入模块
-
-```
-import rpc from '@ohos.rpc';
-```
-
 ## MessageSequence<sup>9+</sup>
 
-在RPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+  在RPC过程中，发送方可以使用MessageSequence提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageSequence提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
 
 ### create
 
-create(): MessageSequence
+  create(): MessageSequence
 
-静态方法，创建MessageSequence对象。
+  静态方法，创建MessageSequence对象。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
+
   | 类型            | 说明                            |
   | --------------- | ------------------------------- |
   | MessageSequence | 返回创建的MessageSequence对象。 |
@@ -75,8 +80,11 @@ reclaim(): void
 writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 序列化远程对象并将其写入MessageSequence对象。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **参数**
+
   | 参数名 | 类型                            | 必填 | 说明                                      |
   | ------ | ------------------------------- | ---- | ----------------------------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 要序列化并写入MessageSequence的远程对象。 |
@@ -88,6 +96,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
   | CHECK_PARAM_ERROR                    | 参数校验失败            |
   | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空       |
   | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+
 **示例：**
 
   ```
@@ -126,8 +135,11 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 readRemoteObject(): IRemoteObject
 
 从MessageSequence读取远程对象。此方法用于反序列化MessageSequence对象以生成IRemoteObject。远程对象按写入MessageSequence的顺序读取。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **返回值：**
+
   | 类型                            | 说明               |
   | ------------------------------- | ------------------ |
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
@@ -138,6 +150,7 @@ readRemoteObject(): IRemoteObject
   | ------------------------------------- | --------------------------- |
   | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 封装的IPC对象为空           |
   | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+
 **示例：**
 
   ```
@@ -177,8 +190,11 @@ readRemoteObject(): IRemoteObject
 writeInterfaceToken(token: string): void
 
 将接口描述符写入MessageSequence对象，远端对象可使用该信息校验本次通信。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **参数**
+
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
   | token  | string | 是   | 字符串类型描述符。 |
@@ -189,6 +205,7 @@ writeInterfaceToken(token: string): void
   | ------------------------------------ | ----------------------- |
   | CHECK_PARAM_ERROR                    | 参数校验失败            |
   | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+
 **示例：**
 
   ```
@@ -206,8 +223,11 @@ writeInterfaceToken(token: string): void
 readInterfaceToken(): string
 
 从MessageSequence中读取接口描述符，接口描述符按写入MessageSequence的顺序读取，本地对象可使用该信息检验本次通信。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **返回值：**
+
   | 类型   | 说明                     |
   | ------ | ------------------------ |
   | string | 返回读取到的接口描述符。 |
@@ -217,6 +237,8 @@ readInterfaceToken(): string
   | 错误码                                | 说明                        |
   | ------------------------------------- | --------------------------- |
   | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+
+
 **示例：**
 
   ```
@@ -239,11 +261,15 @@ readInterfaceToken(): string
 getSize(): number
 
 获取当前MessageSequence的数据大小。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **返回值：**
+
   | 类型   | 说明                                            |
   | ------ | ----------------------------------------------- |
   | number | 获取的MessageSequence的数据大小。以字节为单位。 |
+
 **示例：**
 
   ```
@@ -257,11 +283,15 @@ getSize(): number
 getCapacity(): number
 
 获取当前MessageSequence的容量。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **返回值：**
+
   | 类型   | 说明                                            |
   | ------ | ----------------------------------------------- |
   | number | 获取的MessageSequence的容量大小。以字节为单位。 |
+
 **示例：**
 
   ```
@@ -275,8 +305,11 @@ getCapacity(): number
 setSize(size: number): void
 
 设置MessageSequence实例中包含的数据大小。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
+
 **参数**
+
   | 参数名 | 类型   | 必填 | 说明                                          |
   | ------ | ------ | ---- | --------------------------------------------- |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
@@ -286,6 +319,7 @@ setSize(size: number): void
   | 错误码            | 说明         |
   | ----------------- | ------------ |
   | CHECK_PARAM_ERROR | 参数校验失败 |
+
 **示例：**
 
   ```
@@ -394,6 +428,7 @@ getReadPosition(): number
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **返回值：**
+
   | 类型   | 说明                                      |
   | ------ | ----------------------------------------- |
   | number | 返回MessageSequence实例中的当前读取位置。 |
