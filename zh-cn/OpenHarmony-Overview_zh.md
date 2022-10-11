@@ -156,7 +156,7 @@ OpenHarmony支持如下几种系统类型：
 
 ## 快速入门
 
-- [设备开发快速入门](device-dev/quick-start/quickstart-ide-lite-overview.md)
+- [设备开发快速入门](device-dev/quick-start/quickstart-overview.md)
 - [应用开发快速入门](application-dev/quick-start/start-overview.md)
 
 
