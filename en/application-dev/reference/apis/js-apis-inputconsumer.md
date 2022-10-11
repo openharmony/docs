@@ -68,7 +68,7 @@ This is a system API.
 **Example**
 
 ```
-let keyOptions = {preKeys: [], finalKey: 3, isFinalKeyDown: true, finalKeyDownDuration: 0}
+let keyOptions = {preKeys: [], finalKey: 18, isFinalKeyDown: true, finalKeyDownDuration: 0}
 let callback = function(keyOptions) {
     console.info("preKeys: " + keyOptions.preKeys, "finalKey: " + keyOptions.finalKey, 
                  "isFinalKeyDown: " + keyOptions.isFinalKeyDown, "finalKeyDownDuration: " + keyOptions.finalKeyDownDuration)
