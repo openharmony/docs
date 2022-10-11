@@ -687,7 +687,7 @@ addRecord(mimeType: string, value: ValueType): void
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900002 | if the count of records in PasteData exceeds MAX_RECORD_NUM. |
+| 12900002 | The number of record exceeds the maximum limit. |
 
 **示例：**
 
@@ -806,8 +806,8 @@ getRecord(index: number): PasteDataRecord
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900001 | if type of index is not number. |
-| 12900002 | if index is out of the record count of PasteData. |
+| 12900001 | The index is out of range. |
+| 12900002 | The number of record exceeds the maximum limit. |
 
 **示例：**
 
@@ -902,7 +902,7 @@ removeRecord(index: number): void
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900002 | if index is out of the record count of PasteData. |
+| 12900002 | The number of record exceeds the maximum limit. |
 
 **示例：**
 
@@ -929,7 +929,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900002 | if index is out of the record count of PasteData. |
+| 12900002 | The number of record exceeds the maximum limit. |
 
 **示例：**
 
@@ -1293,7 +1293,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900003 | if another setData is being processed or the system prohibits copying. |
+| 12900003 | Another copy or paste is in progress. |
 
 **示例：**
 
@@ -1332,7 +1332,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900003 | if another setData is being processed or the system prohibits copying. |
+| 12900003 | Another copy or paste is in progress. |
 
 **示例：**
 
@@ -1363,7 +1363,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900003 | if another getData is being processed. |
+| 12900003 | Another copy or paste is in progress. |
 
 **示例：**
 
@@ -1395,7 +1395,7 @@ getData(): Promise&lt;PasteData&gt;
 **错误码：**
 | 错误码ID | 错误码信息 |
 | -------- | -------- |
-| 12900003 | if another getData is being processed. |
+| 12900003 | Another copy or paste is in progress. |
 
 **示例：**
 
