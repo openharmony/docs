@@ -54,4 +54,4 @@ Camera模块HDI接口使用的数据类型。
   | 名称 | 描述 | 
 | -------- | -------- |
 | package&nbsp;ohos.hdi.camera.v1_0 | Camera设备接口的包路径。 | 
-| **BufferProducerSequenceable** |  | 
+| sequenceable ohos.hdi.camera.v1_0.BufferProducerSequenceable | ohos.hdi.camera.v1_0序列，可用缓冲区生成器。 | 
