@@ -1,23 +1,4 @@
-# Pasteboard子系统错误码
-
-## 401 参数检查错误
-
-### 错误信息
-
-The parameter invalid.
-
-### 错误描述
-
-当调用pasteboard模块接口时，若传入参数的类型错误或取值错误，会报此错误码。
-
-### 可能原因
-
-1. 入参取值错误，如调用createData时，传入的Vaule与mimeType不匹配。
-2. 入参类型错误，如调用convertToTextV9时，回调类型不是AsyncCallback<string>。
-
-### 处理步骤
-
-检查入参是否正确。
+# 剪贴板错误码
 
 ## 12900001 索引超过范围
 
