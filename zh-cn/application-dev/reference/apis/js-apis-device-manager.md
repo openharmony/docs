@@ -344,7 +344,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 - 示例：
   ```js
   try {
-    this.dmInstance.getLocalDeviceInfo((err, data) => {
+    dmInstance.getLocalDeviceInfo((err, data) => {
     if (err) {
       console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
       return;
@@ -753,7 +753,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
   ```js
   try {
     dmInstance.on('discoverFail', (data) => {
-        this.log("discoverFail on:" + JSON.stringify(data));
+        console.info("discoverFail on:" + JSON.stringify(data));
     });
   } catch (err) {
     console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
@@ -853,7 +853,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   ```js
   try {
     dmInstance.on('publishFail', (data) => {
-      this.log("publishFail on:" + JSON.stringify(data));
+      console.info("publishFail on:" + JSON.stringify(data));
     });
   } catch (err) {
     console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
