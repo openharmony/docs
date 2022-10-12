@@ -7,14 +7,15 @@ HiTraceMeter在OpenHarmony中，为开发者提供业务流程调用链跟踪的
 ## 基本概念
 
 HiTraceMeter系统主要分为三部分：
-
--JS/C++应用打点API；
--Trace数据采集命令行工具；
--Trace数据图形分析工具。
-
+- JS/C++应用打点API；
+- Trace数据采集命令行工具；
+- Trace数据图形分析工具。
 其中，前两者运行在设备端侧，图形工具运行在PC主机侧。打点API部分提供了C++和JS接口，供开发过程中打点使用，打点用于产生Trace数据流，是抓Trace数据的基础条件。
+
 命令行工具用于采集Trace数据，用来抓取Trace数据流并保存到文本文件。
+
 Trace数据分析可以在图形工具中人工分析，也可以使用分析脚本自动化分析，Trace分析工具以Trace命令行工具的采集结果数据文件为输入。
+
   HiTraceMeter跟踪数据使用类别分类，称作Trace Tag或Trace Category，一般一个端侧软件子系统对应一个Tag。该Tag在打点API中以类别Tag参数传入。Trace命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。应用程序跟踪数据类别都是属于APP Tag，从而JS接口不需要输入tag参数，内部实现用的是TAG_APP。目前HiTraceMeter支持的预定义的子系统Tag宏定义列表如下(可在hitrace_meter.h中查看)：
 
 ```
