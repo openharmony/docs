@@ -70,7 +70,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 异常信息 |
   | -------- | ------- |
@@ -126,7 +126,7 @@ readRemoteObject(): IRemoteObject
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -183,7 +183,7 @@ writeInterfaceToken(token: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -217,7 +217,7 @@ readInterfaceToken(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ----- |
@@ -328,7 +328,7 @@ setCapacity(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -522,7 +522,7 @@ writeByte(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -556,7 +556,7 @@ readByte(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
@@ -597,7 +597,7 @@ writeShort(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -631,7 +631,7 @@ readShort(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -672,7 +672,7 @@ writeInt(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -706,7 +706,7 @@ readInt(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -747,7 +747,7 @@ writeLong(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -781,7 +781,7 @@ readLong(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -822,7 +822,7 @@ writeFloat(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -856,7 +856,7 @@ readFloat(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -897,7 +897,7 @@ writeDouble(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -931,7 +931,7 @@ readDouble(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -972,7 +972,7 @@ writeBoolean(val: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -1006,7 +1006,7 @@ readBoolean(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1047,7 +1047,7 @@ writeChar(val: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1081,7 +1081,7 @@ readChar(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------ | --------- |
@@ -1122,7 +1122,7 @@ writeString(val: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1156,7 +1156,7 @@ readString(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1197,7 +1197,7 @@ writeParcelable(val: Parcelable): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1250,7 +1250,7 @@ readParcelable(dataIn: Parcelable) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1306,7 +1306,7 @@ writeByteArray(byteArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1341,7 +1341,7 @@ readByteArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1383,7 +1383,7 @@ readByteArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1425,7 +1425,7 @@ writeShortArray(shortArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ----- | ----- |
@@ -1459,7 +1459,7 @@ readShortArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------ | ------- |
@@ -1500,7 +1500,7 @@ readShortArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1541,7 +1541,7 @@ writeIntArray(intArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ----- | --------- |
@@ -1575,7 +1575,7 @@ readIntArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1616,7 +1616,7 @@ readIntArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ----- | ------- |
@@ -1657,7 +1657,7 @@ writeLongArray(longArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------  | ----- |
@@ -1691,7 +1691,7 @@ readLongArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -1732,7 +1732,7 @@ readLongArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1773,7 +1773,7 @@ writeFloatArray(floatArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1807,7 +1807,7 @@ readFloatArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1848,7 +1848,7 @@ readFloatArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1889,7 +1889,7 @@ writeDoubleArray(doubleArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1923,7 +1923,7 @@ readDoubleArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1964,7 +1964,7 @@ readDoubleArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2005,7 +2005,7 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2039,7 +2039,7 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2080,7 +2080,7 @@ readBooleanArray(): boolean[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2121,7 +2121,7 @@ writeCharArray(charArray: number[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -2155,7 +2155,7 @@ readCharArray(dataIn: number[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2196,7 +2196,7 @@ readCharArray(): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2238,7 +2238,7 @@ writeStringArray(stringArray: string[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2272,7 +2272,7 @@ readStringArray(dataIn: string[]) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2313,7 +2313,7 @@ readStringArray(): string[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2348,7 +2348,7 @@ writeNoException(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2399,7 +2399,7 @@ readException(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2472,7 +2472,7 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2528,7 +2528,7 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2588,7 +2588,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2644,7 +2644,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2701,7 +2701,7 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2792,7 +2792,7 @@ static dupFileDescriptor(fd: number) :number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2866,7 +2866,7 @@ writeFileDescriptor(fd: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
@@ -2904,7 +2904,7 @@ readFileDescriptor(): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2948,7 +2948,7 @@ writeAshmem(ashmem: Ashmem): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -2989,7 +2989,7 @@ readAshmem(): Ashmem
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -3061,7 +3061,7 @@ writeRawData(rawData: number[], size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -3103,7 +3103,7 @@ readRawData(size: number): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -5985,7 +5985,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6031,7 +6031,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6076,7 +6076,7 @@ getDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6576,7 +6576,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6688,7 +6688,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6802,7 +6802,7 @@ getInterfaceDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -8185,7 +8185,7 @@ getInterfaceDescriptor(): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8578,7 +8578,7 @@ mapTypedAshmem(mapType: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
@@ -8636,7 +8636,7 @@ mapReadAndWriteAshmem(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8688,7 +8688,7 @@ mapReadonlyAshmem(): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8746,7 +8746,7 @@ setProtectionType(protectionType: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -8812,7 +8812,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8890,7 +8890,7 @@ readAshmem(size: number, offset: number): number[]
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errorcode/errorcode-rpc.md)
+以下错误码的详细介绍请参见ohos.rpc错误码
 
   | 错误码ID  | 错误信息 |
   | -------- | -------- |
