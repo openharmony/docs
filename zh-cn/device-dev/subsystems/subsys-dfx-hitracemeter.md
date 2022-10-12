@@ -206,7 +206,7 @@ hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 
 以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
-1.编写测试代码hitrace_example.cpp，将使用到的接口加入代码：
+1.编写测试代码hitrace_example.cpp（ https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp  ），将使用到的接口加入代码：
 
 ```cpp
 int main()
