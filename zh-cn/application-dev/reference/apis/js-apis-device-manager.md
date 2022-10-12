@@ -46,14 +46,14 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
   try {
     deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {
       if (err) { 
-        console.error("createDeviceManager err:" + err.code + ",errorMessage:" + err.message);
+        console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
       console.info("createDeviceManager success");
       let dmInstance = data;
     });
   } catch(err) {
-    console.error("createDeviceManager err:" + err.code + ",errorMessage:" + err.message);
+    console.error("createDeviceManager errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -223,7 +223,7 @@ release(): void
   try {
     dmInstance.release();
   } catch (err) {
-    console.error("release errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("release errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -246,7 +246,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
   try {
     var deviceInfoList = dmInstance.getTrustedDeviceListSync();
   } catch (err) {
-    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -269,13 +269,13 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
   try {
     dmInstance.getTrustedDeviceList((err, data) => {
       if (err) {
-        console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+        console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
       console.log('get trusted device info: ' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -294,19 +294,14 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 - 示例：
   ```js
-  dmInstance.getTrustedDeviceList().then((data) => { 
-      console.log('get trusted device info: ' + JSON.stringify(data));
-  }).catch((err) => {
-      console.log("getTrustedDeviceList err: " + JSON.stringify(err));
-  });
   try {
     dmInstance.getTrustedDeviceList().then((data) => {
       console.log('get trusted device info: ' + JSON.stringify(data));
       }).catch((err) => {
-        console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+        console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
     });
   } catch (err) {
-      console.error("getTrustedDeviceList errCode:" + err.code + ",errorMessage:" + err.message);
+      console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -328,7 +323,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
   try {
     var deviceInfo = dmInstance.getLocalDeviceInfoSync();
   } catch (err) {
-    console.error("getLocalDeviceInfoSync errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("getLocalDeviceInfoSync errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -351,12 +346,12 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
   try {
     this.dmInstance.getLocalDeviceInfo((err, data) => {
     if (err) {
-      console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
     }
       console.log('get local device info: ' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -379,10 +374,10 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
     dmInstance.getLocalDeviceInfo().then((data) => {
       console.log('get local device info: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
     });
   } catch (err) {
-    console.error("getLocalDeviceInfo errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -415,7 +410,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
   try {
     dmInstance.startDeviceDiscovery(subscribeInfo); // 当有设备发现时，通过deviceFound回调通知给应用程序
   } catch (err) {
-    console.error("startDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -458,7 +453,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   try {
     dmInstance.startDeviceDiscovery(subscribeInfo, JSON.stringify(filterOptions)); // 当有设备发现时，通过deviceFound回调通知给应用程序
   } catch (err) {
-    console.error("startDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
   
@@ -481,7 +476,7 @@ stopDeviceDiscovery(subscribeId: number): void
   try {
     dmInstance.stopDeviceDiscovery(subscribeId);
   } catch (err) {
-    console.error("stopDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -511,7 +506,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
   try {
     dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
   } catch (err) {
-    console.error("publishDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
   
@@ -534,7 +529,7 @@ unPublishDeviceDiscovery(publishId: number): void
   try {
     dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
   } catch (err) {
-    console.error("publishDeviceDiscovery errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -568,14 +563,14 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   try {
     dmInstance.authenticateDevice(deviceInfo, authParam, (err, data) => {
       if (err) {
-          console.error("authenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
+          console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
           return;
       }
       console.info(TAG + "authenticateDevice result:" + JSON.stringify(data));
       token = data.pinToken;
     });
   } catch (err) {
-    console.error("authenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -597,7 +592,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
   try {
     dmInstance.unAuthenticateDevice(deviceInfo);
   } catch (err) {
-    console.error("unAuthenticateDevice errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("unAuthenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -626,13 +621,13 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
   try {
     dmInstance.verifyAuthInfo(authInfo, (err, data) => {
     if (err) {
-        console.error("verifyAuthInfo errCode:" + err.code + ",errorMessage:" + err.message);
+        console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
     }
     console.info(TAG + "verifyAuthInfo result:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("verifyAuthInfo errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -658,7 +653,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
       console.info("deviceStateChange on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStateChange errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -684,7 +679,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
       console.info('deviceStateChange' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceStateChange errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -710,7 +705,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
       console.info("deviceFound:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceFound errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("deviceFound errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -735,7 +730,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
       console.info('deviceFound' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("deviceFound errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("deviceFound errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -760,7 +755,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
         this.log("discoverFail on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFail errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -785,7 +780,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
       console.info('discoverFail' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("discoverFail errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -810,7 +805,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
       console.info("publishSuccess:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("publishSuccess errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -835,7 +830,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
       console.info('publishSuccess' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("publishSuccess errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -860,7 +855,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
       this.log("publishFail on:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("publishFail errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -885,7 +880,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
       console.info('publishFail' + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("publishFail errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -910,7 +905,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
       console.info("serviceDie on");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -936,6 +931,6 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
       console.info("serviceDie off");
     });
   } catch (err) {
-    console.error("serviceDie errCode:" + err.code + ",errorMessage:" + err.message);
+    console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
