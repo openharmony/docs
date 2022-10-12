@@ -1,9 +1,10 @@
 # 插值计算
 
-设置动画插值曲线，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
+本模块提供设置动画插值曲线功能，用于构造阶梯曲线对象、构造三阶贝塞尔曲线对象和构造弹簧曲线对象。
 
 > **说明：**
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -20,11 +21,13 @@ initCurve(curve?: Curve)：ICurve
 
 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  | [Curve](ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
+| curve  | [Curve](../arkui-ts/ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
 
 **返回值：**
 
@@ -47,6 +50,8 @@ stepsCurve(count: number, end: boolean)：ICurve
 
 
 构造阶梯曲线对象。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -77,6 +82,7 @@ cubicBezierCurve(x1: number, y1: number, x2: number, y2: number)：ICurve
 
 构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名  | 类型     | 必填   | 说明             |
@@ -108,6 +114,7 @@ springCurve(velocity: number, mass: number, stiffness: number, damping: number)�
 
 构造弹簧曲线对象。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名       | 类型     | 必填   | 说明    |
@@ -143,6 +150,8 @@ interpolate(fraction:&nbsp;number): number
 
 插值曲线的插值计算函数，可以通过传入的归一化时间参数返回当前的插值
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                         |
@@ -171,11 +180,13 @@ init(curve?: Curve): string
 
 插值曲线的初始化函数，可以根据入参创建一个插值曲线对象，从API version9开始废弃，推荐使用[Curves.initCurve](#curvesinitcurve9)。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 默认值       | 说明       |
 | ------ | ------------------------------------------------------------ | ---- | ------------ | ---------- |
-| curve  |[Curve](ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
+| curve  |[Curve](../arkui-ts/ts-appendix-enums.md#curve) | 否   | Curve.Linear | 曲线类型。 |
 
 
 ## Curves.steps<sup>(deprecated)</sup>
@@ -184,6 +195,8 @@ steps(count: number, end: boolean): string
 
 
 构造阶梯曲线对象，从API version9开始废弃，推荐使用[Curves. stepsCurve](# curvesstepscurve9)。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -200,6 +213,7 @@ cubicBezier(x1: number, y1: number, x2: number, y2: number): string
 
 构造三阶贝塞尔曲线对象，曲线的值必须处于0-1之间，API version9开始废弃，推荐使用 [Curves.cubicBezierCurve](#curvescubicbeziercurve9)。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名  | 类型     | 必填   | 说明             |
@@ -216,6 +230,8 @@ spring(velocity: number, mass: number, stiffness: number, damping: number): stri
 
 
 构造弹簧曲线对象，从API version9开始废弃，推荐使用[Curves.springCurve](#curvesspringcurve9)。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

@@ -1,10 +1,10 @@
 # 矩阵变换
 
-可对图形进行平移、旋转和缩放等。
+本模块提供矩阵变换功能，可对图形进行平移、旋转和缩放等。
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 本模块首批接口从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -20,6 +20,8 @@ init(array: Array&lt;number&gt;): Matrix4Transit
 
 
 Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，矩阵为列优先。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -85,6 +87,8 @@ identity(): Matrix4Transit
 
 Matrix的初始化函数，可以返回一个单位矩阵对象。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型           | 说明           |
@@ -127,6 +131,8 @@ copy(): Matrix4Transit
 
 
 Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -173,6 +179,8 @@ combine(matrix: Matrix4): Matrix4Transit
 
 
 Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -222,8 +230,9 @@ struct Test {
 
 invert(): Matrix4Transit
 
-
 Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
 
@@ -263,8 +272,9 @@ struct Tests {
 
 translate({x?: number, y?: number, z?: number}): Matrix4Transit
 
-
 Matrix的平移函数，可以为当前矩阵增加x轴/Y轴/Z轴平移效果。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -309,6 +319,8 @@ scale({x?: number, y?: number, z?: number, centerX?: number, centerY?: number}):
 
 
 Matrix的缩放函数，可以为当前矩阵增加x轴/Y轴/Z轴缩放效果。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -356,6 +368,8 @@ rotate({x?: number, y?: number, z?: number, angle?: number, centerX?: Length, ce
 
 Matrix的旋转函数，可以为当前矩阵增加x轴/Y轴/Z轴旋转效果。
 
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                              |
@@ -402,6 +416,8 @@ transformPoint(point: Point): Point
 
 
 Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

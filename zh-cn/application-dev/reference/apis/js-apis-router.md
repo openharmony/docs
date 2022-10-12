@@ -14,67 +14,220 @@
 import router from '@ohos.router'
 ```
 
-## router.push
+## router.pushUrl<sup>9+</sup>
 
-push(options: RouterOptions): void
+pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名     | 类型                              | 必填   | 说明        |
 | ------- | ------------------------------- | ---- | --------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
 
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 100002    | Uri error. The uri of router is not exist. |
+| 100003    | Page stack error. The pages are pushed too much. |
 
 **示例：**
-```js
-router.push({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
-    },
-  },
-});
-```
-## router.push<sup>9+</sup>
 
-push(options: RouterOptions, mode: RouterMode): void
+```js
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      },
+    },
+  })
+    .then(() => {
+      // success
+    })
+    .catch(err => {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    })
+} catch (error) {
+  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
+};
+```
+
+## router.pushUrl<sup>9+</sup>
+
+pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 100002    | Uri error. The uri of router is not exist. |
+| 100003    | Page stack error. The pages are pushed too much. |
+
+**示例：**
+
+```js
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      },
+    },
+  }, (err) => {
+    if (err) {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('pushUrl success');
+  });
+} catch (error) {
+  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
+};
+```
+## router.pushUrl<sup>9+</sup>
+
+pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+
+跳转到应用内的指定页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 100002    | Uri error. The uri of router is not exist. |
+| 100003    | Page stack error. The pages are pushed too much. |
 
 **示例：**
+
 ```js
-router.push({
-  url: 'pages/routerpage2/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      },
     },
-  },
-},router.RouterMode.Standard);
+  }, router.RouterMode.Standard)
+    .then(() => {
+      // success
+    })
+    .catch(err => {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+    })
+} catch (error) {
+  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
-## router.replace
+## router.pushUrl<sup>9+</sup>
 
-replace(options: RouterOptions): void
+pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+
+跳转到应用内的指定页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 100002    | Uri error. The uri of router is not exist. |
+| 100003    | Page stack error. The pages are pushed too much. |
+
+**示例：**
+
+```js
+try {
+  router.pushUrl({
+    url: 'pages/routerpage2',
+    params: {
+      data1: 'message',
+      data2: {
+        data3: [123, 456, 789]
+      },
+    },
+  }, router.RouterMode.Standard, (err) => {
+    if (err) {
+      console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('pushUrl success');
+  });
+} catch (error) {
+  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
+};
+```
+
+## router.replaceUrl<sup>9+</sup>
+
+replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
 
@@ -82,40 +235,182 @@ replace(options: RouterOptions): void
 | ------- | ------------------------------- | ---- | ------------------ |
 | options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
 
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 200002    | Uri error. The uri of router is not exist. |
+
 **示例：**
 
 ```js
-router.replace({
-  url: 'pages/detail',
-  params: {
-    data1: 'message',
-  },
-});
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message',
+    },
+  })
+    .then(() => {
+      // success
+    })
+    .catch(err => {
+      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    })
+} catch (error) {
+  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
-  ## router.replace<sup>9+</sup>
+## router.replaceUrl<sup>9+</sup>
 
-replace(options: RouterOptions, mode: RouterMode): void
+replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
+
+| 参数名  | 类型                            | 必填 | 说明               |
+| ------- | ------------------------------- | ---- | ------------------ |
+| options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 200002    | Uri error. The uri of router is not exist. |
+
+**示例：**
+
+```js
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message',
+    },
+  }, (err) => {
+    if (err) {
+      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('replaceUrl success');
+  });
+} catch (error) {
+  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
+};
+```
+
+## router.replaceUrl<sup>9+</sup>
+
+replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
+
+用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+
+**参数：**
+
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
 | mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 200002    | Uri error. The uri of router is not exist. |
+
 **示例：**
 
 ```js
-router.replace({
-  url: 'pages/detail/detail',
-  params: {
-    data1: 'message',
-  },
-}, router.RouterMode.Standard);
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message',
+    },
+  }, router.RouterMode.Standard)
+    .then(() => {
+      // success
+    })
+    .catch(err => {
+      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+    })
+} catch (error) {
+  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
+};
+```
+
+## router.replaceUrl<sup>9+</sup>
+
+replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+
+用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Lite
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+| 200002    | Uri error. The uri of router is not exist. |
+
+**示例：**
+
+```js
+try {
+  router.replaceUrl({
+    url: 'pages/detail',
+    params: {
+      data1: 'message',
+    },
+  }, router.RouterMode.Standard, (err) => {
+    if (err) {
+      console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('replaceUrl success');
+  });
+} catch (error) {
+  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
+};
 ```
 
 ## router.back
@@ -127,6 +422,7 @@ back(options?: RouterOptions ): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面栈里面的page不会回收，出栈后会被回收。 |
@@ -160,11 +456,13 @@ getLength(): string
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
+
 | 类型     | 说明                 |
 | ------ | ------------------ |
 | string | 页面数量，页面栈支持最大数值是32。 |
 
 **示例：**
+
 ```js
 var size = router.getLength();        
 console.log('pages stack size = ' + size);    
@@ -205,25 +503,38 @@ console.log('current path = ' + page.path);
 | name  | string | 表示当前页面的名称，即对应文件名。                  |
 | path  | string | 表示当前页面的路径。                         |
 
-## router.enableAlertBeforeBackPage
+## router.enableBackPageAlert<sup>9+</sup>
 
-enableAlertBeforeBackPage(options: EnableAlertOptions): void
+enableBackPageAlert(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
+
 | 参数名     | 类型                                       | 必填   | 说明        |
 | ------- | ---------------------------------------- | ---- | --------- |
 | options | [EnableAlertOptions](#enablealertoptions) | 是    | 文本弹窗信息描述。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 100001    | Internal error. |
+
 **示例：**
 
-  ```js        
-  router.enableAlertBeforeBackPage({            
+  ```js    
+try {
+  router.enableBackPageAlert({            
     message: 'Message Info'        
-  });    
+  });
+} catch(error) {
+  console.error(`enableBackPageAlert failed, code is ${error.code}, message is ${error.message}`);
+}
   ```
 ## EnableAlertOptions
 
@@ -244,6 +555,7 @@ disableAlertBeforeBackPage(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
 ```js
 router.disableAlertBeforeBackPage();    
 ```
@@ -401,3 +713,144 @@ struct Second {
   }
 }
 ```
+
+## router.push<sup>(deprecated)</sup>
+
+push(options: RouterOptions): void
+
+跳转到应用内的指定页面。
+
+从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。 |
+
+
+**示例：**
+
+```js
+router.push({
+  url: 'pages/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    },
+  },
+});
+```
+## router.push<sup>(deprecated)</sup>
+
+push(options: RouterOptions, mode: RouterMode): void
+
+跳转到应用内的指定页面。
+
+从API version9开始不再维护，建议使用[pushUrl<sup>9+</sup>](#routerpushurl9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+
+
+**示例：**
+
+```js
+router.push({
+  url: 'pages/routerpage2/routerpage2',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    },
+  },
+},router.RouterMode.Standard);
+```
+
+## router.replace<sup>(deprecated)</sup>
+
+replace(options: RouterOptions): void
+
+用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明               |
+| ------- | ------------------------------- | ---- | ------------------ |
+| options | [RouterOptions](#routeroptions) | 是   | 替换页面描述信息。 |
+
+**示例：**
+
+```js
+router.replace({
+  url: 'pages/detail',
+  params: {
+    data1: 'message',
+  },
+});
+```
+
+  ## router.replace<sup>(deprecated)</sup>
+
+replace(options: RouterOptions, mode: RouterMode): void
+
+用应用内的某个页面替换当前页面，并销毁被替换的页面。
+
+从API version9开始不再维护，建议使用[replaceUrl<sup>9+</sup>](#routerreplaceurl9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
+
+**示例：**
+
+```js
+router.replace({
+  url: 'pages/detail/detail',
+  params: {
+    data1: 'message',
+  },
+}, router.RouterMode.Standard);
+```
+
+## router.enableAlertBeforeBackPage<sup>(deprecated)</sup>
+
+enableAlertBeforeBackPage(options: EnableAlertOptions): void
+
+开启页面返回询问对话框。
+
+从API version9开始不再维护，建议使用[enableBackPageAlert<sup>9+</sup>](#routerenablebackpagealert9)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明        |
+| ------- | ---------------------------------------- | ---- | --------- |
+| options | [EnableAlertOptions](#enablealertoptions) | 是    | 文本弹窗信息描述。 |
+
+**示例：**
+
+  ```js        
+  router.enableAlertBeforeBackPage({            
+    message: 'Message Info'        
+  });    
+  ```
