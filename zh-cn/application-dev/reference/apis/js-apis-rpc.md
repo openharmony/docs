@@ -72,7 +72,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 以下错误码的详细介绍请参见ohos.rpc错误码
 
-  | 错误码ID | 异常信息 |
+  | 错误码ID | 错误信息 |
   | -------- | ------- |
   | 1900008 | proxy or remote object is invalid |
   | 1900009 | write data to message sequence failed |
