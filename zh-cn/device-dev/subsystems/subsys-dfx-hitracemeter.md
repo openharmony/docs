@@ -118,8 +118,9 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Async trace                                                  | 功能描述      |参数说明    |
 | ------------------------------------------------------------ | ------------- |------------- |
-| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | taskId：异步Trace中用来表示关联的ID。 |
-| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | |
+| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | label: Trace category。 |
+| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。|
+|  | | taskId：异步Trace中用来表示关联的ID。 |
 
 
 
@@ -129,8 +130,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Counter Trace                                                | 功能描述  |参数说明  |
 | ------------------------------------------------------------ | --------- |--------- |
-| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |name: Trace的名称，IDE中会以此字段展示这段Trace。 |
-
+| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |label: Trace category。。 |
+|  | |name: Trace的名称，IDE中会以此字段展示这段Trace。 |
 
 
 ## 开发步骤
