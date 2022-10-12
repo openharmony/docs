@@ -61,7 +61,7 @@ struct SelectExample {
         .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
         .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
         .onSelect((index: number) => {
-          console.info("Select:" + index);
+          console.info("Select:" + index)
         })
     }
   }

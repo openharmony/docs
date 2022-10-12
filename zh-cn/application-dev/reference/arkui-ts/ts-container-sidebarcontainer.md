@@ -20,27 +20,27 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| type | [SideBarContainerType](#SideBarContainerType枚举说明) | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
+| type | SideBarContainerType | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
 ## SideBarContainerType枚举说明
 
 | 名称 | 描述 |
 | -------- | -------- |
 | Embed | 侧边栏嵌入到组件内，和内容区并列显示。 |
-| Overlay | 侧边栏悬浮在内容区上面显示。 |
+| Overlay | 侧边栏浮在内容区上面。 |
 
 ## 属性
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：false |
-| controlButton | [ButtonStyle](#buttonstyle对象说明)                  | 设置侧边栏控制按钮的属性，包括定位，尺寸，图表等。 |
+| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
+| controlButton | ButtonStyle                                                | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
-| sideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置侧边栏的宽度。<br/>默认值：200，单位vp |
-| minSideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
-| maxSideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
+| sideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200，单位vp |
+| minSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最小宽度。<br/>默认值：200，单位vp |
+| maxSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最大宽度。<br/>默认值：280，单位vp |
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true |
-| sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9枚举说明) | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
+| sideBarPosition<sup>9+</sup> | SideBarPosition | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
 
 ## ButtonStyle对象说明
 
@@ -51,6 +51,13 @@ SideBarContainer( type?: SideBarContainerType )
 | width | number | 否 | 设置侧边栏控制按钮的宽度。<br/>默认值：32，单位vp |
 | height | number | 否 | 设置侧边栏控制按钮的高度。<br/>默认值：32，单位vp |
 | icons | {<br/>shown:&nbsp;string \| PixelMap \| [Resource](ts-types.md) ,<br/>hidden:&nbsp;string \| PixelMap \| [Resource](ts-types.md) ,<br/>switching?:&nbsp;string \| PixelMap \| [Resource](ts-types.md) <br/>} | 否 | 设置侧边栏控制按钮的图标：<br/> </p> - shown: 设置侧边栏显示时控制按钮的图标。<br>- hidden: 设置侧边栏隐藏时控制按钮的图标。<br>- switching:设置侧边栏显示和隐藏状态切换时控制按钮的图标。 |
+
+## SideBarPosition<sup>9+</sup>枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| Start | 侧边栏位于容器左侧。 |
+| End | 侧边栏位于容器右侧。 |
 
 ## SideBarPosition<sup>9+</sup>枚举说明
 
@@ -73,13 +80,14 @@ SideBarContainer( type?: SideBarContainerType )
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon: Resource = $r("app.media.icon");
-  selectedIcon: Resource = $r("app.media.icon");
-  @State arr: number[] = [1, 2, 3];
-  @State current: number = 1;
+  normalIcon : Resource = $r("app.media.icon")
+  selectedIcon: Resource = $r("app.media.icon")
+  @State arr: number[] = [1, 2, 3]
+  @State current: number = 1
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed) {
+    SideBarContainer(SideBarContainerType.Embed)
+    {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -90,41 +98,28 @@ struct SideBarContainerExample {
               .fontFamily('source-sans-pro,cursive,sans-serif')
           }
           .onClick(() => {
-            this.current = item;
+            this.current = item
           })
         }, item => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
 
+
       Column() {
-        Text('SideBarContainer content text.').fontSize(20)
+        Text('SideBarContainer content text1').fontSize(25)
+        Text('SideBarContainer content text2').fontSize(25)
       }
       .margin({ top: 50, left: 20, right: 30 })
     }
-    .showSideBar(true) // 显示侧边栏
-    .controlButton({
-      width: 30,
-      height: 30,
-      left: 30,
-      top: 30
-    }) // 控制按钮属性
-    .showControlButton(true) // 展示控制按钮
-    .sideBarWidth(150) // 侧边栏宽度
-    .minSideBarWidth(50) // 侧边栏最小宽度
-    .maxSideBarWidth(300) //侧边栏最大宽度
-    .autoHide(true)
-    .sideBarPosition(SideBarPosition.Start) //侧边栏位于容器左侧
+    .sideBarWidth(150)
+    .minSideBarWidth(50)
+    .maxSideBarWidth(300)
     .onChange((value: boolean) => {
-      console.info('status:' + value);
+      console.info('status:' + value)
     })
   }
 }
 ```
-SideBarContainerType为Embed效果如下：
 
-![](figures/sidebarContainer1.gif)
-
-SideBarContainerType为Ovelay时效果如下：
-
-![](figures/sidebarContainer2.gif)
+![](figures/sidebarcontainer.png)

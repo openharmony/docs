@@ -50,8 +50,8 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 @Entry
 @Component
 struct RefreshExample {
-  @State isRefreshing: boolean = false;
-  @State counter: number = 0;
+  @State isRefreshing: boolean = false
+  @State counter: number = 0
 
   build() {
     Column() {
@@ -61,14 +61,14 @@ struct RefreshExample {
           .margin(10)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus);
+        console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
         setTimeout(() => {
-          this.counter++;
-          this.isRefreshing = false;
+          this.counter++
+          this.isRefreshing = false
         }, 1000)
-        console.log('onRefreshing test');
+        console.log('onRefreshing test')
       })
     }
   }
