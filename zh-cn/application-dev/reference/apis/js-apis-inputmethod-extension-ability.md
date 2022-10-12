@@ -64,3 +64,76 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
     }
   }
   ```
+
+## InputMethodExtensionAbility.onRequest()
+
+onRequest(want: Want, startId: number): void;
+
+Extension生命周期回调，在开始执行输入法应用时回调，执行输入法的相关操作。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+  ```js
+  class InputMethodExt extends InputMethodExtensionAbility {
+    onRequest() {
+      console.log('onRequest, want:' + want.abilityName + 'startId:' + startId);
+    }
+  }
+  ```
+
+## InputMethodExtensionAbility.onConnect()
+
+onConnect(want: Want): rpc.RemoteObject;
+
+Extension生命周期回调，在首次链接输入法ability时回调。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+  ```js
+  class InputMethodExt extends InputMethodExtensionAbility {
+    onConnect() {
+      console.log('onConnect, want:' + want.abilityName);
+    }
+  }
+  ```
+
+## InputMethodExtensionAbility.onDisconnect()
+
+onDisconnect(want: Want): rpc.RemoteObject;
+
+Extension生命周期回调，在所有链接在输入法extention上的ability都断开的时候回调。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+  ```js
+  class InputMethodExt extends InputMethodExtensionAbility {
+    onDisconnect() {
+      console.log('onDisconnect, want:' + want.abilityName);
+    }
+  }
+  ```
+
+## InputMethodExtensionAbility.onReconnect()
+
+onReconnect(want: Want): rpc.RemoteObject;
+
+Extension生命周期回调，在一个新的客户端去尝试连接输入法extention的时候回调（先前连接在extention上的客户端全部断开的情况下）。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+  ```js
+  class InputMethodExt extends InputMethodExtensionAbility {
+    onReconnect() {
+      console.log('onReconnect, want:' + want.abilityName);
+    }
+  }
+  ```
+
