@@ -2940,7 +2940,7 @@ int32_t(* DeviceFuncs::GetDisplaySupportedModes) (uint32_t devId, uint32_t *num,
 | -------- | -------- |
 | devId | 输入参数，指示需要操作的设备ID。 | 
 | num | 输出参数，设备支持的模式数量。 | 
-| modes | 输出参数，设备支持的所有模式信息，包括所有能支持的分辨率和刷新率，每一个模式实现层都有一个Id与之对应，在获取当前模式&nbsp;和设置当前模式时都会使用到，详情参考&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001424181693.xml#xref1503723582192156,link:zh-cn_topic_0000001369548770.xml](zh-cn_topic_0000001369548770.xml)。 | 
+| modes | 输出参数，设备支持的所有模式信息，包括所有能支持的分辨率和刷新率，每一个模式实现层都有一个Id与之对应，在获取当前模式&nbsp;和设置当前模式时都会使用到，详情参考&nbsp;[DisplayModeInfo](_display_mode_info.md)。 | 
 
 **返回:**
 
