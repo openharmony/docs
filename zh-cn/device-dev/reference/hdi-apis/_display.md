@@ -86,7 +86,7 @@
   | 名称 | 描述 | 
 | -------- | -------- |
 | [PROPERTY_NAME_LEN](#propertynamelen)&nbsp;&nbsp;&nbsp;50 | 属性名字长度。 | 
-| **HDI_VGU_SCALAR_IS_FLOAT**&nbsp;&nbsp;&nbsp;1 |  | 
+| [HDI_VGU_SCALAR_IS_FLOAT](#hdi_vgu_scalar_is_float)&nbsp;&nbsp;&nbsp;1 | VGU标量是否为浮点型 | 
 
 
 ### 类型定义
@@ -96,7 +96,7 @@
 | ([HotPlugCallback](#hotplugcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;bool&nbsp;connected,&nbsp;void&nbsp;\*data) | 热插拔事件回调&nbsp;。 | 
 | ([VBlankCallback](#vblankcallback))&nbsp;(unsigned&nbsp;int&nbsp;sequence,&nbsp;uint64_t&nbsp;ns,&nbsp;void&nbsp;\*data) | VBlank&nbsp;事件回调。 | 
 | ([RefreshCallback](#refreshcallback))&nbsp;(uint32_t&nbsp;devId,&nbsp;void&nbsp;\*data) | 刷新请求回调&nbsp;。 | 
-| **(VGUScalar** | &nbsp;&nbsp;<br/>```<br/>#ifdef&nbsp;HDI_VGU_SCALAR_IS_FLOATtypedef&nbsp;float&nbsp;VGUScalar;#elsetypedef&nbsp;int32_t&nbsp;VGUScalar;#endif<br/>``` | 
+| [VGUScalar](#vguscalar) | VGU标量。 | 
 | [VGUPixelFormat](#vgupixelformat) | 像素格式。 | 
 | [VGUBlendType](#vgublendtype) | 混合操作类型。 | 
 
@@ -401,7 +401,7 @@
 
 ### PROPERTY_NAME_LEN
 
-  
+
 ```
 #define PROPERTY_NAME_LEN   50
 ```
@@ -410,13 +410,24 @@
 
 属性名称长度
 
+### HDI_VGU_SCALAR_IS_FLOAT 
+
+
+```
+#define HDI_VGU_SCALAR_IS_FLOAT   1
+```
+
+**描述：**
+
+VGU标量是否为浮点型
+
 
 ## **类型定义说明**
 
 
 ### VGUPixelFormat
 
-  
+
 ```
 typedef PixelFormat VGUPixelFormat; 
 ```
@@ -428,7 +439,7 @@ typedef PixelFormat VGUPixelFormat;
 
 ### VGUBlendType
 
-  
+
 ```
 typedef BlendType VGUBlendType; 
 ```
@@ -437,10 +448,25 @@ typedef BlendType VGUBlendType;
 
 混合操作类型
 
+### VGUScalar
+
+
+```
+#ifdef HDI_VGU_SCALAR_IS_FLOAT
+typedef float VGUScalar;
+#else
+typedef int32_t VGUScalar;
+#endif
+```
+
+**描述：**
+
+VGU标量
+
 
 ### HotPlugCallback
 
-  
+
 ```
 typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 ```
@@ -462,7 +488,7 @@ typedef void(* HotPlugCallback) (uint32_t devId, bool connected, void *data)
 
 ### RefreshCallback
 
-  
+
 ```
 typedef void(* RefreshCallback) (uint32_t devId, void *data)
 ```
@@ -483,7 +509,7 @@ typedef void(* RefreshCallback) (uint32_t devId, void *data)
 
 ### VBlankCallback
 
-  
+
 ```
 typedef void(* VBlankCallback) (unsigned int sequence, uint64_t ns, void *data)
 ```
@@ -508,7 +534,7 @@ VBlank 事件回调。
 
 ### anonymous enum
 
-  
+
 ```
 anonymous enum
 ```
@@ -531,7 +557,7 @@ anonymous enum
 
 ### BlendType
 
-  
+
 ```
 enum BlendType
 ```
@@ -565,7 +591,7 @@ enum BlendType
 
 ### ColorDataSpace
 
-  
+
 ```
 enum ColorDataSpace
 ```
@@ -622,7 +648,7 @@ enum ColorDataSpace
 
 ### ColorGamut
 
-  
+
 ```
 enum ColorGamut
 ```
@@ -649,7 +675,7 @@ enum ColorGamut
 
 ### ColorKey
 
-  
+
 ```
 enum ColorKey
 ```
@@ -668,7 +694,7 @@ Color key操作类型定义，即硬件加速支持的Color key操作类型。
 
 ### CompositionType
 
-  
+
 ```
 enum CompositionType
 ```
@@ -691,7 +717,7 @@ enum CompositionType
 
 ### Connection
 
-  
+
 ```
 enum Connection
 ```
@@ -709,7 +735,7 @@ enum Connection
 
 ### DispErrCode
 
-  
+
 ```
 enum DispErrCode
 ```
@@ -733,7 +759,7 @@ enum DispErrCode
 
 ### DispPowerStatus
 
-  
+
 ```
 enum DispPowerStatus
 ```
@@ -753,7 +779,7 @@ enum DispPowerStatus
 
 ### GamutMap
 
-  
+
 ```
 enum GamutMap
 ```
@@ -772,7 +798,7 @@ enum GamutMap
 
 ### HDRFormat
 
-  
+
 ```
 enum HDRFormat
 ```
@@ -793,7 +819,7 @@ enum HDRFormat
 
 ### HDRMetadataKey
 
-  
+
 ```
 enum HDRMetadataKey
 ```
@@ -822,7 +848,7 @@ enum HDRMetadataKey
 
 ### InterfaceType
 
-  
+
 ```
 enum InterfaceType
 ```
@@ -849,7 +875,7 @@ enum InterfaceType
 
 ### LayerType
 
-  
+
 ```
 enum LayerType
 ```
@@ -869,7 +895,7 @@ enum LayerType
 
 ### MirrorType
 
-  
+
 ```
 enum MirrorType
 ```
@@ -888,7 +914,7 @@ enum MirrorType
 
 ### PixelFormat
 
-  
+
 ```
 enum PixelFormat
 ```
@@ -939,7 +965,7 @@ enum PixelFormat
 
 ### PresentTimestampType
 
-  
+
 ```
 enum PresentTimestampType
 ```
@@ -957,7 +983,7 @@ enum PresentTimestampType
 
 ### RopType
 
-  
+
 ```
 enum RopType
 ```
@@ -991,7 +1017,7 @@ enum RopType
 
 ### TransformType
 
-  
+
 ```
 enum TransformType
 ```
@@ -1011,7 +1037,7 @@ enum TransformType
 
 ### VGUCapability
 
-  
+
 ```
 enum VGUCapability
 ```
@@ -1030,7 +1056,7 @@ enum VGUCapability
 
 ### VGUClipType
 
-  
+
 ```
 enum VGUClipType
 ```
@@ -1048,7 +1074,7 @@ enum VGUClipType
 
 ### VGUFillRule
 
-  
+
 ```
 enum VGUFillRule
 ```
@@ -1066,7 +1092,7 @@ enum VGUFillRule
 
 ### VGUFillSpread
 
-  
+
 ```
 enum VGUFillSpread
 ```
@@ -1085,7 +1111,7 @@ enum VGUFillSpread
 
 ### VGUFilter
 
-  
+
 ```
 enum VGUFilter
 ```
@@ -1104,7 +1130,7 @@ enum VGUFilter
 
 ### VGUGradientType
 
-  
+
 ```
 enum VGUGradientType
 ```
@@ -1123,7 +1149,7 @@ enum VGUGradientType
 
 ### VGUJointType
 
-  
+
 ```
 enum VGUJointType
 ```
@@ -1142,7 +1168,7 @@ enum VGUJointType
 
 ### VGULineCap
 
-  
+
 ```
 enum VGULineCap
 ```
@@ -1160,7 +1186,7 @@ enum VGULineCap
 
 ### VGUPaintType
 
-  
+
 ```
 enum VGUPaintType
 ```
@@ -1179,7 +1205,7 @@ enum VGUPaintType
 
 ### VGUPathCmd
 
-  
+
 ```
 enum VGUPathCmd
 ```
@@ -1204,7 +1230,7 @@ enum VGUPathCmd
 
 ### VGUPathDataType
 
-  
+
 ```
 enum VGUPathDataType
 ```
@@ -1222,7 +1248,7 @@ enum VGUPathDataType
 
 ### VGUResult
 
-  
+
 ```
 enum VGUResult
 ```
@@ -1245,7 +1271,7 @@ enum VGUResult
 
 ### VGUTransformType
 
-  
+
 ```
 enum VGUTransformType
 ```
@@ -1266,7 +1292,7 @@ enum VGUTransformType
 
 ### VGUWrapType
 
-  
+
 ```
 enum VGUWrapType
 ```
@@ -1287,7 +1313,7 @@ enum VGUWrapType
 
 ### DeviceInitialize()
 
-  
+
 ```
 int32_t DeviceInitialize (DeviceFuncs ** funcs)
 ```
@@ -1311,7 +1337,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### DeviceUninitialize()
 
-  
+
 ```
 int32_t DeviceUninitialize (DeviceFuncs * funcs)
 ```
@@ -1335,7 +1361,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GfxInitialize()
 
-  
+
 ```
 int32_t GfxInitialize (GfxFuncs ** funcs)
 ```
@@ -1359,7 +1385,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GfxUninitialize()
 
-  
+
 ```
 int32_t GfxUninitialize (GfxFuncs * funcs)
 ```
@@ -1383,7 +1409,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GrallocInitialize()
 
-  
+
 ```
 int32_t GrallocInitialize (GrallocFuncs ** funcs)
 ```
@@ -1407,7 +1433,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GrallocUninitialize()
 
-  
+
 ```
 int32_t GrallocUninitialize (GrallocFuncs * funcs)
 ```
@@ -1431,7 +1457,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### LayerInitialize()
 
-  
+
 ```
 int32_t LayerInitialize (LayerFuncs ** funcs)
 ```
@@ -1459,7 +1485,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### LayerUninitialize()
 
-  
+
 ```
 int32_t LayerUninitialize (LayerFuncs * funcs)
 ```
@@ -1487,7 +1513,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### VGUGradientClearStop()
 
-  
+
 ```
 VGUResult VGUGradientClearStop (VGUGradient * gradient)
 ```
@@ -1511,7 +1537,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUGradientColorStop()
 
-  
+
 ```
 VGUResult VGUGradientColorStop (VGUGradient * gradient, const VGUColorStop * colorStop, uint32_t count )
 ```
@@ -1537,7 +1563,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUGradientConic()
 
-  
+
 ```
 VGUResult VGUGradientConic (VGUGradient * gradient, VGUScalar cx, VGUScalar cy )
 ```
@@ -1563,7 +1589,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUGradientLinear()
 
-  
+
 ```
 VGUResult VGUGradientLinear (VGUGradient * gradient, const VGUPoint * p1, const VGUPoint * p2 )
 ```
@@ -1589,7 +1615,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUGradientMatrix()
 
-  
+
 ```
 VGUResult VGUGradientMatrix (VGUGradient * gradient, const VGUMatrix3 * matrix )
 ```
@@ -1614,7 +1640,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUGradientRadial()
 
-  
+
 ```
 VGUResult VGUGradientRadial (VGUGradient * gradient, const VGUPoint * p1, VGUScalar r1, const VGUPoint * p2, VGUScalar r2 )
 ```
@@ -1642,7 +1668,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUInitialize()
 
-  
+
 ```
 VGUResult VGUInitialize (VGUFuncs ** funcs)
 ```
@@ -1666,7 +1692,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUMatrixIdentity()
 
-  
+
 ```
 VGUResult VGUMatrixIdentity (VGUMatrix3 * matrix)
 ```
@@ -1690,7 +1716,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUMatrixRotate()
 
-  
+
 ```
 VGUResult VGUMatrixRotate (VGUMatrix3 * matrix, float degree )
 ```
@@ -1715,7 +1741,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUMatrixScale()
 
-  
+
 ```
 VGUResult VGUMatrixScale (VGUMatrix3 * matrix, float xScale, float yScale )
 ```
@@ -1741,7 +1767,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUMatrixTranslate()
 
-  
+
 ```
 VGUResult VGUMatrixTranslate (VGUMatrix3 * matrix, float x, float y )
 ```
@@ -1767,7 +1793,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUPathAppend()
 
-  
+
 ```
 VGUResult VGUPathAppend (VGUPath * path, const VGUPath * subpath )
 ```
@@ -1792,7 +1818,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUPathClear()
 
-  
+
 ```
 VGUResult VGUPathClear (VGUPath * path)
 ```
@@ -1816,7 +1842,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUPathInit()
 
-  
+
 ```
 VGUResult VGUPathInit (VGUPath * path, VGUPathDataType type, const uint8_t * segments, int numSegments, const uint8_t * data, bool enAlias, VGURect boundBox )
 ```
@@ -1846,7 +1872,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### VGUUninitialize()
 
-  
+
 ```
 VGUResult VGUUninitialize (VGUFuncs * funcs)
 ```
@@ -1873,7 +1899,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### alpha0 [1/2]
 
-  
+
 ```
 uint8_t LayerAlpha::alpha0
 ```
@@ -1885,7 +1911,7 @@ alpha0值，取值范围：[0, 255]
 
 ### alpha0 [2/2]
 
-  
+
 ```
 uint8_t ISurface::alpha0
 ```
@@ -1897,7 +1923,7 @@ Alpha0值，取值范围：[0,255]
 
 ### alpha1 [1/2]
 
-  
+
 ```
 uint8_t LayerAlpha::alpha1
 ```
@@ -1909,7 +1935,7 @@ alpha1值，取值范围：[0, 255]
 
 ### alpha1 [2/2]
 
-  
+
 ```
 uint8_t ISurface::alpha1
 ```
@@ -1921,7 +1947,7 @@ Alpha1值，取值范围：[0,255]
 
 ### alphaRopType
 
-  
+
 ```
 RopType GfxOpt::alphaRopType
 ```
@@ -1933,7 +1959,7 @@ Alpha的Rop类型
 
 ### bAlphaExt1555
 
-  
+
 ```
 bool ISurface::bAlphaExt1555
 ```
@@ -1945,7 +1971,7 @@ bool ISurface::bAlphaExt1555
 
 ### bAlphaMax255
 
-  
+
 ```
 bool ISurface::bAlphaMax255
 ```
@@ -1957,7 +1983,7 @@ bool ISurface::bAlphaMax255
 
 ### baseAddr
 
-  
+
 ```
 void* YUVDescInfo::baseAddr
 ```
@@ -1969,7 +1995,7 @@ void* YUVDescInfo::baseAddr
 
 ### blend
 
-  
+
 ```
 VGUBlendType VGUSurface::blend
 ```
@@ -1981,7 +2007,7 @@ VGUBlendType VGUSurface::blend
 
 ### blendType
 
-  
+
 ```
 BlendType GfxOpt::blendType
 ```
@@ -1993,7 +2019,7 @@ BlendType GfxOpt::blendType
 
 ### boundBox
 
-  
+
 ```
 VGURect VGUPath::boundBox
 ```
@@ -2005,7 +2031,7 @@ VGURect VGUPath::boundBox
 
 ### bpp
 
-  
+
 ```
 int32_t LayerInfo::bpp
 ```
@@ -2017,7 +2043,7 @@ int32_t LayerInfo::bpp
 
 ### buffer [1/3]
 
-  
+
 ```
 VGUBuffer* VGUMaskLayer::buffer
 ```
@@ -2029,7 +2055,7 @@ VGUBuffer* VGUMaskLayer::buffer
 
 ### buffer [2/3]
 
-  
+
 ```
 VGUBuffer* VGUSurface::buffer
 ```
@@ -2043,7 +2069,7 @@ VGUSurface::clipRect
 
 ### buffer [3/3]
 
-  
+
 ```
 VGUBuffer* VGUImage::buffer
 ```
@@ -2055,7 +2081,7 @@ VGUBuffer* VGUImage::buffer
 
 ### bYCbCrClut
 
-  
+
 ```
 bool ISurface::bYCbCrClut
 ```
@@ -2067,7 +2093,7 @@ CLUT表是否位于 YCbCr 空间
 
 ### cap
 
-  
+
 ```
 VGULineCap VGUStrokeAttr::cap
 ```
@@ -2079,7 +2105,7 @@ VGULineCap VGUStrokeAttr::cap
 
 ### cbcrPhyAddr
 
-  
+
 ```
 uint64_t ISurface::cbcrPhyAddr
 ```
@@ -2091,7 +2117,7 @@ CbCr分量地址
 
 ### cbcrStride
 
-  
+
 ```
 int32_t ISurface::cbcrStride
 ```
@@ -2103,7 +2129,7 @@ CbCr分量跨度
 
 ### clipPath
 
-  
+
 ```
 VGUPath* VGUSurface::clipPath
 ```
@@ -2115,7 +2141,7 @@ VGUPath* VGUSurface::clipPath
 
 ### clipRect
 
-  
+
 ```
 VGURect* VGUSurface::clipRect
 ```
@@ -2127,7 +2153,7 @@ VGURect* VGUSurface::clipRect
 
 ### clipType
 
-  
+
 ```
 VGUClipType VGUSurface::clipType
 ```
@@ -2139,7 +2165,7 @@ VGUClipType VGUSurface::clipType
 
 ### clutPhyAddr
 
-  
+
 ```
 uint64_t ISurface::clutPhyAddr
 ```
@@ -2151,7 +2177,7 @@ Clut表首地址，用作颜色扩展或颜色校正
 
 ### color [1/5]
 
-  
+
 ```
 uint32_t ILine::color
 ```
@@ -2163,7 +2189,7 @@ uint32_t ILine::color
 
 ### color [2/5]
 
-  
+
 ```
 uint32_t ICircle::color
 ```
@@ -2175,7 +2201,7 @@ uint32_t ICircle::color
 
 ### color [3/5]
 
-  
+
 ```
 uint32_t Rectangle::color
 ```
@@ -2187,7 +2213,7 @@ uint32_t Rectangle::color
 
 ### color [4/5]
 
-  
+
 ```
 uint32_t VGUColorStop::color
 ```
@@ -2199,7 +2225,7 @@ uint32_t VGUColorStop::color
 
 ### color [5/5]
 
-  
+
 ```
 uint32_t VGUSolid::color
 ```
@@ -2211,7 +2237,7 @@ uint32_t VGUSolid::color
 
 ### colorKeyFrom
 
-  
+
 ```
 ColorKey GfxOpt::colorKeyFrom
 ```
@@ -2223,7 +2249,7 @@ ColorKey GfxOpt::colorKeyFrom
 
 ### colorRopType
 
-  
+
 ```
 RopType GfxOpt::colorRopType
 ```
@@ -2235,7 +2261,7 @@ RopType GfxOpt::colorRopType
 
 ### colorStops
 
-  
+
 ```
 VGUColorStop* VGUGradient::colorStops
 ```
@@ -2247,7 +2273,7 @@ VGUColorStop* VGUGradient::colorStops
 
 ### Commit
 
-  
+
 ```
 int32_t(* DeviceFuncs::Commit) (uint32_t devId, int32_t *fence)
 ```
@@ -2274,7 +2300,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### conic
 
-  
+
 ```
 VGUConic VGUGradient::conic
 ```
@@ -2286,7 +2312,7 @@ VGUConic VGUGradient::conic
 
 ### CreateVirtualDisplay
 
-  
+
 ```
 int32_t(* DeviceFuncs::CreateVirtualDisplay) (uint32_t width, uint32_t height, int32_t *format, uint32_t *devId)
 ```
@@ -2315,7 +2341,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### cx
 
-  
+
 ```
 VGUScalar VGUConic::cx
 ```
@@ -2327,7 +2353,7 @@ VGUScalar VGUConic::cx
 
 ### cy
 
-  
+
 ```
 VGUScalar VGUConic::cy
 ```
@@ -2339,7 +2365,7 @@ VGUScalar VGUConic::cy
 
 ### data [1/2]
 
-  
+
 ```
 BufferData LayerBuffer::data
 ```
@@ -2351,7 +2377,7 @@ BufferData LayerBuffer::data
 
 ### data [2/2]
 
-  
+
 ```
 uint8_t* VGUPath::data
 ```
@@ -2363,7 +2389,7 @@ uint8_t* VGUPath::data
 
 ### DeinitVgu
 
-  
+
 ```
 VGUResult(* VGUFuncs::DeinitVgu) (void)
 ```
@@ -2385,7 +2411,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### DestroyVirtualDisplay
 
-  
+
 ```
 int32_t(* DeviceFuncs::DestroyVirtualDisplay) (uint32_t devId)
 ```
@@ -2411,7 +2437,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### enableRop
 
-  
+
 ```
 bool GfxOpt::enableRop
 ```
@@ -2423,7 +2449,7 @@ Rop功能使能位
 
 ### enableScale
 
-  
+
 ```
 bool GfxOpt::enableScale
 ```
@@ -2435,7 +2461,7 @@ bool GfxOpt::enableScale
 
 ### enAlias
 
-  
+
 ```
 bool VGUPath::enAlias
 ```
@@ -2447,7 +2473,7 @@ bool VGUPath::enAlias
 
 ### enColorFmt
 
-  
+
 ```
 PixelFormat ISurface::enColorFmt
 ```
@@ -2459,7 +2485,7 @@ PixelFormat ISurface::enColorFmt
 
 ### enGlobalAlpha [1/2]
 
-  
+
 ```
 bool LayerAlpha::enGlobalAlpha
 ```
@@ -2471,7 +2497,7 @@ bool LayerAlpha::enGlobalAlpha
 
 ### enGlobalAlpha [2/2]
 
-  
+
 ```
 bool GfxOpt::enGlobalAlpha
 ```
@@ -2483,7 +2509,7 @@ bool GfxOpt::enGlobalAlpha
 
 ### enPixelAlpha [1/2]
 
-  
+
 ```
 bool LayerAlpha::enPixelAlpha
 ```
@@ -2495,7 +2521,7 @@ bool LayerAlpha::enPixelAlpha
 
 ### enPixelAlpha [2/2]
 
-  
+
 ```
 bool GfxOpt::enPixelAlpha
 ```
@@ -2507,7 +2533,7 @@ bool GfxOpt::enPixelAlpha
 
 ### expectedSize
 
-  
+
 ```
 uint32_t AllocInfo::expectedSize
 ```
@@ -2519,7 +2545,7 @@ uint32_t AllocInfo::expectedSize
 
 ### fd
 
-  
+
 ```
 int32_t ExtDataHandle::fd
 ```
@@ -2531,7 +2557,7 @@ int32_t ExtDataHandle::fd
 
 ### fenceId
 
-  
+
 ```
 int32_t LayerBuffer::fenceId
 ```
@@ -2543,7 +2569,7 @@ buffer 的fence号r
 
 ### filter
 
-  
+
 ```
 VGUFilter VGUSurface::filter
 ```
@@ -2555,7 +2581,7 @@ VGUFilter VGUSurface::filter
 
 ### format [1/2]
 
-  
+
 ```
 PixelFormat AllocInfo::format
 ```
@@ -2567,7 +2593,7 @@ PixelFormat AllocInfo::format
 
 ### format [2/2]
 
-  
+
 ```
 PixelFormat VerifyAllocInfo::format
 ```
@@ -2579,7 +2605,7 @@ PixelFormat VerifyAllocInfo::format
 
 ### formatCount
 
-  
+
 ```
 uint32_t HDRCapability::formatCount
 ```
@@ -2591,7 +2617,7 @@ uint32_t HDRCapability::formatCount
 
 ### formats
 
-  
+
 ```
 HDRFormat* HDRCapability::formats
 ```
@@ -2603,7 +2629,7 @@ HDRFormat* HDRCapability::formats
 
 ### freshRate
 
-  
+
 ```
 uint32_t DisplayModeInfo::freshRate
 ```
@@ -2615,7 +2641,7 @@ uint32_t DisplayModeInfo::freshRate
 
 ### gAlpha
 
-  
+
 ```
 uint8_t LayerAlpha::gAlpha
 ```
@@ -2627,7 +2653,7 @@ uint8_t LayerAlpha::gAlpha
 
 ### GetDisplayBacklight
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayBacklight) (uint32_t devId, uint32_t *level)
 ```
@@ -2654,7 +2680,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayCapability
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayCapability) (uint32_t devId, DisplayCapability *info)
 ```
@@ -2681,7 +2707,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayColorGamut
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayColorGamut) (uint32_t devId, ColorGamut *gamut)
 ```
@@ -2706,7 +2732,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayCompChange
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayCompChange) (uint32_t devId, uint32_t *num, uint32_t *Layers, int32_t *type)
 ```
@@ -2735,7 +2761,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayGamutMap
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayGamutMap) (uint32_t devId, GamutMap *gamutMap)
 ```
@@ -2760,7 +2786,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayMode
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayMode) (uint32_t devId, uint32_t *modeId)
 ```
@@ -2787,7 +2813,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayPowerStatus
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayPowerStatus) (uint32_t devId, DispPowerStatus *status)
 ```
@@ -2814,7 +2840,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayProperty
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t *value)
 ```
@@ -2842,7 +2868,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplayReleaseFence
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplayReleaseFence) (uint32_t devId, uint32_t *num, uint32_t *layers, int32_t *fences)
 ```
@@ -2871,7 +2897,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplaySupportedColorGamuts
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplaySupportedColorGamuts) (uint32_t devId, uint32_t *num, ColorGamut *gamuts)
 ```
@@ -2897,7 +2923,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetDisplaySupportedModes
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetDisplaySupportedModes) (uint32_t devId, uint32_t *num, DisplayModeInfo *modes)
 ```
@@ -2925,7 +2951,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetHDRCapabilityInfos
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetHDRCapabilityInfos) (uint32_t devId, HDRCapability *info)
 ```
@@ -2950,7 +2976,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetSupportedMetadataKey
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetSupportedMetadataKey) (uint32_t devId, uint32_t *num, HDRMetadataKey *keys)
 ```
@@ -2976,7 +3002,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### GetWriteBackFrame
 
-  
+
 ```
 int32_t(* DeviceFuncs::GetWriteBackFrame) (uint32_t devId, BufferHandle *buffer, int32_t *fence)
 ```
@@ -3004,7 +3030,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### globalAlpha
 
-  
+
 ```
 uint32_t GfxOpt::globalAlpha
 ```
@@ -3016,7 +3042,7 @@ uint32_t GfxOpt::globalAlpha
 
 ### gradient
 
-  
+
 ```
 VGUGradient* VGUPaintStyle::gradient
 ```
@@ -3028,7 +3054,7 @@ VGUGradient* VGUPaintStyle::gradient
 
 ### h [1/2]
 
-  
+
 ```
 int32_t IRect::h
 ```
@@ -3040,7 +3066,7 @@ int32_t IRect::h
 
 ### h [2/2]
 
-  
+
 ```
 VGUScalar VGURect::h
 ```
@@ -3052,7 +3078,7 @@ VGUScalar VGURect::h
 
 ### hdl
 
-  
+
 ```
 BufferHandle* LayerBuffer::hdl
 ```
@@ -3064,7 +3090,7 @@ BufferHandle* LayerBuffer::hdl
 
 ### height [1/8]
 
-  
+
 ```
 uint32_t DisplayInfo::height
 ```
@@ -3076,7 +3102,7 @@ uint32_t DisplayInfo::height
 
 ### height [2/8]
 
-  
+
 ```
 int32_t LayerInfo::height
 ```
@@ -3088,7 +3114,7 @@ int32_t LayerInfo::height
 
 ### height [3/8]
 
-  
+
 ```
 int32_t LayerBuffer::height
 ```
@@ -3100,7 +3126,7 @@ buffer高度
 
 ### height [4/8]
 
-  
+
 ```
 int32_t ISurface::height
 ```
@@ -3112,7 +3138,7 @@ int32_t ISurface::height
 
 ### height [5/8]
 
-  
+
 ```
 int32_t DisplayModeInfo::height
 ```
@@ -3124,7 +3150,7 @@ int32_t DisplayModeInfo::height
 
 ### height [6/8]
 
-  
+
 ```
 uint32_t AllocInfo::height
 ```
@@ -3136,7 +3162,7 @@ uint32_t AllocInfo::height
 
 ### height [7/8]
 
-  
+
 ```
 uint32_t VerifyAllocInfo::height
 ```
@@ -3148,7 +3174,7 @@ uint32_t VerifyAllocInfo::height
 
 ### height [8/8]
 
-  
+
 ```
 uint32_t VGUBuffer::height
 ```
@@ -3160,7 +3186,7 @@ uint32_t VGUBuffer::height
 
 ### id
 
-  
+
 ```
 int32_t DisplayModeInfo::id
 ```
@@ -3172,7 +3198,7 @@ int32_t DisplayModeInfo::id
 
 ### image
 
-  
+
 ```
 VGUImage* VGUPattern::image
 ```
@@ -3184,7 +3210,7 @@ VGUImage* VGUPattern::image
 
 ### InitVgu
 
-  
+
 ```
 VGUResult(* VGUFuncs::InitVgu) (void)
 ```
@@ -3206,7 +3232,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### InvokeDisplayCmd
 
-  
+
 ```
 int32_t(* DeviceFuncs::InvokeDisplayCmd) (uint32_t devId,...)
 ```
@@ -3232,7 +3258,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### join
 
-  
+
 ```
 VGUJointType VGUStrokeAttr::join
 ```
@@ -3244,7 +3270,7 @@ VGUJointType VGUStrokeAttr::join
 
 ### key
 
-  
+
 ```
 HDRMetadataKey HDRMetaData::key
 ```
@@ -3256,7 +3282,7 @@ HDR元数据关键字
 
 ### linear
 
-  
+
 ```
 VGULinear VGUGradient::linear
 ```
@@ -3268,7 +3294,7 @@ VGULinear VGUGradient::linear
 
 ### m
 
-  
+
 ```
 float VGUMatrix3::m[3][3]
 ```
@@ -3280,7 +3306,7 @@ float VGUMatrix3::m[3][3]
 
 ### mask
 
-  
+
 ```
 VGUMaskLayer* VGUSurface::mask
 ```
@@ -3292,7 +3318,7 @@ VGUMaskLayer* VGUSurface::mask
 
 ### matrix [1/2]
 
-  
+
 ```
 VGUMatrix3* VGUImage::matrix
 ```
@@ -3304,7 +3330,7 @@ VGUMatrix3* VGUImage::matrix
 
 ### matrix [2/2]
 
-  
+
 ```
 VGUMatrix3* VGUGradient::matrix
 ```
@@ -3316,7 +3342,7 @@ VGUMatrix3* VGUGradient::matrix
 
 ### maxAverageLum
 
-  
+
 ```
 float HDRCapability::maxAverageLum
 ```
@@ -3328,7 +3354,7 @@ float HDRCapability::maxAverageLum
 
 ### maxLum
 
-  
+
 ```
 float HDRCapability::maxLum
 ```
@@ -3340,7 +3366,7 @@ float HDRCapability::maxLum
 
 ### minLum
 
-  
+
 ```
 float HDRCapability::minLum
 ```
@@ -3352,7 +3378,7 @@ float HDRCapability::minLum
 
 ### mirrorType
 
-  
+
 ```
 MirrorType GfxOpt::mirrorType
 ```
@@ -3364,7 +3390,7 @@ MirrorType GfxOpt::mirrorType
 
 ### miterLimit
 
-  
+
 ```
 float VGUStrokeAttr::miterLimit
 ```
@@ -3376,7 +3402,7 @@ float VGUStrokeAttr::miterLimit
 
 ### name [1/2]
 
-  
+
 ```
 char PropertyObject::name[PROPERTY_NAME_LEN]
 ```
@@ -3388,7 +3414,7 @@ char PropertyObject::name[PROPERTY_NAME_LEN]
 
 ### name [2/2]
 
-  
+
 ```
 char DisplayCapability::name[PROPERTY_NAME_LEN]
 ```
@@ -3400,7 +3426,7 @@ char DisplayCapability::name[PROPERTY_NAME_LEN]
 
 ### numSegments
 
-  
+
 ```
 int32_t VGUPath::numSegments
 ```
@@ -3412,7 +3438,7 @@ int32_t VGUPath::numSegments
 
 ### opacity [1/3]
 
-  
+
 ```
 uint8_t VGUImage::opacity
 ```
@@ -3424,7 +3450,7 @@ uint8_t VGUImage::opacity
 
 ### opacity [2/3]
 
-  
+
 ```
 uint8_t VGUGradient::opacity
 ```
@@ -3436,7 +3462,7 @@ uint8_t VGUGradient::opacity
 
 ### opacity [3/3]
 
-  
+
 ```
 uint8_t VGUSolid::opacity
 ```
@@ -3448,7 +3474,7 @@ uint8_t VGUSolid::opacity
 
 ### pattern
 
-  
+
 ```
 VGUPattern* VGUPaintStyle::pattern
 ```
@@ -3460,7 +3486,7 @@ VGUPattern* VGUPaintStyle::pattern
 
 ### phyAddr [1/3]
 
-  
+
 ```
 uint64_t BufferData::phyAddr
 ```
@@ -3472,7 +3498,7 @@ uint64_t BufferData::phyAddr
 
 ### phyAddr [2/3]
 
-  
+
 ```
 uint64_t ISurface::phyAddr
 ```
@@ -3484,7 +3510,7 @@ uint64_t ISurface::phyAddr
 
 ### phyAddr [3/3]
 
-  
+
 ```
 uint64_t VGUBuffer::phyAddr
 ```
@@ -3496,7 +3522,7 @@ uint64_t VGUBuffer::phyAddr
 
 ### phyHeight
 
-  
+
 ```
 uint32_t DisplayCapability::phyHeight
 ```
@@ -3508,7 +3534,7 @@ uint32_t DisplayCapability::phyHeight
 
 ### phyWidth
 
-  
+
 ```
 uint32_t DisplayCapability::phyWidth
 ```
@@ -3520,7 +3546,7 @@ uint32_t DisplayCapability::phyWidth
 
 ### pitch
 
-  
+
 ```
 int32_t LayerBuffer::pitch
 ```
@@ -3532,7 +3558,7 @@ int32_t LayerBuffer::pitch
 
 ### pixelFormat
 
-  
+
 ```
 VGUPixelFormat VGUBuffer::pixelFormat
 ```
@@ -3544,7 +3570,7 @@ VGUPixelFormat VGUBuffer::pixelFormat
 
 ### pixFormat [1/2]
 
-  
+
 ```
 PixelFormat LayerInfo::pixFormat
 ```
@@ -3556,7 +3582,7 @@ PixelFormat LayerInfo::pixFormat
 
 ### pixFormat [2/2]
 
-  
+
 ```
 PixelFormat LayerBuffer::pixFormat
 ```
@@ -3568,7 +3594,7 @@ buffer像素格式r
 
 ### PrepareDisplayLayers
 
-  
+
 ```
 int32_t(* DeviceFuncs::PrepareDisplayLayers) (uint32_t devId, bool *needFlushFb)
 ```
@@ -3595,7 +3621,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### propertyCount
 
-  
+
 ```
 uint32_t DisplayCapability::propertyCount
 ```
@@ -3607,7 +3633,7 @@ uint32_t DisplayCapability::propertyCount
 
 ### propId
 
-  
+
 ```
 uint32_t PropertyObject::propId
 ```
@@ -3619,7 +3645,7 @@ uint32_t PropertyObject::propId
 
 ### props
 
-  
+
 ```
 PropertyObject* DisplayCapability::props
 ```
@@ -3631,7 +3657,7 @@ PropertyObject* DisplayCapability::props
 
 ### QueryCapability
 
-  
+
 ```
 int32_t(* VGUFuncs::QueryCapability) (uint32_t cap)
 ```
@@ -3655,7 +3681,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### r
 
-  
+
 ```
 int32_t ICircle::r
 ```
@@ -3667,7 +3693,7 @@ int32_t ICircle::r
 
 ### r0
 
-  
+
 ```
 VGUScalar VGURadial::r0
 ```
@@ -3679,7 +3705,7 @@ VGUScalar VGURadial::r0
 
 ### r1
 
-  
+
 ```
 VGUScalar VGURadial::r1
 ```
@@ -3691,7 +3717,7 @@ VGUScalar VGURadial::r1
 
 ### radial
 
-  
+
 ```
 VGURadial VGUGradient::radial
 ```
@@ -3703,7 +3729,7 @@ VGURadial VGUGradient::radial
 
 ### rect [1/3]
 
-  
+
 ```
 IRect Rectangle::rect
 ```
@@ -3715,7 +3741,7 @@ IRect Rectangle::rect
 
 ### rect [2/3]
 
-  
+
 ```
 VGURect* VGUMaskLayer::rect
 ```
@@ -3727,7 +3753,7 @@ VGURect* VGUMaskLayer::rect
 
 ### rect [3/3]
 
-  
+
 ```
 VGURect* VGUImage::rect
 ```
@@ -3739,7 +3765,7 @@ VGURect* VGUImage::rect
 
 ### RegDisplayRefreshCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegDisplayRefreshCallback) (uint32_t devId, RefreshCallback callback, void *data)
 ```
@@ -3767,7 +3793,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### RegDisplayVBlankCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegDisplayVBlankCallback) (uint32_t devId, VBlankCallback callback, void *data)
 ```
@@ -3795,7 +3821,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### RegHotPlugCallback
 
-  
+
 ```
 int32_t(* DeviceFuncs::RegHotPlugCallback) (HotPlugCallback callback, void *data)
 ```
@@ -3822,7 +3848,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### RenderBlit
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderBlit) (VGUSurface *target, const VGUImage *src, uint32_t color)
 ```
@@ -3850,7 +3876,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderBlitN
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderBlitN) (VGUSurface *target, const VGUImage *src, uint16_t count, uint32_t color)
 ```
@@ -3883,7 +3909,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderBlur
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderBlur) (VGUSurface *target, uint16_t blur)
 ```
@@ -3908,7 +3934,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderCancel
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderCancel) ()
 ```
@@ -3926,7 +3952,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderClearRect
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderClearRect) (VGUSurface *target, const VGURect *rect, uint32_t color, uint8_t opacity)
 ```
@@ -3953,7 +3979,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderFill
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderFill) (VGUSurface *target, const VGUPath *path, const VGUMatrix3 *matrix, const VGUFillAttr *attr, const VGUPaintStyle *style)
 ```
@@ -3981,7 +4007,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderStroke
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderStroke) (VGUSurface *target, const VGUPath *path, const VGUMatrix3 *matrix, const VGUStrokeAttr *attr, const VGUPaintStyle *style)
 ```
@@ -4009,7 +4035,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### RenderSync
 
-  
+
 ```
 VGUResult(* VGUFuncs::RenderSync) (int32_t timeOut)
 ```
@@ -4035,7 +4061,7 @@ VGU_SUCCESS 表示执行成功。
 
 ### reserve
 
-  
+
 ```
 int32_t ExtDataHandle::reserve[0]
 ```
@@ -4047,7 +4073,7 @@ reserve数组
 
 ### reserveInts
 
-  
+
 ```
 uint32_t ExtDataHandle::reserveInts
 ```
@@ -4059,7 +4085,7 @@ reserve数组的个数
 
 ### rotAngle
 
-  
+
 ```
 int32_t DisplayInfo::rotAngle
 ```
@@ -4071,7 +4097,7 @@ int32_t DisplayInfo::rotAngle
 
 ### rotateType
 
-  
+
 ```
 TransformType GfxOpt::rotateType
 ```
@@ -4083,7 +4109,7 @@ TransformType GfxOpt::rotateType
 
 ### rule
 
-  
+
 ```
 VGUFillRule VGUFillAttr::rule
 ```
@@ -4095,7 +4121,7 @@ VGUFillRule VGUFillAttr::rule
 
 ### segment
 
-  
+
 ```
 uint8_t* VGUPath::segment
 ```
@@ -4107,7 +4133,7 @@ uint8_t* VGUPath::segment
 
 ### SetDisplayBacklight
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayBacklight) (uint32_t devId, uint32_t level)
 ```
@@ -4134,7 +4160,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientBuffer
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientBuffer) (uint32_t devId, const BufferHandle *buffer, int32_t fence)
 ```
@@ -4162,7 +4188,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientCrop
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientCrop) (uint32_t devId, IRect *rect)
 ```
@@ -4189,7 +4215,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientDamage
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientDamage) (uint32_t devId, uint32_t num, IRect *rect)
 ```
@@ -4217,7 +4243,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayClientDestRect
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayClientDestRect) (uint32_t devId, IRect *rect)
 ```
@@ -4244,7 +4270,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayColorGamut
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayColorGamut) (uint32_t devId, ColorGamut gamut)
 ```
@@ -4269,7 +4295,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayColorTransform
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayColorTransform) (uint32_t devId, const float *matrix)
 ```
@@ -4294,7 +4320,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayGamutMap
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayGamutMap) (uint32_t devId, GamutMap gamutMap)
 ```
@@ -4319,7 +4345,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayMode
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayMode) (uint32_t devId, uint32_t modeId)
 ```
@@ -4346,7 +4372,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayPowerStatus
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayPowerStatus) (uint32_t devId, DispPowerStatus status)
 ```
@@ -4373,7 +4399,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayProperty
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayProperty) (uint32_t devId, uint32_t id, uint64_t value)
 ```
@@ -4401,7 +4427,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetDisplayVsyncEnabled
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetDisplayVsyncEnabled) (uint32_t devId, bool enabled)
 ```
@@ -4428,7 +4454,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### SetVirtualDisplayBuffer
 
-  
+
 ```
 int32_t(* DeviceFuncs::SetVirtualDisplayBuffer) (uint32_t devId, BufferHandle *buffer, int32_t fence)
 ```
@@ -4456,7 +4482,7 @@ DISPLAY_SUCCESS 表示执行成功。
 
 ### solid
 
-  
+
 ```
 VGUSolid* VGUPaintStyle::solid
 ```
@@ -4468,7 +4494,7 @@ VGUSolid* VGUPaintStyle::solid
 
 ### spread
 
-  
+
 ```
 VGUFillSpread VGUGradient::spread
 ```
@@ -4480,7 +4506,7 @@ VGUFillSpread VGUGradient::spread
 
 ### stop
 
-  
+
 ```
 float VGUColorStop::stop
 ```
@@ -4492,7 +4518,7 @@ float VGUColorStop::stop
 
 ### stopCount
 
-  
+
 ```
 uint16_t VGUGradient::stopCount
 ```
@@ -4504,7 +4530,7 @@ uint16_t VGUGradient::stopCount
 
 ### stride [1/2]
 
-  
+
 ```
 int32_t ISurface::stride
 ```
@@ -4516,7 +4542,7 @@ int32_t ISurface::stride
 
 ### stride [2/2]
 
-  
+
 ```
 uint32_t VGUBuffer::stride
 ```
@@ -4528,7 +4554,7 @@ uint32_t VGUBuffer::stride
 
 ### supportLayers
 
-  
+
 ```
 uint32_t DisplayCapability::supportLayers
 ```
@@ -4540,7 +4566,7 @@ uint32_t DisplayCapability::supportLayers
 
 ### supportWriteBack
 
-  
+
 ```
 bool DisplayCapability::supportWriteBack
 ```
@@ -4552,7 +4578,7 @@ bool DisplayCapability::supportWriteBack
 
 ### time
 
-  
+
 ```
 int64_t PresentTimestamp::time
 ```
@@ -4564,7 +4590,7 @@ int64_t PresentTimestamp::time
 
 ### type [1/7]
 
-  
+
 ```
 LayerType LayerInfo::type
 ```
@@ -4576,7 +4602,7 @@ LayerType LayerInfo::type
 
 ### type [2/7]
 
-  
+
 ```
 InterfaceType DisplayCapability::type
 ```
@@ -4588,7 +4614,7 @@ InterfaceType DisplayCapability::type
 
 ### type [3/7]
 
-  
+
 ```
 PresentTimestampType PresentTimestamp::type
 ```
@@ -4600,7 +4626,7 @@ PresentTimestampType PresentTimestamp::type
 
 ### type [4/7]
 
-  
+
 ```
 VGUPathDataType VGUPath::type
 ```
@@ -4612,7 +4638,7 @@ VGUPathDataType VGUPath::type
 
 ### type [5/7]
 
-  
+
 ```
 uint32_t VGUMatrix3::type
 ```
@@ -4624,7 +4650,7 @@ uint32_t VGUMatrix3::type
 
 ### type [6/7]
 
-  
+
 ```
 VGUGradientType VGUGradient::type
 ```
@@ -4636,7 +4662,7 @@ VGUGradientType VGUGradient::type
 
 ### type [7/7]
 
-  
+
 ```
 VGUPaintType VGUPaintStyle::type
 ```
@@ -4648,7 +4674,7 @@ VGUPaintType VGUPaintStyle::type
 
 ### uOffset
 
-  
+
 ```
 size_t YUVDescInfo::uOffset
 ```
@@ -4660,7 +4686,7 @@ U的偏移量
 
 ### usage [1/2]
 
-  
+
 ```
 uint64_t AllocInfo::usage
 ```
@@ -4672,7 +4698,7 @@ uint64_t AllocInfo::usage
 
 ### usage [2/2]
 
-  
+
 ```
 uint64_t VerifyAllocInfo::usage
 ```
@@ -4684,7 +4710,7 @@ uint64_t VerifyAllocInfo::usage
 
 ### uvStep
 
-  
+
 ```
 size_t YUVDescInfo::uvStep
 ```
@@ -4696,7 +4722,7 @@ UV的step信息
 
 ### uvStride
 
-  
+
 ```
 size_t __attribute__::uvStride
 ```
@@ -4708,7 +4734,7 @@ UV的stride信息
 
 ### value [1/2]
 
-  
+
 ```
 uint64_t PropertyObject::value
 ```
@@ -4720,7 +4746,7 @@ uint64_t PropertyObject::value
 
 ### value [2/2]
 
-  
+
 ```
 float HDRMetaData::value
 ```
@@ -4732,7 +4758,7 @@ float HDRMetaData::value
 
 ### virAddr [1/2]
 
-  
+
 ```
 void* BufferData::virAddr
 ```
@@ -4744,7 +4770,7 @@ void* BufferData::virAddr
 
 ### virAddr [2/2]
 
-  
+
 ```
 void* VGUBuffer::virAddr
 ```
@@ -4756,7 +4782,7 @@ void* VGUBuffer::virAddr
 
 ### virtualDispCount
 
-  
+
 ```
 uint32_t DisplayCapability::virtualDispCount
 ```
@@ -4768,7 +4794,7 @@ uint32_t DisplayCapability::virtualDispCount
 
 ### vOffset
 
-  
+
 ```
 size_t YUVDescInfo::vOffset
 ```
@@ -4780,7 +4806,7 @@ V的偏移量
 
 ### w [1/2]
 
-  
+
 ```
 int32_t IRect::w
 ```
@@ -4792,7 +4818,7 @@ int32_t IRect::w
 
 ### w [2/2]
 
-  
+
 ```
 VGUScalar VGURect::w
 ```
@@ -4804,7 +4830,7 @@ VGUScalar VGURect::w
 
 ### width [1/9]
 
-  
+
 ```
 uint32_t DisplayInfo::width
 ```
@@ -4816,7 +4842,7 @@ uint32_t DisplayInfo::width
 
 ### width [2/9]
 
-  
+
 ```
 int32_t LayerInfo::width
 ```
@@ -4828,7 +4854,7 @@ int32_t LayerInfo::width
 
 ### width [3/9]
 
-  
+
 ```
 int32_t LayerBuffer::width
 ```
@@ -4840,7 +4866,7 @@ buffer宽度
 
 ### width [4/9]
 
-  
+
 ```
 int32_t ISurface::width
 ```
@@ -4852,7 +4878,7 @@ int32_t ISurface::width
 
 ### width [5/9]
 
-  
+
 ```
 int32_t DisplayModeInfo::width
 ```
@@ -4864,7 +4890,7 @@ int32_t DisplayModeInfo::width
 
 ### width [6/9]
 
-  
+
 ```
 uint32_t AllocInfo::width
 ```
@@ -4876,7 +4902,7 @@ uint32_t AllocInfo::width
 
 ### width [7/9]
 
-  
+
 ```
 uint32_t VerifyAllocInfo::width
 ```
@@ -4888,7 +4914,7 @@ uint32_t VerifyAllocInfo::width
 
 ### width [8/9]
 
-  
+
 ```
 uint32_t VGUBuffer::width
 ```
@@ -4900,7 +4926,7 @@ uint32_t VGUBuffer::width
 
 ### width [9/9]
 
-  
+
 ```
 float VGUStrokeAttr::width
 ```
@@ -4912,7 +4938,7 @@ float VGUStrokeAttr::width
 
 ### wrapx
 
-  
+
 ```
 VGUWrapType VGUPattern::wrapx
 ```
@@ -4924,7 +4950,7 @@ VGUWrapType VGUPattern::wrapx
 
 ### wrapy
 
-  
+
 ```
 VGUWrapType VGUPattern::wrapy
 ```
@@ -4936,7 +4962,7 @@ VGUWrapType VGUPattern::wrapy
 
 ### x [1/4]
 
-  
+
 ```
 int32_t IRect::x
 ```
@@ -4948,7 +4974,7 @@ int32_t IRect::x
 
 ### x [2/4]
 
-  
+
 ```
 int32_t ICircle::x
 ```
@@ -4960,7 +4986,7 @@ int32_t ICircle::x
 
 ### x [3/4]
 
-  
+
 ```
 VGUScalar VGUPoint::x
 ```
@@ -4972,7 +4998,7 @@ VGUScalar VGUPoint::x
 
 ### x [4/4]
 
-  
+
 ```
 VGUScalar VGURect::x
 ```
@@ -4984,7 +5010,7 @@ VGUScalar VGURect::x
 
 ### x0 [1/2]
 
-  
+
 ```
 int32_t ILine::x0
 ```
@@ -4996,7 +5022,7 @@ int32_t ILine::x0
 
 ### x0 [2/2]
 
-  
+
 ```
 VGUScalar VGURadial::x0
 ```
@@ -5008,7 +5034,7 @@ VGUScalar VGURadial::x0
 
 ### x1 [1/3]
 
-  
+
 ```
 int32_t ILine::x1
 ```
@@ -5020,7 +5046,7 @@ int32_t ILine::x1
 
 ### x1 [2/3]
 
-  
+
 ```
 VGUScalar VGULinear::x1
 ```
@@ -5032,7 +5058,7 @@ VGUScalar VGULinear::x1
 
 ### x1 [3/3]
 
-  
+
 ```
 VGUScalar VGURadial::x1
 ```
@@ -5044,7 +5070,7 @@ VGUScalar VGURadial::x1
 
 ### x2
 
-  
+
 ```
 VGUScalar VGULinear::x2
 ```
@@ -5056,7 +5082,7 @@ VGUScalar VGULinear::x2
 
 ### y [1/4]
 
-  
+
 ```
 int32_t IRect::y
 ```
@@ -5068,7 +5094,7 @@ int32_t IRect::y
 
 ### y [2/4]
 
-  
+
 ```
 int32_t ICircle::y
 ```
@@ -5080,7 +5106,7 @@ int32_t ICircle::y
 
 ### y [3/4]
 
-  
+
 ```
 VGUScalar VGUPoint::y
 ```
@@ -5092,7 +5118,7 @@ VGUScalar VGUPoint::y
 
 ### y [4/4]
 
-  
+
 ```
 VGUScalar VGURect::y
 ```
@@ -5104,7 +5130,7 @@ VGUScalar VGURect::y
 
 ### y0 [1/2]
 
-  
+
 ```
 int32_t ILine::y0
 ```
@@ -5116,7 +5142,7 @@ int32_t ILine::y0
 
 ### y0 [2/2]
 
-  
+
 ```
 VGUScalar VGURadial::y0
 ```
@@ -5128,7 +5154,7 @@ VGUScalar VGURadial::y0
 
 ### y1 [1/3]
 
-  
+
 ```
 int32_t ILine::y1
 ```
@@ -5140,7 +5166,7 @@ int32_t ILine::y1
 
 ### y1 [2/3]
 
-  
+
 ```
 VGUScalar VGULinear::y1
 ```
@@ -5152,7 +5178,7 @@ VGUScalar VGULinear::y1
 
 ### y1 [3/3]
 
-  
+
 ```
 VGUScalar VGURadial::y1
 ```
@@ -5164,7 +5190,7 @@ VGUScalar VGURadial::y1
 
 ### y2
 
-  
+
 ```
 VGUScalar VGULinear::y2
 ```
@@ -5176,7 +5202,7 @@ VGUScalar VGULinear::y2
 
 ### yOffset
 
-  
+
 ```
 size_t YUVDescInfo::yOffset
 ```
@@ -5188,7 +5214,7 @@ Y的偏移量
 
 ### yStride
 
-  
+
 ```
 size_t YUVDescInfo::yStride
 ```
