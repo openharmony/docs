@@ -70,8 +70,7 @@ constexpr uint64_t HITRACE_TAG_VALID_MASK = ((HITRACE_TAG_LAST - 1) | HITRACE_TA
 HiTraceMeter主要提供抓取用户态和内核态trace数据的命令行工具，以及提供用户态打点的innerkits接口（c++）和kits接口（js）基于内核ftrace提供的用户态打点的扩展，利用ftrace的trace_marker节点，将用户空间通过打点接口写入的数据写进内核循环buffer缓冲区。其基本架构图如下：
 
 
-
-
+![输入图片说明](../../figures/hitrace.png)
 
 
 
