@@ -26,7 +26,7 @@ The number of record exceeds the maximum limit.
 
 ### 错误描述
 
-当添加Record时，若当前pasteData记录数已达到最大值，系统会报此错误码。
+当添加Record时，若当前PasteData记录数已达到最大值，系统会报此错误码。
 
 ### 可能原因
 
