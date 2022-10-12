@@ -135,140 +135,140 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 
 ## 开发步骤
-&emsp;&emsp;1.编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
+1. 编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
-```
-external_deps = [ "hitrace_native:hitrace_meter"]
-```
-&emsp;&emsp;2.头文件依赖添加。
+    ```
+    external_deps = [ "hitrace_native:hitrace_meter"]
+    ```
+2. 头文件依赖添加。
 
-```
-#include "hitrace_meter.h"//接口函数定义头文件
-```
+    ```
+    #include "hitrace_meter.h"//接口函数定义头文件
+    ```
 
-&emsp;&emsp;3.接口调用示例。
+3. 接口调用示例。
 
 
-```cpp
-    #include "hitrace_meter.h" // 包含hitrace_meter.h
-    using namespace std;
+    ```cpp
+        #include "hitrace_meter.h" // 包含hitrace_meter.h
+        using namespace std;
+        
+        int main()
+        {
+             uint64_t label = BYTRACE_TAG_OHOS;
+             sleep(1);
+             CountTrace(label, "count number", 2000);  // 整数跟踪
+         
+             StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
+             sleep(1);
+             StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
+             sleep(2);
+             FinishTrace(label);   // func2Trace的结束点
+             sleep(1);
+             FinishTrace(label);   // func1Trace的结束点
+         
+             sleep(1);
+             CountTrace(label, "count number", 3000);  // 整数跟踪
+         
+             StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
+             sleep(1);
+             StartAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的开始点
+             StartAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的开始点
+             sleep(1);
+             FinishAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的结束点
+             sleep(1);
+             FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
+             sleep(1);
+             FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
+         
+             return 0;
+         }    
     
-    int main()
-    {
-         uint64_t label = BYTRACE_TAG_OHOS;
-         sleep(1);
-         CountTrace(label, "count number", 2000);  // 整数跟踪
-     
-         StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
-         sleep(1);
-         StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
-         sleep(2);
-         FinishTrace(label);   // func2Trace的结束点
-         sleep(1);
-         FinishTrace(label);   // func1Trace的结束点
-     
-         sleep(1);
-         CountTrace(label, "count number", 3000);  // 整数跟踪
-     
-         StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
-         sleep(1);
-         StartAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的开始点
-         StartAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的开始点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的结束点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
-     
-         return 0;
-     }    
+    ```
 
-```
+4. 使用方法，打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
 
-&emsp;&emsp;4.使用方法，打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
+    ```
+    hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
+    ```
 
-```
-hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
-```
-
-&emsp;&emsp;抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
+ 抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
 
 ## 调测验证
 
 以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
-&emsp;&emsp;1.编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
+1. 编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
 
-```cpp
-int main()
-{
-    thread t1(ThreadFunc1);
-    t1.join();
+    ```cpp
+    int main()
+    {
+        thread t1(ThreadFunc1);
+        t1.join();
+    
+        StartTrace(LABEL, "testStart");
+        sleep(SLEEP_ONE_SECOND);
+    
+        StartTrace(LABEL, "funcAStart", SLEEP_ONE_SECOND); // 打印起始点
+        FuncA();
+        FinishTrace(LABEL);
+        sleep(SLEEP_TWO_SECOND);
+    
+        thread t2(ThreadFunc2);
+        t2.join();
+    
+        StartTrace(LABEL, "funcBStart", SLEEP_TWO_SECOND);
+        FuncB();
+        FinishTrace(LABEL);// 打印结束点
+        sleep(SLEEP_TWO_SECOND);
+    
+        sleep(SLEEP_ONE_SECOND);
+        FinishTrace(LABEL);
+        FuncC();
+    
+        return 0;
+    }
+    ```
 
-    StartTrace(LABEL, "testStart");
-    sleep(SLEEP_ONE_SECOND);
+2. 修改gn编译文件并编译，编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
-    StartTrace(LABEL, "funcAStart", SLEEP_ONE_SECOND); // 打印起始点
-    FuncA();
-    FinishTrace(LABEL);
-    sleep(SLEEP_TWO_SECOND);
+    ```
+    ohos_executable("hitrace_example") {
+      sources = [ "example/hitrace_example.cpp" ]
 
-    thread t2(ThreadFunc2);
-    t2.join();
+      external_deps = [ "hitrace_native:hitrace_meter" ]
 
-    StartTrace(LABEL, "funcBStart", SLEEP_TWO_SECOND);
-    FuncB();
-    FinishTrace(LABEL);// 打印结束点
-    sleep(SLEEP_TWO_SECOND);
+      subsystem_name = "hiviewdfx"
+      part_name = "hitrace_native"
+    }
 
-    sleep(SLEEP_ONE_SECOND);
-    FinishTrace(LABEL);
-    FuncC();
+    group("hitrace_target") {
+      deps = [
+        ":hitrace",
+        ":hitrace_example",
+      ]
+    }
+    ```
 
-    return 0;
-}
-```
+3. 将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
 
-&emsp;&emsp;2.修改gn编译文件并编译，编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn 。
-
-```
-ohos_executable("hitrace_example") {
-  sources = [ "example/hitrace_example.cpp" ]
-
-  external_deps = [ "hitrace_native:hitrace_meter" ]
-
-  subsystem_name = "hiviewdfx"
-  part_name = "hitrace_native"
-}
-
-group("hitrace_target") {
-  deps = [
-    ":hitrace",
-    ":hitrace_example",
-  ]
-}
-```
-
-&emsp;&emsp;3.将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
-
-```
-<...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111
-<...>-1650    (-------) [001] ....   332.197640: tracing_mark_write: B|1650|H:testStart
-<...>-1650    (-------) [001] ....   333.198018: tracing_mark_write: B|1650|H:funcAStart
-<...>-1650    (-------) [001] ....   334.198507: tracing_mark_write: E|1650|
-<...>-1654    (-------) [003] ....   341.201673: tracing_mark_write: F|1650|H:testAsync 111
-<...>-1650    (-------) [001] ....   341.202168: tracing_mark_write: B|1650|H:funcBStart
-<...>-1650    (-------) [001] ....   343.202557: tracing_mark_write: E|1650|
-<...>-1650    (-------) [001] ....   346.203178: tracing_mark_write: E|1650|
-<...>-1650    (-------) [001] ....   346.203457: tracing_mark_write: C|1650|H:count number 1
-<...>-1650    (-------) [001] ....   347.203818: tracing_mark_write: C|1650|H:count number 2
-<...>-1650    (-------) [001] ....   348.204207: tracing_mark_write: C|1650|H:count number 3
-<...>-1650    (-------) [001] ....   349.204473: tracing_mark_write: C|1650|H:count number 4
-<...>-1650    (-------) [001] ....   350.204851: tracing_mark_write: C|1650|H:count number 5
-<...>-1655    (-------) [001] ....   365.944658: tracing_mark_write: trace_event_clock_sync: realtime_ts=1502021460925
-<...>-1655    (-------) [001] ....   365.944686: tracing_mark_write: trace_event_clock_sync: parent_ts=365.944641
-```
+    ```
+    <...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111
+    <...>-1650    (-------) [001] ....   332.197640: tracing_mark_write: B|1650|H:testStart
+    <...>-1650    (-------) [001] ....   333.198018: tracing_mark_write: B|1650|H:funcAStart
+    <...>-1650    (-------) [001] ....   334.198507: tracing_mark_write: E|1650|
+    <...>-1654    (-------) [003] ....   341.201673: tracing_mark_write: F|1650|H:testAsync 111
+    <...>-1650    (-------) [001] ....   341.202168: tracing_mark_write: B|1650|H:funcBStart
+    <...>-1650    (-------) [001] ....   343.202557: tracing_mark_write: E|1650|
+    <...>-1650    (-------) [001] ....   346.203178: tracing_mark_write: E|1650|
+    <...>-1650    (-------) [001] ....   346.203457: tracing_mark_write: C|1650|H:count number 1
+    <...>-1650    (-------) [001] ....   347.203818: tracing_mark_write: C|1650|H:count number 2
+    <...>-1650    (-------) [001] ....   348.204207: tracing_mark_write: C|1650|H:count number 3
+    <...>-1650    (-------) [001] ....   349.204473: tracing_mark_write: C|1650|H:count number 4
+    <...>-1650    (-------) [001] ....   350.204851: tracing_mark_write: C|1650|H:count number 5
+    <...>-1655    (-------) [001] ....   365.944658: tracing_mark_write: trace_event_clock_sync: realtime_ts=1502021460925
+    <...>-1655    (-------) [001] ....   365.944686: tracing_mark_write: trace_event_clock_sync: parent_ts=365.944641
+    ```
 
 
 
