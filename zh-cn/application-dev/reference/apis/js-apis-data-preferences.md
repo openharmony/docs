@@ -329,7 +329,7 @@ data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从内存中移除指定的Preferences实例，使用callback异步回调。
+从内存中移除指定的Preferences实例，使用Promise异步回调。
 
 调用该接口后，应用不允许再使用该Preferences实例进行数据操作，否则会出现数据一致性问题。
 
