@@ -81,7 +81,8 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 
 ## 约束与限制
 
-HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料https://blog.csdn.net/Luckiers/article/details/124646205）仅限小型系统、标准系统下使用。
+HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料 
+ https://blog.csdn.net/Luckiers/article/details/124646205 ），HiTraceMeter仅限小型系统、标准系统下使用。
 
 
 
@@ -98,7 +99,7 @@ HiTraceMeter分为JS/C++应用打点API与数据采集命令行工具hitrace，�
 
 ## 接口说明
 
-C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开发者可以略过本节。标准系统上接口描述如下（hitrace_meter.h https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h）：
+C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开发者可以略过本节。标准系统上接口描述如下（hitrace_meter.h  https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h ）：
 
 **表 1**  同步接口
 
@@ -107,7 +108,10 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 | void StartTrace(uint64_t label, const std::string& value, float limit = -1); | 启动同步trace |
 | void FinishTrace(uint64_t label);                            | 关闭同步trace |
 
+- （1）label: Trace category；
+- （2）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
 同步接口StartTrace和FinishTrace必须配对使用，FinishTrace和前面最近的StartTrace进行匹配。StartTrace和FinishTrace函数对可以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。接口中的limit参数用于限流，使用默认值即可。
+
 **表 2**  异步接口
 
 | Async trace                                                  | 功能描述      |
@@ -115,7 +119,12 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 | void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | 启动异步trace |
 | void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace |
 
+
+- （1）label: Trace category；
+- （2）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
+- （3）taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系；
 异步接口StartAsyncTrace和FinishAsyncTrace的跟踪数据匹配时，使用参数中的value和taskId配对匹配，可以不按顺序使用，主要用于异步场景。在C++程序中，使用异步跟踪的场景很少。
+
 **表 3**  计数器接口
 
 | Counter Trace                                                | 功能描述  |
@@ -124,9 +133,6 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 - （1）label: Trace category；
 - （2）name: Trace的名称，IDE中会以此字段展示这段Trace;
-- （3）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
-- （4）taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系；
-- （5）在抓取Trace数据的时候，可以使用hitrace -l命令来检查当前系统中存在的Trace category，只输出指定tag的数据。
 
 
 ## 开发步骤
@@ -178,14 +184,15 @@ external_deps = [ "hitrace_native:hitrace_meter"]
          return 0;
      }    
 
-  4.接口调用示例。
+  4.使用方法。
+
   打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
 
 ```
 hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 ```
 
-  抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看https://toscode.gitee.com/openharmony-sig/smartperf。
+  抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 https://toscode.gitee.com/openharmony-sig/smartperf 。
 
 ## 调测验证
 
