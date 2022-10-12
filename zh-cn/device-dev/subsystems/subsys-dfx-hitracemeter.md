@@ -75,7 +75,9 @@ constexpr uint64_t HITRACE_TAG_VALID_MASK = ((HITRACE_TAG_LAST - 1) | HITRACE_TA
 HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具，提供用户态打点的innerkits接口（c++）和kits接口（js），HiTraceMeter基于内核ftrace提供的用户态打点的扩展，利用ftrace的trace_marker节点，将用户空间通过打点接口写入的数据写进内核循环buffer缓冲区。其基本架构图如下：
 
 
-![输入图片说明](../../figures/Hitrace.png)
+
+ ![输入图片说明](../../figures/Hitrace.png)
+
 
 
 
@@ -109,7 +111,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 | void FinishTrace(uint64_t label);                            | 关闭同步trace |
 
 - （1）label: Trace category；
-- （2）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
+- （2）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。
+
 同步接口StartTrace和FinishTrace必须配对使用，FinishTrace和前面最近的StartTrace进行匹配。StartTrace和FinishTrace函数对可以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。接口中的limit参数用于限流，使用默认值即可。
 
 **表 2**  异步接口
@@ -122,7 +125,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 - （1）label: Trace category；
 - （2）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
-- （3）taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系；
+- （3）taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系。
+
 异步接口StartAsyncTrace和FinishAsyncTrace的跟踪数据匹配时，使用参数中的value和taskId配对匹配，可以不按顺序使用，主要用于异步场景。在C++程序中，使用异步跟踪的场景很少。
 
 **表 3**  计数器接口
@@ -132,7 +136,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 | void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |
 
 - （1）label: Trace category；
-- （2）name: Trace的名称，IDE中会以此字段展示这段Trace;
+- （2）name: Trace的名称，IDE中会以此字段展示这段Trace。
 
 
 ## 开发步骤
