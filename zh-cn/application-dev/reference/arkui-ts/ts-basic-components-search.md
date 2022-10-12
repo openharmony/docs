@@ -107,3 +107,5 @@ struct SearchExample {
   }
 }
 ```
+
+![search](figures/search.gif)
