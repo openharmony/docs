@@ -88,15 +88,22 @@ Use the following APIs to delete a **Preferences** instance or data file.
 2. Obtain a **Preferences** instance.
 
    Read the specified file and load its data to the **Preferences** instance for data operations.
-   
+
    FA model:
 
    ```js
    // Obtain the context.
    import featureAbility from '@ohos.ability.featureAbility'
-   var context = featureAbility.getContext()
-
+   let context = featureAbility.getContext();
+   
+   let preferences = null;
    let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get the preferences.");
+   })
    ```
 
    Stage model:
@@ -104,14 +111,21 @@ Use the following APIs to delete a **Preferences** instance or data file.
    ```ts
    // Obtain the context.
    import Ability from '@ohos.application.Ability'
-   var context
-   class MainAbility extends Ability{
+   let context = null;
+   let preferences = null;
+   export default class MainAbility extends Ability {
        onWindowStageCreate(windowStage){
-           context = this.context
+           context = this.context;
        }
    }
-
+   
    let promise = data_preferences.getPreferences(context, 'mystore');
+   
+   promise.then((pref) => {
+       preferences = pref;
+   }).catch((err) => {
+       console.info("Failed to get the preferences.");
+   })
    ```
 
 3. Write data.
@@ -119,35 +133,27 @@ Use the following APIs to delete a **Preferences** instance or data file.
    Use the **preferences.put()** method to write data to the **Preferences** instance.
 
    ```js
-   promise.then((preferences) => {
-       let putPromise = preferences.put('startup', 'auto');
-       putPromise.then(() => {
-           console.info("Put the value of 'startup' successfully.");
-       }).catch((err) => {
-           console.info("Failed to put the value of 'startup'. Cause: " + err);
-       })
+   let putPromise = preferences.put('startup', 'auto');
+   putPromise.then(() => {
+       console.info("Put the value of 'startup' successfully.");
    }).catch((err) => {
-       console.info("Failed to get the preferences.");
+       console.info("Failed to put the value of 'startup'. Cause: " + err);
    })
    ```
-
+   
 4. Read data.
 
    Use the **preferences.get()** method to read data.
 
    ```js
-   promise.then((preferences) => {
-     let getPromise = preferences.get('startup', 'default');
-     getPromise.then((value) => {
+   let getPromise = preferences.get('startup', 'default');
+   getPromise.then((value) => {
        console.info("The value of 'startup' is " + value);
-     }).catch((err) => {
-       console.info("Failed to get the value of 'startup'. Cause: " + err);
-     })
    }).catch((err) => {
-       console.info("Failed to get the preferences.")
-   });
+       console.info("Failed to get the value of 'startup'. Cause: " + err);
+   })
    ```
-
+   
 5. Store data persistently.
 
    Use the **flush()** method to flush data from the **Preferences** instance to its file.
@@ -161,11 +167,12 @@ Use the following APIs to delete a **Preferences** instance or data file.
    Specify an observer as the callback to subscribe to data changes for an application. When the value of the subscribed key is changed and saved by **flush()**, the observer callback will be invoked to return the new data.
 
    ```js
-   var observer = function (key) {
+   let observer = function (key) {
        console.info("The key" + key + " changed.");
    }
    preferences.on('change', observer);
-   preferences.put('startup', 'auto', function (err) {
+   // The data is changed from 'auto' to 'manual'.
+   preferences.put('startup', 'manual', function (err) {
        if (err) {
            console.info("Failed to put the value of 'startup'. Cause: " + err);
            return;
