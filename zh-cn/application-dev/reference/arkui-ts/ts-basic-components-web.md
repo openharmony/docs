@@ -474,6 +474,35 @@ mediaPlayGestureAccess(access: boolean)
   }
   ```
 
+### multiWindowAccess<sup>9+</sup>
+
+multiWindowAccess(multiWindow: boolean)
+
+设置是否开启多窗口权限，默认不开启。
+
+**参数：**
+
+| 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
+| -------------- | ------- | ---- | ---- | ----------------- |
+| multiWindow | boolean | 是    | false | 设置是否开启多窗口权限。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .multiWindowAccess(true)
+      }
+    }
+  }
+  ```
+
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -1785,6 +1814,74 @@ onFullScreenExit(callback: () => void)
   }
   ```
 
+### onWindowNew<sup>9+</sup>
+
+onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
+
+通知用户新建窗口请求。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| isAlert     | boolean           | true代表请求创建对话框，false代表新标签页。 |
+| isUserTrigger | boolean           | true代表用户触发，false代表非用户触发。 |
+| targetUrl     | string           | 目标url。 |
+| handler     | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebController实例。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+        .multiWindowAccess(true)
+        .onWindowNew((event) => {
+          console.log("onWindowNew...");
+          var popController: WebController = new WebController();
+          event.handler.setWebController(popController);
+        })
+      }
+    }
+  }
+  ```
+
+### onWindowExit<sup>9+</sup>
+
+onWindowExit(callback: () => void)
+
+通知用户窗口关闭请求。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 窗口请求关闭的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+        .onWindowExit((event) => {
+          console.log("onWindowExit...");
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -1874,6 +1971,22 @@ handlePromptConfirm(result: string): void
 exitFullScreen(): void
 
 通知开发者Web组件退出全屏。
+
+## ControllerHandler<sup>9+</sup>
+
+设置用户新建web组件的的WebController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+
+### setWebController<sup>9+</sup>
+
+setWebController(controller: WebController): void
+
+设置WebController对象。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述        |
+| ------ | ------ | ---- | ---- | ----------- |
+| controller | WebController | 是    | -    | 新建web组件的的WebController对象。 |
 
 ## WebResourceError
 
