@@ -156,3 +156,4 @@ struct TextInputExample {
 }
 ```
 
+![textInput](figures/textInput.gif)

@@ -114,3 +114,4 @@ struct PatternLockExample {
 }
 ```
 
+![patternlock](figures/patternlock.gif)
