@@ -47,8 +47,8 @@
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false;
-  @State customPopup: boolean = false;
+  @State handlePopup: boolean = false
+  @State customPopup: boolean = false
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
@@ -63,48 +63,31 @@ struct PopupExample {
       // PopupOptions 类型设置弹框内容
       Button('PopupOptions')
         .onClick(() => {
-          this.noHandlePopup = !this.noHandlePopup;
-        })
-        .bindPopup(this.noHandlePopup, {
-          message: 'content1 content1',
-          placementOnTop: false,
-          showInSubWindow:true,
-          onStateChange: (e) => {
-            console.info(e.isVisible.toString())
-            if (!e.isVisible) {
-              this.noHandlePopup = false;
-            }
-          }
-        })
-        .position({ x: 100, y: 50 })
-
-      Button('with handle popup')
-        .onClick(() => {
-          this.handlePopup = !this.handlePopup;
+          this.handlePopup = !this.handlePopup
         })
         .bindPopup(this.handlePopup, {
-          message: 'content2 content2',
+          message: 'This is a popup with PopupOptions',
           placementOnTop: true,
           showInSubWindow:false,
           primaryButton: {
             value: 'confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup;
-              console.info('ok Button click')
+              this.handlePopup = !this.handlePopup
+              console.info('confirm Button click')
             }
           },
           // 第二个按钮
           secondaryButton: {
-            value: 'cancle',
+            value: 'cancel',
             action: () => {
               this.handlePopup = !this.handlePopup;
-              console.info('cancle Button click')
+              console.info('cancel Button click')
             }
           },
           onStateChange: (e) => {
             console.info(e.isVisible.toString())
             if (!e.isVisible) {
-              this.handlePopup = false;
+              this.handlePopup = false
             }
           }
         })
@@ -114,7 +97,7 @@ struct PopupExample {
       // CustomPopupOptions 类型设置弹框内容
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup;
+          this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -122,10 +105,10 @@ struct PopupExample {
           maskColor: 0x33000000,
           popupColor: Color.Yellow,
           enableArrow: true,
-          showInSubWindow:false,
+          showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false;
+              this.customPopup = false
             }
           }
         })
