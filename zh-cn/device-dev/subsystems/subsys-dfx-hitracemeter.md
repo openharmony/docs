@@ -140,18 +140,18 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 
 ## 开发步骤
-    1.编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
+&emsp;&emsp;1.编译依赖添加，需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
 ```
 external_deps = [ "hitrace_native:hitrace_meter"]
 ```
-    2.头文件依赖添加。
+&emsp;&emsp;2.头文件依赖添加。
 
 ```
 #include "hitrace_meter.h"//接口函数定义头文件
 ```
 
-    3.接口调用示例。
+&emsp;&emsp;3.接口调用示例。
 
 
 ```cpp
@@ -191,7 +191,7 @@ external_deps = [ "hitrace_native:hitrace_meter"]
 
 ```
 
-    4.使用方法，打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
+&emsp;&emsp;4.使用方法，打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
 
 ```
 hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
@@ -203,7 +203,7 @@ hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 
 以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
-    1.编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
+&emsp;&emsp;1.编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
 
 ```cpp
 int main()
@@ -235,7 +235,7 @@ int main()
 }
 ```
 
-    2.修改gn编译文件并编译，编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn 。
+&emsp;&emsp;2.修改gn编译文件并编译，编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
 ```
 ohos_executable("hitrace_example") {
@@ -255,7 +255,7 @@ group("hitrace_target") {
 }
 ```
 
-    3.将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
+&emsp;&emsp;3.将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
 
 ```
 <...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111
