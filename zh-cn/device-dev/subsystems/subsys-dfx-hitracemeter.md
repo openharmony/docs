@@ -118,7 +118,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Async trace                                                  | 功能描述      |参数说明    |
 | ------------------------------------------------------------ | ------------- |------------- |
-| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | label: Trace category。 |
+| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | 开启异步trace | label: Trace category。 |
 | void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。|
 |  | | taskId：异步Trace中用来表示关联的ID。 |
 
