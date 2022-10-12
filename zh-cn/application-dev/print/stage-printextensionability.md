@@ -180,4 +180,4 @@ export default class CustomPrintExtensionAbility extends PrintExtensionAbility {
 
 针对PrintExtensionAbility开发，有以下相关实例可供参考：
 
-- [`Print_Extension_demo`：打印扩展（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/print/ServiceExtAbility)
+- [`Print_Extension_demo`：打印扩展（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Print/project-printExtension)
