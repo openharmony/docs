@@ -11,6 +11,7 @@ HiTraceMeter系统主要分为三部分：
 - （1）JS/C++应用打点API；
 - （2）Trace数据采集命令行工具；
 - （3）Trace数据图形分析工具。
+
   其中，前两者运行在设备端侧，图形工具运行在PC主机侧。打点API部分提供了C++和JS接口，供开发过程中打点使用，打点是产生Trace数据流，是Trace的基础条件。命令行工具用于采集Trace数据，用来抓取trace数据流并保存到文本文件。Trace数据分析可以在图形工具中人工分析，也可以使用分析脚本自动化分析，Trace分析工具以Trace命令行工具的采集结果数据文件为输入。
   HiTraceMeter跟踪数据使用类别分类，称作Trace Tag或Trace Category，一般一个端侧软件子系统对应一个Tag。该Tag在打点API中以类别Tag参数传入。Trace命令行工具采集跟踪数据时，只采集给定的Tag类别选项指定的跟踪数据。应用程序跟踪数据类别都是属于APP Tag，从而JS接口不需要输入tag参数，内部实现用的是TAG_APP。目前HiTraceMeter支持的预定义的子系统Tag宏定义列表如下(可在hitrace_meter.h中查看)：
 
@@ -120,12 +121,13 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 接口中的limit参数用于限流，使用默认值即可。
 异步接口StartAsyncTrace和FinishAsyncTrace的跟踪数据匹配时，使用参数中的value和taskId配对匹配，可以不按顺序使用，主要用于异步场景。在C++程序中，使用异步跟踪的场景很少。
 接口中参数解释如下：
-1 label: trace category；
-2 name: Trace的名称，IDE中会以此字段展示这段Trace;
-3 value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
-4 taskId：异步Trace中用来表示关联的ID。同步trace是不需要这个值的，因为同步trace是栈结构，很容易判断trace的起始关联关系,但是异步trace需要一个ID来表示这个关系；
 
-5 在抓取Trace数据的时候，可以使用hitrace -l命令来检查当前系统中存在的trace category，只输出指定tag的数据。
+- （1）label: trace category；
+- （2）name: Trace的名称，IDE中会以此字段展示这段Trace;
+- （3）value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;
+- （4）taskId：异步Trace中用来表示关联的ID。同步trace是不需要这个值的，因为同步trace是栈结构，很容易判断trace的起始关联关系,但是异步trace需要一个ID来表示这个关系；
+- （5）在抓取Trace数据的时候，可以使用hitrace -l命令来检查当前系统中存在的trace category，只输出指定tag的数据。
+
 
 ### 开发流程
 
