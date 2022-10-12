@@ -48,8 +48,9 @@ Line(options?: {width?: string | number, height?: string | number})
 | strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -77,7 +78,15 @@ struct LineExample {
         .startPoint([0, 0])
         .endPoint([100, 100])
         .strokeWidth(3)
-        .strokeDashArray([1, 3])
+        .strokeDashArray([10, 3])
+        .backgroundColor('#F5F5F5')
+      // strokeDashOffset用于定义关联虚线strokeDashArray数组渲染时的偏移
+      Line({ width: 50, height: 50 })
+        .startPoint([0, 0])
+        .endPoint([100, 100])
+        .strokeWidth(3)
+        .strokeDashArray([10, 3])
+        .strokeDashOffset(5)
         .backgroundColor('#F5F5F5')
     }
   }
@@ -85,3 +94,46 @@ struct LineExample {
 ```
 
 ![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.png)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LineExample1 {
+  build() {
+    Row({ space: 10 }) {
+      // 当LineCapStyle值为Butt时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Butt)
+        .backgroundColor('#F5F5F5').margin(10)
+      // 当LineCapStyle值为Round时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Round)
+        .backgroundColor('#F5F5F5')
+      // 当LineCapStyle值为Square时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Square)
+        .backgroundColor('#F5F5F5')
+    }
+  }
+}
+```
+
+![zh-cn_image1_0000001219982725](figures/zh-cn_image1_0000001219982725.png)
