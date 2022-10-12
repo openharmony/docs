@@ -496,7 +496,7 @@ try {
 
 ## PermissionActiveStatus
 
-表示权限使用状态类型的枚举。
+表示权限使用状态变化类型的枚举。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Security.AccessToken
 
@@ -508,11 +508,13 @@ try {
 
 ## ActiveChangeResponse
 
+表示某次权限使用状态变化的详情。
+
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.Security.AccessToken
 
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| tokenId        | number                 | 是   | 否   | 调用方的应用身份标识    |
-| permissionName | string                 | 是   | 否   | 使用状态发生变化的权限名 |
+| tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识    |
+| permissionName | string                 | 是   | 否   | 权限使用状态发生变化的权限名 |
 | deviceId       | string                 | 是   | 否   | 设备号                 |
-| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态类型        |
+| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型        |
