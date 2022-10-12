@@ -23,7 +23,7 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型                                   | 必填 | 说明                                                       |
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
