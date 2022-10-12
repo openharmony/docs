@@ -686,7 +686,7 @@ addRecord(mimeType: string, value: ValueType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900002 | The number of record exceeds the maximum limit. |
@@ -807,7 +807,7 @@ getRecord(index: number): PasteDataRecord
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -904,7 +904,7 @@ removeRecord(index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -933,7 +933,7 @@ replaceRecord(index: number, record: PasteDataRecord): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900001 | The index is out of range. |
@@ -1299,7 +1299,7 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1341,7 +1341,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1375,7 +1375,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
@@ -1409,7 +1409,7 @@ getData(): Promise&lt;PasteData&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[剪贴板错误码](../errorcodes/errorcode-pasteboard.md)。
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12900003 | Another copy or paste is in progress. |
