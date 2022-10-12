@@ -75,9 +75,6 @@ caretPosition(value: number): void
 
 ## 示例
 
-
-### 多行文本输入
-
 ```ts
 // xxx.ets
 @Entry
