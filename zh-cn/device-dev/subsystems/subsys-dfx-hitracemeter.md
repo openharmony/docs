@@ -190,7 +190,7 @@ external_deps = [ "hitrace_native:hitrace_meter"]
 hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 ```
 
-    抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
+&emsp;&emsp;抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
 
 ## 调测验证
 
