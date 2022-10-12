@@ -84,14 +84,14 @@ struct TextTimerExample {
         })
       Row() {
         Button("start").onClick(() => {
-          this.textTimerController.start();
-        });
+          this.textTimerController.start()
+        })
         Button("pause").onClick(() => {
-          this.textTimerController.pause();
-        });
+          this.textTimerController.pause()
+        })
         Button("reset").onClick(() => {
-          this.textTimerController.reset();
-        });
+          this.textTimerController.reset()
+        })
       }
     }
   }

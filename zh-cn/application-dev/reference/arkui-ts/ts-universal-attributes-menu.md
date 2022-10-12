@@ -25,7 +25,9 @@
 
 ## 示例
 
-#### 普通菜单
+### 示例1
+
+普通菜单
 
 ```ts
 // xxx.ets
@@ -58,7 +60,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/zh-cn_image_0000001174582862.gif)
 
-#### 自定义内容菜单
+### 示例2
+
+自定义内容菜单
 
 ```ts
 @Entry
@@ -106,7 +110,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001186807708](figures/zh-cn_image_0000001186807708.gif)
 
-#### 菜单(右键触发显示)
+### 示例3
+
+菜单(右键触发显示)
 
 ```ts
 // xxx.ets

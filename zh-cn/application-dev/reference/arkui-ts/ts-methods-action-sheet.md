@@ -3,12 +3,8 @@
 列表弹窗。
 
 >  **说明：**
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-## 权限
-
-无
 
 
 ## ActionSheet.show
@@ -57,31 +53,31 @@ struct ActionSheetExample {
             confirm: {
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.log('Get Alert Dialog handled')
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.log('actionSheet canceled')
             },
-            alignment: DialogAlignment.Center,
-            offset: { dx: -20, dy: 150 },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
             sheets: [
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.log('apples')
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.log('bananas')
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.log('pears')
                 }
               }
             ]
