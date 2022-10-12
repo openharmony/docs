@@ -70,11 +70,11 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空       |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 异常信息 |
+  | -------- | ------- |
+  | 401 | verify param failed |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -125,10 +125,10 @@ readRemoteObject(): IRemoteObject
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR  | 封装的IPC对象为空           |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -180,10 +180,10 @@ writeInterfaceToken(token: string): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -213,9 +213,9 @@ readInterfaceToken(): string
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ----- |
+  | 1900010 | read data from message sequence failed |
 
 
 **示例：**
@@ -267,8 +267,8 @@ getCapacity(): number
 
 **返回值：**
 
-  | 类型   | 说明                                            |
-  | ------ | ----------------------------------------------- |
+  | 类型   | 说明 |
+  | ------ | ----- |
   | number | 获取的MessageSequence的容量大小。以字节为单位。 |
 
 **示例：**
@@ -289,15 +289,15 @@ setSize(size: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明                                          |
-  | ------ | ------ | ---- | --------------------------------------------- |
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -328,10 +328,10 @@ setCapacity(size: number): void
 
 **异常：**
 
-  | 错误码                    | 说明               |
-  | ------------------------- | ------------------ |
-  | CHECK_PARAM_ERROR         | 参数校验失败       |
-  | PARCEL_MEMORY_ALLOC_ERROR | 序列化内存分配失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 401 | verify param failed |
+  | 1900011 | parcel memory alloc failed |
 
 **示例：**
 
@@ -356,8 +356,8 @@ getWritableBytes(): number
 
 **返回值：**
 
-  | 类型   | 说明                                                  |
-  | ------ | ----------------------------------------------------- |
+  | 类型 | 说明 |
+  | ------ | ------ |
   | number | 获取到的MessageSequence的可写字节空间。以字节为单位。 |
 
 **示例：**
@@ -382,8 +382,8 @@ getReadableBytes(): number
 
 **返回值：**
 
-  | 类型   | 说明                                                  |
-  | ------ | ----------------------------------------------------- |
+  | 类型 | 说明 |
+  | ------ | ------- |
   | number | 获取到的MessageSequence的可读字节空间。以字节为单位。 |
 
 **示例：**
@@ -408,8 +408,8 @@ getReadPosition(): number
 
 **返回值：**
 
-  | 类型   | 说明                                      |
-  | ------ | ----------------------------------------- |
+  | 类型 | 说明 |
+  | ------ | ------ |
   | number | 返回MessageSequence实例中的当前读取位置。 |
 
 **示例：**
@@ -430,8 +430,8 @@ getWritePosition(): number
 
 **返回值：**
 
-  | 类型   | 说明                                      |
-  | ------ | ----------------------------------------- |
+  | 类型 | 说明 |
+  | ------ | ----- |
   | number | 返回MessageSequence实例中的当前写入位置。 |
 
 **示例：**
@@ -453,15 +453,15 @@ rewindRead(pos: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明                     |
-  | ------ | ------ | ---- | ------------------------ |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ----- | ------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -491,15 +491,15 @@ rewindWrite(pos: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明                     |
-  | ------ | ------ | ---- | ------------------------ |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -527,16 +527,16 @@ writeByte(val: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明             |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的字节值。 |
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ----- | ------ | ---- | ----- |
+  | val | number | 是 | 要写入的字节值。 |
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -560,15 +560,15 @@ readByte(): number
 
 **返回值：**
 
-  | 类型   | 说明         |
-  | ------ | ------------ |
+  | 类型   | 说明 |
+  | ------ | ----- |
   | number | 返回字节值。 |
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | --------  |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -599,16 +599,16 @@ writeShort(val: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明               |
-  | ------ | ------ | ---- | ------------------ |
-  | val    | number | 是   | 要写入的短整数值。 |
+  | 参数名 | 类型   | 必填 | 说明 |
+  | ------ | ------ | --- | --- |
+  | val | number | 是 | 要写入的短整数值。 |
 
-**返回值：**
+**异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -638,9 +638,9 @@ readShort(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -677,10 +677,10 @@ writeInt(val: number): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -710,9 +710,9 @@ readInt(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -749,10 +749,10 @@ writeLong(val: number): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -782,9 +782,9 @@ readLong(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -815,16 +815,16 @@ writeFloat(val: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明             |
-  | ------ | ------ | ---- | ---------------- |
-  | val    | number | 是   | 要写入的浮点值。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ----- | ---- | ---- | ----- |
+  | val | number | 是 | 要写入的浮点值。 |
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
+  | 1900010 | write data to message sequence failed |
 
 **示例：**
 
@@ -854,9 +854,9 @@ readFloat(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -887,16 +887,16 @@ writeDouble(val: number): void
 
 **参数**
 
-  | 参数名 | 类型   | 必填 | 说明                   |
-  | ------ | ------ | ---- | ---------------------- |
-  | val    | number | 是   | 要写入的双精度浮点值。 |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | ------ | ---- | ------ |
+  | val  number | 是 | 要写入的双精度浮点值。 |
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -926,9 +926,9 @@ readDouble(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -965,10 +965,10 @@ writeBoolean(val: boolean): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -998,9 +998,9 @@ readBoolean(): boolean
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1037,10 +1037,10 @@ writeChar(val: number): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1064,15 +1064,15 @@ readChar(): number
 
 **返回值：**
 
-  | 类型   | 说明             |
-  | ------ | ---------------- |
+  | 类型   | 说明 |
+  | ------ | ---- |
   | number | 返回单个字符值。 |
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------ | --------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1109,10 +1109,10 @@ writeString(val: string): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1142,9 +1142,9 @@ readString(): string
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1175,16 +1175,16 @@ writeParcelable(val: Parcelable): void
 
 **参数**
 
-  | 参数名 | 类型                      | 必填 | 说明                 |
-  | ------ | ------------------------- | ---- | -------------------- |
+  | 参数名 | 类型 | 必填 | 说明 |
+  | ------ | --------- | ---- | ------ |
   | val    | Parcelable | 是   | 要写入的可序列对象。 |
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1233,10 +1233,10 @@ readParcelable(dataIn: Parcelable) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
-  | CALL_JS_METHOD_ERROR                  | 调用JS方法失败              |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
 
 **示例：**
 
@@ -1287,10 +1287,10 @@ writeByteArray(byteArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1321,10 +1321,10 @@ readByteArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1362,10 +1362,10 @@ readByteArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1403,10 +1403,10 @@ writeShortArray(shortArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ----- | ----- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1436,10 +1436,10 @@ readShortArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------ | ------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1476,9 +1476,9 @@ readShortArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1515,10 +1515,10 @@ writeIntArray(intArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ----- | --------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1548,10 +1548,10 @@ readIntArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1588,9 +1588,9 @@ readIntArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ----- | ------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1627,10 +1627,10 @@ writeLongArray(longArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | -------  | ----- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1660,10 +1660,10 @@ readLongArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1700,9 +1700,9 @@ readLongArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1739,10 +1739,10 @@ writeFloatArray(floatArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1772,10 +1772,10 @@ readFloatArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1812,9 +1812,9 @@ readFloatArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1851,10 +1851,10 @@ writeDoubleArray(doubleArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1884,10 +1884,10 @@ readDoubleArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1924,9 +1924,9 @@ readDoubleArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -1963,10 +1963,10 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -1996,10 +1996,10 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2036,9 +2036,9 @@ readBooleanArray(): boolean[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2075,10 +2075,10 @@ writeCharArray(charArray: number[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2108,10 +2108,10 @@ readCharArray(dataIn: number[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2148,9 +2148,9 @@ readCharArray(): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2188,10 +2188,10 @@ writeStringArray(stringArray: string[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2221,10 +2221,10 @@ readStringArray(dataIn: string[]) : void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2261,9 +2261,9 @@ readStringArray(): string[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2294,9 +2294,9 @@ writeNoException(): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2343,9 +2343,9 @@ readException(): void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2414,10 +2414,10 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2469,11 +2469,11 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
-  | CALL_JS_METHOD_ERROR                  | 调用JS方法失败              |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
+  | 1900012 | call js callback function failed |
 
 **示例：**
 
@@ -2528,10 +2528,10 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2583,10 +2583,10 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2639,9 +2639,9 @@ readRemoteObjectArray(): IRemoteObject[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2694,9 +2694,9 @@ static closeFileDescriptor(fd: number): void
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------ | ------------ |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -2734,10 +2734,10 @@ static dupFileDescriptor(fd: number) :number
 
 **异常：**
 
-  | 错误码            | 说明           |
-  | ----------------- | -------------- |
-  | CHECK_PARAM_ERROR | 参数校验失败   |
-  | OS_DUP_ERROR      | 调用OS dup失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed   |
+  | 1900013 | call os dup function failed |
 
 **示例：**
 
@@ -2807,10 +2807,10 @@ writeFileDescriptor(fd: number): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------ |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2844,9 +2844,9 @@ readFileDescriptor(): number
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2886,10 +2886,10 @@ writeAshmem(ashmem: Ashmem): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -2926,9 +2926,9 @@ readAshmem(): Ashmem
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -2996,10 +2996,10 @@ writeRawData(rawData: number[], size: number): void
 
 **异常：**
 
-  | 错误码                               | 说明                    |
-  | ------------------------------------ | ----------------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败            |
-  | WRITE_DATA_TO_MESSAGE_SEQUENCE_ERROR | 写入MessageSequence失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 401 | verify param failed |
+  | 1900009 | write data to message sequence failed |
 
 **示例：**
 
@@ -3037,10 +3037,10 @@ readRawData(size: number): number[]
 
 **异常：**
 
-  | 错误码                                | 说明                        |
-  | ------------------------------------- | --------------------------- |
-  | CHECK_PARAM_ERROR                     | 参数校验失败                |
-  | READ_DATA_FROM_MESSAGE_SEQUENCE_ERROR | 读取MessageSequence数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401  | verify param failed     |
+  | 1900010 | read data from message sequence failed |
 
 **示例：**
 
@@ -5772,9 +5772,9 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **异常：**
 
-  | 错误码            | 说明         |
+  | 错误码ID | 异常信息 |
   | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 401 | verify param failed |
 
 
 ### queryLocalInterface<sup>deprecated</sup>
@@ -5925,10 +5925,10 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **异常：**
 
-  | 错误码                               | 说明              |
-  | ------------------------------------ | ----------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败      |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900008 | proxy or remote object is invalid |
 
 
 ### addDeathrecipient<sup>deprecated</sup>
@@ -5970,10 +5970,10 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **异常：**
 
-  | 错误码                               | 说明              |
-  | ------------------------------------ | ----------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败      |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900008 | proxy or remote object is invalid |
 
 
 ### removeDeathRecipient<sup>deprecated</sup>
@@ -6014,9 +6014,9 @@ getDescriptor(): string
 
 **异常：**
 
-  | 错误码                               | 说明           |
-  | ------------------------------------ | -------------- |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 代理对象已失效 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 
 ### getInterfaceDescriptor<sup>deprecated</sup>
@@ -6286,9 +6286,9 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -6422,9 +6422,9 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ----- | ------------ |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -6522,10 +6522,10 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **异常：**
 
-  | 错误码                               | 说明              |
-  | ------------------------------------ | ----------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败      |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900008 | proxy or remote object is invalid |
 
 **示例：**
 
@@ -6633,10 +6633,10 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **异常：**
 
-  | 错误码                               | 说明              |
-  | ------------------------------------ | ----------------- |
-  | CHECK_PARAM_ERROR                    | 参数校验失败      |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 封装的IPC对象为空 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
+  | 1900008 | proxy or remote object is invalid |
 
 **示例：**
 
@@ -6746,9 +6746,9 @@ getInterfaceDescriptor(): string
 
 **异常：**
 
-  | 错误码                               | 说明           |
-  | ------------------------------------ | -------------- |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 代理对象已失效 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900008 | proxy or remote object is invalid |
 
 **示例：**
 
@@ -6934,9 +6934,9 @@ setAsync(async: boolean): void;
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401 | verify param failed |
 
 ### getFlags
 
@@ -7203,9 +7203,9 @@ static flushCmdBuffer(object : IRemoteObject): void
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -7325,9 +7325,9 @@ static restoreCallingIdentity(identity : string): void
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | ------ | --------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -8053,9 +8053,9 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **异常：**
 
-  | 错误码            | 说明         |
-  | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -8148,9 +8148,9 @@ getInterfaceDescriptor(): string
 
 **异常：**
 
-  | 错误码                               | 说明           |
-  | ------------------------------------ | -------------- |
-  | PROXY_OR_REMOTE_OBJECT_INVALID_ERROR | 代理对象已失效 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900008 | proxy or remote object is invalid |
 
 **示例：**
 
@@ -8240,9 +8240,9 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **异常：**
 
-  | 错误码            | 说明         |
+  | 错误码ID | 错误信息 |
   | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -8358,9 +8358,9 @@ static create(name: string, size: number): Ashmem
 
 **异常：**
 
-  | 错误码            | 说明         |
+  | 错误码ID | 错误信息 |
   | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -8428,9 +8428,9 @@ static create(ashmem: Ashmem): Ashmem
 
 **异常：**
 
-  | 错误码            | 说明         |
+  | 错误码ID | 错误信息 |
   | ----------------- | ------------ |
-  | CHECK_PARAM_ERROR | 参数校验失败 |
+  | 401 | verify param failed |
 
 **示例：**
 
@@ -8554,10 +8554,10 @@ mapTypedAshmem(mapType: number): void
 
 **异常：**
 
-  | 错误码            | 说明             |
-  | ----------------- | ---------------- |
-  | CHECK_PARAM_ERROR | 参数校验失败     |
-  | OS_MMAP_ERROR     | 系统调用mmap失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | ------ |
+  | 401 | verify param failed     |
+  | 1900001     | call mmap function failed |
 
 **示例：**
 
@@ -8611,9 +8611,9 @@ mapReadAndWriteAshmem(): void
 
 **异常：**
 
-  | 错误码        | 说明             |
-  | ------------- | ---------------- |
-  | OS_MMAP_ERROR | 系统调用mmap失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
 
 **示例：**
 
@@ -8661,9 +8661,9 @@ mapReadonlyAshmem(): void
 
 **异常：**
 
-  | 错误码        | 说明             |
-  | ------------- | ---------------- |
-  | OS_MMAP_ERROR | 系统调用mmap失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 1900001 | call mmap function failed |
 
 **示例：**
 
@@ -8717,9 +8717,9 @@ setProtectionType(protectionType: number): void
 
 **异常：**
 
-  | 错误码         | 说明              |
-  | -------------- | ----------------- |
-  | OS_IOCTL_ERROR | 系统调用ioctl失败 |
+  | 错误码ID | 错误信息 |
+  | -------- | ------- |
+  | 1900002 | call os ioctl function failed |
 
 **示例：**
 
@@ -8781,10 +8781,10 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **异常：**
 
-  | 错误码                | 说明                 |
-  | --------------------- | -------------------- |
-  | CHECK_PARAM_ERROR     | 参数校验失败         |
-  | WRITE_TO_ASHMEM_ERROR | 向共享内存写数据失败 |
+  | 错误码ID | 错误信息 |
+  | ------- | -------- |
+  | 401     | verify param failed    |
+  | 1900003 | write to ashmem failed |
 
 **示例：**
 
@@ -8858,10 +8858,10 @@ readAshmem(size: number, offset: number): number[]
 
 **异常：**
 
-  | 错误码                 | 说明                   |
-  | ---------------------- | ---------------------- |
-  | CHECK_PARAM_ERROR      | 参数校验失败           |
-  | READ_FROM_ASHMEM_ERROR | 从共享内存读取数据失败 |
+  | 错误码ID  | 错误信息 |
+  | -------- | -------- |
+  | 401 | verify param failed |
+  | 1900004 | read from ashmem failed |
 
 **示例：**
 
