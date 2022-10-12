@@ -83,8 +83,9 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 
 ## 约束与限制
 
-HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料 
- [ftrace相关资料](https://blog.csdn.net/Luckiers/article/details/124646205) ），HiTraceMeter仅限小型系统、标准系统下使用。
+- HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料 
+ [ftrace相关资料](https://blog.csdn.net/Luckiers/article/details/124646205) ）。
+- HiTraceMeter仅限小型系统、标准系统下使用。
 
 
 
@@ -107,8 +108,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Sync trace                                                   | 功能描述      |参数说明      |
 | :----------------------------------------------------------- | ------------- |------------- |
-| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | 启动同步trace |label: Trace category；value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。 |
-| void FinishTrace(uint64_t label);                            | 关闭同步trace |label: Trace category。 |
+| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | 启动同步trace |label: Trace category。 |
+| void FinishTrace(uint64_t label);                            | 关闭同步trace |value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。 |
 
 
 同步接口StartTrace和FinishTrace必须配对使用，FinishTrace和前面最近的StartTrace进行匹配。StartTrace和FinishTrace函数对可以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。接口中的limit参数用于限流，使用默认值即可。
@@ -117,8 +118,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Async trace                                                  | 功能描述      |参数说明    |
 | ------------------------------------------------------------ | ------------- |------------- |
-| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | 启动异步trace |label: Trace category；Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系。 |
-| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace |label: Trace category；Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等;taskId：异步Trace中用来表示关联的ID。同步Trace是不需要这个值的，因为同步Trace是栈结构，很容易判断Trace的起始关联关系,但是异步Trace需要一个ID来表示这个关系。 |
+| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | taskId：异步Trace中用来表示关联的ID。 |
+| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | |
 
 
 
@@ -128,7 +129,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Counter Trace                                                | 功能描述  |参数说明  |
 | ------------------------------------------------------------ | --------- |--------- |
-| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |label: Trace category；name: Trace的名称，IDE中会以此字段展示这段Trace。 |
+| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |name: Trace的名称，IDE中会以此字段展示这段Trace。 |
 
 
 
