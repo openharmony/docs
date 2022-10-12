@@ -1,9 +1,13 @@
-# 包管理子系统ChangeLog
+# 3.2 beta3相对于3.2 beta2变更详细说明
+
+## 包管理子系统
+
 Beta3版本上增加了预置应用特权管控能力，可以分为两部分：预置应用权限管控和预置应用的配置方法。
 应用特权是指应用所具备的一些高等级的特殊能力，比如限制应用不可被卸载、应用内数据不可被删除等。
 OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单独配置的应用特权。OpenHarmony支持在不同产品上对预置应用进行差异化配置，设备厂商可根据需要对预置应用进行配置。此外，OpenHarmony根据GetCfgDirList获得系统支持的预置目录，如system、chipset、sys_prod、chip_prod；并且按照返回的顺序越靠后优先级越高，如chip_prod的优先级高于system的优先级。
 
-## cl.bundleManager.1 预置应用安装方式变更
+### 预置应用安装方式变更
+
 当前预置应用的安装方式由自动扫描目录/system/app下面的hap安装，变更为通过白名单配置方式安装。在install_list.json中配置app-dir的hap才会被自动安装，并成为预置应用。
 
 **变更影响**
@@ -18,7 +22,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 在[/system/etc/app/install_list.json](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list.json)文件中配置相关字段，app_dir表示hap所在的目录，removable表示hap安装后是否可卸载。如下所示：
 
-```
+```json
 {
     "install_list" : [
         {
@@ -33,7 +37,8 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 }
 ```
 
-## cl.bundleManager.2 通用应用特权管控变更
+### 通用应用特权管控变更
+
 通用的应用特权是指应用在不同设备类型上都可以获得的特权，可分为以下几种：
 | 权限 | 描述                                                       |
 | ---------------- | ------------------------------------------------------------ |
@@ -49,7 +54,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 **变更影响**
 
-不涉及js及native接口，如果开发的应用中使用上述特权，那就需要应用开发者申请对应的特权，申请及配置方式可参考[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
+不涉及js及native接口，如果开发的应用中使用上述特权，那就需要应用开发者申请对应的特权，申请及配置方式可参考[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)。
 
 **关键的接口/组件变更**
 
@@ -59,7 +64,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 可参考[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)
 
-```
+```json
 {
     "version-name": "1.0.0",
     ...
@@ -72,7 +77,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 }
 ```
 
-## cl.bundleManager.3 产品化应用特权管控变更
+### 产品化应用特权管控变更
 除了通用应用特权外，设备厂商还可以为各类设备额外定义允许配置的特权项，包括：
 
 | 权限                  | 类型     | 默认值 | 描述                                              |
@@ -88,7 +93,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 **变更影响**
 
-不涉及js及native接口，如果开发的应用中使用上述特权，那就需要应用开发者申请对应的特权，可参考[配置方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F-1)
+不涉及js及native接口，如果开发的应用中使用上述特权，那就需要应用开发者申请对应的特权，可参考[配置方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F-1)。
 
 **关键的接口/组件变更**
 
@@ -98,21 +103,22 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 可参考[配置方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F-1)
 
-```
+```json
 {
     "install_list": [
         {
-            "bundleName": “com.example.kikakeyboard”,
+            "bundleName": "com.example.kikakeyboard",
             "singleton": true, // 应用安装到单用户下
             "keepAlive": true, // 应用常驻
             "runningResourcesApply": true, // 运行资源申请（CPU、事件通知、蓝牙等）
             "associatedWakeUp": true, // FA模型应用被关联唤醒
-            "app_signature" : [“8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC”], // 当配置的证书指纹和hap的证书指纹一致才生效
-            "allowCommonEvent": [“usual.event.SCREEN_ON”, “usual.event.THERMAL_LEVEL_CHANGED”]
+            "app_signature" : ["8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC"], // 当配置的证书指纹和hap的证书指纹一致才生效
+            "allowCommonEvent": ["usual.event.SCREEN_ON", "usual.event.THERMAL_LEVEL_CHANGED"]
         }
 }
 ```
-## cl.bundleManager.4 预授权白名单增加指纹信息校验
+
+### 预授权白名单增加指纹信息校验
 
 预授权文件[install_list_permissions.json](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在开发板上的路径由system/etc/permission变更为system/etc/app/。新增字段app_signature，表示hap的指纹信息，可以配置多个指纹信息。在授权时，指纹信息匹配成功才能授权。
 
@@ -126,7 +132,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 
 **适配指导**
 可参考：
-```
+```json
 {
 [
     {
@@ -149,3 +155,19 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
     }
 }
 ```
+
+## ArkUI子系统
+
+### 修复FA模型下编译构建release hap模式的公共模块变量共享问题
+
+两个页面依赖同一个文件的对象（foodData）时，当页面A修改了这个对象，当页面B读取这个对象时，获取到的是页面A修改后的值，从而实现了公共模块对象共享。
+
+**变更影响**
+
+FA模型下的公共模块变量共享之前是作为需求交付的，在中间某个版本开始，编译release的hap该功能缺失，编译debug的hap一直是正常的，在830版本修复了编译release hap模式下的公共模块变量共享功能。
+
+不影响应用编译，无需适配接口。
+
+**关键的接口/组件变更**
+
+无

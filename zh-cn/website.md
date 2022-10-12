@@ -59,6 +59,8 @@
         - [升级服务](release-notes/api-change/v3.2-beta3/js-apidiff-update.md)
         - [Web](release-notes/api-change/v3.2-beta3/js-apidiff-web.md)
         - [窗口管理](release-notes/api-change/v3.2-beta3/js-apidiff-window.md)
+      - 变更说明
+        - [3.2 beta3相对于3.2 beta2变更详细说明](release-notes/api-change/v3.2-beta3/changelog.md)
     - OpenHarmony 3.2 Beta2
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
