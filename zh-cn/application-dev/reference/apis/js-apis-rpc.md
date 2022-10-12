@@ -62,17 +62,18 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                      |
   | ------ | ------------------------------- | ---- | ----------------------------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 要序列化并写入MessageSequence的远程对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 异常信息 |
   | -------- | ------- |
-  | 401 | verify param failed |
   | 1900008 | proxy or remote object is invalid |
   | 1900009 | write data to message sequence failed |
 
@@ -123,7 +124,9 @@ readRemoteObject(): IRemoteObject
   | ------------------------------- | ------------------ |
   | [IRemoteObject](#iremoteobject) | 读取到的远程对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -172,17 +175,18 @@ writeInterfaceToken(token: string): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
   | token  | string | 是   | 字符串类型描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -211,7 +215,9 @@ readInterfaceToken(): string
   | ------ | ------------------------ |
   | string | 返回读取到的接口描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ----- |
@@ -287,17 +293,11 @@ setSize(size: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明 |
   | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
-
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------- | ------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -320,17 +320,18 @@ setCapacity(size: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                          |
   | ------ | ------ | ---- | --------------------------------------------- |
   | size   | number | 是   | MessageSequence实例的存储容量。以字节为单位。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
-  | 401 | verify param failed |
   | 1900011 | parcel memory alloc failed |
 
 **示例：**
@@ -451,17 +452,11 @@ rewindRead(pos: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
-
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ----- | ------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -489,17 +484,11 @@ rewindWrite(pos: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
-
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------- | -------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -525,17 +514,18 @@ writeByte(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明 |
   | ----- | ------ | ---- | ----- |
   | val | number | 是 | 要写入的字节值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -564,7 +554,9 @@ readByte(): number
   | ------ | ----- |
   | number | 返回字节值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | --------  |
@@ -597,17 +589,18 @@ writeShort(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明 |
   | ------ | ------ | --- | --- |
   | val | number | 是 | 要写入的短整数值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -636,7 +629,9 @@ readShort(): number
   | ------ | -------------- |
   | number | 返回短整数值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -669,17 +664,18 @@ writeInt(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
   | val    | number | 是   | 要写入的整数值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -708,7 +704,9 @@ readInt(): number
   | ------ | ------------ |
   | number | 返回整数值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
@@ -741,17 +739,18 @@ writeLong(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
   | val    | number | 是   | 要写入的长整数值 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -780,7 +779,9 @@ readLong(): number
   | ------ | -------------- |
   | number | 返回长整数值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -813,17 +814,18 @@ writeFloat(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ----- | ---- | ---- | ----- |
   | val | number | 是 | 要写入的浮点值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed |
   | 1900010 | write data to message sequence failed |
 
 **示例：**
@@ -852,7 +854,9 @@ readFloat(): number
   | ------ | ------------ |
   | number | 返回浮点值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -885,17 +889,18 @@ writeDouble(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | ------ | ---- | ------ |
   | val  number | 是 | 要写入的双精度浮点值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -924,7 +929,9 @@ readDouble(): number
   | ------ | ------------------ |
   | number | 返回双精度浮点值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -957,17 +964,18 @@ writeBoolean(val: boolean): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型    | 必填 | 说明             |
   | ------ | ------- | ---- | ---------------- |
   | val    | boolean | 是   | 要写入的布尔值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -996,7 +1004,9 @@ readBoolean(): boolean
   | ------- | -------------------- |
   | boolean | 返回读取到的布尔值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1029,17 +1039,18 @@ writeChar(val: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
   | val    | number | 是   | 要写入的单个字符值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1068,7 +1079,9 @@ readChar(): number
   | ------ | ---- |
   | number | 返回单个字符值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------ | --------- |
@@ -1101,17 +1114,18 @@ writeString(val: string): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                      |
   | ------ | ------ | ---- | ----------------------------------------- |
   | val    | string | 是   | 要写入的字符串值，其长度应小于40960字节。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1140,7 +1154,9 @@ readString(): string
   | ------ | -------------- |
   | string | 返回字符串值。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1173,17 +1189,18 @@ writeParcelable(val: Parcelable): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | --------- | ---- | ------ |
   | val    | Parcelable | 是   | 要写入的可序列对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1225,13 +1242,15 @@ readParcelable(dataIn: Parcelable) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                      | 必填 | 说明                                      |
   | ------ | ------------------------- | ---- | ----------------------------------------- |
   | dataIn | Parcelable | 是   | 需要从MessageSequence读取成员变量的对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1279,17 +1298,18 @@ writeByteArray(byteArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明               |
   | --------- | -------- | ---- | ------------------ |
   | byteArray | number[] | 是   | 要写入的字节数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1313,17 +1333,18 @@ readByteArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明               |
   | ------ | -------- | ---- | ------------------ |
   | dataIn | number[] | 是   | 要读取的字节数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1360,11 +1381,12 @@ readByteArray(): number[]
   | -------- | -------------- |
   | number[] | 返回字节数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1395,17 +1417,18 @@ writeShortArray(shortArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型     | 必填 | 说明                 |
   | ---------- | -------- | ---- | -------------------- |
   | shortArray | number[] | 是   | 要写入的短整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | ----- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1428,17 +1451,18 @@ readShortArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
   | dataIn | number[] | 是   | 要读取的短整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------ | ------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1474,7 +1498,9 @@ readShortArray(): number[]
   | -------- | ---------------- |
   | number[] | 返回短整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -1507,17 +1533,18 @@ writeIntArray(intArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型     | 必填 | 说明               |
   | -------- | -------- | ---- | ------------------ |
   | intArray | number[] | 是   | 要写入的整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | --------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1540,17 +1567,18 @@ readIntArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明               |
   | ------ | -------- | ---- | ------------------ |
   | dataIn | number[] | 是   | 要读取的整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1586,7 +1614,9 @@ readIntArray(): number[]
   | -------- | -------------- |
   | number[] | 返回整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ----- | ------- |
@@ -1619,17 +1649,18 @@ writeLongArray(longArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明                 |
   | --------- | -------- | ---- | -------------------- |
   | longArray | number[] | 是   | 要写入的长整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------  | ----- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1652,17 +1683,18 @@ readLongArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
   | dataIn | number[] | 是   | 要读取的长整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1698,7 +1730,9 @@ readLongArray(): number[]
   | -------- | ---------------- |
   | number[] | 返回长整数数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1731,17 +1765,18 @@ writeFloatArray(floatArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型     | 必填 | 说明                                                                                                                    |
   | ---------- | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
   | floatArray | number[] | 是   | 要写入的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1764,17 +1799,18 @@ readFloatArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                                                                                                                    |
   | ------ | -------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
   | dataIn | number[] | 是   | 要读取的浮点数组。由于系统内部对float类型的数据是按照double处理的，使用时对于数组所占的总字节数应按照double类型来计算。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1810,7 +1846,9 @@ readFloatArray(): number[]
   | -------- | -------------- |
   | number[] | 返回浮点数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1843,17 +1881,18 @@ writeDoubleArray(doubleArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名      | 类型     | 必填 | 说明                     |
   | ----------- | -------- | ---- | ------------------------ |
   | doubleArray | number[] | 是   | 要写入的双精度浮点数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1876,17 +1915,18 @@ readDoubleArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                     |
   | ------ | -------- | ---- | ------------------------ |
   | dataIn | number[] | 是   | 要读取的双精度浮点数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -1922,7 +1962,9 @@ readDoubleArray(): number[]
   | -------- | -------------------- |
   | number[] | 返回双精度浮点数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -1955,17 +1997,18 @@ writeBooleanArray(booleanArray: boolean[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名       | 类型      | 必填 | 说明               |
   | ------------ | --------- | ---- | ------------------ |
   | booleanArray | boolean[] | 是   | 要写入的布尔数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -1988,17 +2031,18 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型      | 必填 | 说明               |
   | ------ | --------- | ---- | ------------------ |
   | dataIn | boolean[] | 是   | 要读取的布尔数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -2034,7 +2078,9 @@ readBooleanArray(): boolean[]
   | --------- | -------------- |
   | boolean[] | 返回布尔数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2067,17 +2113,18 @@ writeCharArray(charArray: number[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明                   |
   | --------- | -------- | ---- | ---------------------- |
   | charArray | number[] | 是   | 要写入的单个字符数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2100,17 +2147,18 @@ readCharArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                   |
   | ------ | -------- | ---- | ---------------------- |
   | dataIn | number[] | 是   | 要读取的单个字符数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -2146,7 +2194,9 @@ readCharArray(): number[]
   | -------- | ------------------ |
   | number[] | 返回单个字符数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2180,17 +2230,18 @@ writeStringArray(stringArray: string[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名      | 类型     | 必填 | 说明                                                    |
   | ----------- | -------- | ---- | ------------------------------------------------------- |
   | stringArray | string[] | 是   | 要写入的字符串数组，数组单个元素的长度应小于40960字节。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2213,17 +2264,18 @@ readStringArray(dataIn: string[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
   | dataIn | string[] | 是   | 要读取的字符串数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -2259,7 +2311,9 @@ readStringArray(): string[]
   | -------- | ---------------- |
   | string[] | 返回字符串数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2292,7 +2346,9 @@ writeNoException(): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2341,7 +2397,9 @@ readException(): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2406,17 +2464,18 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名          | 类型         | 必填 | 说明                       |
   | --------------- | ------------ | ---- | -------------------------- |
   | parcelableArray | Parcelable[] | 是   | 要写入的可序列化对象数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2461,17 +2520,18 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名          | 类型         | 必填 | 说明                       |
   | --------------- | ------------ | ---- | -------------------------- |
   | parcelableArray | Parcelable[] | 是   | 要读取的可序列化对象数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
   | 1900012 | call js callback function failed |
 
@@ -2521,16 +2581,17 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
   | 参数名      | 类型            | 必填 | 说明                                           |
   | ----------- | --------------- | ---- | ---------------------------------------------- |
   | objectArray | IRemoteObject[] | 是   | 要写入MessageSequence的IRemoteObject对象数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2575,17 +2636,18 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型            | 必填 | 说明                                           |
   | ------- | --------------- | ---- | ---------------------------------------------- |
   | objects | IRemoteObject[] | 是   | 从MessageSequence读取的IRemoteObject对象数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -2637,7 +2699,9 @@ readRemoteObjectArray(): IRemoteObject[]
   | --------------- | --------------------------- |
   | IRemoteObject[] | 返回IRemoteObject对象数组。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2686,17 +2750,11 @@ static closeFileDescriptor(fd: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
   | fd     | number | 是   | 要关闭的文件描述符。 |
-
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------ | ------------ |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -2720,7 +2778,7 @@ static dupFileDescriptor(fd: number) :number
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -2732,11 +2790,12 @@ static dupFileDescriptor(fd: number) :number
   | ------ | -------------------- |
   | number | 返回新的文件描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed   |
   | 1900013 | call os dup function failed |
 
 **示例：**
@@ -2799,17 +2858,18 @@ writeFileDescriptor(fd: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明         |
   | ------ | ------ | ---- | ------------ |
   | fd     | number | 是   | 文件描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------ |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2842,7 +2902,9 @@ readFileDescriptor(): number
   | ------ | ---------------- |
   | number | 返回文件描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2878,17 +2940,18 @@ writeAshmem(ashmem: Ashmem): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                  |
   | ------ | ------ | ---- | ------------------------------------- |
   | ashmem | Ashmem | 是   | 要写入MessageSequence的匿名共享对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------- |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -2924,7 +2987,9 @@ readAshmem(): Ashmem
   | ------ | ------------------ |
   | Ashmem | 返回匿名共享对象。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -2987,18 +3052,19 @@ writeRawData(rawData: number[], size: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
   | rawData | number[] | 是   | 要写入的原始数据。                 |
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
-  | 401 | verify param failed |
   | 1900009 | write data to message sequence failed |
 
 **示例：**
@@ -3023,7 +3089,7 @@ readRawData(size: number): number[]
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -3035,11 +3101,12 @@ readRawData(size: number): number[]
   | -------- | ------------------------------ |
   | number[] | 返回原始数据（以字节为单位）。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401  | verify param failed     |
   | 1900010 | read data from message sequence failed |
 
 **示例：**
@@ -3110,7 +3177,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                    |
   | ------ | ------------------------------- | ---- | --------------------------------------- |
@@ -3199,7 +3266,7 @@ writeInterfaceToken(token: string): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
@@ -3301,7 +3368,7 @@ setSize(size: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                        |
   | ------ | ------ | ---- | ------------------------------------------- |
@@ -3330,7 +3397,7 @@ setCapacity(size: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                        |
   | ------ | ------ | ---- | ------------------------------------------- |
@@ -3460,7 +3527,7 @@ rewindRead(pos: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -3494,7 +3561,7 @@ rewindWrite(pos: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -3526,7 +3593,7 @@ writeByte(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
@@ -3580,7 +3647,7 @@ writeShort(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明               |
   | ------ | ------ | ---- | ------------------ |
@@ -3634,7 +3701,7 @@ writeInt(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
@@ -3688,7 +3755,7 @@ writeLong(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
@@ -3742,7 +3809,7 @@ writeFloat(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明             |
   | ------ | ------ | ---- | ---------------- |
@@ -3796,7 +3863,7 @@ writeDouble(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                   |
   | ------ | ------ | ---- | ---------------------- |
@@ -3849,7 +3916,7 @@ writeBoolean(val: boolean): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型    | 必填 | 说明             |
   | ------ | ------- | ---- | ---------------- |
@@ -3903,7 +3970,7 @@ writeChar(val: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
@@ -3956,7 +4023,7 @@ writeString(val: string): boolean
 将字符串值写入MessageParcel实例。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
-**参数**
+**参数：**
   | 参数名 | 类型   | 必填 | 说明                                      |
   | ------ | ------ | ---- | ----------------------------------------- |
   | val    | string | 是   | 要写入的字符串值，其长度应小于40960字节。 |
@@ -4009,7 +4076,7 @@ writeSequenceable(val: Sequenceable): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                          | 必填 | 说明                 |
   | ------ | ----------------------------- | ---- | -------------------- |
@@ -4057,7 +4124,7 @@ readSequenceable(dataIn: Sequenceable) : boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                          | 必填 | 说明                                    |
   | ------ | ----------------------------- | ---- | --------------------------------------- |
@@ -4108,7 +4175,7 @@ writeByteArray(byteArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明               |
   | --------- | -------- | ---- | ------------------ |
@@ -4138,7 +4205,7 @@ readByteArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明               |
   | ------ | -------- | ---- | ------------------ |
@@ -4190,7 +4257,7 @@ writeShortArray(shortArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型     | 必填 | 说明                 |
   | ---------- | -------- | ---- | -------------------- |
@@ -4219,7 +4286,7 @@ readShortArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
@@ -4269,7 +4336,7 @@ writeIntArray(intArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型     | 必填 | 说明               |
   | -------- | -------- | ---- | ------------------ |
@@ -4298,7 +4365,7 @@ readIntArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明               |
   | ------ | -------- | ---- | ------------------ |
@@ -4348,7 +4415,7 @@ writeLongArray(longArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明                 |
   | --------- | -------- | ---- | -------------------- |
@@ -4377,7 +4444,7 @@ readLongArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
@@ -4427,7 +4494,7 @@ writeFloatArray(floatArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ---------- | -------- | ---- | --- |
@@ -4456,7 +4523,7 @@ readFloatArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | ------ | -------- | ---- | ------ |
@@ -4506,7 +4573,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名      | 类型     | 必填 | 说明                     |
   | ----------- | -------- | ---- | ------------------------ |
@@ -4535,7 +4602,7 @@ readDoubleArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                     |
   | ------ | -------- | ---- | ------------------------ |
@@ -4585,7 +4652,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名       | 类型      | 必填 | 说明               |
   | ------------ | --------- | ---- | ------------------ |
@@ -4614,7 +4681,7 @@ readBooleanArray(dataIn: boolean[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型      | 必填 | 说明               |
   | ------ | --------- | ---- | ------------------ |
@@ -4664,7 +4731,7 @@ writeCharArray(charArray: number[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型     | 必填 | 说明                   |
   | --------- | -------- | ---- | ---------------------- |
@@ -4693,7 +4760,7 @@ readCharArray(dataIn: number[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                   |
   | ------ | -------- | ---- | ---------------------- |
@@ -4743,7 +4810,7 @@ writeStringArray(stringArray: string[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名      | 类型     | 必填 | 说明 |
   | ----------- | -------- | ---- | ---------------- |
@@ -4772,7 +4839,7 @@ readStringArray(dataIn: string[]) : void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                 |
   | ------ | -------- | ---- | -------------------- |
@@ -4918,7 +4985,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名            | 类型           | 必填 | 说明                       |
   | ----------------- | -------------- | ---- | -------------------------- |
@@ -4969,7 +5036,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名            | 类型           | 必填 | 说明                       |
   | ----------------- | -------------- | ---- | -------------------------- |
@@ -5016,7 +5083,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名      | 类型            | 必填 | 说明 |
   | ----------- | --------------- | ---- | ----- |
@@ -5069,7 +5136,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
   | 参数名  | 类型            | 必填 | 说明 |
   | ------- | --------------- | ---- | --------- |
   | objects | IRemoteObject[] | 是   | 从MessageParcel读取的IRemoteObject对象数组。 |
@@ -5165,7 +5232,7 @@ static closeFileDescriptor(fd: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
@@ -5189,7 +5256,7 @@ static dupFileDescriptor(fd: number) :number
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -5248,7 +5315,7 @@ writeFileDescriptor(fd: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明         |
   | ------ | ------ | ---- | ------------ |
@@ -5307,7 +5374,7 @@ writeAshmem(ashmem: Ashmem): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                |
   | ------ | ------ | ---- | ----------------------------------- |
@@ -5386,7 +5453,7 @@ writeRawData(rawData: number[], size: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
@@ -5417,7 +5484,7 @@ readRawData(size: number): number[]
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -5456,7 +5523,7 @@ marshalling(dataOut: MessageSequence): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型            | 必填 | 说明                                        |
   | ------- | --------------- | ---- | ------------------------------------------- |
@@ -5507,7 +5574,7 @@ unmarshalling(dataIn: MessageSequence) : boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型            | 必填 | 说明                                            |
   | ------ | --------------- | ---- | ----------------------------------------------- |
@@ -5562,7 +5629,7 @@ marshalling(dataOut: MessageParcel): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                      |
   | ------- | ------------------------------- | ---- | ----------------------------------------- |
@@ -5613,7 +5680,7 @@ unmarshalling(dataIn: MessageParcel) : boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                          |
   | ------ | ------------------------------- | ---- | --------------------------------------------- |
@@ -5726,7 +5793,7 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数    | 值              | 说明                                  |
+  | 参数：    | 值              | 说明                                  |
   | ------- | --------------- | ------------------------------------- |
   | errCode | number          | 错误码。                              |
   | code    | number          | 消息代码。                            |
@@ -5739,7 +5806,7 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数    | 值            | 说明                                |
+  | 参数：    | 值            | 说明                                |
   | ------- | ------------- | ----------------------------------- |
   | errCode | number        | 错误码。                            |
   | code    | number        | 消息代码。                          |
@@ -5758,7 +5825,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
@@ -5770,13 +5837,6 @@ getLocalInterface(descriptor: string): IRemoteBroker
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
-**异常：**
-
-  | 错误码ID | 异常信息 |
-  | ----------------- | ------------ |
-  | 401 | verify param failed |
-
-
 ### queryLocalInterface<sup>deprecated</sup>
 
 queryLocalInterface(descriptor: string): IRemoteBroker
@@ -5785,7 +5845,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
@@ -5806,7 +5866,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型 | 必填 | 说明  |
   | ------- | ------------------------------- | ---- | ---- |
@@ -5830,7 +5890,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -5854,7 +5914,7 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -5878,7 +5938,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型                               | 必填 | 说明                                                                                   |
   | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -5897,7 +5957,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
   | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -5916,18 +5976,19 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注册的回调。 |
   | flags     | number                            | 是   | 死亡通知标志。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900008 | proxy or remote object is invalid |
 
 
@@ -5939,7 +6000,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
@@ -5961,18 +6022,19 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的回调。 |
   | flags     | number                            | 是   | 死亡通知标志。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900008 | proxy or remote object is invalid |
 
 
@@ -5984,7 +6046,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
@@ -6012,7 +6074,9 @@ getDescriptor(): string
   | ------ | ---------------- |
   | string | 返回接口描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -6055,7 +6119,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 参数                  | 值                      | 说明                              |
+| 参数：                  | 值                      | 说明                              |
 | --------------------- | ----------------------- | --------------------------------- |
 | PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
 | DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
@@ -6072,7 +6136,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -6135,7 +6199,7 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -6205,7 +6269,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -6274,7 +6338,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型                               | 必填 | 说明                                                                                   |
   | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -6284,11 +6348,6 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | options  | [MessageOption](#messageoption)    | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;RequestResult&gt; | 是   | 接收发送结果的回调。                                                                   |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------- | ------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -6346,7 +6405,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型                                   | 必填 | 说明                                                                                   |
   | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -6408,7 +6467,7 @@ getLocalInterface(interface: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型   | 必填 | 说明                   |
   | --------- | ------ | ---- | ---------------------- |
@@ -6420,11 +6479,6 @@ getLocalInterface(interface: string): IRemoteBroker
   | ------------- | ------------------------------------------ |
   | IRemoteBroker | 默认返回Null，标识该接口是一个代理侧接口。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ----- | ------------ |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -6466,7 +6520,7 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型   | 必填 | 说明                   |
   | --------- | ------ | ---- | ---------------------- |
@@ -6513,18 +6567,19 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注册的回调。 |
   | flags     | number                            | 是   | 死亡通知标志。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900008 | proxy or remote object is invalid |
 
 **示例：**
@@ -6572,7 +6627,7 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明                              |
   | --------- | --------------------------------- | ---- | --------------------------------- |
@@ -6624,18 +6679,19 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明           |
   | --------- | --------------------------------- | ---- | -------------- |
   | recipient | [DeathRecipient](#deathrecipient) | 是   | 要注销的回调。 |
   | flags     | number                            | 是   | 死亡通知标志。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401 | verify param failed |
   | 1900008 | proxy or remote object is invalid |
 
 **示例：**
@@ -6684,7 +6740,7 @@ removeDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型                              | 必填 | 说明                              |
   | --------- | --------------------------------- | ---- | --------------------------------- |
@@ -6744,7 +6800,9 @@ getInterfaceDescriptor(): string
   | ------ | ---------------- |
   | string | 返回接口描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -6870,7 +6928,7 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数          | 值   | 说明                                                        |
+  | 参数：          | 值   | 说明                                                        |
   | ------------- | ---- | ----------------------------------------------------------- |
   | TF_SYNC       | 0    | 同步调用。                                                  |
   | TF_ASYNC      | 1    | 异步调用。                                                  |
@@ -6886,7 +6944,7 @@ MessageOption构造函数。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型   | 必填 | 说明                                   |
   | --------- | ------ | ---- | -------------------------------------- |
@@ -6901,7 +6959,7 @@ MessageOption构造函数。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名    | 类型   | 必填 | 说明                                          |
   | --------- | ------ | ---- | --------------------------------------------- |
@@ -6932,11 +6990,6 @@ setAsync(async: boolean): void;
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------- | -------- |
-  | 401 | verify param failed |
 
 ### getFlags
 
@@ -6961,7 +7014,7 @@ setFlags(flags: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                     |
   | ------ | ------ | ---- | ------------------------ |
@@ -6991,7 +7044,7 @@ setWaitTime(waitTime: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型   | 必填 | 说明                  |
   | -------- | ------ | ---- | --------------------- |
@@ -7195,17 +7248,12 @@ static flushCmdBuffer(object : IRemoteObject): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                |
   | ------ | ------------------------------- | ---- | ------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | -------- | ------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -7243,7 +7291,7 @@ static flushCommands(object : IRemoteObject): number
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                |
   | ------ | ------------------------------- | ---- | ------------------- |
@@ -7317,17 +7365,11 @@ static restoreCallingIdentity(identity : string): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
   | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
-
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ------ | --------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -7355,7 +7397,7 @@ static setCallingIdentity(identity : string): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名   | 类型   | 必填 | 说明                                                               |
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
@@ -7398,7 +7440,7 @@ RemoteObject构造函数。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明         |
   | ---------- | ------ | ---- | ------------ |
@@ -7413,7 +7455,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -7478,7 +7520,7 @@ sendRequest(code : number, data : MessageParcel, reply : MessageParcel, options 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -7548,7 +7590,7 @@ sendMessageRequest(code : number, data : MessageSequence, reply : MessageSequenc
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型                            | 必填 | 说明                                                                                   |
   | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -7615,7 +7657,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名        | 类型                               | 必填 | 说明                                                                                   |
   | ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -7676,7 +7718,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名        | 类型                                   | 必填 | 说明                                                                                   |
   | ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
@@ -7739,7 +7781,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                    |
   | ------ | ------------------------------- | ---- | --------------------------------------- |
@@ -7800,7 +7842,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型                            | 必填 | 说明                                      |
   | ------ | ------------------------------- | ---- | ----------------------------------------- |
@@ -8039,7 +8081,7 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明                 |
   | ---------- | ------ | ---- | -------------------- |
@@ -8051,11 +8093,6 @@ getLocalInterface(descriptor: string): IRemoteBroker
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | -------- | ------- |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -8093,7 +8130,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名     | 类型   | 必填 | 说明                   |
   | ---------- | ------ | ---- | ---------------------- |
@@ -8146,7 +8183,9 @@ getInterfaceDescriptor(): string
   | ------ | ---------------- |
   | string | 返回接口描述符。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8231,18 +8270,13 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名         | 类型          | 必填 | 说明                                  |
   | -------------- | ------------- | ---- | ------------------------------------- |
   | localInterface | IRemoteBroker | 是   | 将与描述符绑定的IRemoteBroker对象。   |
   | descriptor     | string        | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ----------------- | ------------ |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -8282,7 +8316,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名         | 类型          | 必填 | 说明                                  |
   | -------------- | ------------- | ---- | ------------------------------------- |
@@ -8343,7 +8377,7 @@ static create(name: string, size: number): Ashmem
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
@@ -8356,11 +8390,6 @@ static create(name: string, size: number): Ashmem
   | ------ | ---------------------------------------------- |
   | Ashmem | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ----------------- | ------------ |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -8384,7 +8413,7 @@ static createAshmem(name: string, size: number): Ashmem
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
@@ -8414,7 +8443,7 @@ static create(ashmem: Ashmem): Ashmem
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
@@ -8426,11 +8455,6 @@ static create(ashmem: Ashmem): Ashmem
   | ------ | ---------------------- |
   | Ashmem | 返回创建的Ashmem对象。 |
 
-**异常：**
-
-  | 错误码ID | 错误信息 |
-  | ----------------- | ------------ |
-  | 401 | verify param failed |
 
 **示例：**
 
@@ -8461,7 +8485,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                 |
   | ------ | ------ | ---- | -------------------- |
@@ -8546,17 +8570,18 @@ mapTypedAshmem(mapType: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型   | 必填 | 说明                           |
   | ------- | ------ | ---- | ------------------------------ |
   | mapType | number | 是   | 指定映射的内存区域的保护等级。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | ------ |
-  | 401 | verify param failed     |
   | 1900001     | call mmap function failed |
 
 **示例：**
@@ -8580,7 +8605,7 @@ mapAshmem(mapType: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名  | 类型   | 必填 | 说明                           |
   | ------- | ------ | ---- | ------------------------------ |
@@ -8609,7 +8634,9 @@ mapReadAndWriteAshmem(): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8659,7 +8686,9 @@ mapReadonlyAshmem(): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
@@ -8709,13 +8738,15 @@ setProtectionType(protectionType: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名         | 类型   | 必填 | 说明               |
   | -------------- | ------ | ---- | ------------------ |
   | protectionType | number | 是   | 要设置的保护类型。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
@@ -8742,7 +8773,7 @@ setProtection(protectionType: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名         | 类型   | 必填 | 说明               |
   | -------------- | ------ | ---- | ------------------ |
@@ -8771,7 +8802,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                                               |
   | ------ | -------- | ---- | -------------------------------------------------- |
@@ -8779,11 +8810,12 @@ writeAshmem(buf: number[], size: number, offset: number): void
   | size   | number   | 是   | 要写入的数据大小。                                 |
   | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID | 错误信息 |
   | ------- | -------- |
-  | 401     | verify param failed    |
   | 1900003 | write to ashmem failed |
 
 **示例：**
@@ -8809,7 +8841,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型     | 必填 | 说明                                               |
   | ------ | -------- | ---- | -------------------------------------------------- |
@@ -8843,7 +8875,7 @@ readAshmem(size: number, offset: number): number[]
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
@@ -8856,11 +8888,12 @@ readAshmem(size: number, offset: number): number[]
   | -------- | ---------------- |
   | number[] | 返回读取的数据。 |
 
-**异常：**
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-rpc.md)
 
   | 错误码ID  | 错误信息 |
   | -------- | -------- |
-  | 401 | verify param failed |
   | 1900004 | read from ashmem failed |
 
 **示例：**
@@ -8888,7 +8921,7 @@ readFromAshmem(size: number, offset: number): number[]
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
-**参数**
+**参数：**
 
   | 参数名 | 类型   | 必填 | 说明                                               |
   | ------ | ------ | ---- | -------------------------------------------------- |
