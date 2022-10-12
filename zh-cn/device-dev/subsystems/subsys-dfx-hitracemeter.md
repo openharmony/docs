@@ -130,10 +130,20 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 
 ### 开发流程
+  1.编译依赖添加
 
-OpenHarmony上C++接口使用示例如下：
+```
+external_deps = [ "hitrace_native:hitrace_meter"]
+```
+  2.头文件依赖添加
 
-    #include "hitrace.h" // 包含hitrace.h
+```
+#include "hitrace_meter.h"//接口函数定义头文件
+```
+
+  3.接口调用示例
+
+    #include "hitrace_meter.h" // 包含hitrace_meter.h
     using namespace std;
     
     int main()
@@ -167,8 +177,6 @@ OpenHarmony上C++接口使用示例如下：
          return 0;
      }    
 
-在gn文件中添加外部依赖
-external_deps = [ "hitrace_native:hitrace_meter"]
 
 打点编译部署完成后，运行下面命令行来抓取trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
 hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
