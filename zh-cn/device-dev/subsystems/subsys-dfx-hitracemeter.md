@@ -141,7 +141,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 ## 开发步骤
   1.编译依赖添加。
-需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn
+需要修改的编译配置文件base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
 ```
 external_deps = [ "hitrace_native:hitrace_meter"]
@@ -200,7 +200,7 @@ hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 
 ## 调测验证
 
-以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace
+以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
 1.编写测试代码hitrace_example.cpp，将使用到的接口加入代码：
 
@@ -235,7 +235,7 @@ int main()
 ```
 
 2.修改gn编译文件并编译
-编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn
+编译配置文件路径base\hiviewdfx\hitrace\cmd\BUILD.gn 。
 
 ```
 ohos_executable("hitrace_example") {
@@ -255,7 +255,7 @@ group("hitrace_target") {
 }
 ```
 
-3.将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example
+3.将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
 
 ```
 <...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111
@@ -340,15 +340,15 @@ HiTraceMeter提供了可执行的二进制程序hitrace,设备刷openharmony后�
 
 ####   现象描述
 
-  执行hitrace命令抓数据不全或者没抓到数据
+  执行hitrace命令抓数据不全或者没抓到数据。
 
 ####   解决方法
 
-  参数-t 时间设置过小或者-b缓冲区buffer设置过小导致数据丢失，可设置-t 60，-b 204800扩大抓trace时间和缓冲区buffer解决
+  参数-t 时间设置过小或者-b缓冲区buffer设置过小导致数据丢失，可设置-t 60，-b 204800扩大抓trace时间和缓冲区buffer解决。
 
 
 
 # 参考
 
-更多关于HiTraceMeter的详细内容请参考：[hiviewdfx_hitrace: A Lightweight Distributed Tracing | 轻量级的分布式调用链跟踪 (gitee.com)](https://gitee.com/openharmony/hiviewdfx_hitrace)
+更多关于HiTraceMeter的详细内容请参考：[hiviewdfx_hitrace: A Lightweight Distributed Tracing | 轻量级的分布式调用链跟踪 (gitee.com)](https://gitee.com/openharmony/hiviewdfx_hitrace) 。
 
