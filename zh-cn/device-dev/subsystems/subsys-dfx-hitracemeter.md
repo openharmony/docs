@@ -178,7 +178,7 @@ hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 
 以下为一个demo调试过程
 
-测试代码hitrace_example.cpp：
+1.编写测试代码hitrace_example.cpp，将使用到的接口加入代码：
 
 ```
 int main()
@@ -210,7 +210,7 @@ int main()
 }
 ```
 
-gn编译文件
+2.修改gn编译文件并编译
 
 ```
 ohos_executable("hitrace_example") {
@@ -230,7 +230,7 @@ group("hitrace_target") {
 }
 ```
 
-hitrace_example运行有如下数据输出说明调试成功
+3.运行hitrace_example有如下数据输出说明调试成功
 
 ```
 <...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111
