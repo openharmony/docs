@@ -19,7 +19,7 @@ Trace数据分析可以在图形工具中人工分析，也可以使用分析脚
 
   HiTraceMeter跟踪数据使用类别分类，类别分类称作Trace Tag或Trace Category，一般一个端侧软件子系统对应一个Tag。该Tag在打点API中以类别Tag参数传入。Trace命令行工具采集跟踪数据时，只采集Tag类别选项指定的跟踪数据。应用程序跟踪数据标签都是属于APP Tag，从而JS接口不需要输入tag参数。目前HiTraceMeter支持的Trace Tag表如下(可在hitrace_meter.h https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h 中查看)：
 
-```
+```cpp
 constexpr uint64_t HITRACE_TAG_NEVER = 0; // This tag is never enabled.
 constexpr uint64_t HITRACE_TAG_ALWAYS = (1ULL << 0); // This tag is always enabled.
 constexpr uint64_t HITRACE_TAG_DLP_CREDENTIAL = (1ULL << 21); // This tag is dlp credential service.
@@ -154,6 +154,8 @@ external_deps = [ "hitrace_native:hitrace_meter"]
 
   3.接口调用示例。
 
+
+```cpp
     #include "hitrace_meter.h" // 包含hitrace_meter.h
     using namespace std;
     
@@ -188,6 +190,8 @@ external_deps = [ "hitrace_native:hitrace_meter"]
          return 0;
      }    
 
+```
+
   4.使用方法。
 
   打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
@@ -204,7 +208,7 @@ hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 
 1.编写测试代码hitrace_example.cpp，将使用到的接口加入代码：
 
-```
+```cpp
 int main()
 {
     thread t1(ThreadFunc1);
