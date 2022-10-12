@@ -17,7 +17,7 @@ HiTraceMeter系统主要分为三部分：
 
 Trace数据分析可以在图形工具中人工分析，也可以使用分析脚本自动化分析，Trace分析工具以Trace命令行工具的采集结果数据文件为输入。
 
-  HiTraceMeter跟踪数据使用类别分类，类别分类称作Trace Tag或Trace Category，一般一个端侧软件子系统对应一个Tag。该Tag在打点API中以类别Tag参数传入。Trace命令行工具采集跟踪数据时，只采集Tag类别选项指定的跟踪数据。应用程序跟踪数据标签都是属于APP Tag，从而JS接口不需要输入tag参数。目前HiTraceMeter支持的Trace Tag表如下(可在hitrace_meter.h [输入链接说明](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h) 中查看)：
+  HiTraceMeter跟踪数据使用类别分类，类别分类称作Trace Tag或Trace Category，一般一个端侧软件子系统对应一个Tag。该Tag在打点API中以类别Tag参数传入。Trace命令行工具采集跟踪数据时，只采集Tag类别选项指定的跟踪数据。应用程序跟踪数据标签都是属于APP Tag，从而JS接口不需要输入tag参数。目前HiTraceMeter支持的Trace Tag表如下(可在hitrace_meter.h [hitrace_meter.h](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h) 中查看)：
 
 ```cpp
 constexpr uint64_t HITRACE_TAG_NEVER = 0; // This tag is never enabled.
@@ -84,7 +84,7 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 ## 约束与限制
 
 HiTraceMeter所有功能与接口的实现都依赖于内核提供的ftrace功能，ftrace 是内核提供的一个 framework，采用 plugin 的方式支持开发人员添加更多种类的 trace 功能，因此使用HiTraceMeter之前要使能 ftrace，否则HiTraceMeter的功能无法使用（目前大部分Linux内核默认使能了ftrace，关于ftrace的详细介绍可查看内核ftrace相关资料 
- [输入链接说明](https://blog.csdn.net/Luckiers/article/details/124646205) ），HiTraceMeter仅限小型系统、标准系统下使用。
+ [ftrace相关资料](https://blog.csdn.net/Luckiers/article/details/124646205) ），HiTraceMeter仅限小型系统、标准系统下使用。
 
 
 
@@ -101,7 +101,7 @@ HiTraceMeter分为JS/C++应用打点API与数据采集命令行工具hitrace，�
 
 ## 接口说明
 
-C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开发者可以略过本节。标准系统上接口描述如下（hitrace_meter.h  [输入链接说明](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h) ）：
+C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开发者可以略过本节。标准系统上接口描述如下（hitrace_meter.h  [hitrace_meter.h](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/interfaces/native/innerkits/include/hitrace_meter/hitrace_meter.h) ）：
 
 **表 1**  同步接口
 
@@ -197,13 +197,13 @@ external_deps = [ "hitrace_native:hitrace_meter"]
 hdc_std shell hitrace -t 10 ohos > .\myapp_demo.ftrace
 ```
 
-  抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 https://toscode.gitee.com/openharmony-sig/smartperf 。
+  抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
 
 ## 调测验证
 
 以下为一个demo调试过程，该demo使用了同步接口中的StartTrace和FinishTrace。
 
-1.编写测试代码hitrace_example.cpp（ [输入链接说明](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
+1.编写测试代码hitrace_example.cpp（ [hitrace_example.cpp](https://gitee.com/openharmony/hiviewdfx_hitrace/blob/master/cmd/example/hitrace_example.cpp)  ），将使用到的接口加入代码：
 
 ```cpp
 int main()
