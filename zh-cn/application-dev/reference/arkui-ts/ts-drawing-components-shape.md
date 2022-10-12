@@ -14,7 +14,7 @@
 
 ## 子组件
 
-可以包含子组件。
+包含[Rect](ts-drawing-components-rect.md)、[Path](ts-drawing-components-path.md)、[Circle](ts-drawing-components-circle.md)、[Ellipse](ts-drawing-components-ellipse.md)、[Polyline](ts-drawing-components-polyline.md)、[Polygon](ts-drawing-components-polygon.md)、[Image](ts-basic-components-image.md)、[Text](ts-basic-components-text.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)子组件。
 
 
 ## 接口
@@ -37,14 +37,14 @@ Shape(value?: PixelMap)
 | viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 否 | 形状的视口。 |
 | fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
+| stroke | [ResourceColor](ts-types.md) | - | 否 | 设置边框颜色，不设置时，默认没有边框线条。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 边框绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置边框端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置边框拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 否 | 设置线条宽度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置边框透明度。 |
+| strokeWidth | number&nbsp;\|&nbsp;string | 1 | 否 | 设置边框宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 否 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 |
 
