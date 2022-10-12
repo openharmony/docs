@@ -45,6 +45,7 @@
 - Peripheral Driver Usage
   - [Audio](driver-peripherals-audio-des.md)
   - [Camera](driver-peripherals-camera-des.md)
+  - [Codec](driver-peripherals-codec-des.md)
   - [Facial Authentication](driver-peripherals-face_auth-des.md)
   - [Fingerprint Authentication](driver-peripherals-fingerprint_auth-des.md)
   - [LCD](driver-peripherals-lcd-des.md)
