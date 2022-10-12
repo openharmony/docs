@@ -69,7 +69,7 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 onRequest(want: Want, startId: number): void;
 
-Extension生命周期回调，在开始执行输入法应用时回调，执行输入法的相关操作。
+Extension生命周期回调，在一个输入法extention开始时回调，执行输入法的相关操作。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -87,7 +87,7 @@ Extension生命周期回调，在开始执行输入法应用时回调，执行�
 
 onConnect(want: Want): rpc.RemoteObject;
 
-Extension生命周期回调，在首次链接输入法ability时回调。
+Extension生命周期回调，在输入法extention首次连接输入法ability时回调。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -105,7 +105,7 @@ Extension生命周期回调，在首次链接输入法ability时回调。
 
 onDisconnect(want: Want): rpc.RemoteObject;
 
-Extension生命周期回调，在所有链接在输入法extention上的ability都断开的时候回调。
+Extension生命周期回调，在所有连接在输入法extention上的ability都断开的时候回调。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 

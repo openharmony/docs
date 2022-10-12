@@ -34,8 +34,12 @@ import inputMethod from '@ohos.inputmethod';
 | -------- | -------- | -------- | -------- | -------- |
 | packageName<sup>deprecated</sup> | string | 是 | 否 | 包名。 |
 | methodId<sup>deprecated</sup> | string | 是 | 否 | Ability名。 |
-| name<sup>9+</sup>  | string | 是 | 否 | 包名。 |
-| id<sup>9+</sup>    | string | 是 | 否 | Ability名。 |
+| name<sup>9+</sup>  | string | 是 | 否 | 包名，非必填项。 |
+| id<sup>9+</sup>    | string | 是 | 否 | Ability名，非必填项。 |
+| label<sup>9+</sup>    | string | 是 | 否 | 输入法标签，非必填项。| 
+| icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标，非必填项。 |
+| iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标id，非必填项。 |
+| extra<sup>9+</sup>    | object | 是 | 否 | 输入法其他信息，非必填项。 |
 
 ## inputMethod.getInputMethodController<sup>deprecated</sup>
 
@@ -82,11 +86,16 @@ getController(): InputMethodController
   var InputMethodController = inputMethod.getController();
 ```
 
-## inputMethod.getInputMethodSetting<sup>8+</sup>
+## inputMethod.getInputMethodSetting<sup>deprecated</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[getSetting](#getSetting)替代
+>
+> 从 API version 6开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -145,17 +154,23 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 **示例：**
 
 ```js
-inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'} ,(err,result) => {
-    if (err) {
-        console.error('switchInputMethod err: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Success to switchInputMethod.(callback)');
-    } else {
-        console.error('Failed to switchInputMethod.(callback)');
-    }
-});
+try{
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}, (err, result) => {
+        if (err) {
+            // 处理业务逻辑执行错误
+            console.error('switchInputMethod err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchInputMethod.(callback)');
+        } else {
+            console.error('Failed to switchInputMethod.(callback)');
+        }
+    });
+} catch(err) {
+    // 捕获参数错误
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
@@ -181,15 +196,19 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
-    if (result) {
-        console.info('Success to switchInputMethod.(promise)');
-    } else {
-        console.error('Failed to switchInputMethod.(promise)');
-    }
-}).catch((err) => {
-    console.error('switchInputMethod promise err: ' + err);
-})
+try {
+    inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
+        if (result) {
+            console.info('Success to switchInputMethod.(promise)');
+        } else {
+            console.error('Failed to switchInputMethod.(promise)');
+        }
+    }).catch((err) => {
+        console.error('switchInputMethod promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
@@ -232,17 +251,25 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 **示例：**
 
 ```js
-inputMethod.switchCurrentInputMethodSubtype(subType ,(err,result) => {
-    if (err) {
-        console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Success to switchCurrentInputMethodSubtype.(callback)');
-    } else {
-        console.error('Failed to switchCurrentInputMethodSubtype.(callback)');
-    }
-});
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+try {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubProperty, (err, result) => {
+        if (err) {
+            console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchCurrentInputMethodSubtype.(callback)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodSubtype.(callback)');
+        }
+    });
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
@@ -264,15 +291,23 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 **示例：**
 
 ```js
-inputMethod.switchCurrentInputMethodSubtype(subType).then((result) => {
-    if (result) {
-        console.info('Success to switchCurrentInputMethodSubtype.(promise)');
-    } else {
-        console.error('Failed to switchCurrentInputMethodSubtype.(promise)');
-    }
-}).catch((err) => {
-    console.error('switchCurrentInputMethodSubtype promise err: ' + err);
-})
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+try {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubProperty).then((result) => {
+        if (result) {
+            console.info('Success to switchCurrentInputMethodSubtype.(promise)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodSubtype.(promise)');
+        }
+    }).catch((err) => {
+        console.error('switchCurrentInputMethodSubtype promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
@@ -318,17 +353,29 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 **示例：**
 
 ```js
-inputMethod.switchCurrentInputMethodAndSubtype(property, subType ,(err,result) => {
-    if (err) {
-        console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Success to switchCurrentInputMethodAndSubtype.(callback)');
-    } else {
-        console.error('Failed to switchCurrentInputMethodAndSubtype.(callback)');
-    }
-});
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+let inputMethodProperty = {
+    name: 'com.example.kikakeyboard', 
+    id: 'com.example.kikakeyboard'
+}
+try {
+    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
+        if (err) {
+            console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to switchCurrentInputMethodAndSubtype.(callback)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodAndSubtype.(callback)');
+        }
+    });
+} catch (err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
@@ -351,20 +398,32 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 **示例：**
 
 ```js
-inputMethod.switchCurrentInputMethodAndSubtype(property, subType).then((result) => {
-    if (result) {
-        console.info('Success to switchCurrentInputMethodAndSubtype.(promise)');
-    } else {
-        console.error('Failed to switchCurrentInputMethodAndSubtype.(promise)');
-    }
-}).catch((err) => {
-    console.error('switchCurrentInputMethodAndSubtype promise err: ' + err);
-})
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+let inputMethodProperty = {
+    name: 'com.example.kikakeyboard', 
+    id: 'com.example.kikakeyboard'
+}
+try {
+    inputMethod.switchCurrentInputMethodAndSubtype(property, subType).then((result) => {
+        if (result) {
+            console.info('Success to switchCurrentInputMethodAndSubtype.(promise)');
+        } else {
+            console.error('Failed to switchCurrentInputMethodAndSubtype.(promise)');
+        }
+    }).catch((err) => {
+        console.error('switchCurrentInputMethodAndSubtype promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ## InputMethodController
 
-下列API示例中都需使用[getInputMethodController](#inputmethodgetinputmethodcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getController](#inputmethodgetcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput<sup>deprecated</sup>
 
@@ -412,7 +471,6 @@ stopInput(): Promise&lt;boolean&gt;
 
 **示例：**
 
-
 ```js
 InputMethodController.stopInput().then((result) => {
     if (result) {
@@ -442,17 +500,21 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-InputMethodController.stopInputSession((error, result) => {
-    if (error) {
-        console.error('failed to stopInputSession because: ' + JSON.stringify(error));
-        return;
-    }
-    if (result) {
-        console.info('Success to stopInputSession.(callback)');
-    } else {
-        console.error('Failed to stopInputSession.(callback)');
-    }
-});
+try {
+    InputMethodController.stopInputSession((error, result) => {
+        if (error) {
+            console.error('failed to stopInputSession because: ' + JSON.stringify(error));
+            return;
+        }
+        if (result) {
+            console.info('Success to stopInputSession.(callback)');
+        } else {
+            console.error('Failed to stopInputSession.(callback)');
+        }
+    });
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### stopInputSession
@@ -471,17 +533,20 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 **示例：**
 
-
 ```js
-InputMethodController.stopInputSession().then((result) => {
-    if (result) {
-        console.info('Success to stopInputSession.(promise)');
-    } else {
-        console.error('Failed to stopInputSession.(promise)');
-    }
-}).catch((err) => {
-    console.error('stopInputSession promise err: ' + err);
-})
+try {
+    InputMethodController.stopInputSession().then((result) => {
+        if (result) {
+            console.info('Success to stopInputSession.(promise)');
+        } else {
+            console.error('Failed to stopInputSession.(promise)');
+        }
+    }).catch((err) => {
+        console.error('stopInputSession promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### showSoftKeyboard<sup>9+</sup> ###
@@ -509,7 +574,6 @@ InputMethodController.showSoftKeyboard((err) => {
     }
 })
 ```
-
 
 ### showSoftKeyboard<sup>9+</sup> ###
 
@@ -588,7 +652,7 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getInputMethodSetting](#inputmethodgetinputmethodcontroller)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getSetting](#inputmethodgetsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### on('imeChange')<a name="imeChange"></a>
 
@@ -653,13 +717,21 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethodSubtype({"name":'', "id":''}, (err,data) => {
-    if (err) {
-        console.error('listInputMethod failed because: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('listInputMethod success');
- });
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+try {
+    InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty, (err,data) => {
+        if (err) {
+            console.error('listInputMethodSubtype failed because: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('listInputMethodSubtype success');
+    });
+} catch (err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
@@ -679,11 +751,19 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 **示例：**
 
 ```js
-InputMethodSetting.listInputMethodSubtype().then((data) => {
-    console.info('listInputMethodSubtype success');
-}).catch((err) => {
-    console.error('listInputMethodSubtype promise err: ' + err);
-})
+let inputMethodSubProperty = {
+    id: "com.example.kikainput",
+    label: "ServiceExtAbility"
+}
+try {
+    InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty).then((data) => {
+        console.info('listInputMethodSubtype success');
+    }).catch((err) => {
+        console.error('listInputMethodSubtype promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### listCurrentInputMethodSubtype<sup>9+</sup>
@@ -703,13 +783,17 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 **示例：**
 
 ```js
-InputMethodSetting.listCurrentInputMethodSubtype((err,data) => {
-    if (err) {
-        console.error('listCurrentInputMethodSubtype failed because: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('listCurrentInputMethodSubtype success');
- });
+try {
+    InputMethodSetting.listCurrentInputMethodSubtype((err,data) => {
+        if (err) {
+            console.error('listCurrentInputMethodSubtype failed because: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('listCurrentInputMethodSubtype success');
+    });
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### listCurrentInputMethodSubtype<sup>9+</sup>
@@ -729,11 +813,16 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 **示例：**
 
 ```js
-InputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
-    console.info('listCurrentInputMethodSubtype success');
-}).catch((err) => {
-    console.error('listCurrentInputMethodSubtype promise err: ' + err);
-})
+try {
+    InputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
+        console.info('listCurrentInputMethodSubtype success');
+    }).catch((err) => {
+        console.error('listCurrentInputMethodSubtype promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
+
 ```
 
 ### getInputMethods<sup>9+</sup>
@@ -754,13 +843,17 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 **示例：**
 
 ```js
-InputMethodSetting.getInputMethods(true, (err,data) => {
-    if (err) {
-        console.error('getInputMethods failed because: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('getInputMethods success');
- });
+try {
+    InputMethodSetting.getInputMethods(true, (err,data) => {
+        if (err) {
+            console.error('getInputMethods failed because: ' + JSON.stringify(err));
+            return;
+        }
+        console.log('getInputMethods success');
+    });
+} catch (err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### getInputMethods<sup>9+</sup>
@@ -786,11 +879,15 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 **示例：**
 
 ```js
-InputMethodSetting.getInputMethods(true).then((data) => {
-    console.info('getInputMethods success');
-}).catch((err) => {
-    console.error('getInputMethods promise err: ' + err);
-})
+try {
+    InputMethodSetting.getInputMethods(true).then((data) => {
+        console.info('getInputMethods success');
+    }).catch((err) => {
+        console.error('getInputMethods promise err: ' + err);
+    })
+} catch(err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
 ### listInputMethod<sup>deprecated</sup>
@@ -888,16 +985,20 @@ showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-InputMethodSetting.showOptionalInputMethods((err) => {
-    if (err) {
-        console.error('showOptionalInputMethods failed because: ' + JSON.stringify(err));
-        return;
-    }
-    console.info('showOptionalInputMethods success');
-});
+try {
+    InputMethodSetting.showOptionalInputMethods((err) => {
+        if (err) {
+            console.error('showOptionalInputMethods failed because: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('showOptionalInputMethods success');
+    });
+} catch (err) {
+    console.error('err: ' + err.code + 'err message: ' + err.message);
+}
 ```
 
-### displayOptionalInputMethod
+### displayOptionalInputMethod<sup>deprecated</sup>
 
 displayOptionalInputMethod(): Promise&lt;void&gt;
 

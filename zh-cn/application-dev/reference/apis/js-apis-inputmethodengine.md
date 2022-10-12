@@ -57,6 +57,11 @@ getInputMethodEngine(): InputMethodEngine
 
 获取服务端实例。
 
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[getInputMethodAbility](#getInputMethodAbility)替代
+>
+> 从 API version 8开始支持。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -71,7 +76,7 @@ getInputMethodEngine(): InputMethodEngine
   var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
   ```
 
-## inputMethodAbility.getInputMethodAbility<a name="getInputMethodAbility"></a>
+## inputMethodAbility.getInputMethodAbility<a name="getInputMethodAbility"></a><sup>9+</sup>
 
 getInputMethodAbility(): InputMethodAbility
 
@@ -96,6 +101,11 @@ getInputMethodAbility(): InputMethodAbility
 createKeyboardDelegate(): KeyboardDelegate
 
 获取客户端监听实例。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[getKeyboardDelegate](#getKeyboardDelegate)替代
+>
+> 从 API version 8开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
