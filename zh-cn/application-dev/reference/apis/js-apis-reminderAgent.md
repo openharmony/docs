@@ -10,7 +10,7 @@
 
 ## 导入模块
 
-```
+```js
 import reminderAgent from'@ohos.reminderAgent';
 ```
 
@@ -453,9 +453,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | ReminderType | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton?,&nbsp;ActionButton?] | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
-| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | MaxScreenWantAgent | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
+| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔。 |

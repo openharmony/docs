@@ -23,7 +23,7 @@
 
 ## 导入模块
 
-```
+```js
 import bundleState from '@ohos.bundleState'
 ```
 
@@ -31,7 +31,7 @@ import bundleState from '@ohos.bundleState'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Callback形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限：ohos.permission.BUNDLE_ACTIVE_INFO，使用Callback形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -44,7 +44,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例**：
 
-  ```
+  ```js
     bundleState.isIdleState("com.ohos.camera", (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE isIdleState callback failed, because: ' + err.code);
@@ -58,7 +58,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Promise形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限：ohos.permission.BUNDLE_ACTIVE_INFO，使用Promise形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -237,7 +237,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
   ```js
-    bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000, (err, res) => {
+    bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000, (err, res) => {
         if (err) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval callback failed, because: ' + err.code);
         } else {
@@ -279,7 +279,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 **示例**：
 
   ```js
-    bundleState.queryBundleStateInfoByInterval(0, 0, 20000000000000).then( res => {
+    bundleState.queryBundleStateInfoByInterval(bundleState.IntervalType.BY_OPTIMIZED, 0, 20000000000000).then( res => {
         console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise success.');
         for (let i = 0; i < res.length; i++) {
             console.log('BUNDLE_ACTIVE queryBundleStateInfoByInterval promise number : ' + (i + 1));
