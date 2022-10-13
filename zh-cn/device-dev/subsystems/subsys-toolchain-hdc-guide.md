@@ -523,6 +523,7 @@ hdc_std list targets -v
 ### hdc client如何远程访问hdc server
 
 - **使用场景**
+
   本地client指定远程server上的设备，执行hdc命令。
 
 - **连接步骤**
