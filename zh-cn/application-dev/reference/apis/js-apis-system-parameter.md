@@ -12,11 +12,11 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemparameter'
+import parameter from '@ohos.systemparameter'
 ```
 
 
-## systemparameter.getSync
+## parameter.getSync
 
 getSync(key: string, def?: string): string
 
@@ -41,7 +41,7 @@ getSync(key: string, def?: string): string
 
 ```ts
 try {
-    var info = systemparameter.getSync("const.ohos.apiversion");
+    var info = parameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 }catch(e){
     console.log("getSync unexpected error: " + e);
@@ -49,7 +49,7 @@ try {
 ```
 
 
-## systemparameter.get
+## parameter.get
 
 get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -68,7 +68,7 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 try {
-    systemparameter.get("const.ohos.apiversion", function (err, data) {
+    parameter.get("const.ohos.apiversion", function (err, data) {
     if (err == undefined) {
         console.log("get test.parameter.key value success:" + data)
     } else {
@@ -80,7 +80,7 @@ try {
 ```
 
 
-## systemparameter.get
+## parameter.get
 
 get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -100,7 +100,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 try {
-    systemparameter.get("const.ohos.apiversion", "default", function (err, data) {
+    parameter.get("const.ohos.apiversion", "default", function (err, data) {
         if (err == undefined) {
             console.log("get test.parameter.key value success:" + data)
         } else {
@@ -113,7 +113,7 @@ try {
 ```
 
 
-## systemparameter.get
+## parameter.get
 
 get(key: string, def?: string): Promise&lt;string&gt;
 
@@ -138,7 +138,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 ```ts
 try {
-    var p = systemparameter.get("const.ohos.apiversion");
+    var p = parameter.get("const.ohos.apiversion");
     p.then(function (value) {
         console.log("get test.parameter.key success: " + value);
     }).catch(function (err) {
@@ -150,7 +150,7 @@ try {
 ```
 
 
-## systemparameter.setSync
+## parameter.setSync
 
 setSync(key: string, value: string): void
 
@@ -169,14 +169,14 @@ setSync(key: string, value: string): void
 
 ```ts
 try {
-    systemparameter.setSync("test.parameter.key", "default");
+    parameter.setSync("test.parameter.key", "default");
 }catch(e){
     console.log("set unexpected error: " + e);
 }
 ```
 
 
-## systemparameter.set
+## parameter.set
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -196,7 +196,7 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 try {
-    systemparameter.set("test.parameter.key", "testValue", function (err, data) {
+    parameter.set("test.parameter.key", "testValue", function (err, data) {
     if (err == undefined) {
         console.log("set test.parameter.key value success :" + data)
     } else {
@@ -208,7 +208,7 @@ try {
 ```
 
 
-## systemparameter.set
+## parameter.set
 
 set(key: string, value: string): Promise&lt;void&gt;
 
@@ -233,7 +233,7 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 ```ts
 try {
-    var p = systemparameter.set("test.parameter.key", "testValue");
+    var p = para.set("test.parameter.key", "testValue");
     p.then(function (value) {
         console.log("set test.parameter.key success: " + value);
     }).catch(function (err) {
@@ -243,3 +243,4 @@ try {
     console.log("set unexpected error: " + e);
 }
 ```
+
