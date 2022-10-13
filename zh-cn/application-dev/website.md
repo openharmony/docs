@@ -183,11 +183,10 @@
     - [公共事件与通知概述](notification/notification-brief.md)
     - [公共事件开发指导](notification/common-event.md)
     - [通知开发指导](notification/notification-guidelines.md)
-    - 后台代理提醒
+    - [调试助手使用指导](notification/assistant-guidelines.md)
+  - 窗口管理    - 后台代理提醒
       - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
       - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
-    - [调试助手使用指导](notification/assistant-guidelines.md)
-  - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
     - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
     - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
@@ -266,6 +265,9 @@
     - 延迟任务调度
       - [延迟任务调度概述](task-management/work-scheduler-overview.md)
       - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+    - 后台代理提醒
+      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -729,7 +731,6 @@
       - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
       - [@ohos.notification (Notification模块)](reference/apis/js-apis-notification.md)
-      - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [EventHub (EventHub)](reference/apis/js-apis-eventhub.md)
     - 应用程序包管理
       - [@ohos.bundle (Bundle模块)](reference/apis/js-apis-Bundle.md)
@@ -785,6 +786,7 @@
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
       - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
+      - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
       - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)

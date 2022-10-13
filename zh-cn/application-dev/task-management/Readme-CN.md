@@ -7,3 +7,7 @@
 - 延迟任务调度
   - [延迟任务调度概述](work-scheduler-overview.md)
   - [延迟任务调度开发指导](work-scheduler-dev-guide.md)
+
+- 后台代理提醒
+  - [后台代理提醒开发概述](background-agent-scheduled-reminder-overview.md)
+  - [后台代理提醒开发指导](background-agent-scheduled-reminder-guide.md)
