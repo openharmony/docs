@@ -19,30 +19,36 @@
 
 ```ts
 // xxx.ets
-import prompt from '@system.prompt'
+import prompt from '@ohos.prompt';
 
 @Entry
 @Component
 struct AppearExample {
-  @State isShow: boolean = true
-  private myText: string = 'Text for onAppear'
-  private changeAppear: string = 'Hide Text'
+  @State isShow: boolean = true;
+  @State changeAppear: string = 'Hide Text';
+  private myText: string = 'Text for onAppear';
 
   build() {
     Column() {
       Button(this.changeAppear)
         .onClick(() => {
-          this.isShow = !this.isShow
-        }).margin(3).backgroundColor(0x2788D9)
+          this.isShow = !this.isShow;
+        }).margin(15)
       if (this.isShow) {
-        Text(this.myText)
+        Text(this.myText).fontSize(26).fontWeight(FontWeight.Bold)
           .onAppear(() => {
-            this.changeAppear = 'Show Text'
-            prompt.showToast({ message: 'The text is shown', duration: 2000 })
+            this.changeAppear = 'Hide Text';
+            prompt.showToast({
+              message: 'The text is shown',
+              duration: 2000
+            })
           })
           .onDisAppear(() => {
-            this.changeAppear = 'Hide Text'
-            prompt.showToast({ message: 'The text is hidden', duration: 2000 })
+            this.changeAppear = 'Show Text';
+            prompt.showToast({
+              message: 'The text is hidden',
+              duration: 2000
+            })
           })
       }
     }.padding(30).width('100%')
