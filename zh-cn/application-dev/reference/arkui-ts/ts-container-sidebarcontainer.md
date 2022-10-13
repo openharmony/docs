@@ -59,13 +59,6 @@ SideBarContainer( type?: SideBarContainerType )
 | Start | 侧边栏位于容器左侧。 |
 | End | 侧边栏位于容器右侧。 |
 
-## SideBarPosition<sup>9+</sup>枚举说明
-
-| 名称 | 描述 |
-| -------- | -------- |
-| Start | 侧边栏位于容器左侧。 |
-| End | 侧边栏位于容器右侧。 |
-
 ## 事件
 
 | 名称 | 功能描述 |
