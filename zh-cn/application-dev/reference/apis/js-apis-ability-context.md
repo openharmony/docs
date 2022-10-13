@@ -14,7 +14,7 @@ AbilityContext模块提供允许访问特定Ability的资源的能力，包括�
 在使用AbilityContext的功能前，需要通过Ability子类实例获取。
 
 ```js
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability';
 class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         let context = this.context;
@@ -34,7 +34,7 @@ class MainAbility extends Ability {
 
 ## AbilityContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
+startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 启动Ability（callback形式）。
 
@@ -63,7 +63,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 ## AbilityContext.startAbility
 
-startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
+startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
 启动Ability（callback形式）。
 
@@ -1143,7 +1143,7 @@ setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
 ## AbilityContext.setMissionLabel
 
-setMissionLabel(label: string): Promise&lt;void&gt;
+setMissionLabel(label: string): Promise&lt;void&gt;;
 
 设置ability在任务中显示的名称（promise形式）。
 
@@ -1190,7 +1190,7 @@ setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 **示例：**
 
   ```js
-    import image from '@ohos.multimedia.image'
+    import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
     var initializationOptions = {
@@ -1237,7 +1237,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 **示例：**
 
   ```js
-    import image from '@ohos.multimedia.image'
+    import image from '@ohos.multimedia.image';
     var imagePixelMap;
     var color = new ArrayBuffer(0);
     var initializationOptions = {
