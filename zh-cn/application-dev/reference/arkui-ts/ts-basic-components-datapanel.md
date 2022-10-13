@@ -22,7 +22,7 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 | 参数名            | 参数类型   | 必填  | 参数描述 |
 | ----------------- | -------- | ----- | -------- |
-| values            | number[]   | 是    | 数据值列表，最大支持9个数据。 |
+| values            | number[]   | 是    | 数据值列表，最多包含9个数据，大于9个数据则取前9个数据。若数据值小于0则置为0。 |
 | max               | number     | 否    |   -&nbsp;max大于0，表示数据的最大值。<br/>-&nbsp;max小于等于0，max等于value数组各项的和，按比例显示。<br/>默认值：100 |
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype枚举说明) | 否 | 数据面板的类型。<br/>默认值：DataPanelType.Circle |
 
