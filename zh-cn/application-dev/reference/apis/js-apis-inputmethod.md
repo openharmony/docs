@@ -32,8 +32,8 @@ import inputMethod from '@ohos.inputmethod';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName<sup>deprecated</sup> | string | 是 | 否 | 包名。 |
-| methodId<sup>deprecated</sup> | string | 是 | 否 | Ability名。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 包名。 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | Ability名。 |
 | name<sup>9+</sup>  | string | 是 | 否 | 包名，非必填项。 |
 | id<sup>9+</sup>    | string | 是 | 否 | Ability名，非必填项。 |
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法标签，非必填项。| 
@@ -41,7 +41,7 @@ import inputMethod from '@ohos.inputmethod';
 | iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标id，非必填项。 |
 | extra<sup>9+</sup>    | object | 是 | 否 | 输入法其他信息，非必填项。 |
 
-## inputMethod.getInputMethodController<sup>deprecated</sup>
+## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
 getInputMethodController(): InputMethodController
 
@@ -86,7 +86,7 @@ getController(): InputMethodController
   var InputMethodController = inputMethod.getController();
 ```
 
-## inputMethod.getInputMethodSetting<sup>deprecated</sup>
+## inputMethod.getInputMethodSetting<sup>(deprecated)</sup>
 
 getInputMethodSetting(): InputMethodSetting
 
@@ -169,7 +169,7 @@ try{
     });
 } catch(err) {
     // 捕获参数错误
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchInputMethod err: ' + JSON.stringify(err));
 }
 ```
 ## inputMethod.switchInputMethod<sup>9+</sup>
@@ -204,10 +204,10 @@ try {
             console.error('Failed to switchInputMethod.(promise)');
         }
     }).catch((err) => {
-        console.error('switchInputMethod promise err: ' + err);
+        console.error('switchInputMethod promise err: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchInputMethod err: ' + JSON.stringify(err));
 }
 ```
 
@@ -268,7 +268,7 @@ try {
         }
     });
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
 }
 ```
 
@@ -303,10 +303,10 @@ try {
             console.error('Failed to switchCurrentInputMethodSubtype.(promise)');
         }
     }).catch((err) => {
-        console.error('switchCurrentInputMethodSubtype promise err: ' + err);
+        console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
 }
 ```
 
@@ -353,13 +353,13 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 **示例：**
 
 ```js
+let inputMethodProperty = {
+    packageName:"com.example.kikakeyboard",
+    methodId:"ServiceExtAbility"
+}
 let inputMethodSubProperty = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
-}
-let inputMethodProperty = {
-    name: 'com.example.kikakeyboard', 
-    id: 'com.example.kikakeyboard'
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, inputMethodSubProperty, (err,result) => {
@@ -374,7 +374,7 @@ try {
         }
     });
 } catch (err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchCurrentInputMethodAndSubtype err: ' + JSON.stringify(err));
 }
 ```
 
@@ -398,13 +398,13 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 **示例：**
 
 ```js
+let inputMethodProperty = {
+    packageName:"com.example.kikakeyboard",
+    methodId:"ServiceExtAbility"
+}
 let inputMethodSubProperty = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
-}
-let inputMethodProperty = {
-    name: 'com.example.kikakeyboard', 
-    id: 'com.example.kikakeyboard'
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(property, subType).then((result) => {
@@ -417,7 +417,7 @@ try {
         console.error('switchCurrentInputMethodAndSubtype promise err: ' + err);
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('switchCurrentInputMethodAndSubtype promise err: ' + err);
 }
 ```
 
@@ -425,11 +425,16 @@ try {
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
-### stopInput<sup>deprecated</sup>
+### stopInput<sup>(deprecated)</sup>
 
 stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 
 隐藏输入法。使用callback形式返回结果。参数个数为1，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[stopInputSession](#stopInputSession)替代
+>
+> 从 API version 6开始支持。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -455,11 +460,16 @@ InputMethodController.stopInput((error, result) => {
 });
 ```
 
-### stopInput<sup>deprecated</sup>
+### stopInput<sup>(deprecated)</sup>
 
 stopInput(): Promise&lt;boolean&gt;
 
 隐藏输入法。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[stopInputSession](#stopInputSession)替代
+>
+> 从 API version 6开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -503,7 +513,7 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 try {
     InputMethodController.stopInputSession((error, result) => {
         if (error) {
-            console.error('failed to stopInputSession because: ' + JSON.stringify(error));
+            console.error('stopInputSession err: ' + JSON.stringify(error));
             return;
         }
         if (result) {
@@ -512,8 +522,8 @@ try {
             console.error('Failed to stopInputSession.(callback)');
         }
     });
-} catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+} catch(error) {
+    console.error('stopInputSession err: ' + JSON.stringify(error));
 }
 ```
 
@@ -542,10 +552,10 @@ try {
             console.error('Failed to stopInputSession.(promise)');
         }
     }).catch((err) => {
-        console.error('stopInputSession promise err: ' + err);
+        console.error('stopInputSession err: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('stopInputSession err: ' + JSON.stringify(err));
 }
 ```
 
@@ -724,13 +734,13 @@ let inputMethodSubProperty = {
 try {
     InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty, (err,data) => {
         if (err) {
-            console.error('listInputMethodSubtype failed because: ' + JSON.stringify(err));
+            console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
             return;
         }
         console.log('listInputMethodSubtype success');
     });
 } catch (err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
 }
 ```
 
@@ -759,10 +769,10 @@ try {
     InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty).then((data) => {
         console.info('listInputMethodSubtype success');
     }).catch((err) => {
-        console.error('listInputMethodSubtype promise err: ' + err);
+        console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('listInputMethodSubtype err: ' + JSON.stringify(err));
 }
 ```
 
@@ -784,15 +794,15 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 ```js
 try {
-    InputMethodSetting.listCurrentInputMethodSubtype((err,data) => {
+    InputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
         if (err) {
-            console.error('listCurrentInputMethodSubtype failed because: ' + JSON.stringify(err));
+            console.error('listCurrentInputMethodSubtype failed: ' + JSON.stringify(err));
             return;
         }
         console.log('listCurrentInputMethodSubtype success');
     });
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
 }
 ```
 
@@ -820,9 +830,8 @@ try {
         console.error('listCurrentInputMethodSubtype promise err: ' + err);
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('listCurrentInputMethodSubtype err: ' + JSON.stringify(err));
 }
-
 ```
 
 ### getInputMethods<sup>9+</sup>
@@ -846,13 +855,13 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 try {
     InputMethodSetting.getInputMethods(true, (err,data) => {
         if (err) {
-            console.error('getInputMethods failed because: ' + JSON.stringify(err));
+            console.error('getInputMethods failed: ' + JSON.stringify(err));
             return;
         }
         console.log('getInputMethods success');
     });
 } catch (err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('getInputMethods failed: ' + JSON.stringify(err));
 }
 ```
 
@@ -883,18 +892,23 @@ try {
     InputMethodSetting.getInputMethods(true).then((data) => {
         console.info('getInputMethods success');
     }).catch((err) => {
-        console.error('getInputMethods promise err: ' + err);
+        console.error('getInputMethods promise err: ' + JSON.stringify(err));
     })
 } catch(err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('getInputMethods promise err: ' + JSON.stringify(err));
 }
 ```
 
-### listInputMethod<sup>deprecated</sup>
+### listInputMethod<sup>(deprecated)</sup>
 
 listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
 查询已安装的输入法列表。使用callback形式返回结果。参数个数为1，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[getInputMethods](#getInputMethods)替代
+>
+> 从 API version 8开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -916,11 +930,16 @@ InputMethodSetting.listInputMethod((err,data) => {
  });
 ```
 
-### listInputMethod<sup>deprecated</sup>
+### listInputMethod<sup>(deprecated)</sup>
 
 listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 查询已安装的输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[getInputMethods](#getInputMethods)替代
+>
+> 从 API version 8开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -936,15 +955,20 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 InputMethodSetting.listInputMethod().then((data) => {
     console.info('listInputMethod success');
 }).catch((err) => {
-    console.error('listInputMethod promise err: ' + err);
+    console.error('listInputMethod promise err: ' + JSON.stringify(err));
 })
 ```
 
-### displayOptionalInputMethod<sup>deprecated</sup>
+### displayOptionalInputMethod<sup>(deprecated)</sup>
 
 displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 
 显示输入法选择对话框。使用callback形式返回结果。参数个数为1，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showOptionalInputMethods)替代
+>
+> 从 API version 8开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -988,21 +1012,26 @@ showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
 try {
     InputMethodSetting.showOptionalInputMethods((err) => {
         if (err) {
-            console.error('showOptionalInputMethods failed because: ' + JSON.stringify(err));
+            console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
             return;
         }
         console.info('showOptionalInputMethods success');
     });
 } catch (err) {
-    console.error('err: ' + err.code + 'err message: ' + err.message);
+    console.error('showOptionalInputMethods failed: ' + JSON.stringify(err));
 }
 ```
 
-### displayOptionalInputMethod<sup>deprecated</sup>
+### displayOptionalInputMethod<sup>(deprecated)</sup>
 
 displayOptionalInputMethod(): Promise&lt;void&gt;
 
 显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+> **说明：** 
+> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showOptionalInputMethods)替代
+>
+> 从 API version 8开始支持。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 

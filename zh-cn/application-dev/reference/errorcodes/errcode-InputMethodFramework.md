@@ -1,6 +1,6 @@
 # 输入法框架错误码
 
-## 12800201 权限校验异常
+## 201 权限校验异常
 
 ### 错误信息
 the permissions check fails.
@@ -11,7 +11,7 @@ the permissions check fails.
 ### 处理步骤
 给应用配置相应的权限
 
-## 12800401 参数校验异常
+## 401 参数校验异常
 
 ### 错误信息
 the parameters check fails.
@@ -22,7 +22,7 @@ the parameters check fails.
 ### 处理步骤
 修改接口调用时传入的参数个数或者类型
 
-## 12800801 功能支持异常
+## 801 功能支持异常
 
 ### 错误信息
 call unsupported api.

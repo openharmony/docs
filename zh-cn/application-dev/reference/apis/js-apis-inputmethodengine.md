@@ -51,7 +51,7 @@ import inputMethodEngine from '@ohos.inputmethodengine';
 | CURSOR_RIGHT<sup>9+</sup> | number | 是 | 否 | 光标右移。 |
 | WINDOW_TYPE_INPUT_METHOD_FLOAT<sup>9+</sup> | number | 是 | 否 | 输入法应用窗口风格标识。 |
 
-## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a><sup>deprecated</sup>
+## inputMethodEngine.getInputMethodEngine<a name="getInputMethodEngine"></a><sup>(deprecated)</sup>
 
 getInputMethodEngine(): InputMethodEngine
 
@@ -76,7 +76,7 @@ getInputMethodEngine(): InputMethodEngine
   var InputMethodEngine = inputMethodEngine.getInputMethodEngine();
   ```
 
-## inputMethodAbility.getInputMethodAbility<a name="getInputMethodAbility"></a><sup>9+</sup>
+## inputMethodEngine.getInputMethodAbility<a name="getInputMethodAbility"></a><sup>9+</sup>
 
 getInputMethodAbility(): InputMethodAbility
 
@@ -96,7 +96,7 @@ getInputMethodAbility(): InputMethodAbility
   var InputMethodAbility = inputMethodAbility.getInputMethodAbility();
   ```
 
-## inputMethodEngine.createKeyboardDelegate<a name="createKeyboardDelegate"></a><sup>deprecated</sup>
+## inputMethodEngine.createKeyboardDelegate<a name="createKeyboardDelegate"></a><sup>(deprecated)</sup>
 
 createKeyboardDelegate(): KeyboardDelegate
 
@@ -121,7 +121,7 @@ createKeyboardDelegate(): KeyboardDelegate
   var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
   ```
 
-## inputMethodAbility.getKeyboardDelegate<a name="getKeyboardDelegate"></a>
+## inputMethodEngine.getKeyboardDelegate<a name="getKeyboardDelegate"></a>
 
 getKeyboardDelegate(): KeyboardDelegate
 
@@ -163,7 +163,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 **示例：**
 
   ```js
-  InputMethodEngine.on('inputStart', (kbController, textInputClient) => {
+  inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textInputClient) => {
       KeyboardController = kbController;
       TextInputClient = textInputClient;
   });
@@ -189,7 +189,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 **示例：**
 
   ```js
-  InputMethodEngine.off('inputStart', (kbController, textInputClient) => {
+  inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textInputClient) => {
       console.log('delete inputStart notification.');
   });
   ```
@@ -212,7 +212,7 @@ on(type: 'inputStop', callback: () => void): void
 **示例：**
 
   ```js
-InputMethodEngine.getInputMethodEngine().on('inputStop', () => {
+inputMethodEngine.getInputMethodEngine().on('inputStop', () => {
     console.log('inputMethodEngine inputStop');
 });
   ```
@@ -235,7 +235,7 @@ off(type: 'inputStop', callback: () => void): void
 **示例：**
 
   ```js
-InputMethodEngine.getInputMethodEngine().off('inputStop', () => {
+inputMethodEngine.getInputMethodEngine().off('inputStop', () => {
     console.log('inputMethodEngine delete inputStop notification.');
 });
   ```
@@ -258,7 +258,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
   ```js
-InputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
+inputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
     console.log('inputMethodEngine setCallingWindow');
 });
   ```
@@ -281,7 +281,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
   ```js
-InputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
+inputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
     console.log('inputMethodEngine delete setCallingWindow notification.');
 });
   ```
@@ -304,10 +304,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
   ```js
-  InputMethodEngine.on('keyboardShow', () => {
+  inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
       console.log('inputMethodEngine keyboardShow.');
   });
-  InputMethodEngine.on('keyboardHide', () => {
+  inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
       console.log('inputMethodEngine keyboardHide.');
   });
   ```
@@ -330,17 +330,17 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
   ```js
-  InputMethodEngine.off('keyboardShow', () => {
+  inputMethodEngine.getInputMethodEngine().off('keyboardShow', () => {
       console.log('inputMethodEngine delete keyboardShow notification.');
   });
-  InputMethodEngine.off('keyboardHide', () => {
+  inputMethodEngine.getInputMethodEngine().off('keyboardHide', () => {
       console.log('inputMethodEngine delete keyboardHide notification.');
   });
   ```
 
 ## InputMethodAbility<a name="InputMethodAbility"></a>
 
-下列API示例中都需使用[getInputMethodEngine](#getInputMethodEngine)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodAbility](#getInputMethodAbility)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
 
 ### on('inputStart')<a name="inputStart"></a><sup>9+</sup>
 
@@ -360,7 +360,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 **示例：**
 
   ```js
-  InputMethodAbility.on('inputStart', (kbController, inputClient) => {
+  inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, inputClient) => {
       KeyboardController = kbController;
       InputClient = inputClient;
   });
@@ -384,7 +384,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 **示例：**
 
   ```js
-  InputMethodAbility.off('inputStart', (kbController, inputClient) => {
+  inputMethodEngine.getInputMethodAbility().off('inputStart', (kbController, inputClient) => {
       console.log('delete inputStart notification.');
   });
   ```
@@ -407,7 +407,7 @@ on(type: 'inputStop', callback: () => void): void
 **示例：**
 
   ```js
-InputMethodAbility.getInputMethodAbility().on('inputStop', () => {
+inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
     console.log('inputMethodAbility inputStop');
 });
   ```
@@ -430,7 +430,7 @@ off(type: 'inputStop', callback: () => void): void
 **示例：**
 
   ```js
-InputMethodAbility.getInputMethodAbility().off('inputStop', () => {
+inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
     console.log('inputMethodAbility delete inputStop notification.');
 });
   ```
@@ -453,7 +453,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
   ```js
-InputMethodAbility.getInputMethodAbility().on('setCallingWindow', (wid) => {
+inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid) => {
     console.log('inputMethodAbility setCallingWindow');
 });
   ```
@@ -476,7 +476,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
   ```js
-InputMethodAbility.getInputMethodAbility().off('setCallingWindow', () => {
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
     console.log('inputMethodAbility delete setCallingWindow notification.');
 });
   ```
@@ -499,10 +499,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
   ```js
-  InputMethodAbility.on('keyboardShow', () => {
+  inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
       console.log('InputMethodAbility keyboardShow.');
   });
-  InputMethodAbility.on('keyboardHide', () => {
+  inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
       console.log('InputMethodAbility keyboardHide.');
   });
   ```
@@ -525,10 +525,10 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
   ```js
-  InputMethodAbility.off('keyboardShow', () => {
+  inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
       console.log('InputMethodAbility delete keyboardShow notification.');
   });
-  InputMethodAbility.off('keyboardHide', () => {
+  inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
       console.log('InputMethodAbility delete keyboardHide notification.');
   });
   ```
@@ -551,7 +551,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
   ```js
-  InputMethodAbility.on('setSubtype', (inputMethodSubtype) => {
+  inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) => {
       console.log('InputMethodAbility setSubtype.');
   });
   ```
@@ -574,14 +574,14 @@ off(type: 'setSubtype', callback?: () => void): void
 **示例：**
 
   ```js
-  InputMethodAbility.off('setSubtype', () => {
+  inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
       console.log('InputMethodAbility delete setSubtype notification.');
   });
   ```
 
 ## KeyboardDelegate<a name="KeyboardDelegate"></a>
 
-下列API示例中都需使用[createKeyboardDelegate](#createKeyboardDelegate)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getKeyboardDelegate](#getKeyboardDelegate)回调获取到KeyboardDelegate实例，再通过此实例调用对应方法。
 
 ### on('keyDown'|'keyUp')
 
@@ -598,17 +598,15 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 | type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
 | callback | [KeyEvent](#KeyEvent) | 是 | 回调返回按键信息。 |
 
-
-
 **示例：**
 
   ```js
-  KeyboardDelegate.on('keyUp', (keyEvent) => {
+  inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent) => {
       console.info('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
       console.info('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
       return true;
   });
-  KeyboardDelegate.on('keyDown', (keyEvent) => {
+  inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
       console.info('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
       console.info('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
       return true;
@@ -633,11 +631,11 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 **示例：**
 
   ```js
-  KeyboardDelegate.off('keyUp', (keyEvent) => {
+  inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent) => {
       console.log('delete keyUp notification.');
       return true;
   });
-  KeyboardDelegate.off('keyDown', (keyEvent) => {
+  inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
       console.log('delete keyDown notification.');
       return true;
   });
@@ -663,7 +661,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
   **示例：**
 
 ```js
-KeyboardDelegate.on('cursorContextChange', (x, y, height) => {
+inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height) => {
     console.log('inputMethodEngine cursorContextChange x:' + x);
     console.log('inputMethodEngine cursorContextChange y:' + y);
     console.log('inputMethodEngine cursorContextChange height:' + height);
@@ -689,7 +687,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
   **示例：**
 
 ```js
-KeyboardDelegate.off('cursorContextChange', (x, y, height) => {
+inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height) => {
     console.log('delete cursorContextChange notification.');
 });
 ```
@@ -711,7 +709,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
   **示例：**
 
 ```js
-KeyboardDelegate.on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
+inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
     console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
     console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
     console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
@@ -737,7 +735,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
   **示例：**
 
 ```js
-KeyboardDelegate.off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
+inputMethodEngine.getKeyboardDelegate().off('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
   console.log('delete selectionChange notification.');
 });
 ```
@@ -761,7 +759,7 @@ on(type: 'textChange', callback: (text: string) => void): void
   **示例：**
 
 ```js
-KeyboardDelegate.on('textChange', (text) => {
+inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
     console.log('inputMethodEngine textChange. text:' + text);
 });
 ```
@@ -784,7 +782,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
   **示例：**
 
 ```js
-keyboardDelegate.off('textChange', (text) => {
+inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
     console.log('delete textChange notification. text:' + text);
 });
 ```
@@ -809,11 +807,10 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-
 ```js
 KeyboardController.hideKeyboard((err) => {
     if (err === undefined) {
-        console.error('hideKeyboard callback result---err: ' + err.msg);
+        console.error('hideKeyboard callback result---err: ' + JSON.stringify(err));
         return;
     }
     console.log('hideKeyboard callback.');
@@ -841,7 +838,7 @@ async function InputMethodEngine() {
     await KeyboardController.hideKeyboard().then(() => {
         console.info('hideKeyboard promise.');
     }).catch((err) => {
-        console.info('hideKeyboard promise err: ' + err.msg);
+        console.info('hideKeyboard promise err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -850,7 +847,7 @@ async function InputMethodEngine() {
 
 下列API示例中都需使用[inputStart](#inputStart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
-### getForward<sup>deprecated</sup>
+### getForward<sup>(deprecated)</sup>
 
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -876,14 +873,14 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
   var length = 1;
   TextInputClient.getForward(length, (err, text) => {
       if (err === undefined) {
-          console.error('getForward callback result---err: ' + err.msg);
+          console.error('getForward callback result---err: ' + JSON.stringify(err));
           return;
       }
       console.log('getForward callback result---text: ' + text);
   });
   ```
 
-### getForward<sup>deprecated</sup>
+### getForward<sup>(deprecated)</sup>
 
 getForward(length:number): Promise&lt;string&gt;
 
@@ -916,12 +913,12 @@ getForward(length:number): Promise&lt;string&gt;
       await TextInputClient.getForward(length).then((text) => {
           console.info('getForward promise result---res: ' + text);
       }).catch((err) => {
-          console.error('getForward promise err: ' + err.msg);
+          console.error('getForward promise err: ' + JSON.stringify(err));
       });
   }
   ```
 
-### getBackward<sup>deprecated</sup>
+### getBackward<sup>(deprecated)</sup>
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -947,14 +944,14 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
   var length = 1;
   TextInputClient.getBackward(length, (err, text) => {
       if (err === undefined) {
-          console.error('getBackward callback result---err: ' + err.msg);
+          console.error('getBackward callback result---err: ' + JSON.stringify(err));
           return;
       }
       console.log('getBackward callback result---text: ' + text);
   });
   ```
 
-### getBackward<sup>deprecated</sup>
+### getBackward<sup>(deprecated)</sup>
 
 getBackward(length:number): Promise&lt;string&gt;
 
@@ -987,12 +984,12 @@ getBackward(length:number): Promise&lt;string&gt;
       await TextInputClient.getBackward(length).then((text) => {
           console.info('getBackward promise result---res: ' + text);
       }).catch((err) => {
-          console.error('getBackward promise err: ' + err.msg);
+          console.error('getBackward promise err: ' + JSON.stringify(err));
       });
   }
   ```
 
-### deleteForward<sup>deprecated</sup>
+### deleteForward<sup>(deprecated)</sup>
 
 deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -1018,7 +1015,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
   var length = 1;
   TextInputClient.deleteForward(length, (err, result) => {
       if (err === undefined) {
-          console.error('deleteForward callback result---err: ' + err.msg);
+          console.error('deleteForward callback result---err: ' + JSON.stringify(err));
           return;
       }
       if (result) {
@@ -1028,7 +1025,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
       }
   });
   ```
-### deleteForward<sup>deprecated</sup>
+### deleteForward<sup>(deprecated)</sup>
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
@@ -1065,12 +1062,12 @@ async function InputMethodEngine() {
             console.error('Failed to deleteForward.(promise) ');
         }
     }).catch((err) => {
-        console.error('deleteForward promise err: ' + err.msg);
+        console.error('deleteForward promise err: ' + JSON.stringify(err));
     });
 }
 ```
 
-### deleteBackward<sup>deprecated</sup>
+### deleteBackward<sup>(deprecated)</sup>
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -1096,7 +1093,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 var length = 1;
 TextInputClient.deleteBackward(length, (err, result) => {
     if (err === undefined) {
-        console.error('deleteBackward callback result---err: ' + err.msg);
+        console.error('deleteBackward callback result---err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
@@ -1107,7 +1104,7 @@ TextInputClient.deleteBackward(length, (err, result) => {
 });
 ```
 
-### deleteBackward<sup>deprecated</sup>
+### deleteBackward<sup>(deprecated)</sup>
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
@@ -1144,11 +1141,11 @@ async function InputMethodEngine() {
             console.error('Failed to deleteBackward.(promise) ');
         }
     }).catch((err) => {
-        console.error('deleteBackward promise err: ' + err.msg);
+        console.error('deleteBackward promise err: ' + JSON.stringify(err));
     });
 }
 ```
-### sendKeyFunction<sup>deprecated</sup>
+### sendKeyFunction<sup>(deprecated)</sup>
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -1173,7 +1170,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
     if (err === undefined) {
-        console.error('sendKeyFunction callback result---err: ' + err.msg);
+        console.error('sendKeyFunction callback result---err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
@@ -1184,7 +1181,7 @@ TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
 });
 ```
 
-### sendKeyFunction<sup>deprecated</sup>
+### sendKeyFunction<sup>(deprecated)</sup>
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
@@ -1220,12 +1217,12 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
               console.error('Failed to sendKeyFunction.(promise) ');
           }
       }).catch((err) => {
-          console.error('sendKeyFunction promise err:' + err.msg);
+          console.error('sendKeyFunction promise err:' + JSON.stringify(err));
       });
   }
   ```
 
-### insertText<sup>deprecated</sup>
+### insertText<sup>(deprecated)</sup>
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -1250,7 +1247,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 TextInputClient.insertText('test', (err, result) => {
     if (err === undefined) {
-        console.error('insertText callback result---err: ' + err.msg);
+        console.error('insertText callback result---err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
@@ -1261,7 +1258,7 @@ TextInputClient.insertText('test', (err, result) => {
 });
 ```
 
-### insertText<sup>deprecated</sup>
+### insertText<sup>(deprecated)</sup>
 
 insertText(text:string): Promise&lt;boolean&gt;
 
@@ -1297,12 +1294,12 @@ insertText(text:string): Promise&lt;boolean&gt;
               console.error('Failed to insertText.(promise) ');
           }
       }).catch((err) => {
-          console.error('insertText promise err: ' + err.msg);
+          console.error('insertText promise err: ' + JSON.stringify(err));
       });
   }
   ```
 
-### getEditorAttribute<sup>deprecated</sup>
+### getEditorAttribute<sup>(deprecated)</sup>
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
@@ -1326,7 +1323,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
   ```js
   TextInputClient.getEditorAttribute((err, editorAttribute) => {
       if (err === undefined) {
-          console.error('getEditorAttribute callback result---err: ' + err.msg);
+          console.error('getEditorAttribute callback result---err: ' + JSON.stringify(err));
           return;
       }
       console.log('editorAttribute.inputPattern(callback): ' + JSON.stringify(editorAttribute.inputPattern));
@@ -1334,7 +1331,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
   });
   ```
 
-### getEditorAttribute<sup>deprecated</sup>
+### getEditorAttribute<sup>(deprecated)</sup>
 
 getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
@@ -1361,7 +1358,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
            console.info('editorAttribute.inputPattern(promise): ' + JSON.stringify(editorAttribute.inputPattern));
            console.info('editorAttribute.enterKeyType(promise): ' + JSON.stringify(editorAttribute.enterKeyType));
        }).catch((err) => {
-           console.error('getEditorAttribute promise err: ' + err.msg);
+           console.error('getEditorAttribute promise err: ' + JSON.stringify(err));
        });
    }
    ```
@@ -1388,17 +1385,21 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
   **示例：**
 
 ```js
-TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
-    if (err === undefined) {
-        console.error('sendKeyFunction callback result---err: ' + err.msg);
-        return;
-    }
-    if (result) {
-        console.info('Success to sendKeyFunction.(callback) ');
-    } else {
-        console.error('Failed to sendKeyFunction.(callback) ');
-    }
-});
+try {
+    InputClient.sendKeyFunction(keyFunction, (err, result) => {
+        if (err) {
+            console.error('sendKeyFunction err: ' + JSON.stringify(err)JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to sendKeyFunction.(callback) ');
+        } else {
+            console.error('Failed to sendKeyFunction.(callback) ');
+        }
+    });
+} catch (err) {
+    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+}
 ```
 
 ### sendKeyFunction<sup>9+</sup>
@@ -1424,17 +1425,19 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  async function InputMethodEngine() {
-      await client.sendKeyFunction(keyFunction).then((result) => {
-          if (result) {
-              console.info('Success to sendKeyFunction.(promise) ');
-          } else {
-              console.error('Failed to sendKeyFunction.(promise) ');
-          }
-      }).catch((err) => {
-          console.error('sendKeyFunction promise err:' + err.msg);
-      });
-  }
+try {
+    InputClient.sendKeyFunction(keyFunction).then((result) => {
+        if (result) {
+            console.info('Success to sendKeyFunction.(callback) ');
+        } else {
+            console.error('Failed to sendKeyFunction.(callback) ');
+        }
+    }).catch((err) => {
+        console.error('sendKeyFunction promise err:' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+}
   ```
 
 ### getForward<sup>9+</sup>
@@ -1456,13 +1459,17 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
   ```js
   var length = 1;
-  TextInputClient.getForward(length, (err, text) => {
-      if (err === undefined) {
-          console.error('getForward callback result---err: ' + err.msg);
-          return;
-      }
-      console.log('getForward callback result---text: ' + text);
-  });
+  try {
+      InputClient.getForward(length, (err, text) => {
+          if (err) {
+              console.error('getForward err: ' + JSON.stringify(err));
+              return;
+          }
+          console.log('getForward callback result: ' + text);
+      });
+  } catch (err) {
+      console.error('getForward err: ' + JSON.stringify(err));
+  }
   ```
 
 ### getForward<sup>9+</sup>
@@ -1488,13 +1495,17 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  async function InputMethodEngine() {
+  async function InputMethodAbility() {
       var length = 1;
-      await TextInputClient.getForward(length).then((text) => {
-          console.info('getForward promise result---res: ' + text);
-      }).catch((err) => {
-          console.error('getForward promise err: ' + err.msg);
-      });
+      try {
+          await InputClient.getForward(length).then((text) => {
+              console.info('getForward promise resul: ' + text);
+          }).catch((err) => {
+              console.error('getForward promise err: ' + JSON.stringify(err));
+          });
+      } catch (err) {
+          console.error('getForward promise err: ' + JSON.stringify(err));
+      }
   }
   ```
 
@@ -1517,13 +1528,17 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
   ```js
   var length = 1;
-  TextInputClient.getBackward(length, (err, text) => {
-      if (err === undefined) {
-          console.error('getBackward callback result---err: ' + err.msg);
-          return;
-      }
-      console.log('getBackward callback result---text: ' + text);
-  });
+  try {
+      InputClient.getBackward(length, (err, text) => {
+          if (err) {
+              console.error('getBackward callback result: ' + JSON.stringify(err));
+              return;
+          }
+          console.log('getBackward callback result---text: ' + text);
+      });
+  } catch (err) {
+      console.error('getBackward callback result: ' + JSON.stringify(err));
+  }
   ```
 
 ### getBackward<sup>9+</sup>
@@ -1549,13 +1564,17 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  async function InputMethodEngine() {
+  async function InputMethodAbility() {
       var length = 1;
-      await TextInputClient.getBackward(length).then((text) => {
-          console.info('getBackward promise result---res: ' + text);
-      }).catch((err) => {
-          console.error('getBackward promise err: ' + err.msg);
-      });
+      try {
+          await InputClient.getBackward(length).then((text) => {
+              console.info('getBackward promise result: ' + text);
+          }).catch((err) => {
+              console.error('getBackward promise err: ' + JSON.stringify(err));
+          });
+      } catch (err) {
+          console.error('getBackward promise err: ' + JSON.stringify(err));
+      }
   }
   ```
 
@@ -1577,19 +1596,24 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  var length = 1;
-  TextInputClient.deleteForward(length, (err, result) => {
-      if (err === undefined) {
-          console.error('deleteForward callback result---err: ' + err.msg);
-          return;
-      }
-      if (result) {
-          console.info('Success to deleteForward.(callback) ');
-      } else {
-          console.error('Failed to deleteForward.(callback) ');
-      }
-  });
+var length = 1;
+try {
+    InputClient.deleteForward(length, (err, result) => {
+        if (err) {
+            console.error('deleteForward callback result: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to deleteForward.(callback) ');
+        } else {
+            console.error('Failed to deleteForward.(callback) ');
+        }
+    });
+} catch (err) {
+    console.error('deleteForward callback result: ' + JSON.stringify(err));
+}
   ```
+
 ### deleteForward<sup>9+</sup>
 
 deleteForward(length:number): Promise&lt;boolean&gt;
@@ -1613,17 +1637,21 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-async function InputMethodEngine() {
+async function InputMethodAbility() {
     var length = 1;
-    await TextInputClient.deleteForward(length).then((result) => {
-        if (result) {
-            console.info('Success to deleteForward.(promise) ');
-        } else {
-            console.error('Failed to deleteForward.(promise) ');
-        }
-    }).catch((err) => {
-        console.error('deleteForward promise err: ' + err.msg);
-    });
+    try {
+        await InputClient.deleteForward(length).then((result) => {
+            if (result) {
+                console.info('Success to deleteForward.(promise) ');
+            } else {
+                console.error('Failed to deleteForward.(promise) ');
+            }
+        }).catch((err) => {
+            console.error('deleteForward promise err: ' + JSON.stringify(err));
+        });
+    } catch (err) {
+        console.error('deleteForward promise err: ' + JSON.stringify(err));
+    }
 }
 ```
 
@@ -1646,9 +1674,9 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 var length = 1;
-TextInputClient.deleteBackward(length, (err, result) => {
-    if (err === undefined) {
-        console.error('deleteBackward callback result---err: ' + err.msg);
+InputClient.deleteBackward(length, (err, result) => {
+    if (err) {
+        console.error('deleteBackward err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
@@ -1691,7 +1719,7 @@ async function InputMethodAbility() {
             console.error('Failed to deleteBackward.(promise) ');
         }
     }).catch((err) => {
-        console.error('deleteBackward promise err: ' + err.msg);
+        console.error('deleteBackward promise err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1714,9 +1742,9 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```js
-TextInputClient.insertText('test', (err, result) => {
-    if (err === undefined) {
-        console.error('insertText callback result---err: ' + err.msg);
+InputClient.insertText('test', (err, result) => {
+    if (err) {
+        console.error('insertText err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
@@ -1750,16 +1778,20 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  async function InputMethodEngine() {
-      await TextInputClient.insertText('test').then((result) => {
-          if (result) {
-              console.info('Success to insertText.(promise) ');
-          } else {
-              console.error('Failed to insertText.(promise) ');
-          }
-      }).catch((err) => {
-          console.error('insertText promise err: ' + err.msg);
-      });
+  async function InputMethodAbility() {
+      try {
+          await InputClient.insertText('test').then((result) => {
+              if (result) {
+                  console.info('Success to insertText.(promise) ');
+              } else {
+                  console.error('Failed to insertText.(promise) ');
+              }
+          }).catch((err) => {
+              console.error('insertText promise err: ' + JSON.stringify(err));
+          });
+      } catch (e) {
+          console.error('insertText promise err: ' + JSON.stringify(err));
+      }
   }
   ```
 
@@ -1780,9 +1812,9 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
   ```js
-  TextInputClient.getEditorAttribute((err, editorAttribute) => {
-      if (err === undefined) {
-          console.error('getEditorAttribute callback result---err: ' + err.msg);
+  InputClient.getEditorAttribute((err, editorAttribute) => {
+      if (err) {
+          console.error('getEditorAttribute callback result---err: ' + JSON.stringify(err));
           return;
       }
       console.log('editorAttribute.inputPattern(callback): ' + JSON.stringify(editorAttribute.inputPattern));
@@ -1808,11 +1840,11 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
    ```js
    async function InputMethodEngine() {
-       await TextInputClient.getEditorAttribute().then((editorAttribute) => {
+       await InputClient.getEditorAttribute().then((editorAttribute) => {
            console.info('editorAttribute.inputPattern(promise): ' + JSON.stringify(editorAttribute.inputPattern));
            console.info('editorAttribute.enterKeyType(promise): ' + JSON.stringify(editorAttribute.enterKeyType));
        }).catch((err) => {
-           console.error('getEditorAttribute promise err: ' + err.msg);
+           console.error('getEditorAttribute promise err: ' + JSON.stringify(err));
        });
    }
    ```
@@ -1835,12 +1867,17 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-InputClient.moveCursor(inputMethodAbility.CURSOR_xxx, (err) => {
-    if (err === undefined) {
-        console.error('moveCursor callback result---err: ' + err.msg);
-        return;
-    }
-});
+try {
+    InputClient.moveCursor(inputMethodAbility.CURSOR_xxx, (err) => {
+        if (err) {
+            console.error('moveCursor err: ' + JSON.stringify(err));
+            return;
+        }
+        console.info('moveCursor success');
+    });
+} catch (err) {
+    console.error('moveCursor err: ' + JSON.stringify(err));
+}
 ```
 
 ### moveCursor<sup>9+</sup>
@@ -1867,11 +1904,19 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
   ```js
 async function InputMethodAbility() {
-    await InputClient.moveCursor(inputMethodAbility.CURSOR_xxx).then(async (err) => {
-        console.log('moveCursor success');
-    }).catch((err) => {
-        console.error('moveCursor success err: ' + err.msg);
-    });
+    try {
+        await InputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then((err) => {
+            if (err) {
+                console.log('moveCursor err: ' + JSON.stringify(err));
+                return;
+            }
+            console.log('moveCursor success');
+        }).catch((err) => {
+            console.error('moveCursor success err: ' + JSON.stringify(err));
+        });
+    } catch (e) {
+        console.log('moveCursor err: ' + JSON.stringify(err));
+    }
 }
   ```
 
