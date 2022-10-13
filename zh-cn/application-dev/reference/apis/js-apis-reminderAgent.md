@@ -88,7 +88,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号。 |
+| reminderId | number | 是 | 目标reminder的id号，publishReminder方法调用成功后获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
 **示例**：
@@ -112,7 +112,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号。 |
+| reminderId | number | 是 | 目标reminder的id号，publishReminder方法调用成功后获得。 |
 
 **返回值**：
 
@@ -452,7 +452,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | ReminderType | 是 | 指明提醒类型。 |
+| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
 | actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |

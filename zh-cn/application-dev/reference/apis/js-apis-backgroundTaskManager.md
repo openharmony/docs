@@ -74,8 +74,8 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **示例**：
 
   ```js
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err, res) => {
       if(err) {
           console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
@@ -105,8 +105,8 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
   ```js
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
       console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
       console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
@@ -129,8 +129,8 @@ cancelSuspendDelay(requestId: number): void
 
 **示例**：
   ```js
-  let id = 1;
-  backgroundTaskManager.cancelSuspendDelay(id);
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
   ```
 
 
@@ -423,8 +423,8 @@ export default class MainAbility extends Ability {
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): boolean
 
 向系统申请或释放能效资源，使用boolean形式返回结果。
-通过EfficiencyResourcesRequest参数中的isApply变量，指定是申请还是释放。
-应用使用此接口前，需要向应用中心申请获得相应特权。
+通过EfficiencyResourcesRequest参数中的isApply变量，设置是申请还是释放。
+应用使用此接口，需要向应用中心申请获得相应特权。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
@@ -449,6 +449,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 let request = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    // 如果将isApply置为false，则表示释放资源
     isApply: true,
     timeOut: 0,
     reason: "apply",
@@ -464,7 +465,7 @@ console.info("result of applyEfficiencyResources is: " + res)
 resetAllEfficiencyResources(): void
 
 释放所有已经申请的资源。
-应用使用此接口前，需要向应用中心申请获得相应特权。
+应用使用此接口，需要向应用中心申请获得相应特权。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
