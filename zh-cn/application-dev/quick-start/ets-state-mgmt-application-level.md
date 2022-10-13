@@ -1,6 +1,6 @@
-# 应用级变量的状态变量
+# 应用级变量的状态管理
 
-在前面的章节中，已经讲述了如何管理页面级变量的状态，本章将说明如何管理应用级变量的状态。
+在前面的章节中，已经讲述了如何管理页面级变量的状态，本章将说明如何管理应用级变量的状态，具体接口请参考[应用级变量的状态管理接口](../reference/arkui-ts/ts-state-management.md)。
 
 ## AppStorage
 
@@ -16,8 +16,6 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 默认情况下，AppStorage中的属性是可变的，AppStorage还可使用不可变（只读）属性。
 
- AppStorage的具体接口请参考[状态管理]()
-
 ### @StorageLink装饰器
 
 组件通过使用@StorageLink(key)装饰的状态变量，与AppStorage建立双向数据绑定，key为AppStorage中的属性键值。当创建包含@StorageLink的状态变量的组件时，该状态变量的值将使用AppStorage中的值进行初始化。在UI组件中对@StorageLink的状态变量所做的更改将同步到AppStorage，并从AppStorage同步到任何其他绑定实例中，如PersistentStorage或其他绑定的UI组件。
@@ -26,7 +24,7 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 组件通过使用@StorageProp(key)装饰的状态变量，将与AppStorage建立单向数据绑定，key标识AppStorage中的属性键值。当创建包含@StoageProp的状态变量的组件时，该状态变量的值将使用AppStorage中的值进行初始化。AppStorage中的属性值的更改会导致绑定的UI组件进行状态更新。
 
-## 示例
+### 示例
 
 每次用户单击Count按钮时，this.varA变量值都会增加，此变量与AppStorage中的varA同步。每次用户单击当前语言按钮时，修改AppStorage中的languageCode，此修改会同步给this.lang变量。 
 
@@ -93,11 +91,11 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 一个组件最多可以访问一个LocalStorage实例，一个LocalStorage对象可以分配给多个组件。
 
-## @LocalStorageLink装饰器
+### @LocalStorageLink装饰器
 
 组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立双向数据绑定。当创建包含@LocalStorageLink的状态变量的组件时，该状态变量的值将会使用LocalStorage中的值进行初始化。如果LocalStorage中未定义初始值，将使用@LocalStorageLink定义的初始值。在UI组件中对@LocalStorageLink的状态变量所做的更改将同步到LocalStorage中，并从LocalStorage同步到Ability下的组件中。
 
-## @LocalStorageProp装饰器
+### @LocalStorageProp装饰器
 
 组件通过使用LocalStorageProp(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立单向数据绑定。当创建包含@LocalStorageProp的状态变量的组件时，该状态变量的值将使用LocalStorage中的值进行初始化。LocalStorage中的属性值的更改会导致当前Ability下的所有UI组件进行状态更新。
 
