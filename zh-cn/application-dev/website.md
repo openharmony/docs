@@ -184,9 +184,7 @@
     - [公共事件开发指导](notification/common-event.md)
     - [通知开发指导](notification/notification-guidelines.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
-  - 窗口管理    - 后台代理提醒
-      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
-      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
+  - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
     - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
     - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
@@ -266,8 +264,8 @@
       - [延迟任务调度概述](task-management/work-scheduler-overview.md)
       - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
     - 后台代理提醒
-      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
-      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
+      - [后台代理提醒开发概述](task-management/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](task-management/background-agent-scheduled-reminder-guide.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
