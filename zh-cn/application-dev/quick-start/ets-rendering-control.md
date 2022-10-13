@@ -34,14 +34,14 @@ Column() {
 
 ## 循环渲染
 
-开发框架提供循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件。当循环渲染的元素较多时，会出现页面加载变慢的情况，出于性能考虑，建议使用[LazyForEach](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/ts-rending-control-syntax-lazyforeach.md)代替。ForEach定义如下：
+通过循环渲染（ForEach组件）来迭代数组，并为每个数组项创建相应的组件，可减少代码复杂度。
 
 ```
-ForEach(
-    arr: any[], // Array to be iterated
-    itemGenerator: (item: any, index?: number) => void, 
-    keyGenerator?: (item: any, index?: number) => string 
-)
+ ForEach(
+     arr: any[], 
+     itemGenerator: (item: any, index?: number) => void,
+     keyGenerator?: (item: any, index?: number) => string 
+ )
 ```
 
 **参数：**
@@ -63,6 +63,7 @@ ForEach(
 >   ```
 >   ForEach(anArray.map((item1, index1) => { return { i: index1 + 1, data: item1 }; }), 
 >           item => Text(`${item.i}. item.data.label`),
+>           item => item.data.id.toString())
 >   ```
 
 ## 示例
