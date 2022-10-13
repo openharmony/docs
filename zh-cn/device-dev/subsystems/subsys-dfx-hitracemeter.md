@@ -76,7 +76,7 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 
 
 
- ![输入图片说明](../../figures/Hitrace.png)
+![输入图片说明](figures/HiTraceMeter.png)
 
 
 
