@@ -54,18 +54,10 @@ bootchart 只支持标准系统， begetctl 支持小型系统和标准系统。
 | modulectl uninstall moduleName | 卸载动态插件，例如：<br>modulectl uninstall bootchart | 无 |
 | modulectl install moduleName | 安装动态插件，例如：<br>modulectl install bootchart | 无 |
 | modulectl list | 动态插件列表，例如：<br>begetctl modulectl list | 无 |
+| setloglevel level | 设置log等级为info，例如：<br>begetctl setloglevel 1 | log等级设置范围0~4 |
+| getloglevel | 获取当前init的log等级，例如：<br>begetctl getloglevel | 无 |
 
 ## 开发指导
-
-### 接口说明
-
-  **表1**  接口介绍<a name="table14737791479"></a>
-| 函数 | 函数解释 |
-| ----------  |  ---------- |
-| void PluginExecCmdByName(const char *name, const char *cmdContent) | 通过名称启动插件。 |
-| void PluginExecCmdByCmdIndex(int index, const char *cmdContent) | 通过标志启动插件。 |
-| int PluginExecCmd(const char *name, int argc, const char **argv) | 命令启动插件。 |
-| int AddCmdExecutor(const char *cmdName, CmdExecutor execCmd) | 添加安装插件命令。 |
 
 ### 开发步骤
   新增一个插件， 以bootchart为例：

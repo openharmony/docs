@@ -1,13 +1,21 @@
 # 组件化启动
 ## 概述
 ### 功能简介
-构建四个基础组件镜像，提供相应的组件化目录，包括系统组件：system、产品通用配置组件：sys_prod、芯片组件：chipset、产品硬件配置组件：chip_prod;
+构建四个基础组件镜像，提供相应的组件化目录，包括：
+- 系统组件：system
+- 产品通用配置组件：sys_prod
+- 芯片组件：chipset
+- 产品硬件配置组件：chip_prod;
+
 确保系统参数以及启动脚本都可以按照组件的优先级进行扫描初始化;
 完成系统组件和芯片组件的独立编译构建。
 ### 基本概念
-system：系统组件文件系统挂载点，与芯片及硬件无关的平台业务；sys_prod：对系统组件的能力扩展以及能力定制，承载产品级差异能力，存放产品相关的配置文件；
-chipset：芯片组件文件系统挂载点，为系统组件提供统一的硬件抽象服务,相同的芯片平台可统一一份芯片组件;
-chip_prod：单板外设特有硬件能力以及产品级硬件差异配置, 存放芯片相关的配置文件。
+- 基础组件
+
+   system：系统组件文件系统挂载点，与芯片及硬件无关的平台业务；
+   sys_prod：对系统组件的能力扩展以及能力定制，承载产品级差异能力，存放产品相关的配置文件；
+   chipset：芯片组件文件系统挂载点，为系统组件提供统一的硬件抽象服务,相同的芯片平台可统一一份芯片组件;
+   chip_prod：单板外设特有硬件能力以及产品级硬件差异配置, 存放芯片相关的配置文件。
 
 - 组件化编译构建
 
@@ -28,7 +36,7 @@ chip_prod：单板外设特有硬件能力以及产品级硬件差异配置, 存
 ### rk3568产品的组件化构建编译
 //vendor/hihope/rk3568/config.json 配置文件实现构建此产品需要的组件，如下所示：
 
-       {
+        {
           "product_name": "rk3568",
           "device_company": "rockchip",
           ...
@@ -36,16 +44,17 @@ chip_prod：单板外设特有硬件能力以及产品级硬件差异配置, 存
           ...
           "inherit": [ "productdefine/common/inherit/rich.json", "productdefine/common/inherit/chipset_common.json" ],
           "subsystems": [
-          {
-            "subsystem": "security",
-            "components": [
             {
-              "component": "selinux",
-              "features": []
-            }]
-          }
+              "subsystem": "security",
+              "components": [
+                {
+                  "component": "selinux",
+                  "features": []
+                }
+              ]
+            }
           ...
-       }
+        }
 
 从中可以看出产品名称、芯片厂家、支持的指令集等；inherit指出依赖的通用组件；subsystems指出通用组件以外的部件。
 //productdefine/common/inherit/rich.json 如下所示配置系统组件完整的部件；系统组件还可以包括base.json(所有产品都要包含的最小部件集合列表)、headless.json(没有ui界面的产品支持应用安装管理的最小部件集合)。
@@ -56,27 +65,27 @@ chip_prod：单板外设特有硬件能力以及产品级硬件差异配置, 存
       {
         "subsystem": "arkui",
         "components": [
-        {
-          "component": "ace_engine",
-          "features": []
-        },
-        {
-          "component": "napi",
-          "features": []
-        }
-      ]
-    },
-    {
-      "subsystem": "account",
-      "components": [
-        {
-          "component": "os_account",
-          "features": []
-        }
-      ]
-    },
-    ...
-  }
+          {
+            "component": "ace_engine",
+            "features": []
+          },
+          {
+            "component": "napi",
+            "features": []
+          }
+        ]
+      },
+      {
+        "subsystem": "account",
+        "components": [
+          {
+            "component": "os_account",
+            "features": []
+          }
+        ]
+      },
+      ...
+    }
 
 ### 系统参数根据优先级扫描初始化
 对于服务的cfg配置文件优先级是/system/etc < /system/etc/init < /chipset/etc，即优先级高的配置文件将取代、更新低优先级配置。例如/system/etc/init/camera_service.cfg，
