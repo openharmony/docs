@@ -85,7 +85,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [PROPERTY_NAME_LEN](#propertynamelen)&nbsp;&nbsp;&nbsp;50 | 属性名字长度。 | 
+| [PROPERTY_NAME_LEN](#property_name_len)&nbsp;&nbsp;&nbsp;50 | 属性名字长度。 | 
 | [HDI_VGU_SCALAR_IS_FLOAT](#hdi_vgu_scalar_is_float)&nbsp;&nbsp;&nbsp;1 | VGU标量是否为浮点型 | 
 
 
