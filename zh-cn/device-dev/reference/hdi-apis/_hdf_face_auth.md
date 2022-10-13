@@ -1,12 +1,23 @@
 # HdfFaceAuth
 
 
+## **概述**
+
+提供人脸认证驱动的标准API接口。
+
+人脸认证驱动为人脸认证服务提供统一的访问接口。获取人脸认证驱动代理后，人脸认证服务可以调用相关接口获取执行器，获取人脸认证执行器后， 人脸认证服务可以调用相关接口获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。
+
+**Since：**
+
+3.2
+
+
 ## **汇总**
 
 
 ### 文件
 
-  | 文件 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [FaceAuthTypes.idl](_face_auth_types_8idl.md) | 定义人脸认证驱动的枚举类和数据结构。 | 
 | [IExecutor.idl](face__auth_2_i_executor_8idl.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。 | 
@@ -16,42 +27,31 @@
 
 ### 类
 
-  | 类 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [ExecutorInfo](_executor_info.md) | 执行器信息。&nbsp;[更多...](_executor_info.md) | 
-| [TemplateInfo](_template_info.md) | 凭据模版信息。&nbsp;[更多...](_template_info.md) | 
-| [IExecutor](interface_i_executor.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。&nbsp;[更多...](interface_i_executor.md) | 
-| [IExecutorCallback](interface_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_i_executor.md)。&nbsp;[更多...](interface_i_executor_callback.md) | 
-| [IFaceAuthInterface](interface_i_face_auth_interface.md) | 定义获取人脸认证驱动的执行器列表接口。&nbsp;[更多...](interface_i_face_auth_interface.md) | 
+| [ExecutorInfo](_executor_info.md) | 执行器信息。 | 
+| [TemplateInfo](_template_info.md) | 凭据模版信息。 | 
+| [IExecutor](interface_i_executor.md) | 定义执行器接口，用于获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。 | 
+| [IExecutorCallback](interface_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_i_executor.md)。 | 
+| [IFaceAuthInterface](interface_i_face_auth_interface.md) | 定义获取人脸认证驱动的执行器列表接口。 | 
 
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [AuthType](#authtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4&nbsp;} | 枚举用户认证凭据类型。&nbsp;[更多...](#authtype) | 
-| [ExecutorRole](#executorrole)&nbsp;:&nbsp;int&nbsp;{&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。&nbsp;[更多...](#executorrole) | 
-| [ExecutorSecureLevel](#executorsecurelevel)&nbsp;:&nbsp;int&nbsp;{&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。&nbsp;[更多...](#executorsecurelevel) | 
-| [CommandId](#commandid)&nbsp;:&nbsp;int&nbsp;{&nbsp;LOCK_TEMPLATE&nbsp;=&nbsp;1,&nbsp;UNLOCK_TEMPLATE&nbsp;=&nbsp;2,&nbsp;VENDOR_COMMAND_BEGIN&nbsp;=&nbsp;10000&nbsp;} | 枚举人脸认证功能相关操作命令。&nbsp;[更多...](#commandid) | 
-| [FaceTipsCode](#facetipscode)&nbsp;:&nbsp;int&nbsp;{&nbsp;FACE_AUTH_TIP_TOO_BRIGHT&nbsp;=&nbsp;1,&nbsp;FACE_AUTH_TIP_TOO_DARK&nbsp;=&nbsp;2,&nbsp;FACE_AUTH_TIP_TOO_CLOSE&nbsp;=&nbsp;3,&nbsp;FACE_AUTH_TIP_TOO_FAR&nbsp;=&nbsp;4,&nbsp;&nbsp;&nbsp;FACE_AUTH_TIP_TOO_HIGH&nbsp;=&nbsp;5,&nbsp;FACE_AUTH_TIP_TOO_LOW&nbsp;=&nbsp;6,&nbsp;FACE_AUTH_TIP_TOO_RIGHT&nbsp;=&nbsp;7,&nbsp;FACE_AUTH_TIP_TOO_LEFT&nbsp;=&nbsp;8,&nbsp;&nbsp;&nbsp;FACE_AUTH_TIP_TOO_MUCH_MOTION&nbsp;=&nbsp;9,&nbsp;FACE_AUTH_TIP_POOR_GAZE&nbsp;=&nbsp;10,&nbsp;FACE_AUTH_TIP_NOT_DETECTED&nbsp;=&nbsp;11,&nbsp;VENDOR_FACE_AUTH_TIP_BEGIN&nbsp;=&nbsp;10000&nbsp;} | 枚举提示信息编码。&nbsp;[更多...](#facetipscode) | 
+| [AuthType](#authtype):&nbsp;int&nbsp;{&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4&nbsp;} | 枚举用户认证凭据类型。 | 
+| [ExecutorRole](#executorrole):&nbsp;int&nbsp;{&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。 | 
+| [ExecutorSecureLevel](#executorsecurelevel):&nbsp;int&nbsp;{&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。 | 
+| [CommandId](#commandid):&nbsp;int&nbsp;{&nbsp;LOCK_TEMPLATE&nbsp;=&nbsp;1,&nbsp;UNLOCK_TEMPLATE&nbsp;=&nbsp;2,&nbsp;VENDOR_COMMAND_BEGIN&nbsp;=&nbsp;10000&nbsp;} | 枚举人脸认证功能相关操作命令。 | 
+| [FaceTipsCode](#facetipscode):&nbsp;int&nbsp;{&nbsp;FACE_AUTH_TIP_TOO_BRIGHT&nbsp;=&nbsp;1,&nbsp;FACE_AUTH_TIP_TOO_DARK&nbsp;=&nbsp;2,&nbsp;FACE_AUTH_TIP_TOO_CLOSE&nbsp;=&nbsp;3,&nbsp;FACE_AUTH_TIP_TOO_FAR&nbsp;=&nbsp;4,&nbsp;&nbsp;&nbsp;FACE_AUTH_TIP_TOO_HIGH&nbsp;=&nbsp;5,&nbsp;FACE_AUTH_TIP_TOO_LOW&nbsp;=&nbsp;6,&nbsp;FACE_AUTH_TIP_TOO_RIGHT&nbsp;=&nbsp;7,&nbsp;FACE_AUTH_TIP_TOO_LEFT&nbsp;=&nbsp;8,&nbsp;&nbsp;&nbsp;FACE_AUTH_TIP_TOO_MUCH_MOTION&nbsp;=&nbsp;9,&nbsp;FACE_AUTH_TIP_POOR_GAZE&nbsp;=&nbsp;10,&nbsp;FACE_AUTH_TIP_NOT_DETECTED&nbsp;=&nbsp;11,&nbsp;VENDOR_FACE_AUTH_TIP_BEGIN&nbsp;=&nbsp;10000&nbsp;} | 枚举提示信息编码。 | 
 
 
-### 变量
+### 关键字
 
-  | 变量&nbsp;名称 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | package&nbsp;ohos.hdi.face_auth.v1_0 | 人脸认证接口的包路径 | 
-
-
-## **详细描述**
-
-提供人脸认证驱动的标准API接口。
-
-人脸认证驱动为人脸认证服务提供统一的访问接口。获取人脸认证驱动代理后，人脸认证服务可以调用相关接口获取执行器，获取人脸认证执行器后， 人脸认证服务可以调用相关接口获取执行器，获取凭据模版信息，注册人脸特征模版，进行用户人脸认证，删除人脸特征模版等。
-
-**Since：**
-
-3.2
 
 
 ## **枚举类型说明**
