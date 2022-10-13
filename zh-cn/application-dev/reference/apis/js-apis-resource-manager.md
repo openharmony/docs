@@ -60,7 +60,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -83,7 +83,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -114,7 +114,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
 
-此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
