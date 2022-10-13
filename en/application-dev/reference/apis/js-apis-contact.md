@@ -31,7 +31,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
   ```js
   contact.addContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, (err, data) => {
       if (err) {
@@ -192,7 +192,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   },{
       attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
@@ -231,7 +231,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   let promise = contact.updateContact({
-      fullName: {fullName: 'xxx'},
+      name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
@@ -467,7 +467,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.ContactsData
 
 **Parameters**
 | Name  | Type                                                 | Mandatory| Description                                |
@@ -495,7 +495,7 @@ Selects a contact. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.ContactsData
 
 **Return Value**
 | Type                                           | Description                                             |
@@ -1400,7 +1400,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-  contact.queryKey(id, {
+  contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1438,7 +1438,7 @@ Queries the key of a contact based on the specified contact ID and application. 
 **Example**
 
   ```js
-  let promise = contact.queryKey(id, {
+  let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -1553,7 +1553,7 @@ Or, create data by configuring a **ContactAttributes** object.
 
 ```js
 let contactAttributes = new contact.ContactAttributes();
-contactAttributes.attributes = ["ATTR_EMAIL"];
+contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
 
 

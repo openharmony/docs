@@ -92,6 +92,7 @@
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
   - HiSysEvent Development
+    - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
