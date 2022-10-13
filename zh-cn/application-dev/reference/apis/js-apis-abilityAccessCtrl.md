@@ -472,7 +472,7 @@ promise.then(data => {
 
 ### PermissionStateChangeType<sup>9+</sup>
 
-表示权限状态变化操作类型的枚举。
+表示权限授权状态变化操作类型的枚举。
 
 **系统接口：** 此接口为系统接口。
 
@@ -485,12 +485,14 @@ promise.then(data => {
 
 ### PermissionStateChangeInfo<sup>9+</sup>
 
+表示某次权限授权状态变化的详情。
+
 **系统接口：** 此接口为系统接口。
 
  **系统能力:** SystemCapability.Security.AccessToken
 
 | 名称           | 类型                       | 可读 | 可写 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
-| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限变化类型        |
-| tokenID        | number                    | 是   | 否   | 调用方的应用身份标识 |
-| permissionName | string                    | 是   | 否   | 状态发生变化的权限名 |
+| change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型        |
+| tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识 |
+| permissionName | string                    | 是   | 否   | 当前授权状态发生变化的权限名 |
