@@ -13,7 +13,10 @@
 ```ts
 import systemparameter from '@ohos.systemparameterV9'
 ```
-**错误码说明：**
+## SystemParameterErrorCode 
+
+系统参数错误码说明。
+
 | 错误码 | 定义名 | 说明 |
 | -------- | -------- | -------- |
 | -401 | SYSPARAM_INVALID_INPUT | Input parameter is missing or invalid. |
