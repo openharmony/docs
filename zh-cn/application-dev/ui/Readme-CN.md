@@ -12,7 +12,7 @@
             - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
             - [资源访问](ts-resource-access.md)
         - [像素单位](ts-pixel-units.md)
-    - 声明式语法
+        
         - 深入理解组件化
             - [自定义组件初始化](ts-custom-component-initialization.md)
             - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
