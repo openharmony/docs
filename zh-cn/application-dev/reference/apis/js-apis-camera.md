@@ -107,8 +107,10 @@ camera.getCameraManager(context).then((cameraManager) => {
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                       | 类型                                      | 只读 | 说明        |
-| ------------------------- | ----------------------------------------- | --- |------------ |
-| frameRateRanges           | [FrameRateRange](#frameraterange)          | 是  | 帧率。       |
+| ------------------------- | ----------------------------------------- | --- |----------- |
+| format                    | [CameraFormat](#cameraformat)             | 是  | 输出格式。   |
+| size                      | [Size](#size)                             | 是  | 分辨率。     |
+| frameRateRanges           | [FrameRateRange](#frameraterange)         | 是  | 帧率。       |
 
 ## CameraOutputCapability
 
@@ -178,7 +180,7 @@ cameraManager.getSupportedCameras().then((cameraArray) => {
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<CameraOutputCapability\>): void
+getSupportedOutputCapability(callback: AsyncCallback<CameraOutputCapability\>): void
 
 查询相机设备在模式下支持的输出能力，通过注册回调函数获取结果。
 
@@ -188,13 +190,12 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 
 | 名称     | 类型                                                              | 必填 | 说明                      |
 | -------- | ---------------------------------------------------------------- | -- | -------------------------- |
-| camera   | [CameraDevice](#cameradevice)                                    | 是 | CameraDevice对象。          |
 | callback | AsyncCallback<[CameraOutputCapability](#cameraoutputcapability)\> | 是 | 使用callback方式获取相机输出能力。 |
 
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
+cameraManager.getSupportedOutputCapability((err, cameras) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -205,7 +206,7 @@ cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
 
 ### getSupportedOutputCapability
 
-getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapability\>
+getSupportedOutputCapability(): Promise<CameraOutputCapability\>
 
 查询相机设备在模式下支持的输出能力，通过Promise获取结果。
 
@@ -227,7 +228,7 @@ getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapabilit
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapability) => {
+cameraManager.getSupportedOutputCapability().then((cameraoutputcapability) => {
     console.log('Promise returned with an array of supported outputCapability');
 })
 ```
@@ -260,7 +261,7 @@ cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
 
 ### getSupportedMetadataObjectType
 
-getSupportedMetadataObjectType(camera:CameraDevice): Promise<CameraOutputCapability\>
+getSupportedMetadataObjectType(): Promise<CameraOutputCapability\>
 
 查询相机设备支持的元能力信息，通过Promise获取结果。
 
@@ -638,7 +639,7 @@ cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile, callback: AsyncCallback<PreviewOutput\>): void
+createDeferredPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void
 
 尚未获取surfaceID时创建预览输出对象，通过注册回调函数获取结果。
 
@@ -649,12 +650,13 @@ createDeferredPreviewOutput(profile: Profile, callback: AsyncCallback<PreviewOut
 | 名称     | 类型                                             | 必填 | 说明                                |
 | -------- | ----------------------------------------------- | ---- | --------------------------------- |
 | profile  | [Profile](#profile)                             | 是   | 支持的预览配置信息。                  |
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。 |
 | callback | AsyncCallback<[PreviewOutput](#previewoutput)\> | 是   | 回调函数，用于获取PreviewOutput实例。  |
 
 **示例：**
 
 ```js
-cameraManager.createDeferredPreviewOutput(profile, (err, previewoutput) => {
+cameraManager.createDeferredPreviewOutput(profile, surfaceId, (err, previewoutput) => {
     if (err) {
         console.error(`Failed to create deferredPreviewOutput. ${err.message}`);
         return;
@@ -665,7 +667,7 @@ cameraManager.createDeferredPreviewOutput(profile, (err, previewoutput) => {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): Promise<PreviewOutput\>
+createDeferredPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
 
 尚未获取surfaceID时创建预览输出对象，通过Promise获取结果。
 
@@ -676,6 +678,7 @@ createDeferredPreviewOutput(profile: Profile): Promise<PreviewOutput\>
 | 名称     | 类型                              | 必填  | 说明        |
 | -------- | ---------------------------------| ---- | ---------- |
 | profile  | [Profile](#profile)              | 是   | 支持的预览配置信息。  |
+| surfaceId| string | 是   | 从[XComponent](../arkui-ts/ts-basic-components-xcomponent.md)或者[ImageReceiver](js-apis-image.md#imagereceiver9)组件获取的SurfaceID。 |
 
 **返回值：**
 
@@ -686,7 +689,7 @@ createDeferredPreviewOutput(profile: Profile): Promise<PreviewOutput\>
 **示例：**
 
 ```js
-cameraManager.createDeferredPreviewOutput(profile).then((previewoutput) => {
+cameraManager.createDeferredPreviewOutput(profile, surfaceId).then((previewoutput) => {
     console.log('Promise returned with DefeerredPreviewOutput created.');
 })
 ```
@@ -807,7 +810,7 @@ cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: AsyncCallback<MetadataOutput\>): void
+createMetadataOutput(callback: AsyncCallback<MetadataOutput\>): void
 
 创建metadata流输出对象，通过注册回调函数获取结果。
 
@@ -817,13 +820,12 @@ createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: 
 
 | 名称                  | 类型                                               | 必填 | 说明                          |
 | -------------------- | -------------------------------------------------- | --- | ---------------------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是   | metadata流类型。              |
 | callback             | AsyncCallback<[MetadataOutput](#metadataoutput)\>  | 是   | 回调函数，用于获取MetadataOutput实例。    |
 
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) => {
+cameraManager.createMetadataOutput((err, metadataoutput) => {
     if (err) {
         console.error(`Failed to create metadataOutput. ${err.message}`);
         return;
@@ -834,17 +836,11 @@ cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) =>
 
 ### createMetadataOutput
 
-createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>): Promise<MetadataOutput>
+createMetadataOutput(): Promise<MetadataOutput>
 
 创建metadata流输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称                  | 类型                                               | 必填 | 说明            |
-| -------------------- | -------------------------------------------------- | --- | -------------- |
-| metadataObjectTypes  | Array<[MetadataObjectType](#metadataobjecttype)\>  | 是  | metadata流类型。 |
 
 **返回值：**
 
@@ -855,7 +851,7 @@ createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>): Promise<M
 **示例：**
 
 ```js
-cameraManager.createMetadataOutput(metadataObjectTypes).then((metadataoutput) => {
+cameraManager.createMetadataOutput().then((metadataoutput) => {
     console.log('Promise returned with metadataOutput created.');
 })
 ```
@@ -2395,7 +2391,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() =>
 
 getMeteringPoint(callback: AsyncCallback<Point\>): void
 
-查询曝光区域中心点，通过注册回调函数获取结果。
+查询曝光区域中心点，通过注册回调函数获取结果。（该接口目前为预留)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2421,7 +2417,7 @@ cameraInput.getMeteringPoint((err, exposurePoint) => {
 
 getMeteringPoint(): Promise<Point\>
 
-查询曝光区域中心点，通过Promise获取结果。
+查询曝光区域中心点，通过Promise获取结果。（该接口目前为预留)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2443,7 +2439,7 @@ cameraInput.getMeteringPoint().then((exposurePoint) => {
 
 setMeteringPoint(point: Point, callback: AsyncCallback<point\>): void
 
-设置曝光区域中心点，通过注册回调函数获取结果。
+设置曝光区域中心点，通过注册回调函数获取结果。（该接口目前为预留)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2472,7 +2468,7 @@ cameraInput.setMeteringPoint(Point1,(err) => {
 
 setMeteringPoint(point: Point): Promise<void\>
 
-设置曝光区域中心点，通过Promise获取结果。
+设置曝光区域中心点，通过Promise获取结果。（该接口目前为预留)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3709,7 +3705,6 @@ previewOutput.on('error', (previewOutputError) => {
 | quality  | [QualityLevel](#qualitylevel)   | 否   | QUALITY_LEVEL_HIGH| 图片质量。         |
 | rotation | [ImageRotation](#imagerotation) | 否   | ROTATION_0        | 图片旋转角度。      |
 | location | [Location](#location)           | 否   | (0,0,0)           | 图片地理位置信息。   |
-| mirror   | boolean                         | 否   | false             |镜像使能开关(默认关)。 |
 
 ## PhotoOutput
 
