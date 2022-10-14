@@ -250,7 +250,7 @@ cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
 
 ### getSupportedMetadataObjectType
 
-getSupportedMetadataObjectType(): Promise<Array<MetadataObjectType>\>
+getSupportedMetadataObjectType(): Promise<Array<MetadataObjectType\>\>
 
 查询相机设备支持的元能力信息，通过Promise获取结果。
 
@@ -3902,7 +3902,7 @@ videoOutput.getFrameRateRange().then(() => {
 
 ### setFrameRateRange
 
-setFrameRateRange(minFrameRate: number, maxFrameRate: number, callback: AsyncCallback<Array<number\>\>): void
+setFrameRateRange(minFrameRate: number, maxFrameRate: number, callback: AsyncCallback<void\>): void
 
 获取帧率范围，通过注册回调函数获取结果。
 
@@ -3914,7 +3914,7 @@ setFrameRateRange(minFrameRate: number, maxFrameRate: number, callback: AsyncCal
 | ------------ | ----------------------------- | ---- | ------------------- |
 | minFrameRate | number                        | 是   | 最小帧率。            |
 | maxFrameRate | number                        | 是   | 最大帧率。            |
-| callback     | AsyncCallback<Array<number\>\> | 是   | 回调函数，用于获取结果。 |
+| callback     | AsyncCallback<void\> | 是   | 回调函数，用于获取结果。 |
 
 **示例：**
 
@@ -3947,7 +3947,7 @@ setFrameRateRange(minFrameRate: number, maxFrameRate: number): Promise<Array<num
 
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
-| Promise<Array<number\>\> | 使用Promise的方式获取结果。 |
+| Promise<void\> | 使用Promise的方式获取结果。 |
 
 **示例：**
 
