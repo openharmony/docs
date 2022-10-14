@@ -53,14 +53,6 @@ text(txt: string, pattern?: MatchPattern): On
 | ---------- | ---------------------------------- |
 | [On](#on9) | 返回指定目标控件文本属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -87,14 +79,6 @@ id(id: string): On
 | 类型       | 说明                             |
 | ---------- | -------------------------------- |
 | [On](#on9) | 返回指定目标控件id属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -123,14 +107,6 @@ type(tp: string): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -158,14 +134,6 @@ clickable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可点击状态属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -191,14 +159,6 @@ longClickable(b?: boolean): On
 | 类型       | 说明                                           |
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件的可长按点击状态属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -227,14 +187,6 @@ scrollable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可滑动状态属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -260,14 +212,6 @@ enabled(b?: boolean): On
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的使能状态属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -295,14 +239,6 @@ focused(b?: boolean): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的获焦状态属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -328,14 +264,6 @@ selected(b?: boolean): On
 | 类型       | 说明                                       |
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被选中状态属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -363,14 +291,6 @@ checked(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被勾选状态属性的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -396,14 +316,6 @@ checkable(b?: boolean): On
 | 类型       | 说明                                         |
 | ---------- | -------------------------------------------- |
 | [On](#on9) | 返回指定目标控件能否被勾选状态属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -431,14 +343,6 @@ isBefore(on: On): On
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -464,14 +368,6 @@ isAfter(on: On): On
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -1056,7 +952,6 @@ inputText(text: string): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1121,7 +1016,6 @@ scrollSearch(on: ON): Promise\<Component>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1155,7 +1049,6 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1189,7 +1082,6 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1223,7 +1115,6 @@ dragTo(target: Component): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1258,7 +1149,6 @@ pinchOut(scale: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1292,7 +1182,6 @@ pinchIn(scale: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 
@@ -1361,7 +1250,6 @@ Driver对象在给定的时间内延时。
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1399,7 +1287,6 @@ findComponent(on: On): Promise\<Component>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1437,7 +1324,6 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1475,7 +1361,6 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1514,7 +1399,6 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1546,7 +1430,6 @@ assertComponentExist(on: On): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000003 | Component existence assertion failed.    |
 
@@ -1604,7 +1487,6 @@ Driver对象采取如下操作：通过key值找到对应键并点击。
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1638,7 +1520,6 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1672,7 +1553,6 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1705,7 +1585,6 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1738,18 +1617,9 @@ Driver对象采取如下操作：在目标坐标点长按下。
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
-
-
-
-
-
-
-
-
 
 ```js
 async function demo() {
@@ -1782,7 +1652,6 @@ Driver对象采取如下操作：从给出的起始坐标点滑向给出的目�
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1818,7 +1687,6 @@ Driver对象采取如下操作：从给出的起始坐标点拖拽至给出的�
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1856,7 +1724,6 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1888,7 +1755,6 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -1951,7 +1817,6 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -2102,7 +1967,6 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -2137,7 +2001,6 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -2176,7 +2039,6 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 
 **示例：**
@@ -2219,14 +2081,6 @@ static create(fingers: number, steps: number): PointerMatrix
 | -------------------------------- | ----------------------------- |
 | [PointerMatrix](#pointermatrix9) | 返回构造的PointerMatrix对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
-
 **示例：**
 
 ```js
@@ -2250,14 +2104,6 @@ setPoint(finger: number, step: number, point: Point): void
 | finger | number           | 是   | 手指的序号。     |
 | step   | number           | 是   | 步骤的序号。     |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
-
-| 错误码ID | 错误码信息               |
-| -------- | ------------------------ |
-| 401      | Invalid input parameter. |
 
 **示例：**
 
@@ -2524,7 +2370,6 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 | 17000005 | This operation is not supported.         |
@@ -2561,7 +2406,6 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 错误码ID | 错误码信息                               |
 | -------- | ---------------------------------------- |
-| 401      | Invalid input parameter.                 |
 | 17000002 | API does not allow calling concurrently. |
 | 17000004 | Component lost/UiWindow lost.            |
 | 17000005 | This operation is not supported.         |
