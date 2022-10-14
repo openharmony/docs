@@ -3,9 +3,9 @@
 
 ## **概述**
 
-AudioControl音频控制接口
+AudioControl音频控制接口。
 
-提供音频播放（render）或录音（capture）需要的公共控制驱动能力，包括Start、Stop、Pause、Resume、Flush等。
+提供音频播放（Render）或录音（Capture）需要的公共控制驱动能力，包括Start、Stop、Pause、Resume、Flush等。
 
 **Since:**
 
@@ -27,13 +27,13 @@ AudioControl音频控制接口
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([Start](#start))(AudioHandle&nbsp;handle) | 启动一个音频播放（render）或录音（capture）处理 | 
-| ([Stop](#stop))(AudioHandle&nbsp;handle) | 停止一个音频播放（render）或录音（capture）处理 | 
-| ([Pause](#pause))(AudioHandle&nbsp;handle) | 暂停一个音频播放（render）或录音（capture）处理 | 
-| ([Resume](#resume))(AudioHandle&nbsp;handle) | 恢复一个音频播放（render）或录音（capture）处理 | 
-| ([Flush](#flush))(AudioHandle&nbsp;handle) | 刷新音频缓冲区buffer中的数据 | 
-| ([TurnStandbyMode](#turnstandbymode))(AudioHandle&nbsp;handle) | 设置或去设置设备的待机模式 | 
-| ([AudioDevDump](#audiodevdump))(AudioHandle&nbsp;handle,&nbsp;int32_t&nbsp;range,&nbsp;int32_t&nbsp;fd) | Dump音频设备信息 | 
+| ([Start](#start))(AudioHandle&nbsp;handle) | 启动一个音频播放（Render）或录音（Capture）处理。 | 
+| ([Stop](#stop))(AudioHandle&nbsp;handle) | 停止一个音频播放（Render）或录音（Capture）处理。 | 
+| ([Pause](#pause))(AudioHandle&nbsp;handle) | 暂停一个音频播放（Render）或录音（Capture）处理。 | 
+| ([Resume](#resume))(AudioHandle&nbsp;handle) | 恢复一个音频播放（Render）或录音（Capture）处理。 | 
+| ([Flush](#flush))(AudioHandle&nbsp;handle) | 刷新音频缓冲区buffer中的数据。 | 
+| ([TurnStandbyMode](#turnstandbymode))(AudioHandle&nbsp;handle) | 设置或去设置设备的待机模式。 | 
+| ([AudioDevDump](#audiodevdump))(AudioHandle&nbsp;handle,&nbsp;int32_t&nbsp;range,&nbsp;int32_t&nbsp;fd) | Dump音频设备信息。 | 
 
 
 ## **类成员变量说明**
@@ -48,7 +48,7 @@ int32_t(* AudioControl::AudioDevDump) (AudioHandle handle, int32_t range, int32_
 
 **描述：**
 
-Dump音频设备信息
+Dump音频设备信息。
 
 **参数:**
 
@@ -60,7 +60,7 @@ Dump音频设备信息
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 
 ### Flush
@@ -72,7 +72,7 @@ int32_t(* AudioControl::Flush) (AudioHandle handle)
 
 **描述：**
 
-刷新音频缓冲区buffer中的数据
+刷新音频缓冲区buffer中的数据。
 
 **参数:**
 
@@ -82,7 +82,7 @@ int32_t(* AudioControl::Flush) (AudioHandle handle)
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 
 ### Pause
@@ -94,7 +94,7 @@ int32_t(* AudioControl::Pause) (AudioHandle handle)
 
 **描述：**
 
-暂停一个音频播放（render）或录音（capture）处理
+暂停一个音频播放（Render）或录音（Capture）处理。
 
 **参数:**
 
@@ -104,7 +104,7 @@ int32_t(* AudioControl::Pause) (AudioHandle handle)
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -120,7 +120,7 @@ int32_t(* AudioControl::Resume) (AudioHandle handle)
 
 **描述：**
 
-恢复一个音频播放（render）或录音（capture）处理
+恢复一个音频播放（Render）或录音（Capture）处理。
 
 **参数:**
 
@@ -130,7 +130,7 @@ int32_t(* AudioControl::Resume) (AudioHandle handle)
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -146,7 +146,7 @@ int32_t(* AudioControl::Start) (AudioHandle handle)
 
 **描述：**
 
-启动一个音频播放（render）或录音（capture）处理
+启动一个音频播放（Render）或录音（Capture）处理。
 
 **参数:**
 
@@ -156,7 +156,7 @@ int32_t(* AudioControl::Start) (AudioHandle handle)
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -172,7 +172,7 @@ int32_t(* AudioControl::Stop) (AudioHandle handle)
 
 **描述：**
 
-停止一个音频播放（render）或录音（capture）处理
+停止一个音频播放（Render）或录音（Capture）处理。
 
 **参数:**
 
@@ -182,7 +182,7 @@ int32_t(* AudioControl::Stop) (AudioHandle handle)
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -198,7 +198,7 @@ int32_t(* AudioControl::TurnStandbyMode) (AudioHandle handle)
 
 **描述：**
 
-设置或去设置设备的待机模式
+设置或去设置设备的待机模式。
 
 **参数:**
 

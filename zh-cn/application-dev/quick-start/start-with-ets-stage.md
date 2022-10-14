@@ -1,4 +1,4 @@
-# 使用eTS语言开发（Stage模型）
+# 使用ArkTS语言开发（Stage模型）
 
 
 > **说明：**
@@ -19,7 +19,7 @@
 
    > **说明：**
    >
-   > 支持使用eTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > 支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    >
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    >
@@ -287,4 +287,4 @@
 
    ![zh-cn_image_0000001311334972](figures/zh-cn_image_0000001311334972.png)
 
-恭喜您已经使用eTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

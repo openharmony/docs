@@ -76,7 +76,7 @@ HiTraceMeter主要提供抓取用户态和内核态Trace数据的命令行工具
 
 
 
- ![输入图片说明](../../figures/Hitrace.png)
+![输入图片说明](figures/HiTraceMeter.png)
 
 
 
@@ -108,8 +108,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Sync trace                                                   | 功能描述      |参数说明      |
 | :----------------------------------------------------------- | ------------- |------------- |
-| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | 启动同步trace |label: Trace category。 |
-| void FinishTrace(uint64_t label);                            | 关闭同步trace |value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。 |
+| void StartTrace(uint64_t label, const std::string& value, float limit = -1); | 启动同步trace |label: Trace category。<br />value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。 |
+| void FinishTrace(uint64_t label);                            | 关闭同步trace |label: Trace category。 |
 
 
 同步接口StartTrace和FinishTrace必须配对使用，FinishTrace和前面最近的StartTrace进行匹配。StartTrace和FinishTrace函数对可以嵌套模式使用，跟踪数据解析时使用栈式数据结构进行匹配。接口中的limit参数用于限流，使用默认值即可。
@@ -118,9 +118,8 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Async trace                                                  | 功能描述      |参数说明    |
 | ------------------------------------------------------------ | ------------- |------------- |
-| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | 开启异步trace | label: Trace category。 |
-| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。|
-|  | | taskId：异步Trace中用来表示关联的ID。 |
+| void StartAsyncTrace(uint64_t label, const std::string& value, int32_t taskId, float limit = -1); | 开启异步trace | label: Trace category。<br />value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。<br />taskId：异步Trace中用来表示关联的ID。 |
+| void FinishAsyncTrace(uint64_t label, const std::string& value, int32_t taskId); | 关闭异步trace | label: Trace category。<br />value: Trace携带的信息，表明当前的某种状态，例如内存大小，队列长短等。<br />taskId：异步Trace中用来表示关联的ID。 |
 
 
 
@@ -130,8 +129,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 | Counter Trace                                                | 功能描述  |参数说明  |
 | ------------------------------------------------------------ | --------- |--------- |
-| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |label: Trace category。。 |
-|  | |name: Trace的名称，IDE中会以此字段展示这段Trace。 |
+| void CountTrace(uint64_t label, const std::string& name, int64_t); | 计数trace |label: Trace category。<br />name: Trace的名称，IDE中会以此字段展示这段Trace。 |
 
 
 ## 开发步骤
@@ -142,7 +140,7 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     ```
 2. 头文件依赖添加。
 
-    ```
+    ```cpp
     #include "hitrace_meter.h"//接口函数定义头文件
     ```
 
@@ -150,39 +148,39 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
 
 
     ```cpp
-        #include "hitrace_meter.h" // 包含hitrace_meter.h
-        using namespace std;
+    #include "hitrace_meter.h" // 包含hitrace_meter.h
+    using namespace std;
         
-        int main()
-        {
-             uint64_t label = BYTRACE_TAG_OHOS;
-             sleep(1);
-             CountTrace(label, "count number", 2000);  // 整数跟踪
-         
-             StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
-             sleep(1);
-             StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
-             sleep(2);
-             FinishTrace(label);   // func2Trace的结束点
-             sleep(1);
-             FinishTrace(label);   // func1Trace的结束点
-         
-             sleep(1);
-             CountTrace(label, "count number", 3000);  // 整数跟踪
-         
-             StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
-             sleep(1);
-             StartAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的开始点
-             StartAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的开始点
-             sleep(1);
-             FinishAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的结束点
-             sleep(1);
-             FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
-             sleep(1);
-             FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
-         
-             return 0;
-         }    
+    int main()
+    {
+         uint64_t label = BYTRACE_TAG_OHOS;
+         sleep(1);
+         CountTrace(label, "count number", 2000);  // 整数跟踪
+     
+         StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
+         sleep(1);
+         StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
+         sleep(2);
+         FinishTrace(label);   // func2Trace的结束点
+         sleep(1);
+         FinishTrace(label);   // func1Trace的结束点
+     
+         sleep(1);
+         CountTrace(label, "count number", 3000);  // 整数跟踪
+     
+         StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
+         sleep(1);
+         StartAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的开始点
+         StartAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的开始点
+         sleep(1);
+         FinishAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的结束点
+         sleep(1);
+         FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
+         sleep(1);
+         FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
+     
+         return 0;
+     }    
     
     ```
 
