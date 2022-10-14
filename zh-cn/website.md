@@ -155,6 +155,7 @@
         - [资源调度](release-notes/api-change/v3.1-Release/js-apidiff-resource-scheduler_api-9-canary.md)
         - [窗口管理](release-notes/api-change/v3.1-Release/js-apidiff-window_api-9-canary.md)
       - [Native API差异报告](release-notes/api-change/v3.1-Release/native-apidiff-v3.1-release.md)
+      - [3.1 release相对于3.1 beta变更详细说明](release-notes/api-change/v3.1-Release/changelog-v3.1-release.md)
     - OpenHarmony 3.1 Beta
       - [JS API差异报告](release-notes/api-change/v3.1-beta/js-apidiff-v3.1-beta.md)
       - [Native API差异报告](release-notes/api-change/v3.1-beta/native-apidiff-v3.1-beta.md)
