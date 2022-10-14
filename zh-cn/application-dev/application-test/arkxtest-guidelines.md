@@ -169,9 +169,3 @@ export default function abilityTest() {
 测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示：
 
 ![](figures/TestResult.PNG)
-
-## 相关实例
-
-UI测试框架的接口使用示例可参考以下实例：
-
-- [UI测试框架API使用示例](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-uitest.md)
