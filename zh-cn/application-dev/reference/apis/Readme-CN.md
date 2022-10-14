@@ -148,8 +148,9 @@
 - 文件管理
   - [@ohos.document (文件交互)](js-apis-document.md)
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
+  - [@ohos.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
+  - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
-  - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.filemanagement.userfile_manager (用户数据管理)](js-apis-userfilemanager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
   - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
