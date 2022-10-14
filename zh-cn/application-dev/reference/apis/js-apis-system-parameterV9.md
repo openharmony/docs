@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemparameterV9'
+import systemparameter from '@ohos.systemParameterV9'
 ```
 ## SystemParameterErrorCode 
 
