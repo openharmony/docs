@@ -42,6 +42,7 @@ Ability也是OpenHarmony应用的重要组成部分，[Ability框架](../ability
 - **FA模型：**
 
  | 类型 |     UI开发范式         | 说明 |
+ | -------- | --------------------------- | --------------------------- |
  | 应用 | 类web开发范式 | 1.  UI开发语言：使用hml/css/js <br>2.  业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability）<br>3. 业务逻辑语言：js/ts |
  |     | 声明式开发范式 | 1. UI开发语言：ArkTS <br>2. 业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability） <br>3. 业务逻辑语言：js/ts |
  | 服务卡片 | 类web开发范式 | 1. UI开发语言：卡片显示使用hml+css+json(action) <br>2. 业务入口：form.ts <br>3. 卡片业务逻辑语言：js/ts |
