@@ -29,7 +29,7 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
 
 - UI测试框架
 
-  UI测试框架主要对外提供了一批API供开发人员在对应测试场景调用，而其脚本的运行基础还是上面提到的单元测试框架。
+  UI测试框架主要对外提供了[UiTest API](../reference/apis/js-apis-uitest.md)供开发人员在对应测试场景调用，而其脚本的运行基础还是上面提到的单元测试框架。
 
   UI测试框架的主要功能如下图所示：
 
