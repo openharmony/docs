@@ -167,7 +167,7 @@ CommonEvent模块支持的事件类型。名称指的是系统公共事件宏；
 | COMMON_EVENT_ACCOUNT_DELETED                                 | usual.event.data.ACCOUNT_DELETED                            | ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS               | 删除帐户的公共事件的动作。      |
 | COMMON_EVENT_FOUNDATION_READY                                | usual.event.data.FOUNDATION_READY                           | ohos.permission.RECEIVER_STARTUP_COMPLETED                   | 表示foundation已准备好的公共事件的动作。      |
 | COMMON_EVENT_AIRPLANE_MODE_CHANGED                           | usual.event.AIRPLANE_MODE                                   | 无                                                           | 表示设备飞行模式已更改的公共事件的动作。      |
-| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | ohos.permission.RECEIVER_SPLIT_SCREEN                        | 表示分屏的公共事件的动作。      |
+| COMMON_EVENT_SPLIT_SCREEN<sup>8+<sup>                                    | usual.event.SPLIT_SCREEN                                    | 无                        | 表示分屏的公共事件的动作。      |
 | COMMON_EVENT_SLOT_CHANGE<sup>9+<sup>                                    | usual.event.SLOT_CHANGE                                    | ohos.permission.NOTIFICATION_CONTROLLER                        | 表示通知通道更新的动作。      |
 | COMMON_EVENT_SPN_INFO_CHANGED <sup>9+<sup>                                    | usual.event.SPN_INFO_CHANGED                                    | 无                        | 表示spn显示信息已更新的公共事件的动作。      |
 | COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>                                    | usual.event.QUICK_FIX_APPLY_RESULT                        | 无                        | 指示快速修复应用的动作。      |
