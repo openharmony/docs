@@ -3,7 +3,7 @@
 ## 201 权限校验失败
 
 ### 错误信息
-Check permission fail. Request $permissionName$.
+Check permission fail. Request ${messageInfo}.
 
 ### 可能原因
 该错误码表示权限校验失败，可能原因如下：
@@ -17,9 +17,9 @@ Check permission fail. Request $permissionName$.
 ## 401 参数检查失败
 
 ### 错误信息
-xxx argument is invalid. User should make sure using the correct value.  or
+${messageInfo} argument is invalid. User should make sure using the correct value.  or
 
-xxx arguement is missing. User should add xxx in param set.
+${messageInfo} arguement is missing. User should add ${messageInfo} in param set.
 
 ### 可能原因
 该错误码表示参数检查失败，可能原因如下：
@@ -44,7 +44,7 @@ This api is not supported in current device.
 ## 12000001 该子功能不支持（特性）
 
 ### 错误信息
-xxx mode is not support in current device.
+${messageInfo} mode is not support in current device.
 
 ### 可能原因
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
@@ -53,7 +53,7 @@ xxx mode is not support in current device.
 
 ## 12000002 缺少密钥算法参数
 ### 错误信息
-Check get xxx failed. User should add xxx in param set. 
+Check get ${messageInfo} failed. User should add ${messageInfo} in param set. 
 
 ### 可能原因
 使用密钥时缺少相关参数。
@@ -65,7 +65,7 @@ Check get xxx failed. User should add xxx in param set.
 
 ### 错误信息
 
-xxx argument is invalid. User should make sure using the correct value. 
+${messageInfo} argument is invalid. User should make sure using the correct value. 
 
 ### 可能原因
 
@@ -204,7 +204,7 @@ Queried entity does not exist.
 
 ### 错误信息
 
-External error xxx. 
+External error ${messageInfo}. 
 
 ### 可能原因
 
@@ -246,7 +246,7 @@ Memory is insufficient.
 
 ### 错误信息
 
-Call xxx service to do xxx failed. 
+Call ${messageInfo} service to do ${messageInfo} failed. 
 
 ### 可能原因
 
