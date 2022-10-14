@@ -3,6 +3,16 @@
 
 ## **概述**
 
+执行器信息。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfFaceAuth](_hdf_face_auth.md) | [HdfPinAuth](_hdf_pin_auth.md)
@@ -13,7 +23,7 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [sensorId](#sensorid) | 传感器ID，不同传感器在人脸/口令认证驱动内的唯一标识。 | 
 | [executorType](#executortype) | 执行器类型，根据执行器支持的能力/算法类型进行分类。 | 
@@ -24,19 +34,6 @@
 | [publicKey](#publickey) | 执行器公钥，用于校验该执行器私钥签名的信息。 | 
 | [extraInfo](#extrainfo) | 其他相关信息，用于支持信息扩展。 | 
 | [info](#info) | 执行器注册信息。 | 
-
-
-## **详细描述**
-
-执行器信息。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**
@@ -63,7 +60,7 @@ enum ExecutorSecureLevel ExecutorInfo::esl
 
 **描述：**
 
-执行器安全等级[ExecutorSecureLevel](_hdf_user_auth.md#executorsecurelevel)。
+执行器安全等级[ExecutorSecureLevel](_hdf_face_auth.md#executorsecurelevel)。
 
 
 ### executorRole
@@ -75,7 +72,7 @@ enum ExecutorRole ExecutorInfo::executorRole
 
 **描述：**
 
-执行器角色[ExecutorRole](_hdf_user_auth.md#executorrole)。
+执行器角色[ExecutorRole](_hdf_face_auth.md#executorrole)。
 
 
 ### executorType
@@ -147,6 +144,4 @@ unsigned short ExecutorInfo::sensorId
 
 **描述：**
 
-传感器ID，不同传感器在人脸认证驱动内的唯一标识。
-
-传感器ID，不同传感器在口令认证驱动内的唯一标识。
+传感器ID，不同传感器在人脸认证驱动、口令认证驱动内的唯一标识。

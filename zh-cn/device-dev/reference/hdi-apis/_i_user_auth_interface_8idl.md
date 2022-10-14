@@ -3,6 +3,12 @@
 
 ## **概述**
 
+声明用户认证驱动的API接口。接口可用于注册执行器，管理用户认证凭据，完成PIN码和生物特征认证。
+
+**Since：**
+
+3.2
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,22 +19,13 @@
 
 ### 类
 
-  | 类 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [IUserAuthInterface](interface_i_user_auth_interface.md) | 声明用户认证驱动的API接口。&nbsp;[更多...](interface_i_user_auth_interface.md) | 
+| [IUserAuthInterface](interface_i_user_auth_interface.md) | 声明用户认证驱动的API接口。 | 
 
 
-### 变量
+### 关键字
 
-  | 变量&nbsp;名称 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | package&nbsp;ohos.hdi.user_auth.v1_0 | 用户认证接口的包路径 | 
-
-
-## **详细描述**
-
-声明用户认证驱动的API接口。接口可用于注册执行器，管理用户认证凭据，完成PIN码和生物特征认证。
-
-**Since：**
-
-3.2

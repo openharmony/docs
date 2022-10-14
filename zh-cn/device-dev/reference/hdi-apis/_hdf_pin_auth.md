@@ -1,12 +1,23 @@
 # HdfPinAuth
 
 
+## **概述**
+
+提供口令认证驱动的标准API接口。
+
+口令认证驱动为口令认证服务提供统一的访问接口。获取口令认证驱动代理后，口令认证服务可以调用相关接口获取执行器，获取口令认证执行器后， 口令认证服务可以调用相关接口获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。
+
+**Since：**
+
+3.2
+
+
 ## **汇总**
 
 
 ### 文件
 
-  | 文件 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [IExecutor.idl](pin__auth_2_i_executor_8idl.md) | 定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。 | 
 | [IExecutorCallback.idl](pin__auth_2_i_executor_callback_8idl.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和获取信息。 | 
@@ -16,41 +27,30 @@
 
 ### 类
 
-  | 类 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [IExecutor](interface_pin_i_executor.md) | 定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。[更多...](interface_pin_i_executor.md) | 
-| [IExecutorCallback](interface_pin_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_pin_i_executor.md)。&nbsp;[更多...](interface_pin_i_executor_callback.md) | 
-| [IPinAuthInterface](interface_i_pin_auth_interface.md) | 定义获取口令认证驱动的执行器列表接口。&nbsp;[更多...](interface_i_pin_auth_interface.md) | 
-| [ExecutorInfo](_executor_info.md) | 执行器信息。&nbsp;[更多...](_executor_info.md) | 
-| [TemplateInfo](_template_info.md) | 凭据模版信息。&nbsp;[更多...](_template_info.md) | 
+| [IExecutor](interface_pin_i_executor.md) | 定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。 | 
+| [IExecutorCallback](interface_pin_i_executor_callback.md) | 定义异步API接口回调，用于返回异步接口的请求处理结果和信息。使用细节见[IExecutor](interface_pin_i_executor.md)。 | 
+| [IPinAuthInterface](interface_i_pin_auth_interface.md) | 定义获取口令认证驱动的执行器列表接口。 | 
+| [ExecutorInfo](_executor_info.md) | 执行器信息。 | 
+| [TemplateInfo](_template_info.md) | 凭据模版信息。 | 
 
 
 ### 枚举
 
-  | 枚举 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [AuthType](#authtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4&nbsp;} | 枚举用户认证凭据类型。&nbsp;[更多...](#authtype) | 
-| [ExecutorRole](#executorrole)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。&nbsp;[更多...](#executorrole) | 
-| [ExecutorSecureLevel](#executorsecurelevel)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。&nbsp;[更多...](#executorsecurelevel) | 
-| [CommandId](#commandid)&nbsp;:&nbsp;int&nbsp;{&nbsp;DEFAULT&nbsp;=&nbsp;0&nbsp;} | 枚举口令认证相关功能操作命令。&nbsp;[更多...](#commandid) | 
+| [AuthType](#authtype):&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4&nbsp;} | 枚举用户认证凭据类型。 | 
+| [ExecutorRole](#executorrole):&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。 | 
+| [ExecutorSecureLevel](#executorsecurelevel):&nbsp;int&nbsp;{&nbsp;&nbsp;&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。 | 
+| [CommandId](#commandid):&nbsp;int&nbsp;{&nbsp;DEFAULT&nbsp;=&nbsp;0&nbsp;} | 枚举口令认证相关功能操作命令。 | 
 
 
-### 变量
+### 关键字
 
-  | 变量&nbsp;名称 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | package&nbsp;ohos.hdi.pin_auth.v1_0 | 口令认证接口的包路径 | 
-
-
-## **详细描述**
-
-提供口令认证驱动的标准API接口。
-
-口令认证驱动为口令认证服务提供统一的访问接口。获取口令认证驱动代理后，口令认证服务可以调用相关接口获取执行器，获取口令认证执行器后， 口令认证服务可以调用相关接口获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。
-
-**Since：**
-
-3.2
 
 
 ## **枚举类型说明**

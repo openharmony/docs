@@ -3,6 +3,16 @@
 
 ## **概述**
 
+认证凭据信息。
+
+**自动:**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,7 +23,7 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [credentialId](#credentialid) | 认证凭据ID。 | 
 | [index](#index) | 用户认证框架的执行器索引。 | 
@@ -21,19 +31,6 @@
 | [authType](#authtype) | 用户认证凭据类型。 | 
 | [executorMatcher](#executormatcher) | 执行器匹配器。 | 
 | [executorSensorHint](#executorsensorhint) | 既定用户认证凭据类型的执行器传感器提示，用于找到对应认证方式的传感器。 | 
-
-
-## **详细描述**
-
-认证凭据信息。
-
-**自动:**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**
