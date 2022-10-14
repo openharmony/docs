@@ -1,8 +1,207 @@
 # 加解密算法库框架开发指导
-## 使用加解密操作
+
+## 使用密钥对象生成与转换操作
+
 **场景说明**
 
-使用加解密操作中，典型的场景有：
+使用密钥生成操作中，典型的场景有：
+
+1. 随机生成算法库密钥对象。该对象可用于后续的加解密等操作。
+2. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
+3. 获取算法库密钥对象的二进制数据，用于存储或传输。
+> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[接口声明](https://gitee.com/openharmony/security_crypto_framework/blob/master/interfaces/kits/js/@ohos.security.cryptoFramework.d.ts)。
+
+
+**接口及参数说明**
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+|实例名|接口名|描述|
+|---|---|---|
+|cryptoFramework|createAsyKeyGenerator(algName : string) : AsyKeyGenerator|根据algName设置的非对称密钥规格，创建非对称密钥生成器对象|
+|cryptoFramework|createSymKeyGenerator(algName : string) : SymKeyGenerator|根据algName设置的对称密钥规格，创建对称密钥生成器对象|
+|AsyKeyGenerator|generateKeyPair(callback : AsyncCallback\<KeyPair>) : void|使用callback方式，随机生成非对称密钥对象KeyPair|
+|AsyKeyGenerator|generateKeyPair() : Promise\<KeyPair>|使用Promise方式，随机生成非对称密钥对象KeyPair|
+|SymKeyGenerator|generateSymKey(callback : AsyncCallback\<SymKey>) : void|使用callback方式，随机生成对称密钥对象SymKey|
+|SymKeyGenerator|generateSymKey() : Promise\<SymKey>|使用Promise方式，随机生成对称密钥对象SymKey|
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void | 使用callback方式，根据指定的公钥和私钥二进制数据生成KeyPair对象<br/>（允许公钥/私钥为null，即只传入单一公钥或私钥，生成只携带公钥或私钥的KeyPair对象） |
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair> | 使用Promise方式，根据指定的公钥和私钥二进制数据生成KeyPair对象<br/>（允许公钥/私钥为null，即只传入单一公钥或私钥，生成只携带公钥或私钥的KeyPair对象） |
+| SymKeyGenerator         | convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void| 使用callback方式，根据指定的二进制数据，生成对称密钥对象SymKey |
+| SymKeyGenerator         |convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>| 使用Promise方式，根据指定的二进制数据，生成对称密钥对象SymKey |
+| Key | getEncoded() : DataBlob;  | 获取Key密钥对象的二进制数据（Key的子类实例包括对称密钥SymKey、公钥PubKey、私钥PriKey） |
+
+**开发步骤**
+
+示例1：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
+
+1. 创建非对称密钥生成器；
+2. 通过非对称密钥生成器随机生成非对称密钥；
+3. 获取密钥对象的二进制数据；
+
+以使用Promise方式随机生成RSA密钥（1024位，素数个数为2）为例：
+
+```javascript
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function generateAsyKey() {
+  // 创建非对称密钥生成器
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+  // 通过非对称密钥生成器，随机生成非对称密钥
+  let keyGenPromise = rsaGenerator.generateKeyPair();
+  keyGenPromise.then( keyPair => {
+    globalKeyPair = keyPair;
+    let pubKey = globalKeyPair.pubKey;
+    let priKey = globalKeyPair.priKey;
+    // 获取非对称密钥的二进制数据
+    pkBlob = pubKey.getEncoded();
+    skBlob = priKey.getEncoded();
+    AlertDialog.show({ message : "pk bin data" + pkBlob.data} );
+    AlertDialog.show({ message : "sk bin data" + skBlob.data} );
+  })
+}
+```
+
+示例2：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
+
+1. 创建对称密钥生成器；
+2. 通过对称密钥生成器随机生成对称密钥；
+3. 获取算法库密钥对象的二进制数据；
+
+以使用Promise方式随机生成AES密钥（256位）为例：
+
+```javascript
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+// 字节流以16进制输出
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+function testGenerateAesKey() {
+  // 创建对称密钥生成器
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  // 通过密钥生成器随机生成对称密钥
+  let promiseSymKey = symKeyGenerator.generateSymKey();
+  promiseSymKey.then( key => {
+    // 获取对称密钥的二进制数据，输出长度为256bit的字节流
+    let encodedKey = key.getEncoded();
+    console.info('key hex:' + uint8ArrayToShowStr(encodedKey.data));
+  })
+}
+```
+
+示例3：根据指定的RSA非对称密钥二进制数据，生成KeyPair对象（场景2）
+
+1. 获取RSA二进制密钥数据，封装成DataBlob对象，按keysize(32位) ，nsize(keysize/8), esize(e实际长度)，dsize(keysize/8)，nval(大数n的二进制数据)，eval(大数e的二进制数据)，dval(大数d的二进制数据)拼接形成。
+2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+
+```javascript
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+function convertAsyKey() {
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024");
+  // 公钥二进制数据
+  let pkval = new Uint8Array([0,4,0,0,128,0,0,0,3,0,0,0,0,0,0,0,182,22,137,81,111,129,17,47,33,97,67,85,251,53,127,42,130,150,93,144,129,104,14,73,110,189,138,82,53,74,114,86,24,186,143,65,87,110,237,69,206,207,5,81,24,32,41,160,209,125,162,92,0,148,49,241,235,0,71,198,1,28,136,106,152,22,25,249,77,241,57,149,154,44,200,6,0,83,246,63,162,106,242,131,80,227,143,162,210,28,127,136,123,172,26,247,2,194,16,1,100,122,180,251,57,22,69,133,232,145,107,66,80,201,151,46,114,175,116,57,45,170,188,77,86,230,111,45,1,0,1]);
+  // 封装成DataBlob对象
+  let pkBlob = {data : pkval};
+  // 调用密钥转换函数
+  let convertKeyPromise = rsaGenerator.convertKey(pkBlob, null);
+  convertKeyPromise.then( keyPair => {
+    if (keyPair == null) {
+      AlertDialog.show({message : "Convert keypair fail"});
+    }
+    AlertDialog.show({message : "Convert KeyPair success"});
+  })
+}
+```
+
+**说明**
+
+1. nsize和dsize为密钥位数/8，esize为具体的实际长度；
+2. 私钥材料需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为为0，缺省dval的数据；
+3. 公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象；
+4. keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式；
+
+示例4：根据指定的ECC非对称密钥二进制数据，生成KeyPair对象（场景2、3）
+
+1. 获取ECC二进制密钥数据，封装成DataBlob对象。
+2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
+
+```javascript
+function convertEccAsyKey() {
+    let pubKeyArray = new Uint8Array([4,196,55,233,100,227,224,38,38,5,128,81,53,112,129,7,59,189,116,105,182,87,190,85,31,248,172,116,213,7,206,85,190,65,169,193,138,173,232,187,74,54,78,251,29,131,192,223,251,227,170,138,80,7,98,193,216,168,235,114,255,188,70,134,104]);
+    let priKeyArray = new Uint8Array([255,70,89,220,189,19,41,157,175,173,83,60,74,216,195,96,24,181,231,23,112,247,150,126,15,155,24,79,33,97,31,225]);
+    let pubKeyBlob = { data: pubKeyArray };
+    let priKeyBlob = { data: priKeyArray };
+    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
+        if (error) {
+            AlertDialog.show({message : "Convert keypair fail"});
+        }
+        AlertDialog.show({message : "Convert KeyPair success"});
+    })
+}
+```
+
+示例5：根据指定的对称密钥二进制数据，生成SymKey对象（场景2、3）
+
+1. 创建对称密钥生成器；
+2. 通过对称密钥生成器，根据指定的对称密钥二进制数据，生成SymKey对象；
+3. 获取算法库密钥对象的二进制数据；
+
+以使用callback方式生成3DES密钥（3DES密钥只能为192位）为例：
+
+```javascript
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+// 字节流以16进制输出
+function uint8ArrayToShowStr(uint8Array) {
+  return Array.prototype.map
+    .call(uint8Array, (x) => ('00' + x.toString(16)).slice(-2))
+    .join('');
+}
+
+function genKeyMaterialBlob() {
+  let arr = [
+    0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
+    0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
+    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72];    // keyLen = 192 (24 bytes)
+  let keyMaterial = new Uint8Array(arr);
+  return {data : keyMaterial};
+}
+
+function testConvertAesKey() {
+  // 生成对称密钥生成器
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  // 根据用户指定的数据，生成对称密钥
+  let keyMaterialBlob = genKeyMaterialBlob();
+  try {
+    symKeyGenerator.convertKey(keyMaterialBlob, (error, key) => {
+      if (error) {    // 业务逻辑执行错误通过callback的第一个参数返回错误信息
+        console.error(`convertKey error, ${error.code}, ${error.message}`);
+        return;
+      }
+      console.info(`key algName: ${key.algName}`);
+      console.info(`key format: ${key.format}`);
+      let encodedKey = key.getEncoded();    // 获取对称密钥的二进制数据，输出长度为192bit的字节流
+      console.info('key getEncoded hex: ' + uint8ArrayToShowStr(encodedKey.data));
+    })
+  } catch (error) {    // 参数检查的错误以同步的方式立即抛出异常
+    console.error(`convertKey failed, ${error.code}, ${error.message}`);
+    return;
+  }
+}
+```
+
+## 使用加解密操作
+
+**场景说明**
+
+在数据存储或传输场景中，可以使用加解密操作用于保证数据的机密性，防止敏感数据泄露。使用加解密操作中，典型的场景有：
 1. 使用对称密钥的加解密操作
 2. 使用非对称密钥的加解密操作
 
@@ -26,9 +225,9 @@
 
 示例1：使用对称密钥的加解密操作
 
-1. 生成对称密钥生成器。
+1. 创建对称密钥生成器。
 2. 通过密钥生成器生成对称密钥。
-3. 生成加解密生成器。
+3. 创建加解密生成器。
 4. 通过加解密生成器加密或解密数据。
 
 以AES GCM以Promise方式加解密为例：
@@ -345,7 +544,8 @@ function encryptMessageCallback() {
 ## 使用签名验签操作
 
 **场景说明**
-使用签名验签操作中，典型的场景有：
+
+当需要判断接收的数据是否被篡改且是否为指定对象发送的数据时，可以使用签名验签操作。使用签名验签操作中，典型的场景有：
 1. 使用RSA签名验签操作
 2. 使用ECC签名验签操作
 
@@ -375,9 +575,9 @@ function encryptMessageCallback() {
 示例1：使用RSA签名验签操作
 1. 生成RSA密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成RSA非对称密钥。
 2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
-3. 执行签名操作。通过Sign类提供的update接口，添加签名数据，并调用doFinal接口生成数据的签名。
+3. 执行签名操作。通过Sign类提供的update接口，添加签名数据，并调用sign接口生成数据的签名。
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
-5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
+5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
@@ -545,6 +745,8 @@ function verifyMessageCallback() {
 
 **场景说明**
 
+用户指定摘要算法（如SHA256）生成Md实例，并输入单段或多段需要摘要的信息，进行摘要计算更新，并返回消息摘要计算结果，在指定算法后可获取当前算法名与摘要计算长度（字节）
+
 使用摘要操作的主要场景为：
 
 用户指定摘要算法（如SHA256）生成Md实例，并输入单段或多段需要摘要的信息，进行摘要计算更新，并返回消息摘要计算结果，在指定算法后可获取当前算法名与摘要计算长度（字节）
@@ -647,9 +849,9 @@ function doMdByCallback(algName) {
 
 **场景说明**
 
-使用签名验签操作中，典型的场景有：
+使用密钥协商操作中，典型的场景有：
 
-使用ECDH操作。
+通信双方可以在一个公开的信道上通过相互传送一些消息，共同建立一个安全的共享秘密密钥。
 
 **接口及参数说明**
 
@@ -714,7 +916,9 @@ function ecdhCallback() {
 
 **场景说明**
 
-使用消息认证码操作的主要场景为：
+消息认证码操作主要应用于身份认证的场景：
+
+Mac(message authentication code)可以对消息进行完整性校验，通过使用双方共享的密钥，识别出信息伪装篡改等行为
 
 用户指定摘要算法（如SHA256）生成消息认证码Mac实例，输入对称密钥初始化Mac，并传入单段或多段需要摘要的信息，进行消息认证码计算，并获取消息认证码计算结果，在指定算法后可获取当前算法名与消息认证码计算长度（字节）。
 

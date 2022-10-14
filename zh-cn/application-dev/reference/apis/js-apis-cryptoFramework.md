@@ -1802,7 +1802,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
-追加待签名数据，callback方式
+当待签名数据较多时，可以通过update方法追加待签名数据，数据追加结束后，调用Sign方法即可完成签名。callback形式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1817,7 +1817,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 update(data : DataBlob) : Promise\<void>;
 
-追加待签名数据，promise方式
+当待签名数据较多时，可以通过update方法追加待签名数据，数据追加结束后，调用Sign方法即可完成签名。promise形式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1980,7 +1980,7 @@ init(pubKey : PubKey) : Promise\<void>
 
 update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
-追加待验签数据，callback方式
+当待验签数据较多时，可以通过update方法追加待验签数据，数据追加结束后，调用verify方法即可完成验签。callback形式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1995,7 +1995,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 
 update(data : DataBlob) : Promise\<void>;
 
-追加待验签数据，promise方式
+当待验签数据较多时，可以通过update方法追加待验签数据，数据追加结束后，调用verify方法即可完成验签。promise方式
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
