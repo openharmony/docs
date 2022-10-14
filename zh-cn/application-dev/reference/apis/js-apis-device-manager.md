@@ -294,15 +294,11 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 - 示例：
   ```js
-  try {
-    dmInstance.getTrustedDeviceList().then((data) => {
-      console.log('get trusted device info: ' + JSON.stringify(data));
-      }).catch((err) => {
-        console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
-    });
-  } catch (err) {
+  dmInstance.getTrustedDeviceList().then((data) => {
+    console.log('get trusted device info: ' + JSON.stringify(data));
+    }).catch((err) => {
       console.error("getTrustedDeviceList errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  });
   ```
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
@@ -371,15 +367,11 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 - 示例：
   ```js
-  try {
-    dmInstance.getLocalDeviceInfo().then((data) => {
-      console.log('get local device info: ' + JSON.stringify(data));
-    }).catch((err) => {
-      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-    });
-  } catch (err) {
+  dmInstance.getLocalDeviceInfo().then((data) => {
+    console.log('get local device info: ' + JSON.stringify(data));
+  }).catch((err) => {
     console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-  }
+  });
   ```
 
 ### startDeviceDiscovery8+</sup>
