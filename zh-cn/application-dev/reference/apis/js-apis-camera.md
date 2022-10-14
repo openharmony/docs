@@ -3930,7 +3930,7 @@ videoOutput.setFrameRateRange(minFrameRate， maxFrameRate，(err) => {
 
 ### setFrameRateRange
 
-setFrameRateRange(minFrameRate: number, maxFrameRate: number): Promise<Array<number\>\>
+setFrameRateRange(minFrameRate: number, maxFrameRate: number): Promise<void\>
 
 获取帧率范围，通过Promise获取结果。
 
