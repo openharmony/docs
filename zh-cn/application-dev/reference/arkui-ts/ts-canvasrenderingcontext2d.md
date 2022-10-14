@@ -1,11 +1,11 @@
 # CanvasRenderingContext2D对象
 
+使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
+
 > **说明：**
 >
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
 
 
 ## 接口
@@ -721,8 +721,8 @@ strokeRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct StrokeRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -765,8 +765,8 @@ clearRect(x: number, y: number, w: number, h: number): void
   @Entry
   @Component
   struct ClearRect {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -776,8 +776,8 @@ clearRect(x: number, y: number, w: number, h: number): void
           .backgroundColor('#ffffff')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
-            this.context.fillRect(0,0,500,500)
-            this.context.clearRect(20,20,150,100)
+            this.context.fillRect(20,20,200,200)
+            this.context.clearRect(30,30,150,100)
         })
       }
       .width('100%')
@@ -808,8 +808,8 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
   @Entry
   @Component
   struct FillText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -853,8 +853,8 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
   @Entry
   @Component
   struct StrokeText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -922,8 +922,8 @@ measureText(text: string): TextMetrics
   @Entry
   @Component
   struct MeasureText {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -977,6 +977,8 @@ stroke(path?: Path2D): void
           .onReady(() =>{
             this.context.moveTo(25, 25)
             this.context.lineTo(25, 105)
+            this.context.lineTo(75, 105)
+            this.context.lineTo(75, 25)
             this.context.strokeStyle = 'rgb(0,0,255)'
             this.context.stroke()
           })
@@ -1439,7 +1441,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             this.context.stroke()
           })
       }
@@ -1620,11 +1622,11 @@ clip(fillRule?: CanvasFillRule): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.rect(0, 0, 200, 200)
+            this.context.rect(0, 0, 100, 200)
             this.context.stroke()
             this.context.clip()
             this.context.fillStyle = "rgb(255,0,0)"
-            this.context.fillRect(0, 0, 150, 150)
+            this.context.fillRect(0, 0, 200, 200)
           })
       }
       .width('100%')
@@ -1638,7 +1640,7 @@ clip(fillRule?: CanvasFillRule): void
 
 clip(path: Path2D, fillRule?: CanvasFillRule): void
 
-对封闭路径进行填充。该接口为空接口。
+设置当前路径为剪切路径
 
 **参数:** 
 
@@ -1647,6 +1649,38 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 | path     | Path2D         | 是    | -         | Path2D剪切路径。                              |
 | fillRule | CanvasFillRule | 否    | "nonzero" | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 |
 
+
+**示例:** 
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct Clip {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D();
+          region.rect(80,10,20,130);
+          region.rect(40,50,100,50);
+          this.context.clip(region,"evenodd")
+          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillRect(0, 0, this.context.width, this.context.height)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777779](figures/zh-cn_image_000000127777779.png)
 
 
 ### filter
@@ -1755,9 +1789,10 @@ scale(x: number, y: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.strokeRect(10, 10, 25, 25)
+            this.context.lineWidth = 3
+            this.context.strokeRect(30, 30, 50, 50)
             this.context.scale(2, 2) // Scale to 200%
-            this.context.strokeRect(10, 10, 25, 25)
+            this.context.strokeRect(30, 30, 50, 50)
           })
       }
       .width('100%')
@@ -1987,7 +2022,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 createImageData(sw: number, sh: number): ImageData
 
-创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
 **参数：**
 
@@ -1997,23 +2032,21 @@ createImageData(sw: number, sh: number): ImageData
 | sh   | number | 是    | 0    | ImageData的高度。 |
 
 
-### createImageData
-
 createImageData(imageData: ImageData): ImageData
 
-创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagebitmap.md)。
+创建新的ImageData 对象，请参考[ImageData](ts-components-canvas-imagedata.md)。
 
 **参数：**
 
 | 参数        | 类型                                       | 必填   | 默认   | 描述                |
 | --------- | ---------------------------------------- | ---- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null | 复制现有的ImageData对象。 |
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | 是    | null | 复制现有的ImageData对象。 |
 
   **返回值：**
 
 | 类型                                       | 说明             |
 | ---------------------------------------- | -------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | 新的ImageData对象。 |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象。 |
 
 
 ### getPixelMap
@@ -2041,7 +2074,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagebitmap.md)对象。
+以当前canvas指定区域内的像素创建[ImageData](ts-components-canvas-imagedata.md)对象。
 
 **参数：**
 
@@ -2056,7 +2089,39 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 | 类型                                       | 说明             |
 | ---------------------------------------- | -------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | 新的ImageData对象。 |
+| [ImageData](ts-components-canvas-imagedata.md) | 新的ImageData对象。 |
+
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct GetImageData {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.drawImage(this.img,0,0,130,130);
+          var imagedata = this.context.getImageData(50,50,130,130);
+          this.context.putImageData(imagedata,150,150);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![zh-cn_image_000000127777780](figures/zh-cn_image_000000127777780.png)
 
 
 ### putImageData
@@ -2065,13 +2130,13 @@ putImageData(imageData: ImageData, dx: number, dy: number): void
 
 putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth: number, dirtyHeight: number): void
 
-使用[ImageData](ts-components-canvas-imagebitmap.md)数据填充新的矩形区域。
+使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
 **参数：**
 
 | 参数          | 类型                                       | 必填   | 默认值          | 描述                            |
 | ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagebitmap.md) | 是    | null         | 包含像素值的ImageData对象。            |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | null         | 包含像素值的ImageData对象。            |
 | dx          | number                                   | 是    | 0            | 填充区域在x轴方向的偏移量。                |
 | dy          | number                                   | 是    | 0            | 填充区域在y轴方向的偏移量。                |
 | dirtyX      | number                                   | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
@@ -2146,6 +2211,7 @@ setLineDash(segments: number[]): void
           .onReady(() =>{
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
+            this.context.stroke()
           })
       }
       .width('100%')
@@ -2169,24 +2235,34 @@ getLineDash(): number[]
 | -------- | ------------------------ |
 | number[] | 返回数组，该数组用来描述线段如何交替和间距长度。 |
 
+
 **示例：** 
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+@Entry
+@Component
+struct CanvasGetLineDash {
+  @State message: string = 'Hello World'
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            console.error('before getlinedash clicked')
+            let res = this.context.getLineDash()
+            console.error(JSON.stringify(res))
+          })
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+          .onReady(() => {
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
             this.context.stroke();
@@ -2194,10 +2270,13 @@ getLineDash(): number[]
           })
       }
       .width('100%')
-      .height('100%')
     }
+    .height('100%')
   }
+}
   ```
+![zh-cn_image_000000127777778](figures/zh-cn_image_000000127777778.png) 
+
 
 
 ### imageSmoothingQuality
@@ -2224,7 +2303,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
 
 | 参数     | 类型                                       | 描述                 |
 | ------ | ---------------------------------------- | ------------------ |
-| bitmap | [ImageData](ts-components-canvas-imagebitmap.md) | 待显示的ImageBitmap对象。 |
+| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 待显示的ImageBitmap对象。 |
 
 **示例：** 
 
@@ -2232,7 +2311,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
   // xxx.ets
   @Entry
   @Component
-  struct PutImageData {
+  struct TransferFromImageBitmap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -2261,7 +2340,8 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
     }
   }
   ```
-  ![zh-cn_image_000000127777773](figures/zh-cn_image_000000127777773.png)  
+  ![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001238952387.png)  
+
 
 ### toDataURL
 
@@ -2333,7 +2413,11 @@ restore(): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.restore()
+            this.context.save(); // save the default state
+            this.context.fillStyle = "green";
+            this.context.fillRect(20, 20, 100, 100);
+            this.context.restore(); // restore to the default state
+            this.context.fillRect(150, 75, 100, 100);
           })
       }
       .width('100%')
@@ -2341,6 +2425,7 @@ restore(): void
     }
   }
   ```
+  ![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png)
 
 
 ### save
@@ -2366,14 +2451,19 @@ save(): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.save()
-        })
+            this.context.save(); // save the default state
+            this.context.fillStyle = "green";
+            this.context.fillRect(20, 20, 100, 100);
+            this.context.restore(); // restore to the default state
+            this.context.fillRect(150, 75, 100, 100);
+          })
       }
       .width('100%')
       .height('100%')
     }
   }
   ```
+  ![zh-cn_image_000000127777781](figures/zh-cn_image_000000127777781.png)
 
 
 ### createLinearGradient
