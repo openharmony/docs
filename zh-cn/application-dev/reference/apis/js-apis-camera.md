@@ -80,7 +80,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## Profile
 
-相机配置信息项。（该接口目前为预留，将在3.2版本开放）
+相机配置信息项。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -102,7 +102,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## VideoProfile
 
-视频配置信息项。（该接口目前为预留，将在3.2版本开放）
+视频配置信息项。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -112,7 +112,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 ## CameraOutputCapability
 
-相机输出能力项。（该接口目前为预留，将在3.2版本开放）
+相机输出能力项。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -131,7 +131,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 
 getSupportedCameras(callback: AsyncCallback<Array<CameraDevice\>\>): void
 
-获取支持指定的相机设备对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取支持指定的相机设备对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -157,7 +157,7 @@ cameraManager.getSupportedCameras((err, cameras) => {
 
 getSupportedCameras(): Promise<Array<CameraDevice\>\>
 
-获取支持指定的相机设备对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取支持指定的相机设备对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -180,7 +180,7 @@ cameraManager.getSupportedCameras().then((cameraArray) => {
 
 getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<CameraOutputCapability\>): void
 
-查询相机设备在模式下支持的输出能力，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询相机设备在模式下支持的输出能力，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -207,7 +207,7 @@ cameraManager.getSupportedOutputCapability(cameraDevice, (err, cameras) => {
 
 getSupportedOutputCapability(camera:CameraDevice): Promise<CameraOutputCapability\>
 
-查询相机设备在模式下支持的输出能力，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询相机设备在模式下支持的输出能力，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -236,7 +236,7 @@ cameraManager.getSupportedOutputCapability(cameraDevice).then((cameraoutputcapab
 
 getSupportedMetadataObjectType(callback: AsyncCallback<Array<MetadataObjectType\>\>): void
 
-查询相机设备支持的元能力信息，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询相机设备支持的元能力信息，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -262,7 +262,7 @@ cameraManager.getSupportedMetadataObjectType((err, metadataobject) => {
 
 getSupportedMetadataObjectType(camera:CameraDevice): Promise<CameraOutputCapability\>
 
-查询相机设备支持的元能力信息，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询相机设备支持的元能力信息，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -455,7 +455,7 @@ cameraManager.muteCamera(isMuted).then(() => {
 
 createCameraInput(camera: CameraDevice, callback: AsyncCallback<CameraInput\>): void
 
-使用CameraDevice对象异步创建CameraInput实例，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+使用CameraDevice对象异步创建CameraInput实例，通过注册回调函数获取结果。
 
 此接口为系统接口。
 
@@ -486,7 +486,7 @@ cameraManager.createCameraInput(camera, (err, cameraInput) => {
 
 createCameraInput(camera: CameraDevice): Promise<CameraInput\>
 
-使用CameraDevice对象异步创建CameraInput实例，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+使用CameraDevice对象异步创建CameraInput实例，通过Promise获取结果。
 
 此接口为系统接口。
 
@@ -583,7 +583,7 @@ cameraManager.createCameraInput(camera.CameraPosition.CAMERA_POSITION_BACK, came
 
 createPreviewOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PreviewOutput\>): void
 
-创建预览输出对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+创建预览输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -611,7 +611,7 @@ cameraManager.createPreviewOutput(profile, surfaceId, (err, previewoutput) => {
 
 createPreviewOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
 
-创建预览输出对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+创建预览输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -640,7 +640,7 @@ cameraManager.createPreviewOutput(profile, surfaceId).then((previewoutput) => {
 
 createDeferredPreviewOutput(profile: Profile, callback: AsyncCallback<PreviewOutput\>): void
 
-尚未获取surfaceID时创建预览输出对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+尚未获取surfaceID时创建预览输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -667,7 +667,7 @@ cameraManager.createDeferredPreviewOutput(profile, (err, previewoutput) => {
 
 createDeferredPreviewOutput(profile: Profile): Promise<PreviewOutput\>
 
-尚未获取surfaceID时创建预览输出对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+尚未获取surfaceID时创建预览输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -695,7 +695,7 @@ cameraManager.createDeferredPreviewOutput(profile).then((previewoutput) => {
 
 createPhotoOutput(profile: Profile, surfaceId: string, callback: AsyncCallback<PhotoOutput\>): void
 
-创建拍照输出对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+创建拍照输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -723,7 +723,7 @@ cameraManager.createPhotoOutput(profile, surfaceId, (err, photooutput) => {
 
 createPhotoOutput(profile: Profile, surfaceId: string): Promise<PreviewOutput\>
 
-创建拍照输出对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+创建拍照输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -752,7 +752,7 @@ cameraManager.createPhotoOutput(profile, surfaceId).then((photooutput) => {
 
 createVideoOutput(profile: VideoProfile, surfaceId: string, callback: AsyncCallback<VideoOutput\>): void
 
-创建录像输出对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+创建录像输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -780,7 +780,7 @@ cameraManager.createVideoOutput(profile, surfaceId, (err, videooutput) => {
 
 createVideoOutput(profile: VideoProfile, surfaceId: string): Promise<VideoOutput\>
 
-创建录像输出对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+创建录像输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -809,7 +809,7 @@ cameraManager.createVideoOutput(profile, surfaceId).then((videooutput) => {
 
 createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>, callback: AsyncCallback<MetadataOutput\>): void
 
-创建metadata流输出对象，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+创建metadata流输出对象，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -836,7 +836,7 @@ cameraManager.createMetadataOutput(metadataObjectTypes, (err, metadataoutput) =>
 
 createMetadataOutput(metadataObjectTypes: Array<MetadataObjectType\>): Promise<MetadataOutput>
 
-创建metadata流输出对象，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+创建metadata流输出对象，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -864,7 +864,7 @@ cameraManager.createMetadataOutput(metadataObjectTypes).then((metadataoutput) =>
 
 createCaptureSession(callback: AsyncCallback<CaptureSession\>): void
 
-创建CaptureSession实例，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+创建CaptureSession实例，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -890,7 +890,7 @@ cameraManager.createCaptureSession((err, capturesession) => {
 
 createCaptureSession(): Promise<CaptureSession\>
 
-创建CaptureSession实例，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+创建CaptureSession实例，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1056,7 +1056,7 @@ async function getCameraInfo("cameraId") {
 
 ## Point
 
-枚举，点坐标用于对焦、曝光配置。（该接口目前为预留，将在3.2版本开放）
+枚举，点坐标用于对焦、曝光配置。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1084,7 +1084,7 @@ async function getCameraInfo("cameraId") {
 
 open\(callback: AsyncCallback<void\>\): void
 
-打开相机，通过注册回调函数获取状态。（该接口目前为预留，将在3.2版本开放）
+打开相机，通过注册回调函数获取状态。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1110,7 +1110,7 @@ cameraInput.open((err) => {
 
 open(): Promise<void\>
 
-打开相机，通过Promise获取相机的状态。（该接口目前为预留，将在3.2版本开放）
+打开相机，通过Promise获取相机的状态。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1132,7 +1132,7 @@ cameraInput.open().then(() => {
 
 close\(callback: AsyncCallback<void\>\): void
 
-关闭相机，通过注册回调函数获取状态。（该接口目前为预留，将在3.2版本开放）
+关闭相机，通过注册回调函数获取状态。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1158,7 +1158,7 @@ cameraInput.close((err) => {
 
 close(): Promise<void\>
 
-关闭相机，通过Promise获取状态。（该接口目前为预留，将在3.2版本开放）
+关闭相机，通过Promise获取状态。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1249,7 +1249,7 @@ cameraInput.on('error', (cameraInputError) => {
 
 ## CameraInputErrorCode
 
-枚举，[CameraInput](#camerainput)错误类型。（该接口目前为预留，将在3.2版本开放）
+枚举，[CameraInput](#camerainput)错误类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1288,7 +1288,7 @@ cameraInput.on('error', (cameraInputError) => {
 
 ## ExposureMode
 
-枚举，曝光模式。（该接口目前为预留，将在3.2版本开放）
+枚举，曝光模式。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
@@ -1325,7 +1325,7 @@ cameraInput.on('error', (cameraInputError) => {
 
 ## ExposureState
 
-枚举，曝光状态。（该接口目前为预留，将在3.2版本开放）
+枚举，曝光状态。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
@@ -1336,7 +1336,7 @@ cameraInput.on('error', (cameraInputError) => {
 
 ## VideoStabilizationMode
 
-枚举，视频防抖模式。（该接口目前为预留，将在3.2版本开放）
+枚举，视频防抖模式。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
@@ -1883,7 +1883,7 @@ captureSession.stop().then(() => {
 
 lockForControl(callback: AsyncCallback<void\>): void
 
-请求以独占方式控制设备的硬件属性[CameraInput](#camerainput)，需要调用[unlockForControl](#unlockforcontrol)，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+请求以独占方式控制设备的硬件属性[CameraInput](#camerainput)，需要调用[unlockForControl](#unlockforcontrol)，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1909,7 +1909,7 @@ captureSession.lockForControl((err) => {
 
 lockForControl(): Promise<void\>
 
-请求以独占方式控制设备的硬件属性[CameraInput](#camerainput)，需要调用[unlockForControl](#unlockforcontrol)，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+请求以独占方式控制设备的硬件属性[CameraInput](#camerainput)，需要调用[unlockForControl](#unlockforcontrol)，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1931,7 +1931,7 @@ captureSession.lockForControl().then(() => {
 
 unlockForControl(callback: AsyncCallback<void\>): void
 
-控制生效，并放弃对设备配置的排他控制，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+控制生效，并放弃对设备配置的排他控制，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -1957,7 +1957,7 @@ captureSession.unlockForControl((err) => {
 
 unlockForControl(): Promise<void\>
 
-控制生效，并放弃对设备配置的排他控制，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+控制生效，并放弃对设备配置的排他控制，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2027,7 +2027,7 @@ captureSession.release().then(() => {
 
 hasFlash(callback: AsyncCallback<boolean\>): void
 
-检测是否有闪光灯，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+检测是否有闪光灯，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2053,7 +2053,7 @@ cameraInput.hasFlash((err, status) => {
 
 hasFlash(): Promise<boolean\>
 
-检测是否有闪光灯，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+检测是否有闪光灯，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2075,7 +2075,7 @@ cameraInput.hasFlash().then((status) => {
 
 isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): void
 
-检测闪光灯模式是否支持，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+检测闪光灯模式是否支持，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2102,7 +2102,7 @@ cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status)
 
 isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
 
-检测闪光灯模式是否支持，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+检测闪光灯模式是否支持，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2130,7 +2130,7 @@ cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status)
 
 setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
 
-设置闪光灯模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置闪光灯模式，通过注册回调函数获取结果。
 
 进行设置之前，需要先检查：
 
@@ -2162,7 +2162,7 @@ cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
 
 setFlashMode(flashMode: FlashMode): Promise<void\>
 
-设置闪光灯模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置闪光灯模式，通过Promise获取结果。
 
 进行设置之前，需要先检查：
 
@@ -2195,7 +2195,7 @@ cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
 
 getFlashMode(callback: AsyncCallback<FlashMode\>): void
 
-获取当前设备的闪光灯模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前设备的闪光灯模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2221,7 +2221,7 @@ cameraInput.getFlashMode((err, flashMode) => {
 
 getFlashMode(): Promise<FlashMode\>
 
-获取当前设备的闪光灯模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前设备的闪光灯模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2243,7 +2243,7 @@ cameraInput.getFlashMode().then((flashMode) => {
 
 isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>): void;
 
-检测曝光模式是否支持，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+检测曝光模式是否支持，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2270,7 +2270,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(er
 
 isExposureModeSupported(aeMode: ExposureMode): Promise<boolean\>
 
-检测曝光模式是否支持，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+检测曝光模式是否支持，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2298,7 +2298,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).th
 
 getExposureMode(callback: AsyncCallback<ExposureMode\>): void
 
-获取当前曝光模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前曝光模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2324,7 +2324,7 @@ cameraInput.getExposureMode((err, exposureMode) => {
 
 getExposureMode(): Promise<ExposureMode\>
 
-获取当前曝光模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前曝光模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2346,7 +2346,7 @@ cameraInput.getExposureMode().then((exposureMode) => {
 
 setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 
-设置曝光模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2373,7 +2373,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
 
 setExposureMode(aeMode: ExposureMode): Promise<void\>
 
-设置曝光模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2395,7 +2395,7 @@ cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() =>
 
 getMeteringPoint(callback: AsyncCallback<Point\>): void
 
-查询曝光区域中心点，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询曝光区域中心点，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2421,7 +2421,7 @@ cameraInput.getMeteringPoint((err, exposurePoint) => {
 
 getMeteringPoint(): Promise<Point\>
 
-查询曝光区域中心点，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询曝光区域中心点，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2443,7 +2443,7 @@ cameraInput.getMeteringPoint().then((exposurePoint) => {
 
 setMeteringPoint(point: Point, callback: AsyncCallback<point\>): void
 
-设置曝光区域中心点，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光区域中心点，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2472,7 +2472,7 @@ cameraInput.setMeteringPoint(Point1,(err) => {
 
 setMeteringPoint(point: Point): Promise<void\>
 
-设置曝光区域中心点，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光区域中心点，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2502,7 +2502,7 @@ cameraInput.setMeteringPoint(Point2).then(() => {
 
 getExposureBiasRange(callback: AsyncCallback<Array<number\>\>): void
 
-查询曝光补偿范围，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询曝光补偿范围，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2528,7 +2528,7 @@ cameraInput.getExposureBiasRange((err, biasRangeArray) => {
 
 getExposureBiasRange(): Promise<Array<number\>\>
 
-查询曝光补偿范围，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询曝光补偿范围，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2550,7 +2550,7 @@ cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).th
 
 setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 
-设置曝光补偿，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光补偿，通过注册回调函数获取结果。
 
 进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange)查询支持的范围。
 
@@ -2579,7 +2579,7 @@ cameraInput.setExposureBias(-4,(err) => {
 
 setExposureBias(exposureBias: number): Promise<void\>
 
-设置曝光补偿，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置曝光补偿，通过Promise获取结果。
 
 进行设置之前，建议先通过方法[getExposureBiasRange](#getexposurebiasrange)查询支持的范围。
 
@@ -2609,7 +2609,7 @@ cameraInput.setExposureBias(-4).then(() => {
 
 getExposureValue(callback: AsyncCallback<number\>): void
 
-查询当前曝光值，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询当前曝光值，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2635,7 +2635,7 @@ cameraInput.getExposureValue((err, exposureValue) => {
 
 getExposureValue(): Promise<number\>
 
-查询当前曝光值，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询当前曝光值，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2657,7 +2657,7 @@ cameraInput.getExposureValue().then((exposureValue) => {
 
 isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
 
-检测对焦模式是否支持，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+检测对焦模式是否支持，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2684,7 +2684,7 @@ cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status)
 
 isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
 
-检测对焦模式是否支持，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+检测对焦模式是否支持，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2712,7 +2712,7 @@ cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status)
 
 setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
 
-设置对焦模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置对焦模式，通过注册回调函数获取结果。
 
 进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
 
@@ -2741,7 +2741,7 @@ cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
 
 setFocusMode(afMode: FocusMode): Promise<void\>
 
-设置对焦模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置对焦模式，通过Promise获取结果。
 
 进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
 
@@ -2771,7 +2771,7 @@ cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
 
 getFocusMode(callback: AsyncCallback<FocusMode\>): void
 
-获取当前的对焦模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前的对焦模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2797,7 +2797,7 @@ cameraInput.getFocusMode((err, afMode) => {
 
 getFocusMode(): Promise<FocusMode\>
 
-获取当前的对焦模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前的对焦模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2819,7 +2819,7 @@ cameraInput.getFocusMode().then((afMode) => {
 
 setFocusPoint(point: Point, callback: AsyncCallback<void\>): void
 
-设置焦点，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置焦点，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2848,7 +2848,7 @@ cameraInput.setFocusPoint(Point1, (err) => {
 
 setFocusPoint(point: Point): Promise<void\>
 
-设置焦点，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置焦点，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2878,7 +2878,7 @@ cameraInput.setFocusPoint(Point2).then(() => {
 
 getFocusPoint(callback: AsyncCallback<Point\>): void
 
-查询焦点，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询焦点，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2904,7 +2904,7 @@ cameraInput.getFocusPoint((err, point) => {
 
 getFocusPoint(): Promise<Point\>
 
-查询焦点，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询焦点，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2926,7 +2926,7 @@ cameraInput.getFocusPoint().then((point) => {
 
 getFocalLength(callback: AsyncCallback<number\>): void
 
-查询焦距值，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询焦距值，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2952,7 +2952,7 @@ cameraInput.getFocalLength((err, focalLength) => {
 
 getFocalLength(): Promise<number\>
 
-查询焦距值，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询焦距值，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2974,7 +2974,7 @@ cameraInput.getFocalLength().then((focalLength) => {
 
 getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 
-获取支持的变焦范围，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取支持的变焦范围，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3000,7 +3000,7 @@ cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
 
 getZoomRatioRange\(\): Promise<Array<number\>\>
 
-获取支持的变焦范围，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取支持的变焦范围，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3022,7 +3022,7 @@ cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
 
 setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 
-设置变焦比，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置变焦比，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3049,7 +3049,7 @@ cameraInput.setZoomRatio(1, (err) => {
 
 setZoomRatio(zoomRatio: number): Promise<void\>
 
-设置变焦比，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置变焦比，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3077,7 +3077,7 @@ cameraInput.setZoomRatio(1).then(() => {
 
 getZoomRatio(callback: AsyncCallback<number\>): void
 
-获取当前的变焦比，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前的变焦比，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3103,7 +3103,7 @@ cameraInput.getZoomRatio((err, zoomRatio) => {
 
 getZoomRatio(): Promise<number\>
 
-获取当前的变焦比，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取当前的变焦比，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3125,7 +3125,7 @@ cameraInput.getZoomRatio().then((zoomRatio) => {
 
 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode, callback: AsyncCallback<boolean\>): void
 
-查询是否支持指定的视频防抖模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询是否支持指定的视频防抖模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3152,7 +3152,7 @@ captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.O
 
 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): Promise<boolean\>
 
-查询是否支持指定的视频防抖模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询是否支持指定的视频防抖模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3174,7 +3174,7 @@ captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.O
 
 getActiveVideoStabilizationMode(callback: AsyncCallback<VideoStabilizationMode\>): void
 
-查询当前正在使用的视频防抖模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询当前正在使用的视频防抖模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3200,7 +3200,7 @@ captureSession.getActiveVideoStabilizationMode((err, vsMode) => {
 
 getActiveVideoStabilizationMode(): Promise<VideoStabilizationMode\>
 
-查询当前正在使用的视频防抖模式，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询当前正在使用的视频防抖模式，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3222,7 +3222,7 @@ captureSession.getActiveVideoStabilizationMode().then((vsMode) => {
 
 setVideoStabilizationMode(mode: VideoStabilizationMode, callback: AsyncCallback<void\>): void
 
-设置视频防抖模式，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+设置视频防抖模式，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3249,7 +3249,7 @@ captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF, (err
 
 setVideoStabilizationMode(mode: VideoStabilizationMode): Promise<void\>
 
-设置视频防抖，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+设置视频防抖，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3277,7 +3277,7 @@ captureSession.setVideoStabilizationMode(camera.VideoStabilizationMode.OFF).then
 
 on(type: 'focusStateChange', callback: AsyncCallback<FocusState\>): void
 
-监听焦距的状态变化，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+监听焦距的状态变化，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3300,7 +3300,7 @@ cameraInput.on('focusStateChange', (focusState) => {
 
 on(type: 'exposureStateChange', callback: AsyncCallback<ExposureState\>): void
 
-监听曝光的状态变化，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+监听曝光的状态变化，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3344,7 +3344,7 @@ captureSession.on('error', (captureSessionError) => {
 
 ## CaptureSessionErrorCode
 
-枚举，会话错误类型。（该接口目前为预留，将在3.2版本开放）
+枚举，会话错误类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3424,7 +3424,7 @@ previewOutput.release().then(() => {
 
 addDeferredSurface(surfaceId: string, callback: AsyncCallback<void\>): void
 
-在previewOutput生成之后添加surface，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+在previewOutput生成之后添加surface，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3451,7 +3451,7 @@ previewOutput.addDeferredSurface('surfaceId', (err) => {
 
 addDeferredSurface(surfaceId: string): Promise<void\>
 
-在previewOutput生成之后添加surface，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+在previewOutput生成之后添加surface，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3675,7 +3675,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 ## Location
 
-图片地理位置信息。（该接口目前为预留，将在3.2版本开放）
+图片地理位置信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3700,7 +3700,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 ## PhotoCaptureSetting
 
-拍摄照片的设置。（该接口目前为预留，将在3.2版本开放）
+拍摄照片的设置。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3719,7 +3719,7 @@ previewOutput.on('error', (previewOutputError) => {
 
 getDefaultCaptureSetting(callback: AsyncCallback<PhotoCaptureSetting\>): void
 
-获取默认拍照参数，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+获取默认拍照参数，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3745,7 +3745,7 @@ photoOutput.getDefaultCaptureSetting((err, photocapturesetting) => {
 
 getDefaultCaptureSetting(): Promise<PhotoCaptureSetting\>
 
-获取默认拍照参数，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+获取默认拍照参数，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3853,7 +3853,7 @@ photoOutput.capture().then(() => {
 
 isMirrorSupported(callback: AsyncCallback<boolean\>): void
 
-查询是否支持镜像拍照，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
+查询是否支持镜像拍照，通过注册回调函数获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3879,7 +3879,7 @@ captureSession.isMirrorSupported((err, isSupported) => {
 
 isMirrorSupported(): Promise<boolean\>
 
-查询是否支持镜像拍照，通过Promise获取结果。（该接口目前为预留，将在3.2版本开放）
+查询是否支持镜像拍照，通过Promise获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4015,7 +4015,7 @@ photoOutput.on('error', (err, photoOutputError) => {
 
 ## PhotoOutputErrorCode
 
-枚举，拍照输出错误类型。（该接口目前为预留，将在3.2版本开放）
+枚举，拍照输出错误类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4208,7 +4208,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 ## VideoOutputErrorCode
 
-枚举，录像输出错误类型。（该接口目前为预留，将在3.2版本开放）
+枚举，录像输出错误类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4229,7 +4229,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 ## MetadataObjectType
 
-枚举，metadata流。（该接口目前为预留，将在3.2版本开放）
+枚举，metadata流。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4239,7 +4239,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 ## Rect
 
-矩形定义。（该接口目前为预留，将在3.2版本开放）
+矩形定义。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4252,7 +4252,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 ## MetadataObject
 
-相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源。（该接口目前为预留，将在3.2版本开放）
+相机元能力信息，[CameraInput](#camerainput)相机信息中的数据来源。
 
 ### getType
 
@@ -4400,11 +4400,11 @@ metadataObject.getBoundingBox().then((rect) => {
 
 ## MetadataFaceObject
 
-metadata的人脸对象。继承[MetadataObject](#metadataobject)（该接口目前为预留，将在3.2版本开放）
+metadata的人脸对象。继承[MetadataObject](#metadataobject)
 
 ## MetadataOutput
 
-metadata流。继承[CameraOutput](#cameraoutput)（该接口目前为预留，将在3.2版本开放）
+metadata流。继承[CameraOutput](#cameraoutput)
 
 ### start
 
@@ -4550,7 +4550,7 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 ## MetadataOutputErrorCode
 
-枚举，metadata输出错误类型。（该接口目前为预留，将在3.2版本开放）
+枚举，metadata输出错误类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -4561,7 +4561,7 @@ metadataOutput.on('error', (metadataOutputError) => {
 
 ## MetadataOutputError
 
-metadata输出错误码。（该接口目前为预留，将在3.2版本开放）
+metadata输出错误码。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
