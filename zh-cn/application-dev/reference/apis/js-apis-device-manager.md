@@ -35,13 +35,24 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 参数名        | 类型                                       | 必填   | 说明                                   |
   | ---------- | ---------------------------------------- | ---- | ------------------------------------ |
   | bundleName | string                                   | 是    | 指示应用程序的包名。                           |
   | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是    | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     deviceManager.createDeviceManager("ohos.samples.jshelloworld", (err, data) => {
@@ -218,7 +229,16 @@ release(): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.release();
@@ -259,12 +279,23 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                    |
   | -------- | ---------------------------------------- | ---- | --------------------- |
   | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
 
-- 示例：
+  **错误码**：
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.getTrustedDeviceList((err, data) => {
@@ -332,12 +363,23 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明        |
   | -------- | ---------------------------------------- | ---- | --------- |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取本地设备信息。 |
 
-- 示例：
+**错误码**：
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.getLocalDeviceInfo((err, data) => {
@@ -382,12 +424,25 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称            | 参数类型                            | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是    | 发现信息。 |
 
-- 示例：
+**错误码**：
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型      | 说明                                                           |          
+| -------- | --------------------------------------------------------------- |
+| 401      | Input parameter error.                                          |
+| 201      | Permission verify failed.                                       |
+| 11600101 | Failed to execute the function.                                 |
+| 11600104 | Discovery invalid.                                              |
+
+**示例**
+
   ```js
   // 生成发现标识，随机数确保每次调用发现接口的标识不一致
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -415,13 +470,26 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称            | 参数类型                            | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
   | filterOptions | string        | 否   | 发现设备过滤信息。|
 
-- 示例：
+**错误码**：
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型      | 说明                                                           |          
+| -------- | --------------------------------------------------------------- |
+| 401      | Input parameter error.                                          |
+| 201      | Permission verify failed.                                       |
+| 11600101 | Failed to execute the function.                                 |
+| 11600104 | Discovery invalid.                                              |
+
+**示例**
+
   ```js
   // 生成发现标识，随机数确保每次调用发现接口的标识不一致
   var subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -458,12 +526,23 @@ stopDeviceDiscovery(subscribeId: number): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称          | 参数类型   | 必填   | 说明    |
   | ----------- | ------ | ---- | ----- |
   | subscribeId | number | 是    | 发现标识。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   // 入参需要和startDeviceDiscovery接口传入的subscribeId配对使用
   try {
@@ -481,12 +560,23 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称          | 参数类型                        | 必填 | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
   | publishInfo   | [PublishInfo](#publishinfo)     | 是   | 发布设备发现信息。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   // 生成发布标识，随机数确保每次调用发布接口的标识不一致
   var publishId = Math.floor(Math.random() * 10000 + 1000);
@@ -511,12 +601,23 @@ unPublishDeviceDiscovery(publishId: number): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称        | 参数类型 | 必填 | 说明  |
   | ----------- | -------- | ---- | ----- |
   | publishId   | number   | 是   | 发布标识。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   // 入参需要和publishDeviceDiscovery接口传入的publishId配对使用
   try {
@@ -534,14 +635,25 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称         | 参数类型                                     | 必填   | 说明      |
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | 是    | 设备信息。   |
   | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
   | callback   | AsyncCallback<{ deviceId: string, pinToken ?: number }> | 是    | 认证结果回调。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   // 认证的设备信息，可以从发现的结果中获取
   var deviceInfo ={
@@ -575,12 +687,23 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称         | 参数类型                      | 必填   | 说明    |
   | ---------- | ------------------------- | ---- | ----- |
   | deviceInfo | [DeviceInfo](#deviceinfo) | 是    | 设备信息。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.unAuthenticateDevice(deviceInfo);
@@ -598,13 +721,24 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明      |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
   | authInfo | AsyncCallback<{ deviceId: string, level: number }> | 是    | 验证结果回调。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   let authInfo = {
     "authType": 1,
@@ -633,13 +767,24 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备状态回调，固定为deviceStateChange。 |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要注册的设备状态回调，返回设备状态和设备信息。      |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on('deviceStateChange', (data) => {
@@ -659,13 +804,24 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 根据应用程序的包名取消注册设备状态回调。        |
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;&nbsp;}&gt; | 是    | 指示要取消注册的设备状态回调，返回设备状态和设备信息。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off('deviceStateChange', (data) => {
@@ -685,13 +841,24 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                         |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是    | 注册设备发现回调，以便在发现周边设备时通知应用程序。 |
   | callback | Callback&lt;{&nbsp;subscribeId: number, device: DeviceInfo&nbsp;}&gt; | 是    | 注册设备发现的回调方法。               |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on('deviceFound', (data) => {
@@ -710,13 +877,24 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是    | 取消注册设备发现回调。                 |
   | callback | Callback&lt;{&nbsp;subscribeId: number, device: [DeviceInfo](#deviceinfo)&nbsp;}&gt; | 是    | 指示要取消注册的设备发现回调，返回设备状态和设备信息。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off('deviceFound', (data) => {
@@ -735,13 +913,24 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                             |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
   | type     | string                                   | 是    | 注册设备发现失败回调，以便在发现周边设备失败时通知应用程序。 |
   | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是    | 注册设备发现失败的回调方法。                 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on('discoverFail', (data) => {
@@ -760,13 +949,24 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                                     | 必填   | 说明                |
   | -------- | ---------------------------------------- | ---- | ----------------- |
   | type     | string                                   | 是    | 取消注册设备发现失败回调。     |
   | callback | Callback&lt;{&nbsp;subscribeId: number, reason: number&nbsp;}&gt; | 是    | 指示要取消注册的设备发现失败回调。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off('discoverFail', (data) => {
@@ -785,13 +985,24 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称     | 参数类型                                 | 必填 | 说明                       |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
   | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序。 |
   | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 注册设备发布成功的回调方法。               |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on('publishSuccess', (data) => {
@@ -810,13 +1021,24 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称     | 参数类型                                 | 必填 | 说明                          |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
   | type     | string                                   | 是   | 取消注册设备发布成功回调。                 |
   | callback | Callback&lt;{ publishId: number }&gt;    | 是   | 指示要取消注册的设备发布成功回调。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off('publishSuccess', (data) => {
@@ -835,13 +1057,24 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称     | 参数类型                                              | 必填 | 说明                             |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
   | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
   | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 注册设备发布失败的回调方法。                 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on('publishFail', (data) => {
@@ -860,13 +1093,24 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称     | 参数类型                                              | 必填 | 说明                |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
   | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
   | callback | Callback&lt;{ publishId: number, reason: number }&gt; | 是   | 指示要取消注册设备发布失败回调。 |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off('publishFail', (data) => {
@@ -885,13 +1129,24 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 是    | 注册serviceDie的回调方法。                       |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.on("serviceDie", () => {
@@ -911,13 +1166,24 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
-- 参数：
+**参数**
+
   | 名称       | 参数类型                    | 必填   | 说明                                       |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
   | type     | string                  | 是    | 取消注册serviceDie回调，以便在devicemanager服务异常终止时通知应用程序。 |
   | callback | ()&nbsp;=&gt;&nbsp;void | 否    | 取消注册serviceDie的回调方法。                     |
 
-- 示例：
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |          
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+| 11600101| Failed to execute the function.                                 |
+
+**示例**
+
   ```js
   try {
     dmInstance.off("serviceDie", () => {
