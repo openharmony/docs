@@ -89,17 +89,6 @@ camera.getCameraManager(context).then((cameraManager) => {
 | format   | [CameraFormat](#cameraformat) | 是  | 输出格式。      |
 | size     | [Size](#size)                 | 是  | 分辨率。       |
 
-## FrameRateRange
-
- 帧率范围。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                       | 类型    | 只读 | 说明                 |
-| ------------------------- | ------ | ---- | ------------------- |
-| min                       | number | 是   | 最小速率，单位fps      |
-| max                       | number | 是   | 最大速率，单位fps      |
-
 ## VideoProfile
 
 视频配置信息项。
@@ -110,7 +99,7 @@ camera.getCameraManager(context).then((cameraManager) => {
 | ------------------------- | ----------------------------------------- | --- |----------- |
 | format                    | [CameraFormat](#cameraformat)             | 是  | 输出格式。   |
 | size                      | [Size](#size)                             | 是  | 分辨率。     |
-| frameRateRanges           | [FrameRateRange](#frameraterange)         | 是  | 帧率。       |
+| frameRate                 | Array<number>                             | 是  | 帧率。       |
 
 ## CameraOutputCapability
 
@@ -279,176 +268,6 @@ getSupportedMetadataObjectType(): Promise<CameraOutputCapability\>
 ```js
 cameraManager.getSupportedMetadataObjectType().then((metadataobject) => {
     console.log('Promise returned with an array of supported metadataObjectType.' );
-})
-```
-
-### isCameraMuted
-
-isCameraMuted(callback: AsyncCallback<boolean\>): void
-
-查询相机是否被禁用，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称      | 类型                                      | 必填 | 说明                                  |
-| -------- | ---------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<boolean\>                  | 是   | 回调函数，回调返回true即相机被禁用，否则为false。 |
-
-**示例：**
-
-```js
-cameraManager.isCameraMuted((err, status) => {
-    if (err) {
-        console.error(`Failed to get the cameraMuted status. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with cameraMuted status');
-})
-```
-
-### isCameraMuted
-
-isCameraMuted(): Promise<boolean\>
-
-查询相机是否被禁用，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                  | 说明                                          |
-| ------------------------------------ | --------------------------------------------- |
-| Promise<boolean\>                    | 使用Promise的方式获取结果，返回相机是否禁用的结果。  |
-
-
-**示例：**
-
-```js
-cameraManager.isCameraMuted().then((status) => {
-    console.log('Promise returned with the status whether camera is muted.');
-})
-```
-
-### isCameraMuteSupported
-
-isCameraMuteSupported(callback: AsyncCallback<boolean\>): void
-
-查询是否支持相机禁用，通过注册回调函数获取结果。
-
-此接口为系统接口。
-
-**需要权限：** ohos.permission.CAMERA
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称     | 类型                                      | 必填 | 说明                                 |
-| -------- | --------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback<boolean\>                 |  是  |  使用callback方式获取是否支持相机禁用的结果。  |
-
-**示例：**
-
-```js
-cameraManager.isCameraMuteSupported((err, status) => {
-    if (err) {
-        console.error(`Failed to get the cameraMuteSupported. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the status whether cameraMuteSupported.');
-})
-```
-
-### isCameraMuteSupported
-
-isCameraMuteSupported(): Promise<boolean\>
-
-查询是否支持相机禁用，通过Promise获取结果。
-
-此接口为系统接口。
-
-**需要权限：** ohos.permission.CAMERA
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                   | 说明                          |
-| --------------------- | ----------------------------- |
-| Promise<boolean\>     | 使用Promise的方式获取结果，返回是否支持相机禁用的结果。 |
-
-
-**示例：**
-
-```js
-cameraManager.isCameraMuteSupported().then((status) => {
-    console.log('Promise returned with the status whether cameraMuteSupported.');
-})
-```
-
-### muteCamera
-
-muteCamera(mute:boolean, callback: AsyncCallback<void\>): void
-
-禁用相机，通过注册回调函数获取结果。
-
-此接口为系统接口。
-
-**需要权限：** ohos.permission.CAMERA
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称     | 类型                                      | 必填   | 说明                                 |
-| -------- | ----------------------------------------- | ---- | ------------------------------------ |
-| mute     | boolean                                   |  是  | 是否禁用相机。                    |
-| callback | AsyncCallback<void\>                      |  是  | 使用callback方式获取相机禁用的结果。 |
-
-**示例：**
-
-```js
-cameraManager.muteCamera(isMuted, (err) => {
-    if (err) {
-        console.error(`Failed to mute the camera. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with the muteCamera.');
-})
-```
-
-### muteCamera
-
-muteCamera(mute:boolean): Promise<void\>
-
-禁用相机，通过Promise获取结果。
-
-此接口为系统接口。
-
-**需要权限：** ohos.permission.CAMERA
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称     | 类型                                      | 必填 | 说明            |
-| -------- | ----------------------------------------- | ---- | ------------ |
-| mute     | boolean                                   |  是  | 是否禁用相机。  |
-
-**返回值：**
-
-| 类型                                | 说明                          |
-| ----------------------------------- | ----------------------------- |
-| Promise<void\>                      | 使用Promise的方式获取结果，返回是否禁用相机的结果。 |
-
-
-**示例：**
-
-```js 
-cameraManager.muteCamera(isMuted).then(() => {
-    console.log('Promise returned muteCamera.');
 })
 ```
 
@@ -4129,6 +3948,111 @@ stop(): Promise<void\>
 ```js
 videoOutput.stop().then(() => {
     console.log('Promise returned to indicate that stop method execution success.');
+})
+``` 
+
+### getFrameRateRange
+
+getFrameRateRange(callback: AsyncCallback<Array<number>\>): void
+
+获取帧率范围，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称     | 类型                 | 必填 | 说明                     |
+| -------- | -------------------- | ---- | ------------------------ |
+| callback | AsyncCallback<Array<number>\> | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.getFrameRateRange((err) => {
+    if (err) {
+        console.error(`Failed to get the frameRateRange ${err.message}`);
+        return;
+    }
+    console.log('getFrameRateRange success.');
+});
+```
+
+### getFrameRateRange
+
+getFrameRateRange(): Promise<Array<number>\>
+
+获取帧率范围，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise<Array<number>\> | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.getFrameRateRange().then(() => {
+    console.log('getFrameRateRange success.');
+})
+``` 
+
+### setFrameRateRange
+
+setFrameRateRange(minFrameRate: number, maxFrameRate: number, callback: AsyncCallback<Array<number>\>): void
+
+获取帧率范围，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称          | 类型                          | 必填 | 说明                  |
+| ------------ | ----------------------------- | ---- | ------------------- |
+| minFrameRate | number                        | 是   | 最小帧率。            |
+| maxFrameRate | number                        | 是   | 最大帧率。            |
+| callback     | AsyncCallback<Array<number>\> | 是   | 回调函数，用于获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.setFrameRateRange(minFrameRate， maxFrameRate，(err) => {
+    if (err) {
+        console.error(`Failed to set the frameRateRange ${err.message}`);
+        return;
+    }
+    console.log('setFrameRateRange success.');
+});
+```
+
+### setFrameRateRange
+
+setFrameRateRange(minFrameRate: number, maxFrameRate: number): Promise<Array<number>\>
+
+获取帧率范围，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 名称          | 类型                          | 必填 | 说明                  |
+| ------------ | ----------------------------- | ---- | ------------------- |
+| minFrameRate | number                        | 是   | 最小帧率。            |
+| maxFrameRate | number                        | 是   | 最大帧率。            |
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise<Array<number>\> | 使用Promise的方式获取结果。 |
+
+**示例：**
+
+```js
+videoOutput.setFrameRateRange(minFrameRate， maxFrameRate).then(() => {
+    console.log('setFrameRateRange success.');
 })
 ``` 
 
