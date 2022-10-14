@@ -194,8 +194,8 @@ Updates a contact based on the specified contact information and attributes. Thi
   contact.updateContact({
       fullName: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  },{
-      attributes:[contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  }, {
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err) => {
       if (err) {
           console.log('updateContact callback: err->${JSON.stringify(err)}');
@@ -449,7 +449,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
   ```js
   let promise = contact.queryMyCard({
-      attributes:['ATTR_EMAIL', 'ATTR_NAME']
+      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
@@ -467,7 +467,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.Contacts
 
 **Parameters**
 | Name  | Type                                                 | Mandatory| Description                                |
@@ -495,7 +495,7 @@ Selects a contact. This API uses a promise to return the result.
 
 **Permission required**: ohos.permission.READ_CONTACTS
 
-**System capability**: SystemCapability.Applications.Contacts and SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 **Return Value**
 | Type                                           | Description                                             |

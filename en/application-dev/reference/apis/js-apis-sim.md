@@ -2657,8 +2657,6 @@ getOpKey(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the opkey of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -2682,8 +2680,6 @@ sim.getOpKey(0, (err, data) => {
 getOpKey(slotId: number): Promise<string\>
 
 Obtains the opkey of the SIM card in the specified slot. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2716,8 +2712,6 @@ getOpName(slotId: number, callback: AsyncCallback<string\>): void
 
 Obtains the OpName of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **System capability**: SystemCapability.Telephony.CoreService
 
 **Parameters**
@@ -2741,8 +2735,6 @@ sim.getOpName(0, (err, data) => {
 getOpName(slotId: number): Promise<string\>
 
 Obtains the OpName of the SIM card in the specified slot. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
