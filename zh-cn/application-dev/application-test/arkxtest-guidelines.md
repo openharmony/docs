@@ -5,12 +5,12 @@
 
 为支撑OpenHarmony操作系统的自动化测试活动开展，我们提供了支持JS/TS语言的单元及UI测试框架，支持开发者针对应用接口或系统接口进行单元测试，并且可基于UI操作进行UI自动化脚本的编写。
 
-本指南重点介绍自动化测试框架的主要功能，并且还会介绍如何编写单元/UI自动化测试脚本，以及如何执行的过程。
+本指南重点介绍自动化测试框架的主要功能，同时介绍编写单元/UI自动化测试脚本的方法以及执行过程。
 
 
 ### 简介
 
-OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要组成部分，提供了OpenHarmony自动化脚本编写和运行的基础能力。编写方面提供了一系列支持测试脚本编写的API，包括了基础流程API、断言API以及UI操作相关的API；运行方面提供了识别测试脚本、调度执行测试脚本以及汇总测试脚本执行结果的能力。
+OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要组成部分，提供了OpenHarmony自动化脚本编写和运行的基础能力。编写方面提供了一系列支持测试脚本编写的API，包括了基础流程API、断言API以及UI操作相关的API，运行方面提供了识别测试脚本、调度执行测试脚本以及汇总测试脚本执行结果的能力。
 
 
 ### 实现原理
@@ -21,32 +21,25 @@ OpenHarmony自动化测试框架arkxtest，作为OpenHarmony工具集的重要�
 
   单元测试框架是测试框架的基础底座，提供了最基本的用例识别、调度、执行及结果汇总的能力。主要功能如下图所示：
 
-  ![](figures\UnitTest.PNG)
+  ![](figures/UnitTest.PNG)
 
-  单元测试脚本的基础运行流程如下图所示，依赖元能力子系统提供的aa test命令作为执行入口，该命令可具体参考[对应指南。](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ability/ability-delegator.md)
+  单元测试脚本的基础运行流程如下图所示，依赖aa test命令作为执行入口，该命令可具体参考[对应指南。](../ability/ability-delegator.md)
 
-  ![](figures\TestFlow.PNG)
+  ![](figures/TestFlow.PNG)
 
 - UI测试框架
 
   UI测试框架主要对外提供了一批API供开发人员在对应测试场景调用，而其脚本的运行基础还是上面提到的单元测试框架。
 
-  UI测试框架的主要功能如下图所示，其对外的提供的API请见对应的[d.ts文件](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.uitest.d.ts)。
+  UI测试框架的主要功能如下图所示：
 
-  ![](figures\Uitest.PNG)
+  ![](figures/Uitest.PNG)
 
 
 ### 约束与限制
 
 - UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 - 单元测试框架的部分能力与其版本有关，具体能力与版本匹配信息可见代码仓中的[文档介绍](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)。
-
-
-### 相关实例
-
-UI测试框架的接口使用示例可参考以下实例：
-
-- [UI测试框架API使用示例](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-uitest.md)
 
 
 ## 环境准备
@@ -169,11 +162,16 @@ export default function abilityTest() {
 
 3、测试方法级别执行即执行指定it方法也就是单条测试用例。
 
-![](figures\Execute.PNG)
+![](figures/Execute.PNG)
 
 ## 查看测试结果
 
 测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示：
 
-![](figures\TestResult.PNG)
+![](figures/TestResult.PNG)
 
+## 相关实例
+
+UI测试框架的接口使用示例可参考以下实例：
+
+- [UI测试框架API使用示例](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-uitest.md)
