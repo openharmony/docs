@@ -3,20 +3,27 @@
 ## 12000001 该子功能不支持（特性）
 
 **错误信息**
+
 ``${messageInfo}`` mode is not support in current device.
 
 **可能原因**
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
+
 **处理步骤**
+
 调整API参数，使用可替代可支持的参数。
 
 ## 12000002 缺少密钥算法参数
 **错误信息**
+
 Check get ``${messageInfo}`` failed. User should add ``${messageInfo}`` in param set. 
 
 **可能原因**
+
 使用密钥时缺少相关参数。
+
 **处理步骤**
+
 1. 查看errorMessage确认缺少的密钥参数。
 2. 添加对应的正确的密钥参数。
 
