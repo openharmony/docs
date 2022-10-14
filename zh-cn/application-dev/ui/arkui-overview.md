@@ -39,22 +39,22 @@
 
 Ability也是OpenHarmony应用的重要组成部分，[Ability框架](../ability/ability-brief.md)包括FA模型与Stage模型两种模型。下表给出了Ability框架的两种模型分别与方舟开发框架的两种开发范式的关系。
 
-- **FA模型：**
+ **FA模型：**
 
  | 类型 |     UI开发范式         | 说明 |
  | -------- | --------------------------- | --------------------------- |
- | 应用 | 类web开发范式 | 1.  UI开发语言：使用hml/css/js <br>2.  业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability）<br>3. 业务逻辑语言：js/ts |
- |     | 声明式开发范式 | 1. UI开发语言：ArkTS <br>2. 业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability） <br>3. 业务逻辑语言：js/ts |
- | 服务卡片 | 类web开发范式 | 1. UI开发语言：卡片显示使用hml+css+json(action) <br>2. 业务入口：form.ts <br>3. 卡片业务逻辑语言：js/ts |
+ | 应用 | 类web开发范式 | UI开发语言：使用hml/css/js <br>业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability）<br>业务逻辑语言：js/ts |
+ |     | 声明式开发范式 | UI开发语言：ArkTS <br>业务入口：使用固定文件名app.ets（Page类型Ability）/service.ts（Service类型Ability）/data.ts（Data类型Ability） <br>业务逻辑语言：js/ts |
+ | 服务卡片 | 类web开发范式 | UI开发语言：卡片显示使用hml+css+json(action) <br>业务入口：form.ts <br>卡片业务逻辑语言：js/ts |
  |      | 声明式开发范式 | 当前不支持 |
 
-- **Stage模型：**
+ **Stage模型：**
 
  | 类型 |     UI开发范式         | 说明 |
  | -------- | --------------------------- | --------------------------- |
  | 应用 | 类web开发范式 | 当前不支持 |
- |     | 声明式开发范式 | 1. UI开发语言：ArkTS <br>2. 业务入口：应用模型基于ohos.application.Ability/ExtensionAbility等派生 <br>3. 业务逻辑语言：ts |
- | 服务卡片 | 类web开发范式 | 1. UI开发语言：卡片显示使用hml+css+json(action) <br>2. 业务入口：从FormExtensionAbility派生 <br>3. 业务逻辑语言：ts |
+ |     | 声明式开发范式 | UI开发语言：ArkTS <br>业务入口：应用模型基于ohos.application.Ability/ExtensionAbility等派生 <br>业务逻辑语言：ts |
+ | 服务卡片 | 类web开发范式 | UI开发语言：卡片显示使用hml+css+json(action) <br>业务入口：从FormExtensionAbility派生 <br>业务逻辑语言：ts |
  |      | 声明式开发范式 | 当前不支持 |
 
 
