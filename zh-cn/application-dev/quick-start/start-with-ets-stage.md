@@ -287,4 +287,4 @@
 
    ![zh-cn_image_0000001311334972](figures/zh-cn_image_0000001311334972.png)
 
-恭喜您已经使用eTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
