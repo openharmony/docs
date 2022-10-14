@@ -635,8 +635,7 @@ InputMethodController.hideSoftKeyboard((err) => {
 })
 ```
 
-
-### hideSoftKeyboard<sup>9+</sup> ###
+### hideSoftKeyboard<sup>9+</sup>
 
 hideSoftKeyboard(): Promise&lt;void&gt;
 
@@ -664,7 +663,7 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 
 下列API示例中都需使用[getSetting](#inputmethodgetsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
-### on('imeChange')<a name="imeChange"></a>
+### on('imeChange')<a name="imeChange"></a><sup>9+</sup>
 
 on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
 

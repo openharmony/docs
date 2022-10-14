@@ -1674,17 +1674,21 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 var length = 1;
-InputClient.deleteBackward(length, (err, result) => {
-    if (err) {
-        console.error('deleteBackward err: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Success to deleteBackward.(callback) ');
-    } else {
-        console.error('Failed to deleteBackward.(callback) ');
-    }
-});
+try {
+    InputClient.deleteBackward(length, (err, result) => {
+        if (err) {
+            console.error('deleteBackward err: ' + JSON.stringify(err));
+            return;
+        }
+        if (result) {
+            console.info('Success to deleteBackward.(callback) ');
+        } else {
+            console.error('Failed to deleteBackward.(callback) ');
+        }
+    });
+} catch (err) {
+    console.error('deleteBackward err: ' + JSON.stringify(err));
+}
 ```
 
 ### deleteBackward<sup>9+</sup>
