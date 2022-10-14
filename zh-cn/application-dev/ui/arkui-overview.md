@@ -39,3 +39,5 @@
 
 ## UI与Ability框架的关系
 
+Ability也是OpenHarmony应用的重要组成部分，[Ability框架](../ability/ability-brief.md)模型包括FA模型与Stage模型。下表给出了Ability框架的两种模型与方舟开发框架的两种开发范式的关系。
+
