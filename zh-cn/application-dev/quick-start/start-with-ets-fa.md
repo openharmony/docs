@@ -1,4 +1,4 @@
-# 使用eTS语言开发（FA模型）
+# 使用ArkTS语言开发（FA模型）
 
 
 >  **说明：**
@@ -18,7 +18,7 @@
    ![02](figures/02.png)
 
    > **说明：**
-   > DevEco Studio V3.0 Beta3及更高版本支持使用eTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    > 
@@ -288,4 +288,4 @@
 
    ![zh-cn_image_0000001363934577](figures/zh-cn_image_0000001363934577.png)
 
-恭喜您已经使用eTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
