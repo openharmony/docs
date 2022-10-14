@@ -3,7 +3,7 @@
 ## 12000001 该子功能不支持（特性）
 
 **错误信息**
-${messageInfo} mode is not support in current device.
+\${messageInfo} mode is not support in current device.
 
 **可能原因**
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
@@ -12,7 +12,7 @@ ${messageInfo} mode is not support in current device.
 
 ## 12000002 缺少密钥算法参数
 **错误信息**
-Check get ${messageInfo} failed. User should add ${messageInfo} in param set. 
+Check get \${messageInfo} failed. User should add \${messageInfo} in param set. 
 
 **可能原因**
 使用密钥时缺少相关参数。
@@ -24,7 +24,7 @@ Check get ${messageInfo} failed. User should add ${messageInfo} in param set.
 
 **错误信息**
 
-${messageInfo} argument is invalid. User should make sure using the correct value. 
+\${messageInfo} argument is invalid. User should make sure using the correct value. 
 
 **可能原因**
 
@@ -163,7 +163,7 @@ Queried entity does not exist.
 
 **错误信息**
 
-External error ${messageInfo}. 
+External error \${messageInfo}. 
 
 **可能原因**
 
@@ -205,7 +205,7 @@ Memory is insufficient.
 
 **错误信息**
 
-Call ${messageInfo} service to do ${messageInfo} failed. 
+Call \${messageInfo} service to do \${messageInfo} failed. 
 
 **可能原因**
 
