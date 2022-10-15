@@ -828,18 +828,19 @@ setUserOperation(operateAction: number, params: string): void;
 **示例**
 
   ```js
-  try {
-  /*
-    operateAction = 0 - 允许授权
-    operateAction = 1 - 取消授权
-    operateAction = 2 - 授权框用户操作超时
-    operateAction = 3 - 取消pin码框展示
-    operateAction = 4 - 取消pin码输入框展示
-    operateAction = 5 - pin码输入框确定操作
-  */
-    dmClass.setUserOperation(operation, "extra")
-  } catch (err) {
-    console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+ try {
+    /*
+      operateAction = 0 - 允许授权
+      operateAction = 1 - 取消授权
+      operateAction = 2 - 授权框用户操作超时
+      operateAction = 3 - 取消pin码框展示
+      operateAction = 4 - 取消pin码输入框展示
+      operateAction = 5 - pin码输入框确定操作
+    */
+    let operation = 0;
+    this.dmInstance.setUserOperation(operation, "extra")
+    } catch (err) {
+      console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
