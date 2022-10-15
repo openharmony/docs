@@ -810,6 +810,121 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
   }
   ```
 
+### setUserOperation
+
+setUserOperation(operateAction: number, params: string): void;
+
+设置用户ui操作行为。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数**
+
+  | 名称       | 参数类型                                     | 必填   | 说明                          |
+  | ------------- | ---------------------------------------- | ---- | ------------------------------ |
+  | operateAction | number                                   | 是    | 用户操作动作。                 |
+  | params        | string                                   | 是    | 表示用户的输入参数。            |
+
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+
+**示例**
+
+  ```js
+  try {
+  /*
+    operateAction = 0 - 允许授权
+    operateAction = 1 - 取消授权
+    operateAction = 2 - 授权框用户操作超时
+    operateAction = 3 - 取消pin码框展示
+    operateAction = 4 - 取消pin码输入框展示
+    operateAction = 5 - pin码输入框确定操作
+  */
+    dmClass.setUserOperation(operation, "extra")
+  } catch (err) {
+    console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### on('uiStateChange')
+
+on(type: 'uiStateChange', callback: Callback<{ param: string}>): void;
+
+ui状态变更回调。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数**
+
+  | 名称       | 参数类型                                     | 必填   | 说明                             |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | 是    | 注册的设备管理器 ui 状态回调，以便在状态改变时通知应用。 |
+  | callback | Callback&lt;{&nbsp;param: string}&gt; | 是    | 指示要注册的设备管理器 ui 状态回调，返回ui状态。      |
+
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+
+**示例**
+
+  ```js
+  try {
+    dmClass.on('uiStateChange', (data) => {
+    console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
+    var tmpStr = JSON.parse(data.param)
+    this.isShow = tmpStr.verifyFailed
+    console.log("uiStateChange executed, dialog closed" + this.isShow)
+    if (!this.isShow) {
+        this.destruction()
+    }
+  });
+  } catch (err) {
+    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### off('uiStateChange')
+
+off(type: 'uiStateChange', callback?: Callback<{ param: string}>): void;
+
+取消ui状态变更回调
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数**
+
+  | 名称       | 参数类型                             | 必填 | 说明                             |
+  | -------- | ------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                | 是   | 取消注册的设备管理器 ui 状态回调。 |
+  | callback | Callback&lt;{&nbsp;param: string}&gt; | 是   | 指示要取消注册的设备管理器 ui 状态，返回UI状态。 |
+
+**错误码**
+
+以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
+
+| 类型     | 说明                                                           |
+| ------- | --------------------------------------------------------------- |
+| 401     | Input parameter error.                                          |
+
+**示例**
+
+  ```js
+  try {
+    dmClass.off('uiStateChange');
+  } catch (err) {
+    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ### on('deviceStateChange')
 
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
@@ -844,7 +959,6 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
     console.error("deviceStateChange errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
-
 
 ### off('deviceStateChange')
 
