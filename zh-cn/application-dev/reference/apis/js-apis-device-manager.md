@@ -802,7 +802,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
   }
   ```
 
-### setUserOperation
+### setUserOperation9+</sup>
 
 setUserOperation(operateAction: number, params: string): void;
 
@@ -843,7 +843,7 @@ setUserOperation(operateAction: number, params: string): void;
   }
   ```
 
-### on('uiStateChange')
+### on('uiStateChange')9+</sup>
 
 on(type: 'uiStateChange', callback: Callback<{ param: string}>): void;
 
@@ -884,7 +884,7 @@ ui状态变更回调。
   }
   ```
 
-### off('uiStateChange')
+### off('uiStateChange')9+</sup>
 
 off(type: 'uiStateChange', callback?: Callback<{ param: string}>): void;
 
