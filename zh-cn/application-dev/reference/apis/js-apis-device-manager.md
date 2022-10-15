@@ -714,8 +714,8 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
           console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
           return;
       }
-      console.info(TAG + "authenticateDevice result:" + JSON.stringify(data));
-      token = data.pinToken;
+      console.info("authenticateDevice result:" + JSON.stringify(data));
+      let token = data.pinToken;
     });
   } catch (err) {
     console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
@@ -795,7 +795,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
         console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
         return;
     }
-    console.info(TAG + "verifyAuthInfo result:" + JSON.stringify(data));
+    console.info("verifyAuthInfo result:" + JSON.stringify(data));
     });
   } catch (err) {
     console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
