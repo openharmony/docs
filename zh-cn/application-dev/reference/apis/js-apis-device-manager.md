@@ -234,8 +234,8 @@ release(): void
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
 | 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
@@ -265,9 +265,9 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
+| 类型      | 说明                                                           |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
@@ -298,9 +298,9 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
 | 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 401     | Input parameter error.                                          |
-| 11600101| Failed to execute the function.                                 |
+| -------- | --------------------------------------------------------------- |
+| 401      | Input parameter error.                                          |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
@@ -336,9 +336,9 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
+| 类型      | 说明                                                           |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
@@ -368,9 +368,9 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
+| 类型      | 说明                                                           |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
@@ -400,10 +400,10 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
-| ------- | --------------------------------------------------------------- |
-| 401     | Input parameter error.                                          |
-| 11600101| Failed to execute the function.                                 |
+| 类型      | 说明                                                           |
+| -------- | --------------------------------------------------------------- |
+| 401      | Input parameter error.                                          |
+| 11600101 | Failed to execute the function.                                 |
 
 **示例**
 
