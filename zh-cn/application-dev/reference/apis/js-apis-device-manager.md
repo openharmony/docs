@@ -360,9 +360,9 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 **返回值**
 
-  | 名称                                     | 说明        |
-  | -------------------------------------- | --------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回本地设备列表。 |
+  | 名称                      | 说明              |
+  | ------------------------- | ---------------- |
+  | [DeviceInfo](#deviceinfo) | 返回本地设备列表。 |
 
 **错误码**
 
@@ -463,9 +463,9 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 **参数**
 
-  | 名称            | 参数类型                            | 必填   | 说明    |
+  | 名称            | 参数类型                       | 必填 | 说明    |
   | ------------- | ------------------------------- | ---- | ----- |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是    | 发现信息。 |
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。|
 
 **错误码**：
 
@@ -509,10 +509,10 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 **参数**
 
-  | 名称            | 参数类型                            | 必填   | 说明    |
-  | ------------- | ------------------------------- | ---- | ----- |
+  | 名称            | 参数类型                       | 必填   | 说明    |
+  | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string        | 否   | 发现设备过滤信息。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。|
 
 **错误码**：
 
@@ -769,7 +769,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
   | 名称       | 参数类型                                     | 必填   | 说明      |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
-  | authInfo | AsyncCallback<{ deviceId: string, level: number }> | 是    | 验证结果回调。 |
+  | callback | AsyncCallback<{ deviceId: string, level: number }> | 是    | 验证结果回调。 |
 
 **错误码**
 
@@ -812,10 +812,10 @@ setUserOperation(operateAction: number, params: string): void;
 
 **参数**
 
-  | 名称       | 参数类型                                     | 必填  | 说明                          |
-  | ------------- | ---------------------------------------- | ---- | ------------------------------ |
-  | operateAction | number                                   | 是    | 用户操作动作。                 |
-  | params        | string                                   | 是    | 表示用户的输入参数。            |
+  | 名称       | 参数类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | operateAction | number          | 是    | 用户操作动作。       |
+  | params        | string          | 是    | 表示用户的输入参数。 |
 
 **错误码**
 
