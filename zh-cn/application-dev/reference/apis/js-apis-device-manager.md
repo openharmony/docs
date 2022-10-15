@@ -476,7 +476,6 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 | 11600104 | Discovery invalid.                                              |
 
 **示例**
@@ -524,7 +523,6 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 | 11600104 | Discovery invalid.                                              |
 
 **示例**
@@ -580,7 +578,6 @@ stopDeviceDiscovery(subscribeId: number): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 
 **示例**
 
@@ -616,7 +613,6 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 | 11600105 | Publish invalid.                                                |
 
 **示例**
@@ -660,7 +656,6 @@ unPublishDeviceDiscovery(publishId: number): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 
 **示例**
 
@@ -698,7 +693,6 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 | 11600103 | Authentication invalid.                                         |
 
 **示例**
@@ -751,7 +745,6 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 
 **示例**
 
@@ -787,7 +780,6 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
 | 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
 
 **示例**
 
