@@ -871,7 +871,7 @@ ui状态变更回调。
 
   ```js
   try {
-    dmClass.on('uiStateChange', (data) => {
+    dmInstance.on('uiStateChange', (data) => {
     console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
     var tmpStr = JSON.parse(data.param)
     this.isShow = tmpStr.verifyFailed
@@ -912,7 +912,7 @@ off(type: 'uiStateChange', callback?: Callback<{ param: string}>): void;
 
   ```js
   try {
-    dmClass.off('uiStateChange');
+    dmInstance.off('uiStateChange');
   } catch (err) {
     console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
   }
