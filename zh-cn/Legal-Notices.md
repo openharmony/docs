@@ -8,7 +8,7 @@
 
 OpenHarmony文档的著作权由OpenHarmony项目拥有。
 
-OpenHarmony文档根据知识共享署名4.0 (Creative Commons Attribution 4.0，简称CC BY 4.0)国际公共许可协议进行版权许可。为了方便用户理解，您可以通过访问https://creativecommons.org/licenses/by/4.0/了解CC BY 4.0的概要。CC BY 4.0的完整协议内容您可以访问如下网址获取：https://creativecommons.org/licenses/by/4.0/legalcode。
+OpenHarmony文档根据知识共享署名4.0 (Creative Commons Attribution 4.0，简称CC BY 4.0)国际公共许可协议进行版权许可。为了方便用户理解，您可以通过访问https://creativecommons.org/licenses/by/4.0/ 了解CC BY 4.0的概要。CC BY 4.0的完整协议内容您可以访问如下网址获取：https://creativecommons.org/licenses/by/4.0/legalcode 。
 
  
 

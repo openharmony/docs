@@ -25,10 +25,10 @@ struct MmcCntlrOps {
   int32_t (*setSdioIrq)(struct MmcCntlr *cntlr, bool enable);
   int32_t (*hardwareReset)(struct MmcCntlr *cntlr);
   int32_t (*systemInit)(struct MmcCntlr *cntlr);
-  int32_t (*setEnhanceSrobe)(struct MmcCntlr *cntlr, bool enable);
+  int32_t (*setEnhanceStrobe)(struct MmcCntlr *cntlr, bool enable);
   int32_t (*switchVoltage)(struct MmcCntlr *cntlr, enum MmcVolt volt);
   bool (*devReadOnly)(struct MmcCntlr *cntlr);
-  bool (*devPluged)(struct MmcCntlr *cntlr);
+  bool (*devPlugged)(struct MmcCntlr *cntlr);
   bool (*devBusy)(struct MmcCntlr *cntlr);
   int32_t  (*tune)(struct MmcCntlr *cntlr, uint32_t cmdCode);
   int32_t (*rescanSdioDev)(struct MmcCntlr *cntlr);
@@ -47,10 +47,10 @@ struct MmcCntlrOps {
 | setSdioIrq | cntlr：核心层结构体指针，MMC控制器<br>enable：布尔值，控制中断 | HDF_STATUS相关状态 | 使能/去使能SDIO中断 | 
 | hardwareReset | cntlr：核心层结构体指针，MMC控制器 | HDF_STATUS相关状态 | 复位硬件 | 
 | systemInit | cntlr：核心层结构体指针，MMC控制器 | HDF_STATUS相关状态 | 系统初始化 | 
-| setEnhanceSrobe | cntlr：核心层结构体指针，MMC控制器<br>enable：布尔值，设置功能 | HDF_STATUS相关状态 | 设置增强选通 | 
+| setEnhanceStrobe | cntlr：核心层结构体指针，MMC控制器<br>enable：布尔值，设置功能 | HDF_STATUS相关状态 | 设置增强选通 | 
 | switchVoltage | cntlr：核心层结构体指针，MMC控制器<br>volt：枚举值，电压值（3.3,1.8,1.2V） | HDF_STATUS相关状态 | 设置电压值 | 
 | devReadOnly | cntlr：核心层结构体指针，MMC控制器 | 布尔值 | 检验设备是否只读 | 
-| cardPluged | cntlr：核心层结构体指针，MMC控制器 | 布尔值 | 检验设备是否拔出 | 
+| cardPlugged | cntlr：核心层结构体指针，MMC控制器 | 布尔值 | 检验设备是否拔出 | 
 | devBusy | cntlr：核心层结构体指针，MMC控制器 | 布尔值 | 检验设备是否忙碌 | 
 | tune | cntlr：核心层结构体指针，MMC控制器<br>cmdCode：uint32_t，命令代码 | HDF_STATUS相关状态 | 调谐 | 
 | rescanSdioDev | cntlr：核心层结构体指针，MMC控制器 | HDF_STATUS相关状态 | 扫描并添加SDIO设备 | 
@@ -254,7 +254,7 @@ MMC模块适配的三个必选环节是实例化驱动入口，配置属性文�
           uint32_t maxBlkNum;
           uint32_t maxBlkSize;
           uint32_t maxReqSize;
-          bool devPluged;
+          bool devPlugged;
           bool detecting;
           void *priv;
       };
@@ -273,10 +273,10 @@ MMC模块适配的三个必选环节是实例化驱动入口，配置属性文�
           .setSdioIrq     = HimciSetSdioIrq,
           .hardwareReset  = HimciHardwareReset,
           .systemInit     = HimciSystemInit,
-          .setEnhanceSrobe= HimciSetEnhanceSrobe,
+          .setEnhanceStrobe= HimciSetEnhanceStrobe,
           .switchVoltage  = HimciSwitchVoltage,
           .devReadOnly    = HimciDevReadOnly,
-          .devPluged      = HimciCardPluged,
+          .devPlugged     = HimciCardPlugged,
           .devBusy        = HimciDevBusy,
           .tune           = HimciTune,
           .rescanSdioDev  = HimciRescanSdioDev,

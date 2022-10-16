@@ -3,7 +3,9 @@
 
 ## **概述**
 
-**所属模块:**
+音频采样属性。
+
+**相关模块:**
 
 [Audio](_audio.md)
 
@@ -13,11 +15,11 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [type](_audio.md#type-13) | 音频类型，详情参考[AudioCategory](_audio.md#audiocategory)。 | 
+| [type](_audio.md#type-13) | 音频类型。 | 
 | [interleaved](_audio.md#interleaved) | 音频数据交织的标记。 | 
-| [format](_audio.md#format) | 音频数据格式，详情参考[AudioFormat](_audio.md#audioformat)。 | 
+| [format](_audio.md#format) | 音频数据格式。 | 
 | [sampleRate](_audio.md#samplerate) | 音频采样频率。 | 
 | [channelCount](_audio.md#channelcount-12) | 音频通道数目，如单通道（mono）为1、立体声（stereo）为2。 | 
 | [period](_audio.md#period) | 音频采样周期。 | 
@@ -28,8 +30,3 @@
 | [stopThreshold](_audio.md#stopthreshold) | 音频渲染停止阈值。 | 
 | [silenceThreshold](_audio.md#silencethreshold) | 音频捕获缓冲区阈值。 | 
 | [streamId](_audio.md#streamid-12) | 渲染或捕获的音频标识符。 | 
-
-
-## **详细描述**
-
-音频采样属性。
