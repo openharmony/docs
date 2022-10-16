@@ -21,11 +21,11 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
   随机测试是wukong稳定性工具的主要部分，提供了最基本的启动、运行及结果汇总的能力。主要功能如下图所示：
 
-  ![](figures/wukongRandomTest.PNG)
+  ![](figures/wukongRandomTest.png)
 
   随机测试的基础运行流程如下图所示，依赖hdc命令
 
-  ![](figures/wukongRandomTestFlow.PNG)
+  ![](figures/wukongRandomTestFlow.png)
 
 - 专项测试
 
@@ -33,7 +33,7 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
   专项测试的主要功能如下图所示：
 
-  ![](figures/wukongSpecialTest.PNG)
+  ![](figures/wukongSpecialTest.png)
 
 
 ### 约束与限制
