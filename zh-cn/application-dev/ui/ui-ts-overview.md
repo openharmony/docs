@@ -59,7 +59,7 @@
 
 ## 相关实例
 
-基于声明式开发范式的方舟开发框架，有以下相关实例可供参考：
+基于ArkTS的声明式开发范式的方舟开发框架，有以下相关实例可供参考：
 
 - [`Canvas`：画布组件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Canvas)
 
