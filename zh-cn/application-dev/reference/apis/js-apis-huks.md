@@ -1527,7 +1527,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 判断密钥是否存在，使用Callback回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyItemExist9)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9)替代。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1556,7 +1556,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断密钥是否存在，使用Promise回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyItemExist9-1)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks
 
