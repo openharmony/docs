@@ -68,7 +68,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **参数**：
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取 |
+| requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
 **示例**：
@@ -96,7 +96,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **参数**：
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **返回值**：
 | 类型                    | 说明                                       |
@@ -125,7 +125,7 @@ cancelSuspendDelay(requestId: number): void
 **参数**：
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **示例**：
   ```js

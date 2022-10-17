@@ -31,7 +31,7 @@ import bundleState from '@ohos.bundleState'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限：ohos.permission.BUNDLE_ACTIVE_INFO，使用Callback形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限ohos.permission.BUNDLE_ACTIVE_INFO，使用Callback形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -58,7 +58,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限：ohos.permission.BUNDLE_ACTIVE_INFO，使用Promise形式返回。
+判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限ohos.permission.BUNDLE_ACTIVE_INFO，使用Promise形式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
