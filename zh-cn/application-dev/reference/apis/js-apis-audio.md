@@ -1,6 +1,6 @@
 # 音频管理
 
-音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。 
+音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。
 
 该模块提供以下音频相关的常用功能：
 
@@ -3733,6 +3733,8 @@ let outputAudioRendererFilter = {
 ## AudioRenderer<sup>8+</sup>
 
 提供音频渲染的相关接口。在调用AudioRenderer的接口前，需要先通过[createAudioRenderer](#audiocreateaudiorenderer8)创建实例。
+
+### 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
