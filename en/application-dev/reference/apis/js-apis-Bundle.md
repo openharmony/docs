@@ -139,6 +139,80 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
  })
 ```
 
+## bundle.getApplicationInfoSync<sup>9+</sup>
+
+getApplicationInfoSync(bundleName: string, bundleFlags: number, userId: number): ApplicationInfo;
+
+Obtains the application information of the specified user based on a given bundle name. This API returns the result synchronously.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Bundle name of an application.                                              |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+| userId      | number | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.       |
+
+**Return value**
+
+| Type                                                | Description               |
+| ---------------------------------------------------- | ------------------- |
+| [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | **ApplicationInfo** object.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+let userId = 100;
+var applicationInfo = bundle.getApplicationInfoSync(bundleName, bundleFlags, userId);
+console.info('Operation successful. Name:' + applicationInfo.name);
+```
+
+## bundle.getApplicationInfoSync<sup>9+</sup>
+
+getApplicationInfoSync(bundleName: string, bundleFlags: number) : ApplicationInfo;
+
+Obtains the application information based on a given bundle name. This API returns the result synchronously.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Bundle name of an application.                                              |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the application information flags in [BundleFlag](#bundleflag).|
+
+**Return value**
+
+| Type                                                | Description               |
+| ---------------------------------------------------- | ------------------- |
+| [ApplicationInfo](js-apis-bundle-ApplicationInfo.md) | **ApplicationInfo** object.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 0;
+var applicationInfo = bundle.getApplicationInfoSync(bundleName, bundleFlags);
+console.info('Operation successful. Name:' + applicationInfo.name);
+```
+
 ## bundle.getAllBundleInfo
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise<Array\<BundleInfo>>
@@ -368,6 +442,82 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     }
     console.info('Operation successful. Data:' + JSON.stringify(data));
 })
+```
+
+## bundle.getBundleInfoSync<sup>9+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number, options: BundleOptions): BundleInfo;
+
+Obtains the bundle information based on a given bundle name and bundle options. This API returns the result synchronously.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ----------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| bundleName  | string                          | Yes  | Bundle name of an application.                                              |
+| bundleFlags | number                          | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+| options     | [BundleOptions](#bundleoptions) | Yes  | Options of the bundle.                                              |
+
+**Return value**
+
+| Type                                      | Description          |
+| ------------------------------------------ | -------------- |
+| [BundleInfo](js-apis-bundle-BundleInfo.md) | **BundleInfo** object.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+let options = {
+  "userId" : 100
+};
+var bundleInfo = bundle.getBundleInfoSync(bundleName, bundleFlags, options);
+console.info('Operation successful. Name:' + bundleInfo.name);
+```
+
+## bundle.getBundleInfoSync<sup>9+</sup>
+
+getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo;
+
+Obtains the bundle information based on a given bundle name. This API returns the result synchronously.
+
+**Required permissions**
+
+ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**
+
+SystemCapability.BundleManager.BundleFramework
+
+**Parameters**
+
+| Name       | Type  | Mandatory| Description                                                        |
+| ----------- | ------ | ---- | ------------------------------------------------------------ |
+| bundleName  | string | Yes  | Bundle name of an application.                                              |
+| bundleFlags | number | Yes  | Type of information that will be returned. The default value is **0**. For details on the available enumerated values, see the bundle information flags in [BundleFlag](#bundleflag).|
+
+**Return value**
+
+| Type                                      | Description          |
+| ------------------------------------------ | -------------- |
+| [BundleInfo](js-apis-bundle-BundleInfo.md) | **BundleInfo** object.|
+
+**Example**
+
+```js
+let bundleName = "com.example.myapplication";
+let bundleFlags = 1;
+var bundleInfo = bundle.getBundleInfoSync(bundleName, bundleFlags);
+console.info('Operation successful. Name:' + bundleInfo.name);
 ```
 
 ## bundle.getBundleInstaller
@@ -685,7 +835,7 @@ This is a system API and cannot be called by third-party applications.
 | ----------- | --------------------------- | ---- | ---------------------- |
 | bundleName  | string                      | Yes  | Bundle name of an application.      |
 | moduleName  | string                      | Yes  | Module name of the application.    |
-| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is  for internal use only.|
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | Yes  | Upgrade flag, which is for internal use only.|
 
 **Return value**
 
@@ -758,10 +908,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name          | Type                              | Mandatory| Description                                                |
-| -------------- | ---------------------------------- | ---- | ---------------------------------------------------- |
-| bundleName     | string                             | Yes  | Bundle name of an application.                                    |
-| bundlePackFlag | pack.BundlePackFlag                | Yes  | Flags of the bundle package.                              |
+| Name          | Type                                                        | Mandatory| Description                                                |
+| -------------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
+| bundleName     | string                                                       | Yes  | Bundle name of an application.                                    |
+| bundlePackFlag | pack.BundlePackFlag            | Yes  | Flags of the bundle package.                              |
 | callback       | AsyncCallback<pack.BundlePackInfo> | Yes  | Callback used to return the bundle package information.|
 
 ## bundle.getBundlePackInfo<sup>9+</sup>
@@ -780,16 +930,16 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-| Name          | Type               | Mandatory| Description                  |
-| -------------- | ------------------- | ---- | ---------------------- |
-| bundleName     | string              | Yes  | Bundle name of an application.      |
+| Name          | Type                                             | Mandatory| Description                  |
+| -------------- | ------------------------------------------------- | ---- | ---------------------- |
+| bundleName     | string                                            | Yes  | Bundle name of an application.      |
 | bundlePackFlag | pack.BundlePackFlag | Yes  | Flags of the bundle package.|
 
 **Return value**
 
-| Type                        | Description                               |
-| ---------------------------- | ----------------------------------- |
-| Promise<pack.BundlePackInfo> | Promise used to return the bundle package information.|
+| Type                         | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| Promise<pack.BundlePackInfo> | Promise used to return the bundle package information. |
 
 ## bundle.getDispatcherVersion<sup>9+</sup>
 
@@ -1894,7 +2044,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------------- | ------ | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)   | Yes   | Want that contains the bundle name.                       |
 | extensionType  | number | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
-| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
+| extensionFlags | number | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#extensionflag9).|
 | userId         | number | No   | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.             |
 
 **Return value**
@@ -1943,7 +2093,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want           | [Want](js-apis-application-Want.md)                                                        | Yes  | Want that contains the bundle name.                      |
 | extensionType  | number                                                       | Yes  | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
-| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
+| extensionFlags | number                                                       | Yes  | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#extensionflag9).|
 | userId         | number                                                       | Yes  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.         |
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes  | Callback used to return the Extension ability information.      |
 
@@ -1986,7 +2136,7 @@ SystemCapability.BundleManager.BundleFramework
 | -------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | want           | [Want](js-apis-application-Want.md)                                     | Yes   | Want that contains the bundle name.                     |
 | extensionType  | number                                   | Yes   | Type of the Extension ability information to obtain. The default value is **0**. For details on the available enumerated values, see [ExtensionAbilityType](#extensionabilitytype9).|
-| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see  [ExtensionFlags](#extensionflag9).|
+| extensionFlags | number                                   | Yes   | Extension ability information to be returned. The default value is **0**. For details on the available enumerated values, see [ExtensionFlags](#extensionflag9).|
 | callback       | AsyncCallback<Array\<[ExtensionAbilityInfo](js-apis-bundle-ExtensionAbilityInfo.md)>> | Yes   | Callback used to return the Extension ability information.     |
 
 **Example**
