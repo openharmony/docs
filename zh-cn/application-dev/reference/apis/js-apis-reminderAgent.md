@@ -88,7 +88,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，publishReminder方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
 **示例**：
@@ -112,7 +112,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，publishReminder方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
 
 **返回值**：
 
