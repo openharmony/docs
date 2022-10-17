@@ -102,7 +102,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (data, err) => {
+    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -310,7 +310,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (data, err) => {
+    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -407,7 +407,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (data, err) => {
+    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
