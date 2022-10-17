@@ -1,7 +1,7 @@
 # 目录结构
 
 
-FA应用的eTS模块(entry/src/main)的典型开发目录结构如下：
+FA应用的ArkTS模块(entry/src/main)的典型开发目录结构如下：
 
 
 ![zh-cn_image_0000001182200571](figures/zh-cn_image_0000001182200571.png)
@@ -10,7 +10,7 @@ FA应用的eTS模块(entry/src/main)的典型开发目录结构如下：
 **目录结构中文件分类如下：**
 
 
-.ets结尾的eTS（extended TypeScript）文件，用于描述UI布局、样式、事件交互和页面逻辑。
+.ets结尾的ArkTS（extended TypeScript）文件，用于描述UI布局、样式、事件交互和页面逻辑。
 
 **各个文件夹和文件的作用：**
 
