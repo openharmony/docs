@@ -35,6 +35,7 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
   ![](figures/wukongSpecialTest.png)
 
+随机测试、专项测试相关命令可具体参考[对应使用说明。](https://gitee.com/openharmony/ostest_wukong/blob/master/README_zh.md)
 
 ### 约束与限制
 
@@ -51,10 +52,6 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
     hdc_std shell chmod a+x /wukong
     hdc_std shell mv /wukong /bin/
     ```
-3. wukong测试结果存放路径：<br>
-    3.1. 2022/9/22之前的版本报告存放路径：/data/local/wukong/report/
-    3.2. 2022/9/22之后的版本报告存放路径：/data/local/tmp/wukong/report/
-
 
 ## 环境准备
 
@@ -95,12 +92,9 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
 ## 查看测试结果
 
-### 测试报告日志
-
 当执行完测试指令，会自动生成测试结果。
 
-### 测试结果
-测试结果输出根路径如下：
+### 测试结果输出根路径如下：
 ```
 2022/9/22之前的版本报告存放路径：/data/local/wukong/report/xxxxxxxx_xxxxxx/
 2022/9/22之后的版本报告存放路径：/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
@@ -114,7 +108,7 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 | screenshot/                          | 存放专项测试顺序遍历的截图  |
 | wukong_report.csv                    | 测试报告统计汇总       |
 
-### 测试框架日志
+### wukong执行日志
 ```
 reports/xxxxxxxx_xxxxxx/wukong.log
 ```
