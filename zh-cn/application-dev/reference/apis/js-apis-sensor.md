@@ -3637,7 +3637,7 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
-从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ ACCELEROMETER ](#linear_accelerometer9)代替。 
+从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELEROMETER](#linear_accelerometer9)代替。 
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
@@ -4234,7 +4234,7 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 
 监听线性加速度传感器数据变化一次。
 
-从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ ACCELEROMETER ](#linear_accelerometer9-1)代替。
+从API version 9 开始不再维护，建议使用[sensor.once.LINEAR_ ACCELEROMETER ](#linear_accelerometer9-1)代替。
 
 **需要权限**：ohos.permission.ACCELERATION
 
