@@ -207,6 +207,7 @@
 - Basic Features
 
   - [@ohos.accessibility](js-apis-accessibility.md)
+  - [@ohos.accessibility.config](js-apis-accessibility-config.md)
   - [@ohos.faultLogger](js-apis-faultLogger.md)
   - [@ohos.hiAppEvent](js-apis-hiappevent.md)
   - [@ohos.hichecker](js-apis-hichecker.md)

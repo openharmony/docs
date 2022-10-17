@@ -1,15 +1,43 @@
 # @Builder
 
 
-The **@Builder** decorated method is used to define the declarative UI description of a component and quickly generate multiple layouts in a custom component. The functionality and syntax of the **@Builder** decorator are the same as those of the [build Function](ts-function-build.md).
+The **@Builder** decorated method is used to define the declarative UI description of a component and quickly generate multiple layouts in a custom component. If a custom component is used in the **@Builder** decorated method, this component will be re-created each time the method is invoked. The functionality and syntax of the **@Builder** decorator are the same as those of the **build** function.
 
 
 ```ts
 // xxx.ets
+
+@Component
+struct CompB {
+  @State CompValue: string = '';
+
+  aboutToAppear() {
+    console.info('CompB aboutToAppear.');
+  }
+
+  aboutToDisappear() {
+    console.info('CompB aboutToDisappear.');
+  }
+
+  build() {
+    Column() {
+      Button(this.CompValue);
+    }
+  }
+}
+
 @Entry
 @Component
 struct CompA {
-  size1 : number = 100;
+  size1: number = 100;
+  @State CompValue1: string = "Hello,CompValue1";
+  @State CompValue2: string = "Hello,CompValue2";
+  @State CompValue3: string = "Hello,CompValue3";
+
+  // Use a custom component in the @Builder decorated method.
+  @Builder CompC(value: string) {
+    CompB({ CompValue: value });
+  }
 
   @Builder SquareText(label: string) {
     Text(label)
@@ -35,7 +63,16 @@ struct CompA {
       }
       .width(2 * this.size1)
       .height(1 * this.size1)
+
       this.RowOfSquareTexts("C", "D")
+      Column() {
+        // Use the custom component in the @Builder decorated method three times.
+        this.CompC(this.CompValue1);
+        this.CompC(this.CompValue2);
+        this.CompC(this.CompValue3);
+      }
+      .width(2 * this.size1)
+      .height(2 * this.size1)
     }
     .width(2 * this.size1)
     .height(2 * this.size1)
@@ -99,7 +136,7 @@ struct CustomContainerUser {
 }
 ```
 ### Component Initialization Through Trailing Closure
-In a custom component, use the **@BuilderParam** decorated attribute to receive a trailing closure. When the custom component is initialized, the component name is followed by a pair of braces ({}) to form a trailing closure (`CustomComponent(){}`). You can consider a trailing closure as a container and add content to it. For example, you can add a component (`{Column(){Text("content")}`) to a trailing closure. The syntax of the closure is the same as that of [build](../ui/ts-function-build.md). In this scenario, the custom component has one and only one **@BuilderParam** decorated attribute.
+In a custom component, use the **@BuilderParam** decorated attribute to receive a trailing closure. When the custom component is initialized, the component name is followed by a pair of braces ({}) to form a trailing closure (`CustomComponent(){}`). You can consider a trailing closure as a container and add content to it. For example, you can add a component (`{Column(){Text("content")}`) to a trailing closure. The syntax of the closure is the same as that of the **build** function. In this scenario, the custom component has one and only one **@BuilderParam** decorated attribute.
 
 Example: Add a **\<Column>** component and a click event to the closure, and call the **specificParam** method decorated by **@Builder** in the new **\<Column>** component. After the **\<Column>** component is clicked, the value of the component's `header` attribute will change to `changeHeader`. In addition, when the component is initialized, the content of the trailing closure will be assigned to the `closer` attribute decorated by **@BuilderParam**.
 ```ts
