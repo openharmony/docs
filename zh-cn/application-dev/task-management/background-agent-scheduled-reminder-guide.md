@@ -7,11 +7,11 @@
 
 ## 接口说明
 
-reminderAgent：封装了发布、取消提醒类通知的方法。
+reminderAgentManager：封装了发布、取消提醒类通知的方法。
 
 具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgent.md)。
 
-**表1** reminderAgent主要接口
+**表1** reminderAgentManager主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -34,17 +34,17 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
    倒计时实例定义：
    ```js
-   import reminderAgent from '@ohos.reminderAgent';
+   import reminderAgentManager from '@ohos.reminderAgentManager';
    import notification from '@ohos.notification';
    export default {
        // eTS工程：
-       let timer : reminderAgent.ReminderRequestTimer = {
-           reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+       let timer : reminderAgentManager.ReminderRequestTimer = {
+           reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
            triggerTimeInSeconds: 10,
            actionButton: [
                {
                    title: "close",
-                   type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+                   type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
                }
            ],
            wantAgent: {
@@ -68,8 +68,8 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
     ```js
     // eTS工程：
-    let calendar : reminderAgent.ReminderRequestCalendar = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
+    let calendar : reminderAgentManager.ReminderRequestCalendar = {
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR,
         dateTime: {
             year: 2050,
             month: 7,
@@ -83,11 +83,11 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
         actionButton: [
             {
                 title: "close",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+                type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
             },
             {
                 title: "snooze",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+                type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
             },
         ],
         wantAgent: {
@@ -114,19 +114,19 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
     ```js
     // eTS工程：
-    let alarm : reminderAgent.ReminderRequestAlarm = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
+    let alarm : reminderAgentManager.ReminderRequestAlarm = {
+        reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM,
         hour: 11,
         minute: 14,
         daysOfWeek: [0],
         actionButton: [
             {
                 title: "close",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+                type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
             },
             {
                 title: "snooze",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+                type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
             },
         ],
         wantAgent: {
@@ -152,10 +152,15 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 2. 发布倒计时提醒。
    ```js
    startTimer() {
-       reminderAgent.publishReminder(this.timer, (err, reminderId) =>{
-           this.printInfo(JSON.stringify(err));
-           this.printInfo("reminderId:" + reminderId);
-       });
+        try {
+            reminderAgent.publishReminder(this.timer).then(res => {
+                console.log("publishReminder promise reminderId:" + res);
+            }).catch(err => {
+                console.log("publishReminder err code:" + err.code + " message:" + err.message);
+            })
+        } catch (error) {
+            console.log("publishReminder code:" + error.code + " message:" + error.message);
+        };
    }
    ```
 

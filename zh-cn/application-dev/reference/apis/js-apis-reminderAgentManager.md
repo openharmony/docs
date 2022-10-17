@@ -11,18 +11,15 @@
 ## 导入模块
 
 ```
-import reminderAgent from'@ohos.reminderAgent';
+import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
 
-## reminderAgent.publishReminder<sup>(deprecated)</sup>
+## reminderAgentManager.publishReminder<sup>9+</sup>
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
 发布一个后台代理提醒，使用callback方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder9)
->
-> 从 API version 7开始支持。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -37,24 +34,29 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 
 **示例**：
 ```js
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
-  reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("callback, reminderId = " + reminderId);
-  });
+let timer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+    triggerTimeInSeconds: 10
+}
+try {
+    reminderAgentManager.publishReminder(timer, (err, reminderId) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("callback, reminderId = " + reminderId);
+        }
+    });
+} catch (error) {
+    console.log("publishReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.publishReminder<sup>(deprecated)</sup>
+## reminderAgentManager.publishReminder<sup>9+</sup>
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder9-1)
->
-> 从 API version 7开始支持。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -72,24 +74,27 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 **示例**：
 ```js
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
-  reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("promise, reminderId = " + reminderId);
-  });
+let timer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+    triggerTimeInSeconds: 10
+}
+try {
+    reminderAgentManager.publishReminder(timer).then((reminderId) => {
+        console.log("promise, reminderId = " + reminderId);
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("publishReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelReminder<sup>(deprecated)</sup>
+## reminderAgentManager.cancelReminder<sup>9+</sup>
 
 cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 取消指定id的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -103,20 +108,25 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-reminderAgent.cancelReminder(1, (err, data) => {
-    console.log("cancelReminder callback");
-});
+try {
+    reminderAgentManager.cancelReminder(1, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("cancelReminder callback");
+        }
+    });
+} catch (error) {
+    console.log("cancelReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelReminder<sup>(deprecated)</sup>
+## reminderAgentManager.cancelReminder<sup>9+</sup>
 
 cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 取消指定id的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -135,20 +145,23 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-reminderAgent.cancelReminder(1).then(() => {
-    console.log("cancelReminder promise");
-});
+try {
+    reminderAgentManager.cancelReminder(1).then(() => {
+        console.log("cancelReminder promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("cancelReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.getValidReminders<sup>(deprecated)</sup>
+## reminderAgentManager.getValidReminders<sup>9+</sup>
 
 getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
 获取当前应用已设置的所有有效（未过期）的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -161,41 +174,46 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 **示例**：
 
 ```js
-reminderAgent.getValidReminders((err, reminders) => {
-    console.log("callback, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+try {
+    reminderAgentManager.getValidReminders((err, reminders) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("callback, getValidReminders length = " + reminders.length);
+            for (let i = 0; i < reminders.length; i++) {
+                console.log("getValidReminders = " + reminders[i]);
+                console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+                for (let j = 0; j < reminders[i].actionButton.length; j++) {
+                    console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+                    console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+                }
+                console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+                console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+                console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+                console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+                console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+                console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+                console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+                console.log("getValidReminders, title = " + reminders[i].title);
+                console.log("getValidReminders, content = " + reminders[i].content);
+                console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+                console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+                console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+                console.log("getValidReminders, slotType = " + reminders[i].slotType);
+            }
         }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
-    }
-})
+    })
+} catch (error) {
+    console.log("getValidReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.getValidReminders<sup>(deprecated)</sup>
+## reminderAgentManager.getValidReminders<sup>9+</sup>
 
 getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 获取当前应用已设置的所有有效（未过期）的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -208,41 +226,44 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 **示例**：
 
 ```js
-reminderAgent.getValidReminders().then((reminders) => {
-    console.log("promise, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+try {
+    reminderAgentManager.getValidReminders().then((reminders) => {
+        console.log("promise, getValidReminders length = " + reminders.length);
+        for (let i = 0; i < reminders.length; i++) {
+            console.log("getValidReminders = " + reminders[i]);
+            console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+            for (let j = 0; j < reminders[i].actionButton.length; j++) {
+                console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+                console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+            }
+            console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+            console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+            console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+            console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+            console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+            console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+            console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+            console.log("getValidReminders, title = " + reminders[i].title);
+            console.log("getValidReminders, content = " + reminders[i].content);
+            console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+            console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+            console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+            console.log("getValidReminders, slotType = " + reminders[i].slotType);
         }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
-    }
-})
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("getValidReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
+## reminderAgentManager.cancelAllReminders<sup>9+</sup>
 
 cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 取消当前应用所有的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -255,20 +276,25 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("cancelAllReminders callback")
-})
+try {
+    reminderAgentManager.cancelAllReminders((err, data) =>{
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("cancelAllReminders callback")
+        }
+    })
+} catch (error) {
+    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
+## reminderAgentManager.cancelAllReminders<sup>9+</sup>
 
 cancelAllReminders(): Promise&lt;void&gt;
 
 取消当前应用所有的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -281,20 +307,23 @@ cancelAllReminders(): Promise&lt;void&gt;
 **示例**：
 
 ```js
-reminderAgent.cancelAllReminders().then(() => {
-    console.log("cancelAllReminders promise")
-})
+try {
+    reminderAgentManager.cancelAllReminders().then(() => {
+        console.log("cancelAllReminders promise")
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
+## reminderAgentManager.addNotificationSlot<sup>9+</sup>
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
 添加一个NotificationSlot，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -313,20 +342,25 @@ import notification from '@ohos.notification'
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot, (err, data) => {
-    console.log("addNotificationSlot callback");
-});
+try {
+    reminderAgentManager.addNotificationSlot(mySlot, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("addNotificationSlot callback");
+        }
+    });
+} catch (error) {
+    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
+## reminderAgentManager.addNotificationSlot<sup>9+</sup>
 
 addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 添加一个NotificationSlot，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -350,20 +384,23 @@ import notification from '@ohos.notification'
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot).then(() => {
-   console.log("addNotificationSlot promise");
-});
+try {
+    reminderAgentManager.addNotificationSlot(mySlot).then(() => {
+        console.log("addNotificationSlot promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
+## reminderAgentManager.removeNotificationSlot<sup>9+</sup>
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void
 
 删除目标NotificationSlot，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -379,20 +416,25 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 ```js
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-    console.log("removeNotificationSlot callback");
-});
+try {
+    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("removeNotificationSlot callback");
+        }
+    });
+} catch (error) {
+    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
+## reminderAgentManager.removeNotificationSlot<sup>9+</sup>
 
 removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 删除目标NotificationSlot，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -413,18 +455,20 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 ```js
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-    console.log("removeNotificationSlot promise");
-});
+try {
+    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+        console.log("removeNotificationSlot promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
-
-## ActionButtonType<sup>(deprecated)</sup>
+## ActionButtonType<sup>9+</sup>
 
 按钮的类型。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#actionbuttontype9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -434,12 +478,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
 
 
-## ReminderType<sup>(deprecated)</sup>
+## ReminderType<sup>9+</sup>
 
 提醒的类型。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#remindertype9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -450,12 +491,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | REMINDER_TYPE_ALARM | 2 | 表示提醒类型：闹钟。 |
 
 
-## ActionButton<sup>(deprecated)</sup>
+## ActionButton<sup>9+</sup>
 
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#actionbutton9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -465,12 +503,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 
 
-## WantAgent<sup>(deprecated)</sup>
+## WantAgent<sup>9+</sup>
 
 点击提醒通知后跳转的目标ability信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#wantagent9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -480,12 +515,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
 
 
-## MaxScreenWantAgent<sup>(deprecated)</sup>
+## MaxScreenWantAgent<sup>9+</sup>
 
 全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#maxscreenwantagent9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -495,12 +527,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
-## ReminderRequest<sup>(deprecated)</sup>
+## ReminderRequest<sup>9+</sup>
 
 提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequest9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -521,14 +550,11 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
 
 
-## ReminderRequestCalendar<sup>(deprecated)</sup>
+## ReminderRequestCalendar<sup>9+</sup>
 
 ReminderRequestCalendar extends ReminderRequest
 
 日历实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequestcalendar9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -539,14 +565,11 @@ ReminderRequestCalendar extends ReminderRequest
 | repeatDays | Array&lt;number&gt; | 否 | 指明重复提醒的日期。 |
 
 
-## ReminderRequestAlarm<sup>(deprecated)</sup>
+## ReminderRequestAlarm<sup>9+</sup>
 
 ReminderRequestAlarm extends ReminderRequest
 
 闹钟实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequestalarm9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -557,14 +580,11 @@ ReminderRequestAlarm extends ReminderRequest
 | daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
 
 
-## ReminderRequestTimer<sup>(deprecated)</sup>
+## ReminderRequestTimer<sup>9+</sup>
 
 ReminderRequestTimer extends ReminderRequest
 
 倒计时实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequesttimer9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -573,12 +593,9 @@ ReminderRequestTimer extends ReminderRequest
 | triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
 
 
-## LocalDateTime<sup>(deprecated)</sup>
+## LocalDateTime<sup>9+</sup>
 
 用于日历类提醒设置时指定时间信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#localdatetime9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
