@@ -562,7 +562,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 订阅服务状态变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -593,7 +593,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 取消订阅服务状态变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -680,7 +680,7 @@ KVStore常量。
 
 表示数据库模式，可以在创建或打开数据库时创建Schema对象并将它们放入[Options](#options)中。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -695,13 +695,13 @@ constructor()
 
 用于创建Schema实例的构造函数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 ## FieldNode<sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -715,7 +715,7 @@ constructor(name: string)
 
 用于创建带有string字段FieldNode实例的构造函数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -729,7 +729,7 @@ appendChild(child: FieldNode): boolean
 
 在当前 FieldNode 中添加一个子节点。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 

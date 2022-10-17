@@ -8,8 +8,8 @@
 - 快速开始
     - 快速入门
         - [开发准备](quick-start/start-overview.md)
-        - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-        - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+        - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+        - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
         - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
@@ -26,6 +26,7 @@
     - [安全](security/Readme-CN.md)
     - [网络与连接](connectivity/Readme-CN.md)
     - [数据管理](database/Readme-CN.md)
+    - [文件管理](file-management/Readme-CN.md)
     - [电话服务](telephony/Readme-CN.md)
     - [任务管理](task-management/Readme-CN.md)
     - [设备管理](device/Readme-CN.md)

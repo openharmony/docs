@@ -3,9 +3,13 @@
 
 ## **概述**
 
-**所属模块:**
+提供Input设备管理相关的接口。
 
-[Input](_input.md)
+此类接口包含Input设备的扫描、打开和关闭、特定设备信息查询，以及所有设备列表信息获取等接口。
+
+**相关模块:**
+
+[Input](input.md)
 
 
 ## **汇总**
@@ -13,20 +17,13 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| (&nbsp;[ScanInputDevice](#scaninputdevice)&nbsp;)(DevDesc&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | Input服务用于扫描所有在线设备。&nbsp;[更多...](#scaninputdevice) | 
-| (&nbsp;[OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务打开对应设备的设备文件&nbsp;[更多...](#openinputdevice) | 
-| (&nbsp;[CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务关闭对应设备的设备文件&nbsp;[更多...](#closeinputdevice) | 
-| (&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息&nbsp;[更多...](#getinputdevice) | 
-| (&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息&nbsp;[更多...](#getinputdevicelist) | 
-
-
-## **详细描述**
-
-提供Input设备管理相关的接口。
-
-此类接口包含Input设备的扫描、打开和关闭、特定设备信息查询，以及所有设备列表信息获取等。
+| ([ScanInputDevice](#scaninputdevice)&nbsp;)([InputDevDesc](_input_dev_desc.md)&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | Input服务用于扫描所有在线设备。 | 
+| ([OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务打开对应设备的设备文件。 | 
+| ([CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务关闭对应设备的设备文件。 | 
+| ([GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息。 | 
+| ([GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息。 | 
 
 
 ## **类成员变量说明**
@@ -35,7 +32,7 @@
 ### CloseInputDevice
 
   
-```cpp
+```
 int32_t(* InputManager::CloseInputDevice) (uint32_t devIndex)
 ```
 
@@ -43,23 +40,23 @@ int32_t(* InputManager::CloseInputDevice) (uint32_t devIndex)
 
 Input服务关闭对应设备的设备文件。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。| 
+| devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 
-**返回：**
+**返回:**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
 
 
 ### GetInputDevice
 
   
-```cpp
+```
 int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, InputDeviceInfo **devInfo)
 ```
 
@@ -67,24 +64,24 @@ int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, InputDeviceInfo **de
 
 Input服务获取对应ID的设备信息。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
-| devInfo | 输出参数，即devIndex对应的设备的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
+| devInfo | 输出参数，即devIndex对应的设备的设备信息，具体参考[InputDeviceInfo](_input_device_info.md)。 | 
 
-**返回：**
+**返回:**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
 
 
 ### GetInputDeviceList
 
   
-```cpp
+```
 int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, InputDeviceInfo **devList, uint32_t size)
 ```
 
@@ -92,25 +89,25 @@ int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, InputDeviceInfo *
 
 Input服务获取所有Input设备列表的设备信息。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | devNum | 输出参数，当前已经注册过的所有Input设备的总数。 | 
-| devList | 输出参数，Input设备列表所对应的设备信息，具体参考[InputDeviceInfo](_device_info.md)。 | 
-| size | 输入参数，即指定deviceList数组对应的元素个数。| 
+| devList | 输出参数，Input设备列表所对应的设备信息，具体参考[InputDeviceInfo](_input_device_info.md)。 | 
+| size | 输入参数，即指定deviceList数组对应的元素个数。 | 
 
-返回：
+**返回:**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
 
 
 ### OpenInputDevice
 
   
-```cpp
+```
 int32_t(* InputManager::OpenInputDevice) (uint32_t devIndex)
 ```
 
@@ -118,23 +115,23 @@ int32_t(* InputManager::OpenInputDevice) (uint32_t devIndex)
 
 Input服务打开对应设备的设备文件。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | devIndex | 输入参数，Input设备索引，用于标志多个Input设备，取值从0开始，最多支持32个设备。 | 
 
-**返回：**
+**返回:**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
 
 
 ### ScanInputDevice
 
   
-```cpp
+```
 int32_t(* InputManager::ScanInputDevice) (InputDevDesc *staArr, uint32_t arrLen)
 ```
 
@@ -142,15 +139,15 @@ int32_t(* InputManager::ScanInputDevice) (InputDevDesc *staArr, uint32_t arrLen)
 
 Input服务用于扫描所有在线设备。
 
-**参数：**
+**参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | staArr | 输出参数，存放Input设备扫描信息的数组，信息包含设备索引以及设备类型。 | 
 | arrLen | 输入参数，staArr数组的长度信息。 | 
 
-**返回：**
+**返回:**
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。

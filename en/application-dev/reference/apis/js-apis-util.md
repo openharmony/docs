@@ -75,7 +75,7 @@ Obtains detailed information about a system error code.
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
+Wraps an asynchronous function (or a function that returns a promise) into an error-first callback, which means that **(err, value) => ...** is used as the last parameter of the callback. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -110,9 +110,10 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 > **NOTE**
+>
 > This API is deprecated since API version 9. You are advised to use **[util.promisify9+](#utilpromisify9)** instead.
 
-Processes an asynchronous function and returns a promise version.
+Wraps a function that follows the error-first callback paradigm into a promise.
 
 **System capability**: SystemCapability.Utils.Lang
 

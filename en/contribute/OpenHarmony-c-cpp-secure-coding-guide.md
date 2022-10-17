@@ -6,7 +6,8 @@ This document provides some secure coding suggestions based on the C\&C++ langua
 
 ## Check the validity of all values received from external sources
 
-**\[Description]**  
+**\[Description]**
+
 External sources are networks, user input, command lines, files (including program configuration files), environment variables, user-mode data (for kernel programs), inter-process communications (including pipes, messages, shared memory, sockets, RPCs, and communications between different boards in a device), API parameters, and global variables.
 
 Data from outside programs is often considered untrusted and needs to be properly checked for validity before being used. If data from an external source is not checked before use, unexpected security risks may occur.
@@ -15,15 +16,45 @@ Note: Do not use assertions to check external input data. Assertions should be u
 
 Data from outside programs must be checked before being used. Typical scenarios include:
 
-**Used as an array index**If untrusted data is used as an array index, the array upper bound may be exceeded, causing invalid memory access. **Used as a memory offset address**  
-Using untrusted data as the pointer offset for memory access may result in invalid memory access and cause further damages, for example, any address read/write. **Used as a memory allocation size parameter**  
-Zero-byte allocation may cause invalid memory access; an unrestricted memory allocation size leads to excessive resource consumption. **Used a loop condition**  
-If untrusted data is used as a loop condition, problems such as buffer overflow, out-of-bounds read/write, and infinite loop may occur. **Used as a divisor**  
-Divide-by-zero errors may occur. **Used as a command line parameter**   
-Command injection vulnerabilities may occur. **Used as the parameter of a database query statement**SQL injection vulnerabilities may occur. **Used as an input/output format string**  
-Format string vulnerabilities may occur. **Used as a memory copy length**  
-Buffer overflows may occur. **Used a file path**  
-Direct access to an untrusted file path may result in directory traversal attacks. As a result, the system is controlled by the attacker who can perform file operations without permissions.
+- **Used as an array index**
+
+  If untrusted data is used as an array index, the array upper bound may be exceeded, causing invalid memory access. 
+
+- **Used as a memory offset address**
+
+  Using untrusted data as the pointer offset for memory access may result in invalid memory access and cause further damages, for example, any address read/write.
+
+- **Used as a memory allocation size parameter** 
+
+  Zero-byte allocation may cause invalid memory access; an unrestricted memory allocation size leads to excessive resource consumption. 
+
+- **Used a loop condition**
+
+  If untrusted data is used as a loop condition, problems such as buffer overflow, out-of-bounds read/write, and infinite loop may occur. 
+
+- **Used as a divisor**
+
+  Divide-by-zero errors may occur. 
+
+- **Used as a command line parameter** 
+
+  Command injection vulnerabilities may occur. 
+
+- **Used as the parameter of a database query statement**
+
+  SQL injection vulnerabilities may occur. 
+
+- **Used as an input/output format string**
+
+  Format string vulnerabilities may occur. 
+
+- **Used as a memory copy length**
+
+  Buffer overflows may occur. 
+
+- **Used a file path**
+
+  Direct access to an untrusted file path may result in directory traversal attacks. As a result, the system is controlled by the attacker who can perform file operations without permissions.
 
 Input validation includes but is not limited to:
 
@@ -33,19 +64,32 @@ Input validation includes but is not limited to:
 - Data type and format check
 - Check on inputs that can only contain permitted characters (in the trustlist), especially special characters in certain cases.
 
-**External Data Validation Principles  
+**External Data Validation Principles** 
 
-1. Trust boundary**  
-   External data is untrusted. Therefore, if data is transmitted and processed across diﬀerent trust boundaries during system operation, validity check must be performed on data from modules outside the trust boundaries to prevent attacks from spreading. (a) Diﬀerent so (or dll) modules  
-   As an independent third-party module, the so or dll module is used to export common API functions for other modules to call. The so/dll module is unable to determine whether the caller passes on valid arguments. Therefore, the common function of the so/dll module needs to check the validity of the arguments provided by the caller. The so/dll module should be designed in low coupling and high reusability. Although the so/dll module is designed to be used only in this software in certain cases, different so/dll modules should still be regarded as different trust boundaries. (b) Diﬀerent processes  
-   To prevent privilege escalation through processes with high permissions, the IPC communications between processes (including IPC communications between boards and network communications between hosts) should be regarded as communications across different trust boundaries. (c) Application layer processes and operating system kernel  
-   The operating system kernel has higher permissions than the application layer. The interface provided by the kernel for the application layer should process the data from the application layer as untrusted data. (d) Internal and external environments of TEE  
+1. Trust boundary
+   
+   External data is untrusted. Therefore, if data is transmitted and processed across diﬀerent trust boundaries during system operation, validity check must be performed on data from modules outside the trust boundaries to prevent attacks from spreading.
+   
+   (a) Diﬀerent so (or dll) modules
+   
+   As an independent third-party module, the so or dll module is used to export common API functions for other modules to call. The so/dll module is unable to determine whether the caller passes on valid arguments. Therefore, the common function of the so/dll module needs to check the validity of the arguments provided by the caller. The so/dll module should be designed in low coupling and high reusability. Although the so/dll module is designed to be used only in this software in certain cases, different so/dll modules should still be regarded as different trust boundaries. 
+   
+   (b) Diﬀerent processes 
+   
+   To prevent privilege escalation through processes with high permissions, the IPC communications between processes (including IPC communications between boards and network communications between hosts) should be regarded as communications across different trust boundaries. 
+   
+   (c) Application layer processes and operating system kernel
+   The operating system kernel has higher permissions than the application layer. The interface provided by the kernel for the application layer should process the data from the application layer as untrusted data.
+   
+   (d) Internal and external environments of TEE
    To prevent attacks from spreading to the TEE, the interfaces provided by the TEE and SGX for external systems should process external data as untrusted data.
 
-**2. External data validation**  
-The external data received by a module must be validated before being used. After data validation is completed, the data stored in the module does not need to be verified again by other internal subfunctions in the module.
+2. External data validation
 
-**\[Noncompliant Code Example]**   
+   The external data received by a module must be validated before being used. After data validation is completed, the data stored in the module does not need to be verified again by other internal subfunctions in the module.
+
+**\[Noncompliant Code Example]**
+
 The **Foo()** function processes external data. Because the buﬀer does not necessarily end with '\\0', the **nameLen** value returned by **strlen** may exceed **len**. As a result, out-of-bounds read occurs.
 
 ```cpp
@@ -60,7 +104,8 @@ void Foo(const unsigned char* buffer, size_t len)
 }
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 External data is checked for validity. In this example, **strnlen** is used to calculate the string length to reduce the risk of out-of-bounds read.
 
 ```cpp
@@ -138,7 +183,8 @@ For module A, the buffer is an external untrusted input, which must be strictly 
 
 ## Class member variables must be explicitly initialized
 
-**\[Description]**  
+**\[Description]**
+
 If a class member variable is not explicitly initialized, the object will have an indeterminate value. If the class member variable has a default constructor, it does not need to be explicitly initialized.
 
 **\[Noncompliant Code Example]**
@@ -162,7 +208,8 @@ Message message;                       // The message member variable is not com
 message.Process();                     // Potential risks exist in subsequent use.
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 One practice is to explicitly initialize the class member variable in declarations.
 
 ```cpp
@@ -202,8 +249,10 @@ private:
 
 ## Clearly define the special member functions to be implemented
 
-**\[Description]**   
-**Rule of three**  
+**\[Description]** 
+
+**Rule of three**
+
 If a class requires a user-defined destructor, a user-defined copy constructor, or a user-defined copy assignment operator, it almost certainly requires all three.
 
 ```cpp
@@ -245,7 +294,8 @@ The implicitly-defined special member functions are typically incorrect if the c
 
 Classes that manage non-copyable resources through copyable handles may have to declare copy assignment and copy constructor private and not provide their definitions or define them as deleted. 
 
-**Rule of five**  
+**Rule of five**
+
 The presence of a user-defined destructor, copy-constructor, or copy-assignment operator can prevent implicit definition of the move constructor and the move assignment operator. Therefore, any class for which move semantics are desirable has to declare all five special member functions.
 
 ```cpp
@@ -298,7 +348,8 @@ private:
 
 However, failure to provide the move constructor and move assignment operator is usually not an error, but a missed optimization opportunity.
 
-**Rule of zero**  
+**Rule of zero**
+
 If a class does not need to deal exclusively with resource ownership, the class should not have custom destructors, copy/move constructors, or copy/move assignment operators.
 
 ```cpp
@@ -345,10 +396,12 @@ public:
 
 ## The copy constructor, copy assignment operator, move constructor, and move assignment operator in the base class must be defined as non-public or deleted
 
-**\[Description]**   
+**\[Description]**
+
 Slicing occurs if a derived class object is directly assigned to a base class object. In this case, only the base class part is copied or moved, which undermines polymorphism.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]**
+
 In the following code, the copy constructor and copy assignment operator of the base class are declared as default. Slicing occurs if a derived class object is assigned to the base class object. The copy constructor and copy assignment operator can be declared as deleted so that the compiler can check such assignment behavior.
 
 ```cpp
@@ -377,7 +430,8 @@ Foo(d);
 
 ## The resources of the source object must be correctly reset in move constructors and move assignment operators
 
-**\[Description]**   
+**\[Description]**
+
 The move constructor and move assignment operator move the ownership of a resource from one object to another. Once the resource is moved, the resource of the source object should be reset correctly. This can prevent the source object from freeing the moved resources in destructors.
 
 Some non-resource data can be retained in the moved object, but the moved object must be in a state that can be properly destructed. Therefore, after an object is moved, do not reply on the value of the moved object unless the object is explicitly specified. lvalue reference may lead to unexpected behavior.
@@ -454,10 +508,12 @@ std::cout << str << std::endl;
 
 ## The base class destructor must be declared as virtual when a derived class is released through a base class pointer
 
-**\[Description]**   
+**\[Description]**
+
 The destructor of the derived class can be called through polymorphism only when the base class destructor is declared as virtual. If the base class destructor is not declared as virtual, only the base class destructor (instead of the derived class destructor) is called when the derived class is released through a base class pointer, causing memory leaks.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 Memory leaks occur because the base class destructor is not declared as virtual. 
 
 ```cpp
@@ -530,7 +586,8 @@ Foo(d);
 
 ## Ensure that objects have been initialized before being used
 
-**\[Description]**   
+**\[Description]**
+
 Initialization is the process of setting the expected value for an object by means of explicit initialization, default constructor initialization, and value assignment. Reading an uninitialized value may result in undefined behaviour. Therefore, ensure that objects have been initialized before being used.
 
 **\[Noncompliant Code Example]**
@@ -587,12 +644,14 @@ std::string data;   // Compliant: Default constructor initialization
 
 ## Avoid using reinterpret\_cast
 
-**\[Description]**   
+**\[Description]** 
+
 `reinterpret_cast` is used to convert irrelevant types. `reinterpret_cast` tries to cast one type to another type, which destroys the type of security and reliability. It is an unsafe conversion. It is advised to use reinterpret\_cast as little as possible.
 
 ## Avoid using const\_cast
 
-**\[Description]**   
+**\[Description]** 
+
 `const_cast` is used to remove the `const` and `volatile` attributes of an object.
 
 Using a pointer or reference converted by **const\_cast** to modify a **const** or **volatile** object will result in undefined behavior.
@@ -622,7 +681,8 @@ int main()
 
 ## Ensure no overﬂows in signed integer operations
 
-**\[Description]**   
+**\[Description]** 
+
 In the C++ standard, signed integer overflow is undefined behavior. Therefore, signed integer overflows are handled differently in implementations. For example, after defining a signed integer type as a modulus, the compiler may not detect integer overflows.
 
 Using overflowed values may cause out-of-bounds read/write risks in the buffer. For security purposes, ensure that operations do not cause overﬂows when signed integers in external data are used in the following scenarios:
@@ -636,7 +696,8 @@ Using overflowed values may cause out-of-bounds read/write risks in the buffer. 
 
 Integer promotion needs to be considered when the operation is performed for the integer types whose precision is less than **int**. Programmers also need to master integer conversion rules, including implicit conversion rules, to design secure arithmetic operations.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, the integers involved in the subtraction operation are external data and are not validated before being used. As a result, integer overﬂow may occur, which further results in buﬀer overﬂow due to memory copy operations.
 
 ```cpp
@@ -652,7 +713,8 @@ std::copy_n(&content[skipLen], totalLen - skipLen, std::back_inserter(dest));
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, code is refactored to use the variable of the `size_t` type to indicate the data length and check whether the external data length is valid.
 
 ```cpp
@@ -670,7 +732,8 @@ std::copy_n(&content[skipLen], totalLen - skipLen, std::back_inserter(dest));
 ...
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the value range of external data is validated. However, the second type is `int`, and `std::numeric_limits<unsigned long>::max()` is incorrectly used as a validation condition. As a result, integer overflow occurs.
 
 ```cpp
@@ -684,7 +747,8 @@ int millisecond = second * 1000; // Integer overflow may occur.
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 One option is to change the second type to `unsigned long`. This solution is applicable to the scenario where the new variable type is more fit for service logic.
 
 ```cpp
@@ -708,12 +772,14 @@ if (second < 0 || second > (std::numeric_limits<int>::max() / 1000)) {
 int millisecond = second * 1000;
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 Integer overflows may cause buffer overflows and arbitrary code execution.
 
 ## Ensure that unsigned integer operations do not wrap
 
-**\[Description]**   
+**\[Description]** 
+
 Integer wrap may occur in the arithmetic operation results of unsigned integers, which may cause risks such as out-of-bounds read/write in the buffer. For security purposes, ensure that operations do not cause wrapping when unsigned integers in external data are used in the following scenarios:
 
 - Pointer offset value (integer operands in pointer arithmetic operations)
@@ -722,7 +788,8 @@ Integer wrap may occur in the arithmetic operation results of unsigned integers,
 - Parameter of the memory allocation function
 - Loop judgment condition
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, the program checks whether the total length of the next sub-packet and the processed packet exceeds the maximum packet length. The addition operation in the check condition may cause integer wrapping, causing potential validation bypassing issues.
 
 ```cpp
@@ -738,7 +805,8 @@ readLen += pktLen;
 ...
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 The readLen variable is the length of the processed packet and is definitely less than totalLen. Therefore, the use of the subtraction operation instead of the addition operation will not bypass the condition check.
 
 ```cpp
@@ -754,7 +822,8 @@ readLen += pktLen;
 ...
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]**
+
 In the following code example, integer wrapping may occur in the operation of len validation, resulting in condition check bypassing.
 
 ```cpp
@@ -767,7 +836,8 @@ if (SCTP_SIZE_MAX - len < sizeof(SctpAuthBytes)) { // Integer wrapping may occur
 ...
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, the subtraction operation is relocated (ensure that the value of the subtraction expression is not reversed during compilation) to avoid integer wrapping.
 
 ```cpp
@@ -780,15 +850,18 @@ if (len > SCTP_SIZE_MAX - sizeof(SctpAuthBytes)) { // Ensure no integer wrapping
 ...
 ```
 
-**\[Exception]**   
+**\[Exception]**
+
 Unsigned integers can exhibit modulo behavior (wrapping) when necessary for the proper execution of the program. It is recommended that the variable declaration and each operation on that integer be clearly commented as supporting modulo behavior.
 
-**\[Impact]**   
+**\[Impact]**
+
 Integer wrapping is likely to cause buﬀer overﬂows and arbitrary code execution.
 
 ## Ensure that division and remainder operations do not cause divide-by-zero errors
 
-**\[Description]**   
+**\[Description]**
+
 Division remainder operations performed on integers with the divisor of zero are undefined behavior. Ensure that the divisor is not 0 in division and remainder operations.
 
 The ISO/IEEE 754-1985 standard for binary floating-point arithmetic specifies the behavior and results of floating-point number division by zero. However, the presence of undefined behavior depends on whether the hardware and software environments comply with this standard. Therefore, before dividing a floating point number by zero, ensure that the hardware and software environments comply with the binary floating-point arithmetic. Otherwise, undefined behavior still exists.
@@ -802,7 +875,8 @@ size_t c = 1000 % a;    // Noncompliant: a may be 0
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, a=0 validation is added to prevent divide-by-zero errors.
 
 ```c
@@ -815,12 +889,14 @@ size_t c = 1000 % a;    // Compliant: Ensure that a is not 0.
 ...
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 Divide-by-zero errors are likely to cause DoS.
 
 ## Bitwise operations can be performed only on unsigned integers
 
-**\[Description]**   
+**\[Description]** 
+
 Undefined behavior may occur during bitwise operations on signed integers. To avoid undefined behavior, ensure that bitwise operations are performed only on unsigned integers. In addition, the unsigned integer type with less precision than **int** is promoted when a bitwise operation is performed on the unsigned integer. Then the bitwise operation is performed on the promoted integer. Therefore, beware of the bitwise operations on such unsigned integers to avoid unexpected results. The bitwise operators are as follows:
 
 - `~` (Complement operator)
@@ -837,7 +913,8 @@ Undefined behavior may occur during bitwise operations on signed integers. To av
 
 C++20 defines bitwise shift operations on signed integers, and such operations can be performed in compliance with C++20.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]** 
+
 In versions earlier than C++20, the right shift operation `data >> 24` can be implemented as arithmetic (signed) shift or logic (unsigned) shift. If the value in `value << data` is a negative number or the result of the left shift operation is out of the representable range of the promoted integer type, undefined behavior occurs.
 
 ```cpp
@@ -897,10 +974,12 @@ uint32_t type = id >> SHIFT_BITS;
 
 ## Ensure validation of external data that is used as an array index or memory operation length
 
-**\[Description]**   
+**\[Description]** 
+
 When external data is used as an array index for memory access, the data size must be strictly validated to ensure that the array index is within the valid scope. Otherwise, serious errors may occur. Buffer overflows will occur if data is copied to the memory space insufficient for storing the data. To prevent such errors, limit the size of data to be copied based on the target capacity or ensure that the target capacity is sufficient to store the data to be copied.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the **SetDevId()** function has an oﬀ-by-one error. When index equals `DEV_NUM`, an element is written out of bounds.
 
 ```cpp
@@ -922,7 +1001,8 @@ int SetDevId(size_t index, int id)
 }
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]**
+
 In the following code example, the index validation condition is modified to avoid the off-by-one error.
 
 ```cpp
@@ -943,7 +1023,8 @@ int SetDevId(size_t index, int id)
 }
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 External input data may not be directly used as the memory copy length, but may be indirectly involved in memory copy operations. In the following code, **inputTable.count** is from external packets. It is used as the upper limit of the **for** loop body and indirectly involved in memory copy operations, instead of being directly used as the memory copy length. Buffer overflows may occur because the length is not validated.
 
 ```cpp
@@ -963,7 +1044,8 @@ void ValueTableDup(const ValueTable& inputTable)
 }  
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, **inputTable.count** is validated.
 
 ```cpp
@@ -989,15 +1071,18 @@ void ValueTableDup(const ValueTable& inputTable)
 }  
 ```
 
-**\[Impact]**  
+**\[Impact]**
+
 If the length of the copied data is externally controllable, buﬀer overﬂows may occur during data copy operations, which may cause arbitrary code execution vulnerabilities.
 
 ## Verify the requested memory size before requesting memory
 
-**\[Description]**   
+**\[Description]**
+
 When the requested memory size is an external input, it must be verified to prevent the request for zero-length memory or excessive and illegal memory requests. This is because memory resources are limited and can be exhausted. If the requested memory is too large (memory requested at a time is too large, or requested multiple times in a loop), resources may be used up unexpectedly. Unexpected buffer allocation may result from incorrect parameter values, improper range checks, integer overflows, or truncation. If memory requests are controlled by attackers, security issues such as buffer overflows may occur.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the memory space specified by **size** is dynamically allocated. However, **size** is not validated. 
 
 ```c
@@ -1011,7 +1096,8 @@ int DoSomething(size_t size)
 }
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, before the memory space specified by **size** is dynamically allocated, the validity check required by the program is performed.
 
 ```c
@@ -1028,12 +1114,14 @@ int DoSomething(size_t size)
 }
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 If the size of the requested memory is externally controllable, resources may be exhausted, resulting in DoS.
 
 ## An array should not be passed as a pointer separately when it is passed into a function as a parameter
 
-**\[Description]**   
+**\[Description]** 
+
 When the function parameter type is array (not array reference) or pointer, the array that is being passed into a function is degraded to a pointer. As a result, the array length information is lost, causing potential out-of-bounds read/write issues. If a function receives only fixed-length arrays as parameters, define the parameter type as an array reference or `std::array`. If the function receives a pointer without a length, then the length should also be passed into the function as a parameter.
 
 **\[Noncompliant Code Example]**
@@ -1118,7 +1206,8 @@ void Test()
 
 ## When a lambda escapes the current scope, do not capture local variables by reference
 
-**\[Description]**   
+**\[Description]** 
+
 If a lambda is not limited to local use (for example, when it is transferred to the outside of a function or to another thread), do not capture local variables by reference. Capturing by reference in a lambda means storing a reference to a local object. If the life cycle of the lambda is longer than that of local variables, memory may be insecure.
 
 **\[Noncompliant Code Example]**
@@ -1145,10 +1234,12 @@ void Foo()
 
 ## Assign a new value to the variable pointing to a resource handle or descriptor immediately after the resource is freed
 
-**\[Description]**   
+**\[Description]** 
+
 Variables pointing to resource handles or descriptors include pointers, file descriptors, socket descriptors, and other variables pointing to resources. Take a pointer as an example. If a pointer that has successfully obtained a memory segment is not immediately set to **nullptr** after the memory segment is freed and no new object is allocated, the pointer is a dangling pointer. Operations on a dangling pointer may lead to double-free and access-freed-memory vulnerabilities. An effective way to mitigate these vulnerabilities is to immediately set freed pointers to new values, such as **nullptr**. For a global resource handle or descriptor, a new value must be set immediately after the resource is freed, so as to prevent the invalid value from being used. For a resource handle or descriptor that is used only in a single function, ensure that the invalid value is not used again after the resource is freed.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the message is processed based on the message type. After the message is processed, the memory to which the **body** points is freed, but the pointer is not set to **nullptr**. If other functions process the message structure again, double-free and access-freed-memory errors may occur.
 
 ```c
@@ -1175,7 +1266,8 @@ int Fun()
 }
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]**
+
 In the following code example, the released pointer is immediately set to **nullptr** to avoid double-free errors.
 
 ```c
@@ -1205,7 +1297,8 @@ int Fun()
 
 The default memory freeing function does not perform any action on NULL pointers.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, no new value is assigned to the file descriptor after it is closed.
 
 ```c
@@ -1218,7 +1311,8 @@ close(fd);
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, a new value is assigned to the corresponding variable immediately after the resource is freed.
 
 ```c
@@ -1233,12 +1327,14 @@ fd = -1;
 ...
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 The practices of using the freed memory, freeing the freed memory again, or using the freed resources may cause DoS or arbitrary code execution.
 
 ## new and delete operators must be used in pairs, and new\[] and delete\[] operators must also be used in pairs.
 
-**\[Description]**   
+**\[Description]** 
+
 The object created using the new operator can be destroyed only using the delete operator. The object array created using the new\[] operator can be destroyed only using the delete\[] operator.
 
 **\[Noncompliant Code Example]**
@@ -1272,7 +1368,8 @@ private:
 
 ## The custom operators new and delete must be defined in pairs, and the behavior specified in the operators must be the same as that of the operators to be replaced
 
-**\[Description]**   
+**\[Description]** 
+
 The custom operators new and delete as well as new\[] and delete\[] must be defined in pairs. The behavior specified in the new/delete operators must be the same as that of the operators to be replaced.
 
 **\[Noncompliant Code Example]**
@@ -1342,7 +1439,8 @@ void* operator new(size_t size, const std::nothrow_t& tag)
 
 ## Throw an object itself instead of the pointer to the object when throwing an exception
 
-**\[Description]**   
+**\[Description]** 
+
 The recommended exception throwing method in C++ is to throw the object itself instead of the pointer to the object.
 
 When the throw statement is used to throw an exception, a temporary object, called an exception object, is constructed. The life cycle of the exception object is clearly defined in the C++ standard: The exception object is constructed when it is thrown. It is destructed when a catch statement of the exception object does not end with `throw` (that is, it is not thrown again) or when the `std::exception_ptr` object that captures the exception is destructed.
@@ -1393,7 +1491,8 @@ By default, destructors have the `noexcept` attribute. If they throw exceptions,
 
 ## Do not create a std::string from a null pointer
 
-**\[Description]**   
+**\[Description]** 
+
 The null pointer is dereferenced when it is passed to the std::string constructor, causing undefined behavior.
 
 **\[Noncompliant Code Example]**
@@ -1432,7 +1531,8 @@ void Foo()
 
 ## Do not save the pointers returned by the **c\_str()** and **data()** member functions of std::string
 
-**\[Description]**   
+**\[Description]** 
+
 To ensure the validity of the reference values returned by the **c\_str()** and **data()** member functions of the std::string object, do not save the **c\_str()** and **data()** results of std::string. Instead, call them directly when needed (the call overhead is optimized through compiler inlining). Otherwise, when the std::string object is modified by calling its modify method, or when the std::string object is out of the scope, the stored pointer becomes invalid. Using an invalid pointer will result in undefined behavior.
 
 **\[Noncompliant Code Example]**
@@ -1506,12 +1606,14 @@ void Foo3(std::string& s)
 }
 ```
 
-**\[Exception]**   
+**\[Exception]**
+
 In rare cases where high performance coding is required, you can temporarily save the pointer returned by the c\_str() method of std::string to match the existing functions which support only the input parameters of the `const char*` type. However, you should ensure that the life cycle of the std::string object is longer than that of the saved pointer, and that the std::string object is not modified within the life cycle of the saved pointer.
 
 ## Ensure that the buffer for strings has sufficient space for character data and terminators, and that the string is null-terminated
 
-**\[Description]**   
+**\[Description]**
+
 A C-style character string is a continuous sequence of characters, which is terminated by the first null character and contains the null character.
 
 When copying or storing a C-style string, ensure that the buffer has sufficient space to hold the character sequence including the null terminator, and that the string is null terminated. Otherwise, buffer overflows may occur.
@@ -1570,15 +1672,18 @@ void Foo(std::istream& in)
 }
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 Setting no limits to the integer values in external data is likely to cause DoS, buffer overflows, information leaks, or arbitrary code execution.
 
 ## Do not use std::string to store sensitive information
 
-**\[Description]**   
+**\[Description]** 
+
 The std::string class is a string management class defined in C++. If sensitive information (such as passwords) is operated using std::string, it may be scattered in memory during program running and cannot be cleared.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, the **Foo()** function obtains the password, saves it to the std::string variable **password**, and then passes it to the **VerifyPassword()** function. In this process, two copies of the password exist in memory.
 
 ```cpp
@@ -1594,12 +1699,14 @@ void Foo()
 }
 ```
 
-**\[Impact]**   
+**\[Impact]** 
+
 Sensitive information is not deleted in due time, which may cause information leaks.
 
 ## Ensure that the external data used as container indexes or iterators is within the valid range
 
-**\[Description]**   
+**\[Description]** 
+
 External data is untrusted. When it is used as container or array indexes, ensure that its value is within the valid range of the elements that can be accessed by containers or arrays. When external data is used for iterator offset, ensure that the iterator offset value range is \[begin(), end()] of the container associated with the iterator (created from the begin() method of the container object c), that is, greater than or equal to c.begin() and less than or equal to c.end().
 
 For a container (such as std::vector, std::set, or std::map) with the at() method, if the corresponding index is out of range or the key-value does not exist, the method throws an exception. If the index of the corresponding operator\[] is out of range, undefined behavior occurs. If the default key-value fails to be constructed when the corresponding key-value does not exist, undefined behavior also occurs.
@@ -1688,7 +1795,8 @@ void Foo(size_t n)
 
 ## Use valid format strings when calling formatted input/output functions
 
-**\[Description]**   
+**\[Description]** 
+
 When using C-style formatted input/output functions, ensure that the format strings are valid and strictly match the corresponding parameter types. Otherwise, unexpected behavior occurs.
 
 In addition to C-style formatted input/output functions, similar functions in C must also use valid format strings, for example, the **std::format()** function in C++20.
@@ -1700,7 +1808,8 @@ extern int CustomPrintf(void* obj, const char* format, ...)
     __attribute__ ((format (printf, 2, 3)));
 ```
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]** 
+
 In the following code example, an integer is formatted into the macAddr variable, but macAddr is of the unsigned char type, and %x indicates a parameter of the int type. After the function is executed, out-of-bounds write occurs.
 
 ```c
@@ -1714,7 +1823,8 @@ int ret = sscanf(macStr, "%x:%x:%x:%x:%x:%x\n",
 ...
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, %hhx is used to ensure that the format string strictly matches the parameter type.
 
 ```c
@@ -1730,12 +1840,14 @@ int ret = sscanf(macStr, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx\n",
 
 Note: It is not advised to use C library functions, such as **sscanf()** and **sprintf()**, in C++. You can use std::istringstream, std::ostringstream, and std::stringstream instead.
 
-**\[Impact]**  
+**\[Impact]**
+
 An incorrect format string may cause memory damage or abnormal program termination.
 
 ## Ensure that the format parameter is not controlled by external data when a formatted input/output function is called
 
-**\[Description]**   
+**\[Description]** 
+
 When a formatted function is called, the **format** parameter provided or concatenated by external data will cause a string formatting vulnerability. Take the formatted output function of the C standard library as an example. When the **format** parameter is externally controllable, an attacker can use the %n converter to write an integer to a specified address, use the %x or %d converter to view the stack or register content, or use the %s converter to cause process crashes or other issues.
 
 Common formatted functions are as follows:
@@ -1753,7 +1865,8 @@ Box<int> v{MAX_COUNT};
 std::cout << std::format("{:#x}", v);
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the **Log()** function is used to directly log external data, which may cause a format string vulnerability.
 
 ```c
@@ -1777,12 +1890,14 @@ void Foo()
 }
 ```
 
-**\[Impact]**  
+**\[Impact]**
+
 If the format string is externally controllable, attackers can crash the process, view the stack content, view the memory content, or write data to any memory location, and then execute any code with the permission of the compromised process.
 
 ## Do not use external controllable data as parameters for process startup functions or for the loading functions of dlopen/LoadLibrary and other modules
 
-**\[Description]**   
+**\[Description]** 
+
 Process startup functions in this requirement include **system()**, **popen()**, **execl()**, **execlp()**, **execle()**, **execv()**, and **execvp()**. Each of these functions such as **system()** and **popen()** will create a process. If external controllable data is used as the parameters of these functions, injection vulnerabilities may occur. When functions such as **execl()** are used to execute new processes, command injection risks also exist if shell is used to start new processes. The use of **execlp()**, **execvp()**, and **execvpe()** functions depends on the program paths searched using the system environment variable PATH. Consider the risks of external environment variables when using these functions, or avoid using these functions.
 
 Therefore, C standard functions are always preferred to implement the required functions. If you need to use these functions, use the trustlist mechanism to ensure that the parameters of these functions are not affected by any external data.
@@ -1794,7 +1909,8 @@ The **dlopen()** and **LoadLibrary()** functions load external modules. If exter
 - After the security of the dynamic library loaded locally is ensured by means of permission and access control, the dynamic library is automatically loaded using a specific directory.
 - After the security of the local configuration file is ensured by means of permission and access control, the dynamic library specified in the configuration file is automatically loaded.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, external controllable data is directly used as the parameter of the **LoadLibrary()** function, which may implant Trojan horses into the program.
 
 ```c
@@ -1942,7 +2058,9 @@ The **sizeof** operator yields the size (in bytes) of its operand, which can be 
 
 Arguments declared as arrays in the argument list will be adjusted to pointers of corresponding types. For example, although the inArray argument in the `void Func(int inArray[LEN])` function is declared as an array, it is actually adjusted to an int pointer, that is, `void Func(int *inArray)`. As a result, `sizeof(inArray)` is equal to `sizeof(int *)` in this function, leading to unexpected result. For example, in the IA-32 architecture, `sizeof(inArray)` is 4, not the inArray size.
 
-**\[Noncompliant Code Example]**In the following code example, the **ArrayInit()** function is used to initialize array elements. This function has a parameter declared as `int inArray[]`. When this function is called, a 256-element integer array **data** is passed to it. The **ArrayInit()** function uses `sizeof(inArray) / sizeof(inArray[0])` to determine the number of elements in the input array. However, **inArray** is a function parameter and therefore has a pointer type. As a result, `sizeof(inArray)` is equal to `sizeof(int *)`. The expression `sizeof(inArray) / sizeof(inArray[0])` evaluates to 1, regardless of the length of the array passed to the **ArrayInit()** function, leading to unexpected behavior.
+**\[Noncompliant Code Example]**
+
+In the following code example, the **ArrayInit()** function is used to initialize array elements. This function has a parameter declared as `int inArray[]`. When this function is called, a 256-element integer array **data** is passed to it. The **ArrayInit()** function uses `sizeof(inArray) / sizeof(inArray[0])` to determine the number of elements in the input array. However, **inArray** is a function parameter and therefore has a pointer type. As a result, `sizeof(inArray)` is equal to `sizeof(int *)`. The expression `sizeof(inArray) / sizeof(inArray[0])` evaluates to 1, regardless of the length of the array passed to the **ArrayInit()** function, leading to unexpected behavior.
 
 ```c
 #define DATA_LEN 256
@@ -1964,7 +2082,8 @@ void FunctionData(void)
 }
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, the function definition is modified, an array size parameter is added, and the array size is correctly passed to the function.
 
 ```c
@@ -1986,7 +2105,8 @@ void FunctionData(void)
 }
 ```
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 In the following code example, `sizeof(inArray)` does not equal `ARRAY_MAX_LEN * sizeof(int)`, because the **sizeof** operator, when applied to a parameter declared to have array type, yields the size of the adjusted (pointer) type even if the parameter declaration specifies a length. In this case, `sizeof(inArray)` is equal to `sizeof(int *)`.
 
 ```c
@@ -2011,7 +2131,8 @@ int main(void)
 }
 ```
 
-**\[Compliant Code Example]**  
+**\[Compliant Code Example]**
+
 In the following code example, the specified array length is indicated by the **len** argument.
 
 ```c
@@ -2038,10 +2159,12 @@ int main(void)
 
 ## Do not perform the **sizeof** operation on pointer variables to obtain the array size
 
-**\[Description]**   
+**\[Description]** 
+
 Performing the **sizeof** operation on a pointer that is used as an array leads to an unexpected result. For example, in the variable definition `char *p = array` where array is deﬁned as `char array[LEN]`, the result of the expression `sizeof(p)` is the same as that of `sizeof(char *)`, but not the size of the array.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]**
+
 In the following code example, **buﬀer** is a pointer while **path** is an array. The programmer wants to clear the two memory segments. However, the programmer mistakenly writes the memory size as `sizeof(buffer)`, leading to an unexpected result.
 
 ```c
@@ -2056,7 +2179,8 @@ memset(path, 0, sizeof(path));
 memset(buffer, 0, sizeof(buffer));
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, `sizeof(buffer)` is changed to the size of the requested buﬀer:
 
 ```c
@@ -2071,7 +2195,8 @@ memset(buffer, 0, SIZE); // Use the requested buffer size.
 
 ## Do not directly use external data to concatenate SQL statements
 
-**\[Description]**   
+**\[Description]** 
+
 An SQL injection vulnerability arises when an SQL query is dynamically altered to form an altogether diﬀerent query. Execution of this altered query may result in information leaks or data tampering. The root cause of SQL injection is the use of external data to concatenate SQL statements. In C/C++, external data is used to concatenate SQL statements in the following scenarios (but not limited to):
 
 - Argument for calling **mysql\_query()** and **Execute()** when connecting to MySQL
@@ -2087,7 +2212,8 @@ The following methods can be used to prevent SQL injection:
 - Verify external data (trustlist verification is recommended).
 - Escape external SQL special characters.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 The following code concatenates user input without checking the input, causing SQL injection risks:
 
 ```c
@@ -2103,7 +2229,8 @@ ret = mysql_query(&myConnection, sqlStatements);
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 Use prepared statements for parameterized query to defend against SQL injection attacks:
 
 ```c
@@ -2136,7 +2263,8 @@ If the string of a concatenated SQL statement is externally controllable, attack
 
 ## Clear sensitive information from memory immediately after using it
 
-**\[Description]**   
+**\[Description]** 
+
 Sensitive information (such as passwords and keys) in memory must be cleared immediately after being used to prevent it from being obtained by attackers or accidentally disclosed to low-privilege users. Memory includes but is not limited to:
 
 - Dynamically allocated memory
@@ -2145,7 +2273,8 @@ Sensitive information (such as passwords and keys) in memory must be cleared imm
 - Memory cache
 - Disk cache
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 Generally, memory data does not need to be cleared before memory resources are released to prevent extra overheads during running. Therefore, after memory resources are released, the data remains in memory. In this case, sensitive information in the data may be leaked accidentally. To prevent sensitive information leakage, you must clear sensitive information from memory before releasing memory resources. In the following code example, the sensitive information **secret** stored in the referenced dynamic memory is copied to the newly dynamically allocated buffer **newSecret**, and is finally released through **free()**. As data is not cleared before the memory block is released, the memory block may be reallocated to another part of the program, and sensitive information stored in **newSecret** may be accidentally disclosed.
 
 ```c
@@ -2172,7 +2301,8 @@ if (newSecret == NULL) {
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, to prevent information leakage, clear the dynamic memory that contains sensitive information (by filling the memory space with '\\0') and then release it.
 
 ```c
@@ -2199,7 +2329,8 @@ if (newSecret == NULL) {
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 The following code is another scenario involving sensitive information clearance. After obtaining the password, the code saves the password to **password** for verification. After the password is used, `memset()` is used to clear the password.
 
 ```c
@@ -2259,12 +2390,14 @@ Failure to rapidly clear sensitive information may cause information leakage.
 
 ## Create ﬁles with appropriate access permissions explicitly specified
 
-**\[Description]**   
+**\[Description]**
+
 If no appropriate access permissions are explicitly specified when a file is created, unauthorized users may access the file, causing information leakage, file data tampering, and malicious code injection into the file.
 
 Although ﬁle access permissions depend on the ﬁle system, many ﬁle creation functions (POSIX **open()** functions, etc.) provide mechanisms to set (or influence) ﬁle access permissions. Therefore, when these functions are used to create ﬁles, appropriate ﬁle access permissions must be explicitly specified to prevent unintended access.
 
-**\[Noncompliant Code Example]**  
+**\[Noncompliant Code Example]**
+
 The POSIX **open()** function is used to create a file but the access permission for the file is not specified, which may cause the file to be created with excessive access permissions. This may lead to vulnerabilities (e.g. CVE-2006-1174).
 
 ```c
@@ -2283,7 +2416,8 @@ void Foo(void)
 }
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 Access permissions for the newly created file should be explicitly specified in the third argument to **open()**. Access permissions for a file can be set based on actual applications of the file.
 
 ```c
@@ -2309,7 +2443,8 @@ Creating ﬁles with weak access permissions may cause unauthorized access to th
 
 ## Canonicalize and validate ﬁle paths before using them
 
-**\[Description]**   
+**\[Description]** 
+
 File paths from external data must be validated. Otherwise, system files may be accessed randomly. However, direct validation is not allowed. The file paths must be canonicalized before validation because a file can be described and referenced by paths in various forms. For example, a file path can be an absolute path or a relative path, and the path name, directory name, or file name may contain characters (for example, "." or "..") that make validation difficult and inaccurate. In addition, the file may also be a symbolic link, which further obscures the actual location or identity of the file, making validation difficult and inaccurate. Therefore, file paths must be canonicalized to make it much easier to validate a path, directory, or file name, thereby improving validation accuracy.
 
 Because the canonical form may vary with operating systems and file systems, it is best to use a canonical form consistent with the current system features.
@@ -2321,7 +2456,8 @@ Canonicalize file paths coming from external data. Without canonicalization, att
 For example, an attacker can construct "../../../etc/passwd" to access any file.
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In this noncompliant code example, **inputFilename** contains a file name that originates from a tainted source, and the file is opened for writing. Before this ﬁle name is used for ﬁle operations, it should be validated to ensure that it references an expected and valid ﬁle. Unfortunately, the file name referenced by **inputFilename** may contain special characters, such as directory characters, which make validation difficult or even impossible. In addition, **inputFilename** may contain a symbolic link to any file path. Even if the file name passes validation, it is invalid. In this scenario, even if the file name is directly validated, the expected result cannot be obtained. The call to **fopen()** may result in unintended access to a file.
 
 ```c
@@ -2338,7 +2474,8 @@ if (fopen(inputFilename, "w") == NULL) {
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 Canonicalizing file names is difficult because it requires an understanding of the underlying file system. The POSIX **realpath()** function can help convert path names to a canonical form. According to Standard for Information Technology—Portable Operating System Interface (POSIX®), Base Speciﬁcations, Issue 7 \[IEEE Std 1003.1:2013]:
 
 - The **realpath()** function shall derive, from the pathname pointed to by **filename**, an absolute pathname that names the same file, whose resolution does not involve a dot (.), double dots (..), or symbolic links. Further verification, such as ensuring that two consecutive slashes or special files do not appear in the file name, must be performed after canonicalization. For more information about how to perform path name resolution, see section 4.12 "Pathname Resolution" of IEEE Std 1003.1:2013. There are many precautions for using the **realpath()** function.  With an understanding of the preceding principles, the following solution can be taken to address the noncompliant code example.
@@ -2371,7 +2508,8 @@ realpathRes = NULL;
 ...
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]**
+
 Based on the actual scenario, a second solution can also be used. The description is as follows: If `PATH_MAX` is deﬁned as a constant in **limits.h**, it is also safe to call **realpath()** with a non-null `resolved_path` value. In this example, the **realpath()** function expects `resolved_path` to refer to a character array that is large enough to hold the canonicalized path. If **PATH\_MAX** is deﬁned, allocate a buﬀer of size `PATH_MAX` to hold the result of **realpath()**. The compliant code example is as follows:
 
 ```c
@@ -2412,7 +2550,8 @@ canonicalFilename = NULL;
 ...
 ```
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 The following code obtains file names from external data, concatenates them into a file path, and directly reads the file content. As a result, attackers can read the content of any file.
 
 ```c
@@ -2423,7 +2562,8 @@ int ret = sprintf(untrustPath,  "/tmp/%s", filename);
 char *text = ReadFileContent(untrustPath);
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]**
+
 Canonicalize the file path and then check whether the path is valid in the program.
 
 ```c
@@ -2465,7 +2605,8 @@ Failure to canonicalize and validate untrusted file paths may cause access to an
 
 ## Do not create temporary ﬁles in shared directories
 
-**\[Description]**   
+**\[Description]** 
+
 A shared directory refers to a directory that can be accessed by non-privileged users. The temporary ﬁles of a program must be exclusively used by the program. If you place the temporary ﬁles of the program in the shared directory, other sharing users may obtain additional information about the program, resulting in information leakage. Therefore, do not create temporary files that are used only by a program itself in any shared directory.
 
 Temporary ﬁles are commonly used for auxiliary storage of data that cannot reside in memory or temporary data and also as a means of inter-process communication (by transmitting data through the ﬁle system). For example, one process creates a temporary ﬁle with a well-known name or a temporary name in a shared directory. The ﬁle can then be used to share information among processes. This practice is dangerous because files in a shared directory can be easily hijacked or manipulated by an attacker. Mitigation strategies include the following:
@@ -2486,7 +2627,8 @@ In addition, when two or more users or a group of users have read/write permissi
 
 Creating temporary files in a shared directory is vulnerable. For example, code that works for a locally mounted file system may be vulnerable when shared with a remotely mounted ﬁle system. The secure solution is not to create temporary ﬁles in shared directories.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]**
+
 The program creates a temporary file with a hard-coded file name in the shared directory **/tmp**  to store temporary data. Because the ﬁle name is hard-coded and consequently predictable, an attacker only needs to replace the ﬁle with a symbolic link. The target ﬁle referenced by the link is then opened and new content can be written.
 
 ```c
@@ -2515,7 +2657,7 @@ int main(void)
 }
 ```
 
-****\[Compliant Code Example]****
+**\[Compliant Code Example]**
 
 ```c
 Do not create temporary files that are used only by a program itself in this directory.
@@ -2527,13 +2669,15 @@ Creating temporary ﬁles in an insecure manner may cause unauthorized access to
 
 ## Do not access shared objects in signal handlers
 
-**\[Description]**   
+**\[Description]** 
+
 Accessing or modifying shared objects in signal handlers can result in race conditions that can leave data in an uncertain state. This rule is not applicable to the following scenarios (see paragraph 5 in section 5.1.2.3 of the C11 standard):
 
 - Read/write operations on lock-free atomic object
 - Read/write operations on objects of the **volatile sig\_atomic\_t** type. An object of the **volatile sig\_atomic\_t** type can be accessed as an atomic entity even in the presence of asynchronous interrupts, and is asynchronous-safe.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the signal handler, the program attempts to use `g_msg` as the shared object and update the shared object when the SIGINT signal is delivered. However, `g_msg` is not a variable of type `volatile sig_atomic_t`, and is not asynchronous-safe.
 
 ```c
@@ -2562,7 +2706,8 @@ int main(void)
 }
 ```
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]** 
+
 In the following code example, only the `volatile sig_atomic_t` type is used as a shared object in signal handlers.
 
 ```c
@@ -2598,7 +2743,8 @@ Accessing or modifying shared objects in signal handlers may cause inconsistent 
 
 ## Do not use rand() to generate pseudorandom numbers for security purposes
 
-**\[Description]**   
+**\[Description]** 
+
 The **rand()** function in the C language standard library generates pseudorandom numbers, which does not ensure the quality of the random sequence produced. In the C11 standard, the range of random numbers generated by the **rand()** function is `[0, RAND_MAX(0x7FFF)]`, which has a relatively short cycle, and the numbers can be predictable. Therefore, do not use the random numbers generated by the **rand()** function for security purposes. Use secure random number generation methods.
 
 Typical scenarios for security purposes include but are not limited to the following:
@@ -2608,7 +2754,8 @@ Typical scenarios for security purposes include but are not limited to the follo
 - Generation of random numbers of verification codes;
 - Generation of random numbers for cryptographic algorithm purposes (for example, generating IVs, salt values, and keys).
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 The programmer wants the code to generate a unique HTTP session ID that is not predictable. However, the ID is a random number produced by calling the **rand()** function, and is predictable and has limited randomness.
 
 **\[Impact]**
@@ -2617,12 +2764,14 @@ Using the **rand()** function may result in random numbers that are predictable.
 
 ## Do not output the address of an object or function in a released version
 
-**\[Description]**   
+**\[Description]** 
+
 Do not output the address of an object or function in a released version. For example, do not output the address of a variable or function to a client, log, or serial port.
 
 Before launching an advanced attack, the attacker usually needs to obtain the memory address (such as the variable address and function address) of the target program and then modify the content of the specified memory for attacks. If the program itself outputs the addresses of objects or functions, the attacker can take this advantage and use these addresses and oﬀsets to calculate the addresses of other objects or functions and launch attacks. In addition, the protection function of address space randomization also fails due to memory address leakage.
 
-**\[Noncompliant Code Example]**   
+**\[Noncompliant Code Example]** 
+
 In the following code example, the address to which the pointer points is logged in the %p format.
 
 ```c
@@ -2636,7 +2785,8 @@ int Encode(unsigned char *in, size_t inSize, unsigned char *out, size_t maxSize)
 
 Note: This example uses only the %p format for logging pointers. In scenarios where pointers are converted to integers and then logged, the same risk exists.
 
-**\[Compliant Code Example]**   
+**\[Compliant Code Example]**
+
 In the following code example, the code for logging the address is deleted.
 
 ```c
@@ -2648,7 +2798,8 @@ int Encode(unsigned char *in, size_t inSize, unsigned char *out, size_t maxSize)
 }
 ```
 
-**\[Exception]**   
+**\[Exception]** 
+
 When the program crashes and exits, the memory address and other information can be output in the crash exception information.
 
 **\[Impact]**
@@ -2667,7 +2818,7 @@ The public IP addresses built in open-source or third-party software must meet t
 
 **\[Exception]**
 
-- This requirement is not mandatory when public network addresses must be specified as required by standard protocols. For example, an assembled public network URL must be specified for the namespace of functions based on the SOAP protocol. W3.org addresses on HTTP pages are also exceptions.
+This requirement is not mandatory when public network addresses must be specified as required by standard protocols. For example, an assembled public network URL must be specified for the namespace of functions based on the SOAP protocol. W3.org addresses on HTTP pages are also exceptions.
 
 # Secure Kernel Coding
 
@@ -2675,7 +2826,7 @@ The public IP addresses built in open-source or third-party software must meet t
 
 **\[Description]**
 
-**Note:** In the mmap interface of the  kernel, the **remap\_pfn\_range()** function is often used to map the physical memory of a device to a user process space. If the parameters (such as the mapping start address) are controlled by the user mode and no validation is performed, the user mode can read and write any kernel address through the mapping. An attacker can even construct arguments to run arbitrary code in the kernel.
+In the mmap interface of the  kernel, the **remap\_pfn\_range()** function is often used to map the physical memory of a device to a user process space. If the parameters (such as the mapping start address) are controlled by the user mode and no validation is performed, the user mode can read and write any kernel address through the mapping. An attacker can even construct arguments to run arbitrary code in the kernel.
 
 **\[Noncompliant Code Example]**
 
@@ -2805,7 +2956,9 @@ ssize_t correct_write(struct file *file, const char __user *user_buf, size_t cou
 
 ## Verify the copy length of **copy\_from\_user()** to prevent buffer overflows
 
-**Note:** The **copy\_from\_user()** function is used in kernel mode to copy data from the user mode. If the length of the copied data is not validated or is improperly validated, the kernel buffer overflows, causing kernel panic or privilege escalation.
+**\[Description]**
+
+The **copy\_from\_user()** function is used in kernel mode to copy data from the user mode. If the length of the copied data is not validated or is improperly validated, the kernel buffer overflows, causing kernel panic or privilege escalation.
 
 **\[Noncompliant Code Example]**
 

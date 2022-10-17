@@ -1,12 +1,13 @@
 # 音频管理
 
-音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。 
+音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。
 
 该模块提供以下音频相关的常用功能：
 
 - [AudioManager](#audiomanager)：音频管理。
 - [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
 - [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
+- [TonePlayer](#toneplayer9)：用于管理和播放DTMF（Dual Tone Multi Frequency，双音多频）音调，如拨号音、通话回铃音等。
 
 >  **说明：**
 >  本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -254,6 +255,78 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 });
 ```
 
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
+
+创建DTMF播放器。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明            |
+| -------- | ----------------------------------------------- | ---- | -------------- |
+| options  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 配置音频渲染器信息。|
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | 是   | 回调函数，回调返回音频渲染器对象。|
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+
+var audioRendererInfo = {
+  "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+  "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+  "rendererFlags": 0
+}
+var tonePlayer;
+
+audio.createTonePlayer(audioRendererInfo, (err, data) => {
+  console.info(`callback call createTonePlayer: audioRendererInfo: ${audioRendererInfo}`);
+  if (err) {
+    console.error(`callback call createTonePlayer return error: ${err.message}`);
+  } else {
+    console.info(`callback call createTonePlayer return data: ${data}`);
+    tonePlayer = data;
+  }
+});
+```
+
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
+
+创建DTMF播放器。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名  | 类型                                           | 必填 | 说明         |
+| :------ | :---------------------------------------------| :--- | :----------- |
+| options | [AudioRendererInfo](#audiorendererinfo8)      | 是   | 配置音频渲染器信息。 |
+
+**返回值：**
+
+| 类型                                      | 说明                             |
+| ----------------------------------------- | -------------------------------- |
+| Promise<[TonePlayer](#toneplayer9)>       | Promise对象，返回音频渲染器对象。   |
+
+**示例：**
+
+```js
+import audio from '@ohos.multimedia.audio';
+async function createTonePlayer(){
+  var audioRendererInfo = {
+    "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags": 0
+  }
+  let tonePlayer = await audio.createTonePlayer(this.audioRendererInfo);
+}
+```
+
 ## AudioVolumeType
 
 枚举，音频流类型。
@@ -428,12 +501,13 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                               | 默认值 | 描述       |
-| ---------------------------------- | ------ | ---------- |
-| STREAM_USAGE_UNKNOWN               | 0      | 未知类型。 |
-| STREAM_USAGE_MEDIA                 | 1      | 音频。     |
-| STREAM_USAGE_VOICE_COMMUNICATION   | 2      | 语音通信。 |
-| STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | 通知铃声。 |
+| 名称                                      | 默认值 | 描述       |
+| ------------------------------------------| ------ | ---------- |
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。 |
+| STREAM_USAGE_MEDIA                        | 1      | 音频。     |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。 |
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 |
+| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
 
 ## FocusType<sup>9+</sup>
 
@@ -613,6 +687,16 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
 | networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
 
+## MicStateChangeEvent<sup>9+</sup>
+
+麦克风状态变化时，应用接收的事件。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| mute | boolean | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
+
 ## ConnectType<sup>9+</sup>
 
 枚举，设备连接类型。
@@ -712,11 +796,12 @@ getVolumeGroupInfos();
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Core
 
-| 名称                            | 默认值 | 描述                   |
-| :------------------------------ | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID             | -1     | 无效的音频源。         |
-| SOURCE_TYPE_MIC                 | 0      | Mic音频源。            |
-| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | 语音通话场景的音频源。 |
+| 名称                                         | 默认值 | 描述                   |
+| :------------------------------------------- | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。         |
+| SOURCE_TYPE_MIC                              | 0      | Mic音频源。            |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。        |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。 |
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -730,7 +815,6 @@ getVolumeGroupInfos();
 | AUDIO_SCENE_RINGING    | 1      | 响铃模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_PHONE_CALL | 2      | 电话模式。<br/>此接口为系统接口，三方应用不支持调用。 |
 | AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
-
 
 ## AudioManager
 
@@ -3149,6 +3233,117 @@ audioManager.getRoutingManager((err,AudioRoutingManager)=>{
 });
 ```
 
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+选择音频输入设备，当前只能选择一个输入设备，使用callback方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输入设备类。               |
+| callback                    | AsyncCallback&lt;void&gt;                                    | 是   | 回调，返回选择输入设备结果。 |
+
+**示例：**
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select input devices result callback: SUCCESS'); }
+    });
+  });
+}
+```
+
+### on('micStateChange')<sup>9+</sup>
+
+on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
+
+监听系统麦克风状态更改事件
+
+目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'micStateChange'（系统麦克风状态变化事件，检测到系统麦克风状态改变时，触发该事件）。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 是   | 回调方法，返回变更后的麦克风状态。                                                   |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+audioManager.getRoutingManager.on('micStateChange', (micStateChange) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+});
+```
+
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+**系统接口：** 该接口为系统接口
+
+选择音频输入设备，当前只能选择一个输入设备，使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名                       | 类型                                                         | 必填 | 说明                      |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | 是   | 输入设备类。               |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise返回选择输入设备结果。 |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor =[{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
+      console.info('Select input devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
+  });
+}
+```
+
 ### selectOutputDevice<sup>9+</sup>
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
@@ -5038,5 +5233,256 @@ audioCapturer.on('stateChange', (state) => {
   if (state == 2) {
     console.info('audio capturer state is: STATE_RUNNING');
   }
+});
+```
+
+## ToneType <sup>9+</sup>
+
+枚举，播放器的音调类型。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Tone
+
+| 名称                                              | 默认值 | 描述                          |
+| :------------------------------------------------ | :----- | :----------------------------|
+| TONE_TYPE_DIAL_0                                  | 0      | 键0的DTMF音。                 |
+| TONE_TYPE_DIAL_1                                  | 1      | 键1的DTMF音。                 |
+| TONE_TYPE_DIAL_2                                  | 2      | 键2的DTMF音。                 |
+| TONE_TYPE_DIAL_3                                  | 3      | 键3的DTMF音。                 |
+| TONE_TYPE_DIAL_4                                  | 4      | 键4的DTMF音。                 |
+| TONE_TYPE_DIAL_5                                  | 5      | 键5的DTMF音。                 |
+| TONE_TYPE_DIAL_6                                  | 6      | 键6的DTMF音。                 |
+| TONE_TYPE_DIAL_7                                  | 7      | 键7的DTMF音。                 |
+| TONE_TYPE_DIAL_8                                  | 8      | 键8的DTMF音。                 |
+| TONE_TYPE_DIAL_9                                  | 9      | 键9的DTMF音。                 |
+| TONE_TYPE_DIAL_S                                  | 10     | 键*的DTMF音。                 |
+| TONE_TYPE_DIAL_P                                  | 11     | 键#的DTMF音。                 |
+| TONE_TYPE_DIAL_A                                  | 12     | 键A的DTMF音。                 |
+| TONE_TYPE_DIAL_B                                  | 13     | 键B的DTMF音。                 |
+| TONE_TYPE_DIAL_C                                  | 14     | 键C的DTMF音。                 |
+| TONE_TYPE_DIAL_D                                  | 15     | 键D的DTMF音。                 |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL                 | 100    | 呼叫监管音调，拨号音。          |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY                 | 101    | 呼叫监管音调，忙。              |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION           | 102    | 呼叫监管音调，拥塞。            |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK            | 103    | 呼叫监管音调，无线电 ACK。      |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | 呼叫监管音调，无线电不可用。     |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | 呼叫监管音调，呼叫等待。        |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | 呼叫监管音调，铃声。            |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | 专有声调，一般蜂鸣声。          |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | 专有声调，ACK。                |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | 专有声调，PROMPT。             |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP          | 204    | 专有声调，双重蜂鸣声。          |
+
+## TonePlayer<sup>9+</sup>
+
+提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。
+
+### load<sup>9+</sup>
+
+load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
+
+加载DTMF音调配置。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名          | 类型                        | 必填  | 说明                            |
+| :--------------| :-------------------------- | :-----| :------------------------------ |
+| type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
+| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
+  if (err) {
+    console.error(`callback call load failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call load success');
+  }
+});
+```
+
+### load<sup>9+</sup>
+
+load(type: ToneType): Promise&lt;void&gt;
+
+加载DTMF音调配置。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名         | 类型                    | 必填  |  说明             |
+| :------------- | :--------------------- | :---  | ---------------- |
+| type           | ToneType(#tonetype9)   | 是    | 配置的音调类型。  |
+
+**返回值：**
+
+| 类型            | 说明                        |
+| :--------------| :-------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
+  console.info('promise call load ');
+}).catch(() => {
+  console.error('promise call load fail');
+});
+```
+
+### start<sup>9+</sup>
+
+start(callback: AsyncCallback&lt;void&gt;): void
+
+启动DTMF音调播放。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.start((err) => {
+  if (err) {
+    console.error(`callback call start failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call start success');
+  }
+});
+```
+
+### start<sup>9+</sup>
+
+start(): Promise&lt;void&gt;
+
+启动DTMF音调播放。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.start().then(() => {
+  console.info('promise call start');
+}).catch(() => {
+  console.error('promise call start fail');
+});
+```
+
+### stop<sup>9+</sup>
+
+stop(callback: AsyncCallback&lt;void&gt;): void
+
+停止当前正在播放的音调。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                           |
+| :------- | :------------------- | :--- | :----------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.stop((err) => {
+  if (err) {
+    console.error(`callback call stop error: ${err.message}`);
+    return;
+  } else {
+    console.error('callback call stop success ');
+  }
+});
+```
+
+### stop<sup>9+</sup>
+
+stop(): Promise&lt;void&gt;
+
+停止当前正在播放的音调。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.stop().then(() => {
+  console.info('promise call stop finish');
+}).catch(() => {
+  console.error('promise call stop fail');
+});
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback&lt;void&gt;): void
+
+释放与此TonePlay对象关联的资源。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                            |
+| :------- | :------------------- | :--- | :---------------------------- |
+| callback | AsyncCallback<void\> | 是   | 使用callback方式异步返回结果。  |
+
+**示例：**
+
+```js
+tonePlayer.release((err) => {
+  if (err) {
+    console.error(`callback call release failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call release success ');
+  }
+});
+```
+
+### release<sup>9+</sup>
+
+release(): Promise&lt;void&gt;
+
+释放与此TonePlay对象关联的资源。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Tone
+
+**返回值：**
+
+| 类型           | 说明                          |
+| :------------- | :---------------------------- |
+| Promise<void\> | 使用Promise方式异步返回结果。 |
+
+**示例：**
+
+```js
+tonePlayer.release().then(() => {
+  console.info('promise call release');
+}).catch(() => {
+  console.error('promise call release fail');
 });
 ```

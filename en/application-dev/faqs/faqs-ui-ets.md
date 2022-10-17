@@ -202,7 +202,7 @@ struct DialogTest {
 
 Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
 
-The **\<List>** component is a scrollable container. By default, it taks up the entire screen height. When any component with a fixed height takes up part of the screen height, you need to explicitly specify **layoutWeight(1)** for the parent container of the **\<List>** component to take up the remaining height instead of the entire screen height.
+The **\<List>** component is a scrollable container. By default, it takes up the entire screen height. When any component with a fixed height takes up part of the screen height, you need to explicitly specify **layoutWeight(1)** for the parent container of the **\<List>** component to take up the remaining height instead of the entire screen height.
 
 ## How do I center child components in a grid container?
 

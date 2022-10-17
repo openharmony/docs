@@ -52,9 +52,9 @@ Examples are given below.
 3. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
 
    ```ts
-   let DB_NAME = "DB00.db";
-   let TBL_NAME = "TBL00";
-   let DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
+   const DB_NAME = "DB00.db";
+   const TBL_NAME = "TBL00";
+   const DDL_TBL_CREATE = "CREATE TABLE IF NOT EXISTS "
    + TBL_NAME
    + " (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, isStudent BOOLEAN, Binary BINARY)";
    
@@ -132,9 +132,9 @@ Examples are given below.
 1. Import the dependencies.
 
    ```ts
-   import Ability from '@ohos.application.Ability'
-   import dataShare from '@ohos.data.dataShare'
-   import dataSharePredicates from '@ohos.data.dataSharePredicates'
+   import Ability from '@ohos.application.Ability';
+   import dataShare from '@ohos.data.dataShare';
+   import dataSharePredicates from '@ohos.data.dataSharePredicates';
    ```
    
 2. Define the URI string for communicating with the data provider.
@@ -164,29 +164,25 @@ Examples are given below.
 
    ```ts
    // Construct a piece of data.
-   var valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
-   var updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
-   let da = new dataSharePredicates.DataSharePredicates();
-   var valArray = new Array("*");
-   let people = new Array(
-     { "name": "LiSi", "age": 41, "Binary": ar },
-     { "name": "WangWu", "age": 21, "Binary": arr },
-     { "name": "ZhaoLiu", "age": 61, "Binary": arr });
+   let valuesBucket = { "name": "ZhangSan", "age": 21, "isStudent": false, "Binary": new Uint8Array([1, 2, 3]) };
+   let updateBucket = { "name": "LiSi", "age": 18, "isStudent": true, "Binary": new Uint8Array([1, 2, 3]) };
+   let predicates = new dataSharePredicates.DataSharePredicates();
+   let valArray = new Array("*");
    // Insert a piece of data.
    dsHelper.insert(dseUri, valuesBucket, (err, data) => {
      console.log("dsHelper insert result: " + data);
    });
-   // Delete data.
-   dsHelper.delete(dseUri, da, (err, data) => {
-     console.log("dsHelper delete result: " + data);
-   });
    // Update data.
-   dsHelper.update(dseUri, da, updateBucket, (err, data) => {
+   dsHelper.update(dseUri, predicates, updateBucket, (err, data) => {
      console.log("dsHelper update result: " + data);
    });
    // Query data.
-   dsHelper.query(dseUri, da, valArray, (err, data) => {
+   dsHelper.query(dseUri, predicates, valArray, (err, data) => {
      console.log("dsHelper query result: " + data);
+   });
+   // Delete data.
+   dsHelper.delete(dseUri, predicates, (err, data) => {
+     console.log("dsHelper delete result: " + data);   
    });
    ```
    

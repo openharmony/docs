@@ -111,12 +111,12 @@ The WLAN module provides the following types of APIs:
 
   | API| Description|
   | -------- | -------- |
-  | int32_t (\*init)(struct NetDevice \*netDev) | Initializes a network device. |
-  | struct NetDevStats \*(\*getStats)(struct NetDevice \*netDev) | Obtains the state of a network device. |
+  | int32_t (\*init)(struct NetDevice \*netDev) | Initializes a network device.|
+  | struct NetDevStats \*(\*getStats)(struct NetDevice \*netDev) | Obtains the state of a network device.|
   | int32_t (\*setMacAddr)(struct NetDevice \*netDev, void \*addr) | Sets the MAC address.|
-  | void (\*deInit)(struct NetDevice \*netDev) | Deinitializes a network device. |
-  | int32_t (\*open)(struct NetDevice \*netDev) | Opens a network device. |
-  | int32_t (\*stop)(struct NetDevice \*netDev) | Stops a network device. |
+  | void (\*deInit)(struct NetDevice \*netDev) | Deinitializes a network device.|
+  | int32_t (\*open)(struct NetDevice \*netDev) | Opens a network device.|
+  | int32_t (\*stop)(struct NetDevice \*netDev) | Stops a network device.|
 
 - The WLAN Driver module provides APIs that you can directly use to create or release a **WifiModule**, connect to or disconnect from a WLAN hotspot, request or release a **NetBuf**, and convert between the **pbuf** structure of Lightweight IP (lwIP) and a **NetBuf**.
 
@@ -231,21 +231,21 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     #include "wifi_module.h"
     #include "hi_wifi_api.h"
     #include "hi_types_base.h"
-    
+
     #define HDF_LOG_TAG Hi3881Driver
-    
+
     /* Functions for initializing and deinitializing a WLAN chip. */
     int32_t InitHi3881Chip(struct HdfWlanDevice *device);
     int32_t DeinitHi3881Chip(struct HdfWlanDevice *device);
     /* Functions for initializing and deinitializing a WLAN chip driver. */
     int32_t Hi3881Deinit(struct HdfChipDriver* chipDriver, struct NetDevice *netDevice);
     int32_t Hi3881Init(struct HdfChipDriver* chipDriver, struct NetDevice *netDevice);
-    
+
     /* Initialize mac80211 by hooking the functions of the chip. */
     hi_void HiMac80211Init(struct HdfChipDriver *chipDriver);
-    
+
     static const char* const HI3881_DRIVER_NAME = "hisi";
-    
+
     /* Hook the functions of the WLAN chip driver, mac80211, and chip. */
     static struct HdfChipDriver *BuildHi3881Driver(struct HdfWlanDevice *device, uint8_t ifIndex)
     {
@@ -265,7 +265,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             OsalMemFree(specificDriver);
             return NULL;
         }
-    
+
         if (strcpy_s(specificDriver->name, MAX_WIFI_COMPONENT_NAME_LEN, HI3881_DRIVER_NAME) != EOK) {
             HDF_LOGE("%s fail: strcpy_s fail!", __func__);
             OsalMemFree(specificDriver);
@@ -273,12 +273,12 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         }
         specificDriver->init = Hi3881Init;
         specificDriver->deinit = Hi3881Deinit;
-    
+
         HiMac80211Init(specificDriver);
-    
+
         return specificDriver;
     }
-    
+
     /* Release the WLAN chip driver. */
     static void ReleaseHi3881Driver(struct HdfChipDriver *chipDriver)
     {
@@ -291,12 +291,12 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         }
         OsalMemFree(chipDriver);
     }
-    
+
     static uint8_t GetHi3881GetMaxIFCount(struct HdfChipDriverFactory *factory) {
         (void)factory;
         return 1;
     }
-    
+
     /* Register WLAN chip functions. */
     static int32_t HDFWlanRegHisiDriverFactory(void)
     {
@@ -318,16 +318,16 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             HDF_LOGE("%s fail: driverMgr is NULL!", __func__);
             return HDF_FAILURE;
         }
-    
+
         return HDF_SUCCESS;
     }
-    
+
     static int32_t HdfWlanHisiChipDriverInit(struct HdfDeviceObject *device)
     {
         (void)device;
         return HDFWlanRegHisiDriverFactory();
     }
-    
+
     struct HdfDriverEntry g_hdfHisiChipEntry = {
         .moduleVersion = 1,
         .Bind = HdfWlanHisiDriverBind,
@@ -335,7 +335,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         .Release = HdfWlanHisiChipRelease,
         .moduleName = "HDF_WLAN_CHIPS"
     };
-    
+
     HDF_INIT(g_hdfHisiChipEntry);
     ```
 
@@ -352,9 +352,9 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     #include "wal_cfg80211.h"
     #include "net_adapter.h"
     #include "hdf_wlan_utils.h"
-    
+
     #define HDF_LOG_TAG Hi3881Driver
-    
+
     /* Initialize the WLAN chip. */
     int32_t InitHi3881Chip(struct HdfWlanDevice *device)
     {
@@ -365,7 +365,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             HDF_LOGE("%s:NULL ptr!", __func__);
             return HI_FAIL;
         }
-    
+
         do {
             if (ret != HI_SUCCESS) {
                 if (device->reset != NULL && device->reset->Reset != NULL) {
@@ -375,14 +375,14 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             }
             ret = hi_wifi_init(maxPortCount, device->bus);
         } while (ret != 0 && --maxRetryCount > 0);
-    
+
         if (ret != 0) {
             HDF_LOGE("%s:Init hi3881 driver failed!", __func__);
             return ret;
         }
         return HI_SUCCESS;
     }
-    
+
     /* Deinitializing the WLAN chip. */
     int32_t DeinitHi3881Chip(struct HdfWlanDevice *device)
     {
@@ -393,7 +393,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         }
         return ret;
     }
-    
+
     /* Initializing the WLAN chip driver. */
     int32_t Hi3881Init(struct HdfChipDriver *chipDriver, struct NetDevice *netDevice)
     {
@@ -426,7 +426,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         }
         return ret;
     }
-    
+
     /* Deinitializing the WLAN chip driver. */
     int32_t Hi3881Deinit(struct HdfChipDriver *chipDriver, struct NetDevice *netDevice)
     {
@@ -439,6 +439,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
         }
         return wal_deinit_drv_wlan_netdev(netDevice);
     }
+
     ```
 
     During the chip initialization process, call **NetDeviceInit()** to initialize a network device, call **NetDeviceAdd()** to add the network device to a protocol stack, and hook function pointers of **netdev**.
@@ -452,38 +453,38 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
             oam_error_log0(0, OAM_SF_ANY, "{netdev is null!}");
             return HI_ERR_CODE_PTR_NULL;
         }
-     
-    do {
-       /* Initialize the network device. */
-       ret = wal_init_netdev(type, netdev);
-       if (ret != HI_SUCCESS) {
-           break;
-       }
-    
-       ret = wal_init_netif(type, netdev);
-       if (ret != HI_SUCCESS) {
-           break;
-       }
-       ac_mode_str = "11bgn";
-       if (mode == WAL_PHY_MODE_11G) {
-           ac_mode_str = "11bg";
-       } else if (mode == WAL_PHY_MODE_11B) {
-           ac_mode_str = "11b";
-       }
-    
-       ret = wal_ioctl_set_mode(netdev, ac_mode_str);
-    } while (false);
-    
-    if (ret != HI_SUCCESS) {
-        wal_deinit_wlan_vap(netdev);
-        oal_net_unregister_netdev(netdev);
-        oal_net_clear_netdev(netdev);
-        return HI_FAIL;
+
+        do {
+            /* Initialize the network device. */
+            ret = wal_init_netdev(type, netdev);
+            if (ret != HI_SUCCESS) {
+                break;
+            }
+
+            ret = wal_init_netif(type, netdev);
+            if (ret != HI_SUCCESS) {
+                break;
+            }
+            ac_mode_str = "11bgn";
+            if (mode == WAL_PHY_MODE_11G) {
+                ac_mode_str = "11bg";
+            } else if (mode == WAL_PHY_MODE_11B) {
+                ac_mode_str = "11b";
+            }
+
+            ret = wal_ioctl_set_mode(netdev, ac_mode_str);
+        } while (false);
+
+        if (ret != HI_SUCCESS) {
+            wal_deinit_wlan_vap(netdev);
+            oal_net_unregister_netdev(netdev);
+            oal_net_clear_netdev(netdev);
+            return HI_FAIL;
+        }
+
+        return HI_SUCCESS;
     }
-    
-    return HI_SUCCESS;
-    }
-    
+
     /* Hook function pointers of netdev. For details, see NetDeviceInterFace. */
     oal_net_device_ops_stru g_wal_net_dev_ops =
     {
@@ -504,18 +505,17 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
     #endif
         .specialEtherTypeProcess = SpecialEtherTypeProcess,
     };
-    
+
     hi_s32 wal_init_netif(nl80211_iftype_uint8 type, oal_net_device_stru *netdev, const oal_wireless_dev *wdev)
     {
         /* Add the network device to the protocol stack. */
         hi_u32 ret = NetDeviceAdd(netdev, (Protocol80211IfType)type);
-        
+
         ...
+
         return HI_SUCCESS;
     }
     ```
-
-    
 
 3. Bind the commands to be delivered, including setting the MAC address and transmit power, implement STA connection and scan, start APs, and setting the country code.
 
@@ -580,7 +580,7 @@ The following uses the Hi3881 WLAN chip as an example to describe how to initial
 
 4. Invoke the event reporting APIs. 
 
-    The WLAN framework provides the event reporting APIs. For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA. For details, see **hdf_wifi_event.c**.
+    The WLAN framework provides the event reporting APIs. For details, see hdf_wifi_event.c. For example, call **HdfWiFiEventNewSta AP** to report information about the newly associated STA.
     
     ```c
     hi_u32 oal_cfg80211_new_sta(oal_net_device_stru *net_device, const hi_u8 *mac_addr, hi_u8 addr_len,
@@ -678,7 +678,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         exit 0
         ```
 
-    - Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file:
+    - Create a **udhcpd.conf** file (used to start the **udhcpd**) and copy the following content to the file. In the following, **opt dns** *x.x.x.x* *x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
 
         ```text
         start 192.168.12.2
@@ -692,7 +692,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         offer_time 60 #default: 60 (1 minute)
         min_lease 60 #defult: 60
         lease_file /vendor/etc/udhcpd.leases
-        opt dns 10.221.0.11 8.8.8.8
+        opt dns x.x.x.x x.x.x.x
         option subnet 255.255.255.0
         opt router 192.168.12.1
         ```
@@ -734,7 +734,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
 
      4. On the mobile phone, select the network named **test** in the available Wi-Fi list and enter the password. 
 
-        The network name and password are configured in the **hostapd.conf** file. You can see the network name in      the connected Wi-Fi list if the connection is successful.
+        The network name and password are configured in the **hostapd.conf** file. You can see that network name in the connected Wi-Fi list if the connection is successful.
 
      5. Ping the test terminal from the development board.
 
@@ -742,7 +742,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         busybox ping xxx.xxx.xxx.xxx
         ```
 
-        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the basic features of the WLAN driver are implemented successfully.
+        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.
 
    - Verify basic STA features.
 
@@ -771,7 +771,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         busybox ping xxx.xxx.xxx.xxx
         ```
 
-        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the basic features of the WLAN driver are implemented successfully.
+        In the command, xxx.xxx.xxx.xxx indicates the IP address of the test terminal. If the test terminal can be pinged, the WLAN driver provides basic features normally.
 
 3. Verify the unit test cases.
 
@@ -862,69 +862,69 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
 
    The sample code is as follows:
 
-   ```c
-   #include "wifi_hal.h"
-   #include "wifi_hal_sta_feature.h"
-   #include "wifi_hal_ap_feature.h"
-   #include "wifi_hal_cmd.h"
-   #include "wifi_hal_event.h"
+    ```c
+    #include "wifi_hal.h"
+    #include "wifi_hal_sta_feature.h"
+    #include "wifi_hal_ap_feature.h"
+    #include "wifi_hal_cmd.h"
+    #include "wifi_hal_event.h"
    
-   #define MAC_LEN 6
-   #define HDF_SUCCESS 0
-   #define HDF_FAILURE (-1)
-   
-   static int32_t hal_main()
-   {
-       int32_t ret;
-       struct IWiFi *wifi;
-   
-       /* Create an IWiFi instance. */
-       ret = WifiConstruct(&wifi);
-       if (ret != HDF_SUCCESS || wifi == NULL) {
-           return HDF_FAILURE;
-       }
-   
-       /* Create a channel between the HAL and the driver and obtain the driver NIC information. */
-       ret = wifi->start(wifi);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-   
-       /* Create an apFeature instance. */
-       ret = wifi->createFeature(PROTOCOL_80211_IFTYPE_AP, (struct IWiFiBaseFeature **)&apFeature);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-   
-       /* Obtain the MAC address of the device. */
-       unsigned char mac[MAC_LEN] = {0};
-       ret = apFeature->baseFeature.getDeviceMacAddress((struct IWiFiBaseFeature *)apFeature, mac, MAC_LEN);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-   
-       /* Destroy the apFeature instance. */
-       ret = wifi->destroyFeature((struct IWiFiBaseFeature *)apFeature);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-   
-       /* Destroy the channel between the HAL and the driver. */
-       ret = wifi->stop(wifi);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-   
-       /* Destroy the IWiFi instance. */
-       ret = WifiDestruct(&wifi);
-       if (ret != HDF_SUCCESS) {
-           return HDF_FAILURE;
-       }
-       return ret;
-   }
-   ```
-   
+    #define MAC_LEN 6
+    #define HDF_SUCCESS 0
+    #define HDF_FAILURE (-1)
+    ```
+
+
+    static int32_t hal_main()
+    {
+        int32_t ret;
+        struct IWiFi *wifi;
     
+        /* Create an IWiFi instance. */
+        ret = WifiConstruct(&wifi);
+        if (ret != HDF_SUCCESS || wifi == NULL) {
+            return HDF_FAILURE;
+        }
+    
+        /* Create a channel between the HAL and the driver and obtain the driver NIC information. */
+        ret = wifi->start(wifi);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+    
+        /* Create an apFeature instance. */
+        ret = wifi->createFeature(PROTOCOL_80211_IFTYPE_AP, (struct IWiFiBaseFeature **)&apFeature);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+    
+        /* Obtain the MAC address of the device. */
+        unsigned char mac[MAC_LEN] = {0};
+        ret = apFeature->baseFeature.getDeviceMacAddress((struct IWiFiBaseFeature *)apFeature, mac, MAC_LEN);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+    
+        /* Destroy the apFeature instance. */
+        ret = wifi->destroyFeature((struct IWiFiBaseFeature *)apFeature);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+    
+        /* Destroy the channel between the HAL and the driver. */
+        ret = wifi->stop(wifi);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+    
+        /* Destroy the IWiFi instance. */
+        ret = WifiDestruct(&wifi);
+        if (ret != HDF_SUCCESS) {
+            return HDF_FAILURE;
+        }
+        return ret;
+    }
+    ```
 
 4. Verify the test cases.
    1. Push the test cases to the development board.
@@ -944,7 +944,11 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         ./ Test case name.
         ```
 
+        
+        
    3. Check the test case execution result.
+   
+        
 
 ## Reference
 
@@ -958,11 +962,11 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
 
 - Code paths:
 
-  - Adaptation of WLAN FlowCtl component on LiteOS: 
+  - Adaptation of WLAN FlowCtl component on LiteOS:
 
     **//drivers/hdf_core/adapter/khdf/liteos/model/network/wifi**
 
-  - Adaptation of HDF network model on LiteOS: 
+  - Adaptation of HDF network model on LiteOS:
 
     **//drivers/hdf_core/adapter/khdf/liteos/model/network**
 
@@ -974,7 +978,9 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
 
     **//drivers/hdf_core/framework/model/network/wifi**
 
-  - External APIs of the WLAN module:**//drivers/hdf_core/framework/include/wifi**
+  - External APIs of the WLAN module:
+  
+    **//drivers/hdf_core/framework/include/wifi**
   
   - HDF network model APIs:
   
@@ -984,6 +990,6 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
   
     **//drivers/peripheral/wlan**
   
-  - External APIs of the WLAN HDI: 
+  - External APIs of the WLAN HDI:
   
     **//out/{product_name}/gen/drivers/interface/wlan/v1_0**

@@ -71,3 +71,5 @@ struct FocusEventExample {
   }
 }
 ```
+
+ ![focus](figures/focus.png) 
