@@ -42,34 +42,33 @@ init log主要应用在init的启动过程中，启动相关模块（param、uev
 
 ### 开发实例
 
-   1、调用接口打印日志
+   1. 调用接口打印日志
 
-   例如在 //base/startup/init/services/init/standard/init.c中调用接口INIT_LOGI("Start init first stage.")打印日志。
-   ```c
-   void SystemPrepare(void)
-   {
-      MountBasicFs();
-      CreateDeviceNode();
-      LogInit();
-      // Make sure init log always output to /dev/kmsg.
-      EnableDevKmsg();
-      INIT_LOGI("Start init first stage.");
-      // Only ohos normal system support
-      // two stages of init.
-      // If we are in updater mode, only one stage of init.
-      if (InUpdaterMode() == 0) {
-        StartInitSecondStage();
-      }
-   }
-   ```
-   通过dmesg可以查看打印的log，"Start init first stage."。
+      例如在 //base/startup/init/services/init/standard/init.c中调用接口INIT_LOGI("Start init first stage.")打印日志。
+       ```c
+       void SystemPrepare(void)
+       {
+          MountBasicFs();
+          CreateDeviceNode();
+          LogInit();
+          // Make sure init log always output to /dev/kmsg.
+          EnableDevKmsg();
+          INIT_LOGI("Start init first stage.");
+          // Only ohos normal system support
+          // two stages of init.
+          // If we are in updater mode, only one stage of init.
+          if (InUpdaterMode() == 0) {
+              StartInitSecondStage();
+          }
+       }
+       ```
+      通过dmesg可以查看打印的log，"Start init first stage."。
 
-  2、通过命令设置日志等级
+  2. 通过命令设置日志等级
 
-  通过命令begetctl setloglevel level，其中level对应log的等级0~4，即INIT_DEBUG,
-  INIT_INFO,INIT_WARN,INIT_ERROR,INIT_FATAL。
+     通过命令begetctl setloglevel level，其中level对应log的等级0~4，即INIT_DEBUG，INIT_INFO，INIT_WARN，INIT_ERROR，INIT_FATAL。
   
-  设置完成之后init的g_logLevel等级立即生效，上述log接口中log等级大于等于g_logLevel才会打印日志。例如：begetctl setloglevel 3，即设置log等级为INIT_ERROR，则上述的log接口中只有INIT_LOGE、INIT_LOGF才会打印log。
+     设置完成之后init的g_logLevel等级立即生效，上述log接口中log等级大于等于g_logLevel才会打印日志。例如：begetctl setloglevel 3，即设置log等级为INIT_ERROR，则上述的log接口中只有INIT_LOGE、INIT_LOGF才会打印log。
 
-  系统重启之后在init.cfg中"load_persist_params "命令之后生效设置的log等级。
+     系统重启之后在init.cfg中"load_persist_params "命令之后生效设置的log等级。
    
