@@ -46,7 +46,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 11600101 | Failed to execute the function.                                 |
@@ -233,7 +233,7 @@ release(): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -265,7 +265,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -297,7 +297,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 11600101 | Failed to execute the function.                                 |
@@ -336,7 +336,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -368,7 +368,7 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -400,7 +400,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 11600101 | Failed to execute the function.                                 |
@@ -438,7 +438,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 11600101| Failed to execute the function.                                 |
 
@@ -471,7 +471,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -518,7 +518,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -573,7 +573,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -608,7 +608,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -651,7 +651,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -688,7 +688,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -740,7 +740,7 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -775,7 +775,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback<{deviceId: string, le
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型      | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
 | 401      | Input parameter error.                                          |
 | 201      | Permission verify failed.                                       |
@@ -821,7 +821,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -863,7 +863,7 @@ ui状态变更回调。
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -904,7 +904,7 @@ off(type: 'uiStateChange', callback?: Callback<{ param: string}>): void;
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -937,7 +937,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                       |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -972,7 +972,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1008,7 +1008,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1043,7 +1043,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1078,7 +1078,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1113,7 +1113,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1148,7 +1148,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1183,7 +1183,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1218,7 +1218,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1253,7 +1253,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1288,7 +1288,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
@@ -1324,7 +1324,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 以下的错误码的详细介绍请参见[分布式硬件子系统错误码](../errorcodes/errorcode-device-manager.md)
 
-| 类型     | 说明                                                           |
+| 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
 | 401     | Input parameter error.                                          |
 
