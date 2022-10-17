@@ -496,7 +496,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过1000条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过1000条FA使用记录。 |
 
 **示例**：
 
@@ -533,7 +533,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
 
@@ -577,7 +577,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo9)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
 
@@ -614,7 +614,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo9)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
 
 **示例**：
 
@@ -798,7 +798,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo9)信息。使用Promise形式返回注册是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Promise形式返回注册是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -810,7 +810,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
+| callback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
 
 **返回值**：
 
@@ -844,7 +844,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo9)信息。使用异步callback形式返回注册监听是否成功。
+应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用异步callback形式返回注册监听是否成功。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -856,7 +856,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo9)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
+| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 指定的异步callback函数，返回注册监听是否成功 |
 
 **示例**：
@@ -974,7 +974,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **示例**：
 
@@ -1009,7 +1009,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | 是    | 起始时间。                                    |
 | end      | number                                   | 是    | 结束时间。                                    |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats9)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
 **示例**：
 
@@ -1051,7 +1051,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Not
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[NotificationEventStats](#notificationeventstats9)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
+| Promise&lt;Array&lt;[NotificationEventStats](#notificationeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -1086,7 +1086,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | 是    | 起始时间。                                    |
 | end      | number                                   | 是    | 结束时间。                                    |
-| callback | AsyncCallback&lt;Array&lt;[NotificationEventStats](#notificationeventstats9)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
+| callback | AsyncCallback&lt;Array&lt;[NotificationEventStats](#notificationeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -1126,7 +1126,7 @@ FA的使用信息的属性集合。
 | abilityIconId        | number                                   | 否    | FA的MainAbility iconId。        |
 | launchedCount        | number                                   | 是    | FA的启动次数。                      |
 | lastModuleUsedTime   | number                                   | 是    | FA的上一次使用时间。                   |
-| formRecords          | Array&lt;[HapFormInfo](#hapforminfo9)&gt; | 是    | FA中卡片的使用记录。                   |
+| formRecords          | Array&lt;[HapFormInfo](#hapforminfo)&gt; | 是    | FA中卡片的使用记录。                   |
 
 ## HapFormInfo
 FA卡片的使用信息的属性集合。
