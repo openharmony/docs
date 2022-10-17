@@ -1919,7 +1919,7 @@ captureSession.getMeteringPoint().then((exposurePoint) => {
 
 ### setMeteringPoint
 
-setMeteringPoint(point: Point, callback: AsyncCallback<point\>): void
+setMeteringPoint(point: Point, callback: AsyncCallback<void\>): void
 
 设置曝光区域中心点，通过注册回调函数获取结果。（该接口目前为预留，将在3.2版本开放）
 
