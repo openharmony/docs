@@ -857,6 +857,7 @@ async function getCameraInfo("cameraId") {
 
 | 名称                     | 默认值     | 说明         |
 | ----------------------- | --------- | ------------ |
+| CAMERA_FORMAT_RGBA_8888 | 3         | RGB格式的图片。             |
 | CAMERA_FORMAT_YUV_420_SP| 1003      | YUV 420 SP格式的图片。      |
 | CAMERA_FORMAT_JPEG      | 2000      | JPEG格式的图片。            |
 
@@ -1712,7 +1713,7 @@ hasFlash(callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-cameraInput.hasFlash((err, status) => {
+captureSession.hasFlash((err, status) => {
     if (err) {
         console.error(`Failed to check whether the device has flash light. ${err.message}`);
         return;
@@ -1738,7 +1739,7 @@ hasFlash(): Promise<boolean\>
 **示例：**
 
 ```js
-cameraInput.hasFlash().then((status) => {
+captureSession.hasFlash().then((status) => {
     console.log(`Promise returned with the flash light support status: ${status}`);
 })
 ```
@@ -1761,7 +1762,7 @@ isFlashModeSupported(flashMode: FlashMode, callback: AsyncCallback<boolean\>): v
 **示例：**
 
 ```js
-cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status) => {
+captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, (err, status) => {
     if (err) {
         console.error(`Failed to check whether the flash mode is supported. ${err.message}`);
         return;
@@ -1793,7 +1794,7 @@ isFlashModeSupported(flashMode: FlashMode): Promise<boolean\>
 **示例：**
 
 ```js
-cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
+captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO).then((status) => {
     console.log(`Promise returned with flash mode support status.${status}`);
 })
 ```
@@ -1821,7 +1822,7 @@ setFlashMode(flashMode: FlashMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
+captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, (err) => {
     if (err) {
         console.error(`Failed to set the flash mode  ${err.message}`);
         return;
@@ -1858,7 +1859,7 @@ setFlashMode(flashMode: FlashMode): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
+captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFlashMode.');
 })
 ```
@@ -1880,7 +1881,7 @@ getFlashMode(callback: AsyncCallback<FlashMode\>): void
 **示例：**
 
 ```js
-cameraInput.getFlashMode((err, flashMode) => {
+captureSession.getFlashMode((err, flashMode) => {
     if (err) {
         console.error(`Failed to get the flash mode  ${err.message}`);
         return;
@@ -1906,7 +1907,7 @@ getFlashMode(): Promise<FlashMode\>
 **示例：**
 
 ```js
-cameraInput.getFlashMode().then((flashMode) => {
+captureSession.getFlashMode().then((flashMode) => {
     console.log(`Promise returned with current flash mode : ${flashMode}`);
 })
 ```
@@ -1929,7 +1930,7 @@ isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>)
 **示例：**
 
 ```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
     if (err) {
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
@@ -1961,7 +1962,7 @@ isExposureModeSupported(aeMode: ExposureMode): Promise<boolean\>
 **示例：**
 
 ```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
     console.log(`Promise returned with exposure mode supported : ${isSupported}`);
 })
 ```
@@ -1983,7 +1984,7 @@ getExposureMode(callback: AsyncCallback<ExposureMode\>): void
 **示例：**
 
 ```js
-cameraInput.getExposureMode((err, exposureMode) => {
+captureSession.getExposureMode((err, exposureMode) => {
     if (err) {
         console.log(`Failed to get the exposure mode ${err.message}`);
         return ;
@@ -2009,7 +2010,7 @@ getExposureMode(): Promise<ExposureMode\>
 **示例：**
 
 ```js
-cameraInput.getExposureMode().then((exposureMode) => {
+captureSession.getExposureMode().then((exposureMode) => {
     console.log(`Promise returned with current exposure mode : ${exposureMode}`);
 })
 ```
@@ -2032,7 +2033,7 @@ setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
     if (err) {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
@@ -2058,7 +2059,7 @@ setExposureMode(aeMode: ExposureMode): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() => {
+captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then(() => {
     console.log('Promise returned with the successful execution of setExposureMode.');
 })
 ```
@@ -2080,7 +2081,7 @@ getExposurePoint(callback: AsyncCallback<Point\>): void
 **示例：**
 
 ```js
-cameraInput.getExposurePoint((err) => {
+captureSession.getExposurePoint((err) => {
     if (err) {
         console.log(`Failed to get the exposurePoint mode ${err.message}`);
         return ;
@@ -2106,7 +2107,7 @@ getExposurePoint(): Promise<Point\>
 **示例：**
 
 ```js
-cameraInput.getExposurePoint().then(() => {
+captureSession.getExposurePoint().then(() => {
     console.log('Promise returned with the successful execution of getExposurePoint.');
 })
 ```
@@ -2128,7 +2129,7 @@ setExposurePoint(exposurePoint: Point, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setExposurePoint(point, (err) => {
+captureSession.setExposurePoint(point, (err) => {
     if (err) {
         console.log(`Failed to set the exposurePoint mode ${err.message}`);
         return ;
@@ -2154,7 +2155,7 @@ setExposurePoint(exposurePoint: Point): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setExposurePoint(point).then(() => {
+captureSession.setExposurePoint(point).then(() => {
     console.log('Promise returned with the successful execution of setExposurePoint.');
 })
 ```
@@ -2176,7 +2177,7 @@ getExposureBiasRange(callback: AsyncCallback<Array<number\>\>): void
 **示例：**
 
 ```js
-cameraInput.getExposureBiasRange((err, biasRangeArray) => {
+captureSession.getExposureBiasRange((err, biasRangeArray) => {
     if (err) {
         console.log(`Failed to get the array of compenstation range ${err.message}`);
         return ;
@@ -2202,7 +2203,7 @@ getExposureBiasRange(): Promise<Array<number\>\>
 **示例：**
 
 ```js
-cameraInput.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED).then((isSupported) => {
     console.log(`Promise returned with exposure mode supported : ${isSupported}`);
 })
 ```
@@ -2227,7 +2228,7 @@ setExposureBias(exposureBias: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setExposureBias(-4,(err) => {
+captureSession.setExposureBias(-4,(err) => {
     if (err) {
         console.log(`Failed to set the exposure bias ${err.message}`);
         return ;
@@ -2261,7 +2262,7 @@ setExposureBias(exposureBias: number): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setExposureBias(-4).then(() => {
+captureSession.setExposureBias(-4).then(() => {
     console.log('Promise returned with the successful execution of setExposureBias.');
 })
 ```
@@ -2283,7 +2284,7 @@ getExposureValue(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-cameraInput.getExposureValue((err, exposureValue) => {
+captureSession.getExposureValue((err, exposureValue) => {
     if (err) {
         console.log(`Failed to get the exposure value ${err.message}`);
         return ;
@@ -2309,7 +2310,7 @@ getExposureValue(): Promise<number\>
 **示例：**
 
 ```js
-cameraInput.getExposureValue().then((exposureValue) => {
+captureSession.getExposureValue().then((exposureValue) => {
     console.log(`Promise returned with exposure value: ${exposureValude}`);
 })
 ```
@@ -2332,7 +2333,7 @@ isFocusModeSupported(afMode: FocusMode, callback: AsyncCallback<boolean\>): void
 **示例：**
 
 ```js
-cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status) => {
+captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO, (err, status) => {
     if (err) {
         console.error(`Failed to check whether the focus mode is supported. ${err.message}`);
         return;
@@ -2364,7 +2365,7 @@ isFocusModeSupported(afMode: FocusMode): Promise<boolean\>
 **示例：**
 
 ```js
-cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
+captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_AUTO).then((status) => {
     console.log(`Promise returned with focus mode support status ${status}.`);
 })
 ```
@@ -2389,7 +2390,7 @@ setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
+captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO, (err) => {
     if (err) {
         console.error(`Failed to set the focus mode  ${err.message}`);
         return;
@@ -2423,7 +2424,7 @@ setFocusMode(afMode: FocusMode): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
+captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_AUTO).then(() => {
     console.log('Promise returned with the successful execution of setFocusMode.');
 })
 ```
@@ -2445,7 +2446,7 @@ getFocusMode(callback: AsyncCallback<FocusMode\>): void
 **示例：**
 
 ```js
-cameraInput.getFocusMode((err, afMode) => {
+captureSession.getFocusMode((err, afMode) => {
     if (err) {
         console.error(`Failed to get the focus mode  ${err.message}`);
         return;
@@ -2471,7 +2472,7 @@ getFocusMode(): Promise<FocusMode\>
 **示例：**
 
 ```js
-cameraInput.getFocusMode().then((afMode) => {
+captureSession.getFocusMode().then((afMode) => {
     console.log(`Promise returned with current focus mode : ${afMode}`);
 })
 ```
@@ -2496,7 +2497,7 @@ setFocusPoint(point: Point, callback: AsyncCallback<void\>): void
 ```js
 const Point1 = {x: 1, y: 1};
 
-cameraInput.setFocusPoint(Point1, (err) => {
+captureSession.setFocusPoint(Point1, (err) => {
     if (err) {
         console.error(`Failed to set the focus point  ${err.message}`);
         return;
@@ -2530,7 +2531,7 @@ setFocusPoint(point: Point): Promise<void\>
 ```js
 const Point2 = {x: 2, y: 2};
 
-cameraInput.setFocusPoint(Point2).then(() => {
+captureSession.setFocusPoint(Point2).then(() => {
     console.log('Promise returned with the successful execution of setFocusPoint.');
 })
 ```
@@ -2552,7 +2553,7 @@ getFocusPoint(callback: AsyncCallback<Point\>): void
 **示例：**
 
 ```js
-cameraInput.getFocusPoint((err, point) => {
+captureSession.getFocusPoint((err, point) => {
     if (err) {
         console.error(`Failed to get the current focus point ${err.message}`);
         return;
@@ -2578,7 +2579,7 @@ getFocusPoint(): Promise<Point\>
 **示例：**
 
 ```js
-cameraInput.getFocusPoint().then((point) => {
+captureSession.getFocusPoint().then((point) => {
     console.log('Promise returned with the current focus point: ' + JSON.stringify(point));
 })
 ```
@@ -2600,7 +2601,7 @@ getFocalLength(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-cameraInput.getFocalLength((err, focalLength) => {
+captureSession.getFocalLength((err, focalLength) => {
     if (err) {
         console.error(`Failed to get the current focal length  ${err.message}`);
         return;
@@ -2626,7 +2627,7 @@ getFocalLength(): Promise<number\>
 **示例：**
 
 ```js
-cameraInput.getFocalLength().then((focalLength) => {
+captureSession.getFocalLength().then((focalLength) => {
     console.log(`Promise returned with the current focal length: ${focalLength}`);
 })
 ```
@@ -2648,7 +2649,7 @@ getZoomRatioRange\(callback: AsyncCallback<Array<number\>\>\): void
 **示例：**
 
 ```js
-cameraInput.getZoomRatioRange((err, zoomRatioRange) => {
+captureSession.getZoomRatioRange((err, zoomRatioRange) => {
     if (err) {
         console.error(`Failed to get the zoom ratio range. ${err.message}`);
         return;
@@ -2674,7 +2675,7 @@ getZoomRatioRange\(\): Promise<Array<number\>\>
 **示例：**
 
 ```js
-cameraInput.getZoomRatioRange().then((zoomRatioRange) => {
+captureSession.getZoomRatioRange().then((zoomRatioRange) => {
     console.log(`Promise returned with zoom ratio range: ${zoomRatioRange.length}`);
 })
 ```
@@ -2697,7 +2698,7 @@ setZoomRatio(zoomRatio: number, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-cameraInput.setZoomRatio(1, (err) => {
+captureSession.setZoomRatio(1, (err) => {
     if (err) {
         console.error(`Failed to set the zoom ratio value ${err.message}`);
         return;
@@ -2729,7 +2730,7 @@ setZoomRatio(zoomRatio: number): Promise<void\>
 **示例：**
 
 ```js
-cameraInput.setZoomRatio(1).then(() => {
+captureSession.setZoomRatio(1).then(() => {
     console.log('Promise returned with the successful execution of setZoomRatio.');
 })
 ```
@@ -2751,7 +2752,7 @@ getZoomRatio(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```js
-cameraInput.getZoomRatio((err, zoomRatio) => {
+captureSession.getZoomRatio((err, zoomRatio) => {
     if (err) {
         console.error(`Failed to get the zoom ratio ${err.message}`);
         return;
@@ -2777,7 +2778,7 @@ getZoomRatio(): Promise<number\>
 **示例：**
 
 ```js
-cameraInput.getZoomRatio().then((zoomRatio) => {
+captureSession.getZoomRatio().then((zoomRatio) => {
     console.log(`Promise returned with current zoom ratio : ${zoomRatio}`);
 })
 ```
@@ -3374,54 +3375,6 @@ previewOutput.on('error', (previewOutputError) => {
 ## PhotoOutput
 
 拍照会话中使用的输出信息。
-
-### getDefaultCaptureSetting
-
-getDefaultCaptureSetting(callback: AsyncCallback<PhotoCaptureSetting\>): void
-
-获取默认拍照参数，通过注册回调函数获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 名称     | 类型                                                         | 必填 | 说明                  |
-| -------- | ----------------------------------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback<[PhotoCaptureSetting](#photocapturesetting)\> | 是   | 回调函数，用于获取结果。 |
-
-**示例：**
-
-```js
-photoOutput.getDefaultCaptureSetting((err, photocapturesetting) => {
-    if (err) {
-        console.error(`Failed to get the defaultCaptureSetting. ${err.message}`);
-        return;
-    }
-    console.log('Callback returned with an array of defaultCaptureSetting.');
-})
-```
-
-### getDefaultCaptureSetting
-
-getDefaultCaptureSetting(): Promise<PhotoCaptureSetting\>
-
-获取默认拍照参数，通过Promise获取结果。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型                                                   | 说明                     |
-| ----------------------------------------------------- | ----------------------- |
-| Promise<[PhotoCaptureSetting](#photocapturesetting)\> | 使用Promise的方式获取结果。 |
-
-**示例：**
-
-```js
-photoOutput.getDefaultCaptureSetting().then((photocapturesetting) => {
-    console.log('Callback returned with an array of defaultCaptureSetting.');
-})
-```
 
 ### capture
 
