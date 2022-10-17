@@ -23,7 +23,6 @@
 @Entry
 @Component
 struct FlexExample {
-
   build() {
     Column({ space: 5 }) {
       Text('flexBasis').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -31,11 +30,18 @@ struct FlexExample {
       // The value of flexBasis() can be 'auto' or a number, which is equivalent to .width()/.height().
       Flex() {
         Text('flexBasis(100)')
-          .flexBasis('100').height(100).lineHeight(70)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+          .flexBasis('100')
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
         Text('flexBasis("auto")')
-          .flexBasis('auto').width('60%').height(100).lineHeight(70)
-          .backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+          .flexBasis('auto')
+          .width('60%')
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xD2B48C)
+          .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('flexGrow').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -43,11 +49,17 @@ struct FlexExample {
       // flexGrow() specifies the percentage of the remaining space allocated to the component.
       Flex() {
         Text('flexGrow(2)')
-          .flexGrow(2).height(100).lineHeight(70)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+          .flexGrow(2)
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
         Text('flexGrow(1)')
-          .flexGrow(1).height(100).lineHeight(70)
-          .backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+          .flexGrow(1)
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xD2B48C)
+          .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('flexShrink').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -55,13 +67,25 @@ struct FlexExample {
       // The ratio of text1 is 0, and the default values of other parameters are 1. If the components cannot be completely displayed, the last two components are shrunk proportionally. The first component is not shrunk.
       Flex({ direction: FlexDirection.Row }) {
         Text('flexShrink(0)')
-          .flexShrink(0).width('50%').height(100).lineHeight(70)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+          .flexShrink(0)
+          .width('50%')
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
         Text('no flexShrink')
-          .width('40%').height(100).lineHeight(70).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+          .width('40%')
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xD2B48C)
+          .textAlign(TextAlign.Center)
         Text('flexShrink(2)')
-          .flexShrink(2).width('40%').height(100) .lineHeight(70)
-          .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
+          .flexShrink(2)
+          .width('40%')
+          .height(100)
+          .lineHeight(70)
+          .backgroundColor(0xF5DEB3)
+          .textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
 
       Text('alignSelf').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -70,8 +94,12 @@ struct FlexExample {
         Text('no alignSelf,height:80').width('33%').height(80)
           .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
         Text('alignSelf stretch')
-          .alignSelf(ItemAlign.Stretch).width('33%').height(80).lineHeight(70)
-          .backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
+          .alignSelf(ItemAlign.Stretch)
+          .width('33%')
+          .height(80)
+          .lineHeight(70)
+          .backgroundColor(0xD2B48C)
+          .textAlign(TextAlign.Center)
         Text('no alignSelf,height:100').width('34%').height(100)
           .backgroundColor(0xF5DEB3).textAlign(TextAlign.Center)
       }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)

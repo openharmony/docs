@@ -1,12 +1,12 @@
-# &lt;grid-container&gt; Development
+# Grid Layout
 
 
-The **&lt;grid-container&gt;** component is the root container of the grid layout. Within the root container, you can use **&lt;grid-row&gt;** and **&lt;grid-col&gt;** for the grid layout. For details, see [grid-container](../reference/arkui-js/js-components-grid-container.md).
+The **\<grid-container>** component is the root container of the grid layout. Within the root container, you can use **\<grid-row>** and **\<grid-col>** for the grid layout. For details, see [Grid-container](../reference/arkui-js/js-components-grid-container.md).
 
 
-## Creating a &lt;grid-container&gt; Component
+## Creating a \<grid-container> Component
 
-Create a **&lt;grid-container&gt;** component in the .hml file under **pages/index** and add a [**&lt;grid-row&gt;**](../reference/arkui-js/js-components-grid-row.md) child component.
+Create a **\<grid-container>** component in the .hml file under **pages/index** and add a [\<Grid-row>](../reference/arkui-js/js-components-grid-row.md) child component.
 
 
 ```html
@@ -37,12 +37,12 @@ Create a **&lt;grid-container&gt;** component in the .hml file under **pages/ind
 
 > **NOTE**
 >
-> **&lt;grid-container&gt;** supports only **&lt;grid-row&gt;** as a child component.
+> **\<grid-container>** supports only **\<grid-row>** as a child component.
 
 
 ## Methods
 
-Click the **&lt;grid-container&gt;** component to call the **getColumns**, **getColumnWidth**, and **getGutterWidth** methods to return the number of columns in the grid container, and column width and gutter width of the grid container. Press and hold the component to call the **getSizeType** method to return the size-responsive type of the grid container (**xs**|**sm**|**md**|**lg**).
+Touch the **\<grid-container>** component to call the **getColumns**, **getColumnWidth**, and **getGutterWidth** methods to return the number of columns in the grid container, and column width and gutter width of the grid container. Press and hold the component to call the **getSizeType** method to return the size-responsive type of the grid container (**xs**|**sm**|**md**|**lg**).
 
 
 ```html
@@ -109,9 +109,9 @@ export default {
 ![en-us_image_0000001231843088](figures/en-us_image_0000001231843088.gif)
 
 
-## Adding &lt;grid-col&gt;
+## Adding \<grid-col>
 
-After adding a **&lt;grid-row&gt;** child component to **&lt;grid-container&gt;**, add a **&lt;grid-col&gt;** child component to **&lt;grid-row&gt;** to form a layout.
+After adding a **\<grid-row>** child component to **\<grid-container>**, add a **\<grid-col>** child component to **\<grid-row>** to form a layout.
 
 
 ```html
@@ -168,7 +168,7 @@ text{
 
 > **NOTE**
 >
-> **&lt;grid-row&gt;** supports only **&lt;grid-col&gt;** as a child component. You can add content only to **&lt;grid-col&gt;**.
+> **\<grid-row>** supports only **\<grid-col>** as a child component. You can add content only to **\<grid-col>**.
 
 
 ## Example Scenario
