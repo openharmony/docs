@@ -376,9 +376,9 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
   ```ts
   var parameter =  {
-      srcDeviceId: localDeviceId
-      dstDeviceId: remoteDeviceId
-      missionId: remoteMissionId
+      srcDeviceId: localDeviceId,
+      dstDeviceId: remoteDeviceId,
+      missionId: remoteMissionId,
       wantParams: {"key": "value"}
   };
   function OnContinueDone(resultCode) {
@@ -426,9 +426,9 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
   ```ts
   var parameter =  {
-      srcDeviceId: localDeviceId
-      dstDeviceId: remoteDeviceId
-      missionId: remoteMissionId
+      srcDeviceId: localDeviceId,
+      dstDeviceId: remoteDeviceId,
+      missionId: remoteMissionId,
       wantParams: {"key": "value"}
   };
   function OnContinueDone(resultCode) {
