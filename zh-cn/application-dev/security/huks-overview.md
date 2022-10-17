@@ -16,9 +16,9 @@ HUKS对密钥的使用主要通过Init、Update、Finish操作来实现。
 
 - **Init操作**：读取密钥，并为其创建Session Id返回给调用者。
 
-- **Udate操作**：根据Init操作获取的Session Id对数据进行分段update处理。
+- **Update操作**：根据Init操作获取的Session Id对数据进行分段update处理。
 
-- **Fnish操作**：当所有待处理的数据均传入HUKS后，调用Finish操作完成最终数据处理，释放资源。
+- **Finish操作**：当所有待处理的数据均传入HUKS后，调用Finish操作完成最终数据处理，释放资源。
 
     >![](../public_sys-resources/icon-notice.gif) **须知：当Init、Update、Finish操作中的任一阶段发生错误时，都需要调用Abort操作来终止密钥的使用。**
 

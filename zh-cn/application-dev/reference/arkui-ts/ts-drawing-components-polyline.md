@@ -23,22 +23,22 @@
 Polyline(options?: {width?: string | number, height?: string | number})
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 | 
-  | height | string \| number | 否 | 0 | 高度。 | 
+  | width | string \| number | 否 | 0 | 宽度。 |
+  | height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| points | Array&lt;Point&gt; | [] | 否 | 折线经过坐标点列表。 | 
+| points | Array&lt;Point&gt; | [] | 否 | 折线经过坐标点列表。 |
 | fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置线条颜色。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor8) | - | 否 | 设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
@@ -65,16 +65,28 @@ Polyline(options?: {width?: string | number, height?: string | number})
 @Component
 struct PolylineExample {
   build() {
-    Column({ space: 5 }) {
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(20,60)，到达终点(100, 100)
-        Polyline({ width: 100, height: 100 }).points([[0, 0], [20, 60], [100, 100]])
-        // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(0,100)，到达终点(100, 100)
-        Polyline().width(100).height(100).points([[0, 0], [0, 100], [100, 100]])
-      }.width('100%')
-    }.margin({ top: 5 })
+    Column({ space: 10 }) {
+      // 在 100 * 100 的矩形框中绘制一段折线，起点(0, 0)，经过(20,60)，到达终点(100, 100)
+      Polyline({ width: 100, height: 100 })
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+      // 在 100 * 100 的矩形框中绘制一段折线，起点(20, 0)，经过(0,100)，到达终点(100, 90)
+      Polyline()
+        .width(100)
+        .height(100)
+        .fillOpacity(0)
+        .stroke(Color.Red)
+        .strokeWidth(8)
+        .points([[20, 0], [0, 100], [100, 90]])
+          // 设置折线拐角处为圆弧
+        .strokeLineJoin(LineJoinStyle.Round)
+          // 设置折线两端为半圆
+        .strokeLineCap(LineCapStyle.Round)
+    }.width('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001219744185](figures/zh-cn_image_0000001219744185.gif)
+![zh-cn_image_0000001219744185](figures/zh-cn_image_0000001219744185.png)

@@ -164,8 +164,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$refs.animator; // 获取ref属性为animator的DOM元素
@@ -196,8 +196,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
        images: [
          { src: '/common/frame1.png' },
          { src: '/common/frame2.png' },
-         { src: '/common/frame3.png' },
-       ],
+         { src: '/common/frame3.png' }
+       ]
      },
      handleClick() {
        const animator = this.$element('animator'); // 获取id属性为animator的DOM元素

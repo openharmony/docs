@@ -1,17 +1,14 @@
-# 应用代码文件访问规则
+# 文件访问规则
+应用代码中文件访问方法主要有下面两种：
 
-应用代码文件可通过如下方式访问：
+- **相对路径**：使用相对路径引用代码文件，以"../"访问上一级目录，以"./"访问当前目录，也可以省略不写。
+
+- **绝对路径**：使用当前模块根路径引用代码文件，比如：common/utils/utils。
 
 
-- 使用相对路径引用代码文件，比如：上一级目录：../common/utils/utils，当前目录：./common/utils/utils。
-
-- 使用当前模块根路径引用代码文件，比如：common/utils/utils。
-
-- 公共代码文件推荐放在**common**目录下。
 
 
 ## 示例
-
 ```
 import { FoodData, FoodList } from "../common/utils/utils";
 
@@ -31,11 +28,10 @@ struct FoodCategoryList {
 }
 ```
 
-导入文件示例：
+被导入文件utils.ets：
 
-```
+```ts
 //common/utils/utils.ets
-
 export class FoodData {  
   name: string;  
   constructor(name: string) {    

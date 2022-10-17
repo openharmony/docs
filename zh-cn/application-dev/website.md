@@ -34,13 +34,12 @@
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于TS扩展的声明式开发范式
+    - 基于eTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
       - 框架说明
         - 文件组织
           - [目录结构](ui/ts-framework-directory.md)
           - [应用代码文件访问规则](ui/ts-framework-file-access-rules.md)
-        - [js标签配置](ui/ts-framework-js-tag.md)
         - 资源管理
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
@@ -104,7 +103,7 @@
         - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
       - [性能提升的推荐方案](ui/ts-performance-improvement-recommendation.md)
-    - 基于JS扩展的类Web开发范式
+    - 兼容JS的类Web开发范式
       - [概述](ui/ui-js-overview.md)
       - 框架说明
         - [文件组织](ui/js-framework-file.md)

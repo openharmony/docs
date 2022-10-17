@@ -7,7 +7,6 @@
         - 文件组织
             - [目录结构](ts-framework-directory.md)
             - [应用代码文件访问规则](ts-framework-file-access-rules.md)
-        - [js标签配置](ts-framework-js-tag.md)
         - 资源管理
             - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
             - [资源访问](ts-resource-access.md)

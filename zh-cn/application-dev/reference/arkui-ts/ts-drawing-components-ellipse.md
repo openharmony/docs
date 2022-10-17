@@ -23,10 +23,10 @@
 ellipse(options?: {width?: string | number, height?: string | number})
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 | 
-  | height | string \| number | 否 | 0 | 高度。 | 
+  | width | string \| number | 否 | 0 | 宽度。 |
+  | height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
@@ -37,14 +37,14 @@ ellipse(options?: {width?: string | number, height?: string | number})
 | -------- | -------- | -------- | -------- | -------- |
 | fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 |设置线条颜色。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
-| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
-| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
-| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor8) | - | 否 |设置边框颜色，不设置时，默认没有边框。 |
+| strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置边框间隙。 |
+| strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 边框绘制起点的偏移量。 |
+| strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置边框端点绘制样式。 |
+| strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置边框拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
-| strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置边框透明度。 |
+| strokeWidth | Length | 1 | 否 | 设置边框宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
 
@@ -56,12 +56,17 @@ ellipse(options?: {width?: string | number, height?: string | number})
 @Component
 struct EllipseExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
-      // 在一个 150 * 80 的矩形框中绘制一个椭圆
+    Column({ space: 10 }) {
+      // 绘制一个 150 * 80 的椭圆
       Ellipse({ width: 150, height: 80 })
-      // 在一个 150 * 70 的矩形框中绘制一个椭圆
-      Ellipse().width(150).height(80)
-    }.width('100%').margin({ top: 5 })
+      // 绘制一个 150 * 100 、线条为蓝色的椭圆环
+      Ellipse()
+        .width(150)
+        .height(100)
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+    }.width('100%')
   }
 }
 ```

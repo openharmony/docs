@@ -35,7 +35,7 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 | commands | string                              | ''   | 否  | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](../../ui/ts-pixel-units.md)。 |
 | fill | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置填充区域颜色。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](ts-types.md#resourcecolor8) | Color.Black | 否 | 设置线条颜色。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor8) | - | 否 | 设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
@@ -72,28 +72,75 @@ commands支持的绘制命令如下：
 @Component
 struct PathExample {
   build() {
-    Column({ space: 5 }) {
-      Text('Straight line').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Path().width(300).height(10).commands('M0 0 L900 0').stroke(Color.Black).strokeWidth(3)
+    Column({ space: 10 }) {
+      Text('Straight line')
+        .fontSize(11)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      // 绘制一条长900px，宽3vp的直线
+      Path()
+        .width(300)
+        .height(10)
+        .commands('M0 0 L900 0')
+        .stroke(Color.Black)
+        .strokeWidth(3)
 
-      Text('Straight line graph').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        // 先后执行MoveTo(150, 0), LineTo(300, 300), LineTo(0, 300), ClosePath()
-        Path().width(100).height(100).commands('M150 0 L300 300 L0 300 Z')
-        // 先后执行MoveTo(0, 0), HorizontalLineto(300), VerticalLineto(300), HorizontalLineto(0), ClosePath()
-        Path().width(100).height(100).commands('M0 0 H300 V300 H0 Z')
-        // 先后执行MoveTo(150, 0), LineTo(0, 150), LineTo(60, 300), LineTo(240, 300), LineTo(300, 150), ClosePath()
-        Path().width(100).height(100).commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+      Text('Straight line graph')
+        .fontSize(11)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      // 绘制直线图形
+      Row({ space: 20 }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L300 300 L0 300 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 0 H300 V300 H0 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
       }.width('100%')
 
-      Text('Curve graphics').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        // 先后执行MoveTo(0, 300),(150, 0)(300, 300)两点之间画曲线, ClosePath()
-        Path().width(100).height(100).commands("M0 300 S150 0 300 300 Z")
-        // 先后执行MoveTo(0, 150),(0, 150)(150, 0)(300, 150)三点之间依次画曲线, LineTo(150, 300),ClosePath()
-        Path().width(100).height(100).commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+      Text('Curve graphics').fontSize(11).fontColor(0xCCCCCC).width('90%')
+      // 绘制弧线图形
+      Row({ space: 20 }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands("M0 300 S150 0 300 300 Z")
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 200 A30 20 20 0 0 250 200 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
       }
-    }.width('100%').margin({ top: 5 })
+    }.width('100%')
+    .margin({ top: 5 })
   }
 }
 ```

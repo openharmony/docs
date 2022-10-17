@@ -22,17 +22,17 @@
 Line(options?: {width?: string | number, height?: string | number})
 
 - 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 | 
+  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | 否 | 0 | 宽度。 | 
-  | height | string \| number | 否 | 0 | 高度。 | 
+  | width | string \| number | 否 | 0 | 宽度。 |
+  | height | string \| number | 否 | 0 | 高度。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 | 
+| 参数名称 | 参数类型 | 默认值 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | startPoint | Array | [0,&nbsp;0] | 是   | 直线起点坐标点(相对坐标)。 |
 | endPoint   | Array | [0,&nbsp;0] | 是   | 直线终点坐标点(相对坐标)。 |
@@ -48,8 +48,9 @@ Line(options?: {width?: string | number, height?: string | number})
 | strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
-
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -57,12 +58,82 @@ Line(options?: {width?: string | number, height?: string | number})
 @Component
 struct LineExample {
   build() {
-    Column() {
-      Line({ width: 50, height: 100 }).startPoint([0, 0]).endPoint([50, 100])
-      Line().width(200).height(200).startPoint([50, 50]).endPoint([150, 150])
-    }.margin({ top: 5 })
+    Column({ space: 10 }) {
+      // 线条绘制的起止点坐标均是相对于Line组件本身绘制区域的坐标
+      Line()
+        .startPoint([0, 0])
+        .endPoint([50, 100])
+        .backgroundColor('#F5F5F5')
+      Line()
+        .width(200)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([150, 150])
+        .strokeWidth(5)
+        .stroke(Color.Orange)
+        .strokeOpacity(0.5)
+        .backgroundColor('#F5F5F5')
+      // 当坐标点设置的值超出Line组件的宽高范围时，线条会画出组件绘制区域
+      Line({ width: 50, height: 50 })
+        .startPoint([0, 0])
+        .endPoint([100, 100])
+        .strokeWidth(3)
+        .strokeDashArray([10, 3])
+        .backgroundColor('#F5F5F5')
+      // strokeDashOffset用于定义关联虚线strokeDashArray数组渲染时的偏移
+      Line({ width: 50, height: 50 })
+        .startPoint([0, 0])
+        .endPoint([100, 100])
+        .strokeWidth(3)
+        .strokeDashArray([10, 3])
+        .strokeDashOffset(5)
+        .backgroundColor('#F5F5F5')
+    }
   }
 }
 ```
 
-![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.jpg)
+![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.png)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LineExample1 {
+  build() {
+    Row({ space: 10 }) {
+      // 当LineCapStyle值为Butt时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Butt)
+        .backgroundColor('#F5F5F5').margin(10)
+      // 当LineCapStyle值为Round时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Round)
+        .backgroundColor('#F5F5F5')
+      // 当LineCapStyle值为Square时
+      Line()
+        .width(100)
+        .height(200)
+        .startPoint([50, 50])
+        .endPoint([50, 200])
+        .strokeWidth(20)
+        .strokeLineCap(LineCapStyle.Square)
+        .backgroundColor('#F5F5F5')
+    }
+  }
+}
+```
+
+![zh-cn_image1_0000001219982725](figures/zh-cn_image1_0000001219982725.png)

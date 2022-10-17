@@ -133,9 +133,8 @@ onStart() {
     context.requestPermissionsFromUser(array, 1, (err, data)=>{
         console.info("====>requestdata====>" + JSON.stringify(data));
         console.info("====>requesterrcode====>" + JSON.stringify(err.code));
-  }
+  })
 }
 ```
 > **NOTE**<br>
 > For details about how to use **requestPermissionsFromUser**, see [API Reference](../reference/apis/js-apis-ability-context.md).
-

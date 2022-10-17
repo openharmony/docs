@@ -21,16 +21,16 @@ The following table lists the USB APIs currently available. For details, see the
 | setConfiguration(pipe: USBDevicePipe, config: USBConfig): number | Sets the USB device configuration.                           |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number | Sets a USB interface.                                        |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force?: boolean): number | Claims a USB interface.                                       |
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.                                      |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout?: number): Promise\<number> | Performs bulk transfer.        |
 | closePipe(pipe: USBDevicePipe): number                       | Closes a USB device pipe.                                    |
-| releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                    |
+| releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                              |
 | getFileDescriptor(pipe: USBDevicePipe): number               | Obtains the file descriptor.                                 |
 | getRawDescriptor(pipe: USBDevicePipe): Uint8Array            | Obtains the raw USB descriptor.                              |
-| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise\<number> | Performs control transfer.                                   |
+| controlTransfer(pipe: USBDevicePipe, contrlparam: USBControlParams, timeout?: number): Promise\<number> | Performs control transfer.              |
 
 ## How to Develop
 
-You can set a USB device as a host to connect to a device for data transfer. The development procedure is as follows:
+You can set a USB device as the USB host to connect to other USB devices for data transfer. The development procedure is as follows:
 
 1.  Obtain the USB device list.
 
