@@ -2840,7 +2840,7 @@ release(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-previewOutput.release((err) => {
+cameraOutput.release((err) => {
     if (err) {
         console.error(`Failed to release the PreviewOutput instance ${err.message}`);
         return;
@@ -2866,7 +2866,7 @@ release(): Promise<void\>
 **示例：**
 
 ```js
-previewOutput.release().then(() => {
+cameraOutput.release().then(() => {
     console.log('Promise returned to indicate that the PreviewOutput instance is released successfully.');
 })
 ```
