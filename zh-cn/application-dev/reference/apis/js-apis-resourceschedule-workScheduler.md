@@ -31,6 +31,16 @@ startWork(work: WorkInfo): void
 | ---- | --------------------- | ---- | -------------- |
 | work | [WorkInfo](#workinfo) | 是    | 指示要添加到执行队列的工作。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
+| 9700005 | StartWork failed. | StartWork失败 |
+
 **示例**：
 
 ```js
@@ -69,6 +79,15 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 指示要停止的工作。  |
 | needCancel | boolean               | 是    | 是否需要取消的工作。 |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
 
 **示例**：
 
@@ -109,6 +128,15 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | workId   | number                                | 是    | work的id。                                 |
 | callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
+
 **示例**：
 
 ```js
@@ -146,6 +174,15 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | ------------------------------- | ---------------------------------------- |
 | Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
+
 **示例**：
 
 ```js
@@ -181,6 +218,15 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 | ----------------------------- | --------------- |
 | Array\<[WorkInfo](#workinfo)> | 返回与应用程序关联的所有工作。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
+
 **示例**：
 
 ```js
@@ -210,6 +256,15 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 | -------------------------------------- | ------------------------------ |
 | Promise<Array\<[WorkInfo](#workinfo)>> | 指定的Promise回调方法。返回与应用程序关联的所有工作。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
+| 9700004 | Check workInfo failed. | workInfo校验失败 |
+
 **示例**：
 
 ```js
@@ -230,6 +285,13 @@ stopAndClearWorks(): void
 停止和取消与当前应用程序关联的所有工作。
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
 
 **示例**：
 
@@ -261,6 +323,14 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 指定的callback回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
 
 **示例**：
 
@@ -296,6 +366,14 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 类型                | 说明                                       |
 | ----------------- | ---------------------------------------- |
 | Promise\<boolean> | 指定的Promise回调方法。如果指定工作的最后一次执行是超时操作，则返回true；否则返回false。 |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| 401 | Parameter error. | 参数检查错误 |
+| 9700001 | Memory operation failed. | 内存操作失败 |
+| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9700003 | System service operation failed. | 系统服务失败 |
 
 **示例**：
 

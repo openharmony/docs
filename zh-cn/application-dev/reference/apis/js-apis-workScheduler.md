@@ -17,7 +17,7 @@
 import workScheduler from '@ohos.workScheduler';
 ```
 
-## workScheduler.startWork
+## workScheduler.startWork<sup>(deprecated)</sup>
 startWork(work: WorkInfo): boolean
 
 通知WorkSchedulerService将工作添加到执行队列。
@@ -61,7 +61,7 @@ startWork(work: WorkInfo): boolean
   console.info(`workschedulerLog res: ${res}`);
 ```
 
-## workScheduler.stopWork
+## workScheduler.stopWork<sup>(deprecated)</sup>
 stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
 通知WorkSchedulerService停止指定工作。
@@ -106,7 +106,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
   console.info(`workschedulerLog res: ${res}`);
 ```
 
-## workScheduler.getWorkStatus
+## workScheduler.getWorkStatus<sup>(deprecated)</sup>
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
@@ -138,7 +138,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
   });
 ```
 
-## workScheduler.getWorkStatus
+## workScheduler.getWorkStatus<sup>(deprecated)</sup>
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
@@ -173,7 +173,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   })
 ```
 
-## workScheduler.obtainAllWorks
+## workScheduler.obtainAllWorks<sup>(deprecated)</sup>
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -208,7 +208,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
   });
 ```
 
-## workScheduler.obtainAllWorks
+## workScheduler.obtainAllWorks<sup>(deprecated)</sup>
 obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
@@ -235,7 +235,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
   })
 ```
 
-## workScheduler.stopAndClearWorks
+## workScheduler.stopAndClearWorks<sup>(deprecated)</sup>
 stopAndClearWorks(): boolean
 
 停止和取消与当前应用程序关联的所有工作。
@@ -253,7 +253,7 @@ stopAndClearWorks(): boolean
   console.info(`workschedulerLog res: ${res}`);
 ```
 
-## workScheduler.isLastWorkTimeOut
+## workScheduler.isLastWorkTimeOut<sup>(deprecated)</sup>
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
@@ -289,7 +289,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
   });
 ```
 
-## workScheduler.isLastWorkTimeOut
+## workScheduler.isLastWorkTimeOut<sup>(deprecated)</sup>
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
