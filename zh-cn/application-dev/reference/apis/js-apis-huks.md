@@ -1527,7 +1527,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 判断密钥是否存在，使用Callback回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksisKeyItemExist9)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyItemExist9)替代。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1556,7 +1556,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断密钥是否存在，使用Promise回调异步返回结果 。
 
->  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksisKeyItemExist9-1)替代。
+>  **说明：** 从API Version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyItemExist9-1)替代。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -2736,7 +2736,7 @@ async function huksAbort() {
 | HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING | 1    | 导入加密密钥时，X25519密钥协商后使用AES-256 GCM加密。 |
 | HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING   | 2    | 导入加密密钥时，ECDH密钥协商后使用AES-256 GCM加密。   |
 
-##  HuksImportKeyType<sup>9+</sup>
+### HuksImportKeyType<sup>9+</sup>
 
 表示导入密钥的密钥类型，默认为导入公钥，导入对称密钥时不需要该字段。
 
