@@ -78,4 +78,4 @@ struct Example {
 
 基于像素转换，有以下相关实例可供参考：
 
-- [像素转换（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelUnitsDemo)
+- [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelUnitsDemo)
