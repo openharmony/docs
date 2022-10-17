@@ -41,8 +41,8 @@ Canvas(context?: CanvasRenderingContext2D)
 @Entry
 @Component
 struct CanvasExample {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -52,8 +52,8 @@ struct CanvasExample {
         .backgroundColor('#ffff00')
         .onReady(() => {
           this.context.fillRect(0, 30, 100, 100)
-        });
-    };
+        })
+    }
     .width('100%')
     .height('100%')
   }
