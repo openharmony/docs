@@ -316,7 +316,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 	return;
   }
   console.log('bind success');
-  let promise = udp.getState({});
+  let promise = udp.getState();
   promise.then(data => {
 	console.log('getState success:' + JSON.stringify(data));
   }).catch(err => {
@@ -626,7 +626,7 @@ UDPSocket发送参数。
 
 | 参数名  | 类型                               | 必填 | 说明           |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string \| ArrayBuffer<sup>8+</sup>                          | 是   | 发送的数据。   |
+| data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
 ## UDPExtraOptions
@@ -1041,7 +1041,7 @@ promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.getRemoteAddress();
   promise2.then(() => {
-	console.log('getRemoteAddress success:' + JSON.stringify(data));
+	console.log('getRemoteAddress success');
   }).catch(err => {
 	console.log('getRemoteAddressfail');
   });
@@ -1120,7 +1120,7 @@ promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.getState();
   promise1.then(() => {
-	console.log('getState success:' + JSON.stringify(data));
+	console.log('getState success');
   }).catch(err => {
 	console.log('getState fail');
   });
@@ -1434,7 +1434,7 @@ TCPSocket发送请求的参数。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string\| ArrayBuffer<sup>8+</sup>  | 是   | 发送的数据。                                                 |
+| data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
 
 ## TCPExtraOptions

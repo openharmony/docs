@@ -21,28 +21,31 @@ Shows a toast.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name    | Type                                   | Mandatory  | Description     |
 | ------- | ------------------------------------- | ---- | ------- |
 | options | [ShowToastOptions](#showtoastoptions) | Yes   | Toast options.|
 
 **Example**
-  ```js
+
+```js
 prompt.showToast({            
   message: 'Message Info',
     duration: 2000,      
 });
-  ```
+```
+
 ## ShowToastOptions
 
 Describes the options for showing the toast.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                                      | Mandatory    | Description                                      |
-| -------- | ---------------------------------------- | ------ | ---------------------------------------- |
-| message  | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes     | Text to display.                                |
-| duration | number                                   | No     | Duration that the toast will remain on the screen. The default value is 1500 ms. The recommended value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used.|
-| bottom   | string\| number                                 | No | Distance between the toast border and the bottom of the screen.                                       |
+| Name      | Type                                      | Mandatory  | Description                                      |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| message  | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes   | Text to display.                                |
+| duration | number                                   | No   | Duration that the toast will remain on the screen. The default value is 1500 ms. The value range is 1500 ms to 10000 ms. If a value less than 1500 ms is set, the default value is used. If the value greater than 10000 ms is set, the upper limit 10000 ms is used.|
+| bottom   | string\| number                          | No   | Distance between the toast border and the bottom of the screen.                        |
 
 ## prompt.showDialog
 
@@ -53,6 +56,7 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name    | Type                                     | Mandatory  | Description    |
 | ------- | --------------------------------------- | ---- | ------ |
 | options | [ShowDialogOptions](#showdialogoptions) | Yes   | Dialog box options.|
@@ -65,7 +69,7 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 
 **Example**
 
-  ```js
+```js
 prompt.showDialog({
   title: 'Title Info',
   message: 'Message Info',
@@ -86,7 +90,7 @@ prompt.showDialog({
   .catch(err => {
     console.info('showDialog error: ' + err);
   })
-  ```
+```
 
 ## prompt.showDialog
 
@@ -96,15 +100,16 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description          |
 | -------- | ---------------------------------------- | ---- | ------------ |
 | options  | [ShowDialogOptions](#showdialogoptions)  | Yes   | Dialog box options.|
 | callback | AsyncCallback&lt;[ShowDialogSuccessResponse](#showdialogsuccessresponse)&gt; | Yes   | Callback used to return the dialog box response result.  |
 
 **Example**
-  ```js
+
+```js
 prompt.showDialog({
   title: 'showDialog Title Info',
   message: 'Message Info',
@@ -125,7 +130,7 @@ prompt.showDialog({
   }
   console.info('showDialog success callback, click button: ' + data.index);
 });
-  ```
+```
 
 ## ShowDialogOptions
 
@@ -135,8 +140,8 @@ Describes the options for showing the dialog box.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Title of the dialog box.                                   |
-| message | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Text body.                                   |
+| title   | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Title of the dialog box.                                   |
+| message | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Text body.                                   |
 | buttons | Array                                    | No   | Array of buttons in the dialog box. The array structure is **{text:'button', color: '\#666666'}**. Up to three buttons are supported. The first button is of the **positiveButton** type, the second is of the **negativeButton** type, and the third is of the **neutralButton** type.|
 
 ## ShowDialogSuccessResponse 
@@ -159,6 +164,7 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description       |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [ActionMenuOptions](#actionmenuoptions)  | Yes   | Action menu options.  |
@@ -166,7 +172,8 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 
 
 **Example**
-  ```js
+
+```js
 prompt.showActionMenu({
   title: 'Title Info',
   buttons: [
@@ -186,7 +193,7 @@ prompt.showActionMenu({
   }
   console.info('showActionMenu success callback, click button: ' + data.index);
 })
-  ```
+```
 
 ## prompt.showActionMenu
 
@@ -197,17 +204,20 @@ Shows an action menu. This API uses a promise to return the result synchronously
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
+
 | Name    | Type                                     | Mandatory  | Description     |
 | ------- | --------------------------------------- | ---- | ------- |
 | options | [ActionMenuOptions](#actionmenuoptions) | Yes   | Action menu options.|
 
 **Return value**
+
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
 | Promise&lt;[ActionMenuSuccessResponse](#actionmenusuccessresponse)&gt; | Promise used to return the action menu response result.|
 
 **Example**
-  ```js
+
+```js
 prompt.showActionMenu({
   title: 'showActionMenu Title Info',
   buttons: [
@@ -227,7 +237,7 @@ prompt.showActionMenu({
   .catch(err => {
     console.info('showActionMenu error: ' + err);
   })
-  ```
+```
 ## ActionMenuOptions
 
 Describes the options for showing the action menu.
@@ -236,7 +246,7 @@ Describes the options for showing the action menu.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| title   | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Title of the text to display.                                   |
+| title   | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| No   | Title of the text to display.                                   |
 | buttons | Array&lt;[Button](#button)&gt;           | Yes   | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, extra buttons will not be displayed.|
 
 ## ActionMenuSuccessResponse
@@ -257,5 +267,5 @@ Describes the menu item button in the action menu.
 
 | Name   | Type                                      | Mandatory  | Description     |
 | ----- | ---------------------------------------- | ---- | ------- |
-| text  | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes   | Button text.|
-| color | string\| [Resource](.../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes   | Text color of the button.|
+| text  | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes   | Button text.|
+| color | string\| [Resource](../../ui/ts-types.md#resource-type)<sup>9+</sup>| Yes   | Text color of the button.|

@@ -1,6 +1,5 @@
 # Graphics Subsystem
 
-
 The Graphics subsystem mainly consists of user interface (UI) components, layout, animator, font, input event, window management, and rendering and drawing modules. It is an application framework that can be built on the LiteOS to develop OpenHarmony applications for Internet of Things (IoT) devices with limited hardware resources or on the standard OS to develop OpenHarmony applications for standard- and large-system devices.
 
 ## Mini System
@@ -74,7 +73,7 @@ Interface layer: provides native APIs for the Graphics subsystem, including WebG
 Framework layer: consists of the Render Service, Drawing, Animation, Effect, and Display and Memory Management modules.
 | Module                    | Description                                                                                      |
 |------------------------|--------------------------------------------------------------------------------------------|
-| Render Service | Performs UI framework drawing. This module converts the ArkUI component description into drawing tree information and renders the optimal path based on the corresponding rendering policy. It also provides the core underlying mechanism for multi-window smoothness and spatial UI sharing.      |
+| Render Service| Performs UI framework drawing. This module converts the ArkUI component description into drawing tree information and renders the optimal path based on the corresponding rendering policy. It also provides the core underlying mechanism for multi-window smoothness and spatial UI sharing.      |
 | Drawing          | Provides standard internal interfaces in the Graphics subsystem to implement 2D rendering, 3D rendering, and rendering engine management.                                               |
 | Animation        | Provides capabilities related to the animation engine.                                                                              |
 | Effect           | Processes image effects and rendering effects, including cascading and parallel processing of multiple effects, and adding rendering effects and component interaction effects during layout.                              |
@@ -124,8 +123,13 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-- [ace_ace_engine](https://gitee.com/openharmony/ace_ace_engine)
-- [aafwk_standard](https://gitee.com/openharmony/aafwk_standard)
-- [multimedia_media_standard](https://gitee.com/openharmony/multimedia_media_standard)
-- [multimedia_camera_standard](https://gitee.com/openharmony/multimedia_camera_standard)
-- [windowmanager](https://gitee.com/openharmony/windowmanager)
+- [**graphic_graphic_2d**](https://gitee.com/abbuu_openharmony/graphic_graphic_2d)
+- [arkui_ace_engine](https://gitee.com/openharmony/arkui_ace_engine)
+- [ability_ability_runtime](https://gitee.com/openharmony/ability_ability_runtime)
+- [multimedia_player_framework](https://gitee.com/openharmony/multimedia_player_framework)
+- [multimedia_image_standard](https://gitee.com/openharmony/multimedia_image_standard)
+- [Windowmanager](https://gitee.com/openharmony/windowmanager)
+- [third_party_egl](https://gitee.com/openharmony/third_party_egl)
+- [third_party_opengles](https://gitee.com/openharmony/third_party_opengles)
+- [third_party_skia](https://gitee.com/openharmony/third_party_skia)
+- [third_party_giflib](https://gitee.com/openharmony/third_party_giflib)

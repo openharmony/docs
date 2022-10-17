@@ -14,7 +14,7 @@
 
 ## 接口
 
-Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
 
 **参数：**
 
@@ -41,8 +41,8 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 | vertical          | boolean | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
 | scrollable        | boolean | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
 | barMode           | BarMode | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
-| barWidth          | number&nbsp;\|&nbsp;string<sup>8+</sup>  | TabBar的宽度值。     |
-| barHeight         | number&nbsp;\|&nbsp;string<sup>8+</sup>  | TabBar的高度值。     |
+| barWidth          | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。     |
+| barHeight         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。     |
 | animationDuration | number | TabContent滑动动画时长。<br/>默认值：200 |
 
 ## BarMode枚举说明
@@ -58,7 +58,7 @@ Tabs(value: {barPosition?: BarPosition, index?: number, controller?: [TabsContro
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 |
+| onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。 |
 
 ## TabsController
 

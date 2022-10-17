@@ -7,7 +7,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 - The SD card update depends on the update packages and SD cards.
 - The OTA update depends on the server deployed by the device manufacturer for managing update packages. The OTA server IP address is passed by the caller. The request interface is fixed and developed by the device manufacturer.
 
-> **Note:**
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -43,13 +43,13 @@ Obtains an **OnlineUpdater** object.
 
 ```ts
 try {
-  var upgradeInfo = {
+  const upgradeInfo = {
     upgradeApp: "com.ohos.ota.updateclient",
     businessType: {
       vendor: update.BusinessVendor.PUBLIC,
       subType: update.BusinessSubType.FIRMWARE
     }
-  }
+  };
   let updater = update.getOnlineUpdater(upgradeInfo);
 } catch(error) {
   console.error(`Fail to get updater error: ${error}`);
@@ -226,22 +226,22 @@ Obtains the description file of the new version. This API uses an asynchronous c
 | Name               | Type                                      | Mandatory  | Description            |
 | ------------------ | ---------------------------------------- | ---- | -------------- |
 | versionDigestInfo  | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.        |
-| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.        |
+| descriptionOptions | [DescriptionOptions](#descriptionoptions) | Yes   | Options of the description file.       |
 | callback           | AsyncCallback\<Array\<[ComponentDescription](#componentdescription)>>) | Yes   | Callback used to return the result.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options of the description file
-var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions, (err, info) => {
   console.log(`getNewVersionDescription info ${JSON.stringify(info)}`);
@@ -276,15 +276,15 @@ Obtains the description file of the new version. This API uses a promise to retu
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options of the description file
-var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then(info => {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
@@ -368,10 +368,10 @@ Obtains the description file of the current version. This API uses an asynchrono
 
 ```ts
 // Options of the description file
-var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions, (err, info) => {
   console.log(`getCurrentVersionDescription info ${JSON.stringify(info)}`);
@@ -405,10 +405,10 @@ Obtains the description file of the current version. This API uses a promise to 
 
 ```ts
 // Options of the description file
-var descriptionOptions = {
-  format: DescriptionFormat.STANDARD, // Standard format
+const descriptionOptions = {
+  format: update.DescriptionFormat.STANDARD, // Standard format
   language: "zh-cn" // Chinese
-}
+};
 
 updater.getCurrentVersionDescription(descriptionOptions).then(info => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
@@ -483,21 +483,21 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Download options
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
-}
+};
 updater.download(versionDigestInfo, downloadOptions, (err) => {
   console.log(`download error ${JSON.stringify(err)}`);
 });
@@ -524,21 +524,21 @@ Downloads the new version. This API uses a promise to return the result.
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise Promise that returns no value.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Download options
-var downloadOptions = {
+const downloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
   order: update.Order.DOWNLOAD // Download
-}
+};
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch(err => {
@@ -562,20 +562,20 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
-| callback              | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for resuming download
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions, (err) => {
   console.log(`resumeDownload error ${JSON.stringify(err)}`);
 });
@@ -608,14 +608,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for resuming download
-var resumeDownloadOptions = {
+const resumeDownloadOptions = {
   allowNetwork: update.NetType.CELLULAR, // Whether to allow download over data network
-}
+};
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(value => {
   console.log(`resumeDownload start`);
 }).catch(err => {
@@ -639,20 +639,20 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
-| callback             | AsyncCallback\<void>                     | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for pausing download
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions, (err) => {
   console.log(`pauseDownload error ${JSON.stringify(err)}`);
 });
@@ -685,14 +685,14 @@ Resumes download of the new version. This API uses a promise to return the resul
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for pausing download
-var pauseDownloadOptions = {
+const pauseDownloadOptions = {
   isAllowAutoResume: true // Whether to allow automatic resuming of download
-}
+};
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(value => {
   console.log(`pauseDownload`);
 }).catch(err => {
@@ -716,20 +716,20 @@ Updates the version. This API uses an asynchronous callback to return the result
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Installation options
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // Installation command
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions, (err) => {
   console.log(`upgrade error ${JSON.stringify(err)}`);
 });
@@ -762,14 +762,14 @@ Updates the version. This API uses a promise to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Installation options
-var upgradeOptions = {
+const upgradeOptions = {
   order: update.Order.INSTALL // Installation command
-}
+};
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch(err => {
@@ -793,20 +793,20 @@ Clears errors. This API uses an asynchronous callback to return the result.
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for clearing errors
-var clearOptions = {
+const clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions, (err) => {
   console.log(`clearError error ${JSON.stringify(err)}`);
 });
@@ -839,14 +839,14 @@ Clears errors. This API uses a promise to return the result.
 
 ```ts
 // Version digest information
-var versionDigestInfo = {
+const versionDigestInfo = {
   versionDigest: "versionDigest" // Version digest information in the check result
-}
+};
 
 // Options for clearing errors
-var clearOptions = {
+lconstet clearOptions = {
   status: update.UpgradeStatus.UPGRADE_FAIL,
-}
+};
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch(err => {
@@ -926,11 +926,11 @@ Sets the update policy. This API uses an asynchronous callback to return the res
 **Example**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
-}
+};
 updater.setUpgradePolicy(policy, (err) => {
   console.log(`setUpgradePolicy result: ${err}`);
 });
@@ -961,11 +961,11 @@ Sets the update policy. This API uses a promise to return the result.
 **Example**
 
 ```ts
-let policy = {
+const policy = {
   downloadStrategy: false,
   autoUpgradeStrategy: false,
   autoUpgradePeriods: [ { start: 120, end: 240 } ] // Automatic update period, in minutes
-}
+};
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
 }).catch(err => {
@@ -987,7 +987,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
@@ -1041,10 +1041,10 @@ Enables listening for update events. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 updater.on(eventClassifyInfo, (eventInfo) => {
   console.log("updater on " + JSON.stringify(eventInfo));
@@ -1068,10 +1068,10 @@ Disables listening for update events. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 updater.off(eventClassifyInfo, (eventInfo) => {
   console.log("updater off " + JSON.stringify(eventInfo));
@@ -1084,7 +1084,7 @@ updater.off(eventClassifyInfo, (eventInfo) => {
 
 factoryReset(callback: AsyncCallback\<void>): void
 
-Restore the device to its factory settings. This API uses an asynchronous callback to return the result.
+Restores the device to its factory settings. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1094,7 +1094,7 @@ Restore the device to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
@@ -1108,7 +1108,7 @@ restorer.factoryReset((err) => {
 
 factoryReset(): Promise\<void>
 
-Restore the device to its factory settings. This API uses a promise to return the result.
+Restores the device to its factory settings. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1118,7 +1118,7 @@ Restore the device to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise Promise that returns no value.|
 
 **Example**
 
@@ -1153,10 +1153,10 @@ Verifies the update package. This API uses an asynchronous callback to return th
 **Example**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}
+};
 
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath", (err) => {
   console.log(`factoryReset error ${JSON.stringify(err)}`);
@@ -1189,10 +1189,10 @@ Verifies the update package. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var upgradeFile = {
+const upgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}
+};
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
 }).catch(err => {
@@ -1214,15 +1214,15 @@ Installs the update package. This API uses an asynchronous callback to return th
 | Name        | Type                                | Mandatory  | Description                                     |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
-| callback    | AsyncCallback\<void>               | Yes   | Callback invoked to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
 
 **Example**
 
 ```ts
-var upgradeFiles = [{
+const upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}]
+}];
 
 localUpdater.applyNewVersion(upgradeFiles, (err) => {
   console.log(`applyNewVersion error ${JSON.stringify(err)}`);
@@ -1248,10 +1248,10 @@ Installs the update package. This API uses a promise to return the result.
 **Example**
 
 ```ts
-var upgradeFiles = [{
+localUpdater upgradeFiles = [{
   fileType: update.ComponentType.OTA, // OTA package
   filePath: "path" // Path of the local update package
-}]
+}];
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
 }).catch(err => {
@@ -1276,10 +1276,10 @@ Enables listening for update events. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
@@ -1305,10 +1305,10 @@ Disables listening for update events. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-var eventClassifyInfo = {
+const eventClassifyInfo = {
   eventClassify: update.EventClassify.TASK, // Listening for update events
   extraInfo: ""
-}
+};
 
 function onTaskUpdate(eventInfo) {
   console.log(`on eventInfo id `, eventInfo.eventId);
@@ -1337,7 +1337,7 @@ Enumerates update service types.
 | Name     | Type                               | Mandatory  | Description  |
 | ------- | ----------------------------------- | ---- | ---- |
 | vendor  | [BusinessVendor](#businessvendor)   | Yes   | Application vendor. |
-| subType | [BusinessSubType](#businesssubtype) | Yes   | Type  |
+| subType | [BusinessSubType](#businesssubtype) | Yes   | Update service type.  |
 
 ## CheckResult
 
@@ -1377,11 +1377,11 @@ Represents a version component.
 
 **System capability**: SystemCapability.Update.UpdateService
 
-| Parameter             | Type                               | Mandatory  | Description      |
+| Name             | Type                               | Mandatory  | Description      |
 | --------------- | ----------------------------------- | ---- | -------- |
 | componentId     | string                              | Yes   | Component ID.    |
-| componentType   | [ComponentType](#componenttype)     | Yes   | Component type.    |
-| upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Update mode.    |
+| componentType   | [ComponentType](#componenttype)     | Yes   | Color component type.    |
+| upgradeAction   | [UpgradeAction](#upgradeaction)     | Yes   | Represents an update mode.    |
 | displayVersion  | string                              | Yes   | Display version number.   |
 | innerVersion    | string                              | Yes   | Internal version number.     |
 | size            | number                              | Yes   | Update package size.   |
@@ -1498,7 +1498,7 @@ Represents an update policy.
 
 ## UpgradePeriod
 
-Represents a period for automatic update.
+Represents an automatic update period.
 
 **System capability**: SystemCapability.Update.UpdateService
 
@@ -1516,7 +1516,7 @@ Represents task information.
 | Name       | Type                 | Mandatory  | Description    |
 | --------- | --------------------- | ---- | ------ |
 | existTask | bool                  | Yes   | Whether a task exists.|
-| taskBody  | [TaskBody](#taskinfo) | Yes   | Task data.  |
+| taskBody  | [TaskBody](#taskinfo) | Yes   | Represents task data.  |
 
 ## EventInfo
 
@@ -1526,7 +1526,7 @@ Represents event type information.
 
 | Name      | Type                 | Mandatory  | Description  |
 | -------- | --------------------- | ---- | ---- |
-| eventId  | [EventId](#eventid)   | Yes   | Event ID.|
+| eventId  | [EventId](#eventid)   | Yes   | Enumerates event IDs.|
 | taskBody | [TaskBody](#taskinfo) | Yes   | Task data.|
 
 ## TaskBody
@@ -1554,7 +1554,7 @@ Represents an error message.
 | Name          | Type  | Mandatory  | Description  |
 | ------------ | ------ | ---- | ---- |
 | errorCode    | number | Yes   | Error code. |
-| errorMessage | string | Yes   | Error description.|
+| errorMessage | string | Yes   | Error message.|
 
 ## EventClassifyInfo
 
@@ -1580,7 +1580,7 @@ Represents an update file.
 
 ## UpgradeTaskCallback
 
-### (eventInfo: [EventInfo](#eventinfo)): void
+(eventInfo: EventInfo): void
 
 Represents an event callback.
 

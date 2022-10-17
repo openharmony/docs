@@ -1,4 +1,4 @@
-# Standard NFC Tag
+# NFC Tags
 
 The **nfcTag** module provides methods for managing Near-Field Communication (NFC) tags.
 

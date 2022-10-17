@@ -1,24 +1,26 @@
 # API Reference Template
 
 ## General Writing Instructions
+> **NOTE** 
+>
+> Delete all writing instructions after you finish the writing.
 
 |      | Item                           | Writing Instruction                                                        |
 | ---- | --------------------------------- | ------------------------------------------------------------ |
-| 1    | Customer-oriented writing               | **Stand in the shoes of developers and clearly describe the use cases, parameter selection principles, recommendations/tips, and sample code.**|
-| 2    |                                   | **Delete all writing instructions from your document after you finish the writing.**                |
-| 3    | Upload path                         | Upload markdown files to `docs/en/application-dev/reference/apis`.<br>Upload images to `docs/en/application-dev/reference/apis/figures`. In addition, reference the image path in the markdown file as follows: `![](figures/exampleImage.jpg)`, `![](figures/exampleImage.png)`, or `![](figures/exampleImage.gif)`.|
-| 4    | File name                         | Provide one JS API reference document for each d.ts file. Name the file in the format of `js-apis-exampleModule.md`, where `exampleModule` is a variable and must be the same as the actual module name.<br>Examples:<br>For @ohos.multimedia.audio in the Multimedia subsystem, the JS API file name is `js-apis-audio.md`.<br>For @ohos.telephony.sms in the Telephony subsystem, the JS API file name is `js-apis-sms.md`.|
-| 5    | Directory update                         | After uploading an API reference document, update the `Readme-EN.md` file in `docs/en/application-dev/reference/apis`.|
-| 6    | Document structure                         | - Module description<br>- Initial version description<br>- Modules to Import/Usage description<br>- API description (attributes, methods, enums, and custom types)<br>  The order in which APIs are described in the document must be consistent with that in which they appear in the code. If some APIs have a logical sequence, pay attention to their sequence in the API reference document.|
-| 7    | API version description                     | 1. Use the greater-than sign (`>`) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the `<sup>` tag to mark its earliest version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.<br>If an attribute is added to an existing module, suffix the `<sup>` tag to the new attribute name, for example, `newAttribute<sup>7+</sup>`.<br>If a method is added to an existing module, suffix the `<sup>` tag to the method name, for example, `sim.getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums. |
-| 8    | Deprecated API description                     | Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (`>`) to introduce the substitute API plus a link to the API description.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is no longer maintained since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
-| 9    | Permission description                         | Provide the same permission description as that defined in the code for each method, enum, and attribute.<br>1. If a specific permission required for using the API can be requested only by system applications, provide the description in the following format:<br>    **Required permissions**: ohos.permission.examplePermission (available only to system applications)<br>2. If a specific permission required for using the API can be requested by all applications, provide the description in the following format:<br>    **Required permissions**: ohos.permission.examplePermission<br>3. If multiple permissions are required for using the API, provide the permissions with `and` or `or` in the following format:<br>    **Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>    **Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
-| 10   | @syscap                           | 1. Provide a description for every API in the following format, wherein *A.B* indicates a specific system capability.<br>    **System capability**: SystemCapability.*A.B*<br>2. There are two cases for adding system capability information to a table (of attributes, enums, constants, or variables).<br>    1) If all the items in a table require the same system capability, add the following information to the front of the table:<br>    **System capability**: SystemCapability.*A.B*<br>    2) If the items in a table require different system capabilities, list the system capability for each item in the table. |
-| 11   | @system api                       | 1. If all APIs of the module are system APIs, add the following sentence to the next line of the initial version description:<br>    The APIs provided by this module are system APIs.<br>2. If an API is a system API that can be used only by original equipment manufacturers (OEMs), add the following sentence to the API description:<br>    **System API**: This is a system API.|
-| 12   | @FAModelOnly<br>@StageModelOnly  | 1. If a module is implemented only for a specific ability model, add the following sentence to the next line of the initial version description:<br>    The APIs of this module can be used only in the FA model.<br>Or<br>    The APIs of this module can be used only in the stage model.<br>2. If an API is implemented only for a specific ability model, add the following sentence to the API description:<br>    **Model restriction**: This API can be used only in the FA model.<br/>Or<br/>    **Model restriction**: This API can be used only in the stage model. |
-| 13   | Asynchronous methods (callback and promise)| Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the `AudioCapturer` object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`, and `data` is the *x* object obtained; otherwise, `err` is an `Error` object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the `AudioCapturer` object.   <br>**Promise\<void>**: Promise that returns no value.|
-| 14   | Sample code programming language                     | Use code blocks to provide sample code and mark the programming language.<br>Use `js` as the mark if both JS and eTS can be used, and use `ts` if only eTS can be used.|
-| 15   | Link                         | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One `./` indicates one upper-level folder.<br>Intra-topic link format: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character (except the hyphen) or tag is included.|
+| 1    | Customer-oriented mindset               | **Stand in the shoes of developers and provide the use cases, parameter selection principles, recommendations/tips, sample code, and anything else that a developer will need to develop the API.**|
+| 2    | Upload path                         | Upload markdown files to `docs/en/application-dev/reference/apis`.<br>Upload images to `docs/en/application-dev/reference/apis/figures`. In addition, reference the image path in the markdown file as follows: `![](figures/exampleImage.jpg)`, `![](figures/exampleImage.png)`, or `![](figures/exampleImage.gif)`.|
+| 3    | File name                         | Provide one JS API reference document for each d.ts file. Name the file in the format of `js-apis-exampleModule.md`, where `exampleModule` is a variable and must be the same as the actual module name.<br>Examples:<br>For @ohos.multimedia.audio in the Multimedia subsystem, the JS API file name is `js-apis-audio.md`.<br>For @ohos.telephony.sms in the Telephony subsystem, the JS API file name is `js-apis-sms.md`.|
+| 4    | Directory update                         | After uploading an API reference document, update the `Readme-EN.md` file in `docs/en/application-dev/reference/apis`.|
+| 5    | Document structure                         | - Module description<br>- Initial version description<br>- Modules to Import/Usage description<br>- API description (attributes, methods, enums, and custom types)<br>  The order in which APIs are described in the document must be consistent with that in which they appear in the code. If some APIs have a logical sequence, pay attention to their sequence in the API reference document.|
+| 6    | Initial version description                     | 1. Use the greater-than sign (`>`) followed by a space to indent the description about the initial version of the module. Unless otherwise marked, all APIs in the module have the same initial version.<br>2. When introducing an API to an existing module, use the `<sup>` tag to mark its earliest version. The format is `<sup>versionNumber+</sup>`, for example, `<sup>7+</sup>`.<br>If an attribute is added to an existing module, suffix the `<sup>` tag to the new attribute name, for example, `newAttribute<sup>7+</sup>`.<br>If a method is added to an existing module, suffix the `<sup>` tag to the method name, for example, `sim.getSimIccId<sup>7+</sup>`. The same rule applies to new interfaces, classes, and enums. |
+| 7    | Deprecated API description                     | Do not delete the deprecated content from the document. Instead, suffix `deprecated` as a superscript to the content, and use the greater-than sign (`>`) to introduce the substitute API plus a link to the API description.<br>Example: abandonmentMethod<sup>(deprecated)</sup><br>> This API is no longer maintained since API version 7. You are advised to use [newMethod]\(#newmethod) instead.|
+| 8    | Permission description                         | Provide the same permission description as that defined in the code for each method, enum, and attribute.<br>1. If a specific permission required for using the API can be requested only by system applications, provide the description in the following format:<br>**Required permissions**: ohos.permission.examplePermission (available only to system applications)<br>2. If a specific permission required for using the API can be requested by all applications, provide the description in the following format:<br>**Required permissions**: ohos.permission.examplePermission<br>3. If multiple permissions are required for using the API, provide the permissions with `and` or `or` in the following format:<br>**Required permissions**: ohos.permission.examplePermissionA and ohos.permission.examplePermissionB<br>**Required permissions**: ohos.permission.examplePermissionA or ohos.permission.examplePermissionB|
+| 9   | @syscap                           | 1. Provide a description for every API in the following format, wherein *A.B* indicates a specific system capability.<br>**System capability**: SystemCapability.*A.B*<br>2. There are two cases for adding system capability information to a table (of attributes, enums, constants, or variables).<br>1) If all the items in a table require the same system capability, add the following information to the front of the table:<br>**System capability**: SystemCapability.*A.B*<br>2) If the items in a table require different system capabilities, list the system capability for each item in the table. |
+| 10   | @system api                       | 1. If all APIs of the module are system APIs, add the following sentence to the next line of the initial version description:<br>The APIs provided by this module are system APIs.<br>2. If an API is a system API that can be used only by original equipment manufacturers (OEMs), add the following sentence to the API description:<br>**System API**: This is a system API.|
+| 11   | @FAModelOnly<br>@StageModelOnly  | 1. If a module is implemented only for a specific ability model, add the following sentence to the next line of the initial version description:<br>The APIs of this module can be used only in the FA model.<br>Or<br>The APIs of this module can be used only in the stage model.<br>2. If an API is implemented only for a specific ability model, add the following sentence to the API description:<br>**Model restriction**: This API can be used only in the FA model.<br/>Or<br/>**Model restriction**: This API can be used only in the stage model.|
+| 12   | Asynchronous methods (callback and promise)| Use the following sentences for callback methods.<br>Method introduction: *Describe the method.* This API uses an asynchronous callback to return the result.<br>Parameter description:<br>**callback\<boolean>**: Callback used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**callback\<Object>**: Callback used to return *something*. Example: Callback used to return the `AudioCapturer` object.   <br>**AsyncCallback\<void>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.<br>**AsyncCallback\<Object x>**: Callback used to return the result. If the operation (or a specific operation description) is successful, `err` is `undefined`, and `data` is the *x* object obtained; otherwise, `err` is an `Error` object.<br>Use the following sentences for promise methods.<br>Method introduction: *Describe the method.* This API uses a promise to return the result.<br>Parameter description:<br>**Promise\<boolean>**: Promise used to return the result. The value `true` indicates *something*, and `false` indicates the opposite.<br>**Promise\<Object>**: Promise used to return *something*. Example: Promise used to return the `AudioCapturer` object.   <br>**Promise\<void>**: Promise that returns no value.|
+| 13   | Sample code programming language                     | Use code blocks to provide sample code and mark the programming language.<br>Use `js` as the mark if both JS and eTS can be used, and use `ts` if only eTS can be used.|
+| 14   | Link                         | Link format: [Link text]\(Link content)<br>Cross-folder link format: [markdown file name]\(\.\./../xxx/xxx.md). One `./` indicates one upper-level folder.<br>Intra-topic link format: [Interface A<sup>7+</sup>]\(#xxxa7). The text in the intra-topic link must be the same as the title to be linked. In the link, all letters must be in lowercase, and no special character (except the hyphen) or tag is included.|
 
 The following describes the instructions for writing a specific API reference document.
 
@@ -82,7 +84,7 @@ import call from '@ohos.telephony.call';
 
 > *Writing Instructions*
 >
-> 1. Optional. Delete this section if there is no attribute.
+> 1. This section is optional. Delete it if there is no attribute.
 >
 > 2. If an attribute is of a custom type, create a link to the corresponding interface or enum.
 >
@@ -90,7 +92,7 @@ import call from '@ohos.telephony.call';
 >
 > 4. For a writable attribute, if only fixed fields are supported, describe them.
 
-**System capability**: SystemCapability.*A.B* (Mandatory)
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
 | Name            | Type                                     | Readable| Writable| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
@@ -101,7 +103,7 @@ import call from '@ohos.telephony.call';
 
 > *Writing Instructions*
 >
-> 1. Optional. Delete this section if there is no method. If there are multiple methods, describe them in separate level-2 headings, prefixed with `##` followed by a space.
+> 1. This section is optional. Delete it if there is no method. If there are multiple methods, describe them in separate level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual method name, in the format of ClassName.methodName, as the level-2 heading. For a subscription method, add the subscription event to the method name.
 >
@@ -128,16 +130,16 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 **Required permissions**: ohos.permission.examplePermission (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
-**System capability**: SystemCapability.*A.B* (mandatory)
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-**Parameters** (Optional. Delete this part if there is no parameter.)
+**Parameters** (This part is optional. Delete it if there is no parameter.)
 
 | Name      | Type                                         | Mandatory| Description                                                        |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | parameterOne | number \| string \| [CustomType](#customtype) | Yes  | Describe the parameter. Provide the value range and recommended value. If there is a fixed format, provide a format example, especially for the URI.<br>Provide a link for each custom parameter type.|
 | callback     | Callback\<Array<[CustomType](#customtype)>>   | No  | Describe the parameter. For an optional parameter, describe the consequences if it is not specified.<br>Example: If this parameter is not set, this method unsubscribes from all callbacks corresponding to **type**.<br>For details about how to write callback methods, see item 14 in "General Writing Instructions."|
 
-**Return value** (Optional. Delete this part if there is no return value.)
+**Return value** (This part is optional. Delete it if there is no return value.)
 
 | Type                                      | Description                                           |
 | ------------------------------------------ | ----------------------------------------------- |
@@ -184,16 +186,16 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 **Required permissions**: ohos.permission.examplePermission (Delete this part if no permission is involved. If a system permission is required, specify it.)
 
-**System capability**: SystemCapability.*A.B* (mandatory)
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
-**Parameters** (Optional. Delete this part if there is no parameter.)
+**Parameters** (This part is optional. Delete it if there is no parameter.)
 
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The `'play'` event is triggered when the `play()` API is called and audio playback starts.<br>**Example 2 (multiple events)**:<br>Type of the event. The following events are supported:<br/>- 'play': triggered when the play() API is called and audio playback starts.<br/>- 'dataLoad': triggered when the audio data is loaded, that is, when the `src` attribute is configured.<br/>- 'finish': triggered when the audio playback is finished. |
 | callback | Callback\<[CustomType](#CustomType)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
 
-**Return value** (Optional. Delete this part if there is no return value.)
+**Return value** (This part is optional. Delete it if there is no return value.)
 
 | Type  | Description                                 |
 | ------ | ------------------------------------- |
@@ -202,7 +204,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 **Example**
 
 ```js
-// Mandatory. The instructions are the same as those provided under [Methods](#methods).
+// This part is mandatory. The instructions are the same as those provided under [Methods](#methods).
 
 // Check all sample code provided in the example.
 // Minor errors such as missing symbols and variable inconsistency are unacceptable.
@@ -220,7 +222,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 > *Writing Instructions*
 >
-> 1. Optional. Delete this section if there is no class or interface. If there are multiple classes or interfaces, describe them in multiple level-2 headings, prefixed with `##` followed by a space.
+> 1. This section is optional. Delete it if there is no class or interface. If there are multiple classes or interfaces, describe them in multiple level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual class or interface name as the level-2 heading.
 >
@@ -248,13 +250,13 @@ Describe the class or interface. If there are usage restrictions, describe them 
 
 > *Writing Instructions*
 >
-> 1. Optional. Delete this section if there is no enum. If there are multiple enums, describe them in separate level-2 headings, prefixed with `##` followed by a space.
+> 1. This section is optional. Delete it if there is no enum. If there are multiple enums, describe them in separate level-2 headings, prefixed with `##` followed by a space.
 >
 > 2. Use the actual enum name as the level-2 heading, for example, `BatteryHealthState`.
 
 Provide a brief description of the enum type. Example: Enumerates the charger types.
 
-**System capability**: SystemCapability.*A.B* (mandatory)
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
 | Name| Value  | Description                      |
 | ---- | ---- | -------------------------- |
@@ -263,7 +265,7 @@ Provide a brief description of the enum type. Example: Enumerates the charger ty
 ## CustomType
 
 The following is an example of the custom type of a key-value pair.
-**System capability**: SystemCapability.*A.B* (mandatory)
+**System capability**: SystemCapability.*A.B* (This part is mandatory.)
 
 | Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |

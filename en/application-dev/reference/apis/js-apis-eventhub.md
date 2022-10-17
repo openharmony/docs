@@ -9,10 +9,10 @@ The **EventHub** module provides APIs to subscribe to, unsubscribe from, and tri
 
 ## Usage
 
-​Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
+Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **Ability** instance.
 
 ```js
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.application.Ability';
 export default class MainAbility extends Ability {
     func1(){
         console.log("func1 is called");
@@ -34,15 +34,15 @@ Subscribes to an event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name.| 
-  | callback | Function | Yes| Callback invoked when the event is triggered.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Event name.|
+| callback | Function | Yes| Callback invoked when the event is triggered.|
 
 **Example**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -72,15 +72,15 @@ Unsubscribes from an event. If **callback** is specified, this API unsubscribes 
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name.| 
-  | callback | Function | No| Callback for the event. If **callback** is unspecified, all callbacks of the event are unsubscribed.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Event name.|
+| callback | Function | No| Callback for the event. If **callback** is unspecified, all callbacks of the event are unsubscribed.|
 
 **Example**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {
@@ -110,15 +110,15 @@ Triggers an event.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description| 
-  | -------- | -------- | -------- | -------- |
-  | event | string | Yes| Event name.| 
-  | ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered.| 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| event | string | Yes| Event name.|
+| ...args | Object[] | Yes| Variable parameters, which are passed to the callback when the event is triggered.|
 
 **Example**
     
   ```js
-  import Ability from '@ohos.application.Ability'
+  import Ability from '@ohos.application.Ability';
   
   export default class MainAbility extends Ability {
       onForeground() {

@@ -1,7 +1,7 @@
 # Module
 ## Configuration Rules
 
-The Compilation and Building subsystem implements compilation and packaging by module, component, and product. A module is an target to build. It can be a dynamic library, static library, configuration file, or prebuilt module. The component to which a module belongs must be defined. A module can belong to only one component. OpenHarmony uses customized GN templates to configure modules. For details about the GN basics, see https://gn.googlesource.com/gn/+/main/docs/reference.md.
+The Compilation and Building subsystem implements compilation and packaging by module, component, and product. A module is an target to build. It can be a dynamic library, static library, configuration file, or prebuilt module. A module must belong to a component and can belong to only one component. OpenHarmony uses customized GN templates to configure modules. For details about the GN basics, see https://gn.googlesource.com/gn/+/main/docs/reference.md.
 
 The common templates for module configuration are as follows:
 
@@ -12,22 +12,22 @@ ohos_static_library
 ohos_executable
 ohos_source_set
 
-# # Prebuilt templates
+# Prebuilt templates
 ohos_prebuilt_executable
 ohos_prebuilt_shared_library
 ohos_prebuilt_static_library
 
-#HAP templates
+# HAP templates
 ohos_hap
 ohos_app_scope
 ohos_js_assets
 ohos_resources
 
-#Other templates
-#Configuration file
+# Other templates
+# Configuration file
 ohos_prebuild_etc
 
-#SA profile
+# SA profile
 ohos_sa_profile
 ```
 
@@ -52,13 +52,13 @@ ohos_shared_library("helloworld") {
   deps = []                     # Define dependent modules that belong to the same component.
 
   external_deps = [             # Define dependent modules that belong to different components.
-  "part_name:module_name",      # The value is in the Component name:Module name format.
-  ]                             # The dependent module must be declared in inner_kits by the dependent component.
+  "part_name:module_name",      # The value is in the Component_name:Module_name format.
+  ]                             # The dependent modules must be declared in inner_kits by the dependent component.
 
   output_name = [string]        # Name of the module output.
   output_extension = []         # Extension name of the module.
   module_install_dir = []       # Module installation directory. The default directory is /system/lib64 or /system/lib. Specify the directory from system/ or vendor/.
-  relative_install_dir = []     # Relative installation directory of the module (relative to /system/lib64 or /system/lib). If module_install_dir is configured, the parameter does not take effect.
+  relative_install_dir = []     # Relative module installation directory (relative to /system/lib64 or /system/lib). If module_install_dir is configured, the parameter does not take effect.
 
   part_name = [string]          # (Mandatory) Component name.
   output_dir
@@ -84,7 +84,7 @@ ohos_shared_library("helloworld") {
 }
 ```
 
-**ohos_static_library** example
+**ohos_static_library** example:
 
 ```shell
 import("//build/ohos.gni")
@@ -98,8 +98,8 @@ ohos_static_library("helloworld") {
   cflags = []
 
   external_deps = [             # Define dependent modules that belong to different components.
-  "part_name:module_name",      # The value is in the Component name:Module name format.
-  ]                             # The dependent module must be declared in inner_kits by the dependent component.
+  "part_name:module_name",      # The value is in the Component_name:Module_name format.
+  ]                             # The dependent modules must be declared in inner_kits by the dependent component.
 
   lib_dirs = []
   public_configs = []
@@ -131,8 +131,8 @@ ohos_executable("helloworld") {
   deps = []                          # Define dependent modules that belong to the same component.
 
   external_deps = [                  # Define dependent modules that belong to different components.
-  "part_name:module_name",           # The value is in the Component name:Module name format.
-  ]                                  # The dependent module must be declared in inner_kits by the dependent component.
+  "part_name:module_name",           # The value is in the Component_name:Module_name format.
+  ]                                  # The dependent modules must be declared in inner_kits by the dependent component.
   ohos_test = []
   test_output_dir = []
   
@@ -160,7 +160,7 @@ ohos_executable("helloworld") {
 }
 ```
 
-**ohos_source_set** example
+**ohos_source_set** example:
 
 ```shell
 import("//build/ohos.gni")
@@ -173,11 +173,11 @@ ohos_source_set("helloworld") {
   public_configs = []
   part_name = [string]         # Component name.
   subsystem_name = [string]    # Subsystem name.
-  deps = []                    # Define dependent modules that belong to the same component.
+  deps = []  # Define dependent modules that belong to the same component.
 
   external_deps = [            # Define dependent modules that belong to different components.
-  "part_name:module_name",     # The value is in the Component name:Module name format.
-  ]                            # The dependent module must be declared in inner_kits by the dependent component.
+  "part_name:module_name",     # The value is in the Component_name:Module_name format.
+  ]                            # The dependent modules must be declared in inner_kits by the dependent component.
   
   # Sanitizer variables
   cfi = [boolean]
@@ -192,7 +192,7 @@ ohos_source_set("helloworld") {
   license_file = []
   remove_configs = []
   no_default_deps = []
-  license_file = []                  # A .txt file.
+  license_file = []              # A .txt file.
   license_as_sources = []
   use_exceptions = []
 }
@@ -204,63 +204,63 @@ ohos_source_set("helloworld") {
 
 The .gni file of the prebuilt templates is located in **openharmony/build/templates/cxx/prebuilt.gni**.
 
-**ohos_prebuilt_executable** example
+**ohos_prebuilt_executable** example:
 
 ```shell
 import("//build/ohos.gni")
 ohos_prebuilt_executable("helloworld") {
-  sources = ["file"]                 # Source.
+  sources = ["file"]                      # Source.
   output = []
   install_enable = [boolean]         
 
-  deps = []                          # Define dependent modules that belong to the same component.
+  deps = []                               # Define dependent modules that belong to the same component.
   public_configs = []
-  subsystem_name = [string]          # Subsystem name.
-  part_name = [string]               # Component name.
+  subsystem_name = [string]               # Subsystem name.
+  part_name = [string]                    # Component name.
 
   testonly = [boolean]
   visibility = []
 
   install_images = []
-  module_install_dir = []            # Module installation directory, starting from system/ or vendor/.
-  relative_install_dir = []          # Relative module installation directory (relative to system/etc). If module_install_dir is configured, the parameter does not take effect.
+  module_install_dir = []                 # Module installation directory, starting from system/ or vendor/.
+  relative_install_dir = []               # Relative module installation directory (relative to system/etc). If module_install_dir is configured, the parameter does not take effect.
   symlink_target_name = []
 
 
-  license_file = []                  # A .txt file.
+  license_file = []                       # A .txt file.
   license_as_sources = []
 }
 ```
 
-**ohos_prebuilt_shared_library** example
+**ohos_prebuilt_shared_library** example:
 
 ```shell
 import("//build/ohos.gni")
 ohos_prebuilt_shared_library("helloworld") {
-  sources = ["file"]                 # .so files.
+  sources = ["file"]                      # .so files.
   output = []
   install_enable = [boolean]
 
-  deps = []                          # Define dependent modules that belong to the same component.
+  deps = []                               # Define dependent modules that belong to the same component.
   public_configs = []
-  subsystem_name = [string]          # Subsystem name.
-  part_name = [string]               # Component name.
+  subsystem_name = [string]               # Subsystem name.
+  part_name = [string]                    # Component name.
 
   testonly = [boolean]
   visibility = []
 
   install_images = []
-  module_install_dir = []            # Module installation directory, starting from system/ or vendor/.
-  relative_install_dir = []          # Relative module installation directory (relative to system/etc). If module_install_dir is configured, the parameter does not take effect.
+  module_install_dir = []                 # Module installation directory, starting from system/ or vendor/.
+  relative_install_dir = []               # Relative module installation directory (relative to system/etc). If module_install_dir is configured, the parameter does not take effect.
   symlink_target_name = [string]
 
 
-  license_file = [string]            # A .txt file.
+  license_file = [string]                 # A .txt file.
   license_as_sources = []
 }
 ```
 
-**ohos_prebuilt_static_library** example
+**ohos_prebuilt_static_library** example:
 
 ```shell
 import("//build/ohos.gni")
@@ -348,40 +348,40 @@ The figure below illustrates the process for adding a module. A module belongs t
 
    ```shell
    {
-      "name": "@ohos/<component_name>,                       # HPM component name, in the "@Organization/Component name" format.
-      "description": "xxxxxxxxxxxxxxxxxxx",                  # Description of the component functions.
-      "version": "3.1",                                      # Version, which must be the same as the version of OpenHarmony.
-      "license": "MIT",                                      # Component license.
-      "publishAs": "code-segment",                           # HPM package release mode. The default value is code-segment.
+      "name": "@ohos/<component_name>,                          # HPM component name, in the "@Organization/Component_name" format.
+      "description": "xxxxxxxxxxxxxxxxxxx",                     # Description of the component functions.
+      "version": "3.1",                                         # Version, which must be the same as the version of OpenHarmony.
+      "license": "MIT",                                         # Component license.
+      "publishAs": "code-segment",                              # HPM package release mode. The default value is code-segment.
       "segment": {
           "destPath": "third_party/nghttp2"
-      },                                                     # Code restoration path (source code path) set when publishAs is code-segment.
-      "dirs": {},                                            # Directory structure of the HPM package. This field is mandatory and can be left empty.
-      "scripts": {},                                         # Scripts to be executed. This field is mandatory and can be left empty.
+      },                                                        # Code restoration path (source code path) set when publishAs is code-segment.
+      "dirs": {},                                               # Directory structure of the HPM package. This field is mandatory and can be left empty.
+      "scripts": {},                                            # Scripts to be executed. This field is mandatory and can be left empty.
       "licensePath": "COPYING",
       "readmePath": {
           "en": "README.rst"
       },
-      "component": {                                         # Component attributes.
-          "name": "<component_name>",                        # Component name.
-          "subsystem": "",                                   # Subsystem to which the component belongs.
-          "syscap": [],                                      # System capabilities provided by the component for applications.
-          "features": [],                                    # List of configurable features of the component. Generally, this parameter corresponds to sub_component in build.
-          "adapted_system_type": [],                         # Types of adapted systems. The value can be mini, small, and standard.
-          "rom": "xxxKB"                                     # ROM baseline. If there is no baseline, enter the current value.
-          "ram": "xxxKB",                                    # RAM baseline. If there is no baseline, enter the current value.
+      "component": {                                            # Component attributes.
+          "name": "<component_name>",                           # Component name.
+          "subsystem": "",                                      # Subsystem to which the component belongs.
+          "syscap": [],                                         # System capabilities provided by the component for applications.
+          "features": [],                                       # List of configurable features of the component. Generally, this parameter corresponds to sub_component in build.
+          "adapted_system_type": [],                            # Types of adapted systems. The value can be mini, small, standard, or their combinations.
+          "rom": "xxxKB"                                        # ROM baseline. If there is no baseline, enter the current value.
+          "ram": "xxxKB",                                       # RAM baseline. If there is no baseline, enter the current value.
           "deps": {
-              "components": [                                # Other components on which this component depends.
-              "third_party": [                               # Third-party open-source software on which this component depends.
+              "components": [                                   # Other components on which this component depends.
+              "third_party": [                                  # Third-party open-source software on which this component depends.
           },
        
-          "build": {                                         # Build-related configuration
+          "build": {                                            # Build-related configuration.
               "sub_component": [
-                  "//foundation/arkui/napi:napi_packages",      # Existing module 1
-                  "//foundation/arkui/napi:napi_packages_ndk"   # Existing module 2
-                  "//foundation/arkui/napi:new"                 # Module to add
+                  "//foundation/arkui/napi:napi_packages",      # Existing module 1.
+                  "//foundation/arkui/napi:napi_packages_ndk"   # Existing module 2.
+                  "//foundation/arkui/napi:new"                 # Module to add.
               ],                                                # Component build entry. Configure the module here.
-              "inner_kits": [],                                 # APIs between components
+              "inner_kits": [],                                 # APIs between components.
               "test": []                                        # Entry for building the component's test cases.
           }
       }
@@ -398,16 +398,16 @@ The figure below illustrates the process for adding a module. A module belongs t
 
 2. Create a **bundle.json** file in the folder of the corresponding subsystem.
 
-3. Add the new component to the end of existing components in **vendor/{product_company}/{product-name}/config.json**.
+3. Add the new component to the end of existing components in **vendor/{product_company}/{product_name}/config.json**.
 
    ```shell
     "subsystems": [
          {
            "subsystem": "Subsystem to which the component belongs",
            "components": [
-             {"component": "Component 1 name", "features":[]},        # Existing component 1 in the subsystem
-             { "component": "Component 2 name", "features":[] },      # Existing component 2 in the subsystem
-             {"component": "New component name", "features":[]}       # New component in the subsystem
+             {"component": "Component 1 name", "features":[]},         # Existing component 1 in the subsystem
+             { "component": "Component 2 name", "features":[] },       # Existing component 2 in the subsystem
+             {"component": "New component name", "features":[]}        # New component in the subsystem
            ]
          },
          .
@@ -419,9 +419,9 @@ The figure below illustrates the process for adding a module. A module belongs t
 
 **Creating a Subsystem and Adding a Module**
 
-1. Configure the **BUILD.gn** file in the module directory and select the corresponding GN template. This step is the same as the step in "Creating a Component and Adding a Module."
+1. Configure the **BUILD.gn** file in the module directory and select the corresponding GN template. This step is the same as Step 1 in "Creating a Component and Adding a Module."
 
-2. Create a **bundle.json** file in the folder of the component of the subsystem. This step is the same as the step in "Creating a Component and Adding a Module."
+2. Create a **bundle.json** file in the folder of the component of the subsystem. This step is the same as Step 2 in "Creating a Component and Adding a Module."
 
 3. Modify the **subsystem_config.json** file in the **build** directory.
 
@@ -445,7 +445,7 @@ The figure below illustrates the process for adding a module. A module belongs t
 
    The **subsystem_config.json** file defines the subsystems and their directories. When adding a subsystem, specify **path** and **name** for the subsystem.
 
-4. If **product-name** in the **vendor/{product_company}/{product-name}** directory is **hispark_taurus_standard**, add the new component information to the end of existing components in the **config.json** file.
+4. If **product_name** in the **vendor/{product_company}/{product_name}** directory is **hispark_taurus_standard**, add the new component information to the end of existing components in the **config.json** file.
 
    ```shell
    "subsystems": [
@@ -481,25 +481,25 @@ The figure below illustrates the process for adding a module. A module belongs t
 
 4. Start the build and check whether a .so file or binary file is generated.
 
-
 **Building a Module**
 
 You can start the build by using the [CLI or hb tool](subsys-build-all.md#build-commands). The following uses the CLI as an example:
 
-   You can run the **--build-target** *Module name* command to build a module separately.
+You can run the **--build-target** *Module_name* command to build a module separately.
 
-   ```shell
-   ./build.sh --build-target Module Name
-   ```
+```shell
+./build.sh --build-target Module_name
+```
 
-   You can also build a product. For example, to build hispark_taurus_standard, run the following command:
+You can also build a product. For example, to build hispark_taurus_standard, run the following command:
 
-   ```shell
-   ./build.sh --product-name hispark_taurus_standard --build-target Module name --ccache
-   ```
+```shell
+./build.sh --product-name hispark_taurus_standard --build-target Module_name --ccache
+```
 
-   You can also build the component to which the module belongs.
+You can also build the component to which the module belongs.
 
-   ```shell
-   ./build.sh --product-name hispark_taurus_standard --build-target musl --build-target Module name --ccache
-   ```
+```shell
+./build.sh --product-name hispark_taurus_standard --build-target musl --build-target Module_name --ccache
+```
+

@@ -1,4 +1,4 @@
-# 使用eTS语言开发（FA模型）
+# 使用ArkTS语言开发（FA模型）
 
 
 >  **说明：**
@@ -13,12 +13,12 @@
 
    ![01](figures/01.png)
 
-2. 进入配置工程界面，**Compile SDK** 选择“**8**”（**Complie SDK**选择“**9**”时注意同步选择**Model** 为“**FA**”，此处以选择“**8**”为例），**Language**选择“**eTS**”，其他参数保持默认设置即可。
+2. 进入配置工程界面，**Compile SDK** 选择“**8**”（**Compile SDK**选择“**9**”时注意同步选择**Model** 为“**FA**”，此处以选择“**8**”为例），**Language**选择“**eTS**”，其他参数保持默认设置即可。
 
    ![02](figures/02.png)
 
    > **说明：**
-   > DevEco Studio V3.0 Beta3及更高版本支持使用eTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > DevEco Studio V3.0 Beta3及更高版本支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    > 
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    > 
@@ -182,7 +182,7 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过页面路由router来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md#routerpush)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
 
@@ -288,4 +288,4 @@
 
    ![zh-cn_image_0000001363934577](figures/zh-cn_image_0000001363934577.png)
 
-恭喜您已经使用eTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（FA模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

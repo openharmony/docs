@@ -724,15 +724,17 @@ Disconnects this ability from the Service ability. This API uses a promise to re
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-Starts an ability in the background and obtains the caller interface for communication.
+Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-Want.md) | Yes| Information about the target ability, including the ability name, module name, bundle name, and device ID. If the device ID is left blank or the default value is used, the local ability will be started.|
+| want | [Want](js-apis-application-Want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
 
 **Return value**
 
@@ -744,16 +746,38 @@ Starts an ability in the background and obtains the caller interface for communi
 
   ```js
   let caller = undefined;
-  this.context.startAbilityByCall({
+
+  // Start an ability in the background by not passing parameters.
+  var wantBackground = {
       bundleName: "com.example.myservice",
       moduleName: "entry",
       abilityName: "MainAbility",
       deviceId: ""
-  }).then((obj) => {
-      caller = obj;
-      console.log('Caller GetCaller Get ' + caller);
-  }).catch((e) => {
-      console.log('Caller GetCaller error ' + e);
-  });
+  };
+  this.context.startAbilityByCall(wantBackground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller Success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
+
+  // Start an ability in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
+  var wantForeground = {
+      bundleName: "com.example.myservice",
+      moduleName: "entry",
+      abilityName: "MainAbility",
+      deviceId: "",
+      parameters: {
+        "ohos.aafwk.param.callAbilityToForeground": true
+      }
+  };
+  this.context.startAbilityByCall(wantForeground)
+    .then((obj) => {
+        caller = obj;
+        console.log('GetCaller success');
+    }).catch((error) => {
+        console.log(`GetCaller failed with ${error}`);
+    });
   ```
   

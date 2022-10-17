@@ -29,11 +29,22 @@ zh-cn/device-dev/quick-start/quickstart-lite-env-setup.md @li-yan339 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-overview.md @Austin23 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-makefile.md @Austin23 @chenmudan
 zh-cn/device-dev/porting/porting-thirdparty-cmake.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-mini-lite.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-standard-large.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guid.md @Austin23 @chenmudan
-zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-all.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-coding-style-and-best-practice.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-kconfig-visual-config-guide.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-product.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-zh-cn/device-dev/subsystems/subsystem.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-component.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-module.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-chip_solution.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-feature.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-syscap.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-reference.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-gn-hap-compilation-guide.md  @Austin23 @chenmudan
+zh-cn/device-dev/subsystems/subsys-build-FAQ.md  @Austin23 @chenmudan
 zh-cn/device-dev/subsystems/subsys-remote-start.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-overview.md @duangavin123_admin
 zh-cn/device-dev/subsystems/subsys-graphics-container-guide.md @duangavin123_admin
@@ -140,9 +151,9 @@ zh-cn/application-dev/work-scheduler/ @HelloCrease
 zh-cn/application-dev/internationalization/ @HelloCrease
 zh-cn/application-dev/device/usb-overview.md @ge-yafang
 zh-cn/application-dev/device/usb-guidelines.md @ge-yafang
-zh-cn/application-dev/device/device-location-overview.md @sun-yue14
-zh-cn/application-dev/device/device-location-info.md @sun-yue14
-zh-cn/application-dev/device/device-location-geocoding.md @sun-yue14
+zh-cn/application-dev/device/device-location-overview.md @zengyawen
+zh-cn/application-dev/device/device-location-info.md @zengyawen
+zh-cn/application-dev/device/device-location-geocoding.md @zengyawen
 zh-cn/application-dev/device/sensor-overview.md @HelloCrease
 zh-cn/application-dev/device/sensor-guidelines.md @HelloCrease
 zh-cn/application-dev/device/vibrator-overview.md @HelloCrease
@@ -210,6 +221,7 @@ zh-cn/application-dev/reference/apis/js-apis-router.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-display.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screenshot.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-window.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-effectKit.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-application-WindowExtensionAbility.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-screen.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @ge-yafang
@@ -265,14 +277,14 @@ zh-cn/application-dev/reference/apis/js-apis-http.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-request.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-socket.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-webSocket.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-nfcTech.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-tagSession.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @bmeangel
+zh-cn/application-dev/reference/apis/js-apis-bluetooth.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-nfcTech.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-tagSession.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-rpc.md @qinxiaowang
-zh-cn/application-dev/reference/apis/js-apis-wifi.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-wifiext.md @bmeangel
+zh-cn/application-dev/reference/apis/js-apis-wifi.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-wifiext.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-accessibility.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-faultLogger.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hiappevent.md @zengyawen
@@ -281,18 +293,18 @@ zh-cn/application-dev/reference/apis/js-apis-hidebug.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hilog.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hitracechain.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-hitracemeter.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @bmeangel
+zh-cn/application-dev/reference/apis/js-apis-inputmethod.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-inputmethodengine.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-system-time.md @bmeangel
-zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @bmeangel
+zh-cn/application-dev/reference/apis/js-apis-screen-lock.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-system-time.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-wallpaper.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-timer.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-battery-info.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-brightness.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-device-manager.md
-zh-cn/application-dev/reference/apis/js-apis-geolocation.md @sun-yue14
+zh-cn/application-dev/reference/apis/js-apis-geolocation.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-inputconsumer.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-inputdevice.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-inputeventclient.md @HelloCrease
@@ -305,6 +317,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-parameter.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @qinxiaowang
 zh-cn/application-dev/reference/apis/js-apis-update.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-usb.md @ge-yafang
+zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.mdd @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-vibrator.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-appAccount.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-distributed-account.md @zengyawen
@@ -353,3 +366,7 @@ zh-cn/application-dev/reference/js-service-widget-ui @HelloCrease
 zh-cn/application-dev/website.md @zengyawen
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-useriam-faceauth.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md @qinxiaowang
+zh-cn/application-dev/reference/apis/js-apis-cryptoFramework.md @zengyawen
+zh-cn/application-dev/reference/apis/Readme-CN.md @zengyawen
+zh-cn/application-dev/file-management/ @qinxiaowang

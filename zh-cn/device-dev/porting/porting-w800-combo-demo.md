@@ -49,7 +49,7 @@
      "kernel_version": "3.0.0",                --- 内核版本：3.0.0
      "subsystems": []                          --- 子系统
    }
-```
+   ```
 填入的信息与规划的目录相对应，其中`device_company`和`board`用于关联出`device/board/<device_company>/`目录。
 
 ### 单板配置
@@ -403,7 +403,8 @@ OHOS Which product do you need?  neptune_iotlink_demo
     {
       "subsystem": "kernel",
       "components": [
-        { "component": "liteos_m", "features":[]
+        { 
+          "component": "liteos_m", "features":[] 
         }
       ]
    },
@@ -411,7 +412,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 ### 内核启动适配
 
-由于Neptune100开发板的芯片架构为Openharmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
+由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
 
 内核初始化示例如下:
 
@@ -419,11 +420,11 @@ OHOS Which product do you need?  neptune_iotlink_demo
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化
    if(ret == osOK)
    {
-    threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task); --- 创建init线程
-    if(threadId!=NULL)
-    {
-        osKernelStart();                                          --- 线程调度
-    }
+     threadId = osThreadNew((osThreadFunc_t)sys_init,NULL,&g_main_task); --- 创建init线程
+     if(threadId!=NULL)
+     {
+       osKernelStart();                                          --- 线程调度
+     }
    }
    ```
 
@@ -578,7 +579,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
     ...
    ```
 
-## Openharmony子系统适配
+## OpenHarmony子系统适配
 
 子系统的编译选项入口在相应产品`config.json`下，如：`vendor/hihope/neptune_iotlink_demo/config.json`。
 
@@ -605,7 +606,7 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
      "component": "wifi_lite",
      "targets": [
        "//foundation/communication/wifi_lite:wifi"       --- wifi_lite的编译目标
-     ],
+     ]
    },
    ```
 

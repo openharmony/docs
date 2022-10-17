@@ -834,7 +834,7 @@ promise.then(data => {
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
@@ -2810,10 +2810,11 @@ This is a system API.
 
 | Name                | Value  | Description        |
 | -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | Headset device.    |
-| DEVICE_SPEAKER       | 1    | Speaker device.|
-| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
+| DEVICE_EARPIECE      | 0    | Earpiece.    |
+| DEVICE_SPEAKER       | 1    | Speaker.|
+| DEVICE_WIRED_HEADSET | 2    | Wired headset.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
+| DEVICE_MIC           | 4    | Microphone. |
 
 ## CallRestrictionType<sup>8+</sup>
 

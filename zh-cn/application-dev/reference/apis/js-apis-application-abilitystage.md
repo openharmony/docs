@@ -52,7 +52,7 @@ onAcceptWant(want: Want): string;
 
   | 类型 | 说明 | 
   | -------- | -------- |
-  | string | 用户返回一个ability标识，如果之前启动过次标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
+  | string | 用户返回一个ability标识，如果之前启动过标识的ability，不创建新的实例并拉回栈顶，否则创建新的实例并启动。 | 
 
 **示例：**
     
@@ -96,7 +96,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 当系统已决定调整内存时调用。例如，当该功能在后台运行时，没有足够的内存来运行尽可能多的后台进程时可以使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 

@@ -3,12 +3,11 @@
 通过文本显示计时信息并控制其计时器状态的组件。
 
 >  **说明：**
+>
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
-## 权限列表
 
-无
 
 
 ## 子组件
@@ -18,20 +17,21 @@
 
 ## 接口
 
-TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
+TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTimerController })
 
-- 参数
-  | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-  | isCountDown | boolean | 否 | false | 是否倒计时。 |
-  | count | number | 否 | 60000 | 倒计时时间（isCountDown为true时生效），单位为毫秒。<br/>-&nbsp;count&lt;=0时，使用默认值为倒计时初始值。<br/>-&nbsp;count&gt;0时，count值为倒计时初始值。 |
-  | controller | [TextTimerController](#texttimercontroller) | 否 | - | TextTimer控制器。 |
+**参数:**
+
+| 参数名     | 参数类型     | 必填  | 参数描述                   |
+| ----------- | -------- | -------- | -------- |
+| isCountDown | boolean  | 否   | 是否倒计时。<br/>默认值：false |
+| count       | number   | 否   | 倒计时时间（isCountDown为true时生效），单位为毫秒。<br/>-&nbsp;count&lt;=0时，使用默认值为倒计时初始值。<br/>-&nbsp;count&gt;0时，count值为倒计时初始值。<br/>默认值：60000 |
+| controller  | [TextTimerController](#texttimercontroller) | 否  | TextTimer控制器。 |
 
 ## 属性
 
-| 名称 | 参数类型 | 默认值 | 描述 |
-| -------- | -------- | -------- | -------- |
-| format | string | 'hh:mm:ss.ms' | 自定义格式，需至少包含一个hh、mm、ss、ms中的关键字。 |
+| 名称        | 参数类型       | 描述                             |
+| -------- | ---------------------- | ---------------------- |
+| format   | string   | 自定义格式，需至少包含一个hh、mm、ss、ms中的关键字。<br/>默认值：'hh:mm:ss.ms' |
 
 
 ## 事件
@@ -43,7 +43,7 @@ TextTimer(options: { isCountDown?: boolean, count?: number, controller?: TextTim
 
 ## TextTimerController
 
-TextTimer组件的控制器，用于控制文本计时器。
+TextTimer组件的控制器，用于控制文本计时器。一个TextTimer组件仅支持绑定一个控制器。
 
 ### 导入对象
 

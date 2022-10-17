@@ -1,14 +1,12 @@
 # 数据管理开发常见问题
 
-
-
 ## 如何将PixelMap的数据存储到数据库中。 
 
 适用于：OpenHarmony SDK 3.2.3.5版本
 
 PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
-参考文档：[readPixelsToBuffer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-image.md#readpixelstobuffer7-1)
+参考文档：[readPixelsToBuffer](../reference/apis/js-apis-image.md#readpixelstobuffer7-1)
 
 ## 如何获取rdb关系型数据库文件
 
@@ -18,7 +16,6 @@ PixelMap应该被转换成相应的ArrayBuffer再放进数据库。
 
 示例：
 
-  
-```
+```shell
  hdc_std file recv /data/app/el2/100/database/com.xxxx.xxxx/entry/db/test.db ./test.db
 ```

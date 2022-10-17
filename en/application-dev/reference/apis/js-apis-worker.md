@@ -8,7 +8,7 @@ The worker thread is an independent thread running in parallel with the main thr
 
 ## Modules to Import
 
-```
+```js
 import worker from '@ohos.worker';
 ```
 
@@ -28,10 +28,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type | Readable| Writable| Description                  |
-| ---- | --------- | ---- | ---- | ---------------------- |
-| type | "classic" | Yes  | Yes  | Mode in which the worker thread executes the script.|
-| name | string    | Yes  | Yes  | Name of the worker thread.        |
+| Name  | Type | Readable| Writable| Description                  |
+| ------ | --------- | ---- | ---- | ---------------------- |
+| type   | "classic" | Yes  | Yes  | Mode in which the worker thread executes the script.|
+| name   | string    | Yes  | Yes  | Name of the worker thread.        |
+| shared | boolean   | Yes  | Yes  | Whether the worker can be shared.|
 
 
 ## Worker
@@ -51,7 +52,7 @@ A constructor used to create a **Worker** instance.
 
 | Name   | Type                           | Mandatory| Description                                                        |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| scriptURL | string                          | Yes  | URL of the script to be executed by the Worker thread. The script is stored in the **workers** directory, which is in the same directory as the **pages** directory of the new DevEco Studio project. If the **workers** directory does not exist, you need to create it.|
+| scriptURL | string                          | Yes  | URL of the script to be executed by the worker thread.<br>In the FA or stage model, DevEco Studio creates a **Worker** project in either of the following scenarios:<br>(a) The **workers** directory is at the same level as the **pages** directory.<br>(b) The **workers** directory is at a different level from the **pages** directory.
 | options   | [WorkerOptions](#workeroptions) | No  | Options that can be set for the **Worker** instance.                                          |
 
 **Return value**
@@ -62,11 +63,69 @@ A constructor used to create a **Worker** instance.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js", {name:"first worker"});
-```
+```js
+import worker from '@ohos.worker';
+// Create a worker thread.
 
+// In the FA model, the workers and pages directories are at the same level.
+const workerFAModel01 = new worker.Worker("workers/worker.js", {name:"first worker"});
+// In the FA model, the workers and pages directories are at different levels.
+const workerFAModel02 = new worker.Worker("../workers/worker.js", {name:"first worker"});
 
+// In the stage model, the workers and pages directories are at the same level.
+const workerStageModel01 = new worker.Worker('entry/ets/workers/worker.ts');
+// In the stage model, the workers and pages directories are at different levels.
+const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts');
+
+// scriptURL—— Description of "entry/ets/workers/worker.ts".
+// entry is the value of the name attribute under module in the module.json5 file.
+// ets indicates the programming language in use.
+```
+Depending on whether the works and pages directories are at the same level, you may need to configure the **buildOption** attribute in the **build-profile.json5** file.
+
+(1) If the workers and pages directories are at the same level, the configuration is optional.
+In the FA model:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/MainAbility/workers/worker.ts"
+      ]
+    }
+  }
+```
+In the stage model:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+(2) If the workers and pages directories are at different levels, the configuration is mandatory.
+In the FA model:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+In the stage model:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/pages/workers/worker.ts"
+      ]
+    }
+  }
+```
 ### postMessage
 
 postMessage(message: Object, options?: PostMessageOptions): void
@@ -84,13 +143,11 @@ Sends a message to the worker thread. The message data is transferred using the 
 
 **Example**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
-workerInstance.postMessage("hello world");
-```
 
-```
-const workerInstance= new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
+
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -113,8 +170,8 @@ Adds an event listener for the worker instance.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.on("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -138,7 +195,7 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Example**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.once("alert", (e)=>{
     console.log("alert listener callback");
@@ -163,7 +220,7 @@ Removes an event listener for the worker thread.
 
 **Example**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.off("alert");
 ```
@@ -179,9 +236,9 @@ Terminates the worker thread to stop it from receiving messages.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.terminate()
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.terminate();
 ```
 
 
@@ -201,10 +258,10 @@ Defines the event handler to be called when the worker thread exits. The handler
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onexit = function(e) {
-    console.log("onexit")
+    console.log("onexit");
 }
 ```
 
@@ -225,17 +282,17 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onerror = function(e) {
-    console.log("onerror")
+    console.log("onerror");
 }
 ```
 
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the host thread receives a message sent by the worker thread through **parentPort.postMessage**. The event handler is executed in the host thread.
 
@@ -249,17 +306,19 @@ Defines the event handler to be called when the host thread receives a message s
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessage = function(e) {
-    console.log("onerror")
+    // e: MessageEvent<T>. The usage is as follows:
+    // let data = e.data;
+    console.log("onmessage");
 }
 ```
 
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be serialized. The event handler is executed in the host thread.
 
@@ -273,10 +332,10 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.onmessageerror= function(e) {
-    console.log("onmessageerror")
+    console.log("onmessageerror");
 }
 ```
 
@@ -301,8 +360,8 @@ Adds an event listener for the worker thread.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
 })
@@ -326,9 +385,9 @@ Removes an event listener for the worker thread.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.removeEventListener("alert")
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.removeEventListener("alert");
 ```
 
 
@@ -354,9 +413,9 @@ Dispatches the event defined for the worker thread.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.dispatchEvent({type:"alert"})
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.dispatchEvent({type:"alert"});
 ```
 
 
@@ -370,9 +429,9 @@ Removes all event listeners for the worker thread.
 
 **Example**
 
-```
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.removeAllListener({type:"alert"})
+```js
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.removeAllListener();
 ```
 
 
@@ -383,7 +442,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 ### postMessage
 
-postMessage(message: Object, options?: PostMessageOptions): void
+postMessage(messageObject: Object, options?: PostMessageOptions): void
 
 Sends a message to the host thread from the worker thread.
 
@@ -398,22 +457,23 @@ Sends a message to the host thread from the worker thread.
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.postMessage("hello world")
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
 workerInstance.onmessage = function(e) {
-    console.log("receive data from worker.js")
+    // let data = e.data;
+    console.log("receive data from worker.js");
 }
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e){
-    parentPort.postMessage("receive data from main.js")
+    // let data = e.data;
+    parentPort.postMessage("receive data from main.js");
 }
 ```
 
@@ -428,13 +488,12 @@ Terminates the worker thread to stop it from receiving messages.
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
+const workerInstance = new worker.Worker("workers/worker.js");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
@@ -446,7 +505,7 @@ parentPort.onmessage = function(e) {
 
 ### onmessage
 
-onmessage?: (event: MessageEvent) =&gt; void
+onmessage?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message sent by the host thread through **worker.postMessage**. The event handler is executed in the worker thread.
 
@@ -460,26 +519,25 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
-workerInstance.postMessage("hello world")
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("hello world");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
 parentPort.onmessage = function(e) {
-    console.log("receive main.js message")
+    console.log("receive main.js message");
 }
 ```
 
 
 ### onmessageerror
 
-onmessageerror?: (event: MessageEvent) =&gt; void
+onmessageerror?: (event: MessageEvent\<T>) =&gt; void
 
 Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
 
@@ -493,13 +551,12 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
-const workerInstance = new worker.Worker("workers/worker.js")
+const workerInstance = new worker.Worker("workers/worker.js");
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort;
@@ -557,7 +614,7 @@ Specifies the callback to invoke.
 
 **Example**
 
-```
+```js
 const workerInstance = new worker.Worker("workers/worker.js");
 workerInstance.addEventListener("alert", (e)=>{
     console.log("alert listener callback");
@@ -621,13 +678,12 @@ Defines the event handler to be called when an exception occurs during worker ex
 
 **Example**
 
-```
+```js
 // main.js
 import worker from '@ohos.worker';
 const workerInstance = new worker.Worker("workers/worker.js")
 ```
-
-```
+```js
 // worker.js
 import worker from '@ohos.worker';
 const parentPort = worker.parentPort
@@ -635,3 +691,98 @@ parentPort.onerror = function(e){
     console.log("worker.js onerror")
 }
 ```
+
+## Sample Code
+### FA Model
+```js
+// main.js (The following assumes that the workers and pages directories are at the same level.)
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("workers/worker.ts");
+// Create either a .json or .ts file.
+// const workerInstance = new worker.Worker("workers/worker.js");
+
+workerInstance.postMessage("123");
+workerInstance.onmessage = function(e) {
+    let data = e.data;
+    console.log("main.js onmessage");
+    // Call terminate after the worker thread receives messages.
+    workerInstance.terminate();
+}
+// Call onexit.
+workerInstance.onexit = function() {
+    console.log("main.js terminate");
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort
+
+parentPort.onmessage = function(e) {
+    let data = e.data;
+    console.log("worker.js onmessage");
+    parentPort.postMessage("123")
+}
+
+parentPort.onerror= function(e) {
+    console.log("worker.js onerror");
+}
+```
+Configuration of the **build-profile.json5** file:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/MainAbility/workers/worker.ts"
+      ]
+    }
+  }
+```
+### Stage Model
+```js
+// main.js (The following assumes that the workers and pages directories are at different levels.)
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.ts");
+// Create either a .json or .ts file.
+// const workerInstance = new worker.Worker("entry/ets/pages/workers/worker.js");
+workerInstance.postMessage("123");
+workerInstance.onmessage = function(e) {
+    let data = e.data;
+    console.log("main.js onmessage");
+    // Call terminate after the worker thread receives messages.
+    workerInstance.terminate();
+}
+// Call onexit.
+workerInstance.onexit = function() {
+    console.log("main.js terminate");
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort
+
+parentPort.onmessage = function(e) {
+    let data = e.data;
+    console.log("worker.js onmessage");
+    parentPort.postMessage("123")
+}
+
+parentPort.onerror= function(e) {
+    console.log("worker.js onerror");
+}
+```
+Configuration of the **build-profile.json5** file:
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/pages/workers/worker.ts"
+      ]
+    }
+  }
+```
+
+## Precautions
+Currently, a maximum of seven workers can co-exist.
+If the number of workers exceeds the upper limit, the error message "Too many workers, the number of workers exceeds the maximum." is displayed.

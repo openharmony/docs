@@ -9,10 +9,18 @@ You can use the APIs of this module to configure the concerned information, obta
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
-## Modules to Import
+## Usage
+
+Before using the **AccessibilityExtensionContext** module, you must define a child class that inherits from **AccessibilityExtensionAbility**.
 
 ```js
 import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility'
+class MainAbility extends AccessibilityExtensionAbility {
+    onConnect(): void {
+        console.log("AxExtensionAbility onConnect");
+        let axContext = this.context;
+    }
+}
 ```
 
 ## FocusDirection
@@ -203,9 +211,9 @@ this.context.getWindows().then(windows => {
 })
 ```
 
-## AccessibilityExtensionContext.gestureInject
+## AccessibilityExtensionContext.injectGesture
 
-gestureInject(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
+injectGesture(gesturePath: GesturePath, listener: Callback\<boolean>): Promise\<boolean
 
 Injects a gesture.
 

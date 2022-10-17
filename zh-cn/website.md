@@ -4,6 +4,7 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 3.x Releases
+    - [OpenHarmony v3.2 Beta3 (2022-09-30)](release-notes/OpenHarmony-v3.2-beta3.md)
     - [OpenHarmony v3.2 Beta2 (2022-07-30)](release-notes/OpenHarmony-v3.2-beta2.md)
     - [OpenHarmony v3.2 Beta1 (2022-05-31)](release-notes/OpenHarmony-v3.2-beta1.md)
     - [OpenHarmony v3.1.1 Release (2022-05-31)](release-notes/OpenHarmony-v3.1.1-release.md)
@@ -14,13 +15,13 @@
     - [OpenHarmony v3.0.2 LTS (2022-03-18)](release-notes/OpenHarmony-v3.0.2-LTS.md)
     - [OpenHarmony v3.0.1 LTS (2022-01-12)](release-notes/OpenHarmony-v3.0.1-LTS.md)
     - [OpenHarmony v3.0 LTS (2021-09-30)](release-notes/OpenHarmony-v3.0-LTS.md)
-  
+
   - OpenHarmony 2.x Releases
     - [OpenHarmony v2.2 beta2 (2021-08-04)](release-notes/OpenHarmony-v2.2-beta2.md)
     - [OpenHarmony 2.0 Canary (2021-06-01)](release-notes/OpenHarmony-2-0-Canary.md)
 
   - OpenHarmony 1.x Releases
-  
+
     - [OpenHarmony v1.1.4 LTS (2022-02-11)](release-notes/OpenHarmony-v1-1-4-LTS.md)
     - [OpenHarmony v1.1.3 LTS (2021-09-30)](release-notes/OpenHarmony-v1-1-3-LTS.md)
     - [OpenHarmony v1.1.2 LTS (2021-08-04)](release-notes/OpenHarmony-v1.1.2-LTS.md)
@@ -29,8 +30,37 @@
     - [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
 
   - API差异报告
-
-    - OpenHamrony 3.2 Beta2
+    - OpenHarmony 3.2 Beta3
+      - JS API差异报告
+        - [元能力](release-notes/api-change/v3.2-beta3/js-apidiff-ability.md)
+        - [无障碍](release-notes/api-change/v3.2-beta3/js-apidiff-accessibility.md)
+        - [帐号](release-notes/api-change/v3.2-beta3/js-apidiff-account.md)
+        - [ArkUI](release-notes/api-change/v3.2-beta3/js-apidiff-arkui.md)
+        - [电源管理](release-notes/api-change/v3.2-beta3/js-apidiff-battery.md)
+        - [包管理](release-notes/api-change/v3.2-beta3/js-apidiff-bundle.md)
+        - [基础通信](release-notes/api-change/v3.2-beta3/js-apidiff-communicate.md)
+        - [公共基础库](release-notes/api-change/v3.2-beta3/js-apidiff-compiler-and-runtime.md)
+        - [DFX](release-notes/api-change/v3.2-beta3/js-apidiff-dfx.md)
+        - [分布式数据管理](release-notes/api-change/v3.2-beta3/js-apidiff-distributed-data.md)
+        - [分布式硬件](release-notes/api-change/v3.2-beta3/js-apidiff-distributed-hardware.md)
+        - [事件通知](release-notes/api-change/v3.2-beta3/js-apidiff-event-and-notification.md)
+        - [文件管理](release-notes/api-change/v3.2-beta3/js-apidiff-file-management.md)
+        - [全球化](release-notes/api-change/v3.2-beta3/js-apidiff-global.md)
+        - [图形图像](release-notes/api-change/v3.2-beta3/js-apidiff-graphic.md)
+        - [Misc](release-notes/api-change/v3.2-beta3/js-apidiff-misc.md)
+        - [多模输入](release-notes/api-change/v3.2-beta3/js-apidiff-multi-modal-input.md)
+        - [多媒体](release-notes/api-change/v3.2-beta3/js-apidiff-multimedia.md)
+        - [资源调度](release-notes/api-change/v3.2-beta3/js-apidiff-resource-scheduler.md)
+        - [安全](release-notes/api-change/v3.2-beta3/js-apidiff-security.md)
+        - [泛Sensor](release-notes/api-change/v3.2-beta3/js-apidiff-sensor.md)
+        - [分布式软总线](release-notes/api-change/v3.2-beta3/js-apidiff-soft-bus.md)
+        - [电话服务](release-notes/api-change/v3.2-beta3/js-apidiff-telephony.md)
+        - [测试框架](release-notes/api-change/v3.2-beta3/js-apidiff-unitest.md)
+        - [升级服务](release-notes/api-change/v3.2-beta3/js-apidiff-update.md)
+        - [Web](release-notes/api-change/v3.2-beta3/js-apidiff-web.md)
+        - [窗口管理](release-notes/api-change/v3.2-beta3/js-apidiff-window.md)
+      - [3.2 beta3相对3.2 beta2变更详细说明](release-notes/api-change/v3.2-beta3/changelog-v3.2-beta3.md)
+    - OpenHarmony 3.2 Beta2
       - JS API差异报告
         - [元能力](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
         - [无障碍](release-notes/api-change/v3.2-beta2/js-apidiff-accessibility.md)
@@ -79,7 +109,6 @@
         - [多模输入](release-notes/api-change/v3.2-beta1/js-apidiff-multi-modal-input.md)
         - [多媒体](release-notes/api-change/v3.2-beta1/js-apidiff-multimedia.md)
         - [资源调度](release-notes/api-change/v3.2-beta1/js-apidiff-resource-scheduler.md)
-        - [分布式软总线](release-notes/api-change/v3.2-beta1/js-apidiff-soft-bus.md)
         - [测试框架](release-notes/api-change/v3.2-beta1/js-apidiff-unitest.md)
         - [Web](release-notes/api-change/v3.2-beta1/js-apidiff-web.md)
         - [窗口管理](release-notes/api-change/v3.2-beta1/js-apidiff-window.md)
@@ -150,4 +179,3 @@
   - [写作规范](contribute/写作规范.md)
   - [社区沟通与交流](contribute/社区沟通与交流.md)
   - [FAQ](contribute/FAQ.md)
-  

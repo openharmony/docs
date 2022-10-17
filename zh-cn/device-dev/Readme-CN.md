@@ -6,8 +6,7 @@
   - [术语](../glossary.md) 
   - [版本说明](../release-notes/Readme.md) 
 - 快速开始
-  - [轻量和小型系统快速入门](quick-start/quickstart-ide-lite-overview.md) 	
-  - [标准系统快速入门](quick-start/quickstart-ide-standard-overview.md) 
+  - [快速入门](quick-start/Readme-CN.md) 	
 - 兼容性与安全       
   - [隐私与安全规范](security/Readme-CN.md)
 - 移植
@@ -38,7 +37,7 @@
   - [图形图像](subsystems/subsys-graphics-overview.md)	
   - [媒体](subsystems/subsys-multimedia-camera-overview.md)
   - [公共基础](subsystems/subsys-utils-overview.md)
-  - [AI框架](subsystems/subsys-aiframework-guide.md) 	
+  - [AI框架](subsystems/subsys-ai-aiframework-devguide.md) 	
   - [数据管理](subsystems/subsys-data-relational-database-overview.md)
   - [Sensor服务](subsystems/subsys-sensor-overview.md)
   - [USB服务](subsystems/subsys-usbservice-overview.md)
@@ -67,5 +66,6 @@
 - 参考
   - [常见问题-设备开发](faqs/Readme-CN.md)
   - [HDI接口参考](reference/hdi-apis/Readme-CN.md)
+  - [CMSIS API参考](reference/kernel/cmsis/Readme-CN.md)
 - 贡献
   - [参与贡献](../contribute/贡献文档.md) 

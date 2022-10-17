@@ -64,7 +64,7 @@ kernel/
 │	├── linux-4.19						# OpenHarmony linux-4.19 common kernel
 │	├── linux-5.10						# OpenHarmony linux-5.10 common kernel
 │	├── build
-│	│	├── BUILD.gn						# GN file of the build framework
+│	│	├── BUILD.gn					# GN file of the build framework
 │	│	├── kernel.mk					# Kernel build file
 │	│	└── ohos.build					# Kernel build component file
 │	├── patches
@@ -79,7 +79,7 @@ kernel/
 │	│	    └── hi3516dv300_patch
 │	│	    │		└── hi3516dv300.patch		# linux-5.10 Hi3516D V300 SOC patches
 │	│	    └── rkrk3568_patch
-│	│	    		├── kernel.patch			# linux-5.10 rk3568 SOC patches
+│	│	    		├── kernel.patch		# linux-5.10 rk3568 SOC patches
 │	│	    		└── hdf.patch			# linux-5.10 rk3568 customized HDF patches
 │	└── config
 │		├── linux-4.19

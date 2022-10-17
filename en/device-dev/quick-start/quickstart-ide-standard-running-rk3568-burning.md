@@ -53,7 +53,7 @@
 9. If the message "Operation paused, Please press Enter key to continue" is displayed, press **Enter**.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>
-   > If the message "The boad is not in Loader mode. Please Hold on the VOL+key..." is displayed, place the development board in Loader mode as follows: Press and hold the Volume+ key for 3 seconds, press the RESET key, wait for 3 seconds, and then release the Volume+ key.
+   > If the message "The board is not in Loader mode. Please Hold on the VOL+key..." is displayed, place the development board in Loader mode as follows: Press and hold the Volume+ key for 3 seconds, press the RESET key, wait for 3 seconds, and then release the Volume+ key.
    
 10. Wait until the burning is complete. If the following message is displayed, the burning is successful.
 

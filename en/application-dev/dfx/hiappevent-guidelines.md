@@ -12,12 +12,10 @@ The following table provides only a brief description of related APIs. For detai
 
 **Table 1** APIs for application event logging
 
-| API                                                      | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| write(string eventName, EventType type, object keyValues, AsyncCallback\<void> callback): void | Logs application events in asynchronous mode. This API uses an asynchronous callback to return the result.        |
-| write(string eventName, EventType type, object keyValues): Promise\<void> | Logs application events in asynchronous mode. This API uses a promise to return the result.         |
-| write(AppEventInfo info, AsyncCallback\<void> callback): void | Logs application events by domain in asynchronous mode. This API uses an asynchronous callback to return the result.|
-| write(AppEventInfo info): Promise\<void>                     | Logs application events by domain in asynchronous mode. This API uses a promise to return the result.|
+| API                                                      | Description                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
+| write(AppEventInfo info, AsyncCallback\<void> callback): void | Logs application events in asynchronous mode. This API uses an asynchronous callback to return the result.|
+| write(AppEventInfo info): Promise\<void>                     | Logs application events in asynchronous mode. This API uses a promise to return the result. |
 
 When an asynchronous callback is used, the return value can be processed directly in the callback.
 
@@ -49,12 +47,12 @@ For details about the result codes, see [Event Verification Result Codes](#event
 | Result Code| Cause                         | Verification Rules                                                    | Handling Method                                                  |
 | ------ | ----------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
 | 0      | N/A                           | Event verification is successful.                                                | Event logging is normal. No action is required.                                            |
-| -1     | Invalid event name               | The name is not empty and contains a maximum of 48 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).| Ignore this event and do not perform logging.                                  |
+| -1     | Invalid event name               | The name is not empty and contains a maximum of 48 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore (\_).<br>The name does not start with a digit or underscore (\_).| Ignore this event and do not perform logging.                                  |
 | -2     | Invalid event parameter type       | The event name must be a string.<br>The event type must be a number.<br>The event parameter must be an object.| Ignore this event and do not perform logging.                                  |
-| -4     | Invalid event domain name           | The name is not empty and contains a maximum of 32 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).| Ignore this event and do not perform logging.                                  |
+| -4     | Invalid event domain name           | The name is not empty and contains a maximum of 32 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore (\_).<br>The name does not start with a digit or underscore (\_).| Ignore this event and do not perform logging.                                  |
 | -99    | Application event logging disabled           | Application event logging is disabled.                                        | Ignore this event and do not perform logging.                                  |
 | -100   | Unknown error                     | None.                                                        | Ignore this event and do not perform logging.                                  |
-| 1      | Invalid key name            | The name is not empty and contains a maximum of 16 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore \(_).<br>The name does not start with a digit or underscore \(_).<br>The name does not end with an underscore \(_).| Ignore the key-value pair and continue to perform logging.                        |
+| 1      | Invalid key name            | The name is not empty and contains a maximum of 16 characters.<br>The name consists of only the following characters: digits (0 to 9), letters (a to z), and underscore (\_).<br>The name does not start with a digit or underscore (\_).<br>The name does not end with an underscore (\_).| Ignore the key-value pair and continue to perform logging.                        |
 | 2      | Invalid key type            | The key must be a string.                                   | Ignore the key-value pair and continue to perform logging.                        |
 | 3      | Invalid value type          | The supported value types vary depending on the programming language:<br>boolean, number, string, or Array [basic element]| Ignore the key-value pair and continue to perform logging.                        |
 | 4      | Invalid length for values of the string type| For a value of the string type, the maximum length is 8*1024 characters.                    | Truncate the value with the first 8*1024 characters retained, and continue to perform logging.|
@@ -84,6 +82,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
              .fontWeight(FontWeight.Bold)
    
            Button("1 writeTest").onClick(()=>{
+             // Perform event logging based on the input event parameters.
              hiAppEvent.write({
                domain: "test_domain",
                name: "test_event",
@@ -100,6 +99,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
            })
    
            Button("2 addWatcherTest").onClick(()=>{
+             // Add an event watcher based on the input subscription parameters.
              hiAppEvent.addWatcher({
                name: "watcher1",
                appEventFilters: [{ domain: "test_domain" }],
@@ -109,17 +109,23 @@ The following uses a one-time event watcher as an example to illustrate the deve
                  timeOut: 2
                },
                onTrigger: function (curRow, curSize, holder) {
+                 // If the holder object is null, return an error after recording it in the log.
                  if (holder == null) {
                    console.error("HiAppEvent holder is null");
                    return;
                  }
+                 // Set the size threshold to 1,000 bytes for obtaining an event package.
+                 holder.setSize(1000);
                  let eventPkg = null;
+                 // Obtain the event package based on the configured size threshold. If returned event package is null, all event data has been obtained.
                  while ((eventPkg = holder.takeNext()) != null) {
-                   console.info("HiAppEvent eventPkg.packageId=" + eventPkg.packageId);
-                   console.info("HiAppEvent eventPkg.row=" + eventPkg.row);
-                   console.info("HiAppEvent eventPkg.size=" + eventPkg.size);
+                   // Parse the obtained event package and display the result on the Log page.
+                   console.info('HiAppEvent eventPkg.packageId=' + eventPkg.packageId);
+                   console.info('HiAppEvent eventPkg.row=' + eventPkg.row);
+                   console.info('HiAppEvent eventPkg.size=' + eventPkg.size);
+                   // Traverse and parse event string arrays in the obtained event package.
                    for (const eventInfo of eventPkg.data) {
-                     console.info("HiAppEvent eventPkg.data=" + eventInfo);
+                     console.info('HiAppEvent eventPkg.data=' + eventInfo);
                    }
                  }
                }
@@ -127,6 +133,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
            })
    
            Button("3 removeWatcherTest").onClick(()=>{
+             // Remove the specified event watcher.
              hiAppEvent.removeWatcher({
                name: "watcher1"
              })
@@ -157,9 +164,3 @@ The following uses a one-time event watcher as an example to illustrate the deve
    ```
 
 5. On the application UI, touch button 3 to remove the event watcher. Then, touch button 1 for multiple times to perform application event logging. In such a case, there will be no log information about the callback invoked by the event watcher.
-
-## Samples
-
-The following sample is provided to help you better understand how to develop the application event logging feature:
-
-- [`JsDotTest` (JS) (API8)](https://gitee.com/openharmony/applications_app_samples/tree/master/DFX/JsDotTest)

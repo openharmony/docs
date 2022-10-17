@@ -1,4 +1,4 @@
-# 使用eTS语言开发（Stage模型）
+# 使用ArkTS语言开发（Stage模型）
 
 
 > **说明：**
@@ -19,7 +19,7 @@
 
    > **说明：**
    >
-   > 支持使用eTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
+   > 支持使用ArkTS[低代码开发](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)方式。
    >
    > 低代码开发方式具有丰富的UI界面编辑功能，通过可视化界面开发方式快速构建布局，可有效降低开发者的上手成本并提升开发者构建UI界面的效率。
    >
@@ -181,7 +181,7 @@
 
 ## 实现页面间的跳转
 
-页面间的导航可以通过页面路由router来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
+页面间的导航可以通过[页面路由router](../reference/apis/js-apis-router.md#routerpush)来实现。页面路由router根据页面url找到目标页面，从而实现跳转。使用页面路由请导入router模块。
 
 1. 第一个页面跳转到第二个页面。
 
@@ -279,7 +279,7 @@
 
 1. 将搭载OpenHarmony标准系统的开发板与电脑连接。
 
-2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**SigningConfigs**界面勾选“**Automatically generate signaure**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
+2. 点击**File**&gt; **Project Structure...** &gt; **Project**&gt;**SigningConfigs**界面勾选“**Automatically generate signature**”，等待自动签名完成即可，点击“**OK**”。如下图所示：
 
    ![06](figures/06.png)
 
@@ -287,4 +287,4 @@
 
    ![zh-cn_image_0000001311334972](figures/zh-cn_image_0000001311334972.png)
 
-恭喜您已经使用eTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。
+恭喜您已经使用ArkTS语言开发（Stage模型）完成了第一个OpenHarmony应用，快来[探索更多的OpenHarmony功能](../application-dev-guide.md)吧。

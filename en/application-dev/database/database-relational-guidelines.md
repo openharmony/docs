@@ -30,9 +30,10 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
   **Table 2** API for inserting data
   
+
   | Class    | API                                                      | Description                                                        |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | insert(table:string,values:ValuesBucket):Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.|
+  | RdbStore | insert(table: string, values: ValuesBucket): Promise&lt;number&gt; | Inserts a row of data into a table. This API uses a promise to return the result.<br>If the operation is successful, the row ID will be returned; otherwise, **-1** will be returned.<br>- **table**: name of the target table.<br>- **values**: data to be inserted into the table.|
   
 - **Updating Data**
   
@@ -40,9 +41,10 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
   **Table 3** API for updating data
   
-  | Class    | API                                                          | Description                                                  |
+
+  | Class    | API                                                      | Description                                                        |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | update(values:ValuesBucket,predicates:RdbPredicates):Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br/>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data.<br/>Return value: number of rows updated. |
+  | RdbStore | update(values: ValuesBucket, predicates: RdbPredicates): Promise&lt;number&gt; | Updates data based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>the number of rows updated.<br>- **values**: data to update, which is stored in **ValuesBucket**.<br>- **predicates**: conditions for updating data.|
   
 - **Deleting Data**
   
@@ -50,11 +52,10 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
   
   **Table 4** API for deleting data
   
-  | Class    | API                                                    | Description                                                  |
-  | -------- | ------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | delete(predicates:RdbPredicates):Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return the result.<br>- **predicates**: conditions for deleting data.<br/>Return value: number of rows updated. |
-  
-  
+
+  | Class    | API                                                      | Description                                                        |
+  | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | RdbStore | delete(predicates: RdbPredicates): Promise&lt;number&gt; | Deletes data from the RDB store based on the specified **RdbPredicates** object. This API uses a promise to return<br>the number of rows updated.<br>- **predicates**: conditions for deleting data.|
   
 - **Querying Data**
 
@@ -65,10 +66,11 @@ The RDB provides APIs for inserting, deleting, updating, and querying data in th
 
   **Table 5** APIs for querying data
 
+
   | Class    | API                                                      | Description                                                        |
   | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | RdbStore | query(predicates:RdbPredicates,columns?:Array&lt;string&gt;):Promise&lt;ResultSet&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
-  | RdbStore | querySql(sql:string,bindArgs?:Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
+  | RdbStore | query(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.<br>- **predicates**: conditions for querying data.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
+  | RdbStore | querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;): Promise&lt;ResultSet&gt; | Queries data using the specified SQL statement. This API uses a promise to return the result.<br>- **sql**: SQL statement.<br>- **bindArgs**: arguments in the SQL statement.|
   | RdbStore | remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: Array&lt;string&gt;): Promise&lt;ResultSet&gt; | Queries data from the database of a remote device based on specified conditions. This API uses a promise to return the result.<br>- **device**: network ID of the remote device.<br>- **table**: name of the table to be queried.<br>- **predicates**: **RdbPredicates** that specifies the query condition.<br>- **columns**: columns to query. If this parameter is not specified, the query applies to all columns.|
 
 ### Using Predicates
@@ -81,11 +83,11 @@ The following lists common predicates. For more information about predicates, se
 
 | Class         | API                                                      | Description                                                        |
 | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbPredicates | equalTo(field:string,value:ValueType):RdbPredicates | Sets an **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
-| RdbPredicates | notEqualTo(field:string,value:ValueType):RdbPredicates | Sets an **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
-| RdbPredicates | or():RdbPredicates                                     | Adds the OR condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the OR condition.|
-| RdbPredicates | and():RdbPredicates                                    | Adds the AND condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the AND condition.|
-| RdbPredicates | contains(field:string,value:string):RdbPredicates | Sets an **RdbPredicates** to match a string containing the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | equalTo(field: string, value: ValueType): RdbPredicates | Sets an **RdbPredicates** to match the field with data type **ValueType** and value equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | notEqualTo(field: string, value: ValueType): RdbPredicates | Sets an **RdbPredicates** to match the field with data type **ValueType** and value not equal to the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
+| RdbPredicates | or(): RdbPredicates                                     | Adds the OR condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the OR condition.|
+| RdbPredicates | and(): RdbPredicates                                    | Adds the AND condition to the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** with the AND condition.|
+| RdbPredicates | contains(field: string, value: string): RdbPredicates | Sets an **RdbPredicates** to match a string containing the specified value.<br>- **field**: column name in the database table.<br>- **value**: value to match the **RdbPredicates**.<br>- **RdbPredicates**: **RdbPredicates** object that matches the specified field.|
 
 
 ### Using the Result Set
@@ -101,12 +103,12 @@ For details about how to use result set APIs, see [Result Set](../reference/apis
 
 | Class     | API                                              | Description                                      |
 | --------- | ---------------------------------------------------- | ------------------------------------------ |
-| ResultSet | goToFirstRow():boolean                         | Moves to the first row of the result set.                    |
-| ResultSet | getString(columnIndex:number):string     | Obtains the value in the form of a string based on the specified column and current row.  |
-| ResultSet | getBlob(columnIndex:number):Uint8Array   | Obtains the value in the form of a byte array based on the specified column and the current row.|
-| ResultSet | getDouble(columnIndex:number):number     | Obtains the value in the form of double based on the specified column and current row.    |
-| ResultSet | getLong(columnIndex:number):number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
-| ResultSet | close():void                                   | Closes the result set.                              |
+| ResultSet | goToFirstRow(): boolean                         | Moves to the first row of the result set.                    |
+| ResultSet | getString(columnIndex: number): string     | Obtains the value in the form of a string based on the specified column and current row.  |
+| ResultSet | getBlob(columnIndex: number): Uint8Array   | Obtains the value in the form of a byte array based on the specified column and the current row.|
+| ResultSet | getDouble(columnIndex: number): number     | Obtains the value in the form of double based on the specified column and current row.    |
+| ResultSet | getLong(columnIndex: number): number     | Obtains the value in the form of a long integer based on the specified column and current row.    |
+| ResultSet | close(): void                                   | Closes the result set.                              |
 
 
 
@@ -164,7 +166,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class    | API                                                      | Description                                                        |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | backup(destName:string): Promise&lt;void&gt;                 | Backs up an RDB store. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
+| RdbStore | backup(destName: string): Promise&lt;void&gt;                 | Backs up an RDB store. This API uses a promise to return the result.<br>- **destName**: name of the RDB backup file.|
 
 **Restoring an RDB Store**
 
@@ -172,7 +174,7 @@ You can obtain the distributed table name for a remote device based on the local
 
 | Class    | API                                                      | Description                                                        |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| RdbStore | restore(srcName:string): Promise&lt;void&gt;                 | Restores an RDB store from a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the backup file used to restore the RDB store.|
+| RdbStore | restore(srcName: string): Promise&lt;void&gt;                 | Restores an RDB store from a backup file. This API uses a promise to return the result.<br>- **srcName**: name of the backup file used to restore the RDB store.|
 
 **Transaction**
 
@@ -180,9 +182,9 @@ Table 15 Transaction APIs
 
 | Class    | API                 | Description                             |
 | -------- | ----------------------- | --------------------------------- |
-| RdbStore | beginTransaction():void | Starts the transaction before executing SQL statements.|
-| RdbStore | commit():void           | Commits the executed SQL statements.            |
-| RdbStore | rollBack():void         | Rolls back the SQL statements that have been executed.          |
+| RdbStore | beginTransaction(): void | Starts the transaction before executing SQL statements.|
+| RdbStore | commit(): void           | Commits the executed SQL statements.            |
+| RdbStore | rollBack(): void         | Rolls back the SQL statements that have been executed.          |
 
 ## How to Develop
 
@@ -194,17 +196,41 @@ Table 15 Transaction APIs
 
    (3) Create an RDB store.
 
-   The sample code is as follows:
+   FA model:
 
     ```js
-    import data_rdb from '@ohos.data.rdb'
+   import data_rdb from '@ohos.data.rdb'
+    // Obtain the context.
+   import featureAbility from '@ohos.ability.featureAbility'
+   let context = featureAbility.getContext()
 
-    const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
-    const STORE_CONFIG = {name: "rdbstore.db"}
-    data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, function (err, rdbStore) {
-        rdbStore.executeSql(CREATE_TABLE_TEST)
-        console.info('create table done.')
-    })
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "RdbTest.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+      rdbStore.executeSql(CREATE_TABLE_TEST)
+      console.info('create table done.')
+   })
+    ```
+    Stage model:
+     ```ts
+   import data_rdb from '@ohos.data.rdb'
+    // Obtain the context.
+   import Ability from '@ohos.application.Ability'
+   let context = null
+   class MainAbility extends Ability {
+       onWindowStageCreate(windowStage) {
+         context = this.context
+       }
+   }
+
+   const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+
+   const STORE_CONFIG = { name: "rdbstore.db" }
+   data_rdb.getRdbStore(context, STORE_CONFIG, 1, function (err, rdbStore) {
+       rdbStore.executeSql(CREATE_TABLE_TEST)
+       console.info('create table done.')
+   })
     ```
 
 2. Insert data.
@@ -217,7 +243,7 @@ Table 15 Transaction APIs
 
     ```js
     var u8 = new Uint8Array([1, 2, 3])
-    const valueBucket = {"name": "Tom", "age": 18, "salary": 100.5, "blobType": u8}
+    const valueBucket = { "name": "Tom", "age": 18, "salary": 100.5, "blobType": u8 }
     let insertPromise = rdbStore.insert("test", valueBucket)
     ```
 
@@ -316,6 +342,7 @@ Table 15 Transaction APIs
             console.log('device=' + device[i] + 'data changed')
         }
     }
+
     try {
         rdbStore.on('dataChange', data_rdb.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver)
     } catch (err) {
@@ -366,9 +393,7 @@ Table 15 Transaction APIs
 
    (1) Back up the current RDB store.
 
-   (2) Restore the RDB store using the backup file.
-   
-   The sample code is as follows:
+    The sample code is as follows:
 
     ```js
     let promiseBackup = rdbStore.backup("dbBackup.db")
@@ -378,6 +403,10 @@ Table 15 Transaction APIs
         console.info('Backup failed, err: ' + err)
     })
     ```
+   (2) Restore the RDB store using the backup file.
+   
+    The sample code is as follows:
+
     ```js
     let promiseRestore = rdbStore.restore("dbBackup.db")
     promiseRestore.then(() => {
@@ -386,4 +415,3 @@ Table 15 Transaction APIs
         console.info('Restore failed, err: ' + err)
     })
     ```
-

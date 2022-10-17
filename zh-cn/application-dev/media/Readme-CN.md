@@ -20,3 +20,4 @@
 
 - 相机
   - [相机开发指导](camera.md)
+  - [分布式相机开发指导](remote-camera.md)

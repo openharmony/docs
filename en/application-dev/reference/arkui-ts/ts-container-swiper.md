@@ -1,16 +1,10 @@
 # Swiper
 
-
-The **\<Swiper>** component provides a container that allows users to switch among child components using swipe gestures.
+ The **\<Swiper>** component is able to display child components in looping mode.
 
 > **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
-## Required Permissions
-
-None
 
 
 ## Child Components
@@ -20,18 +14,18 @@ This component can contain child components.
 
 ## APIs
 
-Swiper(value:{controller?: SwiperController})
+Swiper(controller?: SwiperController)
 
 **Parameters**
 
 | Name       | Type                          | Mandatory | Description                |
 | ---------- | ------------------------------------- | ---- | -------------------- |
-| controller | [SwiperController](#swipercontroller) | No  | Controller bound to the component to control the page switching.<br>Default value: **null** |
+| controller | [SwiperController](#swipercontroller) | No  | Controller bound to the component to control the page switching.|
 
 
 ## Attributes
 
-[Menu control](ts-universal-attributes-menu.md) is not supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported. [Menu control](ts-universal-attributes-menu.md) is not supported.
 
 | Name                         | Type                              | Description                                      |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -42,29 +36,29 @@ Swiper(value:{controller?: SwiperController})
 | loop                        | boolean                                  | Whether to enable loop playback.<br>The value **true** means to enable loop playback. When LazyForEach is used, it is recommended that the number of the components to load exceed 5.<br>Default value: **true**|
 | duration                    | number                                   | Duration of the animation for switching child components, in ms.<br>Default value: **400**                       |
 | vertical                    | boolean                                  | Whether vertical swiping is used.<br>Default value: **false**                                |
-| itemSpace                   | Length                                   | Space between child components.<br>Default value: **0**                          |
+| itemSpace                   | number \| string          | Space between child components.<br>Default value: **0**                          |
 | displayMode                 | SwiperDisplayMode                        | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
 | cachedCount<sup>8+</sup>    | number                                   | Number of child components to be cached.<br>Default value: **1**                             |
 | disableSwipe<sup>8+</sup>   | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**                             |
-| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve) \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease** |
-| indicatorStyle<sup>8+</sup> | {<br/>left?:&nbsp;Length,<br/>top?:&nbsp;Length,<br/>right?:&nbsp;Length,<br/>bottom?:&nbsp;Length,<br/>size?:&nbsp;Length,<br/>mask?:&nbsp;boolean,<br/>color?:&nbsp;[ResourceColor](../../ui/ts-types.md),<br/>selectedColor?:&nbsp;[ResourceColor](../../ui/ts-types.md)<br/>} | Style of the navigation dots indicator.<br>- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>- **size**: diameter of the navigation dots indicator.<br>- **color**: color of the navigation dots indicator.<br>- **selectedColor**: color of the selected navigation dot.|
+| curve<sup>8+</sup>          | [Curve](ts-appendix-enums.md#curve)  \| string | Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves ([interpolation curve objects](ts-interpolation-calculation.md)) by using the API provided by the interpolation calculation module.<br>Default value: **Curve.Ease**|
+| indicatorStyle<sup>8+</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>selectedColor?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style of the navigation dots indicator.<br>\- **left**: distance between the navigation dots indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation dots indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation dots indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation dots indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation dots indicator.<br>\- **mask**: whether to enable the mask for the navigation dots indicator.<br>\- **color**: color of the navigation dots indicator.<br>\- **selectedColor**: color of the selected navigation dot.|
 | displayCount<sup>8+</sup>   | number\|string                                               | Number of elements to display.<br>Default value: **1**                                          |
-| effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                               | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
+| effectMode<sup>8+</sup>     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)  | Swipe effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.Spring**|
 
 ## SwiperDisplayMode
 
 | Name| Description|
 | ----------- | ------------------------------------------ |
 | Stretch     | The slide width of the **\<Swiper>** component is equal to the width of the component.|
-| AutoLinear  | The slide width of the **\<Swiper>** component is equal to the maximum width of the child components.|
+| AutoLinear  | The slide width of the **\<Swiper>** component is equal to that of the child component with the maximum width.|
 
 ## EdgeEffect
 
 | Name  | Description                                                                     |
 | ------ | ------------------------------------------------------------------------- |
-| Spring | Spring effect. When at one of the edges, the component can move beyond the bounds through touches, and produce a bounce effect when the user releases their finger.   |
-| Fade   | Fade effect. When at one of the edges, the component can move beyond the bounds through touches, and produce a fade effect along the way; when the user releases their finger, the fade changes.           |
-| None   | No effect. When at one of the edges, the component cannot move beyond the bounds.                                                     |
+| Spring | Spring effect. When sliding to one edge, the component can move beyond the bounds through touches, and produce a bounce effect when the user releases their finger.   |
+| Fade   | Fade effect. When sliding to one edge, the component can move beyond the bounds through touches, and produce a fade effect along the way; when the user releases their finger, the fade changes.           |
+| None   | No effect. When sliding to one edge, the component cannot move beyond the bounds.                                                     |
 
 ## SwiperController
 
@@ -86,7 +80,7 @@ Turns to the previous page.
 
 finishAnimation(callback?: () => void): void
 
-Stops this animation.
+Stops an animation.
 
 **Parameters**
 
@@ -100,7 +94,7 @@ Stops this animation.
 
 onChange(event: (index: number) => void)
 
-Triggered when the index of the currently displayed component changes.
+Triggered when the index of the currently displayed child component changes.
 
 **Parameters**
 

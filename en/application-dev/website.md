@@ -1,7 +1,7 @@
 # Application Development
-
 - [Application Development Overview](application-dev-guide.md)
 - Quick Start
+
   - Getting Started
     - [Preparations](quick-start/start-overview.md)
     - [Getting Started with eTS in Stage Model](quick-start/start-with-ets-stage.md)
@@ -43,12 +43,10 @@
         - File Organization
           - [Directory Structure](ui/ts-framework-directory.md)
           - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
-        - ["js" Tag](ui/ts-framework-js-tag.md)
         - Resource Management
           - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
           - [Accessing Resources](ui/ts-resource-access.md)
         - [Pixel Units](ui/ts-pixel-units.md)
-        - [Types](ui/ts-types.md)
       - Declarative Syntax
         - [Overview](ui/ts-syntax-intro.md)
         - General UI Description Specifications
@@ -108,6 +106,7 @@
         - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
+      - [Recommendations for Improving Performance](ui/ts-performance-improvement-recommendation.md)
     - JavaScript-based Web-like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
@@ -181,7 +180,6 @@
             - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
   - Common Event and Notification
-
     - [Common Event and Notification Overview](notification/notification-brief.md)
     - [Common Event Development](notification/common-event.md)
     - [Notification Development](notification/notification-guidelines.md)
@@ -190,27 +188,20 @@
       - [Agent-Powered Scheduled Reminder Development](notification/background-agent-scheduled-reminder-guide.md)
     - [Debugging Assistant Usage](notification/assistant-guidelines.md)
   - Window Manager
-    - Window
-      - [Window Overview](windowmanager/window-overview.md)
-      - [Application Window Development (Stage Mode)](windowmanager/application-window-stage.md)
-      - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
-      - [System Window Development (Stage Model Only)](windowmanager/system-window-stage.md)
-    - Display
-      - [Display Overview](windowmanager/display-overview.md)
-      - [Display Development](windowmanager/display-guidelines.md)
-    - Screenshot
-      - [Screenshot Overview](windowmanager/screenshot-overview.md)
-      - [Screenshot Development](windowmanager/screenshot-guidelines.md)
+    - [Window Overview](windowmanager/window-overview.md)
+    - [Application Window Development (Stage Mode)](windowmanager/application-window-stage.md)
+    - [Application Window Development (FA Model)](windowmanager/application-window-fa.md)
+    - [System Window Development (Stage Model Only)](windowmanager/system-window-stage.md)
   - WebGL
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
   - Media
-
     - Audio
       - [Audio Overview](media/audio-overview.md)
       - [Audio Playback Development](media/audio-playback.md)
       - [Audio Recording Development](media/audio-recorder.md)
       - [Audio Rendering Development](media/audio-renderer.md)
+      - [Audio Stream Management Development](media/audio-stream-manager.md)
       - [Audio Capture Development](media/audio-capturer.md)
       - [OpenSL ES Audio Playback Development](media/opensles-playback.md)
       - [OpenSL ES Audio Recording Development](media/opensles-capture.md)
@@ -222,8 +213,8 @@
       - [Image Development](media/image.md)
     - Camera
       - [Camera Development](media/camera.md)
+      - [Distributed Camera Development](media/remote-camera.md)
   - Security
-
     - Access Control
       - [Access Control Overview](security/accesstoken-overview.md)
       - [Access Control Development](security/accesstoken-guidelines.md)
@@ -319,7 +310,7 @@
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - Hands-On Tutorials
-  - [Samples](https://gitee.com/openharmony/app_samples/blob/master/README.md)
+  - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
   - Component Reference (TypeScript-based Declarative Development Paradigm)
@@ -361,6 +352,9 @@
         - [Component ID](reference/arkui-ts/ts-universal-attributes-component-id.md)
         - [Touch Target](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [Polymorphic Style](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
+        - [Hit Test Control](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+        - [Background Blur](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
+        - [restoreId](reference/arkui-ts/ts-universal-attributes-restoreId.md)
       - Gesture Processing
         - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
         - Basic Gestures
@@ -419,10 +413,13 @@
       - [Counter](reference/arkui-ts/ts-container-counter.md)
       - [Flex](reference/arkui-ts/ts-container-flex.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
+      - [GridCol](reference/arkui-ts/ts-container-gridcol.md)
+      - [GridRow](reference/arkui-ts/ts-container-gridrow.md)
       - [Grid](reference/arkui-ts/ts-container-grid.md)
       - [GridItem](reference/arkui-ts/ts-container-griditem.md)
       - [List](reference/arkui-ts/ts-container-list.md)
       - [ListItem](reference/arkui-ts/ts-container-listitem.md)
+      - [ListItemGroup](reference/arkui-ts/ts-container-listitemgroup.md)
       - [Navigator](reference/arkui-ts/ts-container-navigator.md)
       - [Panel](reference/arkui-ts/ts-container-panel.md)
       - [Refresh](reference/arkui-ts/ts-container-refresh.md)
@@ -475,6 +472,7 @@
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
+    - [Types](reference/arkui-ts/ts-types.md)
   - Component Reference (JavaScript-based Web-like Development Paradigm)
     - Universal Component Information
       - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
@@ -634,6 +632,7 @@
         - [ExtensionRunningInfo](reference/apis/js-apis-extensionrunninginfo.md)
         - [MissionSnapshot](reference/apis/js-apis-application-MissionSnapshot.md)
         - [ProcessRunningInfo](reference/apis/js-apis-processrunninginfo.md)
+        - [ProcessRunningInformation](reference/apis/js-apis-processrunninginformation.md)
         - [shellCmdResult](reference/apis/js-apis-application-shellCmdResult.md)
         - [ContinuationResult](reference/apis/js-apis-continuation-continuationResult.md)
     - Common Event and Notification
@@ -684,7 +683,6 @@
       - [@ohos.multimedia.camera](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media](reference/apis/js-apis-media.md)
-      - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
     - Resource Management
       - [@ohos.i18n](reference/apis/js-apis-i18n.md)
       - [@ohos.intl](reference/apis/js-apis-intl.md)
@@ -696,12 +694,14 @@
       - [@ohos.WorkSchedulerExtensionAbility](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - Custom Management
       - [@ohos.configPolicy](reference/apis/js-apis-config-policy.md)
-      - [@ohos.enterpriseDeviceManager](reference/apis/js-apis-enterprise-device-manager.md)
       - [@ohos.EnterpriseAdminExtensionAbility](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterpriseDeviceManager](reference/apis/js-apis-enterprise-device-manager.md)
+      - [DeviceSettingsManager](reference/apis/js-apis-enterpriseDeviceManager-DeviceSettingsManager.md)
     - Security
       - [@ohos.abilityAccessCtrl](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager](reference/apis/js-apis-privacyManager.md)
       - [@ohos.security.huks](reference/apis/js-apis-huks.md)
+      - [@ohos.userIAM.faceAuth](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher](reference/apis/js-apis-system-cipher.md)
     - Data Management
@@ -720,24 +720,25 @@
       - [@ohos.environment](reference/apis/js-apis-environment.md)
       - [@ohos.fileio](reference/apis/js-apis-fileio.md)
       - [@ohos.fileManager](reference/apis/js-apis-filemanager.md)
+      - [@ohos.multimedia.medialibrary](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
       - [@ohos.statfs](reference/apis/js-apis-statfs.md)
       - [@ohos.storageStatistics](reference/apis/js-apis-storage-statistics.md)
       - [@ohos.volumeManager](reference/apis/js-apis-volumemanager.md)
-      - [@ohos.securityLabel](reference/apis/js-apis-securityLabel.md)
     - Telephony Service
       - [@ohos.contact](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call](reference/apis/js-apis-call.md)
+      - [@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)
       - [@ohos.telephony.observer](reference/apis/js-apis-observer.md)
       - [@ohos.telephony.radio](reference/apis/js-apis-radio.md)
       - [@ohos.telephony.sim](reference/apis/js-apis-sim.md)
       - [@ohos.telephony.sms](reference/apis/js-apis-sms.md)
-      - [@ohos.telephony.data](reference/apis/js-apis-telephony-data.md)
     - Network Management
       - [@ohos.net.connection](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.http](reference/apis/js-apis-http.md)
-      - [@ohos.request](reference/apis/js-apis-request.md)
       - [@ohos.net.socket](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket](reference/apis/js-apis-webSocket.md)
+      - [@ohos.request](reference/apis/js-apis-request.md)
     - Connectivity
       - [@ohos.bluetooth](reference/apis/js-apis-bluetooth.md)
       - [@ohos.connectedTag](reference/apis/js-apis-connectedTag.md)
@@ -747,6 +748,8 @@
       - [@ohos.rpc](reference/apis/js-apis-rpc.md)
       - [@ohos.wifi](reference/apis/js-apis-wifi.md)
       - [@ohos.wifiext](reference/apis/js-apis-wifiext.md)
+      - [nfctech](reference/apis/js-apis-nfctech.md)
+      - [tagSession](reference/apis/js-apis-tagSession.md)
     - Basic Features
       - [@ohos.accessibility](reference/apis/js-apis-accessibility.md)
       - [@ohos.faultLogger](reference/apis/js-apis-faultLogger.md)
@@ -759,11 +762,13 @@
       - [@ohos.hiTraceMeter](reference/apis/js-apis-hitracemeter.md)
       - [@ohos.inputMethod](reference/apis/js-apis-inputmethod.md)
       - [@ohos.inputMethodEngine](reference/apis/js-apis-inputmethodengine.md)
+      - [@ohos.inputmethodextensionability](reference/apis/js-apis-inputmethod-extension-ability.md)
+      - [@ohos.inputmethodextensioncontext](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.pasteboard](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
-      - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
       - [@ohos.systemTimer](reference/apis/js-apis-system-timer.md)
+      - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
       - [Timer](reference/apis/js-apis-timer.md)
     - Device Management
       - [@ohos.batteryInfo](reference/apis/js-apis-battery-info.md)
@@ -779,6 +784,7 @@
       - [@ohos.multimodalInput.keyCode](reference/apis/js-apis-keycode.md)
       - [@ohos.multimodalInput.keyEvent](reference/apis/js-apis-keyevent.md)
       - [@ohos.multimodalInput.mouseEvent](reference/apis/js-apis-mouseevent.md)
+      - [@ohos.multimodalInput.pointer](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent](reference/apis/js-apis-touchevent.md)
       - [@ohos.power](reference/apis/js-apis-power.md)
       - [@ohos.runningLock](reference/apis/js-apis-runninglock.md)
@@ -794,6 +800,7 @@
       - [@ohos.account.distributedAccount](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount](reference/apis/js-apis-osAccount.md)
     - Language Base Class Library
+      - [@ohos.buffer](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml](reference/apis/js-apis-convertxml.md)
       - [@ohos.process](reference/apis/js-apis-process.md)
       - [@ohos.uri](reference/apis/js-apis-uri.md)
@@ -852,3 +859,16 @@
         - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
 - FAQs
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
+  - [Ability Framework Development](faqs/faqs-ability.md)
+  - [ArkUI (JavaScript) Development](faqs/faqs-ui-js.md)
+  - [ArkUI (eTS) Development](faqs/faqs-ui-ets.md)
+  - [Graphics and Image Development](faqs/faqs-graphics.md)
+  - [File Management Development](faqs/faqs-file-management.md)
+  - [Network and Connection Development](faqs/faqs-connectivity.md)
+  - [Device Management Development](faqs/faqs-data-management.md)
+  - [Device Management Development](faqs/faqs-device-management.md)
+  - [Native API Usage](faqs/faqs-native.md)
+  - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-party-library.md)
+  - [IDE Usage](faqs/faqs-ide.md)
+  - [hdc_std Command Usage](faqs/faqs-hdc-std.md)
+  - [Development Board](faqs/faqs-development-board.md)

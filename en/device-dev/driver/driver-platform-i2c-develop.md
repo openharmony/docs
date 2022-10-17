@@ -73,22 +73,22 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
    
    ```
    struct HdfDriverEntry g_i2cDriverEntry = {
-          .moduleVersion = 1,
-          .Init = Hi35xxI2cInit,
-          .Release = Hi35xxI2cRelease,
-          .moduleName = "hi35xx_i2c_driver",        // (Mandatory) The value must be the same as that in the config.hcs file.
-      };
-      HDF_INIT(g_i2cDriverEntry);                   // Call HDF_INIT to register the driver entry with the HDF.
-      
-      // Driver entry of the i2c_core.c manager service at the core layer
-      struct HdfDriverEntry g_i2cManagerEntry = {
-          .moduleVersion = 1,
-          .Bind = I2cManagerBind,
-          .Init = I2cManagerInit,
-          .Release = I2cManagerRelease,
-          .moduleName = "HDF_PLATFORM_I2C_MANAGER", // This parameter corresponds to device0 in the device_info file.
+       .moduleVersion = 1,
+       .Init = Hi35xxI2cInit,
+       .Release = Hi35xxI2cRelease,
+       .moduleName = "hi35xx_i2c_driver",        // (Mandatory) The value must be the same as that in the config.hcs file.
    };
-      HDF_INIT(g_i2cManagerEntry);
+   HDF_INIT(g_i2cDriverEntry);                   // Call HDF_INIT to register the driver entry with the HDF.
+      
+   // Driver entry of the i2c_core.c manager service at the core layer
+   struct HdfDriverEntry g_i2cManagerEntry = {
+       .moduleVersion = 1,
+       .Bind = I2cManagerBind,
+       .Init = I2cManagerInit,
+       .Release = I2cManagerRelease,
+       .moduleName = "HDF_PLATFORM_I2C_MANAGER", // This parameter corresponds to device0 in the device_info file.
+   };
+   HDF_INIT(g_i2cManagerEntry);
    ```
    
       
@@ -127,12 +127,12 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
              deviceMatchAttr = "hdf_platform_i2c_manager";
          }
          device1 :: deviceNode {
-              policy = 0;                               // The value 0 indicates that no service needs to be published.
+             policy = 0;                               // The value 0 indicates that no service needs to be published.
              priority = 55;                             // Driver startup priority.
              permission = 0644;                         // Permission for the driver to create a device node.
              moduleName = "hi35xx_i2c_driver";          // (Mandatory) Driver name, which must be the same as moduleName in the driver entry.
              serviceName = "HI35XX_I2C_DRIVER";         // (Mandatory) Unique name of the service published by the driver.
-              deviceMatchAttr = "hisilicon_hi35xx_i2c"; // (Mandatory) Used to configure the private data of the controller. The value must be the same as the controller information in i2c_config.hcs.
+             deviceMatchAttr = "hisilicon_hi35xx_i2c"; // (Mandatory) Used to configure the private data of the controller. The value must be the same as the controller information in i2c_config.hcs.
                                                         //The specific controller information is stored in i2c_config.hcs.
          }
          }
@@ -263,10 +263,10 @@ The following uses **i2c_hi35xx.c** as an example to present the information req
           
           hi35xx->cntlr.priv = (void *)node;    // (Mandatory) Device attributes.
           hi35xx->cntlr.busId = hi35xx->bus;    // (Mandatory) Initialize busId in I2cCntlr.
-           hi35xx->cntlr.ops = &g_method;       // (Mandatory) Hook the I2cMethod instance.
-           hi35xx->cntlr.lockOps = &g_lockOps;  // (Mandatory) Hook the I2cLockMethod instance.
+          hi35xx->cntlr.ops = &g_method;       // (Mandatory) Hook the I2cMethod instance.
+          hi35xx->cntlr.lockOps = &g_lockOps;  // (Mandatory) Hook the I2cLockMethod instance.
           (void)OsalSpinInit(&hi35xx->spin);    // (Mandatory) Initialize the lock.
-            ret = I2cCntlrAdd(&hi35xx->cntlr);  // (Mandatory) Call this function to set the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
+          ret = I2cCntlrAdd(&hi35xx->cntlr);  // (Mandatory) Call this function to set the structure of the core layer. The driver accesses the platform core layer only after a success signal is returned.
           ...
       #ifdef USER_VFS_SUPPORT
           (void)I2cAddVfsById(hi35xx->cntlr.busId);// (Optional) Mount the user-level VFS if required.

@@ -60,7 +60,7 @@
 
 + **Standard**：每次startAbility调用，都会在应用进程中创建一个该类型的实例，如下图Ability2的两个实例；
 
-+ **Specified**：允许开发者在系统创建AbilityRecord之前，为该实例创建一个key，后续每次创建该类型的Ability实例都会询问应用使用哪个key对应的Ability实例，来响应startAbility请求，如下图Ability3。
++ **Specified**：允许开发者在系统创建Ability实例之前，为该实例创建一个key，后续每次创建该类型的Ability实例都会询问应用使用哪个key对应的Ability实例，来响应startAbility请求，如下图Ability3。
 
 ​        每个Ability实例都对应了一个Launcher Recent中看到的Mission(任务)。
 
@@ -110,5 +110,8 @@ Stage模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍
 ## 相关实例
 
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
+
+- [`StageModel`：Stage模型（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StageModel)
+- [`WindowExtAbility`：窗口扩展（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/WindowExtAbility)
 - [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
 - [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)

@@ -20,5 +20,5 @@ display.getDefaultDisplay((err, data) => {
   } 
   console.info('Test Succeeded in obtaining the default display object. Data:' + JSON.stringify(data)); 
   console.info('Test densityDPI:' + JSON.stringify(data.densityDPI)); 
-});https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-device-info.md)
+});
 ```

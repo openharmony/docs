@@ -3,12 +3,8 @@
 路径绘制组件，根据绘制路径生成封闭的自定义形状。
 
 > **说明：**
+>
 > 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
-## 权限列表
-
-无
 
 
 ## 子组件
@@ -19,15 +15,13 @@
 
 Path(value?: { width?: number | string; height?: number | string; commands?: string })
 
-- 参数
+**参数:**
 
-  | 参数名   | 参数类型 | 必填 | 默认值 | 参数描述             |
-  | -------- | -------- | ---- | ------ | -------------------- |
-  | width    | number \| string   | 否   | 0      | 路径所在矩形的宽度   |
-  | height   | number \| string   | 否   | 0      | 路径所在矩形的高度   |
-  | commands | string   | 否   | ''  | 路径绘制的命令字符串 |
-
-  
+| 参数名   | 参数类型         | 必填 | 参数描述                            |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| width    | number \| string | 否   | 路径所在矩形的宽度<br/>默认值：0    |
+| height   | number \| string | 否   | 路径所在矩形的高度<br/>默认值：0    |
+| commands | string           | 否   | 路径绘制的命令字符串<br/>默认值：'' |
 
 ## 属性
 
@@ -36,15 +30,15 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 | 参数名称     | 参数类型                                | 默认值  | 必填   | 参数描述                                     |
 | -------- | ----------------------------------- | ---- | ---- | ---------------------------------------- |
 | commands | string                              | ''   | 否  | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](../../ui/ts-pixel-units.md)。 |
-| fill | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
-| stroke | [ResourceColor](../../ui/ts-types.md) | Color.Black | 否 | 设置线条颜色。 |
+| fill | [ResourceColor](ts-types.md) | Color.Black | 否 | 设置填充区域颜色。 |
+| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置填充区域透明度。 |
+| stroke | [ResourceColor](ts-types.md) | - | 否 | 设置线条颜色。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 否 | 设置线条间隙。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 否 | 线条绘制起点的偏移量。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 否 | 设置线条端点绘制样式。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 否 | 设置线条拐角绘制样式。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 否 | 设置锐角绘制成斜角的极限值。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
+| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 否 | 设置线条透明度。 |
 | strokeWidth | Length | 1 | 否 | 设置线条宽度。 |
 | antiAlias | boolean | true | 否 | 是否开启抗锯齿效果。 |
 
@@ -73,24 +67,75 @@ commands支持的绘制命令如下：
 @Component
 struct PathExample {
   build() {
-    Column({ space: 5 }) {
-      Text('Straight line').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制一条长900px，宽3vp的直线。
-      Path().width(300).height(10).commands('M0 0 L900 0').stroke(Color.Black).strokeWidth(3)
+    Column({ space: 10 }) {
+      Text('Straight line')
+        .fontSize(11)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      // 绘制一条长900px，宽3vp的直线
+      Path()
+        .width(300)
+        .height(10)
+        .commands('M0 0 L900 0')
+        .stroke(Color.Black)
+        .strokeWidth(3)
 
-      Text('Straight line graph').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Path().width(100).height(100).commands('M150 0 L300 300 L0 300 Z')
-        Path().width(100).height(100).commands('M0 0 H300 V300 H0 Z')
-        Path().width(100).height(100).commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+      Text('Straight line graph')
+        .fontSize(11)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      // 绘制直线图形
+      Row({ space: 20 }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L300 300 L0 300 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 0 H300 V300 H0 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
       }.width('100%')
 
-      Text('Curve graphics').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Path().width(100).height(100).commands("M0 300 S150 0 300 300 Z")
-        Path().width(100).height(100).commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+      Text('Curve graphics').fontSize(11).fontColor(0xCCCCCC).width('90%')
+      // 绘制弧线图形
+      Row({ space: 20 }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands("M0 300 S150 0 300 300 Z")
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 200 A30 20 20 0 0 250 200 Z')
+          .fillOpacity(0)
+          .stroke(Color.Black)
+          .strokeWidth(3)
       }
-    }.width('100%').margin({ top: 5 })
+    }.width('100%')
+    .margin({ top: 5 })
   }
 }
 ```

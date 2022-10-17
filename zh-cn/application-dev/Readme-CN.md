@@ -8,8 +8,8 @@
 - 快速开始
     - 快速入门
         - [开发准备](quick-start/start-overview.md)
-        - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-        - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+        - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+        - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
         - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
     - 开发基础知识
         - [应用包结构说明(FA模型)](quick-start/package-structure.md)
@@ -38,7 +38,7 @@
 - 工具
     - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
-    - [示例代码](https://gitee.com/openharmony/app_samples/blob/master/README_zh.md)
+    - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
     - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
     - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/Readme-CN.md)

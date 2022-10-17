@@ -67,6 +67,8 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.
 
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Parameters**
@@ -89,6 +91,8 @@ connection.hasDefaultNet(function (error, has) {
 hasDefaultNet(): Promise\<boolean>
 
 Checks whether the default data network is activated. This API uses a promise to return the result.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

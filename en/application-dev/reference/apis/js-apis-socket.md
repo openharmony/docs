@@ -1041,7 +1041,7 @@ promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.getRemoteAddress();
   promise2.then(() => {
-	console.log('getRemoteAddress success:' + JSON.stringify(data));
+	console.log('getRemoteAddress success');
   }).catch(err => {
 	console.log('getRemoteAddressfail');
   });
@@ -1120,7 +1120,7 @@ promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.getState();
   promise1.then(() => {
-	console.log('getState success:' + JSON.stringify(data));
+	console.log('getState success');
   }).catch(err => {
 	console.log('getState fail');
   });

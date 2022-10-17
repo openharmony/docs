@@ -92,7 +92,7 @@ OpenHarmony编译子系统是以GN和Ninja构建为基座，对构建和配置�
   # export PATH=~/.local/bin:$PATH
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-lite-env-setup.md#安装hb)重新安装。
+  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：上述安装ohos-build的过程中会安装编译工具hb，但有时会出现hb安装不成功的情况，若安装不成功，则按照[hb安装](../../device-dev/quick-start/quickstart-pkg-install_tool.md#安装hb)重新安装。
 
 
 ## 配置规则
@@ -175,11 +175,14 @@ bash build/prebuilts_download.sh
   ```shell
   ./build.sh --product-name {product_name} --gn-args is_debug=true
   ```
-  ![icon-note.gif](public_sys-resources/icon-note.gif)**注意**：Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块 ：
-  ```
-  ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
-  ```
-
+  > ![icon-caution.gif](public_sys-resources/icon-caution.gif) **注意：**
+  > Debug全版本因镜像大小限制，全量编译可能无法烧录，建议单模块编译Debug二进制。使用如下命令单独编译模块：
+  > 
+  > 
+  > ```
+  > ./build.sh --product-name {product_name} --gn-args is_debug=true --build-target {target_name}
+  > ```
+  > 
   {product_name}为当前版本支持的平台。比如：hispark_taurus_standard等。
 
   编译完成后，结果镜像保存在 out/{device_name}/packages/phone/images/ 目录下。
@@ -287,7 +290,7 @@ optional arguments:
   --compact-mode        compatible with standard build system set to false if we use build.sh as build entrance
   --gn-args GN_ARGS     specifies gn build arguments, eg: --gn-args="foo="bar" enable=true blah=7"
   --keep-ninja-going    keeps ninja going until 1000000 jobs fail
-  --build-only-gn       only do gn parse, donot run ninja
+  --build-only-gn       only do gn parse, do not run ninja
   --log-level LOG_LEVEL
                         specifies the log level during compilationyou can select three levels: debug, info and error
   --fast-rebuild        it will skip prepare, preloader, gn_gen steps so we can enable it only when there is no change
@@ -337,6 +340,7 @@ optional arguments:
 ## 参考信息
 
 - [关于deps、external_deps的使用](subsys-build-reference.md#关于deps、external_deps的使用)
+- [Sanitizer使用说明](subsys-build-reference.md#Sanitizer使用说明)
 - [开源软件Notice收集策略说明](subsys-build-reference.md#开源软件notice收集策略说明)
 - [加快本地编译的一些参数](subsys-build-reference.md#加快本地编译的一些参数)
 - [查看NinjaTrace](subsys-build-reference.md#查看ninjatrace)

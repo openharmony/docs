@@ -273,7 +273,7 @@ MIPI CSI模块适配的三个必选环节是配置属性文件、实例化驱动
       return ret;
   }
   
-  // mipi_dsi_core.c核心层
+  // mipi_csi_core.c核心层
   int32_t MipiCsiRegisterCntlr(struct MipiCsiCntlr *cntlr, struct HdfDeviceObject *device)
   {
   ...

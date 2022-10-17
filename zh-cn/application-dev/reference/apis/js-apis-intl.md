@@ -1,6 +1,6 @@
 # 国际化-Intl
 
- 本模块提供提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
+ 本模块提供基础的应用国际化能力，包括时间日期格式化、数字格式化、排序等，相关接口在ECMA 402标准中定义。
 [I18N模块](js-apis-i18n.md)提供其他非ECMA 402定义的国际化接口，与本模块共同使用可提供完整地国际化支持能力。 
 
 >  **说明：**
@@ -64,7 +64,7 @@ constructor(locale: string, options?: LocaleOptions)
 | 参数名     | 类型            | 必填   | 说明                           |
 | ------- | ------------- | ---- | ---------------------------- |
 | locale  | string        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | LocaleOptions | 否    | 用于创建区域对象的选项。                 |
+| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
   ```js
@@ -181,7 +181,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名     | 类型                                  | 必填   | 说明                           |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | [DateTimeOptions](#datetimeoptions) | 否    | 用于创建时间日期格式化的选项。              |
+| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
   ```js
@@ -265,7 +265,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                  | 说明                            |
 | ----------------------------------- | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js
@@ -333,7 +333,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名     | 类型                              | 必填   | 说明                           |
 | ------- | ------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;   | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | [NumberOptions](#numberoptions) | 否    | 用于创建数字格式化的选项。                |
+| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```js
@@ -381,7 +381,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                              | 说明                          |
 | ------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
@@ -405,7 +405,7 @@ resolvedOptions(): NumberOptions
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| unitUsage<sup>8+</sup>   | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
+| unitUsage                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
 | signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
 | compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
 | notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。 |
@@ -450,7 +450,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名     | 类型                                  | 必填   | 说明                           |
 | ------- | ----------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;       | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | [CollatorOptions](#collatoroptions) | 否    | 用于创建排序对象的选项。                 |
+| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
   ```js
@@ -498,7 +498,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                  | 说明                |
 | ----------------------------------- | ----------------- |
-| [CollatorOptions](#collatoroptions) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
 
 **示例：** 
   ```js
@@ -554,7 +554,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名     | 类型                                       | 必填   | 说明                           |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | [PluralRulesOptions](#pluralrulesoptions) | 否    | 用于创建单复数对象的选项。                |
+| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
   ```js
@@ -636,7 +636,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名     | 类型                                       | 必填   | 说明                           |
 | ------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale  | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions) | 否    | 用于创建相对时间格式化对象的选项。            |
+| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
   ```js
@@ -712,7 +712,7 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 | 类型                                       | 说明                                |
 | ---------------------------------------- | --------------------------------- |
-| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
+| [RelativeTimeFormatResolvedOptions](#relativetimeformatresolvedoptions8) | RelativeTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js

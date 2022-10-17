@@ -173,9 +173,9 @@ Establishes two-way data binding between an attribute and this **LocalStorage** 
 
 **Return value**
 
-| Type                                   | Description                                      |
-| ------------------------------------- | ---------------------------------------- |
-| [@Link](ts-component-states-link.md ) | Returns the value corresponding to the specified key if the key is stored in the **LocalStorage**; creates and returns a **Link** instance with the specified value as its default value otherwise|
+| Type                                | Description                                                        |
+| ------------------------------------ | ------------------------------------------------------------ |
+| [@Link](ts-component-states-link.md) | Returns the value corresponding to the specified key if the key is stored in the **LocalStorage**; creates and returns a **Link** instance with the specified value as its default value otherwise.|
 
 
 
@@ -195,7 +195,7 @@ Establishes one-way data binding with an attribute to update its status.
 
 | Type                                  | Description                                      |
 | ------------------------------------ | ---------------------------------------- |
-| [@Prop](ts-component-states-prop.md) | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. This means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will be synchronized to the **LocalStorage**. Note that the variables returned are immutable variables, which are applicable to mutable and immutable state variables. |
+| [@Prop](ts-component-states-prop.md) | Returns one-way binding to an attribute with a given key if the attribute exists; returns **undefined** otherwise. This means that attribute changes made through the **LocalStorage** will be synchronized to the variable or component, but attribute changes made by the variable or component will not be synchronized to the **LocalStorage**. Note that the variables returned are immutable variables, which are applicable to mutable and immutable state variables. |
 
 
 
@@ -286,20 +286,19 @@ Deletes all attributes.
 import Ability from '@ohos.application.Ability'
 export default class MainAbility extends Ability {    
   storage : LocalStorage    
-  onCreate(want) {    
+  onCreate() {    
     this.storage = new LocalStorage();
     this.storage.setOrCreate("storageSimpleProp",121);    
-    console.log("[Demo MainAbility onCreate]");    
-    globalThis.abilityWant = want;   
+    console.log("[Demo MainAbility onCreate]"); 
   }  
   onDestroy() {    
     console.log("[Demo MainAbility onDestroy]")  
   }    
   onWindowStageCreate(windowStage) {
-    windowStage.setUIContent(this.context,"pages/index",this.storage)    
+    windowStage.loadContent("pages/index",this.storage)    
   }    
   onWindowStageDestroy() {
-    console.log("[Demo] MainAbility onWindoeStageDestroy")   
+    console.log("[Demo] MainAbility onWindoeStageDestroy") 
   }    
   onForeground() {
     console.log("[Demo] MainAbility onForeground")   

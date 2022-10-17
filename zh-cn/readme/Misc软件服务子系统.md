@@ -22,5 +22,5 @@
 
 **Misc软件服务子系统**
 
-[miscservices\_time](https://gitee.com/openharmony/miscservices_time)
+[time_time_service](https://gitee.com/openharmony/time_time_service)
 
