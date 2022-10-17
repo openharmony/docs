@@ -5061,7 +5061,7 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 
 取消订阅传感器数据。
 
-从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ ACCELEROMETER ](#linear_accelerometer9-2)代替。
+从API version 9 开始不再维护，建议使用[sensor.off.LINEAR_ACCELEROMETER](#linear_accelerometer9-2)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
