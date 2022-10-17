@@ -1030,7 +1030,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 ## usageStatistics.queryNotificationEventStats
 
-queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;NotificationEventStats&gt;&gt;
+queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
 
 通过指定起始和结束时间查询所有应用的通知次数信息，使用Promise形式返回。
 
@@ -1051,7 +1051,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Not
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[NotificationEventStats](#notificationeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -1070,7 +1070,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Not
 
 ## usageStatistics.queryNotificationEventStats
 
-queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;NotificationEventStats&gt;&gt;): void
+queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
 
 通过指定起始和结束时间查询所有应用的通知次数信息，使用Callback形式返回。
 
@@ -1086,7 +1086,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | begin    | number                                   | 是    | 起始时间。                                    |
 | end      | number                                   | 是    | 结束时间。                                    |
-| callback | AsyncCallback&lt;Array&lt;[NotificationEventStats](#notificationeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
 
 **示例**：
 
@@ -1220,20 +1220,6 @@ FA卡片的使用信息的属性集合。
 | name    | string | 是    | 通知应用包名或者系统事件名。    |
 | eventId | number | 是    | 通知、系统事件类型。        |
 | count   | number | 是    | 应用通知次数或者系统事件触发次数。 |
-
-## NotificationEventStats
-
-提供通知事件的统计信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 参数名     | 类型     | 必填   | 说明                |
-| ------- | ------ | ---- | ----------------- |
-| name    | string | 是    | 通知应用包名。    |
-| eventId | number | 是    | 通知事件类型。        |
-| count   | number | 是    | 应用通知次数。 |
 
 ## IntervalType
 
