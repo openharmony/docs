@@ -46,29 +46,29 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
-1. 新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
+1、新建Api Version 8的工程后，在工程目录中右键选择“new” -> “Ability” -> “Service Ability” 快速创建Service Ability组件。并在config.json文件中配置长时任务权限、后台模式类型，其中Ability类型为“service”。
 
-    ```
-    "module": {
-      "package": "com.example.myapplication",
-      "abilities": [
+```
+"module": {
+    "package": "com.example.myapplication",
+    "abilities": [
         {
-          "backgroundModes": [
+            "backgroundModes": [
             "dataTransfer",
             "location"
-          ], // 后台模式类型
-          "type": "service"  // ability类型为service
+            ], // 后台模式类型
+            "type": "service"  // ability类型为service
         }
-      ],
-      "reqPermissions": [
+    ],
+    "reqPermissions": [
         {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
-      ]
-    }
-    ```
+    ]
+}
+```
 
-2. 在Service Ability调用长时任务的申请和取消接口。
+2、在Service Ability调用长时任务的申请和取消接口。
 
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
@@ -177,25 +177,25 @@ export default {
 
 Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)。
 
-1. 新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限、后台模式类型。
+1、新建Api Version 9的工程后，在工程目录中右键选择“New” -> “Ability” 快速创建Ability组件。并在module.json5文件中配置长时任务权限、后台模式类型。
 
-    ```
-    "module": {
-      "abilities": [
+```
+"module": {
+    "abilities": [
         {
-          "backgroundModes": [
+            "backgroundModes": [
             "dataTransfer",
             "location"
-          ], // 后台模式类型
+            ], // 后台模式类型
         }
-      ],
-      "requestPermissions": [
+    ],
+    "requestPermissions": [
         {
-          "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
         }
-      ]
-    }
-    ```
+    ]
+}
+```
 
 2、在应用内执行长时任务时，由于元能力启动管控规则限制，不支持同应用通过startAbilityByCall的形式在后台创建并运行Ability。可以直接在page中，执行相应的代码。Stage模型的Ability使用参考[Ability开发指导](../ability/stage-ability.md)。
 
@@ -229,20 +229,20 @@ struct Index {
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        backgroundTaskManager.startBackgroundRunning(this.context,
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation startBackgroundRunning failed Cause: " + err);
-        });
+      backgroundTaskManager.startBackgroundRunning(this.context,
+        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+        console.info("Operation startBackgroundRunning succeeded");
+      }).catch((err) => {
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
+      });
     });
   }
 
   stopContinuousTask() {
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
+      console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+      console.error("Operation stopBackgroundRunning failed Cause: " + err);
     });
   }
 
@@ -284,6 +284,8 @@ struct Index {
 import Ability from '@ohos.application.Ability'
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent from '@ohos.wantAgent';
+
+const MSG_SEND_METHOD: string = 'CallSendMsg'
 
 let mContext = null;
 
@@ -347,7 +349,7 @@ class MySequenceable {
 
 function sendMsgCallback(data) {
     console.info('BgTaskAbility funcCallBack is called ' + data)
-    let receivedData = new Mysequenceable(0, "")
+    let receivedData = new MySequenceable(0, "")
     data.readSequenceable(receivedData)
     console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`)
     // 可以根据Caller端发送的序列化数据的str值，执行不同的方法。
@@ -356,7 +358,7 @@ function sendMsgCallback(data) {
     } else if (receivedData.str === 'stop_bgtask') {
         stopContinuousTask();
     }
-    return new Mysequenceable(10, "Callee test");
+    return new MySequenceable(10, "Callee test");
 }
 
 export default class BgTaskAbility extends Ability {

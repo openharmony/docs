@@ -24,7 +24,7 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
 ## 开发步骤
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > 1. 应用需要配置权限：ohos.permission.PUBLISH_AGENT_REMINDER。
 >
@@ -32,6 +32,7 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 >    只有用户授权后，提醒代理的功能才能使用。
 
 1、定义目标提醒代理。
+
 2、发布相应的提醒代理。
 
 ```ts
