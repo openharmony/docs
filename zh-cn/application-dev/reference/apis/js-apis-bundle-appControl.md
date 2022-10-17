@@ -1,10 +1,12 @@
-# 应用拦截管理
+# appControl模块
 
-本模块提供应用拦截能力。
+本模块提供应用拦截能力。应用被禁止运行后，用户点击桌面图标时，会根据应用的处置状态，跳转到对应的页面。本模块支持对应用的处置状态进行设置、获取、删除。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+本模块接口为系统接口。
 
 ## 导入模块
 
@@ -16,53 +18,50 @@ import appControl from '@ohos.bundle.appControl'
 
 **function** setDisposedStatus(appId: **string**, disposedWant: **Want**): Promise\<**void**>
 
-以异步方法设置应用的处置，使用Promise形式返回结果，成功返回null，失败返回对应错误信息。
+以异步方法设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
 
-**系统API：**  此接口为系统接口，三方应用不支持调用
+**系统API：**  此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 需要设置处置的应用的appId                           |
-| disposedWant | Want(js-apis-application-Want.md) | 是 | 对应用的处置 |
+| appId  | string | 是    | 需要设置处置状态的应用的appId。                         |
+| disposedWant | Want  | 是 | 对应用的处置意图。 |
 
 **返回值：**
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise形式返回设置的结果，成功返回null，失败返回对应错误信息 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **相关错误码**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
-var want = {bundleName: "xxxx"};
+var addId = 'com.example.myapplication_xxxxx';
+var want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want)
-        .then( () => {
-            console.log("setDisposedStatus success");
-        }, error => {
-            console.error("setDisposedStatus failed" + error.code + " " + error.message);
-    });
+        .then(() => {
+            console.info('setDisposedStatus success');
+        }).catch((error) => {
+            console.error('setDisposedStatus failed ' + error.message);
+        });
 } catch (error) {
-    console.error("param check failed" + error.code + " " + error.message);
+    console.error('setDisposedStatus failed ' + error.message);
 }
 ```
 
@@ -70,7 +69,7 @@ try {
 
 **function** setDisposedStatus(appId: **string**, disposedWant: **Want**, callback: AsyncCallback\<**void**>): **void**;
 
-以异步方法设置应用的处置，使用callback形式返回结果，成功返回null，失败返回对应错误信息。
+以异步方法设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -83,35 +82,33 @@ try {
 | 名称          | 类型                              | 必填   | 描述                                      |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
 | appId  | string | 是    | 需要设置处置的应用的appId                           |
-| disposedWant | Want(js-apis-application-Want.md) | 是 | 对应用的处置 |
-| callback    | AsyncCallback\<void> | 是    | 程序启动作为入参的回调函数 |
+| disposedWant | Want  | 是 | 对应用的处置意图。 |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。 |
 
 **相关错误码**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
+var addId = 'com.example.myapplication_xxxxx';
+var want = {bundleName: 'com.example.myapplication'};
 
 try {
     appControl.setDisposedStatus(appId, want, (err, data) => {
         if (err) {
-            console.error("setDisposedStatus failed" + error.code + " " + error.message);
+            console.error('setDisposedStatus failed ' + error.message);
             return;
         }
-        console.log("setDisposedStatus success");
+         console.info('setDisposedStatus success');
     });
 } catch (error) {
-    console.error("param check error" + error.code + " " + error.message);
+    console.error('setDisposedStatus failed ' + error.message);
 }
 ```
 
@@ -119,7 +116,7 @@ try {
 
 **function** getDisposedStatus(appId: **string**): Promise\<**Want**>;
 
-以异步方法获取指定应用已设置的处置，使用Promise形式返回结果，成功返回对应用的处置，失败返回对应错误信息。
+以异步方法获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -137,34 +134,30 @@ try {
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<[Want](js-apis-application-Want.md)> | Promise形式返回对应用的处置。 |
+| Promise\<Want> | Promise对象，返回应用的处置状态。 |
 
 **相关错误码**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
+var appId = 'com.example.myapplication_xxxxx';
 
 try {
     appControl.getDisposedStatus(appId)
-    .then((data) => {
-        console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
-    })
-    .catch((error) => {
-        console.error('getDisposedStatus failed' + error.code + " " + error.message);
-    });
+        .then((data) => {
+            console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
+        }).catch((error) => {
+            console.error('getDisposedStatus failed ' + error.message);
+        });
 } catch (error) {
-    console.error("param check error" + error.code + " " + error.message)
+    console.error('getDisposedStatus failed ' + error.message);
 }
 ```
 
@@ -172,7 +165,7 @@ try {
 
 **function** getDisposedStatus(appId: **string**, callback: AsyncCallback\<**Want**>): **void**;
 
-以异步方法获取指定应用已设置的处置，使用Promise形式返回结果，成功返回对应用的处置，失败返回对应错误信息。
+以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -185,34 +178,80 @@ try {
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId        |
-| callback    | AsyncCallback\<[Want](js-apis-application-Want.md)> | 是    | 程序启动作为入参的回调函数                    |
+| callback    | AsyncCallback\<Want> | 是    | 回调函数。当获取应用的处置状态成功时，err为undefined，data为获取到的处置状态；否则为错误对象。                    |
 
 **相关错误码**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
+var appId = 'com.example.myapplication_xxxxx';
 
 try {
     appControl.getDisposedStatus(appId, (err, data) => {
         if (err) {
-            console.error('getDisposedStatus failed' + error.code + " " + error.message);
+            console.error('getDisposedStatus failed ' + error.message);
             return;
         }
         console.info('getDisposedStatus success. DisposedStatus: ' + JSON.stringify(data));
     });
 } catch (error) {
-    console.error("param check error" + error.code + " " + error.message)
+    console.error('getDisposedStatus failed ' + error.message);
+}
+```
+
+## appControl.deleteDisposedStatus
+
+**function** deleteDisposedStatus(appId: **string**): Promise\<**void**>
+
+以异步方法删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**系统API：**  此接口为系统接口，三方应用不支持调用
+
+**参数：**
+
+| 名称          | 类型     | 必填   | 描述                                      |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | 是    | 要删除处置状态的应用的appId       |                        |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象，无返回结果的Promise对象 |
+
+**相关错误码**
+
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
+| 错误码 | 错误信息                                |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified appId was not found.  |
+
+**示例：**
+
+```js
+var appId = 'com.example.myapplication_xxxxx';
+
+try {
+    appControl.deleteDisposedStatus(appId)
+        .then(() => {
+            console.info('deleteDisposedStatus success');
+        }).catch((error) => {
+            console.error('deleteDisposedStatus failed ' + error.message);
+        });
+} catch (error) {
+    console.error('deleteDisposedStatus failed ' + error.message);
 }
 ```
 
@@ -220,7 +259,7 @@ try {
 
 **function** deleteDisposedStatus(appId: **string**, callback: AsyncCallback\<**void**>) : **void**
 
-以异步方法删除对应用的处置，使用callback形式返回结果，成功返回null，失败返回对应错误信息。
+以异步方法删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
@@ -233,80 +272,31 @@ try {
 | 名称          | 类型     | 必填   | 描述                                      |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。       |
-| callback    | AsyncCallback\<[void]> | 是    | 程序启动作为入参的回调函数，返回删除结果。                    |
+| callback    | AsyncCallback\<void> | 是    | 回调函数，当设置处置状态成功，err为undefined，否则为错误对象。                    |
 
 **相关错误码**
 
+以下错误码的详细介绍请参见[ohos.bundle错误码](../errorcodes/errcode-bundle.md)。
+
 | 错误码 | 错误信息                                |
 | ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
 | 17700005 |  The specified appId was not found.  |
 
 **示例：**
 
 ```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
+var appId = 'com.example.myapplication_xxxxx';
 
 try {
     appControl.deleteDisposedStatus(appId, (err, data) => {
         if (err) {
-            console.error("deleteDisposedStatus failed" + error.code + " " + error.message);
+            console.error('deleteDisposedStatus failed ' + error.message);
             return;
         }
-        console.log("deleteDisposedStatus success");
+        console.info('deleteDisposedStatus success');
     });
 } catch (error) {
-    console.error("param check error" + error.code + " " + error.message);
+    console.error('deleteDisposedStatus failed ' + error.message);
 }
 
-```
-
-## appControl.deleteDisposedStatus
-
-**function** deleteDisposedStatus(appId: **string**): Promise\<**void**>
-
-以异步方法删除对应用的处置，以promise的形式返回结果，成功返回null，失败返回对应错误信息。
-
-**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
-
-**系统API：**  此接口为系统接口，三方应用不支持调用
-
-**参数：**
-
-| 名称          | 类型     | 必填   | 描述                                      |
-| ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | 是    | 要删除处置的应用的appId       |                        |
-
-**相关错误码**
-
-| 错误码 | 错误信息                                |
-| ------ | -------------------------------------- |
-| 201    | Permission denied.                     |
-| 401 | The parameter check failed.               |
-| 801 | Capacity not supported.                   |
-| 17700005 |  The specified appId was not found.  |
-
-**示例：**
-
-```js
-import appControl from '@ohos.bundle.appControl'
-
-var addId = "xxx";
-
-try {
-    appControl.deleteDisposedStatus(appId)
-        .then( () => {
-            console.log("deleteDisposedStatus success");
-        }, error => {
-            console.error("deleteDisposedStatus failed" + error.code + " " + error.message);
-    });
-} catch (error) {
-    console.error("param check error" + error.code + " " + error.message);
-}
 ```
