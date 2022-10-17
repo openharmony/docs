@@ -687,6 +687,16 @@ async function createTonePlayer(){
 | volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
 | networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
 
+## MicStateChangeEvent<sup>9+</sup>
+
+麦克风状态变化时，应用接收的事件。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| mute | boolean | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
+
 ## ConnectType<sup>9+</sup>
 
 枚举，设备连接类型。
@@ -3263,6 +3273,32 @@ async function getRoutingManager(){
 }
 ```
 
+### on('micStateChange')<sup>9+</sup>
+
+on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
+
+监听系统麦克风状态更改事件
+
+目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'micStateChange'（系统麦克风状态变化事件，检测到系统麦克风状态改变时，触发该事件）。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 是   | 回调方法，返回变更后的麦克风状态。                                                   |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+audioManager.getRoutingManager.on('micStateChange', (micStateChange) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+});
+```
+
 ### selectInputDevice<sup>9+</sup>
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
@@ -3697,8 +3733,6 @@ let outputAudioRendererFilter = {
 ## AudioRenderer<sup>8+</sup>
 
 提供音频渲染的相关接口。在调用AudioRenderer的接口前，需要先通过[createAudioRenderer](#audiocreateaudiorenderer8)创建实例。
-
-### 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5253,7 +5287,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
 | type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
-| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回缓冲区。 |
+| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回结果。 |
 
 **示例：**
 
