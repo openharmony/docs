@@ -260,5 +260,5 @@ export class AudioDemo {
 
 - [`JsDistributedMusicPlayer:`分布式音乐播放（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/JsDistributedMusicPlayer)
 - [`JsAudioPlayer`：音频播放和管理（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/JsAudioPlayer)
-- [`eTsAudioPlayer`: 音频播放器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [音频播放器（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [音频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
