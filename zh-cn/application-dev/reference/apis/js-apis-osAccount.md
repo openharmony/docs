@@ -662,7 +662,7 @@ isVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 ### isVerified<sup>9+</sup>
 
-isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
+isVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查指定系统帐号是否已验证，使用callback回调异步返回结果。
 
@@ -693,7 +693,7 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 ### isVerified<sup>9+</sup>
 
-isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
+isVerified(localId?: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证，使用Promise方式异步返回结果。
 
@@ -1423,7 +1423,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 ### queryOsAccountLocalIdFromDomain<sup>9+</sup>
 
-getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
+queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 根据域帐号信息，获取与其关联的系统帐号的帐号ID。
 
