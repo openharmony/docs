@@ -3,6 +3,16 @@
 
 ## **概述**
 
+定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。
+
+**Since：**
+
+3.2
+
+**Version:**
+
+1.0
+
 **所属模块:**
 
 [HdfPinAuth](_hdf_pin_auth.md)
@@ -13,30 +23,17 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [GetTemplateInfo](interface_i_executor.md#gettemplateinfo)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;templateId,&nbsp;[out]&nbsp;struct&nbsp;[TemplateInfo](_template_info.md)&nbsp;templateInfo) | 获取凭据模版信息。&nbsp;[更多...](interface_i_executor.md#gettemplateinfo) | 
-| [Cancel](interface_i_executor.md#cancel)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId) | 取消操作请求。&nbsp;[更多...](interface_i_executor.md#cancel) | 
-| [GetExecutorInfo](#getexecutorinfo)&nbsp;([out]&nbsp;struct&nbsp;[ExecutorInfo](_executor_info.md)&nbsp;executorInfo) | 获取执行器信息，口令认证服务将执行器注册到用户认证框架时需要通过该接口获取对应信息。&nbsp;[更多...](#getexecutorinfo) | 
-| [OnRegisterFinish](#onregisterfinish)&nbsp;([in]&nbsp;unsigned&nbsp;long[]&nbsp;templateIdList,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;frameworkPublicKey,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 完成执行器注册，对口令模版信息进行对账，用于删除无效的口令模板及相关信息。&nbsp;[更多...](#onregisterfinish) | 
-| [OnSetData](interface_i_executor.md#onsetdata)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;authSubType,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;data) | 设置口令数据，口令认证驱动处理注册或认证口令请求时，如果口令数据由口令认证服务获取，需要通过该接口将口令数据传给口令认证驱动。&nbsp;[更多...](interface_i_executor.md#onsetdata) | 
-| [Enroll](#enroll)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;[IExecutorCallback](interface_pin_i_executor_callback.md)&nbsp;callbackObj) | 注册口令。&nbsp;[更多...](#enroll) | 
-| [Authenticate](#authenticate)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;templateId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;[IExecutorCallback](interface_pin_i_executor_callback.md)&nbsp;callbackObj) | 认证口令。&nbsp;[ERROR:Invalid&nbsp;link:zh-cn_topic_0000001304382272.xml#xref15713627408,link:zh-cn_topic_0000001304382272.xml](zh-cn_topic_0000001304382272.xml) | 
-| [Delete](#delete)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;templateId) | 删除口令。&nbsp;[更多...](#delete) | 
-| [SendCommand](#sendcommand)&nbsp;([in]&nbsp;int&nbsp;commandId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;[IExecutorCallback](interface_pin_i_executor_callback.md)&nbsp;callbackObj) | 发送口令认证功能相关操作命令。&nbsp;[更多...](#sendcommand) | 
-
-
-## **详细描述**
-
-定义执行器标准API接口。接口可用于获取执行器信息，获取凭据模版信息，注册口令，认证口令，删除口令等。
-
-**Since：**
-
-3.2
-
-**Version:**
-
-1.0
+| [GetTemplateInfo](#gettemplateinfo)([in]&nbsp;unsigned&nbsp;long&nbsp;templateId,&nbsp;[out]&nbsp;struct&nbsp;TemplateInfo&nbsp;templateInfo) | 获取凭据模版信息。 | 
+| [Cancel](#cancel)([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId) | 取消操作请求。 | 
+| [GetExecutorInfo](#getexecutorinfo)&nbsp;([out]&nbsp;struct&nbsp;ExecutorInfo&nbsp;executorInfo) | 获取执行器信息，口令认证服务将执行器注册到用户认证框架时需要通过该接口获取对应信息。 | 
+| [OnRegisterFinish](#onregisterfinish)&nbsp;([in]&nbsp;unsigned&nbsp;long[]&nbsp;templateIdList,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;frameworkPublicKey,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo) | 完成执行器注册，对口令模版信息进行对账，用于删除无效的口令模板及相关信息。 | 
+| [OnSetData](#onsetdata)([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;authSubType,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;data) | 设置口令数据，口令认证驱动处理注册或认证口令请求时，如果口令数据由口令认证服务获取，需要通过该接口将口令数据传给口令认证驱动。 | 
+| [Enroll](#enroll)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;IExecutorCallback&nbsp;callbackObj) | 注册口令。 | 
+| [Authenticate](#authenticate)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;scheduleId,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;templateId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;IExecutorCallback&nbsp;callbackObj) | 认证口令。 | 
+| [Delete](#delete)&nbsp;([in]&nbsp;unsigned&nbsp;long&nbsp;templateId) | 删除口令。 | 
+| [SendCommand](#sendcommand)&nbsp;([in]&nbsp;int&nbsp;commandId,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;extraInfo,&nbsp;[in]&nbsp;IExecutorCallback&nbsp;callbackObj) | 发送口令认证功能相关操作命令。 | 
 
 
 ## **成员函数说明**
@@ -259,7 +256,7 @@ IExecutor::SendCommand ([in] int commandId, [in] unsigned char[] extraInfo, [in]
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| commandId | 操作命令ID[CommandId](_hdf_pin_auth.md#commandid)。 | 
+| commandId | 操作命令ID。 | 
 | extraInfo | 其他相关信息，用于支持信息扩展。 | 
 | callbackObj | 回调对象[IExecutorCallback](interface_pin_i_executor_callback.md)。 | 
 

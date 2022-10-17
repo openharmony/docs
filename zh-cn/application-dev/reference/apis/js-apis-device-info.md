@@ -1,5 +1,7 @@
 # 设备信息
 
+本模块提供产品信息。
+
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -11,11 +13,11 @@ import deviceInfo from '@ohos.deviceInfo'
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Startup.SystemInfo。
+**系统能力**：SystemCapability.Startup.SystemInfo。
 
 **权限**：以下各项所需要的权限有所不同，详见下表。
 
-| 名称 | 参数类型 | 可读 | 可写 | 描述 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceType | string | 是 | 否 | 设备类型。 |
 | manufacture | string | 是 | 否 | 设备厂家名称。 |

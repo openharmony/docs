@@ -1,4 +1,4 @@
-﻿﻿# 接口
+﻿# 接口
 - [开发说明](development-intro.md)
 - Ability框架
   - FA模型
@@ -91,8 +91,10 @@
   - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
+  - [@ohos.curves (插值计算)](js-apis-curve.md)
+  - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
-  - [@ohos.prompt (弹窗)](js-apis-prompt.md)
+  - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
 - 图形图像
@@ -215,6 +217,7 @@
   - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
   - [@ohos.multimodalInput.inputConsumer (组合按键)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)](js-apis-inputdevice.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越管理)](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent (输入事件)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (注入按键)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (输入监听)](js-apis-inputmonitor.md)
@@ -265,6 +268,7 @@
 - 已停止维护的接口
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
+  - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

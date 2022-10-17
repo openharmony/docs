@@ -30,13 +30,13 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-pointer.setPointerVisible(true, (err, data) => {
-  if (err) {
-    console.log(`set pointer visible failed. err=${JSON.stringify(err)}`);
-    return;
-  }
-  console.log(`set pointer visible success.`);
-);
+try {
+  pointer.setPointerVisible(true, (err, data) => {
+    console.log(`Set pointer visible success`);
+  });
+} catch (err) {
+  console.log(`Set pointer visible failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.setPointerVisible<sup>9+</sup>
@@ -62,11 +62,13 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 **示例**：
 
 ```js
-pointer.setPointerVisible(false).then(data => {
-  console.log(`set mouse pointer visible success`);
-}, data => {
-  console.log(`set mouse pointer visible failed err=${JSON.stringify(data)}`);
-});
+try {
+  pointer.setPointerVisible(false).then(data => {
+    console.log(`Set mouse pointer visible success`);
+  });
+} catch {
+  console.log(`Set mouse pointer visible failed err=${JSON.stringify(data)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.isPointerVisible<sup>9+</sup>
@@ -86,9 +88,13 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 **示例**：
 
 ```js
-pointer.isPointerVisible((visible)=>{
-  console.log("The mouse pointer visible attributes is " + visible);
-});
+try {
+  pointer.isPointerVisible(visible, (err, data) => {
+    console.log(`The mouse pointer visible attributes is ` + visible);
+  });
+} catch (err) {
+  console.log(`The mouse pointer visible attributes is failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.isPointerVisible<sup>9+</sup>
@@ -108,9 +114,13 @@ isPointerVisible(): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-pointer.isPointerVisible().then( data => {
-  console.log(`isPointerThen success data=${JSON.stringify(data)}`);
-});
+try {
+  pointer.isPointerVisible().then((data) => {
+    console.log(`The mouse pointer visible attributes is success. data=${JSON.stringify(data)}`);
+  });
+} catch (err) {
+  ponsole.info(`The mouse pointer visible attributes is failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
@@ -131,13 +141,13 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-pointer.setPointerSpeed(5, (err, data) => {
-  if (err) {
-    console.log(`set pointer speed failed. err=${JSON.stringify(err)}`);
-    return;
-  }
-  console.log(`set pointer speed success.`);
-);
+try {
+  pointer.setPointerSpeed(5, (err, data) => {
+    console.log(`Set pointer speed success`);
+  });
+} catch (err) {
+  console.log(`Set pointer speed failed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.setPointerSpeed<sup>9+</sup>
@@ -163,11 +173,13 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 **示例**：
 
 ```js
-pointer.setPointerSpeed(5).then(data => {
-  console.log(`set pointer speed success`);
-}, err => {
-  console.log(`set pointer speed failed err=${JSON.stringify(err)}`);
-});
+try {
+  pointer.setPointerSpeed(5).then(data => {
+    console.log(`Set pointer speed success`);
+  });
+} catch (err) {
+  console.log(`Set pointer speed failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.getPointerSpeed<sup>9+</sup>
@@ -187,9 +199,13 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 **示例**：
 
 ```js
-pointer.getPointerSpeed((speed)=>{
-  console.log("The pointer speed is " + speed);
-});
+try {
+  pointer.getPointerSpeed(speed, (err, data) => {
+    console.log(`The pointer speed is ` + speed);
+  });
+} catch (err) {
+  console.log(`Failed to get the pointer speed. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.getPointerSpeed<sup>9+</sup>
@@ -209,9 +225,13 @@ getPointerSpeed(): Promise&lt;number&gt;
 **示例**：
 
 ```js
-pointer.getPointerSpeed().then( data => {
-  console.log(`getPointerSpeed success data=${JSON.stringify(data)}`);
-});
+try {
+  pointer.getPointerSpeed().then(data => {
+    console.log(`Get pointer speed success. data=${JSON.stringify(data)}`);
+  });
+} catch (err) {
+  console.log(`Get pointer speed failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+}
 ```
 
 ## pointer.getPointerStyle<sup>9+</sup>
@@ -239,9 +259,17 @@ window.getTopWindow((err, data) => {
   windowClass = data;
   windowClass.getProperties((err, data) => {
     var windowId = data.id;
-    pointer.getPointerStyle(windowId, (err, ret) => {
-      console.log("The mouse pointer style is: " + ret);
-    });
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      pointer.getPointerStyle(windowId, (err, ret) => {
+        console.log(`The mouse pointer style is: ` + ret);
+      });
+    } catch (err) {
+      console.log(`Failed to get the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    }
   });
 });
 ```
@@ -260,7 +288,6 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise实例，用于异步获取结果。 |
 
-
 **示例**：
 
 ```js
@@ -271,9 +298,17 @@ window.getTopWindow((err, data) => {
   windowClass = data;
   windowClass.getProperties((err, data) => {
     var windowId = data.id;
-    pointer.getPointerStyle(windowId).then((ret) => {
-      console.log("The mouse pointer style is: " + ret);
-    });
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      pointer.getPointerStyle(windowId).then((ret) => {
+        console.log(`The mouse pointer style is: ` + ret);
+      });
+    } catch (err) {
+      console.log(`Get pointer style failed err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    }
   });
 });
 ```
@@ -304,9 +339,17 @@ window.getTopWindow((err, data) => {
   windowClass = data;
   windowClass.getProperties((err, data) => {
     var windowId = data.id;
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, (err) => {
-      console.log(`Set mouse pointer style success.`);
-    });
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, (err) => {
+        console.log(`Successfully set mouse pointer style`);
+      });
+    } catch (err) {
+      console.log(`Failed to set the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    }
   });
 });
 ```
@@ -336,9 +379,17 @@ window.getTopWindow((err, data) => {
   windowClass = data;
   windowClass.getProperties((err, data) => {
     var windowId = data.id;
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-      console.log(`Set mouse pointer style success`);
-    });
+    if (windowId < 0) {
+      console.log(`Invalid windowId`);
+      return;
+    }
+    try {
+      pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+        console.log(`Successfully set mouse pointer style`);
+      });
+    } catch (err) {
+      console.log(`Failed to set the pointer style. err=${JSON.stringify(err)}, msg=${JSON.stringify(message)}`);
+    }
   });
 });
 ```

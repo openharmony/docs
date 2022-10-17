@@ -148,8 +148,6 @@
         - [组件内转场](ts-transition-animation-component.md)
         - [共享元素转场](ts-transition-animation-shared-elements.md)
     - [路径动画](ts-motion-path-animation.md)
-    - [矩阵变换](ts-matrix-transformation.md)
-    - [插值计算](ts-interpolation-calculation.md)
 - 全局UI方法
     - 弹窗
         - [警告弹窗](ts-methods-alert-dialog-box.md)

@@ -143,5 +143,9 @@
 | ohos.permission.securityguard.REPORT_SECURITY_INFO       | system_basic | system_grant | FALSE   | 允许应用上报风险数据至设备风险管理平台。                       |
 | ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT  | system_basic | system_grant | TRUE    | 允许应用获取设备风险状态。                                     |
 | ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO    | system_core  | system_grant | FALSE   | 允许应用获取风险详细数据。                                     |
+| ohos.permission.READ_ACCESSIBILITY_CONFIG                    | system_basic | system_grant | FALSE   | 允许应用读取无障碍配置信息。                                   |
+| ohos.permission.WRITE_ACCESSIBILITY_CONFIG                   | system_basic | system_grant | FALSE   | 允许应用设置无障碍配置信息。                                   |
 | ohos.permission.ACCESS_CERT_MANAGER_INTERNAL             | system_basic  | system_grant | FALSE   | 允许应用进行证书及凭据的安装、卸载、启用、禁用等操作。            |
 | ohos.permission.ACCESS_CERT_MANAGER                      | normal        | system_grant | FALSE   | 允许应用进行私有凭据的相关操作、查询证书状态等操作。              |
+| ohos.permission.ACCESS_PUSH_SERVICE                      | system_basic  | system_grant | TRUE    | 允许应用访问推送服务的Ability。                                     |
+| ohos.permission.RECEIVER_STARTUP_COMPLETED               | system_basic  | system_grant | FALSE   | 允许应用订阅开机广播。                                     |

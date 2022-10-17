@@ -16,6 +16,130 @@
 import inputDevice from '@ohos.multimodalInput.inputDevice';
 ```
 
+## inputDevice.getDeviceList<sup>9+</sup>
+
+getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
+
+获取所有输入设备的id列表，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数     | 类型                                     | 必填 | 说明       |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getDeviceList((error, ids) => {
+    if (error) {
+      console.log(`Failed to get device list.
+         error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    this.data = ids;
+    console.log("The device ID list is: " + ids);
+  });
+} catch (error) {
+  console.info("getDeviceList " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceList<sup>9+</sup>
+
+getDeviceList(): Promise&lt;Array&lt;number&gt;&gt;
+
+获取所有输入设备的id列表，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**返回值**：
+
+| 参数                               | 说明                            |
+| ---------------------------------- | ------------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise实例，用于异步获取结果。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.getDeviceList().then((ids) => {
+    console.log("The device ID list is: " + ids);
+  });
+} catch (error) {
+  console.info("getDeviceList " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceInfo<sup>9+</sup>
+
+getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
+
+获取输入设备的描述信息，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数     | 类型                                                     | 必填 | 说明                                    |
+| -------- | -------------------------------------------------------- | ---- | --------------------------------------- |
+| deviceId | number                                                   | 是   | 需要获取信息的设备id。                  |
+| callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回InputDeviceData对象。 |
+
+**示例**：
+
+```js
+// 示例获取设备id为1的设备name信息。
+try {
+  inputDevice.getDeviceInfo(1, (error, inputDevice) => {
+    if (error) {
+      console.log(`Failed to get device information.
+          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    console.log("The device name is: " + inputDevice.name);
+  });
+} catch (error) {
+  console.info("getDeviceInfo " + error.code + " " + error.message);
+}
+```
+
+## inputDevice.getDeviceInfo<sup>9+</sup>
+
+getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
+
+获取输入设备的描述信息，使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数     | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| deviceId | number | 是   | 需要获取信息的设备id。 |
+
+**返回值**：
+
+| 参数                                               | 说明                            |
+| -------------------------------------------------- | ------------------------------- |
+| Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise实例，用于异步获取结果。 |
+
+**示例**：
+
+```js
+// 示例获取设备id为1的设备name信息。
+try {
+  inputDevice.getDeviceInfo(id).then((inputDevice) => {
+    console.log("The device name is: " + inputDevice.name);
+  });
+} catch (error) {
+  console.info("getDeviceInfo " + error.code + " " + error.message);
+}
+```
+
 ## inputDevice.on<sup>9+</sup>
 
 on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
@@ -35,20 +159,24 @@ on(type: “change”, listener: Callback&lt;DeviceListener&gt;): void
 
 ```js
 let isPhysicalKeyboardExist = true;
-inputDevice.on("change", (data) => {
+try {
+  inputDevice.on("change", (data) => {
     console.log("type: " + data.type + ", deviceId: " + data.deviceId);
     inputDevice.getKeyboardType(data.deviceId, (err, ret) => {
-        console.log("The keyboard type of the device is: " + ret);
-        if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
-            // 监听物理键盘已连接。
-            isPhysicalKeyboardExist = true;
-        } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
-            // 监听物理键盘已断开。
-            isPhysicalKeyboardExist = false;
-        }
+      console.log("The keyboard type of the device is: " + ret);
+      if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
+        // 监听物理键盘已连接。
+        isPhysicalKeyboardExist = true;
+      } else if (ret == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
+        // 监听物理键盘已断开。
+        isPhysicalKeyboardExist = false;
+      }
     });
-});
-// 根据isPhysicalKeyboardExist的值决定软键盘是否弹出。
+  });
+  // 根据isPhysicalKeyboardExist的值决定软键盘是否弹出。
+} catch (error) {
+  console.info("oninputdevcie " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.off<sup>9+</sup>
@@ -69,26 +197,39 @@ off(type: “change”, listener?: Callback&lt;DeviceListener&gt;): void
 **示例**：
 
 ```js
-function listener(data) {
-    console.log("type: " + data.type + ", deviceId: " + data.deviceId);
+callback: function(data) {
+  console.log("type: " + data.type + ", deviceId: " + data.deviceId);
 }
 
-// 监听输入设备的热插拔事件
-inputDevice.on("change", listener);
+try {
+  inputDevice.on("change", this.callback);
+} catch (error) {
+  console.info("oninputdevcie " + error.code + " " + error.message)
+}
 
 // 单独取消listener的监听。
-inputDevice.off("change", listener);
+try {
+  inputDevice.off("change", this.callback);
+} catch (error) {
+  console.info("offinputdevcie " + error.code + " " + error.message)
+}
 
 // 取消所有监听。
-inputDevice.off("change");
+try {
+  inputDevice.off("change");
+} catch (error) {
+  console.info("offinputdevcie " + error.code + " " + error.message);
+}
 // 取消监听后，软键盘默认都弹出。
 ```
 
-## inputDevice.getDeviceIds
+## inputDevice.getDeviceIds<sup>(deprecated)</sup>
 
 getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 获取所有输入设备的id列表，使用callback方式作为异步方法。
+
+从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -106,11 +247,13 @@ inputDevice.getDeviceIds((ids)=>{
 });
 ```
 
-## inputDevice.getDeviceIds
+## inputDevice.getDeviceIds<sup>(deprecated)</sup>
 
 getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 获取所有输入设备的id列表，使用Promise方式作为异步方法。
+
+从API version 9 开始不再维护，建议使用[inputDevice.getDeviceList](#inputdevicegetdevicelist9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -128,11 +271,13 @@ inputDevice.getDeviceIds().then((ids)=>{
 });
 ```
 
-## inputDevice.getDevice
+## inputDevice.getDevice<sup>(deprecated)</sup>
 
 getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): void
 
 获取输入设备的描述信息，使用callback方式作为异步方法。
+
+从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -152,11 +297,13 @@ inputDevice.getDevice(1, (inputDevice)=>{
 });
 ```
 
-## inputDevice.getDevice
+## inputDevice.getDevice<sup>(deprecated)</sup>
 
 getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 获取输入设备的描述信息，使用Promise方式作为异步方法。
+
+从API version 9 开始不再维护，建议使用[inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9)代替。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -201,9 +348,13 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: Callback&lt;
 
 ```js
 // 示例查询id为1的设备对于17、22和2055按键的支持情况。
-inputDevice.supportKeys(1, [17, 22, 2055], (ret)=>{
+try {
+  inputDevice.supportKeys(1, [17, 22, 2055], (error, ret) => {
     console.log("The query result is as follows: " + ret);
-});
+  });
+} catch (error) {
+  console.info("supportKeys " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.supportKeys<sup>9+</sup>
@@ -231,9 +382,13 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 
 ```js
 // 示例查询id为1的设备对于17、22和2055按键的支持情况。
-inputDevice.supportKeys(1, [17, 22, 2055]).then((ret)=>{
+try {
+  inputDevice.supportKeys(1, [17, 22, 2055]).then((ret) => {
     console.log("The query result is as follows: " + ret);
-})
+  });
+} catch (error) {
+  console.info("supportKeys " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
@@ -255,9 +410,18 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 
 ```js
 // 示例查询设备id为1的设备键盘类型。
-inputDevice.getKeyboardType(1, (ret)=>{
-    console.log("The keyboard type of the device is: " + ret);
-});
+try {
+  inputDevice.getKeyboardType(1, (error, number) => {
+    if (error) {
+      console.log(`Failed to get keyboardtype.
+          error code=${JSON.stringify(err.code)} msg=${JSON.stringify(err.message)}`);
+      return;
+    }
+    console.log("The keyboard type of the device is: " + number);
+  });
+} catch (error) {
+  console.info("getKeyboardType " + error.code + " " + error.message);
+}
 ```
 
 ## inputDevice.getKeyboardType<sup>9+</sup>
@@ -278,9 +442,13 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
 ```js
 // 示例查询设备id为1的设备键盘类型。
-inputDevice.getKeyboardType(1).then((ret)=>{
-    console.log("The keyboard type of the device is: " + ret);
-})
+try {
+  inputDevice.getKeyboardType(1).then((number) => {
+    console.log("The keyboard type of the device is: " + number);
+  });
+} catch (error) {
+  console.info("getKeyboardType " + error.code + " " + error.message);
+}
 ```
 
 ## DeviceListener<sup>9+</sup>

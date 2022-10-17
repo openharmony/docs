@@ -12,16 +12,16 @@ HUKS（OpenHarmony Universal KeyStore）向应用提供密钥库能力，包括�
 
 ## 运作机制
 
-HUKS对密钥的使用主要通过Init、Update、Finish操作来实现。
+HUKS对密钥的使用主要通过InitSession、UpdateSession、FinishSession操作来实现。
 
-- **Init操作**：读取密钥，并为其创建Session Id返回给调用者。
+- **InitSession操作**：读取密钥，并为其创建Session Id返回给调用者。
 
-- **Update操作**：根据Init操作获取的Session Id对数据进行分段update处理。
+- **UpdateSession操作**：根据InitSession操作获取的Session Id对数据进行分段updateSession处理。
 
-- **Finish操作**：当所有待处理的数据均传入HUKS后，调用Finish操作完成最终数据处理，释放资源。
+- **FinishSession操作**：当所有待处理的数据均传入HUKS后，调用FinishSession操作完成最终数据处理，释放资源。
 
 > **须知：**<br>
-> 当Init、Update、Finish操作中的任一阶段发生错误时，都需要调用Abort操作来终止密钥的使用。
+> 当InitSession、UpdateSession、FinishSession操作中的任一阶段发生错误时，都需要调用AbortSession操作来终止密钥的使用。
 
 
 ## 约束与限制

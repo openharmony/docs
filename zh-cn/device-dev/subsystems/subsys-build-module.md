@@ -25,7 +25,7 @@ ohos_resources
 
 #其他常用模板
 #配置文件
-ohos_prebuild_etc
+ohos_prebuilt_etc
 
 #sa配置
 ohos_sa_profile

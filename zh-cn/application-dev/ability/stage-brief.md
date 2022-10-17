@@ -60,7 +60,7 @@
 
 + **Standard**：每次startAbility调用，都会在应用进程中创建一个该类型的实例，如下图Ability2的两个实例；
 
-+ **Specified**：允许开发者在系统创建AbilityRecord之前，为该实例创建一个key，后续每次创建该类型的Ability实例都会询问应用使用哪个key对应的Ability实例，来响应startAbility请求，如下图Ability3。
++ **Specified**：允许开发者在系统创建Ability实例之前，为该实例创建一个key，后续每次创建该类型的Ability实例都会询问应用使用哪个key对应的Ability实例，来响应startAbility请求，如下图Ability3。
 
 ​        每个Ability实例都对应了一个Launcher Recent中看到的Mission(任务)。
 

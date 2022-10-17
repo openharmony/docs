@@ -34,13 +34,24 @@ injectEvent({KeyEvent: KeyEvent}): void
 **示例：**
 
 ```js
-let keyEvent = {
+try {
+  var keyEvent = {
     isPressed: true,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
+  }
+  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent });
+  var keyEvent1 = {
+    isPressed: false,
+    keyCode: 2,
+    keyDownDuration: 0,
+    isIntercepted: false
+  };
+  inputEventClient.injectKeyEvent({ KeyEvent: keyEvent1 });
+} catch (error) {
+  console.info("injectKeyEvent " + error.code + " " + error.message);
 }
-let res = inputEventClient.injectEvent({KeyEvent: keyEvent});
 ```
 
 

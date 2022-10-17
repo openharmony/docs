@@ -29,7 +29,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 
 | 名称 | 描述 |
 | -------- | -------- |
-| onStateChange(callback: (state: RefreshStatus) => void)| 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
+| onStateChange(callback: (state: [RefreshStatus](#refreshstatus枚举说明)) => void)| 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
 | onRefreshing(callback: () => void)| 进入刷新状态时触发回调。 |
 
 ## RefreshStatus枚举说明

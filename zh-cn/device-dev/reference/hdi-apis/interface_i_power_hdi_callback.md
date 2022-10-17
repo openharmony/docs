@@ -3,7 +3,15 @@
 
 ## **概述**
 
-**所属模块:**
+休眠/唤醒状态的回调。
+
+服务创建此回调对象后，可以调用IPowerInterface的接口注册回调，从而订阅休眠/唤醒状态的变化。
+
+**Since：**
+
+3.1
+
+**相关模块:**
 
 [Power](power.md)
 
@@ -13,21 +21,10 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [OnSuspend](#onsuspend)&nbsp;() | 休眠状态的回调方法。&nbsp;[更多...](#onsuspend) | 
-| [OnWakeup](#onwakeup)&nbsp;() | 唤醒状态的回调方法。&nbsp;[更多...](#onwakeup) | 
-
-
-## **详细描述**
-
-休眠/唤醒状态的回调。
-
-服务创建此回调对象后，可以调用IPowerInterface的接口注册回调，从而订阅休眠/唤醒状态的变化。
-
-**Since：**
-
-3.1
+| [OnSuspend](#onsuspend)&nbsp;() | 休眠状态的回调方法。 | 
+| [OnWakeup](#onwakeup)&nbsp;() | 唤醒状态的回调方法。 | 
 
 
 ## **成员函数说明**

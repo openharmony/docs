@@ -43,6 +43,20 @@ export default {
                     console.log("authV9 lockoutDuration " + result.lockoutDuration);
                 }
             });
+            // if need tip
+            auth.on("tip", {
+            callback : (result : userIAM_userAuth.TipInfo) => {
+                switch (result.tip) {
+                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                    // do something;
+                    case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                    // do something;
+                    // ...
+                    default:
+                    // do others
+                }
+            }
+            });
             auth.start();
             console.log("authV9 start success");
         } catch (error) {
@@ -249,7 +263,7 @@ callback: (result : EventInfo) => void
 
 | 名称         | 参数类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
-| module        | number | 否   | 认证结果。       |
+| module        | number | 否   | 认证模块。       |
 | tip        | number | 否   | 认证过程提示信息。       |
 
 ## AuthEventKey<sup>9+</sup>
@@ -296,6 +310,20 @@ on(name : AuthEventKey, callback : AuthEvent) : void
             console.log("authV9 token " + result.token);
             console.log("authV9 remainAttempts " + result.remainAttempts);
             console.log("authV9 lockoutDuration " + result.lockoutDuration);
+        }
+        });
+        // if need tip
+        auth.on("tip", {
+        callback : (result : userIAM_userAuth.TipInfo) => {
+            switch (result.tip) {
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
+                // do something;
+                case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
+                // do something;
+                // ...
+                default:
+                // do others
+            }
         }
         });
         auth.start();

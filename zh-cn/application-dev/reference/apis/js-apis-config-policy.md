@@ -32,7 +32,7 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 **示例：** 
   ```js
   configPolicy.getOneCfgFile('etc/config.xml', (error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
@@ -87,7 +87,7 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **示例：** 
   ```js
   configPolicy.getCfgFiles('etc/config.xml', (error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
@@ -140,7 +140,7 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 **示例：** 
   ```js
   configPolicy.getCfgDirList((error, value) => {
-      if (error == undefined) {
+      if (error == null) {
           console.log("value is " + value);
       } else {
           console.log("error occurs "+ error);
