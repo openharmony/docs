@@ -446,7 +446,7 @@ try {
 }
 ```
 
-###  LINEAR_ACCELERATION<sup>9+</sup>
+###   LINEAR_ACCELEROMETER<sup>9+</sup>
 
 on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;,
         options?: Options): void
@@ -1255,7 +1255,7 @@ try {
 }
 ```
 
-### LINEAR_ACCELERATION<sup>9+</sup>
+### LINEAR_ACCELEROMETER<sup>9+</sup>
 
 once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
 
@@ -3637,6 +3637,8 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 
 监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
 
+从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELERATION](#linear_acceleration9)代替。 
+
 **需要权限**：ohos.permission.ACCELEROMETER
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -4125,6 +4127,8 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 
 监听心率传感器数据变化一次。
 
+从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9)代替。
+
 **需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -4229,6 +4233,8 @@ once(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback: Callback&lt;Accele
 once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
 
 监听线性加速度传感器数据变化一次。
+
+从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELERATION](#linear_acceleration9-1)代替。
 
 **需要权限**：ohos.permission.ACCELERATION
 
@@ -4709,6 +4715,8 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 
 监听心率传感器数据变化一次。
 
+从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9-1)代替。
+
 **需要权限**：ohos.permission.HEART_RATE  
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -5008,6 +5016,8 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 
 取消订阅传感器数据。
 
+从API version 9 开始不再维护，建议使用[sensor.on.HEART_RATE](#heart_rate9-2)代替。
+
 **需要权限**：ohos.permission.HEALTH_DATA 
 
 **系统能力**：SystemCapability.Sensors.Sensor
@@ -5050,6 +5060,8 @@ sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
 off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅传感器数据。
+
+从API version 9 开始不再维护，建议使用[sensor.on.LINEAR_ACCELERATION](#heart_rate9-2)代替。
 
 **需要权限**：ohos.permission.ACCELEROMETER
 
