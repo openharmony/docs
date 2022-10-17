@@ -22,7 +22,7 @@ startWork(work: WorkInfo): boolean
 
 通知WorkSchedulerService将工作添加到执行队列。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.startWork](../js-apis-resourceschedule-workScheduler.md/#workschedulerstartwork9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.startWork](./js-apis-resourceschedule-workScheduler.md/#workschedulerstartwork9)
 >
 > 从 API version 9开始支持。
 
@@ -66,7 +66,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 
 通知WorkSchedulerService停止指定工作。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.stopWork](../js-apis-resourceschedule-workScheduler.md/#workschedulerstopwork9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.stopWork](./js-apis-resourceschedule-workScheduler.md/#workschedulerstopwork9)
 >
 > 从 API version 9开始支持。
 
@@ -111,7 +111,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.getWorkStatus](../js-apis-resourceschedule-workScheduler.md/#workschedulergetworkstatuscallback9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.getWorkStatus](./js-apis-resourceschedule-workScheduler.md/#workschedulergetworkstatuscallback9)
 >
 > 从 API version 9开始支持。
 
@@ -143,7 +143,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.getWorkStatus](../js-apis-resourceschedule-workScheduler.md/#workschedulergetworkstatuspromise9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.getWorkStatus](./js-apis-resourceschedule-workScheduler.md/#workschedulergetworkstatuspromise9)
 >
 > 从 API version 9开始支持。
 
@@ -178,7 +178,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.obtainAllWorks](../js-apis-resourceschedule-workScheduler.md/#workschedulerobtainallworkscallback9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.obtainAllWorks](./js-apis-resourceschedule-workScheduler.md/#workschedulerobtainallworkscallback9)
 >
 > 从 API version 9开始支持。
 
@@ -213,7 +213,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.obtainAllWorks](../js-apis-resourceschedule-workScheduler.md/#workschedulerobtainallworkspromise9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.obtainAllWorks](./js-apis-resourceschedule-workScheduler.md/#workschedulerobtainallworkspromise9)
 >
 > 从 API version 9开始支持。
 
@@ -240,7 +240,7 @@ stopAndClearWorks(): boolean
 
 停止和取消与当前应用程序关联的所有工作。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.stopAndClearWorks](../js-apis-resourceschedule-workScheduler.md/#workschedulerstopandclearworks9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.stopAndClearWorks](./js-apis-resourceschedule-workScheduler.md/#workschedulerstopandclearworks9)
 >
 > 从 API version 9开始支持。
 
@@ -258,7 +258,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.isLastWorkTimeOut](../js-apis-resourceschedule-workScheduler.md/#workschedulerisLastworktimeoutcallback9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.isLastWorkTimeOut](./js-apis-resourceschedule-workScheduler.md/#workschedulerisLastworktimeoutcallback9)
 >
 > 从 API version 9开始支持。
 
@@ -294,7 +294,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[workScheduler.isLastWorkTimeOut](../js-apis-resourceschedule-workScheduler.md/#workschedulerisLastworktimeoutpromise9)
+> **说明：** 从API version 9开始废弃，建议使用[workScheduler.isLastWorkTimeOut](./js-apis-resourceschedule-workScheduler.md/#workschedulerisLastworktimeoutpromise9)
 >
 > 从 API version 9开始支持。
 

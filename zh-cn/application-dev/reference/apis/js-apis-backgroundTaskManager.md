@@ -30,7 +30,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerrequestsuspenddelay9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerrequestsuspenddelay9)
 >
 > 从 API version 7开始支持。
 
@@ -70,7 +70,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimecallback9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimecallback9)
 >
 > 从 API version 7开始支持。
 
@@ -104,7 +104,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimepromise9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimepromise9)
 >
 > 从 API version 7开始支持。
 
@@ -139,7 +139,7 @@ cancelSuspendDelay(requestId: number): void
 
 取消延迟挂起。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.cancelSuspendDelay](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagercancelsuspenddelay9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.cancelSuspendDelay](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagercancelsuspenddelay9)
 >
 > 从 API version 7开始支持。
 
@@ -165,7 +165,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 向系统申请长时任务，使用callback形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningcallback9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningcallback9)
 >
 > 从 API version 7开始支持。
 
@@ -220,7 +220,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 向系统申请长时任务，使用promise形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningpromise9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningpromise9)
 >
 > 从 API version 7开始支持。
 
@@ -276,7 +276,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 向系统申请取消长时任务，使用callback形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningcallback9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningcallback9)
 >
 > 从 API version 7开始支持。
 
@@ -311,7 +311,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningpromise9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningpromise9)
 >
 > 从 API version 7开始支持。
 
@@ -347,7 +347,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 向系统申请能效资源，使用boolean形式返回结果。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.applyEfficiencyResources](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerapplyefficiencyresources9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.applyEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerapplyefficiencyresources9)
 >
 > 从 API version 9开始支持。
 
@@ -388,7 +388,7 @@ resetAllEfficiencyResources(): void
 
 释放所有已经申请的资源。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.resetAllEfficiencyResources](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresetallefficiencyresources9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.resetAllEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresetallefficiencyresources9)
 >
 > 从 API version 9开始支持。
 
@@ -412,7 +412,7 @@ try {
 
 延迟挂起信息。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.DelaySuspendInfo](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerdelaysuspendinfo9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.DelaySuspendInfo](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerdelaysuspendinfo9)
 >
 > 从 API version 7开始支持。
 
@@ -444,7 +444,7 @@ try {
 
 能效资源申请参数。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.EfficiencyResourcesRequest](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerefficiencyresourcesrequest9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.EfficiencyResourcesRequest](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerefficiencyresourcesrequest9)
 >
 > 从 API version 9开始支持。
 
@@ -465,7 +465,7 @@ try {
 
 能效资源类型。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.ResourceType](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresourcetype9)
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.ResourceType](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresourcetype9)
 >
 > 从 API version 9开始支持。
 
