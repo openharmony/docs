@@ -170,8 +170,8 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
 基于后台代理提醒开发，有以下相关实例可供参考：
 
-- [`AlarmClock`：后台代理提醒（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
+- [`AlarmClock`：后台代理提醒（ArkTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
 
-- [`FlipClock`：翻页时钟（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/FlipClock)
+- [`FlipClock`：翻页时钟（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/FlipClock)
 
-- [闹钟应用（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)
+- [闹钟应用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)
