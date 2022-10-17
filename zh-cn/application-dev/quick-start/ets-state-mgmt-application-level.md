@@ -149,7 +149,7 @@ struct LocalStorageComponent {
         })
       Text(JSON.stringify(this.simpleVarName))
         .fontSize(50)
-      LocalStorageComponentProp({ simpleVarName: $simpleVarName })
+      LocalStorageComponentProp();
     }
     .height(500)
   }
