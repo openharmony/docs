@@ -235,7 +235,7 @@ var currentIme = inputMethod.getCurrentInputMethod();
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback<boolean>): void
 
-选择当前的输入法子类型。
+在当前输入法应用内切换子类型。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -276,7 +276,7 @@ try {
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
-切换输入法子类型。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
+在当前输入法应用内切换子类型。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -336,7 +336,7 @@ var currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback<boolean>): void
 
-选择输入法和子类型。
+切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -382,7 +382,7 @@ try {
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, ): Promise&lt;boolean&gt;
 
-切换输入法子类型。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
+切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。参数个数为1，否则抛出异常。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -687,7 +687,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
   });
   ```
 
-### off('imeChange')<a name="imeChange"></a>
+### off('imeChange')<a name="imeChange"></a><sup>9+</sup>
 
 on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
 
@@ -712,7 +712,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
 
-查询已安装的输入法子类型列表。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取指定输入法应用的所有子类型。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -720,7 +720,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| inputMethodProperty | InputMethodProperty| 是 | 要查询的输入法子类型的输入法属性
+| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
 | callback | Array<[InputMethodSubtype](#InputMethodSubtype)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
@@ -747,9 +747,15 @@ try {
 
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
-查询已安装的满足条件的输入法子类型列表。使用promise形式返回结果。参数个数为1，否则抛出异常。
+获取指定输入法应用的所有子类型。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                               | 必填 | 说明                   |
+| -------- | -------------------------------------------------- | ---- | ---------------------- |
+| inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
 
 **返回值：**
 
