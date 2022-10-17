@@ -49,19 +49,19 @@ int(* AudioManager::GetAllAdapters) (struct AudioAdapterManager *manager, struct
 
 **描述：**
 
-获取音频驱动中支持的所有适配器的列表
+获取音频驱动中支持的所有适配器的列表。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| manager | 待操作的音频管理接口对象 | 
-| descs | 获取到的音频适配器列表保存到descs中 | 
-| size | 获取到的音频适配器列表的长度保存到size中 | 
+| manager | 输入参数，待操作的音频管理接口对象。 | 
+| descs | 输出参数，获取到的音频适配器列表保存到descs中。 | 
+| size | 输出参数，获取到的音频适配器列表的长度保存到size中。 | 
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -77,21 +77,21 @@ int(* AudioManager::LoadAdapter) (struct AudioAdapterManager *manager, const str
 
 **描述：**
 
-加载一个音频适配器（声卡）的驱动
+加载一个音频适配器（声卡）的驱动。
 
-加载一个具体的音频驱动，例如usb驱动，在具体实现中可能加载的是一个动态链接库（\*.so）
+加载一个具体的音频驱动，例如USB驱动，在具体实现中可能加载的是一个动态链接库（\*.so）
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| manager | 待操作的音频管理接口对象 | 
-| desc | 待加载的音频适配器描述符 | 
-| adapter | 获取的音频适配器接口的对象实例保存到adapter中 | 
+| manager | 输入参数，待操作的音频管理接口对象。 | 
+| desc | 输入参数，待加载的音频适配器描述符。 | 
+| adapter | 输出参数，获取的音频适配器接口的对象实例保存到adapter中。 | 
 
 **返回:**
 
-成功返回值0，失败返回负值
+成功返回值0，失败返回负值。
 
 **参见:**
 
@@ -109,17 +109,17 @@ bool(* AudioManager::ReleaseAudioManagerObject) (struct AudioManager *object)
 
 **描述：**
 
-释放音频管理接口对象
+释放音频管理接口对象。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| 待操作的音频管理接口对象 |  | 
+| object | 输入参数，待操作的音频管理接口对象。 | 
 
 **返回:**
 
-成功返回true，失败返回false
+成功返回true，失败返回false。
 
 
 ### UnloadAdapter
@@ -131,14 +131,14 @@ void(* AudioManager::UnloadAdapter) (struct AudioAdapterManager *manager, struct
 
 **描述：**
 
-卸载音频适配器（声卡）的驱动
+卸载音频适配器（声卡）的驱动。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| manager | 待操作的音频管理接口对象 | 
-| adapter | 待卸载的音频适配器接口的对象 | 
+| manager | 输入参数，待操作的音频管理接口对象。 | 
+| adapter | 输入参数，待卸载的音频适配器接口的对象。 | 
 
 **参见:**
 
