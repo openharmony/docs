@@ -27,9 +27,11 @@ import hichecker from '@ohos.hichecker';
 | RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | 检测规则，检测是否发生ability泄露。                    |
 
 
-## hichecker.addRule
+## hichecker.addRule<sup>(deprecated)</sup>
 
 addRule(rule: bigint): void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.addCheckRule](#addRule9)替代。
 
 添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
 
@@ -52,9 +54,11 @@ hichecker.addRule(
           hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 ```
 
-## hichecker.removeRule
+## hichecker.removeRule<sup>(deprecated)</sup>
 
 removeRule(rule: bigint): void
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.removeCheckRule](#removeRule9)替代。
 
 删除一条或多条规则，删除的规则后续将不再生效。
 
@@ -101,9 +105,11 @@ hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 hichecker.getRule();   // return 1n;
 ```
 
-## hichecker.contains
+## hichecker.contains<sup>(deprecated)</sup>
 
 contains(rule: bigint): boolean
+
+> **说明：** 从 API Version 9 开始废弃，建议使用[hichecker.containsCheckRule](#contains9)替代。
 
 当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
 
@@ -130,4 +136,112 @@ hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 // 查询是否包含
 hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
 hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
+```
+## hichecker.addCheckRule<sup>9+</sup>
+
+addCheckRule(rule: bigint): void
+
+添加一条或多条规则到系统，系统根据添加的规则进行检测或反馈。
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要添加的规则。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| -------- | ---------------------------------------- |
+| 401      | Invalid input parameter!                 |
+
+**示例：**
+
+```js
+try {
+    // 添加一条规则
+    hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);}
+    // 添加多条规则
+    hichecker.addCheckRule(
+        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+catch (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## hichecker.removeCheckRule<sup>9+</sup>
+
+removeCheckRule(rule: bigint): void
+
+删除一条或多条规则，删除的规则后续将不再生效。
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要删除的规则。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| -------- | ---------------------------------------- |
+| 401      | Invalid input parameter!                 |
+
+**示例：**
+
+```js
+try {
+    // 删除一条规则
+    hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
+    // 删除多条规则
+    hichecker.removeRule(
+        hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
+catch (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## hichecker.containsCheckRule<sup>9+</sup>
+
+containsCheckRule(rule: bigint): boolean
+
+当前已添加的规则集中是否包含了某一个特定的规则，如果传入的规则级别为线程级别，则仅在当前线程中进行查询。
+
+**系统能力：** SystemCapability.HiviewDFX.HiChecker
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| rule   | bigint | 是   | 需要查询的规则。 |
+
+**返回值：**
+
+| 类型    | 说明                                                       |
+| ------- | ---------------------------------------------------------- |
+| boolean | 查询结果，true&nbsp;表示规则已添加，false 表示规则未添加。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| -------- | ---------------------------------------- |
+| 401      | Invalid input parameter!                 |
+
+**示例：**
+
+```js
+try {
+    // 添加一条规则
+    hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+
+    // 查询是否包含
+    hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
+    hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
+catch (err) {
+    console.error(`code: ${err.code}, message: ${err.message}`);
+}
 ```
