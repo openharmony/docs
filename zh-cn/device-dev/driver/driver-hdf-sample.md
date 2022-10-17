@@ -59,7 +59,7 @@ root {
 #include "hdf_base.h"
 #include "hdf_device_desc.h"
 
-#define HDF_LOG_TAG "sample_driver"
+#define HDF_LOG_TAG sample_driver
 
 #define SAMPLE_WRITE_READ 123
 
@@ -122,7 +122,7 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## 编写用户程序和驱动交互代码
 
-基于HDF框架编写的用户态程序和驱动交互的代码如下（代码可以放在目录drivers/adapter/uhdf下面编译，build.gn可以参考drivers/framework/sample/platform/uart/dev/build.gn）：
+基于HDF框架编写的用户态程序和驱动交互的代码如下（代码可以放在目录drivers/hdf_core/adapter/uhdf下面编译，build.gn可以参考drivers/hdf_core/framework/sample/platform/uart/dev/build.gn）：
 
   
 ```
@@ -134,7 +134,7 @@ HDF_INIT(g_sampleDriverEntry);
 #include "hdf_sbuf.h"
 #include "hdf_io_service_if.h"
 
-#define HDF_LOG_TAG "sample_test"
+#define HDF_LOG_TAG sample_test
 #define SAMPLE_SERVICE_NAME "sample_service"
 
 #define SAMPLE_WRITE_READ 123
@@ -237,8 +237,8 @@ int main()
 > 
 > deps = [
 > 
-> "//drivers/adapter/uhdf/manager:hdf_core",
+> "//drivers/hdf_core/adapter/uhdf/manager:hdf_core",
 > 
-> "//drivers/adapter/uhdf/posix:hdf_posix_osal",
+> "//drivers/hdf_core/adapter/uhdf/posix:hdf_posix_osal",
 > 
 > ]
