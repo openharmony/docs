@@ -99,6 +99,8 @@ import huks from '@ohos.security.huks'
 
 表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
 
+关于错误码的具体信息，可在[错误码参考文档](../reference/errorcodes/errorcode-huks.md)中查看。
+
 **系统能力**：SystemCapability.Security.Huks
 
 | 类型                      | 名称                                           | 说明                        | 错误码   |
@@ -121,87 +123,6 @@ import huks from '@ohos.security.huks'
 | 缺失所需凭据              | HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 缺失所需凭据。              | 12000013 |
 | 内存不足                  | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 内存不足。                  | 12000014 |
 | 调用其他系统服务失败      | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 调用其他系统服务失败。      | 12000015 |
-
-错误信息：
-
-| 类型                      | 错误码   | ERROR MESSAGE                                                | 错误信息                                  |
-| ------------------------- | -------- | ------------------------------------------------------------ | ----------------------------------------- |
-| 权限                      | 201      | Check permission failed. User should request permission first. | 表示没有许可。                            |
-| 参数                      | 401      | Argument is invalid. User should make sure using the correct value. | 表示无效的参数。                          |
-| 参数                      | 401      | Input data is not sufficient.                                | 表示数据不足。                            |
-| 参数                      | 401      | The buffer is too small.                                     | 表示缓冲区太小。                          |
-| 参数                      | 401      | Parameter is null. User should make sure using the correct value. | 表示空指针。                              |
-| 参数                      | 401      | Public key is invalid.                                       | 表示无效的公钥。                          |
-| 参数                      | 401      | Key info is invalid.                                         | 表示无效的密钥信息。                      |
-| 参数                      | 401      | Queried param does not exist.                                | 表示参数不存在。                          |
-| 参数                      | 401      | Root key material already exists.                            | 表示存在新的根密钥材料。                  |
-| 参数                      | 401      | The format of wrapped key data is invalid.                   | 表示导入加密密钥时，密钥格式错误。        |
-| 参数                      | 401      | Check get auth type failed. User should add auth type in paramset. | 表示获取身份验证类型失败。                |
-| 参数                      | 401      | Check get challenge type failed. User should add challenge type in paramset. | 表示获取挑战值类型失败。                  |
-| 参数                      | 401      | Check get access type failed. User should add access type in paramset. | 表示获取访问类型失败。                    |
-| 参数                      | 401      | Check get auth token failed. User should add auth token in paramset. | 表示获取身份验证令牌失败。                |
-| 参数                      | 401      | Time out param is invalid. User should make sure using the correct value. | 表示超时参数无效                          |
-| 参数                      | 401      | Auth type param is invalid. User should make sure using the correct value. | 表示身份验证类型参数无效。                |
-| 参数                      | 401      | Challenge type param is invalid. User should make sure using the correct value. | 表示挑战值类型参数无效。                  |
-| 参数                      | 401      | Access type param is invalid. User should make sure using the correct value. | 表示访问类型参数无效。                    |
-| 参数                      | 401      | Auth token param is invalid. User should make sure using the correct value. | 表示身份验证令牌参数无效。                |
-| 参数                      | 401      | Secure sign type param is invalid. User should make sure using the correct value. | 表示安全符号类型参数无效。                |
-| 不支持的API               | 801      | This api is not supported in current device.                 | 不支持的API。                             |
-| 不支持的功能/特性         | 12000001 | Feature is not support. Please make sure using the correct combination of params. | 功能特性不支持，请输入正确的参数组合。    |
-| 不支持的功能/特性         | 12000001 | This user auth type is not supported in current device.      | 表示不支持当前用户认证类型的访问控制。    |
-| 缺少密钥算法参数          | 12000002 | Check get algorithm failed. User should add algorithm in paramset. | 表示检查获取 ALG 失败。                   |
-| 缺少密钥算法参数          | 12000002 | Check get key size failed. User should add key size in paramset. | 表示检查获取密钥大小失败。                |
-| 缺少密钥算法参数          | 12000002 | Check get padding failed. User should add padding in paramset. | 表示检查获取填充失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get purpose failed. User should add purpose in paramset. | 表示检查获取目的失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get digest failed. User should add digest in paramset. | 表示检查获取摘要失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get mode failed. User should add mode in paramset.     | 表示检查获取模式失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get nonce failed. User should add nonce in paramset.   | 表示检查获取随机数失败。                  |
-| 缺少密钥算法参数          | 12000002 | Check get aad failed. User should add AAD in paramset.       | 表示检查获取 AAD 失败。                   |
-| 缺少密钥算法参数          | 12000002 | Check get iv failed. User should add iv in paramset.         | 表示检查 GET IV 失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get aead failed. User should add aead in paramset.     | 表示检查获取 AE 标记失败。                |
-| 缺少密钥算法参数          | 12000002 | Check get salt failed. User should add salt in paramset.     | 表示检查获取SALT失败。                    |
-| 缺少密钥算法参数          | 12000002 | Check get iteration failed. User should add iteration in paramset. | 表示检查获取迭代失败。                    |
-| 无效密钥算法参数          | 12000003 | Algorithm param is invalid. User should make sure using the correct value. | 表示无效的算法。                          |
-| 无效密钥算法参数          | 12000003 | Key size param is invalid. User should make sure using the correct value. | 表示无效的密钥大小。                      |
-| 无效密钥算法参数          | 12000003 | Padding param is invalid. User should make sure using the correct value. | 表示无效的填充。                          |
-| 无效密钥算法参数          | 12000003 | Purpose param is invalid. User should make sure using the correct value. | 表示无效的目的。                          |
-| 无效密钥算法参数          | 12000003 | Mode param is invalid. User should make sure using the correct value. | 表示无效模式。                            |
-| 无效密钥算法参数          | 12000003 | Digest param is invalid. User should make sure using the correct value. | 表示无效的摘要。                          |
-| 无效密钥算法参数          | 12000003 | Signture size param is invalid. User should make sure using the correct value. | 表示签名大小无效。                        |
-| 无效密钥算法参数          | 12000003 | IV param is invalid. User should make sure using the correct value. | 表示无效的 IV。                           |
-| 无效密钥算法参数          | 12000003 | AAD param is invalid. User should make sure using the correct value. | 表示无效的 AAD。                          |
-| 无效密钥算法参数          | 12000003 | Nonce param is invalid. User should make sure using the correct value. | 表示无效的随机数。                        |
-| 无效密钥算法参数          | 12000003 | AE param is invalid. User should make sure using the correct value. | 表示无效的 AE 标签。                      |
-| 无效密钥算法参数          | 12000003 | Salt param is invalid. User should make sure using the correct value. | 表示无效SALT。                            |
-| 无效密钥算法参数          | 12000003 | Iteration param is invalid. User should make sure using the correct value. | 表示无效的迭代。                          |
-| 无效密钥算法参数          | 12000003 | Purpose param is invalid. User should make sure using the correct value. | 表示导入加密密钥时，密钥用途错误。        |
-| 文件                      | 12000004 | Storage space is insufficient.                               | 表示存储故障。                            |
-| 文件                      | 12000004 | The value of file size is unexpected.                        | 表示文件大小失败。                        |
-| 文件                      | 12000004 | Read file failed.                                            | 表示读取文件失败。                        |
-| 文件                      | 12000004 | Write file failed.                                           | 表示写文件失败。                          |
-| 文件                      | 12000004 | Remove file failed.                                          | 表示删除文件失败。                        |
-| 文件                      | 12000004 | Open file failed.                                            | 表示打开文件失败。                        |
-| 文件                      | 12000004 | Close file failed.                                           | 表示关闭文件失败。                        |
-| 文件                      | 12000004 | Make directory failed.                                       | 表示创建目录失败。                        |
-| 文件                      | 12000004 | Read key from file failed, for key fi哦呜le is invalid.      | 表示无效的密钥文件。                      |
-| 通信                      | 12000005 | Get message from IPC failed.                                 | 表示IPC 信息失败。                        |
-| 通信                      | 12000005 | IPC communication time out.                                  | 表示通讯超时。                            |
-| 通信                      | 12000005 | IPC init failed.                                             | 表示IPC 初始化失败。                      |
-| 通信                      | 12000005 | IPC async call failed.                                       | IPC异步调用失败。                         |
-| 算法库操作失败            | 12000006 | Errors occured in crypto engine.                             | 表示CRYPTO ENGINE错误。                   |
-| 密钥访问失败-密钥访问失效 | 12000007 | This credential is already invalidated permanently.          | 密钥访问失败-密钥访问失效                 |
-| 密钥访问失败-密钥认证失败 | 12000008 | Verify authtoken failed.                                     | 密钥访问失败-密钥认证失败                 |
-| 密钥访问失败-密钥访问超时 | 12000009 | This authtoken is already timeout.                           | 密钥访问失败-密钥访问超时                 |
-| 密钥操作会话数已达上限    | 12000010 | The number of sessions has reached limit.                    | 密钥操作会话数已达上限。                  |
-| 目标对象不存在            | 12000011 | Queried entity does not exist.                               | 表示不存在。                              |
-| 外部错误                  | 12000012 | General error.                                               | 一般错误。                                |
-| 外部错误                  | 12000012 | System error.                                                | 系统错误。                                |
-| 外部错误                  | 12000012 | System external error.                                       | 表示系统外部错误。                        |
-| 缺失所需凭据              | 12000013 | Queried credential does not exist.                           | 查询的凭据不存在。                        |
-| 内存不足                  | 12000014 | Memory is insufficient.                                      | 表示内存不足。                            |
-| 内存不足                  | 12000014 | Malloc failed.                                               | 表示MALLOC 失败。                         |
-| 调用其他系统服务失败      | 12000015 | Calling useriam to get sec info failed.                      | 访问useriam获取当前用户安全属性信息失败。 |
-| 调用其他系统服务失败      | 12000015 | Calling useriam to get auth info failed.                     | 访问useriam获取当前用户认证信息失败。     |
 
 ## HuksKeyPurpose
 
