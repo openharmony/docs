@@ -42,4 +42,4 @@
 
 针对位置服务，有以下相关实例可供参考：
 
--[`Location`：位置服务（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Location)
+- [`Location`：位置服务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Location)
