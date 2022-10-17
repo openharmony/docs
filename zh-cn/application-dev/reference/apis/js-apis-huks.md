@@ -1667,7 +1667,7 @@ try {
 
 init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
-init操作密钥接口，使用Callback回调异步返回结果 。
+init操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
@@ -1686,7 +1686,7 @@ init操作密钥接口，使用Callback回调异步返回结果 。
 
 init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
-init操作密钥接口，使用Promise方式异步返回结果。
+init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
@@ -1704,7 +1704,7 @@ init操作密钥接口，使用Promise方式异步返回结果。
 
 initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void
 
-initSession操作密钥接口，使用Callback回调异步返回结果 。
+initSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1721,7 +1721,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果 。
 
 initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
 
-initSession操作密钥接口，使用Promise方式异步返回结果。
+initSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1737,7 +1737,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。
 
 update(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-update操作密钥接口，使用Callback回调异步返回结果 。
+update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9)替代。
 
@@ -1755,7 +1755,7 @@ update操作密钥接口，使用Callback回调异步返回结果 。
 
 update(handle: number, options: HuksOptions,  token: Uint8Array,  callback: AsyncCallback\<HuksResult>) : void
 
-update操作密钥接口，使用Callback回调异步返回结果 。
+update操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-1)替代。
 
@@ -1774,7 +1774,7 @@ update操作密钥接口，使用Callback回调异步返回结果 。
 
 update(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
 
-update操作密钥接口，使用Promise方式异步返回结果。
+update操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-2)替代。
 
@@ -1793,7 +1793,7 @@ update操作密钥接口，使用Promise方式异步返回结果。
 
 updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-updateSession操作密钥接口，使用Callback回调异步返回结果 。
+updateSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1810,7 +1810,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果 。
 
 updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
 
-updateSession操作密钥接口，使用Callback回调异步返回结果 。
+updateSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1827,7 +1827,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果 。
 
 updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
-uupdateSession操作密钥接口，使用Promise方式异步返回结果。
+uupdateSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1844,7 +1844,7 @@ uupdateSession操作密钥接口，使用Promise方式异步返回结果。
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-finish操作密钥接口，使用Callback回调异步返回结果 。
+finish操作密钥接口，使用Callback回调异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9)替代。
 
@@ -1863,7 +1863,7 @@ finish操作密钥接口，使用Callback回调异步返回结果 。
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
-finish操作密钥接口，使用Promise方式异步返回结果。
+finish操作密钥接口，使用Promise方式异步返回结果。huks.init, huks.update, huks.finish为三段式接口，需要一起使用。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksfinishsession9-1)替代。
 
@@ -1881,7 +1881,7 @@ finish操作密钥接口，使用Promise方式异步返回结果。
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
-finishSession操作密钥接口，使用Callback回调异步返回结果 。
+finishSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1898,7 +1898,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果 。
 
 finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
 
-finishSession操作密钥接口，使用Callback回调异步返回结果 。
+finishSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1916,7 +1916,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果 。
 
 finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
-finishSession操作密钥接口，使用Promise方式异步返回结果。
+finishSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
 **系统能力**：SystemCapability.Security.Huks
 
@@ -1933,7 +1933,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。
 
 abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
-abort操作密钥接口，使用Callback回调异步返回结果 。
+abort操作密钥接口，使用Callback回调异步返回结果。
 
 >  **说明：** 从API Version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9)替代。
 
