@@ -40,7 +40,7 @@ var AtManager = abilityAccessCtrl.createAtManager();
 
 checkAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
-校验应用是否授予权限，使用Promise方式异步返回结果。
+校验应用是否授予权限。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -57,10 +57,17 @@ checkAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatu
 | :------------ | :---------------------------------- |
 | Promise&lt;GrantStatus&gt; | Promise对象。返回授权状态结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -96,6 +103,13 @@ verifyAccessTokenSync(tokenID: number, permissionName: string): GrantStatus
 | :------------ | :---------------------------------- |
 | [GrantStatus](#grantstatus) | 枚举实例，返回授权状态。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+
 **示例：**
 
 ```js
@@ -109,11 +123,11 @@ console.log(`data->${JSON.stringify(data)}`);
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;void&gt;
 
-授予应用user grant权限，使用Promise方式异步返回结果。
+授予应用user grant权限。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -131,10 +145,20 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 | :------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100002 | TokenId does not exist. |
+| 12100003 | Permission does not exist. |
+| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -154,11 +178,11 @@ try {
 
 grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;void&gt;): void
 
-授予应用user grant权限，使用callback回调异步返回结果。
+授予应用user grant权限。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GRANT_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -169,12 +193,22 @@ grantUserGrantedPermission(tokenID: number, permissionName: string, permissionFl
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得           |
 | permissionName | string              | 是   | 被授予的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
-| callback | AsyncCallback&lt;void&gt; | 是 | 检查授予应用user grant权限的操作结果同步的回调。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100002 | TokenId does not exist. |
+| 12100003 | Permission does not exist. |
+| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
 
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -196,11 +230,11 @@ try {
 
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number): Promise&lt;void&gt;
 
-撤销应用user grant权限，使用Promise方式异步返回结果。
+撤销应用user grant权限。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -218,10 +252,20 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 | :------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100002 | TokenId does not exist. |
+| 12100003 | Permission does not exist. |
+| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -241,11 +285,11 @@ try {
 
 revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionFlag: number, callback: AsyncCallback&lt;void&gt;): void
 
-撤销应用user grant权限，使用callback回调异步返回结果。
+撤销应用user grant权限。使用callback异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.REVOKE_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -256,12 +300,22 @@ revokeUserGrantedPermission(tokenID: number, permissionName: string, permissionF
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得            |
 | permissionName | string              | 是   | 被撤销的权限名称。 |
 | permissionFlag  | number | 是   | 授权选项，1表示下次仍需弹窗，2表示允许、禁止后不再提醒，3表示系统授权不允许更改。  |
-| callback | AsyncCallback&lt;void&gt; | 是 | 检查撤销应用user grant权限的操作结果同步的回调。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100002 | TokenId does not exist. |
+| 12100003 | Permission does not exist. |
+| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
 
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -283,11 +337,11 @@ try {
 
 getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&gt;
 
-获取指定应用的指定权限的flag，使用Promise方式异步返回结果。
+获取指定应用的指定权限的flag。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or ohos.permission.GRANT_SENSITIVE_PERMISSIONS or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS or ohos.permission.GRANT_SENSITIVE_PERMISSIONS or ohos.permission.REVOKE_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -304,10 +358,20 @@ getPermissionFlags(tokenID: number, permissionName: string): Promise&lt;number&g
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回查询结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100002 | TokenId does not exist. |
+| 12100003 | Permission does not exist. |
+| 12100006 | The specified application does not support the permissions granted or ungranted as specified. |
+
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -327,9 +391,9 @@ try {
 
 getVersion(): Promise&lt;number&gt;
 
-获取当前权限管理的数据版本，使用Promise方式异步返回结果。
+获取当前权限管理的数据版本。使用Promise异步回调。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -353,11 +417,11 @@ promise.then(data => {
 
 on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNameList: Array&lt;string&gt;, callback: Callback&lt;PermissionStateChangeInfo&gt;): void;
 
-订阅指定tokenId列表与权限列表的权限状态变更事件，使用callback回调异步返回结果。
+订阅指定tokenId列表与权限列表的权限状态变更事件。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -369,6 +433,15 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionNa
 | tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。        |
 | permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化。               |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100004 | The listener interface is not used together. |
+| 12100005 | The number of listeners exceeds the limit. |
 
 **示例：**
 
@@ -393,9 +466,9 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionN
 
 取消订阅指定tokenId列表与权限列表的权限状态变更事件，使用callback回调异步返回结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS
+**需要权限：** ohos.permission.GET_SENSITIVE_PERMISSIONS，仅系统应用可用。
 
 **系统能力：** SystemCapability.Security.AccessToken
 
@@ -407,6 +480,14 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionN
 | tokenIDList        | Array&lt;number&gt;   | 否   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
 | permissionNameList | Array&lt;string&gt;   | 否   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致。 |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[程序访问控制错误码](../errorcodes/errorcode-access-token.md)。
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 12100001 | Parameter invalid. |
+| 12100004 | The listener interface is not used together. |
 
 **示例：**
 
@@ -427,7 +508,7 @@ try {
 
 verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStatus&gt;
 
-校验应用是否授予权限，使用Promise方式异步返回结果。
+校验应用是否授予权限。使用Promise异步回调。
 
 > **说明：** 从API version 9开始不再维护，建议使用[checkAccessToken](#checkaccesstoken9)替代。
 
@@ -437,7 +518,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得              |
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundle-ApplicationInfo.md)获得。             |
 | permissionName | string | 是   | 需要校验的权限名称。 |
 
 **返回值：**
@@ -449,7 +530,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 **示例：**
 
 ```js
-import privacyManager from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
@@ -489,7 +570,7 @@ promise.then(data => {
 
 **系统接口：** 此接口为系统接口。
 
- **系统能力:** SystemCapability.Security.AccessToken
+**系统能力：** SystemCapability.Security.AccessToken
 
 | 名称           | 类型                       | 可读 | 可写 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
