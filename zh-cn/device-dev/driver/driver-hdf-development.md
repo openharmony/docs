@@ -24,9 +24,9 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       #include "hdf_device_desc.h"          // HDF框架对驱动开发相关能力接口的头文件
       #include "hdf_log.h"                  // HDF框架提供的日志接口头文件
       
-      #define HDF_LOG_TAG "sample_driver"   // 打印日志所包含的标签，如果不定义则用默认定义的HDF_TAG标签。
+      #define HDF_LOG_TAG sample_driver     // 打印日志所包含的标签，如果不定义则用默认定义的HDF_TAG标签。
       
-      // 驱动对外提供的服务能力，将相关的服务接口绑定到HDF框架。
+      // 将驱动对外提供的服务能力接口绑定到HDF框架。
       int32_t HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver bind success");
@@ -75,7 +75,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
          
        ```
-       include $(LITEOSTOPDIR)/../../drivers/adapter/khdf/liteos/lite.mk # 【必需】导入hdf预定义内容
+       include $(LITEOSTOPDIR)/../../drivers/hdf_core/adapter/khdf/liteos/lite.mk # 【必需】导入hdf预定义内容
        MODULE_NAME :=        #生成的结果文件
        LOCAL_INCLUDE :=      #本驱动的头文件目录
        LOCAL_SRCS :=         #本驱动的源代码文件
@@ -83,7 +83,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        include $(HDF_DRIVER) #导入Makefile模板完成编译
        ```
 
-       编译结果文件链接到内核镜像，添加到**drivers/adapter/khdf/liteos**目录下的**hdf_lite.mk**里面，示例如下：
+       编译结果文件链接到内核镜像，添加到**drivers/hdf_core/adapter/khdf/liteos**目录下的**hdf_lite.mk**里面，示例如下：
 
            
        ```
@@ -98,7 +98,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
            
        ```
        import("//build/lite/config/component/lite_component.gni")
-       import("//drivers/adapter/khdf/liteos/hdf.gni")
+       import("//drivers/hdf_core/adapter/khdf/liteos/hdf.gni")
        module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
        module_name = "xxx"
        hdf_driver(module_name) {
@@ -114,27 +114,27 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        }
         ```
 
-       把新增模块的BUILD.gn所在的目录添加到**/drivers/adapter/khdf/liteos/BUILD.gn**里面：
+       把新增模块的BUILD.gn所在的目录添加到**/drivers/hdf_core/adapter/khdf/liteos/BUILD.gn**里面：
 
            
        ```
        group("liteos") {
            public_deps = [ ":$module_name" ]
                deps = [
-                   "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/adapter/khdf/liteos
+                   "xxx/xxx",   #新增模块BUILD.gn所在的目录，目录结构相对于/drivers/hdf_core/adapter/khdf/liteos
                ]
        }
        ```
    - Linux
 
-     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到**drivers/adapter/khdf/linux/Kconfig**里面：
+     如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到**drivers/hdf_core/adapter/khdf/linux/Kconfig**里面：
 
         
      ```
      source "drivers/hdf/khdf/xxx/Kconfig" #目录为hdf模块软链接到kernel里面的目录
      ```
 
-     添加模块目录到**drivers/adapter/khdf/linux/Makefile**：
+     添加模块目录到**drivers/hdf_core/adapter/khdf/linux/Makefile**：
 
         
      ```
