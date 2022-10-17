@@ -372,6 +372,44 @@ try {
 }
 ```
 
+###   HEART_RATE<sup>9+</sup>
+
+on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,options?: Options): void
+
+订阅心率传感器数据。
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：** 
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要订阅的心率传感器类型为HEART_RATE。                         |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+| options  | [Options](#options)                                     | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：**
+
+```js
+try {
+    sensor.on(sensor.SensorId.HEART_RATE,function(data){
+        console.info('Heart rate: ' + data.heartRate);
+    }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
 ###  HUMIDITY<sup>9+</sup>
 
 on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;,options?: Options): void
@@ -403,6 +441,47 @@ try {
   sensor.on(sensor.SensorId.HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   }, {interval: 10000000} );
+} catch(err) {
+      console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
+###  LINEAR_ACCELERATION<sup>9+</sup>
+
+on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;,
+        options?: Options): void
+
+订阅线性加速度传感器数据。
+
+**需要权限**：ohos.permission.ACCELEROMETER 
+
+**系统能力**：SystemCapability.Sensors.Sensor 
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要订阅的线性加速度传感器类型为LINEAR_ACCELEROMETER。         |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：**
+
+```js
+try {
+  sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
+      console.info('X-coordinate component: ' + data.x);
+      console.info('Y-coordinate component: ' + data.y);
+      console.info('Z-coordinate component: ' + data.z);
+    }, {interval: 10000000} );
 } catch(err) {
       console.info('on fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -1102,6 +1181,44 @@ try {
 }
 ```
 
+### HEART_RATE<sup>9+</sup>
+
+once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void
+
+订阅一次心率传感器数据。
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
+
+**系统能力**：SystemCapability.Sensors.Sensor 
+
+**参数：** 
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                  | 是   | 心率传感器类型为HEART_RATE。                                 |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：**
+
+```js
+try {
+    sensor.once(sensor.SensorId.HEART_BEAT_RATE, function(data) {
+        console.info('Heart rate: ' + data.heartRate);
+      }
+    );
+} catch(err) {
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
 ### HUMIDITY<sup>9+</sup>
 
 once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
@@ -1131,6 +1248,46 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 try {
     sensor.once(sensor.SensorId.HUMIDITY, function(data) {
         console.info('Humidity: ' + data.humidity);
+      }
+    );
+} catch(err) {
+      console.info('once fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
+### LINEAR_ACCELERATION<sup>9+</sup>
+
+once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerometerResponse&gt;): void
+
+订阅一次线性加速度传感器数据。
+
+**需要权限**：ohos.permission.ACCELEROMETER 
+
+**系统能力**：SystemCapability.Sensors.Sensor 
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                       | 是   | 线性加速度传感器类型为LINEAR_ACCELEROMETER。                 |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+
+**错误码**： 
+
+以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](../errorcodes/errorcode-sensor.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 14500101 | Service exception. |
+
+**示例：**
+
+```js
+try {
+    sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, function(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
       }
     );
 } catch(err) {
@@ -1753,6 +1910,36 @@ try {
 }
 ```
 
+### HEART_RATE<sup>9+</sup> 
+
+off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+
+取消订阅心率传感器数据。
+
+**需要权限**：ohos.permission.READ_HEALTH_DATA 
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                  | 是   | 要取消订阅的心率传感器类型为HEART_RATE。                     |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
+
+**示例：**
+
+```js
+try {
+    function callback(data) {
+        console.info("Heart rate: " + data.heartRate);
+    }
+    sensor.off(sensor.SensorId.HEART_RATE, callback);
+} catch(err) {
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
 ### HUMIDITY<sup>9+</sup> 
 
 off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
@@ -1776,6 +1963,38 @@ try {
         console.info('Humidity: ' + data.humidity);
     }
     sensor.off(sensor.SensorId.HUMIDITY, callback);
+} catch(err) {
+      console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
+### LINEAR_ACCELEROMETER<sup>9+</sup> 
+
+off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+
+取消订阅线性加速度传感器数据。
+
+**需要权限**：ohos.permission.ACCELEROMETER 
+
+**系统能力**：SystemCapability.Sensors.Sensor 
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9)                                       | 是   | 要取消订阅的线性加速度传感器类型为LINEAR_ACCELERATION。      |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
+
+**示例：**
+
+```js
+try {
+    function callback(data) {
+        console.info('X-coordinate component: ' + data.x);
+        console.info('Y-coordinate component: ' + data.y);
+        console.info('Z-coordinate component: ' + data.z);
+    }
+    sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER, callback);
 } catch(err) {
       console.info('off fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -3432,36 +3651,6 @@ on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Line
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
 | options  | [Options](#options)                      | 否    | 可选参数列表，设置上报频率，默认值为200000000ns。           |
 
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-on(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;,
-        options?: Options): void
-
-监听线性加速度传感器的数据变化。如果多次调用该接口，仅最后一次调用生效。
-
-**需要权限**：ohos.permission.ACCELEROMETER
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 要订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-| options  | [Options](#options)                                          | 否   | 可选参数列表，设置上报频率，默认值为200000000ns。            |
-
-**示例：**
-
-  ```js
-  sensor.on(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER,function(data){
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-  },
-      {interval: 10000000}
-  );
-  ```
-
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,callback: Callback&lt;AccelerometerUncalibratedResponse&gt;, options?: Options): void
@@ -3951,34 +4140,6 @@ on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateRe
 | type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。          |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
-### HEART_BEAT_RATE<sup>9+</sup>
-
-on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;,
-        options?: Options): void
-
-监听心率传感器数据变化一次。
-
-**需要权限**：ohos.permission.HEALTH_DATA 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 要订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。     |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-```js
-sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE,function(data){
-    console.info("Heart rate: " + data.heartRate);
-},
-    {interval: 10000000}
-);
-```
-
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,callback: Callback&lt;RotationVectorResponse&gt;,options?: Options): void
@@ -4085,33 +4246,6 @@ once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;Li
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-once(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback:Callback&lt;LinearAccelerometerResponse&gt;): void
-
-订阅一次线性加速度传感器数据。
-
-**需要权限**：ohos.permission.ACCELERATION 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。  |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 注册一次线性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-**示例：**
-
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, function(data) {
-      console.info('X-coordinate component: ' + data.x);
-      console.info('Y-coordinate component: ' + data.y);
-      console.info('Z-coordinate component: ' + data.z);
-    }
-  );
-  ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4594,32 +4728,6 @@ once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRate
 | type     | [SensorType](#sensortype)                | 是    | 心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。       |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是    | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
-### HEART_BEAT_RATE<sup>9+</sup>
-
-once(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): void		
-
-订阅一次心率传感器数据。
-
-**需要权限**：ohos.permission.HEART_RATE 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。             |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-  ```js
-  sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, function(data) {
-      console.info("Heart rate: " + data.heartRate);
-    }
-  );
-  ```
-
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
@@ -4921,32 +5029,6 @@ off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRate
 | type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_RATE。      |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
 
-### HEART_BEAT_RATE<sup>9+</sup>
-
-off(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
-
-取消订阅传感器数据。
-
-**需要权限**：ohos.permission.HEALTH_DATA 
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                               | 是   | 要取消订阅的心率传感器类型为SENSOR_TYPE_ID_HEART_BEAT_RATE。 |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 是   | 取消注册一次心率传感器的回调函数，上报的数据类型为HeartRateResponse。 |
-
-**示例：**
-
-```js
-function callback(data) {
-    console.info("Heart rate: " + data.heartRate);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HEART_BEAT_RATE, callback);
-```
-
 ### HUMIDITY<sup>(deprecated)</sup>
 
 off(type: SensorType.SENSOR_TYPE_ID_HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
@@ -4991,34 +5073,6 @@ off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION, callback?: Callback&lt;
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | [SensorType](#sensortype)                | 是    | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELERATION。 |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是    | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-### LINEAR_ACCELEROMETER<sup>9+</sup>
-
-off(type: SensorType.SENSOR_TYPE_ID_LINEAR_ACCELERATION,callback?:Callback&lt;LinearAccelerometerResponse&gt;): void
-
-取消订阅传感器数据。
-
-**需要权限**：ohos.permission.ACCELEROMETER
-
-**系统能力**：SystemCapability.Sensors.Sensor
-
-**参数：**
-
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype)                                    | 是   | 要取消订阅的线性加速度传感器类型为SENSOR_TYPE_ID_LINEAR_ACCELEROMETER。 |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 是   | 取消注册性加速度传感器的回调函数，上报的数据类型为LinearAccelerometerResponse。 |
-
-**示例：**
-
-```js
-function callback(data) {
-    console.info('X-coordinate component: ' + data.x);
-    console.info('Y-coordinate component: ' + data.y);
-    console.info('Z-coordinate component: ' + data.z);
-}
-sensor.off(sensor.SensorType.SENSOR_TYPE_ID_LINEAR_ACCELEROMETER, callback);
-```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
