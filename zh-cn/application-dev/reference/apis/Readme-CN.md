@@ -1,4 +1,4 @@
-﻿﻿# 接口
+﻿# 接口
 - [开发说明](development-intro.md)
 - Ability框架
   - FA模型
@@ -91,8 +91,10 @@
   - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
+  - [@ohos.curves (插值计算)](js-apis-curve.md)
+  - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
-  - [@ohos.prompt (弹窗)](js-apis-prompt.md)
+  - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
 - 图形图像
@@ -146,8 +148,9 @@
 - 文件管理
   - [@ohos.document (文件交互)](js-apis-document.md)
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
+  - [@ohos.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
+  - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
-  - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.filemanagement.userfile_manager (用户数据管理)](js-apis-userfilemanager.md)
   - [@ohos.multimedia.medialibrary (媒体库管理)](js-apis-medialibrary.md)
   - [@ohos.securityLabel (数据标签)](js-apis-securityLabel.md)
@@ -266,6 +269,7 @@
 - 已停止维护的接口
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
+  - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

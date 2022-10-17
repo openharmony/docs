@@ -3,6 +3,16 @@
 
 ## **概述**
 
+定义获取口令认证驱动的执行器列表接口。
+
+**Since：**
+
+3.2
+
+**Version:**
+
+1.0
+
 **所属模块:**
 
 [HdfPinAuth](_hdf_pin_auth.md)
@@ -13,22 +23,9 @@
 
 ### Public 成员函数
 
-  | Public&nbsp;成员函数 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
-| [GetExecutorList](#getexecutorlist)&nbsp;([out]&nbsp;[IExecutor](interface_pin_i_executor.md)[]&nbsp;executorList) | 获取执行器列表，口令认证服务进程启动进行初始化操作时通过该接口获取口令认证驱动支持的执行器列表。&nbsp;[更多...](#getexecutorlist) | 
-
-
-## **详细描述**
-
-定义获取口令认证驱动的执行器列表接口。
-
-**Since：**
-
-3.2
-
-**Version:**
-
-1.0
+| [GetExecutorList](#getexecutorlist)&nbsp;([out]&nbsp;IExecutor[]&nbsp;executorList) | 获取执行器列表，口令认证服务进程启动进行初始化操作时通过该接口获取口令认证驱动支持的执行器列表。 | 
 
 
 ## **成员函数说明**

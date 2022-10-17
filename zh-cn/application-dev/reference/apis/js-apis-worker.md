@@ -80,7 +80,7 @@ const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts'
 ```
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
 
-(1) 目录同级( **不添加也可以** )
+(1) 目录同级
 
 FA模型:
 
@@ -103,7 +103,7 @@ Stage模型:
     }
   }
 ```
-(2) 目录不同级( **必须添加** )
+(2) 目录不同级
 
 FA模型:
 ```json
@@ -700,8 +700,8 @@ parentPort.onerror = function(e){
 | Array               |                                                          | 是                   |
 | Map                 |                                                          | 是                   |
 | Set                 |                                                          | 是                   |
-| Object              | 只支持Create from literal的简单Object，不支持带function的  | 是                   |
-| ArrayBuffer         | 提供transfer能力                                          | 是                   |
+| Object              | 只支持Plain Object，不支持带function的                   | 是                   |
+| ArrayBuffer         | 提供transfer能力                                         | 是                   |
 | TypedArray          |                                                          | 是                   |
 
 ### 内存模型

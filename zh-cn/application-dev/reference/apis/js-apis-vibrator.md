@@ -23,13 +23,21 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-**参数：** 
+**参数：**
 
 | 参数名    | 类型                                   | 必填 | 说明                                                       |
 | --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
 | effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果。                                             |
 | attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
 | callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数。当马达振动成功，err为undefined，否则为错误对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed。 |
 
 示例：
 
@@ -75,6 +83,14 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见 [ohos.vibrator错误码](../errorcodes/errorcode-vibrator.md)
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 14600101 | Device operation failed。 |
 
 **示例：** 
 

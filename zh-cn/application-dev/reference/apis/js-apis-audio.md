@@ -1,6 +1,6 @@
 # 音频管理
 
-音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。 
+音频管理提供管理音频的一些基础能力，包括对音频音量、音频设备的管理，以及对音频数据的采集和渲染等。
 
 该模块提供以下音频相关的常用功能：
 
@@ -686,6 +686,16 @@ async function createTonePlayer(){
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化。                                     |
 | volumeGroupId<sup>9+</sup>   | number            | 是   | 音量组id。可用于getGroupManager入参                      |
 | networkId<sup>9+</sup>    | string               | 是   | 网络id。                                                |
+
+## MicStateChangeEvent<sup>9+</sup>
+
+麦克风状态变化时，应用接收的事件。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 类型                                | 必填 | 说明                                                     |
+| ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
+| mute | boolean | 是   | 回调返回系统麦克风静音状态，true为静音，false为非静音。          |
 
 ## ConnectType<sup>9+</sup>
 
@@ -3263,6 +3273,32 @@ async function getRoutingManager(){
 }
 ```
 
+### on('micStateChange')<sup>9+</sup>
+
+on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
+
+监听系统麦克风状态更改事件
+
+目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'micStateChange'（系统麦克风状态变化事件，检测到系统麦克风状态改变时，触发该事件）。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 是   | 回调方法，返回变更后的麦克风状态。                                                   |
+
+**示例：**
+
+```js
+var audioManager = audio.getAudioManager();
+audioManager.getRoutingManager.on('micStateChange', (micStateChange) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+});
+```
+
 ### selectInputDevice<sup>9+</sup>
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
@@ -5253,7 +5289,7 @@ load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
 | 参数名          | 类型                        | 必填  | 说明                            |
 | :--------------| :-------------------------- | :-----| :------------------------------ |
 | type           | ToneType(#tonetype9)        | 是    | 配置的音调类型。                 |
-| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回缓冲区。 |
+| callback       | AsyncCallback<void\>        | 是    | 使用callback方式异步返回结果。 |
 
 **示例：**
 

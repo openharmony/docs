@@ -56,7 +56,7 @@ The methods are used to set the display orientation of the current ability.
 **Example**
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility'
-import bundle from '../@ohos.bundle';
+import bundle from '@ohos.bundle';
 
 export default {
   onCreate() {
@@ -79,7 +79,7 @@ The following describes the contexts provided by the stage model in detail.
 
 ### application/Context
 
-**application/Context** is the base class context that provides basic application information such as **resourceManager**, **applicationInfo**, **cacheDir**, and **area**. It also provides basic application methods such as **createBundleContext**.
+**application/Context** is the base class context. It provides basic application information, such as **resourceManager**, **applicationInfo**, **cacheDir**, and **area**. It also provides basic application methods such as **createModuleContext**.
 
 **d.ts statement**
 

@@ -11,7 +11,7 @@
    ![zh-cn_image_0000001195119619](figures/zh-cn_image_0000001195119619.png)
 
 2. 定义食物数据的存储模型FoodData和枚举变量Category，FoodData类包含食物id、名称（name）、分类（category）、图片（image）、热量（calories）、蛋白质（protein）、脂肪（fat）、碳水（carbohydrates）和维生素C（vitaminC）属性。
-   eTS语言是在ts语言的基础上的扩展，同样支持ts语法。
+   ArkTS语言是在ts语言的基础上的扩展，同样支持ts语法。
 
    ```
    enum Category  {
@@ -87,4 +87,4 @@
 
 ## 相关实例
 针对构建食物分类列表页面和食物详情页，有以下相关实例可供参考：
-- [DefiningPageLayoutAndConnection:页面布局和连接（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)
+- [DefiningPageLayoutAndConnection:页面布局和连接（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/DefiningPageLayoutAndConnection)

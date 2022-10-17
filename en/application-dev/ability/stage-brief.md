@@ -49,6 +49,8 @@ The ability and ability stage lifecycles are the rudiments of the basic process 
 
 To implement device-specific tailoring and multi-window scalability, OpenHarmony decouples the component manager from the window manager. The ability lifecycle defined in the stage model includes only the creation, destruction, foreground, and background states. The gain focus and lose focus states that are closely related to UI content are defined in the window stage. This implements weak coupling between the abilities and windows. On the service side, the window manager notifies the component manager of the foreground and background changes, so the component manager only senses the foreground and background changes but not the focus changes.
 
+There are two lifecycle states related to **WindowStage** in **Ability**: **onWindowStageCreate** and **onWindowStageDestroy**. They are valid only for devices with the window display capability. **onWindowStageCreate** is invoked when a window stage is created, where you can call **loadContent** to set pages to be loaded for the ability. **onWindowStageDestroy** is invoked when the window stage is destroyed, where you can release resources.
+
 
 ## Ability Instances and Missions
 
@@ -58,7 +60,7 @@ Abilities can be started in any of the following modes:
 
 + **Standard**: Each time **startAbility** is called, an instance of the specified ability type is created in the application process. **Ability2** in the figure below is started in standard mode.
 
-+ **Specified**: Before creating an **AbilityRecord**, you can create a key for the instance. Each time **startAbility** is called, the system asks the application which ability instance (corresponding to a key) will be used. **Ability3** in the figure below is started in specified mode.
++ **Specified**: Before creating an **Ability** instance, you can create a key for the instance. Each time **startAbility** is called, the system asks the application which ability instance (corresponding to a key) will be used. **Ability3** in the figure below is started in specified mode.
 
 Each ability instance corresponds to a mission in **Launcher Recent**.
 
@@ -92,6 +94,12 @@ All OpenHarmony applications are designed to meet the single-process model. In t
 
 - Render process: created for the WebView and used to load the WebView rendering library.
 
-  The following figure shows the process model of an application.
+The following figure shows the process model of an application.
 
-  ![stageprocessmodel](figures/stageprocessmodel.png)
+![stageprocessmodel](figures/stageprocessmodel.png)
+
+## Application Package Structure
+
+For details about the project directory structure of the stage model, see [OpenHarmony Project Overview](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-project-overview-0000001218440650#section56487581904).
+
+For details about how to configure the application package structure of the stage model, see [Application Package Structure Configuration File (Stage Model)](../quick-start/stage-structure.md).

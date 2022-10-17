@@ -24,7 +24,7 @@ enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
 
 ## DeviceSettingsManager.setDateTime
 
-setDateTime(admin: Want, time: number, callback: AsyncCallback<void>): void
+setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 Sets the system time. This API uses an asynchronous callback to return the result.
 
@@ -38,7 +38,7 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | Yes   | Device administrator application.|
 | time  | number | Yes| Timestamp (ms).|
-| callback | AsyncCallback<void> | Yes| Callback used to the result. If the system time is set successfully, **err** is **null**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback used to the result. If the system time is set successfully, **err** is **null**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -64,7 +64,7 @@ enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
 
 ## DeviceSettingsManager.setDateTime
 
-setDateTime(admin: Want, time: number): Promise<void>
+setDateTime(admin: Want, time: number): Promise\<void>
 
 Sets the system time. This API uses a promise to return the result.
 
@@ -83,8 +83,7 @@ Sets the system time. This API uses a promise to return the result.
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise<void> | Promise that returns no value.|
-
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
