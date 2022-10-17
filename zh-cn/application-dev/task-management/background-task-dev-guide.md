@@ -12,6 +12,8 @@
 
 **表1** 短时任务主要接口
 
+> **说明：** 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+
 | 接口名                                      | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
 | requestSuspendDelay(reason:&nbsp;string,&nbsp;callback:&nbsp;Callback&lt;void&gt;):&nbsp;[DelaySuspendInfo](../reference/apis/js-apis-backgroundTaskManager.md#delaysuspendinfo) | 后台应用申请延迟挂起。<br/>延迟挂起时间一般情况下默认值为180000，低电量时默认值为60000。 |
@@ -25,46 +27,65 @@
 1. 申请延迟挂起
 
     ```js
-    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
     let myReason = 'test requestSuspendDelay';
-    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.info("Request suspension delay will time out.");
-    });
-
-    var id = delayInfo.requestId;
-    console.info("requestId is: " + id);
+    try {
+        let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+            console.info("Request suspension delay will time out.");
+        })
+        var id = delayInfo.requestId;
+        var time = delayInfo.actualDelayTime;
+        console.info("The requestId is: " + id);
+        console.info("The actualDelayTime is: " + time);
+    } catch (error) {
+        console.error(`requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+    }
     ```
 
 
 2. 获取进入挂起前的剩余时间
 
     ```js
-    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-    }).catch( err => {
-        console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-    });
+    try {
+        backgroundTaskManager.getRemainingDelayTime(id, (error, res) => {
+            if(error) {
+                console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+            } else {
+                console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+            }
+        })
+    } catch (error) {
+        console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+    }
     ```
 
 
 3. 取消延迟挂起
 
     ```js
-    backgroundTaskManager.cancelSuspendDelay(id);
+    try {
+        backgroundTaskManager.cancelSuspendDelay(id);
+    } catch (error) {
+        console.error(`cancelSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+    }
     ```
 
 
 ### 开发实例
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 let myReason = 'test requestSuspendDelay';
-
+var delayInfo;
 // 申请延迟挂起
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    console.info("Request suspension delay will time out.");
-});
+try {
+    delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.info("Request suspension delay will time out.");
+    })
+} catch (error) {
+    console.error(`requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 打印延迟挂起信息
 var id = delayInfo.requestId;
@@ -73,14 +94,24 @@ console.info("The requestId is: " + id);
 console.info("The actualDelayTime is: " + time);
 
 // 获取应用程序进入挂起状态前的剩余时间
-backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-    console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-}).catch( err => {
-    console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-});
+try {
+    backgroundTaskManager.getRemainingDelayTime(id, (error, res) => {
+        if(error) {
+            console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+        } else {
+            console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+        }
+    })
+} catch (error) {
+    console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 取消延迟挂起
-backgroundTaskManager.cancelSuspendDelay(id);
+try {
+    backgroundTaskManager.cancelSuspendDelay(id);
+} catch (error) {
+    console.error(`cancelSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+}
 ```
 
 ## 长时任务
@@ -92,6 +123,8 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 ### 接口说明
 
 **表2** 长时任务主要接口
+
+> **说明：** 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 接口名                                      | 描述                           |
 | ---------------------------------------- | ---------------------------- |
@@ -145,7 +178,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 2. 申请长时任务。
 
     ```js
-    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';  
     import featureAbility from '@ohos.ability.featureAbility';
     import wantAgent from '@ohos.wantAgent';
 
@@ -175,7 +208,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 3. 停止长时任务。
 
     ```js
-    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import backgroundTaskManager from '@ohos.backgroundTaskManager';  
     import featureAbility from '@ohos.ability.featureAbility';
 
     backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
@@ -211,7 +244,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 2. 申请长时任务。
 
     ```ts
-    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
     import wantAgent from '@ohos.wantAgent';
 
     let wantAgentInfo = {
@@ -228,25 +261,33 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        backgroundTaskManager.startBackgroundRunning(this.context,
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation startBackgroundRunning failed Cause: " + err);
-        });
+        try {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((error) => {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
+        } catch (error) {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
     });
     ```
 
 3. 停止长时任务。
 
     ```ts
-    import backgroundTaskManager from '@ohos.backgroundTaskManager';
+    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-    backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 
     ```
 
@@ -262,7 +303,7 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 当需要与后台执行的长时任务交互时（如播放音乐等）。可以采用connectAbility()方法启动并连接Service Ability。在获取到服务的代理对象后，与服务进行通信，控制长时任务的申请和取消。
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 import rpc from "@ohos.rpc";
@@ -371,7 +412,7 @@ Stage模型的相关信息参考[Stage模型综述](../ability/stage-brief.md)�
 
 ```ts
 import Ability from '@ohos.application.Ability'
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import wantAgent from '@ohos.wantAgent';
 
 let mContext = null;
@@ -395,21 +436,29 @@ function startContinuousTask() {
 
     // 通过wantAgent模块的getWantAgent方法获取WantAgent对象
     wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-        backgroundTaskManager.startBackgroundRunning(mContext,
-            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-            console.info("Operation startBackgroundRunning succeeded");
-        }).catch((err) => {
-            console.error("Operation startBackgroundRunning failed Cause: " + err);
-        });
+        try {
+            backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+                backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((error) => {
+                console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+            });
+        } catch (error) {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        }
     });
 }
 
 function stopContinuousTask() {
-    backgroundTaskManager.stopBackgroundRunning(mContext).then(() => {
-        console.info("Operation stopBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 }
 
 class MySequenceable {
@@ -494,9 +543,11 @@ export default class BgTaskAbility extends Ability {
 
 **表1** 能效资源申请主要接口
 
+> **说明：** 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+
 | 接口名                                      | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): boolean | 申请能效资源。 |
+| applyEfficiencyResources(request: [EfficiencyResourcesRequest](../reference/apis/js-apis-backgroundTaskManager.md#efficiencyresourcesrequest9)): void | 申请能效资源。 |
 | resetAllEfficiencyResources():void | 释放申请的能效资源。   |
 
 
@@ -506,7 +557,7 @@ export default class BgTaskAbility extends Ability {
 1. 申请能效资源
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 let request = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -516,14 +567,18 @@ let request = {
     isPersist: true,
     isProcess: true,
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("applyEfficiencyResources success. ");
+} catch (error) {
+    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```
 
 2. 释放申请的部分资源
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 let request = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -531,22 +586,30 @@ let request = {
     timeOut: 0,
     reason: "reset",
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("applyEfficiencyResources success. ");
+} catch (error) {
+    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```
 
 3. 释放申请的所有资源
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
-backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+try {
+    backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+} catch (error) {
+    console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```
 
 ### 开发实例
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 // 申请能效资源
 let request = {
@@ -558,8 +621,12 @@ let request = {
     isPersist: true,
     isProcess: true,
 };
-let res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("applyEfficiencyResources success. ");
+} catch (error) {
+    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 释放部分资源
 request = {
@@ -568,11 +635,19 @@ request = {
     timeOut: 0,
     reason: "reset",
 };
-res = backgroundTaskManager.applyEfficiencyResources(request);
-console.info("the result of request is: " + res);
+try {
+    backgroundTaskManager.applyEfficiencyResources(request);
+    console.info("applyEfficiencyResources success. ");
+} catch (error) {
+    console.error(`applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 
 // 释放全部资源
-backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+try {
+    backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
+} catch (error) {
+    console.error(`resetAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+}
 ```
 
 ## 相关实例

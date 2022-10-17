@@ -4,11 +4,10 @@
 
 应用要执行对实时性要求不高的任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。延迟任务调度约束见[延迟任务调度概述](./work-scheduler-overview.md)。
 
-
 ## 接口说明
 注册相关接口包导入：
 ```js
-import workScheduler from '@ohos.workScheduler';
+import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
 回调相关接口包导入：
@@ -20,15 +19,17 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 
 **表1** workScheduler主要接口
 
+> **说明：** 延迟任务调度错误码见[workScheduler错误码](../../api/errorcodes/errorcode-workScheduler.md)。
+
 接口名                                                    |     接口描述                            
 ---------------------------------------------------------|-----------------------------------------
-startWork(work: WorkInfo): boolean; | 延迟调度任务申请 
-stopWork(work: WorkInfo, needCancel?: boolean): boolean;        | 延迟调度任务取消 
+startWork(work: WorkInfo): void; | 延迟调度任务申请 
+stopWork(work: WorkInfo, needCancel?: boolean): void;        | 延迟调度任务取消 
 getWorkStatus(workId: number, callback: AsyncCallback\<WorkInfo>): void;| 获取延迟调度任务状态（Callback形式） 
 getWorkStatus(workId: number): Promise\<WorkInfo>; | 获取延迟调度任务状态（Promise形式） 
 obtainAllWorks(callback: AsyncCallback\<void>): Array\<WorkInfo>;| 获取所有延迟调度任务（Callback形式） 
 obtainAllWorks(): Promise<Array\<WorkInfo>>;| 获取所有延迟调度任务（Promise形式） 
-stopAndClearWorks(): boolean;| 停止并清除任务
+stopAndClearWorks(): void;| 停止并清除任务
 isLastWorkTimeOut(workId: number, callback: AsyncCallback\<void>): boolean;| 获取上次任务是否超时（针对RepeatWork，Callback形式）
 isLastWorkTimeOut(workId: number): Promise\<boolean>;| 获取上次任务是否超时（针对RepeatWork，Promise形式）
 
@@ -77,7 +78,7 @@ onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
 
 **注册延迟任务**
 
-    import workScheduler from '@ohos.workScheduler';
+    import workScheduler from '@ohos.resourceschedule.workScheduler';
     
     let workInfo = {
         workId: 1,
@@ -93,14 +94,18 @@ onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
           mykey3: 1.5
       }
     }
-    var res = workScheduler.startWork(workInfo);
-    console.info("workschedulerLog res:" + res);
+    try{
+      workScheduler.startWork(workInfo);
+      console.info('workschedulerLog startWork success');
+    } catch (error) {
+      console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
+    }
 
 
 **取消延迟任务**
 
 
-    import workScheduler from '@ohos.workScheduler';
+    import workScheduler from '@ohos.resourceschedule.workScheduler';
     
     let workInfo = {
         workId: 1,
@@ -116,83 +121,114 @@ onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
           mykey3: 1.5
       }
     }
-    var res = workScheduler.stopWork(workInfo, false);
-    console.info("workschedulerLog res:" + res);
+    try{
+      workScheduler.stopWork(workInfo, false);
+      console.info('workschedulerLog stopWork success');
+    } catch (error) {
+      console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
+    }
 
 
 **获取指定延迟任务**
 
 1.Callback写法
 
-    workScheduler.getWorkStatus(50, (err, res) => {
-      if (err) {
-        console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
-      } else {
-        for (let item in res) {
-          console.info('workschedulerLog getWorkStatuscallback success,' + item + ' is:' + res[item]);
+    try{
+      workScheduler.getWorkStatus(50, (error, res) => {
+        if (error) {
+          console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+        } else {
+          for (let item in res) {
+            console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    }
 
 
 2.Promise写法
 
-    workScheduler.getWorkStatus(50).then((res) => {
-      for (let item in res) {
-        console.info('workschedulerLog getWorkStatus success,' + item + ' is:' + res[item]);
-      }
-    }).catch((err) => {
-      console.info('workschedulerLog getWorkStatus failed, because:' + err.code);
-    })
+    try{
+      workScheduler.getWorkStatus(50).then((res) => {
+        for (let item in res) {
+          console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
+        }
+      }).catch((error) => {
+        console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+      })
+    } catch (error) {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    }
 
 
 **获取所有延迟任务**
 
 1.Callback写法
 
-    workScheduler.obtainAllWorks((err, res) =>{
-      if (err) {
-        console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
-      } else {
-        console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-      }
-    });
+    try{
+      workScheduler.obtainAllWorks((error, res) =>{
+        if (error) {
+          console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+        } else {
+          console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+        }
+      });
+    } catch (error) {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    }
 
 2.Promise写法
 
-    workScheduler.obtainAllWorks().then((res) => {
-      console.info('workschedulerLog obtainAllWorks success, data is:' + JSON.stringify(res));
-    }).catch((err) => {
-      console.info('workschedulerLog obtainAllWorks failed, because:' + err.code);
-    })
+    try{
+      workScheduler.obtainAllWorks().then((res) => {
+        console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+      }).catch((error) => {
+        console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+      })
+    } catch (error) {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    }
 
 **停止并清除任务**
 
-    let res = workScheduler.stopAndClearWorks();
-    console.info("workschedulerLog res:" + res);
+    try{
+      workScheduler.stopAndClearWorks();
+      console.info(`workschedulerLog stopAndClearWorks success`);
+    } catch (error) {
+      console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
+    }
 
 **判断上次执行是否超时**
 
 1.Callback写法
 
-    workScheduler.isLastWorkTimeOut(500, (err, res) =>{
-      if (err) {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
-      } else {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      }
-    });
+    try{
+      workScheduler.isLastWorkTimeOut(500, (error, res) =>{
+        if (error) {
+          onsole.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+        } else {
+          console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+        }
+      });
+    } catch (error) {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    }
 
 2.Promise写法
 
-    workScheduler.isLastWorkTimeOut(500)
-      .then(res => {
-        console.info('workschedulerLog isLastWorkTimeOut success, data is:' + res);
-      })
-      .catch(err =>  {
-        console.info('workschedulerLog isLastWorkTimeOut failed, because:' + err.code);
-      });
-    })
+    try{
+      workScheduler.isLastWorkTimeOut(500)
+        .then(res => {
+          console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+        })
+        .catch(error =>  {
+          console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+      console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+    }
 
 ## 相关实例
 
