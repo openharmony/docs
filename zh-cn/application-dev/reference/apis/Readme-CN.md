@@ -207,6 +207,7 @@
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
+  - [@ohos.web.webview(Web)](js-apis-webview.md)
   - [Timer (定时器)](js-apis-timer.md)
 
 - 设备管理
