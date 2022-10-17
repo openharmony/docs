@@ -12,8 +12,8 @@ An ability can be launched in the **standard**, **singleton**, or **specified** 
 
 | Launch Type    | Description    |Action            |
 | ----------- | -------  |---------------- |
-| standard    | Multi-instance  | A new instance is started each time an ability starts.|
-| singleton   | Singleton  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
+| standard    | Standard mode.  | A new instance is started each time an ability starts.|
+| singleton   | Singleton mode.  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
 By default, the singleton mode is used. The following is an example of the `module.json5` file:
