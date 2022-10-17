@@ -14,15 +14,13 @@
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
 > - 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
-
 ## 导入模块
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 ```
 
-
-## backgroundTaskManager.requestSuspendDelay<sup>(deprecated)</sup>
+## backgroundTaskManager.requestSuspendDelay<sup>9+</sup>
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
@@ -30,9 +28,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerrequestsuspenddelay9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -50,29 +46,30 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 **示例**：
 
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
   let myReason = 'test requestSuspendDelay';
-  let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-      console.info("Request suspension delay will time out.");
-  })
-  
-  var id = delayInfo.requestId;
-  var time = delayInfo.actualDelayTime;
-  console.info("The requestId is: " + id);
-  console.info("The actualDelayTime is: " + time);
+  try {
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.info("Request suspension delay will time out.");
+    })
+    var id = delayInfo.requestId;
+    var time = delayInfo.actualDelayTime;
+    console.info("The requestId is: " + id);
+    console.info("The actualDelayTime is: " + time);
+  } catch (error) {
+    console.error(`requestSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+  }
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime:callback<sup>9+</sup>
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
 获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimecallback9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -85,28 +82,30 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **示例**：
 
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
   let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
-      if(err) {
-          console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-      } else {
-          console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-      }
-  })
+  try {
+    backgroundTaskManager.getRemainingDelayTime(id, (error, res) => {
+        if(error) {
+            console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+        } else {
+            console.log('callback => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+        }
+    })
+  } catch (error) {
+    console.error(`callback => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+  }
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime:promise<sup>9+</sup>
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimepromise9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -122,26 +121,28 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
   let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
-      console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
-  }).catch( err => {
-      console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
-  })
+  try {
+    backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+        console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
+    }).catch( error => {
+        console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+    })
+  } catch (error) {
+    console.error(`promise => Operation getRemainingDelayTime failed. code is ${error.code} message is ${error.message}`);
+  }
   ```
 
 
-## backgroundTaskManager.cancelSuspendDelay<sup>7+(deprecated)</sup>
+## backgroundTaskManager.cancelSuspendDelay<sup>9+</sup>
 
 cancelSuspendDelay(requestId: number): void
 
 取消延迟挂起。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.cancelSuspendDelay](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagercancelsuspenddelay9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -152,22 +153,24 @@ cancelSuspendDelay(requestId: number): void
 
 **示例**：
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
   let id = 1;
-  backgroundTaskManager.cancelSuspendDelay(id);
+  try {
+    backgroundTaskManager.cancelSuspendDelay(id);
+  } catch (error) {
+    console.error(`cancelSuspendDelay failed. code is ${error.code} message is ${error.message}`);
+  }
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning:callback<sup>9+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请长时任务，使用callback形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningcallback9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -183,13 +186,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **示例**：
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
+function callback(error, data) {
+    if (error) {
+        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
         console.info("Operation startBackgroundRunning succeeded");
     }
@@ -208,21 +211,23 @@ let wantAgentInfo = {
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+    try {
+        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+    } catch (error) {
+        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 });
 
 ```
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning:promise<sup>9+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
 向系统申请长时任务，使用promise形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningpromise9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -243,7 +248,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **示例**：
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 import wantAgent from '@ohos.wantAgent';
 
@@ -260,25 +265,27 @@ let wantAgentInfo = {
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
-        console.info("Operation startBackgroundRunning succeeded");
-    }).catch((err) => {
-        console.error("Operation startBackgroundRunning failed Cause: " + err);
-    });
+    try {
+        backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
+            backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+            console.info("Operation startBackgroundRunning succeeded");
+        }).catch((error) => {
+            console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+        });
+    } catch (error) {
+        console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    }
 });
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning:callback<sup>9+</sup>
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请取消长时任务，使用callback形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningcallback9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -290,30 +297,32 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **示例**：
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 
-function callback(err, data) {
-    if (err) {
-        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+function callback(error, data) {
+    if (error) {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
     } else {
         console.info("Operation stopBackgroundRunning succeeded");
     }
 }
 
-backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+try {
+    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
+} catch (error) {
+    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+}
 
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning:promise<sup>9+</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningpromise9)
->
-> 从 API version 7开始支持。
+> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -329,26 +338,28 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **示例**：
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 import featureAbility from '@ohos.ability.featureAbility';
 
-backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
-    console.info("Operation stopBackgroundRunning succeeded");
-}).catch((err) => {
-    console.error("Operation stopBackgroundRunning failed Cause: " + err);
-});
+try {
+    backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
+        console.info("Operation stopBackgroundRunning succeeded");
+    }).catch((err) => {
+        console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+    });
+} catch (error) {
+    console.error(`Operation stopBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
+}
 
 ```
 
-## backgroundTaskManager.applyEfficiencyResources<sup>9+(deprecated)</sup>
+## backgroundTaskManager.applyEfficiencyResources<sup>9+</sup>
 
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): void
 
 向系统申请能效资源，使用boolean形式返回结果。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.applyEfficiencyResources](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerapplyefficiencyresources9)
->
 > 从 API version 9开始支持。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
@@ -364,7 +375,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 let request = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -382,14 +393,12 @@ try {
 }
 ```
 
-## backgroundTaskManager.resetAllEfficiencyResources<sup>9+(deprecated)</sup>
+## backgroundTaskManager.resetAllEfficiencyResources<sup>9+</sup>
 
 resetAllEfficiencyResources(): void
 
 释放所有已经申请的资源。
 
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.resetAllEfficiencyResources](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresetallefficiencyresources9)
->
 > 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
@@ -399,7 +408,7 @@ resetAllEfficiencyResources(): void
 **示例**：
 
 ```js
-import backgroundTaskManager from '@ohos.backgroundTaskManager';  
+import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
 
 try {
     backgroundTaskManager.backgroundTaskManager.resetAllEfficiencyResources();
@@ -408,13 +417,9 @@ try {
 }
 ```
 
-## DelaySuspendInfo<sup>7+(deprecated)</sup>
+## DelaySuspendInfo<sup>9+</sup>
 
 延迟挂起信息。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.DelaySuspendInfo](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerdelaysuspendinfo9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -424,7 +429,7 @@ try {
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
 
-## BackgroundMode<sup>8+(deprecated)</sup>
+## BackgroundMode<sup>9+</sup>
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -440,13 +445,9 @@ try {
 | VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
 | TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
 
-## EfficiencyResourcesRequest<sup>9+(deprecated)</sup>
+## EfficiencyResourcesRequest<sup>9+</sup>
 
 能效资源申请参数。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.EfficiencyResourcesRequest](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerefficiencyresourcesrequest9)
->
-> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -461,13 +462,9 @@ try {
 | isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
 | reason          | string  | 是    | 申请资源的原因。                |
 
-## ResourceType<sup>9+(deprecated)</sup>
+## ResourceType<sup>9+</sup>
 
 能效资源类型。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.ResourceType](../js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresourcetype9)
->
-> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -482,3 +479,4 @@ try {
 | BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
 | GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
 | AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
+
