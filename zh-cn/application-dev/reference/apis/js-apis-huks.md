@@ -99,7 +99,7 @@ import huks from '@ohos.security.huks'
 
 表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
 
-关于错误码的具体信息，可在[错误码参考文档](../reference/errorcodes/errorcode-huks.md)中查看。
+关于错误码的具体信息，可在[错误码参考文档](../errorcodes/errorcode-huks.md)中查看。
 
 **系统能力**：SystemCapability.Security.Huks
 
