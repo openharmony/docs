@@ -22,9 +22,9 @@ Canvas(context?: CanvasRenderingContext2D)
 
 **参数：**
 
-  | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
-  | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-  | context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
+| 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
+| ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
 
 ## 属性
 
@@ -55,8 +55,8 @@ struct CanvasExample {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(0,30,100,100)
+        .onReady(() => {
+          this.context.fillRect(0, 30, 100, 100)
         })
     }
     .width('100%')
