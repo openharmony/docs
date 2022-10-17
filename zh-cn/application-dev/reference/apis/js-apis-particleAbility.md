@@ -215,7 +215,7 @@ import wantAgent from '@ohos.wantAgent';
 
 function callback(err, data) {
     if (err) {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     } else {
         console.info("Operation succeeded");
     }
@@ -311,7 +311,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     particleAbility.startBackgroundRunning(id, request).then(() => {
         console.info("Operation succeeded");
     }).catch((err) => {
-        console.error("Operation failed Cause: " + err);
+        console.error("Operation failed cause: " + JSON.stringify(err));
     });
 });
 
@@ -337,10 +337,10 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
-    if (err) {
-        console.error("Operation failed Cause: " + err);
-    } else {
+    if (err && err.code === 0) {
         console.info("Operation succeeded");
+    } else {
+        console.error("Operation failed cause: " + JSON.stringify(err));
     }
 }
 
@@ -370,7 +370,7 @@ import particleAbility from '@ohos.ability.particleAbility';
 particleAbility.cancelBackgroundRunning().then(() => {
     console.info("Operation succeeded");
 }).catch((err) => {
-    console.error("Operation failed Cause: " + err);
+    console.error("Operation failed cause: " + JSON.stringify(err));
 });
 
 ```
