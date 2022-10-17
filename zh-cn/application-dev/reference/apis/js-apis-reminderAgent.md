@@ -4,7 +4,10 @@
 
 开发应用时，开发者可以调用后台提醒发布的接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
@@ -15,14 +18,11 @@ import reminderAgent from'@ohos.reminderAgent';
 ```
 
 
-## reminderAgent.publishReminder<sup>(deprecated)</sup>
+## reminderAgent.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
 发布一个后台代理提醒，使用callback方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder9)
->
-> 从 API version 7开始支持。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -47,14 +47,11 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
 ```
 
 
-## reminderAgent.publishReminder<sup>(deprecated)</sup>
+## reminderAgent.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
 发布一个后台代理提醒，使用Promise方式实现异步调用，该方法需要申请通知弹窗[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.publishReminder](js-apis-reminderAgentManager.md#reminderagentmanagerpublishreminder9-1)
->
-> 从 API version 7开始支持。
 
 **需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -82,14 +79,11 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 ```
 
 
-## reminderAgent.cancelReminder<sup>(deprecated)</sup>
+## reminderAgent.cancelReminder
 
 cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 取消指定id的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -109,14 +103,11 @@ reminderAgent.cancelReminder(1, (err, data) => {
 ```
 
 
-## reminderAgent.cancelReminder<sup>(deprecated)</sup>
+## reminderAgent.cancelReminder
 
 cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 取消指定id的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelReminder](js-apis-reminderAgentManager.md#reminderagentmanagercancelreminder9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -141,14 +132,11 @@ reminderAgent.cancelReminder(1).then(() => {
 ```
 
 
-## reminderAgent.getValidReminders<sup>(deprecated)</sup>
+## reminderAgent.getValidReminders
 
 getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
 获取当前应用已设置的所有有效（未过期）的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -188,14 +176,11 @@ reminderAgent.getValidReminders((err, reminders) => {
 ```
 
 
-## reminderAgent.getValidReminders<sup>(deprecated)</sup>
+## reminderAgent.getValidReminders
 
 getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
 获取当前应用已设置的所有有效（未过期）的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.getValidReminders](js-apis-reminderAgentManager.md#reminderagentmanagergetvalidreminders9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -235,14 +220,11 @@ reminderAgent.getValidReminders().then((reminders) => {
 ```
 
 
-## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
+## reminderAgent.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
 取消当前应用所有的提醒，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -261,14 +243,11 @@ reminderAgent.cancelAllReminders((err, data) =>{
 ```
 
 
-## reminderAgent.cancelAllReminders<sup>(deprecated)</sup>
+## reminderAgent.cancelAllReminders
 
 cancelAllReminders(): Promise&lt;void&gt;
 
 取消当前应用所有的提醒，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.cancelAllReminders](js-apis-reminderAgentManager.md#reminderagentmanagercancelallreminders9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -287,14 +266,11 @@ reminderAgent.cancelAllReminders().then(() => {
 ```
 
 
-## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
+## reminderAgent.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
 添加一个NotificationSlot，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -319,14 +295,11 @@ reminderAgent.addNotificationSlot(mySlot, (err, data) => {
 ```
 
 
-## reminderAgent.addNotificationSlot<sup>(deprecated)</sup>
+## reminderAgent.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
 添加一个NotificationSlot，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.addNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanageraddnotificationslot9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -356,14 +329,11 @@ reminderAgent.addNotificationSlot(mySlot).then(() => {
 ```
 
 
-## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
+## reminderAgent.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void
 
 删除目标NotificationSlot，使用callback方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot9)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -385,14 +355,11 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, 
 ```
 
 
-## reminderAgent.removeNotificationSlot<sup>(deprecated)</sup>
+## reminderAgent.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
 删除目标NotificationSlot，使用Promise方式实现异步调用。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderagentmanagerremovenotificationslot9-1)
->
-> 从 API version 7开始支持。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -419,12 +386,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 ```
 
 
-## ActionButtonType<sup>(deprecated)</sup>
+## ActionButtonType
 
 按钮的类型。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#actionbuttontype9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -434,12 +398,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
 
 
-## ReminderType<sup>(deprecated)</sup>
+## ReminderType
 
 提醒的类型。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#remindertype9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -450,12 +411,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | REMINDER_TYPE_ALARM | 2 | 表示提醒类型：闹钟。 |
 
 
-## ActionButton<sup>(deprecated)</sup>
+## ActionButton
 
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#actionbutton9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -465,12 +423,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 
 
-## WantAgent<sup>(deprecated)</sup>
+## WantAgent
 
 点击提醒通知后跳转的目标ability信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#wantagent9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -480,12 +435,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
 
 
-## MaxScreenWantAgent<sup>(deprecated)</sup>
+## MaxScreenWantAgent
 
 全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#maxscreenwantagent9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -495,12 +447,9 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
-## ReminderRequest<sup>(deprecated)</sup>
+## ReminderRequest
 
 提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequest9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -521,14 +470,11 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
 
 
-## ReminderRequestCalendar<sup>(deprecated)</sup>
+## ReminderRequestCalendar
 
 ReminderRequestCalendar extends ReminderRequest
 
 日历实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequestcalendar9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -539,14 +485,11 @@ ReminderRequestCalendar extends ReminderRequest
 | repeatDays | Array&lt;number&gt; | 否 | 指明重复提醒的日期。 |
 
 
-## ReminderRequestAlarm<sup>(deprecated)</sup>
+## ReminderRequestAlarm
 
 ReminderRequestAlarm extends ReminderRequest
 
 闹钟实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequestalarm9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 
@@ -557,14 +500,11 @@ ReminderRequestAlarm extends ReminderRequest
 | daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
 
 
-## ReminderRequestTimer<sup>(deprecated)</sup>
+## ReminderRequestTimer
 
 ReminderRequestTimer extends ReminderRequest
 
 倒计时实例对象，用于设置提醒的时间。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#reminderrequesttimer9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -573,12 +513,9 @@ ReminderRequestTimer extends ReminderRequest
 | triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
 
 
-## LocalDateTime<sup>(deprecated)</sup>
+## LocalDateTime
 
 用于日历类提醒设置时指定时间信息。
-> **说明：** 从API version 9开始废弃，建议使用[reminderAgentManager.removeNotificationSlot](js-apis-reminderAgentManager.md#localdatetime9)
->
-> 从 API version 7开始支持。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
 

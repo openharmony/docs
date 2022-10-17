@@ -63,7 +63,6 @@
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
-  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
 - 应用程序包管理
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
@@ -119,6 +118,7 @@
 - 资源调度
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
+  - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
@@ -284,6 +284,7 @@
   - [@system.notification (通知消息)](js-apis-system-notification.md)
   - [@system.package (应用管理)](js-apis-system-package.md)
   - [@system.prompt (弹窗)](js-apis-system-prompt.md)
+  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@system.request (上传下载)](js-apis-system-request.md)
   - [@system.router (页面路由)](js-apis-system-router.md)
   - [@system.sensor (传感器)](js-apis-system-sensor.md)

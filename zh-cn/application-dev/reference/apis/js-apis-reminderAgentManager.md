@@ -4,8 +4,9 @@
 
 开发应用时，开发者可以调用后台提醒发布的接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -15,7 +16,7 @@ import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
 
-## reminderAgentManager.publishReminder<sup>9+</sup>
+## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
@@ -52,7 +53,7 @@ try {
 ```
 
 
-## reminderAgentManager.publishReminder<sup>9+</sup>
+## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
@@ -90,7 +91,7 @@ try {
 ```
 
 
-## reminderAgentManager.cancelReminder<sup>9+</sup>
+## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -122,7 +123,7 @@ try {
 ```
 
 
-## reminderAgentManager.cancelReminder<sup>9+</sup>
+## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number): Promise&lt;void&gt;
 
@@ -157,7 +158,7 @@ try {
 ```
 
 
-## reminderAgentManager.getValidReminders<sup>9+</sup>
+## reminderAgentManager.getValidReminders
 
 getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
@@ -209,7 +210,7 @@ try {
 ```
 
 
-## reminderAgentManager.getValidReminders<sup>9+</sup>
+## reminderAgentManager.getValidReminders
 
 getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
@@ -259,7 +260,7 @@ try {
 ```
 
 
-## reminderAgentManager.cancelAllReminders<sup>9+</sup>
+## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
@@ -290,7 +291,7 @@ try {
 ```
 
 
-## reminderAgentManager.cancelAllReminders<sup>9+</sup>
+## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(): Promise&lt;void&gt;
 
@@ -319,7 +320,7 @@ try {
 ```
 
 
-## reminderAgentManager.addNotificationSlot<sup>9+</sup>
+## reminderAgentManager.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
@@ -356,7 +357,7 @@ try {
 ```
 
 
-## reminderAgentManager.addNotificationSlot<sup>9+</sup>
+## reminderAgentManager.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
@@ -396,7 +397,7 @@ try {
 ```
 
 
-## reminderAgentManager.removeNotificationSlot<sup>9+</sup>
+## reminderAgentManager.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -430,7 +431,7 @@ try {
 ```
 
 
-## reminderAgentManager.removeNotificationSlot<sup>9+</sup>
+## reminderAgentManager.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
@@ -466,7 +467,7 @@ try {
 };
 ```
 
-## ActionButtonType<sup>9+</sup>
+## ActionButtonType
 
 按钮的类型。
 
@@ -478,7 +479,7 @@ try {
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
 
 
-## ReminderType<sup>9+</sup>
+## ReminderType
 
 提醒的类型。
 
@@ -491,7 +492,7 @@ try {
 | REMINDER_TYPE_ALARM | 2 | 表示提醒类型：闹钟。 |
 
 
-## ActionButton<sup>9+</sup>
+## ActionButton
 
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
 
@@ -503,7 +504,7 @@ try {
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
 
 
-## WantAgent<sup>9+</sup>
+## WantAgent
 
 点击提醒通知后跳转的目标ability信息。
 
@@ -515,7 +516,7 @@ try {
 | abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
 
 
-## MaxScreenWantAgent<sup>9+</sup>
+## MaxScreenWantAgent
 
 全屏显示提醒到达时自动拉起的目标ability信息，该接口预留。
 
@@ -527,7 +528,7 @@ try {
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
-## ReminderRequest<sup>9+</sup>
+## ReminderRequest
 
 提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
 
@@ -550,7 +551,7 @@ try {
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
 
 
-## ReminderRequestCalendar<sup>9+</sup>
+## ReminderRequestCalendar
 
 ReminderRequestCalendar extends ReminderRequest
 
@@ -565,7 +566,7 @@ ReminderRequestCalendar extends ReminderRequest
 | repeatDays | Array&lt;number&gt; | 否 | 指明重复提醒的日期。 |
 
 
-## ReminderRequestAlarm<sup>9+</sup>
+## ReminderRequestAlarm
 
 ReminderRequestAlarm extends ReminderRequest
 
@@ -580,7 +581,7 @@ ReminderRequestAlarm extends ReminderRequest
 | daysOfWeek | Array&lt;number&gt; | 否 | 指明每周哪几天需要重复提醒。 |
 
 
-## ReminderRequestTimer<sup>9+</sup>
+## ReminderRequestTimer
 
 ReminderRequestTimer extends ReminderRequest
 
@@ -593,7 +594,7 @@ ReminderRequestTimer extends ReminderRequest
 | triggerTimeInSeconds | number | 是 | 指明倒计时的秒数。 |
 
 
-## LocalDateTime<sup>9+</sup>
+## LocalDateTime
 
 用于日历类提醒设置时指定时间信息。
 

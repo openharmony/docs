@@ -9,7 +9,7 @@
 
 reminderAgentManager：封装了发布、取消提醒类通知的方法。
 
-具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgent.md)。
+具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgentManager.md)。
 
 **表1** reminderAgentManager主要接口
 
