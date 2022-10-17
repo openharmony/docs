@@ -9,6 +9,7 @@
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 延迟任务调度约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)。
+>  - 延迟任务调度错误码见[延迟任务错误码](../errorcodes/errorcode-workScheduler.md)。
 
 
 ## 导入模块
@@ -18,7 +19,7 @@ import workScheduler from '@ohos.workScheduler';
 ```
 
 ## workScheduler.startWork
-startWork(work: WorkInfo): boolean
+startWork(work: WorkInfo): void
 
 通知WorkSchedulerService将工作添加到执行队列。
 
@@ -29,12 +30,6 @@ startWork(work: WorkInfo): boolean
 | 参数名  | 类型                    | 必填   | 说明             |
 | ---- | --------------------- | ---- | -------------- |
 | work | [WorkInfo](#workinfo) | 是    | 指示要添加到执行队列的工作。 |
-
-**返回值**：
-
-| 类型      | 说明                               |
-| ------- | -------------------------------- |
-| boolean | 如果工作成功添加到执行队列，则返回true，否则返回false。 |
 
 **示例**：
 
@@ -53,12 +48,16 @@ startWork(work: WorkInfo): boolean
           mykey3: 1.5
       }
   }
-  var res = workScheduler.startWork(workInfo);
-  console.info(`workschedulerLog res: ${res}`);
+  try{
+    workScheduler.startWork(workInfo);
+    console.info('workschedulerLog startWork success');
+  } catch (error) {
+    console.error(`workschedulerLog startwork failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.stopWork
-stopWork(work: WorkInfo, needCancel?: boolean): boolean
+stopWork(work: WorkInfo, needCancel?: boolean): void
 
 通知WorkSchedulerService停止指定工作。
 
@@ -70,12 +69,6 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 指示要停止的工作。  |
 | needCancel | boolean               | 是    | 是否需要取消的工作。 |
-
-**返回值**：
-
-| 类型      | 说明                      |
-| ------- | ----------------------- |
-| boolean | 如果成功，则返回true，否则返回false。 |
 
 **示例**：
 
@@ -94,8 +87,12 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
           mykey3: 1.5
       }
      }
-  var res = workScheduler.stopWork(workInfo, false);
-  console.info(`workschedulerLog res: ${res}`);
+  try{
+    workScheduler.stopWork(workInfo, false);
+    console.info('workschedulerLog stopWork success');
+  } catch (error) {
+    console.error(`workschedulerLog stopWork failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.getWorkStatus
@@ -115,15 +112,19 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 **示例**：
 
 ```js
-  workScheduler.getWorkStatus(50, (err, res) => {
-    if (err) {
-      console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
-    } else {
-      for (let item in res) {
-        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
+  try{
+    workScheduler.getWorkStatus(50, (error, res) => {
+      if (error) {
+        console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+      } else {
+        for (let item in res) {
+          console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
+        }
       }
-    }
-  });
+    });
+  } catch (error) {
+    console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.getWorkStatus
@@ -148,13 +149,17 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 **示例**：
 
 ```js
-  workScheduler.getWorkStatus(50).then((res) => {
-    for (let item in res) {
-      console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
-    }
-  }).catch((err) => {
-    console.info(`workschedulerLog getWorkStatus failed, because: ${err.code}`);
-  })
+  try{
+    workScheduler.getWorkStatus(50).then((res) => {
+      for (let item in res) {
+        console.info(`workschedulerLog getWorkStatus success, ${item} is: ${res[item]}`);
+      }
+    }).catch((error) => {
+      console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+    })
+  } catch (error) {
+    console.error(`workschedulerLog getWorkStatus failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.obtainAllWorks
@@ -179,13 +184,17 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 **示例**：
 
 ```js
-  workScheduler.obtainAllWorks((err, res) =>{
-    if (err) {
-      console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
-    } else {
-      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-    }
-  });
+  try{
+    workScheduler.obtainAllWorks((error, res) =>{
+      if (error) {
+        console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+      } else {
+        console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+      }
+    });
+  } catch (error) {
+    console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.obtainAllWorks
@@ -204,15 +213,19 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 **示例**：
 
 ```js
-  workScheduler.obtainAllWorks().then((res) => {
-    console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
-  }).catch((err) => {
-    console.info(`workschedulerLog obtainAllWorks failed, because: ${err.code}`);
-  })
+  try{
+    workScheduler.obtainAllWorks().then((res) => {
+      console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
+    }).catch((error) => {
+      console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+    })
+  } catch (error) {
+    console.error(`workschedulerLog obtainAllWorks failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.stopAndClearWorks
-stopAndClearWorks(): boolean
+stopAndClearWorks(): void
 
 停止和取消与当前应用程序关联的所有工作。
 
@@ -221,8 +234,12 @@ stopAndClearWorks(): boolean
 **示例**：
 
 ```js
-  let res = workScheduler.stopAndClearWorks();
-  console.info(`workschedulerLog res: ${res}`);
+  try{
+    workScheduler.stopAndClearWorks();
+    console.info(`workschedulerLog stopAndClearWorks success`);
+  } catch (error) {
+    console.error(`workschedulerLog stopAndClearWorks failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -248,13 +265,17 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 **示例**：
 
 ```js
-  workScheduler.isLastWorkTimeOut(500, (err, res) =>{
-    if (err) {
-      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
-    } else {
-      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-    }
-  });
+  try{
+    workScheduler.isLastWorkTimeOut(500, (error, res) =>{
+      if (error) {
+        onsole.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+      } else {
+        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+      }
+    });
+  } catch (error) {
+    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## workScheduler.isLastWorkTimeOut
@@ -279,13 +300,17 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 **示例**：
 
 ```js
-  workScheduler.isLastWorkTimeOut(500)
-    .then(res => {
-      console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
-    })
-    .catch(err =>  {
-      console.info(`workschedulerLog isLastWorkTimeOut failed, because: ${err.code}`);
-    });
+  try{
+    workScheduler.isLastWorkTimeOut(500)
+      .then(res => {
+        console.info(`workschedulerLog isLastWorkTimeOut success, data is: ${res}`);
+      })
+      .catch(error =>  {
+        console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+      });
+  } catch (error) {
+    console.error(`workschedulerLog isLastWorkTimeOut failed. code is ${error.code} message is ${error.message}`);
+  }
 ```
 
 ## WorkInfo

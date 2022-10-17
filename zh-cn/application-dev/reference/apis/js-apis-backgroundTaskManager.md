@@ -13,6 +13,13 @@
 >  **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```js
+import backgroundTaskManager from '@ohos.backgroundTaskManager';  
+```
+## backgroundTaskManager.requestSuspendDelay
+
 
 ## 导入模块
 
@@ -21,13 +28,17 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
 
-## backgroundTaskManager.requestSuspendDelay
+## backgroundTaskManager.requestSuspendDelay<sup>(deprecated)</sup>
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
 后台应用申请延迟挂起。
 
 延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+
+> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](#reminderagentmanagerpublishreminder9)
+>
+> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 

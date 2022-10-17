@@ -29,7 +29,7 @@ Memory operation failed.
 ## 9700002 Parcel读写操作失败
 
 ### 错误信息
-The number of reminders exceeds the limit.
+Parcel operation failed.
 
 ### 可能原因
 1. 调用MessageParcel对象读取或写入对象异常
@@ -40,7 +40,7 @@ The number of reminders exceeds the limit.
 ## 9700003 系统服务失败
 
 ### 错误信息
-Inner transact failed.
+System service operation failed.
 
 ### 可能原因
 1. 系统服务还未启动
