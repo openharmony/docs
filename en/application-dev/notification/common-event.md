@@ -13,14 +13,14 @@ Each application can subscribe to common events as required. After your applicat
 ## Common Event Subscription Development
 
 ### When to Use
-You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md).
+You can create a subscriber object to subscribe to a common event to obtain the parameters passed in the event. Certain system common events require specific permissions to subscribe to. For details, see [Required Permissions](../reference/apis/js-apis-commonEvent.md#required-permissions).
 
 ### Available APIs
 | API                                                                                         | Description|
 | ---------------------------------------------------------------------------------------------- | ----------- |
-| commonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback) | Creates a subscriber. This API uses a callback to return the result.|
-| commonEvent.createSubscriber(subscribeInfo: CommonEventSubscribeInfo)                          | Creates a subscriber. This API uses a promise to return the result. |
-| commonEvent.subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback)              | Subscribes to common events.|
+| createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback) | Creates a subscriber. This API uses a callback to return the result.|
+| createSubscriber(subscribeInfo: CommonEventSubscribeInfo)                          | Creates a subscriber. This API uses a promise to return the result. |
+| subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback)              | Subscribes to common events.|
 
 ### How to Develop
 1. Import the **commonEvent** module.
@@ -82,8 +82,8 @@ You can use the **publish** APIs to publish a custom common event, which can car
 ### Available APIs
 | API                             | Description|
 | ---------------------------------- | ------ |
-| commonEvent.publish(event: string, callback: AsyncCallback) | Publishes a common event.|
-| commonEvent.publish(event: string, options: CommonEventPublishData, callback: AsyncCallback) | Publishes a common event with given attributes.|
+| publish(event: string, callback: AsyncCallback) | Publishes a common event.|
+| publish(event: string, options: CommonEventPublishData, callback: AsyncCallback) | Publishes a common event with given attributes.|
 
 ### How to Develop
 #### Development for Publishing a Common Event
@@ -119,7 +119,7 @@ import commonEvent from '@ohos.commonEvent'
 // Attributes of a common event.
 var options = {
     code: 1,			 // Result code of the common event
-    data: "initial data",// Result data of the common event
+    data: "initial data";// Result data of the common event
 }
 ```
 
@@ -144,7 +144,7 @@ You can use the **unsubscribe** API to unsubscribe from a common event.
 ### Available APIs
 | API                             | Description|
 | ---------------------------------- | ------ |
-| commonEvent.unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback) | Unsubscribes from a common event.|
+| unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback) | Unsubscribes from a common event.|
 
 ### How to Develop
 1. Import the **commonEvent** module.
