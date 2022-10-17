@@ -11,30 +11,6 @@
 import thermal from '@ohos.thermal';
 ```
 
-## thermal.subscribeThermalLevel<sup>(deprecated)</sup>
-
-subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
-
-> 从API version 9开始不再维护，建议使用[thermal.registerThermalLevelCallback](#thermalregisterthermallevelcallback9)替代。
-
-订阅热档位变化时的回调提醒。
-
-**系统能力：** SystemCapability.PowerManager.ThermalManager
-
-**参数：**
-
-| 参数名   | 类型                              | 必填 | 说明                                                         |
-| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;ThermalLevel&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息，此时可能会产生告警，可通过`// @ts-ignore`进行抑制。 |
-
-**示例：**
-
-```js
-thermal.subscribeThermalLevel((level) => {
-    console.info('thermal level is: ' + level);
-});
-```
-
 ## thermal.registerThermalLevelCallback<sup>9+</sup>
 
 registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
@@ -55,7 +31,6 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 401     | 参数检查失败。 |
 | 4800101 | 连接服务失败。 |
 
 **示例：**
@@ -69,30 +44,6 @@ try {
 } catch(err) {
     console.error('register thermal level callback failed, err: ' + err);
 }
-```
-
-## thermal.unsubscribeThermalLevel<sup>(deprecated)</sup>
-
-unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
-
-> 从API version 9开始不再维护，建议使用[thermal.unregisterThermalLevelCallback](#thermalunregisterthermallevelcallback9)替代。
-
-取消订阅热档位变化时的回调提醒。
-
-**系统能力：** SystemCapability.PowerManager.ThermalManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明                                           |
-| -------- | ------------------------- | ---- | ---------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，无返回值。不填该参数则取消所有回调。 |
-
-**示例：**
-
-```js
-thermal.unsubscribeThermalLevel(() => {
-    console.info('unsubscribe thermal level success.');
-});
 ```
 
 ## thermal.unregisterThermalLevelCallback<sup>9+</sup>
@@ -115,7 +66,6 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 401     | 参数检查失败。 |
 | 4800101 | 连接服务失败。 |
 
 **示例：**
@@ -129,29 +79,6 @@ try {
 } catch(err) {
     console.error('unregister thermal level callback failed, err: ' + err);
 }
-```
-
-## thermal.getThermalLevel<sup>(deprecated)</sup>
-
-getThermalLevel(): ThermalLevel
-
-> 从API version 9开始不再维护，建议使用[thermal.getLevel](#thermalgetlevel9)替代。
-
-获取当前热档位信息。
-
-**系统能力：** SystemCapability.PowerManager.ThermalManager
-
-**返回值：**
-
-| 类型           | 说明     |
-| ------------ | ------ |
-| ThermalLevel | 热档位信息。 |
-
-**示例：**
-
-```js
-var level = thermal.getThermalLevel();
-console.info('thermal level is: ' + level);
 ```
 
 ## thermal.getLevel<sup>9+</sup>
@@ -185,6 +112,77 @@ try {
 } catch(err) {
     console.error('get thermal level failed, err: ' + err);
 }
+```
+
+## thermal.subscribeThermalLevel<sup>(deprecated)</sup>
+
+subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
+
+> 从API version 9开始不再维护，建议使用[thermal.registerThermalLevelCallback](#thermalregisterthermallevelcallback9)替代。
+
+订阅热档位变化时的回调提醒。
+
+**系统能力：** SystemCapability.PowerManager.ThermalManager
+
+**参数：**
+
+| 参数名   | 类型                              | 必填 | 说明                                                         |
+| -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;ThermalLevel&gt; | 是   | 回调函数。AsyncCallback只返回一个参数，为热档位信息，此时可能会产生告警，可通过`// @ts-ignore`进行抑制。 |
+
+**示例：**
+
+```js
+thermal.subscribeThermalLevel((level) => {
+    console.info('thermal level is: ' + level);
+});
+```
+
+## thermal.unsubscribeThermalLevel<sup>(deprecated)</sup>
+
+unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
+
+> 从API version 9开始不再维护，建议使用[thermal.unregisterThermalLevelCallback](#thermalunregisterthermallevelcallback9)替代。
+
+取消订阅热档位变化时的回调提醒。
+
+**系统能力：** SystemCapability.PowerManager.ThermalManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                           |
+| -------- | ------------------------- | ---- | ---------------------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | 否   | 回调函数，无返回值。不填该参数则取消所有回调。 |
+
+**示例：**
+
+```js
+thermal.unsubscribeThermalLevel(() => {
+    console.info('unsubscribe thermal level success.');
+});
+```
+
+## thermal.getThermalLevel<sup>(deprecated)</sup>
+
+getThermalLevel(): ThermalLevel
+
+> 从API version 9开始不再维护，建议使用[thermal.getLevel](#thermalgetlevel9)替代。
+
+获取当前热档位信息。
+
+**系统能力：** SystemCapability.PowerManager.ThermalManager
+
+**返回值：**
+
+| 类型           | 说明     |
+| ------------ | ------ |
+| ThermalLevel | 热档位信息。 |
+
+**示例：**
+
+```js
+var level = thermal.getThermalLevel();
+console.info('thermal level is: ' + level);
 ```
 
 ## ThermalLevel

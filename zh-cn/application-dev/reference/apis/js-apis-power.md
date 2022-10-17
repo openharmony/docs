@@ -35,8 +35,6 @@ shutdown(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
@@ -47,30 +45,6 @@ try {
 } catch(err) {
     console.error('shutdown failed, err: ' + err);
 }
-```
-
-## power.rebootDevice<sup>(deprecated)</sup>
-
-rebootDevice(reason: string): void
-
-> 从API version 9开始不再维护，建议使用[power.reboot](#power.reboot9)替代。
-
-重启设备。
-
-**需要权限：** ohos.permission.REBOOT
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-**参数：**
-
-| 参数名    | 类型     | 必填   | 说明    |
-| ------ | ------ | ---- | ----- |
-| reason | string | 是    | 重启原因。 |
-
-**示例：**
-
-```js
-power.rebootDevice('reboot_test');
 ```
 
 ## power.reboot<sup>9+</sup>
@@ -97,8 +71,6 @@ reboot(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
@@ -109,61 +81,6 @@ try {
 } catch(err) {
     console.error('reboot failed, err: ' + err);
 }
-```
-
-## power.isScreenOn<sup>(deprecated)</sup>
-
-isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
-
-> 从API version 9开始不再维护，建议使用[power.isActive](#power.isactive9)替代。
-
-检测当前设备的亮灭屏状态。使用callback异步回调。
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-**参数：**
-
-| 参数名   | 类型                         | 必填 | 说明                                                         |
-| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当检测成功，err为undefined，data为获取到的亮灭屏状态，返回true表示梁平，返回false表示灭屏；否则为错误对象。 |
-
-**示例：**
-
-```js
-power.isScreenOn((err, data) => {
-    if (typeof err === 'undefined') {
-        console.info('screen on status is ' + data);
-    } else {
-        console.error('check screen status failed, err: ' + err);
-    }
-})
-```
-
-## power.isScreenOn<sup>(deprecated)</sup>
-
-isScreenOn(): Promise&lt;boolean&gt;
-
-> 从API version 9开始不再维护，建议使用[power.isActive](#power.isactive9)替代。
-
-检测当前设备的亮灭屏状态。使用Promise异步回调。
-
-**系统能力：** SystemCapability.PowerManager.PowerManager.Core
-
-**返回值：**
-| 类型                   | 说明                                               |
-| ---------------------- | -------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示亮屏；返回false表示灭屏。 |
-
-**示例：**
-
-```js
-power.isScreenOn()
-.then(data => {
-    console.info('screen on status is ' + data);
-})
-.catch(err => {
-    console.error('check screen status failed, err: ' + err);
-})
 ```
 
 ## power.isActive<sup>9+</sup>
@@ -187,6 +104,7 @@ isActive(): boolean
 ```js
 try {
     var isActive = power.isActive();
+    console.info('power is active: ' + isActive);
 } catch(err) {
     console.error('check active status failed, err: ' + err);
 }
@@ -214,8 +132,6 @@ wakeup(detail: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
@@ -244,22 +160,21 @@ suspend(): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
 
 ```js
 try {
-    power.wakeup('wakeup_test');
+    power.suspend();
 } catch(err) {
-    console.error('wakeup failed, err: ' + err);
+    console.error('suspend failed, err: ' + err);
 }
 ```
 
 ## power.getPowerMode<sup>9+</sup>
 
-getPowerMode(): [DevicePowerMode](#devicepowermode9)
+getPowerMode(): DevicePowerMode
 
 获取当前设备的电源模式。
 
@@ -279,7 +194,6 @@ getPowerMode(): [DevicePowerMode](#devicepowermode9)
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
@@ -287,6 +201,7 @@ getPowerMode(): [DevicePowerMode](#devicepowermode9)
 ```js
 try {
     var mode = power.getPowerMode();
+    console.info('power mode: ' + mode);
 } catch(err) {
     console.error('get power mode failed, err: ' + err);
 }
@@ -294,7 +209,7 @@ try {
 
 ## power.setPowerMode<sup>9+</sup>
 
-setPowerMode(mode: [DevicePowerMode](#devicepowermode9), callback: AsyncCallback&lt;void&gt;): void
+setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 设置当前设备的电源模式。使用callback异步回调。
 
@@ -317,24 +232,18 @@ setPowerMode(mode: [DevicePowerMode](#devicepowermode9), callback: AsyncCallback
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4900101 | 连接服务失败。 |
 
 **示例：**
 
 ```js
-try {
-    power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
-        if (typeof err === 'undefined') {
-            console.info('set power mode to MODE_PERFORMANCE');
-        } else {
-            console.error('set power mode failed, err: ' + err);
-        }
-    });
-} catch(err) {
-    console.error('set power mode failed, err: ' + err);
-}
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE, err => {
+    if (typeof err === 'undefined') {
+        console.info('set power mode to MODE_PERFORMANCE');
+    } else {
+        console.error('set power mode failed, err: ' + err);
+    }
+});
 ```
 
 ## power.setPowerMode<sup>9+</sup>
@@ -367,24 +276,97 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4900101 | 链接服务失败。 |
 
 **示例：**
 
 ```js
-try {
-    power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
-    .then(() => {
-        console.info('set power mode to MODE_PERFORMANCE');
-    })
-    .catch(err => {
-        console.error('set power mode failed, err: ' + err);
-    });
-} catch(err) {
+power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
+.then(() => {
+    console.info('set power mode to MODE_PERFORMANCE');
+})
+.catch(err => {
     console.error('set power mode failed, err: ' + err);
-}
+});
+```
+
+## power.rebootDevice<sup>(deprecated)</sup>
+
+rebootDevice(reason: string): void
+
+> 从API version 9开始不再维护，建议使用[power.reboot](#powerreboot9)替代。
+
+重启设备。
+
+**需要权限：** ohos.permission.REBOOT
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| reason | string | 是    | 重启原因。 |
+
+**示例：**
+
+```js
+power.rebootDevice('reboot_test');
+```
+
+## power.isScreenOn<sup>(deprecated)</sup>
+
+isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
+
+> 从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
+
+检测当前设备的亮灭屏状态。使用callback异步回调。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明                                                         |
+| -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当检测成功，err为undefined，data为获取到的亮灭屏状态，返回true表示梁平，返回false表示灭屏；否则为错误对象。 |
+
+**示例：**
+
+```js
+power.isScreenOn((err, data) => {
+    if (typeof err === 'undefined') {
+        console.info('screen on status is ' + data);
+    } else {
+        console.error('check screen status failed, err: ' + err);
+    }
+})
+```
+
+## power.isScreenOn<sup>(deprecated)</sup>
+
+isScreenOn(): Promise&lt;boolean&gt;
+
+> 从API version 9开始不再维护，建议使用[power.isActive](#powerisactive9)替代。
+
+检测当前设备的亮灭屏状态。使用Promise异步回调。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**返回值：**
+| 类型                   | 说明                                               |
+| ---------------------- | -------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示亮屏；返回false表示灭屏。 |
+
+**示例：**
+
+```js
+power.isScreenOn()
+.then(data => {
+    console.info('screen on status is ' + data);
+})
+.catch(err => {
+    console.error('check screen status failed, err: ' + err);
+})
 ```
 
 ## DevicePowerMode<sup>9+</sup>

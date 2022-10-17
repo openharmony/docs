@@ -3,9 +3,8 @@
 该模块提供屏幕亮度和模式的查询、调节接口。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
->
-> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 从API Version 7 开始不再维护，建议使用[`@ohos.brightness`](js-apis-brightness.md)替代。
+> - 本模块首批接口从API version 3开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -18,7 +17,7 @@ import brightness from '@system.brightness';
 
 ## brightness.getValue
 
-getValue(options?: [GetBrightnessOptions](#getbrightnessoptions)): void
+getValue(options?: GetBrightnessOptions): void
 
 获得设备当前的屏幕亮度值。
 
@@ -46,7 +45,7 @@ getValue(options?: [GetBrightnessOptions](#getbrightnessoptions)): void
 
 ## brightness.setValue
 
-etValue(options?: [SetBrightnessOptions](#setbrightnessoptions)): void
+etValue(options?: SetBrightnessOptions): void
 
 设置设备当前的屏幕亮度值。
 
@@ -75,7 +74,7 @@ etValue(options?: [SetBrightnessOptions](#setbrightnessoptions)): void
 
 ## brightness.getMode
 
-getMode(options?: [GetBrightnessModeOptions](#getbrightnessmodeoptions): void
+getMode(options?: GetBrightnessModeOptions: void
 
 获得当前屏幕亮度模式。
 
@@ -103,7 +102,7 @@ getMode(options?: [GetBrightnessModeOptions](#getbrightnessmodeoptions): void
 
 ## brightness.setMode
 
-setMode(options?: [SetBrightnessModeOptions](#setbrightnessmodeoptions)): void
+setMode(options?: SetBrightnessModeOptions): void
 
 设置设备当前的屏幕亮度模式。
 
@@ -131,7 +130,7 @@ setMode(options?: [SetBrightnessModeOptions](#setbrightnessmodeoptions)): void
 
 ## brightness.setKeepScreenOn
 
-setKeepScreenOn(options?: [SetKeepScreenOnOptions](#setkeepscreenonoptions)): void
+setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 >从API version 7开始不再维护，建议使用[window.setKeepScreenOn](js-apis-window.md#setkeepscreenon)替代。
 

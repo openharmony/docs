@@ -16,7 +16,7 @@ import batteryStats from '@ohos.batteryStatistics';
 
 ## batteryStats.getBatteryStats
 
-getBatteryStats(): Promise<Array<[BatteryStatsInfo](#batterystatsinfo)>>
+getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
 获取耗电信息列表。使用Promise异步回调。
 
@@ -36,7 +36,6 @@ getBatteryStats(): Promise<Array<[BatteryStatsInfo](#batterystatsinfo)>>
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
@@ -53,7 +52,7 @@ batteryStats.getBatteryStats()
 
 ## batteryStats.getBatteryStats
 
-getBatteryStats(callback: AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>>): void
+getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 获取耗电信息列表。使用callback异步回调。
 
@@ -73,8 +72,6 @@ getBatteryStats(callback: AsyncCallback<Array<[BatteryStatsInfo](#batterystatsin
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
@@ -117,8 +114,6 @@ getAppPowerValue(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
@@ -160,8 +155,6 @@ getAppPowerPercent(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
@@ -177,7 +170,7 @@ try {
 
 ## batteryStats.getHardwareUnitPowerValue
 
-getHardwareUnitPowerValue(type: [ConsumptionType](#consumptiontype)): number
+getHardwareUnitPowerValue(type: ConsumptionType): number
 
 根据耗电类型获取硬件单元的耗电量。
 
@@ -203,8 +196,6 @@ getHardwareUnitPowerValue(type: [ConsumptionType](#consumptiontype)): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
@@ -220,7 +211,7 @@ try {
 
 ## batteryStats.getHardwareUnitPowerPercent
 
-getHardwareUnitPowerPercent(type: [ConsumptionType](#consumptiontype)): number
+getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 根据耗电类型获取硬件单元的耗电百分比。
 
@@ -246,8 +237,6 @@ getHardwareUnitPowerPercent(type: [ConsumptionType](#consumptiontype)): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 201     | 权限校验失败。 |
-| 401     | 参数检查失败。 |
 | 4600101 | 连接服务失败。 |
 
 **示例：**
