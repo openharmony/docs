@@ -1,21 +1,23 @@
 # 线性布局
 
-线性布局(LinearLayout)是开发中最常用的布局。正如它的名字所描述的一样，这个布局会将它所包含的组件在线性方向上（水平方向和垂直方向）依次排列。
+线性布局(LinearLayout)是开发中最常用的布局。正如其名，线性布局的子组件在线性方向上（水平方向和垂直方向）依次排列。
 
 
 通过线性容器[Row](../reference/arkui-ts/ts-container-row.md)和[Column](../reference/arkui-ts/ts-container-column.md)实现线性布局。Column容器内子组件按照垂直方向排列，Row组件中，子组件按照水平方向排列。
 
 ## 线性布局的排列
-线性布局的排列方向由容器组件决定。根据不同的排列方向，选择使用Row或Column容器创建线性布局，包含space，alignItems,justifyContent三个属性的使用：
-1. 通过线性容器的space参数设置主轴（排列方向）上子组件的间距。达到各子组件在排列方向上的等间距效果。
+线性布局的排列方向由所选容器组件决定。根据不同的排列方向，选择使用Row或Column容器创建线性布局，通过调整space，alignItems，justifyContent属性调整子组件的间距，水平垂直方向的对齐方式。
+1. 通过space参数设置主轴（排列方向）上子组件的间距。达到各子组件在排列方向上的等间距效果。
 2. 通过alignItems属性设置子组件在交叉轴（排列方向的垂直方向）的对齐方式。且在各类尺寸屏幕中，表现一致。其中，交叉轴为垂直方向时，取值为[VerticalAlign类型](../reference/arkui-ts/ts-appendix-enums.md#verticalalign)，水平方向取值为[HorizontalAlign类型](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign)。
-3. 通过justifyContent属性设置子组件在主轴（排列方向）上的对齐方式。实现布局的自适应均分能力。取值为[FlexAlign类型](../reference/arkui-ts/ts-appendix-enums.md#flexalign)
+3. 通过justifyContent属性设置子组件在主轴（排列方向）上的对齐方式。实现布局的自适应均分能力。取值为[FlexAlign类型](../reference/arkui-ts/ts-appendix-enums.md#flexalign)。
 
-|属性名|描述|Row效果图|Column效果图|
-|------|---------------------------|----------------------------|---------------------------|
-|space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子元素垂直方向间距|   ![](figures/rowspace.png)      |   ![](figures/columnspace.png)|
-|alignItems |容器排列方向的垂直方向上，子组件与父组件的对齐方式|   ![](figures/rowalign.png)            |![](figures/columnalign.png) |
-|justifyContent |容器排列方向上，子组件的对齐方式 |   ![](figures/rowjustify.png)            |![](figures/columnjustify.png)|
+具体使用以及效果如下表所示：
+
+  |属性名|描述|Row效果图|Column效果图|
+  |------|---------------------------|----------------------------|---------------------------|
+  |space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子元素垂直方向间距|   ![](figures/rowspace.png)      |   ![](figures/columnspace.png)|
+  |alignItems |容器排列方向的垂直方向上，子组件在父容器中的对齐方式|   ![](figures/rowalign.png)            |![](figures/columnalign.png) |
+  |justifyContent |容器排列方向上，子组件在父容器中的对齐方式 |   ![](figures/rowjustify.png)            |![](figures/columnjustify.png)|
 
 ## 自适应拉伸
 在线性布局下，常用空白填充组件[Blank](../reference/arkui-ts/ts-basic-components-blank.md)，在容器主轴方向自动填充空白空间，达到自适应拉伸效果。
@@ -38,11 +40,12 @@ struct BlankExample {
 
 ![](figures/blank.gif)
 
+
 ## 自适应缩放
 
-自适应缩放是指在各种不同大小设备中，子组件按照预设的比例，尺寸随容器尺寸的变化而变化。在线性布局中有下列方法实现。
+自适应缩放是指在各种不同大小设备中，子组件按照预设的比例，尺寸随容器尺寸的变化而变化。在线性布局中有下列方法实现：
 
-- 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，在任意尺寸设备下，自适应占满剩余空间。
+1. 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，在任意尺寸设备下，自适应占满剩余空间。
     ```ts
     @Entry
     @Component
@@ -94,7 +97,7 @@ struct BlankExample {
   ![](figures/layoutWeight.gif)
 
 
-- 父容器尺寸确定时，通过设置子组件以及兄弟组件的width宽度，使用百分比单位，可以保证各自元素在任意尺寸下的自适应占比。
+2. 父容器尺寸确定时，使用百分比设置子组件以及兄弟组件的width宽度，可以保证各自元素在任意尺寸下的自适应占比。
   ```ts
   @Entry
   @Component
@@ -123,11 +126,13 @@ struct BlankExample {
   ```
   ![](figures/width.gif)
 
+上例中，在任意大小的设备中，子组件的宽度占比固定。
+
 
 ## 定位能力
-- 绝对定位
+- **绝对定位**
 
-  线性布局中可以使用组件的positon属性实现绝对布局（AbsoluteLayout），设置元素左上角相对于父容器左上角偏移位置。对于不同尺寸的设备，使用绝对定位的适应性会比较差，在屏幕的适配上有缺陷。
+  线性布局中可以使用组件的[positon属性](../reference/arkui-ts/ts-universal-attributes-location.md)实现绝对布局（AbsoluteLayout），设置元素左上角相对于父容器左上角偏移位置。对于不同尺寸的设备，使用绝对定位的适应性会比较差，在屏幕的适配上有缺陷。
   ```ts
   @Entry
   @Component
@@ -165,7 +170,7 @@ struct BlankExample {
   ![](figures/position.gif)
 - 相对定位
 
-  使用组件的offset属性可以实现相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。使用线性布局和offset可以实现大部分布局的开发。
+  使用组件的[offset属性](../reference/arkui-ts/ts-universal-attributes-location.md)可以实现相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。使用线性布局和offset可以实现大部分布局的开发。
   ```ts
   @Entry
   @Component
