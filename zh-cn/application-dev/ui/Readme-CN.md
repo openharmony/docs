@@ -58,9 +58,15 @@
         - [Button开发指导](ui-ts-basic-components-button.md)
         - [Web开发指导](ui-ts-components-web.md)
     - 常见布局开发指导
-        - [弹性布局](ui-ts-layout-flex.md)
-        - [栅格布局](ui-ts-layout-grid-container.md)
-        - [媒体查询](ui-ts-layout-mediaquery.md)
+        - 自适应布局
+            - [线性布局](ui-ts-layout-linear.md)
+            - [层叠布局](ui-ts-layout-stack.md)
+            - [弹性布局](ui-ts-layout-flex.md)
+            - [网格布局](ui-ts-layout-grid.md)
+        - 响应式布局
+            - [栅格布局（老）](ui-ts-layout-grid-container.md)
+            - [栅格布局（新）](ui-ts-layout-grid-container-new.md)
+            - [媒体查询](ui-ts-layout-mediaquery.md)
     - 体验声明式UI
         - [创建声明式UI工程](ui-ts-creating-project.md)
         - [初识Component](ui-ts-components.md)

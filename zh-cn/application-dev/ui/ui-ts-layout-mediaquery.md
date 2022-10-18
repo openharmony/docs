@@ -1,27 +1,28 @@
 # 媒体查询
 
 
-媒体查询（Media Query）在移动设备上应用十分广泛，开发者经常需要根据设备的大致类型或者特定的特征和设备参数（例如屏幕分辨率）来修改应用的样式。为此媒体查询提供了如下功能：
+媒体查询（Media Query）作为响应式设计的核心，在移动设备上应用十分广泛。它根据不同设备类型或同设备不同状态修改应用的样式。媒体查询的优势有：
 
 
-1. 针对设备和应用的属性信息，可以设计出相匹配的布局样式。
+1. 提供丰富的媒体特征监听能力，针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
-2. 当屏幕发生动态改变时（比如分屏、横竖屏切换），应用页面布局同步更新。
+2. 当屏幕发生动态改变时（比如分屏、横竖屏切换），同步更新应用的页面布局。
 
 
-## 如何使用
+   
 
-通过调用媒体查询接口，设置媒体查询条件和查询结果的回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑。
+## 媒体查询引入与使用流程
 
+通过调用媒体查询接口，设置媒体查询条件和查询结果的回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑。具体步骤如下：
 首先导入媒体查询模块，例如：
-```
+```ts
 import mediaquery from '@ohos.mediaquery'
 ```
-然后通过matchMediaSync接口设置媒体查询条件，并保存返回的条件监听句柄，例如：
+然后通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener，例如：
 ```ts
 listener = mediaquery.matchMediaSync('(orientation: landscape)')
 ```
-最后通过上面保存的条件监听句柄listener去注册回调函数，在回调函数里更改页面布局或者实现业务逻辑，当匹配到媒体查询条件时会触发此回调函数，例如：
+给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑，例如：
 ```ts
 onPortrait(mediaQueryResult) {
     if (mediaQueryResult.matches) {
@@ -33,19 +34,22 @@ onPortrait(mediaQueryResult) {
 listener.on('change', onPortrait)
 ```
 
-## 媒体查询条件语法规则
+## 媒体查询条件
+媒体查询条件由媒体类型，逻辑操作符，媒体特征组成，其中媒体类型可省略，逻辑操作符用于连接不同媒体类型与媒体特征，其中，媒体特征要使用()包裹且可以有多个。具体规则如下：
+
+### 语法规则
 ```
 [media-type] [and|not|only] [(media-feature)]
 ```
 例如：
 
-`screen and (round-screen: true)` ：当设备屏幕是圆形时条件成立
+`screen and (round-screen: true)` ：当设备屏幕是圆形时条件成立。
 
-`(max-height: 800)` ：当高度小于800时条件成立
+`(max-height: 800)` ：当高度小于等于800时条件成立。
 
-`(height <= 800) ` ：当高度小于等于800时条件成立
+`(height <= 800) ` ：当高度小于等于800时条件成立。
 
-`screen and (device-type: tv) or (resolution < 2)` ：包含多个媒体特征的多条件复杂语句查询
+`screen and (device-type: tv) or (resolution < 2)` ：包含多个媒体特征的多条件复杂语句查询，当设备类型为tv或设备分辨率小于2时条件成立。
 
 ###  媒体类型(media-type)
 
@@ -54,7 +58,7 @@ listener.on('change', onPortrait)
 | screen | 按屏幕相关参数进行媒体查询。 |
 
 
-###  媒体逻辑操作(and|not|only)
+###  媒体逻辑操作(and|or|not|only)
 
 媒体逻辑操作符：and、or、not、only用于构成复杂媒体查询，也可以通过comma（,）将其组合起来，详细解释说明如下表。
 
@@ -62,11 +66,12 @@ listener.on('change', onPortrait)
 
 | 类型       | 说明                                       |
 | -------- | ---------------------------------------- |
-| and      | 将多个媒体特征（Media&nbsp;Feature）以“与”的方式连接成一个媒体查询，只有当所有媒体特征都为true，查询条件成立。另外，它还可以将媒体类型和媒体功能结合起来。<br/>例如：screen&nbsp;and&nbsp;(device-type:&nbsp;wearable)&nbsp;and&nbsp;(max-height:&nbsp;600)&nbsp;表示当设备类型是智能穿戴同时应用的最大高度小于等于600个像素单位时成立。 |
-| not      | 取反媒体查询结果，媒体查询结果不成立时返回true，否则返回false。在媒体查询列表中应用not，则not仅取反应用它的媒体查询。<br/>例如：not&nbsp;screen&nbsp;and&nbsp;(min-height:&nbsp;50)&nbsp;and&nbsp;(max-height:&nbsp;600)&nbsp;表示当应用高度小于50个像素单位或者大于600个像素单位时成立。<br/>使用not运算符时必须指定媒体类型。 |
+| and      | 将多个媒体特征（Media&nbsp;Feature）以“与”的方式连接成一个媒体查询，只有当所有媒体特征都为true，查询条件成立。另外，它还可以将媒体类型和媒体功能结合起来。<br/>例如：screen&nbsp;and&nbsp;(device-type:&nbsp;wearable)&nbsp;and&nbsp;(max-height:&nbsp;600)&nbsp;表示当设备类型是智能穿戴且应用的最大高度小于等于600个像素单位时成立。 |
+| or       | 将多个媒体特征以“或”的方式连接成一个媒体查询，如果存在结果为true的媒体特征，则查询条件成立。<br/>例如：screen&nbsp;and&nbsp;(max-height:&nbsp;1000)&nbsp;or&nbsp;（round-screen：true）表示当应用高度小于等于1000个像素单位或者设备屏幕是圆形时，条件成立。 |
+| not      | 取反媒体查询结果，媒体查询结果不成立时返回true，否则返回false。<br/>例如：not&nbsp;screen&nbsp;and&nbsp;(min-height:&nbsp;50)&nbsp;and&nbsp;(max-height:&nbsp;600)&nbsp;表示当应用高度小于50个像素单位或者大于600个像素单位时成立。<br/>使用not运算符时必须指定媒体类型。 |
 | only     | 当整个表达式都匹配时，才会应用选择的样式，可以应用在防止某些较早的版本的浏览器上产生歧义的场景。一些较早版本的浏览器对于同时包含了媒体类型和媒体特征的语句会产生歧义，比如：<br/>screen&nbsp;and&nbsp;(min-height:&nbsp;50)<br/>老版本浏览器会将这句话理解成screen，从而导致仅仅匹配到媒体类型（screen），就应用了指定样式，使用only可以很好地规避这种情况。<br/>使用only时必须指定媒体类型。 |
 | ,(comma) | 将多个媒体特征以“或”的方式连接成一个媒体查询，如果存在结果为true的媒体特征，则查询条件成立。其效果等同于or运算符。<br/>例如：screen&nbsp;and&nbsp;(min-height:&nbsp;1000),&nbsp;&nbsp;（round-screen：true）&nbsp;表示当应用高度大于等于1000个像素单位或者设备屏幕是圆形时，条件成立。 |
-| or       | 将多个媒体特征以“或”的方式连接成一个媒体查询，如果存在结果为true的媒体特征，则查询条件成立。<br/>例如：screen&nbsp;and&nbsp;(max-height:&nbsp;1000)&nbsp;or&nbsp;&nbsp;（round-screen：true）表示当应用高度小于等于1000个像素单位或者设备屏幕是圆形时，条件成立。 |
+
 
 在MediaQuery Level 4中引入了范围查询，使其能够使用max-，min-的同时，也支持了&lt;=，&gt;=，&lt;，&gt;操作符。
 
@@ -74,10 +79,10 @@ listener.on('change', onPortrait)
 
 | 类型    | 说明                                       |
 | ----- | ---------------------------------------- |
-| &lt;= | 小于等于，例如：screen&nbsp;and&nbsp;(50&nbsp;&lt;=&nbsp;height)。 |
-| &gt;= | 大于等于，例如：screen&nbsp;and&nbsp;(600&nbsp;&gt;=&nbsp;height)。 |
-| &lt;  | 小于，例如：screen&nbsp;and&nbsp;(50&nbsp;&lt;&nbsp;height)。 |
-| &gt;  | 大于，例如：screen&nbsp;and&nbsp;(600&nbsp;&gt;&nbsp;height)。 |
+| &lt;= | 小于等于，例如：screen&nbsp;and&nbsp;(height&nbsp;&lt;=&nbsp;50)。 |
+| &gt;= | 大于等于，例如：screen&nbsp;and&nbsp;(height&nbsp;&gt;=&nbsp;600)。 |
+| &lt;  | 小于，例如：screen&nbsp;and&nbsp;(height&nbsp;&lt;&nbsp;50)。 |
+| &gt;  | 大于，例如：screen&nbsp;and&nbsp;(height&nbsp;&gt;&nbsp;600)。 |
 
 
 ### 媒体特征(media-feature)
@@ -105,7 +110,7 @@ listener.on('change', onPortrait)
 
 ## 场景示例
 
-通过使用媒体查询实现当屏幕发生横竖屏切换，给页面文本应用不同的内容和样式。
+下例中使用媒体查询，实现屏幕横竖屏切换时给页面文本应用不同的内容和样式的效果。
 
   ```
   import mediaquery from '@ohos.mediaquery'
@@ -116,8 +121,7 @@ listener.on('change', onPortrait)
   struct MediaQueryExample {
     @State color: string = '#DB7093'
     @State text: string = 'Portrait'
-    @State fontSize: number = 24
-    listener = mediaquery.matchMediaSync('(orientation: landscape)')
+    listener = mediaquery.matchMediaSync('(orientation: landscape)')  // 当设备横屏时条件成立
   
     onPortrait(mediaQueryResult) {
       if (mediaQueryResult.matches) {
@@ -130,8 +134,8 @@ listener.on('change', onPortrait)
     }
   
     aboutToAppear() {
-      portraitFunc = this.onPortrait.bind(this) //绑定当前应用实例
-      this.listener.on('change', portraitFunc)
+      portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
+      this.listener.on('change', portraitFunc)  
     }
   
     build() {
@@ -152,7 +156,7 @@ listener.on('change', onPortrait)
 
 ## 相关实例
 
-针对媒体查询开发，有以下相关实例可供参考：
+使用媒体查询的自适应布局开发，有以下相关实例可供参考：
 
 - [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)
 
