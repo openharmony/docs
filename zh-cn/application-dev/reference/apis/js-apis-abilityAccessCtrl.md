@@ -214,7 +214,7 @@ var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (data, err) => {
+    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -321,7 +321,7 @@ var AtManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (data, err) => {
+    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {

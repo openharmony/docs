@@ -100,7 +100,7 @@ function testGenerateAesKey() {
 
 示例3：根据指定的RSA非对称密钥二进制数据，生成KeyPair对象（场景2）
 
-1. 获取RSA二进制密钥数据封装成DataBlob对象，按keysize(32位) 、nsize(keysize/8)、 esize(e实际长度)、dsize(keysize/8)、nval(大数n的二进制数据)、eval(大数e的二进制数据)和dval(大数d的二进制数据)拼接形成。
+1. 获取RSA二进制密钥数据封装成DataBlob对象，按keysize(32位的密钥位数) 、nsize(32位，值为keysize/8)、 esize(32位的大数e的实际长度，单位Byte)、dsize(32位，值位keysize/8)、nval(大数n的二进制数据)、eval(大数e的二进制数据)和dval(大数d的二进制数据)拼接形成。
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```javascript
@@ -649,7 +649,7 @@ function signMessageCallback() {
 }
 
 function verifyMessageCallback() {
-  let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA25");
+  let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
   verifyer.init(globalKeyPair.pubKey, function (err, data) {
     verifyer.update(input1, function(err, data) {
       verifyer.verify(input2, SignMessageBlob, function(err, data) {
@@ -874,15 +874,6 @@ function doMdByCallback(algName) {
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
-
-function stringToUint8Array(str) {
-	var arr = [];
-	for (var i = 0, j = str.length; i < j; ++i) {
-		arr.push(str.charCodeAt(i));
-	}
-	var tmpArray = new Uint8Array(arr);
-	return tmpArray;
-}
 
 let globalKeyPair;
 

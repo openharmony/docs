@@ -59,6 +59,8 @@ bootchart和bootevent只支持标准系统， begetctl 支持小型系统和标�
 | modulectl uninstall moduleName | 卸载动态插件，例如：<br>modulectl uninstall bootchart | 无 |
 | modulectl install moduleName | 安装动态插件，例如：<br>modulectl install bootchart | 无 |
 | modulectl list | 动态插件列表，例如：<br>begetctl modulectl list | 无 |
+| setloglevel level | 设置log等级为info，例如：<br>begetctl setloglevel 1 | log等级设置范围0~4 |
+| getloglevel | 获取当前init的log等级，例如：<br>begetctl getloglevel | 无 |
 | bootevent disable | 关闭bootevent插件功能，例如：<br>bootevent disable | 无 |
 | bootevent enable | 开启bootevent插件功能，例如：<br>begetctl 关闭bootevent插件功能 | 无 |
 | dump_service parameter_service trigger | 命令行展示所有trigger信息，例如：<br>begetctl dump_service parameter_service trigger | 无 |
@@ -66,16 +68,6 @@ bootchart和bootevent只支持标准系统， begetctl 支持小型系统和标�
 | dump_service serviceName | 命令行展示单个服务信息，例如：<br>begetctl dump_service param_watcher | 无 |
 | dump api | 命令行展示init接口信息，例如：<br>begetctl dump api | 无 |
 
-
-### 接口说明
-
-  **表1**  接口介绍<a name="table14737791479"></a>
-| 函数 | 函数解释 |
-| ----------  |  ---------- |
-| void PluginExecCmdByName(const char *name, const char *cmdContent) | 通过名称启动插件。 |
-| void PluginExecCmdByCmdIndex(int index, const char *cmdContent) | 通过标志启动插件。 |
-| int PluginExecCmd(const char *name, int argc, const char **argv) | 命令启动插件。 |
-| int AddCmdExecutor(const char *cmdName, CmdExecutor execCmd) | 添加安装插件命令。 |
 
 ### 开发步骤
   新增一个插件， 以bootchart为例：
