@@ -41,7 +41,7 @@
    
    ```
    // Dispatch是用来处理用户态发下来的消息
-   int32_t SampleDriverDispatch(struct HdfDeviceObject *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
+   int32_t SampleDriverDispatch(struct HdfDeviceIoClient *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        HDF_LOGE("sample driver lite A dispatch");
        return 0;
