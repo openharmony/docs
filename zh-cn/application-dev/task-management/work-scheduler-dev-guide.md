@@ -42,12 +42,12 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>;| 获取上次任务是否�
 workId| number | 延迟任务Id（必填）
 bundleName| string | 延迟任务包名（必填）
 abilityName| string | 延迟任务回调通知的组件名（必填）
-networkType  | [NetworkType](../reference/apis/js-apis-workScheduler.md#networktype) | 网络类型
+networkType  | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | 网络类型
 isCharging| boolean | 是否充电 
-chargerType| [ChargingType](../reference/apis/js-apis-workScheduler.md#chargingtype) | 充电类型
+chargerType| [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype) | 充电类型
 batteryLevel| number | 电量
-batteryStatus| [BatteryStatus](../reference/apis/js-apis-workScheduler.md#batterystatus) | 电池状态
-storageRequest| [StorageRequest](../reference/apis/js-apis-workScheduler.md#storagerequest) |存储状态
+batteryStatus| [BatteryStatus](../reference/apis/js-apis-resourceschedule-workScheduler.md#batterystatus) | 电池状态
+storageRequest| [StorageRequest](../reference/apis/js-apis-resourceschedule-workScheduler.md#storagerequest) |存储状态
 isRepeat| boolean |是否循环任务
 repeatCycleTime| number |循环间隔
 repeatCount | number|循环次数
