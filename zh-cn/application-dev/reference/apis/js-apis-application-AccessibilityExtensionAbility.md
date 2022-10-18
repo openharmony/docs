@@ -94,8 +94,10 @@ onConnect(): void;
 **示例：**
 
 ```ts
-onConnect(): void {
-    console.log("AxExtensionAbility onConnect");
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onConnect() {
+        console.log('AxExtensionAbility onConnect');
+    }
 };
 ```
 
@@ -110,8 +112,10 @@ onDisconnect(): void;
 **示例：**
 
 ```ts
-onDisconnect(): void {
-    console.log("AxExtensionAbility onDisconnect");
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onDisconnect() {
+        console.log('AxExtensionAbility onDisconnect');
+    }
 };
 ```
 
@@ -127,15 +131,17 @@ onAccessibilityEvent(event: AccessibilityEvent): void;
 
 | 参数名   | 参数类型                                     | 必填   | 说明              |
 | ----- | ---------------------------------------- | ---- | --------------- |
-| event | [AccessibilityEvent](accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
+| event | [AccessibilityEvent](#accessibilityevent) | 是    | 无障碍事件回调函数。无返回值。 |
 
 **示例：**
 
 ```ts
-onAccessibilityEvent(event: AccessibilityEvent): void {
-    console.log("AxExtensionAbility onAccessibilityEvent");
-    if (event.eventType == 'click') {
-        console.log("AxExtensionAbility onAccessibilityEvent: click");
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onAccessibilityEvent(event) {
+        console.log('AxExtensionAbility onAccessibilityEvent');
+        if (event.eventType == 'click') {
+            console.log('AxExtensionAbility onAccessibilityEvent: click');
+        }
     }
 };
 ```
@@ -157,12 +163,14 @@ onKeyEvent(keyEvent: KeyEvent): boolean;
 **示例：**
 
 ```ts
-onKeyEvent(keyEvent: inputEventClient.KeyEvent): boolean {
-    console.log("AxExtensionAbility onKeyEvent");
-    if (keyEvent.keyCode == 22) {
-        console.log("AxExtensionAbility onKeyEvent: intercept 22");
-        return true;
+class MyAccessibilityExtensionAbility extends AccessibilityExtensionAbility {
+    onKeyEvent(keyEvent) {
+        console.log('AxExtensionAbility onKeyEvent');
+        if (keyEvent.keyCode == 22) {
+            console.log('AxExtensionAbility onKeyEvent: intercept 22');
+            return true;
+        }
+        return false;
     }
-    return false;
 };
 ```
