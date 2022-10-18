@@ -1,29 +1,5 @@
 # backgroundTaskManager错误码
 
-  从API version 9起，后台任务管理支持异常返回功能。错误码对应数值及含义如下。
-
-## 201 权限校验失败
-
-### 错误信息
-Permission denied.
-
-### 可能原因
-该错误码表示权限校验失败，可能原因是未配置对应权限。
-
-### 处理步骤
-长时任务请配置权限ohos.permission.KEEP_BACKGROUND_RUNNING，能效资源申请请配置权限runningResourcesApply
-
-## 401 参数检查错误
-
-### 错误信息
-Parameter error.
-
-### 可能原因
-该错误码表示入参检查错误，可能原因是入参检查错误。
-
-### 处理步骤
-1. 请根据@ohos.resourceschedule.backgroundTaskManager.d.ts文件检查入参是否为合法值。
-
 ## 9800001 内存操作失败
 
 ### 错误信息

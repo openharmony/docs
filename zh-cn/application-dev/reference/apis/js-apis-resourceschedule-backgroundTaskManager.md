@@ -12,7 +12,7 @@
 
 >  **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
-> - 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
+
 
 ## 导入模块
 
@@ -45,15 +45,16 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
-| 9900002 | Background task verification failed. | 短时任务校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
 
@@ -93,15 +94,16 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
-| 9900002 | Background task verification failed. | 短时任务校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 
 **示例**：
@@ -146,15 +148,16 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
-| 9900002 | Background task verification failed. | 短时任务校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
   ```js
@@ -190,15 +193,16 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
-| 9900002 | Background task verification failed. | 短时任务校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
   ```js
@@ -235,17 +239,17 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9800005 | Background task verification failed. | 长时任务校验失败 |
-| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
-| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
 
 **示例**：
 ```js
@@ -312,17 +316,17 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9800005 | Background task verification failed. | 长时任务校验失败 |
-| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
-| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
 
 **示例**：
 ```js
@@ -376,17 +380,17 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9800005 | Background task verification failed. | 长时任务校验失败 |
-| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
-| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
 
 **示例**：
 ```js
@@ -432,17 +436,17 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 9800005 | Background task verification failed. | 长时任务校验失败 |
-| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
-| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 9800005 | Background task verification failed. |
+| 9800006 | Notification verification failed. |
+| 9800007 | Task storage failed. |
 
 **示例**：
 ```js
@@ -483,15 +487,15 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 18700001 | Caller information verification failed. | 资源申请接口信息校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -528,15 +532,15 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 201 | Permission denied. | 权限校验失败 |
-| 401 | Parameter error. | 参数检查错误 |
-| 9800001 | Memory operation failed. | 内存操作失败 |
-| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9800003 | Inner transact failed. | IPC通信失败 |
-| 9800004 | System service operation failed. | 系统服务失败 |
-| 18700001 | Caller information verification failed. | 资源申请接口信息校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9800001 | Memory operation failed. |
+| 9800002 | Parcel operation failed. |
+| 9800003 | Inner transact failed. | |
+| 9800004 | System service operation failed. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 

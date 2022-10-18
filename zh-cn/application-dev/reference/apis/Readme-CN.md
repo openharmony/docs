@@ -1,4 +1,4 @@
-﻿# 接口
+# 接口
 - [开发说明](development-intro.md)
 - Ability框架
   - FA模型
@@ -117,9 +117,9 @@
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
 - 资源调度
-  - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
-  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
+  - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
+  - [@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
@@ -267,9 +267,11 @@
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 - 已停止维护的接口
+  - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
+  - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

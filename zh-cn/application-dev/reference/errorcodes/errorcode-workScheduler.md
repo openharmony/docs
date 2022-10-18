@@ -1,18 +1,5 @@
 # workScheduler错误码
 
-  从API version 9起，后台任务管理支持异常返回功能。错误码对应数值及含义如下。
-
-## 401 参数检查错误
-
-### 错误信息
-Parameter error.
-
-### 可能原因
-该错误码表示入参检查错误，可能原因是入参检查错误。
-
-### 处理步骤
-1. 请根据@ohos.resourceschedule.workScheduler.d.ts文件检查入参是否为合法值。
-
 ## 9700001 内存操作失败
 
 ### 错误信息

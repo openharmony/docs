@@ -9,7 +9,6 @@
 >  - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 延迟任务调度约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)。
->  - 延迟任务调度错误码见[workScheduler错误码](../errorcodes/errorcode-workScheduler.md)。
 
 
 ## 导入模块
@@ -33,14 +32,15 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
-| 9700005 | StartWork failed. | StartWork失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
+| 9700005 | StartWork failed. |
 
 
 **示例**：
@@ -84,13 +84,14 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -133,13 +134,14 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -180,13 +182,14 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -225,12 +228,13 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
 
 **示例**：
 
@@ -263,12 +267,13 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
 
 **示例**：
 
@@ -293,12 +298,13 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
 
 **示例**：
 
@@ -333,12 +339,13 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
 
 **示例**：
 
@@ -377,12 +384,13 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-| 错误码  | 错误信息             | 说明 |
-| ---- | --------------------- | ---- |
-| 401 | Parameter error. | 参数检查错误 |
-| 9700001 | Memory operation failed. | 内存操作失败 |
-| 9700002 | Parcel operation failed. | Parcel读写操作失败 |
-| 9700003 | System service operation failed. | 系统服务失败 |
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+
+| 错误码ID  | 错误码信息             |
+| ---- | --------------------- |
+| 9700001 | Memory operation failed. |
+| 9700002 | Parcel operation failed. |
+| 9700003 | System service operation failed. |
 
 **示例**：
 

@@ -11,6 +11,7 @@
 对于系统特权应用，提供独立的能效资源申请接口。系统特权应用如果需要使用特定的系统资源，例如需要在被挂起期间仍然能够收到系统公共事件，可以使用能效资源申请接口。
 
 >  **说明：**
+> - 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
 > - 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
