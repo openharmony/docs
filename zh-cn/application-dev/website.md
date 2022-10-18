@@ -233,13 +233,13 @@
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
-      - [后台任务开发指导](task-management/background-task-dev-guide.md)
-    - 延迟任务调度
-      - [延迟任务调度概述](task-management/work-scheduler-overview.md)
-      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+      - [短时任务开发指导](task-management/transient-task-dev-guide.md)
+      - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
+      - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
+      - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
     - 后台代理提醒
-      - [后台代理提醒开发概述](background-agent-scheduled-reminder-overview.md)
-      - [后台代理提醒开发指导](background-agent-scheduled-reminder-guide.md)
+      - [后台代理提醒开发概述](task-management/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](task-management/background-agent-scheduled-reminder-guide.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -483,8 +483,7 @@
         - [组件内转场](reference/arkui-ts/ts-transition-animation-component.md)
         - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
       - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
-      - [矩阵变换](reference/arkui-ts/ts-matrix-transformation.md)
-      - [插值计算](reference/arkui-ts/ts-interpolation-calculation.md)
+
     - 全局UI方法
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -790,7 +789,6 @@
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
       - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
-      - [@ohos.fileManager (公共文件访问与管理)](reference/apis/js-apis-filemanager.md)
       - [@ohos.filemanagement.userfile_manager (用户数据管理)](reference/apis/js-apis-userfilemanager.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
       - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
