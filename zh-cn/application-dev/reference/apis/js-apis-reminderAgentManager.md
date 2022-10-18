@@ -33,6 +33,15 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
   | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 异步回调，返回当前发布的提醒的reminderId。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700001    | Notification does not enable. |
+| 1700002    | The number of reminders exceeds the limit. |
+
 **示例**：
 ```js
 let timer = {
@@ -73,6 +82,15 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回提醒的reminderId。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700001    | Notification does not enable. |
+| 1700002    | The number of reminders exceeds the limit. |
+
 **示例**：
 ```js
 let timer = {
@@ -105,6 +123,15 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | reminderId | number | 是 | 目标reminder的id号。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700003    | The reminder does not exist. |
+| 1700004    | The package name does not exist. |
 
 **示例**：
 
@@ -143,6 +170,15 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise类型异步回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700003    | The reminder does not exist. |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
@@ -171,6 +207,14 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
 
 **示例**：
 
@@ -224,6 +268,14 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 | -------- | -------- |
 | Promise&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | 返回当前应用已设置的所有有效（未过期）的提醒。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
@@ -274,6 +326,14 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
@@ -304,6 +364,14 @@ cancelAllReminders(): Promise&lt;void&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise类型异步回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
 
 **示例**：
 
