@@ -70,7 +70,7 @@ writeRemoteObject(object: [IRemoteObject](#iremoteobject)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.rpc错误码](../errors/errorcode-rpc.md)
+以下错误码的详细介绍请参见[ohos.rpc错误码](https://www.baidu.com/)
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
