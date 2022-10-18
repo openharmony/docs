@@ -56,7 +56,7 @@ Permission does not exist.
 
 **错误信息**
 
-The listener interface is not used together.
+The interface is not used together.
 
 **可能原因**
 

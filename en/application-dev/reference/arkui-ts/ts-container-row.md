@@ -20,7 +20,7 @@ Row(value?:{space?:  number | string })
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| space | string \| number | No| Space between two adjacent child components in the horizontal layout.<br>Default value: **0**|
+| space | string \| number | No| Space between two adjacent child components in the horizontal layout.<br>Default value: **0**, in vp |
 
 
 ## Attributes
@@ -28,7 +28,7 @@ Row(value?:{space?:  number | string })
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | alignItems | [VerticalAlign](ts-appendix-enums.md#verticalalign) | Alignment mode of child components in the vertical direction.<br>Default value: **VerticalAlign.Center**|
-| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>FlexAlign.Start |
+| justifyContent<sup>8+</sup> | [FlexAlign](ts-appendix-enums.md#flexalign) | Alignment mode of the child components in the horizontal direction.<br>Default value: **FlexAlign.Start** |
 
 
 ## Example

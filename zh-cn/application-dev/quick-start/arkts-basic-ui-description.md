@@ -1,6 +1,6 @@
 # 基本UI描述
 
-eTS通过装饰器@Component和@Entry装饰struct关键字声明的数据结构，构成一个自定义组件。自定义组件中提供了一个build函数，开发者需在该函数内以链式调用的方式进行基本的UI描述，UI描述的方法请参考[UI描述规范](#ui描述规范)。
+ArkTS通过装饰器@Component和@Entry装饰struct关键字声明的数据结构，构成一个自定义组件。自定义组件中提供了一个build函数，开发者需在该函数内以链式调用的方式进行基本的UI描述，UI描述的方法请参考[UI描述规范](#ui描述规范)。
 
 ## 基本概念
 
@@ -29,7 +29,7 @@ eTS通过装饰器@Component和@Entry装饰struct关键字声明的数据结构�
 
 - @Preview：装饰struct， 用@Preview装饰的自定义组件可以在DevEco Studio的预览器上进行实时预览，加载页面时，将创建并呈现@Preview装饰的自定义组件。 
 
-  > **说明：** 在单个源文件中，最多可以使用10个@Preview装饰自定义组件，更多说明请参考[查看eTS组件预览效果](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596#section146052489820)。
+  > **说明：** 在单个源文件中，最多可以使用10个@Preview装饰自定义组件，更多说明请参考[查看ArkTS组件预览效果](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596#section146052489820)。
 
 - 链式调用：以 "." 链式调用的方式配置UI结构及其属性、事件等。
 

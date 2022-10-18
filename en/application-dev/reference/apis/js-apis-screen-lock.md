@@ -233,12 +233,46 @@ Locks the screen. This API uses a promise to return the result.
   });
   ```
 
+## EventType
 
-## screenlock.on<sup>9+</sup>
+Defines the system event type.
 
-on(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' | 'unlockScreen' | 'beginExitAnimation', callback: Callback\<void\>): void
+**System capability**: SystemCapability.MiscServices.ScreenLock
 
-Subscribes to screen lock status changes.
+| Name| Description|
+| -------- | -------- |
+| beginWakeUp | Wakeup starts when the event starts.|
+| endWakeUp | Wakeup ends when the event ends.|
+| beginScreenOn | Screen turn-on starts when the event starts.|
+| endScreenOn | Screen turn-on ends when the event ends.|
+| beginScreenOff | Screen turn-off starts when the event starts.|
+| endScreenOff | Screen turn-off ends when the event ends.|
+| unlockScreen | The screen is unlocked.|
+| lockScreen | The screen is locked.|
+| beginExitAnimation | Animation starts to exit.|
+| beginSleep | The screen enters sleep mode.|
+| endSleep | The screen exits sleep mode.|
+| changeUser | The user is switched.|
+| screenlockEnabled | Screen lock is enabled.|
+| serviceRestart | The screen lock service is restarted.|
+
+
+## SystemEvent
+
+Defines the structure of the system event callback.
+
+**System capability**: SystemCapability.MiscServices.ScreenLock
+
+| Name| Description|
+| -------- | -------- |
+| eventType | System event type.|
+| params | System event parameters.|
+
+## screenlock.onSystemEvent<sup>9+</sup>
+
+onSystemEvent(callback: Callback\<SystemEvent\>): boolean
+
+Registers a callback for system events related to screen locking.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -248,90 +282,26 @@ Subscribes to screen lock status changes.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.|
-| callback | Callback\<void\> | Yes| Callback used to return the result.|
+| callback | Callback\<SystemEvent\> | Yes| Callback for system events related to screen locking|
+
+**Return value**
+
+| Type    | Description                                       |
+| ------- | -------------------------------------------- |
+| boolean |  The value **true** means that the callback is registered successfully, and **false** means the opposite.|
 
 **Example**
 
   ```js
-  screenlock.on('beginWakeUp', () => {
-      console.log('beginWakeUp triggered');
-  });
-  ```
-
-## screenlock.on<sup>9+</sup>
-
-on(type: 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<number\>): void
-
-Subscribes to screen lock status changes.
-
-**System capability**: SystemCapability.MiscServices.ScreenLock
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
-| callback | Callback\<number\> | Yes| Callback used to return the result. |
-
-**Example**
-
-  ```js
-  screenlock.on('beginSleep', (why) => {
-      console.log('beginSleep triggered:' + why);
-  });
-  ```
-## screenlock.on<sup>9+</sup>
-
-on(type: 'screenlockEnabled', callback: Callback\<boolean\>): void
-
-Subscribes to screen lock status changes.
-
-**System capability**: SystemCapability.MiscServices.ScreenLock
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **"screenlockEnabled"**: Screen lock is enabled.|
-| callback | Callback\<boolean\> | Yes| Callback used to return the result. |
-
-**Example**
-
-  ```js
-  screenlock.on('screenlockEnabled', (isEnabled) => {
-      console.log('screenlockEnabled triggered, result:' + isEnabled);
-  });
-  ```
-
-## screenlock.off<sup>9+</sup>
-
-off(type: 'beginWakeUp' | 'endWakeUp' | 'beginScreenOn' | 'endScreenOn' | 'beginScreenOff' | 'endScreenOff' 
-      | 'unlockScreen' | 'beginExitAnimation' | 'screenlockEnabled' | 'beginSleep' | 'endSleep' | 'changeUser', callback: Callback\<void\>): void
-
-Unsubscribes from screen lock status changes.
-
-**System capability**: SystemCapability.MiscServices.ScreenLock
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type.<br>- **"beginWakeUp"**: Wakeup starts.<br>- **"endWakeUp"**: Wakeup ends.<br>- **"beginScreenOn"**: Screen turn-on starts.<br>- **"endScreenOn"**: Screen turn-on ends.<br>- **"beginScreenOff"**: Screen turn-off starts.<br>- **"endScreenOff"**: Screen turn-off ends.<br>- **"unlockScreen"**: The screen is unlocked.<br>- **"beginExitAnimation"**: Animation starts to exit.<br>- **"screenlockEnabled"**: Screen lock is enabled.<br>- **"beginSleep"**: The screen enters sleep mode.<br>- **"endSleep"**: The screen exits sleep mode.<br>- **"changeUser"**: The user is switched.|
-| callback | Callback\<void\> | Yes| Callback used to return the result.|
-
-**Example**
-
-  ```js
-  screenlock.off('beginWakeUp', () => {
-      console.log("callback");
-  });
+    let isSuccess = screenlock.onSystemEvent((err, event)=>{
+        console.log(`onSystemEvent:callback:${event.eventType}`)
+        if (err) {
+            console.log(`onSystemEvent callback error -> ${JSON.stringify(err)}`);
+        }
+    });
+    if (!isSuccess) {
+        console.log(`onSystemEvent result is false`)
+    }
   ```
 
 ## screenlock.sendScreenLockEvent<sup>9+</sup>
@@ -375,7 +345,7 @@ Sends an event to the screen lock service. This API uses a promise to return the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | String | Yes| Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
-| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **1**: The unlock failed.<br>- **2**: The unlock was canceled.|
+| parameter | number | Yes| Screen unlock status.<br>- **0**: The unlock is successful.<br>- **1**: The unlock fails.<br>- **2**: The unlock is canceled.|
 
 **Return value**
 

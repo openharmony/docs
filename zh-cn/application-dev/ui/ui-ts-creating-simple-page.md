@@ -445,7 +445,7 @@
 5. 使用自定义构造函数\@Builder简化代码。可以发现，每个成分表中的成分单元其实都是一样的UI结构。
    ![zh-cn_image_0000001169599582](figures/zh-cn_image_0000001169599582.png)
 
-   当前对每个成分单元都进行了声明，造成了代码的重复和冗余。可以使用\@Builder来构建自定义方法，抽象出相同的UI结构声明。\@Builder修饰的方法和Component的build方法都是为了声明一些UI渲染结构，遵循一样的eTS语法。开发者可以定义一个或者多个\@Builder修饰的方法，但Component的build方法必须只有一个。
+   当前对每个成分单元都进行了声明，造成了代码的重复和冗余。可以使用\@Builder来构建自定义方法，抽象出相同的UI结构声明。\@Builder修饰的方法和Component的build方法都是为了声明一些UI渲染结构，遵循一样的ArkTS语法。开发者可以定义一个或者多个\@Builder修饰的方法，但Component的build方法必须只有一个。
 
    在ContentTable内声明\@Builder修饰的IngredientItem方法，用于声明分类名、成分名称和成分含量UI描述。
 
@@ -551,6 +551,6 @@
 
 针对创建简单视图，有以下示例工程可供参考：
 
-- [`BuildCommonView`：创建简单视图（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BuildCommonView)
+- [`BuildCommonView`：创建简单视图（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/BuildCommonView)
 
   本示例为构建了简单页面展示食物番茄的图片和营养信息，主要为了展示简单页面的Stack布局和Flex布局。
