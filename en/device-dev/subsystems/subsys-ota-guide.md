@@ -6,7 +6,7 @@
 
 ### Overview
 
-With the rapid development of device systems, it has become a critical challenge for device vendors to help their users to access system updates in a timely manner to experience the new features and improve the system stability and security
+With the rapid development of device systems, it has become a critical challenge for device vendors to help their users to access system updates in a timely manner to experience the new features and improve the system stability and security.
 
 Over the Air (OTA) answers this challenge with the support for remote updating of device systems. By providing unified update APIs externally, the update subsystem shields the differences of underlying chips. After secondary development based on the update APIs, device vendors can easily implement remote updating for their devices, such as IP cameras.
 
@@ -22,7 +22,7 @@ Over the Air (OTA) answers this challenge with the support for remote updating o
 
 To implement an OTA update, you first need to use the packaging tool to pack the build version into an update package and upload the update package to the OTA server. Devices integrating the OTA update capability can then detect the update package and download it to implement a remote update.
 
-<a href="#ab-update">A/B Update</a>: a typical application of OTA update. In this update mode, a device has a backup system B. When system A is running, system B is updated silently. After the update is successful, the device restarts and switches to the new system.
+<a href="#ab-update-scenario">A/B Update</a>: a typical application of OTA update. In this update mode, a device has a backup system B. When system A is running, system B is updated silently. After the update is successful, the device restarts and switches to the new system.
 
 
 ### Constraints
@@ -50,19 +50,19 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 
 ### Development Process
 
-<a href="#generating-a-public/private-key-pair">1. Use the OpenSSL tool to generate a public/private key pair.
+<a href="#generating-a-publicprivate-key-pair">1. Use the OpenSSL tool to generate a public/private key pair.
 
 <a href="#making-an-update-package">2. Use the packaging tool to generate an update package.</a>
 
-&ensp;&ensp;<a href="#mini-and-small systems">2.1 Mini and small systems</a>
+&ensp;&ensp;<a href="#mini-and-small-systems">2.1 Mini and small systems</a>
 
-&ensp;&ensp;<a href="#standard system">2.2 Standard system</a>
+&ensp;&ensp;<a href="#standard-system">2.2 Standard system</a>
 
-<a href="#uploading-the-update package">3. Upload the update package to the vendor's OTA server.</a>
+<a href="#uploading-the-update-package">3. Upload the update package to the vendor's OTA server.</a>
 
 <a href="#downloading-the-update-package">4. Download the update package from the vendor's OTA server.</a>
 
-<a href="#integrating-the-OTA-update-capability">5. Integrate the OTA update capability.
+<a href="#integrating-ota-update-capabilities">5. Integrate the OTA update capability.
 
 &ensp;&ensp;<a href="#api-application-scenario-default">5.1 API application scenario (default)</a>
 
@@ -503,7 +503,7 @@ const char *get_local_version(void)
 ##### A/B Update Scenario
 
 
-###### How to Develop
+###### Development Procedure
 
 1. Download the update package through the update application.
 2. Invoke update_service to start the system installation service through SAMGR.
