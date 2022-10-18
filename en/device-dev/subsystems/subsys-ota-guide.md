@@ -48,7 +48,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 ## OTA Update Guide
 
 
-### Development Process
+### Development Procedure
 
 <a href="#generating-a-publicprivate-key-pair">1. Use the OpenSSL tool to generate a public/private key pair.
 
@@ -71,7 +71,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
 &ensp;&ensp;<a href="#ab-update-scenario">5.3 A/B update scenario</a>
 
 
-### Development Procedure
+### How to Develop
 
 
 #### Generating a Public/Private Key Pair
@@ -226,7 +226,7 @@ To implement an OTA update, you first need to use the packaging tool to pack the
    Hi3518DV300-eng 10 QP1A.190711.021
    ```
 
-6. For update using an incremental (differential) package, also prepare a source version package (source\_package) in the same format as the target version package (target\_package), and then compress it as a **.zip** file, that is, **source\_package.zip**.
+6. For an update using the incremental (differential) package, also prepare a source version package (source\_package) in the same format as the target version package (target\_package), and then compress it as a **.zip** file, that is, **source\_package.zip**.
 
 7. If you create an update package with partitions changed, also provide the partition table file named **partition\_file.xml**. You can specify the file using the **-pf** parameter. For details about the configuration nodes, see the description below.
 
