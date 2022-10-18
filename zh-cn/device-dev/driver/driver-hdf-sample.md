@@ -157,13 +157,13 @@ static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
 static int SendEvent(struct HdfIoService *serv, char *eventData)
 {
     int ret = 0;
-    struct HdfSBuf *data = HdfSBufObtainDefaultSize();
+    struct HdfSBuf *data = HdfSbufObtainDefaultSize();
     if (data == NULL) {
         HDF_LOGE("fail to obtain sbuf data");
         return 1;
     }
 
-    struct HdfSBuf *reply = HdfSBufObtainDefaultSize();
+    struct HdfSBuf *reply = HdfSbufObtainDefaultSize();
     if (reply == NULL) {
         HDF_LOGE("fail to obtain sbuf reply");
         ret = HDF_DEV_ERR_NO_MEMORY;
@@ -190,8 +190,8 @@ static int SendEvent(struct HdfIoService *serv, char *eventData)
     }
     HDF_LOGE("Get reply is: %d", replyData);
 out:
-    HdfSBufRecycle(data);
-    HdfSBufRecycle(reply);
+    HdfSbufRecycle(data);
+    HdfSbufRecycle(reply);
     return ret;
 }
 
