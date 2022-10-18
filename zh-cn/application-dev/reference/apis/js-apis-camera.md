@@ -939,7 +939,7 @@ on(type: 'error', camera:CameraDevice, callback: ErrorCallback<CameraInputError\
 **示例：**
 
 ```js
-cameraInput.on('error', (cameraInputError) => {
+cameraInput.on('error', camera, (cameraInputError) => {
     console.log(`Camera input error code: ${cameraInputError.code}`);
 })
 ```
@@ -1735,7 +1735,7 @@ isExposureModeSupported(aeMode: ExposureMode, callback: AsyncCallback<boolean\>)
 **示例：**
 
 ```js
-captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.isExposureModeSupported(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to check exposure mode supported ${err.message}`);
         return ;
@@ -1838,7 +1838,7 @@ setExposureMode(aeMode: ExposureMode, callback: AsyncCallback<void\>): void
 **示例：**
 
 ```js
-captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKEN,(err) => {
+captureSession.setExposureMode(camera.ExposureMode.EXPOSURE_MODE_LOCKED,(err) => {
     if (err) {
         console.log(`Failed to set the exposure mode ${err.message}`);
         return ;
