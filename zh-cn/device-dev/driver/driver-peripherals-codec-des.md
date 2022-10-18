@@ -392,22 +392,22 @@ bool CodecHdiDecode::UseBufferOnPort(enum PortIndex portIndex)
     auto err = client_->GetParameter(client_, OMX_IndexParamPortDefinition, (int8_t *)&param, sizeof(param));
     if (err != HDF_SUCCESS) {
         HDF_LOGE("%{public}s failed to GetParameter with OMX_IndexParamPortDefinition : portIndex[%{public}d]",
-                    __func__, portIndex);
+            __func__, portIndex);
         return false;
     }
     bufferSize = param.nBufferSize;
     bufferCount = param.nBufferCountActual;
     bPortEnable = param.bEnabled;
     HDF_LOGI("buffer index [%{public}d], buffer size [%{public}d], "
-                "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
-                portIndex, bufferSize, bufferCount, bPortEnable, err);
+        "buffer count [%{public}d], portEnable[%{public}d], err [%{public}d]",
+        portIndex, bufferSize, bufferCount, bPortEnable, err);
     {
         OMX_PARAM_BUFFERSUPPLIERTYPE param;
         InitParam(param);
         param.nPortIndex = (uint32_t)portIndex;
         auto err = client_->GetParameter(client_, OMX_IndexParamCompBufferSupplier, (int8_t *)&param, sizeof(param));
         HDF_LOGI("param.eBufferSupplier[%{public}d] isSupply [%{public}d], err [%{public}d]", param.eBufferSupplier,
-                    this->isSupply_, err);
+            this->isSupply_, err);
     }
     // 设置端口buffer
     UseBufferOnPort(portIndex, bufferCount, bufferSize);
@@ -646,8 +646,7 @@ int32_t OMXCore::onFillBufferDone(struct OmxCodecBuffer* pBuffer)
 int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)
 {
     HDF_LOGI("onEvent: appData[0x%{public}p], eEvent [%{public}d], "
-                "nData1[%{public}d]",
-                info->appData, event, info->data1);
+        "nData1[%{public}d]", info->appData, event, info->data1);
     switch (event) {
         case OMX_EventCmdComplete: {
             OMX_COMMANDTYPE cmd = (OMX_COMMANDTYPE)info->data1;
