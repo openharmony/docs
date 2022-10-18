@@ -81,8 +81,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 ```js
 /* 以生成ECC256密钥为例 */
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -101,7 +101,7 @@ properties[3] = {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
-var options = {
+let options = {
     properties: properties
 };
 try {
@@ -136,8 +136,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```js
 /* 以生成ECC256密钥为例 */
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -156,7 +156,7 @@ properties[3] = {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
-var options = {
+let options = {
     properties: properties
 };
 try {
@@ -192,8 +192,8 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 ```js
 /* 此处options选择emptyOptions传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -228,8 +228,8 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```js
 /* 此处options选择emptyOptions传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -269,10 +269,10 @@ getSdkVersion(options: HuksOptions) : string
 
 ```js
 /* 此处options选择emptyOptions传空 */
-var emptyOptions = {
+let emptyOptions = {
   properties: []
 };
-var result = huks.getSdkVersion(emptyOptions);
+let result = huks.getSdkVersion(emptyOptions);
 ```
 
 ## huks.importKeyItem<sup>9+</sup>
@@ -295,16 +295,16 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 ```js
 /* 以导入AES256密钥为例 */
-var plainTextSize32 = makeRandomArr(32);
+let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size) {
-    var arr = new Uint8Array(size);
-    for (var i = 0; i < size; i++) {
+    let arr = new Uint8Array(size);
+    for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -326,7 +326,7 @@ properties[4] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
     value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var options = {
+let options = {
     properties: properties,
     inData: plainTextSize32
 };
@@ -362,19 +362,19 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```js
 /* 以导入AES128为例 */
-var plainTextSize32 = makeRandomArr(32);
+let plainTextSize32 = makeRandomArr(32);
 
 function makeRandomArr(size) {
-    var arr = new Uint8Array(size);
-    for (var i = 0; i < size; i++) {
+    let arr = new Uint8Array(size);
+    for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
 
 /*第一步：生成密钥*/
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -395,7 +395,7 @@ properties[4] = {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
     value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var huksoptions = {
+let huksoptions = {
     properties: properties,
     inData: plainTextSize32
 };
@@ -437,11 +437,11 @@ let versionInfo = stringToUint8Array('version_info');
 let keyAliasString = "key attest";
 
 function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
-    var tmpUint8Array = new Uint8Array(arr);
+    let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
 
@@ -564,11 +564,11 @@ let versionInfo = stringToUint8Array('version_info');
 let keyAliasString = "key attest";
 
 function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
-    var tmpUint8Array = new Uint8Array(arr);
+    let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
 
@@ -683,9 +683,9 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 ```js
 import huks from '@ohos.security.huks';
 
-var exportWrappingKey;
-var alias1 = "importAlias";
-var alias2 = "wrappingKeyAlias";
+let exportWrappingKey;
+let alias1 = "importAlias";
+let alias2 = "wrappingKeyAlias";
 
 async function TestGenFunc(alias, options) {
     try {
@@ -800,13 +800,13 @@ async function TestImportWrappedKeyFunc(
      * nonce1的长度（4字节）   + nonce1的数据   + tag1的长度（4字节） + tag1的数据 +
      * keyA长度占用的内存长度（4字节）  + keyA的长度     + keyA_enc的长度（4字节） + keyA_enc的数据
      */
-    var inputKey = new Uint8Array([0x02, 0x00, 0x00, 0x00]);
+    let inputKey = new Uint8Array([0x02, 0x00, 0x00, 0x00]);
     importOptions.inData = inputKey;
     await TestImportWrappedFunc(alias, wrappingAlias, importOptions);
 }
 
 function makeGenerateOptions() {
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -827,14 +827,14 @@ function makeGenerateOptions() {
         tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
         value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR,
     };
-    var options = {
+    let options = {
         properties: properties
     };
     return options;
 };
 
 function makeImportOptions() {
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -859,15 +859,15 @@ function makeImportOptions() {
         tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
         value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
     };
-    var options = {
+    let options = {
         properties: properties
     };
     return options;
 };
 
 function huksImportWrappedKey() {
-    var genOptions = makeGenerateOptions();
-    var importOptions = makeImportOptions();
+    let genOptions = makeGenerateOptions();
+    let importOptions = makeImportOptions();
     TestImportWrappedKeyFunc(
         alias1,
         alias2,
@@ -932,8 +932,8 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -974,8 +974,8 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -1011,8 +1011,8 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -1053,8 +1053,8 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -1090,8 +1090,8 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -1132,8 +1132,8 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
     properties: []
 };
 try {
@@ -1328,21 +1328,21 @@ abort操作密钥接口，使用Callback回调异步返回结果 。
  * 以下以RSA1024密钥的callback功能使用为例
  */
 function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
-    var tmpUint8Array = new Uint8Array(arr);
+    let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
 
-var keyAlias = "HuksDemoRSA";
-var properties = new Array();
-var options = {
+let keyAlias = "HuksDemoRSA";
+let properties = new Array();
+let options = {
     properties: properties,
     inData: new Uint8Array(0)
 };
-var handle;
+let handle;
 async function generateKey() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -1478,21 +1478,21 @@ abort操作密钥接口，使用Promise方式异步返回结果。
  * 以下以RSA1024密钥的callback功能使用为例
  */
 function stringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
-    var tmpUint8Array = new Uint8Array(arr);
+    let tmpUint8Array = new Uint8Array(arr);
     return tmpUint8Array;
 }
 
-var keyAlias = "HuksDemoRSA";
-var properties = new Array();
-var options = {
+let keyAlias = "HuksDemoRSA";
+let properties = new Array();
+let options = {
     properties: properties,
     inData: new Uint8Array(0)
 };
-var handle;
+let handle;
 async function generateKey() {
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -1999,8 +1999,8 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 ```js
 /* 以生成RSA512密钥为例 */
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -2023,7 +2023,7 @@ properties[4] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
   value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
-var options = {
+let options = {
   properties: properties
 };
 huks.generateKey(keyAlias, options, function (err, data){}); 
@@ -2056,8 +2056,8 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```js
 /* 以生成ECC256密钥为例 */
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -2076,10 +2076,10 @@ properties[3] = {
   tag: huks.HuksTag.HUKS_TAG_DIGEST,
   value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
 };
-var options = {
+let options = {
   properties: properties
 };
-var result = huks.generateKey(keyAlias, options);
+let result = huks.generateKey(keyAlias, options);
 ```
 
 
@@ -2105,8 +2105,8 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 ```js
 /* 此处options选择emptyOptions传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
 huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
@@ -2139,11 +2139,11 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```js
 /* 此处options选择emptyOptions传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
-var result = huks.deleteKey(keyAlias, emptyOptions);
+let result = huks.deleteKey(keyAlias, emptyOptions);
 ```
 
 
@@ -2169,16 +2169,16 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 ```js
 /* 以导入AES256密钥为例 */
-var plainTextSize32 = makeRandomArr(32);
+let plainTextSize32 = makeRandomArr(32);
 function makeRandomArr(size) {
-    var arr = new Uint8Array(size);
-    for (var i = 0; i < size; i++) {
+    let arr = new Uint8Array(size);
+    for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -2200,7 +2200,7 @@ properties[4] = {
   tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
   value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var options = {
+let options = {
   properties: properties,
   inData: plainTextSize32
 };
@@ -2234,19 +2234,19 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```js
 /* 以导入AES128为例 */
-var plainTextSize32 = makeRandomArr(32);
+let plainTextSize32 = makeRandomArr(32);
 
 function makeRandomArr(size) {
-    var arr = new Uint8Array(size);
-    for (var i = 0; i < size; i++) {
+    let arr = new Uint8Array(size);
+    for (let i = 0; i < size; i++) {
         arr[i] = Math.floor(Math.random() * 10);
     }
     return arr;
 };
 
 /*第一步：生成密钥*/
-var keyAlias = 'keyAlias';
-var properties = new Array();
+let keyAlias = 'keyAlias';
+let properties = new Array();
 properties[0] = {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -2267,11 +2267,11 @@ properties[4] = {
   tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
   value: huks.HuksCipherMode.HUKS_MODE_ECB
 };
-var huksoptions = {
+let huksoptions = {
   properties: properties,
   inData: plainTextSize32
 };
-var result = huks.importKey(keyAlias, huksoptions);
+let result = huks.importKey(keyAlias, huksoptions);
 ```
 
 
@@ -2297,8 +2297,8 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
 huks.exportKey(keyAlias, emptyOptions, function (err, data){});
@@ -2331,11 +2331,11 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
-var result = huks.exportKey(keyAlias, emptyOptions);
+let result = huks.exportKey(keyAlias, emptyOptions);
 ```
 
 
@@ -2361,8 +2361,8 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
 huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
@@ -2395,11 +2395,11 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
-var result = huks.getKeyProperties(keyAlias, emptyOptions);
+let result = huks.getKeyProperties(keyAlias, emptyOptions);
 ```
 
 
@@ -2425,8 +2425,8 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
 huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
@@ -2459,11 +2459,11 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```js
 /* 此处options选择emptyOptions来传空 */
-var keyAlias = 'keyAlias';
-var emptyOptions = {
+let keyAlias = 'keyAlias';
+let emptyOptions = {
   properties: []
 };
-var result = huks.isKeyExist(keyAlias, emptyOptions);
+let result = huks.isKeyExist(keyAlias, emptyOptions);
 ```
 
 ## huks.init<sup>(deprecated)</sup>
@@ -2640,14 +2640,14 @@ abort操作密钥接口，使用Callback回调异步返回结果。
  *
  * 以下以RSA1024密钥的callback操作使用为例
  */
-var keyalias = "HuksDemoRSA";
-var properties = new Array();
-var options = {
+let keyalias = "HuksDemoRSA";
+let properties = new Array();
+let options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle;
-var resultMessage = "";
+let handle;
+let resultMessage = "";
 async function generateKey() {
   properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -2672,11 +2672,11 @@ async function generateKey() {
   huks.generateKey(keyalias, options);
 }
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
+  let tmpUint8Array = new Uint8Array(arr);
   return tmpUint8Array;
 }
 async function huksInit() {
@@ -2756,20 +2756,20 @@ abort操作密钥接口，使用Promise方式异步返回结果。
  *
  * 以下以RSA1024密钥的promise操作使用为例
  */
-var keyalias = "HuksDemoRSA";
-var properties = new Array();
-var options = {
+let keyalias = "HuksDemoRSA";
+let properties = new Array();
+let options = {
   properties: properties,
   inData: new Uint8Array(0)
 };
-var handle;
-var resultMessage = "";
+let handle;
+let resultMessage = "";
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
+  let tmpUint8Array = new Uint8Array(arr);
   return tmpUint8Array;
 }
 
