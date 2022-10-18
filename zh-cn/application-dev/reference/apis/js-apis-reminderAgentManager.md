@@ -6,19 +6,17 @@
 
 > **说明：**
 >
-> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
->
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
 
-```js
-import reminderAgent from'@ohos.reminderAgent';
+```
+import reminderAgentManager from'@ohos.reminderAgentManager';
 ```
 
 
-## reminderAgent.publishReminder
+## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void
 
@@ -35,19 +33,36 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&
   | reminderReq | [ReminderRequest](#reminderrequest) | 是 | 需要发布的提醒实例。 |
   | callback | AsyncCallback&lt;number&gt; | 是 | 异步回调，返回当前发布的提醒的reminderId。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700001    | Notification does not enable. |
+| 1700002    | The number of reminders exceeds the limit. |
+
 **示例**：
 ```js
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
-  reminderAgent.publishReminder(timer, (err, reminderId) => {
-      console.log("callback, reminderId = " + reminderId);
-  });
+let timer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+    triggerTimeInSeconds: 10
+}
+try {
+    reminderAgentManager.publishReminder(timer, (err, reminderId) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("callback, reminderId = " + reminderId);
+        }
+    });
+} catch (error) {
+    console.log("publishReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.publishReminder
+## reminderAgentManager.publishReminder
 
 publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
 
@@ -67,19 +82,34 @@ publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt;
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回提醒的reminderId。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700001    | Notification does not enable. |
+| 1700002    | The number of reminders exceeds the limit. |
+
 **示例**：
 ```js
-  let timer = {
-      reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-      triggerTimeInSeconds: 10
-  }
-  reminderAgent.publishReminder(timer).then((reminderId) => {
-      console.log("promise, reminderId = " + reminderId);
-  });
+let timer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+    triggerTimeInSeconds: 10
+}
+try {
+    reminderAgentManager.publishReminder(timer).then((reminderId) => {
+        console.log("promise, reminderId = " + reminderId);
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("publishReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelReminder
+## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -91,19 +121,36 @@ cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700003    | The reminder does not exist. |
+| 1700004    | The package name does not exist. |
 
 **示例**：
 
 ```js
-reminderAgent.cancelReminder(1, (err, data) => {
-    console.log("cancelReminder callback");
-});
+try {
+    reminderAgentManager.cancelReminder(1, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("cancelReminder callback");
+        }
+    });
+} catch (error) {
+    console.log("cancelReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelReminder
+## reminderAgentManager.cancelReminder
 
 cancelReminder(reminderId: number): Promise&lt;void&gt;
 
@@ -115,7 +162,7 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderId | number | 是 | 目标reminder的id号，[publishReminder](#reminderagentpublishreminder)方法调用成功后获得。 |
+| reminderId | number | 是 | 目标reminder的id号。 |
 
 **返回值**：
 
@@ -123,16 +170,31 @@ cancelReminder(reminderId: number): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise类型异步回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700003    | The reminder does not exist. |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
-reminderAgent.cancelReminder(1).then(() => {
-    console.log("cancelReminder promise");
-});
+try {
+    reminderAgentManager.cancelReminder(1).then(() => {
+        console.log("cancelReminder promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("cancelReminder code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.getValidReminders
+## reminderAgentManager.getValidReminders
 
 getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void
 
@@ -146,37 +208,53 @@ getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): 
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | 是 | 异步回调，返回当前应用已设置的所有有效（未过期）的提醒。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
-reminderAgent.getValidReminders((err, reminders) => {
-    console.log("callback, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+try {
+    reminderAgentManager.getValidReminders((err, reminders) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("callback, getValidReminders length = " + reminders.length);
+            for (let i = 0; i < reminders.length; i++) {
+                console.log("getValidReminders = " + reminders[i]);
+                console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+                for (let j = 0; j < reminders[i].actionButton.length; j++) {
+                    console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+                    console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+                }
+                console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+                console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+                console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+                console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+                console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+                console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+                console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+                console.log("getValidReminders, title = " + reminders[i].title);
+                console.log("getValidReminders, content = " + reminders[i].content);
+                console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+                console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+                console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+                console.log("getValidReminders, slotType = " + reminders[i].slotType);
+            }
         }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
-    }
-})
+    })
+} catch (error) {
+    console.log("getValidReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.getValidReminders
+## reminderAgentManager.getValidReminders
 
 getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 
@@ -190,37 +268,51 @@ getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt;
 | -------- | -------- |
 | Promise&lt;Array&lt;[ReminderRequest](#reminderrequest)&gt;&gt; | 返回当前应用已设置的所有有效（未过期）的提醒。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
-reminderAgent.getValidReminders().then((reminders) => {
-    console.log("promise, getValidReminders length = " + reminders.length);
-    for (let i = 0; i < reminders.length; i++) {
-        console.log("getValidReminders = " + reminders[i]);
-        console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
-        for (let j = 0; j < reminders[i].actionButton.length; j++) {
-            console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
-            console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+try {
+    reminderAgentManager.getValidReminders().then((reminders) => {
+        console.log("promise, getValidReminders length = " + reminders.length);
+        for (let i = 0; i < reminders.length; i++) {
+            console.log("getValidReminders = " + reminders[i]);
+            console.log("getValidReminders, reminderType = " + reminders[i].reminderType);
+            for (let j = 0; j < reminders[i].actionButton.length; j++) {
+                console.log("getValidReminders, actionButton.title = " + reminders[i].actionButton[j].title);
+                console.log("getValidReminders, actionButton.type = " + reminders[i].actionButton[j].type);
+            }
+            console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
+            console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
+            console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
+            console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
+            console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
+            console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
+            console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
+            console.log("getValidReminders, title = " + reminders[i].title);
+            console.log("getValidReminders, content = " + reminders[i].content);
+            console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
+            console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
+            console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
+            console.log("getValidReminders, slotType = " + reminders[i].slotType);
         }
-        console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent.pkgName);
-        console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent.abilityName);
-        console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent.pkgName);
-        console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent.abilityName);
-        console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
-        console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
-        console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
-        console.log("getValidReminders, title = " + reminders[i].title);
-        console.log("getValidReminders, content = " + reminders[i].content);
-        console.log("getValidReminders, expiredContent = " + reminders[i].expiredContent);
-        console.log("getValidReminders, snoozeContent = " + reminders[i].snoozeContent);
-        console.log("getValidReminders, notificationId = " + reminders[i].notificationId);
-        console.log("getValidReminders, slotType = " + reminders[i].slotType);
-    }
-})
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("getValidReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelAllReminders
+## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 
@@ -234,16 +326,32 @@ cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;void&gt; | 是 | 异步回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
-reminderAgent.cancelAllReminders((err, data) =>{
-    console.log("cancelAllReminders callback")
-})
+try {
+    reminderAgentManager.cancelAllReminders((err, data) =>{
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("cancelAllReminders callback")
+        }
+    })
+} catch (error) {
+    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.cancelAllReminders
+## reminderAgentManager.cancelAllReminders
 
 cancelAllReminders(): Promise&lt;void&gt;
 
@@ -257,16 +365,30 @@ cancelAllReminders(): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise类型异步回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[@ohos.reminderAgentManager (后台代理提醒)](../errorcodes/errcode-reminderAgentManager.md)错误码。
+
+| 错误码ID   | 错误码信息 |
+| --------- | ------- |
+| 1700004    | The package name does not exist. |
+
 **示例**：
 
 ```js
-reminderAgent.cancelAllReminders().then(() => {
-    console.log("cancelAllReminders promise")
-})
+try {
+    reminderAgentManager.cancelAllReminders().then(() => {
+        console.log("cancelAllReminders promise")
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("cancelAllReminders code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.addNotificationSlot
+## reminderAgentManager.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void
 
@@ -289,13 +411,21 @@ import notification from '@ohos.notification'
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot, (err, data) => {
-    console.log("addNotificationSlot callback");
-});
+try {
+    reminderAgentManager.addNotificationSlot(mySlot, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("addNotificationSlot callback");
+        }
+    });
+} catch (error) {
+    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.addNotificationSlot
+## reminderAgentManager.addNotificationSlot
 
 addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt;
 
@@ -323,13 +453,19 @@ import notification from '@ohos.notification'
 let mySlot = {
     type: notification.SlotType.SOCIAL_COMMUNICATION
 }
-reminderAgent.addNotificationSlot(mySlot).then(() => {
-   console.log("addNotificationSlot promise");
-});
+try {
+    reminderAgentManager.addNotificationSlot(mySlot).then(() => {
+        console.log("addNotificationSlot promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("addNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.removeNotificationSlot
+## reminderAgentManager.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -349,13 +485,21 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&
 ```js
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
-    console.log("removeNotificationSlot callback");
-});
+try {
+    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION, (err, data) => {
+        if (err) {
+            console.log("callback err code:" + err.code + " message:" + err.message);
+        } else {
+            console.log("removeNotificationSlot callback");
+        }
+    });
+} catch (error) {
+    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
 
 
-## reminderAgent.removeNotificationSlot
+## reminderAgentManager.removeNotificationSlot
 
 removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 
@@ -380,11 +524,16 @@ removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt;
 ```js
 import notification from '@ohos.notification'
 
-reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
-    console.log("removeNotificationSlot promise");
-});
+try {
+    reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
+        console.log("removeNotificationSlot promise");
+    }).catch(err => {
+        console.log("promise err code:" + err.code + " message:" + err.message);
+    });
+} catch (error) {
+    console.log("removeNotificationSlot code:" + error.code + " message:" + error.message);
+};
 ```
-
 
 ## ActionButtonType
 
@@ -455,10 +604,10 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
-| wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
-| maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
+| reminderType | ReminderType | 是 | 指明提醒类型。 |
+| actionButton | [ActionButton?,&nbsp;ActionButton?] | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| wantAgent | WantAgent | 否 | 点击通知后需要跳转的目标ability信息。 |
+| maxScreenWantAgent | MaxScreenWantAgent | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数。 |
 | timeInterval | number | 否 | 执行延迟提醒间隔。 |

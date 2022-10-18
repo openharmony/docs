@@ -63,7 +63,6 @@
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
-  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
 - 应用程序包管理
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
@@ -272,6 +271,7 @@
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
+  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
