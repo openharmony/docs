@@ -9,7 +9,7 @@
 
 - **Touchscreen驱动模型说明**
 
-  本节主要介绍基于Input驱动模型开发Touchscreen器件驱动，Input模型整体的框架如下图所示。
+  本节主要介绍基于Input驱动模型开发的Touchscreen器件驱动，Input模型整体的框架如下图所示。
 
   Input驱动模型基于HDF驱动框架、Platform接口、OSAL接口进行开发，向上对接规范化的驱动接口HDI（Hardware Device Interface）层，通过Input-HDI层对外提供硬件能力，即上层Input Service可以通过HDI接口层获取相应的驱动能力，进而操控Touchscreen等输入设备。
 
@@ -19,17 +19,17 @@
 
 - **Input驱动模型介绍**
 
-  Input驱动模型核心部分由设备管理层、公共驱动层、器件驱动层组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者的器件驱动开发效率。如下部分为模型各部分的说明：
+  Input驱动模型核心部分由**设备管理层**、**公共驱动层**、**器件驱动层**组成。器件产生的数据借助平台数据通道能力从内核传递到用户态，驱动模型通过配置文件适配不同器件及硬件平台，提高开发者对器件驱动的开发效率。如下为模型各部分的说明：
 
-  - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时统一管理Input设备列表。
-  - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
-  - Input器件驱动：指各器件厂家的差异化驱动，通过适配平台驱动预留的差异化接口，实现器件驱动开发量最小化。
+  - Input设备管理：为各类输入设备驱动提供Input设备的注册、注销接口，同时对Input设备列表进行统一管理。
+  - Input平台驱动：指各类Input设备的公共抽象驱动（例如触摸屏的公共驱动），该部分主要负责对板级硬件进行初始化、硬件中断处理、向manager注册Input设备等。
+  - Input器件驱动：指各器件厂家的差异化驱动，开发者可以通过适配平台驱动预留的差异化接口进行器件驱动开发，实现器件驱动开发量最小化。
   - Input数据通道：提供一套通用的数据上报通道，各类别的Input设备驱动均可用此通道上报Input事件。
   - Input配置解析：负责对Input设备的板级配置及器件私有配置进行解析及管理。
 
 - **基于HDF驱动框架开发器件驱动的优势**
 
-  在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型调用OSAL接口层和Platform接口层提供的基础接口进行开发，包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，以便逐步实现驱动的一次开发，多端部署。
+  在HDF（Hardware Driver Foundation）[驱动管理框架](../driver/driver-hdf-development.md)的基础上，Input驱动模型通过调用OSAL接口层和Platform接口层提供的基础接口进行开发，涉及的接口包括bus通信接口、操作系统原生接口（memory、lock、thread、timer等）。由于OSAL接口和Platform接口屏蔽了芯片平台的差异，所以基于Input驱动模型实现的Touchscreen驱动可以进行跨平台、跨OS迁移，从而实现驱动的一次开发、多端部署。
 
 
 ## 接口说明
@@ -46,14 +46,14 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 
   ![image](figures/Touchscreen器件常用管脚.png "Touchscreen器件常用管脚")
 
-如上图所示的三类接口，分别做简要说明如下：
+对于上图所示的三类接口，简要说明如下：
 
 1. **电源接口**
 
    - LDO_1P8：1.8V数字电路
    - LDO_3P3：3.3V模拟电路
 
-     通常情况下，Touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片演进，业内已有Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的芯片案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
+     通常情况下，Touchscreen驱动IC和LCD驱动IC是相互分离的，这种情况下，Touchscreen驱动IC一般同时需要1.8V和3.3V两路供电。随着芯片的演进，业内已有将Touchscreen驱动IC和LCD驱动IC集成在一颗IC中的案例，对Touchscreen而言，只需要关注1.8V供电即可，其内部需要的3.3V电源，会在驱动IC内部从LCD的VSP电源（典型值5.5V）中分出来。
 
 2. **IO控制接口**
 
@@ -63,24 +63,24 @@ Touchscreen器件的硬件接口相对简单，根据PIN脚的属性，可以简
 3. **通信接口**
 
    - I2C：由于Touchscreen的报点数据量相对较少，所以一般选用I2C方式传输数据。I2C的具体协议及对应操作接口，可以参考Platform接口层中的[“I2C”使用指南](../driver/driver-platform-i2c-des.md#概述)。
-   - SPI：部分厂商，由于需要传递的数据不止报点坐标，而是需要获取基础容值，数据量较大，所以会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](../driver/driver-platform-spi-des.md#概述)。
+   - SPI：在需要传递的数据不止包含报点坐标，还包含基础容值的情况下，由于需要传递的数据量较大，所以部分厂商会选用SPI通信方式。SPI的具体协议及对应操作接口，可以参考Platform接口层中的[“SPI” 使用指南](../driver/driver-platform-spi-des.md#概述)。
 
 
 ## 开发步骤
 
-Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区分操作系统和芯片平台，为Touchscreen等输入器件提供统一的驱动开发架构。
+基于HDF框架、Platform接口和OSAL接口开发的Input驱动模型，可以做到不区分操作系统和芯片平台，并为Touchscreen等输入器件提供统一的驱动开发架构。
 
-如下以Touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
+下面以Touchscreen器件驱动为例，说明Input驱动模型的完整加载流程：
 
-（1）设备描述配置：由开发者参考已有模板进行设备描述配置，包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
+（1）设备描述配置：由开发者参考已有模板进行设备描述配置，配置的信息包括驱动加载顺序、板级硬件信息、器件私有数据信息等。
 
-（2）加载Input设备管理驱动：Input设备管理驱动由HDF驱动加载，完成设备manager的创建并对其初始化。
+（2）加载Input设备管理驱动：由HDF驱动加载Input设备管理驱动，完成设备manager的创建并对其初始化。
 
 （3）加载平台驱动：平台驱动由HDF框架加载，主要完成板级配置解析及硬件初始化，并提供器件注册接口。
 
 （4）加载器件驱动：器件驱动也由HDF框架加载，完成器件设备的实例化，包括器件私有配置解析和平台预留的差异化接口适配。
 
-（5）器件设备向平台驱动注册：将实例化的器件设备向平台驱动注册，实现设备和驱动的绑定，并完成中断注册、上下电等器件初始化工作。
+（5）器件设备向平台驱动注册：将实例化的器件设备注册到平台驱动，实现设备和驱动的绑定，并完成中断注册、上下电等器件初始化工作。
 
 （6）Input设备注册：在器件初始化完成后，实例化Input设备，并将其注册到Input manager进行管理。
 
@@ -106,7 +106,7 @@ Input驱动模型是基于HDF框架、Platform接口和OSAL接口开发，不区
 如下配置主要包含Input驱动模型各模块层级信息，具体原理可参考[HDF驱动开发指南](../driver/driver-hdf-development.md)，HDF框架依据该配置信息实现对Input模型各模块的依次加载等。
 
 
-```
+```json
 input :: host {
             hostName = "input_host";
             priority = 100;
@@ -153,7 +153,7 @@ input :: host {
 如下配置包含板级硬件配置及器件私有数据配置，实际业务开发时，可根据具体需求增删及修改如下配置文件信息。
 
 
-```
+```json
 root {
     input_config {
         touchConfig {
@@ -244,7 +244,7 @@ root {
 在器件驱动中，主要实现了平台预留的差异化接口，以器件数据获取及解析进行示例说明。具体开发过程，需要根据实际使用的单板及器件进行适配。
 
 
-```
+```c
 /* 将从器件中读取到的报点数据解析为坐标 */
 static void ParsePointData(ChipDevice *device, FrameData *frame, uint8_t *buf, uint8_t pointNum)
 {
