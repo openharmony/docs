@@ -234,4 +234,4 @@ onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
 
 基于延迟任务调度，有以下相关实例可供参考：
 
-- [`WorkScheduler`：延迟任务调度（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)
+- [`WorkScheduler`：延迟任务调度（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/ResourcesSchedule/WorkScheduler)

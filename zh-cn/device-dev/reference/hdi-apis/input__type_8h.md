@@ -44,17 +44,17 @@ Input设备相关的类型定义。
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [MAX_INPUT_DEV_NUM](input.md#maxinputdevnum)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
-| [CHIP_INFO_LEN](input.md#chipinfolen)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
-| [CHIP_NAME_LEN](input.md#chipnamelen)&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
-| [VENDOR_NAME_LEN](input.md#vendornamelen)&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
-| [DEV_NAME_LEN](input.md#devnamelen)&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
-| [SELF_TEST_RESULT_LEN](input.md#selftestresultlen)&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
-| [DEV_MANAGER_SERVICE_NAME](input.md#devmanagerservicename)&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
-| [DIV_ROUND_UP](input.md#divroundup)(nr,&nbsp;d)&nbsp;&nbsp;&nbsp;(((nr)&nbsp;+&nbsp;(d)&nbsp;-&nbsp;1)&nbsp;/&nbsp;(d)) | 向上取整计算公式。 | 
-| [BYTE_HAS_BITS](input.md#bytehasbits)&nbsp;&nbsp;&nbsp;8 | 一个字节所包含的比特数。 | 
-| [BITS_TO_UINT64](input.md#bitstouint64)(count)&nbsp;&nbsp;&nbsp;[DIV_ROUND_UP](input.md#divroundup)(count,&nbsp;[BYTE_HAS_BITS](input.md#bytehasbits)&nbsp;\*&nbsp;sizeof(uint64_t)) | 比特与64位无符号整数的转换公式。 | 
-| [HDF_FF_CNT](input.md#hdfffcnt)&nbsp;&nbsp;&nbsp;(0x7f&nbsp;+&nbsp;1) | Input设备发送力反馈命令的数量最大值。 | 
+| [MAX_INPUT_DEV_NUM](input.md#max_input_dev_num)&nbsp;&nbsp;&nbsp;32 | Input设备数量的最大值。 | 
+| [CHIP_INFO_LEN](input.md#chip_info_len)&nbsp;&nbsp;&nbsp;10 | 芯片信息长度。 | 
+| [CHIP_NAME_LEN](input.md#chip_name_len)&nbsp;&nbsp;&nbsp;10 | 芯片名称长度。 | 
+| [VENDOR_NAME_LEN](input.md#vendor_name_len)&nbsp;&nbsp;&nbsp;10 | 厂商名称长度。 | 
+| [DEV_NAME_LEN](input.md#dev_name_len)&nbsp;&nbsp;&nbsp;64 | Input设备名称长度。 | 
+| [SELF_TEST_RESULT_LEN](input.md#self_test_result_len)&nbsp;&nbsp;&nbsp;20 | 自测结果长度。 | 
+| [DEV_MANAGER_SERVICE_NAME](input.md#dev_manager_service_name)&nbsp;&nbsp;&nbsp;"hdf_input_host" | Input设备节点服务名称。 | 
+| [DIV_ROUND_UP](input.md#div_round_up)(nr,&nbsp;d)&nbsp;&nbsp;&nbsp;(((nr)&nbsp;+&nbsp;(d)&nbsp;-&nbsp;1)&nbsp;/&nbsp;(d)) | 向上取整计算公式。 | 
+| [BYTE_HAS_BITS](input.md#byte_has_bits)&nbsp;&nbsp;&nbsp;8 | 一个字节所包含的比特数。 | 
+| [BITS_TO_UINT64](input.md#bits_to_uint64)(count)&nbsp;&nbsp;&nbsp;[DIV_ROUND_UP](input.md#div_round_up)(count,&nbsp;[BYTE_HAS_BITS](input.md#byte_has_bits)&nbsp;\*&nbsp;sizeof(uint64_t)) | 比特与64位无符号整数的转换公式。 | 
+| [HDF_FF_CNT](input.md#hdf_ff_cnt)&nbsp;&nbsp;&nbsp;(0x7f&nbsp;+&nbsp;1) | Input设备发送力反馈命令的数量最大值。 | 
 
 
 ### 枚举

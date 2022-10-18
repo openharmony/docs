@@ -6,10 +6,10 @@ HUAWEI DevEco Studio For OpenHarmony（以下简称DevEco Studio）是基于Inte
 
 [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/) 作为支撑OpenHarmony应用和服务开发的IDE，具有以下能力特点：
 
-- **高效智能代码编辑**：支持eTS、JavaScript、C/C++等语言的代码高亮、代码智能补齐、代码错误检查、代码自动跳转、代码格式化、代码查找等功能，提升代码编写效率。更多详细信息，请参考[编辑器使用技巧](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-editor-usage-tips-0000001263360493)。
+- **高效智能代码编辑**：支持ArkTS、JavaScript、C/C++等语言的代码高亮、代码智能补齐、代码错误检查、代码自动跳转、代码格式化、代码查找等功能，提升代码编写效率。更多详细信息，请参考[编辑器使用技巧](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-editor-usage-tips-0000001263360493)。
 - **低代码可视化开发**：丰富的UI界面编辑能力，支持自由拖拽组件和可视化数据绑定，可快速预览效果，所见即所得；同时支持卡片的零代码开发，降低开发门槛和提升界面开发效率。更多详细信息，请参考使用[低代码开发应用/服务](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-low-code-development-0000001218440652)。
 - **多端双向实时预览**：支持UI界面代码的双向预览、实时预览、动态预览、组件预览以及多端设备预览，便于快速查看代码运行效果。更多详细信息，请参考[使用预览器预览应用/服务界面效果](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-previewing-app-service-0000001218760596)。
-- **全新构建体系**：通过Hvigor编译构建工具，一键完成应用及服务的编译和打包，更好地支持eTS/JS开发。
+- **全新构建体系**：通过Hvigor编译构建工具，一键完成应用及服务的编译和打包，更好地支持ArkTS/JS开发。
 - **一站式信息获取**：基于开发者了解、学习、开发、求助的用户旅程，在DevEco Studio中提供一站式的信息获取平台，高效支撑开发者活动。
 - **高效代码调试**：提供TS、JS 、C/C++代码的断点设置，单步执行、变量查看等调试能力，提升应用及服务的问题分析效率。
 

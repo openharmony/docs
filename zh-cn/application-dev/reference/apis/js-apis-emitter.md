@@ -26,10 +26,10 @@ on(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdata)
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                     |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件           |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
+| 参数名   | 类型                                | 必填 | 说明                                    |
+| -------- | ----------------------------------- | ---- | --------------------------------------- |
+| event    | [InnerEvent](#innerevent)           | 是   | 持续订阅的事件，其中EventPriority不生效 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理                |
 
 **示例：**
 
@@ -53,10 +53,10 @@ once(event: [InnerEvent](#innerevent), callback: Callback\<[EventData](#eventdat
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                     |
-| -------- | ----------------------------------- | ---- | ------------------------ |
-| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件           |
-| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理 |
+| 参数名   | 类型                                | 必填 | 说明                                    |
+| -------- | ----------------------------------- | ---- | --------------------------------------- |
+| event    | [InnerEvent](#innerevent)           | 是   | 单次订阅的事件，其中EventPriority不生效 |
+| callback | Callback\<[EventData](#eventdata)\> | 是   | 接收订阅事件时的回调处理                |
 
 **示例：**
 

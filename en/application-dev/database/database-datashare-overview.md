@@ -22,7 +22,7 @@ Before you get started, familiarize yourself with the following concepts:
 
   An application that accesses the data or services provided by a data provider. It is also called a client.
 
-- Value bucket (**ValuesBucket**)
+- **ValuesBucket**
 
   One or more data records stored in the form of key-value (KV) pairs. The keys are of the string type. The values can be of the number, string, Boolean, or Unit8Array type.
 

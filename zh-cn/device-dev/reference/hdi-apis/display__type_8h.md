@@ -52,7 +52,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [PROPERTY_NAME_LEN](_display.md#propertynamelen)&nbsp;&nbsp;&nbsp;50 | 属性名字长度。 | 
+| [PROPERTY_NAME_LEN](_display.md#property_name_len)&nbsp;&nbsp;50 | 属性名字长度。 | 
 
 
 ### 枚举

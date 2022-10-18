@@ -262,6 +262,6 @@ Notification.cancel(1, "label", cancelCallback)
 
 针对通知开发，有以下相关可供参考：
 
-- [`Notification:`订阅、发送通知（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)
+- [`Notification:`订阅、发送通知（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)
 
-- [`Notification`：通知（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Notification)
+- [`Notification`：通知（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/Notification)

@@ -1,4 +1,4 @@
-# 基于eTS的声明式开发范式
+# 基于ArkTS的声明式开发范式
 
 - 组件通用信息
     - 通用事件
@@ -132,12 +132,12 @@
 - 画布组件
     - [Canvas](ts-components-canvas-canvas.md)
     - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
-    - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
-    - [Lottie](ts-components-canvas-lottie.md)
-    - [Path2D对象](ts-components-canvas-path2d.md)
     - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
     - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
     - [ImageData对象](ts-components-canvas-imagedata.md)
+    - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
+    - [Path2D对象](ts-components-canvas-path2d.md)
+    - [Lottie](ts-components-canvas-lottie.md)
 
 
 - 动画

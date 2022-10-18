@@ -1,28 +1,34 @@
 # 音频播放开发指导
 
-## 场景介绍
+## 简介
 
-音频播放的主要工作是将音频数据转码为可听见的音频模拟信号并通过输出设备进行播放，同时对播放任务进行管理。
+音频播放的主要工作是将音频数据转码为可听见的音频模拟信号，并通过输出设备进行播放，同时对播放任务进行管理，包括开始播放、暂停播放、停止播放、释放资源、设置音量、跳转播放位置、获取轨道信息等功能控制。
 
-**图1** 音频播放状态机
+## 运作机制
+
+该模块提供了音频播放状态变化示意图和音频播放外部模块交互图。
+
+**图1** 音频播放状态变化示意图
 
 ![zh-ch_image_audio_state_machine](figures/zh-ch_image_audio_state_machine.png)
 
-**说明**：当前为Idle状态，设置src不会改变状态；且src设置成功后，不能再次设置其它src，需调用reset()接口后，才能重新设置src。
+**注意**：当前为Idle状态，设置src不会改变状态；且src设置成功后，不能再次设置其它src，需调用reset()接口后，才能重新设置src。
 
 
 
-**图2** 音频播放零层图
+**图2** 音频播放外部模块交互图
 
 ![zh-ch_image_audio_player](figures/zh-ch_image_audio_player.png)
 
-## 开发步骤
+**说明**：三方应用通过调用JS接口层提供的js接口实现相应功能时，框架层会通过Native Framework的媒体服务，调用音频部件，将软件解码后的音频数据输出至硬件接口层的音频HDI，实现音频播放功能。
+
+## 开发指导
 
 详细API含义可参考：[媒体服务API文档AudioPlayer](../reference/apis/js-apis-media.md#audioplayer)
 
 ### 全流程场景
 
-包含流程：创建实例，设置uri，播放音频，跳转播放位置，设置音量，暂停播放，获取轨道信息，停止播放，重置，释放资源等流程。
+音频播放的全流程场景包含：创建实例，设置uri，播放音频，跳转播放位置，设置音量，暂停播放，获取轨道信息，停止播放，重置，释放资源等流程。
 
 AudioPlayer支持的src媒体源输入类型可参考：[src属性说明](../reference/apis/js-apis-media.md#audioplayer_属性)
 
@@ -260,5 +266,5 @@ export class AudioDemo {
 
 - [`JsDistributedMusicPlayer:`分布式音乐播放（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/JsDistributedMusicPlayer)
 - [`JsAudioPlayer`：音频播放和管理（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/JsAudioPlayer)
-- [`eTsAudioPlayer`: 音频播放器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [音频播放器（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [音频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

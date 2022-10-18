@@ -8,7 +8,7 @@
 
 应用中存在用户能够直观感受到的且需要一直在后台运行的业务时（如，后台播放音乐），可以使用长时任务机制。
 
-对于系统特权应用，提供独立的能效资源申请接口。系统特权应用如果需要使用特定的系统资源，例如在被挂起期间仍然能够收到系统公共事件，可以使用能效资源申请接口。
+对于系统特权应用，提供独立的能效资源申请接口。系统特权应用如果需要使用特定的系统资源，例如需要在被挂起期间仍然能够收到系统公共事件，可以使用能效资源申请接口。
 
 >  **说明：**
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
@@ -22,13 +22,13 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
 
-## backgroundTaskManager.requestSuspendDelay<sup>(deprecated)</sup>
+## backgroundTaskManager.requestSuspendDelay<sup>7+(deprecated)</sup>
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
 后台应用申请延迟挂起。
 
-延迟挂起时间一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。
+延迟挂起时间一般情况下默认值为180000毫秒，低电量（依据系统低电量广播）时默认值为60000毫秒。
 
 > **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerrequestsuspenddelay9)
 >
@@ -56,9 +56,9 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
-  
-  var id = delayInfo.requestId;
-  var time = delayInfo.actualDelayTime;
+
+  let id = delayInfo.requestId;
+  let time = delayInfo.actualDelayTime;
   console.info("The requestId is: " + id);
   console.info("The actualDelayTime is: " + time);
   ```
@@ -79,7 +79,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **参数**：
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
-| requestId | number                      | 是    | 延迟挂起的请求ID。                               |
+| requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
 **示例**：
@@ -87,8 +87,8 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   ```js
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id, (err, res) => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err, res) => {
       if(err) {
           console.log('callback => Operation getRemainingDelayTime failed. Cause: ' + err.code);
       } else {
@@ -113,7 +113,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **参数**：
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **返回值**：
 | 类型                    | 说明                                       |
@@ -122,10 +122,8 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **示例**：
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
-  let id = 1;
-  backgroundTaskManager.getRemainingDelayTime(id).then( res => {
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
       console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
   }).catch( err => {
       console.log('promise => Operation getRemainingDelayTime failed. Cause: ' + err.code);
@@ -148,14 +146,12 @@ cancelSuspendDelay(requestId: number): void
 **参数**：
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
-| requestId | number | 是    | 延迟挂起的请求ID。 |
+| requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **示例**：
   ```js
-  import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
-  let id = 1;
-  backgroundTaskManager.cancelSuspendDelay(id);
+  let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
+  backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
   ```
 
 
@@ -182,6 +178,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
 
 **示例**：
+
+FA模型示例：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -209,9 +208,46 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj, callback)
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
 });
 
+```
+
+Stage模型示例：
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import wantAgent from '@ohos.wantAgent';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation startBackgroundRunning failed Cause: " + err);
+    } else {
+        console.info("Operation startBackgroundRunning succeeded");
+    }
+}
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "com.example.myapplication.MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            backgroundTaskManager.startBackgroundRunning(this.context,
+                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj, callback)
+        });
+    }
+};
 ```
 
 ## backgroundTaskManager.startBackgroundRunning<sup>8+(deprecated)</sup>
@@ -242,6 +278,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | Promise\<void> | 使用Promise形式返回结果。 |
 
 **示例**：
+
+FA模型示例：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -261,13 +300,45 @@ let wantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
     backgroundTaskManager.startBackgroundRunning(featureAbility.getContext(),
-        backgroundTaskManager.BackgroundMode.DATA_TRANSFER, wantAgentObj).then(() => {
+        backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
         console.info("Operation startBackgroundRunning succeeded");
     }).catch((err) => {
         console.error("Operation startBackgroundRunning failed Cause: " + err);
     });
 });
+```
 
+Stage模型示例：
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import wantAgent from '@ohos.wantAgent';
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        let wantAgentInfo = {
+            wants: [
+                {
+                    bundleName: "com.example.myapplication",
+                    abilityName: "com.example.myapplication.MainAbility"
+                }
+            ],
+            operationType: wantAgent.OperationType.START_ABILITY,
+            requestCode: 0,
+            wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+        };
+
+        wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
+            backgroundTaskManager.startBackgroundRunning(this.context,
+                backgroundTaskManager.BackgroundMode.LOCATION, wantAgentObj).then(() => {
+                console.info("Operation startBackgroundRunning succeeded");
+            }).catch((err) => {
+                console.error("Operation startBackgroundRunning failed Cause: " + err);
+            });
+        });
+    }
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
@@ -289,6 +360,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
 **示例**：
+
+FA模型示例：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -303,6 +377,27 @@ function callback(err, data) {
 
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext(), callback);
 
+```
+
+Stage模型示例：
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+function callback(err, data) {
+    if (err) {
+        console.error("Operation stopBackgroundRunning failed Cause: " + err);
+    } else {
+        console.info("Operation stopBackgroundRunning succeeded");
+    }
+}
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        backgroundTaskManager.stopBackgroundRunning(this.context, callback);
+    }
+};
 ```
 
 ## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
@@ -328,6 +423,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | Promise\<void> | 使用Promise形式返回结果。 |
 
 **示例**：
+
+FA模型示例：
+
 ```js
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -340,11 +438,30 @@ backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(()
 
 ```
 
+Stage模型示例：
+
+```ts
+import Ability from '@ohos.application.Ability'
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+            console.info("Operation stopBackgroundRunning succeeded");
+        }).catch((err) => {
+            console.error("Operation stopBackgroundRunning failed Cause: " + err);
+        });
+    }
+};
+```
+
 ## backgroundTaskManager.applyEfficiencyResources<sup>9+(deprecated)</sup>
 
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): void
 
-向系统申请能效资源，使用boolean形式返回结果。
+向系统申请或释放能效资源，使用boolean形式返回结果。
+通过EfficiencyResourcesRequest参数中的isApply变量，设置是申请还是释放。
+应用使用此接口，需要向应用中心申请获得相应特权。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
 
 > **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.applyEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerapplyefficiencyresources9)
@@ -368,6 +485,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 let request = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
+    // 如果将isApply置为false，则表示释放资源
     isApply: true,
     timeOut: 0,
     reason: "apply",
@@ -387,6 +505,7 @@ try {
 resetAllEfficiencyResources(): void
 
 释放所有已经申请的资源。
+应用使用此接口，需要向应用中心申请获得相应特权。
 
 > **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.resetAllEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresetallefficiencyresources9)
 >

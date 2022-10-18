@@ -32,7 +32,8 @@ import commonEvent from '@ohos.commonEvent';
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo文档](../reference/apis/js-apis-commonEvent.md#commoneventsubscribeinfo)介绍。
 
 ```js
-private subscriber = null	//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+//用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+private subscriber = null
 
 //订阅者信息
 var subscribeInfo = {
@@ -174,6 +175,6 @@ if (this.subscriber != null) {
 
 针对公共事件开发，有以下相关实例可供参考：
 
-- [`CommonEvent`：订阅公共事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CommonEvent)
+- [`CommonEvent`：订阅公共事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CommonEvent)
 
 

@@ -60,20 +60,24 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-    // do something here.
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 
@@ -102,26 +106,30 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}).then(
-	(val) => {
-	    // do something here.
-	}
-).catch(
-	(err) => {
-	    // do something here.
-	}
-)
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }).then(
+        (val) => {
+            // do something here.
+        }
+    ).catch(
+        (err) => {
+            // do something here.
+        }
+    )
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## RuleType
@@ -177,32 +185,30 @@ addWatcher(watcher: Watcher): number
 | ------ | ----------------------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
 
-**返回值：**
-
-| 类型    | 说明 |
-| ------- | -------------------------------------------------- |
-| number | 系统事件订阅结果。<br>- 0表示订阅成功。<br>- 负值表示订阅失败。 |
-
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
+try {
+    hiSysEvent.addWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## hiSysEvent.removeWatcher
@@ -221,33 +227,31 @@ removeWatcher(watcher: Watcher): number
 | ------ | ------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | 是 | 系统事件订阅者对象。 |
 
-**返回值：**
-
-| 类型    | 说明 |
-| ------- | ----------------------------------------------------------- |
-| number | 取消订阅系统事件的结果。<br>- 0表示取消订阅成功。<br>- 负值表示取消订阅失败。 |
-
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
-hiSysEvent.removeWatcher(watcher)
+try {
+    let ret = hiSysEvent.addWatcher(watcher)
+    hiSysEvent.removeWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## QueryArg
@@ -281,7 +285,7 @@ hiSysEvent.removeWatcher(watcher)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[], seqs: number[]) => void。 |
+| onQuery | function | 是 | 返回查询到的系统事件的回调方法(infos: [SysEventInfo](#syseventinfo)[]) => void。 |
 | onComplete | function | 是 | 查询结果统计的回调方法(reason: number, total: number) => void。 |
 
 ## hiSysEvent.query
@@ -302,44 +306,42 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): number
 | rules | [QueryRule](#queryrule)[] | 是   | 查询规则数组，每次查询可配置多个查询规则。 |
 | querier | [Querier](#querier) | 是   | 查询者对象，包含查询结果及结束的相关回调。 |
 
-**返回值：**
-
-| 类型    | 说明                                                        |
-| ------- | ----------------------------------------------------------- |
-| number | 系统事件查询的结果。<br>- 0表示查询成功.<br>- 负值表示查询失败。 |
-
 **示例：**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-	// do something here.
-})
-hiSysEvent.query({
-	beginTime: -1,
-	endTime: -1,
-	maxEvents: 5,
-}, [{
-	domain: "RELIABILITY",
-	names: ["STACK"],
-}], {
-	onQuery: function (infos, seqs) {
-		// do something here.
-	},
-	onComplete: function(reason, total) {
-		// do something here.
-	}
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+    hiSysEvent.query({
+        beginTime: -1,
+        endTime: -1,
+        maxEvents: 5,
+    }, [{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    }], {
+        onQuery: function (infos) {
+            // do something here.
+        },
+        onComplete: function(reason, total) {
+            // do something here.
+        }
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
