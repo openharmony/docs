@@ -337,10 +337,10 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void;
 import particleAbility from '@ohos.ability.particleAbility';
 
 function callback(err, data) {
-    if (err && err.code === 0) {
-        console.info("Operation succeeded");
-    } else {
+    if (err) {
         console.error("Operation failed cause: " + JSON.stringify(err));
+    } else {
+        console.info("Operation succeeded");
     }
 }
 
