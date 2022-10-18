@@ -121,7 +121,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 1. 注册CameraHost
 
-    定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法。
+    定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法（代码目录drivers/peripheral/camera/interfaces/hdi_ipc/camera_host_driver.cpp）。
     ```
    struct HdfDriverEntry g_cameraHostDriverEntry = {
        .moduleVersion = 1,
@@ -138,23 +138,36 @@ Camera驱动的开发过程主要包含以下步骤：
     步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
 
    ```
-   int HdfCameraHostDriverBind(HdfDeviceObject *deviceObject)
+   static int HdfCameraHostDriverBind(struct HdfDeviceObject *deviceObject)
    {
-       HDF_LOGI("HdfCameraHostDriverBind enter!");
-       if (deviceObject == nullptr) {
-           HDF_LOGE("HdfCameraHostDriverBind: HdfDeviceObject is NULL!");
+       HDF_LOGI("HdfCameraHostDriverBind enter");
+    
+       auto *hdfCameraHostHost = new (std::nothrow) HdfCameraHostHost;
+       if (hdfCameraHostHost == nullptr) {
+           HDF_LOGE("%{public}s: failed to create create HdfCameraHostHost object", __func__);
            return HDF_FAILURE;
        }
-       HdfCameraService *hdfCameraService = reinterpret_cast<HdfCameraService *>(OsalMemAlloc(sizeof(HdfCameraService)));
-       if (hdfCameraService == nullptr) {
-           HDF_LOGE("HdfCameraHostDriverBind OsalMemAlloc HdfCameraService failed!");
+    
+       hdfCameraHostHost->ioService.Dispatch = CameraHostDriverDispatch; //提供远端CameraHost调用方法
+       hdfCameraHostHost->ioService.Open = NULL;
+       hdfCameraHostHost->ioService.Release = NULL;
+    
+       auto serviceImpl = ICameraHost::Get(true);
+       if (serviceImpl == nullptr) {
+           HDF_LOGE("%{public}s: failed to get of implement service", __func__);
+           delete hdfCameraHostHost;
            return HDF_FAILURE;
        }
-       hdfCameraService->ioservice.Dispatch = CameraServiceDispatch; // 提供远端CameraHost调用方法
-       hdfCameraService->ioservice.Open = nullptr;
-       hdfCameraService->ioservice.Release = nullptr;
-       hdfCameraService->instance = CameraHostStubInstance(); // 初始化Camera设备
-       deviceObject->service = &hdfCameraService->ioservice;
+    
+       hdfCameraHostHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
+           ICameraHost::GetDescriptor()); //初始化Camera设备
+       if (hdfCameraHostHost->stub == nullptr) {
+           HDF_LOGE("%{public}s: failed to get stub object", __func__);
+           delete hdfCameraHostHost;
+           return HDF_FAILURE;
+       }
+    
+       deviceObject->service = &hdfCameraHostHost->ioService;
        return HDF_SUCCESS;
    }
    ```
@@ -224,64 +237,98 @@ Camera驱动的开发过程主要包含以下步骤：
    CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
 
    ```
-   CamRetCode CameraHostProxy::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &pDevice)
+   int32_t CameraHostProxy::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
+       sptr<ICameraDevice>& device)
    {
-       int32_t ret = Remote()->SendRequest(CMD_CAMERA_HOST_REMOTE_OPEN_CAMERA, data, reply, option);
-       if (ret != HDF_SUCCESS) {
-           HDF_LOGE("%{public}s: SendRequest failed, error code is %{public}d", __func__, ret);
-           return INVALID_ARGUMENT;
+       MessageParcel cameraHostData;
+       MessageParcel cameraHostReply;
+       MessageOption cameraHostOption(MessageOption::TF_SYNC);
+    
+       if (!cameraHostData.WriteInterfaceToken(ICameraHost::GetDescriptor())) {
+           HDF_LOGE("%{public}s: failed to write interface descriptor!", __func__);
+           return HDF_ERR_INVALID_PARAM;
        }
-       CamRetCode retCode = static_cast<CamRetCode>(reply.ReadInt32());
-       bool flag = reply.ReadBool();
-       if (flag) {
-           sptr<IRemoteObject> remoteCameraDevice = reply.ReadRemoteObject();
-           if (remoteCameraDevice == nullptr) {
-               HDF_LOGE("%{public}s: CameraHostProxy remoteCameraDevice is null", __func__);
-           }
-           pDevice = OHOS::iface_cast<ICameraDevice>(remoteCameraDevice);
+    
+       if (!cameraHostData.WriteCString(cameraId.c_str())) {
+           HDF_LOGE("%{public}s: write cameraId failed!", __func__);
+           return HDF_ERR_INVALID_PARAM;
        }
-       return retCode;
+    
+       if (!cameraHostData.WriteRemoteObject(OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(callbackObj, 
+           ICameraDeviceCallback::GetDescriptor()))) {
+           HDF_LOGE("%{public}s: write callbackObj failed!", __func__);
+           return HDF_ERR_INVALID_PARAM;
+       }
+    
+       int32_t cameraHostRet = Remote()->SendRequest(CMD_CAMERA_HOST_OPEN_CAMERA, cameraHostData, cameraHostReply, cameraHostOption);
+       if (cameraHostRet != HDF_SUCCESS) {
+           HDF_LOGE("%{public}s failed, error code is %{public}d", __func__, cameraHostRet);
+           return cameraHostRet;
+       }
+    
+       device = hdi_facecast<ICameraDevice>(cameraHostReply.ReadRemoteObject());
+    
+       return cameraHostRet;
    }
    ```
 
    Remote()->SendRequest调用上文提到的CameraHostServiceStubOnRemoteRequest()，根据cmdId进入CameraHostStubOpenCamera()接口，最终调用CameraHostImpl::OpenCamera()，该接口获取了CameraDevice并对硬件进行上电等操作。
 
    ```
-   CamRetCode CameraHostImpl::OpenCamera(const std::string &cameraId, const OHOS::sptr<ICameraDeviceCallback> &callback, OHOS::sptr<ICameraDevice> &device)
+   int32_t CameraHostImpl::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
+       sptr<ICameraDevice>& device)
    {
-       std::shared_ptr<CameraDeviceImpl> cameraDevice = std::static_pointer_cast<CameraDeviceImpl>(itr->second);
+       CAMERA_LOGD("OpenCamera entry");
+       DFX_LOCAL_HITRACE_BEGIN;
+       if (CameraIdInvalid(cameraId) != RC_OK || callbackObj == nullptr) {
+           CAMERA_LOGW("open camera id is empty or callback is null.");
+           return INVALID_ARGUMENT;
+       }
+    
+       auto itr = cameraDeviceMap_.find(cameraId);
+       if (itr == cameraDeviceMap_.end()) {
+           CAMERA_LOGE("camera device not found.");
+           return INSUFFICIENT_RESOURCES;
+       }
+       CAMERA_LOGD("OpenCamera cameraId find success.");
+    
+       std::shared_ptr<CameraDeviceImpl> cameraDevice = itr->second;
        if (cameraDevice == nullptr) {
            CAMERA_LOGE("camera device is null.");
            return INSUFFICIENT_RESOURCES;
        }
-       CamRetCode ret = cameraDevice->SetCallback(callback);
-       if (ret != NO_ERROR) {
-           CAMERA_LOGW("set camera device callback failed.");
-           return ret;
-       }
+    
+       CamRetCode ret = cameraDevice->SetCallback(callbackObj);
+       CHECK_IF_NOT_EQUAL_RETURN_VALUE(ret, HDI::Camera::V1_0::NO_ERROR, ret);
+    
        CameraHostConfig *config = CameraHostConfig::GetInstance();
-       if (config == nullptr) {
-           return INVALID_ARGUMENT;
-       }
+       CHECK_IF_PTR_NULL_RETURN_VALUE(config, INVALID_ARGUMENT);
+    
        std::vector<std::string> phyCameraIds;
        RetCode rc = config->GetPhysicCameraIds(cameraId, phyCameraIds);
        if (rc != RC_OK) {
            CAMERA_LOGE("get physic cameraId failed.");
            return DEVICE_ERROR;
        }
-       if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { // 对Camera硬件上电
+       if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { //对Camera硬件上电
            CAMERA_LOGE("camera powerup failed.");
            CameraPowerDown(phyCameraIds);
            return DEVICE_ERROR;
        }
-   
+    
        auto sptrDevice = deviceBackup_.find(cameraId);
        if (sptrDevice == deviceBackup_.end()) {
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+           deviceBackup_[cameraId] = cameraDevice;
+   #else
            deviceBackup_[cameraId] = cameraDevice.get();
+   #endif
        }
        device = deviceBackup_[cameraId];
        cameraDevice->SetStatus(true);
-       return NO_ERROR;
+       CAMERA_LOGD("open camera success.");
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
@@ -290,28 +337,41 @@ Camera驱动的开发过程主要包含以下步骤：
    CameraDeviceImpl定义了GetStreamOperator、UpdateSettings、SetResultMode和GetEnabledResult等方法，获取流操作方法如下：
 
    ```
-   CamRetCode CameraDeviceImpl::GetStreamOperator(const OHOS::sptr<IStreamOperatorCallback> &callback,
-    OHOS::sptr<IStreamOperator> &streamOperator)
+   int32_t CameraDeviceImpl::GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj,
+       sptr<IStreamOperator>& streamOperator)
    {
-       if (callback == nullptr) {
+       HDI_DEVICE_PLACE_A_WATCHDOG;
+       DFX_LOCAL_HITRACE_BEGIN;
+       if (callbackObj == nullptr) {
            CAMERA_LOGW("input callback is null.");
            return INVALID_ARGUMENT;
        }
-       spCameraDeviceCallback_ = callback;
+    
+       spCameraDeciceCallback_ = callbackObj;
        if (spStreamOperator_ == nullptr) {
-           // 这里新建一个spStreamOperator对象传递给调用者，以便对stream进行各种操作。
-           spStreamOperator_ = new(std::nothrow) StreamOperatorImpl(spCameraDeviceCallback_, shared_from_this());
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+           //这里创建一个spStreamOperator_ 对象传递给调用者，以便对stream进行各种操作
+           spStreamOperator_ = std::make_shared<StreamOperator>(spCameraDeciceCallback_, shared_from_this());
+   #else
+           spStreamOperator_ = new(std::nothrow) StreamOperator(spCameraDeciceCallback_, shared_from_this());
+   #endif
            if (spStreamOperator_ == nullptr) {
                CAMERA_LOGW("create stream operator failed.");
                return DEVICE_ERROR;
            }
+           spStreamOperator_->Init();
            ismOperator_ = spStreamOperator_;
        }
        streamOperator = ismOperator_;
-   
-       spStreamOperator_->SetRequestCallback([this](){
-           spCameraDeviceCallback_->OnError(REQUEST_TIMEOUT, 0);
+   #ifndef CAMERA_BUILT_ON_OHOS_LITE
+       CAMERA_LOGI("CameraDeviceImpl %{public}s: line: %{public}d", __FUNCTION__, __LINE__);
+       pipelineCore_->GetStreamPipelineCore()->SetCallback(
+           [this](const std::shared_ptr<CameraMetadata> &metadata) {
+           OnMetadataChanged(metadata);
        });
+   #endif
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
@@ -328,34 +388,64 @@ Camera驱动的开发过程主要包含以下步骤：
        int dataSpace_; 
        StreamIntent intent_; // StreamIntent 如PREVIEW
        bool tunneledMode_;
-       OHOS::sptr<OHOS::IBufferProducer> bufferQueue_; // 数据流bufferQueue可用streamCustomer->CreateProducer()接口创建
+       BufferProducerSequenceable bufferQueue_; // 数据流bufferQueue可用streamCustomer->CreateProducer()接口创建
        int minFrameDuration_;
        EncodeType encodeType_;
    };
    ```
 
-   CreateStreams()接口是StreamOperatorImpl类中的方法，该接口的主要作用是创建一个StreamBase对象，通过StreamBase的Init方法初始化CreateBufferPool等操作。
+   CreateStreams()接口是StreamOperator（StreamOperatorImpl类是StreamOperator的基类）类中的方法，该接口的主要作用是创建一个StreamBase对象，通过StreamBase的Init方法初始化CreateBufferPool等操作。
 
    ```
-   RetCode StreamOperatorImpl::CreateStream(const std::shared_ptr<StreamInfo>& streamInfo)
+   int32_t StreamOperator::CreateStreams(const std::vector<StreamInfo>& streamInfos)
    {
-       static std::map<StreamIntent, std::string> typeMap = {
-           {PREVIEW, "PREVIEW"},
-           {VIDEO, "VIDEO"},
-           {STILL_CAPTURE, "STILL_CAPTURE"},
-           {POST_VIEW, "POST_VIEW"}, {ANALYZE, "ANALYZE"},
-           {CUSTOM, "CUSTOM"}
-       };
-   
-       auto itr = typeMap.find(streamInfo->intent_);
-       if (itr == typeMap.end()) {
-           CAMERA_LOGE("do not support stream type. [type = %{public}d]", streamInfo->intent_);
-           return RC_ERROR;
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+       for (const auto& it : streamInfos) {
+           CHECK_IF_NOT_EQUAL_RETURN_VALUE(CheckStreamInfo(it), true, INVALID_ARGUMENT);
+           CAMERA_LOGI("streamId:%{public}d and format:%{public}d and width:%{public}d and height:%{public}d",
+               it.streamId_, it.format_, it.width_, it.height_);
+           if (streamMap_.count(it.streamId_) > 0) {
+               CAMERA_LOGE("stream [id = %{public}d] has already been created.", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           std::shared_ptr<IStream> stream = StreamFactory::Instance().CreateShared( //创建Stream实例
+               IStream::g_availableStreamType[it.intent_], it.streamId_, it.intent_, pipelineCore_, messenger_);
+           if (stream == nullptr) {
+               CAMERA_LOGE("create stream [id = %{public}d] failed.", it.streamId_);
+               return INSUFFICIENT_RESOURCES;
+           }
+           StreamConfiguration scg;
+           StreamInfoToStreamConfiguration(scg, it);
+           RetCode rc = stream->ConfigStream(scg);
+           if (rc != RC_OK) {
+               CAMERA_LOGE("configure stream %{public}d failed", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           if (!scg.tunnelMode && (it.bufferQueue_)->producer_ != nullptr) {
+               CAMERA_LOGE("stream [id:%{public}d] is not tunnel mode, can't bind a buffer producer", it.streamId_);
+               return INVALID_ARGUMENT;
+           }
+           if ((it.bufferQueue_)->producer_ != nullptr) {
+               auto tunnel = std::make_shared<StreamTunnel>();
+               CHECK_IF_PTR_NULL_RETURN_VALUE(tunnel, INSUFFICIENT_RESOURCES);
+               rc = tunnel->AttachBufferQueue((it.bufferQueue_)->producer_);
+               CHECK_IF_NOT_EQUAL_RETURN_VALUE(rc, RC_OK, INVALID_ARGUMENT);
+               if (stream->AttachStreamTunnel(tunnel) != RC_OK) {
+                   CAMERA_LOGE("attach buffer queue to stream [id = %{public}d] failed", it.streamId_);
+                   return INVALID_ARGUMENT;
+               }
+           }
+           {
+               std::lock_guard<std::mutex> l(streamLock_);
+               streamMap_[stream->GetStreamId()] = stream;
+           }
+           CAMERA_LOGI("create stream success [id:%{public}d] [type:%{public}s]", stream->GetStreamId(),
+                       IStream::g_availableStreamType[it.intent_].c_str());
        }
-       std::shared_ptr<StreamBase> stream = StreamFactory::Instance().CreateShared(itr->second); // 创建StreamBase实例
-       RetCode rc = stream->Init(streamInfo); 
-       return RC_OK;
-   }
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
+    }
    ```
 
 7. **配置流**
@@ -363,37 +453,58 @@ Camera驱动的开发过程主要包含以下步骤：
    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
 
    ```
-   CamRetCode StreamOperatorImpl::CommitStreams(OperationMode mode, const std::shared_ptr<Camera::CameraMetadata>& modeSetting)
+   int32_t StreamOperator::CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting)
    {
-       auto cameraDevice = cameraDevice_.lock();
-       if (cameraDevice == nullptr) {
-           CAMERA_LOGE("camera device closed.");
-           return CAMERA_CLOSED;
+       CAMERA_LOGV("enter");
+       CHECK_IF_PTR_NULL_RETURN_VALUE(streamPipeline_, DEVICE_ERROR);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       if (modeSetting.empty()) {
+           CAMERA_LOGE("input vector is empty");
+           return INVALID_ARGUMENT;
        }
-       std::shared_ptr<IPipelineCore> PipelineCore =
-           std::static_pointer_cast<CameraDeviceImpl>(cameraDevice)->GetPipelineCore();
-       if (PipelineCore == nullptr) {
-           CAMERA_LOGE("get pipeline core failed.");
-           return CAMERA_CLOSED;
-       }
+       DFX_LOCAL_HITRACE_BEGIN;
    
-       streamPipeCore_ = PipelineCore->GetStreamPipelineCore();
-       if (streamPipeCore_ == nullptr) {
-           CAMERA_LOGE("get stream pipeline core failed.");
-           return DEVICE_ERROR;
+       std::vector<StreamConfiguration> configs = {};
+       {
+           std::lock_guard<std::mutex> l(streamLock_);
+           std::transform(streamMap_.begin(), streamMap_.end(), std::back_inserter(configs),
+               [](auto &iter) { return iter.second->GetStreamAttribute(); });
        }
-   
-       RetCode rc = streamPipeCore_->Init(); // 对pipelinecore的初始化
+    
+       std::shared_ptr<CameraMetadata> setting;
+       MetadataUtils::ConvertVecToMetadata(modeSetting, setting);
+       DynamicStreamSwitchMode method = streamPipeline_->CheckStreamsSupported(mode, setting, configs);
+       if (method == DYNAMIC_STREAM_SWITCH_NOT_SUPPORT) {
+           return INVALID_ARGUMENT;
+       }
+       if (method == DYNAMIC_STREAM_SWITCH_NEED_INNER_RESTART) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           for (auto it : streamMap_) {
+               it.second->StopStream();
+           }
+       }
+       {
+           std::lock_guard<std::mutex> l(streamLock_);
+           for (auto it : streamMap_) {
+               if (it.second->CommitStream() != RC_OK) {
+                   CAMERA_LOGE("commit stream [id = %{public}d] failed.", it.first);
+                   return DEVICE_ERROR;
+               }
+           }
+       }
+       RetCode rc = streamPipeline_->PreConfig(setting); //设备流配置
        if (rc != RC_OK) {
-           CAMERA_LOGE("stream pipeline core init failed.");
+           CAMERA_LOGE("prepare mode settings failed");
            return DEVICE_ERROR;
        }
-       rc = streamPipeCore_->CreatePipeline(mode); // 创建一个pipeline
+       rc = streamPipeline_->CreatePipeline(mode); //创建一个pipeline
        if (rc != RC_OK) {
            CAMERA_LOGE("create pipeline failed.");
            return INVALID_ARGUMENT;
        }
-       return NO_ERROR;
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
@@ -403,66 +514,113 @@ Camera驱动的开发过程主要包含以下步骤：
 
    ```
    using CaptureInfo = struct _CaptureInfo {
-         std::vector<int> streamIds_; //需要Capture的streamIds
-         std::shared_ptr<Camera::CameraMetadata> captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
-        bool enableShutterCallback_;
+       int[] streamIds_; //需要Capture的streamIds
+       unsigned char[]  captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
+       bool enableShutterCallback_;
    };
    ```
 
-   StreamOperatorImpl中的Capture方法主要调用CreateCapture()接口去捕获数据流：
+   StreamOperator中的Capture方法主要是捕获数据流：
 
    ```
-   CamRetCode StreamOperatorImpl::Capture(int captureId, const std::shared_ptr<CaptureInfo>& captureInfo, bool isStreaming)
+   int32_t StreamOperator::Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming)
    {
-        if (!ValidCaptureInfo(captureId, captureInfo)) {
-           CAMERA_LOGE("capture streamIds is empty. [captureId = %d]", captureId);
-           return INVALID_ARGUMENT;
+       CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+    
+       for (auto id : info.streamIds_) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           auto it = streamMap_.find(id);
+           if (it == streamMap_.end()) {
+               return INVALID_ARGUMENT;
+           }
        }
-       std::shared_ptr<CameraCapture> cameraCapture = nullptr;
-       RetCode rc = CreateCapture(captureId, captureInfo, isStreaming, cameraCapture);
-       if (rc != RC_OK) {
-           CAMERA_LOGE("create capture is failed.");
-           return DEVICE_ERROR;
-       }
-   
+    
        {
-           std::unique_lock<std::mutex> lock(captureMutex_);
-           camerCaptureMap_.insert(std::make_pair(captureId, cameraCapture));
+           std::lock_guard<std::mutex> l(requestLock_);
+           auto itr = requestMap_.find(captureId);
+           if (itr != requestMap_.end()) {
+               return INVALID_ARGUMENT;
+           }
        }
-   
-       rc = StartThread();
-       if (rc != RC_OK) {
-           CAMERA_LOGE("preview start failed.");
-           return DEVICE_ERROR;
+    
+       std::shared_ptr<CameraMetadata> captureSetting;
+       MetadataUtils::ConvertVecToMetadata(info.captureSetting_, captureSetting);
+       CaptureSetting setting = captureSetting;
+       auto request =
+           std::make_shared<CaptureRequest>(captureId, info.streamIds_.size(), setting,
+                                             info.enableShutterCallback_, isStreaming);
+       for (auto id : info.streamIds_) {
+           RetCode rc = streamMap_[id]->AddRequest(request);
+           if (rc != RC_OK) {
+               return DEVICE_ERROR;
+           }
        }
-       return NO_ERROR;
+    
+       {
+           std::lock_guard<std::mutex> l(requestLock_);
+           requestMap_[captureId] = request;
+       }
+       return HDI::Camera::V1_0::NO_ERROR;
    }  
    ```
 
 9. 取消捕获和释放离线流
 
-   StreamOperatorImpl类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
+   StreamOperator类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
 
    ```
-   CamRetCode StreamOperatorImpl::CancelCapture(int captureId)
+   int32_t StreamOperator::CancelCapture(int32_t captureId)
    {
-         auto itr = camerCaptureMap_.find(captureId); // 根据captureId 在Map中查找对应的CameraCapture对象
-         RetCode rc = itr->second->Cancel(); // 调用CameraCapture中Cancel方法结束数据捕获
-         std::unique_lock<std::mutex> lock(captureMutex_);
-         camerCaptureMap_.erase(itr); // 擦除该CameraCapture对象
-         return NO_ERROR;
+       CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+    
+       std::lock_guard<std::mutex> l(requestLock_);
+       auto itr = requestMap_.find(captureId); //根据captureId 在Map中查找对应的CameraCapture对象
+       if (itr == requestMap_.end()) {
+           CAMERA_LOGE("can't cancel capture [id = %{public}d], this capture doesn't exist", captureId);
+           return INVALID_ARGUMENT;
+       }
+    
+       RetCode rc = itr->second->Cancel(); //调用CameraCapture中Cancel方法结束数据捕获
+       if (rc != RC_OK) {
+           return DEVICE_ERROR;
+       }
+       requestMap_.erase(itr); //擦除该CameraCapture对象
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
-   StreamOperatorImpl类中的ReleaseStreams接口的主要作用是释放之前通过CreateStream()和CommitStreams()接口创建的流，并销毁Pipeline。
+   StreamOperator类中的ReleaseStreams接口的主要作用是释放之前通过CreateStream()和CommitStreams()接口创建的流，并销毁Pipeline。
 
    ```
-   CamRetCode StreamOperatorImpl::ReleaseStreams(const std::vector<int>& streamIds)
+   int32_t StreamOperator::ReleaseStreams(const std::vector<int32_t>& streamIds)
    {
-       RetCode rc = DestroyStreamPipeline(streamIds); // 销毁该streamIds 的pipeline
-       rc = DestroyHostStreamMgr(streamIds);
-       rc = DestroyStreams(streamIds); // 销毁该streamIds 的 Stream
-       return NO_ERROR;
+       PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
+       DFX_LOCAL_HITRACE_BEGIN;
+       for (auto id : streamIds) {
+           std::lock_guard<std::mutex> l(streamLock_);
+           auto it = streamMap_.find(id);
+           if (it == streamMap_.end()) {
+               continue;
+           }
+           if (it->second->IsRunning()) {
+               it->second->StopStream();
+           }
+           it->second->DumpStatsInfo();
+           streamMap_.erase(it);
+       }
+    
+       for (auto id : streamIds) {
+           CHECK_IF_EQUAL_RETURN_VALUE(id < 0, true, INVALID_ARGUMENT);
+       }
+    
+       DFX_LOCAL_HITRACE_END;
+       return HDI::Camera::V1_0::NO_ERROR;
    }
    ```
 
@@ -508,16 +666,39 @@ Camera驱动的开发过程主要包含以下步骤：
    初始化CameraHost函数实现如下，这里调用了HDI接口ICameraHost::Get()去获取demoCameraHost，并对其设置回调函数。
 
    ```
-   RetCode CameraDemo::InitSensors()
+   RetCode OhosCameraDemo::InitSensors()
    {
-       demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME);
+       int rc = 0;
+   
+       CAMERA_LOGD("demo test: InitSensors enter");
+    
+       if (demoCameraHost_ != nullptr) {
+           return RC_OK;
+       }
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       demoCameraHost_ = OHOS::Camera::CameraHost::CreateCameraHost();
+   #else
+       constexpr const char *DEMO_SERVICE_NAME = "camera_service";
+       demoCameraHost_ = ICameraHost::Get(DEMO_SERVICE_NAME, false);
+   #endif
        if (demoCameraHost_ == nullptr) {
            CAMERA_LOGE("demo test: ICameraHost::Get error");
            return RC_ERROR;
        }
-   
-       hostCallback_ = new CameraHostCallback();
+    
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       hostCallback_ = std::make_shared<DemoCameraHostCallback>();
+   #else
+       hostCallback_ = new DemoCameraHostCallback();
+   #endif
        rc = demoCameraHost_->SetCallback(hostCallback_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
+           CAMERA_LOGE("demo test: demoCameraHost_->SetCallback(hostCallback_) error");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("demo test: InitSensors exit");
+    
        return RC_OK;
    }
    ```
@@ -525,14 +706,55 @@ Camera驱动的开发过程主要包含以下步骤：
    初始化CameraDevice函数实现如下，这里调用了GetCameraIds(cameraIds_)，GetCameraAbility(cameraId, ability_)，OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)等接口实现了demoCameraHost的获取。
 
    ```
-   RetCode CameraDemo::InitCameraDevice()
+   RetCode OhosCameraDemo::InitCameraDevice()
    {
+       int rc = 0;
+    
+       CAMERA_LOGD("demo test: InitCameraDevice enter");
+    
+       if (demoCameraHost_ == nullptr) {
+           CAMERA_LOGE("demo test: InitCameraDevice demoCameraHost_ == nullptr");
+           return RC_ERROR;
+       }
+    
        (void)demoCameraHost_->GetCameraIds(cameraIds_);
+       if (cameraIds_.empty()) {
+           return RC_ERROR;
+       }
        const std::string cameraId = cameraIds_.front();
-       demoCameraHost_->GetCameraAbility(cameraId, ability_);
-   
-       sptr<CameraDeviceCallback> callback = new CameraDeviceCallback();
+       demoCameraHost_->GetCameraAbility(cameraId, cameraAbility_);
+    
+       MetadataUtils::ConvertVecToMetadata(cameraAbility_, ability_);
+    
+       GetFaceDetectMode(ability_);
+       GetFocalLength(ability_);
+       GetAvailableFocusModes(ability_);
+       GetAvailableExposureModes(ability_);
+       GetExposureCompensationRange(ability_);
+       GetExposureCompensationSteps(ability_);
+       GetAvailableMeterModes(ability_);
+       GetAvailableFlashModes(ability_);
+       GetMirrorSupported(ability_);
+       GetStreamBasicConfigurations(ability_);
+       GetFpsRange(ability_);
+       GetCameraPosition(ability_);
+       GetCameraType(ability_);
+       GetCameraConnectionType(ability_);
+       GetFaceDetectMaxNum(ability_);
+    
+   #ifdef CAMERA_BUILT_ON_OHOS_LITE
+       std::shared_ptr<CameraDeviceCallback> callback = std::make_shared<CameraDeviceCallback>();
+   #else
+       sptr<DemoCameraDeviceCallback> callback = new DemoCameraDeviceCallback();
+   #endif
        rc = demoCameraHost_->OpenCamera(cameraIds_.front(), callback, demoCameraDevice_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR || demoCameraDevice_ == nullptr) {
+           CAMERA_LOGE("demo test: InitCameraDevice OpenCamera failed");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("demo test: InitCameraDevice exit");
+    
        return RC_OK;
    }   
    ```
@@ -540,76 +762,87 @@ Camera驱动的开发过程主要包含以下步骤：
 2. PreviewOn()接口包含配置流、开启预览流和启动Capture动作。该接口执行完成后Camera预览通路已经开始运转并开启了两路流，一路流是preview，另外一路流是capture或者video，两路流中仅对preview流进行capture动作。
 
    ```
-   static RetCode PreviewOn(int mode, const std::shared_ptr<CameraDemo>& mainDemo)
+   static RetCode PreviewOn(int mode, const std::shared_ptr<OhosCameraDemo>& mainDemo)
    {
-        rc = mainDemo->StartPreviewStream(); // 配置preview流
-        if (mode == 0) {
-           rc = mainDemo->StartCaptureStream(); // 配置capture流
-         } else {
-           rc = mainDemo->StartVideoStream(); // 配置video流
-         }
-   
-       rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW); // 将preview流capture
+       RetCode rc = RC_OK;
+       CAMERA_LOGD("main test: PreviewOn enter");
+    
+       rc = mainDemo->StartPreviewStream(); //配置preview流
+       if (rc != RC_OK) {
+           CAMERA_LOGE("main test: PreviewOn StartPreviewStream error");
+           return RC_ERROR;
+       }
+    
+       if (mode == 0) {
+           rc = mainDemo->StartCaptureStream(); //配置capture流
+           if (rc != RC_OK) {
+               CAMERA_LOGE("main test: PreviewOn StartCaptureStream error");
+               return RC_ERROR;
+           }
+       } else {
+           rc = mainDemo->StartVideoStream(); //配置video流
+           if (rc != RC_OK) {
+               CAMERA_LOGE("main test: PreviewOn StartVideoStream error");
+               return RC_ERROR;
+           }
+       }
+    
+       rc = mainDemo->CaptureON(STREAM_ID_PREVIEW, CAPTURE_ID_PREVIEW, CAPTURE_PREVIEW);
+       if (rc != RC_OK) {
+           CAMERA_LOGE("main test: PreviewOn mainDemo->CaptureON() preview error");
+           return RC_ERROR;
+       }
+    
+       CAMERA_LOGD("main test: PreviewOn exit");
        return RC_OK;
    }           
    ```
 
    StartCaptureStream()、StartVideoStream()和StartPreviewStream()接口都会调用CreateStream()接口，只是传入的参数不同。
 
-   ```
-   RetCode CameraDemo::StartVideoStream()
-   {
-       RetCode rc = RC_OK;
-       if (isVideoOn_ == 0) {
-           isVideoOn_ = 1;
-           rc = CreateStream(STREAM_ID_VIDEO, streamCustomerVideo_, VIDEO); // 如需启preview或者capture流更改该接口参数即可。
-       }
-       return RC_OK;
-   }
-   ```
-
    CreateStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
 
    ```
-   RetCode CameraDemo::CreateStreams(const int streamIdSecond, StreamIntent intent)
+   RetCode OhosCameraDemo::CreateStream(const int streamId, std::shared_ptr<StreamCustomer> &streamCustomer,
+       StreamIntent intent)
    {
-       std::vector<std::shared_ptr<StreamInfo>> streamInfos;
-       std::vector<std::shared_ptr<StreamInfo>>().swap(streamInfos);
-       GetStreamOpt(); // 获取StreamOperator对象
-       std::shared_ptr<StreamInfo> previewStreamInfo = std::make_shared<StreamInfo>();
-       SetStreamInfo(previewStreamInfo, streamCustomerPreview_, STREAM_ID_PREVIEW, PREVIEW); // 填充StreamInfo
-       if (previewStreamInfo->bufferQueue_ == nullptr) {
+       int rc = 0;
+       CAMERA_LOGD("demo test: CreateStream enter");
+    
+       GetStreamOpt(); //获取StreamOperator对象
+       if (streamOperator_ == nullptr) {
+           CAMERA_LOGE("demo test: CreateStream GetStreamOpt() is nullptr\n");
+           return RC_ERROR;
+       }
+    
+       StreamInfo streamInfo = {0};
+    
+       SetStreamInfo(streamInfo, streamCustomer, streamId, intent); //填充StreamInfo流
+       if (streamInfo.bufferQueue_->producer_ == nullptr) {
            CAMERA_LOGE("demo test: CreateStream CreateProducer(); is nullptr\n");
            return RC_ERROR;
        }
-       streamInfos.push_back(previewStreamInfo);
-   
-       std::shared_ptr<StreamInfo> secondStreamInfo = std::make_shared<StreamInfo>();
-       if (streamIdSecond == STREAM_ID_CAPTURE) {
-           SetStreamInfo(secondStreamInfo, streamCustomerCapture_, STREAM_ID_CAPTURE, intent);
-       } else {
-           SetStreamInfo(secondStreamInfo, streamCustomerVideo_, STREAM_ID_VIDEO, intent);
-       }
-   
-       if (secondStreamInfo->bufferQueue_ == nullptr) {
-           CAMERA_LOGE("demo test: CreateStreams CreateProducer() secondStreamInfo is nullptr\n");
-           return RC_ERROR;
-       }
-       streamInfos.push_back(secondStreamInfo);
-   
-       rc = streamOperator_->CreateStreams(streamInfos); // 创建流
-       if (rc != Camera::NO_ERROR) {
+    
+       std::vector<StreamInfo> streamInfos;
+       streamInfos.push_back(streamInfo);
+    
+       rc = streamOperator_->CreateStreams(streamInfos); //创建流
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
            return RC_ERROR;
        }
-   
-       rc = streamOperator_->CommitStreams(Camera::NORMAL, ability_);
-       if (rc != Camera::NO_ERROR) {
+    
+       rc = streamOperator_->CommitStreams(NORMAL, cameraAbility_);
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
-           std::vector<int> streamIds = {STREAM_ID_PREVIEW, streamIdSecond};
+           std::vector<int> streamIds;
+           streamIds.push_back(streamId);
            streamOperator_->ReleaseStreams(streamIds);
            return RC_ERROR;
        }
+    
+       CAMERA_LOGD("demo test: CreateStream exit");
+    
        return RC_OK;
    }
    ```
@@ -617,26 +850,66 @@ Camera驱动的开发过程主要包含以下步骤：
    CaptureON()接口调用streamOperator的Capture()方法获取Ｃamera数据并轮转buffer，拉起一个线程接收相应类型的数据。
 
    ```
-   RetCode CameraDemo::CaptureON(const int streamId, const int captureId, CaptureMode mode)
+   RetCode OhosCameraDemo::CaptureON(const int streamId,
+       const int captureId, CaptureMode mode)
    {
-       std::shared_ptr<Camera::CaptureInfo> captureInfo = std::make_shared<Camera::CaptureInfo>(); // 创建并填充CaptureInfo
-       captureInfo->streamIds_ = {streamId};
-       captureInfo->captureSetting_ = ability_;
-       captureInfo->enableShutterCallback_ = false;
-   
-       int rc = streamOperator_->Capture(captureId, captureInfo, true); // 实际capture开始，buffer轮转开始
+       CAMERA_LOGI("demo test: CaptureON enter streamId == %{public}d and captureId == %{public}d and mode == %{public}d",
+           streamId, captureId, mode);
+       std::lock_guard<std::mutex> l(metaDatalock_);
+       if (mode == CAPTURE_SNAPSHOT) {
+           constexpr double latitude = 27.987500; // dummy data: Qomolangma latitde
+           constexpr double longitude = 86.927500; // dummy data: Qomolangma longituude
+           constexpr double altitude = 8848.86; // dummy data: Qomolangma altitude
+           constexpr size_t entryCapacity = 100;
+           constexpr size_t dataCapacity = 2000;
+           captureSetting_ = std::make_shared<CameraSetting>(entryCapacity, dataCapacity);
+           captureQuality_ = OHOS_CAMERA_JPEG_LEVEL_HIGH;
+           captureOrientation_ = OHOS_CAMERA_JPEG_ROTATION_270;
+           mirrorSwitch_ = OHOS_CAMERA_MIRROR_ON;
+           gps_.push_back(latitude);
+           gps_.push_back(longitude);
+           gps_.push_back(altitude);
+           captureSetting_->addEntry(OHOS_JPEG_QUALITY, static_cast<void*>(&captureQuality_),
+               sizeof(captureQuality_));
+           captureSetting_->addEntry(OHOS_JPEG_ORIENTATION, static_cast<void*>(&captureOrientation_),
+               sizeof(captureOrientation_));
+           captureSetting_->addEntry(OHOS_CONTROL_CAPTURE_MIRROR, static_cast<void*>(&mirrorSwitch_),
+               sizeof(mirrorSwitch_));
+           captureSetting_->addEntry(OHOS_JPEG_GPS_COORDINATES, gps_.data(), gps_.size());
+       }
+    
+       std::vector<uint8_t> setting;
+       MetadataUtils::ConvertMetadataToVec(captureSetting_, setting);
+       captureInfo_.streamIds_ = {streamId};
+       if (mode == CAPTURE_SNAPSHOT) {
+           captureInfo_.captureSetting_ = setting;
+       } else {
+           captureInfo_.captureSetting_ = cameraAbility_;
+       }
+       captureInfo_.enableShutterCallback_ = false;
+    
+       int rc = streamOperator_->Capture(captureId, captureInfo_, true); //实际capture开始，buffer轮转开始
+       if (rc != HDI::Camera::V1_0::NO_ERROR) {
+           CAMERA_LOGE("demo test: CaptureStart Capture error\n");
+           streamOperator_->ReleaseStreams(captureInfo_.streamIds_);
+           return RC_ERROR;
+       }
+    
        if (mode == CAPTURE_PREVIEW) {
-           streamCustomerPreview_->ReceiveFrameOn(nullptr); // 创建预览线程接收递上来的buffer
+           streamCustomerPreview_->ReceiveFrameOn(nullptr); //创建预览线程接收传递上来的buffer
        } else if (mode == CAPTURE_SNAPSHOT) {
-           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // 创建capture线程通过StoreImage回调接收递上来的buffer
+           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { //创建capture线程通过StoreImage回调接收传递上来的buffer
                StoreImage(addr, size);
            });
        } else if (mode == CAPTURE_VIDEO) {
            OpenVideoFile();
-           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) {// 创建Video线程通过StoreVideo回调接收递上来的buffer
+    
+           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) { //创建video线程通过StoreImage回调接收传递上来的buffer
                StoreVideo(addr, size);
            });
        }
+       CAMERA_LOGD("demo test: CaptureON exit");
+    
        return RC_OK;
    }
    ```
@@ -644,53 +917,55 @@ Camera驱动的开发过程主要包含以下步骤：
 3. ManuList()函数从控制台通过fgets()接口获取字符，不同字符所对应demo支持的功能不同，并打印出该demo所支持功能的菜单。
 
    ```
-   static void ManuList(const std::shared_ptr<CameraDemo>& mainDemo,
+   static void ManuList(const std::shared_ptr<OhosCameraDemo>& mainDemo,
        const int argc, char** argv)
    {
        int idx, c;
-       int awb = 1;
-       constexpr char shortOptions[] = "h:cwvaqof:";
-       c = getopt_long(argc, argv, shortOptions, longOptions, &idx);
-       while(1) {
+       bool isAwb = true;
+       const char *shortOptions = "h:cwvaeqof:";
+       c = getopt_long(argc, argv, shortOptions, LONG_OPTIONS, &idx);
+       while (1) {
            switch (c) {
                case 'h':
-                   c = PutMenuAndGetChr(); // 打印菜单
+                   c = PutMenuAndGetChr(); //打印菜单
                    break;
-                   
-                   case 'f':
-                   FlashLightTest(mainDemo); // 手电筒功能测试
+               case 'f':
+                   FlashLightTest(mainDemo); //手电筒功能测试
                    c = PutMenuAndGetChr();
                    break;
                case 'o':
-                   OfflineTest(mainDemo); // Offline功能测试
+                   OfflineTest(mainDemo); //Offline功能测试
                    c = PutMenuAndGetChr();
                    break;
                case 'c':
-                   CaptureTest(mainDemo); // Capture功能测试
+                   CaptureTest(mainDemo); Capture功能测试
                    c = PutMenuAndGetChr();
                    break;
-               case 'w': // AWB功能测试
-                   if (awb) {
+               case 'w': //AWB功能测试
+                   if (isAwb) {
                        mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_INCANDESCENT);
                    } else {
                        mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_OFF);
                    }
-                   awb = !awb;
+                   isAwb = !isAwb;
                    c = PutMenuAndGetChr();
                    break;
-               case 'a': // AE功能测试
+               case 'a': //AE功能测试
                    mainDemo->SetAeExpo();
                    c = PutMenuAndGetChr();
                    break;
-               case 'v': // Video功能测试
+               case 'e': //Metadata测试
+                   mainDemo->SetMetadata();
+                   c = PutMenuAndGetChr();
+                   break;
+               case 'v': //VIDEO功能测试
                    VideoTest(mainDemo);
                    c = PutMenuAndGetChr();
                    break;
-               case 'q': // 退出demo
+               case 'q': //退出demo
                    PreviewOff(mainDemo);
                    mainDemo->QuitDemo();
-                   exit(EXIT_SUCCESS);
-   
+                   return;
                default:
                    CAMERA_LOGE("main test: command error please retry input command");
                    c = PutMenuAndGetChr();
@@ -732,8 +1007,23 @@ Camera驱动的开发过程主要包含以下步骤：
    "-w | --set WB        Set white balance Cloudy\n"
    "-v | --video         capture Video of 10s\n"
    "-a | --Set AE        Set Auto exposure\n"
+   "-e | --Set Metadeta  Set Metadata\n"
    "-f | --Set Flashlight        Set flashlight ON 5s OFF\n"
    "-q | --quit          stop preview and quit this app\n");
    ```
 
+4、编译用例
+   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加"init:ohos_camera_demo",示例代码如下：
+   ```
+   deps = [
+       "buffer_manager:camera_buffer_manager",
+       "device_manager:camera_device_manager",
+       "hdi_impl:camera_host_service_1.0",
+       "pipeline_core:camera_pipeline_core",
+       "utils:camera_utils",
+       "init:ohos_camera_demo",
+       ]
+   ```
+   
+   执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入板子，修改权限直接运行即可。
    
