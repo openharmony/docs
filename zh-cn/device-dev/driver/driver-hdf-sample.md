@@ -64,7 +64,7 @@ root {
 #define SAMPLE_WRITE_READ 123
 
 int32_t HdfSampleDriverDispatch(
-    struct HdfDeviceObject *deviceObject, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
+    struct HdfDeviceIoClient *deviceObject, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
 {
     HDF_LOGE("%s: received cmd %d", __func__, id);
     if (id == SAMPLE_WRITE_READ) {
