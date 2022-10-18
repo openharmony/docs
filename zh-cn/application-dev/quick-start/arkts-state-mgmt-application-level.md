@@ -83,7 +83,7 @@ struct ComponentA {
 
 > **说明：** 该组件从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-LocalStorage是应用程序中的存储单元，生命周期跟随其关联的Ability。LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。
+LocalStorage是应用程序中的存储单元，生命周期跟随其关联的Ability。在Stage模型下，LocalStorage解决AppStorage共享范围过大的问题，提供Ability之间全局数据的隔离。同时，LocalStorage为应用程序范围内的可变状态属性和非可变状态属性提供存储，可变状态属性和非可变状态属性是构建应用程序UI的一部分，如一个Ability的UI。解决App与Ability之间数据互相干扰问题，多实例场景下同一个Ability类的不同Ability实例之间的数据互相干扰问题。在分布式迁移的场景下，Ability是系统调度的最小单元，配合LocalStorage更方便实现组件的数据迁移。
 
 应用层：一个应用程序可以创建多个LocalStorage实例，应用程序的每一个Ability对应一个LocalStorage实例。
 
