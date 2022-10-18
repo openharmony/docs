@@ -73,9 +73,9 @@ removeCheckRule(rule: bigint): void
 ```js
 try {
     // 删除一条规则
-    hichecker.removeRule(hichecker.RULE_CAUTION_PRINT_LOG);
+    hichecker.removeCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
     // 删除多条规则
-    hichecker.removeRule(
+    hichecker.removeCheckRule(
         hichecker.RULE_CAUTION_PRINT_LOG | hichecker.RULE_CAUTION_TRIGGER_CRASH);
 catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
@@ -107,11 +107,11 @@ containsCheckRule(rule: bigint): boolean
 ```js
 try {
     // 添加一条规则
-    hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+    hichecker.addCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
 
     // 查询是否包含
-    hichecker.contains(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
-    hichecker.contains(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
+    hichecker.containsCheckRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS); // return true;
+    hichecker.containsCheckRule(hichecker.RULE_CAUTION_PRINT_LOG); // return false;
 catch (err) {
     console.error(`code: ${err.code}, message: ${err.message}`);
 }
