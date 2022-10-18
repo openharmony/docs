@@ -131,7 +131,7 @@ Caller information verification failed.
 2. 请检查应用是否申请了短时任务。
 3. 系统服务内部工作异常，请稍候重试，或者重启设备尝试。
 
-## 9900002 短时任务调用方信息校验失败
+## 9900002 短时任务校验失败
 
 ### 错误信息
 Background task verification failed.

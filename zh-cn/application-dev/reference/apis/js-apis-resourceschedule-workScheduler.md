@@ -34,12 +34,14 @@ startWork(work: WorkInfo): void
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
 | 9700003 | System service operation failed. | 系统服务失败 |
 | 9700004 | Check workInfo failed. | workInfo校验失败 |
 | 9700005 | StartWork failed. | StartWork失败 |
+
 
 **示例**：
 
@@ -83,6 +85,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -131,6 +134,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -177,6 +181,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -221,11 +226,11 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
 | 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
 
 **示例**：
 
@@ -259,11 +264,11 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
 | 9700003 | System service operation failed. | 系统服务失败 |
-| 9700004 | Check workInfo failed. | workInfo校验失败 |
 
 **示例**：
 
@@ -289,6 +294,8 @@ stopAndClearWorks(): void
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
 | 9700003 | System service operation failed. | 系统服务失败 |
@@ -327,6 +334,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -370,6 +378,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 **错误码**：
 
 | 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
 | 401 | Parameter error. | 参数检查错误 |
 | 9700001 | Memory operation failed. | 内存操作失败 |
 | 9700002 | Parcel operation failed. | Parcel读写操作失败 |

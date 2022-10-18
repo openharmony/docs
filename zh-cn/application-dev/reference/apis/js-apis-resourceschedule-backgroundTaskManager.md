@@ -43,6 +43,18 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | ------------------------------------- | --------- |
 | [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
+| 9900002 | Background task verification failed. | 短时任务校验失败 |
+
 **示例**：
 
   ```js
@@ -78,6 +90,19 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 延迟挂起的请求ID。                               |
 | callback  | AsyncCallback&lt;number&gt; | 是    | 指定的callback回调方法。用于返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
+| 9900002 | Background task verification failed. | 短时任务校验失败 |
+
 
 **示例**：
 
@@ -119,6 +144,18 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
+| 9900002 | Background task verification failed. | 短时任务校验失败 |
+
 **示例**：
   ```js
   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
@@ -150,6 +187,18 @@ cancelSuspendDelay(requestId: number): void
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。 |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9900001 | Caller information verification failed. | 短时任务调用方信息校验失败 |
+| 9900002 | Background task verification failed. | 短时任务校验失败 |
 
 **示例**：
   ```js
@@ -183,6 +232,19 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9800005 | Background task verification failed. | 长时任务校验失败 |
+| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
+| 9800007 | Task storage failed. | 长时任务信息存储失败 |
 
 **示例**：
 ```js
@@ -246,6 +308,20 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |
 
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9800005 | Background task verification failed. | 长时任务校验失败 |
+| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
+| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+
 **示例**：
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
@@ -295,6 +371,20 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | callback形式返回启动长时任务的结果。                   |
 
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9800005 | Background task verification failed. | 长时任务校验失败 |
+| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
+| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+
 **示例**：
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
@@ -336,6 +426,20 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |
 
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 9800005 | Background task verification failed. | 长时任务校验失败 |
+| 9800006 | Notification verification failed. | 长时任务通知信息校验失败 |
+| 9800007 | Task storage failed. | 长时任务信息存储失败 |
+
 **示例**：
 ```js
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
@@ -372,6 +476,18 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
 
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 18700001 | Caller information verification failed. | 资源申请接口信息校验失败 |
+
 **示例**：
 
 ```js
@@ -404,6 +520,17 @@ resetAllEfficiencyResources(): void
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
 **系统API**: 此接口为系统接口。
+
+**错误码**：
+
+| 错误码  | 错误信息             | 说明 |
+| ---- | --------------------- | ---- |
+| 401 | Parameter error. | 参数检查错误 |
+| 9800001 | Memory operation failed. | 内存操作失败 |
+| 9800002 | Parcel operation failed. | Parcel读写操作失败 |
+| 9800003 | Inner transact failed. | IPC通信失败 |
+| 9800004 | System service operation failed. | 系统服务失败 |
+| 18700001 | Caller information verification failed. | 资源申请接口信息校验失败 |
 
 **示例**：
 
