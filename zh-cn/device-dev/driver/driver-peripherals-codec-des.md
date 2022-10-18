@@ -3,7 +3,7 @@
 ## 概述
 ### 功能简介
 
-OpenHarmony Codec HDI驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF驱动框架开发的Codec编解码功能。
+OpenHarmony Codec HDI(Hardware Device Interface)驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF驱动框架开发的Codec编解码功能。
 
 Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成：
 
@@ -35,7 +35,7 @@ Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成�
 
 - 码率
 
-    视频的码率是指在单位时间内传输的视频数据数量，一般用kbps作为单位。码率越高，视频就越清晰，反之则画面粗糙而多马赛克。
+    视频的码率是指在单位时间内传输的视频数据数量，一般用kbps作为单位。码率越高，视频就越清晰，反之则画面粗糙而且多马赛克。
 
 - 组件
 
@@ -133,7 +133,7 @@ HDF_INIT(g_codecComponentDriverEntry); // 将Codec HDI的HdfDriverEntry结构体
     }
     ```
 
-- HdfCodecComponentTypeDriverInit：加载HCS中的属性配置。
+- HdfCodecComponentTypeDriverInit：加载HCS（HDF Configuration Source）中的属性配置。
 
     ```c
     int32_t HdfCodecComponentTypeDriverInit(struct HdfDeviceObject *deviceObject)
