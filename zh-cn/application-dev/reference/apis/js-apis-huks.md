@@ -13,9 +13,7 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 import huks from '@ohos.security.huks'
 ```
 
-## 属性
-
-### HuksParam
+## HuksParam
 
 调用接口使用的options中的properties数组中的param。
 
@@ -26,7 +24,7 @@ import huks from '@ohos.security.huks'
 | tag    | [HuksTag](#hukstag)                 | 是   | 标签。       |
 | value  | boolean\|number\|bigint\|Uint8Array | 是   | 标签对应值。 |
 
-### HuksOptions
+## HuksOptions
 
 调用接口使用的options。
 
@@ -37,7 +35,7 @@ import huks from '@ohos.security.huks'
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 属性，用于存HuksParam的数组。 |
 | inData     | Uint8Array        | 否   | 输入数据。               |
 
-### HuksHandle<sup>(deprecated)</sup>
+## HuksHandle<sup>(deprecated)</sup>
 
 huks Handle结构体。
 
@@ -49,7 +47,7 @@ huks Handle结构体。
 | handle    | number       | 是 | 表示handle值。 |
 | token | Uint8Array | 否 | 表示[init](#huksinit)操作之后获取到的challenge信息。 |
 
-### HuksSessionHandle<sup>9+</sup>
+## HuksSessionHandle<sup>9+</sup>
 
 huks Handle结构体。
 
@@ -60,7 +58,7 @@ huks Handle结构体。
 | handle    | number     | 是   | 表示handle值。                                       |
 | challenge | Uint8Array | 否   | 表示[init](#huksinit)操作之后获取到的challenge信息。 |
 
-### HuksResult<sup>(deprecated)</sup>
+## HuksResult<sup>(deprecated)</sup>
 
 调用接口返回的result。
 
@@ -75,7 +73,7 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
-### HuksReturnResult<sup>9+</sup>
+## HuksReturnResult<sup>9+</sup>
 
 调用接口返回的result。
 
@@ -89,9 +87,7 @@ huks Handle结构体。
 | properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
 | certChains | Array\<string>                  | 否   | 表示证书链数据。 |
 
-## 方法
-
-### huks.generateKey<sup>(deprecated)</sup>
+## huks.generateKey<sup>(deprecated)</sup>
 
 generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -143,7 +139,7 @@ var options = {
 huks.generateKey(keyAlias, options, function (err, data){}); 
 ```
 
-### huks.generateKey<sup>(deprecated)</sup>
+## huks.generateKey<sup>(deprecated)</sup>
 
 generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
@@ -196,7 +192,7 @@ var options = {
 var result = huks.generateKey(keyAlias, options);
 ```
 
-### huks.generateKeyItem<sup>9+</sup>
+## huks.generateKeyItem<sup>9+</sup>
 
 generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
@@ -252,7 +248,7 @@ try {
 }
 ```
 
-### huks.generateKeyItem<sup>9+</sup>
+## huks.generateKeyItem<sup>9+</sup>
 
 generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
@@ -307,7 +303,7 @@ try {
 }
 ```
 
-### huks.deleteKey<sup>(deprecated)</sup>
+## huks.deleteKey<sup>(deprecated)</sup>
 
 deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -336,7 +332,7 @@ var emptyOptions = {
 huks.deleteKey(keyAlias, emptyOptions, function (err, data) {});
 ```
 
-### huks.deleteKey<sup>(deprecated)</sup>
+## huks.deleteKey<sup>(deprecated)</sup>
 
 deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
@@ -370,7 +366,7 @@ var emptyOptions = {
 var result = huks.deleteKey(keyAlias, emptyOptions);
 ```
 
-### huks.deleteKeyItem<sup>9+</sup>
+## huks.deleteKeyItem<sup>9+</sup>
 
 deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
@@ -407,7 +403,7 @@ try {
 }
 ```
 
-### huks.deleteKeyItem<sup>9+</sup>
+## huks.deleteKeyItem<sup>9+</sup>
 
 deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
@@ -443,7 +439,7 @@ try {
 }
 ```
 
-### huks.getSdkVersion
+## huks.getSdkVersion
 
 getSdkVersion(options: HuksOptions) : string
 
@@ -473,7 +469,7 @@ var emptyOptions = {
 var result = huks.getSdkVersion(emptyOptions);
 ```
 
-### huks.importKey<sup>(deprecated)</sup>
+## huks.importKey<sup>(deprecated)</sup>
 
 importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -533,7 +529,7 @@ var options = {
 huks.importKey(keyAlias, options, function (err, data){});
 ```
 
-### huks.importKey<sup>(deprecated)</sup>
+## huks.importKey<sup>(deprecated)</sup>
 
 importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
@@ -600,7 +596,7 @@ var huksoptions = {
 var result = huks.importKey(keyAlias, huksoptions);
 ```
 
-### huks.importKeyItem<sup>9+</sup>
+## huks.importKeyItem<sup>9+</sup>
 
 importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
@@ -668,7 +664,7 @@ try {
 }
 ```
 
-### huks.importKeyItem<sup>9+</sup>
+## huks.importKeyItem<sup>9+</sup>
 
 importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
@@ -737,7 +733,7 @@ try {
 }
 ```
 
-### huks.attestKeyItem<sup>9+</sup>
+## huks.attestKeyItem<sup>9+</sup>
 
 attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -859,7 +855,7 @@ async function attestKey() {
 }
 ```
 
-### huks.attestKeyItem<sup>9+</sup>
+## huks.attestKeyItem<sup>9+</sup>
 
 attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
@@ -986,7 +982,7 @@ async function attestKey() {
 }
 ```
 
-### huks.importWrappedKeyItem<sup>9+</sup>
+## huks.importWrappedKeyItem<sup>9+</sup>
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
@@ -1202,7 +1198,7 @@ function huksImportWrappedKey() {
 }
 ```
 
-### huks.importWrappedKeyItem<sup>9+</sup>
+## huks.importWrappedKeyItem<sup>9+</sup>
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<void>
 
@@ -1237,7 +1233,7 @@ async function TestImportWrappedFunc(alias, wrappingAlias, options) {
 }
 ```
 
-### huks.exportKey<sup>(deprecated)</sup>
+## huks.exportKey<sup>(deprecated)</sup>
 
 exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -1266,7 +1262,7 @@ var emptyOptions = {
 huks.exportKey(keyAlias, emptyOptions, function (err, data){});
 ```
 
-### huks.exportKey<sup>(deprecated)</sup>
+## huks.exportKey<sup>(deprecated)</sup>
 
 exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
@@ -1300,7 +1296,7 @@ var emptyOptions = {
 var result = huks.exportKey(keyAlias, emptyOptions);
 ```
 
-### huks.exportKeyItem<sup>9+</sup>
+## huks.exportKeyItem<sup>9+</sup>
 
 exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1337,7 +1333,7 @@ try {
 }
 ```
 
-### huks.exportKeyItem<sup>9+</sup>
+## huks.exportKeyItem<sup>9+</sup>
 
 exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
@@ -1379,7 +1375,7 @@ try {
 }
 ```
 
-### huks.getKeyProperties<sup>(deprecated)</sup>
+## huks.getKeyProperties<sup>(deprecated)</sup>
 
 getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -1408,7 +1404,7 @@ var emptyOptions = {
 huks.getKeyProperties(keyAlias, emptyOptions, function (err, data){});
 ```
 
-### huks.getKeyProperties<sup>(deprecated)</sup>
+## huks.getKeyProperties<sup>(deprecated)</sup>
 
 getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
@@ -1442,7 +1438,7 @@ var emptyOptions = {
 var result = huks.getKeyProperties(keyAlias, emptyOptions);
 ```
 
-### huks.getKeyItemProperties<sup>9+</sup>
+## huks.getKeyItemProperties<sup>9+</sup>
 
 getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1479,7 +1475,7 @@ try {
 }
 ```
 
-### huks.getKeyItemProperties<sup>9+</sup>
+## huks.getKeyItemProperties<sup>9+</sup>
 
 getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
 
@@ -1521,7 +1517,7 @@ try {
 }
 ```
 
-### huks.isKeyExist<sup>(deprecated)</sup>
+## huks.isKeyExist<sup>(deprecated)</sup>
 
 isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
@@ -1550,7 +1546,7 @@ var emptyOptions = {
 huks.isKeyExist(keyAlias, emptyOptions, function (err, data){});
 ```
 
-### huks.isKeyExist<sup>(deprecated)</sup>
+## huks.isKeyExist<sup>(deprecated)</sup>
 
 isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
@@ -1584,7 +1580,7 @@ var emptyOptions = {
 var result = huks.isKeyExist(keyAlias, emptyOptions);
 ```
 
-### huks.isKeyItemExist<sup>9+</sup>
+## huks.isKeyItemExist<sup>9+</sup>
 
 isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
 
@@ -1621,7 +1617,7 @@ try {
 }
 ```
 
-### huks.isKeyItemExist<sup>9+</sup>
+## huks.isKeyItemExist<sup>9+</sup>
 
 isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
@@ -1663,7 +1659,7 @@ try {
 }
 ```
 
-### huks.init<sup>(deprecated)</sup>
+## huks.init<sup>(deprecated)</sup>
 
 init(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksHandle>) : void
 
@@ -1682,7 +1678,7 @@ init操作密钥接口，使用Callback回调异步返回结果。huks.init, huk
 | callback | AsyncCallback\<[HuksHandle](#hukshandle)> | 是   | 回调函数。将Init操作操作返回的handle添加到密钥管理系统的回调。 |
 
 
-### huks.init<sup>(deprecated)</sup>
+## huks.init<sup>(deprecated)</sup>
 
 init(keyAlias: string, options: HuksOptions) : Promise\<HuksHandle>
 
@@ -1705,7 +1701,7 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksHandle](#hukshandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
-### huks.initSession<sup>9+</sup>
+## huks.initSession<sup>9+</sup>
 
 initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void
 
@@ -1722,7 +1718,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 | callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle)> | 是   | 回调函数。将Init操作操作返回的handle添加到密钥管理系统的回调。 |
 
 
-### huks.initSession<sup>9+</sup>
+## huks.initSession<sup>9+</sup>
 
 initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
 
@@ -1743,7 +1739,7 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksSessionHandle](#hukssessionhandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
-### huks.update<sup>(deprecated)</sup>
+## huks.update<sup>(deprecated)</sup>
 
 update(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -1761,7 +1757,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | options  | [HuksOptions](#huksoptions)               | 是   | Update的参数集合。                           |
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
-### huks.update<sup>(deprecated)</sup>
+## huks.update<sup>(deprecated)</sup>
 
 update(handle: number, options: HuksOptions,  token: Uint8Array,  callback: AsyncCallback\<HuksResult>) : void
 
@@ -1780,7 +1776,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | options  | [HuksOptions](#huksoptions)               | 是   | Update操作的参数集合。                       |
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
-### huks.update<sup>(deprecated)</sup>
+## huks.update<sup>(deprecated)</sup>
 
 update(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksResult>
 
@@ -1804,7 +1800,7 @@ update操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksResult](#huksresult)> | Promise对象。将Update操作的结果添加到密钥管理系统的回调。 |
 
-### huks.updateSession<sup>9+</sup>
+## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1821,7 +1817,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
 
-### huks.updateSession<sup>9+</sup>
+## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1838,7 +1834,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | token    | Uint8Array                                           | 是   | Update操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
-### huks.updateSession<sup>9+</sup>
+## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
@@ -1860,7 +1856,7 @@ uupdateSession操作密钥接口，使用Promise方式异步返回结果。huks.
 | ----------------------------------- | -------------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult)> | Promise对象。将Update操作的结果添加到密钥管理系统的回调。 |
 
-### huks.finish<sup>(deprecated)</sup>
+## huks.finish<sup>(deprecated)</sup>
 
 finish(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -1879,7 +1875,7 @@ finish操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
 
-### huks.finish<sup>(deprecated)</sup>
+## huks.finish<sup>(deprecated)</sup>
 
 finish(handle: number, options: HuksOptions) : Promise\<HuksResult>
 
@@ -1902,7 +1898,7 @@ finish操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksResult](#huksresult)> | Promise对象，用于获取异步返回结果。 |
 
-### huks.finishSession<sup>9+</sup>
+## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1919,7 +1915,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | token    | Uint8Array                                           | 是   | Finish操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
-### huks.finishSession<sup>9+</sup>
+## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
 
@@ -1937,7 +1933,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
 
-### huks.finishSession<sup>9+</sup>
+## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promise\<HuksReturnResult>
 
@@ -1959,7 +1955,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksReturnResult](#huksreturnresult)> | Promise对象，用于获取异步返回结果。 |
 
-### huks.abort<sup>(deprecated)</sup>
+## huks.abort<sup>(deprecated)</sup>
 
 abort(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksResult>) : void
 
@@ -2070,7 +2066,7 @@ async function huksAbort() {
 }
 ```
 
-### huks.abort<sup>(deprecated)</sup>
+## huks.abort<sup>(deprecated)</sup>
 
 abort(handle: number, options: HuksOptions) : Promise\<HuksResult>;
 
@@ -2192,7 +2188,7 @@ function huksAbort() {
 }
 ```
 
-### huks.abortSession<sup>9+</sup>
+## huks.abortSession<sup>9+</sup>
 
 abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
@@ -2337,7 +2333,7 @@ async function huksAbort() {
 }
 ```
 
-### huks.abortSession<sup>9+</sup>
+## huks.abortSession<sup>9+</sup>
 
 abortSession(handle: number, options: HuksOptions) : Promise\<void>;
 
@@ -2487,9 +2483,7 @@ async function huksAbort() {
 }
 ```
 
-## 枚举
-
-### HuksErrorCode<sup>(deprecated)</sup>
+## HuksErrorCode<sup>(deprecated)</sup>
 
 表示错误码的枚举。
 
@@ -2572,7 +2566,7 @@ async function huksAbort() {
 | HUKS_ERROR_INTERNAL_ERROR | -999  |表示内部错误。|
 | HUKS_ERROR_UNKNOWN_ERROR | -1000 |表示未知错误。|
 
-### HuksExceptionErrCode<sup>9+</sup>
+## HuksExceptionErrCode<sup>9+</sup>
 
 表示错误码的枚举以及对应的错误信息， 错误码表示错误类型，错误信息展示错误详情。
 
@@ -2601,7 +2595,7 @@ async function huksAbort() {
 | 内存不足                  | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 内存不足。                  | 12000014 |
 | 调用其他系统服务失败      | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 调用其他系统服务失败。      | 12000015 |
 
-### HuksKeyPurpose
+## HuksKeyPurpose
 
 表示密钥用途。
 
@@ -2619,7 +2613,7 @@ async function huksAbort() {
 | HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。  |
 | HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥用于进行密钥协商。       |
 
-### HuksKeyDigest
+## HuksKeyDigest
 
 表示摘要算法。
 
@@ -2636,7 +2630,7 @@ async function huksAbort() {
 | HUKS_DIGEST_SHA384  | 13  | 表示SHA384摘要算法。 |
 | HUKS_DIGEST_SHA512 | 14  | 表示SHA512摘要算法。 |
 
-### HuksKeyPadding
+## HuksKeyPadding
 
 表示补齐算法。
 
@@ -2651,7 +2645,7 @@ async function huksAbort() {
 | HUKS_PADDING_PKCS5 | 4   | 表示使用PKCS5补齐算法。 |
 | HUKS_PADDING_PKCS7 | 5   | 表示使用PKCS7补齐算法。 |
 
-### HuksCipherMode
+## HuksCipherMode
 
 表示加密模式。
 
@@ -2666,7 +2660,7 @@ async function huksAbort() {
 | HUKS_MODE_CCM | 31   | 表示使用CCM加密模式。 |
 | HUKS_MODE_GCM | 32   | 表示使用GCM加密模式。 |
 
-### HuksKeySize
+## HuksKeySize
 
 表示密钥长度。
 
@@ -2695,7 +2689,7 @@ async function huksAbort() {
 | HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | 表示SM2算法的密钥长度为256bit。            |
 | HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | 表示SM4算法的密钥长度为128bit。            |
 
-### HuksKeyAlg
+## HuksKeyAlg
 
 表示密钥使用的算法。
 
@@ -2718,7 +2712,7 @@ async function huksAbort() {
 | HUKS_ALG_SM3<sup>9+</sup> | 151  | 表示使用SM3算法。     |
 | HUKS_ALG_SM4<sup>9+</sup> | 152  | 表示使用SM4算法。     |
 
-### HuksKeyGenerateType
+## HuksKeyGenerateType
 
 表示生成密钥的类型。
 
@@ -2730,7 +2724,7 @@ async function huksAbort() {
 | HUKS_KEY_GENERATE_TYPE_DERIVE  | 1    | 派生生成的密钥。 |
 | HUKS_KEY_GENERATE_TYPE_AGREE   | 2    | 协商生成的密钥。 |
 
-### HuksKeyFlag
+## HuksKeyFlag
 
 表示密钥的产生方式。
 
@@ -2743,7 +2737,7 @@ async function huksAbort() {
 | HUKS_KEY_FLAG_AGREE_KEY    | 3    | 表示通过生成密钥协商接口生成的密钥。 |
 | HUKS_KEY_FLAG_DERIVE_KEY   | 4    | 表示通过生成密钥派生接口生成的密钥。 |
 
-### HuksKeyStorageType
+## HuksKeyStorageType
 
 表示密钥存储方式。
 
@@ -2754,7 +2748,7 @@ async function huksAbort() {
 | HUKS_STORAGE_TEMP       | 0    | 表示通过本地直接管理密钥。     |
 | HUKS_STORAGE_PERSISTENT | 1    | 表示通过HUKS service管理密钥。 |
 
-### HuksSendType
+## HuksSendType
 
 表示发送Tag的方式。
 
@@ -2765,7 +2759,7 @@ async function huksAbort() {
 | HUKS_SEND_TYPE_ASYNC | 0    | 表示异步发送TAG。 |
 | HUKS_SEND_TYPE_SYNC  | 1    | 表示同步发送TAG。 |
 
-### HuksUnwrapSuite<sup>9+</sup>
+## HuksUnwrapSuite<sup>9+</sup>
 
 表示导入加密密钥的算法套件。
 
@@ -2776,7 +2770,7 @@ async function huksAbort() {
 | HUKS_UNWRAP_SUITE_X25519_AES_256_GCM_NOPADDING | 1    | 导入加密密钥时，X25519密钥协商后使用AES-256 GCM加密。 |
 | HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING   | 2    | 导入加密密钥时，ECDH密钥协商后使用AES-256 GCM加密。   |
 
-### HuksImportKeyType<sup>9+</sup>
+## HuksImportKeyType<sup>9+</sup>
 
 表示导入密钥的密钥类型，默认为导入公钥，导入对称密钥时不需要该字段。
 
@@ -2788,7 +2782,7 @@ async function huksAbort() {
 | HUKS_KEY_TYPE_PRIVATE_KEY | 1    | 表示导入的密钥类型为私钥。     |
 | HUKS_KEY_TYPE_KEY_PAIR    | 2    | 表示导入的密钥类型为公私钥对。 |
 
-### HuksUserAuthType<sup>9+</sup>
+## HuksUserAuthType<sup>9+</sup>
 
 表示用户认证类型。
 
@@ -2800,7 +2794,7 @@ async function huksAbort() {
 | HUKS_USER_AUTH_TYPE_FACE        | 2    | 表示用户认证类型为人脸 。 |
 | HUKS_USER_AUTH_TYPE_PIN         | 4    | 表示用户认证类型为PIN码。 |
 
-### HuksAuthAccessType<sup>9+</sup>
+## HuksAuthAccessType<sup>9+</sup>
 
 表示安全访问控制类型。
 
@@ -2811,7 +2805,7 @@ async function huksAbort() {
 | HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | 表示安全访问控制类型为清除密码后密钥无效。       |
 | HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | 表示安全访问控制类型为新录入生物特征后密钥无效。 |
 
-### HuksChallengeType<sup>9+</sup>
+## HuksChallengeType<sup>9+</sup>
 
 表示密钥使用时生成challenge的类型。
 
@@ -2823,7 +2817,7 @@ async function huksAbort() {
 | HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | 表示challenge为用户自定义类型。支持使用多个密钥仅一次认证。 |
 | HUKS_CHALLENGE_TYPE_NONE         | 2    | 表示免challenge类型。 |
 
-### HuksChallengePosition<sup>9+</sup>
+## HuksChallengePosition<sup>9+</sup>
 
 表示challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置 。
 
@@ -2836,7 +2830,7 @@ async function huksAbort() {
 | HUKS_CHALLENGE_POS_2         | 2    | 表示16~23字节为当前密钥的有效challenge。 |
 | HUKS_CHALLENGE_POS_3        | 3   | 表示24~31字节为当前密钥的有效challenge。 |
 
-### HuksSecureSignType<sup>9+</sup>
+## HuksSecureSignType<sup>9+</sup>
 
 表示生成或导入密钥时，指定该密钥的签名类型。
 
@@ -2846,7 +2840,7 @@ async function huksAbort() {
 | ------------------------------ | ---- | ------------------------------------------------------------ |
 | HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | 表示签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。 |
 
-### HuksTagType
+## HuksTagType
 
 表示Tag的数据类型。
 
@@ -2861,7 +2855,7 @@ async function huksAbort() {
 | HUKS_TAG_TYPE_BOOL    | 4 << 28 | 表示该Tag的数据类型为boolean。          |
 | HUKS_TAG_TYPE_BYTES   | 5 << 28 | 表示该Tag的数据类型为Uint8Array。       |
 
-### HuksTag
+## HuksTag
 
 表示调用参数的Tag。
 
