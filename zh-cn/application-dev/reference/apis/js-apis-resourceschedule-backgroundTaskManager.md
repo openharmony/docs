@@ -434,6 +434,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |
