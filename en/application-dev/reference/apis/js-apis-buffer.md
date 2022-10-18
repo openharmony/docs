@@ -16,6 +16,16 @@ import buffer from '@ohos.buffer';
 
 ## Buffer
 
+### Attributes
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| length | number | Yes| No| Length of the buffer, in bytes.|
+| buffer | ArrayBuffer | Yes| No| **ArrayBuffer** object.|
+| byteOffset | number | Yes| No| Offset of the buffer in the memory pool.|
+
 ### alloc
 
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
@@ -2422,7 +2432,7 @@ Creates a **Blob** instance by copying specified data from this **Blob** instanc
   let blob3 = blob.slice(0, 2, "MIME");
   ```
 
-  ### text
+### text
 
 text(): Promise&lt;string&gt;
 

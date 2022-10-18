@@ -16,20 +16,20 @@ Not supported
 
 Polyline(value?: {width?: string | number, height?: string | number})
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | No| 0 | Width.| 
-  | height | string \| number | No| 0 | Height.| 
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | No| 0 | Width.|
+| height | string \| number | No| 0 | Height.|
 
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Default Value| Mandatory| Description| 
+| Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| points | Array&lt;Point&gt; | [] | No| List of coordinates that the polyline passes through.| 
+| points | Array&lt;Point&gt; | [] | No| List of coordinates that the polyline passes through.|
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Color of the fill area.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Opacity of the fill area.|
 | stroke | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Stroke color.|

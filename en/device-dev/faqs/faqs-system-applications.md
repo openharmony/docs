@@ -3,10 +3,10 @@
 
 
 
-## Utils FAQs
+## Utils
 
 
-### Failure in running the KV store on the LiteOS-A kernel (Hi3516 or Hi3518) due to incorrect path setting for the KV store
+### Failed to Run a KV Store on LiteOS-A (Hi3516 or Hi3518)
 
 **Symptom**
 
@@ -119,9 +119,10 @@ The component added to the **.hml** file cannot be displayed.
 
 **Solution**
 
-(1) Check whether the width and height values are set explicitly.
+1. Check whether the width and height values are set explicitly.
 
-(2) Check whether the style of the component is set correctly.
+2. Check whether the style of the component is set correctly.
+
 
 
 ### How do I implement scrolling on a page?
@@ -174,27 +175,29 @@ If the total length of child components, except for the first and last ones, is 
 Do not include too many elements in an array. Avoid frequent operations on a large array.
 
 
-## HDC FAQs
+## hdc
 
 
-### Why does hdc_std fail to connect to a device?
+### hdc_std Failed to Connect to a Device
 
 - **Symptom**
   
-
-After the **hdc_std list targets** command is executed, **[Empty]** is displayed.
+  After the **hdc_std list targets** command is executed, **[Empty]** is displayed.
 
 - **Solution**
   
   1. The device cannot be identified.
+      
       Check whether **HDC Device** exists under the **Universal Serial Bus controllers** in the **Device Manager**. If **HDC Device** does not exist, the device cannot be connected. In this case, disconnect and then reconnect the USB connection between the test PC and the OpenHarmony device, or burn the latest image.
+      
   2. hdc_std works improperly.
       Run the **hdc kill** command to terminate the hdc_std process or run the **hdc start -r** command to restart the hdc service. Then, run the **hdc list targets** command to check whether device information can be obtained.
+  
   3. hdc_std does not match the device.
       If the latest image is burnt on the device, the latest hdc_std version must be used.
 
 
-### hdc_std fail to run
+### hdc_std Failed to Run
 
 - **Symptom**
   

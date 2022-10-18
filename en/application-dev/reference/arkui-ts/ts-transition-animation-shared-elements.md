@@ -17,7 +17,7 @@ Shared element transition can be used for transition between pages, for example,
 
 ## Example
 
-  The example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
+The example implements the custom transition of a shared image during redirection from one page to another, which is triggered by a click on the image.
 
 ```ts
 // xxx.ets

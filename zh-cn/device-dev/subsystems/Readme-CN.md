@@ -82,6 +82,8 @@
       - [系统参数](subsys-boot-init-sysparam.md)
       - [沙盒管理](subsys-boot-init-sandbox.md)
       - [插件](subsys-boot-init-plugin.md)
+      - [组件化启动](subsys-boot-init-sub-unit.md)
+      - [init运行日志规范化](subsys-boot-init-log.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)

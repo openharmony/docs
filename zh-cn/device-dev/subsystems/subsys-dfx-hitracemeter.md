@@ -144,44 +144,20 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     #include "hitrace_meter.h"//接口函数定义头文件
     ```
 
-3. 接口调用示例。
+3. 接口调用，将需要跟踪的Trace value传入参数，在shell中执行hitrace命令后会自动抓取Trace数据，抓到的Trace数据中包括了函数调用过程以及调用过程消耗的内存和时间，可用于分析代码调用流程，代码性能问题。
 
 
     ```cpp
-    #include "hitrace_meter.h" // 包含hitrace_meter.h
-    using namespace std;
-        
-    int main()
-    {
-         uint64_t label = BYTRACE_TAG_OHOS;
-         sleep(1);
-         CountTrace(label, "count number", 2000);  // 整数跟踪
-     
-         StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
-         sleep(1);
-         StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
-         sleep(2);
-         FinishTrace(label);   // func2Trace的结束点
-         sleep(1);
-         FinishTrace(label);   // func1Trace的结束点
-     
-         sleep(1);
-         CountTrace(label, "count number", 3000);  // 整数跟踪
-     
-         StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
-         sleep(1);
-         StartAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的开始点
-         StartAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的开始点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace3", 5678); // 异步asyncTrace3的结束点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的结束点
-         sleep(1);
-         FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
-     
-         return 0;
-     }    
     
+     CountTrace(label, "count number", 2000);  // 整数跟踪
+         
+     StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
+         
+     FinishTrace(label);   // func1Trace的结束点 
+         
+     StartAsyncTrace(label, "asyncTrace1", 1234); // 异步asyncTrace1的开始点
+    
+     FinishAsyncTrace(label, "asyncTrace2", 3456); // 异步asyncTrace2的结束点
     ```
 
 4. 使用方法，打点编译部署完成后，运行下面命令行来抓取Trace。然后在端侧shell里运行应用，可以抓取到Trace数据。
@@ -191,6 +167,34 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     ```
 
  抓取之后的数据可以在smartperf中"Open trace file"或者直接拖入图形区打开，关于smartperf的详细介绍可查看 [smartperf](https://toscode.gitee.com/openharmony-sig/smartperf) 。
+
+## 开发示例
+
+目前HiTraceMeter支持的Trace Tag在基本概念hitrace_meter.h中都已列出，我们以OHOS这个Tag为例，假设我们需要获取func1，func2函数的Trace数据，则一个使用示例如下：
+
+```cpp
+#include "hitrace_meter.h" // 包含hitrace_meter.h
+using namespace std;
+    
+int main()
+{
+     uint64_t label = BYTRACE_TAG_OHOS;
+     sleep(1);
+     CountTrace(label, "count number", 2000);  // 整数跟踪
+ 
+     StartTrace(label, "func1Trace", -1); // func1Start的跟踪起始点
+     sleep(1);
+     StartTrace(label, "func2Trace", -1);   // func2Start的跟踪起始点
+     sleep(2);
+     FinishTrace(label);   // func2Trace的结束点
+     sleep(1);
+     FinishTrace(label);   // func1Trace的结束点
+ 
+     return 0;
+ }   
+```
+
+
 
 ## 调测验证
 
@@ -233,13 +237,13 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     ```
     ohos_executable("hitrace_example") {
       sources = [ "example/hitrace_example.cpp" ]
-
+    
       external_deps = [ "hitrace_native:hitrace_meter" ]
-
+    
       subsystem_name = "hiviewdfx"
       part_name = "hitrace_native"
     }
-
+    
     group("hitrace_target") {
       deps = [
         ":hitrace",
@@ -248,7 +252,15 @@ C++接口仅系统开发者使用，JS（目前暂未开放js接口）应用开�
     }
     ```
 
-3. 将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行hitrace_example。
+3. 将编译出来的hitrace_example可执行文件放到设备中的/system/bin目录下,在shell中执行依次执行如下命令：
+
+    ```shell
+    hitrace --trace_begin ohos
+    hitrace_exampe
+    hitrace --trace_dump
+    ```
+
+    当我们看到Trace数据中有我们需要的Trace value时，说明成功抓取Trace，成功的数据如下所示：
 
     ```
     <...>-1651    (-------) [002] ....   327.194136: tracing_mark_write: S|1650|H:testAsync 111

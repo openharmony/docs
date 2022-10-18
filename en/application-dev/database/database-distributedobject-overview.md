@@ -12,7 +12,7 @@ The distributed data object management framework provides object-oriented in-mem
 
 - **Distributed data object**
 
-  A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading data from and writing data to a distributed data object are mapped to the **put** and **get** operations in the corresponding database, respectively.
+  A distributed data object is an encapsulation of the JS object type. Each distributed data object instance creates a data table in the in-memory database. The in-memory databases created for different applications are isolated from each other. Reading data from and writing data to a distributed data object are mapped to the **get** and **put** operations in the corresponding database, respectively.
 
   The distributed data object can be in the following states in its lifecycle:
 

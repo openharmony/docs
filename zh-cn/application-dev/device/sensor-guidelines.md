@@ -96,4 +96,4 @@
 
 针对传感器开发，有以下相关实例可供参考：
 
-- [`Sensor`：传感器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Sensor)
+- [`Sensor`：传感器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/Sensor)

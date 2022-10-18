@@ -16,7 +16,7 @@
 
 Xcomponent创建方法可参考：[XComponent创建方法](#xcomponent创建方法)
 
-拍照保存接口可参考：[图片处理API文档](../reference/apis/js-apis-image.md)
+拍照保存接口可参考：[图片处理API文档](image.md#imagereceiver的使用)
 
 #### 创建实例
 
