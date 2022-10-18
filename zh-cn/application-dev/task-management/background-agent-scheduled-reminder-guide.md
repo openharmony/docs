@@ -7,11 +7,11 @@
 
 ## 接口说明
 
-reminderAgent：封装了发布、取消提醒类通知的方法。
+reminderAgentManager：封装了发布、取消提醒类通知的方法。
 
-具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgent.md)。
+具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgentManager.md)。
 
-**表1** reminderAgent主要接口
+**表1** reminderAgentManager主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -36,17 +36,17 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 2、发布相应的提醒代理。
 
 ```ts
-import reminderAgent from '@ohos.reminderAgent';
+import reminderAgentManager from '@ohos.reminderAgentManager';
 import notification from '@ohos.notification';
 
 // 倒计时实例定义：
-let timer : reminderAgent.ReminderRequestTimer = {
-    reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
+let timer : reminderAgentManager.ReminderRequestTimer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
     triggerTimeInSeconds: 10,
     actionButton: [
         {
             title: "close",
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         }
     ],
     wantAgent: {
@@ -65,8 +65,8 @@ let timer : reminderAgent.ReminderRequestTimer = {
 }
 
 // 日历实例定义：
-let calendar : reminderAgent.ReminderRequestCalendar = {
-    reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
+let calendar : reminderAgentManager.ReminderRequestCalendar = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR,
     dateTime: {
         year: 2050,
         month: 7,
@@ -80,11 +80,11 @@ let calendar : reminderAgent.ReminderRequestCalendar = {
     actionButton: [
         {
             title: "close",
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         },
         {
             title: "snooze",
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
         },
     ],
     wantAgent: {
@@ -107,19 +107,19 @@ let calendar : reminderAgent.ReminderRequestCalendar = {
 }
 
 // 闹钟实例定义：
-let alarm : reminderAgent.ReminderRequestAlarm = {
-    reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
+let alarm : reminderAgentManager.ReminderRequestAlarm = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM,
     hour: 11,
     minute: 14,
     daysOfWeek: [0],
     actionButton: [
         {
             title: "close",
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         },
         {
             title: "snooze",
-            type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
         },
     ],
     wantAgent: {
@@ -147,9 +147,15 @@ struct Index {
   @State message: string = 'test'
 
   publishReminder() {
-      reminderAgent.publishReminder(timer, (err, reminderId) => {
-        console.log("callback, reminderId = " + reminderId);
-    });
+    try {
+        reminderAgentManager.publishReminder(timer).then(res => {
+            console.log("publishReminder promise reminderId:" + res);
+        }).catch(err => {
+            console.log("publishReminder err code:" + err.code + " message:" + err.message);
+        })
+    } catch (error) {
+        console.log("publishReminder code:" + error.code + " message:" + error.message);
+    };
   }
 
   build() {
