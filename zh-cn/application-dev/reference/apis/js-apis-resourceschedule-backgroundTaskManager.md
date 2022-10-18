@@ -237,6 +237,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -313,6 +314,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -376,6 +378,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -481,6 +484,7 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |
@@ -525,6 +529,7 @@ resetAllEfficiencyResources(): void
 
 | 错误码  | 错误信息             | 说明 |
 | ---- | --------------------- | ---- |
+| 201 | Permission denied. | 权限校验失败 |
 | 401 | Parameter error. | 参数检查错误 |
 | 9800001 | Memory operation failed. | 内存操作失败 |
 | 9800002 | Parcel operation failed. | Parcel读写操作失败 |

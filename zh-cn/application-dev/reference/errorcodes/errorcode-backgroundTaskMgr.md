@@ -11,7 +11,7 @@ Permission denied.
 该错误码表示权限校验失败，可能原因是未配置对应权限。
 
 ### 处理步骤
-配置权限ohos.permission.KEEP_BACKGROUND_RUNNING
+长时任务请配置权限ohos.permission.KEEP_BACKGROUND_RUNNING，能效资源申请请配置权限runningResourcesApply
 
 ## 401 参数检查错误
 
