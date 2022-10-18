@@ -2622,7 +2622,7 @@ captureSession.isVideoStabilizationModeSupported(camera.VideoStabilizationMode.O
         console.error(`Failed to check whether video stabilization mode supported. ${err.message}`);
         return;
     }
-    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported: ${status}`);
+    console.log(`Callback returned with the successful execution of isVideoStabilizationModeSupported`);
 })
 ```
 
