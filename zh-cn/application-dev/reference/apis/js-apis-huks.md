@@ -2574,26 +2574,26 @@ async function huksAbort() {
 
 **系统能力**：SystemCapability.Security.Huks
 
-| 类型                      | 名称                                           | 说明                        | 错误码   |
-| ------------------------- | ---------------------------------------------- | --------------------------- | -------- |
-| 权限                      | HUKS_ERR_CODE_PERMISSION_FAIL                  | 权限错误导致失败。          | 201      |
-| 参数                      | HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 参数错误导致失败。          | 401      |
-| 不支持的API               | HUKS_ERR_CODE_NOT_SUPPORTED_API                | 不支持的API。               | 801      |
-| 不支持的功能/特性         | HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 不支持的功能/特性。         | 12000001 |
-| 缺少密钥算法参数          | HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 缺少密钥算法参数。          | 12000002 |
-| 无效密钥算法参数          | HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 无效密钥算法参数。          | 12000003 |
-| 文件                      | HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 文件操作失败。              | 12000004 |
-| 通信                      | HUKS_ERR_CODE_COMMUNICATION_FAIL               | 通信失败。                  | 12000005 |
-| 算法库操作失败            | HUKS_ERR_CODE_CRYPTO_FAIL                      | 算法库操作失败。            | 12000006 |
-| 密钥访问失败-密钥访问失效 | HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 密钥访问失败-密钥访问失效。 | 12000007 |
-| 密钥访问失败-密钥认证失败 | HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 密钥访问失败-密钥认证失败。 | 12000008 |
-| 密钥访问失败-密钥访问超时 | HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 密钥访问失败-密钥访问超时。 | 12000009 |
-| 密钥操作会话数已达上限    | HUKS_ERR_CODE_SESSION_LIMIT                    | 密钥操作会话数已达上限。    | 12000010 |
-| 目标对象不存在            | HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 目标对象不存在。            | 12000011 |
-| 外部错误                  | HUKS_ERR_CODE_EXTERNAL_ERROR                   | 外部错误。                  | 12000012 |
-| 缺失所需凭据              | HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 缺失所需凭据。              | 12000013 |
-| 内存不足                  | HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 内存不足。                  | 12000014 |
-| 调用其他系统服务失败      | HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 调用其他系统服务失败。      | 12000015 |
+| 名称                                           | 说明                        | 错误码   |
+| ---------------------------------------------- | --------------------------- | -------- |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 权限错误导致失败。          | 201      |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 参数错误导致失败。          | 401      |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 不支持的API。               | 801      |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 不支持的功能/特性。         | 12000001 |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 缺少密钥算法参数。          | 12000002 |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 无效密钥算法参数。          | 12000003 |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 文件操作失败。              | 12000004 |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 通信失败。                  | 12000005 |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 算法库操作失败。            | 12000006 |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 密钥访问失败-密钥访问失效。 | 12000007 |
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 密钥访问失败-密钥认证失败。 | 12000008 |
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 密钥访问失败-密钥访问超时。 | 12000009 |
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 密钥操作会话数已达上限。    | 12000010 |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 目标对象不存在。            | 12000011 |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 外部错误。                  | 12000012 |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 缺失所需凭据。              | 12000013 |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 内存不足。                  | 12000014 |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 调用其他系统服务失败。      | 12000015 |
 
 ## HuksKeyPurpose
 
