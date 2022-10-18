@@ -87,8 +87,9 @@
   - bundle/[ModuleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
   - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
   - bundle/[RemoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
-  - bundle/[ShortcutInfo (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
+  - bundle/[ShortcutInfo<sup>(deprecated)</sup> (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
   - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
+  - bundleManager/[ShortcutInfo (ShortcutInfo)](js-apis-bundleManager-shortcutInfo.md)
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)

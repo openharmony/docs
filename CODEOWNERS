@@ -180,6 +180,7 @@ zh-cn/application-dev/reference/js-service-widget-ui/ @HelloCrease
 zh-cn/application-dev/website.md @zengyawen
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/file-management/ @qinxiaowang
+zh-cn/application-dev/application-test/ @HelloCrease
 
 zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-ability-errorCode.md @RayShih
@@ -225,7 +226,7 @@ zh-cn/application-dev/reference/apis/js-apis-application-shellCmdResult.md @RayS
 zh-cn/application-dev/reference/apis/js-apis-commonEvent.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-notification.md @RayShih
-zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @RayShih
+zh-cn/application-dev/reference/apis/js-apis-reminderAgent.md @HelloCrease
 zh-cn/application-dev/reference/apis/js-apis-eventhub.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-Bundle.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @RayShih
@@ -445,3 +446,5 @@ zh-cn/application-dev/reference/apis/js-apis-net-policy.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-net-sharing.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-net-statistics.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-tlsSocket.md @zengyawen
+zh-cn/application-dev/reference/apis/js-apis-reminderAgentManager.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-hiviewdfx-hiappevent.md @zengyawen
