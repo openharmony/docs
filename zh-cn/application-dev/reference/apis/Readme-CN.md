@@ -1,5 +1,6 @@
 ﻿# 接口
-- [开发说明](development-intro.md)
+
+- [开发说明](reference/apis/development-intro.md)
 - Ability框架
   - FA模型
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
@@ -85,10 +86,10 @@
   - bundle/[LauncherAbilityInfo (LauncherAbilityInfo)](js-apis-bundle-LauncherAbilityInfo.md)
   - bundle/[Metadata (Metadata)](js-apis-bundle-Metadata.md)
   - bundle/[ModuleInfo (ModuleInfo)](js-apis-bundle-ModuleInfo.md)
+  - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
   - bundle/[PermissionDef (PermissionDef)](js-apis-bundle-PermissionDef.md)
   - bundle/[RemoteAbilityInfo (RemoteAbilityInfo)](js-apis-bundle-remoteAbilityInfo.md)
   - bundle/[ShortcutInfo (ShortcutInfo)](js-apis-bundle-ShortcutInfo.md)
-  - bundle/[PackInfo (PackInfo)](js-apis-bundle-PackInfo.md)
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
@@ -144,8 +145,10 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
   - data/rdb/[resultSet (结果集)](js-apis-data-resultset.md)
 - 文件管理
+  - [@ohos.data.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.document (文件交互)](js-apis-document.md)
   - [@ohos.environment (目录环境能力)](js-apis-environment.md)
+  - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
   - [@ohos.fileio (文件管理)](js-apis-fileio.md)
   - [@ohos.fileManager (公共文件访问与管理)](js-apis-filemanager.md)
   - [@ohos.filemanagement.userfile_manager (用户数据管理)](js-apis-userfilemanager.md)
@@ -205,9 +208,7 @@
   - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [Timer (定时器)](js-apis-timer.md)
-
 - 设备管理
-
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
