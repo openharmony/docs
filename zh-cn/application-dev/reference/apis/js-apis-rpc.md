@@ -7831,7 +7831,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里处理�
 
 ### onRemoteRequestEx<sup>9+</sup>
 
-onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise <boolean>
+onRemoteRequestEx(code : number, data : MessageSequence, reply: MessageSequence, options : MessageOption): boolean | Promise\<boolean>
 
 > **说明：**
 >
@@ -7856,7 +7856,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   | 类型              | 说明                                                                                           |
   | ----------------- | ---------------------------------------------------------------------------------------------- |
   | boolean           | 若在onRemoteRequestEx中同步地处理请求，则返回一个布尔值：操作成功，则返回true；否则返回false。 |
-  | Promise <boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。                                 |
+  | Promise\<boolean> | 若在onRemoteRequestEx中异步地处理请求，则返回一个Promise对象。                                 |
 
 **重载onRemoteRequestEx方法同步处理请求示例：**
 

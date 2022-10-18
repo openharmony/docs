@@ -4659,7 +4659,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4703,7 +4703,7 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<WebStorageOrigin>>
+static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
