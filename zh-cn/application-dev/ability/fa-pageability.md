@@ -80,19 +80,17 @@ ability支持单实例和多实例两种启动模式。
 ```javascript
   import featureAbility from '@ohos.ability.featureAbility'
   featureAbility.startAbility({
-  want:
-  {
-    action: "",
-    entities: [""],
-    type: "",
-    deviceId: "",
-    bundleName: "com.example.myapplication",
-    /* FA模型中abilityName由package + Ability name组成 */
-    abilityName: "com.example.entry.secondAbility",
-    uri: ""
-  },
-  },
-  );
+      want: {
+          action: "",
+          entities: [""],
+          type: "",
+          deviceId: "",
+          bundleName: "com.example.myapplication",
+          /* FA模型中abilityName由package + Ability name组成 */
+          abilityName: "com.example.entry.secondAbility",
+          uri: ""
+      }
+  });
 ```
 
 ### 启动远程PageAbility（当前仅对系统应用开放）
