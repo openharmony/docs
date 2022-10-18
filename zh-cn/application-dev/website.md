@@ -333,18 +333,18 @@
       - [资源](key-features/multi-device-app-dev/design-resources.md)
     - [工程管理](key-features/multi-device-app-dev/ide-using.md)
     - 页面开发的一多能力介绍
-    - [简介](key-features/multi-device-app-dev/page-development-intro.md)
-    - 布局能力
-      - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
-      - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
-      - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
-      - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
-      - 典型页面场景
-        - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
-        - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
-    - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
-    - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
-    - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
+      - [简介](key-features/multi-device-app-dev/page-development-intro.md)
+      - 布局能力
+        - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
+        - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
+        - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
+        - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
+        - 典型页面场景
+          - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
+          - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
+      - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
+      - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
+      - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
     - [案例应用](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/faq.md)
