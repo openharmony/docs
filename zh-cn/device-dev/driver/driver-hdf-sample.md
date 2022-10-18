@@ -64,7 +64,7 @@ root {
 #define SAMPLE_WRITE_READ 123
 
 int32_t HdfSampleDriverDispatch(
-    struct HdfDeviceIoClient *deviceObject, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
+    struct HdfDeviceIoClient *client, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
 {
     HDF_LOGE("%s: received cmd %d", __func__, id);
     if (id == SAMPLE_WRITE_READ) {
@@ -75,7 +75,7 @@ int32_t HdfSampleDriverDispatch(
         if (!HdfSbufWriteInt32(reply, INT32_MAX)) {
             HDF_LOGE("%s: reply int32 fail", __func__);
         }
-        return HdfDeviceSendEvent(deviceObject, id, data);
+        return HdfDeviceSendEvent(client->device, id, data);
     }
     return HDF_FAILURE;
 }
