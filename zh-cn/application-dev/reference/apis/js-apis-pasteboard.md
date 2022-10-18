@@ -12,18 +12,18 @@
 import pasteboard from '@ohos.pasteboard';
 ```
 
-## 属性
+## 常量
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 | 名称 | 参数类型 | 值 | 说明 |
 | -------- | -------- | -------- | -------- |
 | MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 单个PasteData中所能包含的最大条目数。 |
-| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | text/html | HTML内容的MIME类型定义。 |
-| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | text/want | Want内容的MIME类型定义。 |
-| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | text/plain | 纯文本内容的MIME类型定义。 |
-| MIMETYPE_TEXT_URI<sup>7+</sup> | string | text/uri | URI内容的MIME类型定义。 |
-| MIMETYPE_PIXELMAP<sup>9+</sup> | string | pixelMap | PixelMap内容的MIME类型定义。 |
+| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
+| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | Want内容的MIME类型定义。 |
+| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。 |
+| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri' | URI内容的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap' | PixelMap内容的MIME类型定义。 |
 
 ## ValueType<sup>9+</sup>
 
@@ -421,10 +421,10 @@ convertToTextV9(callback: AsyncCallback&lt;string&gt;): void
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9((err, data) => {
     if (err) {
-        console.error('Failed to convert to text. Cause: ${err.message}');
+        console.error(`Failed to convert to text. Cause: ${err.message}`);
         return;
     }
-    console.info('Succeeded in converting to text. Data: ${data}');
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 });
 ```
 
@@ -447,9 +447,9 @@ convertToTextV9(): Promise&lt;string&gt;
 ```js
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToTextV9().then((data) => {
-    console.info('Succeeded in converting to text. Data: ${data}');
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to convert to text. Cause: ${err.message}');
+    console.error(`Failed to convert to text. Cause: ${err.message}`);
 });
 ```
 
@@ -476,10 +476,10 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err, data) => {    
     if (err) {        
-        console.error('Failed to convert to text. Cause: ${err.message}');
+        console.error(`Failed to convert to text. Cause: ${err.message}`);
         return;   
       }
-    console.info('Succeeded in converting to text. Data: ${data}');
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 });
 ```
 
@@ -505,9 +505,9 @@ convertToText(): Promise&lt;string&gt;
 ```js
 let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data) => {
-    console.info('Succeeded in converting to text. Data: ${data}');
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to convert to text. Cause: ${err.message}');
+    console.error(`Failed to convert to text. Cause: ${err.message}`);
 });
 ```
 
@@ -1251,7 +1251,7 @@ clearData(callback: AsyncCallback&lt;void&gt;): void
 ```js
 systemPasteboard.clearData((err, data) => { 
     if (err) {
-        console.error('Failed to clear the pasteboard. Cause: ${err.message}');
+        console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
         return;
     }
     console.info('Succeeded in clearing the pasteboard.');
@@ -1277,8 +1277,8 @@ clearData(): Promise&lt;void&gt;
 ```js
 systemPasteboard.clearData().then((data) => { 
     console.info('Succeeded in clearing the pasteboard.');
-}).catch((err) => {    
-    console.error('Failed to clear the pasteboard. Cause: ${err.message}');
+}).catch((err) => {
+    console.error(`Failed to clear the pasteboard. Cause: ${err.message}`);
 });
 ```
 
@@ -1444,10 +1444,10 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 ```js
 systemPasteboard.hasData((err, data) => {
     if (err) {
-        console.error('Failed to check the PasteData. Cause: ${err.message}');
+        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
         return;
     }
-    console.info('Succeeded in checking the PasteData. Data: ${data}');
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 });
 ```
 
@@ -1469,9 +1469,9 @@ hasData(): Promise&lt;boolean&gt;
 
 ```js
 systemPasteboard.hasData().then((data) => { 
-    console.info('Succeeded in checking the PasteData. Data: ${data}');
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to check the PasteData. Cause: ${err.message}');
+    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
 });
 ```
 
@@ -1497,7 +1497,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 ```js
 systemPasteboard.clear((err, data) => { 
     if (err) {        
-        console.error('Failed to clear the PasteData. Cause: ${err.message}');
+        console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
         return;
     }
     console.info('Succeeded in clearing the PasteData.');
@@ -1527,7 +1527,7 @@ clear(): Promise&lt;void&gt;
 systemPasteboard.clear().then((data) => { 
     console.info('Succeeded in clearing the PasteData.');
 }).catch((err) => {    
-    console.error('Failed to clear the PasteData. Cause: ${err.message}');
+    console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
 });
 ```
 
@@ -1611,10 +1611,10 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 ```js
 systemPasteboard.hasPasteData((err, data) => {
     if (err) {
-        console.error('Failed to check the PasteData. Cause: ${err.message}');
+        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
         return;
     }
-    console.info('Succeeded in checking the PasteData. Data: ${data}');
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 });
 ```
 
@@ -1639,9 +1639,9 @@ hasPasteData(): Promise&lt;boolean&gt;
 
 ```js
 systemPasteboard.hasPasteData().then((data) => { 
-    console.info('Succeeded in checking the PasteData. Data: ${data}');
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to check the PasteData. Cause: ${err.message}');
+    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
 });
 ```
 
