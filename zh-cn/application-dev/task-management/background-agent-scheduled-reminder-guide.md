@@ -148,7 +148,7 @@ struct Index {
 
   publishReminder() {
     try {
-        reminderAgentManager.publishReminder(this.timer).then(res => {
+        reminderAgentManager.publishReminder(timer).then(res => {
             console.log("publishReminder promise reminderId:" + res);
         }).catch(err => {
             console.log("publishReminder err code:" + err.code + " message:" + err.message);
