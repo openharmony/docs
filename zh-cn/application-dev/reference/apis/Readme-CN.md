@@ -1,6 +1,6 @@
 ﻿# 接口
 
-- [开发说明](reference/apis/development-intro.md)
+- [开发说明](development-intro.md)
 - Ability框架
   - FA模型
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-featureAbility.md)
