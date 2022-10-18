@@ -83,12 +83,12 @@
            HDF_LOGE("fail to get service");
            return -1;
        }
-       struct HdfSBuf *data = HdfSBufObtainDefaultSize();
+       struct HdfSBuf *data = HdfSbufObtainDefaultSize();
        if (data == NULL) {
            HDF_LOGE("fail to obtain sbuf data");
            return -1;
        }
-       struct HdfSBuf *reply = HdfSBufObtainDefaultSize();
+       struct HdfSBuf *reply = HdfSbufObtainDefaultSize();
        if (reply == NULL) {
            HDF_LOGE("fail to obtain sbuf reply");
            ret = HDF_DEV_ERR_NO_MEMORY;
@@ -105,8 +105,8 @@
            goto out;
        }
    out:
-       HdfSBufRecycle(data);
-       HdfSBufRecycle(reply);
+       HdfSbufRecycle(data);
+       HdfSbbufRecycle(reply);
        HdfIoServiceRecycle(serv);
        return ret;
    }
