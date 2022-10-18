@@ -19,6 +19,7 @@
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 设备使用信息统计错误码见[DeviceUsageStatistics错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
 
 
 ## 导入模块
@@ -41,6 +42,19 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | 是    | 应用的bundleName。                           |
 | callback   | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                     |
+| ---------- | ----------------------------     |
+| 201        | Parameter error.                 | 
+| 401        | Permission denied.               | 
+| 801        | Capability not supported.        | 
+| 10000001   | Memory operation failed.         | 
+| 10000002   | Parcel operation failed.         | 
+| 10000003   | System service operation failed. | 
+| 10000004   | IPC Communication failed.        | 
+| 10000006   | Get application info failed.     |
 
 **示例**：
 
@@ -78,6 +92,19 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 | ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                     |
+| ---------- | ----------------------------     |
+| 201        | Parameter error.                 | 
+| 401        | Permission denied.               | 
+| 801        | Capability not supported.        | 
+| 10000001   | Memory operation failed.         | 
+| 10000002   | Parcel operation failed.         | 
+| 10000003   | System service operation failed. | 
+| 10000004   | IPC Communication failed.        | 
+| 10000006   | Get application info failed.     |
+
 **示例**：
 
   ```js
@@ -106,6 +133,21 @@ queryAppGroup(): Promise&lt;number&gt;
 | --------------- | --------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          | 
+| 10000005   | Application is not installed.      | 
+| 10000006   | Get application info failed.       |
+| 10100002   | Get Application group info failed. |
+
 **示例**：
 
 ```javascript
@@ -133,6 +175,21 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                    | 必填   | 说明                         |
 | -------- | --------------------- | ---- | -------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          | 
+| 10000005   | Application is not installed.      | 
+| 10000006   | Get application info failed.       |
+| 10100002   | Get Application group info failed. |
 
 **示例**：
 
@@ -169,6 +226,20 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | begin    | number                                   | 是    | 起始时间。                                   |
 | end      | number                                   | 是    | 结束时间。                                   |
 | callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -217,6 +288,20 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 | ---------------------------------------- | -------------------------------------- |
 | Promise&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
+
 **示例**：
 
   ```js
@@ -257,6 +342,20 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | begin      | number                                   | 是    | 起始时间。                                    |
 | end        | number                                   | 是    | 结束时间。                                    |
 | callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -304,6 +403,20 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | ---------------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
+
 **示例**：
 
   ```js
@@ -341,6 +454,20 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 | begin    | number                                   | 是    | 起始时间。                                   |
 | end      | number                                   | 是    | 结束时间。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -387,6 +514,20 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 | ---------------------------------------- | -------------------------------------- |
 | Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
+
 **示例**：
 
   ```js
@@ -420,6 +561,20 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 | begin    | number                                   | 是    | 起始时间。                                   |
 | end      | number                                   | 是    | 结束时间。                                   |
 | callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -462,6 +617,20 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 | ---------------------------------------- | -------------------------------------- |
 | Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
+
 **示例**：
 
   ```js
@@ -497,6 +666,20 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
 | Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过1000条FA使用记录。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -534,6 +717,20 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -579,6 +776,20 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 | ---------------------------------------- | ---------------------------------- |
 | Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
+
 **示例**：
 
   ```js
@@ -615,6 +826,20 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
 | callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          |  
+| 10000006   | Get application info failed.       |
+| 10000007   | Get system or actual time failed.  |
 
 **示例**：
 
@@ -660,6 +885,21 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 | --------------- | --------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          | 
+| 10000005   | Application is not installed.      | 
+| 10000006   | Get application info failed.       |
+| 10100002   | Get Application group info failed. |
+
 **示例**：
 
 ```javascript
@@ -694,6 +934,21 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 | ---------- | --------------------- | ---- | ---------------------------------------- |
 | bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
 | callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回制指定bundleName的应用分组。|
+
+**错误码**：
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 201        | Parameter error.                   | 
+| 401        | Permission denied.                 | 
+| 801        | Capability not supported.          | 
+| 10000001   | Memory operation failed.           | 
+| 10000002   | Parcel operation failed.           | 
+| 10000003   | System service operation failed.   | 
+| 10000004   | IPC Communication failed.          | 
+| 10000005   | Application is not installed.      | 
+| 10000006   | Get application info failed.       |
+| 10100002   | Get Application group info failed. |
 
 **示例**：
 
@@ -731,6 +986,20 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 | ---------- | --------- | ---- | ---- |
 | bundleName | string    | 是    | 应用名称 |
 | newGroup   | [GroupType](#grouptype) | 是    | 应用分组 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed.          |
+| 10100001   | Application group operation repeated. |
 
 **返回值**：
 
@@ -775,6 +1044,20 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 | newGroup   | [GroupType](#grouptype)           | 是    | 应用分组                      |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed.          |
+| 10100001   | Application group operation repeated. |
+
 **示例**：
 
 ```javascript
@@ -811,6 +1094,19 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | callback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10100001   | Application group operation repeated. |
 
 **返回值**：
 
@@ -859,6 +1155,20 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 | groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
 | callback | AsyncCallback&lt;void&gt;                                    | 是   | 指定的异步callback函数，返回注册监听是否成功 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10100001   | Application group operation repeated. |
+
+
 **示例**：
 
 ```javascript
@@ -903,6 +1213,19 @@ unRegisterAppGroupCallBack(): Promise&lt;void&gt;
 | ------------- | ------------------------ |
 | Promise&lt;void&gt; | 指定的Promise回调方法。返回解除监听是否成功 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10100001   | Application group operation repeated. |
+
 **示例**：
 
 ```javascript
@@ -934,6 +1257,19 @@ unRegisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 | 参数名      | 类型                  | 必填   | 说明             |
 | -------- | ------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;void&gt; | 是    | 解除监听是否成功的异步回调函数 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10100001   | Application group operation repeated. |
 
 **示例**：
 
@@ -976,6 +1312,20 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 | ---------------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed           |
+| 10000007   | Get system or actual time failed.     |
+
 **示例**：
 
   ```js
@@ -1010,6 +1360,20 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 | begin    | number                                   | 是    | 起始时间。                                    |
 | end      | number                                   | 是    | 结束时间。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed           |
+| 10000007   | Get system or actual time failed.     |
 
 **示例**：
 
@@ -1053,6 +1417,20 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 | ---------------------------------------- | ---------------------------------------- |
 | Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
 
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed           |
+| 10000007   | Get system or actual time failed.     |
+
 **示例**：
 
   ```js
@@ -1087,6 +1465,20 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 | begin    | number                                   | 是    | 起始时间。                                    |
 | end      | number                                   | 是    | 结束时间。                                    |
 | callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
+
+**错误码**：
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 201        | Parameter error.                      | 
+| 401        | Permission denied.                    | 
+| 801        | Capability not supported.             | 
+| 10000001   | Memory operation failed.              | 
+| 10000002   | Parcel operation failed.              | 
+| 10000003   | System service operation failed.      | 
+| 10000004   | IPC Communication failed.             | 
+| 10000006   | Get application info failed           |
+| 10000007   | Get system or actual time failed.     |
 
 **示例**：
 
