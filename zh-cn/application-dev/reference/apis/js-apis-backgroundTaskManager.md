@@ -23,17 +23,13 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
 
-## backgroundTaskManager.requestSuspendDelay<sup>7+(deprecated)</sup>
+## backgroundTaskManager.requestSuspendDelay<sup>7+</sup>
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
 后台应用申请延迟挂起。
 
 延迟挂起时间一般情况下默认值为180000毫秒，低电量（依据系统低电量广播）时默认值为60000毫秒。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.requestSuspendDelay](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerrequestsuspenddelay9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -65,15 +61,11 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime<sup>7+</sup>
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
 获取应用程序进入挂起状态前的剩余时间，使用callback形式返回。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimecallback9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -99,15 +91,11 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+(deprecated)</sup>
+## backgroundTaskManager.getRemainingDelayTime<sup>7+</sup>
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 获取应用程序进入挂起状态前的剩余时间，使用Promise形式返回。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.getRemainingDelayTime](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagergetremainingdelaytimepromise9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -132,15 +120,11 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
   ```
 
 
-## backgroundTaskManager.cancelSuspendDelay<sup>7+(deprecated)</sup>
+## backgroundTaskManager.cancelSuspendDelay<sup>7+</sup>
 
 cancelSuspendDelay(requestId: number): void
 
 取消延迟挂起。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.cancelSuspendDelay](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagercancelsuspenddelay9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -156,15 +140,11 @@ cancelSuspendDelay(requestId: number): void
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请长时任务，使用callback形式返回结果。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningcallback9)
->
-> 从 API version 7开始支持。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -251,15 +231,11 @@ export default class MainAbility extends Ability {
 };
 ```
 
-## backgroundTaskManager.startBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.startBackgroundRunning<sup>8+</sup>
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
 向系统申请长时任务，使用promise形式返回结果。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.startBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstartbackgroundrunningpromise9)
->
-> 从 API version 7开始支持。
 
 **需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -342,15 +318,11 @@ export default class MainAbility extends Ability {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
 向系统申请取消长时任务，使用callback形式返回结果。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningcallback9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -401,15 +373,11 @@ export default class MainAbility extends Ability {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning<sup>8+(deprecated)</sup>
+## backgroundTaskManager.stopBackgroundRunning<sup>8+</sup>
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 向系统申请取消长时任务，使用promise形式返回结果。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.stopBackgroundRunning](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerstopbackgroundrunningpromise9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -456,7 +424,7 @@ export default class MainAbility extends Ability {
 };
 ```
 
-## backgroundTaskManager.applyEfficiencyResources<sup>9+(deprecated)</sup>
+## backgroundTaskManager.applyEfficiencyResources<sup>9+</sup>
 
 applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): void
 
@@ -464,10 +432,6 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 通过EfficiencyResourcesRequest参数中的isApply变量，设置是申请还是释放。
 应用使用此接口，需要向应用中心申请获得相应特权。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.applyEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerapplyefficiencyresources9)
->
-> 从 API version 9开始支持。
 
 **系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -501,16 +465,12 @@ try {
 }
 ```
 
-## backgroundTaskManager.resetAllEfficiencyResources<sup>9+(deprecated)</sup>
+## backgroundTaskManager.resetAllEfficiencyResources<sup>9+</sup>
 
 resetAllEfficiencyResources(): void
 
 释放所有已经申请的资源。
 应用使用此接口，需要向应用中心申请获得相应特权。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.resetAllEfficiencyResources](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresetallefficiencyresources9)
->
-> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -528,13 +488,9 @@ try {
 }
 ```
 
-## DelaySuspendInfo<sup>7+(deprecated)</sup>
+## DelaySuspendInfo<sup>7+</sup>
 
 延迟挂起信息。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.DelaySuspendInfo](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerdelaysuspendinfo9)
->
-> 从 API version 7开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -544,7 +500,7 @@ try {
 | actualDelayTime | number | 是    | 应用的实际挂起延迟时间，以毫秒为单位。<br/>一般情况下默认值为180000，低电量（依据系统低电量广播）时默认值为60000。 |
 
 
-## BackgroundMode<sup>8+(deprecated)</sup>
+## BackgroundMode<sup>8+</sup>
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
@@ -560,13 +516,9 @@ try {
 | VOIP                    | 8    | 音视频通话<br />此接口为系统接口。  |
 | TASK_KEEPING            | 9    | 计算任务（仅在特定设备生效）。        |
 
-## EfficiencyResourcesRequest<sup>9+(deprecated)</sup>
+## EfficiencyResourcesRequest<sup>9+</sup>
 
 能效资源申请参数。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.EfficiencyResourcesRequest](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerefficiencyresourcesrequest9)
->
-> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
@@ -581,13 +533,9 @@ try {
 | isProcess       | boolean | 否    | 应用申请或者是进程申请。          |
 | reason          | string  | 是    | 申请资源的原因。                |
 
-## ResourceType<sup>9+(deprecated)</sup>
+## ResourceType<sup>9+</sup>
 
 能效资源类型。
-
-> **说明：** 从API version 9开始废弃，建议使用[backgroundTaskManager.ResourceType](./js-apis-resourceschedule-backgroundTaskManager.md/#backgroundtaskmanagerresourcetype9)
->
-> 从 API version 9开始支持。
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
 
