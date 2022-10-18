@@ -12,22 +12,6 @@
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 ```
 
-## 使用说明
-
-开发者在使用应用事件打点功能前，需要首先了解应用事件相关的使用规格。
-
-**事件打点回调**
-
-开发者在调用事件打点方法时，可以在回调函数中对打点结果进行处理，当前支持callback形式和Promise形式的回调。
-
-**事件订阅回调**
-
-开发者在调用事件订阅方法时，可以在订阅回调函数中对订阅数据进行处理，其入参定义如下：
-
-- curRow：返回的订阅事件数量；
-- curSize：返回的订阅事件数据大小，单位为byte；
-- holder：返回的订阅事件数据持有者，可以通过其对订阅事件进行处理。
-
 ## hiAppEvent.write
 
 write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
@@ -41,7 +25,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 | 参数名   | 类型                           | 必填 | 说明           |
 | -------- | ------------------------------ | ---- | -------------- |
 | info     | [AppEventInfo](#appeventinfo) | 是   | 应用事件对象。 |
-| callback | AsyncCallback&lt;void&gt;      | 否   | 事件回调函数。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 打点回调函数。 |
 
 **错误码：**
 
@@ -93,9 +77,9 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 **返回值：**
 
-| 类型                | 说明                                                         |
-| ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | Promise对象，可以在其then()、catch()方法中分别对事件写入成功、写入异常的情况进行异步处理。 |
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **错误码：**
 
@@ -144,9 +128,9 @@ hiAppEvent.write({
 
 ## hiAppEvent.configure
 
-configure(config: ConfigOption): void
+configure(config: [ConfigOption](configoption)): void
 
-应用事件打点配置方法，可用于配置打点开关、文件目录存储限额大小等功能。
+应用事件打点配置方法，可用于配置打点开关、目录存储配额大小等功能。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -167,12 +151,12 @@ configure(config: ConfigOption): void
 **示例：**
 
 ```js
-// 配置应用事件打点功能开关
+// 配置打点开关为关闭状态
 hiAppEvent.configure({
     disable: true
 });
 
-// 配置事件文件目录存储限额大小
+// 配置文件目录存储配额为100M
 hiAppEvent.configure({
     maxStorage: '100M'
 });
@@ -180,20 +164,20 @@ hiAppEvent.configure({
 
 ## ConfigOption
 
-此接口提供了应用事件打点的配置选项。
+此接口提供了对应用事件打点功能的配置选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 参数名     | 类型    | 必填 | 说明                                                         |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| disable    | boolean | 否   | 应用事件打点功能开关。配置值为true表示关闭打点功能，false表示不关闭打点功能。 |
-| maxStorage | string  | 否   | 打点数据本地存储文件所在目录的配额大小，默认限额为“10M”。所在目录大小超出限额后会对目录进行清理操作，会按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出限额时停止。 |
+| disable    | boolean | 否   | 打点功能开关，默认值为false。true：关闭打点功能，false：不关闭打点功能。 |
+| maxStorage | string  | 否   | 打点数据存放目录的配额大小，默认值为“10M”。<br>在目录大小超出配额后，下次打点会触发对目录的清理操作：按从旧到新的顺序逐个删除打点数据文件，直到目录大小不超出配额时结束。 |
 
 ## hiAppEvent.addWatcher
 
 addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpackageholder)
 
-添加应用事件订阅者。
+添加应用事件观察者方法，可用于订阅应用事件。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -201,7 +185,7 @@ addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpacka
 
 | 参数名  | 类型                 | 必填 | 说明             |
 | ------- | -------------------- | ---- | ---------------- |
-| watcher | [Watcher](#watcher) | 是   | 应用事件订阅者。 |
+| watcher | [Watcher](#watcher) | 是   | 应用事件观察者。 |
 
 **返回值：**
 
@@ -224,12 +208,12 @@ addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpacka
 **示例：**
 
 ```js
-// 1. 如果订阅者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
+// 1. 如果观察者传入了回调的相关参数，则可以选择在自动触发的回调函数中对订阅事件进行处理
 hiAppEvent.addWatcher({
     name: "watcher1",
     appEventFilters: [
         {
-            domain: "domain_test1",
+            domain: "test_domain",
             eventTypes: [hiAppEvent.EventType.FAULT, hiAppEvent.EventType.BEHAVIOR]
         }
     ],
@@ -255,7 +239,7 @@ hiAppEvent.addWatcher({
     }
 });
 
-// 2. 如果订阅者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
+// 2. 如果观察者未传入回调的相关参数，则可以选择使用返回的holder对象手动去处理订阅事件
 let holder = hiAppEvent.addWatcher({
     name: "watcher2",
 });
@@ -276,7 +260,7 @@ if (holder != null) {
 
 removeWatcher(watcher: [Watcher](#watcher)): void
 
-移除应用事件订阅者。
+移除应用事件观察者方法，可用于取消订阅应用事件。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -284,7 +268,7 @@ removeWatcher(watcher: [Watcher](#watcher)): void
 
 | 参数名  | 类型                 | 必填 | 说明             |
 | ------- | -------------------- | ---- | ---------------- |
-| watcher | [Watcher](#watcher) | 是   | 应用事件订阅者。 |
+| watcher | [Watcher](#watcher) | 是   | 应用事件观察者。 |
 
 **错误码：**
 
@@ -297,46 +281,46 @@ removeWatcher(watcher: [Watcher](#watcher)): void
 **示例：**
 
 ```js
-// 1. 定义一个应用事件订阅者
+// 1. 定义一个应用事件观察者
 let watcher = {
     name: "watcher1",
 }
 
-// 2. 开始订阅事件
+// 2. 添加一个应用事件观察者来订阅事件
 hiAppEvent.addWatcher(watcher);
 
-// 3. 取消订阅事件
+// 3. 移除该应用事件观察者以取消订阅事件
 hiAppEvent.removeWatcher(watcher);
 ```
 
 ## Watcher
 
-此接口提供了应用事件订阅者的参数选项。
+此接口提供了应用事件观察者的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称             | 参数类型                                                     | 必填 | 说明                             |
-| ---------------- | ------------------------------------------------------------ | ---- | -------------------------------- |
-| name             | string                                                       | 是   | 订阅者名称，用于唯一标识订阅者。 |
-| triggerCondition | [TriggerCondition](#triggercondition)                       | 否   | 订阅回调触发条件。               |
-| appEventFilters  | [AppEventFilter](#appeventfilter)[]                         | 否   | 订阅过滤条件。                   |
-| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数 。                  |
+| 名称             | 参数类型                                                     | 必填 | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| name             | string                                                       | 是   | 观察者名称，用于唯一标识观察者。                             |
+| triggerCondition | [TriggerCondition](#triggercondition)                        | 否   | 订阅回调触发条件，需要与回调函数一同传入才会生效。           |
+| appEventFilters  | [AppEventFilter](#appeventfilter)[]                          | 否   | 订阅过滤条件，在需要对订阅事件进行过滤时传入。               |
+| onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void | 否   | 订阅回调函数，需要与回调触发条件一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
 
 ## TriggerCondition
 
-此接口提供了订阅者回调触发条件的参数选项。
+此接口提供了回调触发条件的参数选项，只要满足任一条件就会触发订阅回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 | 名称    | 参数类型 | 必填 | 说明                                   |
 | ------- | -------- | ---- | -------------------------------------- |
-| row     | number   | 否   | 满足触发回调的事件总数。               |
+| row     | number   | 否   | 满足触发回调的事件总数量。             |
 | size    | number   | 否   | 满足触发回调的事件总大小，单位为byte。 |
-| timeOut | number   | 否   | 满足触发回调的定时时长，单位为30s。    |
+| timeOut | number   | 否   | 满足触发回调的超时时长，单位为30s。    |
 
 ## AppEventFilter
 
-此接口提供了订阅者过滤应用事件的参数选项。
+此接口提供了过滤应用事件的参数选项。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -353,11 +337,17 @@ hiAppEvent.removeWatcher(watcher);
 
 ### constructor
 
-constructor(watcherName: string);
+constructor(watcherName: string)
 
-类构造函数，在添加订阅时会被系统自动调用来创建一个订阅数据持有者对象并返回给开发者。
+类构造函数，在添加应用事件观察者时，会由系统自动调用来创建一个该观察者对应的订阅数据持有者对象，并返回给开发者。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                     |
+| ------ | ----------------- | ---- | ------------------------ |
+| watcherName | string | 是   | 观察者名称。 |
 
 **示例：**
 
@@ -371,9 +361,15 @@ let holder = hiAppEvent.addWatcher({
 
 setSize(size: number): void
 
-设置每次取出的应用事件包的数据大小阈值，单位为byte，默认值为512*1024。
+设置每次取出的应用事件包的数据大小阈值。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                         |
+| ------ | ------ | ---- | -------------------------------------------- |
+| size   | number | 是   | 数据大小阈值，单位为byte，默认值为512*1024。 |
 
 **错误码：**
 
@@ -419,7 +415,7 @@ let eventPkg = holder.takeNext();
 | --------- | -------- | ------------------------------ |
 | packageId | number   | 事件包ID，从0开始自动递增。    |
 | row       | number   | 事件包的事件数量。             |
-| size      | number   | 事件包的数据大小，单位为byte。 |
+| size      | number   | 事件包的事件大小，单位为byte。 |
 | data      | string[] | 事件包的事件信息。             |
 
 ## hiAppEvent.clearData
