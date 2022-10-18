@@ -89,8 +89,9 @@ getDefaultDisplaySync(): Display
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
@@ -208,8 +209,9 @@ try {
     return;
 };
 
+let ret = undefined;
 try {
-    let ret = display.hasPrivateWindow(displayClass.id);
+    ret = display.hasPrivateWindow(displayClass.id);
 } catch (exception) {
     console.error('Failed to check has privateWindow or not. Code: ' + JSON.stringify(exception));
 };
@@ -243,7 +245,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 ```js
 let callback = (data) => {
     console.info('Listening enabled. Data: ' + JSON.stringify(data));
-}
+};
 try {
     display.on("add", callback);
 } catch (exception) {
@@ -445,8 +447,9 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
@@ -483,8 +486,9 @@ getCutoutInfo(): Promise&lt;CutoutInfo&gt;
 **示例：**
 
 ```js
+let displayClass = null;
 try {
-    let displayClass = display.getDefaultDisplaySync();
+    displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 };
