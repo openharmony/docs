@@ -17,24 +17,25 @@ Not supported
 Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |
   {width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | No| 0 | Width.| 
-  | height | string \| number | No| 0 | Height.| 
-  | radius | string \| number \| Array&lt;string \| number&gt; | No| 0 | Radius of the rounded corner. You can set separate radiuses for four rounded corners.| 
-  | radiusWidth | string \| number | No| 0 | Width of the rounded corner.| 
-  | radiusHeight | string \| number | No| 0 | Height of the rounded corner.| 
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | No| 0 | Width.|
+| height | string \| number | No| 0 | Height.|
+| radius | string \| number \| Array&lt;string \| number&gt; | No| 0 | Radius of the rounded corner. You can set separate radiuses for four rounded corners.|
+| radiusWidth | string \| number | No| 0 | Width of the rounded corner.|
+| radiusHeight | string \| number | No| 0 | Height of the rounded corner.|
 
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Default Value| Mandatory| Description| 
+| Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| radiusWidth | string \| number | 0 | No| Width of the rounded corner. The width and height are the same when only the width is set.| 
-| radiusHeight | string \| number | 0 | No| Height of the rounded corner. The width and height are the same only when the height is set.| 
+| radiusWidth | string \| number | 0 | No| Width of the rounded corner. The width and height are the same when only the width is set.|
+| radiusHeight | string \| number | 0 | No| Height of the rounded corner. The width and height are the same only when the height is set.|
 | radius | string \| number \| Array&lt;string \| number&gt; | 0 | No| Radius of the rounded corner. You can set separate radiuses for four rounded corners.|
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Color of the fill area.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | No| Opacity of the fill area.|

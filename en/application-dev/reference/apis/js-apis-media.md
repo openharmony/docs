@@ -229,7 +229,7 @@ Enumerates the codec MIME types.
 | VIDEO_MPEG2  | 'video/mpeg2'         | Video in MPEG-2 format.    |
 | VIDEO_MPEG4  | 'video/mp4v-es'       | Video in MPEG-4 format.    |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
-| AUDIO_AAC    | "audio/mp4a-latm"     | Audio in MP4A-LATM format.|
+| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
 
@@ -241,16 +241,16 @@ Enumerates the media description keys.
 
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | "track_index"   | Track index, which is a number.                      |
-| MD_KEY_TRACK_TYPE        | "track_type"    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
-| MD_KEY_CODEC_MIME        | "codec_mime"    | Codec MIME type, which is a string.                |
-| MD_KEY_DURATION          | "duration"      | Media duration, which is a number, in units of ms.    |
-| MD_KEY_BITRATE           | "bitrate"       | Bit rate, which is a number, in units of bit/s.   |
-| MD_KEY_WIDTH             | "width"         | Video width, which is a number, in units of pixel.    |
-| MD_KEY_HEIGHT            | "height"        | Video height, which is a number, in units of pixel.    |
-| MD_KEY_FRAME_RATE        | "frame_rate"    | Video frame rate, which is a number, in units of 100 fps.|
-| MD_KEY_AUD_CHANNEL_COUNT | "channel_count" | Number of audio channels, which is a number.                        |
-| MD_KEY_AUD_SAMPLE_RATE   | "sample_rate"   | Sampling rate, which is a number, in units of Hz.      |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | Track index, which is a number.                      |
+| MD_KEY_TRACK_TYPE        | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | Codec MIME type, which is a string.                |
+| MD_KEY_DURATION          | 'duration'      | Media duration, which is a number, in units of ms.    |
+| MD_KEY_BITRATE           | 'bitrate'       | Bit rate, which is a number, in units of bit/s.   |
+| MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.    |
+| MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.    |
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.                        |
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -442,10 +442,10 @@ function printfDescription(obj) {
     }
 }
 
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -478,9 +478,9 @@ function printfDescription(obj) {
     }
 }
 let arrayDescription = null
-audioPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+audioPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('audio getTrackDescription fail');
     }
@@ -1235,10 +1235,10 @@ function printfDescription(obj) {
     }
 }
 
-videoPlayer.getTrackDescription((error, arrlist) => {
-    if ((arrlist) != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfDescription(arrlist[i]);
+videoPlayer.getTrackDescription((error, arrList) => {
+    if ((arrList) != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfDescription(arrList[i]);
         }
     } else {
         console.log(`video getTrackDescription fail, error:${error}`);
@@ -1272,9 +1272,9 @@ function printfDescription(obj) {
 }
 
 let arrayDescription;
-videoPlayer.getTrackDescription().then((arrlist) => {
-    if (arrlist != null) {
-        arrayDescription = arrlist;
+videoPlayer.getTrackDescription().then((arrList) => {
+    if (arrList != null) {
+        arrayDescription = arrList;
     } else {
         console.log('video getTrackDescription fail');
     }
@@ -1618,10 +1618,10 @@ function printfItemDescription(obj, key) {
     console.info('audio value is ' + property); // Obtain the value of the key. The value can be any type. For details about the types, see [MediaDescriptionKey].
 }
 let audioPlayer = media.createAudioPlayer();
-audioPlayer.getTrackDescription((error, arrlist) => {
-    if (arrlist != null) {
-        for (let i = 0; i < arrlist.length; i++) {
-            printfItemDescription(arrlist[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
+audioPlayer.getTrackDescription((error, arrList) => {
+    if (arrList != null) {
+        for (let i = 0; i < arrList.length; i++) {
+            printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
         }
     } else {
         console.log(`audio getTrackDescription fail, error:${error}`);
@@ -2533,8 +2533,8 @@ Enumerates the container format types (CFTs).
 
 | Name       | Value   | Description                 |
 | ----------- | ----- | --------------------- |
-| CFT_MPEG_4  | "mp4" | Video container format MPEG-4.|
-| CFT_MPEG_4A | "m4a" | Audio container format M4A.|
+| CFT_MPEG_4  | 'mp4' | Video container format MPEG-4.|
+| CFT_MPEG_4A | 'm4a' | Audio container format M4A.|
 
 ## Location
 
