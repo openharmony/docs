@@ -13,7 +13,6 @@
 >  **说明：**
 > - 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
-> - 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 
 ## 导入模块
@@ -23,7 +22,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 ```
 
 
-## backgroundTaskManager.requestSuspendDelay<sup>7+</sup>
+## backgroundTaskManager.requestSuspendDelay
 
 requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspendInfo
 
@@ -61,7 +60,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+</sup>
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -91,7 +90,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime<sup>7+</sup>
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
@@ -120,7 +119,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
   ```
 
 
-## backgroundTaskManager.cancelSuspendDelay<sup>7+</sup>
+## backgroundTaskManager.cancelSuspendDelay
 
 cancelSuspendDelay(requestId: number): void
 
@@ -488,7 +487,7 @@ try {
 }
 ```
 
-## DelaySuspendInfo<sup>7+</sup>
+## DelaySuspendInfo
 
 延迟挂起信息。
 
