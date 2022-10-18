@@ -3,7 +3,7 @@
 ## 概述
 ### 功能简介
 
-OpenHarmony Codec HDI(Hardware Device Interface)驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF驱动框架开发的Codec编解码功能。
+OpenHarmony Codec HDI（Hardware Device Interface）驱动框架基于OpenMax实现了视频硬件编解码驱动，提供Codec基础能力接口给上层媒体服务调用，包括获取组件编解码能力、创建组件、参数设置、数据的轮转和控制、以及销毁组件等功能，实现对视频数据的编解码处理（可以将YUV/RGB等格式的视频数据编码成H264/H265等编码格式，也可以将H264/H265等裸流数据解码成YUV/RGB等格式数据）。本文主要介绍基于HDF（Hardware Driver Foundation）驱动框架开发的Codec编解码功能。
 
 Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成：
 
@@ -59,7 +59,7 @@ Codec模块主要完成对视频数据的硬件编解码，将H264等裸流数�
   | 接口名称                                                                                                                                                       | 功能描述                      |
   | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------|
   | int32_t (*CreateComponent)(struct CodecComponentType **component, uint32_t *componentId, char *compName, int64_t appData, struct CodecCallbackType *callbacks) | 创建Codec组件实例             |
-  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | 销毁组件实例                  |
+  | int32_t (*DestroyComponent)(uint32_t componentId)                                                                                                              | 销毁Codec组件实例                  |
 
 - codec_component _if.h
 
