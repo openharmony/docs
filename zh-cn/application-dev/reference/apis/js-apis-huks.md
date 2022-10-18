@@ -107,7 +107,7 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | 是   | 别名。                                                       |
 | options  | [HuksOptions](#huksoptions)               | 是   | 用于存放生成key所需TAG。                                     |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其余结果请参考HuksResult进行错误码查询。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其余结果请参考HuksResult进行错误码查询。 |
 
 **示例：**
 
@@ -160,11 +160,11 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 | keyAlias | string                      | 是   | 密钥别名。               |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。 |
 
-**返回值**：（可选，如不涉及可删除）
+**返回值**：
 
 | 类型                                | 说明                                               |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -210,7 +210,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 别名。                                        |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。                      |
-| callback | AsyncCallback\<void>        | 是   | 不返回err值时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -323,7 +323,7 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 | -------- | ----------------------------------------- | ---- | -------------------------------------------------- |
 | keyAlias | string                                    | 是   | 密钥别名，应为生成key时传入的别名。                |
 | options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -357,7 +357,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型                                | 说明                                               |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -384,7 +384,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。           |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                      |
-| callback | AsyncCallback\<void>        | 是   | 不返回err值时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -489,7 +489,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 | -------- | ------------------------ | ---- | ------------------------------------------------- |
 | keyAlias | string                   | 是   | 密钥别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。 |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -554,7 +554,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型                                | 说明                                               |
 | ----------------------------------- | -------------------------------------------------- |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -614,7 +614,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                                    |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。           |
-| callback | AsyncCallback\<void>        | 是   | 不返回err值时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -751,7 +751,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                                               | 是   | 密钥别名，存放待获取证书密钥的别名。          |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 用于获取证书时指定所需参数与数据。            |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 不返回err值时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -878,7 +878,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 | 类型                                           | 说明                                          |
 | ---------------------------------------------- | --------------------------------------------- |
-| Promise<[HuksReturnResult](#huksreturnresult)> | 不返回err值时表示接口使用成功，其他时为错误。 |
+| Promise<[HuksReturnResult](#huksreturnresult)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -1001,7 +1001,7 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | keyAlias         | string                      | 是   | 密钥别名，存放待导入密钥的别名。              |
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
 | options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。 |
-| callback         | AsyncCallback\<void>        | 是   | 不返回err值时表示接口使用成功，其他时为错误。 |
+| callback         | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -1253,7 +1253,7 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                                     |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **示例：**
 
@@ -1287,7 +1287,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksresult)> | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **示例：**
 
@@ -1314,7 +1314,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **示例：**
 
@@ -1356,7 +1356,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 | 类型                                           | 说明                                                         |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[HuksReturnResult](#huksreturnresult)> | 不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+| Promise<[HuksReturnResult](#huksreturnresult)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
 **示例：**
 
@@ -1395,7 +1395,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                    | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)               | 是   | 空对象（此处传空即可）。                                     |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -1429,7 +1429,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<[HuksResult](#huksoptions)> | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
+| Promise\<[HuksResult](#huksoptions)> | Promise对象。errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
 
 **示例：**
 
@@ -1456,7 +1456,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。errorCode：返回HUKS_SUCCESS时表示接口使用成功，其他时为错误。 |
 
 **示例：**
 
@@ -1498,7 +1498,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 | 类型                                            | 说明                                                         |
 | ----------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[HuksReturnResult](#huksreturnresult)> | 不返回err值时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
+| Promise\<[HuksReturnResult](#huksreturnresult)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
 
 **示例：**
 
@@ -1537,7 +1537,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | 所需查找的密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。 |
-| callback | AsyncCallback\<boolean> | 是   | FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
 
 **示例：**
 
@@ -1571,7 +1571,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
 
 **示例：**
 
@@ -1598,7 +1598,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | -------- | --------------------------- | ---- | --------------------------------------- |
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
-| callback | AsyncCallback\<boolean>     | 是   | FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| callback | AsyncCallback\<boolean>     | 是   | 回调函数。FALSE代表密钥不存在，TRUE代表密钥存在。 |
 
 **示例：**
 
@@ -1640,7 +1640,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | FALSE代表密钥不存在，TRUE代表密钥存在。 |
+| Promise\<boolean> | Promise对象。FALSE代表密钥不存在，TRUE代表密钥存在。 |
 
 **示例：**
 
@@ -1679,7 +1679,7 @@ init操作密钥接口，使用Callback回调异步返回结果。huks.init, huk
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Init操作的参数集合。 |
-| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | 是   | 将Init操作操作返回的handle添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksHandle](#hukshandle)> | 是   | 回调函数。将Init操作操作返回的handle添加到密钥管理系统的回调。 |
 
 
 ### huks.init<sup>(deprecated)</sup>
@@ -1698,7 +1698,12 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | 是   | Init操作密钥的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Init参数集合。 |
-| promise | Promise\<[HuksHandle](#hukshandle)> | 是   | 将Init操作返回的handle添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksHandle](#hukshandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
 ### huks.initSession<sup>9+</sup>
 
@@ -1714,7 +1719,7 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 | -------- | ------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | keyAlias | string                                                  | 是   | Init操作密钥的别名。                                 |
 | options  | [HuksOptions](#huksoptions)                             | 是   | Init操作的参数集合。                                 |
-| callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle)> | 是   | 将Init操作操作返回的handle添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle)> | 是   | 回调函数。将Init操作操作返回的handle添加到密钥管理系统的回调。 |
 
 
 ### huks.initSession<sup>9+</sup>
@@ -1731,7 +1736,12 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------ |
 | keyAlias | string                                            | 是   | Init操作密钥的别名。                             |
 | options  | [HuksOptions](#huksoptions)                       | 是   | Init参数集合。                                   |
-| promise  | Promise\<[HuksSessionHandle](#hukssessionhandle)> | 是   | 将Init操作返回的handle添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksSessionHandle](#hukssessionhandle)> | Promise对象。将Init操作返回的handle添加到密钥管理系统的回调。 |
 
 ### huks.update<sup>(deprecated)</sup>
 
@@ -1749,7 +1759,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | -------- | ----------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                    | 是   | Update操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)               | 是   | Update的参数集合。                           |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.update<sup>(deprecated)</sup>
 
@@ -1768,7 +1778,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | handle   | number                                    | 是   | Update操作的handle。                         |
 | token    | Uint8Array                                | 否   | Update操作的token。                          |
 | options  | [HuksOptions](#huksoptions)               | 是   | Update操作的参数集合。                       |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.update<sup>(deprecated)</sup>
 
@@ -1787,7 +1797,12 @@ update操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 | handle  | number                              | 是   | Update操作的handle。                         |
 | token   | Uint8Array                          | 否   | Update操作的token。                          |
 | options | [HuksOptions](#huksoptions)         | 是   | Update操作的参数集合。                       |
-| promise | Promise\<[HuksResult](#huksresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。将Update操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.updateSession<sup>9+</sup>
 
@@ -1803,7 +1818,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | Update操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | Update的参数集合。                           |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
 
 ### huks.updateSession<sup>9+</sup>
@@ -1821,7 +1836,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | handle   | number                                               | 是   | Update操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | Update操作的参数集合。                       |
 | token    | Uint8Array                                           | 是   | Update操作的token。                          |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Update操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.updateSession<sup>9+</sup>
 
@@ -1838,7 +1853,12 @@ uupdateSession操作密钥接口，使用Promise方式异步返回结果。huks.
 | handle  | number                                         | 是   | Update操作的handle。                         |
 | options | [HuksOptions](#huksoptions)                    | 是   | Update操作的参数集合。                       |
 | token   | Uint8Array                                     | 否   | Update操作的token。                          |
-| promise | Promise<[HuksReturnResult](#huksreturnresult)> | 是   | 将Update操作的结果添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise<[HuksReturnResult](#huksreturnresult)> | Promise对象。将Update操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.finish<sup>(deprecated)</sup>
 
@@ -1856,7 +1876,7 @@ finish操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Finish操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish的参数集合。 |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Finish操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
 
 ### huks.finish<sup>(deprecated)</sup>
@@ -1875,7 +1895,12 @@ finish操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Finish操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Finish操作的参数集合。 |
-| promise | Promise\<[HuksResult](#huksresult)> | 是 | promise实例，用于获取异步返回结果。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksResult](#huksresult)> | Promise对象，用于获取异步返回结果。 |
 
 ### huks.finishSession<sup>9+</sup>
 
@@ -1892,7 +1917,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | handle   | number                                               | 是   | Finish操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | Finish的参数集合。                           |
 | token    | Uint8Array                                           | 是   | Finish操作的token。                          |
-| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 将Finish操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
 ### huks.finishSession<sup>9+</sup>
 
@@ -1909,7 +1934,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | handle   | number                                                | 是   | Finish操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                           | 是   | Finish的参数集合。                           |
 | token    | Uint8Array                                            | 是   | Finish操作的token。                          |
-| callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult)> | 是   | 将Finish操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult)> | 是   | 回调函数。将Finish操作的结果添加到密钥管理系统的回调。 |
 
 
 ### huks.finishSession<sup>9+</sup>
@@ -1927,7 +1952,12 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | handle  | number                                          | 是   | Finish操作的handle。                |
 | options | [HuksOptions](#huksoptions)                     | 是   | Finish操作的参数集合。              |
 | token   | Uint8Array                                      | 否   | Finish操作的token。                 |
-| promise | Promise\<[HuksReturnResult](#huksreturnresult)> | 是   | promise实例，用于获取异步返回结果。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksReturnResult](#huksreturnresult)> | Promise对象，用于获取异步返回结果。 |
 
 ### huks.abort<sup>(deprecated)</sup>
 
@@ -1945,7 +1975,7 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Abort操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。 |
-| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<[HuksResult](#huksresult)> | 是 | 回调函数。将Abort操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
@@ -2056,7 +2086,12 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | handle | number           | 是   | Abort操作的handle。 |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。 |
-| promise | Promise\<[HuksResult](#huksresult)> | 是 | 将Abort操作的结果添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<[HuksResult](#huksresult)> | Promise对象。将Abort操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
@@ -2171,7 +2206,7 @@ abort操作密钥接口，使用Callback回调异步返回结果 。
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | handle   | number                      | 是   | Abort操作的handle。                         |
 | options  | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。                       |
-| callback | AsyncCallback\<void>        | 是   | 将Abort操作的结果添加到密钥管理系统的回调。 |
+| callback | AsyncCallback\<void>        | 是   | 回调函数。将Abort操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
@@ -2316,7 +2351,12 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 | ------- | --------------------------- | ---- | ------------------------------------------- |
 | handle  | number                      | 是   | Abort操作的handle。                         |
 | options | [HuksOptions](#huksoptions) | 是   | Abort操作的参数集合。                       |
-| promise | Promise\<void>              | 是   | 将Abort操作的结果添加到密钥管理系统的回调。 |
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise\<void>             | Promise对象。将Abort操作的结果添加到密钥管理系统的回调。 |
 
 **示例：**
 
