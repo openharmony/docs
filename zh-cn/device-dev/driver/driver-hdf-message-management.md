@@ -158,9 +158,9 @@
    3. 驱动上报事件。
       
        ```
-       int32_t SampleDriverDispatch(struct HdfDeviceObject *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
+       int32_t SampleDriverDispatch(HdfDeviceIoClient *client, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
        {
            ... // process api call here
-           return HdfDeviceSendEvent(deviceObject, cmdCode, data);
+           return HdfDeviceSendEvent(client->device, cmdCode, data);
        }
        ```
