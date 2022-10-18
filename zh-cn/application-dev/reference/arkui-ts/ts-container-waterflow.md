@@ -5,6 +5,7 @@
 
 
 > **说明：**
+>
 > 该组件从API Version 9 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -17,14 +18,14 @@
 ## 接口
 
 
-WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller;})
+WaterFlow(options?: {footer?: CustomBuilder, scroller?: Scroller})
 
-- 参数
+**参数：**
 
-  | 参数名     | 参数类型                                        | 必填 | 默认值 | 参数描述                                     |
-  | ---------- | ----------------------------------------------- | ---- | ------ | -------------------------------------------- |
-  | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | -  | 设置WaterFlow尾部组件。  |
-  | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | -   | 可滚动组件的控制器，与可滚动组件绑定。 |
+  | 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
+  | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
+  | footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
+  | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。 |
 
 
 ## 属性
