@@ -412,7 +412,7 @@ The AI subsystem is the part of OpenHarmony that provides native distributed AI 
 
 [ai_engine](https://gitee.com/openharmony/ai_engine)
 
-Dependency repositories:
+## Dependency Repositories
 
 [build\_lite](https://gitee.com/openharmony/build_lite/blob/master/README.md)
 
@@ -422,6 +422,6 @@ Dependency repositories:
 
 ## Reference<a name="section6808423133718"></a>
 
-[AI Engine Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-aiframework-guide.md)
+[AI Engine Framework Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-ai-aiframework-devguide.md)
 
 
