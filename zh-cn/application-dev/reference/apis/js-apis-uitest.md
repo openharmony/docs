@@ -2601,7 +2601,7 @@ async function demo() {
 
 resume(): Promise\<void>
 
-将窗口恢复到上一操作之前的窗口模式。
+将窗口恢复到之前的窗口模式。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2729,7 +2729,7 @@ id(id: number): By
 
 指定目标控件id属性，返回By对象自身。
 
-从API version9开始不再维护，被废弃。
+从API version9开始废弃。
 
 **系统能力**：SystemCapability.Test.UiTest
 
