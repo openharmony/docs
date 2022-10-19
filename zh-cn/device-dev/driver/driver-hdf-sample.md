@@ -64,7 +64,7 @@ root {
 
 #define SAMPLE_WRITE_READ 123
 
-int32_t HdfSampleDriverDispatch(
+static int32_t HdfSampleDriverDispatch(
     struct HdfDeviceIoClient *client, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
 {
     HDF_LOGE("%s: received cmd %d", __func__, id);
@@ -81,13 +81,13 @@ int32_t HdfSampleDriverDispatch(
     return HDF_FAILURE;
 }
 
-void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
+static void HdfSampleDriverRelease(struct HdfDeviceObject *deviceObject)
 {
     // release resources here
     return;
 }
 
-int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
+static int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
 {
     if (deviceObject == NULL) {
         return HDF_FAILURE;
@@ -99,7 +99,7 @@ int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
     return HDF_SUCCESS;
 }
 
-int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
+static int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
     if (deviceObject == NULL) {
         HDF_LOGE("%s::ptr is null!", __func__);
@@ -109,7 +109,7 @@ int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
     return HDF_SUCCESS;
 }
 
-struct HdfDriverEntry g_sampleDriverEntry = {
+static struct HdfDriverEntry g_sampleDriverEntry = {
     .moduleVersion = 1,
     .moduleName = "sample_driver",
     .Bind = HdfSampleDriverBind,
