@@ -40,6 +40,7 @@ SmartPerf-Daemon执行需要PC连接OpenHarmony设备，如RK3568开发板等。
 ![图片说明](figures/SmartPerfConfig3.png)
 
 2.悬浮窗控制采集。
+
 点击悬浮窗”start“开始采集，单击悬浮窗”计时器“暂停采集，再次单击继续采集双击计时器，实时展示采集数据，可拖动悬浮框更改悬浮框位置，长按”计时器“，结束采集。
 
 ![图片说明](figures/SmartPerfControl1.png)
