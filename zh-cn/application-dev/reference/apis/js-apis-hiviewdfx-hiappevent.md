@@ -29,7 +29,7 @@ write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -83,7 +83,7 @@ write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
@@ -142,7 +142,7 @@ configure(config: [ConfigOption](configoption)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
@@ -195,7 +195,7 @@ addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpacka
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -272,7 +272,7 @@ removeWatcher(watcher: [Watcher](#watcher)): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
@@ -373,7 +373,7 @@ setSize(size: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errcode-hiviewdfx-hiappevent.md)。
+以下错误码的详细介绍请参见[应用事件打点错误码](../errorcodes/errorcode-hiappevent.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
