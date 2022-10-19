@@ -12,7 +12,7 @@
   - [HarmonyAppProvision配置文件](app-provision-structure.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](arkts-get-started.md)
-    - eTS语法（声明式UI）
+    - ArkTS语法（声明式UI）
       - [基本UI描述](arkts-basic-ui-description.md)
       - 状态管理
         - [基本概念](arkts-state-mgmt-concepts.md)
