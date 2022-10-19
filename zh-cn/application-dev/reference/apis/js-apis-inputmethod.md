@@ -250,12 +250,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 **示例：**
 
 ```js
-let inputMethodSubProperty = {
+let inputMethodSubtype = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
 }
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubProperty, (err, result) => {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype, (err, result) => {
         if (err) {
             console.error('switchCurrentInputMethodSubtype err: ' + JSON.stringify(err));
             return;
@@ -290,12 +290,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 **示例：**
 
 ```js
-let inputMethodSubProperty = {
+let inputMethodSubtype = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
 }
 try {
-    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubProperty).then((result) => {
+    inputMethod.switchCurrentInputMethodSubtype(inputMethodSubtype).then((result) => {
         if (result) {
             console.info('Success to switchCurrentInputMethodSubtype.(promise)');
         } else {
@@ -725,12 +725,12 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 **示例：**
 
 ```js
-let inputMethodSubProperty = {
-    id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+let inputMethodProperty = {
+    packageName:'com.example.kikakeyboard',
+    methodId:'com.example.kikakeyboard'
 }
 try {
-    InputMethodSetting.listInputMethodSubtype(inputMethodSubProperty, (err,data) => {
+    InputMethodSetting.listInputMethodSubtype(inputMethodProperty, (err,data) => {
         if (err) {
             console.error('listInputMethodSubtype failed: ' + JSON.stringify(err));
             return;
