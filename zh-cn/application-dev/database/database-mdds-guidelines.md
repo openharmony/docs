@@ -119,7 +119,7 @@
      }
      distributedKVStore.createKVManager(kvManagerConfig, function (err, manager) {
        if (err) {
-         console.error(`Fail to createKVManager.code is ${err.code},message is ${err.message}`);
+         console.error(`Failed to createKVManager.code is ${err.code},message is ${err.message}`);
          return;
        }
        console.log('Succeeded in creating KVManager');
@@ -150,7 +150,7 @@
      };
      kvManager.getKVStore('storeId', options, function (err, store) {
        if (err) {
-         console.error(`Fail to get KVStore: code is ${err.code},message is ${err.message}`);
+         console.error(`Failed to get KVStore: code is ${err.code},message is ${err.message}`);
          return;
        }
        console.log('Succeeded in getting KVStore');
@@ -192,7 +192,7 @@
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
                return;
            }
            console.log("Succeeded in putting");
@@ -215,20 +215,20 @@
    try {
        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Fail to put.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
                return;
            }
            console.log("Succeeded in putting");
            kvStore.get(KEY_TEST_STRING_ELEMENT, function (err,data) {
            if (err != undefined) {
-               console.error(`Fail to get.code is ${err.code},message is ${err.message}`);
+               console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
                return;
            }
                console.log(`Succeeded in getting data:${data}`);
            });
        });
    }catch (e) {
-       console.error(`Fail to get.code is ${e.code},message is ${e.message}`);
+       console.error(`Failed to get.code is ${e.code},message is ${e.message}`);
    }
    ```
 
@@ -273,8 +273,8 @@
 针对分布式数据开发，有以下相关实例可供参考：
 
 - [`DistributedCalc`：分布式计算器（JS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/DistributeCalc)
-- [`DistributedCalc`：分布式计算器（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
-- [`DistributedDataGobang`：分布式五子棋（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
-- [`DDMQuery`：结果集与谓词（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
-- [`KvStore`：分布式数据库（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
+- [`DistributedCalc`：分布式计算器（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/DistributeCalc)
+- [`DistributedDataGobang`：分布式五子棋（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DistributedDataGobang)
+- [`DDMQuery`：结果集与谓词（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/DDMQuery)
+- [`KvStore`：分布式数据库（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/data/Kvstore)
 - [分布式数据库（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)
