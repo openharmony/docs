@@ -52,6 +52,7 @@ root {
 
   
 ```
+// 示例代码为C语言代码
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
@@ -122,10 +123,11 @@ HDF_INIT(g_sampleDriverEntry);
 
 ## 编写用户程序和驱动交互代码
 
-基于HDF框架编写的用户态程序和驱动交互的代码如下（代码可以放在目录drivers/hdf_core/adapter/uhdf下面编译，build.gn可以参考drivers/hdf_core/framework/sample/platform/uart/dev/build.gn）：
+基于HDF框架编写的用户态程序和驱动交互的代码如下（代码可以放在目录drivers/hdf_core/adapter/uhdf下面编译，BUILD.gn可以参考drivers/hdf_core/framework/sample/platform/uart/dev/BUILD.gn）：
 
   
 ```
+// 示例代码为C语言代码
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
