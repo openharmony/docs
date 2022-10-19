@@ -17,7 +17,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 - 参数
   | 参数名                    | 参数类型                                     | 必填   | 默认值                     | 参数描述                   |
   | ---------------------- | ---------------------------------------- | ---- | ----------------------- | ---------------------- |
-  | builder                | [CustomDialog](../../ui/ts-component-based-customdialog.md) | 是    | -                       | 自定义弹窗内容构造器。            |
+  | builder                | [CustomDialog](../../quick-start/arkts-dynamic-ui-elememt-building.md#customdialog) | 是    | -                       | 自定义弹窗内容构造器。            |
   | cancel                 | ()&nbsp;=&gt;&nbsp;void                  | 否    | -                       | 点击遮障层退出时的回调。           |
   | autoCancel             | boolean                                  | 否    | true                    | 是否允许点击遮障层退出。           |
   | alignment              | DialogAlignment                          | 否    | DialogAlignment.Default | 弹窗在竖直方向上的对齐方式。         |
