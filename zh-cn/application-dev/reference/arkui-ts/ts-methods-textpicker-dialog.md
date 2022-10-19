@@ -19,7 +19,7 @@ show(options?: TextPickerDialogOptions)
 - TextPickerDialogOptions参数说明
   | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
   | -------- | -------- | -------- | -------- | -------- |
-  | range | string[]&nbsp;\|&nbsp;[Resource](../../ui/ts-types.md#resource类型) | 是 | - | 选择器的数据选择范围。 |
+  | range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 是 | - | 选择器的数据选择范围。 |
   | selected | number | 否 | 0 | 选中项在数组中的index值。 |
   | value       | string           | 否    | -    | 选中项文本值。当设置了selected参数时，该值不生效。如果该值不在range范围内，则默认取range第一个元素。|
   | defaultPickerItemHeight | number \| string | 否 | - | 默认Picker内容项元素高度。 |

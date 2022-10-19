@@ -38,7 +38,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-application-Want.md) | 是    | 设备管理员应用。 |
 | time  | number | 是 | 时间戳(ms)。 |
-| callback | AsyncCallback<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
 
 **示例：**
 
@@ -83,7 +83,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 
 **示例：**

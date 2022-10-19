@@ -819,7 +819,7 @@ ndef.setReadOnly()
 
 ### NdefTag.setReadOnly<sup>9+</sup>
 
-setReadOnly(callback: AsyncCallback<number>): void
+setReadOnly(callback: AsyncCallback\<number>): void
 
 将Ndef标签设置为只读，使用callback方式作为异步方法。
 
@@ -930,7 +930,7 @@ mifareClassic.authenticateSector(sectorIndex, key, true);
 
 ### MifareClassicTag.authenticateSector<sup>9+</sup>
 
-authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback: AsyncCallback<boolean>): void
+authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback: AsyncCallback\<boolean>): void
 
 使用密钥对扇区进行身份验证，只有身份验证成功的扇区可以进行操作。使用callback方式作为异步方法。
 
