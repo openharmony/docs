@@ -1,8 +1,5 @@
 # LED外设控制<a name="ZH-CN_TOPIC_0000001054530966"></a>
 
--   [概述](#section14639174516337)
--   [开发](#section13857170163412)
--   [验证](#section1949121910344)
 
 ## 概述<a name="section14639174516337"></a>
 
@@ -10,7 +7,7 @@ OpenHarmony  WLAN模组基于Hi3861平台提供了丰富的外设操作能力，
 
 ## 开发<a name="section13857170163412"></a>
 
-1.  请先完成[轻量系统快速入门](../quick-start/Readme-CN.md)。
+1.  请先完成[轻量系统快速入门](../quick-start/quickstart-overview.md)。
 
     LED控制参考示例存放于applications/sample/wifi-iot/app/iothardware/led\_example.c文件中。
 
