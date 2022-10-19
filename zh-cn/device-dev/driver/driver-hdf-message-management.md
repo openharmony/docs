@@ -39,7 +39,7 @@
 
 3. 在服务实现过程中，实现服务基类成员IDeviceIoService中的Dispatch方法。
    
-   ```
+   ```c
    // Dispatch是用来处理用户态发下来的消息
    int32_t SampleDriverDispatch(struct HdfDeviceIoClient *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
@@ -65,13 +65,13 @@
 
 4. 驱动定义消息处理函数中的cmd类型。
    
-   ```
+   ```c
    #define SAMPLE_WRITE_READ 1    // 读写操作码1
    ```
 
 5. 用户态获取服务接口并发送消息到驱动。
    
-   ```
+   ```c
    int SendMsg(const char *testMsg)
    {
        if (testMsg == NULL) {
@@ -115,7 +115,7 @@
 6. 用户态接收该驱动上报的消息。
    1. 用户态编写驱动上报消息的处理函数。
       
-       ```
+       ```c
        static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
        {
            OsalTimespec time;
@@ -133,7 +133,7 @@
        ```
    2. 用户态注册接收驱动上报消息的操作方法。
       
-       ```
+       ```c
        int RegisterListen()
        {
            struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
@@ -157,7 +157,7 @@
        ```
    3. 驱动上报事件。
       
-       ```
+       ```c
        int32_t SampleDriverDispatch(HdfDeviceIoClient *client, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
        {
            ... // process api call here
