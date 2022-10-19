@@ -8,7 +8,7 @@ HDF框架定义了驱动对外发布服务的策略，由配置文件中的polic
 
 
   
-```
+```c
 typedef enum {
     /* 驱动不提供服务 */
     SERVICE_POLICY_NONE = 0,
@@ -50,7 +50,7 @@ typedef enum {
 
 1. 驱动服务编写。
      
-   ```
+   ```c
    // 驱动服务结构的定义
    struct ISampleDriverService {
        struct IDeviceIoService ioService;       // 服务结构的首个成员必须是IDeviceIoService类型的成员。
@@ -74,7 +74,7 @@ typedef enum {
 
 2. 驱动服务绑定，开发者实现HdfDriverEntry中的Bind指针函数，如下的SampleDriverBind，把驱动服务绑定到HDF框架中。
      
-   ```
+   ```c
    int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
    {
        // deviceObject为HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
@@ -99,7 +99,7 @@ typedef enum {
      当驱动服务获取者明确驱动已经加载完成时，获取该驱动的服务可以通过HDF框架提供的能力接口直接获取，如下所示：
 
         
-      ```
+      ```c
       const struct ISampleDriverService *sampleService =
               (const struct ISampleDriverService *)DevSvcManagerClntGetService("sample_driver");
       if (sampleService == NULL) {
@@ -113,7 +113,7 @@ typedef enum {
      当内核态驱动服务获取者对驱动（同一个host）加载的时机不感知时，可以通过HDF框架提供的订阅机制来订阅该驱动服务。当该驱动加载完成时，HDF框架会将被订阅的驱动服务发布给订阅者(驱动服务获取者)，实现方式如下所示：
 
         
-      ```
+      ```c
       // 订阅回调函数的编写，当被订阅的驱动加载完成后，HDF框架会将被订阅驱动的服务发布给订阅者，通过这个回调函数给订阅者使用
       // object为订阅者的私有数据，service为被订阅的服务对象
       int32_t TestDriverSubCallBack(struct HdfDeviceObject *deviceObject, const struct HdfObject *service)
