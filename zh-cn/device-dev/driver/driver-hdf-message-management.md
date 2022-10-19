@@ -44,14 +44,14 @@
    int32_t SampleDriverDispatch(struct HdfDeviceIoClient *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
        HDF_LOGE("sample driver lite A dispatch");
-       return 0;
+       return HDF_SUCCESS;
    }
    int32_t SampleDriverBind(struct HdfDeviceObject *device)
    {
        HDF_LOGE("test for lite os sample driver A Open!");
        if (device == NULL) {
            HDF_LOGE("test for lite os sample driver A Open failed!");
-           return -1;
+           return HDF_FAILURE;
        }
        static struct ISampleDriverService sampleDriverA = {
            .ioService.Dispatch = SampleDriverDispatch,
@@ -59,7 +59,7 @@
            .ServiceB = SampleDriverServiceB,
        };
        device->service = (struct IDeviceIoService *)(&sampleDriverA);
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
@@ -76,17 +76,17 @@
    {
        if (testMsg == NULL) {
            HDF_LOGE("test msg is null");
-           return -1;
+           return HDF_FAILURE;
        }
        struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
        if (serv == NULL) {
            HDF_LOGE("fail to get service");
-           return -1;
+           return HDF_FAILURE;
        }
        struct HdfSBuf *data = HdfSbufObtainDefaultSize();
        if (data == NULL) {
            HDF_LOGE("fail to obtain sbuf data");
-           return -1;
+           return HDF_FAILURE;
        }
        struct HdfSBuf *reply = HdfSbufObtainDefaultSize();
        if (reply == NULL) {
@@ -125,10 +125,10 @@
            const char *string = HdfSbufReadString(data);
            if (string == NULL) {
                HDF_LOGE("fail to read string in event data");
-               return -1;
+               return HDF_FAILURE;
            }
            HDF_LOGE("%s: dev event received: %d %s",  (char *)priv, id, string);
-           return 0;
+           return HDF_SUCCESS;
        }
        ```
    2. 用户态注册接收驱动上报消息的操作方法。
@@ -139,7 +139,7 @@
            struct HdfIoService *serv = HdfIoServiceBind("sample_driver");
            if (serv == NULL) {
                HDF_LOGE("fail to get service");
-               return -1;
+               return HDF_FAILURE;
            }
            static struct HdfDevEventlistener listener = {
                .callBack = OnDevEventReceived,
@@ -147,12 +147,12 @@
            };
            if (HdfDeviceRegisterEventListener(serv, &listener) != 0) {
                HDF_LOGE("fail to register event listener");
-               return -1;
+               return HDF_FAILURE;
            }
            ......
            HdfDeviceUnregisterEventListener(serv, &listener);
            HdfIoServiceRecycle(serv);
-           return 0;
+           return HDF_SUCCESS;
        }
        ```
    3. 驱动上报事件。
