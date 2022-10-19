@@ -1306,7 +1306,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getEditorAttribute](#getrditorattribute9)替代
+> 从API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 >
 > 从 API version 8开始支持。
 
