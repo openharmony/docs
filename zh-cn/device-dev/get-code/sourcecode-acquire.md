@@ -12,7 +12,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 
 ## 获取源码概述
 
-本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../hpm-part/Readme-CN.md)的形式开放，开发者可以通过如下其中一种方式获取：
+本文档将介绍如何获取OpenHarmony源码并说明OpenHarmony的源码目录结构。OpenHarmony的代码以[组件](../hpm-part/hpm-part-about.md)的形式开放，开发者可以通过如下其中一种方式获取：
 
 - **获取方式1**：从码云代码仓库获取。通过repo或git工具从代码仓库中下载，此方式可获取最新代码。
 
