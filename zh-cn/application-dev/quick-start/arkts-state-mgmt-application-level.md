@@ -16,7 +16,7 @@ AppStorage的选择状态属性可以与不同的数据源或数据接收器同�
 
 默认情况下，AppStorage中的属性是可变的，AppStorage还可使用不可变（只读）属性。
 
- AppStorage的具体接口请参考[状态管理]()
+ AppStorage的具体接口请参考[状态管理](../reference/arkui-ts/ts-state-management.md)。
 
 ### @StorageLink装饰器
 
@@ -93,6 +93,8 @@ Ability： 一个应用程序可以拥有多个Ability，一个Ability中的所�
 
 一个组件最多可以访问一个LocalStorage实例，一个LocalStorage对象可以分配给多个组件。
 
+LocalStorage的具体接口请参考[状态管理](../reference/arkui-ts/ts-state-management.md)。
+
 ## @LocalStorageLink装饰器
 
 组件通过使用@LocalStorageLink(key)装饰的状态变量，key值为LocalStorage中的属性键值，与LocalStorage建立双向数据绑定。当创建包含@LocalStorageLink的状态变量的组件时，该状态变量的值将会使用LocalStorage中的值进行初始化。如果LocalStorage中未定义初始值，将使用@LocalStorageLink定义的初始值。在UI组件中对@LocalStorageLink的状态变量所做的更改将同步到LocalStorage中，并从LocalStorage同步到Ability下的组件中。
@@ -145,9 +147,25 @@ struct LocalStorageComponent {
   @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0
   build() {
     Column(){
-      Text(this.simpleVarName.toString())
+      Button(`LocalStorageLink: ${ this.simpleVarName.toString() }`)
         .onClick(()=>{
           this.simpleVarName +=1;
+        })
+      Text(JSON.stringify(this.simpleVarName))
+        .fontSize(50)
+      LocalStorageComponentProp();
+    }
+    .height(500)
+  }
+}
+@Component
+struct LocalStorageComponentProp {
+  @LocalStorageProp("storageSimpleProp") simpleVarName: number = 0
+  build() {
+    Column() {
+      Button(`LocalStorageProp: ${ this.simpleVarName.toString() }`)
+        .onClick(() => {
+          this.simpleVarName += 1;
         })
       Text(JSON.stringify(this.simpleVarName))
         .fontSize(50)
