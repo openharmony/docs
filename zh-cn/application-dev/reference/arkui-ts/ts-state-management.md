@@ -401,7 +401,7 @@ setOrCreate\<T>(propName: string, newValue: T): boolean
 
 | 类型    | 描述                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型。不允许undefined 或 null 返回true。 |
+| boolean | 如果已存在与给定键名字相同的属性，更新其值且返回true。如果不存在具有给定名称的属性，在LocalStorage中创建具有给定默认值的新属性，默认值必须是T类型，不允许undefined 或 null 。 |
 
 ```ts
 this.storage = new LocalStorage();

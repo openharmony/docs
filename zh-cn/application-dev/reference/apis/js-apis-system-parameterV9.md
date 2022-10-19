@@ -5,15 +5,14 @@
 [系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口。
 > - 由于系统参数都是各个系统服务的内部信息和控制参数，每个系统参数都有各自不同的DAC和MAC访问控制权限，三方应用不能使用此类接口。
-
 
 ## 导入模块
 
 ```ts
-import systemparameter from '@ohos.systemparameter'
+import systemparameter from '@ohos.systemParameterV9'
 ```
 
 ## systemparameter.getSync
@@ -161,11 +160,6 @@ setSync(key: string, value: string): void
 | key | string | 是 | 待设置的系统参数Key。 |
 | value | string | 是 | 待设置的系统参数值。 |
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
-
-
 **示例：**
 
 ```ts
@@ -191,10 +185,6 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 | key | string | 是 | 待设置的系统参数Key。 |
 | value | string | 是 | 待设置的系统参数值。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 **示例：**
 
@@ -231,10 +221,6 @@ set(key: string, value: string): Promise&lt;void&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise示例，用于异步获取结果。 |
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 此接口只能用于系统应用的参数设置。
-> - 所授权的系统应用需要配置对应selinux和dac规则，具体配置方法请参照系统参数指导文档:[系统参数](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-boot-init-sysparam.md)
 
 **示例：**
 

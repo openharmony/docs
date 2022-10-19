@@ -39,7 +39,7 @@ getAllScreens(callback: AsyncCallback&lt;Array&lt;Screen&gt;&gt;): void
 **示例：**
 
 ```js
-var screenClass = null;
+let screenClass = null;
 screen.getAllScreens((err, data) => {
     if (err.code) {
         console.error('Failed to get all screens . Cause:  ' + JSON.stringify(err));
@@ -75,7 +75,7 @@ getAllScreens(): Promise&lt;Array&lt;Screen&gt;&gt;
 **示例：**
 
 ```js
-var screenClass = null;
+let screenClass = null;
 let promise = screen.getAllScreens();
 promise.then((data) => {
     screenClass = data[0];

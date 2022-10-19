@@ -592,6 +592,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 import display from '@ohos.display'
 import window from '@ohos.window'
 
+let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
@@ -923,7 +924,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 ```js
 let windowClass = null;
- window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
         console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
@@ -998,13 +999,13 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```js
 let windowClass = null;
- window.find('alertWindow', (err, data) => {
-   if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
-       return;
-   }
-   windowClass = data;
-   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+window.find('alertWindow', (err, data) => {
+    if (err.code) {
+        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1038,7 +1039,7 @@ find(id: string): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.find('alertWindow');
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -1105,7 +1106,7 @@ getTopWindow(): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -2348,25 +2349,20 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2',this.storage,(err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
-}
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    windowClass.loadContent('pages/page2', storage, (err) => {
+        if (err.code) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in loading the content.');
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2404,26 +2400,19 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(()=> {
-                windowClass = data;
-                console.info('Succeeded in loading the content.');
-            }).catch((err)=>{
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
-}
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    let promise = windowClass.loadContent('pages/page2', storage);
+    promise.then(() => {
+        console.info('Succeeded in loading the content.');
+    }).catch((err) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+};
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -2719,7 +2708,7 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 ```js
 let callback = ()=>{
     console.info('screenshot happened');
-}
+};
 try {
     windowClass.on('screenshot', callback);
 } catch (exception) {
@@ -3745,13 +3734,13 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```js
-windowClass.snapshot((err, data) => {
+windowClass.snapshot((err, pixelMap) => {
     if (err.code) {
         console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    data.release(); // PixelMap使用完后及时释放内存
+    pixelMap.release(); // PixelMap使用完后及时释放内存
 });
 ```
 
@@ -3855,9 +3844,9 @@ scale(scaleOptions: ScaleOptions): void
 let obj : window.ScaleOptions = {
   x : 2.0,
   y : 1.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.scale(obj);
 } catch (exception) {
@@ -3897,9 +3886,9 @@ let obj : window.RotateOptions = {
   x : 1.0,
   y : 1.0,
   z : 45.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.rotate(obj);
 } catch (exception) {
@@ -3939,7 +3928,7 @@ let obj : window.TranslateOptions = {
   x : 100.0,
   y : 0.0,
   z : 0.0
-}
+};
 try {
     windowClass.translate(obj);
 } catch (exception) {
@@ -3977,7 +3966,7 @@ try {
 ```js
 let controller = windowClass.getTransitionController(); // 获取属性转换控制器
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -3993,7 +3982,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj); // 设置动画过程中的属性转换
         console.info('toWindow translate end');
       }
@@ -4108,7 +4097,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 
 ```js
 try {
-    windowClass.setBackdropBlurStyle(window.BlurType.THIN);
+    windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 };
@@ -6525,7 +6514,7 @@ completeTransition(isCompleted: boolean): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6538,7 +6527,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -6577,7 +6566,7 @@ animationForShown(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6593,7 +6582,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -6623,7 +6612,7 @@ animationForHidden(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6639,7 +6628,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }

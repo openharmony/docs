@@ -4,8 +4,8 @@
 - 快速开始
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-    - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+    - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+    - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
     - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
@@ -14,7 +14,7 @@
     - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
     - 学习ArkTS语言
       - [初识ArkTS语言](quick-start/arkts-get-started.md)
-      - eTS语法（声明式UI）
+      - ArkTS语法（声明式UI）
         - [基本UI描述](quick-start/arkts-basic-ui-description.md)
         - 状态管理
           - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
@@ -994,7 +994,7 @@
   - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)
   - [Ability框架开发常见问题](faqs/faqs-ability.md)
   - [UI框架（JS）开发常见问题](faqs/faqs-ui-js.md)
-  - [UI框架（eTS）开发常见问题](faqs/faqs-ui-ets.md)
+  - [UI框架（ArkTS）开发常见问题](faqs/faqs-ui-ets.md)
   - [图形图像开发常见问题](faqs/faqs-graphics.md)
   - [文件管理开发常见问题](faqs/faqs-file-management.md)
   - [网络与连接开发常见问题](faqs/faqs-connectivity.md)
