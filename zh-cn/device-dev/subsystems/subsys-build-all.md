@@ -329,7 +329,7 @@ optional arguments:
 ```
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/Readme-CN.md)
+> - 设备开发过程中详细的编译环境搭建及编译步骤请参考[快速入门中的环境搭建及编译章节。](../quick-start/quickstart-overview.md)
 > - OpenHarmony还为开发者提供了Docker编译环境，可以省略编译工具的安装，具体使用请参考[Docker编译指导。](../get-code/gettools-acquire.md)
 
 ### 新增并编译不同配置
