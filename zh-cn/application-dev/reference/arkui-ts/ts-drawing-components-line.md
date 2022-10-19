@@ -137,3 +137,48 @@ struct LineExample1 {
 ```
 
 ![zh-cn_image1_0000001219982725](figures/zh-cn_image1_0000001219982725.png)
+
+### 示例3
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LineExample {
+  build() {
+    Column() {
+      Line()
+        .startPoint([50, 30])
+        .endPoint([300, 30])
+        .strokeWidth(10)
+      // 设置strokeDashArray的数组间隔为 50
+      Line()
+        .startPoint([50, 20])
+        .endPoint([300, 20])
+        .strokeWidth(10)
+        .strokeDashArray([50])
+      // 设置strokeDashArray的数组间隔为 50, 10
+      Line()
+        .startPoint([50, 20])
+        .endPoint([300, 20])
+        .strokeWidth(10)
+        .strokeDashArray([50, 10])
+      // 设置strokeDashArray的数组间隔为 50, 10, 20
+      Line()
+        .startPoint([50, 20])
+        .endPoint([300, 20])
+        .strokeWidth(10)
+        .strokeDashArray([50, 10, 20])
+      // 设置strokeDashArray的数组间隔为 50, 10, 20, 30
+      Line()
+        .startPoint([50, 20])
+        .endPoint([300, 20])
+        .strokeWidth(10)
+        .strokeDashArray([50, 10, 20, 30])
+
+    }
+  }
+}
+```
+
+![zh-cn_image2_0000001219982725](figures/zh-cn_image2_0000001219982725.PNG)
