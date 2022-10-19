@@ -96,7 +96,7 @@ import call from '@ohos.telephony.call';
 
 | Name            | Type                                     | Readable| Writable| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| pluggedType      | [BatteryPluggedType](#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
+| pluggedType      | [BatteryPluggedType]\(#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
 | isBatteryPresent | boolean                                   | Yes  | No  | Whether the battery is supported or present.|
 
 ## Methods
@@ -270,7 +270,7 @@ The following is an example of the custom type of a key-value pair.
 | Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
 | parameterUrl | string              | Yes  | Yes  | Media output URI. Supported:<br>1. Relative path whose protocol type is `internal`. Example: <br/>Temporary directory: internal://cache/test.mp4<br>2. Absolute path. Example:<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4|
-| parameterOne | [CustomEnum](#Enumeration)| Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
+| parameterOne | [CustomEnum](#enums) | Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
 
 ## Change History
 | Change Description| Date|

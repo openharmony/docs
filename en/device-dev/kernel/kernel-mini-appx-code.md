@@ -1,4 +1,4 @@
-# Kernel Coding Specification<a name="EN-US_TOPIC_0000001079036432"></a>
+# Kernel Coding Specification
 
 
 This kernel coding specification is developed based on the general programming specifications in the industry. It defines the programming styles for kernel developers to follow.

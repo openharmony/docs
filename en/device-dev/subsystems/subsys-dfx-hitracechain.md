@@ -1,10 +1,10 @@
-# HiTraceChain Development<a name="EN-US_TOPIC_0000001186134310"></a>
+# HiTraceChain Development
 
-## Overview<a name="section3986195420436"></a>
+## Overview
 
 HiTraceChain tracks the call chain with the same  **traceid**  throughout the inter-device, inter-process, and inter-thread service processes. It associates and displays the call relationship and various output information during the entire process, helping you analyze and locate faults and optimize the system.
 
-## Use Cases<a name="section134561822574"></a>
+## Use Cases
 
 HiTraceChain can be used for the following purposes:
 
@@ -14,32 +14,36 @@ HiTraceChain can be used for the following purposes:
 
 -   Works with the IDE to debug the detailed service process and time consumption distribution for system optimization.
 
-    **Figure  1**  Use cases of HiTraceChain<a name="fig179241023125715"></a>  
+    **Figure  1**  Use cases of HiTraceChain
+    
     ![](figure/use-cases-of-hitrace.png "use-cases-of-hitrace")
 
 
-### Usage Example<a name="section63861653124417"></a>
+### Usage Example
 
-**Figure  2**  Service calling process \(inter-device and inter-process synchronous call\)<a name="fig173491014145819"></a>  
+**Figure  2**  Service calling process \(inter-device and inter-process synchronous call\) 
+
 ![](figure/service-calling-process-(inter-device-and-inter-process-synchronous-call).png "service-calling-process-(inter-device-and-inter-process-synchronous-call)")
 
-1.  Display the call relationship in the service process, analyze key paths and function dependency, and determine the time consumption and call frequency at each call point to detect performance bottlenecks.
+1. Display the call relationship in the service process, analyze key paths and function dependency, and determine the time consumption and call frequency at each call point to detect performance bottlenecks.
 
-    **Figure  3**  Service calling process<a name="fig205051834145813"></a>  
-    ![](figure/service-calling-process.png "service-calling-process")
+   **Figure  3**  Service calling process
 
-    **Figure  4**  Time delay in the service calling process<a name="fig1212812422586"></a>  
-    ![](figure/time-delay-in-the-service-calling-process.png "time-delay-in-the-service-calling-process")
+   ![](figure/service-calling-process.png "service-calling-process")
+
+   **Figure  4**  Time delay in the service calling process
+
+   ![](figure/time-delay-in-the-service-calling-process.png "time-delay-in-the-service-calling-process")
 
 2.  Add  **traceid**  to logs and events automatically to facilitate comprehensive analysis and quick fault location.
 
-## Available APIs<a name="section1517945334617"></a>
+## Available APIs
 
 HiTraceChain provides C++ and C APIs. The upper-layer services mainly use HiTraceChain to start and stop call chain tracing.
 
 HiTraceChain is implemented at layer C. It works by transferring  **traceid**  throughout the service calling process. Before service processing, HiTraceChain sets  **traceid**  in the thread local storage \(TLS\) of the calling thread. During service processing, HiTraceChain obtains  **traceid**  from the contextual TLS of the calling thread and automatically adds it to the log and event information. After service processing is complete, HiTraceChain clears  **traceid**  from the TLS of the calling thread.
 
-### Java, C++, and C APIs<a name="section932504474"></a>
+### Java, C++, and C APIs
 
 **Table  1**  Description of C++ and C APIs
 
@@ -195,7 +199,7 @@ HiTraceChain is implemented at layer C. It works by transferring  **traceid**  t
 </tbody>
 </table>
 
-### Parameters of C++ APIs<a name="section2514638125"></a>
+### Parameters of C++ APIs
 
 **Table  2**  Parameters of C++ APIs
 
@@ -428,7 +432,7 @@ HiTraceChain is implemented at layer C. It works by transferring  **traceid**  t
 </tbody>
 </table>
 
-## Call Chain Processing<a name="section11257133933"></a>
+## Call Chain Processing
 
 Inter-device, inter-process, and inter-thread calls are implemented through the communication mechanism.  **HiTraceChain**  requires transfer of  **traceid**  in the communication mechanism.
 
@@ -438,7 +442,8 @@ The following figure shows the process of transferring  **traceid**  in synchron
 
 Extended communication mechanisms can also follow this implementation.
 
-**Figure  5**  Call chain tracing in synchronous communication<a name="fig36822045171020"></a>  
+**Figure  5**  Call chain tracing in synchronous communication
+
 ![](figure/call-chain-tracing-in-synchronous-communication.png "call-chain-tracing-in-synchronous-communication")
 
 The process is as follows:
@@ -471,9 +476,9 @@ The process is as follows:
 8.  The service module on the client processes the transact reply response.
 9.  When the process ends, the service module on the client calls the  **end\(\)**  function to stop call chain tracing.
 
-## How to Develop<a name="section14310412491"></a>
+## How to Develop
 
-### C++<a name="section114916381509"></a>
+### C++
 
 1.  Develop the source code.
 
@@ -499,7 +504,7 @@ The process is as follows:
     ```
 
 
-### C<a name="section108292107514"></a>
+### C
 
 1.  Develop the source code.
 
