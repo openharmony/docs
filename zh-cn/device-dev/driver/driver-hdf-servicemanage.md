@@ -62,13 +62,13 @@ typedef enum {
    int32_t SampleDriverServiceA(void)
    {
        // 驱动开发者实现业务逻辑
-       return 0;
+       return HDF_SUCCESS;
    }
    
    int32_t SampleDriverServiceB(uint32_t inputCode)
    {
        // 驱动开发者实现业务逻辑
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
@@ -80,14 +80,14 @@ typedef enum {
        // deviceObject为HDF框架给每一个驱动创建的设备对象，用来保存设备相关的私有数据和服务接口。
        if (deviceObject == NULL) {
            HDF_LOGE("Sample device object is null!");
-           return -1;
+           return HDF_FAILURE;
        }
        static struct ISampleDriverService sampleDriverA = {
            .ServiceA = SampleDriverServiceA,
            .ServiceB = SampleDriverServiceB,
        };
        deviceObject->service = &sampleDriverA.ioService;
-       return 0;
+       return HDF_SUCCESS;
    }
    ```
 
@@ -103,7 +103,7 @@ typedef enum {
       const struct ISampleDriverService *sampleService =
               (const struct ISampleDriverService *)DevSvcManagerClntGetService("sample_driver");
       if (sampleService == NULL) {
-          return -1;
+          return HDF_FAILURE;
       }
       sampleService->ServiceA();
       sampleService->ServiceB(5);
@@ -121,7 +121,7 @@ typedef enum {
           const struct ISampleDriverService *sampleService =
               (const struct ISampleDriverService *)service;
           if (sampleService == NULL) {
-              return -1;
+              return HDF_FAILURE;
           }
           sampleService->ServiceA();
           sampleService->ServiceB(5);
@@ -131,13 +131,13 @@ typedef enum {
       {
           if (deviceObject == NULL) {
               HDF_LOGE("Test driver init failed, deviceObject is null!");
-              return -1;
+              return HDF_FAILURE;
           }
           struct SubscriberCallback callBack;
           callBack.deviceObject = deviceObject;
           callBack.OnServiceConnected = TestDriverSubCallBack;
           int32_t ret = HdfDeviceSubscribeService(deviceObject, "sample_driver", callBack);
-          if (ret != 0) {
+          if (ret != HDF_SUCCESS) {
               HDF_LOGE("Test driver subscribe sample driver failed!");
           }
           return ret;
