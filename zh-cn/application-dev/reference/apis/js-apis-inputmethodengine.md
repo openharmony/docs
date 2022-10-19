@@ -58,7 +58,7 @@ getInputMethodEngine(): InputMethodEngine
 获取服务端实例。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)替代
+> 从API version 9开始废弃, 建议使用[getInputMethodAbility](#getInputMethodAbility)替代
 >
 > 从 API version 8开始支持。
 
@@ -143,7 +143,7 @@ getKeyboardDelegate(): KeyboardDelegate
 
 ## InputMethodEngine<a name="InputMethodEngine"></a>
 
-下列API示例中都需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodEngine](#getInputMethodEngine)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
 
 ### on('inputStart')<a name="inputStart"></a>
 
@@ -340,9 +340,9 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 ## InputMethodAbility<a name="InputMethodAbility"></a>
 
-下列API示例中都需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodAbility](#getInputMethodAbility)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
 
-### on('inputStart')<a name="inputStart"></a><sup>9+</sup>
+### on('inputStart')<a name="inputStart9"></a><sup>9+</sup>
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient: InputClient) => void): void
 
@@ -789,7 +789,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ## KeyboardController<a name="KeyboardController"></a>
 
-下列API示例中都需使用[inputStart](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#inputStart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
 ### hideKeyboard
 
@@ -845,7 +845,7 @@ async function InputMethodEngine() {
 
 ## TextInputClient<a name="TextInputClient"></a>
 
-下列API示例中都需使用[inputStart](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#inputStart9)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
 ### getForward<sup>(deprecated)</sup>
 
