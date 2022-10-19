@@ -17,6 +17,6 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [fd](_display.md#fd) | 句柄&nbsp;fd,&nbsp;-1代表不支持。 | 
+| [fd](_display.md#fd) | 句柄fd，-1代表不支持。 | 
 | [reserveInts](_display.md#reserveints) | reserve数组的个数。 | 
 | [reserve](_display.md#reserve)&nbsp;[0] | reserve数组。 | 
