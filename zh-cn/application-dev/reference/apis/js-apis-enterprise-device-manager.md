@@ -478,14 +478,12 @@ let wantTemp = {
 };
 enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
     if (error != null) {
-        console.log("error occurs" + error);
+        console.log("error code : " + error.code);
         return;
     }
-    mgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
+    mgr.setDateTime(wantTemp, 1526003846000, (error) => { 
         if (error != null) {
-            console.log(error);
-        } else {
-            console.log(value);
+            console.log("error code : " + error.code);
         }
     });
 });
@@ -513,13 +511,11 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000).then((value) => {
-        console.log(value);
-    }).catch((error) => {
-        console.log(error);
+    mgr.setDateTime(wantTemp, 1526003846000).catch((error) => {
+        console.log("error code : " + error.code);
     })
 }).catch((error) => {
-    console.log(error);
+    console.log("error code : " + error.code);
 })
 ```
 
