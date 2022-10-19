@@ -10,12 +10,14 @@
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## 需要权限
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+
 ## 导入模块
 
 ```ts
 import web_webview from '@ohos.web.webview';
 ```
-
 ## WebMessagePort
 
 通过WebMessagePort可以进行消息的发送以及接收。
@@ -26,7 +28,8 @@ close(): void
 
 关闭该信息端口。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -58,7 +61,8 @@ postMessageEvent(message: string): void
 
 发送消息。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -110,7 +114,8 @@ onMessageEvent(callback: (result: string) => void): void
 
 注册回调函数，接收HTML5侧发送过来的消息。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -173,7 +178,8 @@ loadUrl(url: string | Resource, headers?: Array\<HeaderV9>): void
 
 加载指定的URL。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -225,7 +231,8 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 加载指定的数据。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：** 
 
@@ -248,7 +255,7 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 
 **示例：** 
 
-  ```ts
+```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
 
@@ -275,7 +282,7 @@ struct WebComponent {
     }
   }
 }
-  ```
+```
 
 ### accessforward
 
@@ -283,7 +290,8 @@ accessForward(): boolean
 
 当前页面是否可前进，即当前页面是否有前进历史记录。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -301,7 +309,7 @@ accessForward(): boolean
 
 **示例：** 
 
-  ```ts
+```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
 
@@ -325,7 +333,52 @@ struct WebComponent {
     }
   }
 }
-  ```
+```
+
+### forward
+
+forward(): void
+
+按照历史栈，前进一个页面。一般结合accessForward一起使用。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
+**错误码**：
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100007 | Invalid back or forward operation. |
+
+**示例：** 
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('forward')
+        .onClick(() => {
+          try {
+            this.controller.forward();
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 ### accessBackward
 
@@ -333,9 +386,8 @@ accessBackward(): boolean
 
 当前页面是否可后退，即当前页面是否有返回历史记录。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -379,15 +431,59 @@ struct WebComponent {
 }
 ```
 
+### backward
+
+backward(): void
+
+按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
+**错误码**：
+
+以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100007 | Invalid back or forward operation. |
+
+**示例：** 
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('backward')
+        .onClick(() => {
+          try {
+            this.controller.backward();
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### onActive
 
 onActive(): void
 
 调用此接口通知Web组件进入前台激活状态。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -430,9 +526,8 @@ onInactive(): void
 
 调用此接口通知Web组件进入未激活状态。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -470,13 +565,12 @@ struct WebComponent {
 ```
 
 ### refresh
-refresh()
+refresh(): void
 
 调用此接口通知Web组件刷新网页。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -519,9 +613,8 @@ accessStep(step: number): boolean
 
 当前页面是否可前进或者后退给定的step步。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -578,9 +671,8 @@ clearHistory(): void
 
 删除所有前进后退记录。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -623,9 +715,8 @@ getHitTest(): HitTestTypeV9
 
 获取当前被点击区域的元素类型。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -671,13 +762,12 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>)
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -737,9 +827,8 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -802,9 +891,8 @@ runJavaScript(script: string): Promise\<string>
 
 异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -864,13 +952,12 @@ struct WebComponent {
 
 ### deleteJavaScriptRegister
 
-deleteJavaScriptRegister(name: string)
+deleteJavaScriptRegister(name: string): void
 
 删除通过registerJavaScriptProxy注册到window上的指定name的应用侧JavaScript对象。删除后立即生效，无须调用[refresh](#refresh)接口。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -921,9 +1008,8 @@ zoom(factor: number): void
 
 调整当前网页的缩放比例。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -975,9 +1061,8 @@ searchAllAsync(searchString: string): void
 
 异步查找网页中所有匹配关键字'searchString'的内容并高亮，结果通过[onSearchResultReceive](../arkui-ts/ts-basic-components-web.md#onsearchresultreceive9)异步返回。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1031,9 +1116,8 @@ clearMatches(): void
 
 清除所有通过[searchAllAsync](#searchallasync)匹配到的高亮字符查找结果。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1076,9 +1160,8 @@ searchNext(forward: boolean): void
 
 滚动到下一个匹配的查找结果并高亮。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1127,9 +1210,8 @@ clearSslCache(): void
 
 清除Web组件记录的SSL证书错误事件对应的用户操作行为。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1172,9 +1254,8 @@ clearClientAuthenticationCache(): void
 
 清除Web组件记录的客户端证书请求事件对应的用户操作行为。
 
-**需要权限：**
-
-ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码：**
 
@@ -1217,7 +1298,8 @@ struct WebComponent {
 
 创建Web信息端口。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -1268,7 +1350,8 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
 发送Web信息端口到HTML5。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1357,9 +1440,12 @@ function PostWebMsg(data) {
 
 ### requestFocus
 
-requestFocus()：void
+requestFocus(): void
 
 使当前web页面获取焦点。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1401,6 +1487,9 @@ struct WebComponent {
 zoomIn(): void
 
 调用此接口将当前网页进行放大，比例为20%。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1445,6 +1534,9 @@ zoomOut(): void
 
 调用此接口将当前网页进行缩小，比例为20%。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **错误码**：
 
 以下错误码的详细介绍请参见 [webview错误码](../errorcodes/errorcode-webview.md)
@@ -1487,6 +1579,9 @@ struct WebComponent {
 getHitTestValue(): HitTestValue
 
 获取当前被点击区域的元素信息。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1537,6 +1632,9 @@ getWebId(): number
 
 获取当前Web组件的索引值，用于多个Web组件的管理。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型   | 说明                  |
@@ -1584,6 +1682,9 @@ struct WebComponent {
 getUserAgent(): string
 
 获取当前默认用户代理。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -1633,6 +1734,9 @@ getTitle(): string
 
 获取文件选择器标题。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型   | 说明                 |
@@ -1681,6 +1785,9 @@ getPageHeight(): number
 
 获取当前网页的页面高度。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型   | 说明                 |
@@ -1728,6 +1835,9 @@ struct WebComponent {
 storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<string>): void
 
 以回调方式异步保存当前页面。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1786,6 +1896,9 @@ struct WebComponent {
 storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 以Promise方式异步保存当前页面。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1850,6 +1963,9 @@ getUrl(): string
 
 获取当前页面的url地址。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型   | 说明                |
@@ -1894,9 +2010,12 @@ struct WebComponent {
 
 ### stop
 
-stop()：void
+stop(): void
 
 停止页面加载。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **错误码**：
 
@@ -1938,6 +2057,9 @@ struct WebComponent {
 backOrForward(step: number): void
 
 按照历史栈，前进或者后退指定步长的页面，当历史栈中不存在对应步长的页面时，不会进行页面跳转。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -1992,7 +2114,8 @@ static getCookie(url: string): string
 
 获取指定url对应cookie的值。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2047,7 +2170,8 @@ static setCookie(url: string, value: string): void
 
 为指定url设置单个cookie的值。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2100,17 +2224,18 @@ struct WebComponent {
 
 ###  saveCookieAsync
 
-static saveCookieAsync(callback: AsyncCallback\<boolean>): void
+static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 将当前存在内存中的cookie异步保存到磁盘中。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 默认值 | 说明                                               |
 | -------- | ---------------------- | ---- | ------ | :------------------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | -      | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| callback | AsyncCallback\<void> | 是   | -      | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
 
 
 **示例：**
@@ -2129,9 +2254,11 @@ struct WebComponent {
       Button('saveCookieAsync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.saveCookieAsync(function (result) {
-              console.log("result: " + result);
-            });
+            web_webview.WebCookieManager.saveCookieAsync((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2144,17 +2271,18 @@ struct WebComponent {
 
 ###  saveCookieAsync
 
-static saveCookieAsync(): Promise\<boolean>
+static saveCookieAsync(): Promise\<void>
 
 将当前存在内存中的cookie以Promise方法异步保存到磁盘中。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
 | 类型             | 说明                                      |
 | ---------------- | ----------------------------------------- |
-| Promise\<boolean> | Promise实例，用于获取cookie是否成功保存。 |
+| Promise\<void> | Promise实例，用于获取cookie是否成功保存。 |
 
 **示例：**
 
@@ -2173,10 +2301,10 @@ struct WebComponent {
         .onClick(() => {
           try {
             web_webview.WebCookieManager.saveCookieAsync()
-              .then(function (result) {
-                console.log("result: " + result);
+              .then(() => {
+                console.log("saveCookieAsyncCallback success!");
               })
-              .catch(function (error) {
+              .catch((error) => {
                 console.error("error: " + error);
               });
           } catch (error) {
@@ -2195,7 +2323,8 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 设置WebCookieManager实例是否拥有发送和接收cookie的权限。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2236,7 +2365,8 @@ static isCookieAllowed(): boolean
 
 获取WebCookieManager实例是否拥有发送和接收cookie的权限。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2274,7 +2404,8 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 设置WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2315,7 +2446,8 @@ static isThirdPartyCookieAllowed(): boolean
 
 获取WebCookieManager实例是否拥有发送和接收第三方cookie的权限。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2353,7 +2485,8 @@ static existCookie(): boolean
 
 获取是否存在cookie。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：** 
 
@@ -2391,7 +2524,8 @@ static deleteEntireCookie(): void
 
 清除所有cookie。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -2422,7 +2556,8 @@ static deleteSessionCookie(): void
 
 清除所有会话cookie。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -2457,7 +2592,8 @@ static deleteOrigin(origin : string): void
 
 清除指定源所使用的存储。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2509,7 +2645,8 @@ static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2570,7 +2707,8 @@ static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -2631,7 +2769,8 @@ static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2690,7 +2829,8 @@ static getOriginQuota(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2754,7 +2894,8 @@ static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2813,7 +2954,8 @@ static getOriginUsage(origin : string) : Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2877,7 +3019,8 @@ static deleteAllData(): void
 
 清除Web SQL数据库当前使用的所有存储。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -2913,11 +3056,12 @@ web组件数据库管理对象。
 
 ### getHttpAuthCredentials
 
-static getHttpAuthCredentials(host: string, realm: string): Array
+static getHttpAuthCredentials(host: string, realm: string): Array\<string>
 
 检索给定主机和域的HTTP身份验证凭据，该方法为同步方法。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -2930,7 +3074,7 @@ static getHttpAuthCredentials(host: string, realm: string): Array
 
 | 类型  | 说明                                         |
 | ----- | -------------------------------------------- |
-| Array | 包含用户名和密码的组数，检索失败返回空数组。 |
+| Array\<string> | 包含用户名和密码的组数，检索失败返回空数组。 |
 
 **示例：**
 
@@ -2972,7 +3116,8 @@ static saveHttpAuthCredentials(host: string, realm: string, username: string, pa
 
 保存给定主机和域的HTTP身份验证凭据，该方法为同步方法。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3018,7 +3163,8 @@ static existHttpAuthCredentials(): boolean
 
 判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，不存在返回false。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **返回值：**
 
@@ -3059,7 +3205,8 @@ static deleteHttpAuthCredentials(): void
 
 清除所有已保存的HTTP身份验证凭据，该方法为同步方法。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -3098,7 +3245,8 @@ static allowGeolocation(origin: string): void
 
 允许指定来源使用地理位置接口。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3147,7 +3295,8 @@ static deleteGeolocation(origin: string): void
 
 清除指定来源的地理位置权限状态。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3197,7 +3346,8 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 
 以回调方式异步获取指定源的地理位置权限状态。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3253,6 +3403,9 @@ struct WebComponent {
 static getAccessibleGeolocation(origin: string): Promise\<boolean>
 
 以Promise方式异步获取指定源的地理位置权限状态。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3313,7 +3466,8 @@ static getStoredGeolocation(callback: AsyncCallback\<Array\<string>>): void
 
 以回调方式异步获取已存储地理位置权限状态的所有源信息。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **参数：**
 
@@ -3361,6 +3515,9 @@ static getStoredGeolocation(): Promise\<Array\<string>>
 
 以Promise方式异步获取已存储地理位置权限状态的所有源信息。
 
+**系统能力：**
+SystemCapability.Web.Webview.Core
+
 **返回值：**
 
 | 类型                   | 说明                                                      |
@@ -3406,7 +3563,8 @@ static deleteAllGeolocation(): void
 
 清除所有来源的地理位置权限状态。
 
-**需要权限**：ohos.permission.INTERNET
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 **示例：**
 
@@ -3453,6 +3611,7 @@ Web组件返回的请求/响应头对象。
 | HttpAnchorImg | 带有超链接的图片，其中超链接的src为http。 |
 | Img           | HTML::img标签。                           |
 | Map           | 地理地址。                                |
+| Phone           | 电话号码。                                |
 | Unknown       | 未知内容。                                |
 
 ##  HitTestValue
@@ -3467,6 +3626,9 @@ Web组件返回的请求/响应头对象。
 ## WebStorageOrigin
 
 提供Web SQL数据库的使用信息。
+
+**系统能力：**
+SystemCapability.Web.Webview.Core
 
 | 名称   | 类型   | 必填 | 说明                 |
 | ------ | ------ | :--- | -------------------- |
