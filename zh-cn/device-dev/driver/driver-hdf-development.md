@@ -30,14 +30,14 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       int32_t HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver bind success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // 驱动自身业务初始化的接口
       int32_t HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
       {
           HDF_LOGD("Sample driver Init success");
-          return 0;
+          return HDF_SUCCESS;
       }
       
       // 驱动资源释放的接口
@@ -109,7 +109,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        }
        config("public") {                 #定义依赖的头文件配置
            include_dirs = [
-           "xxx/xxx/xxx",                 #依赖的头文件目录
+               "xxx/xxx/xxx",             #依赖的头文件目录
            ]
        }
         ```
