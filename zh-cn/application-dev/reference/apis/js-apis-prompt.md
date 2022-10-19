@@ -48,7 +48,7 @@ prompt.showToast({
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | message  | string\| [Resource](../arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 显示的文本信息。                                 |
 | duration | number                                   | 否    | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。 |
-| bottom   | string\| number                          | 否    | 设置弹窗边框距离屏幕底部的位置。                         |
+| bottom   | string\| number                          | 否    | 设置弹窗边框距离屏幕底部的位置，无上限值，默认单位vp。                |
 
 ## prompt.showDialog
 
