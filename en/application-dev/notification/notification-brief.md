@@ -1,6 +1,6 @@
 # Common Event and Notification Overview
 
-The common event and notification module enables applications to publish messages to other applications, and receive messages from the system or other applications. These messages can be news push messages, advertisement notifications, or warning information.
+The common event and notification module enables applications to publish messages to other applications, and receive messages from the system or other applications. These messages can be news push messages, advertisement notifications, warning information, and more.
 
 Common Event Service (CES) enables applications to publish, subscribe to, and unsubscribe from common events. Based on the sender type, common events are classified into system common events and custom common events.
 
