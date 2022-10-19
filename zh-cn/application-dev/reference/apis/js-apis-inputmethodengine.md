@@ -58,7 +58,7 @@ getInputMethodEngine(): InputMethodEngine
 获取服务端实例。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getInputMethodAbility](#getInputMethodAbility)替代
+> 从API version 9开始废弃, 建议使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)替代
 >
 > 从 API version 8开始支持。
 
@@ -88,7 +88,7 @@ getInputMethodAbility(): InputMethodAbility
 
 | 类型                                    | 说明         |
 | --------------------------------------- | ------------ |
-| [InputMethodAbility](#InputMethodAbility) | 服务端实例。 |
+| [InputMethodAbility](#inputmethodability) | 服务端实例。 |
 
 **示例：**
 
@@ -121,7 +121,7 @@ createKeyboardDelegate(): KeyboardDelegate
   var KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
   ```
 
-## inputMethodEngine.getKeyboardDelegate<a name="getKeyboardDelegate"></a>
+## inputMethodEngine.getKeyboardDelegate<a name="getKeyboardDelegate"></a><sup>9+</sup>
 
 getKeyboardDelegate(): KeyboardDelegate
 
@@ -143,7 +143,7 @@ getKeyboardDelegate(): KeyboardDelegate
 
 ## InputMethodEngine<a name="InputMethodEngine"></a>
 
-下列API示例中都需使用[getInputMethodEngine](#getInputMethodEngine)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodEngine](#inputmethodenginegetinputmethodenginedeprecated)回调获取到InputMethodEngine实例，再通过此实例调用对应方法。
 
 ### on('inputStart')<a name="inputStart"></a>
 
@@ -158,7 +158,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 是 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 是 | 回调返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -182,7 +182,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#KeyboardController), [TextInputClient](#TextInputClient) | 否 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 否 | 回调返回输入法操作相关实例。 |
 
 
 
@@ -340,7 +340,7 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 ## InputMethodAbility<a name="InputMethodAbility"></a>
 
-下列API示例中都需使用[getInputMethodAbility](#getInputMethodAbility)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getInputMethodAbility](#inputmethodenginegetinputmethodability9)回调获取到InputMethodAbility实例，再通过此实例调用对应方法。
 
 ### on('inputStart')<a name="inputStart"></a><sup>9+</sup>
 
@@ -355,7 +355,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#KeyboardController), [InputClient](#InputClient) | 是 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient-9) | 是 | 回调返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -379,7 +379,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#KeyboardController), [InputClient](#InputClient) | 否 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient) | 否 | 回调返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -596,7 +596,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#KeyEvent) | 是 | 回调返回按键信息。 |
+| callback | [KeyEvent](#keyevent) | 是 | 回调返回按键信息。 |
 
 **示例：**
 
@@ -626,7 +626,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#KeyEvent) | 否   | 回调返回按键信息。                                           |
+| callback | [KeyEvent](#keyevent) | 否   | 回调返回按键信息。                                           |
 
 **示例：**
 
@@ -789,7 +789,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ## KeyboardController<a name="KeyboardController"></a>
 
-下列API示例中都需使用[inputStart](#inputStart)回调获取到KeyboardController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
 ### hideKeyboard
 
@@ -845,7 +845,7 @@ async function InputMethodEngine() {
 
 ## TextInputClient<a name="TextInputClient"></a>
 
-下列API示例中都需使用[inputStart](#inputStart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
 ### getForward<sup>(deprecated)</sup>
 
@@ -854,7 +854,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getForward](#InputClient.getForward)替代
+> 从API version 9开始废弃, 建议使用[getForward](#getforward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -887,7 +887,7 @@ getForward(length:number): Promise&lt;string&gt;
 获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getForward](#InputClient.getForward)替代
+> 从API version 9开始废弃, 建议使用[getForward](#getforward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -925,7 +925,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getBackward](#InputClient.getBackward)替代
+> 从API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -958,7 +958,7 @@ getBackward(length:number): Promise&lt;string&gt;
 获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getBackward](#InputClient.getBackward)替代
+> 从API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -996,7 +996,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.deleteForward](#InputClient.deleteForward)替代
+> 从API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1032,7 +1032,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.deleteForward](#InputClient.deleteForward)替代
+> 从API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1074,7 +1074,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.deleteBackward](#InputClient.deleteBackward)替代
+> 从API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1111,7 +1111,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.deleteBackward](#InputClient.deleteBackward)替代
+> 从API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1152,7 +1152,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 发送功能键。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.sendKeyFunction](#InputClient.sendKeyFunction)替代
+> 从API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1188,7 +1188,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 发送功能键。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.sendKeyFunction](#InputClient.sendKeyFunction)替代
+> 从API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1229,7 +1229,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 插入文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.insertText](#InputClient.insertText)替代
+> 从API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1265,7 +1265,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 插入文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.insertText](#InputClient.insertText)替代
+> 从API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1306,7 +1306,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getEditorAttribute](#InputClient.getEditorAttribute)替代
+> 从API version 9开始废弃, 建议使用[getEditorAttribute](#getrditorattribute9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1316,7 +1316,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 参数名                         | 类型                          | 必填                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
+| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  编辑框属性值。                |
 
 **示例：**
 
@@ -1338,7 +1338,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[InputClient.getEditorAttribute](#InputClient.getEditorAttribute)替代
+> 从API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1348,7 +1348,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
+| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  返回编辑框属性值。           |
 
 **示例：**
 
@@ -1363,9 +1363,9 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
    }
    ```
 
-## InputClient <a name="InputClient "></a><sup>9+</sup>
+## InputClient<a name="InputClient "></a><sup>9+</sup>
 
-下列API示例中都需使用[inputStart](#inputStart)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#inputStart9)回调获取到InputClient实例，再通过此实例调用对应方法。
 
 ### sendKeyFunction<sup>9+</sup>
 
@@ -1838,7 +1838,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[EditorAttribute](#EditorAttribute)&gt; |  返回编辑框属性值。           |
+| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  返回编辑框属性值。           |
 
 **示例：**
 

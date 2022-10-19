@@ -11,6 +11,7 @@
 
 ```
 import inputMethod from '@ohos.inputmethod';
+import InputMethodSubtype from './@ohos.inputMethodSubtype';
 ```
 
 ## inputMethod<sup>8+</sup>
@@ -48,7 +49,7 @@ getInputMethodController(): InputMethodController
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getController](#getController)替代
+> 从API version 9开始废弃, 建议使用[getController](#inputmethodgetcontroller9)替代
 >
 > 从 API version 6开始支持。
 
@@ -147,7 +148,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  |target | [InputmethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
+  |target | [InputMethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法切换是否成功。 |
 
 
@@ -157,7 +158,6 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 try{
     inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}, (err, result) => {
         if (err) {
-            // 处理业务逻辑执行错误
             console.error('switchInputMethod err: ' + JSON.stringify(err));
             return;
         }
@@ -168,7 +168,6 @@ try{
         }
     });
 } catch(err) {
-    // 捕获参数错误
     console.error('switchInputMethod err: ' + JSON.stringify(err));
 }
 ```
@@ -245,7 +244,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](#InputMethodSubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法子类型切换是否成功。 |
 
 **示例：**
@@ -286,7 +285,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](#InputMethodSubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 
 **示例：**
 
@@ -324,7 +323,7 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 | 类型                                         | 说明                     |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](#InputMethodSubtype) | 返回当前输入法子类型对象。 |
+| [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 返回当前输入法子类型对象。 |
 
 **示例：**
 
@@ -346,8 +345,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#InputMethodProperty)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [inputMethodSubtype](#InputMethodSubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 返回输入法和子类型切换是否成功。 |
 
 **示例：**
@@ -392,8 +391,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|inputMethodProperty |  [InputMethodProperty](#InputMethodProperty)| 是 | 传入要切换的目标输入法。 |
-|inputMethodSubtype |  [inputMethodSubtype](#InputMethodSubtype)| 是 | 传入要切换的目标输入法子类型。 |
+|inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 
 **示例：**
 
@@ -423,7 +422,7 @@ try {
 
 ## InputMethodController
 
-下列API示例中都需使用[getController](#inputmethodgetcontroller)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getController](##inputmethodgetcontroller9)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInput<sup>(deprecated)</sup>
 
@@ -432,7 +431,7 @@ stopInput(callback: AsyncCallback&lt;boolean&gt;): void
 隐藏输入法。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[stopInputSession](#stopInputSession)替代
+> 从API version 9开始废弃, 建议使用[stopInputSession](#stopinputsession9)替代
 >
 > 从 API version 6开始支持。
 
@@ -467,7 +466,7 @@ stopInput(): Promise&lt;boolean&gt;
 隐藏输入法。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[stopInputSession](#stopInputSession)替代
+> 从API version 9开始废弃, 建议使用[stopInputSession](#stopinputsession9)替代
 >
 > 从 API version 6开始支持。
 
@@ -559,7 +558,7 @@ try {
 }
 ```
 
-### showSoftKeyboard<sup>9+</sup> ###
+### showSoftKeyboard<sup>9+</sup>
 
 showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
@@ -585,7 +584,7 @@ InputMethodController.showSoftKeyboard((err) => {
 })
 ```
 
-### showSoftKeyboard<sup>9+</sup> ###
+### showSoftKeyboard<sup>9+</sup>
 
 showSoftKeyboard(): Promise&lt;void&gt;
 
@@ -609,7 +608,7 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 });
 ```
 
-### hideSoftKeyboard<sup>9+</sup> ###
+### hideSoftKeyboard<sup>9+</sup>
 
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
@@ -676,7 +675,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示订阅输入法及子类型变化监听事件。 |
-| callback | [inputMethodProperty](#InputMethodProperty), [inputMethodSubtype](#InputMethodSubtype) | 是 | 回调返回输入法及子类型相关实例。 |
+| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 是 | 回调返回输入法及子类型相关实例。 |
 
 **示例：**
 
@@ -700,7 +699,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘imeChange’时表示取消订阅输入法及子类型变化监听事件。 |
-| callback | [inputMethodProperty](#InputMethodProperty), [inputMethodSubtype](#InputMethodSubtype) | 否 | 回调返回输入法及子类型相关实例。 |
+| callback | [InputMethodProperty](#inputmethodproperty8), [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype) | 否 | 回调返回输入法及子类型相关实例。 |
 
 **示例：**
 
@@ -721,7 +720,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
-| callback | Array<[InputMethodSubtype](#InputMethodSubtype)> | 是   | 返回已安装输入法列表。 |
+| callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是   | 返回已安装输入法列表。 |
 
 **示例：**
 
@@ -761,7 +760,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](#InputMethodSubtype)>> | 返回已安装输入法子类型列表。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | 返回已安装输入法子类型列表。 |
 
 **示例：**
 
@@ -793,7 +792,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 参数名   | 类型                                               | 必填 | 说明                   |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | Array<[InputMethodSubtype](#InputMethodSubtype)> | 是   | 返回当前输入法的子类型列表。 |
+| callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是   | 返回当前输入法的子类型列表。 |
 
 **示例：**
 
@@ -823,7 +822,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 类型                                                        | 说明                   |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](#InputMethodSubtype)>> | 返回当前输入法的子类型列表。 |
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | 返回当前输入法的子类型列表。 |
 
 **示例：**
 
