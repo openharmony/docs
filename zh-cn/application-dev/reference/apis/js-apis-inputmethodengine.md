@@ -173,7 +173,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
-取消订阅输入法绑定成功事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅输入法绑定成功事件。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 

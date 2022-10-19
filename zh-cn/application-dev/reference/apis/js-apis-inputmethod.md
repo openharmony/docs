@@ -530,7 +530,7 @@ try {
 
 stopInputSession(): Promise&lt;boolean&gt;
 
-隐藏输入法。使用promise形式返回结果。参数个数为0，否则抛出异常。
+隐藏输入法。使用promise形式返回结果。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
