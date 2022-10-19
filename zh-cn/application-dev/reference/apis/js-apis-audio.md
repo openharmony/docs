@@ -4526,7 +4526,7 @@ on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :---------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | Callback<number>         | 是   | 触发事件时调用的回调。                    |
+| callback | Callback\<number>         | 是   | 触发事件时调用的回调。                    |
 
 **示例：**
 
@@ -4573,7 +4573,7 @@ on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | Callback<number>         | 是   | 触发事件时调用的回调。                      |
+| callback | Callback\<number>         | 是   | 触发事件时调用的回调。                      |
 
 **示例：**
 
@@ -5130,7 +5130,7 @@ on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------  | :--- | :----------------------------------------- |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
+| callback | Callback\<number>         | 是   | 使用callback方式异步返回被触发事件的回调。 |
 
 **示例：**
 
@@ -5176,7 +5176,7 @@ on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 | :------- | :----------------------- | :--- | :------------------------------------------ |
 | type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
 | frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | Callback<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
+| callback | Callback\<number>         | 是   | 使用callback方式异步返回被触发事件的回调    |
 
 **示例：**
 
