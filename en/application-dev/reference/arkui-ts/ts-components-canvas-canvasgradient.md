@@ -3,8 +3,9 @@
 **CanvasGradient** provides a canvas gradient object.
 
 >  **NOTE**
->
+> 
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 
 ## addColorStop
@@ -13,13 +14,16 @@ addColorStop(offset: number, color: string): void
 
 Adds a color stop for the **CanvasGradient** object based on the specified offset and gradient color.
 
-- Parameters
+
+**Parameters**
+
   | Name    | Type    | Mandatory  | Default Value      | Description                          |
   | ------ | ------ | ---- | --------- | ---------------------------- |
   | offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
   | color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
 
-- Example
+
+**Example**
 
   ```ts
   // xxx.ets
@@ -48,10 +52,6 @@ Adds a color stop for the **CanvasGradient** object based on the specified offse
       .height('100%')
     }}
   ```
-
-
-
-
   ![en-us_image_0000001256858381](figures/en-us_image_0000001256858381.png)
 
  
