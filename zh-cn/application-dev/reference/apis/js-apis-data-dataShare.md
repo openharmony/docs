@@ -52,14 +52,14 @@ let dataShareHelper;
 try {
     dataShare.createDataShareHelper(this.context, uri, (err, data) => {
         if (err != undefined) {
-            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message}`);
+            console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
     });
 } catch (err) {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message}`);
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -104,10 +104,10 @@ try {
         console.info("createDataShareHelper succeed, data : " + data);
         dataShareHelper = data;
     }). catch((err) => {
-        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message}`);
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message}`);
+    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -198,13 +198,13 @@ const valueBucket = {
 try {
     dataShareHelper.insert(uri, valueBucket, (err, data) => {
         if (err != undefined) {
-            console.error(`insert error: code: ${err.code}, message: ${err.message}`);
+            console.error(`insert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.info("insert succeed, data : " + data);
     });
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message}`);
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -243,10 +243,10 @@ try {
     dataShareHelper.insert(uri, valueBucket).then((data) => {
         console.log("insert succeed, data : " + data);
     }). catch((err) => {
-        console.error(`insert error: code: ${err.code}, message: ${err.message}`);
+        console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`insert error: code: ${err.code}, message: ${err.message}`);
+    console.error(`insert error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -278,13 +278,13 @@ da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da, (err, data) => {
         if (err != undefined) {
-            console.error(`delete error: code: ${err.code}, message: ${err.message}`);
+            console.error(`delete error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.info("delete succeed, data : " + data);
     });
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message}`);
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -322,10 +322,10 @@ try {
     dataShareHelper.delete(uri, da).then((data) =>  {
         console.log("delete succeed, data : " + data);
     }). catch((err) => {
-        console.error(`delete error: code: ${err.code}, message: ${err.message}`);
+        console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`delete error: code: ${err.code}, message: ${err.message}`);
+    console.error(`delete error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -359,13 +359,13 @@ da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns, (err, data) => {
         if (err != undefined) {
-            console.error(`query error: code: ${err.code}, message: ${err.message}`);
+            console.error(`query error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.log("query succeed, rowCount : " + data.rowCount);
     });
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message}`);
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -405,10 +405,10 @@ try {
     dataShareHelper.query(uri, da, columns).then((data) =>  {
         console.log("query succeed, rowCount : " + data.rowCount);
     }). catch((err) => {
-        console.error(`query error: code: ${err.code}, message: ${err.message}`);
+        console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`query error: code: ${err.code}, message: ${err.message}`);
+    console.error(`query error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -447,13 +447,13 @@ const va = {
 try {
     dataShareHelper.update(uri, da, va, (err, data) => {
         if (err != undefined) {
-            console.error(`update error: code: ${err.code}, message: ${err.message}`);
+            console.error(`update error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.log("update succeed, data : " + data);
     });
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message}`);
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -498,10 +498,10 @@ try {
     dataShareHelper.update(uri, da, va).then((data) =>  {
         console.log("update succeed, data : " + data);
     }). catch((err) => {
-        console.error(`update error: code: ${err.code}, message: ${err.message}`);
+        console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`update error: code: ${err.code}, message: ${err.message}`);
+    console.error(`update error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -532,13 +532,13 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
 try {
     dataShareHelper.batchInsert(uri, vbs, (err, data) => {
         if (err != undefined) {
-            console.error(`batchInsert error: code: ${err.code}, message: ${err.message}`);
+            console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
         console.log("batchInsert succeed, data : " + data);
     });
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message}`);
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
@@ -575,10 +575,10 @@ try {
     dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
         console.log("batchInsert succeed, data : " + data);
     }). catch((err) => {
-        console.error(`batchInsert error: code: ${err.code}, message: ${err.message}`);
+        console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
 } catch (err) {
-    console.error(`batchInsert error: code: ${err.code}, message: ${err.message}`);
+    console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
 };
 ```
 
