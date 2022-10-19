@@ -5,19 +5,19 @@
 
 ## 对齐方式
 
-设置子组件在容器内的对齐方式。支持左上，上中，右上，左，中，右，右下，中下，右下九种对齐方式
+设置子组件在容器内的对齐方式。支持左上，上中，右上，左，中，右，右下，中下，右下九种对齐方式，如下表所示：
 
 |名称|    描述| 图示 |
 |---|	---|---|
-|TopStart|    顶部起始端。|![](figures/stacktopstart.png)|
-Top    |顶部横向居中。|![](figures/stacktop.png)|
-TopEnd|    顶部尾端。|![](figures/stacktopend.png)|
-Start|    起始端纵向居中。|![](figures/stackstart.png)|
-Center|    横向和纵向居中。|![](figures/stackcenter.png)|
-End|    尾端纵向居中。|![](figures/stackend.png)|
-BottomStart    |底部起始端。|![](figures/stackbottomstart.png)|
-Bottom|    底部横向居中。|![](figures/stackbottom.png)|
-BottomEnd|    底部尾端。|![](figures/stackbottomend.png)|
+|TopStart|    顶部起始端 |![](figures/stacktopstart.png)|
+Top    |顶部横向居中 |![](figures/stacktop.png)|
+TopEnd|    顶部尾端 |![](figures/stacktopend.png)|
+Start|    起始端纵向居中 |![](figures/stackstart.png)|
+Center|    横向和纵向居中 |![](figures/stackcenter.png)|
+End|    尾端纵向居中 |![](figures/stackend.png)|
+BottomStart    |底部起始端 |![](figures/stackbottomstart.png)|
+Bottom|    底部横向居中 |![](figures/stackbottom.png)|
+BottomEnd|    底部尾端 |![](figures/stackbottomend.png)|
 
 ## Z序控制
 
@@ -48,12 +48,13 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
       }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
       Column(){
         Text('Stack子元素2').fontSize(20)
-      }.width(150).height(150).backgroundColor(Color.Pink).zIndex(1)
+      }.width(150).height(150).backgroundColor(C   olor.Pink).zIndex(1)
       Column(){
         Text('Stack子元素3').fontSize(20)
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
     ```
   ![](figures/stack1.png)
+- 
   通过Z序控制实现了显示效果。
 
