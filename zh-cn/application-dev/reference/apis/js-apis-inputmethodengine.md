@@ -68,7 +68,7 @@ getInputMethodEngine(): InputMethodEngine
 
 | 类型                                    | 说明         |
 | --------------------------------------- | ------------ |
-| [InputMethodEngine](#InputMethodEngine) | 服务端实例。 |
+| [InputMethodEngine](#inputmethodengine-1) | 服务端实例。 |
 
 **示例：**
 
