@@ -8,7 +8,7 @@ ArkTS是OpenHarmony优选的主力应用开发语言。ArkTS基于TypeScript（�
 
   当前扩展的声明式UI包括如下特性。
 
-  - [基本UI描述](ets-basic-ui-description.md)：ArkTS定义了各种装饰器、自定义组件、UI描述机制，再配合UI开发框架中的UI内置组件、事件方法、属性方法等共同构成了UI开发的主体。
+  - [基本UI描述](arkts-basic-ui-description.md)：ArkTS定义了各种装饰器、自定义组件、UI描述机制，再配合UI开发框架中的UI内置组件、事件方法、属性方法等共同构成了UI开发的主体。
   - [状态管理](arkts-state-mgmt-page-level.md)：ArkTS提供了多维度的状态管理机制，在UI开发框架中，和UI相关联的数据，不仅可以在组件内使用，还可以在不同组件层级间传递，比如父子组件之间、爷孙组件之间，也可以是全局范围内的传递，还可以是 跨设备传递。另外，从数据的传递形式来看，可分为只读的单向传递和可变更的双向传递。开发者可以灵活的利用这些能力来实现数据和UI的联动。
   - [动态构建UI元素](arkts-dynamic-ui-elememt-building.md)：ArkTS提供了动态构建UI元素的能力，不仅可以自定义组件内部的UI结构，还可复用组件样式，扩展原生组件。
   - [渲染控制](arkts-rendering-control.md)：ArkTS提供了渲染控制的能力。条件渲染可根据应用的不同状态，渲染对应状态下的部分内容。循环渲染可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件。
