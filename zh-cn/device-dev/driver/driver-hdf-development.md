@@ -20,7 +20,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
    - 驱动业务代码
         
-      ```
+      ```c
       #include "hdf_device_desc.h"          // HDF框架对驱动开发相关能力接口的头文件
       #include "hdf_log.h"                  // HDF框架提供的日志接口头文件
       
@@ -49,7 +49,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       ```
    - 驱动入口注册到HDF框架
         
-      ```
+      ```c
       // 定义驱动入口的对象，必须为HdfDriverEntry（在hdf_device_desc.h中定义）类型的全局变量。
       struct HdfDriverEntry g_sampleDriverEntry = {
           .moduleVersion = 1,
