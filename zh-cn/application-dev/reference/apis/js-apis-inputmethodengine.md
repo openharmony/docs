@@ -1365,7 +1365,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 ## InputClient<a name="InputClient "></a><sup>9+</sup>
 
-下列API示例中都需使用[inputStart](#inputStart9)回调获取到InputClient实例，再通过此实例调用对应方法。
+下列API示例中都需使用[inputStart](#oninputstart9)回调获取到InputClient实例，再通过此实例调用对应方法。
 
 ### sendKeyFunction<sup>9+</sup>
 
