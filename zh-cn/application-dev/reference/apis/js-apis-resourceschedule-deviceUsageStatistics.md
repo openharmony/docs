@@ -1193,9 +1193,9 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
     }
 ```
 
-## usageStatistics.unRegisterAppGroupCallBack
+## usageStatistics.unregisterAppGroupCallBack
 
-unRegisterAppGroupCallBack(): Promise&lt;void&gt;
+unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 应用解除分组变化监听，解除通过调用注册接口生成的监听。使用Promise形式返回解除监听是否成功。
 
@@ -1230,19 +1230,19 @@ unRegisterAppGroupCallBack(): Promise&lt;void&gt;
 
 ```javascript
     try{
-        usageStatistics.unRegisterAppGroupCallBack().then( () => {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack promise succeeded.');
+        usageStatistics.unregisterAppGroupCallBack().then( () => {
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
         });
     } catch (error) {
-        console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
 ```
 
-## usageStatistics.unRegisterAppGroupCallBack
+## usageStatistics.unregisterAppGroupCallBack
 
-unRegisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
+unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 应用解除分组变化监听，解除通过调用注册接口生成的监听。使用异步callback形式返回解除监听是否成功。
 
@@ -1275,15 +1275,15 @@ unRegisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 ```javascript
     try{
-        usageStatistics.unRegisterAppGroupCallBack(error => {
+        usageStatistics.unregisterAppGroupCallBack(error => {
         if(error) {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
         } else {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack callback success.');
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
         }
         });
     } catch (error) {
-        console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
+        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
     }
 ```
 
