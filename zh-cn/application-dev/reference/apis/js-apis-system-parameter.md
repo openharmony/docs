@@ -5,6 +5,7 @@
 [系统参数](../../../device-dev/subsystems/subsys-boot-init-sysparam.md)。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> - 从API Version 9 开始不再维护，建议使用新接口[@ohos.systemParameterV9](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-system-parameterV9.md)进行系统参数设置。
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口。
 > - 由于系统参数都是各个系统服务的内部信息和控制参数，每个系统参数都有各自不同的DAC和MAC访问控制权限，三方应用不能使用此类接口。
@@ -16,7 +17,7 @@
 import systemparameter from '@ohos.systemparameter'
 ```
 
-## systemparameter.getSync
+## systemparameter.getSync<sup>(deprecated)</sup>
 
 getSync(key: string, def?: string): string
 
@@ -48,7 +49,7 @@ try {
 }
 ```
 
-## systemparameter.get
+## systemparameter.get<sup>(deprecated)</sup>
 
 get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -78,7 +79,7 @@ try {
 }
 ```
 
-## systemparameter.get
+## systemparameter.get<sup>(deprecated)</sup>
 
 get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
@@ -110,7 +111,7 @@ try {
 }
 ```
 
-## systemparameter.get
+## systemparameter.get<sup>(deprecated)</sup>
 
 get(key: string, def?: string): Promise&lt;string&gt;
 
@@ -146,7 +147,7 @@ try {
 }
 ```
 
-## systemparameter.setSync
+## systemparameter.setSync<sup>(deprecated)</sup>
 
 setSync(key: string, value: string): void
 
@@ -176,7 +177,7 @@ try {
 }
 ```
 
-## systemparameter.set
+## systemparameter.set<sup>(deprecated)</sup>
 
 set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -211,7 +212,7 @@ try {
 }
 ```
 
-## systemparameter.set
+## systemparameter.set<sup>(deprecated)</sup>
 
 set(key: string, value: string): Promise&lt;void&gt;
 
