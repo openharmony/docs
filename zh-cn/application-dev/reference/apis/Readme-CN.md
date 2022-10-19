@@ -1,4 +1,4 @@
-﻿# 接口
+﻿﻿# 接口
 - [开发说明](development-intro.md)
 - Ability框架
   - FA模型
@@ -63,6 +63,7 @@
   - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notification (Notification模块)](js-apis-notification.md)
+  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - application/[EventHub (EventHub)](js-apis-eventhub.md)
 - 应用程序包管理
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
@@ -119,7 +120,6 @@
 - 资源调度
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
-  - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
 - 定制管理
@@ -208,8 +208,8 @@
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
-  - [@ohos.web.webview(Web)](js-apis-webview.md)
   - [Timer (定时器)](js-apis-timer.md)
+
 - 设备管理
 
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -272,7 +272,6 @@
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
-  - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
