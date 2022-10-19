@@ -1918,7 +1918,7 @@ async function InputMethodAbility() {
         }).catch((err) => {
             console.error('moveCursor success err: ' + JSON.stringify(err));
         });
-    } catch (e) {
+    } catch (err) {
         console.log('moveCursor err: ' + JSON.stringify(err));
     }
 }
