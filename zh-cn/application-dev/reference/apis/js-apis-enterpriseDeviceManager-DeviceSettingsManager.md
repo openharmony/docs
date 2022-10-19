@@ -32,6 +32,8 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
@@ -80,6 +82,8 @@ setDateTime(admin: Want, time: number): Promise\<void>
 **需要权限：** ohos.permission.EDM_MANAGE_DATETIME
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
