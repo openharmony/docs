@@ -94,7 +94,7 @@ getInputMethodSetting(): InputMethodSetting
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getSetting](#getSetting)替代
+> 从API version 9开始废弃, 建议使用[getSetting](#inputmethodgetsetting9)替代
 >
 > 从 API version 6开始支持。
 
@@ -660,7 +660,7 @@ InputMethodController.hideSoftKeyboard().then(async (err) => {
 
 ## InputMethodSetting<sup>8+</sup>
 
-下列API示例中都需使用[getSetting](#inputmethodgetsetting)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getSetting](#inputmethodgetsetting9)回调获取到InputMethodSetting实例，再通过此实例调用对应方法。
 
 ### on('imeChange')<a name="imeChange"></a><sup>9+</sup>
 
@@ -910,7 +910,7 @@ listInputMethod(callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;)
 查询已安装的输入法列表。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getInputMethods](#getInputMethods)替代
+> 从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9)替代
 >
 > 从 API version 8开始支持。
 
@@ -941,7 +941,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 查询已安装的输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[getInputMethods](#getInputMethods)替代
+> 从API version 9开始废弃, 建议使用[getInputMethods](#getinputmethods9-1)替代
 >
 > 从 API version 8开始支持。
 
@@ -970,7 +970,7 @@ displayOptionalInputMethod(callback: AsyncCallback&lt;void&gt;): void
 显示输入法选择对话框。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showOptionalInputMethods)替代
+> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showoptionalinputmethods9)替代
 >
 > 从 API version 8开始支持。
 
@@ -1033,7 +1033,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
 > **说明：** 
-> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showOptionalInputMethods)替代
+> 从API version 9开始废弃, 建议使用[showOptionalInputMethods](#showoptionalinputmethods9-1)替代
 >
 > 从 API version 8开始支持。
 
