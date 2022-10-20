@@ -12,18 +12,18 @@
 import pasteboard from '@ohos.pasteboard';
 ```
 
-## 属性
+## 常量
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| MAX_RECORD_NUM<sup>7+</sup> | number | 是 | 否 | 单个PasteData中所能包含的最大条目数。 |
-| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 是 | 否 | HTML内容的MIME类型定义。 |
-| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 是 | 否 | Want内容的MIME类型定义。 |
-| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 是 | 否 | 纯文本内容的MIME类型定义。 |
-| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 是 | 否 | URI内容的MIME类型定义。 |
-| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 是 | 否 | PixelMap内容的MIME类型定义。 |
+| 名称 | 参数类型 | 值 | 说明 |
+| -------- | -------- | -------- | -------- |
+| MAX_RECORD_NUM<sup>7+</sup> | number | 512 | 单个PasteData中所能包含的最大条目数。 |
+| MIMETYPE_TEXT_HTML<sup>7+</sup> | string | 'text/html' | HTML内容的MIME类型定义。 |
+| MIMETYPE_TEXT_WANT<sup>7+</sup> | string | 'text/want' | Want内容的MIME类型定义。 |
+| MIMETYPE_TEXT_PLAIN<sup>7+</sup> | string | 'text/plain' | 纯文本内容的MIME类型定义。 |
+| MIMETYPE_TEXT_URI<sup>7+</sup> | string | 'text/uri' | URI内容的MIME类型定义。 |
+| MIMETYPE_PIXELMAP<sup>9+</sup> | string | 'pixelMap' | PixelMap内容的MIME类型定义。 |
 
 
 ## pasteboard.createPlainTextData
@@ -49,7 +49,7 @@ createPlainTextData(text: string): PasteData
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("content");
+let pasteData = pasteboard.createPlainTextData('content');
 ```
 
 
@@ -76,8 +76,8 @@ createHtmlData(htmlText: string): PasteData
 **示例：**
 
 ```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var pasteData = pasteboard.createHtmlData(html);
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let pasteData = pasteboard.createHtmlData(html);
 ```
 
 
@@ -104,11 +104,11 @@ createWantData(want: Want): PasteData
 **示例：**
 
 ```js
-var object = {
+let object = {
     bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
-var pasteData = pasteboard.createWantData(object);
+let pasteData = pasteboard.createWantData(object);
 ```
 
 
@@ -135,7 +135,7 @@ createUriData(uri: string): PasteData
 **示例：**
 
 ```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
+let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
 ```
 
 
@@ -164,8 +164,8 @@ createPixelMapData(pixelMap: image.PixelMap): PasteData
 ```js
 import image from '@ohos.multimedia.image';
 
-var buffer = new ArrayBuffer(128)
-var opt = {
+let buffer = new ArrayBuffer(128);
+let opt = {
   size: { height: 3, width: 5 },
   pixelFormat: 3,
   editable: true,
@@ -173,7 +173,7 @@ var opt = {
   scaleMode: 1
 }
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-  var pasteData = pasteboard.createPixelMapData(pixelMap); 
+  let pasteData = pasteboard.createPixelMapData(pixelMap); 
 })
 ```
 
@@ -201,8 +201,8 @@ createData(mimeType: string, value: ArrayBuffer): PasteData;
 **示例：**
 
   ```js
-  var dataXml = new ArrayBuffer(256)
-  var pasteData = pasteboard.createData('app/xml', dataXml)
+  let dataXml = new ArrayBuffer(256);
+  let pasteData = pasteboard.createData('app/xml', dataXml);
   ```
 
 
@@ -229,7 +229,7 @@ createPlainTextRecord(text: string): PasteDataRecord
 **示例：**
 
 ```js
-var record = pasteboard.createPlainTextRecord("hello");
+let record = pasteboard.createPlainTextRecord('hello');
 ```
 
 
@@ -256,8 +256,8 @@ createHtmlTextRecord(htmlText: string): PasteDataRecord
 **示例：**
 
 ```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var record = pasteboard.createHtmlTextRecord(html);
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let record = pasteboard.createHtmlTextRecord(html);
 ```
 
 
@@ -284,11 +284,11 @@ createWantRecord(want: Want): PasteDataRecord
 **示例：**
 
 ```js
-var object = {
+let object = {
     bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
-var record = pasteboard.createWantRecord(object);
+let record = pasteboard.createWantRecord(object);
 ```
 
 
@@ -315,7 +315,7 @@ createUriRecord(uri: string): PasteDataRecord
 **示例：**
 
 ```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
+let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 ```
 
 
@@ -344,8 +344,8 @@ createPixelMapRecord(pixelMap: image.PixelMap): PasteDataRecord
 ```js
 import image from '@ohos.multimedia.image';
 
-var buffer = new ArrayBuffer(128)
-var opt = {
+let buffer = new ArrayBuffer(128);
+let opt = {
   size: { height: 3, width: 5 },
   pixelFormat: 3,
   editable: true,
@@ -353,7 +353,7 @@ var opt = {
   scaleMode: 1
 }
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-  var record = pasteboard.createPixelMapRecord(pixelMap); 
+  let record = pasteboard.createPixelMapRecord(pixelMap); 
 })
 ```
 
@@ -381,8 +381,8 @@ createRecord(mimeType: string, value: ArrayBuffer):PasteDataRecord;
 **示例：**
 
   ```js
-  var dataXml = new ArrayBuffer(256)
-  var pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
+  let dataXml = new ArrayBuffer(256);
+  let pasteDataRecord = pasteboard.createRecord('app/xml', dataXml);
   ```
 
 
@@ -403,7 +403,7 @@ getSystemPasteboard(): SystemPasteboard
 **示例：**
 
 ```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
+let systemPasteboard = pasteboard.getSystemPasteboard();
 ```
 
 ## ShareOption<sup>9+</sup>
@@ -472,11 +472,11 @@ convertToText(): Promise&lt;string&gt;
 **示例：**
 
 ```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
+let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data) => {
-    console.info('Succeeded in converting to text. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to convert to text. Cause: ${err.message}`);
 });
 ```
 
@@ -498,13 +498,13 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```js
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
-record.convertToText((err, data) => {    
-    if (err) {        
-        console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));        
-        return;   
+let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+record.convertToText((err, data) => {
+    if (err) {
+        console.error(`Failed to convert to text. Cause: ${err.message}`);
+        return;
       }
-    console.info('Succeeded in converting to text. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in converting to text. Data: ${data}`);
 });
 ```
 
@@ -538,8 +538,8 @@ getPrimaryText(): string
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var plainText = pasteData.getPrimaryText();
+let pasteData = pasteboard.createPlainTextData('hello');
+let plainText = pasteData.getPrimaryText();
 ```
 
 
@@ -560,9 +560,9 @@ getPrimaryHtml(): string
 **示例：**
 
 ```js
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var pasteData = pasteboard.createHtmlData(html);
-var htmlText = pasteData.getPrimaryHtml();
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let pasteData = pasteboard.createHtmlData(html);
+let htmlText = pasteData.getPrimaryHtml();
 ```
 
 
@@ -583,12 +583,12 @@ getPrimaryWant(): Want
 **示例：**
 
 ```js
-var object = { 
+let object = { 
     bundleName: "com.example.aafwk.test",    
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
-var pasteData = pasteboard.createWantData(object);
-var want = pasteData.getPrimaryWant();
+let pasteData = pasteboard.createWantData(object);
+let want = pasteData.getPrimaryWant();
 ```
 
 
@@ -609,8 +609,8 @@ getPrimaryUri(): string
 **示例：**
 
 ```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
-var uri = pasteData.getPrimaryUri();
+let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+let uri = pasteData.getPrimaryUri();
 ```
 
 
@@ -633,8 +633,8 @@ getPrimaryPixelMap(): image.PixelMap
 ```js
 import image from '@ohos.multimedia.image';
 
-var buffer = new ArrayBuffer(128)
-var opt = {
+let buffer = new ArrayBuffer(128);
+let opt = {
   size: { height: 3, width: 5 },
   pixelFormat: 3,
   editable: true,
@@ -642,8 +642,8 @@ var opt = {
   scaleMode: 1
 }
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-    var pasteData = pasteboard.createPixelMapData(pixelMap);
-    var pixelMap = pasteData.getPrimaryPixelMap();
+    let pasteData = pasteboard.createPixelMapData(pixelMap);
+    let pixelMap = pasteData.getPrimaryPixelMap();
 })
 ```
 
@@ -667,8 +667,8 @@ addTextRecord(text: string): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-pasteData.addTextRecord("good");
+let pasteData = pasteboard.createPlainTextData('hello');
+pasteData.addTextRecord('good');
 ```
 
 
@@ -691,8 +691,8 @@ addHtmlRecord(htmlText: string): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let pasteData = pasteboard.createPlainTextData('hello');
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
 pasteData.addHtmlRecord(html);
 ```
 
@@ -716,8 +716,8 @@ addWantRecord(want: Want): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var object = { 
+let pasteData = pasteboard.createPlainTextData('hello');
+let object = { 
     bundleName: "com.example.aafwk.test",    
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
@@ -744,8 +744,8 @@ addUriRecord(uri: string): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-pasteData.addUriRecord("dataability:///com.example.myapplication1/user.txt");
+let pasteData = pasteboard.createPlainTextData('hello');
+pasteData.addUriRecord('dataability:///com.example.myapplication1/user.txt');
 ```
 
 ### addPixelMapRecord<sup>9+</sup>
@@ -769,8 +769,8 @@ addPixelMapRecord(pixelMap: image.PixelMap): void
 ```js
 import image from '@ohos.multimedia.image';
 
-var buffer = new ArrayBuffer(128)
-var opt = {
+let buffer = new ArrayBuffer(128);
+let opt = {
   size: { height: 3, width: 5 },
   pixelFormat: 3,
   editable: true,
@@ -778,7 +778,7 @@ var opt = {
   scaleMode: 1
 }
 image.createPixelMap(buffer, opt).then((pixelMap) => {
-  var record = pasteboard.createPlainTextData("hello").addPixelMapRecord(pixelMap); 
+  let record = pasteboard.createPlainTextData('hello').addPixelMapRecord(pixelMap); 
 })
 ```
 
@@ -803,8 +803,8 @@ addRecord(mimeType: string, value: ArrayBuffer): void
 **示例：**
 
   ```js
-  var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
-  var dataXml = new ArrayBuffer(256)
+  let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+  let dataXml = new ArrayBuffer(256);
   pasteData.addRecord('app/xml', dataXml);
   ```
 
@@ -828,10 +828,10 @@ addRecord(record: PasteDataRecord): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createUriData("dataability:///com.example.myapplication1/user.txt");
-var textRecord = pasteboard.createPlainTextRecord("hello");
-var html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
-var htmlRecord = pasteboard.createHtmlTextRecord(html);
+let pasteData = pasteboard.createUriData('dataability:///com.example.myapplication1/user.txt');
+let textRecord = pasteboard.createPlainTextRecord('hello');
+let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
+let htmlRecord = pasteboard.createHtmlTextRecord(html);
 pasteData.addRecord(textRecord);
 pasteData.addRecord(htmlRecord);
 ```
@@ -854,8 +854,8 @@ getMimeTypes(): Array&lt;string&gt;
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var types = pasteData.getMimeTypes();
+let pasteData = pasteboard.createPlainTextData('hello');
+let types = pasteData.getMimeTypes();
 ```
 
 
@@ -876,8 +876,8 @@ getPrimaryMimeType(): string
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var type = pasteData.getPrimaryMimeType();
+let pasteData = pasteboard.createPlainTextData('hello');
+let type = pasteData.getPrimaryMimeType();
 ```
 
 
@@ -898,8 +898,8 @@ getProperty(): PasteDataProperty
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var property = pasteData.getProperty();
+let pasteData = pasteboard.createPlainTextData('hello');
+let property = pasteData.getProperty();
 ```
 
 
@@ -920,7 +920,7 @@ setProperty(property: PasteDataProperty): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createHtmlData('application/xml');
+let pasteData = pasteboard.createHtmlData('application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.InApp;
 pasteData.setProperty(prop);
@@ -950,8 +950,8 @@ getRecordAt(index: number): PasteDataRecord
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var record = pasteData.getRecordAt(0);
+let pasteData = pasteboard.createPlainTextData('hello');
+let record = pasteData.getRecordAt(0);
 ```
 
 
@@ -972,8 +972,8 @@ getRecordCount(): number
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var count = pasteData.getRecordCount();
+let pasteData = pasteboard.createPlainTextData('hello');
+let count = pasteData.getRecordCount();
 ```
 
 
@@ -994,8 +994,8 @@ getTag(): string
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var tag = pasteData.getTag();
+let pasteData = pasteboard.createPlainTextData('hello');
+let tag = pasteData.getTag();
 ```
 
 
@@ -1022,8 +1022,8 @@ hasMimeType(mimeType: string): boolean
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
+let pasteData = pasteboard.createPlainTextData('hello');
+let hasType = pasteData.hasMimeType(pasteboard.MIMETYPE_TEXT_PLAIN);
 ```
 
 
@@ -1050,8 +1050,8 @@ removeRecordAt(index: number): boolean
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var isRemove = pasteData.removeRecordAt(0);
+let pasteData = pasteboard.createPlainTextData('hello');
+let isRemove = pasteData.removeRecordAt(0);
 ```
 
 
@@ -1079,9 +1079,9 @@ replaceRecordAt(index: number, record: PasteDataRecord): boolean
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("hello");
-var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
-var isReplace = pasteData.replaceRecordAt(0, record);
+let pasteData = pasteboard.createPlainTextData('hello');
+let record = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
+let isReplace = pasteData.replaceRecordAt(0, record);
 ```
 
 ## SystemPasteboard
@@ -1091,7 +1091,7 @@ var isReplace = pasteData.replaceRecordAt(0, record);
 在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
 
 ```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
+let systemPasteboard = pasteboard.getSystemPasteboard();
 ```
 
 
@@ -1113,8 +1113,8 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("content");
-var systemPasteboard = pasteboard.getSystemPasteboard();
+let pasteData = pasteboard.createPlainTextData('content');
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setPasteData(pasteData, (err, data) => { 
     if (err) {
         console.error('Failed to set PasteData. Cause: ' + err.message);
@@ -1148,8 +1148,8 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```js
-var pasteData = pasteboard.createPlainTextData("content");
-var systemPasteboard = pasteboard.getSystemPasteboard();
+let pasteData = pasteboard.createPlainTextData('content');
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.setPasteData(pasteData).then((data) => {
     console.info('Succeeded in setting PasteData.');
 }).catch((err) => {
@@ -1175,13 +1175,13 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-systemPasteboard.getPasteData((err, pasteData) => {  
+let systemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getPasteData((err, pasteData) => {
     if (err) {
         console.error('Failed to get PasteData. Cause: ' + err.message);
         return;
     }
-    var text = pasteData.getPrimaryText();
+    let text = pasteData.getPrimaryText();
 });
 ```
 
@@ -1203,9 +1203,9 @@ getPasteData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
+let systemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData) => { 
-    var text = pasteData.getPrimaryText();
+    let text = pasteData.getPrimaryText();
 }).catch((err) => {
     console.error('Failed to get PasteData. Cause: ' + err.message);
 })
@@ -1230,8 +1230,8 @@ on(type:  'update', callback: () =&gt;void ): void
 **示例：**
 
 ```js
-var systemPasteboard = pasteboard.getSystemPasteboard();
-var listener = () => {
+let systemPasteboard = pasteboard.getSystemPasteboard();
+let listener = () => {
     console.info('The system pasteboard has changed.');
 };
 systemPasteboard.on('update', listener);
@@ -1258,7 +1258,7 @@ off(type:  'update', callback?: () =&gt;void ): void
 ```js
 let listener = () => {
     console.info('The system pasteboard has changed.');
-};    
+};
 systemPasteboard.off('update', listener);
 ```
 
@@ -1282,10 +1282,10 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 ```js
 systemPasteboard.hasPasteData((err, data) => {
     if (err) {
-        console.error('Failed to check the PasteData. Cause: ' + JSON.stringify(err));
+        console.error(`Failed to check the PasteData. Cause: ${err.message}`);
         return;
     }
-    console.info('Succeeded in checking the PasteData. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 });
 ```
 
@@ -1308,9 +1308,9 @@ hasPasteData(): Promise&lt;boolean&gt;
 
 ```js
 systemPasteboard.hasPasteData().then((data) => { 
-    console.info('Succeeded in checking the PasteData. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in checking the PasteData. Data: ${data}`);
 }).catch((err) => {
-    console.error('Failed to check the PasteData. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to check the PasteData. Cause: ${err.message}`);
 });
 ```
 
@@ -1333,9 +1333,9 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 systemPasteboard.clear((err, data) => { 
-    if (err) {        
-        console.error('Failed to clear the PasteData. Cause: ' + JSON.stringify(err));        
-        return;    
+    if (err) {
+        console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
+        return;
     }
     console.info('Succeeded in clearing the PasteData.');
 });
@@ -1361,7 +1361,7 @@ clear(): Promise&lt;void&gt;
 ```js
 systemPasteboard.clear().then((data) => { 
     console.info('Succeeded in clearing the PasteData.');
-}).catch((err) => {    
-    console.error('Failed to clear the PasteData. Cause: ' + JSON.stringify(err));
+}).catch((err) => { 
+    console.error(`Failed to clear the PasteData. Cause: ${err.message}`);
 });
 ```
