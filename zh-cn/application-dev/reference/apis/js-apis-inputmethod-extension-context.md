@@ -6,8 +6,8 @@ InputMethodExtensionContext模块提供InputMethodExtensionAbility具有的能�
 
 > **说明：**
 > 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在Stage模型下使用。
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> - 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
@@ -20,12 +20,12 @@ import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
 ```js
-  import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
-  class MainAbility extends InputMethodExtensionAbility {
-      onCreate() {
-          let context = this.context;
-      }
-  }
+import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
+class MainAbility extends InputMethodExtensionAbility {
+    onCreate() {
+        let context = this.context;
+    }
+}
 ```
 
 ## InputMethodExtensionContext.startAbility
@@ -45,15 +45,15 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
-    let want = {
-        'bundleName': 'com.example.myapp',
-        'abilityName': 'MyAbility'
-    };
-    this.context.startAbility(want, (err) => {
-        console.log('startAbility result:' + JSON.stringify(err));
-    });
-  ```
+```js
+let want = {
+    'bundleName': 'com.example.myapp',
+    'abilityName': 'MyAbility'
+};
+this.context.startAbility(want, (err) => {
+    console.log('startAbility result:' + JSON.stringify(err));
+});
+```
 
 ## InputMethodExtensionContext.startAbility
 
@@ -78,18 +78,17 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **示例：**
 
-  ```js
-    let want = {
-        'bundleName': 'com.example.myapp',
-        'abilityName': 'MyAbility'
-    };
-    this.context.startAbility(want).then((data) => {
-        console.log('success:' + JSON.stringify(data));
-    }).catch((error) => {
-        console.log('failed:' + JSON.stringify(error));
-    });
-
-  ```
+```js
+let want = {
+    'bundleName': 'com.example.myapp',
+    'abilityName': 'MyAbility'
+};
+this.context.startAbility(want).then((data) => {
+    console.log('success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('failed:' + JSON.stringify(error));
+});
+```
 
 ## InputMethodExtensionContext.startAbility
 
@@ -109,19 +108,19 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **示例：**
 
-  ```js
-  var want = {
-  	'deviceId': '',
-  	'bundleName': 'com.extreme.test',
-  	'abilityName': 'MainAbility'
-  };
-  var options = {
-  	windowMode: 0,
-  };
-  this.context.startAbility(want, options, (error) => {
-      console.log('error.code = ' + error.code)
-  })
-  ```
+```js
+let want = {
+	'deviceId': '',
+	'bundleName': 'com.extreme.test',
+	'abilityName': 'MainAbility'
+};
+let options = {
+	windowMode: 0,
+};
+this.context.startAbility(want, options, (error) => {
+    console.log('error.code = ' + error.code)
+})
+```
 
 ## InputMethodExtensionContext.terminateSelf
 
@@ -139,11 +138,11 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **示例：**
 
-  ```js
+```js
 this.context.terminateSelf((err) => {
     console.log('terminateSelf result:' + JSON.stringify(err));
 });
-  ```
+```
 
 ## InputMethodExtensionContext.terminateSelf
 
@@ -161,10 +160,10 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **示例：**
 
-  ```js
-  this.context.terminateSelf().then((data) => {
-      console.log('success:' + JSON.stringify(data));
-  }).catch((error) => {
-      console.log('failed:' + JSON.stringify(error));
-  });
-  ```
+```js
+this.context.terminateSelf().then((data) => {
+    console.log('success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('failed:' + JSON.stringify(error));
+});
+```
