@@ -1,21 +1,22 @@
-# animateTransform<a name="EN-US_TOPIC_0000001173324667"></a>
+# animateTransform
 
 The  **<animateTransform\>**  component is used to apply a transform animation and supports the following components:
 
 <circle\>, <ellipse\>, <line\>, <path\>, <polygon\>, <polyline\>, <rect\>, <text\>
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>**NOTE**
+>
 >This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section11257113618419"></a>
+## Required Permissions
 
 None
 
-## Child Components<a name="section9288143101012"></a>
+## Child Components
 
 Not supported
 
-## Attributes<a name="section2907183951110"></a>
+## Attributes
 
 The  **animate**  attributes and the attributes in the following table are supported.
 
@@ -46,7 +47,7 @@ The  **animate**  attributes and the attributes in the following table are suppo
 </tbody>
 </table>
 
-## Example<a name="section360556124815"></a>
+## Example
 
 ```
 <!-- xxx.hml -->

@@ -141,10 +141,10 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
-| Type                                      | Description                                           |
-| ------------------------------------------ | ----------------------------------------------- |
-| string                                     | Describe the return value, for example, what can be done after the return value is obtained.   |
-| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
+| Type                                       | Description                                                  |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| string                                     | Describe the return value, for example, what can be done after the return value is obtained. |
+| Promise\<Array<[CustomType](#customtype)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions." |
 
 **Example**
 
@@ -193,7 +193,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The `'play'` event is triggered when the `play()` API is called and audio playback starts.<br>**Example 2 (multiple events)**:<br>Type of the event. The following events are supported:<br/>- 'play': triggered when the play() API is called and audio playback starts.<br/>- 'dataLoad': triggered when the audio data is loaded, that is, when the `src` attribute is configured.<br/>- 'finish': triggered when the audio playback is finished. |
-| callback | Callback\<[CustomType](#CustomType)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
+| callback | Callback\<[CustomType](#customtype)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
