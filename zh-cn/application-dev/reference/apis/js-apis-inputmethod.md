@@ -180,7 +180,7 @@ let currentIme = inputMethod.getCurrentInputMethod();
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
-switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback<boolean>): void
+switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 在当前输入法应用内切换子类型。
 
@@ -263,8 +263,6 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 获取当前输入法子类型。
 
-**需要权限**： ohos.permission.CONNECT_IME_ABILITY
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -281,7 +279,7 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
-switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback<boolean>): void
+switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。
 
@@ -346,12 +344,16 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 ```js
 let inputMethodProperty = {
-    packageName:"com.example.kikakeyboard",
-    methodId:"ServiceExtAbility"
+    name: "com.example.kikakeyboard",
+    id: "ServiceExtAbility"
 }
 let inputMethodSubProperty = {
-    id: "com.example.kikainput",
-    label: "ServiceExtAbility"
+    id: "com.example.kikakeyboard",
+	name: "",
+	locale: "",
+    label: "ServiceExtAbility",
+	language: "",
+	extra : {}
 }
 try {
     inputMethod.switchCurrentInputMethodAndSubtype(property, subType).then((result) => {
@@ -490,6 +492,8 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 显示软键盘，使用callback异步回调。参数个数为1，否则抛出异常。
 
+**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -516,6 +520,8 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 显示软键盘，使用Promise异步回调。参数个数为0，否则抛出异常。
 
+**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -539,6 +545,8 @@ InputMethodController.showSoftKeyboard().then(async (err) => {
 hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏软键盘，使用callback异步回调。参数个数为1，否则抛出异常。
+
+**需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -565,6 +573,8 @@ InputMethodController.hideSoftKeyboard((err) => {
 hideSoftKeyboard(): Promise&lt;void&gt;
 
 隐藏软键盘，使用Promise异步回调。参数个数为0，否则抛出异常。
+
+**需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -927,11 +937,13 @@ try {
 
 ### showOptionalInputMethods<sup>9+</sup>
 
-  showOptionalInputMethods(): Promise&lt;void&gt;
+showOptionalInputMethods(): Promise&lt;void&gt;
 
-  显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
+显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
 
-  **系统能力**： SystemCapability.MiscServices.InputMethodFramework
+**需要权限**： ohos.permission.CONNECT_IME_ABILITY
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
 
