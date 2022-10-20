@@ -11,12 +11,14 @@ HDF驱动框架提供把和配置的设备列表匹配成功的驱动程序加�
 
 具体设备的加载策略由配置文件(参考[驱动开发](../driver/driver-hdf-development.md))中的preload字段来控制：
 
+```
 typedef enum {
     DEVICE_PRELOAD_ENABLE = 0,
     DEVICE_PRELOAD_ENABLE_STEP2,
     DEVICE_PRELOAD_DISABLE,
     DEVICE_PRELOAD_INVALID
 } DevicePreload;
+```
 配置文件中preload字段配成0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载。
 
 配成1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同。
