@@ -107,7 +107,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 取消捕获                         | CamRetCode CancelCapture(int captureId)                      |
   | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br>OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
 
-- IstreamOperatorCallback.idl
+- IStreamOperatorCallback.idl
 
   | 功能描述                                 | 接口名称                                                     |
   | ---------------------------------------- | ------------------------------------------------------------ |
