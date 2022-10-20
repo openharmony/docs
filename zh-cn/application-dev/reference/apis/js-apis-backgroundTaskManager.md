@@ -33,12 +33,14 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **参数**：
+
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | reason   | string               | 是    | 延迟挂起申请的原因。                     |
 | callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
 
 **返回值**：
+
 | 类型                                    | 说明        |
 | ------------------------------------- | --------- |
 | [DelaySuspendInfo](#delaysuspendinfo) | 返回延迟挂起信息。 |
@@ -69,6 +71,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **参数**：
+
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
@@ -99,16 +102,19 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **参数**：
+
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **返回值**：
+
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回应用程序进入挂起状态之前的剩余时间，以毫秒为单位。 |
 
 **示例**：
+
   ```js
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then( res => {
@@ -128,11 +134,13 @@ cancelSuspendDelay(requestId: number): void
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
 **参数**：
+
 | 参数名       | 类型     | 必填   | 说明         |
 | --------- | ------ | ---- | ---------- |
 | requestId | number | 是    | 延迟挂起的请求ID。这个值通过调用[requestSuspendDelay](#backgroundtaskmanagerrequestsuspenddelay)方法获取。 |
 
 **示例**：
+
   ```js
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.cancelSuspendDelay(delayInfo.requestId);
@@ -150,6 +158,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
+
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
@@ -249,6 +258,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
 **返回值**：
+
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |
@@ -326,6 +336,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
+
 | 参数名      | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
 | context  | Context                   | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
@@ -381,11 +392,13 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 **参数**：
+
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
 | context | Context | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
 
 **返回值**：
+
 | 类型             | 说明               |
 | -------------- | ---------------- |
 | Promise\<void> | 使用Promise形式返回结果。 |

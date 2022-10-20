@@ -13,8 +13,6 @@ ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **表2** 长时任务主要接口
 
-> **说明：** 后台任务管理错误码见[backgroundTaskManager错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
-
 | 接口名                                      | 描述                           |
 | ---------------------------------------- | ---------------------------- |
 | startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt; | 服务启动后，向系统申请长时任务，使服务一直保持后台运行。 |
