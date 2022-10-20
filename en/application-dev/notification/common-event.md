@@ -32,7 +32,8 @@ import commonEvent from '@ohos.commonEvent';
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEvent.md#commoneventsubscribeinfo).
 
 ```js
-private subscriber = null	// Used to save the created subscriber object for subsequent subscription and unsubscription.
+// Used to save the created subscriber object for subsequent subscription and unsubscription.
+private subscriber = null
 
 // Subscriber information
 var subscribeInfo = {
