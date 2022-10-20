@@ -1,4 +1,4 @@
-# TypeScript-based Declarative Development Paradigm
+# ArkTS-based Declarative Development Paradigm
 
 - Universal Component Information
     - Universal Events
@@ -140,7 +140,6 @@
     - [Path2D](ts-components-canvas-path2d.md)
     - [Lottie](ts-components-canvas-lottie.md)
 
-
 - Animation
     - [AnimatorProperty](ts-animatorproperty.md)
     - [Explicit Animation](ts-explicit-animation.md)
@@ -149,6 +148,7 @@
         - [Component Transition](ts-transition-animation-component.md)
         - [Transition of Shared Elements](ts-transition-animation-shared-elements.md)
     - [Motion Path Animation](ts-motion-path-animation.md)
+
 - Global UI Methods
     - Pop-up Window
         - [Alert Dialog Box](ts-methods-alert-dialog-box.md)
