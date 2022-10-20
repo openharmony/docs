@@ -28,6 +28,8 @@ onCreate(want: Want): void
 
 Extension生命周期回调，在拉起Extension输入法应用时调用，执行初始化输入法应用操作。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -53,6 +55,8 @@ onDestroy(): void
 
 Extension生命周期回调，在销毁输入法应用时回调，执行资源清理等操作。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **示例：**
@@ -70,6 +74,8 @@ class InputMethodExt extends InputMethodExtensionAbility {
 onRequest(want: Want, startId: number): void
 
 Extension生命周期回调，在一个输入法extention开始时回调，执行输入法的相关操作。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -95,6 +101,8 @@ class InputMethodExt extends InputMethodExtensionAbility {
 onConnect(want: Want): rpc.RemoteObject
 
 Extension生命周期回调，在输入法extention首次连接输入法ability时回调。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -135,6 +143,8 @@ onDisconnect(want: Want): void
 
 Extension生命周期回调，在所有连接在输入法extention上的ability都断开的时候回调。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -158,6 +168,8 @@ class InputMethodExt extends InputMethodExtensionAbility {
 onReconnect(want: Want): void
 
 Extension生命周期回调，在一个新的客户端去尝试连接输入法extention的时候回调（先前连接在extention上的客户端全部断开的情况下）。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 

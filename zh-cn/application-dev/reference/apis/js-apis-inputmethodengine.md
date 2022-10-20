@@ -1336,6 +1336,8 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动光标。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1366,6 +1368,8 @@ try {
 moveCursor(direction: number): Promise&lt;void&gt;
 
 移动光标。使用promise形式返回结果。参数个数为1，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 

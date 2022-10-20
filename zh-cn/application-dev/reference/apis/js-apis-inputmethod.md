@@ -47,6 +47,8 @@ getController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -66,6 +68,8 @@ let InputMethodController = inputMethod.getController();
 getSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -87,6 +91,8 @@ let InputMethodSetting = inputMethod.getSetting();
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
 切换输入法。此接口仅可在Stage模型下使用。使用callback形式返回结果。参数个数为2，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -123,6 +129,8 @@ try{
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 切换输入法。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -164,6 +172,8 @@ getCurrentInputMethod(): InputMethodProperty
 
 获取当前输入法扩展应用，提供同步接口，返回当前输入法属性对象。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -183,6 +193,8 @@ let currentIme = inputMethod.getCurrentInputMethod();
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 在当前输入法应用内切换子类型。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -225,6 +237,8 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。此接口仅可在Stage模型下使用。使用promise形式返回结果。参数个数为1，否则抛出异常。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -263,6 +277,8 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 获取当前输入法子类型。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -282,6 +298,8 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -328,6 +346,8 @@ try {
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, ): Promise&lt;boolean&gt;
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。参数个数为1，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -713,6 +733,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 获取指定输入法应用的所有子类型。使用callback形式返回结果。参数个数为2，否则抛出异常。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -747,6 +769,8 @@ try {
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 获取指定输入法应用的所有子类型。使用promise形式返回结果。参数个数为1，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -786,6 +810,8 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 查询当前输入法的子类型列表。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -816,6 +842,8 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 查询当前输入法的子类型列表。使用promise形式返回结果。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -843,6 +871,8 @@ try {
 getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethodProperty&gt;&gt;): void
 
 获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。使用callback形式返回结果。参数个数为2，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -874,6 +904,8 @@ try {
 getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 
 获取已激活/未激活输入法列表。参数enable取true返回已激活输入法列表，取false返回未激活输入法列表。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -909,6 +941,8 @@ showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
 
 显示输入法选择对话框。使用callback形式返回结果。参数个数为1，否则抛出异常。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -940,6 +974,8 @@ try {
 showOptionalInputMethods(): Promise&lt;void&gt;
 
 显示输入法选择对话框。使用promise形式返回结果。参数个数为0，否则抛出异常。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
