@@ -140,8 +140,8 @@
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
   - [@ohos.data.dataShareResultSet (数据共享结果集)](js-apis-data-DataShareResultSet.md)
-  - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject (分布式数据对象)](js-apis-data-distributedobject.md)
+  - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (首选项)](js-apis-data-preferences.md)
   - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-ValuesBucket.md)
@@ -210,7 +210,6 @@
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview(Web)](js-apis-webview.md)
   - [Timer (定时器)](js-apis-timer.md)
-
 - 设备管理
 
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -271,6 +270,7 @@
 - 已停止维护的接口
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
+  - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
