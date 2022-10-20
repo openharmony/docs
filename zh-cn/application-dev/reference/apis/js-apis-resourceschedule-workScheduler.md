@@ -17,7 +17,7 @@
 import workScheduler from '@ohos.resourceschedule.workScheduler';
 ```
 
-## workScheduler.startWork<sup>9+</sup>
+## workScheduler.startWork<sup>9</sup>
 startWork(work: WorkInfo): void
 
 通知WorkSchedulerService将工作添加到执行队列。
@@ -68,7 +68,7 @@ startWork(work: WorkInfo): void
   }
 ```
 
-## workScheduler.stopWork<sup>9+</sup>
+## workScheduler.stopWork<sup>9</sup>
 stopWork(work: WorkInfo, needCancel?: boolean): void
 
 通知WorkSchedulerService停止指定工作。
@@ -118,7 +118,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
   }
 ```
 
-## workScheduler.getWorkStatus:callback<sup>9+</sup>
+## workScheduler.getWorkStatus:callback<sup>9</sup>
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
@@ -161,7 +161,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
   }
 ```
 
-## workScheduler.getWorkStatus:promise<sup>9+</sup>
+## workScheduler.getWorkStatus:promise<sup>9</sup>
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
@@ -207,7 +207,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:callback<sup>9+</sup>
+## workScheduler.obtainAllWorks:callback<sup>9</sup>
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -252,7 +252,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:promise<sup>9+</sup>
+## workScheduler.obtainAllWorks:promise<sup>9</sup>
 obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
@@ -317,7 +317,7 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:callback<sup>9+</sup>
+## workScheduler.isLastWorkTimeOut:callback<sup>9</sup>
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
@@ -363,7 +363,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:promise<sup>9+</sup>
+## workScheduler.isLastWorkTimeOut:promise<sup>9</sup>
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
