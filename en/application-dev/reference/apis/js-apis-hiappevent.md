@@ -19,11 +19,11 @@ Before using application event logging, you need to understand the requirements 
 
 **Event Domain**
 
-An event domain is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), and underscores (*). It cannot start with an underscore (*).
+An event domain is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start with an underscore (\_).
 
 **Event Name**
 
-An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (*). It cannot start with an underscore (*).
+An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start with an underscore (\_).
 
 **Event Type**
 
@@ -33,7 +33,7 @@ An event type is an enumerated value of [EventType](#eventtype).
 
 An event parameter is an object in key-value pair format, where the key is the parameter name and the value is the parameter value. The requirements are as follows:
 
-- The parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (*). It cannot start or end with an underscore (*).
+- The parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It cannot start or end with an underscore (\_).
 - The parameter value is a string, number, boolean, or array.
 - When the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be truncated.
 - When the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.
