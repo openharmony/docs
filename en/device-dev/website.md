@@ -395,6 +395,7 @@
           - [Doubly Linked List](kernel/kernel-small-apx-dll.md)
           - [Bitwise Operation](kernel/kernel-small-apx-bitwise.md)
         - [Standard Library](kernel/kernel-small-apx-library.md)
+        - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
     - Kernel for Standard Systems
       - [Linux Kernel Overview](kernel/kernel-standard-overview.md)
       - [Applying Patches on OpenHarmony Development Boards](kernel/kernel-standard-patch.md)
@@ -450,6 +451,7 @@
     - Peripheral Driver Usage
       - [Audio](driver/driver-peripherals-audio-des.md)
       - [Camera](driver/driver-peripherals-camera-des.md)
+      - [Codec](driver/driver-peripherals-codec-des.md)
       - [Facial Authentication](driver/driver-peripherals-face_auth-des.md)
       - [Fingerprint Authentication](driver/driver-peripherals-fingerprint_auth-des.md)
       - [LCD](driver/driver-peripherals-lcd-des.md)
@@ -502,21 +504,7 @@
     - [Utils Overview](subsystems/subsys-utils-overview.md)
     - [Utils Development](subsystems/subsys-utils-guide.md)
     - [Utils FAQ](subsystems/subsys-utils-faqs.md)
-  - AI Framework
-    - [AI Engine Framework](subsystems/subsys-aiframework-guide.md)
-    - [Development Environment](subsystems/subsys-aiframework-envbuild.md)
-    - Technical Specifications
-      - [Code Management](subsystems/subsys-aiframework-tech-codemanage.md)
-      - [Naming](subsystems/subsys-aiframework-tech-name.md)
-      - [API Development](subsystems/subsys-aiframework-tech-interface.md)
-    - Development Guidelines
-      - [SDK](subsystems/subsys-aiframework-devguide-sdk.md)
-      - [Plug-in](subsystems/subsys-aiframework-devguide-plugin.md)
-      - [Configuration File](subsystems/subsys-aiframework-devguide-conf.md)
-    - Development Examples
-      - [KWS SDK](subsystems/subsys-aiframework-demo-sdk.md)
-      - [KWS Plug-in](subsystems/subsys-aiframework-demo-plugin.md)
-      - [KWS Configuration File](subsystems/subsys-aiframework-demo-conf.md)
+  - [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
   - Data Management
     - RDB
       - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
@@ -547,7 +535,7 @@
     - [Development on Application Permission Management](subsystems/subsys-security-rightmanagement.md)
     - [Development on IPC Authentication](subsystems/subsys-security-communicationverify.md)
     - [Development on Device Security Level Management](subsystems/subsys-security-devicesecuritylevel.md)
-
+    - [Development on HUKS](subsystems/subsys-security-huks-guide.md)
   - Startup
     - [Startup](subsystems/subsys-boot-overview.md)
     - init Module
@@ -561,11 +549,11 @@
     - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
     - [FAQs](subsystems/subsys-boot-faqs.md)
     - [Reference](subsystems/subsys-boot-ref.md)
-  - DFX
+- DFX
     - [DFX](subsystems/subsys-dfx-overview.md)
     - [HiLog Development](subsystems/subsys-dfx-hilog-rich.md)
     - [HiLog\_Lite Development](subsystems/subsys-dfx-hilog-lite.md)
-    - [HiTrace Development](subsystems/subsys-dfx-hitrace.md)
+    - [HiTraceChain Development](subsystems/subsys-dfx-hitracechain.md)
     - [HiCollie Development](subsystems/subsys-dfx-hicollie.md)
     - HiSysEvent Development
       - [HiSysEvent Logging Configuration](subsystems/subsys-dfx-hisysevent-logging-config.md)
@@ -577,7 +565,7 @@
     - [HiChecker Development](subsystems/subsys-dfx-hichecker.md)
     - [FaultLogger Development](subsystems/subsys-dfx-faultlogger.md)
     - [Hiview Development](subsystems/subsys-dfx-hiview.md)
-
+  
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)
@@ -592,13 +580,6 @@
     - WLAN-connected Products
       - [LED Peripheral Control](guide/device-wlan-led-control.md)
       - [Third-Party SDK Integration](guide/device-wlan-sdk.md)
-    - Cameras Without a Screen
-      - Camera Control
-        - [Overview](guide/device-iotcamera-control-overview.md)
-        - Development Guidelines
-          - [Photographing](guide/device-iotcamera-control-demo-photodevguide.md)
-          - [Video Recording](guide/device-iotcamera-control-demo-videodevguide.md)
-        - [Use Case](guide/device-iotcamera-control-example.md)
     - Cameras with a Screen
       - Screen and Camera Control
         - [Overview](guide/device-camera-control-overview.md)
@@ -643,11 +624,7 @@
     - [Kernel](faqs/faqs-kernel.md)
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
-    - [System Applications](faqs/faqs-system-applications.md)
-
-
-
-
+    - [System Applications](faqs/faqs-system-applications.md) 
 
 
 

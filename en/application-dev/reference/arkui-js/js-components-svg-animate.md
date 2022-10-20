@@ -1,19 +1,20 @@
-# animate<a name="EN-US_TOPIC_0000001127125042"></a>
+# animate
 
 The  **<animate\>**  component is used to apply animation to an  **<svg\>**  component.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
+>![](../../public_sys-resources/icon-note.gif) **NOTE**
+>
 >This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Required Permissions<a name="section11257113618419"></a>
+## Required Permissions
 
 None
 
-## Child Components<a name="section9288143101012"></a>
+## Child Components
 
 Not supported
 
-## Attributes<a name="section2907183951110"></a>
+## Attributes
 
 <a name="table20633101642315"></a>
 <table><thead align="left"><tr id="row663331618238"><th class="cellrowborder" valign="top" width="23.119999999999997%" id="mcps1.1.6.1.1"><p id="aaf1247770b244944bbcc9f28d9a6f00b"><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a><a name="aaf1247770b244944bbcc9f28d9a6f00b"></a>Name</p>
@@ -193,7 +194,7 @@ Not supported
 </tbody>
 </table>
 
-## Example<a name="section360556124815"></a>
+## Example
 
 ```
 <!-- xxx.hml -->

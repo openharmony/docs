@@ -23,7 +23,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 | INVALID_PARAMS                        | 401      | 非法入参。                    |
 | NOT_SUPPORT                           | 801      | 操作不支持。                  |
 | ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。                    |
-| ERR_EXTERNAL_ERROR                    | 17620002 | 运行时外部错误。                  |
+| ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。                  |
 | ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。       |
 | ERR_CERT_SIGNATURE_FAILURE            | 17630002 | 证书签名验证错误。            |
 | ERR_CERT_NOT_YET_VALID                | 17630003 | 证书尚未生效。                |
@@ -916,7 +916,7 @@ promiseGenerateRand.then(randData => {
 | ------- | ------ | ---- | ---- | ---------------------- |
 | iv | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为12字节|
 | aad | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节|
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其作为解密时[GcmParamsSpec](#gcmparamsspec)中的authTag|
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其末尾16字节作为解密时[GcmParamsSpec](#gcmparamsspec)中的authTag |
 
 ## CcmParamsSpec
 
@@ -928,7 +928,7 @@ promiseGenerateRand.then(randData => {
 | ------- | -------- | ---- | ---- | -------------------------------|
 | iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节                                |
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节                               |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其作为解密时[CcmParamsSpec](#ccmparamsspec)中的authTag |
+| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，将其末尾12字节作为解密时[CcmParamsSpec](#ccmparamsspec)中的authTag |
 
 ## CryptoMode
 
@@ -1102,7 +1102,7 @@ key.clearMem();
 
 createSymKeyGenerator(algName : string) : SymKeyGenerator
 
-通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
+通过指定算法名称的字符串，获取相应的对称密钥生成器实例。支持的对称密钥参数详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中“生成密钥的字符串”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1117,6 +1117,13 @@ createSymKeyGenerator(algName : string) : SymKeyGenerator
 | 类型            | 说明                       |
 | ----------------------------------- | -------------------------- |
 | [SymKeyGenerator](#symkeygenerator) | 返回对称密钥生成器的对象。 |
+
+**示例：**
+
+```js
+import cryptoFramework from '@ohos.security.cryptoFramework';
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+```
 
 ## SymKeyGenerator
 
@@ -1367,7 +1374,7 @@ keyGenPromise.then( keyPair => {
 ### convertKey
 
 convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair\>) : void
-异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。
+异步获取指定数据生成非对称密钥，通过注册回调函数获取结果。详情请看下方**密钥转换说明**
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1397,7 +1404,7 @@ asyKeyGenerator.convertKey(pubKey, priKey, (err, keyPair) => {
 ### convertKey
 
 convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>
-异步获取指定数据生成非对称密钥，通过Promise获取结果。
+异步获取指定数据生成非对称密钥，通过Promise获取结果。详情请看下方**密钥转换说明**
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1428,10 +1435,18 @@ keyGenPromise.then( keyPair => {
 });
 ```
 
+**密钥转换说明**
+
+1. RSA二进制密钥数据，按keysize(32位) ，nsize(keysize/8), esize(e实际长度)，dsize(keysize/8)，nval(大数n的二进制数据)，eval(大数e的二进制数据)，dval(大数d的二进制数据)拼接形成。
+2. RSA二进制密钥数据中，nsize和dsize为密钥位数/8，esize为具体的实际长度。
+3. RSA私钥数据需要包含keysize，nsize，esize，dsize，nval，eval，dval的全部数据，公钥材料中dsize设置为0，缺省dval的数据。
+4. RSA二进制密钥数据中，keysize、nsize、esize和dsize为32位二进制数据，数据的大小端格式请按设备CPU默认格式，密钥材料（nval、eval、dval）统一为大端格式。
+5. convertKey接口中，公钥和私钥二进制数据为可选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
+
 ## cryptoFramework.createCipher
 
 createCipher(transformation : string) : Cipher
-通过指定算法名称，获取相应的[Cipher](#cipher)实例。
+通过指定算法名称，获取相应的[Cipher](#cipher)实例。支持的算法名参数详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“指定算法名称字符串”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1465,7 +1480,7 @@ try {
 
 ## Cipher
 
-提供加解密的算法操作功能，按序调用本类中的[init()](#init-2)、[update()](#update-4)、[doFinal()](#dofinal-2)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
+提供加解密的算法操作功能，按序调用本类中的[init()](#init-2)、[update()](#update-4)、[doFinal()](#dofinal-2)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 ### 属性
 
@@ -1630,7 +1645,7 @@ cipher.update(data).then((output) => {
 
 doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void
 
-最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。如果在本次加解密过程中已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出可能不同。<br/>对于GCM和CCM模式的对称加密，在doFinal完成后需要将其结果暂存作为解密时的authTag。<br/>对于其他模式的对称加解密，存在两种情况（1）update输出一部分加解密结果，doFinal输出剩余加解密结果；（2）update输出加解密结果全部由update输出，doFinal输出空。
+最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。如果在本次加解密过程中已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出可能不同：<br/>对于GCM和CCM模式的对称加密，doFinal的结果是剩余密文和authTag的拼接，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag（因此如果doFinal的data参数传入null，则doFinal的结果就是authTag）。在doFinal完成后需要将authTag暂存，填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)。<br/>对于其他模式的对称加解密，根据不同的模式特点，存在两种情况（1）update输出一部分加解密结果，doFinal输出剩余加解密结果；（2）加解密结果全部由update输出，doFinal输出空。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1662,7 +1677,7 @@ cipher.doFinal(data, (err, output) => {
 
 doFinal(data : DataBlob) : Promise\<DataBlob>
 
-最后结束加密或者解密数据操作，通过Promise获取结果。如果在本次加解密过程中已经使用update传入过数据，可以在doFinal的data参数处传入null。
+最后结束加密或者解密数据操作，通过Promise获取结果。如果在本次加解密过程中已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出可能不同：<br/>对于GCM和CCM模式的对称加密，doFinal的结果是剩余密文和authTag的拼接，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag（因此如果doFinal的data参数传入null，则doFinal的结果就是authTag）。在doFinal完成后需要将authTag暂存，填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)。<br/>对于其他模式的对称加解密，根据不同的模式特点，存在两种情况（1）update输出一部分加解密结果，doFinal输出剩余加解密结果；（2）加解密结果全部由update输出，doFinal输出空。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1796,7 +1811,7 @@ init(opMode : CryptoMode, key : Key, params : ParamsSpec) : Promise\<void>
 
 | 类型          | 说明        |
 | ------------- | ----------- |
-| Promise<void> | Promise对象 |
+| Promise\<void> | Promise对象 |
 
 ### update
 
@@ -1811,7 +1826,7 @@ update(data : DataBlob, callback : AsyncCallback\<void>) : void
 | 参数名   | 类型                  | 必填 | 说明               |
 | -------- | --------------------- | ---- | ------------------ |
 | data    | DataBlob              | 是   | 传入的消息         |
-| callback | AsyncCallback<void> | 是   | 回调函数 |
+| callback | AsyncCallback\<void> | 是   | 回调函数 |
 
 ### update
 
@@ -2183,7 +2198,7 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 参数名   | 类型          | 必填 | 说明               |
 | -------- | ------------- | ---- | ------------------ |
-| inStream | EncodingBlob  | 是   | X509证书序列化数据 |
+| inStream | [EncodingBlob](#encodingblob)  | 是   | X509证书序列化数据 |
 | callback | AsyncCallback\<X509Cert> | 否   | 回调函数。表示X509证书对象           |
 
 
@@ -2220,7 +2235,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 参数名   | 类型         | 必填 | 说明               |
 | -------- | ------------ | ---- | ------------------ |
-| inStream | EncodingBlob | 是   | X509证书序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据 |
 
 **返回值**：
 
@@ -2263,7 +2278,7 @@ verify(key : PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型          | 必填 | 说明               |
 | -------- | ------------- | ---- | ------------------ |
-| key      | PubKey        | 是   | 用于验签的公钥对象 |
+| key      | [PubKey](#pubkey)        | 是   | 用于验签的公钥对象 |
 | callback | AsyncCallback\<void>) | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败           |
 
 
@@ -2309,7 +2324,7 @@ verify(key : PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| key    | PubKey | 是   | 用于验签的公钥对象 |
+| key    | [PubKey](#pubkey) | 是   | 用于验签的公钥对象 |
 
 **返回值**：
 
@@ -2355,7 +2370,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型          | 必填 | 说明     |
 | -------- | ------------- | ---- | -------- |
-| callback | AsyncCallback\<EncodingBlob> | 否   | 回调函数。表示X509证书序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示X509证书序列化数据 |
 
 
 **示例**：
@@ -2398,7 +2413,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型         | 说明                   |
 | ------------ | ---------------------- |
-| Promise\<EncodingBlob> | 表示X509证书序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书序列化数据 |
 
 **示例**：
 
@@ -2679,7 +2694,7 @@ getIssuerName() : DataBlob
 
 | 类型     | 说明                   |
 | -------- | ---------------------- |
-| DataBlob | 表示X509证书颁发者名称 |
+| [DataBlob](#datablob) | 表示X509证书颁发者名称 |
 
 **示例**：
 
@@ -2715,7 +2730,7 @@ getSubjectName() : DataBlob
 
 | 类型     | 说明                 |
 | -------- | -------------------- |
-| DataBlob | 表示X509证书主体名称 |
+| [DataBlob](#datablob) | 表示X509证书主体名称 |
 
 **示例**：
 
@@ -2823,7 +2838,7 @@ getSignature() : DataBlob
 
 | 类型     | 说明                 |
 | -------- | -------------------- |
-| DataBlob | 表示X509证书签名数据 |
+| [DataBlob](#datablob) | 表示X509证书签名数据 |
 
 **示例**：
 
@@ -2887,15 +2902,15 @@ cryptoFramework.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 getSignatureAlgOid() : string
 
-表示获取X509证书签名算法OID。
+表示获取X509证书签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
 
 **系统能力**：SystemCapability.Security.CryptoFramework
 
 **返回值**：
 
-| 类型   | 说明                    |
-| ------ | ----------------------- |
-| string | 表示X509证书签名算法OID |
+| 类型   | 说明                              |
+| ------ | --------------------------------- |
+| string | 表示X509证书签名算法对象标志符OID |
 
 **示例**：
 
@@ -2931,7 +2946,7 @@ getSignatureAlgParams() : DataBlob
 
 | 类型     | 说明                     |
 | -------- | ------------------------ |
-| DataBlob | 表示X509证书签名算法参数 |
+| [DataBlob](#datablob) | 表示X509证书签名算法参数 |
 
 **示例**：
 
@@ -2967,7 +2982,7 @@ getKeyUsage() : DataBlob
 
 | 类型     | 说明                 |
 | -------- | -------------------- |
-| DataBlob | 表示X509证书秘钥用途 |
+| [DataBlob](#datablob) | 表示X509证书秘钥用途 |
 
 **示例**：
 
@@ -3003,7 +3018,7 @@ getExtKeyUsage() : DataArray
 
 | 类型      | 说明                     |
 | --------- | ------------------------ |
-| DataArray | 表示X509证书扩展秘钥用途 |
+| [DataArray](#dataarray) | 表示X509证书扩展秘钥用途 |
 
 **示例**：
 
@@ -3075,7 +3090,7 @@ getSubjectAltNames() : DataArray
 
 | 类型      | 说明                     |
 | --------- | ------------------------ |
-| DataArray | 表示X509证书主体可选名称 |
+| [DataArray](#dataarray) | 表示X509证书主体可选名称 |
 
 **示例**：
 
@@ -3111,7 +3126,7 @@ getIssuerAltNames() : DataArray
 
 | 类型      | 说明                       |
 | --------- | -------------------------- |
-| DataArray | 表示X509证书颁发者可选名称 |
+| [DataArray](#dataarray) | 表示X509证书颁发者可选名称 |
 
 **示例**：
 
@@ -3147,7 +3162,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 | 参数名   | 类型          | 必填 | 说明                       |
 | -------- | ------------- | ---- | -------------------------- |
-| inStream | EncodingBlob  | 是   | 表示证书吊销列表序列化数据 |
+| inStream | [EncodingBlob](#encodingblob)  | 是   | 表示证书吊销列表序列化数据 |
 | callback | AsyncCallback\<X509Crl> | 否   | 回调函数。表示证书吊销列表对象                   |
 
 
@@ -3184,7 +3199,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 参数名   | 类型         | 必填 | 说明                       |
 | -------- | ------------ | ---- | -------------------------- |
-| inStream | EncodingBlob | 是   | 表示证书吊销列表序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据 |
 
 **返回值**：
 
@@ -3227,7 +3242,7 @@ isRevoked(cert : X509Cert, callback : AsyncCallback\<boolean>) : void
 
 | 参数名   | 类型          | 必填 | 说明                 |
 | -------- | ------------- | ---- | -------------------- |
-| cert     | X509Cert      | 是   | 表示被检查的证书对象 |
+| cert     | [X509Cert](#x509cert)      | 是   | 表示被检查的证书对象 |
 | callback | AsyncCallback\<boolean> | 否   | 回调函数。表示证书吊销状态，true表示已吊销，false表示未吊销             |
 
 
@@ -3482,7 +3497,7 @@ verify(key : PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | PubKey | 是   | 表示用于验签的公钥对象 |
+| key    | [PubKey](#pubkey) | 是   | 表示用于验签的公钥对象 |
 
 **返回值**：
 
@@ -3564,7 +3579,7 @@ getIssuerName() : DataBlob
 
 | 类型     | 说明                           |
 | -------- | ------------------------------ |
-| DataBlob | 表示X509证书吊销列表颁发者名称 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
 
 **示例**：
 
@@ -3937,7 +3952,7 @@ getTbsInfo(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型          | 必填 | 说明     |
 | -------- | ------------- | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | 否   | 回调函数。表示证书吊销列表的tbsCertList信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示证书吊销列表的tbsCertList信息 |
 
 
 **示例**：
@@ -3980,7 +3995,7 @@ getTbsInfo() : Promise\<DataBlob>
 
 | 类型     | 说明                              |
 | -------- | --------------------------------- |
-| Promise\<DataBlob> | 表示证书吊销列表的tbsCertList信息 |
+| Promise\<[DataBlob](#datablob)> | 表示证书吊销列表的tbsCertList信息 |
 
 **示例**：
 
@@ -4018,7 +4033,7 @@ getSignature() : DataBlob
 
 | 类型     | 说明                           |
 | -------- | ------------------------------ |
-| DataBlob | 表示X509证书吊销列表的签名数据 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
 
 **示例**：
 
@@ -4082,15 +4097,15 @@ cryptoFramework.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getSignatureAlgOid() : string
 
-表示获取X509证书吊销列表签名的算法OID。
+表示获取X509证书吊销列表签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
 
 **系统能力**：SystemCapability.Security.CryptoFramework
 
 **返回值**：
 
-| 类型   | 说明                                |
-| ------ | ----------------------------------- |
-| string | 表示X509证书吊销列表签名的算法OID。 |
+| 类型   | 说明                                          |
+| ------ | --------------------------------------------- |
+| string | 表示X509证书吊销列表签名算法的对象标志符OID。 |
 
 **示例**：
 
@@ -4126,7 +4141,7 @@ getSignatureAlgParams() : DataBlob
 
 | 类型     | 说明                               |
 | -------- | ---------------------------------- |
-| DataBlob | 表示X509证书吊销列表签名的算法参数 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
 
 **示例**：
 
@@ -4160,9 +4175,9 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 **参数**：
 
-| 参数名    | 类型   | 必填 | 说明                 |
-| --------- | ------ | ---- | -------------------- |
-| algorithm | string | 是   | 表示证书链校验器算法 |
+| 参数名    | 类型   | 必填 | 说明                                       |
+| --------- | ------ | ---- | ------------------------------------------ |
+| algorithm | string | 是   | 表示证书链校验器算法。当前仅支持输入“PKIX” |
 
 **返回值**：
 
@@ -4187,6 +4202,7 @@ let validator = cryptoFramework.createCertChainValidator("PKIX");
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 表示校验X509证书链。
+由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cryptoFramework-overview.md#证书规格)
 
 **系统能力**：SystemCapability.Security.CryptoFramework
 
@@ -4194,7 +4210,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 | 参数名    | 类型          | 必填 | 说明                     |
 | --------- | ------------- | ---- | ------------------------ |
-| certChain | CertChainData | 是   | 表示X509证书链序列化数据 |
+| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据 |
 | callback  | AsyncCallback\<void> | 否   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败                 |
 
 
@@ -4228,6 +4244,7 @@ validator.validate(certChainData, function (error, data) {
 validate(certChain : CertChainData) : Promise\<void>
 
 表示校验X509证书链。
+由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cryptoFramework-overview.md#证书规格)
 
 **系统能力**：SystemCapability.Security.CryptoFramework
 
@@ -4235,7 +4252,7 @@ validate(certChain : CertChainData) : Promise\<void>
 
 | 参数名    | 类型          | 必填 | 说明                     |
 | --------- | ------------- | ---- | ------------------------ |
-| certChain | CertChainData | 是   | 表示X509证书链序列化数据。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
+| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据。 |
 
 **返回值**：
 
@@ -4305,7 +4322,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型          | 必填 | 说明     |
 | -------- | ------------- | ---- | -------- |
-| callback | AsyncCallback\<EncodingBlob> | 否   | 回调函数。表示被吊销证书的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 否   | 回调函数。表示被吊销证书的序列化数据 |
 
 
 **示例**：
@@ -4336,7 +4353,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型         | 说明                       |
 | ------------ | -------------------------- |
-| Promise\<EncodingBlob> | 表示被吊销证书的序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
 
 **示例**：
 
@@ -4388,7 +4405,7 @@ getCertIssuer(callback : AsyncCallback\<DataBlob>) : void
 
 | 参数名   | 类型          | 必填 | 说明     |
 | -------- | ------------- | ---- | -------- |
-| callback | AsyncCallback\<DataBlob> | 否   | 回调函数。表示被吊销证书的颁发者信息 |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 否   | 回调函数。表示被吊销证书的颁发者信息 |
 
 
 **示例**：
@@ -4419,7 +4436,7 @@ getCertIssuer() : Promise\<DataBlob>
 
 | 类型     | 说明                       |
 | -------- | -------------------------- |
-| Promise\<DataBlob> | 表示被吊销证书的颁发者信息 |
+| Promise\<[DataBlob](#datablob)> | 表示被吊销证书的颁发者信息 |
 
 **示例**：
 

@@ -162,4 +162,5 @@ build() {
 
 使用媒体查询的自适应布局开发，有以下相关实例可供参考：
 
-- [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)
+- [`MediaQuery`：媒体查询（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)
+

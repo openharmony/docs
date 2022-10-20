@@ -55,6 +55,7 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
     ```ts
     import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
     import bundle from '@ohos.bundle';
+    import featureAbility from '@ohos.ability.featureAbility';
 
     async function requestPermission() {
         let permissions: Array<string> = [
@@ -122,7 +123,8 @@ continuationManager作为流转能力的入口，主要用于拉起系统中的�
         // 如果未申请该权限，则需要调用requestPermissionsFromUser接口申请权限
         if (needGrantPermission) {
             try {
-                await globalThis.abilityContext.requestPermissionsFromUser(permissions);
+                // globalThis.context即Ability.context,需提前在MainAbility.ts文件中赋值
+                await globalThis.context.requestPermissionsFromUser(permissions);
             } catch (err) {
                 console.error('app permission request permissions error' + JSON.stringify(err));
             }

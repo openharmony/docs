@@ -1,26 +1,36 @@
 # 音频录制开发指导
 
-## 场景介绍
+## 简介
 
-音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。它允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、文件路径等参数。
+音频录制的主要工作是捕获音频信号，完成音频编码并保存到文件中，帮助开发者轻松实现音频录制功能。该模块允许调用者指定音频录制的采样率、声道数、编码格式、封装格式、输出文件的路径等参数。
 
-**图1** 音频录制状态机
+## 运作机制
+
+该模块提供了音频录制状态变化示意图和音频录制外部模块交互图。
+
+**图1** 音频录制状态变化变化示意图
 
 ![zh-ch_image_audio_recorder_state_machine](figures/zh-ch_image_audio_recorder_state_machine.png)
 
 
 
-**图2** 音频录制零层图
+**图2** 音频录制外部模块交互图
 
 ![zh-ch_image_audio_recorder_zero](figures/zh-ch_image_audio_recorder_zero.png)
 
-## 开发步骤
+**说明**：三方录音应用或录音机通过调用JS接口层提供的js接口实现相应功能时，框架层会通过Native Framework的媒体服务，调用音频部件获取通过音频HDI捕获的音频数据，再通过软件编码输出编码封装后的音频数据保存至文件中，实现音频录制功能。
+
+## 约束与限制
+
+开发者在进行录制功能开发前，需要先对所开发的应用配置麦克风权限（ohos.permission.MICROPHONE），权限配置相关内容可参考：[访问控制权限申请指导](../security/accesstoken-guidelines.md)
+
+## 开发指导
 
 详细API含义可参考：[媒体服务API文档AudioRecorder](../reference/apis/js-apis-media.md#audiorecorder)
 
 ### 全流程场景
 
-包含流程：创建实例，设置录制参数，录制音频，暂停录制，恢复录制，停止录制，释放资源等流程。
+音频录制的全流程场景包含：创建实例，设置录制参数，开始录制，暂停录制，恢复录制，停止录制，释放资源等流程。
 
 ```js
 import media from '@ohos.multimedia.media'
@@ -190,6 +200,6 @@ export class AudioRecorderDemo {
 
 针对音频录制开发，有以下相关实例可供参考：
 
-- [`Recorder:`录音机（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Recorder)
-- [`eTsAudioPlayer`: 音频播放器（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
-- [音频播放器（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)
+- [`Recorder:`录音机（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/media/Recorder)
+- [`eTsAudioPlayer`: 音频播放器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/blob/master/media/Recorder/entry/src/main/ets/MainAbility/pages/Play.ets)
+- [音频播放器（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS)

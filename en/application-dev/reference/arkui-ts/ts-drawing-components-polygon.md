@@ -16,18 +16,18 @@ Not supported
 
 Polygon(value?: {width?: string | number, height?: string | number})
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | width | string \| number | No| 0 | Width.| 
-  | height | string \| number | No| 0 | Height.| 
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| width | string \| number | No| 0 | Width.|
+| height | string \| number | No| 0 | Height.|
 
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Default Value| Mandatory| Description| 
+| Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | points | Array&lt;Point&gt; | [] | No| Vertex coordinates of the polygon.|
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | No| Color of the fill area.|

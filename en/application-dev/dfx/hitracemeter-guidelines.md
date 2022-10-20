@@ -12,7 +12,7 @@ The performance tracing APIs are provided by the **hiTraceMeter** module. For de
 
 | API| Return Value| Description|
 | ---------------------------------------------------------------------------- | --------- | ------------ |
-| hiTraceMeter.startTrace(name: string, taskId: number, expectedTime?: number) | void      | Starts a trace task. If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same task ID can be used.|
+| hiTraceMeter.startTrace(name: string, taskId: number) | void      | Starts a trace task. If multiple trace tasks with the same name need to be performed at the same time or a trace task needs to be performed multiple times concurrently, different task IDs must be specified in **startTrace**. If the trace tasks with the same name are not performed at the same time, the same task ID can be used.|
 | hiTraceMeter.finishTrace(name: string, taskId: number)                       | void      | Stops a trace task. The values of **name** and **taskId** must be the same as those of **hiTraceMeter.startTrace**.|
 | hiTraceMeter.traceByValue(name: string, value: number)                       | void      | Traces the value changes of a variable.|
 
@@ -31,10 +31,6 @@ In this example, distributed call chain tracing begins when the application star
        },
        onInit() {
            this.title = this.$t('strings.world');
-
-           // The expected duration of the trace task is 5 ms.
-           hiTraceMeter.startTrace("business", 1);
-           hiTraceMeter.startTrace("business", 1, 5); 
            
            // Start track tasks with the same name concurrently.
            hiTraceMeter.startTrace("business", 1);

@@ -230,29 +230,6 @@ hdc_std list targets -v
   hdc_std start
   ```
 
-客户端远程访问服务器
-
-1 **kill** 
-  关闭sever。
-
-2 **-s [ip:]port -m** 
-  启动server。
-
-  使用方法：
-
-```
-hdc_std -s severIP:8710 -m
-```
-
-3 **-s [ip:]port command**
-  指定server执行指令。
-
-  使用方法：
-
-```
-hdc_std -s severIP:8710 list targets
-```
-
 
 ## 网络相关的命令
 
@@ -541,3 +518,24 @@ hdc_std -s severIP:8710 list targets
 
 - **解决方法**
   hdc_std.exe不需要安装，直接放到磁盘上就能使用，也可以添加到环境变量中。通过打开cmd执行hdc_std命令直接使用。
+
+
+### hdc client如何远程访问hdc server
+
+- **使用场景**
+
+  本地client指定远程server上的设备，执行hdc命令。
+
+- **连接步骤**
+  1. 关闭本地sever：
+      ```
+      hdc_std kill
+      ```
+  2. **-s [ip:]port -m** 启动远程server：
+      ```
+      hdc_std -s severIP:8710 -m
+      ```
+  3. **-s [ip:]port command** 指定server执行指令：
+      ```
+      hdc_std -s severIP:8710 list targets
+      ```

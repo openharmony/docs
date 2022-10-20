@@ -211,7 +211,7 @@ class MainAbility extends Ability {
    - 方式三：调用`setLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setSystemProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
 
 3. 加载显示沉浸式窗口的具体内容。
-   通过`loadContent`和`show`接口加载显示沉浸式窗口的具体内容。
+   通过`loadContent`接口加载沉浸式窗口的具体内容。
    
    ```ts
    import Ability from '@ohos.application.Ability'
@@ -280,14 +280,6 @@ class MainAbility extends Ability {
                    return;
                }
                console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
-               // 3.显示沉浸式窗口。
-               windowStage.show((err, data) => {
-                   if (err.code) {
-                       console.error('Failed to show the window. Cause:' + JSON.stringify(err));
-                       return;
-                   }
-                   console.info('Succeeded in showing the window. Data: ' + JSON.stringify(data));
-               });
            });
        }
    };
@@ -404,4 +396,4 @@ class MainAbility extends Ability {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：窗口（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)
+- [`Window`：窗口（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/Window)

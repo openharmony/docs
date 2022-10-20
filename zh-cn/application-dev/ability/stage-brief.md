@@ -111,7 +111,7 @@ Stage模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍
 
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
 
-- [`StageModel`：Stage模型（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StageModel)
-- [`WindowExtAbility`：窗口扩展（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/WindowExtAbility)
-- [`MissionManager`：系统任务管理（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
-- [`Launcher`：仿桌面应用（eTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)
+- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/StageModel)
+- [`WindowExtAbility`：窗口扩展（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/WindowExtAbility)
+- [`MissionManager`：系统任务管理（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/MissionManager)
+- [`Launcher`：仿桌面应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/Launcher)

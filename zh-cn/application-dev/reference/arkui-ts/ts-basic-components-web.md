@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebController })
+Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) | 否    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) |是    | 控制器。    |
 
 **示例：**
 
@@ -38,6 +38,21 @@ Web(options: { src: ResourceStr, controller: WebController })
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -193,7 +208,7 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController })
+    controller: WebController | WebviewController})
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
 
@@ -204,7 +219,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。    |
 
 **示例：**
 
@@ -214,6 +229,39 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    testObj = {
+      test: (data1, data2, data3) => {
+        console.log("data1:" + data1);
+        console.log("data2:" + data2);
+        console.log("data3:" + data3);
+        return "AceString";
+      },
+      toString: () => {
+        console.log('toString' + "interface instead.");
+      }
+    }
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
+        })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -469,6 +517,35 @@ mediaPlayGestureAccess(access: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .mediaPlayGestureAccess(this.access)
+      }
+    }
+  }
+  ```
+
+### multiWindowAccess<sup>9+</sup>
+
+multiWindowAccess(multiWindow: boolean)
+
+设置是否开启多窗口权限，默认不开启。
+
+**参数：**
+
+| 参数名            | 参数类型    | 必填   | 默认值  | 参数描述              |
+| -------------- | ------- | ---- | ---- | ----------------- |
+| multiWindow | boolean | 是    | false | 设置是否开启多窗口权限。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .multiWindowAccess(true)
       }
     }
   }
@@ -1785,6 +1862,74 @@ onFullScreenExit(callback: () => void)
   }
   ```
 
+### onWindowNew<sup>9+</sup>
+
+onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
+
+通知用户新建窗口请求。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| isAlert     | boolean           | true代表请求创建对话框，false代表新标签页。 |
+| isUserTrigger | boolean           | true代表用户触发，false代表非用户触发。 |
+| targetUrl     | string           | 目标url。 |
+| handler     | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebController实例。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+        .multiWindowAccess(true)
+        .onWindowNew((event) => {
+          console.log("onWindowNew...");
+          var popController: WebController = new WebController();
+          event.handler.setWebController(popController);
+        })
+      }
+    }
+  }
+  ```
+
+### onWindowExit<sup>9+</sup>
+
+onWindowExit(callback: () => void)
+
+通知用户窗口关闭请求。
+
+**参数：**
+
+| 参数名      | 参数类型                         | 参数描述          |
+| ----------- | ------------------------------- | ---------------- |
+| callback     | () => void           | 窗口请求关闭的回调函数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller:WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src:'www.example.com', controller: this.controller })
+        .onWindowExit((event) => {
+          console.log("onWindowExit...");
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -1874,6 +2019,22 @@ handlePromptConfirm(result: string): void
 exitFullScreen(): void
 
 通知开发者Web组件退出全屏。
+
+## ControllerHandler<sup>9+</sup>
+
+设置用户新建web组件的的WebController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+
+### setWebController<sup>9+</sup>
+
+setWebController(controller: WebController): void
+
+设置WebController对象。
+
+**参数：**
+
+| 参数名    | 参数类型   | 必填   | 默认值  | 参数描述        |
+| ------ | ------ | ---- | ---- | ----------- |
+| controller | WebController | 是    | -    | 新建web组件的的WebController对象。 |
 
 ## WebResourceError
 
@@ -4546,7 +4707,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4590,7 +4751,7 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<WebStorageOrigin>>
+static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 

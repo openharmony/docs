@@ -92,7 +92,7 @@ After the preceding code is executed, the **startAbility()** API is called to st
 - If the Service ability is not running, the system calls **onStart()** to initialize the Service ability, and then calls **onCommand()** on the Service ability.
 - If the Service ability is running, the system directly calls **onCommand()** on the Service ability.
 
-The following code snippet shows how to start a Service ability running on the remote device. For details about **getRemoteDeviceId()**, see [Connecting to a Remote Service Ability](#connecting-to-a-remote-service-ability-applying-only-to-system-applications).
+The following code snippet shows how to start a Service ability running on the remote device. For details about **getRemoteDeviceId()**, see [Connecting to a Remote Service Ability](#connecting-to-a-remote-service-ability).
 
 ```javascript
 import featureAbility from '@ohos.ability.featureAbility';
