@@ -1,4 +1,4 @@
-# wukong稳定性工具使用指南
+# wukong稳定性工具使用指导
 
 
 ## 概述
@@ -37,13 +37,14 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
 ## 约束与限制
 
-1. wukong在3.2系统版本后开始预置使用。<br>
+1. wukong在3.2系统版本后开始预置使用。
+
 2. wukong在3.2系统版本之前的版本不随版本编译，使用时需自行编译后推送至被测OpenHarmony设备，步骤如下：        
-    2.1. 构建方式
+    构建方式
     ```
     ./build.sh --product-name rk3568 --build-target wukong
     ```
-    2.2. 推送方式
+    推送方式
     ```
     hdc_std shell mount -o rw,remount /
     hdc_std file send wukong /
@@ -59,30 +60,30 @@ OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组�
 
 **wukong exec 随机测试使用示例**
 
-进入shell,执行随机测试命令
+进入shell，执行随机测试命令：
 ```
 # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
 ```
 随机测试示例解析：
 | 命令           | 参数值           | 说明                                           |
 | -------------- | -------------- | ---------------------------------------------- |
-| wukong exec |           | 主命令。                             |
+| wukong exec | -           | 主命令。                             |
 | -s     | 10           | 参数设置随机种子，10为种子值。            |
-| -i  | 1000           | 参数设置应用拉起间隔，1000单位ms。 |
+| -i  | 1000           | 参数设置应用拉起间隔为1000ms。 |
 | -a  | 0.28          | 参数设置应用随机拉起测试比例28%。          |
 | -t  | 0.72           | 参数设置屏幕随机touch测试比例为72%。    |
 | -c  | 100           | 参数设置执行次数为100次。                |
 
 **wukong special 专项测试使用示例**
 
-进入shell,执行专项顺序遍历测试命令
+进入shell，执行专项顺序遍历测试命令：
 ```bash
 # wukong special -C [bundlename] -p
 ```
 专项测试示例解析：
 | 命令           | 参数值           | 说明                                           |
 | -------------- |-------------- | ---------------------------------------------- |
-| wukong special |  | 主命令。                             |
+| wukong special | -  | 主命令。                             |
 | -C [bundlename]    |[bundlename] | 控件顺序遍历测试参数设置，bundlename为测试应用名称。            |
 | -p |  | 表示截图。                             |
 
