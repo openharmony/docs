@@ -189,7 +189,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
                       device0 :: deviceNode {      // sample驱动的DeviceNode节点
                           policy = 1;              // policy字段是驱动服务发布的策略，在驱动服务管理章节有详细介绍。
                           priority = 100;          // 驱动启动优先级（0-200），值越大优先级越低，建议默认配100，优先级相同则不保证device的加载顺序。
-                          preload = 0;             // 驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)。
+                          preload = 0;             // 驱动按需加载字段。
                           permission = 0664;       // 驱动创建设备节点权限
                           moduleName = "sample_driver";      // 驱动名称，该字段的值必须和驱动入口结构的moduleName值一致。
                           serviceName = "sample_service";    // 驱动对外发布服务的名称，必须唯一。
@@ -212,6 +212,8 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       > - 进程的uid在文件**base/startup/init_lite/services/etc/passwd**中配置，进程的gid在文件**base/startup/init_lite/services/etc/group**中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
       >
       > - caps值：比如业务模块要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
+      >
+      > - preload:驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)
 
 
    - 驱动私有配置信息（可选）
