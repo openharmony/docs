@@ -21,7 +21,7 @@ On Ubuntu:
 1. Run the following **apt-get** command:
    
    ```
-   sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales
+   sudo apt-get update && sudo apt-get install binutils binutils-dev git git-lfs gnupg flex bison gperf build-essential zip curl zlib1g-dev gcc-multilib g++-multilib gcc-arm-linux-gnueabi libc6-dev-i386 libc6-dev-amd64 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip m4 bc gnutls-bin python3.8 python3-pip ruby genext2fs device-tree-compiler make libffi-dev e2fsprogs pkg-config perl openssl libssl-dev libelf-dev libdwarf-dev u-boot-tools mtd-utils cpio doxygen liblz4-tool openjdk-8-jre gcc g++ texinfo dosfstools mtools default-jre default-jdk libncurses5 apt-utils wget scons python3.8-distutils tar rsync git-core libxml2-dev lib32z-dev grsync xxd libglib2.0-dev libpixman-1-dev kmod jfsutils reiserfsprogs xfsprogs squashfs-tools pcmciautils quota ppp libtinfo-dev libtinfo5 libncurses5-dev libncursesw5 libstdc++6 gcc-arm-none-eabi vim ssh locales libxinerama-dev libxcursor-dev libxrandr-dev libxi-dev
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
@@ -29,9 +29,8 @@ On Ubuntu:
    > The preceding command is applicable to Ubuntu 18.04. For other Ubuntu versions, modify the preceding installation command based on the installation package name. Where:
    >
    > - Python 3.8 or a later version is required. This section uses Python 3.8 as an example.
+   > - Java 8 or later is required. This section uses Java 8 as an example.
    >
-> - Java 8 or later is required. This section uses Java 8 as an example.
-   
 2. Set Python 3.8 as the default Python version.
 
    Check the location of Python 3.8:
@@ -80,19 +79,18 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
        >
-    > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
-   
-    ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
-   
-2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
+       > If Visual Studio Code 1.62 or later has been installed, this step will be skipped.
+       
+        ![en-us_image_0000001237801283](figures/en-us_image_0000001237801283.png)
+       
+   2. On the displayed **Python select page**, select **Download from Huawei mirror** and click **Next**.
    
        > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
        >
        > If Python 3.8 or 3.9 has been installed, select **Use one of compatible on your PC**.
-
-
-       ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
-
+   
+   ![en-us_image_0000001193983334](figures/en-us_image_0000001193983334.png)
+   
 5. In the dialog box shown below, click **Next**.
 
    ![en-us_image_0000001259180828](figures/en-us_image_0000001259180828.png)
@@ -112,8 +110,7 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
 ### Installing DevEco Device Tool for Ubuntu
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
->
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br/>
 > If the Ubuntu system has not been set up yet, set it up on a virtual machine running Windows. For details, see [Ubuntu Installation Guide](https://developer.huawei.com/consumer/cn/training/course/video/C101639987816176315). Then, [configure the Ubuntu basic environment](https://developer.huawei.com/consumer/cn/training/course/video/C101639988048536240).
 
 1. Make sure the Ubuntu shell environment is **bash**.
@@ -176,20 +173,20 @@ To remotely access the Ubuntu environment through Windows to perform operations 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
    > If the command fails to be executed and the system displays a message indicating that the openssh-server and openssh-client depend on different versions, install the openssh-client of the required version (for example, **sudo apt-get install openssh-client=1:8.2p1-4**) as prompted on the command-line interface (CLI) and run the command again to install the openssh-server.
-
-
-   ```
-   sudo apt-get install openssh-server
-   ```
-
-2. Run the following command to start the SSH service:
    
+   
+      ```
+      sudo apt-get install openssh-server
+      ```
+   
+2. Run the following command to start the SSH service:
+
    ```
    sudo systemctl start ssh
    ```
 
 3. Run the following command to obtain the IP address of the current user for remote access to the Ubuntu environment from Windows:
-   
+
    ```
    ifconfig
    ```
@@ -230,11 +227,11 @@ To remotely access the Ubuntu environment through Windows to perform operations 
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
-> To eliminate the need for frequently entering the password for logging in to the remote computer, [set an SSH public key](https://device.harmonyos.com/cn/docs/documentation/guide/ide-registering-public-key-0000001247162706).
-   
+   > To eliminate the need for frequently entering the password for logging in to the remote computer, [set an SSH public key](https://device.harmonyos.com/cn/docs/documentation/guide/ide-registering-public-key-0000001247162706).
+
 ![en-us_image_0000001215897530](figures/en-us_image_0000001215897530.png)
-   
-   After the connection is successful, the plug-in is automatically installed in the .vscode-server folder on the remote computer. After the installation is complete, reload Visual Studio Code in Windows as prompted. Then you can develop, compile, and burn source code in DevEco Device Tool on Windows.
+
+After the connection is successful, the plug-in is automatically installed in the **.vscode-server** folder on the remote computer. After the installation is complete, reload Visual Studio Code in Windows as prompted. Then you can develop, compile, and burn source code in DevEco Device Tool on Windows.
 
 
 ## Obtaining Source Code
@@ -322,7 +319,7 @@ In the Ubuntu environment, perform the following steps to obtain the OpenHarmony
 
 ### Running prebuilts
 
-  Go to the root directory of the source code and run the following script to install the compiler and binary tool:
+Go to the root directory of the source code and run the following script to install the compiler and binary tool:
 
 ```
 bash build/prebuilts_download.sh
@@ -387,9 +384,9 @@ Perform the following steps in Ubuntu:
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
 > - Run the following command to uninstall hb:
 >    
->   ```
->   pip3 uninstall ohos-build
->   ```
+>       ```
+>       pip3 uninstall ohos-build
+>       ```
 > 
 > - If any issue occurs during the hb installation, see [FAQs](../quick-start/quickstart-lite-faq-hb.md) to troubleshoot.
 
@@ -397,8 +394,9 @@ Perform the following steps in Ubuntu:
 ### Installing LLVM (Only Required for OpenHarmony_v1.x)
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **NOTICE**<br>
+>
 > When downloading source code under the OpenHarmony_v1.x branches or tags, perform the operation procedure described in this section to install LLVM 12.0.1.
-> 
+>
 > When downloading source code under the Master or non-OpenHarmony_v1.x branches or tags, skip this section. hb will automatically download the latest version of LLVM.
 
 1. Start a Linux server.

@@ -53,7 +53,7 @@ startWork(work: WorkInfo): boolean
           mykey3: 1.5
       }
   }
-  var res = workScheduler.startWork(workInfo);
+  let res = workScheduler.startWork(workInfo);
   console.info(`workschedulerLog res: ${res}`);
 ```
 
@@ -94,7 +94,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): boolean
           mykey3: 1.5
       }
      }
-  var res = workScheduler.stopWork(workInfo, false);
+  let res = workScheduler.stopWork(workInfo, false);
   console.info(`workschedulerLog res: ${res}`);
 ```
 

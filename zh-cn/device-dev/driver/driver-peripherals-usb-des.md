@@ -36,51 +36,51 @@ USB驱动模型Host侧开放的API接口功能，参考USB Host驱动模型图�
 | int32_t&nbsp;UsbInitHostSdk(struct&nbsp;UsbSession&nbsp;\*\*session); | USB主机端驱动开发工具包初始化 | 
 | int32_t&nbsp;UsbExitHostSdk(const&nbsp;struct&nbsp;UsbSession<br/>\*session); | USB主机端驱动开发工具包退出 | 
 | const&nbsp;struct&nbsp;UsbInterface&nbsp;\*UsbClaimInterface(const<br/>struct&nbsp;UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br/>usbAddr,&nbsp;uint8_t&nbsp;interfaceIndex); | 获取USB接口对象 | 
-| int&nbsp;UsbReleaseInterface(const&nbsp;struct&nbsp;UsbInterface<br/>\*interfaceObj); | 释放USB接口对象 | 
-| int&nbsp;UsbAddOrRemoveInterface(const&nbsp;struct&nbsp;UsbSession<br/>\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t&nbsp;usbAddr,&nbsp;uint8_t<br/>interfaceIndex,&nbsp;UsbInterfaceStatus&nbsp;status); | 增加移除接口 | 
+| int32_t&nbsp;UsbReleaseInterface(const&nbsp;struct&nbsp;UsbInterface<br/>\*interfaceObj); | 释放USB接口对象 | 
+| int32_t&nbsp;UsbAddOrRemoveInterface(const&nbsp;struct&nbsp;UsbSession<br/>\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t&nbsp;usbAddr,&nbsp;uint8_t<br/>interfaceIndex,&nbsp;UsbInterfaceStatus&nbsp;status); | 增加移除接口 | 
 | UsbInterfaceHandle&nbsp;\*UsbOpenInterface(const&nbsp;struct<br/>UsbInterface&nbsp;\*interfaceObj); | 打开USB对象接口 | 
 | int32_t&nbsp;UsbCloseInterface(const&nbsp;UsbInterfaceHandle<br/>\*interfaceHandle); | 关闭USB接口对象 | 
 | int32_t&nbsp;UsbSelectInterfaceSetting(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br/>settingIndex,&nbsp;struct&nbsp;UsbInterface&nbsp;\*\*interfaceObj); | 设置可选配置 | 
 | int32_t&nbsp;UsbGetPipeInfo(const&nbsp;UsbInterfaceHandle<br/>\*interfaceHandle,&nbsp;uint8_t&nbsp;settingIndex,&nbsp;uint8_t&nbsp;pipeId,<br/>struct&nbsp;UsbPipeInfo&nbsp;\*pipeInfo); | 获取指定可选设置的管道信息 | 
 | int32_t&nbsp;UsbClearInterfaceHalt(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;uint8_t<br/>pipeAddress); | 清除指定索引的管道状态 | 
-| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int&nbsp;isoPackets<br/>,&nbsp;int&nbsp;length); | 分配请求对象 | 
-| int&nbsp;UsbFreeRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 释放请求对象 | 
-| int&nbsp;UsbSubmitRequestAsync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送异步请求 | 
+| struct&nbsp;UsbRequest&nbsp;\*UsbAllocRequest(const<br/>UsbInterfaceHandle&nbsp;\*interfaceHandle,&nbsp;int32_t&nbsp;isoPackets<br/>,&nbsp;int32_t&nbsp;length); | 分配请求对象 | 
+| int32_t&nbsp;UsbFreeRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 释放请求对象 | 
+| int32_t&nbsp;UsbSubmitRequestAsync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送异步请求 | 
 | int32_t&nbsp;UsbFillRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request,&nbsp;const&nbsp;UsbInterfaceHandle&nbsp;\*interfaceHandle,<br/>const&nbsp;struct&nbsp;UsbRequestParams&nbsp;\*params); | 填充请求 | 
-| sint&nbsp;UsbCancelRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 取消异步请求 | 
-| int&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送同步请求 | 
+| int32_t&nbsp;UsbCancelRequest(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 取消异步请求 | 
+| int32_t&nbsp;UsbSubmitRequestSync(const&nbsp;struct&nbsp;UsbRequest<br/>\*request); | 发送同步请求 | 
 
   **表2** usb_raw_api.h
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
-| int&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | USB驱动开发工具包专家模式初始化 | 
-| int&nbsp;UsbRawExit(const&nbsp;struct&nbsp;UsbSession&nbsp;\*session); | USB驱动开发工具包专家模式退出 | 
+| int32_t&nbsp;UsbRawInit(struct&nbsp;UsbSession&nbsp;\*\*session); | USB驱动开发工具包专家模式初始化 | 
+| int32_t&nbsp;UsbRawExit(const&nbsp;struct&nbsp;UsbSession&nbsp;\*session); | USB驱动开发工具包专家模式退出 | 
 | UsbRawHandle&nbsp;\*UsbRawOpenDevice(const&nbsp;struct<br/>UsbSession&nbsp;\*session,&nbsp;uint8_t&nbsp;busNum,&nbsp;uint8_t<br/>usbAddr); | 打开USB设备对象 | 
-| int&nbsp;UsbRawCloseDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 关闭USB设备对象 | 
-| int&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br/>\*requestData); | 执行同步控制传输 | 
-| int&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步批量传输 | 
-| int&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步中断传输 | 
-| int&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br/>UsbRawConfigDescriptor&nbsp;\*\*config); | 获取给定设备指定ID的设备配置描述符 | 
+| int32_t&nbsp;UsbRawCloseDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 关闭USB设备对象 | 
+| int32_t&nbsp;UsbRawSendControlRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbControlRequestData<br/>\*requestData); | 执行同步控制传输 | 
+| int32_t&nbsp;UsbRawSendBulkRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步批量传输 | 
+| int32_t&nbsp;UsbRawSendInterruptRequest(const&nbsp;struct<br/>UsbRawRequest&nbsp;\*request,&nbsp;const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;const&nbsp;struct&nbsp;UsbRequestData<br/>\*requestData); | 执行同步中断传输 | 
+| int32_t&nbsp;UsbRawGetConfigDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct<br/>UsbRawConfigDescriptor&nbsp;\*\*config); | 获取给定设备指定ID的设备配置描述符 | 
 | void&nbsp;UsbRawFreeConfigDescriptor(const&nbsp;struct<br/>UsbRawConfigDescriptor&nbsp;\*config); | 释放配置描述符内存空间 | 
-| int&nbsp;UsbRawGetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;\*config); | 获取当前激活配置 | 
-| int&nbsp;UsbRawSetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;config); | 设置当前激活配置 | 
-| int&nbsp;UsbRawGetDescriptor(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawDescriptorParam&nbsp;\*param,&nbsp;const&nbsp;unsigned&nbsp;char<br/>\*data); | 获取描述符信息 | 
+| int32_t&nbsp;UsbRawGetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int32_t&nbsp;\*config); | 获取当前激活配置 | 
+| int32_t&nbsp;UsbRawSetConfiguration(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int32_t&nbsp;config); | 设置当前激活配置 | 
+| int32_t&nbsp;UsbRawGetDescriptor(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawDescriptorParam&nbsp;\*param,&nbsp;const&nbsp;unsigned&nbsp;char<br/>\*data); | 获取描述符信息 | 
 | UsbRawDevice&nbsp;\*UsbRawGetDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 由设备句柄获取设备指针 | 
-| int&nbsp;UsbRawGetDeviceDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;struct<br/>UsbDeviceDescriptor&nbsp;\*desc); | 获取给定设备的USB设备描述符 | 
-| int&nbsp;UsbRawClaimInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int<br/>interfaceNumber); | 声明给定设备句柄上的接口 | 
-| int&nbsp;UsbRawReleaseInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;in<br/>t&nbsp;interfaceNumber); | 释放之前声明的接口 | 
-| int&nbsp;UsbRawResetDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 复位设备 | 
-| struct&nbsp;UsbRawRequest&nbsp;\*UsbRawAllocRequest(const<br/>UsbRawHandle<br/>\*devHandle,&nbsp;int&nbsp;isoPackets,&nbsp;int&nbsp;length); | 分配一个带有指定数量的同步包描述符的传输请求 | 
-| int&nbsp;UsbRawFreeRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 释放之前分配的传输请求 | 
-| int&nbsp;UsbRawFillBulkRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充批量传输请求所需信息 | 
-| int&nbsp;UsbRawFillControlSetup(const&nbsp;unsigned&nbsp;char&nbsp;\*setup,<br/>const&nbsp;struct&nbsp;UsbControlRequestData&nbsp;\*requestData); | 填充控制传输设置包所需信息 | 
-| int&nbsp;UsbRawFillControlRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充控制传输请求所需信息 | 
-| int&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充中断传输请求所需信息 | 
-| int&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充同步传输（Isochronous&nbsp;Transfers）请求所需信息 | 
-| int&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 提交一个传输请求 | 
-| int&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 取消一个传输请求 | 
-| int&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br/>\*devHandle); | 传输请求事件完成处理 | 
+| int32_t&nbsp;UsbRawGetDeviceDescriptor(const&nbsp;UsbRawDevice<br/>\*rawDev,&nbsp;struct<br/>UsbDeviceDescriptor&nbsp;\*desc); | 获取给定设备的USB设备描述符 | 
+| int32_t&nbsp;UsbRawClaimInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;int32_t<br/>interfaceNumber); | 声明给定设备句柄上的接口 | 
+| int32_t&nbsp;UsbRawReleaseInterface(const&nbsp;UsbRawHandle<br/>\*devHandle,&nbsp;in<br/>t&nbsp;interfaceNumber); | 释放之前声明的接口 | 
+| int32_t&nbsp;UsbRawResetDevice(const&nbsp;UsbRawHandle<br/>\*devHandle); | 复位设备 | 
+| struct&nbsp;UsbRawRequest&nbsp;\*UsbRawAllocRequest(const<br/>UsbRawHandle<br/>\*devHandle,&nbsp;int32_t&nbsp;isoPackets,&nbsp;int32_t&nbsp;length); | 分配一个带有指定数量的同步包描述符的传输请求 | 
+| int32_t&nbsp;UsbRawFreeRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 释放之前分配的传输请求 | 
+| int32_t&nbsp;UsbRawFillBulkRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充批量传输请求所需信息 | 
+| int32_t&nbsp;UsbRawFillControlSetup(const&nbsp;unsigned&nbsp;char&nbsp;\*setup,<br/>const&nbsp;struct&nbsp;UsbControlRequestData&nbsp;\*requestData); | 填充控制传输设置包所需信息 | 
+| int32_t&nbsp;UsbRawFillControlRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充控制传输请求所需信息 | 
+| int32_t&nbsp;UsbRawFillInterruptRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充中断传输请求所需信息 | 
+| int32_t&nbsp;UsbRawFillIsoRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request,&nbsp;const&nbsp;UsbRawHandle&nbsp;\*devHandle,&nbsp;const&nbsp;struct<br/>UsbRawFillRequestData&nbsp;\*fillData); | 填充同步传输（Isochronous&nbsp;Transfers）请求所需信息 | 
+| int32_t&nbsp;UsbRawSubmitRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 提交一个传输请求 | 
+| int32_t&nbsp;UsbRawCancelRequest(const&nbsp;struct&nbsp;UsbRawRequest<br/>\*request); | 取消一个传输请求 | 
+| int32_t&nbsp;UsbRawHandleRequests(const&nbsp;UsbRawHandle<br/>\*devHandle); | 传输请求事件完成处理 | 
 
 USB驱动模型Device侧开放的API接口功能，参考USB Device驱动模型图。
 
@@ -89,19 +89,19 @@ USB驱动模型Device侧开放的API接口功能，参考USB Device驱动模型�
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
 | const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnCreateDevice(const<br/>char&nbsp;\*udcName,&nbsp;const&nbsp;struct&nbsp;UsbFnDescriptorData<br/>\*descriptor); | 创建USB设备 | 
-| int&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br/>\*fnDevice); | 删除USB设备 | 
+| int32_t&nbsp;UsbFnRemoveDevice(struct&nbsp;UsbFnDevice<br/>\*fnDevice); | 删除USB设备 | 
 | const&nbsp;struct&nbsp;UsbFnDevice&nbsp;\*UsbFnGetDevice(const&nbsp;char<br/>\*udcName); | 获取USB设备 | 
 
   **表4** usbfn_interface.h
 
 | 接口名称 | 功能描述 | 
 | -------- | -------- |
-| int&nbsp;UsbFnStartRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br/>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | 开始接受Event事件 | 
-| int&nbsp;UsbFnStopRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface); | 停止接受Event事件 | 
+| int32_t&nbsp;UsbFnStartRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface,&nbsp;uint32_t&nbsp;eventMask,<br/>UsbFnEventCallback&nbsp;callback,&nbsp;void&nbsp;\*context); | 开始接受Event事件 | 
+| int32_t&nbsp;UsbFnStopRecvInterfaceEvent(struct<br/>UsbFnInterface&nbsp;\*interface); | 停止接受Event事件 | 
 | UsbFnInterfaceHandle&nbsp;UsbFnOpenInterface(struct&nbsp;UsbFnInterface&nbsp;\*interface); | 打开一个接口 | 
-| int&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | 关闭一个接口 | 
-| int&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | 获取管道信息 | 
-| int&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | 设置自定义属性 | 
+| int32_t&nbsp;UsbFnCloseInterface(UsbFnInterfaceHandle&nbsp;handle); | 关闭一个接口 | 
+| int32_t&nbsp;UsbFnGetInterfacePipeInfo(struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;uint8_t&nbsp;pipeId,&nbsp;struct&nbsp;UsbFnPipeInfo&nbsp;\*info); | 获取管道信息 | 
+| int32_t&nbsp;UsbFnSetInterfaceProp(const&nbsp;struct&nbsp;UsbFnInterface<br/>\*interface,&nbsp;const&nbsp;char&nbsp;\*name,&nbsp;const&nbsp;char&nbsp;\*value); | 设置自定义属性 | 
 
   **表5** usbfn_request.h
 
@@ -109,10 +109,10 @@ USB驱动模型Device侧开放的API接口功能，参考USB Device驱动模型�
 | -------- | -------- |
 | struct&nbsp;UsbFnRequest<br/>\*UsbFnAllocCtrlRequest(UsbFnInterfaceHandle&nbsp;handle,<br/>uint32_t&nbsp;len); | 申请一个控制请求 | 
 | struct&nbsp;UsbFnRequest&nbsp;\*UsbFnAllocRequest(UsbFnInterfaceHandle&nbsp;handle,<br/>uint8_t&nbsp;pipe,&nbsp;uint32_t&nbsp;len); | 申请一个数据请求 | 
-| int&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 释放一个请求 | 
-| int&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br/>\*req); | 发送异步请求 | 
-| int&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br/>\*req,&nbsp;uint32_t&nbsp;timeout); | 发送同步请求 | 
-| int&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 取消请求 | 
+| int32_t&nbsp;UsbFnFreeRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 释放一个请求 | 
+| int32_t&nbsp;UsbFnSubmitRequestAsync(struct&nbsp;UsbFnRequest<br/>\*req); | 发送异步请求 | 
+| int32_t&nbsp;UsbFnSubmitRequestSync(struct&nbsp;UsbFnRequest<br/>\*req,&nbsp;uint32_t&nbsp;timeout); | 发送同步请求 | 
+| int32_t&nbsp;UsbFnCancelRequest(struct&nbsp;UsbFnRequest&nbsp;\*req); | 取消请求 | 
 
 
 ## 开发步骤
@@ -218,6 +218,9 @@ root {
         }
     }
 }
+```
+
+```cpp
 
 #include "usb_serial.h"
 #include "hdf_base.h"
@@ -236,10 +239,10 @@ static struct UsbRequest *g_ctrlCmdRequest = NULL;
 static bool g_acmReleaseFlag = false;
 static uint8_t *g_acmReadBuffer = NULL;
 ...
-static int SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
+static int32_t SerialCtrlMsg(struct AcmDevice *acm, uint8_t request,
     uint16_t value, void *buf, uint16_t len)
 {
-    int ret;
+    int32_t ret;
     uint16_t index = acm->intPipe->interfaceId;
     struct UsbControlParams controlParams;
     struct UsbRequestParams params;
@@ -299,7 +302,7 @@ static struct UsbPipeInfo *EnumePipe(const struct AcmDevice *acm,
     uint8_t interfaceIndex, UsbPipeType pipeType, UsbPipeDirection pipeDirection)
 {
     uint8_t i;
-    int ret;
+    int32_t ret;
     struct UsbInterfaceInfo *info = NULL;
     UsbInterfaceHandle *interfaceHandle = NULL;
     if (pipeType == USB_PIPE_TYPE_CONTROL)
@@ -408,11 +411,11 @@ error:
     return HDF_FAILURE;
 }
 ...
-static int AcmAllocReadRequests(struct AcmDevice *acm)
+static int32_t AcmAllocReadRequests(struct AcmDevice *acm)
 {
-    int ret;
+    int32_t ret;
     struct UsbRequestParams readParams;
-    for (int i = 0; i < ACM_NR; i++) {
+    for (int32_t i = 0; i < ACM_NR; i++) {
         acm->readReq[i] = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataInPipe->interfaceId), 0, acm->readSize);    // 分配待发送的readReq IO Request对象
         if (!acm->readReq[i]) {
             HDF_LOGE("readReq request failed");
@@ -441,9 +444,9 @@ error:
     return HDF_ERR_MALLOC_FAIL;
 }
 
-static int AcmAllocNotifyRequest(struct AcmDevice *acm)
+static int32_t AcmAllocNotifyRequest(struct AcmDevice *acm)
 {
-    int ret;
+    int32_t ret;
     struct UsbRequestParams intParams = {};
     acm->notifyReq = UsbAllocRequest(InterfaceIdToHandle(acm, acm->intPipe->interfaceId), 0, acm->intSize);    // 分配待发送的中断IO Request对象
     if (!acm->notifyReq) {
@@ -474,7 +477,7 @@ error:
 
 static void AcmReleaseInterfaces(struct AcmDevice *acm)
 {
-    for (int i = 0; i < acm->interfaceCnt; i++) {
+    for (int32_t i = 0; i < acm->interfaceCnt; i++) {
         if (acm->iface[i]) {
             UsbReleaseInterface(acm->iface[i]);
             acm->iface[i] = NULL;
@@ -488,7 +491,7 @@ static void AcmReleaseInterfaces(struct AcmDevice *acm)
 
 static int32_t AcmClaimInterfaces(struct AcmDevice *acm)
 {
-    for (int i = 0; i < acm->interfaceCnt; i++) {
+    for (int32_t i = 0; i < acm->interfaceCnt; i++) {
         acm->iface[i] = GetUsbInterfaceById((const struct AcmDevice *)acm, acm->interfaceIndex[i]);    // 获取UsbInterface接口对象
         if (acm->iface[i] == NULL) {
             HDF_LOGE("%s: interface%d is null", __func__, acm->interfaceIndex[i]);
@@ -511,7 +514,7 @@ static int32_t AcmClaimInterfaces(struct AcmDevice *acm)
 
 static void AcmCloseInterfaces(struct AcmDevice *acm)
 {
-    for (int i = 0; i < acm->interfaceCnt; i++) {
+    for (int32_t i = 0; i < acm->interfaceCnt; i++) {
         if (acm->devHandle[i]) {
             UsbCloseInterface(acm->devHandle[i]);
             acm->devHandle[i] = NULL;
@@ -525,7 +528,7 @@ static void AcmCloseInterfaces(struct AcmDevice *acm)
 
 static int32_t AcmOpenInterfaces(struct AcmDevice *acm)
 {
-    for (int i = 0; i < acm->interfaceCnt; i++) {
+    for (int32_t i = 0; i < acm->interfaceCnt; i++) {
         if (acm->iface[i]) {
             acm->devHandle[i] = UsbOpenInterface(acm->iface[i]);    // 打开获取到的UsbInterface接口对象
             if (acm->devHandle[i] == NULL) {
@@ -606,7 +609,7 @@ static int32_t AcmAllocRequests(struct AcmDevice *acm)
         return HDF_ERR_MALLOC_FAIL;
     }
 
-    for (int i = 0; i < ACM_NW; i++) {
+    for (int32_t i = 0; i < ACM_NW; i++) {
         struct AcmWb *snd = &(acm->wb[i]);
         snd->request = UsbAllocRequest(InterfaceIdToHandle(acm, acm->dataOutPipe->interfaceId), 0, acm->writeSize);    //分配待发送的IO Request对象
         snd->instance = acm;
@@ -789,7 +792,7 @@ HDF_INIT(g_usbSerialDriverEntry);
 ### Host RAW API驱动开发
 
   
-```
+```cpp
 root {
     module = "usb_pnp_device";
     usb_pnp_config {
@@ -836,7 +839,9 @@ root {
         }
     }
 }
+```
 
+```cpp
 #include "usb_serial_rawapi.h"
 #include <unistd.h>
 #include "osal_mem.h"
@@ -858,11 +863,11 @@ struct OsalMutex g_stopIoLock;
 static bool g_rawAcmReleaseFlag = false;
 ......
 
-static int UsbGetConfigDescriptor(UsbRawHandle *devHandle, struct UsbRawConfigDescriptor **config)
+static int32_t UsbGetConfigDescriptor(UsbRawHandle *devHandle, struct UsbRawConfigDescriptor **config)
 {
     UsbRawDevice *dev = NULL;
-    int activeConfig;
-    int ret;
+    int32_t activeConfig;
+    int32_t ret;
 
     if (devHandle == NULL) {
         HDF_LOGE("%s:%d devHandle is NULL",
@@ -893,9 +898,9 @@ static int UsbGetConfigDescriptor(UsbRawHandle *devHandle, struct UsbRawConfigDe
     return HDF_SUCCESS;
 }
 ...
-static int UsbAllocWriteRequests(struct AcmDevice *acm)
+static int32_t UsbAllocWriteRequests(struct AcmDevice *acm)
 {
-    int i;
+    int32_t i;
 
     for (i = 0; i < ACM_NW; i++) {
         struct AcmWb *snd = &acm->wb[i];
@@ -965,13 +970,13 @@ error:
     return HDF_FAILURE;
 }
 ...
-static int UsbAllocReadRequests(struct AcmDevice *acm)
+static int32_t UsbAllocReadRequests(struct AcmDevice *acm)
 {
     struct UsbRawFillRequestData reqData;
-    int size = acm->dataInEp->maxPacketSize;
-    int ret;
+    int32_t size = acm->dataInEp->maxPacketSize;
+    int32_t ret;
 
-    for (int i = 0; i < ACM_NR; i++) {
+    for (int32_t i = 0; i < ACM_NR; i++) {
         acm->readReq[i] = UsbRawAllocRequest(acm->devHandle, 0, size);
         if (!acm->readReq[i]) {
             HDF_LOGE("readReq request failed");
@@ -996,11 +1001,11 @@ static int UsbAllocReadRequests(struct AcmDevice *acm)
     return HDF_SUCCESS;
 }
 ...
-static int UsbAllocNotifyRequest(struct AcmDevice *acm)
+static int32_t UsbAllocNotifyRequest(struct AcmDevice *acm)
 {
     struct UsbRawFillRequestData fillRequestData;
-    int size = acm->notifyEp->maxPacketSize;
-    int ret;
+    int32_t size = acm->notifyEp->maxPacketSize;
+    int32_t ret;
 
     acm->notifyReq = UsbRawAllocRequest(acm->devHandle, 0, size);
     if (!acm->notifyReq) {
@@ -1226,9 +1231,8 @@ HDF_INIT(g_usbSerialRawDriverEntry);
 
 USB ACM设备核心代码路径为drivers\peripheral\usb\gadget\function\acm\cdcacm.c。其使用示例如下所示，首先根据描述符创建设备，然后获取接口，打开接口，获取Pipe信息，接收Event事件，接着进行USB通信（读写等），设备卸载时候，关闭接口，停止Event接收，删除设备。
 
-  
-```
 1、创建设备
+```cpp
 static int32_t AcmCreateFuncDevice(struct UsbAcmDevice *acm,
     struct DeviceResourceIface *iface)
 {
@@ -1251,7 +1255,9 @@ if (useHcs == 0) {
     }
     ...
 }
+```
 2、获取接口，打开接口，获取Pipe信息
+```cpp
 static int32_t AcmParseEachPipe(struct UsbAcmDevice *acm, struct UsbAcmInterface *iface)
 {
     ...
@@ -1277,8 +1283,11 @@ static int32_t AcmParseEachIface(struct UsbAcmDevice *acm, struct UsbFnDevice *f
     }
     return HDF_SUCCESS;
 }
+```
+
 3、接收Event事件
-static int32_t AcmAllocCtrlRequests(struct UsbAcmDevice *acm, int num)
+```cpp
+static int32_t AcmAllocCtrlRequests(struct UsbAcmDevice *acm, int32_t num)
 {
     ...
         req = UsbFnCtrlRequestAlloc(acm->ctrlIface.handle,
@@ -1292,7 +1301,9 @@ static int32_t AcmDriverInit(struct HdfDeviceObject *device)
     ret = UsbFnInterfaceStartRecvEvent(acm->ctrlIface.fn, 0xff, UsbAcmEventCallback, acm);
     ...
 }
+```
 4、进行USB通信（读写等）
+```cpp
 static int32_t AcmSendNotifyRequest(struct UsbAcmDevice *acm, uint8_t type,
     uint16_t value, void *data, uint32_t length)
 {
@@ -1301,7 +1312,9 @@ static int32_t AcmSendNotifyRequest(struct UsbAcmDevice *acm, uint8_t type,
     ret = UsbFnRequestSubmitAsync(req); 
     ...
 }
+```
 5、关闭接口，停止Event接收，删除设备
+```cpp
 static int32_t AcmReleaseFuncDevice(struct UsbAcmDevice *acm)
 {
 int32_t ret;

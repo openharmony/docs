@@ -38,15 +38,21 @@ Obtains a **Preferences** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | [Context](js-apis-ability-context.md)            | Yes  | Application context.                                                |
-| name     | string                                           | Yes  | Name of the **Preferences** instance.                                 |
+| context  | Context            | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                                |
+| name     | string                                           | Yes  | Name of the **Preferences** instance.|
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **object** is the **Preferences** instance obtained. Otherwise, **err** is an error code.|
 
 **Example**
 
+FA model:
+
 ```js
-var preferences = null;
-data_preferences.getPreferences(this.context, 'mystore', function (err, object) {
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let preferences = null;
+data_preferences.getPreferences(context, 'mystore', function (err, object) {
     if (err) {
         console.info("Failed to get the preferences. Cause: " + err);
         return;
@@ -56,6 +62,28 @@ data_preferences.getPreferences(this.context, 'mystore', function (err, object) 
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+let preferences = null;
+data_preferences.getPreferences(context, 'mystore', function (err, object) {
+    if (err) {
+        console.info("Failed to get the preferences. Cause: " + err);
+        return;
+    }
+    preferences = object;
+    console.info("Got the preferences successfully.");
+})
+```
 
 ## data_preferences.getPreferences
 
@@ -66,21 +94,29 @@ Obtains a **Preferences** instance. This API uses a promise to return the result
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-| Name | Type                                 | Mandatory| Description                      |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | Yes  | Application context.              |
+
+| Name | Type                                 | Mandatory| Description                   |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance.|
 
 **Return value**
+
 | Type                                      | Description                              |
 | ------------------------------------------ | ---------------------------------- |
 | Promise&lt;[Preferences](#preferences)&gt; | Promise used to return the **Preferences** instance obtained.|
 
 **Example**
 
+FA model:
+
 ```js
-var preferences = null;
-let promise = data_preferences.getPreferences(this.context, 'mystore')
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let preferences = null;
+let promise = data_preferences.getPreferences(context, 'mystore');
 promise.then((object) => {
     preferences = object;
     console.info("Got the preferences successfully.");
@@ -89,6 +125,27 @@ promise.then((object) => {
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+let preferences = null;
+let promise = data_preferences.getPreferences(context, 'mystore');
+promise.then((object) => {
+    preferences = object;
+    console.info("Got the preferences successfully.");
+}).catch((err) => {
+    console.info("Failed to get the preferences. Cause: " + err);
+})
+```
 
 ## data_preferences.deletePreferences
 
@@ -103,23 +160,51 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | [Context](js-apis-ability-context.md) | Yes  | Application context.                                        |
+| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Example**
+
+FA model:
+
 ```js
-data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+data_preferences.deletePreferences(context, 'mystore', function (err) {
     if (err) {
         console.info("Failed to delete the preferences. Cause: " + err);
-        return
+        return;
     }
     console.info("Deleted the preferences successfully." );
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+data_preferences.deletePreferences(context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to delete the preferences. Cause: " + err);
+        return;
+    }
+    console.info("Deleted the preferences successfully." );
+})
+```
 
 ## data_preferences.deletePreferences
 
@@ -134,19 +219,28 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-| Name | Type                                 | Mandatory| Description                      |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | Yes  | Application context.  |
+
+| Name | Type                                 | Mandatory| Description                   |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to delete.|
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
+FA model:
+
 ```js
-let promise = data_preferences.deletePreferences(this.context, 'mystore')
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let promise = data_preferences.deletePreferences(context, 'mystore');
 promise.then(() => {
     console.info("Deleted the preferences successfully.");
 }).catch((err) => {
@@ -154,6 +248,25 @@ promise.then(() => {
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+let promise = data_preferences.deletePreferences(context, 'mystore');
+promise.then(() => {
+    console.info("Deleted the preferences successfully.");
+}).catch((err) => {
+    console.info("Failed to delete the preferences. Cause: " + err);
+})
+```
 
 ## data_preferences.removePreferencesFromCache
 
@@ -166,15 +279,23 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | [Context](js-apis-ability-context.md) | Yes  | Application context.                            |
+| context  | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).                                        |
 | name     | string                                | Yes  | Name of the **Preferences** instance to remove.                          |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Example**
+
+FA model:
+
 ```js
-data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
     if (err) {
         console.info("Failed to remove the preferences. Cause: " + err);
         return;
@@ -183,6 +304,26 @@ data_preferences.removePreferencesFromCache(this.context, 'mystore', function (e
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
+    if (err) {
+        console.info("Failed to remove the preferences. Cause: " + err);
+        return;
+    }
+    console.info("Removed the preferences successfully.");
+})
+```
 
 ## data_preferences.removePreferencesFromCache
 
@@ -195,19 +336,28 @@ The removed **Preferences** instance cannot be used for data operations. Otherwi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
-| Name | Type                                 | Mandatory| Description                      |
-| ------- | ------------------------------------- | ---- | -------------------------- |
-| context | [Context](js-apis-ability-context.md) | Yes  | Application context.  |
+
+| Name | Type                                 | Mandatory| Description                   |
+| ------- | ------------------------------------- | ---- | ----------------------- |
+| context | Context | Yes  | Application context.<br>For the application context of the FA model, see [Context](js-apis-Context.md).<br>For the application context of the stage model, see [Context](js-apis-ability-context.md).           |
 | name    | string                                | Yes  | Name of the **Preferences** instance to remove.|
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
+FA model:
+
 ```js
-let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore')
+// Obtain the context.
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
 promise.then(() => {
     console.info("Removed the preferences successfully.");
 }).catch((err) => {
@@ -215,6 +365,25 @@ promise.then(() => {
 })
 ```
 
+Stage model:
+
+```ts
+// Obtain the context.
+import Ability from '@ohos.application.Ability';
+let context = null;
+class MainAbility extends Ability{
+    onWindowStageCreate(windowStage){
+        context = this.context;
+    }
+}
+
+let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
+promise.then(() => {
+    console.info("Removed the preferences successfully.");
+}).catch((err) => {
+    console.info("Failed to remove the preferences. Cause: " + err);
+})
+```
 
 ## Preferences
 
@@ -232,6 +401,7 @@ Obtains the value of a key. This API uses an asynchronous callback to return the
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
@@ -260,6 +430,7 @@ Obtains the value of a key. This API uses a promise to return the result. If the
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
  **Parameters**
+ 
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
@@ -272,6 +443,7 @@ Obtains the value of a key. This API uses a promise to return the result. If the
 | Promise<[ValueType](#valuetype)&gt; | Promise used to return the value obtained.|
 
 **Example**
+
 ```js
 let promise = preferences.get('startup', 'default');
 promise.then((data) => {
@@ -290,6 +462,7 @@ Obtains an **Object** instance that contains all KV pairs. This API uses an asyn
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error code.|
@@ -318,11 +491,13 @@ Obtains an **Object** instance that contains all KV pairs. This API uses a promi
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
+
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;Object&gt; | Promise used to return the **Object** instance obtained.|
 
 **Example**
+
 ```js
 let promise = preferences.getAll();
 promise.then((value) => {
@@ -343,6 +518,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
@@ -350,6 +526,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is undefined. Otherwise, **err** is an error code.    |
 
 **Example**
+
 ```js
 preferences.put('startup', 'auto', function (err) {
     if (err) {
@@ -370,17 +547,20 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
 | value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
 ```js
 let promise = preferences.put('startup', 'auto');
 promise.then(() => {
@@ -395,17 +575,19 @@ promise.then(() => {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this **Preferences** instance contains a KV pair of the given key. This API uses an asynchronous callback to return the result..
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses an asynchronous callback to return the result..
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                       | Yes  | Key of the data to check. It cannot be empty.                             |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
 
 **Example**
+
 ```js
 preferences.has('startup', function (err, isExist) {
     if (err) {
@@ -425,16 +607,18 @@ preferences.has('startup', function (err, isExist) {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether this **Preferences** instance contains data with the given key. This API uses a promise to return the result.
+Checks whether this **Preferences** instance contains a KV pair with the given key. This API uses a promise to return the result..
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | Yes  | Key of the data to check. It cannot be empty.|
 
 **Return value**
+
 | Type                  | Description                                                        |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise used to return the result. If the **Preferences** instance contains the KV pair, **true** will be returned. Otherwise, **false** will be returned.|
@@ -464,12 +648,14 @@ Deletes a KV pair from this **Preferences** instance. This API uses an asynchron
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty.                     |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Example**
+
 ```js
 preferences.delete('startup', function (err) {
     if (err) {
@@ -490,16 +676,19 @@ Deletes a KV pair from this **Preferences** instance. This API uses a promise to
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
 | key    | string | Yes  | Key of the KV pair to delete. It cannot be empty.|
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
 ```js
 let promise = preferences.delete('startup');
 promise.then(() => {
@@ -514,16 +703,18 @@ promise.then(() => {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Saves the data of the **Preferences** instance to a file asynchronously. This API uses an asynchronous callback to return the result.
+Saves the data of this **Preferences** instance to a file asynchronously. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Example**
+
 ```js
 preferences.flush(function (err) {
     if (err) {
@@ -539,16 +730,18 @@ preferences.flush(function (err) {
 
 flush(): Promise&lt;void&gt;
 
-Saves the data of the **Preferences** instance to a file asynchronously. This API uses a promise to return the result.
+Saves the data of this **Preferences** instance to a file asynchronously. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
 ```js
 let promise = preferences.flush();
 promise.then(() => {
@@ -568,11 +761,13 @@ Clears this **Preferences** instance. This API uses an asynchronous callback to 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                     | Mandatory| Description                                                |
 | -------- | ------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Example**
+
 ```js
 preferences.clear(function (err) {
     if (err) {
@@ -593,11 +788,13 @@ Clears this **Preferences** instance. This API uses a promise to return the resu
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Return value**
+
 | Type               | Description                     |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
+
 ```js
 let promise = preferences.clear()
 promise.then(() => {
@@ -617,23 +814,25 @@ Subscribes to data changes. A callback will be triggered to return the new value
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                            | Mandatory| Description                                    |
 | -------- | -------------------------------- | ---- | ---------------------------------------- |
 | type     | string                           | Yes  | Event type to subscribe to. The value **change** indicates data change events.|
 | callback | Callback&lt;{ key : string }&gt; | Yes  | Callback invoked to return data changes.                          |
 
 **Example**
+
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
         console.info("Failed to get the preferences.");
         return;
     }
-    var observer = function (key) {
+    let observer = function (key) {
         console.info("The key " + key + " changed.");
     }
     preferences.on('change', observer);
-    preferences.put('startup', 'auto', function (err) {
+    preferences.put('startup', 'manual', function (err) {
         if (err) {
             console.info("Failed to put the value of 'startup'. Cause: " + err);
             return;
@@ -661,19 +860,21 @@ Unsubscribes from data changes.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
+
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
 | type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events.  |
 | callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks used to subscribing to all data changes will be unregistered.|
 
 **Example**
+
 ```js
 data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
     if (err) {
-        console.info("Failed to get preferences.");
+        console.info("Failed to get the preferences.");
         return;
     }
-    var observer = function (key) {
+    let observer = function (key) {
         console.info("The key " + key + " changed.");
     }
     preferences.on('change', observer);

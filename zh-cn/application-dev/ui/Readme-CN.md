@@ -1,8 +1,7 @@
 # UI开发
 
 - [方舟开发框架（ArkUI）概述](arkui-overview.md)
-
-- UI开发（基于eTS的声明式开发范式）
+- UI开发（基于ArkTS的声明式开发范式）
     - [概述](ui-ts-overview.md)
     - 框架说明
         - 文件组织

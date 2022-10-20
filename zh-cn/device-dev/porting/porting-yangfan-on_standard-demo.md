@@ -1551,7 +1551,8 @@ struct v4l2_buffer {
 - InputController：提供input设备的业务控制接口，包括获取器件信息及设备类型、设置电源状态等。
 
 **图 1** INPUT模块HDI接口层框架图
-<img src="figures/dayu200/dayu200-tp-01.png" alt="dayu200-tp-01.png" style="zoom: 67%;" />
+
+![dayu200-tp-01.png](figures/dayu200/dayu200-tp-01.png)
 
 相关目录下源代码目录结构如下所示
 

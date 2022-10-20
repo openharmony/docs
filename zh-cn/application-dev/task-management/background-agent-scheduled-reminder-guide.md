@@ -7,11 +7,11 @@
 
 ## 接口说明
 
-reminderAgent：封装了发布、取消提醒类通知的方法。
+reminderAgentManager：封装了发布、取消提醒类通知的方法。
 
-具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgent.md)。
+具体后台提醒相关功能接口请见[后台代理提醒](../reference/apis/js-apis-reminderAgentManager.md)。
 
-**表1** reminderAgent主要接口
+**表1** reminderAgentManager主要接口
 
 | 接口名 | 描述 |
 | -------- | -------- |
@@ -24,154 +24,168 @@ reminderAgent：封装了发布、取消提醒类通知的方法。
 
 ## 开发步骤
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 >
 > 1. 应用需要配置权限：ohos.permission.PUBLISH_AGENT_REMINDER。
 >
 > 2. 应用需要申请通知弹窗：[Notification.requestEnableNotification](../reference/apis/js-apis-notification.md#notificationrequestenablenotification8)。
+>    只有用户授权后，提醒代理的功能才能使用。
 
-1. 定义一个提醒代理。
+1、定义目标提醒代理。
 
-   倒计时实例定义：
-   ```js
-   import reminderAgent from '@ohos.reminderAgent';
-   import notification from '@ohos.notification';
-   export default {
-       // eTS工程：
-       let timer : reminderAgent.ReminderRequestTimer = {
-           reminderType: reminderAgent.ReminderType.REMINDER_TYPE_TIMER,
-           triggerTimeInSeconds: 10,
-           actionButton: [
-               {
-                   title: "close",
-                   type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
-               }
-           ],
-           wantAgent: {
-               pkgName: "com.example.device",
-               abilityName: "com.example.device.MainAbility"
-           },
-           maxScreenWantAgent: {
-               pkgName: "com.example.device",
-               abilityName: "com.example.device.MainAbility"
-           },
-           title: "this is title",
-           content: "this is content",
-           expiredContent: "this reminder has expired",
-           notificationId: 100,
-           slotType: notification.SlotType.SOCIAL_COMMUNICATION
-       }
-   }
-   ```
+2、发布相应的提醒代理。
 
-   日历实例定义：
+```ts
+import reminderAgentManager from '@ohos.reminderAgentManager';
+import notification from '@ohos.notification';
 
-    ```js
-    // eTS工程：
-    let calendar : reminderAgent.ReminderRequestCalendar = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_CALENDAR,
-        dateTime: {
-            year: 2050,
-            month: 7,
-            day: 30,
-            hour: 11,
-            minute: 14,
-            second: 30
-        },
-        repeatMonths: [1],
-        repeatDays: [1],
-        actionButton: [
-            {
-                title: "close",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
-            },
-            {
-                title: "snooze",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
-            },
-        ],
-        wantAgent: {
-            pkgName: "com.example.device",
-            abilityName: "com.example.device.MainAbility"
-        },
-        maxScreenWantAgent: {
-            pkgName: "com.example.device",
-            abilityName: "com.example.device.MainAbility"
-        },
-        ringDuration: 5,
-        snoozeTimes: 2,
-        timeInterval: 5,
-        title: "this is title",
-        content: "this is content",
-        expiredContent: "this reminder has expired",
-        snoozeContent: "remind later",
-        notificationId: 100,
-        slotType: notification.SlotType.SOCIAL_COMMUNICATION
-    }
-    ```
+// 倒计时实例定义：
+let timer : reminderAgentManager.ReminderRequestTimer = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+    triggerTimeInSeconds: 10,
+    actionButton: [
+        {
+            title: "close",
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+        }
+    ],
+    wantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    maxScreenWantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    title: "this is title",
+    content: "this is content",
+    expiredContent: "this reminder has expired",
+    notificationId: 100,
+    slotType: notification.SlotType.SOCIAL_COMMUNICATION
+}
 
-    闹钟实例定义：
-
-    ```js
-    // eTS工程：
-    let alarm : reminderAgent.ReminderRequestAlarm = {
-        reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
+// 日历实例定义：
+let calendar : reminderAgentManager.ReminderRequestCalendar = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_CALENDAR,
+    dateTime: {
+        year: 2050,
+        month: 7,
+        day: 30,
         hour: 11,
         minute: 14,
-        daysOfWeek: [0],
-        actionButton: [
-            {
-                title: "close",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
-            },
-            {
-                title: "snooze",
-                type: reminderAgent.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
-            },
-        ],
-        wantAgent: {
-            pkgName: "com.example.device",
-            abilityName: "com.example.device.MainAbility"
+        second: 30
+    },
+    repeatMonths: [1],
+    repeatDays: [1],
+    actionButton: [
+        {
+            title: "close",
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
         },
-        maxScreenWantAgent: {
-            pkgName: "com.example.device",
-            abilityName: "com.example.device.MainAbility"
+        {
+            title: "snooze",
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
         },
-        ringDuration: 5,
-        snoozeTimes: 2,
-        timeInterval: 5,
-        title: "this is title",
-        content: "this is content",
-        expiredContent: "this reminder has expired",
-        snoozeContent: "remind later",
-        notificationId: 100,
-        slotType: notification.SlotType.SOCIAL_COMMUNICATION
+    ],
+    wantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    maxScreenWantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    ringDuration: 5,
+    snoozeTimes: 2,
+    timeInterval: 5,
+    title: "this is title",
+    content: "this is content",
+    expiredContent: "this reminder has expired",
+    snoozeContent: "remind later",
+    notificationId: 100,
+    slotType: notification.SlotType.SOCIAL_COMMUNICATION
+}
+
+// 闹钟实例定义：
+let alarm : reminderAgentManager.ReminderRequestAlarm = {
+    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM,
+    hour: 11,
+    minute: 14,
+    daysOfWeek: [0],
+    actionButton: [
+        {
+            title: "close",
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
+        },
+        {
+            title: "snooze",
+            type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_SNOOZE
+        },
+    ],
+    wantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    maxScreenWantAgent: {
+        pkgName: "com.example.device",
+        abilityName: "com.example.device.MainAbility"
+    },
+    ringDuration: 5,
+    snoozeTimes: 2,
+    timeInterval: 5,
+    title: "this is title",
+    content: "this is content",
+    expiredContent: "this reminder has expired",
+    snoozeContent: "remind later",
+    notificationId: 100,
+    slotType: notification.SlotType.SOCIAL_COMMUNICATION
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'test'
+
+  publishReminder() {
+    try {
+        reminderAgentManager.publishReminder(timer).then(res => {
+            console.log("publishReminder promise reminderId:" + res);
+        }).catch(err => {
+            console.log("publishReminder err code:" + err.code + " message:" + err.message);
+        })
+    } catch (error) {
+        console.log("publishReminder code:" + error.code + " message:" + error.message);
+    };
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text("Index")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+
+        Button() { Text('倒计时提醒代理').fontSize(25).fontWeight(FontWeight.Bold) }.type(ButtonType.Capsule)
+          .margin({ top: 10 }).backgroundColor('#0D9FFB').width(250).height(40)
+          .onClick(() => {
+          // 示例通过按钮控制提醒代理的发布
+          this.publishReminder();
+        })
+
+      }
+      .width('100%')
     }
-    ```
-
-2. 发布倒计时提醒。
-   ```js
-   startTimer() {
-       reminderAgent.publishReminder(this.timer, (err, reminderId) =>{
-           this.printInfo(JSON.stringify(err));
-           this.printInfo("reminderId:" + reminderId);
-       });
-   }
-   ```
-
-   HML页面：
-   ```html
-   <div class="container">
-       <button type="text" value="publishReminder" onclick="startTimer"></button>
-   </div>
-   ```
+    .height('100%')
+  }
+}
+```
 
 ## 相关实例
 
 基于后台代理提醒开发，有以下相关实例可供参考：
 
-- [`AlarmClock`：后台代理提醒（eTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
+- [`AlarmClock`：后台代理提醒（ArkTS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock)
 
-- [`FlipClock`：翻页时钟（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/FlipClock)
+- [`FlipClock`：翻页时钟（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/FlipClock)
 
-- [闹钟应用（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)
+- [闹钟应用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/CommonEventAndNotification/AlarmClock)

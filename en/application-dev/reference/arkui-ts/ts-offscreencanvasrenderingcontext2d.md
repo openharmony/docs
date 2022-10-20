@@ -1857,8 +1857,10 @@ Resets the existing transformation matrix and creates a new transformation matri
   }
   ```
 
-  ![zh-cn_image_0000001193872526](figures/zh-cn_image_0000001193872526.png)
+![en-us_image_0000001193872526](figures/en-us_image_0000001193872526.png)
 
+
+### translate
 
 ### translate
 
@@ -2137,7 +2139,10 @@ struct SetLineDash {
   }
 }
   ```
-  ![zh-cn_image_000000127777772](figures/zh-cn_image_000000127777772.png)
+  ![en-us_image_000000127777772](figures/en-us_image_000000127777772.png)
+
+
+### getLineDash
 
 
 ### getLineDash
@@ -2226,7 +2231,7 @@ Displays the specified **ImageBitmap** object.
     }
   }
   ```
-  ![zh-cn_image_000000127777773](figures/zh-cn_image_000000127777773.png) 
+  ![en-us_image_000000127777773](figures/en-us_image_000000127777773.png) 
 
 ### toDataURL
 

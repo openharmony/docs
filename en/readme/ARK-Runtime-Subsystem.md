@@ -6,13 +6,13 @@ ArkCompiler is a built-in componentized and configurable multi-language compilat
 
 ArkCompiler JS Runtime consists of two parts: JS compiler toolchain and JS runtime. The JS compiler toolchain compiles JS source code into ArkCompiler bytecodes. The JS runtime executes the generated ArkCompiler bytecodes. Unless otherwise specified, bytecodes refer to ArkCompiler bytecodes in this document.
 
-Figure 1 Architecture of the JS compiler toolchain
+**Figure 1** Architecture of the JS compiler toolchain
 
 ![](figures/en-us_image_ark_frontend.png)
 
 The source code compiler of ArkCompiler JS Runtime receives JS source code, based on which ts2abc generates an abc file.
 
-Figure 2 Architecture of ArkCompiler JS Runtime
+**Figure 2** Architecture of ArkCompiler JS Runtime
 
 ![](figures/en-us_image_ark-js-arch.png)
 
@@ -63,19 +63,19 @@ ArkCompiler JS Runtime consists of four subsystems:
 
 ```
 /ark
-├── js_runtime       # JS runtime module
-├── runtime_core     # Runtime core subsystem
-└── ts2abc           # JS frontend tool
+├── ets_runtime       # JS runtime module
+├── runtime_core      # Runtime core subsystem
+└── ets_frontend      # JS frontend tool
 ```
 
-## Usage Guideline
+## Usage
 
 [Ark Runtime User Guide](https://gitee.com/openharmony/ark_js_runtime/blob/master/docs/ARK-Runtime-Usage-Guide.md)
 
 ## Repositories Involved
 
-[ark\_runtime\_core](https://gitee.com/openharmony/ark_runtime_core)
+[arkcompiler\_runtime\_core](https://gitee.com/openharmony/arkcompiler_runtime_core)
 
-[ark\_js\_runtime](https://gitee.com/openharmony/ark_js_runtime)
+[arkcompiler\_ets\_runtime](https://gitee.com/openharmony/arkcompiler_ets_runtime)
 
-[ark\_ts2abc](https://gitee.com/openharmony/ark_ts2abc)
+[arkcompiler\_ets\_frontend](https://gitee.com/openharmony/arkcompiler_ets_frontend)

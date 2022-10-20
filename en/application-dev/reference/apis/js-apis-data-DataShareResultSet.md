@@ -195,7 +195,7 @@ Moves to the specified row in the result set.
 **Example**
 
 ```ts
-let goToRowNum = 2
+let goToRowNum = 2;
 let isGoToRow = resultSet.goToRow(goToRowNum);
 console.info('resultSet.goToRow: ' + isGoToRow);
 ```
@@ -223,7 +223,7 @@ Obtains the value in the form of a byte array based on the specified column and 
 **Example**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getBlob = resultSet.getBlob(columnIndex);
 console.info('resultSet.getBlob: ' + getBlob);
@@ -231,7 +231,7 @@ console.info('resultSet.getBlob: ' + getBlob);
 
 ### getString
 
-getString(columnIndex: number): *string*
+getString(columnIndex: number): string
 
 Obtains the value in the form of a string based on the specified column and the current row.
 
@@ -252,7 +252,7 @@ Obtains the value in the form of a string based on the specified column and the 
 **Example**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getString = resultSet.getString(columnIndex);
 console.info('resultSet.getString: ' + getString);
@@ -281,7 +281,7 @@ Obtains the value in the form of a long integer based on the specified column an
 **Example**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getLong = resultSet.getLong(columnIndex);
 console.info('resultSet.getLong: ' + getLong);
@@ -310,7 +310,7 @@ Obtains the value in the form of a double-precision floating-point number based 
 **Example**
 
 ```ts
-let columnIndex = 1
+let columnIndex = 1;
 let goToFirstRow = resultSet.goToFirstRow();
 let getDouble = resultSet.getDouble(columnIndex);
 console.info('resultSet.getDouble: ' + getDouble);
@@ -353,14 +353,14 @@ Obtains the column index based on the column name.
 **Example**
 
 ```ts
-let ColumnName = "name"
-let getColumnIndex = resultSet.getColumnIndex(ColumnName)
+let ColumnName = "name";
+let getColumnIndex = resultSet.getColumnIndex(ColumnName);
 console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 ```
 
 ### getColumnName
 
-getColumnName(columnIndex: number): *string*
+getColumnName(columnIndex: number): string
 
 Obtains the column name based on the column index.
 
@@ -381,8 +381,8 @@ Obtains the column name based on the column index.
 **Example**
 
 ```ts
-let columnIndex = 1
-let getColumnName = resultSet.getColumnName(columnIndex)
+let columnIndex = 1;
+let getColumnName = resultSet.getColumnName(columnIndex);
 console.info('resultSet.getColumnName: ' + getColumnName);
 ```
 

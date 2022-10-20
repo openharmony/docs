@@ -1,99 +1,84 @@
-# Distributed Data Management<a name="EN-US_TOPIC_0000001096920663"></a>
-
-## Introduction<a name="section11660541593"></a>
-
-The Distributed Data Management subsystem can persistently store various structured data of a single device and also supports data synchronization and sharing across devices. In this regard, you can seamlessly integrate distributed application data among different devices, ensuring consistent user experience in the same application across these devices.
-
--   Local data management
-
-    This module allows you to store and access structured data on a single device. It uses the SQLite engine to provide the relational database \(RDB\) and preferences database. With these databases, you can persistently store and access app data using different models.
+# Distributed Data Management
 
 
--   Distributed data service
+## Introduction
 
-    This service can synchronize data across devices, so that users can access consistent data on different devices. DDS isolates data based on a triplet of the account, app, and database. DDS synchronizes data between trusted devices to provide the cross-device data access capability.
+**Distributed Data Management Subsystem**
 
-
-## Architecture
-
-**Figure  1**  Architecture of the Distributed Data Management subsystem<a name="fig4460722185514"></a>  
+The Distributed Data Management subsystem can persistently store various structured data of a single device and also supports data synchronization and sharing across devices. With the Distributed Data Management subsystem, application data can be seamlessly processed across different devices, ensuring consistent user experience for the same application across devices.
 
 
-![](figures/en-us_image_0000001115748088.png)
+**Subsystem Architecture**
 
-## Directory Structure<a name="section161941989596"></a>
+**Figure 1** Architecture
 
-Level 1 and 2 directories of the distributed data management subsystem are as follows:
+
+![](figures/Distributed_data_management_architecture.png)
+
+## Directory Structure
+
+Level 1 and 2 directories of the distributed data management subsystem:
 
 ```
-distributeddatamgr/         # Distributed data management
-├── appdatamgr              # Local data management
-└── distributeddatamgr      # Distributed Data Service
+distributeddatamgr/         # Distributed Data Management subsystem
+├── data_object             # Distributed data object
+└── data_share              # DataShare
+└── datamgr_service         # Data service
+└── kv_store                # Key-value (KV) store
+└── preferences             # Preferences
+└── relational_store        # Relational database (RDB) store
 
 third_party/                # Open-source software
-├── flatbuffers             # flatbuffers code
+├── flatbuffers             # FlatBuffers code
 └── sqlite                  # SQLite code
 ```
 
-## Usage<a name="section1312121216216"></a>
+## Module Description
 
-### Local Data Management<a name="section129654513264"></a>
+### Distributed Data Object
 
--   Relational database \(RDB\)
+The distributed data object management framework is an object-oriented in-memory data management framework. It provides APIs for basic data object management, such as creating, querying, deleting, modifying, and subscribing to in-memory objects. Moreover, it provides distributed capabilities to implement data object collaboration for the same application between multiple devices that form a Super Device.
 
-    Some basic concepts are as follows:
+The **Distributed Data Object** module provides JS APIs to help you use distributed data objects like using local data objects. The distributed data objects support basic data types, such as number, string, and Boolean, as well as complex data types, such as array and nested basic types.
 
-    -   **RDB**
+### DataShare
 
-        A database created on the basis of relational models. The RDB stores data in rows and columns.
+The **DataShare** module allows an application to manage its own data and share data with other applications. Currently, data can be shared only between applications on the same device.
 
-    -   **Result set**
+### DDS
 
-        A set of query results used to access data. You can access the required data in a result set in flexible modes.
+The Distributed Data Service (DDS) implements distributed database collaboration across devices for applications. The DDS isolates data based on a triplet of the account, application, and database. The DDS synchronizes data between trusted devices to provide users with consistent data access experience on different devices.
 
-    -   **SQLite database**
+### Preferences
 
-        A lightweight RDB in compliance with the atomicity, consistency, isolation, and durability \(ACID\) properties. It is an open-source database.
+The **Preferences** module allows quick access to data in KV pairs and storage of a small amount of data for local applications. The data is stored in local files and loaded in memory, which allows faster access and higher processing efficiency. Preferences provide non-relational data storage and are not suitable for storing a large amount of data.
 
+1.  The **Preferences** module provides APIs for **preferences** operations.
+2.  You can use **getPreferences()** to load the content of a specified file to a **Preferences** instance. Each file has only one **Preferences** instance. The system stores the instance data in memory through a static container until the app removes the instance from the memory or deletes the file.
+3.  After obtaining a **Preferences** instance, the app can call the APIs in **Preferences** to read data from or write data to the **Preferences** instance, and call **flush()** to save the instance data to a file.
 
--   Preferences database
+### RDB Store
 
-    Some basic concepts are as follows:
+The RDB manages data based on relational models. The OpenHarmony RDB module provides a complete mechanism for managing local databases based on the underlying SQLite.
 
-    -   **Key-value database**
-
-        A database that stores data in key-value pairs. The  **key**  indicates keyword, and  **value**  indicates the corresponding value.
-
-    -   **Non-relational database**
-
-        A database not in compliance with the atomicity, consistency, isolation, and durability \(ACID\) database management properties of relational data transactions. Instead, the data in a non-relational database is independent and scalable.
-
-    -   **Preference** **data**
-
-        A type of data that is frequently accessed and used.
+With the SQLite as the persistence engine, the RDB module supports all SQLite features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 
 
-### Distributed Data Service<a name="section1961602912224"></a>
+## Repositories Involved
 
-DDS provides apps with the capability to store data in the databases of different devices. It uses the KV data model.
+Distributed Data Management Subsystem
 
--   **KV data model**
+[distributeddatamgr\_data_object](https://gitee.com/openharmony/distributeddatamgr_data_object)
 
-    KV is short for key-value. The KV database is a type of NoSQL database. Data in this type of database is organized, indexed, and stored in the form of key-value pairs.
+[distributeddatamgr\_data_share](https://gitee.com/openharmony/distributeddatamgr_data_share)
 
-    The KV data model is suitable for storing service data that does not involve too many data or service relationships. It provides better read and write performance than the SQL database. The KV data model is widely used in distributed scenarios because it handles conflict more easily in database version compatibility and data synchronization. The distributed database is based on the KV data model and provides KV-based access interfaces.
+[distributeddatamgr\_preferences](https://gitee.com/openharmony/distributeddatamgr_preferences)
 
+[distributeddatamgr\_relational_store](https://gitee.com/openharmony/distributeddatamgr_relational_store)
 
-## Repositories Involved<a name="section1371113476307"></a>
-
-Distributed Data Management subsystem
-
-[distributeddatamgr\_appdatamgr](https://gitee.com/openharmony/distributeddatamgr_appdatamgr)
-
-[distributeddatamgr\_distributeddatamgr](https://gitee.com/openharmony/distributeddatamgr_datamgr)
+[distributeddatamgr\_kv_store](https://gitee.com/openharmony/distributeddatamgr_kv_store)
 
 [third\_party\_sqlite](https://gitee.com/openharmony/third_party_sqlite)
 
 [third\_party\_flatbuffers](https://gitee.com/openharmony/third_party_flatbuffers)
-

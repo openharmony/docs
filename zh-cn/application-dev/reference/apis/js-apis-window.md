@@ -66,12 +66,12 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                               | 值  | 说明              |
-|----------------------------------|-----| ----------------- |
-| TYPE_SYSTEM                      | 0   | 表示系统默认区域。|
-| TYPE_CUTOUT                      | 1   | 表示刘海屏区域。  |
-| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2   | 表示手势区域。    |
-| TYPE_KEYBOARD<sup>9+</sup>       | 3   | 表示软键盘区域。  |
+| 名称                             | 值   | 说明                                                         |
+| -------------------------------- | ---- | ------------------------------------------------------------ |
+| TYPE_SYSTEM                      | 0    | 表示系统默认区域。一般包括状态栏、导航栏和Dock栏，各设备系统定义可能不同。 |
+| TYPE_CUTOUT                      | 1    | 表示刘海屏区域。                                             |
+| TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | 表示手势区域。                                               |
+| TYPE_KEYBOARD<sup>9+</sup>       | 3    | 表示软键盘区域。                                             |
 
 ## WindowMode<sup>7+</sup>
 
@@ -108,14 +108,14 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                   | 参数类型 | 可读 | 可写 | 说明                                                         |
-| -------------------------------------- | -------- | ---- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   | 否   | 是   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。 |
-| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 状态栏文字颜色。                                             |
-| navigationBarColor                     | string   | 否   | 是   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 是   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。 |
-| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 导航栏文字颜色。                                             |
+| 名称                                   | 参数类型 | 可读 | 可写 | 必填 | 说明                                                         |
+| -------------------------------------- | -------- | ---- | ---- | ---- | ------------------------------------------------------------ |
+| statusBarColor                         | string   | 否   | 是   | 否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000`。 |
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  | 否   | 是   | 否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
+| statusBarContentColor<sup>8+</sup>     | string   | 否   | 是   | 否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`0xE5FFFFFF。` |
+| navigationBarColor                     | string   | 否   | 是   | 否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。默认值：`#0x66000000。` |
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  | 否   | 是   | 否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 |
+| navigationBarContentColor<sup>8+</sup> | string   | 否   | 是   | 否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`#0xE5FFFFFF。` |
 
 ## Orientation<sup>9+</sup>
 
@@ -592,6 +592,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 import display from '@ohos.display'
 import window from '@ohos.window'
 
+let displayClass = null;
 try {
     displayClass = display.getDefaultDisplaySync();
 } catch (exception) {
@@ -923,7 +924,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 ```js
 let windowClass = null;
- window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
+window.create(this.context, 'alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err, data) => {
     if (err.code) {
         console.error('Failed to create the window. Cause: ' + JSON.stringify(err));
         return;
@@ -998,13 +999,13 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```js
 let windowClass = null;
- window.find('alertWindow', (err, data) => {
-   if (err.code) {
-       console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
-       return;
-   }
-   windowClass = data;
-   console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
+window.find('alertWindow', (err, data) => {
+    if (err.code) {
+        console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    windowClass = data;
+    console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -1038,7 +1039,7 @@ find(id: string): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.find('alertWindow');
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
@@ -1105,7 +1106,7 @@ getTopWindow(): Promise&lt;Window&gt;
 let windowClass = null;
 let promise = window.getTopWindow();
 promise.then((data)=> {
- 	windowClass = data;
+    windowClass = data;
     console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
 }).catch((err)=>{
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -2082,9 +2083,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -2137,9 +2135,6 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -2339,7 +2334,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2354,25 +2349,20 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        try {
-            windowStage.loadContent('pages/page2',this.storage,(err) => {
-                if (err.code) {
-                    console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in loading the content.');
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
-}
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    windowClass.loadContent('pages/page2', storage, (err) => {
+        if (err.code) {
+            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+            return;
+        }
+        console.info('Succeeded in loading the content.');
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+};
 ```
 
 ### loadContent<sup>9+</sup>
@@ -2390,7 +2380,7 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -2410,26 +2400,19 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-class myAbility extends Ability {
-    storage : LocalStorage
-    onWindowStageCreate(windowStage) {
-        this.storage = new LocalStorage();
-        this.storage.setOrCreate('storageSimpleProp',121);
-        console.log('onWindowStageCreate');
-        let windowClass = null;
-        try {
-            let promise = windowStage.loadContent('pages/page2',this.storage);
-            promise.then(()=> {
-                windowClass = data;
-                console.info('Succeeded in loading the content.');
-            }).catch((err)=>{
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            });
-        } catch (exception) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-        };
-    }
-}
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+console.log('onWindowStageCreate');
+try {
+    let promise = windowClass.loadContent('pages/page2', storage);
+    promise.then(() => {
+        console.info('Succeeded in loading the content.');
+    }).catch((err) => {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+};
 ```
 
 ### isWindowShowing<sup>9+</sup>
@@ -2725,7 +2708,7 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 ```js
 let callback = ()=>{
     console.info('screenshot happened');
-}
+};
 try {
     windowClass.on('screenshot', callback);
 } catch (exception) {
@@ -3751,13 +3734,13 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```js
-windowClass.snapshot((err, data) => {
+windowClass.snapshot((err, pixelMap) => {
     if (err.code) {
         console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
         return;
     }
     console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    data.release(); // PixelMap使用完后及时释放内存
+    pixelMap.release(); // PixelMap使用完后及时释放内存
 });
 ```
 
@@ -3861,9 +3844,9 @@ scale(scaleOptions: ScaleOptions): void
 let obj : window.ScaleOptions = {
   x : 2.0,
   y : 1.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.scale(obj);
 } catch (exception) {
@@ -3903,9 +3886,9 @@ let obj : window.RotateOptions = {
   x : 1.0,
   y : 1.0,
   z : 45.0,
-  pivotX = 0.5;
-  pivotY = 0.5;
-}
+  pivotX : 0.5,
+  pivotY : 0.5
+};
 try {
     windowClass.rotate(obj);
 } catch (exception) {
@@ -3945,7 +3928,7 @@ let obj : window.TranslateOptions = {
   x : 100.0,
   y : 0.0,
   z : 0.0
-}
+};
 try {
     windowClass.translate(obj);
 } catch (exception) {
@@ -3983,7 +3966,7 @@ try {
 ```js
 let controller = windowClass.getTransitionController(); // 获取属性转换控制器
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -3999,7 +3982,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj); // 设置动画过程中的属性转换
         console.info('toWindow translate end');
       }
@@ -4114,7 +4097,7 @@ setBackdropBlurStyle(blurStyle: BlurStyle): void
 
 ```js
 try {
-    windowClass.setBackdropBlurStyle(window.BlurType.THIN);
+    windowClass.setBackdropBlurStyle(window.BlurStyle.THIN);
 } catch (exception) {
     console.error('Failed to set backdrop blur style. Cause: ' + JSON.stringify(exception));
 };
@@ -4878,9 +4861,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -4924,9 +4904,6 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 let SystemBarProperties={
     statusBarColor: '#ff00ff',
     navigationBarColor: '#00ff00',
-    //以下两个属性从API Version7开始支持
-    isStatusBarLightIcon: true,
-    isNavigationBarLightIcon:false,
     //以下两个属性从API Version8开始支持
     statusBarContentColor:'#ffffff',
     navigationBarContentColor:'#00ffff'
@@ -6197,7 +6174,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../ui/ui-ts-local-storage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage  | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -6249,7 +6226,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../ui/ui-ts-local-storage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
 
 **返回值：**
 
@@ -6537,7 +6514,7 @@ completeTransition(isCompleted: boolean): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6550,7 +6527,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -6589,7 +6566,7 @@ animationForShown(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6605,7 +6582,7 @@ controller.animationForShown = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }
@@ -6635,7 +6612,7 @@ animationForHidden(context: TransitionContext): void
 ```js
 let controller = windowClass.getTransitionController();
 controller.animationForHidden = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow
+	let toWindow = context.toWindow;
  	animateTo({
     	duration: 1000, // 动画时长
         tempo: 0.5, // 播放速率
@@ -6651,7 +6628,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
           x : 100.0,
           y : 0.0,
           z : 0.0
-        }
+        };
         toWindow.translate(obj);
         console.info('toWindow translate end');
       }

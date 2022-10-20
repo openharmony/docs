@@ -80,7 +80,7 @@ const workerStageModel02 = new worker.Worker('entry/ets/pages/workers/worker.ts'
 ```
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
 
-(1) 目录同级( **不添加也可以** )
+(1) 目录同级
 
 FA模型:
 
@@ -103,7 +103,7 @@ Stage模型:
     }
   }
 ```
-(2) 目录不同级( **必须添加** )
+(2) 目录不同级
 
 FA模型:
 ```json
@@ -700,9 +700,59 @@ parentPort.onerror = function(e){
 | Array               |                                                          | 是                   |
 | Map                 |                                                          | 是                   |
 | Set                 |                                                          | 是                   |
-| Object              | 只支持Create from literal的简单Object，不支持带function的  | 是                   |
-| ArrayBuffer         | 提供transfer能力                                          | 是                   |
+| Object              | 只支持Plain Object，不支持带function的                   | 是                   |
+| ArrayBuffer         | 提供transfer能力                                         | 是                   |
 | TypedArray          |                                                          | 是                   |
+
+特例：传递通过自定义class创建出来的object时，不会发生序列化错误，但是自定义class的属性（如Function）无法通过序列化传递。
+```js
+// main.js
+import worker from '@ohos.worker';
+const workerInstance = new worker.Worker("workers/worker.js");
+workerInstance.postMessage("message from main to worker");
+workerInstance.onmessage = function(d) {
+  // 当worker线程传递obj2时，data即为obj2。data没有Init、SetName的方法
+  let data = d.data;
+}
+```
+```js
+// worker.js
+import worker from '@ohos.worker';
+const parentPort = worker.parentPort;
+class MyModel {
+    Init() {
+        this.name = "wzy"
+        this.age = 18
+    }
+    SetName() {
+        this.name = "WZY"
+    }
+}
+parentPort.onmessage = function(d) {
+    console.log("worker.js onmessage");
+    let data = d.data;
+    let func1 = function() {
+        console.log("post message is function");
+    }
+    let obj1 = {
+        "index": 2,
+        "name1": "zhangshan",
+        setName() {
+            this.index = 3;
+        }
+    }
+    let obj2 = new MyModel();
+    // parentPort.postMessage(func1); 传递func1发生序列化错误
+    // parentPort.postMessage(obj1);  传递obj1发生序列化错误
+    parentPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
+}
+parentPort.onmessageerror = function(e) {
+    console.log("worker.js onmessageerror");
+}
+parentPort.onerror = function(e) {
+    console.log("worker.js onerror");
+}
+```
 
 ### 内存模型
 Worker基于Actor并发模型实现。在Worker的交互流程中，JS主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给主线程。 
