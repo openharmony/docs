@@ -43,35 +43,30 @@
 
 首先使用栅格容器组件创建栅格布局。
 
-### 创建栅格容器
+### 栅格容器创建与设置
 
 通过接口 `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})` 创建栅格容器，栅格容器内的所有子组件可以使用栅格布局。
 
-* 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
+通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
 
-  
-
-```ts
-  GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
-  ```
-
-  栅格容器不设置参数，或者sizeType设置为SizeType. Auto时使用默认的栅格系统定义，如：
-
-  
 
 ```ts
-  GridContainer() {}
-  ```
+GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
+```
 
-    
+栅格容器不设置参数，或者sizeType设置为SizeType. Auto时使用默认的栅格系统定义，如：
 
 ```ts
-    GridContainer({ sizeType: SizeType.Auto })
-    ```
+GridContainer() {}
+```
 
-  上述例子中，默认在小宽度类型设备(SizeType. SM)上，栅格容器被分为4列，列与列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType. MD)上，栅格容器被分为8列，列与列的间隔为24vp，两侧边距是32vp。
+```ts
+GridContainer({ sizeType: SizeType.Auto })
+```
 
-* 也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
+上述例子中，默认在小宽度类型设备(SizeType. SM)上，栅格容器被分为4列，列与列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType. MD)上，栅格容器被分为8列，列与列的间隔为24vp，两侧边距是32vp。
+
+也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
 
   
 
@@ -91,7 +86,7 @@
 
   上述例子中，不管在任何宽度类型的设备上， Text组件都使用SizeType. SM类型的栅格设置, 即占用3列，放置在第1列。
 
-### 栅格容器内子组件的栅格设置
+### 子组件的栅格设置
 
 栅格容器中的组件使用通用属性useSizeType设置不同的设备宽度类型的占用列数和列偏移。其中span表示栅格容器组件占据columns的数量；offset表示列偏移量，指将组件放置在哪一个columns上。 如：
 

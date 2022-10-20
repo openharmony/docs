@@ -13,23 +13,11 @@
 
 具体使用以及效果如下表所示：
 
-  |属性名|描述|Row效果图|Column效果图|
-  |------|---------------------------|----------------------------|---------------------------|
-  |space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子组件垂直方向间距|   
-
-![](figures/rowspace.png)      |   ![](figures/columnspace.png)
-
-|
-  |alignItems |容器排列方向的垂直方向上，子组件在父容器中的对齐方式|   
-
-![](figures/rowalign.png)            |![](figures/columnalign.png)
-
- |
-  |justifyContent |容器排列方向上，子组件在父容器中的对齐方式 |   
-
-![](figures/rowjustify.png)            |![](figures/columnjustify.png)
-
-|
+|属性名|描述|Row效果图|Column效果图|
+|------|---------------------------|----------------------------|---------------------------|
+|space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子组件垂直方向间距|   ![](figures/rowspace.png)      |   ![](figures/columnspace.png) |
+|alignItems |容器排列方向的垂直方向上，子组件在父容器中的对齐方式|![](figures/rowalign.png)            |![](figures/columnalign.png)|
+|justifyContent |容器排列方向上，子组件在父容器中的对齐方式 |![](figures/rowjustify.png)            |![](figures/columnjustify.png)|
 
 ## 自适应拉伸
 
@@ -61,50 +49,50 @@ struct BlankExample {
     
 
   ```ts
-    @Entry
-    @Component
-    struct layoutWeightExample {
-      build() {
-        Column() {
-          Text('1:2:3').width('100%')
-          Row() {
-            Column() {
-              Text('layoutWeight(1)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(2).backgroundColor(0xffd306).height('100%')
-    
-            Column() {
-              Text('layoutWeight(2)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(4).backgroundColor(0xffed97).height('100%')
-    
-            Column() {
-              Text('layoutWeight(6)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(6).backgroundColor(0xffd306).height('100%')
-    
-          }.backgroundColor(0xffd306).height('30%')
-    
-          Text('2:5:3').width('100%')
-          Row() {
-            Column() {
-              Text('layoutWeight(2)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(2).backgroundColor(0xffd306).height('100%')
-    
-            Column() {
-              Text('layoutWeight(5)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(5).backgroundColor(0xffed97).height('100%')
-    
-            Column() {
-              Text('layoutWeight(3)')
-                .textAlign(TextAlign.Center)
-            }.layoutWeight(3).backgroundColor(0xffd306).height('100%')
-          }.backgroundColor(0xffd306).height('30%')
-        }
+  @Entry
+  @Component
+  struct layoutWeightExample {
+    build() {
+      Column() {
+        Text('1:2:3').width('100%')
+        Row() {
+          Column() {
+            Text('layoutWeight(1)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(2).backgroundColor(0xffd306).height('100%')
+  
+          Column() {
+            Text('layoutWeight(2)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(4).backgroundColor(0xffed97).height('100%')
+  
+          Column() {
+            Text('layoutWeight(6)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(6).backgroundColor(0xffd306).height('100%')
+  
+        }.backgroundColor(0xffd306).height('30%')
+  
+        Text('2:5:3').width('100%')
+        Row() {
+          Column() {
+            Text('layoutWeight(2)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(2).backgroundColor(0xffd306).height('100%')
+  
+          Column() {
+            Text('layoutWeight(5)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(5).backgroundColor(0xffed97).height('100%')
+  
+          Column() {
+            Text('layoutWeight(3)')
+              .textAlign(TextAlign.Center)
+          }.layoutWeight(3).backgroundColor(0xffd306).height('100%')
+        }.backgroundColor(0xffd306).height('30%')
       }
     }
+  }
   ```
 
   ![](figures/layoutWeight.gif)
@@ -112,7 +100,7 @@ struct BlankExample {
 2. 父容器尺寸确定时，使用百分比设置子组件以及兄弟组件的width宽度，可以保证各自元素在任意尺寸下的自适应占比。
   
 
-```ts
+  ```ts
   @Entry
   @Component
   struct WidthExample {
@@ -149,7 +137,7 @@ struct BlankExample {
   使用组件的[offset属性](../reference/arkui-ts/ts-universal-attributes-location.md)可以实现相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。使用线性布局和offset可以实现大部分布局的开发。
   
 
-```ts
+  ```ts
   @Entry
   @Component
   struct OffsetExample {
@@ -179,7 +167,7 @@ struct BlankExample {
       .margin({ top: 25 })
     }
   } 
-  ```
+   ```
 
   ![](figures/offset.gif)
 
@@ -188,7 +176,7 @@ struct BlankExample {
   线性布局中可以使用组件的[positon属性](../reference/arkui-ts/ts-universal-attributes-location.md)实现绝对布局（AbsoluteLayout），设置元素左上角相对于父容器左上角偏移位置。对于不同尺寸的设备，使用绝对定位的适应性会比较差，在屏幕的适配上有缺陷。
   
 
-```ts
+  ```ts
   @Entry
   @Component
   struct PositionExample {
@@ -305,7 +293,7 @@ struct BlankExample {
 
   ![](figures/listrow.gif)
 
-* Scroll组件
+- Scroll组件
 
   线性布局中，当子组件的布局尺寸超过父组件的尺寸时，内容可以滚动，再内容外层包裹一个可滚动的容器组件Scroll，
   

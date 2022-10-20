@@ -10,7 +10,7 @@
 
 ## 媒体查询引入与使用流程
 
-通过调用媒体查询接口，设置媒体查询条件和查询结果的回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑。具体步骤如下：
+媒体查询通过媒体查询接口，设置查询条件并绑定回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑，实现页面的响应式设计。具体步骤如下：
 
 首先导入媒体查询模块。
 
@@ -18,13 +18,13 @@
 import mediaquery from '@ohos.mediaquery'
 ```
 
-然后通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener，例如：
+通过matchMediaSync接口设置媒体查询条件，保存返回的条件监听句柄listener。
 
 ```ts
 listener = mediaquery.matchMediaSync('(orientation: landscape)')
 ```
 
-给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑，例如：
+给条件监听句柄listener绑定回调函数onPortrait，当listener检测设备状态变化时执行回调函数。在回调函数内，根据不同设备状态更改页面布局或者实现业务逻辑。
 
 ```ts
 onPortrait(mediaQueryResult) {
@@ -115,42 +115,40 @@ listener.on('change', onPortrait)
 
 下例中使用媒体查询，实现屏幕横竖屏切换时给页面文本应用不同的内容和样式的效果。
 
-  
+```ts
+import mediaquery from '@ohos.mediaquery'
+let portraitFunc = null
 
-```
-  import mediaquery from '@ohos.mediaquery'
-  let portraitFunc = null
-  
-  @Entry
-  @Component
-  struct MediaQueryExample {
-    @State color: string = '#DB7093'
-    @State text: string = 'Portrait'
-    listener = mediaquery.matchMediaSync('(orientation: landscape)')  // 当设备横屏时条件成立
-  
-    onPortrait(mediaQueryResult) {
-      if (mediaQueryResult.matches) {
-        this.color = '#FFD700'
-        this.text = 'Landscape'
-      } else {
-        this.color = '#DB7093'
-        this.text = 'Portrait'
-      }
-    }
-  
-    aboutToAppear() {
-      portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
-      this.listener.on('change', portraitFunc)  
-    }
-  
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Text(this.text).fontSize(50).fontColor(this.color)
-      }
-      .width('100%').height('100%')
-    }
+@Entry
+@Component
+struct MediaQueryExample {
+@State color: string = '#DB7093'
+@State text: string = 'Portrait'
+listener = mediaquery.matchMediaSync('(orientation: landscape)')  // 当设备横屏时条件成立
+
+onPortrait(mediaQueryResult) {
+  if (mediaQueryResult.matches) {
+    this.color = '#FFD700'
+    this.text = 'Landscape'
+  } else {
+    this.color = '#DB7093'
+    this.text = 'Portrait'
   }
-  ```
+}
+
+aboutToAppear() {
+  portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
+  this.listener.on('change', portraitFunc)  
+}
+
+build() {
+  Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Text(this.text).fontSize(50).fontColor(this.color)
+  }
+  .width('100%').height('100%')
+}
+}
+```
 
 横屏下文本内容为Landscape，颜色为#FFD700。
 

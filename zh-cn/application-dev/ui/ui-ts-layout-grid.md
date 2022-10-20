@@ -19,19 +19,100 @@ Grid用于设置网格布局相关参数，GridItem定义子组件相关特征�
 下面以columnsTemplate为例，介绍该属性的设置，该属性值是一个由多个空格和'数字+fr'间隔拼接的字符串，fr的个数即网格布局的列数，fr前面的数值大小，用于计算该列在网格布局宽度上的占比，最终决定该列的宽度。
 
 ```ts
-Grid().columnsTemplate('1fr 1fr 1fr 1fr')
+struct GridExample {
+  @State Number: Array<string> = ['1', '2', '3', '4']
+
+  build() {
+    Column({ space: 5 }) {
+      Grid() {
+        ForEach(this.Number, (num: string) => {
+          GridItem() {
+            Text(`列${num}`)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xd0d0d0)
+              .width('100%')
+              .height('100%')
+              .borderRadius(5)
+          }
+        })
+      }
+      .columnsTemplate('1fr 1fr 1fr 1fr')
+      .rowsTemplate('1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .width('90%')
+      .backgroundColor(0xF0F0F0)
+      .height(100)
+    }.width('100%')
+  }
+}
 ```
 
 定义了四个等分的列，每列宽度相等。
 
 ```ts
-Grid().columnsTemplate('1fr 2fr 3fr 4fr')
+struct GridExample {
+  @State Number: Array<string> = ['1', '2', '3', '4']
+
+  build() {
+    Column({ space: 5 }) {
+      Grid() {
+        ForEach(this.Number, (num: string) => {
+          GridItem() {
+            Text(`列${num}`)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xd0d0d0)
+              .width('100%')
+              .height('100%')
+              .borderRadius(5)
+          }
+        })
+      }
+      .columnsTemplate('1fr 2fr 3fr 4fr')
+      .rowsTemplate('1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .width('90%')
+      .backgroundColor(0xF0F0F0)
+      .height(100)
+    }.width('100%')
+  }
+}
 ```
 
 定义了四列，每列宽度比值为1:2:3:4。
 
 ```ts
-Grid().columnsTemplate('4fr 2fr 3fr')
+struct GridExample {
+  @State Number: Array<string> = ['1', '2', '3']
+
+  build() {
+    Column({ space: 5 }) {
+      Grid() {
+        ForEach(this.Number, (num: string) => {
+          GridItem() {
+            Text(`列${num}`)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xd0d0d0)
+              .width('100%')
+              .height('100%')
+              .borderRadius(5)
+          }
+        })
+      }
+      .columnsTemplate('4fr 2fr 3fr')
+      .rowsTemplate('1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .width('90%')
+      .backgroundColor(0xF0F0F0)
+      .height(100)
+    }.width('100%')
+  }
+}
 ```
 
 定义了三列，每列宽度比值为4:2:3。
