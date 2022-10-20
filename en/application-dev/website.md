@@ -34,13 +34,12 @@
         - [Test Framework Usage](ability/ability-delegator.md)
   - UI    
     - [ArkUI Overview](ui/arkui-overview.md)
-    - TypeScript-based Declarative Development Paradigm
+    - eTS-based Declarative Development Paradigm
       - [Overview](ui/ui-ts-overview.md)
       - Framework Overview
         - File Organization
           - [Directory Structure](ui/ts-framework-directory.md)
           - [Rules for Accessing Application Code Files](ui/ts-framework-file-access-rules.md)
-        - ["js" Tag](ui/ts-framework-js-tag.md)
         - Resource Access
           - [Resource File Categories](ui/ui-ts-basic-resource-file-categories.md)
           - [Accessing Application Resources](ui/ts-resource-access.md)
@@ -103,7 +102,8 @@
         - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
         - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
         - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
-    - JavaScript-based Web-Like Development Paradigm
+      - [Recommendations for Improving Performance](ui/ts-performance-improvement-recommendation.md)
+    - JavaScript-compatible Web-Like Development Paradigm
       - [Overview](ui/ui-js-overview.md)
       - Framework
         - [File Organization](ui/js-framework-file.md)
@@ -290,7 +290,7 @@
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs)
 - API References
-  - Component Reference (TypeScript-based Declarative Development Paradigm)
+  - Component Reference (eTS-based Declarative Development Paradigm)
     - Universal Components
       - Universal Events
         - [Click Event](reference/arkui-ts/ts-universal-events-click.md)
@@ -436,7 +436,8 @@
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
-  - Component Reference (JavaScript-based Web-like Development Paradigm)
+    - [Types](reference/arkui-ts/ts-types.md)
+  - Component Reference (JavaScript-compatible Web-like Development Paradigm)
     - Common
       - [Universal Attributes](reference/arkui-js/js-components-common-attributes.md)
       - [Universal Styles](reference/arkui-js/js-components-common-styles.md)
