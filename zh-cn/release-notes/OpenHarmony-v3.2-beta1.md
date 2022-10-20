@@ -173,7 +173,7 @@ ArkUI支持AbilityComponent组件将应用界面（Ability）作为控件嵌入�
 ### API变更
 
 
-_[API差异报告](api-change/v3.2-beta1/readme.md)_
+_[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
