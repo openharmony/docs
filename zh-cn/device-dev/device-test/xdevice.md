@@ -424,7 +424,9 @@ run指令基本使用方法如下。
    </user_config>
    ```
 
-2. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建（地址：http://ci.openharmony.cn/dailys/dailybuilds）中获取。
+2. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建中获取。
+
+   每日构建：http://ci.openharmony.cn/dailys/dailybuilds
 
    测试套测试配置文件json，示例如下。
 
@@ -457,15 +459,15 @@ run指令基本使用方法如下。
    ```bash
    python -m xdevice
    ```
-   
+
    执行测试套命令。
 
    ```text
    run -l ActsAllTest
    ```
-   
+
    执行结果如下。
-   
+
    ![result-1](figures/result-1.PNG)
 
 ## 小型系统设备XTS测试指导（ipcamera）
@@ -484,7 +486,7 @@ run指令基本使用方法如下。
 
    本地局域网NFS服务的配置方法如下。
 
-   1. 下载安装NFS服务器，地址：https://www.hanewin.net/nfs-e.htm。
+   1. 下载安装NFS服务器。下载地址：https://www.hanewin.net/nfs-e.htm
 
    2. 配置输出->编辑输出表文件。
 
@@ -544,7 +546,9 @@ run指令基本使用方法如下。
    </user_config>
    ```
 
-4. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建（地址：http://ci.openharmony.cn/dailys/dailybuilds）中获取。
+4. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建。
+
+   每日构建：http://ci.openharmony.cn/dailys/dailybuilds
 
    测试套测试配置文件json，示例如下。
 
@@ -596,7 +600,9 @@ run指令基本使用方法如下。
 
 ## 标准系统设备XTS测试指导（RK3568）
 
-1. 配置hdc工具，从每日构建（地址：http://ci.openharmony.cn/dailys/dailybuilds）上下载ohos_sdk最新版本即可。
+1. 配置hdc工具，从每日构建上下载ohos_sdk最新版本即可。
+
+   每日构建地址：http://ci.openharmony.cn/dailys/dailybuilds
 
    下载工具后，把hdc配置到环境变量中，配置方法：右键单击我的电脑->属性->高级系统设置->环境变量->Path。
 
@@ -605,7 +611,7 @@ run指令基本使用方法如下。
    ```bash
    hdc_std list targets
    ```
-   
+
 3. 修改user_config.xml文件，示例如下。
 
    ```xml
@@ -627,7 +633,9 @@ run指令基本使用方法如下。
    </user_config>
    ```
 
-4. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建（地址：http://ci.openharmony.cn/dailys/dailybuilds）中获取。
+4. 在xDevice根目录下新建testcase文件夹用于存放测试套文件，具体XTS测试套从系统构建的每日构建中获取。
+
+   每日构建：http://ci.openharmony.cn/dailys/dailybuilds
 
    测试套测试配置文件json，示例如下。
 
@@ -667,15 +675,15 @@ run指令基本使用方法如下。
    ```bash
    python -m xdevice
    ```
-   
+
    执行测试套命令。
 
    ```text
    run -l ActBmsStageEtsTest
    ```
-   
+
    执行结果如下。
-   
+
    ![result-1](figures/result-1.PNG)
 
 ## 常见问题
