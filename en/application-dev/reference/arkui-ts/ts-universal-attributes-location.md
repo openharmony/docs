@@ -7,21 +7,16 @@ The location attribute sets the alignment mode, layout direction, and position o
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
-## Required Permissions
-
-None
-
-
 ## Attributes
 
 
-| Name| Type| Default Value| Description|
-| -------- | -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | Center | Alignment of the component content. This attribute is valid only when the values of **width** and **height** are greater than the size of the component content.|
-| direction | [Direction](ts-appendix-enums.md#direction) | Auto | Horizontal layout of the component. For details about the options, see **Direction** enums.|
-| position | {<br>x: Length,<br>y: Length<br>} | - | Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
-| markAnchor | {<br>x: Length,<br>y: Length<br>} | {<br>x: 0,<br>y: 0<br>} | Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset.|
-| offset | {<br>x: Length,<br>y: Length<br>} | {<br>x: 0,<br>y: 0<br>} | Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| align | [Alignment](ts-appendix-enums.md#alignment) | Alignment of the component content. This attribute is valid only when the values of **width** and **height** are greater than the size of the component content.<br>Default value: **Alignment.Center**|
+| direction | [Direction](ts-appendix-enums.md#direction) | Horizontal layout of the component.<br>Default value: **Direction.Auto**|
+| position | {<br/>x: [Length](ts-types.md#length),<br/>y: [Length](ts-types.md#length)<br/>} | Offset of the component anchor point relative to the top start edge of the parent component. The offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.|
+| markAnchor | {<br/>x: [Length](ts-types.md#length),<br/>y: [Length](ts-types.md#length)<br/>} | Anchor point of the component for positioning. The top start edge of the component is used as the reference point for offset.<br>Default value:<br>**{<br>x: 0,<br>y: 1<br>}** |
+| offset | {<br/>x: [Length](ts-types.md#length),<br/>y: [Length](ts-types.md#length)<br/>} | Coordinate offset of the relative layout. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>Default value:<br>**{<br>x: 0,<br>y: 1<br>}** |
 
 
 ## Example

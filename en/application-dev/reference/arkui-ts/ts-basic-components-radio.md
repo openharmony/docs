@@ -1,50 +1,45 @@
 # Radio
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<Radio>** component allows users to select from a set of mutually exclusive options.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
 
-None
+Not supported
 
 
 ## APIs
 
 Radio(options: {value: string, group: string})
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | string | Yes| - | Value of the current radio button.|
-  | group | string | Yes| - | Name of the group to which the radio button belongs. Only one radio button in a given group can be selected at a time.|
+**Parameters**
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string | Yes| Value of the current radio button.|
+| group | string | Yes| Name of the group to which the radio button belongs. Only one radio button in a given group can be selected at a time.|
 
 ## Attributes
 
-| Name| Type| Default Value| Description| 
-| -------- | -------- | -------- | -------- |
-| checked | boolean | false | Whether the radio button is selected.| 
-
+| Name| Type| Description|
+| -------- | -------- | -------- |
+| checked | boolean | Whether the radio button is selected.<br>Default value: **false**|
 
 ## Events
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| onChange(callback: (value: boolean) => void) | Triggered when the selected state of the radio button changes.<br> -The value **true** means that the radio button is selected.<br> -The value **false** means that the radio button is not selected.| 
+| onChange(callback: (isChecked: boolean) => void) | Triggered when the selected state of the radio button changes.<br> - If **isChecked** is **true**, the radio button is selected.<br> - If **isChecked** is **false**, the radio button is not selected.|
 
 
 ## Example
 
-```
+```ts
+// xxx.ets
 @Entry
 @Component
 struct RadioExample {
@@ -55,8 +50,8 @@ struct RadioExample {
         Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio1 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio1 status is ' + isChecked)
           })
       }
       Column() {
@@ -64,8 +59,8 @@ struct RadioExample {
         Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio2 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio2 status is ' + isChecked)
           })
       }
       Column() {
@@ -73,8 +68,8 @@ struct RadioExample {
         Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
           .height(50)
           .width(50)
-          .onChange((value: boolean) => {
-            console.log('Radio3 status is ' + value)
+          .onChange((isChecked: boolean) => {
+            console.log('Radio3 status is ' + isChecked)
           })
       }
     }.padding({ top: 30 })

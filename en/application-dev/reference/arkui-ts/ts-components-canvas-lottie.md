@@ -3,13 +3,9 @@
 **Lottie** allows you to implement animation-specific operations.
 
 > **NOTE**
->
+> 
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
-
-## Required Permissions
-
-None
 
 
 ## Modules to Import
@@ -33,10 +29,11 @@ path: string, container: object, render: string, loop: boolean, autoplay: boolea
 
 Loads an animation. Before calling this method, declare the **Animator('\__lottie\_ets')** object and check that the canvas layout is complete. This method can be used together with a lifecycle callback of the **Canvas** component, for example, **onAppear()** and **onPageShow()**.
 
-- Parameters
+**Parameters**
+
   | Name            | Type                         | Mandatory  | Description                                      |
   | -------------- | --------------------------- | ---- | ---------------------------------------- |
-  | path           | string                      | Yes   | Path of the animation resource file in the HAP file. The resource file must be in JSON format. Example: **path: "common/lottie/data.json"**. |
+  | path           | string                      | Yes   | Path of the animation resource file in the HAP file. The resource file must be in JSON format. Example: **path: "common/lottie/data.json"**|
   | container      | object                      | Yes   | Canvas drawing context. A **CanvasRenderingContext2D** object must be declared in advance.|
   | render         | string                      | Yes   | Rendering type. The value can only be **"canvas"**.                       |
   | loop           | boolean \| number | No   | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends; the default value is **true**. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays.|
@@ -51,12 +48,13 @@ destroy(name: string): void
 
 Destroys the animation. This method must be called when a page exits. This method can be used together with a lifecycle callback of the **Canvas** component, for example, **onDisappear()** and **onPageHide()**.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | name | string | Yes   | Name of the animation to destroy, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are destroyed.|
 
-- Example
+**Example** 
   ```ts
   // xxx.ets
   import lottie from '@ohos/lottieETS'
@@ -91,7 +89,7 @@ Destroys the animation. This method must be called when a page exits. This metho
             path: this.animatePath,
           })
         })
-
+	  // @ts-ignore 
         Animator('__lottie_ets') // declare Animator('__lottie_ets') when use lottie
         Button('load animation')
           .onClick(() => {
@@ -131,12 +129,14 @@ play(name: string): void
 
 Plays a specified animation.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | name | string | Yes   | Name of the animation to play, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are played.|
 
-- Example
+**Example**
+
   ```ts
   lottie.play(this.animateName)
   ```
@@ -148,12 +148,14 @@ pause(name: string): void
 
 Pauses a specified animation. The next time **lottie.play()** is called, the animation starts from the current frame.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | name | string | Yes   | Name of the animation to pause, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are paused.|
 
-- Example
+**Example**
+
   ```ts
   lottie.pause(this.animateName)
   ```
@@ -165,12 +167,14 @@ togglePause(name: string): void
 
 Pauses or plays a specified animation. This method is equivalent to the switching between **lottie.play()** and **lottie.pause()**.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are paused.|
 
-- Example
+**Example**
+
   ```ts
   lottie.togglePause(this.animateName)
   ```
@@ -182,12 +186,14 @@ stop(name: string): void
 
 Stops the specified animation. The next time **lottie.play()** is called, the animation starts from the first frame.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are paused.|
 
-- Example
+**Example**
+
   ```ts
   lottie.stop(this.animateName)
   ```
@@ -199,13 +205,15 @@ setSpeed(speed: number, name: string): void
 
 Sets the playback speed of the specified animation.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name   | Type    | Mandatory  | Description                                      |
   | ----- | ------ | ---- | ---------------------------------------- |
-  | speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays in backward. If the value is 0, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed.|
+  | speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays in forward direction. If the value is less than 0, the animation plays in reversed direction. If the value is 0, the animation is paused. If the value is 1.0 or -1.0, the animation plays at the normal speed.|
   | name  | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are stopped.|
 
-- Example
+**Example**
+
   ```ts
   lottie.setSpeed(5, this.animateName)
   ```
@@ -217,13 +225,15 @@ setDirection(direction: AnimationDirection, name: string): void
 
 Sets the direction in which the specified animation plays.
 
-- Parameters
-  | Name   | Type                | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name       | Type                | Mandatory  | Description                                      |
   | --------- | ------------------ | ---- | ---------------------------------------- |
   | direction | AnimationDirection | Yes   | Direction in which the animation plays. **1**: forwards; **-1**: backwards. When set to play backwards, the animation plays from the current playback progress to the first frame. When this setting is combined with **loop** being set to **true**, the animation plays backwards continuously. When the value of **speed** is less than 0, the animation also plays backwards.<br>AnimationDirection: 1 \| -1 |
   | name      | string             | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** interface. By default, all animations are set.|
 
-- Example
+**Example**
+
   ```ts
   lottie.setDirection(-1, this.animateName)
   ```
@@ -263,12 +273,14 @@ play(name?: string): void
 
 Plays an animation.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description             |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description             |
   | ---- | ------ | ---- | --------------- |
   | name | string | No   | Name of the target animation. By default, the value is null.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.play()
   ```
@@ -280,12 +292,14 @@ destroy(name?: string): void
 
 Destroys an animation.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description             |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description             |
   | ---- | ------ | ---- | --------------- |
   | name | string | No   | Name of the target animation. By default, the value is null.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.destroy()
   ```
@@ -297,12 +311,14 @@ pause(name?: string): void
 
 Pauses an animation. When the **play** interface is called next time, the animation is played from the current frame.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description             |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description             |
   | ---- | ------ | ---- | --------------- |
   | name | string | No   | Name of the target animation. By default, the value is null.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.pause()
   ```
@@ -314,12 +330,14 @@ togglePause(name?: string): void
 
 Pauses or plays an animation. This method is equivalent to the switching between **play** and **pause**.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description             |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description             |
   | ---- | ------ | ---- | --------------- |
   | name | string | No   | Name of the target animation. By default, the value is null.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.togglePause()
   ```
@@ -331,12 +349,14 @@ stop(name?: string): void
 
 Stops an animation. When the **play** interface is called next time, the animation is played from the first frame.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description             |
+**Parameters**
+
+  | Name  | Type    | Mandatory  | Description             |
   | ---- | ------ | ---- | --------------- |
   | name | string | No   | Name of the target animation. By default, the value is null.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.stop()
   ```
@@ -348,12 +368,14 @@ setSpeed(speed: number): void
 
 Sets the playback speed of an animation.
 
-- Parameters
-  | Name | Type    | Mandatory  | Description                                      |
-  | ----- | ------ | ---- | ---------------------------------------- |
-  | speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is 0, the animation is paused.|
+**Parameters**
 
-- Example
+  | Name   | Type    | Mandatory  | Description                                      |
+  | ----- | ------ | ---- | ---------------------------------------- |
+  | speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is 0, the animation is paused.|If the value is **1.0** or **-1.0**, the animation plays at the normal speed.|
+
+**Example**
+
   ```ts
   this.animateItem.setSpeed(5);
   ```
@@ -365,12 +387,14 @@ setDirection(direction: AnimationDirection): void
 
 Sets the playback direction of an animation.
 
-- Parameters
+**Parameters**
+
   | Name       | Type                | Mandatory  | Description                                      |
   | --------- | ------------------ | ---- | ---------------------------------------- |
   | direction | AnimationDirection | Yes   | Direction in which the animation plays. **1**: forwards; **-1**: backwards. When set to play backwards, the animation plays from the current playback progress to the first frame. When this setting is combined with **loop** being set to **true**, the animation plays backwards continuously. When the value of **speed** is less than 0, the animation also plays backwards.<br>AnimationDirection: 1 \| -1.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.setDirection(-1)
   ```
@@ -382,14 +406,16 @@ goToAndStop(value: number, isFrame?: boolean): void
 
 Sets the animation to stop at the specified frame or time.
 
-- Parameters
+**Parameters**
+
   | Name     | Type     | Mandatory  | Description                                      |
   | ------- | ------- | ---- | ---------------------------------------- |
   | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will stop.                    |
   | isFrame | boolean | No   | Whether to set the animation to stop at the specified frame. The value **true** means to set the animation to stop at the specified frame, and **false** means to set the animation to stop at the specified time progress. The default value is **false**.|
   | name    | string  | No   | Name of the target animation. By default, the value is null.                         |
 
-- Example
+**Example**
+
   ```ts
   // Set the animation to stop at the specified frame.
   this.animateItem.goToAndStop(25, true)
@@ -404,14 +430,16 @@ goToAndPlay(value: number, isFrame: boolean, name?: string): void
 
 Sets the animation to start from the specified frame or time progress.
 
-- Parameters
-  | Name | Type     | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name     | Type     | Mandatory  | Description                                      |
   | ------- | ------- | ---- | ---------------------------------------- |
   | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will start.                     |
   | isFrame | boolean | Yes   | Whether to set the animation to start from the specified frame. The value **true** means to set the animation to start from the specified frame, and **false** means to set the animation to start from the specified time progress. The default value is **false**.|
   | name    | string  | No   | Name of the target animation. By default, the value is null.                         |
 
-- Example
+**Example**
+
   ```ts
   // Set the animation to stop at the specified frame.
   this.animateItem.goToAndPlay(25, true)
@@ -426,13 +454,15 @@ playSegments(segments: AnimationSegment | AnimationSegment[], forceFlag: boolean
 
 Sets the animation to play only the specified segment.
 
-- Parameters
-  | Name   | Type                                      | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name       | Type                                      | Mandatory  | Description                                      |
   | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | segments  | AnimationSegment = [number, number] \| AnimationSegment[] | Yes   | Segment or segment list.<br>If all segments in the segment list are played, only the last segment is played in the next cycle.|
   | forceFlag | boolean                                  | Yes   | Whether the settings take effect immediately. The value **true** means the settings take effect immediately, and **false** means the settings take effect until the current cycle of playback is completed.          |
 
-- Example
+**Example**
+
   ```ts
   // Set the animation to play the specified segment.
   this.animateItem.playSegments([10, 20], false)
@@ -447,12 +477,14 @@ resetSegments(forceFlag: boolean): void
 
 Resets the settings configured by the **playSegments** method to play all the frames.
 
-- Parameters
+**Parameters**
+
   | Name       | Type     | Mandatory  | Description                            |
   | --------- | ------- | ---- | ------------------------------ |
   | forceFlag | boolean | Yes   | Whether the settings take effect immediately. The value **true** means the settings take effect immediately, and **false** means the settings take effect until the current cycle of playback is completed.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.resetSegments(true)
   ```
@@ -464,7 +496,8 @@ resize(): void
 
 Resizes the animation layout.
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.resize()
   ```
@@ -476,12 +509,14 @@ setSubframe(useSubFrame: boolean): void
 
 Sets the precision of the **currentFrame** attribute to display floating-point numbers.
 
-- Parameters
-  | Name      | Type     | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name          | Type     | Mandatory  | Description                                      |
   | ------------ | ------- | ---- | ---------------------------------------- |
   | useSubFrames | boolean | Yes   | Whether the **currentFrame** attribute displays floating-point numbers. By default, the attribute displays floating-point numbers.<br>**true**: The **currentFrame** attribute displays floating-point numbers.<br>**false**: The **currentFrame** attribute displays an integer and does not display floating-point numbers.|
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.setSubframe(false)
   ```
@@ -493,12 +528,14 @@ getDuration(inFrames?: boolean): void
 
 Obtains the duration (irrelevant to the playback speed) or number of frames for playing an animation sequence. The settings are related to the input parameter **initialSegment** of the **Lottie.loadAnimation** interface.
 
-- Parameters
-  | Name  | Type     | Mandatory  | Description                                      |
-  | -------- | ------- | ---- | ---------------------------------------- |
-  | inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms. The default value is **false**.|
+**Parameters**
 
-- Example
+  | Name      | Type     | Mandatory  | Description                                      |
+  | -------- | ------- | ---- | ---------------------------------------- |
+  | inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms.<br>Default value: **false**|
+
+**Example**
+
   ```ts
   this.animateItem.getDuration(true)
   ```
@@ -510,13 +547,15 @@ addEventListener&lt;T = any&gt;(name: AnimationEventName, callback: AnimationEve
 
 Adds an event listener. After the event is complete, the specified callback function is triggered. This method returns the function object that can delete the event listener.
 
-- Parameters
-  | Name  | Type                             | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name      | Type                             | Mandatory  | Description                                      |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | name     | AnimationEventName              | Yes   | Animation event type. The available options are as follows:<br>'enterFrame', 'loopComplete', 'complete', 'segmentStart', 'destroy', 'config_ready', 'data_ready', 'DOMLoaded', 'error', 'data_failed', 'loaded_images'|
   | callback | AnimationEventCallback&lt;T&gt; | Yes   | Custom callback.                               |
 
-- Example
+**Example**
+
   ```ts
   private callbackItem: any = function() {
       console.log("grunt loopComplete")
@@ -534,13 +573,15 @@ removeEventListener&lt;T = any&gt;(name: AnimationEventName, callback?: Animatio
 
 Removes an event listener.
 
-- Parameters
-  | Name  | Type                             | Mandatory  | Description                                      |
+**Parameters**
+
+  | Name      | Type                             | Mandatory  | Description                                      |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | name     | AnimationEventName              | Yes   | Animation event type. The available options are as follows:<br>'enterFrame', 'loopComplete', 'complete', 'segmentStart', 'destroy', 'config_ready', 'data_ready', 'DOMLoaded', 'error', 'data_failed', 'loaded_images'|
   | callback | AnimationEventCallback&lt;T&gt; | No   | Custom callback. By default, the value is null, meaning that all callbacks of the event will be removed.           |
 
-- Example
+**Example**
+
   ```ts
   this.animateItem.removeEventListener('loopComplete', this.animateName)
   ```
@@ -552,13 +593,15 @@ triggerEvent&lt;T = any&gt;(name: AnimationEventName, args: T): void
 
 Directly triggers all configured callbacks of a specified event.
 
-- Parameters
+**Parameters**
+
   | Name  | Type                | Mandatory  | Description       |
   | ---- | ------------------ | ---- | --------- |
   | name | AnimationEventName | Yes   | Animation event type. |
   | args | any                | Yes   | Custom callback parameters.|
 
-- Example
+**Example**
+
   ```ts
   private triggerCallBack: any = function(item) {
       console.log("trigger loopComplete, name:" + item.name)

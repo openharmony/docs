@@ -1,16 +1,10 @@
 # TextInput
 
-> **NOTE**
->
-> This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
-
 The **\<TextInput>** component provides single-line text input.
 
-
-## Required Permissions
-
-None
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Child Components
@@ -20,83 +14,81 @@ Not supported
 
 ## APIs
 
-TextInput(value?:{placeholder?: string controller?: TextInputController})
+TextInput(value?:{placeholder?: [ResourceStr](ts-types.md#resourcestr8), text?: [ResourceStr](ts-types.md#resourcestr8), controller?: TextInputController})
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | placeholder | string | No | - | Text displayed when there is no input. |
-  | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No | - | Text input controller. |
+**Parameters**
+
+| Name                    | Type                                    | Mandatory  | Description           |
+| ----------------------- | ---------------------------------------- | ---- | --------------- |
+| placeholder   | [ResourceStr](ts-types.md#resourcestr8)      | No   | Text displayed when there is no input.     |
+| text          | [ResourceStr](ts-types.md#resourcestr8)      | No   | Current text input.    |
+| controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
 ## Attributes
 
-In addition to universal attributes, the following attributes are supported.
+In addition to the universal attributes, the following attributes are supported.
 
-| Name | Type | Default Value | Description |
-| -------- | -------- | -------- | -------- |
-| type | InputType | InputType.Normal | Input box type. |
-| placeholderColor | Color | - | Placeholder color. |
-| placeholderFont | {<br/>size?: Length,<br/>weight?: number\|[FontWeight](ts-universal-attributes-text-style.md),<br/>family?: string,<br/>style?: [FontStyle](ts-universal-attributes-text-style.md)<br/>} | - | Placeholder text style.<br/>- **size**: font size. If the value is of the number type, the unit fp is used.<br/>- **weight**: font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.<br/>- **family**: font family. Use commas (,) to separate multiple fonts, for example, **'Arial, sans-serif'**. The priority of the fonts is the sequence in which they are placed.<br/>- **style**: font style. |
-| enterKeyType | EnterKeyType | EnterKeyType.Done | How the Enter key is labeled. |
-| caretColor | Color | - | Color of the caret (also known as the text insertion cursor). |
-| maxLength | number | - | Maximum number of characters in the text input. |
-| inputFilter<sup>8+</sup> | {<br/>value: [ResourceStr](../../ui/ts-types.md)<sup>8+</sup>,<br/>error?: (value: string)<br/>} | - | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(? =.\*\d)(? =.\*[a-z])(? =.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br/>- **value**: regular expression to set.<br/>- **error**: error message containing the ignored content returned when regular expression matching fails. |
+| Name                      | Type                                    | Description                                      |
+| ------------------------ | ---------------------------------------- | ---------------------------------------- |
+| type                     | InputType                                | Input box type.<br>Default value: **InputType.Normal**       |
+| placeholderColor         | [ResourceColor](ts-types.md#resourcecolor8)    | Placeholder text color.|
+| placeholderFont          | [Font](ts-types.md#font) | Placeholder text style.|
+| enterKeyType             | EnterKeyType                             | How the Enter key is labeled.<br>Default value: **EnterKeyType.Done**   |
+| caretColor               | [ResourceColor](ts-types.md#resourcecolor8)   | Color of the caret in the text box.                              |
+| maxLength                | number                                   | Maximum number of characters in the text input.                           |
+| inputFilter<sup>8+</sup>      | {<br>value: value:&nbsp;[ResourceStr](ts-types.md#resourcestr8)<sup>8+</sup>,<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are ignored. The specified regular expression can match single characters, but not strings. Example: ^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).{8,10}$. Strong passwords containing 8 to 10 characters cannot be filtered.<br>- **value**: regular expression to set.<br>- **error**: ignored content to return when regular expression matching fails.|
 
-- EnterKeyType enums
-  | Name | Description |
-  | -------- | -------- |
-  | EnterKeyType.Go | The Enter key is labeled **Go**. |
-  | EnterKeyType.Search | The Enter key is labeled **Search**. |
-  | EnterKeyType.Send | The Enter key is labeled **Send**. |
-  | EnterKeyType.Next | The Enter key is labeled **Next**. |
-  | EnterKeyType.Done | The Enter key is labeled **Done**. |
+## EnterKeyType
 
-- InputType enums
-  | Name | Description |
-  | -------- | -------- |
-  | InputType.Normal | Normal input mode. |
-  | InputType.Password | Password input mode. |
-  | InputType.Email | Email address input mode. |
-  | InputType.Number | Digit input mode. |
+| Name                 | Description       |
+| ------------------- | --------- |
+| Go     | The Enter key is labeled "Go."  |
+| Search | The Enter key is labeled "Search." |
+| Send   | The Enter key is labeled "Send." |
+| Next   | The Enter key is labeled "Next."|
+| Done   | The Enter key is labeled "Done."    |
 
+## InputType enums
 
-## Events
+| Name                | Description           |
+| ------------------ | ------------- |
+| Normal   | Normal input mode. |
+| Password | Password input mode.      |
+| Email    | Email address input mode.|
+| Number   | Digit input mode.     |
 
-| Name | Description |
-| -------- | -------- |
-| onChange(value: string) =&gt; void | Triggered when the input changes. |
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed. |
-| onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated) </sup> | Triggered when the input status changes. |
-| onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) <sup>8+</sup> | Triggered when the input status changes. |
-| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be copied. |
-| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be cut. |
-| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br/>**value**: text to be pasted. |
+## Event
 
-### TextInputController<sup>8+</sup>
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.             |
+| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the physical or soft keyboard is pressed.         |
+| onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated) </sup> | Triggered when the input status changes.                           |
+| onEditChange(callback: (isEditing: boolean) =&gt; void) <sup>8+</sup> | Triggered when the input status changes.                           |
+| onCopy<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
+| onCut<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
+| onPaste<sup>8+</sup>(callback:(value: string) =&gt; void) | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.|
+
+## TextInputController<sup>8+</sup>
 
 Implements the controller of the **\<TextInput>** component.
 
-
-#### Objects to Import
-
-
+### Objects to Import
 ```
 controller: TextInputController = new TextInputController()
 ```
-
-
-#### caretPosition
+### caretPosition
 
 caretPosition(value: number): void
 
 Sets the position of the caret.
 
-- Parameters
-  | Name | Type | Mandatory | Default Value | Description |
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | number | Yes | - | Length from the start of the text string to the position where the caret is located. |
+**Parameters**
 
+| Name| Type| Mandatory| Description                              |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | number   | Yes  | Length from the start of the string to the position where the caret is located.|
 
 
 ## Example
