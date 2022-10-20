@@ -213,7 +213,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       >
       > - caps值：比如业务模块要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
       >
-      > - preload:驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)
+      > - preload：驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)
 
 
    - 驱动私有配置信息（可选）
