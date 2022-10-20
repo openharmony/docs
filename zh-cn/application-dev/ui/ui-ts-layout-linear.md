@@ -1,6 +1,6 @@
 # 线性布局
 
-线性布局(LinearLayout)是开发中最常用的布局。正如其名，线性布局的子组件在线性方向上（水平方向和垂直方向）依次排列。
+线性布局(LinearLayout)是开发中最常用的布局。线性布局的子组件在线性方向上（水平方向和垂直方向）依次排列。
 
 通过线性容器[Row](../reference/arkui-ts/ts-container-row.md)和[Column](../reference/arkui-ts/ts-container-column.md)实现线性布局。Column容器内子组件按照垂直方向排列，Row组件中，子组件按照水平方向排列。
 
@@ -15,7 +15,7 @@
 
   |属性名|描述|Row效果图|Column效果图|
   |------|---------------------------|----------------------------|---------------------------|
-  |space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子元素垂直方向间距|   
+  |space |- 横向布局中各子组件的在水平方向的间距<br> - 纵向布局中个子组件垂直方向间距|   
 
 ![](figures/rowspace.png)      |   ![](figures/columnspace.png)
 
@@ -57,10 +57,10 @@ struct BlankExample {
 
 自适应缩放是指在各种不同大小设备中，子组件按照预设的比例，尺寸随容器尺寸的变化而变化。在线性布局中有下列方法实现：
 
-1. 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，在任意尺寸设备下，自适应占满剩余空间。
+1. 父容器尺寸确定时，设置了layoutWeight属性的子组件与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，在任意尺寸设备下，自适应占满剩余空间。
     
 
-```ts
+  ```ts
     @Entry
     @Component
     struct layoutWeightExample {
@@ -102,12 +102,10 @@ struct BlankExample {
                 .textAlign(TextAlign.Center)
             }.layoutWeight(3).backgroundColor(0xffd306).height('100%')
           }.backgroundColor(0xffd306).height('30%')
-    
-    
         }
       }
     }
-    ```
+  ```
 
   ![](figures/layoutWeight.gif)
 
@@ -146,8 +144,46 @@ struct BlankExample {
 上例中，在任意大小的设备中，子组件的宽度占比固定。
 
 ## 定位能力
+* 相对定位
 
-* **绝对定位**
+  使用组件的[offset属性](../reference/arkui-ts/ts-universal-attributes-location.md)可以实现相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。使用线性布局和offset可以实现大部分布局的开发。
+  
+
+```ts
+  @Entry
+  @Component
+  struct OffsetExample {
+    @Styles eleStyle() {
+      .size({ width: 120, height: '50' })
+      .backgroundColor(0xbbb2cb)
+      .border({ width: 1 })
+    }
+  
+    build() {
+      Column({ space: 20 }) {
+        Row() {
+          Text('1').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          Text('2  offset(15, 30)')
+            .eleStyle()
+            .fontSize(16)
+            .align(Alignment.Start)
+            .offset({ x: 15, y: 30 })
+          Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          Text('4 offset(-10%, 20%)')
+            .eleStyle()
+            .fontSize(16)
+            .offset({ x: '-5%', y: '20%' })
+        }.width('90%').height(150).border({ width: 1, style: BorderStyle.Dashed })
+      }
+      .width('100%')
+      .margin({ top: 25 })
+    }
+  } 
+  ```
+
+  ![](figures/offset.gif)
+
+* 绝对定位
 
   线性布局中可以使用组件的[positon属性](../reference/arkui-ts/ts-universal-attributes-location.md)实现绝对布局（AbsoluteLayout），设置元素左上角相对于父容器左上角偏移位置。对于不同尺寸的设备，使用绝对定位的适应性会比较差，在屏幕的适配上有缺陷。
   
@@ -188,49 +224,15 @@ struct BlankExample {
   ```
 
   ![](figures/position.gif)
-* 相对定位
 
-  使用组件的[offset属性](../reference/arkui-ts/ts-universal-attributes-location.md)可以实现相对定位，设置元素相对于自身的偏移量。设置该属性，不影响父容器布局，仅在绘制时进行位置调整。使用线性布局和offset可以实现大部分布局的开发。
-  
-
-```ts
-  @Entry
-  @Component
-  struct OffsetExample {
-    @Styles eleStyle() {
-      .size({ width: 120, height: '50' })
-      .backgroundColor(0xbbb2cb)
-      .border({ width: 1 })
-    }
-  
-    build() {
-      Column({ space: 20 }) {
-        Row() {
-          Text('1').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
-          Text('2  offset(15, 30)')
-            .eleStyle()
-            .fontSize(16)
-            .align(Alignment.Start)
-            .offset({ x: 15, y: 30 })
-          Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
-          Text('4 offset(-10%, 20%)')
-            .eleStyle()
-            .fontSize(16)
-            .offset({ x: '-5%', y: '20%' })
-        }.width('90%').height(150).border({ width: 1, style: BorderStyle.Dashed })
-      }
-      .width('100%')
-      .margin({ top: 25 })
-    }
-  } 
-  ```
-
-  ![](figures/offset.gif)
 
 ## 自适应延伸
 
-自适应延伸，顾名思义，在不同尺寸设备下，显示内容个数不一，并延伸到屏幕外，通过滚动条拖动展示。适用于线性布局中内容一屏无法展示情景。常见下面两类实现方法。
+自适应延伸是在不同尺寸设备下，当页面显示内容个数不一并延伸到屏幕外时，可通过滚动条拖动展示。适用于线性布局中内容无法一屏展示的场景。常见以下两类实现方法。
+
+
 * List组件
+
   List子项过多一屏放不下时，未展示的子项通过滚动条拖动显示。通过scrollBar属性设置滚动条的常驻状态，edgeEffect属性设置拖动到极限的回弹效果。
   
 

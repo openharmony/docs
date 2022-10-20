@@ -1,6 +1,6 @@
 # 媒体查询
 
-媒体查询（Media Query）作为响应式设计的核心，在移动设备上应用十分广泛。它根据不同设备类型或同设备不同状态修改应用的样式。媒体查询的优势有：
+[媒体查询（Media Query）](../reference/apis/js-apis-mediaquery.md)作为响应式设计的核心，在移动设备上应用十分广泛。它根据不同设备类型或同设备不同状态修改应用的样式。媒体查询的优势有：
 
 1. 提供丰富的媒体特征监听能力，针对设备和应用的属性信息（比如显示区域、深浅色、分辨率），设计出相匹配的布局。
 
@@ -12,7 +12,7 @@
 
 通过调用媒体查询接口，设置媒体查询条件和查询结果的回调函数，在对应的条件的回调函数里更改页面布局或者实现业务逻辑。具体步骤如下：
 
-首先导入媒体查询模块，例如：
+首先导入媒体查询模块。
 
 ```ts
 import mediaquery from '@ohos.mediaquery'
@@ -164,4 +164,4 @@ listener.on('change', onPortrait)
 
 使用媒体查询的自适应布局开发，有以下相关实例可供参考：
 
-* [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)
+- [`MediaQuery`：媒体查询（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MediaQuery)

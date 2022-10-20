@@ -1,17 +1,17 @@
 # 栅格布局
 
 栅格组件[GridRow](../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../reference/arkui-ts/ts-container-gridcol.md)
-相对于GridContainer提供了更灵活、更全面的栅格系统实现方案。其中GridRow为栅格容器组件，仅可以和栅格子组件(GridCol)在栅格布局场景中使用。GridCol作为栅格子组件使用。
+相对于[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)提供了更灵活、更全面的栅格系统实现方案。其中GridRow为栅格容器组件，仅可以和栅格子组件(GridCol)在栅格布局场景中使用。GridCol作为栅格子组件使用。
 
 ## 栅格容器GridRow
 
-栅格布局的栅格特性由GridRow组件的columns、gutter、direction、breakpoints四个关键特性决定。
+栅格布局的列数，间隔，排列方向和断点由GridRow组件的columns、gutter、direction、breakpoints四个关键特性决定。
 
 ### 栅格布局的总列数
 
 栅格布局的主要定位工具，设置栅格布局的总列数。
 
-* 当类型为number时，栅格布局在任何尺寸设备下都被分为columns列。当未设置columns时，使用系统默认的值，将栅格布局分成12列。
+* 当columns类型为number时，栅格布局在任何尺寸设备下都被分为columns列。当未设置columns时，使用系统默认的值，将栅格布局分成12列。
   
 
 ```ts
@@ -19,8 +19,8 @@
     ForEach(this.bgColors, (color, index) => {
       GridCol() {
         Row() {
-          Text("" + index)
-        }.width("100%").height("50vp")                 
+          Text(${index})
+        }.width("100%").height("50")                 
       }
       .backgroundColor(color)
       .span(2)  
@@ -30,9 +30,9 @@
 
   ![](figures/columns1.png)
   
-  如上所示，栅格系统默认分成12列，每一个子元素占2列，前6个子元素在第一排。
+  如上所示，栅格系统默认分成12列，每一个子组件占2列，前6个子组件在第一排。
 
-* 当类型为GridRowColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
+* 当columns类型为GridRowColumnOption时，支持下面六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
   
 
 ```ts
@@ -41,11 +41,11 @@
 
   如上，若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里详单与设置了，xs:12, sm:8, md:10, lg:10, xl:10, xxl:10。
 
-### 栅格子元素间距
+### 栅格子组件间距
 
-通过GridRow的gutter属性设置元素之间的距离，决定了内容间的紧密程度。
+GridRow的gutter属性设置元素之间的距离，决定内容间的紧密程度。
 
-* 当类型为number时，同时设置栅格子元素间的水平垂直边距且相等。
+* 当类型为number时，同时设置栅格子组件间的水平垂直边距且相等。
   
 
 ```ts
@@ -54,9 +54,9 @@
 
   ![](figures/gutter1.png)
   
-  上例中，子元素水平与垂直方向距离相邻元素的间距为10。
+  上例中，子组件水平与垂直方向距离相邻元素的间距为10。
 
-* 当类型为GutterOption时，单独设置栅格子元素水平垂直边距，x属性为水平方向间距，y为垂直方向间距。
+* 当类型为GutterOption时，单独设置栅格子组件水平垂直边距，x属性为水平方向间距，y为垂直方向间距。
   
 
 ```ts
@@ -65,11 +65,11 @@
 
   ![](figures/gutter2.png)  
 
-### 排布方向
+### 排列方向
 
-通过GridRow的direction属性设置栅格子元素在栅格容器中的排列方向。
+通过GridRow的direction属性设置栅格子组件在栅格容器中的排列方向。
 
-* 子元素默认从左往右排列。
+* 子组件默认从左往右排列。
   
 
 ```ts
@@ -79,7 +79,7 @@
   
   ![](figures/direction1.png)
 
-* 子元素从右往左排列。
+* 子组件从右往左排列。
   
 
 ```ts
@@ -101,7 +101,7 @@
 | md | [520, 840) | 
 | lg | [840, +∞)  | 
 
-在GridRow新栅格组件中，允许开发者使用breakpoints自定义修改断点的取值范围，最多支持6个断点，除了默认的四个断点外，还可以启用xl, xxl两个断点。
+在GridRow新栅格组件中，允许开发者使用breakpoints自定义修改断点的取值范围，最多支持6个断点，除了默认的四个断点外，还可以启用xl，xxl两个断点。
 
 * 针对断点位置，开发者可以根据实际使用场景，通过一个单调递增数组设置，例如：
   
@@ -143,7 +143,7 @@
            }
          }) {
            Row() {
-             Text("" + index)
+             Text(${index})
            }.width("100%").height("50vp")
          }.backgroundColor(color)
   
@@ -155,11 +155,10 @@
 
 首次通过设置断点位置，得到一系列断点区间；其次，借助栅格组件能力监听应用窗口大小的变化，判断应用当前处于哪个断点区间，进而可以调整应用的布局，实现栅格布局。
 
-## 栅格子元素GridCol
+## 栅格子组件GridCol
 
-GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order三个概念。
+GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设置属性两种方式，设置span，offset，order的值。
 
-通过给GridCol传参或者设置属性两种方式设置span，offset，order的值。
 
 * span的设置
   
@@ -195,9 +194,9 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
 
 ### span
 
-子元素占栅格布局的列数，决定了子元素的宽度，默认为1。
+子组件占栅格布局的列数，决定了子组件的宽度，默认为1。
 
-* 当类型为number时，子元素在所有尺寸设备下占用的列数相同。
+* 当类型为number时，子组件在所有尺寸设备下占用的列数相同。
   
 
 ```ts
@@ -205,7 +204,7 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: 2 }) {      
         Row() {
-          Text("" + index)
+          Text(${index})
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)
@@ -215,7 +214,7 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
 
   ![](figures/span1.png)
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs，sm,md,lg,xl,xxl）设备中子元素所占列数设置,各个尺寸下数值可不同。
+- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
   
 
 ```ts
@@ -223,7 +222,7 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
     ForEach(this.bgColors, (color, index) => {
       GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
         Row() {
-          Text("" + index)
+          Text(${index})
         }.width("100%").height("50vp")          
       }
       .backgroundColor(color)
@@ -235,8 +234,8 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
 
 ### offset
 
-栅格子元素相对于前一个子元素的偏移列数，默认为0。
-* 当类型为number时，子元素偏移相同列数。
+栅格子组件相对于前一个子组件的偏移列数，默认为0。
+* 当类型为number时，子组件偏移相同列数。
   
 
 ```ts
@@ -253,9 +252,9 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
   ```
 
   ![](figures/offset1.png)
-  栅格默认分成12列，每一个子元素默认占1列，偏移2列，每个子元素及间距共占3列，一行放四个子元素。
+  栅格默认分成12列，每一个子组件默认占1列，偏移2列，每个子组件及间距共占3列，一行放四个子组件。
 
-- 当类型为GridColColumnOption时，支持六种不同尺寸（xs，sm,md,lg,xl,xxl）设备中子元素所占列数设置,各个尺寸下数值可不同。
+- 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
   
 
 ```ts
@@ -277,7 +276,7 @@ GridCol组件作为GridRow组件的子组件使用。涉及span，offset，order
 
   栅格子组件的序号，决定子组件排列次序。当子组件不设置order或者设置相同的order, 子组件按照代码顺序展示。当子组件设置不同的order时，order较大的组件在前，较小的在后。
   当子组件部分设置order，部分不设置order时，未设置order的子组件依次排序靠前，设置了order的子组件按照数值从大到小排列。
-* 当类型为number时，子元素在任何尺寸下排序次序一致。
+* 当类型为number时，子组件在任何尺寸下排序次序一致。
 
 ```ts
 GridRow() {
@@ -305,8 +304,8 @@ GridRow() {
 ```
 
   ![](figures/order1.png)
-* 当类型为GridColColumnOption时，支持六种不同尺寸（xs，sm, md, lg, xl, xxl）设备中子元素排序次序设置。
+* 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件排序次序设置。
 
   ![](figures/order2.gif)
 
-## 场景示例
+

@@ -1,12 +1,14 @@
 # 弹性布局
 
-弹性布局（Flex布局）是自适应布局中使用最为灵活的布局。弹性布局提供一种更加有效的方式来对容器中的子元素进行排列、对齐和分配空白空间。
+弹性布局（Flex布局）是自适应布局中使用最为灵活的布局。弹性布局提供一种更加有效的方式来对容器中的子组件进行排列、对齐和分配空白空间。
 开发者可以通过Flex的接口创建容器组件，进而对容器内的其他元素进行弹性布局。
 
-## 创建弹性布局
+- 容器
+- 子组件
+- 主轴
+- 交叉轴
 
- 
-接口的调用形式如下：
+## 创建弹性布局
 
  `Flex(options?: { direction?: FlexDirection, wrap?: FlexWrap,  justifyContent?: FlexAlign, alignItems?: ItemAlign, alignContent?: FlexAlign })`
 
@@ -14,7 +16,7 @@
 
 ## 弹性布局方向
 
-弹性布局有两个方向，子组件排列的方向是主轴，与主轴垂直的方向是交叉轴。通过direction参数设置容器主轴的方向，可选值有：
+弹性布局的方向分为水平方向和垂直方向。子组件排列的方向是主轴，与主轴垂直的方向是交叉轴。通过direction参数设置容器主轴的方向，可选值有：
 
 * FlexDirection. Row（默认值）：主轴为水平方向，子组件从起始端沿着水平方向开始排布。
 
@@ -100,7 +102,7 @@
 
 默认情况下，子组件在Flex容器中都排在一条线（又称"轴线"）上。通过wrap参数设置其他换行方式，可选值有：
 
-* FlexWrap. NoWrap（默认值）: 不换行。如果子元素的宽度总和大于父元素的宽度，则子元素会被压缩宽度。
+* FlexWrap. NoWrap（默认值）: 不换行。如果子组件的宽度总和大于父元素的宽度，则子组件会被压缩宽度。
 
   
 
@@ -119,7 +121,7 @@
 
 ![zh-cn_image_0000001263139409](figures/zh-cn_image_0000001263139409.png)
 
-* FlexWrap. Wrap：换行，每一行子元素按照主轴方向排列。
+* FlexWrap. Wrap：换行，每一行子组件按照主轴方向排列。
 
   
 
@@ -138,7 +140,7 @@
 
 ![zh-cn_image_0000001218419614](figures/zh-cn_image_0000001218419614.png)
 
-* FlexWrap. WrapReverse：换行，每一行子元素按照主轴反方向排列。
+* FlexWrap. WrapReverse：换行，每一行子组件按照主轴反方向排列。
 
   
 
@@ -163,7 +165,7 @@
 
 可以通过justifyContent参数设置在主轴的对齐方式，可选值有：
 
-* FlexAlign. Start（默认值）: 子元素在主轴方向首端对齐, 第一个子元素与父元素边沿对齐，其他元素与前一个元素对齐。
+* FlexAlign. Start（默认值）: 子组件在主轴方向首端对齐, 第一个子组件与父元素边沿对齐，其他元素与前一个元素对齐。
 
   
 
@@ -181,7 +183,7 @@
 
 ![zh-cn_image_0000001218259634](figures/mainStart.png)
 
-* FlexAlign. Center: 子元素在主轴方向居中对齐。
+* FlexAlign. Center: 子组件在主轴方向居中对齐。
 
   
 
@@ -200,7 +202,7 @@
 
 ![zh-cn_image_0000001218579608](figures/mainCenter.png)
 
-* FlexAlign. End: 子元素在主轴方向尾部对齐, 最后一个子元素与父元素边沿对齐，其他元素与后一个元素对齐。
+* FlexAlign. End: 子组件在主轴方向尾部对齐, 最后一个子组件与父元素边沿对齐，其他元素与后一个元素对齐。
 
   
 
@@ -219,7 +221,7 @@
 
 ![zh-cn_image_0000001218739568](figures/mainEnd.png)
 
-* FlexAlign. SpaceBetween:  Flex主轴方向均匀分配弹性元素，相邻子元素之间距离相同。第一个子元素和最后一个子元素与父元素边沿对齐。
+* FlexAlign. SpaceBetween:  Flex主轴方向均匀分配弹性元素，相邻子组件之间距离相同。第一个子组件和最后一个子组件与父元素边沿对齐。
 
   
 
@@ -238,7 +240,7 @@
 
 ![zh-cn_image_0000001263019461](figures/mainSpacebetween.png)
 
-* FlexAlign. SpaceAround:  Flex主轴方向均匀分配弹性元素，相邻子元素之间距离相同。 第一个子元素到行首的距离和最后一个子元素到行尾的距离是相邻元素之间距离的一半。
+* FlexAlign. SpaceAround:  Flex主轴方向均匀分配弹性元素，相邻子组件之间距离相同。 第一个子组件到行首的距离和最后一个子组件到行尾的距离是相邻元素之间距离的一半。
 
   
 
@@ -257,7 +259,7 @@
 
 ![zh-cn_image_0000001263339461](figures/mainSpacearound.png)
 
-* FlexAlign. SpaceEvenly:  Flex主轴方向元素等间距布局，相邻子元素之间的间距、第一个子元素与行首的间距、最后一个子元素到行尾的间距均相等。
+* FlexAlign. SpaceEvenly:  Flex主轴方向元素等间距布局，相邻子组件之间的间距、第一个子组件与行首的间距、最后一个子组件到行尾的间距均相等。
 
   
 
@@ -279,7 +281,7 @@
 ### 交叉轴对齐
 
 #### 容器组件设置交叉轴对齐
-可以通过flex组件的alignItems参数设置子元素在交叉轴的对齐方式，可选值有：
+可以通过flex组件的alignItems参数设置子组件在交叉轴的对齐方式，可选值有：
 
 * ItemAlign. Auto: 使用Flex容器中默认配置。
 
@@ -426,9 +428,9 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ### 内容对齐
 
-可以通过alignContent参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的flex布局中生效，可选值有：
+可以通过alignContent参数设置子组件各行在交叉轴剩余空间内的对齐方式，只在多行的flex布局中生效，可选值有：
 
-* FlexAlign. Start: 子元素各行与交叉轴起点对齐。
+* FlexAlign. Start: 子组件各行与交叉轴起点对齐。
 
   
 
@@ -451,7 +453,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ![crossStart.png](figures/crossStart.png)
 
-* FlexAlign. Center: 子元素各行在交叉轴方向居中对齐。
+* FlexAlign. Center: 子组件各行在交叉轴方向居中对齐。
 
   
 
@@ -472,7 +474,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ![crossCenter.png](figures/crossCenter.png)
 
-* FlexAlign. End: 子元素各行与交叉轴终点对齐。
+* FlexAlign. End: 子组件各行与交叉轴终点对齐。
 
   
 
@@ -493,7 +495,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ![crossEnd.png](figures/crossEnd.png)
 
-* FlexAlign. SpaceBetween: 子元素各行与交叉轴两端对齐，各行间垂直间距平均分布。
+* FlexAlign. SpaceBetween: 子组件各行与交叉轴两端对齐，各行间垂直间距平均分布。
 
   
 
@@ -514,7 +516,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ![crossSpacebetween.png](figures/crossSpacebetween.png)
 
-* FlexAlign. SpaceAround: 子元素各行间距相等，是元素首尾行与交叉轴两端距离的两倍。
+* FlexAlign. SpaceAround: 子组件各行间距相等，是元素首尾行与交叉轴两端距离的两倍。
 
   
 
@@ -536,7 +538,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
 
 ![crossSpacearound.png](figures/crossSpacearound.png)
 
-* FlexAlign. SpaceEvenly:  子元素各行间距，子元素首尾行与交叉轴两端距离都相等。
+* FlexAlign. SpaceEvenly:  子组件各行间距，子组件首尾行与交叉轴两端距离都相等。
 
   
 
@@ -615,10 +617,10 @@ Flex() {
 
 ![](figures/flexgrow.png)
 
-上图中，父容器宽度400vp, 三个子元素原始宽度为100vp，综合300vp，剩余空间100vp根据flexGrow值的占比分配给子元素，未设置flexGrow的子元素不参与“瓜分”。
+上图中，父容器宽度400vp, 三个子组件原始宽度为100vp，综合300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
 第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp*2/5=140vp，第二个元素为100vp+100vp*3/5=160vp。
 
-3. flexShrink: 当父容器空间不足时，子元素的压缩比例。
+3. flexShrink: 当父容器空间不足时，子组件的压缩比例。
 
 ```ts
 Flex({ direction: FlexDirection.Row }) {
@@ -645,7 +647,7 @@ Flex({ direction: FlexDirection.Row }) {
 
 ## 场景示例
 
-使用弹性布局，可以实现子元素沿水平方向排列，两端对齐，子元素间距平分，竖直方向上子元素居中的效果。示例如下：
+使用弹性布局，可以实现子组件沿水平方向排列，两端对齐，子组件间距平分，竖直方向上子组件居中的效果。示例如下：
 
 ```ts
 @Entry  
@@ -674,6 +676,6 @@ struct FlexExample {
 
 针对弹性布局开发，有以下相关实例可供参考：
 
-* [弹性布局（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
+- [弹性布局（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)
 
-* [ArkUI常用布局容器对齐方式（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/LayoutAlignmentDemo)
+- [ArkUI常用布局容器对齐方式（eTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/LayoutAlignmentDemo)

@@ -1,19 +1,21 @@
 # 网格布局
 
-网格布局（GridLayout）是自适应布局中一种重要的布局，具备较强的布局均分能力，子元素占比控制能力。
-通过容器组件[Grid](../reference/arkui-ts/ts-container-grid.md)组件和子组件[GridItem](../reference/arkui-ts/ts-container-griditem.md)实现，总结优势如下：
+网格布局（GridLayout）是自适应布局中一种重要的布局，具备较强的页面均分能力，子组件占比控制能力。
+通过[Grid](../reference/arkui-ts/ts-container-grid.md)容器组件和子组件[GridItem](../reference/arkui-ts/ts-container-griditem.md)实现，
+Grid用于设置网格布局相关参数，GridItem定义子组件相关特征。优势如下：
 
 1. 容器组件尺寸发生变化时，所有子组件以及间距等比例调整，实现布局的自适应能力。
 2. 支持自定义网格布局行数和列数，以及每行每列尺寸占比。
 3. 支持设置网格布局中子组件的行列间距。
 4. 支持设置子组件横跨几行或者几列。
  
-网格布局中Grid组件作为容器组件，用于设置网格布局相关参数。GridItem作为Grid的子组件使用，定义子组件相关特征。
+
 
 ## 容器组件Grid设置
 
 ### 行列数量占比
 通过Grid的组件的columnsTemplate和rowTemplate属性设置网格布局行列数量与尺寸占比。
+
 下面以columnsTemplate为例，介绍该属性的设置，该属性值是一个由多个空格和'数字+fr'间隔拼接的字符串，fr的个数即网格布局的列数，fr前面的数值大小，用于计算该列在网格布局宽度上的占比，最终决定该列的宽度。
 
 ```ts
@@ -48,7 +50,7 @@ Grid().columnsTemplate('4fr 2fr 3fr')
 
 ### 行列间距
 
-columnsGap用于设置网格子元素GridItem垂直方向的间距，rowsGap用于设置GridItem水平方向的间距。
+columnsGap用于设置网格子组件GridItem垂直方向的间距，rowsGap用于设置GridItem水平方向的间距。
 
 ```ts
 Grid()
@@ -67,7 +69,7 @@ Grid()
 
 网格布局的行列标号从1开始，依次编号。
 
-子组件横跨多行时，通过rowStart设置子组件起始行编号，rowEnd设置终点行编号。当rowStart值与rowEnd值相同时，子元素只占一个网格。示例如下：
+子组件横跨多行时，通过rowStart设置子组件起始行编号，rowEnd设置终点行编号。当rowStart值与rowEnd值相同时，子组件只占一个网格。示例如下：
 
 ```ts
 Grid() {
@@ -76,7 +78,7 @@ Grid() {
         .fontSize(16)
         .textAlign(TextAlign.Center)
         .textStyle()
-    }.rowStart(2).rowEnd(3)  // 5子元素从第二列到第三列
+    }.rowStart(2).rowEnd(3)  // 5子组件从第二列到第三列
 
     GridItem() {
       Text('4')
