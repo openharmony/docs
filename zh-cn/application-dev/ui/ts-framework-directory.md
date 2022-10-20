@@ -24,7 +24,7 @@ FA应用的ArkTS模块(entry/src/main)的典型开发目录结构如下：
 > **说明：**
 >
 > - 资源目录resources文件夹位于src/main下，此目录下资源文件的详细规范以及子目录结构规范参看[资源文件的分类](ui-ts-basic-resource-file-categories.md)。
->- 页面支持导入TypeScript和JavaScript文件。
+> - 页面支持导入TypeScript和JavaScript文件。
 
 **js标签配置:**
 

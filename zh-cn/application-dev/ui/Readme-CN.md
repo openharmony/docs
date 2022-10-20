@@ -11,18 +11,15 @@
             - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
             - [资源访问](ts-resource-access.md)
         - [像素单位](ts-pixel-units.md)
-        
         - 深入理解组件化
             - [自定义组件初始化](ts-custom-component-initialization.md)
             - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
             - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)
-    - 常见组件开发指导
-        - [Button开发指导](ui-ts-basic-components-button.md)
-        - [Web开发指导](ui-ts-components-web.md)
     - 常见布局开发指导
         - [弹性布局](ui-ts-layout-flex.md)
         - [栅格布局](ui-ts-layout-grid-container.md)
         - [媒体查询](ui-ts-layout-mediaquery.md)
+    - [Web组件开发](ui-ts-components-web.md)
     - 体验声明式UI
         - [创建声明式UI工程](ui-ts-creating-project.md)
         - [初识Component](ui-ts-components.md)
@@ -33,7 +30,6 @@
         - [构建食物分类Grid布局](ui-ts-building-category-grid-layout.md)
         - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
     - [性能提升的推荐方法](ts-performance-improvement-recommendation.md)
-    
 - UI开发（兼容JS的类Web开发范式）
     - [概述](ui-js-overview.md)
     - 框架说明
