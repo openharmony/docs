@@ -110,12 +110,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 ```js
 let want = {
-	'deviceId': '',
-	'bundleName': 'com.extreme.test',
-	'abilityName': 'MainAbility'
+    'deviceId': '',
+    'bundleName': 'com.extreme.test',
+    'abilityName': 'MainAbility'
 };
 let options = {
-	windowMode: 0,
+    windowMode: 0,
 };
 this.context.startAbility(want, options, (error) => {
     console.log('error.code = ' + error.code)
