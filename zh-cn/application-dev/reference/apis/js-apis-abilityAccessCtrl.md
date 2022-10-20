@@ -450,7 +450,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenIDList: Array<number> = [];
-let permissionNameList: Array<string> = [];
+let permissionNameList: Array<Permissions> = [];
 try {
     atManager.on('permissionStateChange', tokenIDList, permissionNameList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
@@ -496,7 +496,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenIDList: Array<number> = [];
-let permissionNameList: Array<string> = [];
+let permissionNameList: Array<Permissions> = [];
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionNameList);
 } catch(err) {
@@ -612,4 +612,4 @@ promise.then(data => {
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型        |
 | tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识 |
-| permissionName | string                    | 是   | 否   | 当前授权状态发生变化的权限名 |
+| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名 |

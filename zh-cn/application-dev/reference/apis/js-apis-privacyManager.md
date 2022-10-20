@@ -451,7 +451,7 @@ on(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, call
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<string> = [];
+let permissionNameList: Array<Permissions> = [];
 try {
     atManager.on('activeStateChange', permissionNameList, (data) => {
         console.debug("receive permission state change, data:" + JSON.stringify(data));
@@ -492,7 +492,7 @@ off(type: 'activeStateChange', permissionNameList: Array&lt;Permissions&gt;, cal
 ```js
 import privacyManager from '@ohos.privacyManager';
 
-let permissionNameList: Array<string> = [];
+let permissionNameList: Array<Permissions> = [];
 try {
     privacyManager.off('activeStateChange', permissionNameList);
 }catch(err) {
