@@ -9,30 +9,37 @@
 4. 支持设置子组件横跨几行或者几列。
  
 网格布局中Grid组件作为容器组件，用于设置网格布局相关参数。GridItem作为Grid的子组件使用，定义子组件相关特征。
+
 ## 容器组件Grid设置
+
 ### 行列数量占比
 通过Grid的组件的columnsTemplate和rowTemplate属性设置网格布局行列数量与尺寸占比。
 下面以columnsTemplate为例，介绍该属性的设置，该属性值是一个由多个空格和'数字+fr'间隔拼接的字符串，fr的个数即网格布局的列数，fr前面的数值大小，用于计算该列在网格布局宽度上的占比，最终决定该列的宽度。
+
 ```ts
 Grid().columnsTemplate('1fr 1fr 1fr 1fr')
 ```
+
 定义了四个等分的列，每列宽度相等。
+
 ```ts
 Grid().columnsTemplate('1fr 2fr 3fr 4fr')
 ```
+
 定义了四列，每列宽度比值为1:2:3:4。
+
 ```ts
 Grid().columnsTemplate('4fr 2fr 3fr')
 ```
+
 定义了三列，每列宽度比值为4:2:3。
 
 效果如下：
 
 ![](figures/columnTemplate.png)
 
-
-
 ### 排列方式
+
 通过layoutDirection可以设置网格布局的主轴方向，决定子组件的排列方式。
 可选值包括Row，RowReverse， Column， ColumnReverse四种情况。
 效果如下：
@@ -40,24 +47,28 @@ Grid().columnsTemplate('4fr 2fr 3fr')
 ![](figures/gridlayout.png)
 
 ### 行列间距
+
 columnsGap用于设置网格子元素GridItem垂直方向的间距，rowsGap用于设置GridItem水平方向的间距。
+
 ```ts
 Grid()
 .columnsTemplate('1fr 1fr 1fr 1fr')
 .columnsGap(10)
 .rowsGap(20)
 ```
+
 ![](figures/columnGap.png)
 
 上图中，设置网格布局子组件间的垂直间距为20，水平间距为10。
 
-
 ## 网格子组件GridItem设置
 
 ### 设置子组件占的行列数
+
 网格布局的行列标号从1开始，依次编号。
 
 子组件横跨多行时，通过rowStart设置子组件起始行编号，rowEnd设置终点行编号。当rowStart值与rowEnd值相同时，子元素只占一个网格。示例如下：
+
 ```ts
 Grid() {
     GridItem() {
@@ -97,12 +108,13 @@ Grid() {
 .height('200vp')
 .layoutDirection(GridDirection.Column)
 ```
+
 ![](figures/griditem.png)
 
-
-
 ## 场景示例
+
 使用grid布局实现一个计算器的排布效果，代码如下：
+
 ```ts
 @Entry
 @Component
@@ -168,6 +180,7 @@ struct GridExample {
   }
 }
 ```
+
 在大屏设备上展示效果如下：
 
 ![](figures/gridExp1.png)

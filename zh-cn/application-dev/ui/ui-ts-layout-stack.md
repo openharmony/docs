@@ -1,6 +1,6 @@
 # 层叠布局
 
-层叠布局（StackLayout）是所有布局中最为简单的一个布局，用于在屏幕上预留一个区域来显示组件中的元素,提供元素可以重叠的框架布局。
+层叠布局（StackLayout）是所有布局中最为简单的一个布局，用于在屏幕上预留一个区域来显示组件中的元素, 提供元素可以重叠的框架布局。
 通过层叠容器[Stack](../reference/arkui-ts/ts-container-stack.md)实现，容器中的子组件依次入栈，后一个子组件覆盖前一个子组件显示。
 
 ## 对齐方式
@@ -24,8 +24,10 @@ BottomEnd|    底部尾端 |![](figures/stackbottomend.png)|
 Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/arkui-ts/ts-universal-attributes-z-order.md)
 属性改变。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。
 
-- 在层叠布局中，如果后面子元素尺寸大于前面子元素尺寸，则前面子元素完全隐藏。
-    ```ts
+* 在层叠布局中，如果后面子元素尺寸大于前面子元素尺寸，则前面子元素完全隐藏。
+    
+
+```ts
     Stack({ alignContent: Alignment.BottomStart }) {
       Column(){
         Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
@@ -38,10 +40,13 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
     ```
+
     ![](figures/stack2.png)
 
     上图中，最后的子元素3的尺寸大于前面的所有子元素，所以，前面两个元素完全隐藏，可以通过改变前面元素的zIndex属性展示出来:
-    ```ts
+    
+
+```ts
     Stack({ alignContent: Alignment.BottomStart }) {
       Column(){
         Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
@@ -54,7 +59,7 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
       }.width(200).height(200).backgroundColor(Color.Grey)
     }.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
     ```
+
   ![](figures/stack1.png)
 - 
   通过Z序控制实现了显示效果。
-

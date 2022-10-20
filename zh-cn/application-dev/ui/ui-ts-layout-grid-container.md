@@ -1,6 +1,5 @@
 # 栅格布局
 
-
 栅格系统作为一种辅助布局的定位工具，在平面设计和网站设计都起到了很好的作用，对移动设备的界面设计有较好的借鉴作用。总结栅格系统对于移动设备的优势主要有：
 
 1. 给布局提供一种可循的规律，解决多尺寸多设备的动态布局问题。
@@ -13,9 +12,7 @@
 
 栅格系统有Column、Margin、Gutter三个概念。
 
-
 ![zh-cn_image_0000001224173302](figures/zh-cn_image_0000001224173302.png)
-
 
 1. Gutter：
    元素之间的距离，决定了内容间的紧密程度。作为栅格布局的统一规范。为了保证较好的视觉效果，通常gutter的取值不会大于margin的取值。
@@ -24,28 +21,23 @@
 3. Column:
    栅格布局的主要定位工具。根据设备的不同尺寸，把栅格容器分割成不同的列数，在保证margin和gutter符合规范的情况下，根据总Column的个数计算每个Column列的宽度。
 
-
 ### 系统栅格断点
 
 栅格系统以设备的水平宽度（屏幕密度像素值，vp)作为断点依据，定义设备的宽度类型，设置栅格总列数，间隔，边距，形成了一套断点规则。
 
 不同设备水平宽度下，栅格系统默认总列数(columns)，边距（margin)，间隔(gutter)定义如下：
 
-
 | 设备水平宽度断点范围              | 设备宽度类型 | 描述        | columns | gutter | margin |
 | ----------------------- | ------ | --------- | ------- | ------ | ------ |
-| 0&lt;水平宽度&lt;320vp      | XS     | 最小宽度类型设备。 | 2       | 12vp   | 12vp   |
-| 320vp&lt;=水平宽度&lt;600vp | SM     | 小宽度类型设备。  | 4       | 24vp   | 24vp   |
-| 600vp&lt;=水平宽度&lt;840vp | MD     | 中等宽度类型设备。 | 8       | 24vp   | 32vp   |
-| 840&lt;=水平分辨率           | LG     | 大宽度类型设备。  | 12      | 24vp   | 48vp   |
-
+| 0&lt; 水平宽度&lt; 320vp      | XS     | 最小宽度类型设备。 | 2       | 12vp   | 12vp   |
+| 320vp&lt; =水平宽度&lt; 600vp | SM     | 小宽度类型设备。  | 4       | 24vp   | 24vp   |
+| 600vp&lt; =水平宽度&lt; 840vp | MD     | 中等宽度类型设备。 | 8       | 24vp   | 32vp   |
+| 840&lt; =水平分辨率           | LG     | 大宽度类型设备。  | 12      | 24vp   | 48vp   |
 
 > **说明：**
-> 
+>  
 > ArkUI在API9对栅格组件做了重构，推出新的栅格组件[GridRow](../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../reference/arkui-ts/ts-container-gridcol.md)，API9推荐使用新的栅格组件，参考[新栅格组件用法](ui-ts-layout-grid-container-new.md)
 >
-
-
 
 ## GridContainer栅格组件使用
 
@@ -53,29 +45,37 @@
 
 ### 创建栅格容器
 
-通过接口`GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})`创建栅格容器，栅格容器内的所有子组件可以使用栅格布局。
+通过接口 `GridContainer(options?: { columns?: number | 'auto', sizeType?: SizeType, gutter?: Length, margin?: Length})` 创建栅格容器，栅格容器内的所有子组件可以使用栅格布局。
 
-- 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
+* 可以通过参数定义栅格布局的总列数（columns)，间隔（gutter)，两侧边距（margin)。例如栅格容器总共分为6列，列与列间隔为10vp, 两侧边距为20vp：
 
-  ```ts
+  
+
+```ts
   GridContainer({ columns: 6, gutter: 10, margin: 20 }) {}
   ```
 
-  栅格容器不设置参数，或者sizeType设置为SizeType.Auto时使用默认的栅格系统定义，如：
+  栅格容器不设置参数，或者sizeType设置为SizeType. Auto时使用默认的栅格系统定义，如：
 
-  ```ts
+  
+
+```ts
   GridContainer() {}
   ```
 
-    ```ts
+    
+
+```ts
     GridContainer({ sizeType: SizeType.Auto })
     ```
 
-  上述例子中，默认在小宽度类型设备(SizeType.SM)上，栅格容器被分为4列，列与列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType.MD)上，栅格容器被分为8列，列与列的间隔为24vp，两侧边距是32vp。
+  上述例子中，默认在小宽度类型设备(SizeType. SM)上，栅格容器被分为4列，列与列的间隔为24vp, 两侧边距是24vp。在中等宽度类型设备(SizeType. MD)上，栅格容器被分为8列，列与列的间隔为24vp，两侧边距是32vp。
 
-- 也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
+* 也可以通过参数sizeType指定此栅格容器内的组件使用此设备宽度类型的栅格设置，如：
 
-  ```ts
+  
+
+```ts
   GridContainer({ sizeType: SizeType.SM }) {
        Row() {
          Text('1')
@@ -89,7 +89,7 @@
     }
   ```
 
-  上述例子中，不管在任何宽度类型的设备上， Text组件都使用SizeType.SM类型的栅格设置,即占用3列，放置在第1列。
+  上述例子中，不管在任何宽度类型的设备上， Text组件都使用SizeType. SM类型的栅格设置, 即占用3列，放置在第1列。
 
 ### 栅格容器内子组件的栅格设置
 
@@ -108,7 +108,8 @@ GridContainer() {
    }
 }
 ```
-其中`sm: { span: 2, offset: 0 } `指在设备宽度类型为SM的设备上，Text组件占用2列，且放在栅格容器的第1列上。
+
+其中 `sm: { span: 2, offset: 0 } ` 指在设备宽度类型为SM的设备上，Text组件占用2列，且放在栅格容器的第1列上。
 
 ![zh-cn_image_0000001218108718](figures/zh-cn_image_0000001218108719.png)
 
@@ -155,11 +156,10 @@ struct GridContainerExample {
 }
 ```
 
-
-
-小宽度类型设备(SizeType.SM)运行效果：
+小宽度类型设备(SizeType. SM)运行效果：
 
 ![zh-cn_image_0000001218108718](figures/zh-cn_image_0000001218108718.png)
 
-中等宽度类型设备(SizeType.MD)运行效果：
+中等宽度类型设备(SizeType. MD)运行效果：
+
 ![zh-cn_image_0000001262748569](figures/zh-cn_image_0000001262748569.png)
