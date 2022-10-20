@@ -60,20 +60,24 @@ Writes event information to the event file. This API uses an asynchronous callba
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-    // do something here.
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 
@@ -102,26 +106,30 @@ Writes event information to the event file. This API uses a promise to return th
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}).then(
-	(val) => {
-	    // do something here.
-	}
-).catch(
-	(err) => {
-	    // do something here.
-	}
-)
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }).then(
+        (val) => {
+            // do something here.
+        }
+    ).catch(
+        (err) => {
+            // do something here.
+        }
+    )
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## RuleType
@@ -177,32 +185,30 @@ Adds a watcher for event subscription.
 | ------ | ----------------------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
-**Return value**
-
-| Type   | Description|
-| ------- | -------------------------------------------------- |
-| number | Event subscription result.<br>- **0**: Event subscription is successful.<br>- A value smaller than **0**: Event subscription has failed.|
-
 **Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
+try {
+    hiSysEvent.addWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## hiSysEvent.removeWatcher
@@ -221,33 +227,31 @@ Removes a watcher used for event subscription.
 | ------ | ------------- | ---- | ------------------------ |
 | watcher | [Watcher](#watcher) | Yes| Watcher for event subscription.|
 
-**Return value**
-
-| Type   | Description|
-| ------- | ----------------------------------------------------------- |
-| number | Result of removing the watcher.<br>- **0**: Removing the watcher is successful.<br>- A value smaller than **0**: Removing the watcher has failed.|
-
 **Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
 let watcher = {
-	rules: [{
-		domain: "RELIABILITY",
-		name: "STACK",
-		tag: "STABILITY",
-		ruleType: hiSysEvent.RuleType.WHOLE_WORD,
-	}],
-	onEvent: (info) => {
-	    // do something here.
-	},
-	onServiceDied: () => {
-	    // do something here.
-	}
+    rules: [{
+        domain: "RELIABILITY",
+        name: "STACK",
+        tag: "STABILITY",
+        ruleType: hiSysEvent.RuleType.WHOLE_WORD,
+    }],
+    onEvent: (info) => {
+        // do something here.
+    },
+    onServiceDied: () => {
+        // do something here.
+    }
 }
-let ret = hiSysEvent.addWatcher(watcher)
-hiSysEvent.removeWatcher(watcher)
+try {
+    hiSysEvent.addWatcher(watcher)
+    hiSysEvent.removeWatcher(watcher)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```
 
 ## QueryArg
@@ -281,7 +285,7 @@ Defines an event query instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| onQuery | function | Yes| Callback of queried events: (infos: [SysEventInfo](#syseventinfo)[], seqs: number[]) => void|
+| onQuery | function | Yes| Callback of queried events: (infos: [SysEventInfo](#syseventinfo)[]) => void|
 | onComplete | function | Yes| Callback of query result statistics: (reason: number, total: number) => void|
 
 ## hiSysEvent.query
@@ -302,44 +306,42 @@ Queries system events.
 | rules | [QueryRule](#queryrule)[] | Yes  | Array of event query rules.|
 | querier | [Querier](#querier) | Yes  | Event query instance.|
 
-**Return value**
-
-| Type   | Description                                                       |
-| ------- | ----------------------------------------------------------- |
-| number | Event query result.<br>- **0**: Event query is successful.<br>- A value smaller than **0**: Event query has failed.|
-
 **Example**
 
 ```js
 import hiSysEvent from '@ohos.hiSysEvent';
 
-hiSysEvent.write({
-	domain: "RELIABILITY",
-	name: "STACK",
-	eventType: hiSysEvent.EventType.FAULT,
-	params: {
-		PID: 487,
-		UID: 103,
-		PACKAGE_NAME: "com.ohos.hisysevent.test",
-		PROCESS_NAME: "syseventservice",
-		MSG: "no msg."
-	}
-}, (err, val) => {
-	// do something here.
-})
-hiSysEvent.query({
-	beginTime: -1,
-	endTime: -1,
-	maxEvents: 5,
-}, [{
-	domain: "RELIABILITY",
-	names: ["STACK"],
-}], {
-	onQuery: function (infos, seqs) {
-		// do something here.
-	},
-	onComplete: function(reason, total) {
-		// do something here.
-	}
-})
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+    hiSysEvent.query({
+        beginTime: -1,
+        endTime: -1,
+        maxEvents: 5,
+    }, [{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    }], {
+        onQuery: function (infos) {
+            // do something here.
+        },
+        onComplete: function(reason, total) {
+            // do something here.
+        }
+    })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
 ```

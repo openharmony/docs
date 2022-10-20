@@ -29,7 +29,35 @@
     -   [OpenHarmony 1.0 (2020-09-10)](release-notes/OpenHarmony-1-0.md)
   
 - API Differences
-  
+    - OpenHarmony 3.2 Beta3
+      - JS API Differences
+        - [Ability framework](release-notes/api-change/v3.2-beta3/js-apidiff-ability.md)
+        - [Accessibility subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-accessibility.md)
+        - [Account subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-account.md)
+        - [ArkUI development framework](release-notes/api-change/v3.2-beta3/js-apidiff-arkui.md)
+        - [Power management subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-battery.md)
+        - [Bundle management framework](release-notes/api-change/v3.2-beta3/js-apidiff-bundle.md)
+        - [Communication subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-communicate.md)
+        - [Utils subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-compiler-and-runtime.md)
+        - [DFX subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-dfx.md)
+        - [Distributed data management subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-distributed-data.md)
+        - [Distributed hardware subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-distributed-hardware.md)
+        - [Common event and notification subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-event-and-notification.md)
+        - [File management subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-file-management.md)
+        - [Globalization subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-global.md)
+        - [Graphics subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-graphic.md)
+        - [Misc services subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-misc.md)
+        - [Multimodal input subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-multi-modal-input.md)
+        - [Multimedia subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-multimedia.md)
+        - [Resource scheduler subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-resource-scheduler.md)
+        - [Security subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-security.md)
+        - [Pan-sensor subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-sensor.md)
+        - [DSoftBus subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-soft-bus.md)
+        - [Telephony subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-telephony.md)
+        - [Test subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-unitest.md)
+        - [Update subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-update.md)
+        - [Web subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-web.md)
+        - [Window manager subsystem](release-notes/api-change/v3.2-beta3/js-apidiff-window.md)
   - OpenHarmony 3.2 Beta2
       - JS API Differences
         - [Ability framework](release-notes/api-change/v3.2-beta2/js-apidiff-ability.md)
@@ -49,7 +77,7 @@
         - [Misc services subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-misc.md)
         - [Multimodal input subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-multi-modal-input.md)
         - [Multimedia subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-multimedia.md)
-        - [Distributed scheduler subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-resource-scheduler.md)
+        - [Resource scheduler subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-resource-scheduler.md)
         - [Security subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-security.md)
         - [Pan-sensor subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-sensor.md)
         - [DSoftBus subsystem](release-notes/api-change/v3.2-beta2/js-apidiff-soft-bus.md)
@@ -79,7 +107,6 @@
         - [Multimodal input subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-multi-modal-input.md)
         - [Multimedia subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-multimedia.md)
         - [Distributed scheduler subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-resource-scheduler.md)
-        - [DSoftBus subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-soft-bus.md)
         - [Test subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-unitest.md)
         - [Web subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-web.md)
         - [Window manager subsystem](release-notes/api-change/v3.2-beta1/js-apidiff-window.md)
@@ -129,7 +156,7 @@
 - OpenHarmony Third-Party Components
   - [OpenHarmony Third-Party Components](third-party-components/third-party-components-introduction.md)  
   - [Using OpenHarmony JS and TS Third-Party Components](third-party-components/npm-third-party-guide.md)
-  
+
 - Contribution
   - [How to Contribute](contribute/how-to-contribute.md)
   - [Code of Conduct](contribute/code-of-conduct.md)

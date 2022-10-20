@@ -7,6 +7,7 @@ This module provides the following common audio-related functions:
 - [AudioManager](#audiomanager): audio management.
 - [AudioRenderer](#audiorenderer8): audio rendering, used to play Pulse Code Modulation (PCM) audio data.
 - [AudioCapturer](#audiocapturer8): audio capture, used to record PCM audio data.
+- [TonePlayer](#toneplayer9): tone player, used to manage and play Dual Tone Multi Frequency (DTMF) tones, such as dial tones and ringback tones.
 
 >  **NOTE**
 >
@@ -55,65 +56,11 @@ Obtains an **AudioManager** instance.
 var audioManager = audio.getAudioManager();
 ```
 
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
-
-Obtains an **AudioStreamManager** instance. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Core
-
-**Parameters**
-
-| Name  | Type                                                      | Mandatory| Description            |
-| -------- | --------------------------------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | Yes  | **AudioStreamManager** instance.|
-
-**Example**
-
-```js
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    let audioStreamManager = data;
-  }
-});
-```
-
-## audio.getStreamManager<sup>9+</sup>
-
-getStreamManager(): Promise<AudioStreamManager\>
-
-Obtains an **AudioStreamManager** instance. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Core
-
-**Return value**
-
-| Type                                               | Description            |
-| ---------------------------------------------------- | ---------------- |
-| Promise<[AudioStreamManager](#audiostreammanager9)> | **AudioStreamManager** instance.|
-
-**Example**
-
-```js
-var audioStreamManager;
-audio.getStreamManager().then((data) => {
-  audioStreamManager = data;
-  console.info('getStreamManager: Success!');
-}).catch((err) => {
-  console.error(`getStreamManager: ERROR : ${err}`);
-});
-
-```
-
 ## audio.createAudioRenderer<sup>8+</sup>
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
-Obtains an **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
+Creates an **AudioRenderer** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -160,7 +107,7 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
 
 createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
-Obtains an **AudioRenderer** instance. This API uses a promise to return the result.
+Creates an **AudioRenderer** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -212,9 +159,11 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
 
-Obtains an **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
+Creates an **AudioCapturer** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Required permissions**: ohos.permission.MICROPHONE
 
 **Parameters**
 
@@ -258,9 +207,11 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
-Obtains an **AudioCapturer** instance. This API uses a promise to return the result.
+Creates an **AudioCapturer** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Required permissions**: ohos.permission.MICROPHONE
 
 **Parameters**
 
@@ -305,6 +256,78 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 });
 ```
 
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlayer&gt;): void
+
+Creates a **TonePlayer** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description           |
+| -------- | ----------------------------------------------- | ---- | -------------- |
+| options  | [AudioRendererInfo](#audiorendererinfo8)        | Yes  | Audio renderer information.|
+| callback | AsyncCallback<[TonePlayer](#toneplayer9)>       | Yes  | Callback used to return the **TonePlayer** instance.|
+
+**Example**
+
+```js
+import audio from '@ohos.multimedia.audio';
+
+var audioRendererInfo = {
+  "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+  "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+  "rendererFlags": 0
+}
+var tonePlayer;
+
+audio.createTonePlayer(audioRendererInfo, (err, data) => {
+  console.info(`callback call createTonePlayer: audioRendererInfo: ${audioRendererInfo}`);
+  if (err) {
+    console.error(`callback call createTonePlayer return error: ${err.message}`);
+  } else {
+    console.info(`callback call createTonePlayer return data: ${data}`);
+    tonePlayer = data;
+  }
+});
+```
+
+## audio.createTonePlayer<sup>9+</sup>
+
+createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
+
+Creates a **TonePlayer** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name | Type                                          | Mandatory| Description        |
+| :------ | :---------------------------------------------| :--- | :----------- |
+| options | [AudioRendererInfo](#audiorendererinfo8)      | Yes  | Audio renderer information.|
+
+**Return value**
+
+| Type                                     | Description                            |
+| ----------------------------------------- | -------------------------------- |
+| Promise<[TonePlayer](#toneplayer9)>       | Promise used to return the **TonePlayer** instance.  |
+
+**Example**
+
+```js
+import audio from '@ohos.multimedia.audio';
+async function createTonePlayer(){
+  var audioRendererInfo = {
+    "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
+    "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
+    "rendererFlags": 0
+  }
+  let tonePlayer = await audio.createTonePlayer(this.audioRendererInfo);
+}
+```
+
 ## AudioVolumeType
 
 Enumerates the audio stream types.
@@ -338,13 +361,13 @@ Enumerates the audio device flags.
 
 | Name                           | Default Value | Description                                             |
 | ------------------------------- | ------ | ------------------------------------------------- |
-| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No flag.<br>This is a system API and cannot be called by third-party applications.       |
+| NONE_DEVICES_FLAG<sup>9+</sup>  | 0      | No device.<br>This is a system API and cannot be called by third-party applications.       |
 | OUTPUT_DEVICES_FLAG             | 1      | Output device.|
 | INPUT_DEVICES_FLAG              | 2      | Input device.|
 | ALL_DEVICES_FLAG                | 3      | All devices.|
 | DISTRIBUTED_OUTPUT_DEVICES_FLAG<sup>9+</sup> | 4   | Distributed output device.<br>This is a system API and cannot be called by third-party applications. |
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API and cannot be called by third-party applications. |
-| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output devices.<br>This is a system API and cannot be called by third-party applications. |
+| ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API and cannot be called by third-party applications. |
 
 
 ## DeviceRole
@@ -479,12 +502,13 @@ Enumerates the audio stream usage.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                              | Default Value| Description      |
-| ---------------------------------- | ------ | ---------- |
-| STREAM_USAGE_UNKNOWN               | 0      | Unknown usage.|
-| STREAM_USAGE_MEDIA                 | 1      | Used for media.    |
-| STREAM_USAGE_VOICE_COMMUNICATION   | 2      | Used for voice communication.|
-| STREAM_USAGE_NOTIFICATION_RINGTONE | 6      | Used for notification.|
+| Name                                     | Default Value| Description      |
+| ------------------------------------------| ------ | ---------- |
+| STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
+| STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.|
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
+| STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
 
 ## FocusType<sup>9+</sup>
 
@@ -668,6 +692,8 @@ Describes the event received by the application when the volume is changed.
 
 Enumerates the types of connected devices.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
 | Name                           | Default Value| Description                  |
@@ -689,7 +715,7 @@ Describes the volume group information.
 | groupId<sup>9+</sup>       | number                     | Yes  | No  | Group ID of the device.|
 | mappingId<sup>9+</sup>     | number                     | Yes  | No  | Group mapping ID.|
 | groupName<sup>9+</sup>     | number                     | Yes  | No  | Group name.|
-| ConnectType<sup>9+</sup>   | [ConnectType](#connecttype9)| Yes  | No  | Type of the connected device.|
+| type<sup>9+</sup>          | [ConnectType](#connecttype9)| Yes  | No  | Type of the connected device.|
 
 ## VolumeGroupInfos<sup>9+</sup>
 
@@ -761,11 +787,12 @@ Enumerates the audio source types.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
-| Name                           | Default Value| Description                  |
-| :------------------------------ | :----- | :--------------------- |
-| SOURCE_TYPE_INVALID             | -1     | Invalid audio source.        |
-| SOURCE_TYPE_MIC                 | 0      | Mic source.           |
-| SOURCE_TYPE_VOICE_COMMUNICATION | 7      | Voice communication source.|
+| Name                                        | Default Value| Description                  |
+| :------------------------------------------- | :----- | :--------------------- |
+| SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.        |
+| SOURCE_TYPE_MIC                              | 0      | Mic source.           |
+| SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.       |
+| SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.|
 
 ## AudioScene<sup>8+</sup><a name="audioscene"></a>
 
@@ -779,7 +806,6 @@ Enumerates the audio scenes.
 | AUDIO_SCENE_RINGING    | 1      | Ringing audio scene.<br>This is a system API and cannot be called by third-party applications.|
 | AUDIO_SCENE_PHONE_CALL | 2      | Phone call audio scene.<br>This is a system API and cannot be called by third-party applications.|
 | AUDIO_SCENE_VOICE_CHAT | 3      | Voice chat audio scene.                               |
-
 
 ## AudioManager
 
@@ -801,7 +827,7 @@ Obtains an **AudioRoutingManager** instance. This API uses an asynchronous callb
 
 **Example**
 ```js
-await audioManager.getRoutingManager((err, callback) => {
+audioManager.getRoutingManager((err, callback) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
   }
@@ -827,12 +853,15 @@ Obtains an **AudioRoutingManager** instance. This API uses a promise to return t
 
 **Example**
 ```js
-await audioManager.getRoutingManager().then((value) => {
-  var routingManager = value;
-  console.info('getRoutingManager Promise SUCCESS.');
-}).catch((err) => {
-  console.error(`Result ERROR: ${err}`);
-});
+var audioManager = audio.getAudioManager();
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    var routingManager = value;
+    console.info('getRoutingManager Promise SUCCESS.');
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
 ```
 
 ### setVolume
@@ -1951,6 +1980,7 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
@@ -1985,6 +2015,7 @@ Sets an audio scene. This API uses a promise to return the result.
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
@@ -2009,6 +2040,7 @@ Obtains the audio scene. This API uses an asynchronous callback to return the re
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene((err, value) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
@@ -2036,6 +2068,7 @@ Obtains the audio scene. This API uses a promise to return the result.
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
@@ -2062,6 +2095,7 @@ Obtains the volume groups. This API uses an asynchronous callback to return the 
 
 **Example**
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2091,7 +2125,7 @@ Obtains the volume groups. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Volume group information list.|
+| Promise&lt;[VolumeGroupInfos](#volumegroupinfos9)&gt; | Volume group information array.|
 
 **Example**
 
@@ -2116,12 +2150,14 @@ Obtains the audio group manager. This API uses an asynchronous callback to retur
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| networkId | string                                    | Yes  | Network ID of the device.    |
+| groupId    | number                                    | Yes  | Volume group ID.    |
 | callback   | AsyncCallback&lt; [AudioGroupManager](#audiogroupmanager9) &gt; | Yes  | Callback used to return the audio group manager.|
 
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
+var audioGroupManager;
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2151,8 +2187,8 @@ Obtains the audio group manager. This API uses a promise to return the result.
 **Parameters**
 
 | Name    | Type                                     | Mandatory| Description             |
-| ---------- | ---------------------------------------- | ---- | -------------- -- |
-| networkId | string                                    | Yes  | Network ID of the device.    |
+| ---------- | ---------------------------------------- | ---- | ---------------- |
+| groupId    | number                                   | Yes  | Volume group ID.    |
 
 **Return value**
 
@@ -2163,15 +2199,74 @@ Obtains the audio group manager. This API uses a promise to return the result.
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
     let groupid = value[0].groupId;
-    let audioGroupManager = await audioManager.getGroupManager(audio.LOCAL_NETWORK_ID)
+    let audioGroupManager = await audioManager.getGroupManager(groupid)
     console.info('Callback invoked to indicate that the volume group infos list is obtained.');
   }
 }
 ```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
+
+Obtains an **AudioStreamManager** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description            |
+| -------- | --------------------------------------------------------- | ---- | ---------------- |
+| callback | AsyncCallback<[AudioStreamManager](#audiostreammanager9)> | Yes  | **AudioStreamManager** instance.|
+
+**Example**
+
+```js
+var audioManager = audio.getAudioManager();
+let audioStreamManager;
+audioManager.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+```
+
+### getStreamManager<sup>9+</sup>
+
+getStreamManager(): Promise<AudioStreamManager\>
+
+Obtains an **AudioStreamManager** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                               | Description            |
+| ---------------------------------------------------- | ---------------- |
+| Promise<[AudioStreamManager](#audiostreammanager9)> | **AudioStreamManager** instance.|
+
+**Example**
+
+```js
+var audioManager = audio.getAudioManager();
+var audioStreamManager;
+audioManager.getStreamManager().then((data) => {
+  audioStreamManager = data;
+  console.info('getStreamManager: Success!');
+}).catch((err) => {
+  console.error(`getStreamManager: ERROR : ${err}`);
+});
+
+```
+
 ### requestIndependentInterrupt<sup>9+</sup>
 
 requestIndependentInterrupt(focusType: FocusType, callback: AsyncCallback<boolean\>\): void
@@ -2203,7 +2298,7 @@ async function requestIndependentInterrupt(){
 ```
 ### requestIndependentInterrupt<sup>9+</sup>
 
-requestIndependentInterrupt(focusType: FocusType: Promise<boolean\>
+requestIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 Requests independent interruption and obtains an interruption session ID. This API uses a promise to return the result.
 
@@ -2265,7 +2360,7 @@ async function abandonIndependentInterrupt(){
 ```
 ### abandonIndependentInterrupt<sup>9+</sup>
 
-abandonIndependentInterrupt(focusType: FocusType]: Promise<boolean\>
+abandonIndependentInterrupt(focusType: FocusType): Promise<boolean\>
 
 Abandons independent interruption. This API uses a promise to return the result.
 
@@ -2313,6 +2408,8 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 
 This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2345,6 +2442,8 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2374,6 +2473,8 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 
 Obtains the volume of a stream. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2400,6 +2501,8 @@ audioGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 Obtains the volume of a stream. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -2429,6 +2532,8 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 Obtains the minimum volume allowed for a stream. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2455,6 +2560,8 @@ audioGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 Obtains the minimum volume allowed for a stream. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -2484,6 +2591,8 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 
 Obtains the maximum volume allowed for a stream. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2510,6 +2619,8 @@ audioGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err, value) => {
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 Obtains the maximum volume allowed for a stream. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -2543,6 +2654,8 @@ Mutes or unmutes a stream. This API uses an asynchronous callback to return the 
 
 This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2575,6 +2688,8 @@ Mutes or unmutes a stream. This API uses a promise to return the result.
 
 This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2604,6 +2719,8 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 
 Checks whether a stream is muted. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2631,6 +2748,8 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 Checks whether a stream is muted. This method uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 **Parameters**
@@ -2655,7 +2774,7 @@ audioGroupManager.isMute(audio.AudioVolumeType.MEDIA).then((value) => {
 
 ## AudioStreamManager<sup>9+</sup>
 
-Implements audio stream management. Before calling any API of **AudioStreamManager**, you must use **[getStreamManager](#audiogetstreammanager9)** to obtain an **AudioStreamManager** instance.
+Implements audio stream management. Before calling any API in **AudioStreamManager**, you must use [getStreamManager](#getstreammanager9) to obtain an **AudioStreamManager** instance.
 
 ### getCurrentAudioRendererInfoArray<sup>9+</sup>
 
@@ -2674,16 +2793,6 @@ Obtains the information about the current audio renderers. This API uses an asyn
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err, AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2731,42 +2840,34 @@ Obtains the information about the current audio renderers. This API uses a promi
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
-await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
-  console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
-  if (AudioRendererChangeInfoArray != null) {
-    for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-      let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
-      console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
-      console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
-      console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-      console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
-      console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
-      for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-        console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
-        console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-        console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-        console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
-        console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-        console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-        console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-        console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+async function getCurrentAudioRendererInfoArray(){
+  await audioStreamManager.getCurrentAudioRendererInfoArray().then( function (AudioRendererChangeInfoArray) {
+    console.info(`getCurrentAudioRendererInfoArray ######### Get Promise is called ##########`);
+    if (AudioRendererChangeInfoArray != null) {
+      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
+        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+        console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
+        console.info(`ClientUid for ${i} is: ${AudioRendererChangeInfo.clientUid}`);
+        console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
+        console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
+        console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`); 
+        console.info(`State for ${i} is: ${AudioRendererChangeInfo.rendererState}`);  
+        for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
+          console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
+          console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+          console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+          console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
+          console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
+          console.info(`SampleRates: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCount ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks}`);
+        }
       }
     }
-  }
-}).catch((err) => {
-  console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
-});
+  }).catch((err) => {
+    console.error(`getCurrentAudioRendererInfoArray :ERROR: ${err}`);
+  });
+}
 ```
 
 ### getCurrentAudioCapturerInfoArray<sup>9+</sup>
@@ -2786,16 +2887,6 @@ Obtains the information about the current audio capturers. This API uses an asyn
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err, AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
   if (err) {
@@ -2841,40 +2932,32 @@ Obtains the information about the current audio capturers. This API uses a promi
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
-await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
-  console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
-  if (AudioCapturerChangeInfoArray != null) {
-    for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-      console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
-      console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
-      console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
-      console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
-      console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
-      for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
-        console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
-        console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
-        console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
-        console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
-        console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
-        console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
-        console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
-        console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+async function getCurrentAudioCapturerInfoArray(){
+  await audioStreamManager.getCurrentAudioCapturerInfoArray().then( function (AudioCapturerChangeInfoArray) {
+    console.info('getCurrentAudioCapturerInfoArray **** Get Promise Called ****');
+    if (AudioCapturerChangeInfoArray != null) {
+      for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+        console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
+        console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
+        console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
+        console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
+        console.info(`State for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerState}`);  
+        for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+          console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
+          console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
+          console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
+          console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
+          console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
+          console.info(`SampleRates: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+          console.info(`ChannelCounts ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+          console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks}`);
+        }
       }
     }
-  }
-}).catch((err) => {
-  console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
-});
+  }).catch((err) => {
+    console.error(`getCurrentAudioCapturerInfoArray :ERROR: ${err}`);
+  });
+}
 ```
 
 ### on('audioRendererChange')<sup>9+</sup>
@@ -2895,16 +2978,6 @@ Subscribes to audio renderer change events.
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -2946,16 +3019,6 @@ Unsubscribes from audio renderer change events.
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.off('audioRendererChange');
 console.info('######### RendererChange Off is called #########');
 ```
@@ -2978,19 +3041,9 @@ Subscribes to audio capturer change events.
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
-    console.info(`## CapChange on is called for element ${i} ##');
+    console.info(`## CapChange on is called for element ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
     console.info(`ClientUid for ${i} is: ${AudioCapturerChangeInfoArray[i].clientUid}`);
     console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
@@ -3028,23 +3081,13 @@ Unsubscribes from audio capturer change events.
 **Example**
 
 ```js
-let audioStreamManager;
-audio.getStreamManager((err, data) => {
-  if (err) {
-    console.error(`getStreamManager : Error: ${err}`);
-  } else {
-    console.info('getStreamManager : Success : SUCCESS');
-    audioStreamManager = data;
-  }
-});
-
 audioStreamManager.off('audioCapturerChange');
 console.info('######### CapturerChange Off is called #########');
 
 ```
 ## AudioRoutingManager<sup>9+</sup>
 
-Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](#getroutingmanager9) to create an **AudioRoutingManager** instance.
+Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](#getroutingmanager9) to obtain an **AudioRoutingManager** instance.
 
 ### getDevices<sup>9+</sup>
 
@@ -3064,11 +3107,11 @@ Obtains the audio devices with a specific flag. This API uses an asynchronous ca
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
+  } else {
     AudioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err, value) => {
       if (err) {
         console.error(`Failed to obtain the device list. ${err}`);
@@ -3103,6 +3146,7 @@ Obtains the audio devices with a specific flag. This API uses a promise to retur
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3134,6 +3178,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3162,29 +3207,113 @@ Unsubscribes from device change events.
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The value **deviceChange** means the device change event, which is triggered when a device connection status change is detected.|
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | Yes  | Audio device flag.    |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.                        |
 
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
-  }
-  else {
-    AudioRoutingManager.off('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
+  } else {
+    AudioRoutingManager.off('deviceChange', (deviceChanged) => {
       console.info('Should be no callback.');
     });
   }
 });
 ```
 
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+Selects an audio input device. Currently, only one input device can be selected. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | Yes  | Input device.              |
+| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.|
+
+**Example**
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor = [{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select input devices result callback: SUCCESS'); }
+    });
+  });
+}
+```
+
+### selectInputDevice<sup>9+</sup>
+
+selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+**System API**: This is a system API.
+
+Selects an audio input device. Currently, only one input device can be selected. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| inputAudioDevices           | [AudioDeviceDescriptors](#audiodevicedescriptors)            | Yes  | Input device.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise used to return the result.|
+
+**Example**
+
+```js
+var audioManager = audio.getAudioManager();
+let inputAudioDeviceDescriptor =[{
+  "deviceRole":audio.DeviceRole.INPUT_DEVICE,
+  "networkId":audio.LOCAL_NETWORK_ID,
+  "interruptGroupId":1,
+  "volumeGroupId":1 }];
+var audioRoutingManager;
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectInputDevice(inputAudioDeviceDescriptor).then(() => {
+      console.info('Select input devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
+  });
+}
+```
+
 ### selectOutputDevice<sup>9+</sup>
 
 selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-Selects an audio output device. Currently, only one output device can be selected. This API uses an asynchronous callback to return the result.  
+Selects an audio output device. Currently, only one output device can be selected. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3199,21 +3328,25 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 **Example**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDevice<sup>9+</sup>
@@ -3222,7 +3355,7 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 
 **System API**: This is a system API.
 
-Selects an audio output device. Currently, only one output device can be selected. This API uses a promise to return the result.  
+Selects an audio output device. Currently, only one output device can be selected. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -3241,20 +3374,24 @@ Selects an audio output device. Currently, only one output device can be selecte
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDevice(outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3263,7 +3400,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **System API**: This is a system API.
 
-Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses an asynchronous callback to return the result.  
+Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -3277,6 +3414,7 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 **Example**
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3290,15 +3428,18 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
-    if (err) {
-      console.error(`Result ERROR: ${err}`);
-    } else {
-      console.info('Select output devices by filter result callback: SUCCESS'); }
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor, (err) => {
+      if (err) {
+        console.error(`Result ERROR: ${err}`);
+      } else {
+        console.info('Select output devices by filter result callback: SUCCESS'); }
+    });
   });
-});
+}
 ```
 
 ### selectOutputDeviceByFilter<sup>9+</sup>
@@ -3307,7 +3448,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **System API**: This is a system API.
 
-Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses a promise to return the result.  
+Selects an audio output device based on the filter criteria. Currently, only one output device can be selected. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -3327,6 +3468,7 @@ Selects an audio output device based on the filter criteria. Currently, only one
 **Example**
 
 ```js
+var audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3340,14 +3482,17 @@ let outputAudioDeviceDescriptor = [{
   "interruptGroupId":1,
   "volumeGroupId":1 }];
 var audioRoutingManager;
-await audioManager.getRoutingManager().then((value) => {
-  audioRoutingManager = value;
-  audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
-    console.info('Select output devices by filter result promise: SUCCESS');
-  }).catch((err) => {
-    console.error(`Result ERROR: ${err}`);
-  })
-});
+
+async function getRoutingManager(){
+  await audioManager.getRoutingManager().then((value) => {
+    audioRoutingManager = value;
+    audioRoutingManager.selectOutputDeviceByFilter(outputAudioRendererFilter, outputAudioDeviceDescriptor).then(() => {
+      console.info('Select output devices by filter result promise: SUCCESS');
+    }).catch((err) => {
+      console.error(`Result ERROR: ${err}`);
+    })
+  });
+}
 ```
 
 ## AudioRendererChangeInfo<sup>9+</sup>
@@ -3356,12 +3501,12 @@ Describes the audio renderer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name              | Type                                      | Readable| Writable| Description                         |
-| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| streamId           | number                                    | Yes  | No  | Unique ID of an audio stream.               |
-| clientUid          | number                                    | Yes  | No  | UID of the audio renderer client.<br>This is a system API and cannot be called by third-party applications.|
-| rendererInfo       | [AudioRendererInfo](#audiorendererinfo8)  | Yes  | No  | Audio renderer information.              |
-| rendererState      | [AudioState](#audiostate)                 | Yes  | No  | Audio state.<br>This is a system API and cannot be called by third-party applications.|
+| Name          | Type                                     | Readable | Writable | Description                                                  |
+| ------------- | ---------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                                |
+| clientUid     | number                                   | Yes      | No       | UID of the audio renderer client.<br>This is a system API and cannot be called by third-party applications. |
+| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8) | Yes      | No       | Audio renderer information.                                  |
+| rendererState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API and cannot be called by third-party applications. |
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
@@ -3375,26 +3520,19 @@ Describes the **AudioRenderChangeInfo** array, which is read-only.
 import audio from '@ohos.multimedia.audio';
 
 var audioStreamManager;
-var audioStreamManagerCB;
 var resultFlag = false;
-
-await audioManager.getStreamManager().then(async function (data) {
-  audioStreamManager = data;
-  console.info('Get AudioStream Manager : Success');
-}).catch((err) => {
-  console.error(`Get AudioStream Manager : ERROR : ${err}`);
-});
+var audioManager = audio.getAudioManager();
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
     console.error(`Get AudioStream Manager : ERROR : ${err}`);
   } else {
-    audioStreamManagerCB = data;
+    audioStreamManager = data;
     console.info('Get AudioStream Manager : Success');
   }
 });
 
-audioStreamManagerCB.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
+audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => {
   for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
     console.info(`## RendererChange on is called for ${i} ##`);
     console.info(`StreamId for ${i} is: ${AudioRendererChangeInfoArray[i].streamId}`);
@@ -3428,12 +3566,12 @@ Describes the audio capturer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name              | Type                                      | Readable| Writable| Description                         |
-| -------------------| ----------------------------------------- | ---- | ---- | ---------------------------- |
-| streamId           | number                                    | Yes  | No  | Unique ID of an audio stream.               |
-| clientUid          | number                                    | Yes  | No  | UID of the audio capturer client.<br>This is a system API and cannot be called by third-party applications.|
-| capturerInfo       | [AudioCapturerInfo](#audiocapturerinfo8)   | Yes  | No  | Audio capturer information.              |
-| capturerState      | [AudioState](#audiostate)                 | Yes  | No  | Audio state.<br>This is a system API and cannot be called by third-party applications.|
+| Name          | Type                                     | Readable | Writable | Description                                                  |
+| ------------- | ---------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                                |
+| clientUid     | number                                   | Yes      | No       | UID of the audio capturer client.<br>This is a system API and cannot be called by third-party applications. |
+| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8) | Yes      | No       | Audio capturer information.                                  |
+| capturerState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API and cannot be called by third-party applications. |
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
@@ -3447,6 +3585,16 @@ Describes the **AudioCapturerChangeInfo** array, which is read-only.
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
+let audioStreamManager;
+audioManager.getStreamManager((err, data) => {
+  if (err) {
+    console.error(`getStreamManager : Error: ${err}`);
+  } else {
+    console.info('getStreamManager : Success : SUCCESS');
+    audioStreamManager = data;
+  }
+});
+
 var resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
@@ -3481,19 +3629,19 @@ Describes an audio device.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
-| Name                         | Type                      | Readable| Writable| Description      |
-| ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| deviceRole                    | [DeviceRole](#devicerole)  | Yes  | No  | Device role.|
-| deviceType                    | [DeviceType](#devicetype)  | Yes  | No  | Device type.|
-| id<sup>9+</sup>               | number                     | Yes  | No  | Device ID. |
-| name<sup>9+</sup>             | string                     | Yes  | No  | Device name.|
-| address<sup>9+</sup>          | string                     | Yes  | No  | Device address.|
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | Yes  | No  | Supported sampling rates.|
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | Yes  | No  | Number of channels supported.|
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | Yes  | No  | Supported channel masks.|
-| networkId<sup>9+</sup>        | string                     | Yes  | No  | ID of the device network.<br>This is a system API and cannot be called by third-party applications.|
-| interruptGroupId<sup>9+</sup> | number                     | Yes  | No  | ID of the interruption group to which the device belongs.<br>This is a system API and cannot be called by third-party applications.|
-| volumeGroupId<sup>9+</sup>    | number                     | Yes  | No  | ID of the volume group to which the device belongs.<br>This is a system API and cannot be called by third-party applications.|
+| Name                          | Type                      | Readable | Writable | Description                                                  |
+| ----------------------------- | ------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| deviceRole                    | [DeviceRole](#devicerole) | Yes      | No       | Device role.                                                 |
+| deviceType                    | [DeviceType](#devicetype) | Yes      | No       | Device type.                                                 |
+| id<sup>9+</sup>               | number                    | Yes      | No       | Device ID.                                                   |
+| name<sup>9+</sup>             | string                    | Yes      | No       | Device name.                                                 |
+| address<sup>9+</sup>          | string                    | Yes      | No       | Device address.                                              |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;       | Yes      | No       | Supported sampling rates.                                    |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;       | Yes      | No       | Number of channels supported.                                |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;       | Yes      | No       | Supported channel masks.                                     |
+| networkId<sup>9+</sup>        | string                    | Yes      | No       | ID of the device network.<br>This is a system API and cannot be called by third-party applications. |
+| interruptGroupId<sup>9+</sup> | number                    | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API and cannot be called by third-party applications. |
+| volumeGroupId<sup>9+</sup>    | number                    | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API and cannot be called by third-party applications. |
 
 ## AudioDeviceDescriptors
 
@@ -3529,13 +3677,11 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 **System API**: This is a system API.
 
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-| Name         | Type                                    | Mandatory | Description         |
-| -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  Yes | Application ID.<br> System capability: SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) |  No | Audio renderer information.<br> System capability: SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  No | Unique ID of an audio stream.<br> System capability: SystemCapability.Multimedia.Audio.Renderer|
+| Name         | Type                                     | Mandatory | Description                                                  |
+| ------------ | ---------------------------------------- | --------- | ------------------------------------------------------------ |
+| uid          | number                                   | Yes       | Application ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
+| rendererId   | number                                   | No        | Unique ID of an audio stream.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
 
 **Example**
 
@@ -3557,9 +3703,9 @@ Provides APIs for audio rendering. Before calling any API in **AudioRenderer**, 
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name | Type                    | Readable| Writable| Description              |
-| ----- | -------------------------- | ---- | ---- | ------------------ |
-| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes  | No  | Audio renderer state.|
+| Name               | Type                       | Readable | Writable | Description           |
+| ------------------ | -------------------------- | -------- | -------- | --------------------- |
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes      | No       | Audio renderer state. |
 
 **Example**
 
@@ -3577,9 +3723,9 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 **Parameters**
 
-| Name  | Type                                                    | Mandatory| Description                  |
-| :------- | :------------------------------------------------------- | :--- | :--------------------- |
-| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | Yes  | Callback used to return the renderer information.|
+| Name     | Type                                                     | Mandatory | Description                                       |
+| :------- | :------------------------------------------------------- | :-------- | :------------------------------------------------ |
+| callback | AsyncCallback<[AudioRendererInfo](#audiorendererinfo8)\> | Yes       | Callback used to return the renderer information. |
 
 **Example**
 
@@ -3602,9 +3748,9 @@ Obtains the renderer information of this **AudioRenderer** instance. This API us
 
 **Return value**
 
-| Type                                              | Description                           |
-| -------------------------------------------------- | ------------------------------- |
-| Promise<[AudioRendererInfo](#audiorendererinfo8)\> | Promise used to return the renderer information.|
+| Type                                               | Description                                      |
+| -------------------------------------------------- | ------------------------------------------------ |
+| Promise<[AudioRendererInfo](#audiorendererinfo8)\> | Promise used to return the renderer information. |
 
 **Example**
 
@@ -3629,9 +3775,9 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                |
-| :------- | :--------------------------------------------------- | :--- | :------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes  | Callback used to return the stream information.|
+| Name     | Type                                                 | Mandatory | Description                                     |
+| :------- | :--------------------------------------------------- | :-------- | :---------------------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the stream information. |
 
 **Example**
 
@@ -3655,9 +3801,9 @@ Obtains the stream information of this **AudioRenderer** instance. This API uses
 
 **Return value**
 
-| Type                                          | Description                  |
-| :--------------------------------------------- | :--------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information.|
+| Type                                           | Description                                    |
+| :--------------------------------------------- | :--------------------------------------------- |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information. |
 
 **Example**
 
@@ -3671,6 +3817,7 @@ audioRenderer.getStreamInfo().then((streamInfo) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -3683,9 +3830,9 @@ Starts the renderer. This API uses an asynchronous callback to return the result
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description      |
-| -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| -------- | -------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -3697,6 +3844,7 @@ audioRenderer.start((err) => {
     console.info('Renderer start success.');
   }
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -3709,9 +3857,9 @@ Starts the renderer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -3721,6 +3869,7 @@ audioRenderer.start().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### pause<sup>8+</sup>
@@ -3733,9 +3882,9 @@ Pauses rendering. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description            |
-| -------- | -------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| -------- | -------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -3747,6 +3896,7 @@ audioRenderer.pause((err) => {
     console.info('Renderer paused.');
   }
 });
+
 ```
 
 ### pause<sup>8+</sup>
@@ -3759,9 +3909,9 @@ Pauses rendering. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -3771,6 +3921,7 @@ audioRenderer.pause().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### drain<sup>8+</sup>
@@ -3783,9 +3934,9 @@ Drains the playback buffer. This API uses an asynchronous callback to return the
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description            |
-| -------- | -------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| -------- | -------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -3797,6 +3948,7 @@ audioRenderer.drain((err) => {
     console.info('Renderer drained.');
   }
 });
+
 ```
 
 ### drain<sup>8+</sup>
@@ -3809,9 +3961,9 @@ Drains the playback buffer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -3821,6 +3973,7 @@ audioRenderer.drain().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -3833,9 +3986,9 @@ Stops rendering. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description            |
-| -------- | -------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| -------- | -------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -3847,6 +4000,7 @@ audioRenderer.stop((err) => {
     console.info('Renderer stopped.');
   }
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -3859,9 +4013,9 @@ Stops rendering. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -3871,6 +4025,7 @@ audioRenderer.stop().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -3883,9 +4038,9 @@ Releases the renderer. This API uses an asynchronous callback to return the resu
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description            |
-| -------- | -------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| -------- | -------------------- | --------- | ----------------------------------- |
+| callback | AsyncCallback\<void> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -3897,6 +4052,7 @@ audioRenderer.release((err) => {
     console.info('Renderer released.');
   }
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -3909,9 +4065,9 @@ Releases the renderer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -3921,6 +4077,7 @@ audioRenderer.release().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### write<sup>8+</sup>
@@ -3933,52 +4090,27 @@ Writes the buffer. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                               |
-| -------- | ---------------------- | ---- | --------------------------------------------------- |
-| buffer   | ArrayBuffer            | Yes  | Buffer to be written.                               |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned.|
+| Name     | Type                   | Mandatory | Description                                                  |
+| -------- | ---------------------- | --------- | ------------------------------------------------------------ |
+| buffer   | ArrayBuffer            | Yes       | Buffer to be written.                                        |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned. |
 
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-import featureAbility from '@ohos.ability.featureAbility'
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data)=> {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   }).catch((err) => {
-  console.error.(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
+  console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
+var path;
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
 var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
@@ -3990,6 +4122,7 @@ audioRenderer.write(buf, (err, writtenbytes) => {
     console.info(`Actual written bytes: ${writtenbytes}`);
   }
 });
+
 ```
 
 ### write<sup>8+</sup>
@@ -4002,41 +4135,13 @@ Writes the buffer. This API uses a promise to return the result.
 
 **Return value**
 
-| Type            | Description                                                        |
+| Type             | Description                                                  |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number> | Promise used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned.|
+| Promise\<number> | Promise used to return the result. If the operation is successful, the number of bytes written is returned; otherwise, an error code is returned. |
 
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-import featureAbility from '@ohos.ability.featureAbility'
-
-var audioStreamInfo = {
-  samplingRate:audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels:audio.AudioChannel.CHANNEL_2,
-  sampleFormat:audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType:audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data) => {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.error(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -4046,8 +4151,11 @@ audioRenderer.getBufferSize().then((data) => {
   });
 console.info(`BufferSize: ${bufferSize}`);
 var context = featureAbility.getContext();
-var path = await context.getCacheDir();
-var filePath = 'data/StarWars10s-2C-48000-4SW.wav';
+var path;
+async function getCacheDir(){
+  path = await context.getCacheDir();
+}
+var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -4060,6 +4168,7 @@ audioRenderer.write(buf).then((writtenbytes) => {
 }).catch((err) => {
     console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4072,9 +4181,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description            |
-| -------- | ---------------------- | ---- | ---------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the timestamp.|
+| Name     | Type                   | Mandatory | Description                            |
+| -------- | ---------------------- | --------- | -------------------------------------- |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the timestamp. |
 
 **Example**
 
@@ -4082,6 +4191,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioRenderer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4094,9 +4204,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Return value**
 
-| Type            | Description                   |
-| ---------------- | ----------------------- |
-| Promise\<number> | Promise used to return the timestamp.|
+| Type             | Description                           |
+| ---------------- | ------------------------------------- |
+| Promise\<number> | Promise used to return the timestamp. |
 
 **Example**
 
@@ -4106,6 +4216,7 @@ audioRenderer.getAudioTime().then((timestamp) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4118,9 +4229,9 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                |
-| -------- | ---------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the buffer size.|
+| Name     | Type                   | Mandatory | Description                              |
+| -------- | ---------------------- | --------- | ---------------------------------------- |
+| callback | AsyncCallback\<number> | Yes       | Callback used to return the buffer size. |
 
 **Example**
 
@@ -4130,6 +4241,7 @@ var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
     console.error('getBufferSize error');
   }
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4142,40 +4254,13 @@ Obtains a reasonable minimum buffer size in bytes for rendering. This API uses a
 
 **Return value**
 
-| Type            | Description                       |
-| ---------------- | --------------------------- |
-| Promise\<number> | Promise used to return the buffer size.|
+| Type             | Description                             |
+| ---------------- | --------------------------------------- |
+| Promise\<number> | Promise used to return the buffer size. |
 
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
-
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-var audioRenderer;
-audio.createAudioRenderer(audioRendererOptions).then((data) => {
-  audioRenderer = data;
-  console.info('AudioFrameworkRenderLog: AudioRenderer Created: SUCCESS');
-  }).catch((err) => {
-  console.info(`AudioFrameworkRenderLog: AudioRenderer Created: ERROR: ${err}`);
-  });
 var bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
@@ -4183,6 +4268,7 @@ audioRenderer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
+
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4195,10 +4281,10 @@ Sets the render rate. This API uses an asynchronous callback to return the resul
 
 **Parameters**
 
-| Name  | Type                                    | Mandatory| Description                    |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| rate     | [AudioRendererRate](#audiorendererrate8) | Yes  | Audio render rate.            |
-| callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result.|
+| Name     | Type                                     | Mandatory | Description                         |
+| -------- | ---------------------------------------- | --------- | ----------------------------------- |
+| rate     | [AudioRendererRate](#audiorendererrate8) | Yes       | Audio render rate.                  |
+| callback | AsyncCallback\<void>                     | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -4210,6 +4296,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) =>
     console.info('Callback invoked to indicate a successful render rate setting.');
   }
 });
+
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4222,15 +4309,15 @@ Sets the render rate. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type                                    | Mandatory| Description        |
-| ------ | ---------------------------------------- | ---- | ------------ |
-| rate   | [AudioRendererRate](#audiorendererrate8) | Yes  | Audio render rate.|
+| Name | Type                                     | Mandatory | Description        |
+| ---- | ---------------------------------------- | --------- | ------------------ |
+| rate | [AudioRendererRate](#audiorendererrate8) | Yes       | Audio render rate. |
 
 **Return value**
 
-| Type          | Description                     |
-| -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Type           | Description                        |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise used to return the result. |
 
 **Example**
 
@@ -4240,6 +4327,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4252,9 +4340,9 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description              |
-| -------- | ------------------------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | Yes  | Callback used to return the audio render rate.|
+| Name     | Type                                                    | Mandatory | Description                                    |
+| -------- | ------------------------------------------------------- | --------- | ---------------------------------------------- |
+| callback | AsyncCallback<[AudioRendererRate](#audiorendererrate8)> | Yes       | Callback used to return the audio render rate. |
 
 **Example**
 
@@ -4262,6 +4350,7 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 audioRenderer.getRenderRate((err, renderrate) => {
   console.info(`getRenderRate: ${renderrate}`);
 });
+
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4274,9 +4363,9 @@ Obtains the current render rate. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                             | Description                     |
-| ------------------------------------------------- | ------------------------- |
-| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise used to return the audio render rate.|
+| Type                                              | Description                                   |
+| ------------------------------------------------- | --------------------------------------------- |
+| Promise<[AudioRendererRate](#audiorendererrate8)> | Promise used to return the audio render rate. |
 
 **Example**
 
@@ -4286,7 +4375,9 @@ audioRenderer.getRenderRate().then((renderRate) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
+
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
@@ -4297,42 +4388,28 @@ Sets the audio interruption mode for the application. This API uses a promise to
 
 **Parameters**
 
-| Name    | Type                               | Mandatory  | Description       |
-| ---------- | ---------------------------------- | ------ | ---------- |
-| mode       | [InterruptMode](#interruptmode9)    | Yes    | Audio interruption mode. |
+| Name | Type                             | Mandatory | Description              |
+| ---- | -------------------------------- | --------- | ------------------------ |
+| mode | [InterruptMode](#interruptmode9) | Yes       | Audio interruption mode. |
 
 **Return value**
 
-| Type               | Description                         |
-| ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned.|
+| Type                | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **undefined** is returned. Otherwise, **error** is returned. |
 
 **Example**
 
 ```js
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags: 0
-}
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 let mode = 0;
 audioRenderer.setInterruptMode(mode).then(data=>{
   console.info('setInterruptMode Success!');
 }).catch((err) => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
+
 ```
+
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
@@ -4343,30 +4420,14 @@ Sets the audio interruption mode for the application. This API uses a callback t
 
 **Parameters**
 
-| Name  | Type                               | Mandatory  | Description           |
-| ------- | ----------------------------------- | ------ | -------------- |
-|mode     | [InterruptMode](#interruptmode9)     | Yes    | Audio interruption mode.|
-|callback | AsyncCallback\<void>                 | Yes    |Callback used to return the result.|
+| Name     | Type                             | Mandatory | Description                         |
+| -------- | -------------------------------- | --------- | ----------------------------------- |
+| mode     | [InterruptMode](#interruptmode9) | Yes       | Audio interruption mode.            |
+| callback | AsyncCallback\<void>             | Yes       | Callback used to return the result. |
 
 **Example**
 
 ```js
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-var audioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags: 0
-}
-var audioRendererOptions = {
-  streamInfo: audioStreamInfo,
-  rendererInfo: audioRendererInfo
-}
-let audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
 let mode = 1;
 audioRenderer.setInterruptMode(mode, (err, data)=>{
   if(err){
@@ -4374,7 +4435,9 @@ audioRenderer.setInterruptMode(mode, (err, data)=>{
   }
   console.info('setInterruptMode Success!');
 });
+
 ```
+
 ### on('interrupt')<sup>9+</sup>
 
 on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
@@ -4385,10 +4448,10 @@ Subscribes to audio interruption events. This API uses a callback to get interru
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | Yes  | Event type. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted.|
-| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes  | Callback used to return the audio interruption event.                                    |
+| Name     | Type                                         | Mandatory | Description                                                  |
+| -------- | -------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                       | Yes       | Event type. The value **interrupt** means the audio interruption event, which is triggered when audio playback is interrupted. |
+| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes       | Callback used to return the audio interruption event.        |
 
 **Example**
 
@@ -4438,11 +4501,12 @@ audioRenderer.on('interrupt', async(interruptEvent) => {
     }
   }
 });
+
 ```
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to mark reached events. When the number of frames rendered reaches the value of the **frame** parameter, the callback is invoked.
 
@@ -4450,11 +4514,11 @@ Subscribes to mark reached events. When the number of frames rendered reaches th
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                     |
-| :------- | :----------------------- | :--- | :---------------------------------------- |
-| type     | string                   | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.        |
-| callback | Callback<number>         | Yes  | Callback invoked when the event is triggered.                   |
+| Name     | Type             | Mandatory | Description                                                  |
+| :------- | :--------------- | :-------- | :----------------------------------------------------------- |
+| type     | string           | Yes       | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
+| frame    | number           | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
+| callback | Callback<number> | Yes       | Callback invoked when the event is triggered.                |
 
 **Example**
 
@@ -4464,6 +4528,7 @@ audioRenderer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 
@@ -4477,19 +4542,20 @@ Unsubscribes from mark reached events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                             |
-| :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | Yes  | Event type. The value is fixed at **markReach**.|
+| Name | Type   | Mandatory | Description                                      |
+| :--- | :----- | :-------- | :----------------------------------------------- |
+| type | string | Yes       | Event type. The value is fixed at **markReach**. |
 
 **Example**
 
 ```js
 audioRenderer.off('markReach');
+
 ```
 
 ### on('periodReach') <sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to period reached events. When the period of frame rendering reaches the value of the **frame** parameter, the callback is invoked.
 
@@ -4497,11 +4563,11 @@ Subscribes to period reached events. When the period of frame rendering reaches 
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                       |
-| :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.          |
-| callback | Callback<number>         | Yes  | Callback invoked when the event is triggered.                     |
+| Name     | Type             | Mandatory | Description                                                  |
+| :------- | :--------------- | :-------- | :----------------------------------------------------------- |
+| type     | string           | Yes       | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter. |
+| frame    | number           | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
+| callback | Callback<number> | Yes       | Callback invoked when the event is triggered.                |
 
 **Example**
 
@@ -4511,6 +4577,7 @@ audioRenderer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('periodReach') <sup>8+</sup>
@@ -4523,14 +4590,15 @@ Unsubscribes from period reached events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                               |
-| :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | Yes  | Event type. The value is fixed at **periodReach**.|
+| Name | Type   | Mandatory | Description                                        |
+| :--- | :----- | :-------- | :------------------------------------------------- |
+| type | string | Yes       | Event type. The value is fixed at **periodReach**. |
 
 **Example**
 
 ```js
 audioRenderer.off('periodReach')
+
 ```
 
 ### on('stateChange')<sup>8+</sup>
@@ -4543,10 +4611,10 @@ Subscribes to state change events.
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                       |
-| :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
-| callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
+| Name     | Type                       | Mandatory | Description                                                  |
+| :------- | :------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                     | Yes       | Event type. The value **stateChange** means the state change event. |
+| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                    |
 
 **Example**
 
@@ -4559,6 +4627,7 @@ audioRenderer.on('stateChange', (state) => {
     console.info('audio renderer state is: STATE_RUNNING');
   }
 });
+
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -4569,14 +4638,15 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name | Type                    | Readable| Writable| Description            |
-| :---- | :------------------------- | :--- | :--- | :--------------- |
-| state<sup>8+</sup>  | [AudioState](#audiostate8) | Yes| No  | Audio capturer state.|
+| Name               | Type                       | Readable | Writable | Description           |
+| :----------------- | :------------------------- | :------- | :------- | :-------------------- |
+| state<sup>8+</sup> | [AudioState](#audiostate8) | Yes      | No       | Audio capturer state. |
 
 **Example**
 
 ```js
 var state = audioCapturer.state;
+
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -4589,9 +4659,9 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Parameters**
 
-| Name  | Type                             | Mandatory| Description                                |
-| :------- | :-------------------------------- | :--- | :----------------------------------- |
-| callback | AsyncCallback<AudioCapturerInfo\> | Yes  | Callback used to return the capturer information.|
+| Name     | Type                              | Mandatory | Description                                       |
+| :------- | :-------------------------------- | :-------- | :------------------------------------------------ |
+| callback | AsyncCallback<AudioCapturerInfo\> | Yes       | Callback used to return the capturer information. |
 
 **Example**
 
@@ -4605,6 +4675,7 @@ audioCapturer.getCapturerInfo((err, capturerInfo) => {
     console.info(`Capturer flags: ${capturerInfo.capturerFlags}`);
   }
 });
+
 ```
 
 
@@ -4618,9 +4689,9 @@ Obtains the capturer information of this **AudioCapturer** instance. This API us
 
 **Return value**
 
-| Type                                             | Description                               |
-| :------------------------------------------------ | :---------------------------------- |
-| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise used to return the capturer information.|
+| Type                                              | Description                                      |
+| :------------------------------------------------ | :----------------------------------------------- |
+| Promise<[AudioCapturerInfo](#audiocapturerinfo)\> | Promise used to return the capturer information. |
 
 **Example**
 
@@ -4637,6 +4708,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -4649,9 +4721,9 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                            |
-| :------- | :--------------------------------------------------- | :--- | :------------------------------- |
-| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes  | Callback used to return the stream information.|
+| Name     | Type                                                 | Mandatory | Description                                     |
+| :------- | :--------------------------------------------------- | :-------- | :---------------------------------------------- |
+| callback | AsyncCallback<[AudioStreamInfo](#audiostreaminfo8)\> | Yes       | Callback used to return the stream information. |
 
 **Example**
 
@@ -4667,6 +4739,7 @@ audioCapturer.getStreamInfo((err, streamInfo) => {
     console.info(`Capturer encoding type: ${streamInfo.encodingType}`);
   }
 });
+
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -4679,9 +4752,9 @@ Obtains the stream information of this **AudioCapturer** instance. This API uses
 
 **Return value**
 
-| Type                                          | Description                           |
-| :--------------------------------------------- | :------------------------------ |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information.|
+| Type                                           | Description                                    |
+| :--------------------------------------------- | :--------------------------------------------- |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise used to return the stream information. |
 
 **Example**
 
@@ -4695,6 +4768,7 @@ audioCapturer.getStreamInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -4707,9 +4781,9 @@ Starts capturing. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                          |
-| :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -4721,6 +4795,7 @@ audioCapturer.start((err) => {
     console.info('Capturer start success.');
   }
 });
+
 ```
 
 
@@ -4734,35 +4809,13 @@ Starts capturing. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                         |
-| :------------- | :---------------------------- |
-| Promise<void\> | Promise used to return the result.|
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio';
-import fileio from '@ohos.fileio';
-
-var audioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
-
-var audioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
-
-var audioCapturer;
-audio.createAudioCapturer(audioCapturerOptions).then((data) => {
-  audioCapturer = data;
-  console.info('AudioFrameworkRecLog: AudioCapturer Created: SUCCESS');
-  }).catch((err) => {
-  console.info(`AudioFrameworkRecLog: AudioCapturer Created: ERROR: ${err}`);
-  });
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
   console.info('AudioFrameworkRecLog: Capturer started: SUCCESS');
@@ -4774,6 +4827,7 @@ audioCapturer.start().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -4786,9 +4840,9 @@ Stops capturing. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                          |
-| :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result.|
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -4800,6 +4854,7 @@ audioCapturer.stop((err) => {
     console.info('Capturer stopped.');
   }
 });
+
 ```
 
 
@@ -4813,9 +4868,9 @@ Stops capturing. This API uses a promise to return the result.
 
 **Return value**
 
-| Type          | Description                         |
-| :------------- | :---------------------------- |
-| Promise<void\> | Promise used to return the result.|
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
@@ -4829,6 +4884,7 @@ audioCapturer.stop().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -4841,9 +4897,9 @@ Releases this **AudioCapturer** instance. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name  | Type                | Mandatory| Description                               |
-| :------- | :------------------- | :--- | :---------------------------------- |
-| callback | AsyncCallback<void\> | Yes  | Callback used to return the result. |
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -4855,6 +4911,7 @@ audioCapturer.release((err) => {
     console.info('capturer released.');
   }
 });
+
 ```
 
 
@@ -4868,9 +4925,9 @@ Releases this **AudioCapturer** instance. This API uses a promise to return the 
 
 **Return value**
 
-| Type          | Description                         |
-| :------------- | :---------------------------- |
-| Promise<void\> | Promise used to return the result.|
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
 
 **Example**
 
@@ -4884,6 +4941,7 @@ audioCapturer.release().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
+
 ```
 
 
@@ -4897,11 +4955,11 @@ Reads the buffer. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name        | Type                       | Mandatory| Description                            |
-| :------------- | :-------------------------- | :--- | :------------------------------- |
-| size           | number                      | Yes  | Number of bytes to read.                  |
-| isBlockingRead | boolean                     | Yes  | Whether to block the read operation.                |
-| callback       | AsyncCallback<ArrayBuffer\> | Yes  | Callback used to return the buffer.|
+| Name           | Type                        | Mandatory | Description                          |
+| :------------- | :-------------------------- | :-------- | :----------------------------------- |
+| size           | number                      | Yes       | Number of bytes to read.             |
+| isBlockingRead | boolean                     | Yes       | Whether to block the read operation. |
+| callback       | AsyncCallback<ArrayBuffer\> | Yes       | Callback used to return the buffer.  |
 
 **Example**
 
@@ -4918,6 +4976,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     console.info('Success in reading the buffer data');
   }
 });
+
 ```
 
 
@@ -4931,16 +4990,16 @@ Reads the buffer. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name        | Type   | Mandatory| Description            |
-| :------------- | :------ | :--- | :--------------- |
-| size           | number  | Yes  | Number of bytes to read.  |
-| isBlockingRead | boolean | Yes  | Whether to block the read operation.|
+| Name           | Type    | Mandatory | Description                          |
+| :------------- | :------ | :-------- | :----------------------------------- |
+| size           | number  | Yes       | Number of bytes to read.             |
+| isBlockingRead | boolean | Yes       | Whether to block the read operation. |
 
 **Return value**
 
-| Type                 | Description                                                  |
-| :-------------------- | :----------------------------------------------------- |
-| Promise<ArrayBuffer\> | Promise used to return the result. If the operation is successful, the buffer data read is returned; otherwise, an error code is returned.|
+| Type                  | Description                                                  |
+| :-------------------- | :----------------------------------------------------------- |
+| Promise<ArrayBuffer\> | Promise used to return the result. If the operation is successful, the buffer data read is returned; otherwise, an error code is returned. |
 
 **Example**
 
@@ -4958,6 +5017,7 @@ audioCapturer.read(bufferSize, true).then((buffer) => {
 }).catch((err) => {
   console.info(`ERROR : ${err}`);
 });
+
 ```
 
 
@@ -4971,9 +5031,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                          |
-| :------- | :--------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the result.|
+| Name     | Type                   | Mandatory | Description                         |
+| :------- | :--------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. |
 
 **Example**
 
@@ -4981,6 +5041,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioCapturer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
+
 ```
 
 
@@ -4994,9 +5055,9 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 
 **Return value**
 
-| Type            | Description                         |
-| :--------------- | :---------------------------- |
-| Promise<number\> | Promise used to return the timestamp.|
+| Type             | Description                           |
+| :--------------- | :------------------------------------ |
+| Promise<number\> | Promise used to return the timestamp. |
 
 **Example**
 
@@ -5006,6 +5067,7 @@ audioCapturer.getAudioTime().then((audioTime) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
+
 ```
 
 
@@ -5019,9 +5081,9 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                                |
-| :------- | :--------------------- | :--- | :----------------------------------- |
-| callback | AsyncCallback<number\> | Yes  | Callback used to return the buffer size.|
+| Name     | Type                   | Mandatory | Description                              |
+| :------- | :--------------------- | :-------- | :--------------------------------------- |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the buffer size. |
 
 **Example**
 
@@ -5036,6 +5098,7 @@ audioCapturer.getBufferSize((err, bufferSize) => {
     });
   }
 });
+
 ```
 
 
@@ -5049,9 +5112,9 @@ Obtains a reasonable minimum buffer size in bytes for capturing. This API uses a
 
 **Return value**
 
-| Type            | Description                               |
-| :--------------- | :---------------------------------- |
-| Promise<number\> | Promise used to return the buffer size.|
+| Type             | Description                             |
+| :--------------- | :-------------------------------------- |
+| Promise<number\> | Promise used to return the buffer size. |
 
 **Example**
 
@@ -5063,12 +5126,13 @@ audioCapturer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
+
 ```
 
 
 ### on('markReach')<sup>8+</sup>
 
-on(type: "markReach", frame: number, callback: Callback<number>): void
+on(type: "markReach", frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to mark reached events. When the number of frames captured reaches the value of the **frame** parameter, the callback is invoked.
 
@@ -5076,11 +5140,11 @@ Subscribes to mark reached events. When the number of frames captured reaches th
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                      |
-| :------- | :----------------------  | :--- | :----------------------------------------- |
-| type     | string                   | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
-| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.          |
-| callback | Callback<number>         | Yes  | Callback invoked when the event is triggered.|
+| Name     | Type             | Mandatory | Description                                                  |
+| :------- | :--------------- | :-------- | :----------------------------------------------------------- |
+| type     | string           | Yes       | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
+| frame    | number           | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
+| callback | Callback<number> | Yes       | Callback invoked when the event is triggered.                |
 
 **Example**
 
@@ -5090,6 +5154,7 @@ audioCapturer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('markReach')<sup>8+</sup>
@@ -5102,19 +5167,20 @@ Unsubscribes from mark reached events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                         |
-| :----- | :----- | :--- | :-------------------------------------------- |
-| type   | string | Yes  | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter.|
+| Name | Type   | Mandatory | Description                                                  |
+| :--- | :----- | :-------- | :----------------------------------------------------------- |
+| type | string | Yes       | Event type. The value **markReach** means the mark reached event, which is triggered when the number of frames captured reaches the value of the **frame** parameter. |
 
 **Example**
 
 ```js
 audioCapturer.off('markReach');
+
 ```
 
 ### on('periodReach')<sup>8+</sup>
 
-on(type: "periodReach", frame: number, callback: Callback<number>): void
+on(type: "periodReach", frame: number, callback: Callback&lt;number&gt;): void
 
 Subscribes to mark reached events. When the period of frame capturing reaches the value of the **frame** parameter, the callback is invoked.
 
@@ -5122,11 +5188,11 @@ Subscribes to mark reached events. When the period of frame capturing reaches th
 
 **Parameters**
 
-| Name  | Type                    | Mandatory| Description                                       |
-| :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter.|
-| frame    | number                   | Yes  | Number of frames to trigger the event. The value must be greater than **0**.           |
-| callback | Callback<number>         | Yes  | Callback invoked when the event is triggered.   |
+| Name     | Type             | Mandatory | Description                                                  |
+| :------- | :--------------- | :-------- | :----------------------------------------------------------- |
+| type     | string           | Yes       | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame rendering reaches the value of the **frame** parameter. |
+| frame    | number           | Yes       | Number of frames to trigger the event. The value must be greater than **0**. |
+| callback | Callback<number> | Yes       | Callback invoked when the event is triggered.                |
 
 **Example**
 
@@ -5136,6 +5202,7 @@ audioCapturer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('periodReach')<sup>8+</sup>
@@ -5148,14 +5215,15 @@ Unsubscribes from period reached events.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                           |
-| :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | Yes  | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter.|
+| Name | Type   | Mandatory | Description                                                  |
+| :--- | :----- | :-------- | :----------------------------------------------------------- |
+| type | string | Yes       | Event type. The value **periodReach** means the period reached event, which is triggered when the period of frame capturing reaches the value of the **frame** parameter. |
 
 **Example**
 
 ```js
 audioCapturer.off('periodReach')
+
 ```
 
 ### on('stateChange')<sup>8+</sup>
@@ -5168,10 +5236,10 @@ Subscribes to state change events.
 
 **Parameters**
 
-| Name  | Type                      | Mandatory| Description                                       |
-| :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The value **stateChange** means the state change event.|
-| callback | [AudioState](#audiostate8) | Yes  | Callback used to return the state change.                           |
+| Name     | Type                       | Mandatory | Description                                                  |
+| :------- | :------------------------- | :-------- | :----------------------------------------------------------- |
+| type     | string                     | Yes       | Event type. The value **stateChange** means the state change event. |
+| callback | [AudioState](#audiostate8) | Yes       | Callback used to return the state change.                    |
 
 **Example**
 
@@ -5183,5 +5251,263 @@ audioCapturer.on('stateChange', (state) => {
   if (state == 2) {
     console.info('audio capturer state is: STATE_RUNNING');
   }
+});
+
+```
+
+## ToneType <sup>9+</sup>
+
+Enumerates the tone types of the player.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+| Name                                             | Default Value | Description                                  |
+| :----------------------------------------------- | :------------ | :------------------------------------------- |
+| TONE_TYPE_DIAL_0                                 | 0             | DTMF tone of key 0.                          |
+| TONE_TYPE_DIAL_1                                 | 1             | DTMF tone of key 1.                          |
+| TONE_TYPE_DIAL_2                                 | 2             | DTMF tone of key 2.                          |
+| TONE_TYPE_DIAL_3                                 | 3             | DTMF tone of key 3.                          |
+| TONE_TYPE_DIAL_4                                 | 4             | DTMF tone of key 4.                          |
+| TONE_TYPE_DIAL_5                                 | 5             | DTMF tone of key 5.                          |
+| TONE_TYPE_DIAL_6                                 | 6             | DTMF tone of key 6.                          |
+| TONE_TYPE_DIAL_7                                 | 7             | DTMF tone of key 7.                          |
+| TONE_TYPE_DIAL_8                                 | 8             | DTMF tone of key 8.                          |
+| TONE_TYPE_DIAL_9                                 | 9             | DTMF tone of key 9.                          |
+| TONE_TYPE_DIAL_S                                 | 10            | DTMF tone of the star key (*).               |
+| TONE_TYPE_DIAL_P                                 | 11            | DTMF tone of the pound key (#).              |
+| TONE_TYPE_DIAL_A                                 | 12            | DTMF tone of key A.                          |
+| TONE_TYPE_DIAL_B                                 | 13            | DTMF tone of key B.                          |
+| TONE_TYPE_DIAL_C                                 | 14            | DTMF tone of key C.                          |
+| TONE_TYPE_DIAL_D                                 | 15            | DTMF tone of key D.                          |
+| TONE_TYPE_COMMON_SUPERVISORY_DIAL                | 100           | Supervisory tone - dial tone.                |
+| TONE_TYPE_COMMON_SUPERVISORY_BUSY                | 101           | Supervisory tone - busy.                     |
+| TONE_TYPE_COMMON_SUPERVISORY_CONGESTION          | 102           | Supervisory tone - congestion.               |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_ACK           | 103           | Supervisory tone - radio path acknowledgment |
+| TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE | 104           | Supervisory tone - radio path not available  |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING        | 106           | Supervisory tone - call waiting tone         |
+| TONE_TYPE_COMMON_SUPERVISORY_RINGTONE            | 107           | Supervisory tone - ringing tone              |
+| TONE_TYPE_COMMON_PROPRIETARY_BEEP                | 200           | Proprietary tone - beep tone.                |
+| TONE_TYPE_COMMON_PROPRIETARY_ACK                 | 201           | Proprietary tone - ACK.                      |
+| TONE_TYPE_COMMON_PROPRIETARY_PROMPT              | 203           | Proprietary tone - PROMPT.                   |
+| TONE_TYPE_COMMON_PROPRIETARY_DOUBLE_BEEP         | 204           | Proprietary tone - double beep tone.         |
+
+## TonePlayer<sup>9+</sup>
+
+Provides APIs for playing and managing DTMF tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones.
+
+### load<sup>9+</sup>
+
+load(type: ToneType, callback: AsyncCallback&lt;void&gt;): void
+
+Loads the DTMF tone configuration. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| type     | ToneType(#tonetype9) | Yes       | Tone type.                          |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
+  if (err) {
+    console.error(`callback call load failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call load success');
+  }
+});
+
+```
+
+### load<sup>9+</sup>
+
+load(type: ToneType): Promise&lt;void&gt;
+
+Loads the DTMF tone configuration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name | Type                 | Mandatory | Description |
+| :--- | :------------------- | :-------- | ----------- |
+| type | ToneType(#tonetype9) | Yes       | Tone type.  |
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
+  console.info('promise call load ');
+}).catch(() => {
+  console.error('promise call load fail');
+});
+
+```
+
+### start<sup>9+</sup>
+
+start(callback: AsyncCallback&lt;void&gt;): void
+
+Starts DTMF tone playing. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.start((err) => {
+  if (err) {
+    console.error(`callback call start failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call start success');
+  }
+});
+
+```
+
+### start<sup>9+</sup>
+
+start(): Promise&lt;void&gt;
+
+Starts DTMF tone playing. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.start().then(() => {
+  console.info('promise call start');
+}).catch(() => {
+  console.error('promise call start fail');
+});
+
+```
+
+### stop<sup>9+</sup>
+
+stop(callback: AsyncCallback&lt;void&gt;): void
+
+Stops the tone that is being played. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.stop((err) => {
+  if (err) {
+    console.error(`callback call stop error: ${err.message}`);
+    return;
+  } else {
+    console.error('callback call stop success ');
+  }
+});
+
+```
+
+### stop<sup>9+</sup>
+
+stop(): Promise&lt;void&gt;
+
+Stops the tone that is being played. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.stop().then(() => {
+  console.info('promise call stop finish');
+}).catch(() => {
+  console.error('promise call stop fail');
+});
+
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback&lt;void&gt;): void
+
+Releases the resources associated with the **TonePlay** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Parameters**
+
+| Name     | Type                 | Mandatory | Description                         |
+| :------- | :------------------- | :-------- | :---------------------------------- |
+| callback | AsyncCallback<void\> | Yes       | Callback used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.release((err) => {
+  if (err) {
+    console.error(`callback call release failed error: ${err.message}`);
+    return;
+  } else {
+    console.info('callback call release success ');
+  }
+});
+```
+
+### release<sup>9+</sup>
+
+release(): Promise&lt;void&gt;
+
+Releases the resources associated with the **TonePlay** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Tone
+
+**Return value**
+
+| Type           | Description                        |
+| :------------- | :--------------------------------- |
+| Promise<void\> | Promise used to return the result. |
+
+**Example**
+
+```js
+tonePlayer.release().then(() => {
+  console.info('promise call release');
+}).catch(() => {
+  console.error('promise call release fail');
 });
 ```

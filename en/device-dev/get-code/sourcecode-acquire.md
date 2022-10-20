@@ -8,7 +8,7 @@ The open-source code repositories are available at [https://openharmony.gitee.co
 
 ## Overview of Source Code Acquisition<a name="section12763342204"></a>
 
-The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.md), which can be obtained in any of the following ways:
+The OpenHarmony source code is open to you as [HPM parts](../hpm-part/hpm-part-about.md), which can be obtained in any of the following ways:
 
 -   **Method 1**: Acquire the source code from the Gitee code repository. You can use the **repo** or **git** tool to download the latest code from the code repository.
 -   **Method 2**: Acquire the source code from [DevEco Marketplace](https://repo.harmonyos.com/#/en/home). Visit [DevEco Marketplace](https://repo.harmonyos.com/#/en/home), search for your desired open-source distribution, and download the bundle list \(or customize bundles and download the bundle list\). Then use the **hpm-cli** tool to download and install the bundles and compilation toolchain on your local PC.
@@ -67,7 +67,11 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
 
 >![](../public_sys-resources/icon-note.gif) **NOTE**
 >
->Download the master code if you want to get quick access to the latest features for your development. Download the release code, which is more stable, if you want to develop commercial functionalities.
+>Download the release code, which is more stable, if you want to develop commercial functionalities. Download the master code if you want to get quick access to the latest features for your development. 
+
+-   **Obtaining OpenHarmony release code**
+
+    For details about how to obtain the source code of an OpenHarmony release, see the [Release Notes](../../release-notes/Readme.md).
 
 -   **Obtaining OpenHarmony master code**
 
@@ -86,10 +90,6 @@ The OpenHarmony source code is open to you as [HPM parts](../hpm-part/Readme-EN.
     repo sync -c
     repo forall -c 'git lfs pull'
     ```
-
--   **Obtaining OpenHarmony release code**
-
-    For details about how to obtain the source code of an OpenHarmony release, see the [Release Notes]([Release Notes](../../release-notes/Readme.md).
 
 
 ## Method 2: Acquiring Source Code from DevEco Marketplace<a name="section463013147412"></a>

@@ -21,10 +21,10 @@ This component can contain child components.
 
 Shape(value?: PixelMap)
 
-- Parameters
-  | Name| Type| Mandatory| Default Value| Description| 
-  | -------- | -------- | -------- | -------- | -------- |
-  | value | PixelMap | No| - | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.| 
+**Parameters**
+| Name| Type| Mandatory| Default Value| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| value | PixelMap | No| - | Shape to draw. You can draw a shape in the specified **PixelMap** object. If no object is specified, the shape is drawn in the current drawing target.|
 
 
 ## Attributes

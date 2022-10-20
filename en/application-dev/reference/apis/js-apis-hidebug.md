@@ -30,9 +30,10 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 
 **Example**
-  ```js
-  let nativeHeapSize = hidebug.getNativeHeapSize();
-  ```
+
+```js
+let nativeHeapSize = hidebug.getNativeHeapSize();
+```
 
 
 ## hidebug.getNativeHeapAllocatedSize
@@ -45,17 +46,18 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                             |
 | ------ | --------------------------------- |
 | bigint | Size of the allocated native heap memory, in kB.|
 
 
 **Example**
-  ```js
-  let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
-  ```
+
+```js
+let nativeHeapAllocatedSize = hidebug.getNativeHeapAllocatedSize();
+```
 
 
 ## hidebug.getNativeHeapFreeSize
@@ -68,17 +70,18 @@ This API is defined but not implemented in OpenHarmony 3.1 Release.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                           |
 | ------ | ------------------------------- |
 | bigint | Size of the free native heap memory, in kB.|
 
 
 **Example**
-  ```js
-  let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
-  ```
+
+```js
+let nativeHeapFreeSize = hidebug.getNativeHeapFreeSize();
+```
 
 
 ## hidebug.getPss
@@ -89,17 +92,18 @@ Obtains the PSS of this process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                     |
 | ------ | ------------------------- |
 | bigint | PSS of the process, in kB.|
 
 
 **Example**
-  ```js
-  let pss = hidebug.getPss();
-  ```
+
+```js
+let pss = hidebug.getPss();
+```
 
 
 ## hidebug.getSharedDirty
@@ -110,17 +114,18 @@ Obtains the size of the shared dirty memory of this process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                      |
 | ------ | -------------------------- |
 | bigint | Size of the shared dirty memory of the process, in kB.|
 
 
 **Example**
-  ```js
-  let sharedDirty = hidebug.getSharedDirty();
-  ```
+  
+```js
+let sharedDirty = hidebug.getSharedDirty();
+```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
 
@@ -130,8 +135,8 @@ Obtains the size of the private dirty memory of this process.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                      |
 | ------ | -------------------------- |
 | bigint | Size of the private dirty memory of the process, in kB.|
@@ -152,17 +157,18 @@ For example, if the CPU usage is **50%**, **0.5** is returned.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-
 **Return value**
+
 | Type  | Description                      |
 | ------ | -------------------------- |
 | number | CPU usage of the process.|
 
 
 **Example**
-  ```js
-  let cpuUsage = hidebug.getCpuUsage();
-  ```
+
+```js
+let cpuUsage = hidebug.getCpuUsage();
+```
 
 ## hidebug.startProfiling
 
@@ -187,7 +193,6 @@ hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 hidebug.stopProfiling();
 ```
-
 
 
 ## hidebug.stopProfiling
@@ -245,6 +250,7 @@ This is a system API and cannot be called by third-party applications.
 | serviceid | number | Yes  | ID of the system service. |
 
 **Return value**
+
 | Type  | Description                      |
 | ------ | -------------------------- |
 | string | Absolute path of the file that contains the service information to dump. |

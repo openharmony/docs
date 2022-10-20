@@ -56,8 +56,8 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -190,10 +190,10 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var srcKeyAlias = 'hukRsaKeyAlias';
-var srcKeyAliasSecond = 'huksRsaKeyAliasSecond';
-var exportKey;
-var inputEccPair = new Uint8Array([
+let srcKeyAlias = 'hukRsaKeyAlias';
+let srcKeyAliasSecond = 'huksRsaKeyAliasSecond';
+let exportKey;
+let inputEccPair = new Uint8Array([
     0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
     0x20, 0x00, 0x00, 0x00, 0xa5, 0xb8, 0xa3, 0x78, 0x1d, 0x6d, 0x76, 0xe0, 0xb3, 0xf5, 0x6f, 0x43,
     0x9d, 0xcf, 0x60, 0xf6, 0x0b, 0x3f, 0x64, 0x45, 0xa8, 0x3f, 0x1a, 0x96, 0xf1, 0xa1, 0xa4, 0x5d,
@@ -205,7 +205,7 @@ var inputEccPair = new Uint8Array([
 
 async function testImportExport() {
     /* 集成生成密钥参数集 */
-    var exportProperties = new Array();
+    let exportProperties = new Array();
     exportProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA,
@@ -232,7 +232,7 @@ async function testImportExport() {
         tag: huks.HuksTag.HUKS_TAG_DIGEST,
         value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
     }
-    var huksOptions = {
+    let huksOptions = {
         properties: exportProperties,
         inData: new Uint8Array(new Array())
     }
@@ -244,7 +244,7 @@ async function testImportExport() {
     await publicExportKeyFunc(srcKeyAlias, huksOptions);
 
     /* 集成导入密钥参数集 */
-    var importProperties = new Array();
+    let importProperties = new Array();
     importProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -265,7 +265,7 @@ async function testImportExport() {
         tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
         value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR,
     };
-    var importOptions = {
+    let importOptions = {
         properties: importProperties,
         inData: inputEccPair
     };
@@ -466,11 +466,11 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var importAlias = "importAlias";
-var wrapAlias = "wrappingKeyAlias";
-var exportKey;
+let importAlias = "importAlias";
+let wrapAlias = "wrappingKeyAlias";
+let exportKey;
 
-var inputEccPair = new Uint8Array([
+let inputEccPair = new Uint8Array([
     0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00,
     0x20, 0x00, 0x00, 0x00, 0xa5, 0xb8, 0xa3, 0x78, 0x1d, 0x6d, 0x76, 0xe0, 0xb3, 0xf5, 0x6f, 0x43,
     0x9d, 0xcf, 0x60, 0xf6, 0x0b, 0x3f, 0x64, 0x45, 0xa8, 0x3f, 0x1a, 0x96, 0xf1, 0xa1, 0xa4, 0x5d,
@@ -480,7 +480,7 @@ var inputEccPair = new Uint8Array([
     0x7c, 0x86, 0xba, 0xca, 0x64, 0x0b, 0x88, 0x96, 0xe2, 0xfa, 0x77, 0xbc, 0x71, 0xe3, 0x0f, 0x0f,
     0x9e, 0x3c, 0xe5, 0xf9]);
 
-var properties = new Array();
+let properties = new Array();
 properties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -501,12 +501,12 @@ properties[4] = {
     tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
     value: huks.HuksImportKeyType.HUKS_KEY_TYPE_KEY_PAIR,
 };
-var huksOptions = {
+let huksOptions = {
     properties: properties,
     inData: inputEccPair
 };
 
-var importProperties = new Array();
+let importProperties = new Array();
 importProperties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES
@@ -531,7 +531,7 @@ importProperties[5] = {
     tag: huks.HuksTag.HUKS_TAG_UNWRAP_ALGORITHM_SUITE,
     value: huks.HuksUnwrapSuite.HUKS_UNWRAP_SUITE_ECDH_AES_256_GCM_NOPADDING
 };
-var importOptions = {
+let importOptions = {
     properties: importProperties,
     inData: new Uint8Array(new Array())
 };
@@ -556,7 +556,7 @@ async function importWrappedKeyItemTest() {
      * nonce1的长度（4字节）   + nonce1的数据   + tag1的长度（4字节） + tag1的数据 +
      * keyA长度占用的内存长度（4字节）  + keyA的长度     + keyA_enc的长度（4字节） + keyA_enc的数据
      */
-    var inputKey = new Uint8Array([
+    let inputKey = new Uint8Array([
         0x5b, 0x00, 0x00, 0x00, 0x30, 0x59, 0x30, 0x13, 0x06, 0x07, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x02,
         0x01, 0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d, 0x03, 0x01, 0x07, 0x03, 0x42, 0x00, 0x04, 0xc0,
         0xfe, 0x1c, 0x67, 0xde, 0x86, 0x0e, 0xfb, 0xaf, 0xb5, 0x85, 0x52, 0xb4, 0x0e, 0x1f, 0x6c, 0x6c,
@@ -625,7 +625,7 @@ struct Index {
 | ------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------- | ----------- |
 | HUKS_ALG_SM4                  （支持长度：  HUKS_SM4_KEY_SIZE_128） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | 【非必选】                                                   | HUKS_PADDING_NONE                                            | HUKS_MODE_CTR  HUKS_MODE_ECB  HUKS_MODE_CBC | 【必选】    |
 | HUKS_ALG_SM4                  （支持长度：  HUKS_SM4_KEY_SIZE_128） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | 【非必选】                                                   | HUKS_PADDING_PKCS7                                           | HUKS_MODE_ECB  HUKS_MODE_CBC                | 【必选】    |
-| HUKS_ALG_RSA                 （支持长度：  HUKS_SM4_KEY_SIZE_512  HUKS_SM4_KEY_SIZE_768  HUKS_SM4_KEY_SIZE_1024  HUKS_SM4_KEY_SIZE_2048  HUKS_SM4_KEY_SIZE_3072  HUKS_SM4_KEY_SIZE_4096） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_DIGEST_SHA1 HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | HUKS_PADDING_NONE  HUKS_PADDING_PKCS1_V1_5  HUKS_PADDING_OAEP | HUKS_MODE_ECB                               | 【非必选】  |
+| HUKS_ALG_RSA                 （支持长度：  HUKS_RSA_KEY_SIZE_512  HUKS_RSA_KEY_SIZE_768  HUKS_RSA_KEY_SIZE_1024  HUKS_RSA_KEY_SIZE_2048  HUKS_RSA_KEY_SIZE_3072  HUKS_RSA_KEY_SIZE_4096） | HUKS_KEY_PURPOSE_ENCRYPT  HUKS_KEY_PURPOSE_DECRYPT | HUKS_DIGEST_SHA1 HUKS_DIGEST_SHA224  HUKS_DIGEST_SHA256  HUKS_DIGEST_SHA384  HUKS_DIGEST_SHA512 | HUKS_PADDING_NONE  HUKS_PADDING_PKCS1_V1_5  HUKS_PADDING_OAEP | HUKS_MODE_ECB                               | 【非必选】  |
 
 | HUKS_ALG_ALGORITHM                                           | HUKS_TAG_PURPOSE         | HUKS_TAG_PADDING                      | HUKS_TAG_BLOCK_MODE          | HUKS_TAG_IV | HUKS_TAG_NONCE | HUKS_TAG_ASSOCIATED_DATA | HUKS_TAG_AE_TAG |
 | ------------------------------------------------------------ | ------------------------ | ------------------------------------- | ---------------------------- | ----------- | -------------- | ------------------------ | --------------- |
@@ -663,16 +663,16 @@ struct Index {
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
 }
 
 function Uint8ArrayToString(fileData) {
-    var dataString = '';
-    for (var i = 0; i < fileData.length; i++) {
+    let dataString = '';
+    for (let i = 0; i < fileData.length; i++) {
         dataString += String.fromCharCode(fileData[i]);
     }
     return dataString;
@@ -820,17 +820,17 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var IV = '0000000000000000';
-var cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
-var srcKeyAlias = 'huksCipherSm4SrcKeyAlias';
-var encryptUpdateResult = new Array();
-var handle;
-var updateResult = new Array();
-var finishOutData;
+let IV = '0000000000000000';
+let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
+let srcKeyAlias = 'huksCipherSm4SrcKeyAlias';
+let encryptUpdateResult = new Array();
+let handle;
+let updateResult = new Array();
+let finishOutData;
 
 async function testSm4Cipher() {
     /* 集成生成密钥参数集 & 加密参数集 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -853,12 +853,12 @@ async function testSm4Cipher() {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
         value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
     }
-    var huksOptions = {
+    let huksOptions = {
         properties: properties,
         inData: new Uint8Array(new Array())
     }
 
-    var propertiesEncrypt = new Array();
+    let propertiesEncrypt = new Array();
     propertiesEncrypt[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -883,7 +883,7 @@ async function testSm4Cipher() {
         tag: huks.HuksTag.HUKS_TAG_IV,
         value: StringToUint8Array(IV),
     }
-    var encryptOptions = {
+    let encryptOptions = {
         properties: propertiesEncrypt,
         inData: new Uint8Array(new Array())
     }
@@ -911,7 +911,7 @@ async function testSm4Cipher() {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
         value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
     });
-    var decryptOptions = {
+    let decryptOptions = {
         properties: propertiesEncrypt,
         inData: new Uint8Array(new Array())
     }
@@ -967,16 +967,16 @@ struct Index {
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
 }
 
 function Uint8ArrayToString(fileData) {
-    var dataString = '';
-    for (var i = 0; i < fileData.length; i++) {
+    let dataString = '';
+    for (let i = 0; i < fileData.length; i++) {
         dataString += String.fromCharCode(fileData[i]);
     }
     return dataString;
@@ -1124,20 +1124,20 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var AAD = '0000000000000000';
-var NONCE = '000000000000';
-var AEAD = '0000000000000000';
-var cipherInData = 'Hks_AES_Cipher_Test_00000000000000000000000000000000000000000000000000000_string';
-var srcKeyAlias = 'huksCipherSm4SrcKeyAlias';
-var updateResult = new Array();
-var encryptUpdateResult = new Array();
-var decryptUpdateResult = new Array();
-var handle;
-var finishOutData;
+let AAD = '0000000000000000';
+let NONCE = '000000000000';
+let AEAD = '0000000000000000';
+let cipherInData = 'Hks_AES_Cipher_Test_00000000000000000000000000000000000000000000000000000_string';
+let srcKeyAlias = 'huksCipherSm4SrcKeyAlias';
+let updateResult = new Array();
+let encryptUpdateResult = new Array();
+let decryptUpdateResult = new Array();
+let handle;
+let finishOutData;
 
 async function testAesCipher() {
     /* 集成生成密钥参数集 & 加密参数集 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES,
@@ -1160,12 +1160,12 @@ async function testAesCipher() {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
         value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
     }
-    var huksOptions = {
+    let huksOptions = {
         properties: properties,
         inData: new Uint8Array(new Array())
     }
 
-    var propertiesEncrypt = new Array();
+    let propertiesEncrypt = new Array();
     propertiesEncrypt[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES,
@@ -1202,7 +1202,7 @@ async function testAesCipher() {
         tag: huks.HuksTag.HUKS_TAG_AE_TAG,
         value: StringToUint8Array(AEAD),
     }
-    var encryptOptions = {
+    let encryptOptions = {
         properties: propertiesEncrypt,
         inData: new Uint8Array(new Array())
     }
@@ -1236,7 +1236,7 @@ async function testAesCipher() {
         tag: huks.HuksTag.HUKS_TAG_AE_TAG,
         value: new Uint8Array(encryptUpdateResult.splice(encryptUpdateResult.length - 16,encryptUpdateResult.length))
     });
-    var decryptOptions = {
+    let decryptOptions = {
         properties: propertiesEncrypt,
         inData: new Uint8Array(new Array())
     }
@@ -1342,8 +1342,8 @@ Update过程只将inData发送到Core中记录在ctx中，不进行Hash计算，
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -1569,15 +1569,15 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var signVerifyInData = 'signVerifyInDataForTest';
-var generateKeyAlias = 'generateKeyAliasForTest';
-var importKeyAlias = 'importKeyAliasForTest';
-var handle;
-var exportKey;
-var finishOutData;
+let signVerifyInData = 'signVerifyInDataForTest';
+let generateKeyAlias = 'generateKeyAliasForTest';
+let importKeyAlias = 'importKeyAliasForTest';
+let handle;
+let exportKey;
+let finishOutData;
 
 /* 集成生成密钥参数集 */
-var generateKeyProperties = new Array();
+let generateKeyProperties = new Array();
 generateKeyProperties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2,
@@ -1596,13 +1596,13 @@ generateKeyProperties[3] = {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SM3,
 }
-var genrateKeyOptions = {
+let genrateKeyOptions = {
     properties: generateKeyProperties,
     inData: new Uint8Array(new Array())
 }
 
 /* 集成签名参数集 */
-var signProperties = new Array();
+let signProperties = new Array();
 signProperties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2,
@@ -1620,13 +1620,13 @@ signProperties[3] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256,
 }
-var signOptions = {
+let signOptions = {
     properties: signProperties,
     inData: new Uint8Array(new Array())
 }
 
 /* 集成验签参数集 */
-var verifyProperties = new Array();
+let verifyProperties = new Array();
 verifyProperties[0] = {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_SM2,
@@ -1643,7 +1643,7 @@ verifyProperties[3] = {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_SM2_KEY_SIZE_256,
 }
-var verifyOptions = {
+let verifyOptions = {
     properties: verifyProperties,
     inData: new Uint8Array(new Array())
 }
@@ -1653,8 +1653,8 @@ async function testSm2SignVerify() {
     await publicGenKeyFunc(generateKeyAlias, genrateKeyOptions);
 
     /* 签名 */
-    var signHandle;
-    var signFinishOutData;
+    let signHandle;
+    let signFinishOutData;
     await publicInitFunc(generateKeyAlias, signOptions);
 
     signHandle = handle;
@@ -1673,7 +1673,7 @@ async function testSm2SignVerify() {
     await publicImportKeyFunc(importKeyAlias, verifyOptions);
 
     /* 验证签名 */
-    var verifyHandle;
+    let verifyHandle;
     await publicInitFunc(importKeyAlias, verifyOptions);
 
     verifyHandle = handle;
@@ -1773,8 +1773,8 @@ HksFinish对paramSet中参数的要求：
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -1968,17 +1968,17 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var srcKeyAliasFirst = "AgreeX25519KeyFirstAlias";
-var srcKeyAliasSecond = "AgreeX25519KeySecondAlias";
-var agreeX25519InData = 'AgreeX25519TestIndata';
-var handle;
-var exportKey;
-var exportKeyFrist;
-var exportKeySecond;
+let srcKeyAliasFirst = "AgreeX25519KeyFirstAlias";
+let srcKeyAliasSecond = "AgreeX25519KeySecondAlias";
+let agreeX25519InData = 'AgreeX25519TestIndata';
+let handle;
+let exportKey;
+let exportKeyFrist;
+let exportKeySecond;
 
 async function testAgree() {
     /* 集成生成密钥参数集 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_X25519,
@@ -2003,7 +2003,7 @@ async function testAgree() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_CBC,
     }
-    var HuksOptions = {
+    let HuksOptions = {
         properties: properties,
         inData: new Uint8Array(new Array())
     }
@@ -2018,7 +2018,7 @@ async function testAgree() {
     exportKeySecond = exportKey;
 
     /* 集成第一个协商参数集 */
-    var finishProperties = new Array();
+    let finishProperties = new Array();
     finishProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
         value: huks.HuksKeyStorageType.HUKS_STORAGE_TEMP,
@@ -2057,7 +2057,7 @@ async function testAgree() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
-    var finishOptionsFrist = {
+    let finishOptionsFrist = {
         properties: finishProperties,
         inData: StringToUint8Array(agreeX25519InData)
     }
@@ -2069,7 +2069,7 @@ async function testAgree() {
     await publicFinishFunc(handle, finishOptionsFrist);
 
     /* 集成第二个协商参数集 */
-    var finishOptionsSecond = {
+    let finishOptionsSecond = {
         properties: finishProperties,
         inData: StringToUint8Array(agreeX25519InData)
     }
@@ -2171,8 +2171,8 @@ HksFinish对paramSet中参数的要求：
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -2318,14 +2318,14 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var deriveHkdfInData = "deriveHkdfTestIndata";
-var srcKeyAlias = "deriveHkdfKeyAlias";
-var handle;
-var HuksKeyDeriveKeySize = 32;
+let deriveHkdfInData = "deriveHkdfTestIndata";
+let srcKeyAlias = "deriveHkdfKeyAlias";
+let handle;
+let HuksKeyDeriveKeySize = 32;
 
 async function testDerive() {
     /* 集成生成密钥参数集 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES,
@@ -2342,7 +2342,7 @@ async function testDerive() {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
         value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
     }
-    var huksOptions = {
+    let huksOptions = {
         properties: properties,
         inData: new Uint8Array(new Array())
     }
@@ -2360,7 +2360,7 @@ async function testDerive() {
         value: HuksKeyDeriveKeySize,
     });
 
-    var finishProperties = new Array();
+    let finishProperties = new Array();
     finishProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
         value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT,
@@ -2399,7 +2399,7 @@ async function testDerive() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB,
     }
-    var finishOptions = {
+    let finishOptions = {
         properties: finishProperties,
         inData: new Uint8Array(new Array())
     }
@@ -2488,8 +2488,8 @@ HksInit对paramSet中参数的要求，其他三段式接口对paramSet无要求
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -2651,13 +2651,13 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var srcKeyAlias = "sm3KeyAlias";
-var hmacInData = 'sm3TestIndata';
-var handle;
+let srcKeyAlias = "sm3KeyAlias";
+let hmacInData = 'sm3TestIndata';
+let handle;
 
 async function testMac() {
     /* 集成生成密钥参数集 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_SM3,
@@ -2674,7 +2674,7 @@ async function testMac() {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
         value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
     }
-    var huksOptions = {
+    let huksOptions = {
         properties:properties,
         inData:new Uint8Array(new Array())
     }
@@ -2758,8 +2758,8 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -2858,20 +2858,20 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var securityLevel = StringToUint8Array('sec_level');
-var challenge = StringToUint8Array('challenge_data');
-var versionInfo = StringToUint8Array('version_info');
-var udid = StringToUint8Array('udid');
-var serial = StringToUint8Array('serial');
-var deviceId = StringToUint8Array('device_id');
-var idAliasString = "id attest";
+let securityLevel = StringToUint8Array('sec_level');
+let challenge = StringToUint8Array('challenge_data');
+let versionInfo = StringToUint8Array('version_info');
+let udid = StringToUint8Array('udid');
+let serial = StringToUint8Array('serial');
+let deviceId = StringToUint8Array('device_id');
+let idAliasString = "id attest";
 
 async function testAttestId() {
-    var aliasString = idAliasString;
-    var aliasUint8 = StringToUint8Array(aliasString);
+    let aliasString = idAliasString;
+    let aliasUint8 = StringToUint8Array(aliasString);
 
     /* 集成生成密钥参数集 & 生成密钥 */
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -2904,13 +2904,13 @@ async function testAttestId() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB
     };
-    var options = {
+    let options = {
         properties: properties
     };
     await publicGenKeyFunc(aliasString, options);
 
     /* 集成证书参数集 */
-    var attestProperties = new Array();
+    let attestProperties = new Array();
     attestProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
         value: securityLevel
@@ -2939,7 +2939,7 @@ async function testAttestId() {
         tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_DEVICE,
         value: deviceId
     };
-    var huksOptions = {
+    let huksOptions = {
         properties: attestProperties
     };
 
@@ -3007,8 +3007,8 @@ RSA512, RSA768, RSA1024, RSA2048, RSA3072, RSA4096, ECC224, ECC256, ECC384, ECC5
 import huks from '@ohos.security.huks';
 
 function StringToUint8Array(str) {
-    var arr = [];
-    for (var i = 0, j = str.length; i < j; ++i) {
+    let arr = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
         arr.push(str.charCodeAt(i));
     }
     return new Uint8Array(arr);
@@ -3107,16 +3107,16 @@ function deleteKeyItem(keyAlias:string, huksOptions:huks.HuksOptions) {
     });
 }
 
-var securityLevel = StringToUint8Array('sec_level');
-var challenge = StringToUint8Array('challenge_data');
-var versionInfo = StringToUint8Array('version_info');
-var keyAliasString = "key attest";
+let securityLevel = StringToUint8Array('sec_level');
+let challenge = StringToUint8Array('challenge_data');
+let versionInfo = StringToUint8Array('version_info');
+let keyAliasString = "key attest";
 
 async function testAttestKey() {
-    var aliasString = keyAliasString;
-    var aliasUint8 = StringToUint8Array(aliasString);
+    let aliasString = keyAliasString;
+    let aliasUint8 = StringToUint8Array(aliasString);
 
-    var properties = new Array();
+    let properties = new Array();
     properties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -3149,13 +3149,13 @@ async function testAttestKey() {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_ECB
     };
-    var options = {
+    let options = {
         properties: properties
     };
     await publicGenKeyFunc(aliasString, options);
 
     /* 集成证书参数集 */
-    var attestProperties = new Array();
+    let attestProperties = new Array();
     attestProperties[0] = {
         tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
         value: securityLevel
@@ -3172,7 +3172,7 @@ async function testAttestKey() {
         tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
         value: aliasUint8
     };
-    var huksOptions = {
+    let huksOptions = {
         properties: attestProperties
     };
 

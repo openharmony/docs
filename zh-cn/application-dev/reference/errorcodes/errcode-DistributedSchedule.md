@@ -5,6 +5,10 @@
 ### 错误信息
 Permission denied.
 
+### 错误描述
+
+当调用流转管理和迁移等接口时，若缺少ohos.permission.MANAGER_MISSIONS或ohos.permission.DISTRIBUTED_DATASYNC，会报此错误码。
+
 ### 可能原因
 该错误码表示权限校验失败，可能原因是未配置对应权限。
 
@@ -15,6 +19,10 @@ Permission denied.
 
 ### 错误信息
 The parameter check failed.
+
+### 错误描述
+
+当调用接口提供的入参出现类型、个数、数组大小以及合法性等错误时，会报此错误码。
 
 ### 可能原因
 该错误码表示入参检查错误，可能原因是callback入参检查错误。
@@ -27,6 +35,10 @@ The parameter check failed.
 ### 错误信息
 The system ability work abnormally.
 
+### 错误描述
+
+当系统服务工作异常时，会报此错误码。
+
 ### 可能原因
 该错误码表示系统服务工作异常，可能原因如下。
 1. DMS服务没有正常启动。
@@ -37,6 +49,10 @@ The system ability work abnormally.
 系统服务内部工作异常，请稍后重试，或者重启设备尝试。
 
 ## 16600002 指定的token或callback未注册
+
+### 错误描述
+
+当调用continuationManager相关的接口时传入的token或callback未提前注册，会报此错误码。
 
 ### 错误信息
 The specified token or callback has not registered.
@@ -49,6 +65,10 @@ The specified token or callback has not registered.
 
 ## 16600003 应用注册token已达到最大次数限制
 
+### 错误描述
+
+当调用continuationManager.registerContinuation接口时次数过多超出限制，会报此错误码。
+
 ### 错误信息
 The number of token registration times has reached the upper limit.
 
@@ -60,6 +80,10 @@ The number of token registration times has reached the upper limit.
 
 ## 16600004 指定的callback已注册
 
+### 错误描述
+
+当使用相同的callback调用continuationManager的on接口时，会报此错误码。
+
 ### 错误信息
 The specified callback has been registered.
 
@@ -70,6 +94,10 @@ The specified callback has been registered.
 请勿使用相同的callback重复注册。
 
 ## 16300501 系统服务工作异常
+
+### 错误描述
+
+当系统服务工作异常时，会报此错误码。
 
 ### 错误信息
 The system ability work abnormally.
@@ -85,6 +113,10 @@ The system ability work abnormally.
 
 ## 16300502 获取指定的missionId的missionInfo失败
 
+### 错误描述
+
+当调用distributedMissionManager.continueMission接口获取指定missionId的missionInfo失败时，会报此错误码。
+
 ### 错误信息
 Failed to get the missionInfo of the specified missionId.
 
@@ -98,6 +130,10 @@ Failed to get the missionInfo of the specified missionId.
 
 ## 16300503 远端未安装应用且不支持免安装
 
+### 错误描述
+
+当调用distributedMissionManager.continueMission接口使用迁移功能时，若远端未安装应用且不支持免安装，会报此错误码。
+
 ### 错误信息
 The application is not installed on the remote end and installation-free is not supported.
 
@@ -110,6 +146,10 @@ The application is not installed on the remote end and installation-free is not 
 
 ## 16300504 远端未安装应用但支持免安装，需使用免安装标识重试
 
+### 错误描述
+
+当调用distributedMissionManager.continueMission接口使用迁移功能时，若远端未安装应用但支持免安装，会报此错误码。
+
 ### 错误信息
 The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag.
 
@@ -120,6 +160,10 @@ The application is not installed on the remote end but installation-free is supp
 请使用免安装的标识重试。
 
 ## 16300505 操作设备必须是迁移的应用所在的设备或需迁移到的目标设备
+
+### 错误描述
+
+当调用distributedMissionManager.continueMission接口使用迁移功能时，若操作设备不是迁移的应用所在的设备或需迁移到的目标设备，会报此错误码。
 
 ### 错误信息
 The operation device must be the device where the application to be continued is located or the target device to be continued.
@@ -132,6 +176,10 @@ The operation device must be the device where the application to be continued is
 
 ## 16300506 本地迁移任务已在进行中
 
+### 错误描述
+
+当调用distributedMissionManager.continueMission接口使用迁移功能时，若本地迁移任务已在进行中，会报此错误码。
+
 ### 错误信息
 The local continuation task is already in progress.
 
@@ -142,6 +190,10 @@ The local continuation task is already in progress.
 请检查是否已经发起了迁移并未结束。
 
 ## 3 序列化对象失败
+
+### 错误描述
+
+当调用continuationManager相关接口时，若系统参数DMS_PROXY_INTERFACE_TOKEN序列化写失败，会报此错误码。
 
 ### 错误信息
 Failed to flatten the object.
@@ -157,6 +209,10 @@ Failed to flatten the object.
 ### 错误信息
 The object is null.
 
+### 错误描述
+
+当调用流转和迁移相关接口时，若出现dms以及其他对象为空或序列化读失败，会报此错误码。
+
 ### 可能原因
 该错误码表示接口依赖的服务对象或参数对象为空，可能原因如下。
 1. 入参序列化读失败。
@@ -170,6 +226,10 @@ The object is null.
 
 ## 29360207 注册超出最大次数
 
+### 错误描述
+
+当调用continuationManager.register接口时次数过多超出限制，会报此错误码。
+
 ### 错误信息
 The maximum number of registrations exceeded.
 
@@ -180,6 +240,10 @@ The maximum number of registrations exceeded.
 重启服务并且避免频繁注册。
 
 ## 29360208 token未注册
+
+### 错误描述
+
+当调用continuationManager相关接口时使用未注册的token，会报此错误码。
 
 ### 错误信息
 The token has not registered.
@@ -192,6 +256,10 @@ The token has not registered.
 
 ## 29360209 callback已注册
 
+### 错误描述
+
+当使用相同的callback重复调用continuationManager.on接口时，会报此错误码。
+
 ### 错误信息
 Callback has been registered.
 
@@ -202,6 +270,10 @@ Callback has been registered.
 请勿使用相同的callback重复注册。
 
 ## 29360210 callback未注册
+
+### 错误描述
+
+当调用continuationManager的off、updateConnectStatus和startDeviceManager等接口时，若未提前调用on接口注册callback，会报此错误码。
 
 ### 错误信息
 Callback has not been registered.
@@ -214,6 +286,10 @@ Callback has not been registered.
 
 ## 29360211 连接ability失败
 
+### 错误描述
+
+当调用continuationManager的startDeviceManager接口时，若连接相应Ability失败时，会报此错误码。
+
 ### 错误信息
 Failed to connect ability.
 
@@ -224,6 +300,10 @@ Failed to connect ability.
 检查token是否有效以及相应ability是否正常服务，重新启动服务或重启设备。
 
 ## 29360214 callback类型错误
+
+### 错误描述
+
+当调用continuationManager的on和off接口时，若参数callback类型错误时，会报此错误码。
 
 ### 错误信息
 The type of callback is not supported.
@@ -236,8 +316,12 @@ The type of callback is not supported.
 
 ## 29360215 无效的连接状态
 
+### 错误描述
+
+当调用continuationManager的updateConnectStatus接口时，若参数status为无效值时，会报此错误码。
+
 ### 错误信息
-Invalid continuation mode.
+Invalid connect state.
 
 ### 可能原因
 该错误码表示无效的连接状态，可能原因是入参DeviceConnectState为非指定值。
@@ -246,6 +330,10 @@ Invalid continuation mode.
 设置指定合法的DeviceConnectState值。
 
 ## 29360216 无效的流转模式
+
+### 错误描述
+
+当调用continuationManager的register和startDeviceManager接口时，若参数ContinuationExtraParams.continuationMode为无效值时，会报此错误码。
 
 ### 错误信息
 Invalid continuation mode.

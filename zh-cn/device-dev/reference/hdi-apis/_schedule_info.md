@@ -3,6 +3,16 @@
 
 ## **概述**
 
+调度信息。
+
+**Since：**
+
+3.2
+
+**Version：**
+
+1.0
+
 **所属模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
@@ -13,7 +23,7 @@
 
 ### Public 属性
 
-  | Public&nbsp;属性 | 描述 | 
+  | 名称 | 描述 | 
 | -------- | -------- |
 | [scheduleId](#scheduleid) | 调度ID，用于标识一次操作请求的执行器调度过程。 | 
 | [templateIds](#templateids) | 模版ID列表。 | 
@@ -21,19 +31,6 @@
 | [executorMatcher](#executormatcher) | 执行器匹配器。 | 
 | [scheduleMode](#schedulemode) | 调度模式，支持注册、认证和识别模式。 | 
 | [executors](#executors) | 执行器信息列表。 | 
-
-
-## **详细描述**
-
-调度信息。
-
-**Since：**
-
-3.2
-
-**Version：**
-
-1.0
 
 
 ## **类成员变量说明**

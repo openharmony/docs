@@ -304,11 +304,8 @@ hiAppEvent.addWatcher({
             console.error("holder is null");
             return;
         }
-        while (true) {
-            let eventPkg = holder.takeNext();
-            if (eventPkg == null) {
-                return;
-            }
+        let eventPkg = null;
+        while ((eventPkg = holder.takeNext()) != null) {
             console.info("eventPkg.packageId=" + eventPkg.packageId);
             console.info("eventPkg.row=" + eventPkg.row);
             console.info("eventPkg.size=" + eventPkg.size);
@@ -324,15 +321,14 @@ let holder = hiAppEvent.addWatcher({
     name: "watcher2",
 });
 if (holder != null) {
-    let eventPkg = holder.takeNext();
-    if (eventPkg == null) {
-        return;
-    }
-    console.info("eventPkg.packageId=" + eventPkg.packageId);
-    console.info("eventPkg.row=" + eventPkg.row);
-    console.info("eventPkg.size=" + eventPkg.size);
-    for (const eventInfo of eventPkg.data) {
-        console.info("eventPkg.data=" + eventInfo);
+    let eventPkg = null;
+    while ((eventPkg = holder.takeNext()) != null) {
+        console.info("eventPkg.packageId=" + eventPkg.packageId);
+        console.info("eventPkg.row=" + eventPkg.row);
+        console.info("eventPkg.size=" + eventPkg.size);
+        for (const eventInfo of eventPkg.data) {
+            console.info("eventPkg.data=" + eventInfo);
+        }
     }
 }
 ```
@@ -417,6 +413,9 @@ Sets the data size threshold for fetching an application event package. The defa
 **Example**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 holder.setSize(1000);
 ```
 
@@ -429,6 +428,9 @@ Extracts subscription event data based on the configured data size threshold. If
 **Example**
 
 ```js
+let holder = hiAppEvent.addWatcher({
+    name: "watcher",
+});
 let eventPkg = holder.takeNext();
 ```
 

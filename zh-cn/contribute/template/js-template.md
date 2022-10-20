@@ -155,6 +155,15 @@ import call from '@ohos.telephony.call';
 | string                                     | 返回值描述。取到返回值之后，可以用来做什么。    |
 | Promise\<Array<[CustomType](#CustomType)>> | 返回值描述。Promise写法参考总体写作说明第14项。 |
 
+**错误码**：（可选，如不涉及可删除）
+
+以下错误码的详细介绍请参见[ohos.window(窗口)错误码]()。*（链接到对应模块的“错误码参考”文档）*
+
+| 错误码ID | 错误信息（此处仅提供错误抛出的关键信息） |
+| -------- | ---------------------------------------- |
+| 1300001  | This is repeat operation.                |
+| 1300002  | This window state is abnormally.         |
+
 **示例：**
 
 ```js

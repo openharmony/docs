@@ -53,7 +53,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-In addition to the universal events (ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -70,7 +70,7 @@ In addition to the universal events (ts-universal-events-click.md), the followin
 
 ## VideoController
 
-A **VideoController** object can control one or more videos.
+Defines a **VideoController** object to control one or more videos.
 
 
 ### Objects to Import

@@ -13,7 +13,9 @@
 
 >**说明：** 
 >
->本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>- 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.data.distributedKVStore`](js-apis-distributedKVStore.md)。
+>
+>- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 ## 导入模块
@@ -39,56 +41,28 @@ createKVManager(config: KVManagerConfig, callback: AsyncCallback&lt;KVManager&gt
 | callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | 是  | 回调函数。返回创建的KVManager对象实例。 |
 
 **示例：**
-
-Stage模型下的示例：
-```ts
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-            userInfo: {
-                userId: '0',
-                userType: distributedData.UserType.SAME_USER_ID
-            }
-        }
-        distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-            if (err) {
-                console.log("Failed to create KVManager: " + JSON.stringify(err));
-                return;
-            }
-            console.log("Succeeded in creating KVManager");
-            kvManager = manager;
-        });
-    }
-}
-```
-
-FA模型下的示例：
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+
 let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-    userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
+        }
     }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+        if (err) {
+            console.log("Failed to create KVManager: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("Succeeded in creating KVManager");
+        kvManager = manager;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
 }
-distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-    if (err) {
-        console.log("Failed to create KVManager: " + JSON.stringify(err));
-        return;
-    }
-    console.log("Created KVManager");
-    kvManager = manager;
-});
 ```
 
 ## distributedData.createKVManager
@@ -112,52 +86,28 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 | Promise&lt;[KVManager](#kvmanager)&gt; | Promise对象。返回创建的KVManager对象实例。 |
 
 **示例：**
-
-Stage模型下的示例：
-```ts
-import AbilityStage from '@ohos.application.Ability'
-let kvManager;
-export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-        let context = this.context
-        const kvManagerConfig = {
-            context: context,
-            bundleName: 'com.example.datamanagertest',
-            userInfo: {
-                userId: '0',
-                userType: distributedData.UserType.SAME_USER_ID
-            }
-        }
-        distributedData.createKVManager(kvManagerConfig).then((manager) => {
-            console.log("Succeeded in creating KVManager");
-            kvManager = manager;
-        }).catch((err) => {
-            console.log("Failed to create KVManager: " + JSON.stringify(err));
-        });
-    }
-}
-```
-
-FA模型下的示例：
 ```js
-import featureAbility from '@ohos.ability.featureAbility'
+
 let kvManager;
-let context = featureAbility.getContext()
-const kvManagerConfig = {
-    context: context,
-    bundleName: 'com.example.datamanagertest',
-    userInfo: {
-        userId: '0',
-        userType: distributedData.UserType.SAME_USER_ID
+try {
+    const kvManagerConfig = {
+        bundleName : 'com.example.datamanagertest',
+        userInfo : {
+            userId : '0',
+            userType : distributedData.UserType.SAME_USER_ID
+        }
     }
+    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
+        if (err) {
+            console.log("Failed to create KVManager: "  + JSON.stringify(err));
+            return;
+        }
+        console.log("Succeeded in creating KVManager");
+        kvManager = manager;
+    });
+} catch (e) {
+    console.log("An unexpected error occurred. Error:" + e);
 }
-distributedData.createKVManager(kvManagerConfig).then((manager) => {
-    console.log("Succeeded in creating KVManager");
-    kvManager = manager;
-}).catch((err) => {
-    console.log("Failed to create KVManager: " + JSON.stringify(err));
-});
 ```
 
 ## KVManagerConfig
@@ -168,7 +118,6 @@ distributedData.createKVManager(kvManagerConfig).then((manager) => {
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ----- | ------ | ------ | ------ |
-| context<sup>9+<sup> | Context | 是 | 应用的上下文。 <br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。|
 | userInfo | [UserInfo](#userinfo) | 是  | 调用方的用户信息。 |
 | bundleName | string | 是  | 调用方的包名。 |
 
@@ -562,7 +511,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 
 订阅服务状态变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -593,7 +542,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 
 取消订阅服务状态变更通知，此方法为同步方法。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -680,7 +629,7 @@ KVStore常量。
 
 表示数据库模式，可以在创建或打开数据库时创建Schema对象并将它们放入[Options](#options)中。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -695,13 +644,13 @@ constructor()
 
 用于创建Schema实例的构造函数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 ## FieldNode<sup>8+</sup> ##
 
 表示 Schema 实例的节点，提供定义存储在数据库中的值的方法。
 
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | 名称  | 类型 | 说明                    |
 | ---   | ----  | ----------------------- |
@@ -715,7 +664,7 @@ constructor(name: string)
 
 用于创建带有string字段FieldNode实例的构造函数。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -729,7 +678,7 @@ appendChild(child: FieldNode): boolean
 
 在当前 FieldNode 中添加一个子节点。
 
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore。
+**系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 **参数：**
 
@@ -2160,7 +2109,6 @@ try {
 }
 ```
 
-
 ### put
 
 put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void&gt;
@@ -2282,303 +2230,6 @@ try {
 }
 ```
 
-### delete<sup>9+</sup>
-
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;)
-
-从数据库中删除符合predicates条件的键值对，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
-| callback  | AsyncCallback&lt;void&gt;  | 是    |回调函数。   |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let predicates = new dataSharePredicates.DataSharePredicates();
-	kvStore.delete(predicates, function (err, data) {
-		if (err == undefined) {
-			console.log('delete success');
-		} else {
-			console.log('delete fail' + err);
-		}
-    });  
-} catch (e) {
-	console.log('An unexpected error occurred. Error:' + e);
-}
-```
-
-### delete<sup>9+</sup>
-
-delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
-
-从数据库中删除符合predicates条件的键值对，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| predicates    | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。|
-
-
-**返回值：**
-
-| 类型    | 说明       |
-| ------  | -------   |
-| Promise&lt;void&gt; |无返回结果的Promise对象。|
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let predicates = new dataSharePredicates.DataSharePredicates();
-	let arr = ["name"];
-	predicates.inKeys(arr);
-	kvStore.put("name", "bob").then((data) => {
-		console.log('put success' + JSON.stringify(data));
-		kvStore.delete(predicates).then((data) => {
-			console.log('delete success');
-		}).catch((err) => {
-			console.log('delete fail' + JSON.stringify(err));
-		});
-	}) .catch((err) => {
-		console.log(' put fail' + err);
-	});
-}catch (e) {
-	console.log("An unexpected error occurred. Error:" + e);
-}
-
-```
-
-### backup<sup>9+</sup>
-
-backup(file:string, callback: AsyncCallback&lt;void&gt;):void
-
-以指定名称备份数据库，使用callback异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 参数类型                  | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当以指定名称备份数据库成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.backup(file, (err, data) => {
-        if (err) {
-            console.info("backup err : " + err);
-        } else {
-            console.info("backup data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### backup<sup>9+</sup>
-
-backup(file:string): Promise&lt;void&gt;
-
-以指定名称备份数据库，使用Promise异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 说明                                                         |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | 是   | 备份数据库的指定名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.backup(file).then((data) => {
-        console.info("backup data : " + data);
-    }).catch((err) => {
-        console.info("backup err : " + err);
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### restore<sup>9+</sup>
-
-restore(file:string, callback: AsyncCallback&lt;void&gt;):void
-
-从指定的数据库文件恢复数据库，使用callback异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 参数类型                  | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| file     | string                    | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当从指定的数据库文件恢复数据库成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.restore(file, (err, data) => {
-        if (err) {
-            console.info("restore err : " + err);
-        } else {
-            console.info("restore data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### restore<sup>9+</sup>
-
-restore(file:string): Promise&lt;void&gt;
-
-从指定的数据库文件恢复数据库，使用Promise异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 说明                                                         |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| file   | string   | 是   | 指定的数据库文件名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```js
-let kvStore;
-let file = "BK001";
-try {
-    kvStore.restore(file).then((data) => {
-        console.info("restore data : " + data);
-    }).catch((err) => {
-        console.info("restore err : " + err);
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### deleteBackup<sup>9+</sup>
-
-deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[string, number]&gt;&gt;):void
-
-根据指定名称删除备份文件，使用callback异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 参数类型                                           | 必填 | 说明                                                         |
-| -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| files    | Array&lt;string&gt;                                | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 回调函数，返回删除备份的文件名及其处理结果。                 |
-
-**示例：**
-
-```js
-let kvStore;
-let files = ["BK001", "BK002"];
-try {
-    kvStore.deleteBackup(files, (err, data) => {
-        if (err) {
-            console.info("deleteBackup err : " + err);
-        } else {
-            console.info("deleteBackup data : " + data);
-        }
-    });
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
-### deleteBackup<sup>9+</sup>
-
-deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt;&gt;
-
-根据指定名称删除备份文件，使用Promise异步回调。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 说明                                                         |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| files  | Array&lt;string&gt;   | 是   | 删除备份文件所指定的名称，不能为空且长度不大于[MAX_KEY_LENGTH](#constants)。 |
-
-**返回值：**
-
-| 类型                                         | 说明                                            |
-| -------------------------------------------- | ----------------------------------------------- |
-| Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，返回删除备份的文件名及其处理结果。 |
-
-**示例：**
-
-```js
-let kvStore;
-let files = ["BK001", "BK002"];
-try {
-    kvStore.deleteBackup(files).then((data) => {
-        console.info("deleteBackup data : " + data);
-    }).catch((err) => {
-        console.info("deleteBackup err : " + err);
-    })
-} catch (e) {
-    console.log("An unexpected error occurred. Error : " + e);
-}
-
-```
-
 ### on('dataChange')
 
 on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
@@ -2603,7 +2254,6 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
     console.log("dataChange callback call data: " + JSON.stringify(data));
 });
 ```
-
 
 ### on('syncComplete')
 
@@ -2664,43 +2314,6 @@ class KvstoreModel {
     }
 }
 ```
-
-### off('syncComplete')<sup>9+</sup>
-
-off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
-
-取消订阅同步完成事件回调通知，此方法为同步方法。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。       |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | 否    |用于向调用方发送同步结果的回调。    |
-
-**示例：**
-
-```js
-let kvStore;
-class KvstoreModel {
-    call(data) {
-        console.log("syncComplete: " + data);
-    }
-    subscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.on('syncComplete', this.call);
-        }
-    }
-    unsubscribeSyncComplete() {
-        if (kvStore != null) {
-            kvStore.off('syncComplete', this.call);
-        }
-    }
-}
-```
-
 
 ### putBatch<sup>8+</sup>
 
@@ -2801,94 +2414,6 @@ try {
 }catch(e) {
     console.log('PutBatch e ' + JSON.stringify(e));
 }
-```
-
-### putBatch<sup>9+</sup>
-
-putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
-
-将值写入KvStore数据库，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| value   |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
-| callback |Asyncallback&lt;void&gt; |是     |回调函数。 |
-
-**示例：**
-
-```js
-let kvStore;
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4,5,6,7]);
-    let vb1 = {key : "name_1", value : 32}
-    let vb2 = {key : "name_2", value : arr};
-    let vb3 = {key : "name_3", value : "lisi"};
-
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr, async function (err,data) {
-                console.log('putBatch success');
-    }).catch((err) => {
-        console.log('putBatch fail ' + JSON.stringify(err));
-    });
-}catch(e) {
-    console.log('putBatch e ' + JSON.stringify(e));
-}
-```
-
-### putBatch<sup>9+</sup>
-
-putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
-
-将valuesbucket类型的值写入KvStore数据库，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| value  |Array&lt;[ValuesBucket](js-apis-data-ValuesBucket.md#valuesbucket)&gt; | 是    |表示要插入的数据。  |
-
-**返回值：**
-
-| 类型    | 说明       |
-| ------  | -------   |
-| Promise&lt;void&gt; |五返回结果的Promise对象。|
-
-**示例：**
-
-```js
-let kvStore;
-try {
-    let v8Arr = [];
-    let arr = new Uint8Array([4,5,6,7]);
-    let vb1 = {key : "name_1", value : 32}
-    let vb2 = {key : "name_2", value : arr};
-    let vb3 = {key : "name_3", value : "lisi"};
-
-    v8Arr.push(vb1);
-    v8Arr.push(vb2);
-    v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr).then(async (err) => {
-        console.log('putBatch success');
-    }).catch((err) => {
-        console.log('putBatch fail ' + JSON.stringify(err));
-    });
-}catch(e) {
-    console.log('PutBatch e ' + JSON.stringify(e));
-}
-
 ```
 
 ### deleteBatch<sup>8+</sup>
@@ -3924,85 +3449,6 @@ try {
 }
 ```
 
-### getResultSet<sup>9+</sup>
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
-
-获取与指定Predicate对象匹配的KvStoreResultSet对象，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| predicates  | [DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)    | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。             |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | 是    |回调函数，获取与指定Predicates对象匹配的KvStoreResultSet对象。 |
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-    let resultSet;
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates, async function (err, result) {
-    console.log(' GetResultSet success');
-    resultSet = result;
-    kvStore.closeResultSet(resultSet, function (err, data) {
-        console.log(' closeResultSet success');
-        })
-    });
-}catch(e) {
-    console.log('An unexpected error occurred. Error:' + e);
-}
-```
-### getResultSet<sup>9+</sup>
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KvStoreResultSet&gt;
-
-获取与指定Predicate对象匹配的KvStoreResultSet对象，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| predicates  |[DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates)  | 是    |指示筛选条件,当此参数为null时，应定义处理逻辑。            |
-
-**返回值：**
-
-| 类型    | 说明       |
-| ------  | -------   |
-|Promise&lt;[KvStoreResultSet](#kvstoreresultset8)&gt; |无返回结果的Promise对象。|
-
-**示例：**
-
-```js
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-let kvStore;
-try {
-	let resultSet;
-    let predicates =  new dataSharePredicates.DataSharePredicates();
-    predicates.prefixKey("batch_test_string_key");
-    kvStore.getResultSet(predicates) .then((result) => {
-        console.log(' GetResultSet success');
-        resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
-            console.log(' closeResultSet success');
-        })
-    });
-}catch(e) {
-	console.log('An unexpected error occurred. Error:' + e);
-}
-```
 ### closeResultSet<sup>8+</sup>
 
 closeResultSet(resultSet: KvStoreResultSet, callback: AsyncCallback&lt;void&gt;): void
@@ -4338,67 +3784,6 @@ class KvstoreModel {
 }
 ```
 
-### on('dataChange')<sup>9+</sup>
-
-on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
-
-订阅指定类型的数据变更通知，此方法为同步方法。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
-
-**示例：**
-
-```js
-let kvStore;
-kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-    console.log("dataChange callback call data: " + JSON.stringify(data));
-});
-
-```
-
-### off('dataChange')<sup>9+</sup>
-
-off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
-
-取消订阅数据变更通知，此方法为同步方法。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
-
-**示例：**
-
-```js
-let kvStore;
-class KvstoreModel {
-    call(data) {
-        console.log("dataChange: " + data);
-    }
-    subscribeDataChange() {
-        if (kvStore != null) {
-            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
-        }
-    }
-    unsubscribeDataChange() {
-        if (kvStore != null) {
-            kvStore.off('dataChange', this.call);
-        }
-    }
-}
-```
 ### sync<sup>7+</sup>
 
 
@@ -4423,48 +3808,6 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 ```js
 let kvStore;
 kvStore.sync('deviceIds', distributedData.SyncMode.PULL_ONLY, 1000);
-```
-
-### sync<sup>9+</sup>
-sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
-
-在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
-
-**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds  |string[]  | 是    |同一组网环境下，需要同步的设备的deviceId列表。    |
-| mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| query  |[Query](#query8)   | 是   |表示数据库的查询谓词条件  |
-| delayMs  |number   | 否   |可选参数，允许延时时间，单位：ms（毫秒）。   |
-
-**示例：**
-
-```js
-let kvStore;
-const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
-const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
-        console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
-        const devices = ['deviceList'];
-        const mode = distributedData.SyncMode.PULL_ONLY;
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, mode , 1000);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
-}
 ```
 
 ### setSyncParam<sup>8+</sup>
@@ -5734,48 +5077,6 @@ try {
 }
 ```
 
-### sync<sup>9+</sup>
-
-sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
-
-在手动同步方式下， 触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
-
-**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
-| query            |[Query](#query8)  | 是    | 数据库的查询谓词条件。|
-| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
-
-**示例：**
-
-```js
-let kvStore;
-const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
-const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
-try {
-    kvStore.on('syncComplete', function (data) {
-        console.log('Sync dataChange');
-    });
-    kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err,data) {
-        console.log('Sync put success');
-        const devices = ['deviceList'];
-        const mode = distributedData.SyncMode.PULL_ONLY;
-        const query = new distributedData.Query();
-        query.prefixKey("batch_test");
-        query.deviceId('localDeviceId');
-        kvStore.sync(devices, query, 1000);
-    });
-}catch(e) {
-    console.log('Sync e' + e);
-}
-```
-
 ### on('syncComplete')<sup>8+</sup>
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
@@ -5843,68 +5144,6 @@ class KvstoreModel {
     unsubscribeSyncComplete() {
         if (kvStore != null) {
             kvStore.off('syncComplete', this.call);
-        }
-    }
-}
-```
-
-### on('dataChange')<sup>9+</sup>
-
-on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void
-
-订阅指定类型的数据变更通知，此方法为同步方法。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| type  |[SubscribeType](#subscribetype) | 是    |表示订阅的类型。     |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | 是    |回调函数。 |
-
-**示例：**
-
-```js
-let kvStore;
-kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, function (data) {
-    console.log("dataChange callback call data: " + JSON.stringify(data));
-});
-```
-
-
-### off('dataChange')<sup>9+</sup>
-
-off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
-
-取消订阅数据变更通知，此方法为同步方法。
-
-**系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 参数类型 | 必填  | 说明                    |
-| -----  | ------  | ----  | ----------------------- |
-| event  |string  | 是    |取消订阅的事件名，固定为'dataChange'，表示数据变更事件。       |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |否    |回调函数。 |
-
-**示例：**
-
-```js
-let kvStore;
-class KvstoreModel {
-    call(data) {
-        console.log("dataChange: " + data);
-    }
-    subscribeDataChange() {
-        if (kvStore != null) {
-            kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_REMOTE, this.call);
-        }
-    }
-    unsubscribeDataChange() {
-        if (kvStore != null) {
-            kvStore.off('dataChange', this.call);
         }
     }
 }
