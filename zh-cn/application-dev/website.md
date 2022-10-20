@@ -781,9 +781,9 @@
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis/js-apis-resource-manager.md)
     - 资源调度
-      - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-resourceschedule-backgroundTaskManager.md)
+      - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
       - [@ohos.distributedMissionManager (分布式任务管理)](reference/apis/js-apis-distributedMissionManager.md)
-      - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis/js-apis-resourceschedule-workScheduler.md)
+      - [@ohos.workScheduler (延迟任务调度)](reference/apis/js-apis-workScheduler.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-config-policy.md)
