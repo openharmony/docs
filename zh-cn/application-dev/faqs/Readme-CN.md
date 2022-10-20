@@ -2,7 +2,7 @@
 
 - [Ability框架开发常见问题](faqs-ability.md)
 - [UI框架（JS）开发常见问题](faqs-ui-js.md)
-- [UI框架（eTS）开发常见问题](faqs-ui-ets.md)
+- [UI框架（ArkTS）开发常见问题](faqs-ui-ets.md)
 - [图形图像开发常见问题](faqs-graphics.md)
 - [文件管理开发常见问题](faqs-file-management.md)
 - [网络与连接开发常见问题](faqs-connectivity.md)

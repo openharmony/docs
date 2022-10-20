@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebController })
+Web(options: { src: ResourceStr, controller: WebController | WebviewController})
 
 > **说明：**
 >
@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebController })
 | 参数名        | 参数类型                            | 必填   | 参数描述    |
 | ---------- | ------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)                           | 是    | 网页资源地址。 |
-| controller | [WebController](#webcontroller) | 否    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) |是    | 控制器。    |
 
 **示例：**
 
@@ -38,6 +38,21 @@ Web(options: { src: ResourceStr, controller: WebController })
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
@@ -193,7 +208,7 @@ imageAccess(imageAccess: boolean)
 ### javaScriptProxy
 
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
-    controller: WebController })
+    controller: WebController | WebviewController})
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。所有参数不支持更新。
 
@@ -204,7 +219,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object          | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string          | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\> | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebController](#webcontroller) | 否    | -    | 控制器。    |
+| controller | [WebController](#webcontroller) 或 [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。    |
 
 **示例：**
 
@@ -214,6 +229,39 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
   @Component
   struct WebComponent {
     controller: WebController = new WebController();
+    testObj = {
+      test: (data1, data2, data3) => {
+        console.log("data1:" + data1);
+        console.log("data2:" + data2);
+        console.log("data3:" + data3);
+        return "AceString";
+      },
+      toString: () => {
+        console.log('toString' + "interface instead.");
+      }
+    }
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          .javaScriptProxy({
+            object: this.testObj,
+            name: "objName",
+            methodList: ["test", "toString"],
+            controller: this.controller,
+        })
+      }
+    }
+  }
+  ```
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
     testObj = {
       test: (data1, data2, data3) => {
         console.log("data1:" + data1);
@@ -4659,7 +4707,7 @@ static deleteOrigin(origin : string): void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -4703,7 +4751,7 @@ static getOrigins(callback: AsyncCallback<Array<WebStorageOrigin>>) : void
   ```
 
 ### getOrigins<sup>9+</sup>
-static getOrigins() : Promise<Array<WebStorageOrigin>>
+static getOrigins() : Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 

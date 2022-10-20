@@ -143,9 +143,25 @@ struct LocalStorageComponent {
   @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0
   build() {
     Column(){
-      Text(this.simpleVarName.toString())
+      Button(`LocalStorageLink: ${ this.simpleVarName.toString() }`)
         .onClick(()=>{
           this.simpleVarName +=1;
+        })
+      Text(JSON.stringify(this.simpleVarName))
+        .fontSize(50)
+      LocalStorageComponentProp();
+    }
+    .height(500)
+  }
+}
+@Component
+struct LocalStorageComponentProp {
+  @LocalStorageProp("storageSimpleProp") simpleVarName: number = 0
+  build() {
+    Column() {
+      Button(`LocalStorageProp: ${ this.simpleVarName.toString() }`)
+        .onClick(() => {
+          this.simpleVarName += 1;
         })
       Text(JSON.stringify(this.simpleVarName))
         .fontSize(50)

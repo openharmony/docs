@@ -213,5 +213,5 @@
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../ui/ts-component-based-builder.md)。 |
+| CustomBuilder | ()&nbsp;=&gt;&nbsp;any | 该方法类型必须使用@Builder装饰器修饰。具体用法见[@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder)。 |
 
