@@ -214,7 +214,7 @@ Use [Collator](../reference/apis/js-apis-intl.md#collator8) APIs to sort strings
    var collator = new intl.Collator();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8).
+   Alternatively, use your own locale and formatting parameters to create a **Collator** object. For a full list of parameters, see [CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9).
    
    ```js
    var collator= new intl.Collator("zh-CN", {localeMatcher: "best fit", usage: "sort"});
@@ -264,7 +264,7 @@ Use [PluralRules](../reference/apis/js-apis-intl.md#pluralrules8) APIs to determ
    var pluralRules = new intl.PluralRules();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8).
+   Alternatively, use your own locale and formatting parameters to create a **PluralRules** object. For a full list of parameters, see [PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9).
    
    ```js
    var pluralRules = new intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -307,7 +307,7 @@ Use [RelativeTimeFormat](../reference/apis/js-apis-intl.md#relativetimeformat8) 
    var relativeTimeFormat = new intl.RelativeTimeFormat();
    ```
 
-   Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8).
+   Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
    
    ```js
    var relativeTimeFormat = new intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
