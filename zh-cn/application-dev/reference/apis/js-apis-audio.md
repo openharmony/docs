@@ -52,7 +52,7 @@ getAudioManager(): AudioManager
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 ```
 
 ## audio.createAudioRenderer<sup>8+</sup>
@@ -74,20 +74,20 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 
 ```js
 import audio from '@ohos.multimedia.audio';
-var audioStreamInfo = {
+let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var audioRendererInfo = {
+let audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
-var audioRendererOptions = {
+let audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
@@ -127,25 +127,25 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 ```js
 import audio from '@ohos.multimedia.audio';
 
-var audioStreamInfo = {
+let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_1,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var audioRendererInfo = {
+let audioRendererInfo = {
   content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 }
 
-var audioRendererOptions = {
+let audioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
 
-var audioRenderer;
+let audioRenderer;
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
@@ -175,19 +175,19 @@ createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<Audio
 
 ```js
 import audio from '@ohos.multimedia.audio';
-var audioStreamInfo = {
+let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var audioCapturerInfo = {
+let audioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
 }
 
-var audioCapturerOptions = {
+let audioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 }
@@ -229,24 +229,24 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 ```js
 import audio from '@ohos.multimedia.audio';
 
-var audioStreamInfo = {
+let audioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
 }
 
-var audioCapturerInfo = {
+let audioCapturerInfo = {
   source: audio.SourceType.SOURCE_TYPE_MIC,
   capturerFlags: 0
 }
 
-var audioCapturerOptions = {
+let audioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 }
 
-var audioCapturer;
+let audioCapturer;
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
@@ -275,13 +275,12 @@ createTonePlayer(options: AudioRendererInfo, callback: AsyncCallback&lt;TonePlay
 ```js
 import audio from '@ohos.multimedia.audio';
 
-var audioRendererInfo = {
+let audioRendererInfo = {
   "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
   "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
   "rendererFlags": 0
 }
-var tonePlayer;
-
+let tonePlayer;
 audio.createTonePlayer(audioRendererInfo, (err, data) => {
   console.info(`callback call createTonePlayer: audioRendererInfo: ${audioRendererInfo}`);
   if (err) {
@@ -318,12 +317,12 @@ createTonePlayer(options: AudioRendererInfo): Promise&lt;TonePlayer&gt;
 ```js
 import audio from '@ohos.multimedia.audio';
 async function createTonePlayer(){
-  var audioRendererInfo = {
+  let audioRendererInfo = {
     "contentType": audio.ContentType.CONTENT_TYPE_MUSIC,
     "streamUsage": audio.StreamUsage.STREAM_USAGE_MEDIA,
     "rendererFlags": 0
   }
-  let tonePlayer = await audio.createTonePlayer(this.audioRendererInfo);
+  let tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
 ```
 
@@ -515,7 +514,7 @@ async function createTonePlayer(){
 
 **系统接口：** 该接口为系统接口
 
-**系统能力：**: SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
 | 名称                               | 默认值  | 描述                            |
 | ---------------------------------- | ------ | ------------------------------- |
@@ -841,7 +840,7 @@ audioManager.getRoutingManager((err, callback) => {
     console.error(`Result ERROR: ${err}`);
   }
   console.info('getRoutingManager Callback SUCCESS.');
-  var audioRoutingManager;
+  let audioRoutingManager;
   audioRoutingManager = callback;
 });
 ```
@@ -862,10 +861,10 @@ getRoutingManager(): Promise&lt;AudioRoutingManager&gt;
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
-    var routingManager = value;
+    let routingManager = value;
     console.info('getRoutingManager Promise SUCCESS.');
   }).catch((err) => {
     console.error(`Result ERROR: ${err}`);
@@ -1920,7 +1919,7 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 **示例：**
 
 ```js
-var interAudioInterrupt = {
+let interAudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
@@ -1956,7 +1955,7 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 **示例：**
 
 ```js
-var interAudioInterrupt = {
+let interAudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
@@ -1989,7 +1988,7 @@ setAudioScene\(scene: AudioScene, callback: AsyncCallback<void\>\): void
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err) => {
   if (err) {
     console.error(`Failed to set the audio scene mode.​ ${err}`);
@@ -2024,7 +2023,7 @@ setAudioScene\(scene: AudioScene\): Promise<void\>
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
 }).catch ((err) => {
@@ -2049,7 +2048,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getAudioScene((err, value) => {
   if (err) {
     console.error(`Failed to obtain the audio scene mode.​ ${err}`);
@@ -2077,7 +2076,7 @@ getAudioScene\(\): Promise<AudioScene\>
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getAudioScene().then((value) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
 }).catch ((err) => {
@@ -2104,7 +2103,7 @@ getVolumeGroups(networkId: string, callback: AsyncCallback<VolumeGroupInfos\>\):
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID, (err, value) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2165,8 +2164,8 @@ getGroupManager(groupId: number, callback: AsyncCallback<AudioGroupManager\>\): 
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
-var audioGroupManager;
+let audioManager = audio.getAudioManager();
+let audioGroupManager;
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2208,7 +2207,7 @@ getGroupManager(groupId: number\): Promise<AudioGroupManager\>
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 async function getGroupManager(){
   let value = await audioManager.getVolumeGroups(audio.LOCAL_NETWORK_ID);
   if (value.length > 0) {
@@ -2236,7 +2235,7 @@ getStreamManager(callback: AsyncCallback\<AudioStreamManager>): void
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let audioStreamManager;
 audioManager.getStreamManager((err, data) => {
   if (err) {
@@ -2265,8 +2264,8 @@ getStreamManager(): Promise<AudioStreamManager\>
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
-var audioStreamManager;
+let audioManager = audio.getAudioManager();
+let audioStreamManager;
 audioManager.getStreamManager().then((data) => {
   audioStreamManager = data;
   console.info('getStreamManager: Success!');
@@ -3116,7 +3115,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3155,7 +3154,7 @@ getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3187,7 +3186,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3221,7 +3220,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getRoutingManager((err,AudioRoutingManager)=>{
   if (err) {
     console.error(`AudioFrameworkTest:Callback:failed to get RoutingManager ${err}`);
@@ -3252,13 +3251,13 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCall
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let inputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.INPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3293,7 +3292,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 audioManager.getRoutingManager.on('micStateChange', (micStateChange) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
 });
@@ -3324,13 +3323,13 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let inputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.INPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3363,13 +3362,13 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors, callback: AsyncCa
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor = [{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3409,13 +3408,13 @@ selectOutputDevice(outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let outputAudioDeviceDescriptor =[{
   "deviceRole":audio.DeviceRole.OUTPUT_DEVICE,
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3449,7 +3448,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 
 **示例：**
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3462,7 +3461,7 @@ let outputAudioDeviceDescriptor = [{
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3503,7 +3502,7 @@ selectOutputDeviceByFilter(filter: AudioRendererFilter, outputAudioDevices: Audi
 **示例：**
 
 ```js
-var audioManager = audio.getAudioManager();
+let audioManager = audio.getAudioManager();
 let outputAudioRendererFilter = {
   "uid":20010041,
   "rendererInfo": {
@@ -3516,7 +3515,7 @@ let outputAudioDeviceDescriptor = [{
   "networkId":audio.LOCAL_NETWORK_ID,
   "interruptGroupId":1,
   "volumeGroupId":1 }];
-var audioRoutingManager;
+let audioRoutingManager;
 
 async function getRoutingManager(){
   await audioManager.getRoutingManager().then((value) => {
@@ -3554,9 +3553,9 @@ AudioRenderChangeInfo数组，只读。
 ```js
 import audio from '@ohos.multimedia.audio';
 
-var audioStreamManager;
-var resultFlag = false;
-var audioManager = audio.getAudioManager();
+let audioStreamManager;
+let resultFlag = false;
+let audioManager = audio.getAudioManager();
 
 audioManager.getStreamManager((err, data) => {
   if (err) {
@@ -3630,7 +3629,7 @@ audioManager.getStreamManager((err, data) => {
   }
 });
 
-var resultFlag = false;
+let resultFlag = false;
 audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  {
   for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
     console.info(`## CapChange on is called for element ${i} ##`);
@@ -3692,8 +3691,8 @@ function displayDeviceProp(value) {
   deviceTypeValue = value.deviceType;
 }
 
-var deviceRoleValue = null;
-var deviceTypeValue = null;
+let deviceRoleValue = null;
+let deviceTypeValue = null;
 const promise = audio.getAudioManager().getDevices(1);
 promise.then(function (value) {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
@@ -3745,7 +3744,7 @@ let outputAudioRendererFilter = {
 **示例：**
 
 ```js
-var state = audioRenderer.state;
+let state = audioRenderer.state;
 ```
 
 ### getRendererInfo<sup>8+</sup>
@@ -4122,7 +4121,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioRenderer.getBufferSize().then((data)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -4130,12 +4129,12 @@ audioRenderer.getBufferSize().then((data)=> {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`Buffer size: ${bufferSize}`);
-var context = featureAbility.getContext();
-var path;
+let context = featureAbility.getContext();
+let path;
 async function getCacheDir(){
   path = await context.getCacheDir();
 }
-var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -4165,7 +4164,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -4173,12 +4172,12 @@ audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
   });
 console.info(`BufferSize: ${bufferSize}`);
-var context = featureAbility.getContext();
-var path;
+let context = featureAbility.getContext();
+let path;
 async function getCacheDir(){
   path = await context.getCacheDir();
 }
-var filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let ss = fileio.createStreamSync(filePath, 'r');
 let buf = new ArrayBuffer(bufferSize);
 ss.readSync(buf);
@@ -4256,7 +4255,7 @@ getBufferSize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-var bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
+let bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
   if (err) {
     console.error('getBufferSize error');
   }
@@ -4280,7 +4279,7 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioRenderer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -4465,8 +4464,8 @@ on(type: 'interrupt', callback: Callback\<InterruptEvent>): void
 **示例：**
 
 ```js
-var isPlay;
-var started;
+let isPlay;
+let started;
 audioRenderer.on('interrupt', async(interruptEvent) => {
   if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
     switch (interruptEvent.hintType) {
@@ -4648,7 +4647,7 @@ audioRenderer.on('stateChange', (state) => {
 **示例：**
 
 ```js
-var state = audioCapturer.state;
+let state = audioCapturer.state;
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -4925,7 +4924,7 @@ release(): Promise<void\>
 **示例：**
 
 ```js
-var stateFlag;
+let stateFlag;
 audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
   console.info('AudioFrameworkRecLog: Capturer release : SUCCESS');
@@ -4956,7 +4955,7 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -4995,7 +4994,7 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -5106,7 +5105,7 @@ getBufferSize(): Promise<number\>
 **示例：**
 
 ```js
-var bufferSize;
+let bufferSize;
 audioCapturer.getBufferSize().then((data) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
