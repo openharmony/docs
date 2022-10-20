@@ -19,5 +19,5 @@ import StartOptions from '@ohos.application.StartOptions';
 
 | Name| Readable| Writable| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-application-abilityConstant.md#AbilityConstant.WindowMode) | Yes| No| number | No| Window mode.|
+| [windowMode](js-apis-application-abilityConstant.md#abilityconstantwindowmode) | Yes| No| number | No| Window mode.|
 | displayId | Yes| No| number | No| Display ID.|

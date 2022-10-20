@@ -23,6 +23,99 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.uitest'
 ```
 
+## MatchPattern
+
+控件属性支持的匹配模式。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称        | 值   | 说明           |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | 等于给定值。   |
+| CONTAINS    | 1    | 包含给定值。   |
+| STARTS_WITH | 2    | 以给定值开始。 |
+| ENDS_WITH   | 3    | 以给定值结束。 |
+
+## ResizeDirection<sup>9+</sup>
+
+窗口调整大小的方向。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 说明     |
+| ---------- | -------- |
+| LEFT       | 左方。   |
+| RIGHT      | 右方。   |
+| UP         | 上方。   |
+| DOWN       | 下方。   |
+| LEFT_UP    | 左上方。 |
+| LEFT_DOWN  | 左下方。 |
+| RIGHT_UP   | 右上方。 |
+| RIGHT_DOWN | 右下方。 |
+
+## Point<sup>9+</sup>
+
+坐标点信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称 | 参数类型 | 可读 | 可写 | 描述             |
+| ---- | -------- | ---- | ---- | ---------------- |
+| X    | number   | 是   | 否   | 坐标点的横坐标。 |
+| Y    | number   | 是   | 否   | 坐标点的纵坐标。 |
+
+## Rect<sup>9+</sup>
+
+控件的边框信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
+| ------- | -------- | ---- | ---- | ------------------------- |
+| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
+| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
+| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
+| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
+
+## WindowMode<sup>9+</sup>
+
+**系统能力**：SystemCapability.Test.UiTest
+
+窗口的窗口模式。
+
+| 名称       | 说明       |
+| ---------- | ---------- |
+| FULLSCREEN | 全屏模式。 |
+| PRIMARY    | 主窗口。   |
+| SECONDARY  | 第二窗口。 |
+| FLOATING   | 浮动窗口。 |
+
+## DisplayRotation<sup>9+</sup>
+
+**系统能力**：SystemCapability.Test.UiTest
+
+设备显示器的显示方向。
+
+| 名称         | 说明                                     |
+| ------------ | ---------------------------------------- |
+| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。     |
+| ROTATION_90  | 设备显示器顺时针旋转90°，水平显示。      |
+| ROTATION_180 | 设备显示器顺时针旋转180°，逆向垂直显示。 |
+| ROTATION_270 | 设备显示器顺时针旋转270°，逆向水平显示。 |
+
+## WindowFilter<sup>9+</sup>
+
+窗口的标志属性信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 参数类型 | 必填 | 可读 | 可写 | 描述                       |
+| ---------- | -------- | ---- | ---- | ---- | -------------------------- |
+| bundleName | string   | 否   | 是   | 否   | 窗口归属应用的包名。       |
+| title      | string   | 否   | 是   | 否   | 窗口的标题信息。           |
+| focused    | boolean  | 否   | 是   | 否   | 窗口是否处于获焦状态。     |
+| actived    | boolean  | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
+
 ## On<sup>9+</sup>
 
 UiTest框架在API9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -597,15 +690,15 @@ async function demo() {
 
 getBoundsCenter(): Promise\<Point>
 
-获取控件对象的中心点信息。
+获取控件对象所占区域的中心点信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型                       | 说明                                    |
-| -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise形式返回控件对象的中心点信息。 |
+| 类型                       | 说明                                            |
+| -------------------------- | ----------------------------------------------- |
+| Promise\<[Point](#point9)> | 以Promise形式返回控件对象所占区域的中心点信息。 |
 
 **错误码：**
 
@@ -630,7 +723,7 @@ async function demo() {
 
 isClickable(): Promise\<boolean>
 
-获取控件对象可点击状态。
+获取控件对象可点击属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -638,7 +731,7 @@ isClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可点击状态，true：可点击，false：不可点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可点击，true：可点击，false：不可点击。 |
 
 **错误码：**
 
@@ -668,7 +761,7 @@ async function demo() {
 
 isLongClickable(): Promise\<boolean> 
 
-获取控件对象可长按点击状态。
+获取控件对象可长按点击属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -676,7 +769,7 @@ isLongClickable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象能否长按点击状态，true：可长按点击，false：不可长按点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可安装点击，true：可长按点击，false：不可长按点击。 |
 
 **错误码：**
 
@@ -744,7 +837,7 @@ async function demo() {
 
 isCheckable(): Promise\<boolean>
 
-获取控件对象能否被勾选的属性。
+获取控件对象能否被勾选属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -752,7 +845,7 @@ isCheckable(): Promise\<boolean>
 
 | 错误码ID          | 错误码信息                                                   |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象能否被勾选的属性，true：可被勾选，false：不可被勾选。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否可被勾选属性，true：可被勾选，false：不可被勾选。 |
 
 **错误码：**
 
@@ -782,7 +875,7 @@ async function demo() {
 
 isScrollable(): Promise\<boolean>
 
-获取控件对象可滑动状态。
+获取控件对象可滑动属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -790,7 +883,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态，true：可滑动，false：不可滑动。 |
+| Promise\<boolean> | 以Promise形式返回控件对象是否可滑动，true：可滑动，false：不可滑动。 |
 
 **错误码：**
 
@@ -860,7 +953,7 @@ async function demo() {
 
 isFocused(): Promise\<boolean>
 
-判断控件对象是否获焦。
+判断控件对象获焦状态。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -868,7 +961,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否获焦，true：获焦，false：未获焦。 |
+| Promise\<boolean> | 以Promise形式返回控件对象获焦状态，true：获焦，false：未获焦。 |
 
 **错误码：**
 
@@ -904,9 +997,9 @@ isSelected(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                                  |
-| ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中的状态，true：被选中，false：未被选中。 |
+| 类型              | 说明                                                |
+| ----------------- | --------------------------------------------------- |
+| Promise\<boolean> | 控件对象被选中状态，true：被选中，false：未被选中。 |
 
 **错误码：**
 
@@ -942,9 +1035,9 @@ inputText(text: string): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| text   | string | 是   | 输入的文本信息。 |
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| text   | string | 是   | 输入的文本信息，当前支持英文和特殊字符。 |
 
 **错误码：**
 
@@ -994,7 +1087,7 @@ async function demo() {
 
 scrollSearch(on: ON): Promise\<Component>
 
-在控件上滑动查找目标控件(适用于List等支持滑动的控件)。
+在控件上滑动查找目标控件(适用支持滑动的控件)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1033,7 +1126,7 @@ async function demo() {
 
 scrollToTop(speed?: number): Promise\<void>
 
-在控件上滑动到顶部(适用于List等支持滑动的控件)。
+在控件上滑动到顶部(适用支持滑动的控件)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1066,7 +1159,7 @@ async function demo() {
 
 scrollToBottom(speed?: number): Promise\<void>
 
-在控件上滑动到底部(适用于List等支持滑动的控件)。
+在控件上滑动到底部(适用支持滑动的控件)。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1197,8 +1290,8 @@ async function demo() {
 
 ## Driver<sup>9+</sup>
 
-UiTest框架在API9中，Driver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
-该类提供的方法除Driver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
+Driver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
+该类提供的方法除Driver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await方式调用。
 
 ### create<sup>9+</sup>
 
@@ -1414,7 +1507,7 @@ async function demo() {
 
 assertComponentExist(on: On): Promise\<void>
 
-断言API，用于断言当前界面存在满足给出的目标控件属性的控件。
+断言API，用于断言当前界面是否存在满足给出的目标属性的控件。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1471,7 +1564,7 @@ async function demo() {
 
 triggerKey(keyCode: number): Promise\<void>
 
-Driver对象采取如下操作：通过key值找到对应键并点击。
+Driver对象采取如下操作：传入key值实现模拟点击对应按键的效果。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1502,7 +1595,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
-Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到组合键并点击ctrl+c。
+Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1600,7 +1693,7 @@ async function demo() {
 
 longClick(x: number, y: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点长按下。
+Driver对象采取如下操作：在目标坐标点长按。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1632,7 +1725,7 @@ async function demo() {
 
 swipe(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
+Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1667,7 +1760,7 @@ async function demo() {
 
 drag(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从给出的起始坐标点拖拽至给出的目的坐标点。
+Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1863,15 +1956,15 @@ async function demo() {
 
 getDisplayDensity(): Promise\<Point>
 
-获取当前设备的屏幕的分辨率。
+获取当前设备屏幕的分辨率。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型                       | 说明                                        |
-| -------------------------- | ------------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备的屏幕的分辨率。 |
+| 类型                       | 说明                                      |
+| -------------------------- | ----------------------------------------- |
+| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备屏幕的分辨率。 |
 
 **错误码：**
 
@@ -1894,7 +1987,7 @@ async function demo() {
 
 wakeUpDisplay(): Promise\<void>
 
-唤醒当前设备的屏幕。
+唤醒当前设备即设备亮屏。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2024,14 +2117,14 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| pointers | [PointerMatrix](#pointermatrix9) | 是   | 起始点的坐标。                                               |
+| pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                   |
 | speed    | number                           | 否   | 滑动速率，范围：200-15000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **返回值：**
 
-| 类型              | 说明                                      |
-| ----------------- | ----------------------------------------- |
-| Promise\<boolean> | 以Promise的形式返回植入操作是否成功完成。 |
+| 类型              | 说明                                  |
+| ----------------- | ------------------------------------- |
+| Promise\<boolean> | 以Promise的形式返回操作是否成功完成。 |
 
 **错误码：**
 
@@ -2058,7 +2151,7 @@ async function demo() {
 
 ## PointerMatrix<sup>9+</sup>
 
-表示存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
+存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
 
 ### create<sup>9+</sup>
 
@@ -2121,22 +2214,22 @@ async function demo() {
 
 ## UiWindow<sup>9+</sup>
 
-UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性获取，窗口拖动、调整窗口大小等API。
-该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
+UiWindow代表了UI界面上的一个窗口，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
+该类提供的所有方法都使用Promise方式作为异步方法，需使用await方式调用。
 
 ### getBundleName<sup>9+</sup>
 
 getBundleName(): Promise\<string>
 
-获取窗口的包名信息。
+获取窗口归属应用的包名信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
 
-| 类型             | 说明                              |
-| ---------------- | --------------------------------- |
-| Promise\<string> | 以Promise形式返回窗口的包名信息。 |
+| 类型             | 说明                                      |
+| ---------------- | ----------------------------------------- |
+| Promise\<string> | 以Promise形式返回窗口归属应用的包名信息。 |
 
 **错误码：**
 
@@ -2260,7 +2353,7 @@ async function demo() {
 
 isFocused(): Promise\<boolean>
 
-判断窗口是否获焦。
+判断窗口是否处于获焦状态。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2268,7 +2361,7 @@ isFocused(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否获焦，true：获焦，false：未获焦。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否获取获焦状态，true：获焦，false：未获焦。 |
 
 **错误码：**
 
@@ -2293,7 +2386,7 @@ async function demo() {
 
 isActived(): Promise\<boolean>
 
-判断窗口是否为用户交互窗口。
+判断窗口是否为用户正在交互窗口。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2301,7 +2394,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户交互窗口，true：交互窗口，false：非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
 
 **错误码：**
 
@@ -2388,7 +2481,7 @@ async function demo() {
 
 resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
-根据传入的宽、高和调整方向来调整窗口的大小。适用于支持大小调整的窗口。
+根据传入的宽、高和调整方向来调整窗口的大小。适用于支持调整大小的窗口。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2424,7 +2517,7 @@ async function demo() {
 
 split(): Promise\<void>
 
-将窗口模式切换成分屏模式。适用于支持切屏操作的窗口。
+将窗口模式切换成分屏模式。适用于支持切换分屏模式的窗口。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2560,99 +2653,6 @@ async function demo() {
 }
 ```
 
-## MatchPattern
-
-控件属性支持的匹配模式。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称        | 值   | 说明           |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | 等于给定值。   |
-| CONTAINS    | 1    | 包含给定值。   |
-| STARTS_WITH | 2    | 从给定值开始。 |
-| ENDS_WITH   | 3    | 以给定值结束。 |
-
-## ResizeDirection<sup>9+</sup>
-
-窗口调整大小的方向。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称       | 说明     |
-| ---------- | -------- |
-| LEFT       | 左方。   |
-| RIGHT      | 右方。   |
-| UP         | 上方。   |
-| DOWN       | 下方。   |
-| LEFT_UP    | 左上方。 |
-| LEFT_DOWN  | 左下方。 |
-| RIGHT_UP   | 右上方。 |
-| RIGHT_DOWN | 右下方。 |
-
-## Point<sup>9+</sup>
-
-坐标点信息。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称 | 参数类型 | 可读 | 可写 | 描述             |
-| ---- | -------- | ---- | ---- | ---------------- |
-| X    | number   | 是   | 否   | 坐标点的横坐标。 |
-| Y    | number   | 是   | 否   | 坐标点的纵坐标。 |
-
-## Rect<sup>9+</sup>
-
-控件的边框信息。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
-| ------- | -------- | ---- | ---- | ------------------------- |
-| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
-| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
-
-## WindowMode<sup>9+</sup>
-
-**系统能力**：SystemCapability.Test.UiTest
-
-窗口的窗口模式。
-
-| 名称       | 说明       |
-| ---------- | ---------- |
-| FULLSCREEN | 全屏模式。 |
-| PRIMARY    | 主窗口。   |
-| SECONDARY  | 第二窗口。 |
-| FLOATING   | 浮动窗口。 |
-
-## DisplayRotation<sup>9+</sup>
-
-**系统能力**：SystemCapability.Test.UiTest
-
-设备显示器的显示方向。
-
-| 名称         | 说明                                     |
-| ------------ | ---------------------------------------- |
-| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。     |
-| ROTATION_90  | 设备显示器顺时针旋转90°，水平显示。      |
-| ROTATION_180 | 设备显示器顺时针旋转180°，逆向垂直显示。 |
-| ROTATION_270 | 设备显示器顺时针旋转270°，逆向水平显示。 |
-
-## WindowFilter<sup>9+</sup>
-
-窗口的标志属性信息。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称       | 参数类型 | 必填 | 可读 | 可写 | 描述                       |
-| ---------- | -------- | ---- | ---- | ---- | -------------------------- |
-| bundleName | string   | 否   | 是   | 否   | 窗口对应的包名。           |
-| title      | string   | 否   | 是   | 否   | 窗口的标题。               |
-| focused    | boolean  | 否   | 是   | 否   | 窗口是否获焦。             |
-| actived    | boolean  | 否   | 是   | 否   | 窗口是否正与用户进行交互。 |
-
 ## By<sup>(deprecated)</sup>
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -2729,7 +2729,7 @@ id(id: number): By
 
 指定目标控件id属性，返回By对象自身。
 
-从API version9开始不再维护，被废弃。
+从API version9开始废弃。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3051,7 +3051,7 @@ getId(): Promise\<number>
 
 获取控件对象的id值。
 
-从API version9开始不再维护，建议使用[getId<sup>9+</sup>](#getid9)。
+从API version9开始不再维护，被废弃。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3077,7 +3077,7 @@ getKey(): Promise\<string>
 
 获取控件对象的key值。
 
-从API version9开始不再维护，被废弃。
+从API version9开始不再维护，建议使用[getId<sup>9+</sup>](#getid9)
 
 **系统能力**：SystemCapability.Test.UiTest
 

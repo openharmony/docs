@@ -2033,6 +2033,8 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 ### translate
 
+### translate
+
 translate(x: number, y: number): void
 
 Moves the origin of the coordinate system.

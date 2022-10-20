@@ -500,6 +500,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 | [CollatorOptions](#collatoroptions) | Properties of the **Collator** object.|
 
 **Example**
+
   ```
   var collator = new Intl.Collator("zh-Hans");
   var options = collator.resolvedOptions();

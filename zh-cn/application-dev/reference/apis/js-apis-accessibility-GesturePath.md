@@ -11,7 +11,7 @@ GesturePath表示手势路径信息。
 ## 导入模块
 
 ```ts
-import GesturePath from "@ohos.accessibility.GesturePath";
+import GesturePath from '@ohos.accessibility.GesturePath';
 ```
 
 ## GesturePath
@@ -43,7 +43,7 @@ constructor(durationTime: number);
 
 **示例：**
 
-```typescript
+```ts
 let durationTime = 20;
 let gesturePath = new GesturePath(durationTime);
 ```
