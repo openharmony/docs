@@ -45,9 +45,9 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 Camera模块主要用以相机预览、拍照、视频流等场景下对相机操作封装，使开发者更易操作相机硬件，提高开发效率。
 
-### 接口说明<a name="6"></a>
+### 接口说明（接口代码路径：/drivers/peripheral/camera/hal/hdi_impl/src/）<a name="6"></a>
 
-- ICameraDevice.idl
+- drivers/interface/camera/v1_0/ICameraDevice.idl
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
@@ -59,7 +59,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 禁止具体的ResultMeta         | CamRetCode DisableResult(const std::vector<MetaType> &results) |
   | 关闭Camera设备               | void Close()                                                 |
 
-- ICameraDeviceCallback.idl
+- drivers/interface/camera/v1_0/ICameraDeviceCallback.idl
 
   | 功能描述                                                   | 接口名称                                                     |
   | ---------------------------------------------------------- | ------------------------------------------------------------ |
@@ -67,7 +67,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 上报camera设备相关的metadata的回调                         | void OnResult(uint64_t timestamp, const std::shared_ptr<CameraMetadata> &result) |
 
 
-- ICameraHost.idl
+- drivers/interface/camera/v1_0/ICameraHost.idl
 
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
@@ -77,14 +77,14 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 打开Camera设备                 | CamRetCode OpenCamera(const std::string &cameraId,<br>const OHOS::sptr<ICameraDeviceCallback> &callback,<br>OHOS::sptr<ICameraDevice> &device) |
   | 打开或关闭闪光灯               | CamRetCode SetFlashlight(const std::string &cameraId, bool &isEnable) |
 
-- ICameraHostCallback.idl
+- drivers/interface/camera/v1_0/ICameraHostCallback.idl
 
   | 功能描述               | 接口名称                                                     |
   | ---------------------- | ------------------------------------------------------------ |
   | Camera设备状态变化上报 | void OnCameraStatus(const std::string &cameraId, CameraStatus status) |
   | 闪光灯状态变化回调     | void OnFlashlightStatus(const std::string &cameraId, FlashlightStatus status) |
 
-- IOfflineStreamOperator.idl
+- drivers/interface/camera/v1_0/IOfflineStreamOperator.idl
 
   | 功能描述       | 接口名称                                                     |
   | -------------- | ------------------------------------------------------------ |
@@ -92,7 +92,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 释放流         | CamRetCode ReleaseStreams(const std::vector<int> &streamIds) |
   | 释放所有离线流 | CamRetCode Release()                                         |
 
-- IStreamOperator.idl
+- drivers/interface/camera/v1_0/IStreamOperator.idl
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
@@ -107,7 +107,7 @@ Camera模块主要用以相机预览、拍照、视频流等场景下对相机�
   | 取消捕获                         | CamRetCode CancelCapture(int captureId)                      |
   | 将指定流转换成离线流             | CamRetCode ChangeToOfflineStream(const std::vector<int> &streamIds,<br>OHOS::sptr<IStreamOperatorCallback> &callback,<br>OHOS::sptr<IOfflineStreamOperator> &offlineOperator) |
 
-- IStreamOperatorCallback.idl
+- drivers/interface/camera/v1_0/IStreamOperatorCallback.idl
 
   | 功能描述                                 | 接口名称                                                     |
   | ---------------------------------------- | ------------------------------------------------------------ |
