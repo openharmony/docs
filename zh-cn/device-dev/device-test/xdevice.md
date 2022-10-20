@@ -173,7 +173,7 @@ environment环境相关配置，详解介绍如下。
 
 输入help指令可以查询框架指令帮助信息。
 
-```
+```text
 help:
      use help to get information.  
 usage:
@@ -194,7 +194,7 @@ help list：展示 list指令相关说明。
 
 list指令用来展示设备和相关的任务信息。
 
-```
+```text
 list:
      This command is used to display device list and task record.  
 usage:
@@ -223,7 +223,7 @@ Examples:
 
 run指令主要用于执行测试任务。
 
-```
+```text
 run:
      This command is used to execute the selected testcases.
      It includes a series of processes such as use case compilation, execution, and result collection.  
@@ -262,7 +262,7 @@ run指令基本使用方法如下。
 
 框架执行run指令，控制台会输出对应的log打印，还会生成对应的执行结果报告。如果使用了-rp参数指定报告路径，那么报告就会生成在指定的路径下。否则报告会存放在默认目录。
 
-```
+```text
 当前报告目录（默认目录/指定目录）
     ├── result(模块执行结果存放目录)
     │     ├── <模块名>.xml
@@ -301,7 +301,7 @@ run指令基本使用方法如下。
 
   1. 进入xDevice根目录。
 
-     ```
+     ```bash
      cd testfwk_xdevice
      ```
 
@@ -315,7 +315,7 @@ run指令基本使用方法如下。
 
   1. 进行plugin/ohos目录。
 
-     ```
+     ```bash
      cd testfwk_xdevice/plugin/ohos
      ```
   
@@ -331,7 +331,7 @@ run指令基本使用方法如下。
 
 1. 进入xDevice根目录。
 
-   ```
+   ```bash
    cd testfwk_xdevice
    ```
 
@@ -343,7 +343,7 @@ run指令基本使用方法如下。
 
 3. 查看是否已经成功安装**xdevice**以及**xdevice-ohos**两个库。
 
-   ```
+   ```text
    xdevice                 0.0.0
    xdevice-ohos            0.0.0
    ```
@@ -352,19 +352,19 @@ run指令基本使用方法如下。
 
 1. 进入xDevice根目录。
 
-   ```
+   ```bash
    cd testfwk_xdevice
    ```
 
 2. 打开控制台，执行如下命令。
 
-   ```
+   ```bash
    python -m xdevice
    ```
 
 3. 查看控制台是否正常输出如下信息。
 
-   ```
+   ```text
    [2022-10-13 15:43:31,284] [30076] [Main] [INFO] [*************** xDevice Test Framework 2.11.0.1091 Starting ***************]
    [2022-10-13 15:43:31,286] [30076] [ManagerLite] [WARNING] [wifiiot local com cannot be empty, please check]
    [2022-10-13 15:43:31,286] [30076] [ManagerLite] [WARNING] [ipcamera local com cannot be empty, please check]
@@ -460,7 +460,7 @@ run指令基本使用方法如下。
    
    执行测试套命令。
 
-   ```
+   ```text
    run -l ActsAllTest
    ```
    
@@ -472,7 +472,7 @@ run指令基本使用方法如下。
 
 1. 识别串口用途。
 
-   type为cmd的com口对应板子上的AT命令串口，用于对设备发送指令，例子中配置为ChA(COM20)串口号。
+   type为cmd的com口对应板子上的AT命令串口，用于对设备发送指令，示例中配置为ChA(COM20)串口号。
 
    <img src="figures/L0-1.PNG" alt="L0-1" style="zoom:67%;" />
 
@@ -484,21 +484,21 @@ run指令基本使用方法如下。
 
    本地局域网NFS服务的配置方法如下。
 
-   - 下载安装[NFS服务器](https://www.hanewin.net/nfs-e.htm)。
+   1. 下载安装[NFS服务器](https://www.hanewin.net/nfs-e.htm)。
 
-   - 配置输出->编辑输出表文件。
+   2. 配置输出->编辑输出表文件。
 
-     <img src="figures/NFS-1.PNG" style="zoom: 67%;" />
+      <img src="figures/NFS-1.PNG" style="zoom: 67%;" />
 
-   - 添加路径NFS共享路径（如：D:\HS\NFS_Share_File -public –alldirs），这里要注意ftp的IP地址192.168.1.10为开发板的IP。
+   3. 添加路径NFS共享路径（如：D:\HS\NFS_Share_File -public –alldirs），这里要注意ftp的IP地址192.168.1.10为开发板的IP。
 
-     <img src="figures/NFS-2.PNG" style="zoom:75%;" />
+      <img src="figures/NFS-2.PNG" style="zoom:75%;" />
 
-   - 停止NFS服务器->重启运行NFS服务器使刚才添加的共享路径生效。
+   4. 停止NFS服务器->重启运行NFS服务器使刚才添加的共享路径生效。
 
-   - 找到ipcamera设备在PC上面映射的网口：控制面板->网络和Internet->网络共享中心->以太网状态->以太网属性->手动设置IP地址为:192.168.1.11。
+   5. 找到ipcamera设备在PC上面映射的网口：控制面板->网络和Internet->网络共享中心->以太网状态->以太网属性->手动设置IP地址为:192.168.1.11。
 
-     <img src="figures/NFS-3.PNG" style="zoom:67%;" />
+      <img src="figures/NFS-3.PNG" style="zoom:67%;" />
 
 3. 修改根目录中的user_config.xml文件，示例如下。
 
@@ -586,7 +586,7 @@ run指令基本使用方法如下。
 
    执行测试套命令。
 
-   ```
+   ```text
    run -l kernel
    ```
 
@@ -602,7 +602,7 @@ run指令基本使用方法如下。
 
 2. 执行如下命令查看设备是否正常连接。
 
-   ```bask
+   ```bash
    hdc_std list targets
    ```
    
@@ -670,7 +670,7 @@ run指令基本使用方法如下。
    
    执行测试套命令。
 
-   ```
+   ```text
    run -l ActBmsStageEtsTest
    ```
    
