@@ -245,6 +245,8 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Callback形式返回是否去激活成功。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数**：
@@ -272,6 +274,8 @@ enterpriseDeviceManager.disableSuperAdmin(bundleName, (error, result) => {
 disableSuperAdmin(bundleName: String): Promise\<boolean>
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Promise形式返回是否去激活成功。
+
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -529,6 +533,8 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
 
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **参数：**
@@ -563,6 +569,8 @@ enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo)
 setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boolean&gt;
 
 设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
+
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -671,7 +679,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -704,7 +712,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 订阅系统管理事件。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -741,7 +749,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -774,7 +782,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

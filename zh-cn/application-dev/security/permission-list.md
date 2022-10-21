@@ -94,7 +94,9 @@
 | ohos.permission.MANAGE_SECURE_SETTINGS                   | system_basic | system_grant | TRUE    | 允许应用修改安全类系统设置。                                 |
 | ohos.permission.READ_DFX_SYSEVENT                        | system_basic | system_grant | FALSE   | 允许获取所有应用账号信息。                                   |
 | ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN           | system_core  | system_grant | TRUE    | 允许应用激活设备管理员应用。                                 |
-| ohos.permission.EDM_MANAGE_DATETIME                      | normal       | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
+| ohos.permission.SET_ENTERPRISE_INFO                      | system_basic | system_grant | FALSE   | 允许设备管理员应用设置企业信息。                             |
+| ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT       | system_basic | system_grant | FALSE   | 允许设备管理员应用订阅管理事件。                             |
+| ohos.permission.ENTERPRISE_SET_DATETIME                  | system_basic | system_grant | FALSE   | 允许设备管理员应用设置系统时间。                             |
 | ohos.permission.NFC_TAG                                  | normal       | system_grant | FALSE   | 允许应用读取Tag卡片。                                        |
 | ohos.permission.NFC_CARD_EMULATION                       | normal       | system_grant | FALSE   | 允许应用实现卡模拟功能。                                     |
 | ohos.permission.PERMISSION_USED_STATS                    | system_basic | system_grant | TRUE    | 允许系统应用访问权限使用记录。                               |
