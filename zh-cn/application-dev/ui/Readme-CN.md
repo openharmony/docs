@@ -21,8 +21,8 @@
             - [页面跳转与数据传递](ui-ts-page-redirection-data-transmission.md)
         
           - 添加闪屏动画
-            - [绘制图像](ui-ts-drawing-feature)
-            - [添加动画效果](ui-ts-animation-feature)
+            - [绘制图像](ui-ts-drawing-feature.md)
+            - [添加动画效果](ui-ts-animation-feature.md)
     - 常见布局开发指导
         - [弹性布局](ui-ts-layout-flex.md)
         - [栅格布局](ui-ts-layout-grid-container.md)
