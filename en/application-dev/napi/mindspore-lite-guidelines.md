@@ -10,7 +10,7 @@ This document describes the general development process for MindSpore Lite model
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to arrays and matrices. It is a basic data structure used in MindSpore Lite network operations.
 
 **Float16 inference**: a mode in which Float16 is used for inference. Float16, also called half-precision, uses 16 bits to represent a number. 
 
