@@ -213,7 +213,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -268,7 +268,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -326,7 +326,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -380,7 +380,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -437,7 +437,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -490,7 +490,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -647,7 +647,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **返回值**：
 
@@ -697,7 +697,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -748,7 +748,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -803,7 +803,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -855,7 +855,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -909,7 +909,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -960,7 +960,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1015,7 +1015,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1067,7 +1067,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1125,7 +1125,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1181,7 +1181,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：无参数
 
@@ -1227,7 +1227,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1273,7 +1273,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1326,7 +1326,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1376,7 +1376,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1429,7 +1429,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -1474,7 +1474,7 @@ FA的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 参数名                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
@@ -1497,7 +1497,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 参数名              | 类型     | 必填   | 说明          |
 | ---------------- | ------ | ---- | ----------- |
@@ -1513,7 +1513,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 参数名           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
@@ -1531,7 +1531,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 参数名                      | 类型     | 必填   | 说明                                       |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
@@ -1577,7 +1577,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 参数名     | 类型     | 必填   | 说明                |
 | ------- | ------ | ---- | ----------------- |
@@ -1605,7 +1605,7 @@ FA卡片的使用信息的属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 | 名称                 | 默认值  | 说明                |
 | ------------------ | ---- | ----------------- |
