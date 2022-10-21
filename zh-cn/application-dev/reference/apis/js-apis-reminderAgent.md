@@ -4,7 +4,10 @@
 
 开发应用时，开发者可以调用后台提醒发布的接口创建定时提醒，包括倒计时、日历、闹钟三种提醒类型。使用后台代理提醒能力后，应用可以被冻结或退出，计时和弹出提醒的功能将被后台系统服务代理。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
+> 从API Version 9 开始，该接口不再维护，推荐使用新接口[@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
+>
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 

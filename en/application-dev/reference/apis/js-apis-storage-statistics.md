@@ -29,15 +29,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes  | UUID of the volume.|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the total size of the volume.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise used to return the total size of the volume.|
 
 **Example**
 
@@ -66,10 +66,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | volumeUuid | string                               | Yes  | UUID of the volume.                      |
-  | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size of the volume.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| volumeUuid | string                               | Yes  | UUID of the volume.                      |
+| callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total size of the volume.|
 
 **Example**
 
@@ -97,15 +97,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | volumeUuid | string | Yes  | UUID of the volume.|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                 | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the volume.|
+| Type                 | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the available space of the volume.|
 
 **Example**
 
@@ -135,10 +135,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                        |
-  | ---------- | ------------------------------------ | ---- | ---------------------------- |
-  | volumeUuid | string                               | Yes  | UUID of the volume.                        |
-  | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the volume.|
+| Name    | Type                                | Mandatory| Description                        |
+| ---------- | ------------------------------------ | ---- | ---------------------------- |
+| volumeUuid | string                               | Yes  | UUID of the volume.                        |
+| callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the volume.|
 
 **Example**
 
@@ -166,15 +166,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name     | Type  | Mandatory| Description    |
-  | ----------- | ------ | ---- | -------- |
-  | packageName | string | Yes  | Bundle name of the application.|
+| Name     | Type  | Mandatory| Description    |
+| ----------- | ------ | ---- | -------- |
+| packageName | string | Yes  | Bundle name of the application.|
 
 **Return value**
 
-  | Type                                      | Description                      |
-  | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.|
+| Type                                      | Description                      |
+| ------------------------------------------ | -------------------------- |
+| Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.|
 
 **Example**
 
@@ -203,10 +203,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name  | Type                                                     | Mandatory| Description                                |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | packageName | string | Yes  | Bundle name of the application.|
-  | callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.|
+| Name  | Type                                                     | Mandatory| Description                                |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+| packageName | string | Yes  | Bundle name of the application.|
+| callback | callback:AsyncCallback&lt;[Bundlestats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.|
 
 **Example**
 
@@ -228,9 +228,9 @@ Asynchronously obtains space information of the current third-party application.
 
 **Return value**
 
-  | Type                                       | Description                      |
-  | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.     |
+| Type                                       | Description                      |
+| ------------------------------------------ | -------------------------- |
+| Promise&lt;[Bundlestats](#bundlestats)&gt; | Promise used to return the space information obtained.     |
 
 **Example**
 
@@ -249,9 +249,9 @@ Asynchronously obtains space information of the current third-party application.
 
 **Parameters**
 
-  | Name   | Type                                                      | Mandatory | Description                                |
-  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.       |
+| Name   | Type                                                      | Mandatory | Description                                |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+| callback | callback:AsyncCallback&lt;[BundleStats](#bundlestats)&gt; | Yes  | Callback invoked to return the space information obtained.       |
 
 **Example**
 
@@ -294,9 +294,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the total space of the built-in memory card.  |
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the total space of the built-in memory card.  |
 
 **Example**
 
@@ -321,9 +321,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name   | Type                                 | Mandatory | Description                    |
-  | -------- | ------------------------------------ | ---- | ------------------------ |
-  | callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total space of the built-in memory card.|
+| Name   | Type                                 | Mandatory | Description                    |
+| -------- | ------------------------------------ | ---- | ------------------------ |
+| callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total space of the built-in memory card.|
 
 **Example**
 
@@ -351,9 +351,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
-  | Type                  | Description              |
-  | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | Promise used to return the available space of the built-in memory card.|
+| Type                  | Description              |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the available space of the built-in memory card.|
 
 **Example**
 
@@ -379,9 +379,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name   | Type                                 | Mandatory| Description                      |
-  | -------- | ------------------------------------ | ---- | ------------------------- |
-  | callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the built-in memory card.|
+| Name   | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------ | ---- | ------------------------- |
+| callback | callback:AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the available space of the built-in memory card.|
 
 **Example**
 
@@ -408,9 +408,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | Promise used to return the system space obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | Promise used to return the system space obtained.|
 
 **Example**
 
@@ -438,9 +438,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback used to return the system space obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| callback   | callback:AsyncCallback&lt;number&gt; | Yes  | Callback used to return the system space obtained.|
 
 **Example**
 
@@ -467,15 +467,15 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | ---------- | ------ | ---- | ---- |
-  | userId | number | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| userId | number | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.|
 
 **Return value**
 
-  | Type                 | Description            |
-  | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#StorageStats)&gt; | Promise used to return the information obtained.|
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -504,10 +504,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
-  | ---------- | ------------------------------------ | ---- | -------------------------- |
-  | userId | number                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
-  | callback   | callback:AsyncCallback&lt;[StorageStats](#StorageStats)&gt; | Yes  | Callback invoked to return the information obtained.|
+| Name    | Type                                | Mandatory| Description                      |
+| ---------- | ------------------------------------ | ---- | -------------------------- |
+| userId | number                               | No  | User ID.<br>Value:<br>-&nbsp; Set this parameter to the ID of the user to be queried.<br>-&nbsp; If no value is specified, information about the current user is queried.                      |
+| callback   | callback:AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the information obtained.|
 
 **Example**
 

@@ -12,7 +12,7 @@ To use related APIs, you must declare the **ohos.permission.INTERNET** permissio
 
 For details about how to apply for permissions, see [Access Control Development](../security/accesstoken-guidelines.md).
 
-The following table describes the related APIs.
+The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
 
 | API                                       | Description                                               |
 | ----------------------------------------- | --------------------------------------------------------- |

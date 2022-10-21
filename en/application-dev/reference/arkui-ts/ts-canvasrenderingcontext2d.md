@@ -6,6 +6,8 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+
+
 ## APIs
 
 CanvasRenderingContext2D(setting: RenderingContextSetting)
@@ -721,6 +723,7 @@ Draws an outlined rectangle on the canvas.
   struct StrokeRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -764,16 +767,17 @@ Clears the content in a rectangle on the canvas.
   struct ClearRect {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#ffffff')
           .onReady(() =>{
             this.context.fillStyle = 'rgb(0,0,255)'
-            this.context.fillRect(0,0,500,500)
-            this.context.clearRect(20,20,150,100)
+            this.context.fillRect(20,20,200,200)
+            this.context.clearRect(30,30,150,100)
         })
       }
       .width('100%')
@@ -809,6 +813,7 @@ Draws filled text on the canvas.
   struct FillText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -853,6 +858,7 @@ Draws a text stroke on the canvas.
   struct StrokeText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -921,6 +927,7 @@ Measures the specified text to obtain its width. This API returns a **TextMetric
   struct MeasureText {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -973,6 +980,8 @@ Strokes a path.
           .onReady(() =>{
             this.context.moveTo(25, 25)
             this.context.lineTo(25, 105)
+            this.context.lineTo(75, 105)
+            this.context.lineTo(75, 25)
             this.context.strokeStyle = 'rgb(0,0,255)'
             this.context.stroke()
           })
@@ -1435,7 +1444,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
             this.context.stroke()
           })
       }
@@ -1503,7 +1512,7 @@ Fills the area inside a closed path on the canvas.
 
 | Name      | Type            | Mandatory  | Default Value      | Description                                      |
 | -------- | -------------- | ---- | --------- | ---------------------------------------- |
-| fillRule | CanvasFillRule | No   | "nonzero" | Specifies the rule to populate the object.<br>The options are **"nonzero"** and **"evenodd"**.|
+| fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to fill.<br>The options are **"nonzero"** and **"evenodd"**.|
 
 
 **Example**  
@@ -1616,11 +1625,11 @@ Sets the current path to a clipping area.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.rect(0, 0, 200, 200)
+            this.context.rect(0, 0, 100, 200)
             this.context.stroke()
             this.context.clip()
             this.context.fillStyle = "rgb(255,0,0)"
-            this.context.fillRect(0, 0, 150, 150)
+            this.context.fillRect(0, 0, 200, 200)
           })
       }
       .width('100%')
@@ -1634,7 +1643,7 @@ Sets the current path to a clipping area.
 
 clip(path: Path2D, fillRule?: CanvasFillRule): void
 
-Sets a **Path2D** path to a clipping area. This API is a null API.
+Sets the current path to a clipping path.
 
 **Parameters**
 
@@ -1644,12 +1653,44 @@ Sets a **Path2D** path to a clipping area. This API is a null API.
 | fillRule | CanvasFillRule | No   | "nonzero" | Rule by which to determine whether a point is inside or outside the area to clip.<br>The options are **"nonzero"** and **"evenodd"**.|
 
 
+**Example**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct Clip {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          let region = new Path2D();
+          region.rect(80,10,20,130);
+          region.rect(40,50,100,50);
+          this.context.clip(region,"evenodd")
+          this.context.fillStyle = "rgb(255,0,0)"
+          this.context.fillRect(0, 0, this.context.width, this.context.height)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![en-us_image_000000127777779](figures/en-us_image_000000127777779.png)
+
 
 ### filter
 
 filter(filter: string): void
 
-Provides filter effects. This API is a null API.
+Provides filter effects. This API is a void API.
 
 **Parameters**
 
@@ -1662,21 +1703,21 @@ Provides filter effects. This API is a null API.
 
 getTransform(): Matrix2D
 
-Obtains the current transformation matrix being applied to the context. This API is a null API.
+Obtains the current transformation matrix being applied to the context. This API is a void API.
 
 
 ### resetTransform
 
 resetTransform(): void
 
-Resets the current transform to the identity matrix. This API is a null API.
+Resets the current transform to the identity matrix. This API is a void API.
 
 
 ### direction
 
 direction(direction: CanvasDirection): void
 
-Sets the current text direction used to draw text. This API is a null API.
+Sets the current text direction used to draw text. This API is a void API.
 
 
 ### rotate
@@ -1751,9 +1792,10 @@ Scales the canvas based on the given scale factors.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.strokeRect(10, 10, 25, 25)
+            this.context.lineWidth = 3
+            this.context.strokeRect(30, 30, 50, 50)
             this.context.scale(2, 2) // Scale to 200%
-            this.context.strokeRect(10, 10, 25, 25)
+            this.context.strokeRect(30, 30, 50, 50)
           })
       }
       .width('100%')
@@ -1772,6 +1814,7 @@ transform(a: number, b: number, c: number, d: number, e: number, f: number): voi
 Defines a transformation matrix. To transform a graph, you only need to set parameters of the matrix. The coordinates of the graph are multiplied by the matrix values to obtain new coordinates of the transformed graph. You can use the matrix to implement multiple transform effects.
 
 > **NOTE**
+> 
 > The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
 > - x' = scaleX \* x + skewY \* y + translateX
@@ -1877,7 +1920,7 @@ Resets the existing transformation matrix and creates a new transformation matri
 
 setTransform(transform?: Matrix2D): void
 
-Resets the current transformation to the identity matrix, and then creates a new transformation matrix based on the specified **Matrix2D** object. This API is a null API.
+Resets the current transformation to the identity matrix, and then creates a new transformation matrix based on the specified **Matrix2D** object. This API is a void API.
 
 
 ### translate
@@ -1983,7 +2026,7 @@ Draws an image on the canvas.
 
 createImageData(sw: number, sh: number): ImageData
 
-Creates an **ImageData** object with the specified dimensions. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
+Creates an **[ImageData](ts-components-canvas-imagedata.md)** object with the specified dimensions.
 
 **Parameters**
 
@@ -1993,23 +2036,21 @@ Creates an **ImageData** object with the specified dimensions. For details, see 
 | sh   | number | Yes   | 0    | Height of the **ImageData** object.|
 
 
-### createImageData
-
 createImageData(imageData: ImageData): ImageData
 
-Creates an **ImageData** object. For details, see [ImageData](ts-components-canvas-imagebitmap.md).
+Creates an **[ImageData](ts-components-canvas-imagedata.md)** object.
 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Default Value  | Description               |
 | --------- | ---------------------------------------- | ---- | ---- | ----------------- |
-| imagedata | [ImageData](ts-components-canvas-imagebitmap.md) | Yes   | null | **ImageData** object with the same width and height copied from the original **ImageData** object.|
+| imagedata | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null | **ImageData** object with the same width and height copied from the original **ImageData** object.|
 
   **Return value**
 
 | Type                                      | Description            |
 | ---------------------------------------- | -------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | New **ImageData** object.|
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
 
 
 ### getPixelMap
@@ -2037,7 +2078,7 @@ Obtains the **[PixelMap](../apis/js-apis-image.md#pixelmap7)** object created wi
 
 getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
-Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created with the pixels within the specified area on the canvas.
+Obtains the **[ImageData](ts-components-canvas-imagedata.md)** object created with the pixels within the specified area on the canvas.
 
 **Parameters**
 
@@ -2052,7 +2093,39 @@ Obtains the **[ImageData](ts-components-canvas-imagebitmap.md)** object created 
 
 | Type                                      | Description            |
 | ---------------------------------------- | -------------- |
-| [ImageData](ts-components-canvas-imagebitmap.md) | **ImageData** object.|
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+@Entry
+@Component
+struct GetImageData {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private img:ImageBitmap = new ImageBitmap("/common/images/1234.png")
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.drawImage(this.img,0,0,130,130);
+          var imagedata = this.context.getImageData(50,50,130,130);
+          this.context.putImageData(imagedata,150,150);
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+  ```
+
+  ![en-us_image_000000127777780](figures/en-us_image_000000127777780.png)
 
 
 ### putImageData
@@ -2061,13 +2134,13 @@ putImageData(imageData: ImageData, dx: number, dy: number): void
 
 putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth: number, dirtyHeight: number): void
 
-Puts data from the given **[ImageData](ts-components-canvas-imagebitmap.md)** object into the specified rectangular area on the canvas.
+Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
 
 **Parameters**
 
 | Name         | Type                                      | Mandatory  | Default Value         | Description                           |
 | ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagebitmap.md) | Yes   | null         | **ImageData** object with pixels to put onto the canvas.           |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | Yes   | null         | **ImageData** object with pixels to put onto the canvas.           |
 | dx          | number                                   | Yes   | 0            | X-axis offset of the rectangular area on the canvas.               |
 | dy          | number                                   | Yes   | 0            | Y-axis offset of the rectangular area on the canvas.               |
 | dirtyX      | number                                   | No   | 0            | X-axis offset of the upper left corner of the rectangular area relative to that of the source image.|
@@ -2142,6 +2215,7 @@ Sets the dash line style.
           .onReady(() =>{
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
+            this.context.stroke()
           })
       }
       .width('100%')
@@ -2165,24 +2239,34 @@ Obtains the dash line style.
 | -------- | ------------------------ |
 | number[] | An array of numbers that specify distances to alternately draw a line and a gap.|
 
+
 **Example**
 
   ```ts
   // xxx.ets
-  @Entry
-  @Component
-  struct GetLineDash {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    
-    build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+@Entry
+@Component
+struct CanvasGetLineDash {
+  @State message: string = 'Hello World'
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            console.error('before getlinedash clicked')
+            let res = this.context.getLineDash()
+            console.error(JSON.stringify(res))
+          })
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            var grad = this.context.createLinearGradient(50,0, 300,100)
+          .onReady(() => {
             this.context.arc(100, 75, 50, 0, 6.28)
             this.context.setLineDash([10,20])
             this.context.stroke();
@@ -2190,17 +2274,20 @@ Obtains the dash line style.
           })
       }
       .width('100%')
-      .height('100%')
     }
+    .height('100%')
   }
+}
   ```
+![en-us_image_000000127777778](figures/en-us_image_000000127777778.png) 
+
 
 
 ### imageSmoothingQuality
 
 imageSmoothingQuality(quality: imageSmoothingQuality)
 
-Sets the quality of image smoothing. This API is a null API.
+Sets the quality of image smoothing. This API is a void API.
 
  **Parameters**
 
@@ -2220,7 +2307,7 @@ Displays the specified **ImageBitmap** object.
 
 | Name    | Type                                      | Description                |
 | ------ | ---------------------------------------- | ------------------ |
-| bitmap | [ImageData](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object to display.|
+| bitmap | [ImageBitmap](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object to display.|
 
 **Example**
 
@@ -2228,7 +2315,7 @@ Displays the specified **ImageBitmap** object.
   // xxx.ets
   @Entry
   @Component
-  struct PutImageData {
+  struct TransferFromImageBitmap {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
@@ -2258,6 +2345,7 @@ Displays the specified **ImageBitmap** object.
   }
   ```
   ![en-us_image_000000127777773](figures/en-us_image_000000127777773.png)  
+
 
 ### toDataURL
 
@@ -2328,7 +2416,11 @@ Restores the saved drawing context.
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.restore()
+            this.context.save(); // save the default state
+            this.context.fillStyle = "green";
+            this.context.fillRect(20, 20, 100, 100);
+            this.context.restore(); // restore to the default state
+            this.context.fillRect(150, 75, 100, 100);
           })
       }
       .width('100%')
@@ -2336,6 +2428,7 @@ Restores the saved drawing context.
     }
   }
   ```
+  ![en-us_image_000000127777781](figures/en-us_image_000000127777781.png)
 
 
 ### save
@@ -2361,14 +2454,19 @@ Saves all states of the canvas in the stack. This API is usually called when the
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.context.save()
-        })
+            this.context.save(); // save the default state
+            this.context.fillStyle = "green";
+            this.context.fillRect(20, 20, 100, 100);
+            this.context.restore(); // restore to the default state
+            this.context.fillRect(150, 75, 100, 100);
+          })
       }
       .width('100%')
       .height('100%')
     }
   }
   ```
+  ![en-us_image_000000127777781](figures/en-us_image_000000127777781.png)
 
 
 ### createLinearGradient

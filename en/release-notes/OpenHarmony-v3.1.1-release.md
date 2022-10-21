@@ -148,11 +148,11 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 **Table 4** Resolved issues
 
-| Issue No.                                                     | Description                                                    |
+| Issue No.                                                    | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | Local image compilation and build may fail for the Hi3516 development board.                            |
-| [I4WDD3](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4WDD3) | [RK3568] A recorded video cannot be viewed.                                |
-| [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB)   | [Hi3516 burning] Images of the Hi3516 development board on a standard-system device cannot be burnt by using DevEco Device Tool.             |
+| [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | Local image compilation and build may fail for the Hi3516 development board. |
+| I4WDD3                                                       | [RK3568] A recorded video cannot be viewed.                  |
+| [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB)   | [Hi3516 burning] Images of the Hi3516 development board on a standard-system device cannot be burnt by using DevEco Device Tool. |
 
 
 ## Known Issues

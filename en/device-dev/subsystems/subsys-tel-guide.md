@@ -1,8 +1,8 @@
-# Telephony Development<a name="EN-US_TOPIC_0000001167051994"></a>
+# Telephony Development
 
-## Initializing a Modem Vendor Library<a name="section211mcpsimp"></a>
+## Initializing a Modem Vendor Library
 
-### When to Use<a name="section213mcpsimp"></a>
+### When to Use
 
 Initializing a modem vendor library means to implement **const HRilOps \*RilInitOps\(const struct HRilReport \*reportOps\)** function in the vendor library. This function is mainly used to:
 
@@ -10,17 +10,17 @@ Initializing a modem vendor library means to implement **const HRilOps \*RilInit
 -   Create a thread for reading modem nodes. In this thread, the data reported by the modem is read cyclically and parsed as a specific service event for reporting.
 -   Return the function pointer of the service request API to RIL Adapter.
 
-### Available APIs<a name="section811343241215"></a>
+### Available APIs
 
 The following table describes the API for initializing a modem vendor library.
 
 **Table  1** API for initializing a modem vendor library
 
-| API | Description | 
+| API | Description |
 | -------- | -------- |
-| const&nbsp;HRilOps&nbsp;\*RilInitOps(const&nbsp;struct&nbsp;HRilReport&nbsp;\*&nbsp;reportOps) | Provides an entry for running a modem vendor library.<br>Input parameter:<br>**reportOps**: Specifies the pointer to the event callback function, which is passed by RIL Adapter.<br/>Return result: function pointer of the service request API. | 
+| const&nbsp;HRilOps&nbsp;\*RilInitOps(const&nbsp;struct&nbsp;HRilReport&nbsp;\*&nbsp;reportOps) | Provides an entry for running a modem vendor library.<br>Input parameter:<br>**reportOps**: Specifies the pointer to the event callback function, which is passed by RIL Adapter.<br/>Return result: function pointer of the service request API. |
 
-### How to Develop<a name="section51031144122"></a>
+### How to Develop
 
 1.  Set the event callback function pointers passed by RIL Adapter through **RilInitOps**.
 
@@ -37,7 +37,7 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-1.  Create the **g\_reader** main thread to enable message looping.
+2.  Create the **g\_reader** main thread to enable message looping.
 
     ```
     pthread_attr_t t;
@@ -47,7 +47,7 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-1.  In the **g\_eventListeners** thread, use **open\(\)** to open a modem node and then create the **g\_reader** thread to read and process messages reported by the modem.
+3.  In the **g\_eventListeners** thread, use **open\(\)** to open a modem node and then create the **g\_reader** thread to read and process messages reported by the modem.
 
     ```
     g_fd = open(g_devicePath, O_RDWR); // Open the device node specified by g_devicePath.
@@ -57,7 +57,7 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-1.  Return the function pointer of the service request API.
+4.  Return the function pointer of the service request API.
 
     ```
     // Structure for the service request API of the call module
@@ -105,9 +105,9 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-### Debugging and Verification<a name="section5351151517132"></a>
+### Debugging and Verification
 
-1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#section590mcpsimp).
+1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#how-to-obtain) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device. For details about how to integrate a library file, see  [Integrating Modem Vendor Libraries](#integrating-modem-vendor-libraries).
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -128,24 +128,24 @@ The following table describes the API for initializing a modem vendor library.
     ```
 
 
-## Responding to Modem Service Requests<a name="section295mcpsimp"></a>
+## Responding to Modem Service Requests
 
-### When to Use<a name="section297mcpsimp"></a>
+### When to Use
 
 After receiving a specific telephony service request, RIL Adapter calls the target function pointer obtained in modem vendor library initialization to send a specific service request to the vendor library. Then, the vendor library processes the request based on the request ID.
 
-### Available APIs<a name="section9503155219134"></a>
+### Available APIs
 
 The following table describes the APIs for responding to modem service requests, with the dial module as an example.
 
 **Table  2** APIs for responding to modem service requests
 
-| API | Description | 
+| API | Description |
 | -------- | -------- |
-| void&nbsp;ReqDial(ReqDataInfo&nbsp;\*requestInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Processes number dial requests.<br>Input parameters:<br>**requestInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none | 
-| void&nbsp;(\*OnCallReport)(struct&nbsp;ReportInfo&nbsp;reportInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Reports the execution result of a service request to RIL Adapter.<br>Input parameters:<br>**reportInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none | 
+| void&nbsp;ReqDial(ReqDataInfo&nbsp;\*requestInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Processes number dial requests.<br>Input parameters:<br>**requestInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none |
+| void&nbsp;(\*OnCallReport)(struct&nbsp;ReportInfo&nbsp;reportInfo,&nbsp;const&nbsp;void&nbsp;\*data,&nbsp;size_t&nbsp;dataLen); | Reports the execution result of a service request to RIL Adapter.<br>Input parameters:<br>**reportInfo**: request type<br/>**data**: called number<br/>**dataLen**: data length<br/>Return value: none |
 
-### How to Develop<a name="section17190412101414"></a>
+### How to Develop
 
 1.  Implement processing of dial requests in the **ReqDial\(\)** API.
 
@@ -199,9 +199,9 @@ The following table describes the APIs for responding to modem service requests,
     ```
 
 
-### Debugging and Verification<a name="section10207938171413"></a>
+### Debugging and Verification
 
-1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
+1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#how-to-obtain) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -242,23 +242,23 @@ The following table describes the APIs for responding to modem service requests,
     ```
 
 
-## Reporting Modem Events<a name="section390mcpsimp"></a>
+## Reporting Modem Events
 
-### When to Use<a name="section401mcpsimp"></a>
+### When to Use
 
 A modem node thread reads the messages reported by the modem cyclically, parses the messages into specific events, and then reports the events to RIL Adapter.
 
-### Available APIs<a name="section191193791518"></a>
+### Available APIs
 
 The following table describes the API for reporting modem events.
 
 **Table  3** API for reporting modem events
 
-| API | Description | 
+| API | Description |
 | -------- | -------- |
-| void&nbsp;OnNotifyOps(const&nbsp;char&nbsp;\*s,&nbsp;const&nbsp;char&nbsp;\*smsPdu) | Distributes the events reported by the modem.<br>Input parameters:<br/>**s**: AT command prefix<br/>**smsPdu**: PDU of the SMS message<br/>Return value: none | 
+| void&nbsp;OnNotifyOps(const&nbsp;char&nbsp;\*s,&nbsp;const&nbsp;char&nbsp;\*smsPdu) | Distributes the events reported by the modem.<br>Input parameters:<br/>**s**: AT command prefix<br/>**smsPdu**: PDU of the SMS message<br/>Return value: none |
 
-### How to Develop<a name="section16394112401512"></a>
+### How to Develop
 
 1.  Call **OnNotifyOps\(\)** in the g\_reader thread of the modem device node to parse reported modem events. On determining the command type, call **OnXxxReport\(\)** to report the parsed module events to the hril layer.
 
@@ -290,7 +290,7 @@ The following table describes the API for reporting modem events.
     ```
 
 
-1.  Distribute the reported events from the **hril** layer to the Telephony Service layer.
+2.  Distribute the reported events from the **hril** layer to the Telephony Service layer.
 
     ```
     // Report the call status proactively.
@@ -316,9 +316,9 @@ The following table describes the API for reporting modem events.
     ```
 
 
-### Debugging and Verification<a name="section16999174401516"></a>
+### Debugging and Verification
 
-1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#preparations) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
+1.  Use the [hdc\_std](../subsystems/subsys-toolchain-hdc-guide.md#how-to-obtain) tool to connect to a debugging device. Then, run the following command to send the generated **libril\_vendor.z.so** library file to the **/system/lib/** directory of the device.
 
     ```
     hdc_std file send libril_vendor.z.so /system/lib/
@@ -370,18 +370,18 @@ The following table describes the API for reporting modem events.
     ```
 
 
-### Development Examples<a name="section33444350167"></a>
+### Development Examples
 
 -  **Outgoing Call**
 
     The following figure shows the API calling for an outgoing call.
 
    **Figure  1** Time sequence of API calling for an outgoing call<a name="fig494mcpsimp"></a>  
-    
+   
 
     ![](figure/en-us_image_0000001171507146.png)
 
-    When an application initiates an outgoing call, RIL Adapter receives a call request, and the **hril** layer invokes the **ReqDial\(\)** function. In **ReqDial\(\)**, the data passed by the Telephony Service is encapsulated as an AT command and sent to the modem. After executing the dial command, the modem reports the execution result to RIL Adapter through **OnCallReport\(\)**.
+   When an application initiates an outgoing call, RIL Adapter receives a call request, and the **hril** layer invokes the **ReqDial\(\)** function. In **ReqDial\(\)**, the data passed by the Telephony Service is encapsulated as an AT command and sent to the modem. After executing the dial command, the modem reports the execution result to RIL Adapter through **OnCallReport\(\)**.
 
     ```
     // Callback function pointer of the call module
@@ -456,13 +456,13 @@ The following table describes the API for reporting modem events.
     The following figure shows the API calling of an incoming call.
 
    **Figure  2** Time sequence of API calling for an incoming call<a name="fig556mcpsimp"></a>  
-    
+   
 
     ![](figure/en-us_image_0000001214727595.png)
 
-    The **g\_reader** thread cyclically reads the messages reported by the modem. When the modem receives an incoming call event, it actively reports the information about the incoming call.
+   The **g\_reader** thread cyclically reads the messages reported by the modem. When the modem receives an incoming call event, it actively reports the information about the incoming call.
 
-    The **g\_reader** thread calls **OnNotifyOps\(\)** to parse the reported information. If the parsed data reported by the modem starts with characters such as **+CRING** or **RING**, it indicates that an incoming call event exists. In this case, the event is reported to RIL Adapter through **OnCallReport\(reportInfo, NULL, 0\)**.
+   The **g\_reader** thread calls **OnNotifyOps\(\)** to parse the reported information. If the parsed data reported by the modem starts with characters such as **+CRING** or **RING**, it indicates that an incoming call event exists. In this case, the event is reported to RIL Adapter through **OnCallReport\(reportInfo, NULL, 0\)**.
 
     ```
     // Parse the data reported by the modem as events proactively reported by the corresponding module.
@@ -492,11 +492,11 @@ The following table describes the API for reporting modem events.
     ```
 
 
-## Integrating Modem Vendor Libraries<a name="section590mcpsimp"></a>
+## Integrating Modem Vendor Libraries
 
-### Configuring Compilation Information<a name="section592mcpsimp"></a>
+### Configuring Compilation Information
 
-Compile the modem vendor library into a dynamic library by using **BUILD.gn**. Upon startup, RIL Adapter loads the dynamic library to the system in dlopen mode and then initializes the library. For details about how to implement vendor library initialization, see  [Initializing a Modem Vendor Library](#section211mcpsimp). The following is an example of **BUILD.gn**:
+Compile the modem vendor library into a dynamic library by using **BUILD.gn**. Upon startup, RIL Adapter loads the dynamic library to the system in dlopen mode and then initializes the library. For details about how to implement vendor library initialization, see  [Initializing a Modem Vendor Library](#initializing-a-modem-vendor-library). The following is an example of **BUILD.gn**:
 
 ```
 import("//build/ohos.gni")
@@ -523,7 +523,7 @@ ohos_shared_library("ril_vendor") { // Modem vendor library
 }
 ```
 
-### Debugging and Verification<a name="section620mcpsimp"></a>
+### Debugging and Verification
 
 1.  Compile the code.
 2.  Check whether **libril\_vendor.z.so** exists in the **/out/{device_name}/telephony/ril\_adapter** directory. If yes, the integration is successful. Otherwise, correct the error and perform debugging and verification again.

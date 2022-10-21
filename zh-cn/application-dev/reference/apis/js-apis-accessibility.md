@@ -7,7 +7,7 @@
 
 ## 导入模块
 
-```typescript
+```ts
 import accessibility from '@ohos.accessibility';
 ```
 
@@ -144,7 +144,7 @@ import accessibility from '@ohos.accessibility';
 
 ## CaptionsManager<sup>8+</sup>
 
-字幕配置管理，在调用CaptionsManager的方法前，需要先通过 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8)获取 captionsManager实例。
+字幕配置管理，在调用CaptionsManager的方法前，需要先通过 [accessibility.getCaptionsManager()](#accessibilitygetcaptionsmanager8)获取 CaptionsManager实例。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -159,7 +159,7 @@ import accessibility from '@ohos.accessibility';
 
 on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
-监听字幕配置启用状态变化事件。
+监听字幕配置启用状态变化事件，使用callback异步回调。
 
 **参数：**
 
@@ -170,18 +170,28 @@ on(type: 'enableChange', callback: Callback&lt;boolean&gt;): void;
 
 **示例：**
 
-  ```typescript
-  let captionsManager = accessibility.getCaptionsManager();
-  captionsManager.on('enableChange',(data) => {
-      console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-  });
-  ```
+```ts
+let result = false;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.on('enableChange', (err, data) => {
+        if (err) {
+            console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(err));
+            return;
+        }
+        result = data;
+        console.info('subscribe caption manager enable state change success');
+    });
+} catch (exception) {
+    console.error('failed to subscribe caption manager enable state change, because ' + JSON.stringify(exception));
+}
+```
 
 ### on('styleChange')
 
 on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
-监听字幕风格变化事件。
+监听字幕风格变化事件，使用callback异步回调。
 
 **参数：**
 
@@ -192,18 +202,28 @@ on(type: 'styleChange', callback: Callback&lt;CaptionsStyle&gt;): void;
 
 **示例：**
 
-  ```typescript
-  let captionsManager = accessibility.getCaptionsManager();
-  captionsManager.on('styleChange',(data) => {
-      console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-  });
-  ```
+```ts
+let captionStyle;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.on('styleChange', (err, data) => {
+        if (err) {
+            console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(err));
+            return;
+        }
+        captionStyle = data;
+        console.info('subscribe caption manager style state change success');
+    });
+} catch (exception) {
+    console.error('failed to subscribe caption manager style state change, because ' + JSON.stringify(exception));
+}
+```
   
 ### off('enableChange')
 
 off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
-取消监听字幕配置启用状态变化事件。
+取消监听字幕配置启用状态变化事件，使用callback异步回调。
 
 **参数：**
 
@@ -214,18 +234,28 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 
 **示例：**
 
-  ```typescript
-  let captionsManager = accessibility.getCaptionsManager();
-  captionsManager.off('enableChange',(data) => {
-      console.info('success data:unSubscribeStateObserver : ' + JSON.stringify(data))
-  });
-  ```
+```ts
+let result = false;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.off('enableChange', (err, data) => {
+        if (err) {
+            console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(err));
+            return;
+        }
+        result = data;
+        console.info('unSubscribe caption manager enable state change success');
+    });
+} catch (exception) {
+    console.error('failed to unSubscribe caption manager enable state change, because ' + JSON.stringify(exception));
+}
+```
 
 ### off('styleChange')
 
 off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
-取消字幕风格变化监听事件。
+取消字幕风格变化监听事件，使用callback异步回调。
 
 **参数：**
 
@@ -236,12 +266,22 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 
 **示例：**
 
-  ```typescript
-  let captionsManager = accessibility.getCaptionsManager();
-  captionsManager.off('styleChange',(data) => {
-      console.info('success data:unSubscribeStateObserver : ' + JSON.stringify(data))
-  });
-  ```
+```ts
+let captionStyle;
+let captionsManager = accessibility.getCaptionsManager();
+try {
+    captionsManager.off('styleChange', (err, data) => {
+        if (err) {
+            console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(err));
+            return;
+        }
+        captionStyle = data;
+        console.info('unSubscribe caption manager style state change success');
+    });
+} catch (exception) {
+    console.error('failed to unSubscribe caption manager style state change, because ' + JSON.stringify(exception));
+}
+```
 
 ## EventInfo
 
@@ -284,11 +324,11 @@ constructor(jsonObject)
 
 **示例：**
 
-  ```typescript
+  ```ts
   let eventInfo = new accessibility.EventInfo({
-    "type":"click",
-    "bundleName":"com.example.MyApplication",
-    "triggerAction":"click"
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
   });
   ```
 
@@ -340,9 +380,108 @@ constructor(jsonObject)
 | active | 窗口变为活动或不活动的窗口变化事件。 |
 | focus | 窗口焦点发生变化的窗口变化事件。 |
 
-## accessibility.getAbilityLists
+## accessibility.getAbilityLists<sup>(deprecated)</sup>
 
 getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;
+
+查询辅助应用列表，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃。
+> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
+| stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise对象，返回辅助应用信息列表。 |
+
+**示例：**
+
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let abilityList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAbilityLists(abilityType, abilityState).then((data) => {
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.getAbilityLists<sup>(deprecated)</sup>
+
+getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
+
+查询辅助应用列表，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃。
+> 推荐使用[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| abilityType | [AbilityType](#abilitytype) | 是 | 辅助应用的类型。 |
+| stateType | [AbilityState](#abilitystate) | 是 | 辅助应用的状态。 |
+| callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | 是 | 回调函数，返回辅助应用信息列表。 |
+
+**示例：**
+
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let abilityList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAbilityLists(abilityType, abilityState, (err, data) => {
+        if (err) {
+            console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+            return;
+        }
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            abilityList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
+
+## accessibility.getAccessibilityExtensionList<sup>9+</sup>
+
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState): Promise&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;
 
 查询辅助应用列表，使用Promise异步回调。
 
@@ -363,23 +502,31 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState): Promise&lt;A
 
 **示例：**
 
-```typescript
-accessibility.getAbilityLists("spoken", "enable").then((data) => {
-    console.info('success data:getAbilityList1 : ' + JSON.stringify(data));
-    for (let item of data) {
-        console.info(item.id);
-        console.info(item.name);
-        console.info(item.description);
-        console.info(item.bundleName);
-    }
-}).catch((err) => {
-    console.error('failed to  getAbilityList1 because ' + JSON.stringify(err));
-});
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let extensionList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState).then((data) => {
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
 ```
 
-## accessibility.getAbilityLists
+## accessibility.getAccessibilityExtensionList<sup>9+</sup>
 
-getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
+getAccessibilityExtensionList(abilityType: AbilityType, stateType: AbilityState,callback: AsyncCallback&lt;Array&lt;AccessibilityAbilityInfo&gt;&gt;): void
 
 查询辅助应用列表，使用callback异步回调。
 
@@ -395,21 +542,31 @@ getAbilityLists(abilityType: AbilityType, stateType: AbilityState,callback: Asyn
 
 **示例：**
 
-```typescript
-accessibility.getAbilityLists("visual", "enable", (err, data) => {
-    if (err) {
-        console.error('failed to getAbilityList2 because ' + JSON.stringify(err));
-        return;
-    }
-    console.info('success data:getAbilityList2 : ' + JSON.stringify(data));
-    for (let item of data) {
-        console.info(item.id);
-        console.info(item.name);
-        console.info(item.description);
-        console.info(item.bundleName);
-    }
-});
-  ```
+```ts
+let abilityType = 'spoken';
+let abilityState = 'enable';
+let extensionList: accessibility.AccessibilityInfo[];
+try {
+    accessibility.getAccessibilityExtensionList(abilityType, abilityState, (err, data) => {
+        if (err) {
+            console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+            return;
+        }
+        for (let item of data) {
+            console.info(item.id);
+            console.info(item.name);
+            console.info(item.description);
+            console.info(item.bundleName);
+            extensionList.push(item);
+        }
+        console.info('get accessibility extension list success');
+    }).catch((err) => {
+        console.error('failed to get accessibility extension list because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to get accessibility extension list because ' + JSON.stringify(exception));
+}
+```
 
 ## accessibility.getCaptionsManager<sup>8+</sup>
 
@@ -427,7 +584,7 @@ getCaptionsManager(): CaptionsManager
 
 **示例：**
 
-```typescript
+```ts
 let captionsManager = accessibility.getCaptionsManager();
 ```
 
@@ -435,7 +592,7 @@ let captionsManager = accessibility.getCaptionsManager();
 
 on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
-监听辅助应用启用状态变化事件。
+监听辅助应用启用状态变化事件，使用callback异步回调。
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
@@ -448,17 +605,25 @@ on(type: 'accessibilityStateChange', callback: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
-accessibility.on('accessibilityStateChange',(data) => {
-    console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-});
+```ts
+try {
+    accessibility.on('accessibilityStateChange', (err, data) => {
+        if (err) {
+            console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('subscribe accessibility state change success');
+    });
+} catch (exception) {
+    console.error('failed to subscribe accessibility state change, because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.on('touchGuideStateChange')
 
 on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
-监听触摸浏览功能启用状态变化事件。
+监听触摸浏览功能启用状态变化事件，使用callback异步回调。
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
@@ -471,17 +636,25 @@ on(type: 'touchGuideStateChange', callback: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
-accessibility.on('touchGuideStateChange',(data) => {
-    console.info('success data:subscribeStateObserver : ' + JSON.stringify(data))
-});
+```ts
+try {
+    accessibility.on('touchGuideStateChange', (err, data) => {
+        if (err) {
+            console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('subscribe touch guide state change success');
+    });
+} catch (exception) {
+    console.error('failed to subscribe touch guide state change, because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.off('accessibilityStateChange')
 
 off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
-取消监听辅助应用启用状态变化事件。
+取消监听辅助应用启用状态变化事件，使用callback异步回调。
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
@@ -494,17 +667,25 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
-accessibility.off('accessibilityStateChange',(data) => {
-    console.info('success data:unSubscribeStateObserver : ' + JSON.stringify(data))
-});
+```ts
+try {
+    accessibility.on('accessibilityStateChange', (err, data) => {
+        if (err) {
+            console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('unSubscribe accessibility state change success');
+    });
+} catch (exception) {
+    console.error('failed to unSubscribe accessibility state change, because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.off('touchGuideStateChange')
 
 off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
-取消监听触摸浏览启用状态变化事件。
+取消监听触摸浏览启用状态变化事件，使用callback异步回调。
 
 **系统能力**：以下各项对应的系统能力有所不同，详见下表。
 
@@ -517,10 +698,18 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
-accessibility.off('touchGuideStateChange',(data) => {
-    console.info('success data:unSubscribeStateObserver : ' + JSON.stringify(data))
-});
+```ts
+try {
+    accessibility.on('touchGuideStateChange', (err, data) => {
+        if (err) {
+            console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('unSubscribe touch guide state change success');
+    });
+} catch (exception) {
+    console.error('failed to unSubscribe touch guide state change, because ' + JSON.stringify(exception));
+}
 ```
 
 ## accessibility.isOpenAccessibility
@@ -539,7 +728,7 @@ isOpenAccessibility(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```typescript
+```ts
 accessibility.isOpenAccessibility().then((data) => {
     console.info('success data:isOpenAccessibility : ' + JSON.stringify(data))
 }).catch((err) => {
@@ -563,7 +752,7 @@ isOpenAccessibility(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
+```ts
 accessibility.isOpenAccessibility((err, data) => {
     if (err) {
         console.error('failed to isOpenAccessibility because ' + JSON.stringify(err));
@@ -589,7 +778,7 @@ isOpenTouchGuide(): Promise&lt;boolean&gt;
 
 **示例：**
 
-```typescript
+```ts
 accessibility.isOpenTouchGuide().then((data) => {
     console.info('success data:isOpenTouchGuide : ' + JSON.stringify(data))
 }).catch((err) => {
@@ -613,7 +802,7 @@ isOpenTouchGuide(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-```typescript
+```ts
 accessibility.isOpenTouchGuide((err, data) => {
     if (err) {
         console.error('failed to isOpenTouchGuide because ' + JSON.stringify(err));
@@ -623,9 +812,86 @@ accessibility.isOpenTouchGuide((err, data) => {
 });
   ```
 
-## accessibility.sendEvent
+## accessibility.sendEvent<sup>(deprecated)</sup>
 
 sendEvent(event: EventInfo): Promise&lt;void&gt;
+
+发送无障碍事件, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃。
+> 推荐使用[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | 是 | 无障碍事件对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+let eventInfo = new accessibility.EventInfo({
+  'type':'click',
+  'bundleName':'com.example.MyApplication',
+  'triggerAction':'click'
+});
+accessibility.sendEvent(eventInfo).then(() => {
+    console.info('send event success');
+}).catch((err) => {
+    console.error('failed to sendEvent because ' + JSON.stringify(err));
+});
+```
+
+## accessibility.sendEvent<sup>(deprecated)</sup>
+
+sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
+
+发送无障碍事件, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 9开始废弃。
+> 推荐使用[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1)。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| event | [EventInfo](#eventinfo) | 是 | 辅助事件对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，如果发送无障碍事件失败，则 AsyncCallback中err有数据返回。 |
+
+**示例：**
+
+```ts
+let eventInfo = new accessibility.EventInfo({
+  'type':'click',
+  'bundleName':'com.example.MyApplication',
+  'triggerAction':'click'
+});
+accessibility.sendEvent(eventInfo, (err, data) => {
+    if (err) {
+        console.error('failed to sendEvent because ' + JSON.stringify(err));
+        return;
+    }
+    console.info('sendEvent success');
+});
+```
+
+## accessibility.sendAccessibilityEvent<sup>9+</sup>
+
+sendAccessibilityEvent(event: EventInfo): Promise&lt;void&gt;
 
 发送无障碍事件, 使用Promise异步回调。
 
@@ -645,22 +911,26 @@ sendEvent(event: EventInfo): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 let eventInfo = new accessibility.EventInfo({
-  "type":"click",
-  "bundleName":"com.example.MyApplication",
-  "triggerAction":"click"
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
 });
-accessibility.sendEvent(eventInfo).then(() => {
-    console.info('send event success');
-}).catch((err) => {
-    console.error('failed to sendEvent because ' + JSON.stringify(err));
-});
+try {
+    accessibility.sendAccessibilityEvent(eventInfo).then(() => {
+        console.info('send event success');
+    }).catch((err) => {
+        console.error('failed to send event because ' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('failed to send event because ' + JSON.stringify(exception));
+}
 ```
 
-## accessibility.sendEvent
+## accessibility.sendAccessibilityEvent<sup>9+</sup>
 
-sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
+sendAccessibilityEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 发送无障碍事件, 使用callback异步回调。
 
@@ -675,17 +945,21 @@ sendEvent(event: EventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-```typescript
+```ts
 let eventInfo = new accessibility.EventInfo({
-  "type":"click",
-  "bundleName":"com.example.MyApplication",
-  "triggerAction":"click"
+    'type':'click',
+    'bundleName':'com.example.MyApplication',
+    'triggerAction':'click'
 });
-accessibility.sendEvent(eventInfo, (err, data) => {
-    if (err) {
-        console.error('failed to sendEvent because ' + JSON.stringify(err));
-        return;
-    }
-    console.info('sendEvent success');
-});
-  ```
+try {
+    accessibility.sendEvent(eventInfo, (err, data) => {
+        if (err) {
+            console.error('failed to send event because ' + JSON.stringify(err));
+            return;
+        }
+        console.info('send event success');
+    });
+} catch (exception) {
+    console.error('failed to send event because ' + JSON.stringify(exception));
+}
+```

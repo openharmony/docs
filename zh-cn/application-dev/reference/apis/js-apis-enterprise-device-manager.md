@@ -22,6 +22,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名            | 类型                                  | 必填   | 说明                 |
@@ -70,6 +72,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -120,6 +124,8 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -173,6 +179,8 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                                  | 必填   | 说明                  |
@@ -213,6 +221,8 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -256,6 +266,8 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名    | 类型                                  | 必填   | 说明                           |
@@ -295,7 +307,11 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Callback形式返回是否去激活成功。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -331,7 +347,11 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 以异步方法根据给定的包名将设备超级管理员应用去激活，使用Promise形式返回是否去激活成功。
 
+**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -369,6 +389,8 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -409,6 +431,8 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名      | 类型                                  | 必填   | 说明                           |
@@ -440,6 +464,8 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 以异步方法根据给定的包名和类名判断设备管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -476,6 +502,8 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名        | 类型                      | 必填   | 说明                   |
@@ -503,6 +531,8 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 以异步方法根据给定的包名判断设备超级管理员应用是否被激活，使用Promise形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数**：
 
@@ -559,14 +589,12 @@ let wantTemp = {
 };
 enterpriseDeviceManager.getDeviceSettingsManager((error, mgr) => {
     if (error != null) {
-        console.log("error occurs" + error);
+        console.log("error code:" + error.code);
         return;
     }
-    mgr.setDateTime(wantTemp, 1526003846000, (error, value) => { 
+    mgr.setDateTime(wantTemp, 1526003846000, (error) => { 
         if (error != null) {
-            console.log(error);
-        } else {
-            console.log(value);
+            console.log("error code:" + error.code);
         }
     });
 });
@@ -603,23 +631,25 @@ let wantTemp = {
     abilityName: "abilityName",
 };
 enterpriseDeviceManager.getDeviceSettingsManager().then((mgr) => {
-    mgr.setDateTime(wantTemp, 1526003846000).then((value) => {
-        console.log(value);
-    }).catch((error) => {
-        console.log(error);
+    mgr.setDateTime(wantTemp, 1526003846000).catch((error) => {
+        console.log("error code:" + error.code);
     })
 }).catch((error) => {
-    console.log(error);
+    console.log("error code:" + error.code);
 })
 ```
 
 ## enterpriseDeviceManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback&lt;boolean&gt;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
 
 设置设备管理员应用的企业信息，使用callback形式返回是否设置成功。
 
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -659,11 +689,15 @@ enterpriseDeviceManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
 
 ## enterpriseDeviceManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise&lt;boolean&gt;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 设置设备管理员应用的企业信息，使用Promise形式返回是否设置成功。
 
+**需要权限：** ohos.permission.SET_ENTERPRISE_INFO
+
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -710,6 +744,8 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**系统API**: 此接口为系统接口。
+
 **参数：**
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
@@ -749,6 +785,8 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 获取设备管理员应用的企业信息，使用Promise形式返回设备管理员应用的企业信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -791,9 +829,11 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -824,9 +864,11 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 订阅系统管理事件。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -861,9 +903,11 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 
@@ -894,9 +938,11 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 取消订阅系统管理事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
+**需要权限：** ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API**: 此接口为系统接口。
 
 **参数：**
 

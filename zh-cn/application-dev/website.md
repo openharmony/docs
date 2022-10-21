@@ -1,18 +1,28 @@
 # OpenHarmony应用开发文档
+
 - [应用开发导读](application-dev-guide.md)
 - 快速开始
-
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
-    - [使用eTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-    - [使用eTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
+    - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
+    - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
     - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
-
   - 开发基础知识
     - [应用包结构说明(FA模型)](quick-start/package-structure.md)
     - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
     - [SysCap说明](quick-start/syscap.md)
     - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
+    - 学习ArkTS语言
+      - [初识ArkTS语言](quick-start/arkts-get-started.md)
+      - ArkTS语法（声明式UI）
+        - [基本UI描述](quick-start/arkts-basic-ui-description.md)
+        - 状态管理
+          - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
+          - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
+          - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
+        - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
+        - [渲染控制](quick-start/arkts-rendering-control.md)
+        - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
 - 开发
   - Ability开发
     - [Ability框架概述](ability/ability-brief.md)
@@ -37,7 +47,7 @@
       - [测试框架使用指导](ability/ability-delegator.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于eTS的声明式开发范式
+    - 基于ArkTS的声明式开发范式
       - [概述](ui/ui-ts-overview.md)
       - 框架说明
         - 文件组织
@@ -47,49 +57,10 @@
           - [资源文件的分类](ui/ui-ts-basic-resource-file-categories.md)
           - [资源访问](ui/ts-resource-access.md)
         - [像素单位](ui/ts-pixel-units.md)
-      - 声明式语法
-        - [描述规范使用说明](ui/ts-syntax-intro.md)
-        - 通用UI描述规范
-          - [基本概念](ui/ts-general-ui-concepts.md)
-          - 声明式UI描述规范
-            - [无构造参数配置](ui/ts-parameterless-configuration.md)
-            - [必选参数构造配置](ui/ts-configuration-with-mandatory-parameters.md)
-            - [属性配置](ui/ts-attribution-configuration.md)
-            - [事件配置](ui/ts-event-configuration.md)
-            - [子组件配置](ui/ts-child-component-configuration.md)
-          - 组件化
-            - [@Component](ui/ts-component-based-component.md)
-            - [@Entry](ui/ts-component-based-entry.md)
-            - [@Preview](ui/ts-component-based-preview.md)
-            - [@Builder](ui/ts-component-based-builder.md)
-            - [@Extend](ui/ts-component-based-extend.md)
-            - [@CustomDialog](ui/ts-component-based-customdialog.md)
-            - [@Styles](ui/ts-component-based-styles.md)
-        - UI状态管理
-          - [基本概念](ui/ts-ui-state-mgmt-concepts.md)
-          - 管理组件拥有的状态
-            - [@State](ui/ts-component-states-state.md)
-            - [@Prop](ui/ts-component-states-prop.md)
-            - [@Link](ui/ts-component-states-link.md)
-          - 管理应用程序的状态
-            - [应用程序的数据存储](ui/ts-application-states-appstorage.md)
-            - [Ability数据存储](ui/ui-ts-local-storage.md)
-            - [持久化数据管理](ui/ts-application-states-apis-persistentstorage.md)
-            - [环境变量](ui/ts-application-states-apis-environment.md)
-          - 其他类目的状态管理
-            - [Observed和ObjectLink数据管理](ui/ts-other-states-observed-objectlink.md)
-            - [@Consume和@Provide数据管理](ui/ts-other-states-consume-provide.md)
-            - [@Watch](ui/ts-other-states-watch.md)
-        - 渲染控制语法
-          - [条件渲染](ui/ts-rending-control-syntax-if-else.md)
-          - [循环渲染](ui/ts-rending-control-syntax-foreach.md)
-          - [数据懒加载](ui/ts-rending-control-syntax-lazyforeach.md)
         - 深入理解组件化
-          - [build函数](ui/ts-function-build.md)
           - [自定义组件初始化](ui/ts-custom-component-initialization.md)
           - [自定义组件生命周期回调函数](ui/ts-custom-component-lifecycle-callbacks.md)
           - [组件创建和重新初始化示例](ui/ts-component-creation-re-initialization.md)
-        - [语法糖](ui/ts-syntactic-sugar.md)
       - 常见组件开发指导
         - [Button开发指导](ui/ui-ts-basic-components-button.md)
         - [Web开发指导](ui/ui-ts-components-web.md)
@@ -183,9 +154,6 @@
     - [公共事件与通知概述](notification/notification-brief.md)
     - [公共事件开发指导](notification/common-event.md)
     - [通知开发指导](notification/notification-guidelines.md)
-    - 后台代理提醒
-      - [后台代理提醒开发概述](notification/background-agent-scheduled-reminder-overview.md)
-      - [后台代理提醒开发指导](notification/background-agent-scheduled-reminder-guide.md)
     - [调试助手使用指导](notification/assistant-guidelines.md)
   - 窗口管理
     - [窗口开发概述](windowmanager/window-overview.md)
@@ -226,6 +194,9 @@
     - 密钥管理
       - [HUKS开发概述](security/huks-overview.md)
       - [HUKS开发指导](security/huks-guidelines.md)
+    - 加密算法库框架
+      - [加密算法库框架概述](security/cryptoFramework-overview.md)
+      - [加密算法框架开发指导](security/cryptoFramework-guidelines.md)
     - Hap包签名工具
       - [Hap包签名工具概述](security/hapsigntool-overview.md)
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
@@ -262,10 +233,13 @@
   - 任务管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
-      - [后台任务开发指导](task-management/background-task-dev-guide.md)
-    - 延迟任务调度
-      - [延迟任务调度概述](task-management/work-scheduler-overview.md)
-      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+      - [短时任务开发指导](task-management/transient-task-dev-guide.md)
+      - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
+      - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
+      - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
+    - 后台代理提醒
+      - [后台代理提醒开发概述](task-management/background-agent-scheduled-reminder-overview.md)
+      - [后台代理提醒开发指导](task-management/background-agent-scheduled-reminder-guide.md)
   - 设备管理
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
@@ -333,18 +307,18 @@
       - [资源](key-features/multi-device-app-dev/design-resources.md)
     - [工程管理](key-features/multi-device-app-dev/ide-using.md)
     - 页面开发的一多能力介绍
-    - [简介](key-features/multi-device-app-dev/page-development-intro.md)
-    - 布局能力
-      - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
-      - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
-      - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
-      - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
-      - 典型页面场景
-        - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
-        - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
-    - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
-    - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
-    - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
+      - [简介](key-features/multi-device-app-dev/page-development-intro.md)
+      - 布局能力
+        - [布局简介](key-features/multi-device-app-dev/layout-intro.md)
+        - [自适应布局](key-features/multi-device-app-dev/adaptive-layout.md)
+        - [响应式布局](key-features/multi-device-app-dev/responsive-layout.md)
+        - [典型布局场景](key-features/multi-device-app-dev/typical-layout-scenario.md)
+        - 典型页面场景
+          - [应用市场首页](key-features/multi-device-app-dev/appgallery-home-page.md)
+          - [音乐专辑页](key-features/multi-device-app-dev/music-album-page.md)
+      - [交互归一](key-features/multi-device-app-dev/interaction-event-normalization.md)
+      - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
+      - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
     - [案例应用](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/faq.md)
@@ -354,7 +328,7 @@
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
     - [Window开发指导](napi/native-window-guidelines.md)
-    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md) 
+    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
 - 示例教程
@@ -362,7 +336,7 @@
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [Syscap列表](reference/syscap-list.md)
-  - 组件参考（基于eTS的声明式开发范式）
+  - 组件参考（基于ArkTS的声明式开发范式）
     - 组件通用信息
       - 通用事件
         - [点击事件](reference/arkui-ts/ts-universal-events-click.md)
@@ -495,12 +469,12 @@
     - 画布组件
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
       - [CanvasRenderingContext2D对象](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
-      - [OffscreenCanvasRenderingConxt2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
-      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
       - [CanvasGradient对象](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
       - [ImageBitmap对象](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData对象](reference/arkui-ts/ts-components-canvas-imagedata.md)
+      - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
+      - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
+      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -509,8 +483,7 @@
         - [组件内转场](reference/arkui-ts/ts-transition-animation-component.md)
         - [共享元素转场](reference/arkui-ts/ts-transition-animation-shared-elements.md)
       - [路径动画](reference/arkui-ts/ts-motion-path-animation.md)
-      - [矩阵变换](reference/arkui-ts/ts-matrix-transformation.md)
-      - [插值计算](reference/arkui-ts/ts-interpolation-calculation.md)
+
     - 全局UI方法
       - 弹窗
         - [警告弹窗](reference/arkui-ts/ts-methods-alert-dialog-box.md)
@@ -711,6 +684,7 @@
         - [@ohos.application.formInfo (FormInfo)](reference/apis/js-apis-formInfo.md)
         - [@ohos.application.formProvider (FormProvider)](reference/apis/js-apis-formprovider.md)
         - [@ohos.application.missionManager (missionManager)](reference/apis/js-apis-missionManager.md)
+        - [@ohos.application.quickFixManager (quickFixManager)](reference/apis/js-apis-application-quickFixManager.md)
         - [@ohos.application.Want (Want)](reference/apis/js-apis-application-Want.md)
         - [@ohos.continuation.continuationManager (ContinuationExtraParams)](reference/apis/js-apis-continuation-continuationExtraParams.md)
         - [@ohos.continuation.continuationManager (continuationManager)](reference/apis/js-apis-continuation-continuationManager.md)
@@ -724,7 +698,7 @@
         - [ProcessRunningInfo (ProcessRunningInfo)](reference/apis/js-apis-processrunninginfo.md)
         - [ProcessRunningInformation (ProcessRunningInformation)](reference/apis/js-apis-processrunninginformation.md)
         - [shellCmdResult (ShellCmdResult)](reference/apis/js-apis-application-shellCmdResult.md)
-        - [ContinuationResult (ContinuationResult)](reference/apis/js-apis-continuation-continuationResult.md)
+        - continuation/[ContinuationResult (ContinuationResult)](reference/apis/js-apis-continuation-continuationResult.md)
     - 公共事件与通知
       - [@ohos.commonEvent (公共事件模块)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
@@ -751,10 +725,10 @@
       - [LauncherAbilityInfo (LauncherAbilityInfo)](reference/apis/js-apis-bundle-LauncherAbilityInfo.md)
       - [Metadata (Metadata)](reference/apis/js-apis-bundle-Metadata.md)
       - [ModuleInfo (ModuleInfo)](reference/apis/js-apis-bundle-ModuleInfo.md)
+      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
       - [PermissionDef (PermissionDef)](reference/apis/js-apis-bundle-PermissionDef.md)
       - [RemoteAbilityInfo (RemoteAbilityInfo)](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
       - [ShortcutInfo (ShortcutInfo)](reference/apis/js-apis-bundle-ShortcutInfo.md)
-      - [PackInfo (PackInfo)](reference/apis/js-apis-bundle-PackInfo.md)
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
@@ -793,8 +767,8 @@
     - 安全
       - [@ohos.abilityAccessCtrl (访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
+      - [@ohos.security.cryptoFramework (加密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
-      - [@ohos.security.cryptoFramework (加解密算法库框架)](reference/apis/js-apis-cryptoFramework.md)
       - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
@@ -810,10 +784,11 @@
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-ValuesBucket.md)
       - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
+      - [@ohos.data.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
       - [@ohos.document (文件交互)](reference/apis/js-apis-document.md)
       - [@ohos.environment (目录环境能力)](reference/apis/js-apis-environment.md)
+      - [@ohos.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
-      - [@ohos.fileManager (公共文件访问与管理)](reference/apis/js-apis-filemanager.md)
       - [@ohos.filemanagement.userfile_manager (用户数据管理)](reference/apis/js-apis-userfilemanager.md)
       - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
       - [@ohos.securityLabel (数据标签)](reference/apis/js-apis-securityLabel.md)
@@ -861,13 +836,13 @@
       - [@ohos.hiSysEvent (系统事件打点)](reference/apis/js-apis-hisysevent.md)
       - [@ohos.hiTraceChain (分布式跟踪)](reference/apis/js-apis-hitracechain.md)
       - [@ohos.hiTraceMeter (性能打点)](reference/apis/js-apis-hitracemeter.md)
-      - [@ohos.inputMethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
-      - [@ohos.inputMethodEngine (输入法服务)](reference/apis/js-apis-inputmethodengine.md)
+      - [@ohos.inputmethod (输入法框架)](reference/apis/js-apis-inputmethod.md)
+      - [@ohos.inputmethodengine (输入法服务)](reference/apis/js-apis-inputmethodengine.md)
       - [@ohos.inputmethodextensionability (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
       - [@ohos.inputmethodextensioncontext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
-      - [@ohos.systemTime (系统时区、时间)](reference/apis/js-apis-system-time.md)
+      - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
       - [@ohos.systemTimer(系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
@@ -949,6 +924,7 @@
       - [@system.storage (数据存储)](reference/apis/js-apis-system-storage.md)
       - [@system.vibrator (振动)](reference/apis/js-apis-system-vibrate.md)
       - [console (日志打印)](reference/apis/js-apis-logs.md)
+
   - 接口参考（Native API）
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
@@ -1018,7 +994,7 @@
   - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)
   - [Ability框架开发常见问题](faqs/faqs-ability.md)
   - [UI框架（JS）开发常见问题](faqs/faqs-ui-js.md)
-  - [UI框架（eTS）开发常见问题](faqs/faqs-ui-ets.md)
+  - [UI框架（ArkTS）开发常见问题](faqs/faqs-ui-ets.md)
   - [图形图像开发常见问题](faqs/faqs-graphics.md)
   - [文件管理开发常见问题](faqs/faqs-file-management.md)
   - [网络与连接开发常见问题](faqs/faqs-connectivity.md)
