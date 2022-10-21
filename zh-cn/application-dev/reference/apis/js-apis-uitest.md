@@ -20,6 +20,86 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 import {UiDriver, BY, MatchPattern, ResizeDirection, WindowMode, DisplayRotation, PointerMatrix} from '@ohos.uitest'
 ```
 
+## MatchPattern
+
+控件属性支持的匹配模式。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称        | 值   | 说明           |
+| ----------- | ---- | -------------- |
+| EQUALS      | 0    | 等于给定值。   |
+| CONTAINS    | 1    | 包含给定值。   |
+| STARTS_WITH | 2    | 从给定值开始。 |
+| ENDS_WITH   | 3    | 以给定值结束。 |
+
+## ResizeDirection<sup>9+</sup>
+
+窗口调整大小的方向。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 说明     |
+| ---------- | -------- |
+| LEFT       | 左方。   |
+| RIGHT      | 右方。   |
+| UP         | 上方。   |
+| DOWN       | 下方。   |
+| LEFT_UP    | 左上方。 |
+| LEFT_DOWN  | 左下方。 |
+| RIGHT_UP   | 右上方。 |
+| RIGHT_DOWN | 右下方。 |
+
+## WindowMode<sup>9+</sup>
+
+**系统能力**：SystemCapability.Test.UiTest
+
+窗口的窗口模式。
+
+| 名称       | 说明       |
+| ---------- | ---------- |
+| FULLSCREEN | 全屏模式。 |
+| PRIMARY    | 主窗口。   |
+| SECONDARY  | 第二窗口。 |
+| FLOATING   | 浮动窗口。 |
+
+## DisplayRotation<sup>9+</sup>
+
+**系统能力**：SystemCapability.Test.UiTest
+
+设备显示器的显示方向。
+
+| 名称         | 说明                                     |
+| ------------ | ---------------------------------------- |
+| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。     |
+| ROTATION_90  | 设备显示器顺时针旋转90°，水平显示。      |
+| ROTATION_180 | 设备显示器顺时针旋转180°，逆向垂直显示。 |
+| ROTATION_270 | 设备显示器顺时针旋转270°，逆向水平显示。 |
+
+### Point<sup>9+</sup>
+
+坐标点信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称 | 参数类型 | 可读 | 可写 | 描述             |
+| ---- | -------- | ---- | ---- | ---------------- |
+| X    | number   | 是   | 否   | 坐标点的横坐标。 |
+| Y    | number   | 是   | 否   | 坐标点的纵坐标。 |
+
+### Rect<sup>9+</sup>
+
+控件的边框信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
+| ------- | -------- | ---- | ---- | ------------------------- |
+| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
+| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
+| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
+| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
+
 ## By
 
 UiTest框架通过By类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -221,7 +301,7 @@ let by = BY.scrollable(true) //使用静态构造器BY创建by对象，指定目
 
 enabled(b?: boolean): By
 
-指定目标控件的使能状态属性，返回By对象自身。
+指定目标控件的使能状态，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -247,7 +327,7 @@ let by = BY.enabled(true) //使用静态构造器BY创建by对象，指定目标
 
 focused(b?: boolean): By
 
-指定目标控件的获焦状态属性，返回By对象自身。
+指定目标控件的获焦状态，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -273,7 +353,7 @@ let by = BY.focused(true) //使用静态构造器BY创建by对象，指定目标
 
 selected(b?: boolean): By
 
-指定目标控件的被选中状态属性，返回By对象自身。
+指定目标控件的被选中状态，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -299,7 +379,7 @@ let by = BY.selected(true) //使用静态构造器BY创建by对象，指定目�
 
 checked(b?: boolean): By
 
-指定目标控件的被勾选状态属性，返回By对象自身。
+指定目标控件的被勾选状态，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -325,7 +405,7 @@ let by = BY.checked(true) //使用静态构造器BY创建by对象，指定目标
 
 checkable(b?: boolean): By
 
-指定目标控件能否被勾选状态属性，返回By对象自身。
+指定目标控件能否被勾选属性，返回By对象自身。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -333,7 +413,7 @@ checkable(b?: boolean): By
 
 | 参数名 | 类型 | 必填 | 说明                                  |
 | ------ | ---- | ---- | ------------------------------------- |
-| b      | boolean | 否   | 指定控件能否被勾选状态，true：能被勾选，false：不能被勾选。默认为false。 |
+| b      | boolean | 否   | 指定控件能否被勾选属性，true：能被勾选，false：不能被勾选。默认为false。 |
 
 **返回值：**
 
@@ -401,32 +481,8 @@ let by = BY.isAfter(BY.text('123')) //使用静态构造器BY创建by对象，�
 
 ## UiComponent
 
-UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
-该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
-
-### Point<sup>9+</sup>
-
-坐标点信息。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称 | 参数类型 | 可读 | 可写 | 描述             |
-| ---- | -------- | ---- | ---- | ---------------- |
-| X    | number   | 是   | 否   | 坐标点的横坐标。 |
-| Y    | number   | 是   | 否   | 坐标点的纵坐标。 |
-
-### Rect<sup>9+</sup>
-
-控件的边框信息。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称    | 参数类型 | 可读 | 可写 | 描述                      |
-| ------- | -------- | ---- | ---- | ------------------------- |
-| leftX   | number   | 是   | 否   | 控件边框的左上角的X坐标。 |
-| topY    | number   | 是   | 否   | 控件边框的左上角的Y坐标。 |
-| rightX  | number   | 是   | 否   | 控件边框的右下角的X坐标。 |
-| bottomY | number   | 是   | 否   | 控件边框的右下角的Y坐标。 |
+UiTest中，UiComponent类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等能力。
+该类提供的所有方法都使用Promise方式作为异步方法，需使用await方式调用。
 
 ### UiComponent.click
 
@@ -630,7 +686,7 @@ async function demo() {
 
 isClickable(): Promise\<boolean>
 
-获取控件对象可点击状态。
+获取控件对象可点击属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -638,7 +694,7 @@ isClickable(): Promise\<boolean>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象可点击状态，true：可点击，false：不可点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可点击属性，true：可点击，false：不可点击。 |
 
 **示例：**
 
@@ -659,7 +715,7 @@ async function demo() {
 
 isLongClickable(): Promise\<boolean> 
 
-获取控件对象可长按点击状态。
+获取控件对象可长按点击属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -667,7 +723,7 @@ isLongClickable(): Promise\<boolean>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象能否长按点击状态，true：可长按点击，false：不可长按点击。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否长按点击属性，true：可长按点击，false：不可长按点击。 |
 
 **示例：**
 
@@ -717,7 +773,7 @@ async function demo() {
 
 isCheckable(): Promise\<boolean>
 
-获取控件对象能否被勾选的属性。
+获取控件对象能否被勾选属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -725,7 +781,7 @@ isCheckable(): Promise\<boolean>
 
 | 类型           | 说明                                        |
 | -------------- | ------------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象能否被勾选的属性，true：可被勾选，false：不可被勾选。 |
+| Promise\<boolean> | 以Promise形式返回控件对象能否被勾选属性，true：可被勾选，false：不可被勾选。 |
 
 **示例：**
 
@@ -746,7 +802,7 @@ async function demo() {
 
 isScrollable(): Promise\<boolean>
 
-获取控件对象可滑动状态。
+获取控件对象可滑动属性。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -754,7 +810,7 @@ isScrollable(): Promise\<boolean>
 
 | 类型           | 说明                                  |
 | -------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回控件对象可滑动状态，true：可滑动，false：不可滑动。 |
+| Promise\<boolean> | 以Promise形式返回控件对象可滑动属性，true：可滑动，false：不可滑动。 |
 
 **示例：**
 
@@ -870,9 +926,9 @@ inputText(text: string): Promise\<void>
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| text   | string | 是   | 输入的文本信息。 |
+| 参数名 | 类型   | 必填 | 说明                                 |
+| ------ | ------ | ---- | ------------------------------------ |
+| text   | string | 是   | 输入的文本信息，支持英文和特殊字符。 |
 
 **示例：**
 
@@ -1055,8 +1111,8 @@ async function demo() {
 
 ## UiDriver
 
-UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等API。
-该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await调用。
+UiDriver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
+该类提供的方法除UiDriver.create()以外的所有方法都使用Promise方式作为异步方法，需使用await方式调用。
 
 ### create
 
@@ -1287,7 +1343,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
-UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击ctrl+c。
+UiDriver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，UiDriver对象找到组合键并点击，例如ctrl+c。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1681,7 +1737,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| pointers | [PointerMatrix](#pointermatrix9) | 是   | 起始点的坐标。                                               |
+| pointers | [PointerMatrix](#pointermatrix9) | 是   | 移动轨迹集合。                                               |
 | speed    | number                           | 否   | 滑动速率，范围：200-3000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **返回值：**
@@ -1707,7 +1763,7 @@ async function demo() {
 
 ## UiWindow<sup>9+</sup>
 
-UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性获取，窗口拖动、调整窗口大小等API。
+UiTest中，UiWindow类代表了UI界面上的一个窗口，提供窗口属性获取，窗口拖动、调整窗口大小等能力。
 该类提供的所有方法都使用Promise方式作为异步方法，需使用await调用。
 
 ### WindowFilter<sup>9+</sup>
@@ -2136,61 +2192,3 @@ async function demo() {
     pointers.setPoint(1,2,{X:250,Y:480})
 }
 ```
-
-### 
-
-## MatchPattern
-
-控件属性支持的匹配模式。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称        | 值   | 说明           |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | 等于给定值。   |
-| CONTAINS    | 1    | 包含给定值。   |
-| STARTS_WITH | 2    | 从给定值开始。 |
-| ENDS_WITH   | 3    | 以给定值结束。 |
-
-## ResizeDirection<sup>9+</sup>
-
-窗口调整大小的方向。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-| 名称       | 说明     |
-| ---------- | -------- |
-| LEFT       | 左方。   |
-| RIGHT      | 右方。   |
-| UP         | 上方。   |
-| DOWN       | 下方。   |
-| LEFT_UP    | 左上方。 |
-| LEFT_DOWN  | 左下方。 |
-| RIGHT_UP   | 右上方。 |
-| RIGHT_DOWN | 右下方。 |
-
-## WindowMode<sup>9+</sup>
-
-**系统能力**：SystemCapability.Test.UiTest
-
-窗口的窗口模式。
-
-| 名称       | 说明       |
-| ---------- | ---------- |
-| FULLSCREEN | 全屏模式。 |
-| PRIMARY    | 主窗口。   |
-| SECONDARY  | 第二窗口。 |
-| FLOATING   | 浮动窗口。 |
-
-## DisplayRotation<sup>9+</sup>
-
-**系统能力**：SystemCapability.Test.UiTest
-
-设备显示器的显示方向。
-
-| 名称         | 说明                                     |
-| ------------ | ---------------------------------------- |
-| ROTATION_0   | 设备显示器不旋转，初始形态垂直显示。     |
-| ROTATION_90  | 设备显示器顺时针旋转90°，水平显示。      |
-| ROTATION_180 | 设备显示器顺时针旋转180°，逆向垂直显示。 |
-| ROTATION_270 | 设备显示器顺时针旋转270°，逆向水平显示。 |
