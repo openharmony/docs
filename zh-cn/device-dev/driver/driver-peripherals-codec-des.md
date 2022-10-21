@@ -720,7 +720,7 @@ OpenMax不支持分帧。
 
 **解决办法**
 
-上层在调用EmptyThisBuffer时，需要按照一帧一帧传入。
+上层在调用EmptyThisBuffer时，需要按照每次一帧的方式传入。
 
 ## 解码过程中全是绿屏
 
