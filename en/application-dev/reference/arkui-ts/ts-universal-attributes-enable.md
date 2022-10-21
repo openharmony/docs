@@ -12,7 +12,7 @@ The **enabled** attribute sets whether a component responds to user interactions
 
 | Name     | Type   | Description                                      |
 | ------- | ------- | ---------------------------------------- |
-| enabled | boolean | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions,<br>and **false** means the opposite.<br>Default value: **true**|
+| enabled | boolean | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions, and **false** means the opposite.<br>Default value: **true** |
 
 
 ## Example
