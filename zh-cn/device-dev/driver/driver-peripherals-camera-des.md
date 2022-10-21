@@ -828,12 +828,12 @@ Camera驱动的开发过程主要包含以下步骤：
        std::vector<StreamInfo> streamInfos;
        streamInfos.push_back(streamInfo);
     
-       rc = streamOperator_->CreateStreams(streamInfos); //创建流
+       rc = streamOperator_->CreateStreams(streamInfos); // 创建流
        if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CreateStreams error\n");
            return RC_ERROR;
        }
-    
+
        rc = streamOperator_->CommitStreams(NORMAL, cameraAbility_);
        if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CreateStream CommitStreams error\n");
@@ -842,7 +842,7 @@ Camera驱动的开发过程主要包含以下步骤：
            streamOperator_->ReleaseStreams(streamIds);
            return RC_ERROR;
        }
-    
+
        CAMERA_LOGD("demo test: CreateStream exit");
     
        return RC_OK;
@@ -1027,5 +1027,5 @@ Camera驱动的开发过程主要包含以下步骤：
        ]
    ```
    
-   执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入板子，修改权限直接运行即可。
+   以RK3568为例：执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入板子，修改权限直接运行即可。
    
