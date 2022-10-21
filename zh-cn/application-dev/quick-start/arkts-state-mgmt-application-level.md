@@ -80,6 +80,7 @@ struct ComponentA {
 }
 ```
 
+![appstorage](figures/appstorage.gif)
 
 ## [LocalStorage](../reference/arkui-ts/ts-state-management.md#localstorage9)
 
@@ -188,6 +189,8 @@ struct LocalStorageComponentProp {
 }
 ```
 
+![appstorage1](figures/appstorage1.gif)
+
 ### 示例2（在Entry页面定义LocalStorage）
 
 ```ts
@@ -222,6 +225,8 @@ struct Child {
   }
 }
 ```
+
+![appstorage2](figures/appstorage2.gif)
 
 ## [PersistentStorage](../reference/arkui-ts/ts-state-management.md#persistentstorage)
 
@@ -259,6 +264,8 @@ struct PersistentComponent {
   }
 }
 ```
+
+![appstorage3](figures/appstorage3.gif)
 
 ## [Environment](../reference/arkui-ts/ts-state-management.md#environment)
 
