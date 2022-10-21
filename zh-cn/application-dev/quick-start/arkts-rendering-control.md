@@ -91,6 +91,8 @@ struct MyComponent {
 }
 ```
 
+![forEach1](figures/forEach1.gif)
+
 ## 数据懒加载
 
 通过数据懒加载（LazyForEach）从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。
@@ -212,7 +214,7 @@ class BasicDataSource implements IDataSource {
 
 class MyDataSource extends BasicDataSource {
   // 初始化数据列表
-  private dataArray: string[] = ['/path/image0', '/path/image1', '/path/image2', '/path/image3']
+  private dataArray: string[] = ['/path/image0.png', '/path/image1.png', '/path/image2.png', '/path/image3.png']
 
   public totalCount(): number {
     return this.dataArray.length
@@ -249,7 +251,7 @@ struct MyComponent {
         }
         .onClick(() => {
           // 每点击一次列表项，数据增加一项
-          this.data.pushData('/path/image' + this.data.totalCount())
+          this.data.pushData('/path/image' + this.data.totalCount() + '.png')
         })
       }, item => item)
     }
@@ -276,3 +278,5 @@ struct MyComponent {
 >     item => Text(`${item.i}. item.data.label`)),
 >     item => item.data.id.toString())
 >   ```
+
+![lazyForEach](figures/lazyForEach.gif)
