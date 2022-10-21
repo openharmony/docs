@@ -70,9 +70,11 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+| 12300009 | Account has been activated. |
 
 **示例：** 激活ID为100的系统帐号
   ```js
@@ -112,16 +114,18 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 **返回值：**
 
 | 类型                | 说明                                  |
-| :------------------ | :----------------------------------- |
+| ------------------- | ------------------------------------ |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+| 12300009 | Account has been activated. |
 
 **示例：** 激活ID为100的系统帐号
   ```js
@@ -152,12 +156,18 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示支持多系统帐号；返回false表示不支持。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   try {
-    accountManager.checkMultiOsAccountEnabled((err, isEnalbed) => {
+    accountManager.checkMultiOsAccountEnabled((err, isEnabled) => {
       if (err) {
         console.log("checkMultiOsAccountEnabled failed, error: " + JSON.stringify(err));
       } else {
@@ -182,6 +192,12 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 | 类型                   | 说明                                                        |
 | :--------------------- | :--------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示支持多系统帐号；返回false表示不支持。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -219,16 +235,17 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  let osLocalId = 100;
+  let localId = 100;
   try {
-    accountManager.checkOsAccountActivated(osLocalId, (err, isActivated)=>{
+    accountManager.checkOsAccountActivated(localId, (err, isActivated) => {
       if (err) {
         console.log('checkOsAccountActivated failed, error:' + JSON.stringify(err));
       } else {
@@ -246,7 +263,7 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -266,8 +283,9 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否处于激活状态
 
@@ -291,7 +309,7 @@ checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallb
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -307,8 +325,9 @@ checkConstraintEnabled(localId: number, constraint: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -356,8 +375,9 @@ checkConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
 
@@ -394,8 +414,7 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -432,8 +451,7 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -470,8 +488,9 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -511,8 +530,9 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -520,7 +540,7 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
   try {
-    accountManager.checkOsAccountVerified(localId, (err, result) => {
+    accountManager.checkOsAccountVerified(localId, (err, isVerified) => {
       if (err) {
         console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
       } else {
@@ -558,8 +578,9 @@ checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -573,7 +594,7 @@ checkOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
       console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkOsAccountVerified exception: ' + JSON.stringify(e));
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -600,9 +621,10 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：**
 
@@ -652,9 +674,10 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：**
 
@@ -699,9 +722,10 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
 
@@ -752,9 +776,10 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
 
@@ -796,9 +821,10 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid parameters. |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or localName. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
@@ -841,16 +867,17 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 **返回值：**
 
 | 类型                | 说明                                  |
-| :------------------ | :----------------------------------- |
+| ------------------- | ------------------------------------ |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or localName.    |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 将ID为100的系统帐号的帐号名设置成demoName
 
@@ -885,6 +912,12 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当获取成功时，err为null，data为已创建的系统帐号的数量；否则为错误对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -918,6 +951,12 @@ getOsAccountCount(): Promise&lt;number&gt;
 | --------------------- | -------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回已创建的系统帐号的数量。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -947,6 +986,12 @@ queryOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | ---------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。当获取成功时，err为null，data为当前进程所属的系统帐号ID；否则为错误对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -975,8 +1020,14 @@ queryOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 **返回值：**
 
 | 类型                  | 说明                                      |
-| :-------------------- | :--------------------------------------- |
+| --------------------- | ---------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回当前进程所属的系统帐号ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1008,10 +1059,11 @@ queryOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;)
 | uid      | number                      | 是   | 进程uid。                                                              |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果查询成功，err为null，data为对应的系统帐号ID；否则为错误对象。 |
 
-
 **错误码：**
 
 | 错误码ID | 错误信息         |
+| -------- | --------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid uid.    |
 
 **示例：** 查询值为12345678的uid所属的系统帐号的帐号ID
@@ -1054,6 +1106,8 @@ queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 **错误码：**
 
 | 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid uid. |
 
 **示例：** 查询值为12345678的uid所属的系统帐号ID
@@ -1074,7 +1128,7 @@ queryOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 ### queryOsAccountLocalIdFromDomain<sup>9+</sup>
 
-getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
+queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;number&gt;): void
 
 根据域帐号信息，获取与其关联的系统帐号ID。使用callback异步回调。
 
@@ -1088,6 +1142,13 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 | ---------- | --------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。                                                                |
 | callback   | AsyncCallback&lt;number&gt;             | 是   | 回调函数。如果查询成功，err为null，data为域帐号关联的系统帐号ID；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
 
 **示例：**
 
@@ -1129,6 +1190,13 @@ queryOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;numbe
 | :-------------------- | :------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回域帐号关联的系统帐号ID。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid domainInfo. |
+
 **示例：**
 
   ```js
@@ -1160,6 +1228,12 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 | 参数名   | 类型                        | 必填 | 说明                                                                              |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，如果查询成功，err为null，data为允许创建的系统帐号的最大数量；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1193,6 +1267,12 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 | 类型                  | 说明                                         |
 | --------------------- | ------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回允许创建的系统帐号的最大数量。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1230,8 +1310,9 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
@@ -1277,8 +1358,9 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号的全部约束
 
@@ -1314,6 +1396,12 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为已创建的所有系统帐号的信息列表；否则为错误对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -1346,6 +1434,12 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 | ----------------------------------------------------------- | --------------------------------------------- |
 | Promise&lt;Array&lt;[OsAccountInfo](#osaccountinfo)&gt;&gt; | Promise对象，返回已创建的所有系统帐号的信息列表。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -1374,6 +1468,12 @@ getActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): vo
 | 参数名   | 类型                                     | 必填 | 说明                                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前处于激活状态的系统帐号的ID列表；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1405,6 +1505,12 @@ getActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 | 类型                               | 说明                                               |
 | :--------------------------------- | :------------------------------------------------ |
 | Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回当前处于激活状态的系统帐号的ID列表。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1442,8 +1548,14 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 | callback  | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
 
 **错误码：**
-| 错误码ID  | 错误信息                    |
+
+| 错误码ID  | 错误信息                   |
+| -------- | ------------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
+| 12300005 | Multi-user not supported. |
+| 12300006 | Unsupported account type. |
+| 12300007 | The number of account reaches the upper limit. |
 
 **示例：**
 
@@ -1485,8 +1597,14 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promis对象，返回新创建的系统帐号的信息。 |
 
 **错误码：**
-| 错误码ID | 错误信息                    |
+
+| 错误码ID  | 错误信息                   |
+| -------- | ------------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localName or type. |
+| 12300005 | Multi-user not supported. |
+| 12300006 | Unsupported account type. |
+| 12300007 | The number of account reaches the upper limit. |
 
 **示例：**
 
@@ -1518,14 +1636,20 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 **参数：**
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                                         |
-| :--------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
+| ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
 | type       | [OsAccountType](#osaccounttype)                      | 是   | 创建的系统帐号的类型。                                                       |
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                                                               |
 | callback   | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息                     |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300005 | Multi-user not supported. |
+| 12300006 | Unsupported account type. |
+| 12300007 | The number of account reaches the upper limit. |
 
 **示例：**
 
@@ -1568,8 +1692,14 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息                     |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300005 | Multi-user not supported. |
+| 12300006 | Unsupported account type. |
+| 12300007 | The number of account reaches the upper limit. |
 
 **示例：**
 
@@ -1603,6 +1733,12 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前进程所属的系统帐号信息；否则为错误对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -1632,6 +1768,12 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 | 类型                                           | 说明                                       |
 | ---------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统帐号信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1668,10 +1810,12 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 | callback | AsyncCallback&lt;[OsAccountInfo](#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为查到的系统帐号的信息；否则为错误对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 查询ID为100的系统帐号信息
 
@@ -1713,10 +1857,12 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 | Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回查到的系统帐号的信息。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 查询ID为100的系统帐号信息
 
@@ -1748,6 +1894,12 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------- |
 | callback | AsyncCallback&lt;[OsAccountType](#osaccounttype)&gt; | 是   | 回调函数。如果查询成功，err为null，data为当前进程所属的系统帐号的帐号类型；否则为错误对象。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -1776,6 +1928,12 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 | ---------------------------------------------- | ----------------------------------------------- |
 | Promise&lt;[OsAccountType](#osaccounttype)&gt; | Promise对象，返回当前进程所属的系统帐号的帐号类型。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -1797,7 +1955,7 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 获取分布式虚拟设备ID。使用callback异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1806,6 +1964,12 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 | 参数名   | 类型                        | 必填 | 说明                                                                   |
 | -------- | --------------------------- | ---- | --------------------------------------------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为分布式虚拟设备ID；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1827,7 +1991,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 获取分布式虚拟设备ID。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC or ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1836,6 +2000,12 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 | 类型                  | 说明                              |
 | --------------------- | --------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回分布式虚拟设备ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -1872,10 +2042,12 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为指定系统帐号的头像信息；否则为错误对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号的头像
 
@@ -1917,10 +2089,12 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 | Promise&lt;string&gt; | Promise对象，返回指定系统帐号的头像信息。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号的头像
 
@@ -1959,11 +2133,13 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调结果。   |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or photo.    |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 给ID为100的系统帐号设置头像
 
@@ -2005,15 +2181,17 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 **返回值：**
 
 | 类型                | 说明                                 |
-| :------------------ | :----------------------------------- |
+| ------------------- | ------------------------------------ |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
-| 12300004 | Restricted Account. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or photo.    |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
 
 **示例：** 给ID为100的系统帐号设置头像
 
@@ -2051,8 +2229,12 @@ queryOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallbac
 | callback     | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果成功，err为null，data为与SN码关联的系统帐号的帐号ID；否则为错误对象。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
+| 12300003 | Account not found. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2086,12 +2268,16 @@ queryOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 **返回值：**
 
 | 类型                  | 说明                                         |
-| :-------------------- | :------------------- ----------------------- |
+| --------------------- | -------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回与SN码关联的系统帐号的帐号ID。 |
 
 **错误码：**
+
 | 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid serialNumber. |
+| 12300003 | Account not found. |
 
 **示例：** 查询与SN码12345关联的系统帐号的ID
 
@@ -2128,8 +2314,9 @@ querySerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2170,8 +2357,9 @@ querySerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
+| 12300001 | System service exception. |
 | 12300002 | Invalid localId.    |
-| 12300003 | Account not exists. |
+| 12300003 | Account not found. |
 
 **示例：** 获取ID为100的系统帐号关联的SN码
 
@@ -2209,6 +2397,14 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
 | callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号变动信息的回调，表示当前事件对应的系统帐号ID。    |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type or name. |
+| 12300011 | Callback has been registered. |
+
 **示例：**
 
   ```js
@@ -2243,6 +2439,14 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | name     | string                     | 是   | 订阅名称，可自定义，，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
 | callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号变化的回调，默认返回0。                      |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid type or name. |
+| 12300012 | Callback has not been registered. |
+
 **示例：**
 
   ```js
@@ -2273,6 +2477,13 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 | -------- | --------------------------- | ---- | ------------------------------------------------------------------------ |
 | uid      | number                      | 是   | 进程uid。                                                                 |
 | callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。如果查询成功，err为null，data为与uid对应的bundleId；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
 
 **示例：**
 
@@ -2310,6 +2521,13 @@ getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 | --------------------- | ------------------------------------ |
 | Promise&lt;number&gt; | Promise对象，返回与uid对应的bundleId。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid uid. |
+
 **示例：**
 
   ```js
@@ -2344,6 +2562,12 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+
 **示例：**
 
   ```js
@@ -2374,6 +2598,12 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 | 类型                   | 说明                                                                  |
 | ---------------------- | --------------------------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise对象，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
 
 **示例：**
 
@@ -2408,6 +2638,14 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string, callbac
 | localId     | number | 是   |  要查询的系统帐号ID |
 | constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -2445,8 +2683,16 @@ queryOsAccountConstraintSourceTypes(localId: number, constraint: string): Promis
 **返回值：**
 
 | 类型                  | 说明                                                         |
-| :-------------------- | :----------------------------------------------------------- |
+| --------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid localId or constraint. |
+| 12300003 | Account not found. |
 
 **示例：**
 
@@ -2485,7 +2731,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  accountManager.isMultiOsAccountEnable((err, isEnalbed) => {
+  accountManager.isMultiOsAccountEnable((err, isEnabled) => {
     if (err) {
       console.log("isMultiOsAccountEnable failed, error: " + JSON.stringify(err));
     } else {
@@ -2743,6 +2989,8 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 > **说明：** 从API version 9开始废弃，建议使用[checkOsAccountVerified](#checkosaccountverified9)
 >
 > 从 API version 7开始支持。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3361,7 +3609,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 >
 > 从 API version 7开始支持。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3391,7 +3639,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 >
 > 从 API version 7开始支持。
 
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC 或 ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -3565,7 +3813,6 @@ constructor()
   let userAuth = new account_osAccount.UserAuth();
   ```
 
-
 ### getVersion<sup>8+</sup>
 
 getVersion(): number;
@@ -3593,7 +3840,7 @@ getVersion(): number;
 
 getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
-检查身份认证功能是否可用。
+获取指定认证类型和认证可信等级的认证能力的可用状态。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3603,16 +3850,23 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 **参数：**
 
-| 参数名           | 类型                                           | 必填 | 说明                       |
-| --------------- | -----------------------------------------------| ---- | ------------------------- |
-| authType        | [AuthType](#authtype8)             | 是   | 指示用于认证的凭据类型。     |
-| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | 是   | 表示身份验证结果的信任级别。 |
+| 参数名           | 类型                               | 必填 | 说明                       |
+| --------------- | -----------------------------------| ---- | ------------------------- |
+| authType        | [AuthType](#authtype8)             | 是   | 认证类型。     |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证的可信等级。 |
 
 **返回值：**
 
-| 类型   | 说明                                       |
-| :----- | :---------------------------------------- |
-| number | 返回验证[结果](#resultcode8)。 | 
+| 类型   | 说明                           |
+| ------ | ----------------------------- |
+| number | 返回认证能力的可用状态。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid authType or authTrustLevel. |
 
 **示例：**  
   ```js
@@ -3642,9 +3896,16 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 **参数：**
 
 | 参数名    | 类型                                                                    | 必填 | 说明                                |
-| -------- | ----------------------------------------------------------------------- | ---- | ---------------------------------- |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | request  | [GetPropertyRequest](#getpropertyrequest8)                  | 是   | 请求信息，包括认证类型和属性类型列表。 |
-| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调函数。如果获取成功，err为null，data为执行器属性信息；否则为错误对象。        |
+| callback | AsyncCallback&lt;[ExecutorProperty](#executorproperty8)&gt; | 是   | 回调函数。如果获取成功，err为null，data为执行器属性信息；否则为错误对象。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
 
 **示例：**
   ```js
@@ -3692,6 +3953,13 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 | :---------------------------------------------------------------- | :-------------------------------------------------- |
 | Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行者属性信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
+
 **示例：**
   ```js
   let userAuth = new account_osAccount.UserAuth();
@@ -3733,6 +4001,13 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;number&gt;):
 | -------- | ----------------------------------------------------- | ---- | ---------------------------------------------------------------------- |
 | request  | [SetPropertyRequest](#setpropertyrequest8)| 是   | 请求信息，包括认证类型和要设置的密钥值。                                   |
 | callback | AsyncCallback&lt;number&gt;                           | 是   | 回调函数。如果设置成功，err为null，data为一个[数值](#resultcode8)，指示属性设置是否成功；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
 
 **示例：**
   ```js
@@ -3776,6 +4051,13 @@ setProperty(request: SetPropertyRequest): Promise&lt;number&gt;;
 | :-------------------- | :------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise对象，返回一个[数值](#resultcode8)，指示属性设置是否成功。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
+
 **示例：**
   ```js
   let userAuth = new account_osAccount.UserAuth();
@@ -3809,19 +4091,31 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 **参数：**
 
-| 参数名           | 类型                                                 | 必填 | 说明                                |
-| --------------- | ---------------------------------------------------- | --- | ------------------------------------ |
+| 参数名           | 类型                                     | 必填 | 说明                                |
+| --------------- | ---------------------------------------- | --- | ------------------------------------ |
 | challenge       | Uint8Array                               | 是  | 指示挑战值，挑战值为一个随机数，用于提升安全性。|
 | authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
 | callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调对象，返回认证结果。  |
 
-
 **返回值：**
 
 | 类型        | 说明               |
-| :--------- | :----------------- |
+| ---------- | ------------------ |
 | Uint8Array | 返回取消的上下文ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | --------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid challenge or authType or authTrustLevel. |
+| 12300101 | Credential is incorrect. |
+| 12300105 | Unsupported authTrustLevel. |
+| 12300106 | Unsupported authType. |
+| 12300110 | Authentication locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service busy. |
 
 **示例：**
   ```js
@@ -3863,12 +4157,24 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
 | callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调对象，返回认证结果。  |
 
-
 **返回值：**
 
 | 类型        | 说明               |
-| :--------- | :----------------- |
+| ---------- | ------------------ |
 | Uint8Array | 返回取消的上下文ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | --------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid userId or challenge or authType or authTrustLevel. |
+| 12300101 | Credential is incorrect. |
+| 12300105 | Unsupported authTrustLevel. |
+| 12300106 | Unsupported authType. |
+| 12300110 | Authentication locked. |
+| 12300111 | Authentication timeout. |
+| 12300112 | Authentication service busy. |
 
 **示例：**
   ```js
@@ -3880,8 +4186,8 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: function(result,extraInfo){
-          console.log('authUser result = ' + result);
-          console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
+        console.log('authUser result = ' + result);
+        console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
@@ -3893,7 +4199,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 cancelAuth(contextID: Uint8Array): void;
 
-取消特定的认证。
+取消指定的认证操作。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3905,21 +4211,28 @@ cancelAuth(contextID: Uint8Array): void;
 
 | 参数名    | 类型       | 必填  | 说明                                        |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextID | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+| contextId | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------ |
+| 12300001 | System service exception. |
+| 12300002 | Invalid contextId. |
 
 **示例：**
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let pinAuth = new account_osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextID = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
+  let contextId = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result, extraInfo) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   try {
-    userAuth.cancelAuth(contextID);
+    userAuth.cancelAuth(contextId);
   } catch (e) {
     console.log('cancelAuth exception = ' + JSON.stringify(e));
   }
@@ -3948,9 +4261,9 @@ constructor()
 
 ### registerInputer<sup>8+</sup>
 
-registerInputer(inputer: IInputer): boolean;
+registerInputer(inputer: IInputer): void;
 
-注册输入器。
+注册PIN码输入器。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3960,15 +4273,22 @@ registerInputer(inputer: IInputer): boolean;
 
 **参数：**
 
-| 参数名    | 类型                                 | 必填 | 说明               |
-| ----------| ----------------------------------- | --- | ------------------ |
-| inputer   | [IInputer](#iinputer8)  | 是  | 指示密码输入框回调。 |
+| 参数名    | 类型                     | 必填 | 说明                      |
+| ----------| ----------------------- | --- | -------------------------- |
+| inputer   | [IInputer](#iinputer8)  | 是  | PIN码输入器，用于获取PIN码。 |
 
 **返回值：**
 
 | 类型    | 说明                                           |
 | :------ | :-------------------------------------------- |
 | boolean | 返回布尔值，true表示注册成功，false表示注册失败。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300103 | Inputer already registered. |
 
 **示例：**
   ```js
@@ -3990,7 +4310,7 @@ registerInputer(inputer: IInputer): boolean;
 
 unregisterInputer(): void;
 
-卸载输入器。
+解注册PIN码输入器。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4014,7 +4334,7 @@ unregisterInputer(): void;
 
 constructor()
 
-创建用户认证的实例。
+用户身份管理类的默认构造函数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4029,7 +4349,7 @@ constructor()
 
 openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 
-打开会话，启动IDM操作以获取挑战值。使用callback异步回调。
+打开会话，获取挑战值。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4042,6 +4362,12 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 | 参数名    | 类型                             | 必填 | 说明                                                            |
 | -------- | -------------------------------- | ---- | -------------------------------------------------------------- |
 | callback | AsyncCallback&lt;Uint8Array&gt;  | 是   | 回调函数。如果打开会话成功，err为null，data为挑战值；否则为错误对象。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
@@ -4060,7 +4386,7 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void;
 
 openSession(): Promise&lt;Uint8Array&gt;;
 
-打开会话，启动IDM操作以获取挑战值。使用Promise异步回调。
+打开会话，获取挑战值。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4073,6 +4399,12 @@ openSession(): Promise&lt;Uint8Array&gt;;
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
 | Promise&lt;Uint8Array&gt; | Promise对象，返回挑战值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
@@ -4103,9 +4435,18 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 **参数：**
 
 | 参数名           | 类型                                 | 必填 | 说明                        |
-| --------------- | ------------------------------ ----- | --- | ---------------------------- |
+| --------------- | ------------------------------------ | --- | ---------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)   | 是  | 指示凭据信息。                |
 | callback        | [IIdmCallback](#iidmcallback8)       | 是  | 回调对象，返回添加凭据的结果。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
+| 12300101 | Token is invalid. |
+| 12300106 | Unsupported authType. |
 
 **示例：**
   ```js
@@ -4154,6 +4495,15 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void;
 | --------------- | ------------------------------------- | --- | ------------------------- |
 | credentialInfo  | [CredentialInfo](#credentialinfo8)    | 是  | 指示凭据信息。             |
 | callback        | [IIdmCallback](#iidmcallback8)        | 是  | 回调对象，返回更新凭据的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
+| 12300101 | Token is invalid. |
+| 12300106 | Unsupported authType. |
 
 **示例：**
   ```js
@@ -4229,6 +4579,12 @@ cancel(challenge: Uint8Array): void;
 | -------- | ----------- | ---- | ----- |
 | challenge | Uint8Array | 是   | 挑战值。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid challenge. |
 
 **示例：**
   ```js
@@ -4259,6 +4615,13 @@ delUser(token: Uint8Array, callback: IIdmCallback): void;
 | -------- | ------------------------------ | --- | ------------------------- |
 | token    | Uint8Array                     | 是  | 身份验证令牌。             |
 | callback | [IIdmCallback](#iidmcallback8) | 是  | 回调对象，返回删除用户的结果。|
+
+**错误码：**
+
+| 错误码ID | 错误信息        |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300101 | Token is invalid. |
 
 **示例：**
   ```js
@@ -4296,6 +4659,15 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 | token           | Uint8Array                          | 是  | 身份验证令牌。               |
 | callback        | [IIdmCallback](#iidmcallback8)      | 是  | 回调对象，返回删除凭据的结果。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid credentialId. |
+| 12300101 | Token is invalid. |
+| 12300102 | Credential not found. |
+
 **示例：**
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
@@ -4331,6 +4703,12 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void;
 | -------- | ------------------------------------------------------------------------ | ---- | --------------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | 是   | 回调函数。如果成功，err为null，data为当前用户指定类型的所有已注册凭据信息；否则为错误对象。|
 
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | --------------------- |
+| 12300001 | System service exception. |
+| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -4367,7 +4745,10 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 **错误码：**
 
 | 错误码ID | 错误信息               |
-| 12300015 | Unsupported authType. |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid authType. |
+| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -4403,13 +4784,16 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 **返回值：**
 
 | 类型                                         | 说明                                                                     |
-| :------------------------------------------- | :------------------------------------------------------------ ---------- |
+| :------------------------------------------- | :----------------------------------------------------------------------- |
 | Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise对象，返回当前用户指定类型的所有已注册凭据信息。|
 
 **错误码：**
 
 | 错误码ID | 错误信息               |
-| 12300015 | Unsupported authType. |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid authType. |
+| 12300102 | Credential not found. |
 
 **示例：**
   ```js
@@ -4703,7 +5087,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ------------ | ---------------------------------------- | ----- | ----------------- |
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
-| token        | Uint8Array                               | 是    | 指示认证令牌。     |
+| token        | Uint8Array                           | 是    | 指示认证令牌。     |
 
 ## RequestResult<sup>8+</sup>
 

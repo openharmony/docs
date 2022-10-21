@@ -29,8 +29,8 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| LOS_MS2Tick | 毫秒转换成Tick |
-| LOS_Tick2MS | Tick转化为毫秒 |
+| LOS_MS2Tick | 毫秒转换成Tick。 |
+| LOS_Tick2MS | Tick转化为毫秒。 |
 | OsCpuTick2MS | Cycle数目转化为毫秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
 | OsCpuTick2US | Cycle数目转化为微秒，使用2个UINT32类型的数值分别表示结果数值的高、低32位。 |
 
@@ -38,10 +38,23 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| LOS_SysClockGet | 获取系统时钟 |
-| LOS_TickCountGet | 获取自系统启动以来的Tick数 |
-| LOS_CyclePerTickGet | 获取每个Tick多少Cycle数 |
+| LOS_SysClockGet | 获取系统时钟。 |
+| LOS_TickCountGet    | 获取自系统启动以来的Tick数。 |
+| LOS_CyclePerTickGet | 获取每个Tick多少Cycle数。   |
+| LOS_CurrNanosec     | 获取当前的时间，单位纳秒。  |
 
+ **表3** 时间注册
+
+| 接口名                | 描述                                           |
+| --------------------- | ---------------------------------------------- |
+| LOS_TickTimerRegister | 重新注册系统时钟的定时器和对应的中断处理函数。 |
+
+ **表4** 延时
+
+| 接口名     | 描述                     |
+| ---------- | ------------------------ |
+| LOS_MDelay | 延时函数，延时单位毫秒。 |
+| LOS_UDelay | 延时函数，延时单位微秒。 |
 
 ## 开发流程
 
@@ -56,7 +69,7 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 > 
 > - 系统的Tick数在关中断的情况下不进行计数，故系统Tick数不能作为准确时间使用。
 > 
-> - 配置选项维护在开发板工程的文件target_config.h。
+> - 上文描述的配置选项维护在开发板工程 target_config.h 中，部分配置项未定义的缺省值定义在内核 los_config.h中。
 
 
 ## 编程实例
@@ -81,17 +94,22 @@ OpenHarmony LiteOS-M内核的时间管理提供下面几种功能，接口详细
 
 时间转换：
 
+本演示代码在 ./kernel/liteos_m/testsuites/src/osTest.c 中编译验证，在TestTaskEntry中调用验证入口函数ExampleTransformTime和ExampleGetTime。
+
 
 ```
-VOID Example_TransformTime(VOID)
+VOID ExampleTransformTime(VOID)
 {
     UINT32 ms;
     UINT32 tick;
 
-    tick = LOS_MS2Tick(10000);    // 10000ms转换为tick
-    dprintf("tick = %d \n", tick);
-    ms = LOS_Tick2MS(100);        // 100tick转换为ms
-    dprintf("ms = %d \n", ms);
+    /* 10000ms转换为tick */
+    tick = LOS_MS2Tick(10000);
+    printf("tick = %d \n", tick);
+
+    /* 100tick转换为ms */
+    ms = LOS_Tick2MS(100);
+    printf("ms = %d \n", ms);
 }
 ```
 
@@ -99,26 +117,21 @@ VOID Example_TransformTime(VOID)
 
 
 ```
-VOID Example_GetTime(VOID)
+VOID ExampleGetTime(VOID)
 {
     UINT32 cyclePerTick;
-    UINT64 tickCount;
+    UINT64 tickCountBefore;
+    UINT64 tickCountAfter;
 
     cyclePerTick  = LOS_CyclePerTickGet();
-    if(0 != cyclePerTick) {
-        dprintf("LOS_CyclePerTickGet = %d \n", cyclePerTick);
+    if (0 != cyclePerTick) {
+        printf("LOS_CyclePerTickGet = %d \n", cyclePerTick);
     }
 
-    tickCount = LOS_TickCountGet();
-    if(0 != tickCount) {
-        dprintf("LOS_TickCountGet = %d \n", (UINT32)tickCount);
-    }
-
+    tickCountBefore = LOS_TickCountGet();
     LOS_TaskDelay(200);
-    tickCount = LOS_TickCountGet();
-    if(0 != tickCount) {
-        dprintf("LOS_TickCountGet after delay = %d \n", (UINT32)tickCount);
-    }
+    tickCountAfter = LOS_TickCountGet();
+    printf("LOS_TickCountGet after delay rising = %d \n", (UINT32)(tickCountAfter - tickCountBefore));
 }
 ```
 
@@ -138,8 +151,7 @@ ms = 1000
 时间统计和时间延迟：
 
 
-```
-LOS_CyclePerTickGet = 495000 
-LOS_TickCountGet = 1 
-LOS_TickCountGet after delay = 201
+``` 
+LOS_CyclePerTickGet = 250000 (根据实际运行环境，数据会有差异)
+LOS_TickCountGet after delay rising = 200
 ```

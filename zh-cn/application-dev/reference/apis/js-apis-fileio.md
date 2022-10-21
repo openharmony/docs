@@ -29,7 +29,7 @@ class MainAbility extends Ability {
 }
  ```
 
- Stage模型context的具体获取方法参见[Stage模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-ability-context.md#abilitycontext)。
+ Stage模型context的具体获取方法参见[Stage模型](js-apis-ability-context.md#abilitycontext)。
 
 **FA模型**
 
@@ -41,7 +41,7 @@ class MainAbility extends Ability {
  })
  ```
  
- FA模型context的具体获取方法参见[FA模型](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-Context.md#context%E6%A8%A1%E5%9D%97)。
+ FA模型context的具体获取方法参见[FA模型](js-apis-Context.md#Context模块)。
 
 ## fileio.stat
 

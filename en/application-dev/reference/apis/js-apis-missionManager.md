@@ -42,18 +42,18 @@ Registers a listener to observe the mission status.
 
 **Example**
 
-  ```js
-  var listener =  {
-  	onMissionCreated: function(mission){"--------onMissionCreated-------"},
-  	onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
-  	onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
-  	onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
-  	onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
+```js
+  var listener = {
+      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
-
-  ```
+```
 
 
 ## missionManager.unregisterMissionListener
@@ -77,21 +77,22 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
 **Example**
 
-  ```js
-  var listener =  {
-  	onMissionCreated: function(mission){"--------onMissionCreated-------"},
-  	onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
-  	onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
-  	onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
-  	onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
+```js
+  var listener = {
+      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
   };
   console.log("registerMissionListener")
   var listenerid = missionManager.registerMissionListener(listener);
 
   missionManager.unregisterMissionListener(listenerid, (error) => {
-    console.log("unregisterMissionListener");
+      console.log("unregisterMissionListener");
   })
-  ```
+```
 
 
 ## missionManager.unregisterMissionListener
@@ -120,21 +121,22 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 **Example**
 
-  ```js
-  var listener =  {
-      onMissionCreated: function(mission){"--------onMissionCreated-------"},
-      onMissionDestroyed: function(mission){"--------onMissionDestroyed-------"},
-      onMissionSnapshotChanged: function(mission){"--------onMissionSnapshotChanged-------"},
-      onMissionMovedToFront: function(mission){"--------onMissionMovedToFront-------"},
-      onMissionIconUpdated: function(mission,icon){"--------onMissionIconUpdated-------"}
-      };
-      console.log("registerMissionListener")
-      var listenerid = missionManager.registerMissionListener(listener);
+```js
+  var listener = {
+      onMissionCreated: function (mission) {console.log("--------onMissionCreated-------")},
+      onMissionDestroyed: function (mission) {console.log("--------onMissionDestroyed-------")},
+      onMissionSnapshotChanged: function (mission) {console.log("--------onMissionSnapshotChanged-------")},
+      onMissionMovedToFront: function (mission) {console.log("--------onMissionMovedToFront-------")},
+      onMissionIconUpdated: function (mission, icon) {console.log("--------onMissionIconUpdated-------")},
+      onMissionClosed: function (mission) {console.log("--------onMissionClosed-------")}
+  };
+  console.log("registerMissionListener")
+  var listenerid = missionManager.registerMissionListener(listener);
 
-      missionManager.unregisterMissionListener(listenerid).catch(function (err){
-        console.log(err);
-      });
-  ```
+  missionManager.unregisterMissionListener(listenerid).catch(function (err) {
+      console.log(err);
+  });
+```
 
 
 ## missionManager.getMissionInfo

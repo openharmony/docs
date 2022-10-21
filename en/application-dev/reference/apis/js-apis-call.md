@@ -827,7 +827,7 @@ call.reject(1, (error, data) => {
 
 ## call.reject<sup>7+</sup>
 
-reject\(callId: number, options: RejectMessageOption, callback: AsyncCallback<void\>\): void
+reject\(callId: number, options: RejectMessageOptions, callback: AsyncCallback<void\>\): void
 
 Rejects a call based on the specified call ID and options. This API uses an asynchronous callback to return the result.
 
