@@ -69,7 +69,6 @@
   - [@ohos.bundle (Bundle模块)](js-apis-Bundle.md)
   - [@ohos.bundle.defaultAppManager (Bundle模块)](js-apis-bundle-defaultAppManager.md)
   - [@ohos.bundle.innerBundleManager (innerBundleManager模块(JS端SDK接口))](js-apis-Bundle-InnerBundleManager.md)
-  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.distributedBundle (distributedBundle模块(JS端SDK接口))](js-apis-Bundle-distributedBundle.md)
   - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
   - bundle/[AbilityInfo (AbilityInfo)](js-apis-bundle-AbilityInfo.md)
@@ -122,6 +121,7 @@
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
+  - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
@@ -291,3 +291,4 @@
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
   - [console (日志打印)](js-apis-logs.md)
+  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)

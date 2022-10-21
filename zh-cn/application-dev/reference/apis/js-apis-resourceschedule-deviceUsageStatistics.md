@@ -45,11 +45,10 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                     |
 | ---------- | ----------------------------     |
-| 201        | Parameter error.                 | 
-| 401        | Permission denied.               | 
-| 801        | Capability not supported.        | 
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
@@ -94,11 +93,10 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                     |
 | ---------- | ----------------------------     |
-| 201        | Parameter error.                 | 
-| 401        | Permission denied.               | 
-| 801        | Capability not supported.        | 
 | 10000001   | Memory operation failed.         | 
 | 10000002   | Parcel operation failed.         | 
 | 10000003   | System service operation failed. | 
@@ -135,11 +133,10 @@ queryAppGroup(): Promise&lt;number&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -178,11 +175,10 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -229,11 +225,10 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -290,11 +285,10 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -345,11 +339,10 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -405,11 +398,10 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -457,11 +449,10 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -516,11 +507,10 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -564,11 +554,10 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -619,11 +608,10 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -669,11 +657,10 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -720,11 +707,10 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
+| ---------- | ----------------------------       | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -778,11 +764,10 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -829,11 +814,10 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -887,11 +871,10 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -937,11 +920,10 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                       |
 | ---------- | ----------------------------       |
-| 201        | Parameter error.                   | 
-| 401        | Permission denied.                 | 
-| 801        | Capability not supported.          | 
 | 10000001   | Memory operation failed.           | 
 | 10000002   | Parcel operation failed.           | 
 | 10000003   | System service operation failed.   | 
@@ -989,11 +971,10 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1046,11 +1027,10 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
+| ---------- | ----------------------------          | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1097,11 +1077,10 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1157,11 +1136,10 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1215,11 +1193,10 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
+| ---------- | ----------------------------          | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1260,11 +1237,10 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
+| ---------- | ----------------------------          | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1314,11 +1290,10 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
+| ---------- | ----------------------------          | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1363,11 +1338,10 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1419,11 +1393,10 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
 | ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 
@@ -1468,11 +1441,10 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
 
 **错误码**：
 
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+
 | 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 201        | Parameter error.                      | 
-| 401        | Permission denied.                    | 
-| 801        | Capability not supported.             | 
+| ---------- | ----------------------------          | 
 | 10000001   | Memory operation failed.              | 
 | 10000002   | Parcel operation failed.              | 
 | 10000003   | System service operation failed.      | 

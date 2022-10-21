@@ -15,8 +15,7 @@
 - 查询应用事件（仅限自身应用）。
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。从API version 9开始，导入模块由@ohos.backgroundTaskManager迁移至@ohos.resourceschedule.backgroundTaskManager
-> 设备使用信息统计错误码见[DeviceUsageStatistics错误码](../errorcodes/errcode-DeviceUsageStatistics.md)。
+> 从API version9开始，改接口不再维护，推荐使用新接口[@ohos.resourceschedule.usageStatistics(设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
 
 
 ## 导入模块
@@ -25,15 +24,11 @@
 import bundleState from '@ohos.bundleState'
 ```
 
-## bundleState.isIdleState<sup>(deprecated)</sup>
+## bundleState.isIdleState
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限ohos.permission.BUNDLE_ACTIVE_INFO，使用Callback形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.isIdleState](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsisidlestate)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -56,15 +51,11 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
     });
   ```
 
-## bundleState.isIdleState<sup>(deprecated)</sup>
+## bundleState.isIdleState
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，查询其他应用空闲状态，需要申请权限ohos.permission.BUNDLE_ACTIVE_INFO，使用Promise形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.isIdleState](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsisidlestate)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -90,15 +81,11 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
     });
   ```
 
-## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
+## bundleState.queryAppUsagePriorityGroup
 
 queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
 查询当前应用的优先级分组。使用Promise形式返回其应用分组，分组信息参考[GroupType](#grouptype)。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryAppGroup](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsqueryappgroup)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -118,15 +105,11 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 });
 ```
 
-## bundleState.queryAppUsagePriorityGroup<sup>(deprecated)</sup>
+## bundleState.queryAppUsagePriorityGroup
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
 查询当前应用的优先级分组。使用callback形式返回其应用分组，分组信息参考[GroupType](#grouptype)。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryAppGroup](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsqueryappgroup)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -148,15 +131,11 @@ bundleState.queryAppUsagePriorityGroup((err, res) => {
 });
 ```
 
-## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
+## bundleState.queryBundleStateInfos
 
 queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleActiveInfoResponse&gt;): void
 
 通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfos](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundlestatsinfos)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -190,15 +169,11 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
     });
   ```
 
-## bundleState.queryBundleStateInfos<sup>(deprecated)</sup>
+## bundleState.queryBundleStateInfos
 
 queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoResponse&gt;
 
 通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfos](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundlestatsinfos)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -235,15 +210,11 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
     });
   ```
 
-## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
+## bundleState.queryBundleStateInfoByInterval
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStateInfo&gt;&gt;): void
 
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfoByInterval](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundlestatsinfobyinterval)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -276,15 +247,11 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
     });
   ```
 
-## bundleState.queryBundleStateInfoByInterval<sup>(deprecated)</sup>
+## bundleState.queryBundleStateInfoByInterval
 
 queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStateInfo&gt;&gt;
 
 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleStatsInfoByInterval](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundlestatsinfobyinterval)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -320,15 +287,11 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
     });
   ```
 
-## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
+## bundleState.queryBundleActiveStates
 
 queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
 
 通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleEvents](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundleevents)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -360,15 +323,11 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
     });
   ```
 
-## bundleState.queryBundleActiveStates<sup>(deprecated)</sup>
+## bundleState.queryBundleActiveStates
 
 queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
 
 通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryBundleEvents](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerybundleevents)
-> 
-> 从API7开始支持
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -403,15 +362,11 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
     });
   ```
 
-## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
+## bundleState.queryCurrentBundleActiveStates
 
 queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
 
 通过指定起始和结束时间查询当前应用的事件集合，使用Callback形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryCurrentBundleEvents](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerycurrentbundleevents)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -439,15 +394,11 @@ queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallba
     });
   ```
 
-## bundleState.queryCurrentBundleActiveStates<sup>(deprecated)</sup>
+## bundleState.queryCurrentBundleActiveStates
 
 queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
 
 通过指定起始和结束时间查询当前应用的事件集合，使用Promise形式返回。
-
-> **说明** 从API version 9开始废弃，建议使用[usageStatistics.queryCurrentBundleEvents](./js-apis-resourceschedule-deviceUsageStatistics.md/#usagestatisticsquerycurrentbundleevents)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -478,13 +429,9 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
     });
   ```
 
-## BundleStateInfo<sup>(deprecated)</sup>
+## BundleStateInfo
 
 提供应用使用时长的具体信息。
-
-> **说明** 从API version 9开始废弃，建议使用[BundleStatsInfo](./js-apis-resourceschedule-deviceUsageStatistics.md/#bundlestatsinfo)
-> 
-> 从API7开始支持
 
 ### 属性
 
@@ -503,15 +450,11 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
-## BundleActiveState<sup>(deprecated)</sup>
+## BundleActiveState
 
 提供应用事件的具体信息。
 
 提供应用使用时长的具体信息。
-
-> **说明** 从API version 9开始废弃，建议使用[BundleEvents](./js-apis-resourceschedule-deviceUsageStatistics.md/#bundleevents)
-> 
-> 从API7开始支持
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -524,13 +467,9 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 | indexOfLink           | string | 否    | 快捷方式id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 | nameOfClass           | string | 否    | 类名。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
 
-## BundleActiveInfoResponse<sup>(deprecated)</sup>
+## BundleActiveInfoResponse
 
 提供应用使用时长的具体信息。
-
-> **说明** 从API version 9开始废弃，建议使用[BundleStatsMap](./js-apis-resourceschedule-deviceUsageStatistics.md/#bundlestatsmap)
-> 
-> 从API7开始支持
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -538,13 +477,9 @@ queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
 | [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是    | 不同应用的使用时长统计信息。 |
 
-## IntervalType<sup>(deprecated)</sup>
+## IntervalType
 
 提供应用使用时长的查询类型。
-
-> **说明** 从API version 9开始废弃，建议使用[IntervalType](./js-apis-resourceschedule-deviceUsageStatistics.md/#intervaltype)
-> 
-> 从API7开始支持
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
