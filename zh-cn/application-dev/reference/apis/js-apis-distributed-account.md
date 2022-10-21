@@ -54,20 +54,18 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
 
 **错误码：**
 
-  | 错误码ID | 错误信息|
-  | ------- | -------|
-  | 201 | permission denied. |
-  | 401 | the parameter check failed. |
-  | 12300001 | system service exception. |
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo((err, data) => {
-        console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
-        console.log('Query account info name: ' + data.name);
-        console.log('Query account info id: ' + data.id);
+      console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
+      console.log('Query account info name: ' + data.name);
+      console.log('Query account info id: ' + data.id);
     });
   } catch (e) {
     console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
@@ -92,11 +90,9 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 **错误码：**
 
-  | 错误码ID | 错误信息|
-  | ------- | -------|
-  | 201 | permission denied. |
-  | 401 | the parameter check failed. |
-  | 12300001 | system service exception. |
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
 
 **示例：**
   ```js
@@ -146,6 +142,7 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
 queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
 
 获取分布式帐号信息。使用Promise异步回调。
+
 > **说明：** 从API version 9开始废弃，建议使用[getOsAccountDistributedInfo](#getosaccountdistributedinfo9-1)
 >
 > 从 API version 7开始支持。
@@ -190,12 +187,10 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
 
 **错误码：**
 
-  | 错误码ID | 错误信息|
-  | ------- | -------|
-  | 201 | permission denied. |
-  | 401 | the parameter check failed. |
-  | 12300001 | system service exception. |
-  | 12300002 | invalid accountInfo. |
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | invalid accountInfo. |
 
 **示例：**
   ```js
@@ -234,12 +229,10 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 
 **错误码：**
 
-  | 错误码ID | 错误信息|
-  | ------- | -------|
-  | 201 | permission denied. |
-  | 401 | the parameter check failed. |
-  | 12300001 | system service exception. |
-  | 12300002 | invalid accountInfo. |
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | invalid accountInfo. |
 
 **示例：**
   ```js
@@ -260,6 +253,7 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
 
 更新分布式帐号信息。使用callback异步回调。
+
 > **说明：** 从API version 9开始废弃，建议使用[setOsAccountDistributedInfo](#setosaccountdistributedinfo9)
 >
 > 从 API version 7开始支持。
