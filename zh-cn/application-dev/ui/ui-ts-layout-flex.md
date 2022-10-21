@@ -467,87 +467,87 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { //容器�
 ### 弹性布局的自适应拉伸
 
 在弹性布局父组件尺寸不够大的时候，通过子组件的下面几个属性设置其再父容器的占比，达到自适应布局能力。
-1. flexBasis: 设置子组件在父容器主轴方向上的基准尺寸。如果设置了该值，则子项占用的空间为设置的值；如果没设置或者为auto，那子项的空间为width/height的值。
-
-```ts
-Flex() {
-  Text('flexBasis("auto")')
-    .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
-    .height(100)
-    .backgroundColor(0xF5DEB3)
-  Text('flexBasis("auto")'+' width("40%")')
-    .width('40%')
-    .flexBasis('auto') //设置width以及flexBasis值auto，使用width的值
-    .height(100)
-    .backgroundColor(0xD2B48C)
-
-  Text('flexBasis(100)')  // 未设置width以及flexBasis值为100，宽度为100vp
-    .flexBasis(100)  
-    .height(100)
-    .backgroundColor(0xF5DEB3)
-
-  Text('flexBasis(100)')
-    .flexBasis(100)
-    .width(200) // flexBasis值为100，覆盖width的设置值，宽度为100vp
-    .height(100)
-    .backgroundColor(0xD2B48C)
-}.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
-```
-
-![](figures/flexbasis.png)
-
-2. flexGrow: 设置父容器的剩余空间分配给此属性所在组件的比例。用于"瓜分"父组件的剩余空间。
-
-```ts
-Flex() {
-  Text('flexGrow(1)')
-    .flexGrow(2) 
-    .width(100)
-    .height(100)
-    .backgroundColor(0xF5DEB3)
+- flexBasis: 设置子组件在父容器主轴方向上的基准尺寸。如果设置了该值，则子项占用的空间为设置的值；如果没设置或者为auto，那子项的空间为width/height的值。
   
-  Text('flexGrow(3)')
-    .flexGrow(2)
-    .width(100)
-    .height(100)
-    .backgroundColor(0xD2B48C)
+  ```ts
+  Flex() {
+    Text('flexBasis("auto")')
+      .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
+      .height(100)
+      .backgroundColor(0xF5DEB3)
+    Text('flexBasis("auto")'+' width("40%")')
+      .width('40%')
+      .flexBasis('auto') //设置width以及flexBasis值auto，使用width的值
+      .height(100)
+      .backgroundColor(0xD2B48C)
+  
+    Text('flexBasis(100)')  // 未设置width以及flexBasis值为100，宽度为100vp
+      .flexBasis(100)  
+      .height(100)
+      .backgroundColor(0xF5DEB3)
+  
+    Text('flexBasis(100)')
+      .flexBasis(100)
+      .width(200) // flexBasis值为100，覆盖width的设置值，宽度为100vp
+      .height(100)
+      .backgroundColor(0xD2B48C)
+  }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
+  ```
+  
+  ![](figures/flexbasis.png)
 
-  Text('no flexGrow')
-    .width(100) 
-    .height(100)
-    .backgroundColor(0xF5DEB3)
-}.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
-```
+- flexGrow: 设置父容器的剩余空间分配给此属性所在组件的比例。用于"瓜分"父组件的剩余空间。
 
-![](figures/flexgrow.png)
+  ```ts
+  Flex() {
+    Text('flexGrow(1)')
+      .flexGrow(2) 
+      .width(100)
+      .height(100)
+      .backgroundColor(0xF5DEB3)
+    
+    Text('flexGrow(3)')
+      .flexGrow(2)
+      .width(100)
+      .height(100)
+      .backgroundColor(0xD2B48C)
+  
+    Text('no flexGrow')
+      .width(100) 
+      .height(100)
+      .backgroundColor(0xF5DEB3)
+  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
+  ```
+  
+  ![](figures/flexgrow.png)
 
 上图中，父容器宽度400vp, 三个子组件原始宽度为100vp，综合300vp，剩余空间100vp根据flexGrow值的占比分配给子组件，未设置flexGrow的子组件不参与“瓜分”。
 第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp*2/5=140vp，第二个元素为100vp+100vp*3/5=160vp。
 
-3. flexShrink: 当父容器空间不足时，子组件的压缩比例。
+- flexShrink: 当父容器空间不足时，子组件的压缩比例。
 
-```ts
-Flex({ direction: FlexDirection.Row }) {
-  Text('flexShrink(3)')
-    .flexShrink(3)
-    .width(200)
-    .height(100)
-    .backgroundColor(0xF5DEB3)
+  ```ts
+  Flex({ direction: FlexDirection.Row }) {
+    Text('flexShrink(3)')
+      .flexShrink(3)
+      .width(200)
+      .height(100)
+      .backgroundColor(0xF5DEB3)
+    
+    Text('no flexShrink')
+      .width(200)
+      .height(100)
+      .backgroundColor(0xD2B48C)
   
-  Text('no flexShrink')
-    .width(200)
-    .height(100)
-    .backgroundColor(0xD2B48C)
-
-  Text('flexShrink(2)')
-    .flexShrink(2)
-    .width(200)
-    .height(100)
-    .backgroundColor(0xF5DEB3)  
-}.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
-```
-
-![](figures/flexshrink.png)
+    Text('flexShrink(2)')
+      .flexShrink(2)
+      .width(200)
+      .height(100)
+      .backgroundColor(0xF5DEB3)  
+  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
+  ```
+  
+  ![](figures/flexshrink.png)
 
 ## 场景示例
 

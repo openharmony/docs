@@ -1,7 +1,7 @@
 # 栅格布局
 
 栅格组件[GridRow](../reference/arkui-ts/ts-container-gridrow.md)和[GridCol](../reference/arkui-ts/ts-container-gridcol.md)
-相对于[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)提供了更灵活、更全面的栅格系统实现方案。其中GridRow为栅格容器组件，仅可以和栅格子组件(GridCol)在栅格布局场景中使用。
+相对于[GridContainer](../reference/arkui-ts/ts-container-gridcontainer.md)提供了更灵活、更全面的栅格系统实现方案。GridRow为栅格容器组件，只与栅格子组件GridCol在栅格布局场景中使用。
 
 
 ## 栅格容器GridRow
@@ -14,7 +14,7 @@
 - breakpoints：以设备宽度为基准，将应用宽度分成了几个不同的区间，即不同的断点。开发者可根据需要在不同的区间下实现不同的页面布局效果。
 
 
-首次通过设置断点位置，得到一系列断点区间；其次，借助栅格组件能力监听应用窗口大小的变化，判断应用当前处于哪个断点区间，进而可以调整应用的布局，实现栅格布局。
+首先通过设置断点，得到一系列断点区间；然后，借助栅格组件能力监听应用窗口大小的变化，判断应用当前处于哪个断点区间，最后调整应用的布局。
 
 ### 栅格系统断点
 
