@@ -164,14 +164,64 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **返回值：**
 
-  | 类型 | 说明 | 
-  | -------- | -------- |
-  | Promise&lt;void&gt; | 返回一个Promise，包含接口的结果。 | 
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
 this.context.terminateSelf().then((data) => {
+    console.log('success:' + JSON.stringify(data));
+}).catch((error) => {
+    console.log('failed:' + JSON.stringify(error));
+});
+```
+
+## InputMethodExtensionContext.destroy<sup>9+</sup>
+
+destroy(callback: AsyncCallback<void>): void
+
+停止输入法应用自身。使用callback异步回调。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                   |
+| -------- | ------------------------- | ---- | -------------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当启动Ability成功，err为undefined；否则为错误对象。 |
+
+**示例：**
+
+```ts
+this.context.destroy((err) => {
+    console.log('destroy result:' + JSON.stringify(err));
+});
+```
+
+## InputMethodExtensionContext.destroy<sup>9+</sup>
+
+destroy(): Promise&lt;void&gt;;
+
+停止输入法应用自身。通过Promise返回结果。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+this.context.destroy().then((data) => {
     console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
     console.log('failed:' + JSON.stringify(error));

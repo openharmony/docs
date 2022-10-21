@@ -542,7 +542,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 回调函数，，返回调用方的输入法子类型。                                                   |
+| callback | InputMethodSubtype   | 是   | 回调函数，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -554,7 +554,7 @@ inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) 
 
 ### off('setSubtype')<sup>9+</sup>
 
-off(type: 'setSubtype', callback?: () => void): void
+off(ype: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => void): void
 
 取消订阅输入法子类型事件。使用callback异步回调。
 
@@ -565,7 +565,7 @@ off(type: 'setSubtype', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 回调函数，，返回调用方的输入法子类型。                                                   |
+| callback | InputMethodSubtype   | 是   | 回调函数，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -787,11 +787,66 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 下列API示例中都需使用[inputStart](#inputStart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
-### hideKeyboard
+###hide<sup>9+</sup>
+
+hide(callback: AsyncCallbackAsyncCallback&lt;void&gt;): void
+
+隐藏输入法。使用callback异步回调。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象 |
+
+**示例：**
+
+```js
+KeyboardController.hide((err) => {
+    if (err === undefined) {
+        console.error('hide err: ' + JSON.stringify(err));
+        return;
+    }
+    console.log('hide success.');
+});
+```
+
+### hide<sup>9+</sup>
+
+hide(): Promise&lt;void&gt;
+
+隐藏输入法。使用promise异步回调。
+
+**系统能力**： SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise&lt;void> | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+async function InputMethodEngine() {
+    await KeyboardController.hide().then(() => {
+        console.info('hide success.');
+    }).catch((err) => {
+        console.info('hide err: ' + JSON.stringify(err));
+    });
+}
+```
+
+### hideKeyboard<sup>(deprecated)</sup>
 
 hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
+
+> **说明：**
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -813,11 +868,14 @@ KeyboardController.hideKeyboard((err) => {
 });
 ```
 
-### hideKeyboard
+### hideKeyboard<sup>(deprecated)</sup>
 
 hideKeyboard(): Promise&lt;void&gt;
 
 隐藏输入法。使用promise异步回调。
+
+> **说明：**
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9-1)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1437,7 +1495,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 获取光标前固定长度的文本。使用callback异步回调。
 
 > **说明：** 
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
+> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 

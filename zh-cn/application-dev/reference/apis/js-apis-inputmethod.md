@@ -22,18 +22,18 @@ import inputMethod from '@ohos.inputmethod';
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
-| EXCEPTION_PERMISSION | number | 是 | 否 | 错误码。详见../errorcodes/errcode-inputmethod-framework.md，下同 |
-| EXCEPTION_PARAMCHECK | number | 是 | 否 | 错误码。 |
-| EXCEPTION_UNSUPPORTED | number | 是 | 否 | 错误码。 |
-| EXCEPTION_PACKAGEMANAGER | number | 是 | 否 | 错误码。 |
-| EXCEPTION_IMENGINE | number | 是 | 否 | 错误码。 |
-| EXCEPTION_IMCLIENT | number | 是 | 否 | 错误码。 |
-| EXCEPTION_KEYEVENT | number | 是 | 否 | 错误码。 |
-| EXCEPTION_CONFPERSIST | number | 是 | 否 | 错误码。 |
-| EXCEPTION_CONTROLLER | number | 是 | 否 | 错误码。 |
-| EXCEPTION_SETTINGS | number | 是 | 否 | 错误码。 |
-| EXCEPTION_IMMS | number | 是 | 否 | 错误码。 |
-| EXCEPTION_OTHERS | number | 是 | 否 | 错误码。 |
+| EXCEPTION_PERMISSION<sup>9+</sup> | number | 是 | 否 | 错误码。详见../errorcodes/errcode-inputmethod-framework.md，下同 |
+| EXCEPTION_PARAMCHECK<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_UNSUPPORTED<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_PACKAGEMANAGER<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMENGINE<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMCLIENT<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_KEYEVENT<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_CONFPERSIST<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_CONTROLLER<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_SETTINGS<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMMS<sup>9+</sup> | number | 是 | 否 | 错误码。 |
+| EXCEPTION_OTHERS<sup>9+</sup> | number | 是 | 否 | 错误码。 |
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -258,6 +258,12 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 | -------- | -------- | -------- | -------- |
 |target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 
+**返回值：**
+
+| 类型                                      | 说明                         |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示在当前输入法应用内切换子类型成功；返回false表示在当前输入法应用内切换子类型失败。 |
+
 **示例：**
 
 ```ts
@@ -354,7 +360,7 @@ try {
 
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, ): Promise&lt;boolean&gt;
 
-切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。参数个数为1，否则抛出异常。
+切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -368,6 +374,12 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| 是 | 传入要切换的目标输入法。 |
 |inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
+
+**返回值：**
+
+| 类型                                      | 说明                         |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise对象。返回true表示切换至指定输入法应用的指定子类型成功；返回false表示切换至指定输入法应用的指定子类型失败。 |
 
 **示例：**
 
@@ -483,9 +495,9 @@ try {
 }
 ```
 
-### stopInputSession
+### stopInputSession<sup>9+</sup>
 
-stopInputSession(): Promise&lt;boolean&gt;<sup>9+</sup>
+stopInputSession(): Promise&lt;boolean&gt;
 
 隐藏输入法。使用promise异步回调。
 
@@ -962,7 +974,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当输入法选择对话框显示成功。err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当输入法选择对话框显示成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
