@@ -45,7 +45,9 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 Camera模块主要用以相机预览、拍照、视频流等场景下对相机操作封装，使开发者更易操作相机硬件，提高开发效率。
 
-### 接口说明（camera设备操作的API路径：/drivers/peripheral/camera/hal/hdi_impl/src/）<a name="6"></a>
+### 接口说明<a name="6"></a>
+
+注：以下接口名称列的内容为C++接口原型（camera设备操作API的路径为：/drivers/peripheral/camera/hal/hdi_impl/src/）
 
 - drivers/interface/camera/v1_0/ICameraDevice.idl
 
