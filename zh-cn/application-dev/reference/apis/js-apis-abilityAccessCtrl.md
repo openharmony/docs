@@ -29,7 +29,7 @@ createAtManager(): AtManager
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 ```
 
 ## AtManager
@@ -69,10 +69,10 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-let AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    AtManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
         console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
@@ -113,9 +113,9 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0;
-let data = AtManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = atManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
@@ -160,11 +160,11 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-let AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -210,11 +210,11 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -267,11 +267,11 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-let AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -317,11 +317,11 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
+    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlag, (err, data) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -373,11 +373,11 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-let AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 let permissionFlag = 1;
 try {
-    AtManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
     }).catch((err) = > {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
@@ -406,8 +406,8 @@ getVersion(): Promise&lt;number&gt;
 **示例：**
 
 ```js
-var AtManager = abilityAccessCtrl.createAtManager();
-let promise = AtManager.getVersion();
+let atManager = abilityAccessCtrl.createAtManager();
+let promise = atManager.getVersion();
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -532,9 +532,9 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
-let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -568,9 +568,9 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 ```js
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
-var AtManager = abilityAccessCtrl.createAtManager();
+let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
-let promise = AtManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
