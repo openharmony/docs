@@ -1,10 +1,12 @@
-# 资源文件的分类
+# 资源分类与访问
+
+## 资源分类
 
 应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。
 
-## resources目录
+### resources目录
 
-应用的资源文件（字符串、图片、音频等）统一存放于resources目录下，便于开发者使用和维护。resources目录包括两大类目录，一类为base目录与限定词目录，另一类为rawfile目录，详见resources目录分类，stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
+resources目录包括三大类目录，一类为base目录，一类为限定词目录，还有一类为rawfile目录。stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
 
   资源目录示例：
 
@@ -23,7 +25,7 @@ resources
 |---rawfile
 ```
 
-  **表1** resources目录分类
+**表1** resources目录分类
 
 | 分类   | base目录                           | 限定词目录                                    | rawfile目录                                |
 | ---- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -32,15 +34,15 @@ resources
 | 引用方式 | 通过指定资源类型（type）和资源名称（name）来引用。            | 通过指定资源类型（type）和资源名称（name）来引用。            | 通过指定文件路径和文件名来引用。                         |
 
 
-## 限定词目录
+### 限定词目录
 
-限定词目录可以由一个或多个表征应用场景或设备特征的限定词组合而成，包括移动国家码和移动网络码、语言、文字、国家或地区、横竖屏、设备类型、颜色模式和屏幕密度等维度，限定词之间通过下划线（_）或者中划线（-）连接。开发者在创建限定词目录时，需要掌握限定词目录的命名要求，以及限定词目录与设备状态的匹配规则。
+限定词目录可以由一个或多个表征应用场景或设备特征的限定词组合而成，包括移动国家码和移动网络码、语言、文字、国家或地区、横竖屏、设备类型、颜色模式和屏幕密度等维度，限定词之间通过下划线（\_）或者中划线（\-）连接。开发者在创建限定词目录时，需要掌握限定词目录的命名要求，以及限定词目录与设备状态的匹配规则。
 
 **限定词目录的命名要求**
 
-- 限定词的组合顺序：_移动国家码_移动网络码-语言_文字_国家或地区-横竖屏-设备类型-颜色模式-屏幕密度_。开发者可以根据应用的使用场景和设备特征，选择其中的一类或几类限定词组成目录名称。
+- 限定词的组合顺序：\_移动国家码_移动网络码-语言_文字_国家或地区-横竖屏-设备类型-颜色模式-屏幕密度_。开发者可以根据应用的使用场景和设备特征，选择其中的一类或几类限定词组成目录名称。
 
-- 限定词的连接方式：语言、文字、国家或地区之间采用下划线（_）连接，移动国家码和移动网络码之间也采用下划线（_）连接，除此之外的其他限定词之间均采用中划线（-）连接。例如：**zh_Hant_CN**、**zh_CN-car-ldpi**。
+- 限定词的连接方式：语言、文字、国家或地区之间采用下划线（\_）连接，移动国家码和移动网络码之间也采用下划线（\_）连接，除此之外的其他限定词之间均采用中划线（-）连接。例如：**zh_Hant_CN**、**zh_CN-car-ldpi**。
 
 - 限定词的取值范围：每类限定词的取值必须符合限定词取值要求表中的条件，否则，将无法匹配目录中的资源文件。
 
@@ -64,9 +66,9 @@ resources
 - 如果限定词目录中包含**移动国家码和移动网络码、语言、文字、横竖屏、设备类型、颜色模式**限定词，则对应限定词的取值必须与当前的设备状态完全一致，该目录才能够参与设备的资源匹配。例如，限定词目录“zh_CN-car-ldpi”不能参与“en_US”设备的资源匹配。
 
 
-## 资源组目录
+### 资源组目录
 
-base目录与限定词目录下面可以创建资源组目录（包括element、media、animation、layout、graphic、profile），用于存放特定类型的资源文件，详见资源组目录说明。
+base目录与限定词目录下面可以创建资源组目录（包括element、media、profile），用于存放特定类型的资源文件，详见资源组目录说明。
 
 
   **表3** 资源组目录说明
@@ -77,9 +79,9 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件。              | 文件名可自定义，例如：icon.png。                     |
 | rawfile | 表示其他类型文件，在应用构建为hap包后，以原始文件形式保存，不会被集成到resources.index文件中。 | 文件名可自定义。                                 |
 
-### 媒体资源类型说明
+**媒体资源类型说明**
 
-表1 图片资源类型说明
+**表4** 图片资源类型说明
 
 | 格式   | 文件后缀名 |
 | ---- | ----- |
@@ -90,7 +92,7 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | WEBP | .webp |
 | BMP  | .bmp  |
 
-表2 音视频资源类型说明
+**表5** 音视频资源类型说明
 
 | 格式                                   | 支持的文件类型         |
 | ------------------------------------ | --------------- |
@@ -99,7 +101,94 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | MPEG-4 SP                            | .3gp            |
 | VP8                                  | .webm <br> .mkv |
 
-## 创建资源文件
+**资源文件示例**
+
+color.json文件的内容如下：
+
+
+```json
+{
+    "color": [
+        {
+            "name": "color_hello",
+            "value": "#ffff0000"
+        },
+        {
+            "name": "color_world",
+            "value": "#ff0000ff"
+        }
+    ]
+}
+```
+
+float.json文件的内容如下：
+
+
+```json
+{
+    "float":[
+        {
+            "name":"font_hello",
+            "value":"28.0fp"
+        },
+	{
+            "name":"font_world",
+            "value":"20.0fp"
+        }
+    ]
+}
+```
+
+string.json文件的内容如下：
+
+
+```json
+{
+    "string":[
+        {
+            "name":"string_hello",
+            "value":"Hello"
+        },
+	{
+            "name":"string_world",
+            "value":"World"
+        },
+	{
+            "name":"message_arrive",
+            "value":"We will arrive at %s."
+        }
+    ]
+}
+```
+
+plural.json文件的内容如下：
+
+
+```json
+{
+    "plural":[
+        {
+            "name":"eat_apple",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d apple"
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d apples"
+                }
+            ]
+        }
+    ]
+}
+```
+
+## 资源访问
+
+### 应用资源
+
+**创建资源文件**
 
 在resources目录下，可按照限定词目录和资源组目录的说明创建子目录和目录内的文件。
 
@@ -130,3 +219,71 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
   例如，在element目录下可新建Element Resource File。
 
   ![create-resource-file-3](figures/create-resource-file-3.png)
+
+**访问应用资源**
+
+在工程中，通过```"$r('app.type.name')"```的形式引用应用资源。app代表是应用内resources目录中定义的资源；type代表资源类型（或资源的存放位置），可以取“color”、“float”、“string”、“plural”、“media”，name代表资源命名，由开发者定义资源时确定。
+
+引用rawfile下资源时使用```"$rawfile('filename')"```的形式，filename需要表示为rawfile目录下的文件相对路径，文件名需要包含后缀，路径开头不可以以"/"开头。
+
+> **说明：**
+> 
+> 资源描述符不能拼接使用，仅支持普通字符串如`'app.type.name'`。
+>
+> `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
+
+在xxx.ets文件中，可以使用在resources目录中定义的资源。
+
+```ts
+Text($r('app.string.string_hello'))
+    .fontColor($r('app.color.color_hello'))
+    .fontSize($r('app.float.font_hello'))
+}
+
+Text($r('app.string.string_world'))
+    .fontColor($r('app.color.color_world'))
+    .fontSize($r('app.float.font_world'))
+}
+
+Text($r('app.string.message_arrive', "five of the clock")) // 引用string资源，$r的第二个参数用于替换%s
+    .fontColor($r('app.color.color_hello'))
+    .fontSize($r('app.float.font_hello'))
+}
+
+Text($r('app.plural.eat_apple', 5, 5))       // plural$r引用，第一个指定plural资源，第二个参数指定单复数的数量，此处第三个数字为对%d的替换
+    .fontColor($r('app.color.color_world'))
+    .fontSize($r('app.float.font_world'))
+}
+
+Image($r('app.media.my_background_image'))  // media资源的$r引用
+
+Image($rawfile('test.png'))                 // rawfile$r引用rawfile目录下图片
+
+Image($rawfile('newDir/newTest.png'))       // rawfile$r引用rawfile目录下图片
+```
+
+### 系统资源
+
+系统资源包含色彩、圆角、字体、间距、字符串及图片等。通过使用系统资源，不同的开发者可以开发出具有相同视觉风格的应用。
+
+
+开发者可以通过```“$r('sys.type.resource_id')”```的形式引用系统资源。sys代表是系统资源；type代表资源类型，可以取“color”、“float”、“string”、“media”；resource_id代表资源id。
+
+```ts
+Text('Hello')
+    .fontColor($r('sys.color.ohos_id_color_emphasize'))
+    .fontSize($r('sys.float.ohos_id_text_size_headline1'))
+    .fontFamily($r('sys.string.ohos_id_text_font_family_medium'))
+    .backgroundColor($r('sys.color.ohos_id_color_palette_aux1'))
+Image($r('sys.media.ohos_app_icon'))
+    .border({color: $r('sys.color.ohos_id_color_palette_aux1'), radius: $r('sys.float.ohos_id_corner_radius_button'), width: 2})
+    .margin({top: $r('sys.float.ohos_id_elements_margin_horizontal_m'), bottom: $r('sys.float.ohos_id_elements_margin_horizontal_l')})
+    .height(200)
+    .width(300)
+```
+
+## 相关实例
+
+针对访问应用资源，有以下相关实例可供参考：
+
+- [`ResourceManager`：资源管理器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/common/ResourceManager)

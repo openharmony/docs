@@ -7,10 +7,7 @@
         - 文件组织
             - [目录结构](ts-framework-directory.md)
             - [应用代码文件访问规则](ts-framework-file-access-rules.md)
-        - 资源管理
-            - [资源文件的分类](ui-ts-basic-resource-file-categories.md)
-            - [资源访问](ts-resource-access.md)
-        - 自定义组件
+        - 深入理解组件化
             - [自定义组件初始化](ts-custom-component-initialization.md)
             - [自定义组件生命周期回调函数](ts-custom-component-lifecycle-callbacks.md)
             - [组件创建和重新初始化示例](ts-component-creation-re-initialization.md)

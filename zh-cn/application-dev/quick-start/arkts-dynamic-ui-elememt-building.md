@@ -22,7 +22,8 @@ struct CompB {
 
   build() {
     Column() {
-      Button(this.CompValue);
+      Button(this.CompValue)
+        .margin(5)
     }
   }
 }
@@ -81,6 +82,8 @@ struct CompA {
   }
 }
 ```
+![builder](figures/builder.PNG)
+
 ## @BuilderParam<sup>8+<sup>
 
 @BuilderParam装饰器用于修饰自定义组件内函数类型的属性（例如：`@BuilderParam noParam: () => void`），并且在初始化自定义组件时被@BuilderParam修饰的属性必须赋值。
@@ -151,6 +154,8 @@ struct CustomContainerUser {
 }
 ```
 
+![builder1](figures/builder1.PNG)
+
 ### 尾随闭包初始化组件
 
 在自定义组件中使用@BuilderParam修饰的属性时也可通过尾随闭包进行初始化（在初始化自定义组件时，组件后紧跟一个大括号“{}”形成尾随闭包场景（`CustomContainer(){}`）。开发者可把尾随闭包看做一个容器，向其中填充内容，如在闭包内增加组件（`{Column(){...}`），闭包内语法规范与build函数一致。此场景下自定义组件内有且仅有一个使用@BuilderParam修饰的属性。
@@ -204,6 +209,8 @@ struct CustomContainerUser {
 }
 ```
 
+![builder2](figures/builder2.gif)
+
 ## @Styles
 
 ArkTS为了避免开发者对重复样式的设置，通过@Styles装饰器可以将多个样式设置提炼成一个方法，直接在组件声明时调用，通过@Styles装饰器可以快速定义并复用自定义样式。当前@Styles仅支持通用属性。
@@ -246,6 +253,8 @@ struct FancyUse {
 }
 ```
 
+![styles](figures/styles.PNG)
+
 @Styles还可以在[StateStyles](../reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)属性内部使用，在组件处于不同的状态时赋予相应的属性。
 
 在StateStyles内可以直接调用组件外定义的@Styles方法，但需要通过this关键字调用组件内定义的@Styles方法。
@@ -284,6 +293,8 @@ struct FancyUse {
 }
 ```
 
+![styles1](figures/styles1.gif)
+
 ## @Extend
 
 @Extend装饰器将新的属性方法添加到Text、Column、Button等内置组件上，通过@Extend装饰器可以快速地扩展原生组件。@Extend不能定义在自定义组件struct内。
@@ -318,6 +329,8 @@ struct FancyUse {
 >
 > - @Extend装饰器不能定义在自定义组件struct内。
 > - @Extend装饰器内仅支持属性方法设置。
+
+![extend](figures/extend.PNG)
 
 ## @CustomDialog
 
@@ -369,4 +382,4 @@ struct CustomDialogUser {
 }
 ```
 
-![custom-dialog-demo](figures/custom-dialog-demo.gif)
+![customdialog](figures/customdialog.gif)

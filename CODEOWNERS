@@ -144,6 +144,8 @@ zh-cn/application-dev/telephony/ @zengyawen
 zh-cn/application-dev/dfx/ @zengyawen
 zh-cn/application-dev/database/ @ge-yafang
 zh-cn/application-dev/napi/drawing_guidelines.md @ge-yafang
+zh-cn/application-dev/napi/native-window-guidelines.md @ge-yafang
+zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang
 zh-cn/application-dev/napi/rawfile_guidelines.md @HelloCrease
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @RayShih
@@ -165,10 +167,9 @@ zh-cn/application-dev/reference/arkui-ts/ @HelloCrease
 zh-cn/application-dev/reference/native-apis @RayShih
 zh-cn/application-dev/reference/native-lib @RayShih
 zh-cn/application-dev/quick-start/start-overview.md @ge-yafang
-zh-cn/application-dev/quick-start/start-with-ets.md @ge-yafang
-zh-cn/application-dev/quick-start/start-with-ets-low-code.md @ge-yafang
-zh-cn/application-dev/quick-start/start-with-js.md @ge-yafang
-zh-cn/application-dev/quick-start/start-with-js-low-code.md @ge-yafang
+zh-cn/application-dev/quick-start/start-with-ets-stage.md @ge-yafang
+zh-cn/application-dev/quick-start/start-with-ets-fa.md @ge-yafang
+zh-cn/application-dev/quick-start/start-with-js-fa.md @ge-yafang
 zh-cn/application-dev/quick-start/deveco-studio-user-guide-for-openharmony.md @ge-yafang
 zh-cn/application-dev/quick-start/package-structure.md @RayShih
 zh-cn/application-dev/quick-start/basic-resource-file-categories.md @RayShih

@@ -195,7 +195,7 @@
   - [@ohos.hiAppEvent (应用打点)](js-apis-hiappevent.md)
   - [@ohos.hichecker (检测模式)](js-apis-hichecker.md)
   - [@ohos.hidebug (Debug调试)](js-apis-hidebug.md)
-  - [@ohos.hilog (日志打印)](js-apis-hilog.md)
+  - [@ohos.hilog (HiLog日志打印)](js-apis-hilog.md)
   - [@ohos.hiSysEvent (系统事件打点)](js-apis-hisysevent.md)
   - [@ohos.hiTraceChain (分布式跟踪)](js-apis-hitracechain.md)
   - [@ohos.hiTraceMeter (性能打点)](js-apis-hitracemeter.md)
@@ -209,6 +209,7 @@
   - [@ohos.systemTimer(系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview(Web)](js-apis-webview.md)
+  - [console (日志打印)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
 - 设备管理
 
@@ -235,7 +236,7 @@
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.thermal (热管理)](js-apis-thermal.md)
   - [@ohos.update (升级)](js-apis-update.md)
-  - [@ohos.usb (USB管理)](js-apis-usb.md)
+  - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@ohos.vibrator (振动)](js-apis-vibrator.md)
 - 帐号管理
   - [@ohos.account.appAccount (应用帐号管理)](js-apis-appAccount.md)
@@ -273,6 +274,7 @@
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
   - [@ohos.prompt (弹窗)](js-apis-prompt.md)
   - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
+  - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)
@@ -292,4 +294,3 @@
   - [@system.sensor (传感器)](js-apis-system-sensor.md)
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
-  - [console (日志打印)](js-apis-logs.md)
