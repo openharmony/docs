@@ -130,21 +130,21 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
      如果需要定义模块控制宏，需要在模块目录xxx里面添加Kconfig文件，并把Kconfig文件路径添加到**drivers/hdf_core/adapter/khdf/linux/Kconfig**里面：
 
         
-     ```
+     ```c
      source "drivers/hdf/khdf/xxx/Kconfig" #目录为hdf模块软链接到kernel里面的目录
      ```
 
      添加模块目录到**drivers/hdf_core/adapter/khdf/linux/Makefile**：
 
         
-     ```
+     ```c
      obj-$(CONFIG_DRIVERS_HDF)  += xxx/
      ```
 
      在模块目录xxx里面添加Makefile文件，在Makefile文件里面添加模块代码编译规则：
 
         
-     ```
+     ```c
      obj-y  += xxx.o
      ```
 
