@@ -22,8 +22,8 @@ GridContainer(value?: { columns?: number | auto, sizeType?: SizeType, gutter?: s
 | -------- | ------------------------ | ---- | -------------------------------------------- |
 | columns  | number&nbsp;\|&nbsp;auto | 否   | 设置当前布局总列数。<br/>默认值：auto        |
 | sizeType | SizeType                 | 否   | 选用设备宽度类型。<br/>默认值：SizeType.Auto |
-| gutter   | Length                   | 否   | 栅格布局列间距。                             |
-| margin   | Length                   | 否   | 栅格布局两侧间距。                           |
+| gutter   | Length                   | 否   | 栅格布局列间距，不支持百分比。 |
+| margin   | Length                   | 否   | 栅格布局两侧间距，不支持百分比。 |
 
 ## SizeType枚举说明
 
