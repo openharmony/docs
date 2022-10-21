@@ -960,7 +960,7 @@ try {
 
 ### showOptionalInputMethods<sup>9+</sup>
 
-showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
+showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
@@ -974,7 +974,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当输入法选择对话框显示成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法选择对话框显示成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
@@ -994,7 +994,7 @@ try {
 
 ### showOptionalInputMethods<sup>9+</sup>
 
-showOptionalInputMethods(): Promise&lt;void&gt;
+showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
 
@@ -1008,7 +1008,7 @@ showOptionalInputMethods(): Promise&lt;void&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示输入法选择对话框显示成功；返回false表示输入法选择对话框显示失败。 |
 
 **示例：**
 
