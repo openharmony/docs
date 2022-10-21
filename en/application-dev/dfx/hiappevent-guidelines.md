@@ -12,12 +12,10 @@ The following table provides only a brief description of related APIs. For detai
 
 **Table 1** APIs for application event logging
 
-| API                                                      | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| write(string eventName, EventType type, object keyValues, AsyncCallback\<void> callback): void | Logs application events in asynchronous mode. This API uses an asynchronous callback to return the result.        |
-| write(string eventName, EventType type, object keyValues): Promise\<void> | Logs application events in asynchronous mode. This API uses a promise to return the result.         |
-| write(AppEventInfo info, AsyncCallback\<void> callback): void | Logs application events by domain in asynchronous mode. This API uses an asynchronous callback to return the result.|
-| write(AppEventInfo info): Promise\<void>                     | Logs application events by domain in asynchronous mode. This API uses a promise to return the result.|
+| API                                                      | Description                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------- |
+| write(AppEventInfo info, AsyncCallback\<void> callback): void | Logs application events in asynchronous mode. This API uses an asynchronous callback to return the result.|
+| write(AppEventInfo info): Promise\<void>                     | Logs application events in asynchronous mode. This API uses a promise to return the result. |
 
 When an asynchronous callback is used, the return value can be processed directly in the callback.
 
@@ -84,6 +82,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
              .fontWeight(FontWeight.Bold)
    
            Button("1 writeTest").onClick(()=>{
+             // Perform event logging based on the input event parameters.
              hiAppEvent.write({
                domain: "test_domain",
                name: "test_event",
@@ -100,6 +99,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
            })
    
            Button("2 addWatcherTest").onClick(()=>{
+             // Add an event watcher based on the input subscription parameters.
              hiAppEvent.addWatcher({
                name: "watcher1",
                appEventFilters: [{ domain: "test_domain" }],
@@ -109,17 +109,23 @@ The following uses a one-time event watcher as an example to illustrate the deve
                  timeOut: 2
                },
                onTrigger: function (curRow, curSize, holder) {
+                 // If the holder object is null, return an error after recording it in the log.
                  if (holder == null) {
                    console.error("HiAppEvent holder is null");
                    return;
                  }
+                 // Set the size threshold to 1,000 bytes for obtaining an event package.
+                 holder.setSize(1000);
                  let eventPkg = null;
+                 // Obtain the event package based on the configured size threshold. If returned event package is null, all event data has been obtained.
                  while ((eventPkg = holder.takeNext()) != null) {
-                   console.info("HiAppEvent eventPkg.packageId=" + eventPkg.packageId);
-                   console.info("HiAppEvent eventPkg.row=" + eventPkg.row);
-                   console.info("HiAppEvent eventPkg.size=" + eventPkg.size);
+                   // Parse the obtained event package and display the result on the Log page.
+                   console.info('HiAppEvent eventPkg.packageId=' + eventPkg.packageId);
+                   console.info('HiAppEvent eventPkg.row=' + eventPkg.row);
+                   console.info('HiAppEvent eventPkg.size=' + eventPkg.size);
+                   // Traverse and parse event string arrays in the obtained event package.
                    for (const eventInfo of eventPkg.data) {
-                     console.info("HiAppEvent eventPkg.data=" + eventInfo);
+                     console.info('HiAppEvent eventPkg.data=' + eventInfo);
                    }
                  }
                }
@@ -127,6 +133,7 @@ The following uses a one-time event watcher as an example to illustrate the deve
            })
    
            Button("3 removeWatcherTest").onClick(()=>{
+             // Remove the specified event watcher.
              hiAppEvent.removeWatcher({
                name: "watcher1"
              })
