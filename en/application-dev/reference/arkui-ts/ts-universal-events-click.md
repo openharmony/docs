@@ -20,7 +20,7 @@ A click event is triggered when a component is clicked.
 | screenY             | number                               | Y coordinate of the click relative to the upper left corner of the application window.                     |
 | x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.                   |
 | y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.                   |
-| timestamp<sup>8+</sup> | number | Timestamp of the event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
+| timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
 
