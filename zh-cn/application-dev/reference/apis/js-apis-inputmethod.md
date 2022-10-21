@@ -22,7 +22,18 @@ import inputMethod from '@ohos.inputmethod';
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
-
+| EXCEPTION_PERMISSION | number | 是 | 否 | 错误码。详见../errorcodes/errcode-inputmethod-framework.md，下同 |
+| EXCEPTION_PARAMCHECK | number | 是 | 否 | 错误码。 |
+| EXCEPTION_UNSUPPORTED | number | 是 | 否 | 错误码。 |
+| EXCEPTION_PACKAGEMANAGER | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMENGINE | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMCLIENT | number | 是 | 否 | 错误码。 |
+| EXCEPTION_KEYEVENT | number | 是 | 否 | 错误码。 |
+| EXCEPTION_CONFPERSIST | number | 是 | 否 | 错误码。 |
+| EXCEPTION_CONTROLLER | number | 是 | 否 | 错误码。 |
+| EXCEPTION_SETTINGS | number | 是 | 否 | 错误码。 |
+| EXCEPTION_IMMS | number | 是 | 否 | 错误码。 |
+| EXCEPTION_OTHERS | number | 是 | 否 | 错误码。 |
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -698,7 +709,8 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 **示例：**
 
 ```js
-InputMethodEngine.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
+let InputMethodSetting = inputMethod.getSetting();
+InputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
     InputMethodProperty = inputMethodProperty;
     InputMethodSubtype = inputMethodSubtype;
 });
@@ -706,7 +718,7 @@ InputMethodEngine.on('imeChange', (inputMethodProperty, inputMethodSubtype) => {
 
 ### off('imeChange')<sup>9+</sup>
 
-on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
+off(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
 
 取消订阅输入法及子类型变化监听事件。使用callback异步回调。
 
@@ -722,7 +734,8 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 **示例：**
 
 ```js
-InputMethodAbility.off('imeChange');
+let InputMethodSetting = inputMethod.getSetting();
+InputMethodSetting.off('imeChange');
 ```
 
 ### listInputMethodSubtype<sup>9+</sup>
