@@ -664,7 +664,7 @@ int32_t CodecHdiDecode::OnEvent(struct CodecCallbackType *self, enum OMX_EVENTTY
 ```
 
 #### 接口去初始化
-组件关闭前，需要将组件状态修改为IDLE，然后开始释放输入输出Buffer，再将组件状态修改为OMX_StateLoaded，最后再调用DestoryComponent去关闭组件。
+组件关闭前，需要将组件状态修改为OMX_StateIdle，然后开始释放输入输出Buffer，再将组件状态修改为OMX_StateLoaded，最后再调用DestoryComponent去关闭组件。
 
 ##### Buffer释放示例
 
