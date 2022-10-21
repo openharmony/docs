@@ -11,7 +11,7 @@ HDF驱动框架提供把和配置的设备列表匹配成功的驱动程序加�
 
 具体设备的加载策略由配置文件(参考[驱动开发](../driver/driver-hdf-development.md))中的preload字段来控制：
 
-```
+```c
 typedef enum {
     DEVICE_PRELOAD_ENABLE = 0,
     DEVICE_PRELOAD_ENABLE_STEP2,
