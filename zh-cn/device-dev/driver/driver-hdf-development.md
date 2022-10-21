@@ -211,9 +211,9 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       >
       > - 进程的uid在文件**base/startup/init_lite/services/etc/passwd**中配置，进程的gid在文件**base/startup/init_lite/services/etc/group**中配置，进程uid和gid配置参考：[系统服务用户组添加方法](https://gitee.com/openharmony/startup_init_lite/wikis)。
       >
-      > - caps值：比如业务模块要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
+      > - caps值：格式为caps = ["xxx"]，如果要配置CAP_DAC_OVERRIDE，此处需要填写caps = ["DAC_OVERRIDE"]，不能填写为caps = ["CAP_DAC_OVERRIDE"]。
       >
-      > - preload：驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)
+      > - preload：驱动按需加载字段，参考[驱动加载](../driver/driver-hdf-load.md)。
 
 
    - 驱动私有配置信息（可选）
