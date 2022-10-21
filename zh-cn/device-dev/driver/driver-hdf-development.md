@@ -3,7 +3,7 @@
 
 ## 驱动模型介绍
 
-HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个Host(设备容器)里面，用于管理一组设备的启动加载等过程。在划分Host时，驱动程序是部署在一个Host还是部署在不同的Host，主要考虑驱动程序之间是否存在耦合性，如果两个驱动程序之间存在依赖，可以考虑将这部分驱动程序部署在一个Host里面，否则部署到独立的Host中是更好的选择。Device对应一个真实的物理设备。DeviceNode是设备的一个部件，Device至少有一个DeviceNode。每个DeviceNode可以发布一个设备服务。驱动即驱动程序，每个DevicdNode唯一对应一个驱动，实现和硬件的功能交互。HDF驱动模型如下图所示：
+HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心设计思路，为开发者提供更精细化的驱动管理，让驱动开发和部署更加规范。HDF框架将一类设备驱动放在同一个Host（设备容器）里面，用于管理一组设备的启动加载等过程。在划分Host时，驱动程序是部署在一个Host还是部署在不同的Host，主要考虑驱动程序之间是否存在耦合性，如果两个驱动程序之间存在依赖，可以考虑将这部分驱动程序部署在一个Host里面，否则部署到独立的Host中是更好的选择。Device对应一个真实的物理设备。DeviceNode是设备的一个部件，Device至少有一个DeviceNode。每个DeviceNode可以发布一个设备服务。驱动即驱动程序，每个DevicdNode唯一对应一个驱动，实现和硬件的功能交互。HDF驱动模型如下图所示：
 
   **图1** HDF驱动模型
 
@@ -12,7 +12,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
 ## 驱动开发步骤
 
-基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译和驱动配置。详细开发流程如下所示：
+基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译脚本和驱动配置。详细开发流程如下所示：
 
 1. 驱动实现
 
@@ -63,7 +63,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       HDF_INIT(g_sampleDriverEntry);
       ```
 
-2. 驱动编译
+2. 驱动编译脚本
 
    - LiteOS
 
@@ -74,7 +74,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        驱动代码的编译必须要使用HDF框架提供的Makefile模板进行编译。
 
          
-       ```
+       ```c
        include $(LITEOSTOPDIR)/../../drivers/hdf_core/adapter/khdf/liteos/lite.mk # 【必需】导入hdf预定义内容
        MODULE_NAME :=        #生成的结果文件
        LOCAL_INCLUDE :=      #本驱动的头文件目录
@@ -86,7 +86,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        编译结果文件链接到内核镜像，添加到**drivers/hdf_core/adapter/khdf/liteos**目录下的**hdf_lite.mk**里面，示例如下：
 
            
-       ```
+       ```c
        LITEOS_BASELIB +=  -lxxx  #链接生成的静态库
        LIB_SUBDIRS    +=         #驱动代码Makefile的目录
        ```
@@ -96,7 +96,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        添加模块BUILD.gn参考定义如下内容：
 
            
-       ```
+       ```c
        import("//build/lite/config/component/lite_component.gni")
        import("//drivers/hdf_core/adapter/khdf/liteos/hdf.gni")
        module_switch = defined(LOSCFG_DRIVERS_HDF_xxx)
@@ -117,7 +117,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
        把新增模块的BUILD.gn所在的目录添加到**/drivers/hdf_core/adapter/khdf/liteos/BUILD.gn**里面：
 
            
-       ```
+       ```c
        group("liteos") {
            public_deps = [ ":$module_name" ]
                deps = [
