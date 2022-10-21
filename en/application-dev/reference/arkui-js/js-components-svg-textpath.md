@@ -1,55 +1,51 @@
 # textPath
 
-The  **<textPath\>**  component is used to draw text along the path.
+The **\<textPath>** component is used to draw text along the path.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->-   This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
->-   Draws text based on the specified path. The  **tspan**  child component can be nested for segmenting.
->-   **<textPath\>**  can be nested only by the parent element label  **svg**.
+
+>  **NOTE**
+>  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - The **\<tspan>** component can be nested in the **\<textPath>** component for segmenting.
+>
+>  - The **\<textPath>** component can only be nested in the **\<text>** component.
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-**tspan**  is supported.
+The **[\<tspan>](js-components-svg-tspan.md)** child component is supported.
+
 
 ## Attributes
 
+
 The attributes in the following table are supported.
 
-| Name           | Type                     | Default Value | Mandatory | Description                                                  |
-| -------------- | ------------------------ | ------------- | --------- | ------------------------------------------------------------ |
-| id             | string                   | -             | No        | Unique ID of the component.                                  |
-| path           | string                   | 0             | Yes       | Shape of the path.<br/>The meanings of the letters are as follows:<br/>- M = moveto<br/>- L = lineto<br/>- H = horizontal lineto<br/>- V = vertical lineto<br/>- C = curveto<br/>- S = smooth curveto<br/>- Q = quadratic Belzier curve<br/>- T = smooth quadratic Belzier curveto<br/>- A = elliptical Arc<br/>- Z = closepath |
-| startOffset    | \<length>\|\<percentage> | 0             | No        | Start offset of the text drawing along the path.             |
-| font-size      | \<length>                | 30px          | No        | Font size.                                                   |
-| fill           | \<color>                 | black         | No        | Font fill color.                                             |
-| by             | number                   | -             | No        | Attribute offset relative to the specified animation. The default value of **from** is the original attribute value. |
-| opacity        | number                   | 1             | No        | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported. |
-| fill-opacity   | number                   | 1.0           | No        | Font fill opacity.                                           |
-| stroke         | \<color>                 | black         | No        | Stroke and stroke color.                                     |
-| stroke-width   | number                   | 1px           | No        | Stroke width.                                                |
-| stroke-opacity | number                   | 1.0           | No        | Stroke opacity.                                              |
+
+| Name          | Type                              | Mandatory | Description                                                        |
+| -------------- | ---------------------------------- | ------ | ------------------------------------------------------------ |
+| id             | string                             | No     | Unique ID of the component.                                            |
+| path           | string                             | Yes    | Shape of the path.<br>The meanings of the letters are as follows:<br>-&nbsp;M&nbsp;=&nbsp;moveto<br>-&nbsp;L&nbsp;=&nbsp;lineto<br>-&nbsp;H&nbsp;=&nbsp;horizontal&nbsp;lineto<br>-&nbsp;V&nbsp;=&nbsp;vertical&nbsp;lineto<br>-&nbsp;C&nbsp;=&nbsp;curveto<br>-&nbsp;S&nbsp;=&nbsp;smooth&nbsp;curveto<br>-&nbsp;Q&nbsp;=&nbsp;quadratic&nbsp;Belzier&nbsp;curve<br>-&nbsp;T&nbsp;=&nbsp;smooth&nbsp;quadratic&nbsp;Belzier&nbsp;curveto<br>-&nbsp;A&nbsp;=&nbsp;elliptical&nbsp;Arc<br>-&nbsp;Z&nbsp;=&nbsp;closepath<br>Default value: **0**|
+| startOffset    | &lt;length&gt;\|&lt;percentage&gt; | No     | Offset of the text start point relative to the path start point.<br>Default value: **0**                |
+| font-size      | &lt;length&gt;                     | No | Font size.<br>Default value: **30px**                           |
+| fill           | &lt;color&gt;                      | No | Font fill color.<br>Default value: **black**                            |
+| by             | number                             | No    | Attribute offset relative to the specified animation. By default, **from** is the original attribute value.            |
+| opacity        | number                             | No    | Opacity of an element. The value ranges from **0** to **1**. The value **1** means opaque, and **0** means completely transparent. Attribute animations are supported.<br>Default value: **0**|
+| fill-opacity   | number                             | No  | Font fill opacity.<br>Default value: **1.0**                            |
+| stroke         | &lt;color&gt;                      | No | Stroke color.<br>Default value: **black**                  |
+| stroke-width   | number                             | No  | Stroke width.<br>Default value: **1px**                              |
+| stroke-opacity | number                             | No  | Stroke opacity.<br>Default value: **1.0**                            |
 
 
 ## Example
 
-The following is an example of the  **textspan**  attribute. The  **textpath**  text is drawn along the path specified by the  **path**  attribute, and the start point is offset by 20% of the  **path**  length. \(The drawn element  **<path\>**  curve is for reference only.\)
+The following is an example of the **\<textspan>** attributes, where text is drawn along the path specified by **path**, and the start point is offset by 20% of the **path** length. (The drawn **\<path>** curve is for reference only.)
 
-```
-/* xxx.css */
-.container {
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: 1200px;
-    width: 600px;
-}
-```
-
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -63,11 +59,23 @@ The following is an example of the  **textspan**  attribute. The  **textpath**  
 </div>
 ```
 
-![](figures/textpath-part1.png)
-
-Combination of  **textpath**  and  **tspan**
-
+```css
+/* xxx.css */
+.container {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 1200px;
+    width: 600px;
+}
 ```
+
+
+![textpath-part1](figures/textpath-part1.png)
+
+Combination of **\<textpath>** and **\<tspan>**
+
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -83,9 +91,9 @@ Combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-part2.png)
+![textpath-part2](figures/textpath-part2.png)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -103,9 +111,9 @@ Combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-part3.png)
+![textpath-part3](figures/textpath-part3.png)
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00" x="50">
@@ -124,11 +132,11 @@ Combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-part4.png)
+![textpath-part4](figures/textpath-part4.png)
 
-The following is an example of the  **startOffset**  animation. When the text is drawn, the start offset is moved from 10% to 40%, and the text whose length exceeds the path length range is not drawn.
+The following is an example of the **startOffset** animation, where the value of **startOffset** changes from 10% to 40%, and the text is not drawn when its length exceeds the path length range.
 
-```
+```css
 /* xxx.css */
 .container {
     flex-direction: row;
@@ -139,7 +147,7 @@ The following is an example of the  **startOffset**  animation. When the text is
 }
 ```
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -156,11 +164,11 @@ The following is an example of the  **startOffset**  animation. When the text is
 </div>
 ```
 
-![](figures/textpath-animate1.gif)
+![textpath-animate1](figures/textpath-animate1.gif)
 
-Animation and effect of the combination of  **textpath**  and  **tspan**
+Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -187,17 +195,17 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-animate2.gif)
+![textpath-animate2](figures/textpath-animate2.gif)
 
-\(1\) "tspan attribute x|rotate" indicates that the text drawing start point moves from 50 px to 100 px and rotates clockwise by 0 degrees to 360 degrees.
+(1) **"tspan attribute x|rotate"**: The beginning of the text is offset from 50 px to 100 px, and the text rotates clockwise by 0 degrees to 360 degrees.
 
-\(2\) "tspan attribute dx|opacity" is drawn after the "tspan static." drawing is complete. The offset moves from 0% to 30%, and the opacity changes from shallow to deep.
+(2) **"tspan attribute dx|opacity"**: The text is drawn after the "tspan static." drawing is complete. The horizontal offset moves from 0% to 30%, and the opacity changes from shallow to deep.
 
-\(3\)  **tspan move**: After the previous  **tspan**  is drawn, the next tspan is drawn with an offset of 5% to show the effect of following the previous  **tspan**.
+(3) **tspan move**: After the previous **\<tspan>** is drawn, the next **\<tspan>** is drawn with an offset of 5%, creating the effect of following the previous **\<tspan>**.
 
-Animation and effect of the combination of  **textpath**  and  **tspan**
+Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -223,19 +231,19 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-animate3.gif)
+![textpath-animate3](figures/textpath-animate3.gif)
 
-\(1\)  **This is TextPath**.: Draw the first paragraph of text on the path without offset. The size is 30px, and the color is "\#D2691E".
+(1) **"This is TextPath."**: The first segment of text, in the size of 30px and color of \#D2691E is drawn on the path without offset.
 
-\(2\) The value of  **tspan attribute fill|fill-opacity**  is 20px offset from the end of the previous text segment. The color is from blue to red, and the opacity is from light to deep.
+(2) **"tspan attribute fill|fill-opacity"**: The new segment of text is 20px offset from the end of the previous text segment. The text color changes from blue to red, and the opacity changes from light to deep.
 
-\(3\)  **tspan attribute font-size**: The drawing start point is 20px offset from the end of the previous segment. The start point is static, and the font size ranges from 10px to 50px. The overall length is continuously prolonged.
+(3) **"tspan attribute font-size"**: The new segment of text is 20px offset from the end of the previous text segment. While the start point of the text is static, the font size shifts from 10px to 50px and the overall length is continuously prolonged.
 
-\(4\)  **Single tspan**: Draw a horizontal line at the end of the previous segment to follow the previous segment.
+(4) **"Single tspan"**: A horizontal line is drawn at the end of the previous segment, creating the effect of following the previous segment.
 
-Animation and effect of the combination of  **textpath**  and  **tspan**
+Attribute animation of the **\<textPath>** and **\<tspan>** in combination
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="#00FF00">
@@ -260,9 +268,8 @@ Animation and effect of the combination of  **textpath**  and  **tspan**
 </div>
 ```
 
-![](figures/textpath-animate4.gif)
+![textpath-animate4](figures/textpath-animate4.gif)
 
-\(1\)  **tspan attribute stroke**: The stroke color gradually changes from red to green.
+(1) **"tspan attribute stroke"**: The stroke color gradually changes from red to green.
 
-\(2\)  **tspan attribute stroke-width-opacity**: The contour width is changed from 1px to 5px, and the opacity is changed from shallow to deep.
-
+(2) **"tspan attribute stroke-width-opacity"**: The stroke width changes from 1px to 5px, and the opacity changes from shallow to deep.

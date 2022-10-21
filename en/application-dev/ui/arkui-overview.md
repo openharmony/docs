@@ -21,7 +21,7 @@ ArkUI is a UI development framework that provides what you'll need to develop ap
 - Drawing: ArkUI offers advanced drawing capabilities that allow you to draw custom shapes with a range of editors, from images to fill colors and texts.
 - Interaction: ArkUI allows users to interact with your application UI properly, regardless of the system platform and input device. By default, the UI accepts input from touch gestures, remote controls, and mouse devices, with support for the event notification capability.
 - Platform API channel: ArkUI provides an API extension mechanism through which platform capabilities are encapsulated to produce JavaScript APIs in a unified style.
-- Two development paradigms: ArkUI comes with two development paradigms: JavaScript-based web-like development paradigm (web-like development paradigm for short) and TypeScript-based declarative development paradigm (declarative development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
+- Two development paradigms: ArkUI comes with two development paradigms: eTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short). You can choose whichever development paradigm that aligns with your practice.
 
 | Development Paradigm | Description | Applicable To | Intended Audience |
 | -------- | -------- | -------- | -------- |

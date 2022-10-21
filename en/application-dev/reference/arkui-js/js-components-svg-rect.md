@@ -1,36 +1,40 @@
 # rect
 
-The  **<rect\>**  component is used to draw rectangles and rounded rectangles.
+The **\<rect>** component is used to draw rectangles and rounded rectangles.
 
->![](../../public_sys-resources/icon-note.gif) **NOTE:** 
->This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  **NOTE**
+>
+>  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+
 
 ## Required Permissions
 
 None
 
+
 ## Child Components
 
-**animate**,  **animateMotion**, and  **animateTransform**  are supported.
+The following are supported: [\<animate>](js-components-svg-animate.md), [\<animateMotion>](js-components-svg-animatemotion.md), and [\<animateTransform>](js-components-svg-animatetransform.md).
+
 
 ## Attributes
 
-The  [universal attributes](js-components-svg-common-attributes.md)  and the attributes listed below are supported.
+The [universal attributes](../arkui-js/js-components-svg-common-attributes.md) and the attributes listed below are supported.
 
-| Name   | Type                     | Default Value | Mandatory | Description                                                  |
-| ------ | ------------------------ | ------------- | --------- | ------------------------------------------------------------ |
-| id     | string                   | -             | No        | Unique ID of the component.                                  |
-| width  | \<length>\|\<percentage> | 0             | No        | Width of a rectangle. Attribute animations are supported.    |
-| height | \<length>\|\<percentage> | 0             | No        | Height of a rectangle. Attribute animations are supported.   |
-| x      | \<length>\|\<percentage> | 0             | No        | X-coordinate of the upper left corner of the rectangle. Attribute animations are supported. |
-| y      | \<length>\|\<percentage> | 0             | No        | Y-coordinate of the upper left corner of the rectangle. Attribute animations are supported. |
-| rx     | \<length>\|\<percentage> | 0             | No        | Radius of the rectangle rounded corner in the x-axis direction. Attribute animations are supported. |
-| ry     | \<length>\|\<percentage> | 0             | No        | Radius of the rectangle rounded corner in the y-axis direction. Attribute animations are supported. |
+| Name| Type| Default Value| Mandatory| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| id | string | - | No| Unique ID of the component.|
+| width | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Width of the rectangle. Attribute animations are supported.|
+| height | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Height of the rectangle. Attribute animations are supported.|
+| x | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| X-coordinate of the upper left corner of the rectangle. Attribute animations are supported.|
+| y | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Y-coordinate of the upper left corner of the rectangle. Attribute animations are supported.|
+| rx | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Radius of the rectangle rounded corner in the x-axis direction. Attribute animations are supported.|
+| ry | &lt;length&gt;\|&lt;percentage&gt; | 0 | No| Radius of the rectangle rounded corner in the y-axis direction. Attribute animations are supported.|
 
 
 ## Example
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <svg fill="white" width="400" height="400">
@@ -43,5 +47,5 @@ The  [universal attributes](js-components-svg-common-attributes.md)  and the att
 </div>
 ```
 
-![](figures/0.png)
 
+![0](figures/0.png)
