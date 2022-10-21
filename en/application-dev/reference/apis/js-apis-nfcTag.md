@@ -1,6 +1,6 @@
 # NFC Tags
 
-The **nfcTag** module provides methods for managing Near-Field Communication (NFC) tags.
+The **nfcTag** module provides APIs for managing Near-Field Communication (NFC) tags.
 
 > **NOTE**<br>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
