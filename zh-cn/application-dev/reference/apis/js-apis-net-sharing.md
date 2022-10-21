@@ -26,7 +26,7 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回ture代表支持网络共享。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表支持网络共享。 |
 
 **示例：**
 
@@ -77,7 +77,7 @@ isSharing(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回ture代表网络共享中。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回true代表网络共享中。 |
 
 **示例：**
 
@@ -102,7 +102,7 @@ isSharing(): Promise\<boolean>
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回网络共享状态结果，返回ture代表网络共享中。 |
+| Promise\<boolean> | 以Promise形式返回网络共享状态结果，返回true代表网络共享中。 |
 
 **示例：**
 
