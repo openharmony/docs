@@ -40,7 +40,7 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 **示例：**
 
-```js
+```ts
 class InputMethodExt extends InputMethodExtensionAbility {
     onCreate(want) {
         console.log('onCreate, want:' + want.abilityName);
@@ -61,7 +61,7 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 
 **示例：**
 
-```js
+```ts
 class InputMethodExt extends InputMethodExtensionAbility {
     onDestroy() {
         console.log('onDestroy');
@@ -88,7 +88,7 @@ Extension生命周期回调，在一个输入法extention开始时回调，执�
 
 **示例：**
 
-```js
+```ts
 class InputMethodExt extends InputMethodExtensionAbility {
     onRequest(want, startId) {
         console.log('onRequest, want:' + want.abilityName + 'startId:' + startId);
@@ -120,7 +120,7 @@ Extension生命周期回调，在输入法extention首次连接输入法ability�
 
 **示例：**
 
-```js
+```ts
 import rpc from '@ohos.rpc'
 class StubTest extends rpc.RemoteObject{
     constructor(des) {
@@ -155,7 +155,7 @@ Extension生命周期回调，在所有连接在输入法extention上的ability�
 
 **示例：**
 
-```js
+```ts
 class InputMethodExt extends InputMethodExtensionAbility {
     onDisconnect(want) {
         console.log('onDisconnect, want:' + want.abilityName);
@@ -181,7 +181,7 @@ Extension生命周期回调，在一个新的客户端去尝试连接输入法ex
 
 **示例：**
 
-```js
+```ts
 class InputMethodExt extends InputMethodExtensionAbility {
     onReconnect(want) {
         console.log('onReconnect, want:' + want.abilityName);

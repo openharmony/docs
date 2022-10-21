@@ -145,7 +145,7 @@ let KeyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, textInputClient: TextInputClient) => void): void
 
-订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅输入法绑定成功事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -154,7 +154,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 是 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 是 | 回调函数，返回订阅输入法的KeyboardController和TextInputClient实例。 |
 
 **示例：**
 
@@ -178,7 +178,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 否 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [TextInputClient](#textinputclient) | 否 | 回调函数，返回取消订阅的KeyboardController和TextInputClient实例。 |
 
 
 
@@ -194,7 +194,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textIn
 
 on(type: 'inputStop', callback: () => void): void
 
-订阅停止输入法应用事件，使用callback回调。
+订阅停止输入法应用事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -217,7 +217,7 @@ inputMethodEngine.getInputMethodEngine().on('inputStop', () => {
 
 off(type: 'inputStop', callback: () => void): void
 
-取消订阅停止输入法应用事件。使用callback回调。
+取消订阅停止输入法应用事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -240,7 +240,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStop', () => {
 
 on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
-订阅设置调用窗口事件，使用callback回调。
+订阅设置调用窗口事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -249,7 +249,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                            |
+| callback | number | 是   | 回调函数，返回调用方window id。                                            |
 
 **示例：**
 
@@ -263,7 +263,7 @@ inputMethodEngine.getInputMethodEngine().on('setCallingWindow', (wid) => {
 
 off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
-取消订阅设置调用窗口事件。使用callback回调。
+取消订阅设置调用窗口事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -272,7 +272,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                 |
+| callback | number | 是   | 回调函数，返回调用方window id。                                 |
 
 **示例：**
 
@@ -286,7 +286,7 @@ inputMethodEngine.getInputMethodEngine().off('setCallingWindow', () => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅输入法事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -312,7 +312,7 @@ inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅输入法事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -342,7 +342,7 @@ inputMethodEngine.getInputMethodEngine().off('keyboardHide', () => {
 
 on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient: InputClient) => void): void
 
-订阅输入法绑定成功事件，使用callback回调返回输入法操作相关实例。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅输入法绑定成功事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -351,7 +351,7 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient-9) | 是 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient-9) | 是 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -366,7 +366,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, inputC
 
 off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClient: InputClient) => void): void
 
-取消订阅输入法绑定成功事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅输入法绑定成功事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -375,7 +375,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, inputClien
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | 是   | 设置监听类型。<br/>-type为‘inputStart’时表示订阅输入法绑定。 |
-| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient) | 否 | 回调返回输入法操作相关实例。 |
+| callback | [KeyboardController](#keyboardcontroller), [InputClient](#inputclient) | 否 | 回调函数，返回输入法操作相关实例。 |
 
 **示例：**
 
@@ -389,7 +389,7 @@ inputMethodEngine.getInputMethodAbility().off('inputStart', (kbController, input
 
 on(type: 'inputStop', callback: () => void): void
 
-订阅停止输入法应用事件，使用callback回调。
+订阅停止输入法应用事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -412,7 +412,7 @@ inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
 
 off(type: 'inputStop', callback: () => void): void
 
-取消订阅停止输入法应用事件。使用callback回调。
+取消订阅停止输入法应用事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -435,7 +435,7 @@ inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
 
 on(type: 'setCallingWindow', callback: (wid:number) => void): void
 
-订阅设置调用窗口事件，使用callback回调。
+订阅设置调用窗口事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -444,7 +444,7 @@ on(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                            |
+| callback | number | 是   | 回调函数，返回调用方window id。                                            |
 
 **示例：**
 
@@ -458,7 +458,7 @@ inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid) => {
 
 off(type: 'setCallingWindow', callback: (wid:number) => void): void
 
-取消订阅设置调用窗口事件。使用callback回调。
+取消订阅设置调用窗口事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -467,7 +467,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-type为‘setCallingWindow’时表示订阅设置调用窗口事件。 |
-| callback | number | 是   | 调用方window id。                                 |
+| callback | number | 是   | 回调函数，返回调用方window id。                                 |
 
 **示例：**
 
@@ -481,7 +481,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-订阅输入法事件。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅输入法事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -507,7 +507,7 @@ inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-取消订阅输入法事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅输入法事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -533,7 +533,7 @@ inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
 
 on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => void): void
 
-订阅设置输入法子类型事件。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅设置输入法子类型事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -542,7 +542,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 调用方的输入法子类型。                                                   |
+| callback | InputMethodSubtype   | 是   | 回调函数，，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -556,7 +556,7 @@ inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) 
 
 off(type: 'setSubtype', callback?: () => void): void
 
-取消订阅输入法子类型事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅输入法子类型事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -565,7 +565,7 @@ off(type: 'setSubtype', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型设置。<br/>-&nbsp;type为'keyboardHide'，表示订阅输入法隐藏。 |
-| callback | InputMethodSubtype   | 是   | 调用方的输入法子类型。                                                   |
+| callback | InputMethodSubtype   | 是   | 回调函数，，返回调用方的输入法子类型。                                                   |
 
 **示例：**
 
@@ -583,7 +583,7 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
-订阅硬键盘事件，使用callback回调返回按键信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅硬键盘事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -592,7 +592,7 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type   | string         | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#keyevent) | 是 | 回调返回按键信息。 |
+| callback | [KeyEvent](#keyevent) | 是 | 回调函数，返回按键信息。 |
 
 **示例：**
 
@@ -613,7 +613,7 @@ inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
 
 off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
-取消订阅硬键盘事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅硬键盘事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -622,7 +622,7 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示订阅硬键盘按下。<br/>-&nbsp;type为'keyUp'，表示订阅硬键盘抬起。 |
-| callback | [KeyEvent](#keyevent) | 否   | 回调返回按键信息。                                           |
+| callback | [KeyEvent](#keyevent) | 否   | 回调函数，返回按键信息。                                           |
 
 **示例：**
 
@@ -641,7 +641,7 @@ inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
 
 on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) => void): void
 
-订阅光标变化事件，使用callback回调返回光标信息。使用callback回调返回光标信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅光标变化事件。使用callback异步回调。
 
   **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -650,7 +650,7 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-| callback | number | 是   | 回调返回光标信息。                                           |
+| callback | number | 是   | 回调函数，返回光标信息。                                           |
 
 
 
@@ -668,7 +668,7 @@ inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height)
 
 off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number) => void): void
 
-取消订阅光标变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅光标变化事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -677,7 +677,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y:number, height:number)
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 光标变化事件。<br/>-type为’cursorContextChange‘时，表示光标变化。 |
-| callback | number | 否   | 回调返回光标信息。                                           |
+| callback | number | 否   | 回调函数，返回光标信息。                                           |
 
 
   **示例：**
@@ -691,7 +691,7 @@ inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height
 
 on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-订阅文本选择变化事件，使用callback回调返回文本选择信息。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅文本选择变化事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -700,7 +700,7 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-| callback | number | 是   | 回调返回文本选择信息。                                       |
+| callback | number | 是   | 回调函数，返回文本选择信息。                                       |
 
   **示例：**
 
@@ -717,7 +717,7 @@ inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd,
 
 off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void): void
 
-取消订阅文本选择变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅文本选择变化事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -726,7 +726,7 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本选择变化事件。<br/>-type为’selectionChange‘时，表示选择文本变化。 |
-| callback | number | 否   | 回调返回文本选择信息。                                       |
+| callback | number | 否   | 回调函数，返回文本选择信息。                                       |
 
   **示例：**
 
@@ -741,7 +741,7 @@ inputMethodEngine.getKeyboardDelegate().off('selectionChange', (oldBegin, oldEnd
 
 on(type: 'textChange', callback: (text: string) => void): void
 
-订阅文本变化事件，使用callback回调返回当前文本内容。参数个数为2，参数1为napi_string，参数2为napi_function，否则抛出异常。
+订阅文本变化事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -750,7 +750,7 @@ on(type: 'textChange', callback: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-| callback | string | 是   | 回调返回当前文本内容。                                       |
+| callback | string | 是   | 回调函数，返回当前文本内容。                                       |
 
   **示例：**
 
@@ -764,7 +764,7 @@ inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
 
 off(type: 'textChange', callback?: (text: string) => void): void
 
-取消订阅文本变化事件。参数个数不为1或2抛出异常。若为1，参数不为napi_string抛出异常；若为2，参数1不为napi_string，参数2不为napi_function抛出异常。参数若为1，取消此类型所有监听；参数若为2，取消此类型当前监听。
+取消订阅文本变化事件。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -773,7 +773,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-type为’textChange‘时，表示当前文本变化。 |
-| callback | string | 否   | 回调返回当前文本内容。                                       |
+| callback | string | 否   | 回调函数，返回当前文本内容。                                       |
 
   **示例：**
 
@@ -791,7 +791,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
-隐藏输入法。使用callback形式返回结果。参数个数为1，否则抛出异常。
+隐藏输入法。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -799,17 +799,17 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| callback | AsyncCallback&lt;void> | 否   | 回调函数 |
+| callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象 |
 
 **示例：**
 
 ```js
 KeyboardController.hideKeyboard((err) => {
     if (err === undefined) {
-        console.error('hideKeyboard callback result---err: ' + JSON.stringify(err));
+        console.error('hideKeyboard err: ' + JSON.stringify(err));
         return;
     }
-    console.log('hideKeyboard callback.');
+    console.log('hideKeyboard success.');
 });
 ```
 
@@ -817,7 +817,7 @@ KeyboardController.hideKeyboard((err) => {
 
 hideKeyboard(): Promise&lt;void&gt;
 
-隐藏输入法。使用peomise形式返回结果。参数个数为0，否则抛出异常。
+隐藏输入法。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -825,20 +825,19 @@ hideKeyboard(): Promise&lt;void&gt;
 
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
-| Promise&lt;void> | 无返回结果的Promise对象。 |
+| Promise&lt;void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```js
 async function InputMethodEngine() {
     await KeyboardController.hideKeyboard().then(() => {
-        console.info('hideKeyboard promise.');
+        console.info('hideKeyboard success.');
     }).catch((err) => {
-        console.info('hideKeyboard promise err: ' + JSON.stringify(err));
+        console.info('hideKeyboard err: ' + JSON.stringify(err));
     });
 }
 ```
-
 
 ## InputClient<a name="InputClient "></a><sup>9+</sup>
 
@@ -848,7 +847,7 @@ async function InputMethodEngine() {
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-发送功能键。使用callback形式返回结果。参数个数为2，否则抛出异常。
+发送功能键。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -857,7 +856,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 编辑框属性。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
   **示例：**
 
@@ -869,9 +868,9 @@ try {
             return;
         }
         if (result) {
-            console.info('Success to sendKeyFunction.(callback) ');
+            console.info('Success to sendKeyFunction. ');
         } else {
-            console.error('Failed to sendKeyFunction.(callback) ');
+            console.error('Failed to sendKeyFunction. ');
         }
     });
 } catch (err) {
@@ -883,7 +882,7 @@ try {
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
-发送功能键。使用promise形式返回结果。参数个数为1，否则抛出异常。
+发送功能键。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -897,7 +896,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt; |  Promise对象。返回true表示功能键发送成功；返回false表示功能键发送失败。|
 
 **示例：**
 
@@ -905,12 +904,12 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 try {
     InputClient.sendKeyFunction(keyFunction).then((result) => {
         if (result) {
-            console.info('Success to sendKeyFunction.(callback) ');
+            console.info('Success to sendKeyFunction. ');
         } else {
-            console.error('Failed to sendKeyFunction.(callback) ');
+            console.error('Failed to sendKeyFunction. ');
         }
     }).catch((err) => {
-        console.error('sendKeyFunction promise err:' + JSON.stringify(err));
+        console.error('sendKeyFunction err:' + JSON.stringify(err));
     });
 } catch (err) {
     console.error('sendKeyFunction err: ' + JSON.stringify(err));
@@ -921,7 +920,7 @@ try {
 
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取光标前固定长度的文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -930,7 +929,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **示例：**
 
@@ -942,7 +941,7 @@ try {
             console.error('getForward err: ' + JSON.stringify(err));
             return;
         }
-        console.log('getForward callback result: ' + text);
+        console.log('getForward result: ' + text);
     });
 } catch (err) {
     console.error('getForward err: ' + JSON.stringify(err));
@@ -953,7 +952,7 @@ try {
 
 getForward(length:number): Promise&lt;string&gt;
 
-获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+获取光标前固定长度的文本。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -967,7 +966,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  返回文本。                |
+| Promise&lt;string&gt;           |  Promise对象，返回光标前固定长度的文本。                     |
 
 **示例：**
 
@@ -976,12 +975,12 @@ async function InputMethodAbility() {
     let length = 1;
     try {
         await InputClient.getForward(length).then((text) => {
-            console.info('getForward promise resul: ' + text);
+            console.info('getForward resul: ' + text);
         }).catch((err) => {
-            console.error('getForward promise err: ' + JSON.stringify(err));
+            console.error('getForward err: ' + JSON.stringify(err));
         });
     } catch (err) {
-        console.error('getForward promise err: ' + JSON.stringify(err));
+        console.error('getForward err: ' + JSON.stringify(err));
     }
 }
 ```
@@ -990,7 +989,7 @@ async function InputMethodAbility() {
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取光标后固定长度的文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -999,7 +998,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **示例：**
 
@@ -1008,13 +1007,13 @@ let length = 1;
 try {
     InputClient.getBackward(length, (err, text) => {
         if (err) {
-            console.error('getBackward callback result: ' + JSON.stringify(err));
+            console.error('getBackward result: ' + JSON.stringify(err));
             return;
         }
-        console.log('getBackward callback result---text: ' + text);
+        console.log('getBackward result---text: ' + text);
     });
 } catch (err) {
-    console.error('getBackward callback result: ' + JSON.stringify(err));
+    console.error('getBackward result: ' + JSON.stringify(err));
 }
 ```
 
@@ -1022,7 +1021,7 @@ try {
 
 getBackward(length:number): Promise&lt;string&gt;
 
-获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+获取光标后固定长度的文本。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1036,7 +1035,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  返回文本。                |
+| Promise&lt;string&gt;           |  Promise对象，返回光标后固定长度的文本。                     |
 
 **示例：**
 
@@ -1045,12 +1044,12 @@ async function InputMethodAbility() {
     let length = 1;
     try {
         await InputClient.getBackward(length).then((text) => {
-            console.info('getBackward promise result: ' + text);
+            console.info('getBackward result: ' + text);
         }).catch((err) => {
-            console.error('getBackward promise err: ' + JSON.stringify(err));
+            console.error('getBackward err: ' + JSON.stringify(err));
         });
     } catch (err) {
-        console.error('getBackward promise err: ' + JSON.stringify(err));
+        console.error('getBackward err: ' + JSON.stringify(err));
     }
 }
 ```
@@ -1059,7 +1058,7 @@ async function InputMethodAbility() {
 
 deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标前固定长度的文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1068,7 +1067,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
@@ -1077,17 +1076,17 @@ let length = 1;
 try {
     InputClient.deleteForward(length, (err, result) => {
         if (err) {
-            console.error('deleteForward callback result: ' + JSON.stringify(err));
+            console.error('deleteForward result: ' + JSON.stringify(err));
             return;
         }
         if (result) {
-            console.info('Success to deleteForward.(callback) ');
+            console.info('Success to deleteForward. ');
         } else {
-            console.error('Failed to deleteForward.(callback) ');
+            console.error('Failed to deleteForward. ');
         }
     });
 } catch (err) {
-    console.error('deleteForward callback result: ' + JSON.stringify(err));
+    console.error('deleteForward result: ' + JSON.stringify(err));
 }
 ```
 
@@ -1095,7 +1094,7 @@ try {
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
-删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+删除光标前固定长度的文本。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1109,7 +1108,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promise&lt;boolean&gt; | 操作成功与否。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示删除光标前固定长度的文本成功；返回false表示删除光标前固定长度的文本失败。|
 
 **示例：**
 
@@ -1119,15 +1118,15 @@ async function InputMethodAbility() {
     try {
         await InputClient.deleteForward(length).then((result) => {
             if (result) {
-                console.info('Success to deleteForward.(promise) ');
+                console.info('Success to deleteForward. ');
             } else {
-                console.error('Failed to deleteForward.(promise) ');
+                console.error('Failed to deleteForward. ');
             }
         }).catch((err) => {
-            console.error('deleteForward promise err: ' + JSON.stringify(err));
+            console.error('deleteForward err: ' + JSON.stringify(err));
         });
     } catch (err) {
-        console.error('deleteForward promise err: ' + JSON.stringify(err));
+        console.error('deleteForward err: ' + JSON.stringify(err));
     }
 }
 ```
@@ -1136,7 +1135,7 @@ async function InputMethodAbility() {
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标后固定长度的文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1145,7 +1144,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | 是   | 文本长度。     |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
   **示例：**
 
@@ -1158,9 +1157,9 @@ try {
             return;
         }
         if (result) {
-            console.info('Success to deleteBackward.(callback) ');
+            console.info('Success to deleteBackward. ');
         } else {
-            console.error('Failed to deleteBackward.(callback) ');
+            console.error('Failed to deleteBackward. ');
         }
     });
 } catch (err) {
@@ -1172,7 +1171,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标后固定长度的文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1186,7 +1185,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt; |  Promise对象。返回true表示删除光标后固定长度的文本成功；返回false表示删除光标后固定长度的文本失败。 |
 
 **示例：**
 
@@ -1195,12 +1194,12 @@ async function InputMethodAbility() {
     let length = 1;
     await InputClient.deleteBackward(length).then((result) => {
         if (result) {
-            console.info('Success to deleteBackward.(promise) ');
+            console.info('Success to deleteBackward. ');
         } else {
-            console.error('Failed to deleteBackward.(promise) ');
+            console.error('Failed to deleteBackward. ');
         }
     }).catch((err) => {
-        console.error('deleteBackward promise err: ' + JSON.stringify(err));
+        console.error('deleteBackward err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1209,7 +1208,7 @@ async function InputMethodAbility() {
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
-插入文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+插入文本。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1218,7 +1217,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 文本。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
@@ -1229,9 +1228,9 @@ InputClient.insertText('test', (err, result) => {
         return;
     }
     if (result) {
-        console.info('Success to insertText.(callback) ');
+        console.info('Success to insertText. ');
     } else {
-        console.error('Failed to insertText.(callback) ');
+        console.error('Failed to insertText. ');
     }
 });
 ```
@@ -1240,7 +1239,7 @@ InputClient.insertText('test', (err, result) => {
 
 insertText(text:string): Promise&lt;boolean&gt;
 
-插入文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+插入文本。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1254,7 +1253,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt;  |  Promise对象。返回true表示插入文本成功；返回false表示插入文本失败。  |
 
 **示例：**
 
@@ -1263,15 +1262,15 @@ async function InputMethodAbility() {
     try {
         await InputClient.insertText('test').then((result) => {
             if (result) {
-                console.info('Success to insertText.(promise) ');
+                console.info('Success to insertText. ');
             } else {
-                console.error('Failed to insertText.(promise) ');
+                console.error('Failed to insertText. ');
             }
         }).catch((err) => {
-            console.error('insertText promise err: ' + JSON.stringify(err));
+            console.error('insertText err: ' + JSON.stringify(err));
         });
     } catch (e) {
-        console.error('insertText promise err: ' + JSON.stringify(err));
+        console.error('insertText err: ' + JSON.stringify(err));
     }
 }
 ```
@@ -1280,7 +1279,7 @@ async function InputMethodAbility() {
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
-获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
+获取编辑框属性值。使用callback异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1288,18 +1287,18 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 参数名                         | 类型                          | 必填                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  编辑框属性值。                |
+| callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  回调函数。当编辑框属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
 **示例：**
 
 ```js
 InputClient.getEditorAttribute((err, editorAttribute) => {
     if (err) {
-        console.error('getEditorAttribute callback result---err: ' + JSON.stringify(err));
+        console.error('getEditorAttribute err: ' + JSON.stringify(err));
         return;
     }
-    console.log('editorAttribute.inputPattern(callback): ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType(callback): ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -1307,7 +1306,7 @@ InputClient.getEditorAttribute((err, editorAttribute) => {
 
 getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
-获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
+获取编辑框属性值。使用promise异步回调。
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
@@ -1315,17 +1314,17 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  返回编辑框属性值。           |
+| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  Promise对象，返回编辑框属性值。           |
 
 **示例：**
 
 ```js
 async function InputMethodEngine() {
     await InputClient.getEditorAttribute().then((editorAttribute) => {
-        console.info('editorAttribute.inputPattern(promise): ' + JSON.stringify(editorAttribute.inputPattern));
-        console.info('editorAttribute.enterKeyType(promise): ' + JSON.stringify(editorAttribute.enterKeyType));
+        console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+        console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
     }).catch((err) => {
-        console.error('getEditorAttribute promise err: ' + JSON.stringify(err));
+        console.error('getEditorAttribute err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1334,7 +1333,7 @@ async function InputMethodEngine() {
 
 moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
-移动光标。使用callback形式返回结果。参数个数为1，否则抛出异常。
+移动光标。使用callback异步回调。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -1345,11 +1344,11 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 | 参数名    | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
 | direction | number                    | 是   | 光标移动方向。 |
-| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。     |
+| callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象    |
 
 **示例：**
 
-```js
+```ts
 try {
     InputClient.moveCursor(inputMethodAbility.CURSOR_xxx, (err) => {
         if (err) {
@@ -1367,7 +1366,7 @@ try {
 
 moveCursor(direction: number): Promise&lt;void&gt;
 
-移动光标。使用promise形式返回结果。参数个数为1，否则抛出异常。
+移动光标。使用promise异步回调。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -1383,11 +1382,11 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
-```js
+```ts
 async function InputMethodAbility() {
     try {
         await InputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then((err) => {
@@ -1435,7 +1434,7 @@ async function InputMethodAbility() {
 
 getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取光标前固定长度的文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
@@ -1447,7 +1446,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
 
 **示例：**
 
@@ -1455,10 +1454,10 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 let length = 1;
 TextInputClient.getForward(length, (err, text) => {
     if (err === undefined) {
-        console.error('getForward callback result---err: ' + JSON.stringify(err));
+        console.error('getForward err: ' + JSON.stringify(err));
         return;
     }
-    console.log('getForward callback result---text: ' + text);
+    console.log('getForward result---text: ' + text);
 });
 ```
 
@@ -1466,7 +1465,7 @@ TextInputClient.getForward(length, (err, text) => {
 
 getForward(length:number): Promise&lt;string&gt;
 
-获取光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+获取光标前固定长度的文本。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代
@@ -1483,7 +1482,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  返回文本。                |
+| Promise&lt;string&gt; |  Promise对象，返回光标前固定长度的文本。                |
 
 **示例：**
 
@@ -1491,9 +1490,9 @@ getForward(length:number): Promise&lt;string&gt;
 async function InputMethodEngine() {
     let length = 1;
     await TextInputClient.getForward(length).then((text) => {
-        console.info('getForward promise result---res: ' + text);
+        console.info('getForward result---res: ' + text);
     }).catch((err) => {
-        console.error('getForward promise err: ' + JSON.stringify(err));
+        console.error('getForward err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1502,7 +1501,7 @@ async function InputMethodEngine() {
 
 getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
-获取光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+获取光标后固定长度的文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
@@ -1514,7 +1513,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;string&gt; | 是 | 返回文本。 |
+| callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
 
 **示例：**
 
@@ -1522,10 +1521,10 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 let length = 1;
 TextInputClient.getBackward(length, (err, text) => {
     if (err === undefined) {
-        console.error('getBackward callback result---err: ' + JSON.stringify(err));
+        console.error('getBackward err: ' + JSON.stringify(err));
         return;
     }
-    console.log('getBackward callback result---text: ' + text);
+    console.log('getBackward result---text: ' + text);
 });
 ```
 
@@ -1533,7 +1532,7 @@ TextInputClient.getBackward(length, (err, text) => {
 
 getBackward(length:number): Promise&lt;string&gt;
 
-获取光标后固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+获取光标后固定长度的文本。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代
@@ -1550,7 +1549,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;string&gt; |  返回文本。                |
+| Promise&lt;string&gt; |  Promise对象，返回光标后固定长度的文本。                |
 
 **示例：**
 
@@ -1558,9 +1557,9 @@ getBackward(length:number): Promise&lt;string&gt;
 async function InputMethodEngine() {
     let length = 1;
     await TextInputClient.getBackward(length).then((text) => {
-        console.info('getBackward promise result---res: ' + text);
+        console.info('getBackward result---res: ' + text);
     }).catch((err) => {
-        console.error('getBackward promise err: ' + JSON.stringify(err));
+        console.error('getBackward err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1569,7 +1568,7 @@ async function InputMethodEngine() {
 
 deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标前固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标前固定长度的文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
@@ -1581,7 +1580,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
@@ -1589,13 +1588,13 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 let length = 1;
 TextInputClient.deleteForward(length, (err, result) => {
     if (err === undefined) {
-        console.error('deleteForward callback result---err: ' + JSON.stringify(err));
+        console.error('deleteForward err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteForward.(callback) ');
+        console.info('Success to deleteForward. ');
     } else {
-        console.error('Failed to deleteForward.(callback) ');
+        console.error('Failed to deleteForward. ');
     }
 });
 ```
@@ -1604,7 +1603,7 @@ TextInputClient.deleteForward(length, (err, result) => {
 
 deleteForward(length:number): Promise&lt;boolean&gt;
 
-删除光标前固定长度的文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+删除光标前固定长度的文本。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代
@@ -1621,7 +1620,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Promise&lt;boolean&gt; | 操作成功与否。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示删除光标前固定长度的文本成功；返回false表示删除光标前固定长度的文本失败。|
 
 **示例：**
 
@@ -1630,12 +1629,12 @@ async function InputMethodEngine() {
     let length = 1;
     await TextInputClient.deleteForward(length).then((result) => {
         if (result) {
-            console.info('Success to deleteForward.(promise) ');
+            console.info('Success to deleteForward. ');
         } else {
-            console.error('Failed to deleteForward.(promise) ');
+            console.error('Failed to deleteForward. ');
         }
     }).catch((err) => {
-        console.error('deleteForward promise err: ' + JSON.stringify(err));
+        console.error('deleteForward err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1644,7 +1643,7 @@ async function InputMethodEngine() {
 
 deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标后固定长度的文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
@@ -1656,7 +1655,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | 是   | 文本长度。     |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。|
 
   **示例：**
 
@@ -1664,13 +1663,13 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 let length = 1;
 TextInputClient.deleteBackward(length, (err, result) => {
     if (err === undefined) {
-        console.error('deleteBackward callback result---err: ' + JSON.stringify(err));
+        console.error('deleteBackward err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to deleteBackward.(callback) ');
+        console.info('Success to deleteBackward. ');
     } else {
-        console.error('Failed to deleteBackward.(callback) ');
+        console.error('Failed to deleteBackward. ');
     }
 });
 ```
@@ -1679,7 +1678,7 @@ TextInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+删除光标后固定长度的文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代
@@ -1696,7 +1695,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt; |  Promise对象。返回true表示删除光标后固定长度的文本成功；返回false表示删除光标后固定长度的文本失败。|
 
 **示例：**
 
@@ -1705,12 +1704,12 @@ async function InputMethodEngine() {
     let length = 1;
     await TextInputClient.deleteBackward(length).then((result) => {
         if (result) {
-            console.info('Success to deleteBackward.(promise) ');
+            console.info('Success to deleteBackward. ');
         } else {
-            console.error('Failed to deleteBackward.(promise) ');
+            console.error('Failed to deleteBackward. ');
         }
     }).catch((err) => {
-        console.error('deleteBackward promise err: ' + JSON.stringify(err));
+        console.error('deleteBackward err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1718,7 +1717,7 @@ async function InputMethodEngine() {
 
 sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
-发送功能键。使用callback形式返回结果。参数个数为2，否则抛出异常。
+发送功能键。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
@@ -1730,20 +1729,20 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | number | 是 | 编辑框属性。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
   **示例：**
 
 ```js
 TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
     if (err === undefined) {
-        console.error('sendKeyFunction callback result---err: ' + JSON.stringify(err));
+        console.error('sendKeyFunction err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to sendKeyFunction.(callback) ');
+        console.info('Success to sendKeyFunction. ');
     } else {
-        console.error('Failed to sendKeyFunction.(callback) ');
+        console.error('Failed to sendKeyFunction. ');
     }
 });
 ```
@@ -1752,7 +1751,7 @@ TextInputClient.sendKeyFunction(keyFunction, (err, result) => {
 
 sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
-发送功能键。使用promise形式返回结果。参数个数为1，否则抛出异常。
+发送功能键。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代
@@ -1769,7 +1768,7 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt; |  Promise对象。返回true表示发送功能键成功；返回false表示发送功能键失败。 |
 
 **示例：**
 
@@ -1777,12 +1776,12 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 async function InputMethodEngine() {
     await client.sendKeyFunction(keyFunction).then((result) => {
         if (result) {
-            console.info('Success to sendKeyFunction.(promise) ');
+            console.info('Success to sendKeyFunction. ');
         } else {
-            console.error('Failed to sendKeyFunction.(promise) ');
+            console.error('Failed to sendKeyFunction. ');
         }
     }).catch((err) => {
-        console.error('sendKeyFunction promise err:' + JSON.stringify(err));
+        console.error('sendKeyFunction err:' + JSON.stringify(err));
     });
 }
 ```
@@ -1791,7 +1790,7 @@ async function InputMethodEngine() {
 
 insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
-插入文本。使用callback形式返回结果。参数个数为2，否则抛出异常。
+插入文本。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
@@ -1803,20 +1802,20 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 文本。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 操作成功与否。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
 
 **示例：**
 
 ```js
 TextInputClient.insertText('test', (err, result) => {
     if (err === undefined) {
-        console.error('insertText callback result---err: ' + JSON.stringify(err));
+        console.error('insertText err: ' + JSON.stringify(err));
         return;
     }
     if (result) {
-        console.info('Success to insertText.(callback) ');
+        console.info('Success to insertText. ');
     } else {
-        console.error('Failed to insertText.(callback) ');
+        console.error('Failed to insertText. ');
     }
 });
 ```
@@ -1825,7 +1824,7 @@ TextInputClient.insertText('test', (err, result) => {
 
 insertText(text:string): Promise&lt;boolean&gt;
 
-插入文本。使用promise形式返回结果。参数个数为1，否则抛出异常。
+插入文本。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代
@@ -1842,7 +1841,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; |  操作成功与否。                |
+| Promise&lt;boolean&gt; |  Promise对象。返回true表示插入文本成功；返回false表示插入文本失败。 |
 
 **示例：**
 
@@ -1850,12 +1849,12 @@ insertText(text:string): Promise&lt;boolean&gt;
 async function InputMethodEngine() {
     await TextInputClient.insertText('test').then((result) => {
         if (result) {
-            console.info('Success to insertText.(promise) ');
+            console.info('Success to insertText. ');
         } else {
-            console.error('Failed to insertText.(promise) ');
+            console.error('Failed to insertText. ');
         }
     }).catch((err) => {
-        console.error('insertText promise err: ' + JSON.stringify(err));
+        console.error('insertText err: ' + JSON.stringify(err));
     });
 }
 ```
@@ -1864,7 +1863,7 @@ async function InputMethodEngine() {
 
 getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
-获取编辑框属性值。使用callback形式返回结果。参数个数为1，否则抛出异常。
+获取编辑框属性值。使用callback异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
@@ -1875,18 +1874,18 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 | 参数名                         | 类型                          | 必填                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  编辑框属性值。                |
+| callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  回调函数。当编辑框的属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
 **示例：**
 
 ```js
 TextInputClient.getEditorAttribute((err, editorAttribute) => {
     if (err === undefined) {
-        console.error('getEditorAttribute callback result---err: ' + JSON.stringify(err));
+        console.error('getEditorAttribute err: ' + JSON.stringify(err));
         return;
     }
-    console.log('editorAttribute.inputPattern(callback): ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType(callback): ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -1894,7 +1893,7 @@ TextInputClient.getEditorAttribute((err, editorAttribute) => {
 
 getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
-获取编辑框属性值。使用promise形式返回结果。参数个数为0，否则抛出异常。
+获取编辑框属性值。使用promise异步回调。
 
 > **说明：** 
 > 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代
@@ -1905,17 +1904,17 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  返回编辑框属性值。           |
+| Promise&lt;[EditorAttribute](#editorattribute)&gt; |  Promise对象，返回编辑框属性值。           |
 
 **示例：**
 
 ```js
 async function InputMethodEngine() {
     await TextInputClient.getEditorAttribute().then((editorAttribute) => {
-        console.info('editorAttribute.inputPattern(promise): ' + JSON.stringify(editorAttribute.inputPattern));
-        console.info('editorAttribute.enterKeyType(promise): ' + JSON.stringify(editorAttribute.enterKeyType));
+        console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+        console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
     }).catch((err) => {
-        console.error('getEditorAttribute promise err: ' + JSON.stringify(err));
+        console.error('getEditorAttribute err: ' + JSON.stringify(err));
     });
 }
 ```

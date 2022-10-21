@@ -19,7 +19,7 @@ import InputMethodExtensionContext from '@ohos.inputmethodextensioncontext';
 
 在使用InputMethodExtensionContext的功能前，需要通过InputMethodExtensionAbility子类实例获取。
 
-```js
+```ts
 import InputMethodExtensionAbility from '@ohos.inputmethodextensionability';
 class MainAbility extends InputMethodExtensionAbility {
     onCreate() {
@@ -32,7 +32,9 @@ class MainAbility extends InputMethodExtensionAbility {
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-启动Ability，包含一个Want类型参数。callback形式返回启动结果。
+启动Ability。使用callback异步回调。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -41,11 +43,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | 是 | Want类型参数，传入需要启动的ability的信息，如ability名称，包名等。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 let want = {
     'bundleName': 'com.example.myapp',
     'abilityName': 'MyAbility'
@@ -60,6 +62,8 @@ this.context.startAbility(want, (err) => {
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 启动Ability，包含Want类型参数，以及可选填的StartOption类型参数。通过Promise方法返回结果。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -78,7 +82,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **示例：**
 
-```js
+```ts
 let want = {
     'bundleName': 'com.example.myapp',
     'abilityName': 'MyAbility'
@@ -94,7 +98,9 @@ this.context.startAbility(want).then((data) => {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability，包含有两个参数，Want类型和StartOption类型参数。callback形式返回启动结果。
+启动Ability。使用callback异步回调。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -104,11 +110,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-application-Want.md)  | 是 | 启动Ability的want信息。 |
 | options | [StartOptions](js-apis-application-StartOptions.md) | 是 | 启动Ability所携带的参数。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | callback形式返回启动结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当启动Ability成功，err为undefined；否则为错误对象。|
 
 **示例：**
 
-```js
+```ts
 let want = {
     'deviceId': '',
     'bundleName': 'com.extreme.test',
@@ -126,7 +132,9 @@ this.context.startAbility(want, options, (error) => {
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止输入法应用自身，通过Callback方法返回接口调用是否成功。
+停止输入法应用自身。使用callback异步回调。
+
+**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -134,11 +142,11 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当启动Ability成功，err为undefined；否则为错误对象。 |
 
 **示例：**
 
-```js
+```ts
 this.context.terminateSelf((err) => {
     console.log('terminateSelf result:' + JSON.stringify(err));
 });
@@ -150,6 +158,8 @@ terminateSelf(): Promise&lt;void&gt;;
 
 停止输入法应用自身。通过Promise返回结果。
 
+**模型约束**： 此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -160,7 +170,7 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **示例：**
 
-```js
+```ts
 this.context.terminateSelf().then((data) => {
     console.log('success:' + JSON.stringify(data));
 }).catch((error) => {
