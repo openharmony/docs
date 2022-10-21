@@ -170,7 +170,9 @@ DeviceProfile适配分布式数据库自动同步策略，以及采集信息补�
 | Misc服务子系统 | 新增剪贴板、上传下载、锁屏、输入法框架等模块基础特性。<br/>主要涉及如下需求：<br/>I5JPMG&nbsp;【request部件】【download】后台任务通知<br/>I5NXHK&nbsp;【input_method_fwk部件】输入法框架支持仅绑定输入法innerkits接口和独立控制软键盘显隐的js接口<br/>I5NG2X&nbsp;【theme_screenlock部件】支持特定系统应用请求锁定屏幕<br/>I5IU1Z&nbsp;&nbsp;支持向剪贴板数据增加图片内容的数据项<br/>I5OGA3&nbsp;&nbsp;支持设备级的跨设备剪贴板开关<br/>I5NMKI&nbsp;【pasteboard部件】支持向剪贴板数据增加二进制数据<br/>I5MAMN&nbsp;&nbsp;支持剪贴板数据范围限制在应用内<br/>I5OX20&nbsp;【input_method_fwk部件】输入法框架支持获取输入法扩展 | NA |
 | ArkUI子系统 | ArkUI组件能力增强；资源、媒体查询能力增强；内存、性能优化；DFX能力增强；工具链能力增强。<br/>主要涉及如下需求：<br/>I5IZZ7&nbsp;【ace_engine_standard部件】panel组件支持单独设置每个角的borderRadius<br/>I5JQ1R&nbsp;【ace_engine_standard部件】支持图片复制粘贴<br/>I5JQ3F&nbsp;【ace_engine_standard部件】输入框能力增强<br/>I5JQ3J&nbsp;【ace_engine_standard部件】stack组件新增事件拓传机制<br/>I5JQ54&nbsp;【ace_engine_standard部件】指定控件获取焦点<br/>I5MX7J&nbsp;【ace_engine_standard部件】list列表支持左滑/右滑及回弹效果<br/>I5MWS0&nbsp;【ace_engine_standard部件】panel组件弹出高度通知给开发者<br/>I5IZVY&nbsp;【ace_engine_standard部件】键鼠接入时支持组件刷新<br/>I5JQ5Y&nbsp;【ace_engine_standard部件】走焦能力增强<br/>I5IY7K&nbsp;【新增需求】【ace_engine_standard部件】主题能力支持<br/>I5MWTB&nbsp;【ace_engine_standard部件】媒体查询支持vp查询<br/>I5IZU9&nbsp;【ace_engine_standard部件】ui_service常驻内存优化<br/>I5JQ26&nbsp;【ace_engine_standard部件】Vsync请求机制流程优化<br/>I5JQ2O&nbsp;【ace_engine部件】公共资源预加载<br/>I5JQ2D&nbsp;【ace_engine_standard部件】Move事件重采样优化<br/>I5IZXS&nbsp;【toolchain部件】DFX打印错误堆栈时支持显示开发者变量名称原文<br/>I5IZYG&nbsp;【toolchain部件】DFX打印错误堆栈时支持显示开发者变量名称原文<br/>I5IZX0&nbsp;【toolchain部件】编译支持解析$r新增bundleName和moduleName参数<br/>I5J09I&nbsp;【toolchain部件】\@Builder&nbsp;支持export导出 | NA |
 
+API变更请参考：
 
+[*API差异报告*](api-change/v3.2-beta3/Readme-CN.md)
 
 
 ### 芯片及开发板适配
