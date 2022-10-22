@@ -66,14 +66,14 @@ root {
 static int32_t HdfSampleDriverDispatch(
     struct HdfDeviceIoClient *client, int id, struct HdfSBuf *data, struct HdfSBuf *reply)
 {
-    HDF_LOGE("%s: received cmd %d", __func__, id);
+    HDF_LOGI("%{public}s: received cmd %{public}d", __func__, id);
     if (id == SAMPLE_WRITE_READ) {
         const char *readData = HdfSbufReadString(data);
         if (readData != NULL) {
-            HDF_LOGE("%s: read data is: %s", __func__, readData);
+            HDF_LOGE("%{public}s: read data is: %{public}s", __func__, readData);
         }
         if (!HdfSbufWriteInt32(reply, INT32_MAX)) {
-            HDF_LOGE("%s: reply int32 fail", __func__);
+            HDF_LOGE("%{public}s: reply int32 fail", __func__);
         }
         return HdfDeviceSendEvent(client->device, id, data);
     }
@@ -101,7 +101,7 @@ static int HdfSampleDriverBind(struct HdfDeviceObject *deviceObject)
 static int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
 {
     if (deviceObject == NULL) {
-        HDF_LOGE("%s::ptr is null!", __func__);
+        HDF_LOGE("%{public}s::ptr is null!", __func__);
         return HDF_FAILURE;
     }
     HDF_LOGE("Sample driver Init success");
@@ -149,7 +149,7 @@ static int OnDevEventReceived(void *priv,  uint32_t id, struct HdfSBuf *data)
         g_replyFlag = 1;
         return HDF_FAILURE;
     }
-    HDF_LOGE("%s: dev event received: %u %s",  (char *)priv, id, string);
+    HDF_LOGI("%{public}s: dev event received: %{public}u %{public}s",  (char *)priv, id, string);
     g_replyFlag = 1;
     return HDF_SUCCESS;
 }
@@ -188,7 +188,7 @@ static int SendEvent(struct HdfIoService *serv, char *eventData)
         ret = HDF_ERR_INVALID_OBJECT;
         goto out;
     }
-    HDF_LOGE("Get reply is: %d", replyData);
+    HDF_LOGI("Get reply is: %{public}d", replyData);
 out:
     HdfSbufRecycle(data);
     HdfSbufRecycle(reply);
