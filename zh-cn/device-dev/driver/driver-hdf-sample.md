@@ -104,7 +104,7 @@ static int HdfSampleDriverInit(struct HdfDeviceObject *deviceObject)
         HDF_LOGE("%{public}s::ptr is null!", __func__);
         return HDF_FAILURE;
     }
-    HDF_LOGE("Sample driver Init success");
+    HDF_LOGI("Sample driver Init success");
     return HDF_SUCCESS;
 }
 
