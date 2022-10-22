@@ -176,7 +176,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 
 如下示例展示了AbilityStage的`onConfigurationUpdated`回调实现，系统语言和颜色模式发生变化时触发该回调。具体示例代码如下：
 ```ts
-import Ability from '@ohos.application.Ability'
+import AbilityStage from '@ohos.application.AbilityStage'
 import ConfigurationConstant from '@ohos.application.ConfigurationConstant'
 
 export default class MyAbilityStage extends AbilityStage {
