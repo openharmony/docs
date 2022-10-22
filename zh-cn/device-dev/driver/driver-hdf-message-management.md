@@ -43,12 +43,12 @@
    // Dispatch是用来处理用户态发下来的消息
    int32_t SampleDriverDispatch(struct HdfDeviceIoClient *device, int cmdCode, struct HdfSBuf *data, struct HdfSBuf *reply)
    {
-       HDF_LOGE("sample driver lite A dispatch");
+       HDF_LOGI("sample driver lite A dispatch");
        return HDF_SUCCESS;
    }
    int32_t SampleDriverBind(struct HdfDeviceObject *device)
    {
-       HDF_LOGE("test for lite os sample driver A Open!");
+       HDF_LOGI("test for lite os sample driver A Open!");
        if (device == NULL) {
            HDF_LOGE("test for lite os sample driver A Open failed!");
            return HDF_FAILURE;
@@ -120,14 +120,14 @@
        {
            OsalTimespec time;
            OsalGetTime(&time);
-           HDF_LOGE("%s received event at %llu.%llu", (char *)priv, time.sec, time.usec);
+           HDF_LOGI("%{public}s received event at %{public}llu.%{public}llu", (char *)priv, time.sec, time.usec);
        
            const char *string = HdfSbufReadString(data);
            if (string == NULL) {
                HDF_LOGE("fail to read string in event data");
                return HDF_FAILURE;
            }
-           HDF_LOGE("%s: dev event received: %d %s",  (char *)priv, id, string);
+           HDF_LOGI("%{public}s: dev event received: %{public}d %{public}s",  (char *)priv, id, string);
            return HDF_SUCCESS;
        }
        ```
