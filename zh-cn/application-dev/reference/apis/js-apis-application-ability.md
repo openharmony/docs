@@ -45,7 +45,7 @@ Ability创建时回调，执行初始化业务逻辑操作。
   | param | AbilityConstant.LaunchParam | 是 | 创建&nbsp;ability、上次异常退出的原因信息。 | 
 
 **示例：**
-    
+
   ```js
   class myAbility extends Ability {
       onCreate(want, param) {
@@ -320,7 +320,6 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
 
 通用组件Caller通信客户端调用接口, 用来向通用组件服务端发送约定数据。
 
-
 ## Caller.call
 
 call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
@@ -342,54 +341,67 @@ call(method: string, data: rpc.Sequenceable): Promise&lt;void&gt;;
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise形式返回应答。 | 
 
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   class MyMessageAble{ // 自定义的Sequenceable数据结构
-      name:""
-      str:""
-      num: 1
-      constructor(name, str) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
+    name:""
+    str:""
+    num: 1
+    constructor(name, str) {
+      this.name = name;
+      this.str = str;
+    }
+    marshalling(messageParcel) {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
+    unmarshalling(messageParcel) {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
   };
   var method = 'call_Function'; // 约定的通知消息字符串
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            let msg = new MyMessageAble(1, "world"); // 参考Sequenceable数据定义
-            caller.call(method, msg)
-                .then(() => {
-                    console.log('Caller call() called');
-                }).catch((e) => {
-                console.log('Caller call() catch error ' + e);
-            });
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
-      
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        let msg = new MyMessageAble(1, "world"); // 参考Sequenceable数据定义
+        caller.call(method, msg)
+          .then(() => {
+            console.log('Caller call() called');
+          })
+          .catch((callErr) => {
+            console.log('Caller.call catch error, error.code: ' + JSON.stringify(callErr.code) +
+              ' error.message: ' + JSON.stringify(callErr.message));
+          });
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -415,55 +427,69 @@ callWithResult(method: string, data: rpc.Sequenceable): Promise&lt;rpc.MessagePa
   | -------- | -------- |
   | Promise&lt;rpc.MessageParcel&gt; | Promise形式返回通用组件服务端应答数据。 | 
 
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **示例：**
-    
+
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   class MyMessageAble{
-      name:""
-      str:""
-      num: 1
-      constructor(name, str) {
-        this.name = name;
-        this.str = str;
-      }
-      marshalling(messageParcel) {
-          messageParcel.writeInt(this.num);
-          messageParcel.writeString(this.str);
-          console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
-      unmarshalling(messageParcel) {
-          this.num = messageParcel.readInt();
-          this.str = messageParcel.readString();
-          console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
-          return true;
-      }
+    name:""
+    str:""
+    num: 1
+    constructor(name, str) {
+      this.name = name;
+      this.str = str;
+    }
+    marshalling(messageParcel) {
+      messageParcel.writeInt(this.num);
+      messageParcel.writeString(this.str);
+      console.log('MyMessageAble marshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
+    unmarshalling(messageParcel) {
+      this.num = messageParcel.readInt();
+      this.str = messageParcel.readString();
+      console.log('MyMessageAble unmarshalling num[' + this.num + '] str[' + this.str + ']');
+      return true;
+    }
   };
   var method = 'call_Function';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            let msg = new MyMessageAble(1, "world");
-            caller.callWithResult(method, msg)
-                .then((data) => {
-                    console.log('Caller callWithResult() called');
-                    let retmsg = new MyMessageAble(0, "");
-                    data.readSequenceable(retmsg);
-                }).catch((e) => {
-                console.log('Caller callWithResult() catch error ' + e);
-            });
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        let msg = new MyMessageAble(1, "world");
+        caller.callWithResult(method, msg)
+          .then((data) => {
+            console.log('Caller callWithResult() called');
+            let retmsg = new MyMessageAble(0, "");
+            data.readSequenceable(retmsg);
+          })
+          .catch((callErr) => {
+            console.log('Caller.callWithResult catch error, error.code: ' + JSON.stringify(callErr.code) +
+              ' error.message: ' + JSON.stringify(callErr.message));
+          });
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -476,36 +502,48 @@ release(): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
+
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            try {
-                caller.release();
-            } catch (e) {
-                console.log('Caller Release error ' + e);
-            }
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+        caller = obj;
+        try {
+          caller.release();
+        } catch (releaseErr) {
+          console.log('Caller.release catch error, error.code: ' + JSON.stringify(releaseErr.code) +
+            ' error.message: ' + JSON.stringify(releaseErr.message));
+        }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
 
-## Caller.onRelease
+## Caller.on
 
-onRelease(callback: OnReleaseCallBack): void;
+ on(type: "release", callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -515,33 +553,45 @@ onRelease(callback: OnReleaseCallBack): void;
 
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
+  | type | string | 是 | 监听releaseCall事件，固定为'release'。 | 
   | callback | OnReleaseCallBack | 是 | 返回onRelease回调结果。 | 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16000050 | Internal Error. |
 
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   var caller;
   export default class MainAbility extends Ability {
-      onWindowStageCreate(windowStage) {
-        this.context.startAbilityByCall({
-            bundleName: "com.example.myservice",
-            abilityName: "MainAbility",
-            deviceId: ""
-        }).then((obj) => {
-            caller = obj;
-            try {
-                caller.onRelease((str) => {
-                    console.log(' Caller OnRelease CallBack is called ' + str);
-                });
-            } catch (e) {
-                console.log('Caller Release error ' + e);
-            }
-            console.log('Caller GetCaller Get ' + caller);
-        }).catch((e) => {
-            console.log('Caller GetCaller error ' + e);
-        });
-      }
+    onWindowStageCreate(windowStage) {
+      this.context.startAbilityByCall({
+        bundleName: "com.example.myservice",
+        abilityName: "MainAbility",
+        deviceId: ""
+      }).then((obj) => {
+          caller = obj;
+          try {
+            caller.on("release", (str) => {
+                console.log(' Caller OnRelease CallBack is called ' + str);
+            });
+          } catch (error) {
+            console.log('Caller.on catch error, error.code: ' + JSON.stringify(error.code) +
+              ' error.message: ' + JSON.stringify(error.message));
+          }
+      }).catch((err) => {
+        console.log('Caller GetCaller error, error.code: ' + JSON.stringify(err.code) +
+          ' error.message: ' + JSON.stringify(err.message));
+      });
+    }
   }
   ```
 
@@ -549,7 +599,6 @@ onRelease(callback: OnReleaseCallBack): void;
 ## Callee
 
 通用组件服务端注册和解除客户端caller通知送信的callback接口。
-
 
 ## Callee.on
 
@@ -566,10 +615,20 @@ on(method: string, callback: CalleeCallBack): void;
   | method | string | 是 | 与客户端约定的通知消息字符串。 | 
   | callback | CalleeCallBack | 是 | 一个rpc.MessageParcel类型入参的js通知同步回调函数,&nbsp;回调函数至少要返回一个空的rpc.Sequenceable数据对象,&nbsp;其他视为函数执行错误。 | 
 
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal Error. |
+
 **示例：**
-    
+
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   class MyMessageAble{
       name:""
       str:""
@@ -599,13 +658,17 @@ on(method: string, callback: CalleeCallBack): void;
       return new MyMessageAble(10, "Callee test");
   }
   export default class MainAbility extends Ability {
-      onCreate(want, launchParam) {
-          console.log('Callee onCreate is called');
-          this.callee.on(method, funcCallBack);
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.on(method, funcCallBack);
+      } catch (error) {
+        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       }
+    }
   }
   ```
-
 
 ## Callee.off
 
@@ -621,20 +684,36 @@ off(method: string): void;
   | -------- | -------- | -------- | -------- |
   | method | string | 是 | 已注册的通知事件字符串。 | 
 
+**错误码：**
+
+以下错误码的详细介绍请参见[元能力错误码](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Invalid input parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal Error. |
+
+
 **示例：**
     
   ```js
-  import Ability from '@ohos.application.Ability';
+  import Ability from '@ohos.app.ability.Ability';
   var method = 'call_Function';
   export default class MainAbility extends Ability {
-      onCreate(want, launchParam) {
-          console.log('Callee onCreate is called');
-          this.callee.off(method);
+    onCreate(want, launchParam) {
+      console.log('Callee onCreate is called');
+      try {
+        this.callee.off(method);
+      } catch (error) {
+        console.log('Callee.off catch error, error.code: ' + JSON.stringify(error.code) +
+          ' error.message: ' + JSON.stringify(error.message));
       }
+    }
   }
   ```
 
-## OnReleaseCallBack
+## OnReleaseCallback
 
 (msg: string): void;
 
@@ -644,7 +723,7 @@ off(method: string): void;
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | function | 是 | 否 | 调用者注册的侦听器函数接口的原型。 | 
 
-## CalleeCallBack
+## CalleeCallback
 
 (indata: rpc.MessageParcel): rpc.Sequenceable;
 

@@ -40,7 +40,7 @@ Caller及Callee功能如下：具体的API详见[接口文档](../reference/apis
 |call(method: string, data: rpc.Sequenceable): Promise\<void>|向通用组件Callee发送约定序列化数据。|
 |callWithResult(method: string, data: rpc.Sequenceable): Promise\<rpc.MessageParcel>|向通用组件Callee发送约定序列化数据, 并将Callee返回的约定序列化数据带回。|
 |release(): void|释放通用组件的Caller通信接口。|
-|onRelease(callback: OnReleaseCallBack): void|注册通用组件通信断开监听通知。|
+|on(type: "release", callback: OnReleaseCallback): void|注册通用组件通信断开监听通知。|
 
 ## 开发步骤
 Call调用的开发步骤：
@@ -72,7 +72,7 @@ Ability配置标签示例如下：
 ```
 **2. 导入Ability模块**
 ```ts
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.Ability'
 ```
 **3. 定义约定的序列化数据**
 
@@ -142,7 +142,7 @@ export default class CalleeAbility extends Ability {
 ### 访问Callee被调用端
 **1. 导入Ability模块**
 ```ts
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.Ability'
 ```
 **2. 获取Caller通信接口**
 
@@ -151,7 +151,7 @@ import Ability from '@ohos.application.Ability'
 // 注册caller的release监听
 private regOnRelease(caller) {
     try {
-        caller.onRelease((msg) => {
+        caller.on("release", (msg) => {
             console.log(`caller onRelease is called ${msg}`)
         })
         console.log('caller register OnRelease succeed')
@@ -192,7 +192,7 @@ async onButtonGetRemoteCaller() {
             caller = data
             console.log('get remote caller success')
             // 注册caller的release监听
-            caller.onRelease((msg) => {
+            caller.on("release", (msg) => {
                 console.log(`remote caller onRelease is called ${msg}`)
             })
             console.log('remote caller register OnRelease succeed')
