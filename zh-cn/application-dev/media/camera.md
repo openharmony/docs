@@ -20,10 +20,6 @@ OpenHarmony相机模块支持相机业务的开发，开发者可以通过已开
 
 包含流程：权限申请、创建实例、参数设置、会话管理、拍照、录像、释放资源等。
 
-Xcomponent创建方法可参考：[XComponent创建方法](#xcomponent创建方法)
-
-拍照保存接口可参考：[图片处理API文档](image.md#imagereceiver的使用)
-
 #### 权限申请
 
 在使用相机之前，需要申请相机的相关权限，保证应用拥有相机硬件及其他功能权限，应用权限的介绍请参考权限章节，相机涉及权限如下表。
@@ -57,39 +53,22 @@ function applyPermission() {
 
 在实现一个相机应用之前必须先创建一个独立的相机设备，然后才能继续相机的其他操作。如果此步骤操作失败，相机可能被占用或无法使用。如果被占用，必须等到相机释放后才能重新获取CameraManager对象。通过getSupportedCameras() 方法，获取当前使用的设备支持的相机列表。相机列表中存储了当前设备拥有的所有相机ID，如果列表不为空，则列表中的每个ID都支持独立创建相机对象；否则，说明正在使用的设备无可用的相机，不能继续后续的操作。相机设备具备预览、拍照、录像、Metadata等输出流，需要通过getSupportedOutputCapability()接口获取各个输出流的具体能力，通过该接口，可以获取当前设备支持的所有输出流能力，分别在CameraOutputCapability中的各个profile字段中，相机设备创建的建议步骤如下：
 
-```js
+```typescript
 import camera from '@ohos.multimedia.camera'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
-import featureAbility from '@ohos.ability.featureAbility'
 
 // 创建CameraManager对象
-let cameraManager
-await camera.getCameraManager(null, (err, manager) => {
-    if (err) {
-        console.error('Failed to get the CameraManager instance ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the CameraManager instance');
-    cameraManager = manager
-})
-
-// 注册回调函数监听相机状态变化，获取状态变化的相机信息
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
-    console.log('camera : ' + cameraStatusInfo.camera.cameraId);
-    console.log('status: ' + cameraStatusInfo.status);
-})
+let cameraManager = await camera.getCameraManager(null)
+if (!cameraManager) {
+    console.error('Failed to get the CameraManager instance');
+}
 
 // 获取相机列表
-let cameraArray
-await cameraManager.getSupportedCameras(async (err, cameras) => {
-    if (err) {
-        console.error('Failed to get the cameras. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with an array of supported cameras: ' + cameras.length);
-    cameraArray = cameras
-})
+let cameraArray = await cameraManager.getSupportedCameras()
+if (!cameraArray) {
+    console.error('Failed to get the cameras');
+}
 
 for (let index = 0; index < cameraArray.length; index++) {
     console.log('cameraId : ' + cameraArray[index].cameraId)                          // 获取相机ID
@@ -108,77 +87,70 @@ await cameraManager.createCameraInput(cameraArray[0].cameraId).then((input) => {
 // 获取相机设备支持的输出流能力
 let cameraOutputCap = await camera.getSupportedOutputCapability(cameraInput);
 if (!cameraOutputCap) {
-    console.info("outputCapability outputCapability == null || undefined")
+    console.error("outputCapability outputCapability == null || undefined")
 } else {
     console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 }
 
 let previewProfilesArray = cameraOutputCap.previewProfiles;
 if (!previewProfilesArray) {
-    console.info("createOutput previewProfilesArray == null || undefined")
+    console.error("createOutput previewProfilesArray == null || undefined")
 } 
 
 let photoProfilesArray = cameraOutputCap.photoProfiles;
 if (!photoProfilesArray) {
-    console.info("createOutput photoProfilesArray == null || undefined")
+    console.error("createOutput photoProfilesArray == null || undefined")
 } 
 
 let videoProfilesArray = cameraOutputCap.videoProfiles;
 if (!videoProfilesArray) {
-    console.info("createOutput videoProfilesArray == null || undefined")
+    console.error("createOutput videoProfilesArray == null || undefined")
 } 
 
 let metadataObjectTypesArray = cameraOutputCap.supportedMetadataObjectTypes;
 if (!metadataObjectTypesArray) {
-    console.info("createOutput metadataObjectTypesArray == null || undefined")
+    console.error("createOutput metadataObjectTypesArray == null || undefined")
 }
 
 // 创建预览输出流
-let previewOutput
-camera.createPreviewOutput(previewProfilesArray[0], surfaceId, async (err, output) => {
-    if (err) {
-        console.error('Failed to create the PreviewOutput instance. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with previewOutput instance');
-    previewOutput = output
-});
+let previewOutput = await camera.createPreviewOutput(previewProfilesArray[0], surfaceId)
+if (!previewOutput) {
+    console.error("Failed to create the PreviewOutput instance.")
+}
 
 // 创建ImageReceiver对象，并设置照片参数
 let imageReceiver = await image.createImageReceiver(1920, 1080, 4, 8)
 // 获取照片显示SurfaceId
 let photoSurfaceId = await imageReceiver.getReceivingSurfaceId()
 // 创建拍照输出流
-let photoOutput
-await camera.createPhotoOutput(photoProfilesArray[0], photoSurfaceId, async (err, output) => {
-    if (err) {
-        console.error('Failed to create the PhotoOutput instance. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the PhotoOutput instance.');
-    photoOutput = output
-});
+let photoOutput = await this.camera.createPhotoOutput(photoProfilesArray[0], photoSurfaceId)
+if (!photoOutput) {
+    console.error('Failed to create the PhotoOutput instance.');
+    return;
+}
 
 // 创建视频录制的参数
-let videoProfile = {
-    audioBitrate : 48000,
-    audioChannels : 2,
-    audioCodec : 'audio/mp4a-latm',
-    audioSampleRate : 48000,
-    fileFormat : 'mp4',
-    videoBitrate : 48000,
-    videoCodec : 'video/mp4v-es',
-    videoFrameWidth : 640,
-    videoFrameHeight : 480,
-    videoFrameRate : 30
-}
 let videoConfig = {
-    audioSourceType : 1,
-    videoSourceType : 0,
-    profile : videoProfile,
-    url : 'file:///data/media/01.mp4',
-    orientationHint : 0,
-    location : { latitude : 30, longitude : 130 },
+    audioSourceType: 1,
+    videoSourceType: 1,
+    profile: {
+        audioBitrate: 48000,
+        audioChannels: 2,
+        audioCodec: 'audio/mp4v-es',
+        audioSampleRate: 48000,
+        durationTime: 1000,
+        fileFormat: 'mp4',
+        videoBitrate: 48000,
+        videoCodec: 'video/mp4v-es',
+        videoFrameWidth: 640,
+        videoFrameHeight: 480,
+        videoFrameRate: 30
+    },
+    url: 'file:///data/media/01.mp4',
+    orientationHint: 0,
+    maxSize: 100,
+    maxDuration: 500,
+    rotation: 0
 }
 
 // 创建录像输出流
@@ -196,15 +168,11 @@ await videoRecorder.getInputSurface().then((id) => {
 })
 
 // 创建VideoOutput对象
-let videoOutput
-camera.createVideoOutput(videoProfile, videoSurfaceId, async (err, data) => {
-    if (!err) {
-        console.info("Callback returned with create video output successfully.");
-        videoOutput = data;
-    } else {
-        console.info("Failed to create video output, err: " + err.message);
-    }
-});
+let videoOutput = camera.createVideoOutput(videoProfilesArray[0], videoSurfaceId)
+if (!videoOutput) {
+    console.error('Failed to create the videoOutput instance.');
+    return;
+}
 ```
 预览流、拍照流和录像流的输入均需要提前创建surface，其中预览流为XComponent组件提供的surface，拍照流为ImageReceiver提供的surface，录像流为VideoRecorder的surface。
 
@@ -272,19 +240,81 @@ function getVideoRecorderSurface() {
     }
 ```
 
+#### 会话管理
+
+##### 创建会话
+
+```typescript
+// 创建Context对象
+let context = featureAbility.getContext()
+
+//创建会话
+let captureSession = await camera.createCaptureSession()
+if (!captureSession) {
+    console.error('Failed to create the CaptureSession instance.');
+    return;
+}
+console.log('Callback returned with the CaptureSession instance.' + session);
+
+// 开始配置会话
+await captureSession.beginConfig()
+
+// 向会话中添加相机输入流
+await captureSession.addInput(cameraInput)
+
+// 向会话中添加预览输入流
+await captureSession.addOutput(previewOutput)
+
+// 向会话中添加拍照输出流
+await captureSession.addOutput(photoOutput)
+
+// 提交会话配置
+await captureSession.commitConfig()
+
+// 启动会话
+await captureSession.start().then(() => {
+    console.log('Promise returned to indicate the session start success.');
+})
+```
+
+##### 切换会话
+
+```typescript
+// 停止当前会话
+await captureSession.stop()
+
+// 开始配置会话
+await captureSession.beginConfig()
+
+// 从会话中移除拍照输出流
+await captureSession.removeOutput(photoOutput)
+
+// 向会话中添加录像输出流
+await captureSession.addOutput(videoOutput)
+
+// 提交会话配置
+await captureSession.commitConfig()
+
+// 启动会话
+await captureSession.start().then(() => {
+    console.log('Promise returned to indicate the session start success.');
+})
+```
+
 #### 参数设置
 
-```js
+```typescript
 // 判断设备是否支持闪光灯
-let flashStatus
-await cameraInput.hasFlash().then(async (status) => {
-    console.log('Promise returned with the flash light support status:' + status);
-    flashStatus = status
-})
-if(flashStatus) {
+let flashStatus = await captureSession.hasFlash()
+if (!flashStatus) {
+    console.error('Failed to check whether the device has the flash mode.');
+}
+console.log('Promise returned with the flash light support status:' + flashStatus);
+
+if (flashStatus) {
     // 判断是否支持自动闪光灯模式
     let flashModeStatus
-    cameraInput.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, async (err, status) => {
+    captureSession.isFlashModeSupported(camera.FlashMode.FLASH_MODE_AUTO, async (err, status) => {
         if (err) {
             console.error('Failed to check whether the flash mode is supported. ${err.message}');
             return;
@@ -294,7 +324,7 @@ if(flashStatus) {
     })
     if(flashModeStatus) {
         // 设置自动闪光灯模式
-        cameraInput.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, async (err) => {
+        captureSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO, async (err) => {
             if (err) {
                 console.error('Failed to set the flash mode  ${err.message}');
                 return;
@@ -306,7 +336,7 @@ if(flashStatus) {
 
 // 判断是否支持连续自动变焦模式
 let focusModeStatus
-cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err, status) => {
+captureSession.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err, status) => {
     if (err) {
         console.error('Failed to check whether the focus mode is supported. ${err.message}');
         return;
@@ -314,9 +344,9 @@ cameraInput.isFocusModeSupported(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, as
     console.log('Callback returned with the focus mode support status: ' + status);
     focusModeStatus = status
 })
-if(focusModeStatus) {
+if (focusModeStatus) {
     // 设置连续自动变焦模式
-    cameraInput.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err) => {
+    captureSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO, async (err) => {
         if (err) {
             console.error('Failed to set the focus mode  ${err.message}');
             return;
@@ -326,18 +356,14 @@ if(focusModeStatus) {
 }
 
 // 获取相机支持的可变焦距比范围
-let zoomRatioRange
-cameraInput.getZoomRatioRange(async (err, range) => {
-    if (err) {
-        console.error('Failed to get the zoom ratio range. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with zoom ratio range: ' + range.length);
-    zoomRatioRange = range
-})
+let zoomRatioRange = await captureSession.getZoomRatioRange()
+if (!zoomRatioRange) {
+    console.error('Failed to get the zoom ratio range.');
+    return;
+}
 
 // 设置可变焦距比
-cameraInput.setZoomRatio(zoomRatioRange[0], async (err) => {
+captureSession.setZoomRatio(zoomRatioRange[0], async (err) => {
     if (err) {
         console.error('Failed to set the zoom ratio value ${err.message}');
         return;
@@ -346,133 +372,9 @@ cameraInput.setZoomRatio(zoomRatioRange[0], async (err) => {
 })
 ```
 
-#### 会话管理
-
-##### 创建会话
-
-```js
-// 创建Context对象
-let context = featureAbility.getContext()
-
-//创建会话
-let captureSession
-await camera.createCaptureSession((err, session) => {
-    if (err) {
-        console.error('Failed to create the CaptureSession instance. ${err.message}');
-        return;
-    }
-    console.log('Callback returned with the CaptureSession instance.' + session);
-    captureSession = session
-});
-
-// 开始配置会话
-await captureSession.beginConfig(async (err) => {
-    if (err) {
-        console.error('Failed to start the configuration. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the begin config success.');
-});
-
-// 向会话中添加相机输入流
-await captureSession.addInput(cameraInput, async (err, data) => {
-    if (err) {
-        console.error('Failed to add the CameraInput instance. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the CameraInput instance is added.');
-});
-
-// 向会话中添加预览输入流
-await captureSession.addOutput(previewOutput, async (err, data) => {
-    if (err) {
-        console.error('Failed to add the PreviewOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is added.');
-});
-
-// 向会话中添加拍照输出流
-await captureSession.addOutput(photoOutput, async (err, data) => {
-    if (err) {
-        console.error('Failed to add the PhotoOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the PhotoOutput instance is added.');
-});
-
-// 提交会话配置
-await captureSession.commitConfig(async (err) => {
-    if (err) {
-        console.error('Failed to commit the configuration. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the commit config success.');
-});
-
-// 启动会话
-await captureSession.start().then(() => {
-    console.log('Promise returned to indicate the session start success.');
-})
-```
-
-##### 切换会话
-
-```js
-// 停止当前会话
-await captureSession.stop(async (err) => {
-    if (err) {
-        console.error('Failed to stop the session ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the session stop success.');
-});
-
-// 开始配置会话
-await captureSession.beginConfig(async (err) => {
-    if (err) {
-        console.error('Failed to start the configuration. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the begin config success.');
-});
-
-// 从会话中移除拍照输出流
-await captureSession.removeOutput(photoOutput, async (err) => {
-    if (err) {
-        console.error('Failed to remove the PhotoOutput instance. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the PhotoOutput instance is removed.');
-});
-
-// 向会话中添加录像输出流
-await captureSession.addOutput(videoOutput, async (err) => {
-    if (err) {
-        console.error('Failed to add the VideoOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the VideoOutput instance is added.');
-});
-
-// 提交会话配置
-await captureSession.commitConfig(async (err) => {
-    if (err) {
-        console.error('Failed to commit the configuration. ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the commit config success.');
-});
-
-// 启动会话
-await captureSession.start().then(() => {
-    console.log('Promise returned to indicate the session start success.');
-})
-```
-
 #### 拍照
 
-```js
+```typescript
 let settings = {
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,                                     // 设置图片质量高
     rotation: camera.ImageRotation.ROTATION_0                                            // 设置图片旋转角度0
@@ -489,7 +391,7 @@ photoOutput.capture(settings, async (err) => {
 
 #### 录像
 
-```js
+```typescript
 // 启动录像输出流
 videoOutput.start(async (err) => {
     if (err) {
@@ -519,57 +421,31 @@ await videoOutput.stop((err) => {
 });
 ```
 
+拍照保存接口可参考：[图片处理API文档](image.md#imagereceiver的使用)
+
 #### 释放资源
 
-```js
+```typescript
 // 停止当前会话
-await captureSession.stop(async (err) => {
-    if (err) {
-        console.error('Failed to stop the session ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate the session stop success.');
-});
+await captureSession.stop()
+
 // 释放相机输入流
-await cameraInput.release(async (err) => {
-    if (err) {
-        console.error('Failed to release the CameraInput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the CameraInput instance is released successfully.');
-});
+await cameraInput.release()
+
 // 释放预览输出流
-await previewOutput.release(async (err) => {
-    if (err) {
-        console.error('Failed to release the PreviewOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
-});
+await previewOutput.release()
+
 // 释放拍照输出流
-await photoOutput.release(async (err) => {
-    if (err) {
-        console.error('Failed to release the PhotoOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the PhotoOutput instance is released successfully.');
-});
+await photoOutput.release()
+
 // 释放录像输出流
-await videoOutput.release(async (err) => {
-    if (err) {
-        console.error('Failed to release the VideoOutput instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the VideoOutput instance is released successfully.');
-});
+await videoOutput.release()
+
 // 释放会话
-await captureSession.release(async (err) => {
-    if (err) {
-        console.error('Failed to release the CaptureSession instance ${err.message}');
-        return;
-    }
-    console.log('Callback invoked to indicate that the CaptureSession instance is released successfully.');
-});
+await captureSession.release()
+
+// 会话置空
+captureSession = null
 ```
 
 ## 流程图
