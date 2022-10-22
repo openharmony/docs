@@ -93,7 +93,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
      - BUILD.gn部分：
 
-       添加模块BUILD.gn参考定义如下内容：
+       添加模块BUILD.gn，可参考如下示例：
 
            
        ```c
