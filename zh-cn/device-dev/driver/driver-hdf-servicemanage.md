@@ -72,7 +72,9 @@ typedef enum {
    }
    ```
 
-2. 驱动服务绑定，开发者实现HdfDriverEntry中的Bind指针函数，如下的SampleDriverBind，把驱动服务绑定到HDF框架中。
+2. 驱动服务绑定。
+
+开发者实现HdfDriverEntry中的Bind指针函数，如下的SampleDriverBind，把驱动服务绑定到HDF框架中。
      
    ```c
    int32_t SampleDriverBind(struct HdfDeviceObject *deviceObject)
@@ -92,6 +94,7 @@ typedef enum {
    ```
 
 3. 驱动服务获取。
+
    应用程序开发者获取驱动服务有两种方式：通过HDF接口直接获取和通过HDF提供的订阅机制获取。
 
    - 通过HDF接口直接获取
