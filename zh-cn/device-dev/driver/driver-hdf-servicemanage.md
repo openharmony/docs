@@ -73,6 +73,7 @@ typedef enum {
    ```
 
 2. 驱动服务绑定。
+   
    开发者实现HdfDriverEntry中的Bind指针函数，如下的SampleDriverBind，把驱动服务绑定到HDF框架中。
      
    ```c
@@ -116,8 +117,8 @@ typedef enum {
 
         
       ```c
-      // 订阅回调函数的编写，当被订阅的驱动加载完成后，HDF框架会将被订阅驱动的服务发布给订阅者，通过这个回调函数给订阅者使用
-      // object为订阅者的私有数据，service为被订阅的服务对象
+      // 订阅回调函数的编写，当被订阅的驱动加载完成后，HDF框架会将被订阅驱动的服务发布给订阅者，通过这个回调函数给订阅者使用。
+      // object为订阅者的私有数据，service为被订阅的服务对象。
       int32_t TestDriverSubCallBack(struct HdfDeviceObject *deviceObject, const struct HdfObject *service)
       {
           const struct ISampleDriverService *sampleService =
