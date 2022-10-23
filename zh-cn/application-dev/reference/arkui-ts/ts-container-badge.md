@@ -46,12 +46,13 @@
 | Left | 圆点显示在左侧纵向居中。 |
 
 ## BadgeStyle对象说明
-| 名称 | 类型 | 必填 | 默认值 | 描述 |
-  | -------- | -------- | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | Color.White | 文本颜色。 |
-| fontSize | number&nbsp;\|&nbsp;string | 否 | 10 | 文本大小。 |
-| badgeSize | number&nbsp;\|&nbsp;string | 是 | - | badge的大小。 |
-| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | Color.Red | badge的颜色。 |
+
+| 名称       | 类型                                       | 必填 | 默认值      | 描述                                        |
+| ---------- | ------------------------------------------ | ---- | ----------- | ------------------------------------------- |
+| color      | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.White | 文本颜色。                                  |
+| fontSize   | number&nbsp;\|&nbsp;string                 | 否   | 10          | 文本大小，单位vp。                          |
+| badgeSize  | number&nbsp;\|&nbsp;string                 | 否   | 16          | Badge的大小，单位vp。不支持百分比形式设置。 |
+| badgeColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | Color.Red   | Badge的颜色。                               |
 
 ## 示例
 
