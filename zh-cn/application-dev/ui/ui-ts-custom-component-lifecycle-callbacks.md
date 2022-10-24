@@ -57,6 +57,8 @@ struct CountDownTimerComponent {
 }
 ```
 
+![aboutToAppear](figures/aboutToAppear.gif)
+
 上述示例表明，生命周期函数对于允许CountDownTimerComponent管理其计时器资源至关重要，类似的函数也包括异步从网络请求加载资源。
 
 ## onPageShow
@@ -111,6 +113,8 @@ struct IndexComponent {
   }
 }
 ```
+
+![lifecycle](figures/lifecycle.PNG)
 
 ## onLayout
 
