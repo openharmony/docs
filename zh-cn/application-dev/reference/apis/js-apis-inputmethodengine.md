@@ -789,7 +789,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 ### hide<sup>9+</sup>
 
-hide(callback: AsyncCallbackAsyncCallback&lt;void&gt;): void
+hide(callback: AsyncCallback&lt;void&gt;): void
 
 隐藏输入法。使用callback异步回调。
 
