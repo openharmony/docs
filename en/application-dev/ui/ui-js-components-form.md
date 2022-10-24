@@ -1,18 +1,16 @@
-# &lt;form&gt; Development
+# \<form> Development
 
-
-The &lt;form&gt; component allows the content in [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
+The **\<form>** component allows the content in [\<Input>](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
 
 
 > **NOTE**
 >
-> This component is supported since API version 6.
+> The APIs of this module are supported since API version 6.
 
 
-## Creating a &lt;form&gt; Component
+## Creating a \<form> Component
 
-Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
-
+Create a **\<form>** component in the .hml file under **pages/index**.
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -39,8 +37,7 @@ Create a **&lt;form&gt;** component in the .hml file under **pages/index**.
 
 ## Zooming In or Out on a Form
 
-To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **&lt;form&gt;** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
-
+To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **\<form>** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -51,7 +48,7 @@ To implement the zoom effect after a form is clicked, add the **click-effect** a
 ```
 
 
-## Setting Form Styles
+## Setting the Form Style
 
 
 Add the **background-color** and **border** attributes.
@@ -147,14 +144,14 @@ export default{
 
 Select an option and submit or reset the form data.
 
-Create [&lt;input&gt;](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **&lt;form&gt;** component to submit and reset the form data.
+Create two [\<Input>](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **\<form>** component to submit and reset the form data, respectively.
 
 ```html
 <!-- xxx.hml -->
 <div class="container">
    <form onsubmit="formSubmit" onreset="formReset">
  <text style="font-size: 30px; margin-bottom: 20px; margin-top: 100px;">
-      <span > form </span>
+      <span > Form </span>
   </text>
     <div style="flex-direction: column;width: 90%;padding: 30px 0px;">
      <text class="txt">Select 1 or more options</text>

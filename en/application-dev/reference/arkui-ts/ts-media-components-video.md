@@ -24,9 +24,9 @@ Video(value: {src?: string | Resource, currentProgressRate?: number | string | P
 
 | Name             | Type                                                    | Mandatory| Description                                                    |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                   | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
+| src                 | string \| [Resource](ts-types.md)                   | No  | Path of the video source, which can be a local path or a URL.<br>The video resources can be stored in the **video** or **rawfile** folder under **resources**.<br>The path can include a **dataability://** prefix, which is used to access the video path provided by a Data ability. For details about the path, see [Data Ability Development](../../ability/fa-dataability.md).<br>**NOTE**<br>The supported video formats are MP4, MKV, WebM, and TS. |
 | currentProgressRate | number \| string \| PlaybackSpeed<sup>8+</sup> | No  | Video playback speed.<br>**NOTE**<br>The value of the number type can only be **0.75**, **1.0**, **1.25**, **1.75**, or **2.0**.<br>Default value: **1.0** \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md#resource) | No  | Path of the preview image.                                            |
+| previewUri          | string \| PixelMap<sup>8+</sup> \| [Resource](ts-types.md) | No  | Path of the preview image.                                            |
 | controller          | [VideoController](#videocontroller)                          | No  | Controller.                                                    |
 
 ## PlaybackSpeed<sup>8+</sup>

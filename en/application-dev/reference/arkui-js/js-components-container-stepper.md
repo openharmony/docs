@@ -1,10 +1,10 @@
 # stepper
 
-The **\<stepper>** component provides a step navigator. When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process.
-
 >  **NOTE**
 >
 >  This component is supported since API version 5. Updates will be marked with a superscript to indicate their earliest API version.
+
+The **\<stepper>** component provides a step navigator. When multiple steps are required to complete a task, you can use the **\<stepper>** component to navigate your users through the whole process.
 
 
 ## Required Permissions
@@ -98,6 +98,7 @@ In addition to the [universal methods](../arkui-js/js-components-common-methods.
   height: 300px;
 }
 .stepperItem {
+  width: 100%;
   flex-direction: column;
   align-items: center;
 }
