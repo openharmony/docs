@@ -2192,7 +2192,7 @@ setFocusMode(afMode: FocusMode, callback: AsyncCallback<void\>): void
 
 设置对焦模式，通过注册回调函数获取结果。
 
-进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
+进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](###isfocusmodesupported)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2221,7 +2221,7 @@ setFocusMode(afMode: FocusMode): Promise<void\>
 
 设置对焦模式，通过Promise获取结果。
 
-进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](#isfocusmodesupported)。
+进行设置之前，需要先检查设备是否支持指定的焦距模式，可使用方法[isFocusModeSupported](###isfocusmodesupported)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
