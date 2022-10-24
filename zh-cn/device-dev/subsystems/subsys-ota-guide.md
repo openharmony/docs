@@ -74,13 +74,13 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 ### 生成公私钥对
 1. 使用OpenSSL工具生成公私钥对。
 
-3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在 ./device/hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
+3. 请妥善保管私钥文件，在升级包制作过程中将私钥文件作为制作命令的参数带入，用于升级包签名，公钥用于升级时对升级包进行签名校验，公钥的放置如下： 轻量和小型系统将生成的公钥内容预置在代码中，需要厂商实现 HotaHalGetPubKey 这个接口来获取公钥。标准系统需要将生成的公钥放在device或vendor目录下的 /hisilicon/hi3516dv300/build/updater_config/signing_cert.crt 这个文件中。
 
-5. 对使用 Hi3516DV300 套件的轻量和小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块third_party\u-boot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
+5. 对使用 Hi3516DV300 套件的小型系统，在上一步的基础上，还需用public_arr.txt里面的全部内容替换uboot模块third_party\u-boot\u-boot-2020.01\product\hiupdate\verify\update_public_key.c 中的g_pub_key中的全部内容。
    示例，uboot模块的公钥：
 
    ```c
-   static unsigned char g_pub_key[PUBKEY_LEN] = {
+   static unsigned char g_pub_key[] = {
        0x30, 0x82, 0x01, 0x0A, 0x02, 0x82, 0x01, 0x01,
        0x00, 0xBF, 0xAA, 0xA5, 0xB3, 0xC2, 0x78, 0x5E,
    }
@@ -93,6 +93,8 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
 #### 轻量与小型系统升级包制作
 
 1. 创建目标版本（target_package）文件夹，文件格式如下：
+
+   轻量级系统和AB升级的小型系统不需要 OTA.tag 和 config。
      
    ```text
     target_package
@@ -133,9 +135,9 @@ OTA 的升级原理是利用升级包制作工具，将编译出的版本打包�
    | 头信息（head节点） | info节点 | / | 必填 | 该节点内容配置为：head&nbsp;info | 
    | 头信息（head节点） | info节点 | fileVersion | 必填 | 保留字段，内容不影响升级包生成 | 
    | 头信息（head节点） | info节点 | prdID | 必填 | 保留字段，内容不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须在“VERSION.mbn”范围内，否则无法生产升级 | 
+   | 头信息（head节点） | info节点 | softVersion | 必填 | 软件版本号，即升级包版本号，版本必须比基础版本大，且OpenHarmony后没有其他字母，否则无法生产升级 | 
    | 头信息（head节点） | info节点 | _date_ | _必填_ | 升级包制作日期，保留字段，不影响升级包生成 | 
-   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 | 
+   | 头信息（head节点） | info节点 | _time_ | _必填_ | 升级包制作时间，保留字段，不影响升级包生成 |  
    | 组件信息（group节点） | component节点 | / | 必填 | 该节点内容配置为：要打入升级包的组件/镜像文件的路径，默认为版本包根路径 | 
    | 组件信息（group节点） | component节点 | compAddr | 必填 | 该组件所对应的分区名称，例如：system、vendor等。 | 
    | 组件信息（group节点） | component节点 | compId | 必填 | 组件Id，不同组件Id不重复 | 
