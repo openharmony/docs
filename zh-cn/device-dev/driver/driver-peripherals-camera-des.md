@@ -150,7 +150,7 @@ Camera驱动的开发过程主要包含以下步骤：
            return HDF_FAILURE;
        }
     
-       hdfCameraHostHost->ioService.Dispatch = CameraHostDriverDispatch; //提供远端CameraHost调用方法
+       hdfCameraHostHost->ioService.Dispatch = CameraHostDriverDispatch; // 提供远端CameraHost调用方法
        hdfCameraHostHost->ioService.Open = NULL;
        hdfCameraHostHost->ioService.Release = NULL;
     
@@ -162,7 +162,7 @@ Camera驱动的开发过程主要包含以下步骤：
        }
     
        hdfCameraHostHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
-           ICameraHost::GetDescriptor()); //初始化Camera设备
+           ICameraHost::GetDescriptor()); // 初始化Camera设备
        if (hdfCameraHostHost->stub == nullptr) {
            HDF_LOGE("%{public}s: failed to get stub object", __func__);
            delete hdfCameraHostHost;
@@ -312,7 +312,7 @@ Camera驱动的开发过程主要包含以下步骤：
            CAMERA_LOGE("get physic cameraId failed.");
            return DEVICE_ERROR;
        }
-       if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { //对Camera硬件上电
+       if (CameraPowerUp(cameraId, phyCameraIds) != RC_OK) { // 对Camera硬件上电
            CAMERA_LOGE("camera powerup failed.");
            CameraPowerDown(phyCameraIds);
            return DEVICE_ERROR;
@@ -352,7 +352,7 @@ Camera驱动的开发过程主要包含以下步骤：
        spCameraDeciceCallback_ = callbackObj;
        if (spStreamOperator_ == nullptr) {
    #ifdef CAMERA_BUILT_ON_OHOS_LITE
-           //这里创建一个spStreamOperator_ 对象传递给调用者，以便对stream进行各种操作
+           // 这里创建一个spStreamOperator_ 对象传递给调用者，以便对stream进行各种操作
            spStreamOperator_ = std::make_shared<StreamOperator>(spCameraDeciceCallback_, shared_from_this());
    #else
            spStreamOperator_ = new(std::nothrow) StreamOperator(spCameraDeciceCallback_, shared_from_this());
@@ -411,7 +411,7 @@ Camera驱动的开发过程主要包含以下步骤：
                CAMERA_LOGE("stream [id = %{public}d] has already been created.", it.streamId_);
                return INVALID_ARGUMENT;
            }
-           std::shared_ptr<IStream> stream = StreamFactory::Instance().CreateShared( //创建Stream实例
+           std::shared_ptr<IStream> stream = StreamFactory::Instance().CreateShared( // 创建Stream实例
                IStream::g_availableStreamType[it.intent_], it.streamId_, it.intent_, pipelineCore_, messenger_);
            if (stream == nullptr) {
                CAMERA_LOGE("create stream [id = %{public}d] failed.", it.streamId_);
@@ -494,12 +494,12 @@ Camera驱动的开发过程主要包含以下步骤：
                }
            }
        }
-       RetCode rc = streamPipeline_->PreConfig(setting); //设备流配置
+       RetCode rc = streamPipeline_->PreConfig(setting); // 设备流配置
        if (rc != RC_OK) {
            CAMERA_LOGE("prepare mode settings failed");
            return DEVICE_ERROR;
        }
-       rc = streamPipeline_->CreatePipeline(mode); //创建一个pipeline
+       rc = streamPipeline_->CreatePipeline(mode); // 创建一个pipeline
        if (rc != RC_OK) {
            CAMERA_LOGE("create pipeline failed.");
            return INVALID_ARGUMENT;
@@ -516,7 +516,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    ```
    using CaptureInfo = struct _CaptureInfo {
-       int[] streamIds_; //需要Capture的streamIds
+       int[] streamIds_; // 需要Capture的streamIds
        unsigned char[]  captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
        bool enableShutterCallback_;
    };
@@ -580,17 +580,17 @@ Camera驱动的开发过程主要包含以下步骤：
        DFX_LOCAL_HITRACE_BEGIN;
     
        std::lock_guard<std::mutex> l(requestLock_);
-       auto itr = requestMap_.find(captureId); //根据captureId 在Map中查找对应的CameraCapture对象
+       auto itr = requestMap_.find(captureId); // 根据captureId 在Map中查找对应的CameraCapture对象
        if (itr == requestMap_.end()) {
            CAMERA_LOGE("can't cancel capture [id = %{public}d], this capture doesn't exist", captureId);
            return INVALID_ARGUMENT;
        }
     
-       RetCode rc = itr->second->Cancel(); //调用CameraCapture中Cancel方法结束数据捕获
+       RetCode rc = itr->second->Cancel(); // 调用CameraCapture中Cancel方法结束数据捕获
        if (rc != RC_OK) {
            return DEVICE_ERROR;
        }
-       requestMap_.erase(itr); //擦除该CameraCapture对象
+       requestMap_.erase(itr); // 擦除该CameraCapture对象
     
        DFX_LOCAL_HITRACE_END;
        return HDI::Camera::V1_0::NO_ERROR;
@@ -769,20 +769,20 @@ Camera驱动的开发过程主要包含以下步骤：
        RetCode rc = RC_OK;
        CAMERA_LOGD("main test: PreviewOn enter");
     
-       rc = mainDemo->StartPreviewStream(); //配置preview流
+       rc = mainDemo->StartPreviewStream(); // 配置preview流
        if (rc != RC_OK) {
            CAMERA_LOGE("main test: PreviewOn StartPreviewStream error");
            return RC_ERROR;
        }
     
        if (mode == 0) {
-           rc = mainDemo->StartCaptureStream(); //配置capture流
+           rc = mainDemo->StartCaptureStream(); // 配置capture流
            if (rc != RC_OK) {
                CAMERA_LOGE("main test: PreviewOn StartCaptureStream error");
                return RC_ERROR;
            }
        } else {
-           rc = mainDemo->StartVideoStream(); //配置video流
+           rc = mainDemo->StartVideoStream(); // 配置video流
            if (rc != RC_OK) {
                CAMERA_LOGE("main test: PreviewOn StartVideoStream error");
                return RC_ERROR;
@@ -811,7 +811,7 @@ Camera驱动的开发过程主要包含以下步骤：
        int rc = 0;
        CAMERA_LOGD("demo test: CreateStream enter");
     
-       GetStreamOpt(); //获取StreamOperator对象
+       GetStreamOpt(); // 获取StreamOperator对象
        if (streamOperator_ == nullptr) {
            CAMERA_LOGE("demo test: CreateStream GetStreamOpt() is nullptr\n");
            return RC_ERROR;
@@ -819,7 +819,7 @@ Camera驱动的开发过程主要包含以下步骤：
     
        StreamInfo streamInfo = {0};
     
-       SetStreamInfo(streamInfo, streamCustomer, streamId, intent); //填充StreamInfo流
+       SetStreamInfo(streamInfo, streamCustomer, streamId, intent); // 填充StreamInfo流
        if (streamInfo.bufferQueue_->producer_ == nullptr) {
            CAMERA_LOGE("demo test: CreateStream CreateProducer(); is nullptr\n");
            return RC_ERROR;
@@ -890,7 +890,7 @@ Camera驱动的开发过程主要包含以下步骤：
        }
        captureInfo_.enableShutterCallback_ = false;
     
-       int rc = streamOperator_->Capture(captureId, captureInfo_, true); //实际capture开始，buffer轮转开始
+       int rc = streamOperator_->Capture(captureId, captureInfo_, true); // 实际capture开始，buffer轮转开始
        if (rc != HDI::Camera::V1_0::NO_ERROR) {
            CAMERA_LOGE("demo test: CaptureStart Capture error\n");
            streamOperator_->ReleaseStreams(captureInfo_.streamIds_);
@@ -898,15 +898,15 @@ Camera驱动的开发过程主要包含以下步骤：
        }
     
        if (mode == CAPTURE_PREVIEW) {
-           streamCustomerPreview_->ReceiveFrameOn(nullptr); //创建预览线程接收传递上来的buffer
+           streamCustomerPreview_->ReceiveFrameOn(nullptr); // 创建预览线程接收传递上来的buffer
        } else if (mode == CAPTURE_SNAPSHOT) {
-           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { //创建capture线程通过StoreImage回调接收传递上来的buffer
+           streamCustomerCapture_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // 创建capture线程通过StoreImage回调接收传递上来的buffer
                StoreImage(addr, size);
            });
        } else if (mode == CAPTURE_VIDEO) {
            OpenVideoFile();
     
-           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) { //创建video线程通过StoreImage回调接收传递上来的buffer
+           streamCustomerVideo_->ReceiveFrameOn([this](void* addr, const uint32_t size) { // 创建video线程通过StoreImage回调接收传递上来的buffer
                StoreVideo(addr, size);
            });
        }
@@ -929,21 +929,21 @@ Camera驱动的开发过程主要包含以下步骤：
        while (1) {
            switch (c) {
                case 'h':
-                   c = PutMenuAndGetChr(); //打印菜单
+                   c = PutMenuAndGetChr(); // 打印菜单
                    break;
                case 'f':
-                   FlashLightTest(mainDemo); //手电筒功能测试
+                   FlashLightTest(mainDemo); // 手电筒功能测试
                    c = PutMenuAndGetChr();
                    break;
                case 'o':
-                   OfflineTest(mainDemo); //Offline功能测试
+                   OfflineTest(mainDemo); // Offline功能测试
                    c = PutMenuAndGetChr();
                    break;
                case 'c':
                    CaptureTest(mainDemo); Capture功能测试
                    c = PutMenuAndGetChr();
                    break;
-               case 'w': //AWB功能测试
+               case 'w': // AWB功能测试
                    if (isAwb) {
                        mainDemo->SetAwbMode(OHOS_CAMERA_AWB_MODE_INCANDESCENT);
                    } else {
@@ -952,19 +952,19 @@ Camera驱动的开发过程主要包含以下步骤：
                    isAwb = !isAwb;
                    c = PutMenuAndGetChr();
                    break;
-               case 'a': //AE功能测试
+               case 'a': // AE功能测试
                    mainDemo->SetAeExpo();
                    c = PutMenuAndGetChr();
                    break;
-               case 'e': //Metadata测试
+               case 'e': // Metadata测试
                    mainDemo->SetMetadata();
                    c = PutMenuAndGetChr();
                    break;
-               case 'v': //VIDEO功能测试
+               case 'v': // VIDEO功能测试
                    VideoTest(mainDemo);
                    c = PutMenuAndGetChr();
                    break;
-               case 'q': //退出demo
+               case 'q': // 退出demo
                    PreviewOff(mainDemo);
                    mainDemo->QuitDemo();
                    return;
