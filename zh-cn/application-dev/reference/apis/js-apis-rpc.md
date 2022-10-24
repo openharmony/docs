@@ -6703,7 +6703,7 @@ addDeathRecipient(recipient : DeathRecipient, flags : number): boolean
 
 ### unregisterDeathRecipient<sup>9+</sup>
 
-removeDeathRecipient(recipient: DeathRecipient, flags: number): void
+unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 注销用于接收远程对象死亡通知的回调。
 
@@ -6839,6 +6839,7 @@ getInterfaceDescriptor(): string
   | 错误码ID | 错误信息 |
   | -------- | ------- |
   | 1900008 | proxy or remote object is invalid |
+  | 1900007 | communication failed              |
 
 **示例：**
 
@@ -7301,8 +7302,8 @@ static flushCmdBuffer(object : IRemoteObject): void
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
@@ -7721,10 +7722,8 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       constructor(descriptor) {
           super(descriptor);
       }
-      addDeathRecipient(recipient: MyDeathRecipient, flags: number);
-      removeDeathRecipient(recipient: MyDeathRecipient, flags: number): boolean {
-          return true;
-      }
+      registerDeathRecipient(recipient: MyDeathRecipient, flags: number);
+      unregisterDeathRecipient(recipient: MyDeathRecipient, flags: number);
       isObjectDead(): boolean {
           return false;
       }
