@@ -20,9 +20,9 @@ getCameraManager(context: Context, callback: AsyncCallback<CameraManager\>): voi
 
 **参数：**
 
-| 名称     | 类型                                            | 必填 | 说明                           |
+| 名称     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | Context                                         | 是   | 应用上下文。                   |
+| context  | [Context](../../ability/context-userguide.md)      | 是   | 应用上下文。                   |
 | callback | AsyncCallback<[CameraManager](#cameramanager)\> | 是   | 回调函数，用于获取相机管理器实例。 |
 
 **示例：**
@@ -49,7 +49,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 | 名称    | 类型    | 必填 | 说明         |
 | ------- | ------- | ---- | ------------ |
-| context | Context | 是   | 应用上下文。 |
+| context | [Context](../../ability/context-userguide.md) | 是   | 应用上下文。 |
 
 **返回值：**
 
@@ -194,7 +194,7 @@ getSupportedOutputCapability(camera:CameraDevice, callback: AsyncCallback<Camera
 **示例：**
 
 ```js
-cameraManager.getSupportedOutputCapability(cameradevice， (err, cameras) => {
+cameraManager.getSupportedOutputCapability(cameradevice, (err, cameras) => {
     if (err) {
         console.error(`Failed to get the cameras. ${err.message}`);
         return;
@@ -995,7 +995,7 @@ cameraInput.on('error', camera, (cameraInputError) => {
 | EXPOSURE_MODE_AUTO            | 1    | 自动曝光模式。 |
 | EXPOSURE_MODE_CONTINUOUS_AUTO | 2    | 连续自动曝光。 |
 
-## FocusMode
+ ## FocusMode
 
 枚举，焦距模式。
 
@@ -3386,7 +3386,7 @@ photoOutput.on('error', (err, photoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | PhotoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | PhotoOutput中的错误码。 |
 
 ## VideoOutput
 
@@ -3577,7 +3577,7 @@ videoOutput.on('error', (VideoOutputError) => {
 
 | 名称 | 类型                                  | 说明                    |
 | ---- | ------------------------------------- | ----------------------- |
-| code | [PhotoOutputError](#photooutputerror) | VideoOutput中的错误码。 |
+| code | [PhotoOutputErrorCode](#photooutputerrorcode) | VideoOutput中的错误码。 |
 
 ## MetadataObjectType
 
