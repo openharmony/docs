@@ -18,9 +18,9 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 　　　　　　　　![](figures/Camera模块驱动模型.png)
 
-1. 系统启动时创建camera_host进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF服务中，方便相机服务层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作硬件设备。
+1. 系统启动时创建camera_host进程。进程创建后，首先枚举底层设备，创建（也可以通过配置表创建）管理设备树的DeviceManager类及其内部各个底层设备的对象，创建对应的CameraHost类实例并且将其注册到UHDF（用户态HDF驱动框架）服务中，方便相机服务层通过UHDF服务获取底层CameraDeviceHost的服务，从而操作硬件设备。
 
-2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，打开手电筒、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPipelineCore负责创建Pipeline，MetaQueueManager负责上报metaData。
+2. Service通过CameraDeviceHost服务获取CameraHost实例，CameraHost可以获取底层的Camera能力，开启闪光灯、调用Open接口打开Camera创建连接、创建DeviceManager（负责底层硬件模块上电）、创建CameraDevice（向上提供设备控制接口）。创建CameraDevice时会实例化PipelineCore的各个子模块，其中StreamPipelineCore负责创建Pipeline，MetaQueueManager负责上报metaData。
 
 3. Service通过CameraDevice模块配置流、创建Stream类。StreamPipelineStrategy模块通过上层下发的模式和查询配置表创建对应流的Node连接方式，StreamPipelineBuilder模块创建Node实例并且连接返回该Pipeline给StreamPipelineDispatcher。StreamPipelineDispatcher提供统一的Pipeline调用管理。
 
@@ -43,7 +43,7 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 ### 场景介绍<a name="5"></a>
 
-Camera模块主要用以相机预览、拍照、视频流等场景下对相机操作封装，使开发者更易操作相机硬件，提高开发效率。
+Camera模块主要针对相机预览、拍照、视频流等场景，对这些场景下的相机操作进行封装，使开发者更易操作相机硬件，提高开发效率。
 
 ### 接口说明<a name="6"></a>
 
@@ -124,7 +124,7 @@ Camera驱动的开发过程主要包含以下步骤：
 1. 注册CameraHost
 
     定义Camera的HdfDriverEntry结构体，该结构体中定义了CameraHost初始化的方法（代码目录drivers/peripheral/camera/interfaces/hdi_ipc/camera_host_driver.cpp）。
-    ```
+    ```c++
    struct HdfDriverEntry g_cameraHostDriverEntry = {
        .moduleVersion = 1,
        .moduleName = "camera_service",
@@ -137,16 +137,16 @@ Camera驱动的开发过程主要包含以下步骤：
 
 2. 初始化Host服务
 
-    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。这两个接口一个是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，另外一个是Camera设备的初始化，在开机时被调用。
+    步骤1中提到的HdfCameraHostDriverBind接口提供了CameraServiceDispatch和CameraHostStubInstance的注册。CameraServiceDispatch接口是远端调用CameraHost的方法，如OpenCamera()，SetFlashlight()等，CameraHostStubInstance接口是Camera设备的初始化，在开机时被调用。
 
-   ```
+   ```c++
    static int HdfCameraHostDriverBind(struct HdfDeviceObject *deviceObject)
    {
        HDF_LOGI("HdfCameraHostDriverBind enter");
     
        auto *hdfCameraHostHost = new (std::nothrow) HdfCameraHostHost;
        if (hdfCameraHostHost == nullptr) {
-           HDF_LOGE("%{public}s: failed to create create HdfCameraHostHost object", __func__);
+           HDF_LOGE("%{public}s: failed to create HdfCameraHostHost object", __func__);
            return HDF_FAILURE;
        }
     
@@ -176,7 +176,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    下面的函数是远端CameraHost调用的方法：
 
-   ```
+   ```c++
    int32_t CameraHostStub::CameraHostServiceStubOnRemoteRequest(int cmdId, MessageParcel &data,
        MessageParcel &reply, MessageOption &option)
    {
@@ -211,7 +211,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    调用Get()接口从远端CameraService中获取CameraHost对象。get()方法如下：
 
-   ```
+   ```c++
    sptr<ICameraHost> ICameraHost::Get(const char *serviceName)
    {
        do {
@@ -238,7 +238,7 @@ Camera驱动的开发过程主要包含以下步骤：
    CameraHostProxy对象中有五个方法，分别是SetCallback、GetCameraIds、GetCameraAbility、OpenCamera和SetFlashlight。下面着重描述OpenCamera接口。
    CameraHostProxy的OpenCamera()接口通过CMD_CAMERA_HOST_OPEN_CAMERA调用远端CameraHostStubOpenCamera()接口并获取ICameraDevice对象。
 
-   ```
+   ```c++
    int32_t CameraHostProxy::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
        sptr<ICameraDevice>& device)
    {
@@ -276,7 +276,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    Remote()->SendRequest调用上文提到的CameraHostServiceStubOnRemoteRequest()，根据cmdId进入CameraHostStubOpenCamera()接口，最终调用CameraHostImpl::OpenCamera()，该接口获取了CameraDevice并对硬件进行上电等操作。
 
-   ```
+   ```c++
    int32_t CameraHostImpl::OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,
        sptr<ICameraDevice>& device)
    {
@@ -338,7 +338,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    CameraDeviceImpl定义了GetStreamOperator、UpdateSettings、SetResultMode和GetEnabledResult等方法，获取流操作方法如下：
 
-   ```
+   ```c++
    int32_t CameraDeviceImpl::GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj,
        sptr<IStreamOperator>& streamOperator)
    {
@@ -381,7 +381,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    调用CreateStreams创建流前需要填充StreamInfo结构体，具体内容如下：
 
-   ```
+   ```c++
    using StreamInfo = struct _StreamInfo {
        int streamId_; 
        int width_;  // 数据流宽
@@ -398,7 +398,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    CreateStreams()接口是StreamOperator（StreamOperatorImpl类是StreamOperator的基类）类中的方法，该接口的主要作用是创建一个StreamBase对象，通过StreamBase的Init方法初始化CreateBufferPool等操作。
 
-   ```
+   ```c++
    int32_t StreamOperator::CreateStreams(const std::vector<StreamInfo>& streamInfos)
    {
        PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
@@ -450,11 +450,11 @@ Camera驱动的开发过程主要包含以下步骤：
     }
    ```
 
-7. **配置流**
+7. 配置流
 
    CommitStreams()是配置流的接口，必须在创建流之后调用，其主要作用是初始化Pipeline和创建Pipeline。
 
-   ```
+   ```c++
    int32_t StreamOperator::CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting)
    {
        CAMERA_LOGV("enter");
@@ -510,11 +510,11 @@ Camera驱动的开发过程主要包含以下步骤：
    }
    ```
 
-8. **捕获图像**
+8. 捕获图像
 
    在调用Capture()接口前需要先填充CaptureInfo结构体，具体内容如下：
 
-   ```
+   ```c++
    using CaptureInfo = struct _CaptureInfo {
        int[] streamIds_; // 需要Capture的streamIds
        unsigned char[]  captureSetting_; // 这里填充camera ability 可通过CameraHost 的GetCameraAbility()接口获取
@@ -524,7 +524,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    StreamOperator中的Capture方法主要是捕获数据流：
 
-   ```
+   ```c++
    int32_t StreamOperator::Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming)
    {
        CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
@@ -572,7 +572,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    StreamOperator类中的CancelCapture()接口的主要作用是根据captureId取消数据流的捕获。
 
-   ```
+   ```c++
    int32_t StreamOperator::CancelCapture(int32_t captureId)
    {
        CHECK_IF_EQUAL_RETURN_VALUE(captureId < 0, true, INVALID_ARGUMENT);
@@ -599,7 +599,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    StreamOperator类中的ReleaseStreams接口的主要作用是释放之前通过CreateStream()和CommitStreams()接口创建的流，并销毁Pipeline。
 
-   ```
+   ```c++
    int32_t StreamOperator::ReleaseStreams(const std::vector<int32_t>& streamIds)
    {
        PLACE_A_NOKILL_WATCHDOG(requestTimeoutCB_);
@@ -632,11 +632,11 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ### 开发实例<a name = "8"></a>
 
-在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Ｃamera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
+在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
 
 1. 在main函数中构造一个CameraDemo 对象，该对象中有对Ｃamera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
-   ```
+   ```c++
    int main(int argc, char** argv)
    {
        RetCode rc = RC_OK;
@@ -667,7 +667,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    初始化CameraHost函数实现如下，这里调用了HDI接口ICameraHost::Get()去获取demoCameraHost，并对其设置回调函数。
 
-   ```
+   ```c++
    RetCode OhosCameraDemo::InitSensors()
    {
        int rc = 0;
@@ -707,7 +707,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    初始化CameraDevice函数实现如下，这里调用了GetCameraIds(cameraIds_)，GetCameraAbility(cameraId, ability_)，OpenCamera(cameraIds_.front(), callback, demoCameraDevice_)等接口实现了demoCameraHost的获取。
 
-   ```
+   ```c++
    RetCode OhosCameraDemo::InitCameraDevice()
    {
        int rc = 0;
@@ -763,7 +763,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 2. PreviewOn()接口包含配置流、开启预览流和启动Capture动作。该接口执行完成后Camera预览通路已经开始运转并开启了两路流，一路流是preview，另外一路流是capture或者video，两路流中仅对preview流进行capture动作。
 
-   ```
+   ```c++
    static RetCode PreviewOn(int mode, const std::shared_ptr<OhosCameraDemo>& mainDemo)
    {
        RetCode rc = RC_OK;
@@ -804,7 +804,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    CreateStream()方法调用HDI接口去配置和创建流，首先调用HDI接口去获取StreamOperation对象，然后创建一个StreamInfo。调用CreateStreams()和CommitStreams()实际创建流并配置流。
 
-   ```
+   ```c++
    RetCode OhosCameraDemo::CreateStream(const int streamId, std::shared_ptr<StreamCustomer> &streamCustomer,
        StreamIntent intent)
    {
@@ -851,7 +851,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    CaptureON()接口调用streamOperator的Capture()方法获取Ｃamera数据并轮转buffer，拉起一个线程接收相应类型的数据。
 
-   ```
+   ```c++
    RetCode OhosCameraDemo::CaptureON(const int streamId,
        const int captureId, CaptureMode mode)
    {
@@ -918,7 +918,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 3. ManuList()函数从控制台通过fgets()接口获取字符，不同字符所对应demo支持的功能不同，并打印出该demo所支持功能的菜单。
 
-   ```
+   ```c++
    static void ManuList(const std::shared_ptr<OhosCameraDemo>& mainDemo,
        const int argc, char** argv)
    {
@@ -979,7 +979,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    PutMenuAndGetChr()接口打印了demo程序的菜单，并调用fgets()等待从控制台输入命令，内容如下：
 
-   ``` 
+   ```c++
    static int PutMenuAndGetChr(void)
    {
        constexpr uint32_t inputCount = 50;
@@ -1001,7 +1001,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
    控制台输出菜单详情如下：
 
-   ```
+   ```c++
    "Options:\n"
    "-h | --help          Print this message\n"
    "-o | --offline       stream offline test\n"
@@ -1015,6 +1015,7 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
 
 4、编译用例
+
    在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加"init:ohos_camera_demo",示例代码如下：
    ```
    deps = [
@@ -1027,5 +1028,5 @@ Camera驱动的开发过程主要包含以下步骤：
        ]
    ```
    
-   以RK3568为例：执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入板子，修改权限直接运行即可。
+   以RK3568为例：执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
    
