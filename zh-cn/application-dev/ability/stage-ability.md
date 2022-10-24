@@ -170,7 +170,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 })
 ```
 ### 系统环境变化通知
-环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-configuration.md)类中。
+环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”（物理屏幕Id）、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-configuration.md)类中。
 
 对于Stage模型的应用，配置发生变化时，不会重启Ability，会触发应用的`onConfigurationUpdated(config: Configuration)`回调，若应用希望根据配置变化做相应处理，可以重写`onConfigurationUpdated`回调，若无需处理配置变化，则可以不必实现`onConfigurationUpdated`回调。应该注意的是，回调中的Configuration对象包括当前Ability所有的配置，不仅是发生变化的配置。
 
@@ -271,7 +271,7 @@ function getRemoteDeviceId() {
     }
 }
 ```
-向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[应用向用户申请授权](###应用向用户申请授权)。
+向用户申请数据同步'ohos.permission.DISTRIBUTED_DATASYNC'的权限。申请授权示例代码见[应用向用户申请授权](#应用向用户申请授权)。
 ### 指定页面启动Ability
 当Ability的启动模式设置为单例时，若Ability已被拉起，再次启动Ability会触发onNewWant回调。应用开发者可以通过want传递启动参数，比如希望指定页面启动Ability，可以通过want中的uri参数或parameters参数传递pages信息。目前，Stage模型中Ability暂时无法直接使用router的能力，可以将启动参数传递给自定义组件，在自定义组件的生命周期中调用router接口显示指定页面。具体示例代码如下：
 
