@@ -22,7 +22,7 @@
                .fontWeight(500)
        }
      }
-}
+   }
    ```
 
    ![zh-cn_image_0000001214128687](figures/zh-cn_image_0000001214128687.png)
