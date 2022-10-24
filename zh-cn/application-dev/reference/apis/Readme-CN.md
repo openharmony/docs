@@ -119,9 +119,9 @@
   - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
+  - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.workScheduler (延迟任务调度)](js-apis-workScheduler.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
-  - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-config-policy.md)
   - [@ohos.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
@@ -269,6 +269,7 @@
   - [@ohos.application.testRunner (TestRunner)](js-apis-testRunner.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 - 已停止维护的接口
+  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
   - [@ohos.bytrace (性能打点)](js-apis-bytrace.md)
   - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
   - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
@@ -295,4 +296,3 @@
   - [@system.storage (数据存储)](js-apis-system-storage.md)
   - [@system.vibrator (振动)](js-apis-system-vibrate.md)
   - [console (日志打印)](js-apis-logs.md)
-  - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
