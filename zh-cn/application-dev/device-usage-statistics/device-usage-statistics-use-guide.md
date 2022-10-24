@@ -65,7 +65,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -75,7 +75,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -105,7 +105,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             i++;
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -115,7 +115,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
             let i = 1;
@@ -145,7 +145,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -155,7 +155,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -183,7 +183,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -193,7 +193,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -217,7 +217,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.queryAppGroup().then( res => {
             console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -227,7 +227,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryAppGroup((err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -247,7 +247,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.isIdleState("com.ohos.camera").then( res => {
             console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -257,7 +257,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
         if (err) {
-            console.log('BUNDLE_ACTIVE isIdleState callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
@@ -281,7 +281,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
                 console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err=> {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -296,7 +296,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
                 console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -306,7 +306,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryModuleUsageRecords(1000, (err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
             for (let i = 0; i < res.length; i++) {
@@ -323,7 +323,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryModuleUsageRecords((err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
             for (let i = 0; i < res.length; i++) {
@@ -348,7 +348,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
             console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -358,7 +358,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryNotificationEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
             console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
@@ -380,7 +380,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
             console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -390,7 +390,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryDeviceEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
             console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
@@ -412,7 +412,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.queryAppGroup(bundleName).then( res => {
             console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -423,7 +423,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.queryAppGroup(bundleName, (err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -446,7 +446,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
             console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE setAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -459,7 +459,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE setAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
             }
@@ -487,7 +487,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
             console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -505,7 +505,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, error => {
         if(error) {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
         }
@@ -525,7 +525,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         usageStatistics.unRegisterAppGroupCallBack().then( () => {
             console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack promise succeeded.');
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -535,7 +535,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     try{
         usageStatistics.unRegisterAppGroupCallBack(error => {
         if(error) {
-            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE unRegisterAppGroupCallBack callback success.');
         }

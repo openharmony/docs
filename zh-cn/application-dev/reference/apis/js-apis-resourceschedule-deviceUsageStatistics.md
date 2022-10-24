@@ -61,7 +61,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
     try{
         usageStatistics.isIdleState("com.ohos.camera", (err, res) => {
         if (err) {
-            console.log('BUNDLE_ACTIVE isIdleState callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
@@ -110,7 +110,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
         usageStatistics.isIdleState("com.ohos.camera").then( res => {
             console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE isIdleState throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -152,7 +152,7 @@ queryAppGroup(): Promise&lt;number&gt;
         usageStatistics.queryAppGroup().then( res => {
             console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -193,7 +193,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
     try{
         usageStatistics.queryAppGroup((err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -242,7 +242,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
     try{
         usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
             let i = 1;
@@ -309,7 +309,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
             i++;
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -356,7 +356,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
     try{
         usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -420,7 +420,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
             console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -466,7 +466,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
     try{
         usageStatistics.queryBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -529,7 +529,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
             console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -571,7 +571,7 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
     try{
         usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err, res) => {
             if (err) {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -630,7 +630,7 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
             console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryCurrentBundleEvents throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -680,7 +680,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
                 console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -724,7 +724,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
     try{
         usageStatistics.queryModuleUsageRecords((err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
             for (let i = 0; i < res.length; i++) {
@@ -786,7 +786,7 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
                 console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
             }
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -831,7 +831,7 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
     try{
         usageStatistics.queryModuleUsageRecords(1000, (err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
             for (let i = 0; i < res.length; i++) {
@@ -892,7 +892,7 @@ queryAppGroup(bundleName : string): Promise&lt;number&gt;
         usageStatistics.queryAppGroup(bundleName).then( res => {
             console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -939,7 +939,7 @@ queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
     try{
         usageStatistics.queryAppGroup(bundleName, (err, res) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -998,7 +998,7 @@ setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
         usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
             console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE setAppGroup promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE setAppGroup throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1047,7 +1047,7 @@ setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;
     try{
         usageStatistics.setAppGroup(bundleName, newGroup, (err) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE setAppGroup callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
             }
@@ -1108,7 +1108,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
         usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
             console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
         }).catch( err => {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1161,7 +1161,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
     try{
         usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, error => {
         if(error) {
-            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
         }
@@ -1210,7 +1210,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
         usageStatistics.unregisterAppGroupCallBack().then( () => {
             console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
         }).catch( err => {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1253,7 +1253,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
     try{
         usageStatistics.unregisterAppGroupCallBack(error => {
         if(error) {
-            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
         }
@@ -1309,7 +1309,7 @@ queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEve
             console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
             console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryDeviceEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1355,7 +1355,7 @@ queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Arr
     try{
         usageStatistics.queryDeviceEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
             console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
@@ -1412,7 +1412,7 @@ queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;Dev
             console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
             console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
         }).catch( err=> {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
         });
     } catch (error) {
         console.log('BUNDLE_ACTIVE queryNotificationEventStats throw error, code is: ' + error.code + ',message is: ' + error.message);
@@ -1458,7 +1458,7 @@ queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&
     try{
         usageStatistics.queryNotificationEventStats(0, 20000000000000, (err, res) => {
             if(err) {
-            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. errCode is: ' + err.errCode + ',message is: ' + err.errMessage);
+            console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
             } else {
             console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
             console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
