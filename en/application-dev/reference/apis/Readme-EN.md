@@ -86,6 +86,7 @@
   - bundle/[PermissionDef](js-apis-bundle-PermissionDef.md)
   - bundle/[RemoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
   - bundle/[ShortcutInfo<sup>(deprecated)</sup>](js-apis-bundle-ShortcutInfo.md)
+  - bundle/[PackInfo](js-apis-bundle-PackInfo.md)
 - UI Page
   - [@ohos.animator](js-apis-animator.md)
   - [@ohos.mediaquery](js-apis-mediaquery.md)
@@ -133,7 +134,6 @@
   - [@ohos.data.dataShare](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates](js-apis-data-dataSharePredicates.md)
   - [@ohos.data.dataShareResultSet](js-apis-data-DataShareResultSet.md)
-  - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.data.distributedDataObject](js-apis-data-distributedobject.md)
   - [@ohos.data.preferences](js-apis-data-preferences.md)
   - [@ohos.data.rdb](js-apis-data-rdb.md)
@@ -160,9 +160,13 @@
   - [@ohos.telephony.sms](js-apis-sms.md)
 - Network Management
   - [@ohos.net.connection](js-apis-net-connection.md)
+  - [@ohos.net.ethernet](js-apis-net-ethernet.md)
   - [@ohos.net.http](js-apis-http.md)
+  - [@ohos.net.policy](js-apis-net-policy.md)
+  - [@ohos.net.sharing](js-apis-net-sharing.md)
   - [@ohos.net.socket](js-apis-socket.md)
-
+  - [@ohos.net.statistics](js-apis-net-statistics.md)
+  - [@ohos.net.tlsSocket](js-apis-tlsSocket.md)
   - [@ohos.net.webSocket](js-apis-webSocket.md)
   - [@ohos.request](js-apis-request.md)
 - Connectivity
@@ -174,8 +178,8 @@
   - [@ohos.rpc](js-apis-rpc.md)
   - [@ohos.wifi](js-apis-wifi.md)
   - [@ohos.wifiext](js-apis-wifiext.md)
-  - [@ohos.nfc.tag](js-apis-nfctech.md)
-  - [@ohos.nfc.tag](js-apis-tagSession.md) 
+  - tag/[nfctech](js-apis-nfctech.md)
+  - tag/[tagSession](js-apis-tagSession.md)
 - Basic Features
   - [@ohos.accessibility](js-apis-accessibility.md)
   - [@ohos.accessibility.config](js-apis-accessibility-config.md)
@@ -196,6 +200,7 @@
   - [@ohos.systemTime](js-apis-system-time.md)
   - [@ohos.systemTimer](js-apis-system-timer.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
+  - [console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
 
 - Device Management
@@ -257,6 +262,7 @@
 - APIs No Longer Maintained 
   - [@ohos.bytrace](js-apis-bytrace.md)
   - [@ohos.data.storage](js-apis-data-storage.md)
+  - [@ohos.data.distributedData](js-apis-distributed-data.md)
   - [@ohos.prompt](js-apis-prompt.md)
   - [@ohos.reminderAgent](js-apis-reminderAgent.md)
   - [@system.app](js-apis-system-app.md)
@@ -278,4 +284,3 @@
   - [@system.sensor](js-apis-system-sensor.md)
   - [@system.storage](js-apis-system-storage.md)
   - [@system.vibrator](js-apis-system-vibrate.md)
-  - [console](js-apis-logs.md)
