@@ -5797,12 +5797,12 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名    | 类型              | 说明                                  |
-  | ------- | --------------- | ------------------------------------- |
-  | errCode | number          | 错误码。                              |
-  | code    | number          | 消息代码。                            |
-  | data    | MessageSequence | 发送给对端进程的MessageSequence对象。 |
-  | reply   | MessageSequence | 对端进程返回的MessageSequence对象。   |
+  | 参数名  | 类型            | 必填 | 说明                                   |
+  | ------- | --------------- | ---- | ------------------------------------- |
+  | errCode | number          | 是   | 错误码。                              |
+  | code    | number          | 是   | 消息代码。                            |
+  | data    | MessageSequence | 是   | 发送给对端进程的MessageSequence对象。 |
+  | reply   | MessageSequence | 是   | 对端进程返回的MessageSequence对象。   |
 
 ## SendRequestResult<sup>8+(deprecated)</sup>
 
@@ -5812,12 +5812,12 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名    | 类型           | 说明                                |
-  | ------- | ------------- | ----------------------------------- |
-  | errCode | number        | 错误码。                            |
-  | code    | number        | 消息代码。                          |
-  | data    | MessageParcel | 发送给对端进程的MessageParcel对象。 |
-  | reply   | MessageParcel | 对端进程返回的MessageParcel对象。   |
+  | 参数名  | 类型          | 必填 | 说明                                 |
+  | ------- | ------------- | ---- | ----------------------------------- |
+  | errCode | number        | 是   | 错误码。                            |
+  | code    | number        | 是   | 消息代码。                          |
+  | data    | MessageParcel | 是   | 发送给对端进程的MessageParcel对象。 |
+  | reply   | MessageParcel | 是   | 对端进程返回的MessageParcel对象。   |
 
 ## IRemoteObject
 
