@@ -5797,7 +5797,7 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名    | 值              | 说明                                  |
+  | 参数名    | 类型              | 说明                                  |
   | ------- | --------------- | ------------------------------------- |
   | errCode | number          | 错误码。                              |
   | code    | number          | 消息代码。                            |
@@ -5812,7 +5812,7 @@ onRemoteDied(): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 参数名    | 值            | 说明                                |
+  | 参数名    | 类型           | 说明                                |
   | ------- | ------------- | ----------------------------------- |
   | errCode | number        | 错误码。                            |
   | code    | number        | 消息代码。                          |
