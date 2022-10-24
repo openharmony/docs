@@ -2,6 +2,8 @@
 
 @State、@Prop、@Link、@Provide、Consume、@ObjectLink、@Observed和@Watch用于管理页面级变量的状态。
 
+请参考[状态变量多种数据类型声明的使用限制](./arkts-restrictions-and-extensions.md)了解@State、@Provide、 @Link和@Consume四种状态变量的约束条件。
+
 ## @State
 
 @State装饰的变量是组件内部的状态数据，当这些状态数据被修改时，将会调用所在组件的build方法进行UI刷新。
