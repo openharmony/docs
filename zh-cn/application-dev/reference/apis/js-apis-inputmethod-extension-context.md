@@ -180,7 +180,7 @@ this.context.terminateSelf().then((data) => {
 
 ## InputMethodExtensionContext.destroy<sup>9+</sup>
 
-destroy(callback: AsyncCallback<void>): void
+destroy(callback: AsyncCallback\<void>): void
 
 停止输入法应用自身。使用callback异步回调。
 
