@@ -49,7 +49,7 @@ getCameraManager(context: Context): Promise<CameraManager\>
 
 | 名称    | 类型    | 必填 | 说明         |
 | ------- | ------- | ---- | ------------ |
-| context | [Context](../ability/context-userguide.md) | 是   | 应用上下文。 |
+| context | [Context](../../ability/context-userguide.md) | 是   | 应用上下文。 |
 
 **返回值：**
 
