@@ -787,7 +787,7 @@ inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
 
 下列API示例中都需使用[inputStart](#inputStart9)回调获取到KeyboardController实例，再通过此实例调用对应方法。
 
-###hide<sup>9+</sup>
+### hide<sup>9+</sup>
 
 hide(callback: AsyncCallbackAsyncCallback&lt;void&gt;): void
 

@@ -358,7 +358,7 @@ try {
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
-switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, ): Promise&lt;boolean&gt;
+switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype): Promise&lt;boolean&gt;
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
 
@@ -730,7 +730,7 @@ InputMethodSetting.on('imeChange', (inputMethodProperty, inputMethodSubtype) => 
 
 ### off('imeChange')<sup>9+</sup>
 
-off(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
+off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => void): void
 
 取消订阅输入法及子类型变化监听事件。使用callback异步回调。
 
