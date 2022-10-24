@@ -16,7 +16,7 @@ Codec HDI驱动框架基于HDF驱动框架实现。Codec HDI驱动架构组成�
 - Codec HDI Adapter：HDI 实现层，实现了HDI Interface接口，并与OpenMax IL 对接。
 - OpenMax IL Interface：OpenMax IL接口，Codec HDI驱动直接对接OpenMax IL层。
 - Vendor Impl：厂商适配层，各大厂商适配的OpenMax 实现层。
-- Codec HardWare：硬件解码设备。
+- Codec Hardware：硬件解码设备。
 
 ### 基本概念
 在进行开发前，开发者应了解一下基本概念：
@@ -536,7 +536,7 @@ while (!this->exit_) {
 client_->SendCommand(client_, OMX_CommandStateSet, OMX_StateIdle, NULL, 0);
 ```
 
-对rk OMX解码时，不支持数据的分帧，所以需要手动分帧，目前简单实现按照起始码0x000001或0x00000001分帧发送到服务端处理。分帧代码如下：
+当在rk开发板上进行解码时，由于其OMX的实现不支持数据的分帧，所以需要手动分帧，目前简单实现按照起始码0x000001或0x00000001分帧发送到服务端处理。分帧代码如下：
 
 ```cpp
 // 文件分帧读取实现
