@@ -110,7 +110,7 @@ connection.hasDefaultNet().then(function (has) {
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
-Obtains the list of all active data networks. This API uses an asynchronous callback to return the result.
+Obtains the list of all connected networks. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -136,7 +136,7 @@ connection.getAllNets(function (error, nets) {
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
-Obtains the list of all active data networks. This API uses a promise to return the result.
+Obtains the list of all connected networks. This API uses a promise to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
@@ -280,7 +280,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-Reports connection of the data network. This API uses an asynchronous callback to return the result.
+Reports connection of the data network to the network management module. This API uses an asynchronous callback to return the result. If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -308,7 +308,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-Reports connection of the data network. This API uses a promise to return the result.
+Reports connection of the data network to the network management module. This API uses a promise to return the result. If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -341,7 +341,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
-Reports disconnection of the data network. This API uses an asynchronous callback to return the result.
+Reports disconnection of the data network to the network management module. This API uses an asynchronous callback to return the result. If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -369,7 +369,8 @@ connection.getDefaultNet().then(function (netHandle) {
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
-Reports disconnection of the data network. This API uses a promise to return the result.
+Reports disconnection of the data network to the network management module. This API uses a promise to return the result. If this API is called, the application considers that the network connection state (**ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED**) is inconsistent with that in the network management module.
+
 
 **Permission required**: ohos.permission.GET_NETWORK_INFO and ohos.permission.INTERNET
 
@@ -558,7 +559,7 @@ connection.disableAirplaneMode().then(function (error) {
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-Obtains the handle of the network specified by **netSpecifier**.
+Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -950,9 +951,9 @@ Defines the network capability.
 | ------------------------ | ---- | ---------------------- |
 | NET_CAPABILITY_MMS | 0 | The network can connect to the carrier's Multimedia Messaging Service Center (MMSC) to send and receive multimedia messages.|
 | NET_CAPABILITY_NOT_METERED | 11 | The network traffic is not metered.|
-| NET_CAPABILITY_INTERNET  | 12   | The network can connect to the Internet.|
+| NET_CAPABILITY_INTERNET  | 12   | The network has the Internet access capability, which is set by the network provider.|
 | NET_CAPABILITY_NOT_VPN | 15 | The network does not use a Virtual Private Network (VPN).|
-| NET_CAPABILITY_VALIDATED | 16   | The network is available.            |
+| NET_CAPABILITY_VALIDATED | 16   | The Internet access capability of the network is successfully verified by the network management module.          |
 
 ## NetBearType
 

@@ -1,10 +1,11 @@
 # Path2D对象
 
+路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口进行绘制。
+
 >  **说明：**
+> 
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
-路径对象，支持通过对象的接口进行路径的描述，并通过Canvas的stroke接口进行绘制。
 
 
 ## addPath
@@ -225,7 +226,8 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.path2Db.moveTo(10, 10)
-            this.path2Db.bezierCurveTo(20, 100, 200, 100, 200, 20);this.context.stroke(this.path2Db)
+            this.path2Db.bezierCurveTo(20, 100, 200, 100, 200, 20)
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')
@@ -319,7 +321,8 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.arc(100, 75, 50, 0, 6.28);this.context.stroke(this.path2Db)
+            this.path2Db.arc(100, 75, 50, 0, 6.28)
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')
@@ -380,7 +383,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
 
 ## ellipse
 
-ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: number): void
+ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number, startAngle: number, endAngle: number, counterclockwise?: boolean): void
 
 在规定的矩形区域绘制一个椭圆。
 
@@ -395,7 +398,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
   | rotation | number | 是 | 0 | 椭圆的旋转角度，单位为弧度。 | 
   | startAngle | number | 是 | 0 | 椭圆绘制的起始点角度，以弧度表示。 | 
   | endAngle | number | 是 | 0 | 椭圆绘制的结束点角度，以弧度表示。 | 
-  | counterclockwise | number | 否 | 0 | 是否以逆时针方向绘制椭圆，0为顺时针，1为逆时针。(可选参数，默认为0) | 
+  | counterclockwise | boolean | 否 | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。 | 
 
 **示例：**
 
@@ -407,7 +410,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
     private path2Db: Path2D = new Path2D()
-  
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
@@ -415,7 +418,7 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI)
+            this.path2Db.ellipse(200, 200, 50, 100, 0, Math.PI * 1, Math.PI*2)
             this.context.stroke(this.path2Db)
           })
       }
@@ -461,7 +464,8 @@ rect(x: number, y: number, w: number, h: number): void
           .height('100%')
           .backgroundColor('#ffff00')
           .onReady(() =>{
-            this.path2Db.rect(20, 20, 100, 100);this.context.stroke(this.path2Db)
+            this.path2Db.rect(20, 20, 100, 100);
+            this.context.stroke(this.path2Db)
           })
       }
       .width('100%')

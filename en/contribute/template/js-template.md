@@ -1,7 +1,7 @@
 # API Reference Template
 
 ## General Writing Instructions
-> **NOTE** 
+> **NOTE**
 >
 > Delete all writing instructions after you finish the writing.
 
@@ -96,7 +96,7 @@ import call from '@ohos.telephony.call';
 
 | Name            | Type                                     | Readable| Writable| Description                                      |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| pluggedType      | [BatteryPluggedType](#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
+| pluggedType      | [BatteryPluggedType]\(#batterypluggedtype) | Yes  | No  | Charger type of the current device.            |
 | isBatteryPresent | boolean                                   | Yes  | No  | Whether the battery is supported or present.|
 
 ## Methods
@@ -143,8 +143,17 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 
 | Type                                      | Description                                           |
 | ------------------------------------------ | ----------------------------------------------- |
-| string                                     | Describe the return value, for example, what can be done after the return value is obtained.   |
-| Promise\<Array<[CustomType](#CustomType)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
+| string                                     | Describe the return value, for example, what can be done after the return value is obtained.|
+| Promise\<Array<[CustomType](#customtype)>> | Describe the return value. For details about how to write promise methods, see item 14 in "General Writing Instructions."|
+
+**Error codes** (This part is optional. Delete it if no error code is thrown.)
+
+For details about the error codes, see [moduleName Error Codes]\(link to the error code document of the corresponding module).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 1300001  | Repeated operation.               |
+| 1300002  | This window state is abnormal.        |
 
 **Example**
 
@@ -193,7 +202,7 @@ Describe the method. For details, see the fourth and fifth points in "Writing In
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                               | Yes  | Describe the event and when or how it will be triggered. If a method involves multiple events, describe them separately.<br>**Example 1 (single event):**<br>Type of the event. The `'play'` event is triggered when the `play()` API is called and audio playback starts.<br>**Example 2 (multiple events)**:<br>Type of the event. The following events are supported:<br/>- 'play': triggered when the play() API is called and audio playback starts.<br/>- 'dataLoad': triggered when the audio data is loaded, that is, when the `src` attribute is configured.<br/>- 'finish': triggered when the audio playback is finished. |
-| callback | Callback\<[CustomType](#CustomType)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
+| callback | Callback\<[CustomType](#customtype)> | No  | Describe the parameter. The instructions are the same as those provided under [Methods](#methods).                         |
 
 **Return value** (This part is optional. Delete it if there is no return value.)
 
@@ -270,7 +279,7 @@ The following is an example of the custom type of a key-value pair.
 | Name        | Type               | Readable| Writable| Description                                                        |
 | ------------ | ------------------- | ---- | ---- | ------------------------------------------------------------ |
 | parameterUrl | string              | Yes  | Yes  | Media output URI. Supported:<br>1. Relative path whose protocol type is `internal`. Example: <br/>Temporary directory: internal://cache/test.mp4<br>2. Absolute path. Example:<br/>file:///data/data/ohos.xxx.xxx/files/test.mp4|
-| parameterOne | [CustomEnum](#Enumeration)| Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
+| parameterOne | [CustomEnum](#enums) | Yes  | Yes  | Describe the attributes. The requirements are similar to those for the parameter description.                              |
 
 ## Change History
 | Change Description| Date|

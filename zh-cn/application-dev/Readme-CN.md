@@ -16,6 +16,18 @@
         - [应用包结构说明(Stage模型)](quick-start/stage-structure.md)
         - [SysCap说明](quick-start/syscap.md)
         - [HarmonyAppProvision配置文件](quick-start/app-provision-structure.md)
+        - [资源分类与访问](quick-start/resource-categories-and-access.md)
+        - 学习ArkTS语言
+          - [初识ArkTS语言](quick-start/arkts-get-started.md)
+          - ArkTS语法（声明式UI）
+            - [基本UI描述](quick-start/arkts-basic-ui-description.md)
+            - 状态管理
+              - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
+              - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
+              - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
+            - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
+            - [渲染控制](quick-start/arkts-rendering-control.md)
+            - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
 - 开发
     - [Ability开发](ability/Readme-CN.md)
     - [UI开发](ui/Readme-CN.md)

@@ -20,7 +20,7 @@ In this section, we will develop an infographic food details page, by building c
                .fontWeight(500)
        }
      }
-   }
+}
    ```
 
    ![en-us_image_0000001222967780](figures/en-us_image_0000001222967780.png)

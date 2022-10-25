@@ -175,6 +175,6 @@ if (this.subscriber != null) {
 
 针对公共事件开发，有以下相关实例可供参考：
 
-- [`CommonEvent`：订阅公共事件（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CommonEvent)
+- [`CommonEvent`：订阅公共事件（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CommonEvent)
 
 

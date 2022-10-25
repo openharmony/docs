@@ -4,6 +4,8 @@ The table below lists the APIs changes of the window manager subsystem in OpenHa
 
 ## API Changes
 
+
+
 | Module| Class| Method/Attribute/Enumeration/Constant| Change Type|
 |---|---|---|---|
 | ohos.screen | ScreenModeInfo | refreshRate: number; | Added|
@@ -20,6 +22,8 @@ The table below lists the APIs changes of the window manager subsystem in OpenHa
 | ohos.screen | Orientation | UNSPECIFIED = 0 | Added|
 | ohos.screen | Screen | setScreenActiveMode(modeIndex: number, callback: AsyncCallback\<void>): void;<br>setScreenActiveMode(modeIndex: number): Promise\<void>; | Added|
 | ohos.screen | Screen | setOrientation(orientation: Orientation, callback: AsyncCallback\<void>): void;<br>setOrientation(orientation: Orientation): Promise\<void>; | Added|
+| ohos.screen | Screen | on(eventType: 'connect' \| 'disconnect' \| 'change', callback: Callback<number>): void; | Added|
+| ohos.screen | Screen | off(eventType: 'connect' \| 'disconnect' \| 'change', callback?: Callback<number>): void; | Added|
 | ohos.screen | Screen | readonly orientation: Orientation; | Added|
 | ohos.screen | Screen | readonly activeModeIndex: number; | Added|
 | ohos.screen | Screen | readonly supportedModeInfo: Array\<ScreenModeInfo>; | Added|
@@ -36,6 +40,8 @@ The table below lists the APIs changes of the window manager subsystem in OpenHa
 | ohos.window | WindowStage | getSubWindow(): Promise\<Array\<Window>>;<br>getSubWindow(callback: AsyncCallback\<Array\<Window>>): void; | Added|
 | ohos.window | WindowStage | createSubWindow(name: string): Promise\<Window>;<br>createSubWindow(name: string, callback: AsyncCallback\<Window>): void; | Added|
 | ohos.window | WindowStage | getMainWindow(): Promise\<Window>;<br>getMainWindow(callback: AsyncCallback\<Window>): void; | Added|
+| ohos.window | WindowStage | on(eventType: 'windowStageEvent', callback: Callback<WindowStageEventType>): void; | Added|
+| ohos.window | WindowStage | off(eventType: 'windowStageEvent', callback?: Callback<WindowStageEventType>): void; | Added|
 | ohos.window | WindowStageEventType | BACKGROUND | Added|
 | ohos.window | WindowStageEventType | INACTIVE | Added|
 | ohos.window | WindowStageEventType | ACTIVE | Added|

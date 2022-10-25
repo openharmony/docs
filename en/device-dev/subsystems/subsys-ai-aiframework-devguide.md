@@ -1,4 +1,4 @@
-# AI Framework Development Guide
+# AI Framework Development
 
 ## **Overview**
 
