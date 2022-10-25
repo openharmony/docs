@@ -13,7 +13,7 @@
 import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
 ```
 
-## inputDeviceCooperate.enable<sup>9+</sup>
+## inputDeviceCooperate.enable
 
 enable(enable: boolean, callback: AsyncCallback\<void>): void
 
@@ -46,7 +46,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.enable<sup>9+</sup>
+## inputDeviceCooperate.enable
 
 enable(enable: boolean): Promise\<void>
 
@@ -84,7 +84,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.start<sup>9+</sup>
+## inputDeviceCooperate.start
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCallback\<void>): void
 
@@ -125,7 +125,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.start<sup>9+</sup>
+## inputDeviceCooperate.start
 
 start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
@@ -171,7 +171,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.stop<sup>9+</sup>
+## inputDeviceCooperate.stop
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -203,7 +203,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.stop<sup>9+</sup>
+## inputDeviceCooperate.stop
 
 stop(): Promise\<void>
 
@@ -231,7 +231,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.getState<sup>9+</sup>
+## inputDeviceCooperate.getState
 
 getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>): void
 
@@ -262,7 +262,7 @@ try {
 }
 ```
 
-## inputDeviceCooperate.getState<sup>9+</sup>
+## inputDeviceCooperate.getState
 
 getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
@@ -300,7 +300,7 @@ try {
 }
 ```
 
-## on('cooperation')<sup>9+</sup>
+## on('cooperation')
 
 on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, eventMsg: EventMsg }>): void
 
@@ -333,7 +333,7 @@ try {
 }
 ```
 
-## off('cooperation')<sup>9+</sup>
+## off('cooperation')
 
 off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
@@ -366,7 +366,7 @@ try {
 }
 ```
 
-## EventMsg<sup>9+</sup>
+## EventMsg
 
 键鼠穿越事件。
 
