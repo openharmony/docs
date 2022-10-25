@@ -189,7 +189,7 @@ connection.getAllNets().then(function (nets) {
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
-Obtains connection properties of the network corresponding to given network handle. This API uses an asynchronous callback to return the result.
+Obtains connection properties of the network corresponding to the given network handle. This API uses an asynchronous callback to return the result.
 
 **Required permission**: ohos.permission.GET_NETWORK_INFO
 
