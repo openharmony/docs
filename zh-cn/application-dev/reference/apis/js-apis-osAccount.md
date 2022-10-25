@@ -1594,7 +1594,7 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
 
 | 类型                                           | 说明                                  |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promis对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
 
 **错误码：**
 
@@ -2503,7 +2503,7 @@ getBundleIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
 
 getBundleIdFromUid(uid: number): Promise&lt;number&gt;;
 
-通过uid查询对应的bundleId，使用Promis异步回调。
+通过uid查询对应的bundleId，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
