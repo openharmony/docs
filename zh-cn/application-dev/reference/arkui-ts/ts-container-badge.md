@@ -61,8 +61,8 @@
 @Entry
 @Component
 struct BadgeExample {
-  @State counts: number = 1;
-  @State message: string = 'new';
+  @State counts: number = 1
+  @State message: string = 'new'
 
   build() {
     Column() {
@@ -77,7 +77,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++;
+              this.counts++
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
@@ -91,7 +91,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++;
+              this.counts++
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)
@@ -106,7 +106,7 @@ struct BadgeExample {
         }) {
           Button('message')
             .onClick(() => {
-              this.counts++;
+              this.counts++
             })
             .width(100).height(50).backgroundColor(0x317aff)
         }.width(100).height(50)

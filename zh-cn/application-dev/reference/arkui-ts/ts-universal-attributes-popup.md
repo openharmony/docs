@@ -84,7 +84,7 @@ struct PopupExample {
           secondaryButton: {
             value: 'cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup;
+              this.handlePopup = !this.handlePopup
               console.info('cancel Button click')
             }
           },

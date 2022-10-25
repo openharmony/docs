@@ -40,7 +40,7 @@
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = "";
+  @State text: string = ""
 
   build() {
     Column({ space: 20 }) {
@@ -49,7 +49,7 @@ struct TouchTargetExample {
       Button("button1")
         .responseRegion({ x: 0, y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button1 clicked';
+          this.text = 'button1 clicked'
         })
 
       // 热区宽度为按钮的一半，且右移一个按钮宽度，点击button2右侧左边，点击事件生效
@@ -57,14 +57,14 @@ struct TouchTargetExample {
       Button("button2")
         .responseRegion({ x: '100%', y: 0, width: '50%', height: '100%' })
         .onClick(() => {
-          this.text = 'button2 clicked';
+          this.text = 'button2 clicked'
         })
       // 热区大小为整个按钮，且下移一个按钮高度，点击button3下方按钮大小区域，点击事件生效
       Text("{x:0,y:'100%',width:'100%',height:'100%'}")
       Button("button3")
         .responseRegion({ x: 0, y: '100%', width: '100%', height: '100%' })
         .onClick(() => {
-          this.text = 'button3 clicked';
+          this.text = 'button3 clicked'
         })
 
       Text(this.text).margin({ top: 50 })
