@@ -940,7 +940,7 @@ Camera驱动的开发过程主要包含以下步骤：
                    c = PutMenuAndGetChr();
                    break;
                case 'c':
-                   CaptureTest(mainDemo); Capture功能测试
+                   CaptureTest(mainDemo); // Capture功能测试
                    c = PutMenuAndGetChr();
                    break;
                case 'w': // AWB功能测试
