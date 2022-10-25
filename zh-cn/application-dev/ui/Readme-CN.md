@@ -4,7 +4,7 @@
 - UI开发（基于ArkTS的声明式开发范式）
     - [概述](ui-ts-overview.md)
     - [声明式UI开发指导](ui-ts-developing-intro.md)
-    - 声明式开发实例
+    - 声明式UI开发实例
       - [创建简单视图](ui-ts-creating-simple-page.md)
       - 构建完整实例
         - [构建食物数据模型](ui-ts-building-data-model.md)
