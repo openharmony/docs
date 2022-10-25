@@ -245,9 +245,6 @@ function getVideoRecorderSurface() {
 ##### 创建会话
 
 ```typescript
-// 创建Context对象
-let context = featureAbility.getContext()
-
 //创建会话
 let captureSession = await camera.createCaptureSession()
 if (!captureSession) {
