@@ -117,36 +117,37 @@ listener.on('change', onPortrait)
 
 ```ts
 import mediaquery from '@ohos.mediaquery'
+
 let portraitFunc = null
 
 @Entry
 @Component
 struct MediaQueryExample {
-@State color: string = '#DB7093'
-@State text: string = 'Portrait'
-listener = mediaquery.matchMediaSync('(orientation: landscape)')  // 当设备横屏时条件成立
+  @State color: string = '#DB7093'
+  @State text: string = 'Portrait'
+  listener = mediaquery.matchMediaSync('(orientation: landscape)') // 当设备横屏时条件成立
 
-onPortrait(mediaQueryResult) {
-  if (mediaQueryResult.matches) {
-    this.color = '#FFD700'
-    this.text = 'Landscape'
-  } else {
-    this.color = '#DB7093'
-    this.text = 'Portrait'
+  onPortrait(mediaQueryResult) {
+    if (mediaQueryResult.matches) {
+      this.color = '#FFD700'
+      this.text = 'Landscape'
+    } else {
+      this.color = '#DB7093'
+      this.text = 'Portrait'
+    }
   }
-}
 
-aboutToAppear() {
-  portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
-  this.listener.on('change', portraitFunc)  
-}
-
-build() {
-  Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-    Text(this.text).fontSize(50).fontColor(this.color)
+  aboutToAppear() {
+    portraitFunc = this.onPortrait.bind(this) // 绑定当前应用实例
+    this.listener.on('change', portraitFunc)
   }
-  .width('100%').height('100%')
-}
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text(this.text).fontSize(50).fontColor(this.color)
+    }
+    .width('100%').height('100%')
+  }
 }
 ```
 

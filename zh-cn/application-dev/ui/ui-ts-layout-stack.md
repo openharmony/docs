@@ -28,13 +28,13 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
 
     ```ts
     Stack({ alignContent: Alignment.BottomStart }) {
-        Column(){
+        Column() {
           Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
         }.width(100).height(100).backgroundColor(0xffd306)
-        Column(){
+        Column() {
           Text('Stack子元素2').fontSize(20)
         }.width(150).height(150).backgroundColor(Color.Pink)
-        Column(){
+        Column() {
           Text('Stack子元素3').fontSize(20)
         }.width(200).height(200).backgroundColor(Color.Grey)
     }.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
@@ -46,13 +46,13 @@ Stack容器中兄弟组件显示层级关系可以通过[zIndex](../reference/ar
 
     ```ts
     Stack({ alignContent: Alignment.BottomStart }) {
-        Column(){
+        Column() {
           Text('Stack子元素1').textAlign(TextAlign.End).fontSize(20)
         }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
-        Column(){
+        Column() {
           Text('Stack子元素2').fontSize(20)
         }.width(150).height(150).backgroundColor(Color.Pink).zIndex(1)
-        Column(){
+        Column() {
           Text('Stack子元素3').fontSize(20)
         }.width(200).height(200).backgroundColor(Color.Grey)
     }.margin({ top: 100 }).width(350).height(350).backgroundColor(0xe0e0e0)
