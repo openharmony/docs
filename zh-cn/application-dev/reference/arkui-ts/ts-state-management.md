@@ -160,7 +160,7 @@ Set<T>(propName: string, newValue: T): boolean
 | boolean | 如果存在key值，设置value值并返回true，否则返回false。 |
 
 ```ts
-let simple = AppStorage.Set('simpleProp')
+let simple = AppStorage.Set('simpleProp', 121);
 ```
 
 ### SetOrCreate
