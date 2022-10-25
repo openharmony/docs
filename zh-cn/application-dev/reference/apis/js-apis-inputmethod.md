@@ -43,8 +43,8 @@ import inputMethod from '@ohos.inputmethod';
 
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 包名。 |
-| methodId<sup>(deprecated)</sup> | string | 是 | 否 | Ability名。 |
+| packageName<sup>(deprecated)</sup> | string | 是 | 否 | 包名。从API8开始支持，从API9开始废弃，建议使用name替代 |
+| methodId<sup>(deprecated)</sup> | string | 是 | 否 | Ability名。从API8开始支持，从API9开始废弃，建议使用id替代 |
 | name<sup>9+</sup>  | string | 是 | 否 | 包名。 |
 | id<sup>9+</sup>    | string | 是 | 否 | Ability名。 |
 | label<sup>9+</sup>    | string | 是 | 否 | 输入法标签，非必填项。|
@@ -509,7 +509,7 @@ let InputMethodSetting = inputMethod.getInputMethodSetting();
 
 ## InputMethodController
 
-下列API示例中都需使用[getController](##inputmethodgetcontroller9)回调获取到InputMethodController实例，再通过此实例调用对应方法。
+下列API示例中都需使用[getController](#inputmethodgetcontroller9)回调获取到InputMethodController实例，再通过此实例调用对应方法。
 
 ### stopInputSession<sup>9+</sup>
 
