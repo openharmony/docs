@@ -21,7 +21,7 @@ typedef enum {
 
 - preload字段配置为0（DEVICE_PRELOAD_ENABLE），则系统启动过程中默认加载。
 
-- preload字段配置为1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快启的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同。
+- preload字段配置为1（DEVICE_PRELOAD_ENABLE_STEP2），当系统支持快速启动的时候，则在系统完成之后再加载这一类驱动，否则和DEVICE_PRELOAD_ENABLE含义相同。
 
 - preload字段配置为2（DEVICE_PRELOAD_DISABLE），则系统启动过程中默认不加载，支持后续动态加载，当用户态获取驱动服务（参考[消息机制](../driver/driver-hdf-message-management.md)）时，如果驱动服务不存在，HDF框架会尝试动态加载该驱动。
 
