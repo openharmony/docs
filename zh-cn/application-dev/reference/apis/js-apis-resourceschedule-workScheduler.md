@@ -32,7 +32,7 @@ startWork(work: WorkInfo): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -84,7 +84,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -134,7 +134,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -182,7 +182,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -228,7 +228,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -267,7 +267,7 @@ obtainAllWorks(): Promise<Array\<WorkInfo>>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -298,7 +298,7 @@ stopAndClearWorks(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -339,7 +339,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -384,7 +384,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errcode-workScheduler.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.workScheduler (延迟任务调度)](../errorcodes/errorcode-workScheduler.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -409,7 +409,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 ```
 
 ## WorkInfo
-提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/work-scheduler-overview.md)
+提供工作的具体信息。WorkInfo设置参数约束见[延迟任务调度概述](../../task-management/background-task-overview.md#延迟任务调度约束)
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 

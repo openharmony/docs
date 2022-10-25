@@ -45,7 +45,7 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -93,7 +93,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -149,7 +149,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -194,7 +194,7 @@ cancelSuspendDelay(requestId: number): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -234,13 +234,13 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击后跳转的界面。                 |
 | callback  | AsyncCallback&lt;void&gt;          | 是    | callback形式返回启动长时任务的结果。                   |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -305,7 +305,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | 是    | 应用运行的上下文。<br>FA模型的应用Context定义见[Context](js-apis-Context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-ability-context.md)。 |
-| bgMode    | [BackgroundMode](#backgroundmode8) | 是    | 向系统申请的后台模式。                              |
+| bgMode    | [BackgroundMode](#backgroundmode) | 是    | 向系统申请的后台模式。                              |
 | wantAgent | [WantAgent](js-apis-wantAgent.md)  | 是    | 通知参数，用于指定长时任务通知点击跳转的界面。                  |
 
 **返回值**：
@@ -316,7 +316,7 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -379,7 +379,7 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -437,7 +437,7 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -469,7 +469,7 @@ try {
 
 ## backgroundTaskManager.applyEfficiencyResources
 
-applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest9)): void
+applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresourcesrequest)): void
 
 向系统申请能效资源。
 进程和它所属的应用可以同时申请某一类资源，例如CPU资源，但是应用释放资源的时候会将进程的资源一起释放。
@@ -482,12 +482,12 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 
 | 参数名     | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest9) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest9)。 |
+| request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | 是    | 请求的必要信息。包括资源类型，超时时间等信息。详见[EfficiencyResourcesRequest](#efficiencyresourcesrequest)。 |
 
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
@@ -530,7 +530,7 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errcode-backgroundTaskMgr.md)错误码。
+以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误码信息             |
 | ---- | --------------------- |
