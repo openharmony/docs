@@ -38,11 +38,23 @@ List的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The List's constructor cannot be directly invoked. |
 
 **示例：**
 
 ```ts
 let list = new List();
+try {
+  let list2 = List();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -66,6 +78,14 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -76,6 +96,11 @@ let b = [1, 2, 3];
 list.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = list.add(false);
+try {
+  list.add.bind({}, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insert
@@ -93,6 +118,15 @@ insert(element: T, index: number): void
 | element | T | 是 | 插入元素。 |
 | index | number | 是 | 插入的位置索引。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -100,6 +134,16 @@ let list = new List();
 list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
+try {
+  list.insert.bind({}, "b", 3)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  list.insert("b", 6);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### has
@@ -122,6 +166,14 @@ has(element: T): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -129,6 +181,11 @@ let list = new List();
 let result = list.has("squirrel");
 list.add("squirrel");
 let result1 = list.has("squirrel");
+try {
+  list.has.bind({}, "squirrel")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### get
@@ -151,6 +208,14 @@ get(index: number): T
 | -------- | -------- |
 | T | 根据下标查找到的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -163,6 +228,11 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.get(2);
+try {
+  list.get.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLastIndexOf
@@ -185,6 +255,14 @@ getLastIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回指定元素最后一次出现的下标值，没有找到返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -197,6 +275,11 @@ list.add(1);
 list.add(2);
 list.add(4);
 let result = list.getLastIndexOf(2);
+try {
+  list.getLastIndexOf.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getIndexOf
@@ -219,6 +302,14 @@ getIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回第一次找到指定元素的下标，没有找到返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -232,6 +323,11 @@ list.add(2);
 list.add(4);
 list.getIndexOf(2);
 let result = list.getIndexOf(2);
+try {
+  list.getIndexOf.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### equal
@@ -254,6 +350,14 @@ equal(obj: Object): boolean
 | -------- | -------- |
 | boolean | 如果对象与此列表相同返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -269,6 +373,11 @@ obj1.add(5);
 list.equal(obj1);
 let obj2 = {name : "Dylon", age : "13"};
 let result = list.equal(obj2);
+try {
+  list.equal.bind({}, obj2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeByIndex
@@ -291,6 +400,15 @@ removeByIndex(index: number): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -301,6 +419,16 @@ list.add(5);
 list.add(2);
 list.add(4);
 let result = list.removeByIndex(2);
+try {
+  list.removeByIndex.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  list.removeByIndex(8);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### remove
@@ -323,6 +451,14 @@ remove(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -332,6 +468,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.remove(2);
+try {
+  list.remove.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### replaceAllElements
@@ -358,6 +499,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | list | List&lt;T&gt; | 否 | 当前调用replaceAllElements方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The replaceAllElements method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -372,6 +521,13 @@ list.replaceAllElements((value: number, index: number) => {
 list.replaceAllElements((value: number, index: number) => {
   return value = value - 2;
 });
+try {
+  list.replaceAllElements.bind({}, (value: number, index: number) => {
+    return value = 2 * value;
+  })();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -398,6 +554,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | List | List&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -409,6 +573,13 @@ list.add(4);
 list.forEach((value, index) => {
   console.log("value: " + value, index);
 });
+try {
+  list.forEach.bind({}, (value, index) => {
+    console.log("value: " + value, index);
+  })();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 
 ```
 
@@ -433,6 +604,14 @@ comparator的参数说明：
 | firstValue | T | 是 | 前一项元素。 |
 | secondValue | T | 是 | 后一项元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The sort method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -443,6 +622,11 @@ list.add(5);
 list.add(4);
 list.sort((a: number, b: number) => a - b);
 list.sort((a: number, b: number) => b - a);
+try {
+  list.sort.bind({}, (a: number, b: number) => b - a)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getSubList
@@ -466,6 +650,15 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 | -------- | -------- |
 | List&lt;T&gt; | 返回List对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getSubList method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -477,6 +670,16 @@ list.add(4);
 let result = list.getSubList(2, 4);
 let result1 = list.getSubList(4, 3);
 let result2 = list.getSubList(2, 6);
+try {
+  list.getSubList.bind({}, 2, 4)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  list.getSubList(2, 10);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### clear
@@ -487,6 +690,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -496,6 +707,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.clear();
+try {
+  list.clear.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### set
@@ -519,6 +735,15 @@ set(index: number, element: T): T
 | -------- | -------- |
 | T | 返回替换后的元素 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -528,7 +753,16 @@ list.add(4);
 list.add(5);
 list.add(4);
 list.set(2, "b");
-
+try {
+  list.set.bind({}, 3, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  list.set(8, "b");
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### convertToArray
@@ -545,6 +779,14 @@ convertToArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回转换后的数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -554,6 +796,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.convertToArray();
+try {
+  list.convertToArray.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### isEmpty
@@ -570,6 +817,14 @@ isEmpty(): boolean
 | -------- | -------- |
 | boolean | 为空返回true，不为空返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The isEmpty method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -579,6 +834,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.isEmpty();
+try {
+  list.isEmpty.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -595,6 +855,14 @@ getFirst(): T
 | -------- | -------- |
 | T | 返回实例的第一个元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -604,6 +872,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getFirst();
+try {
+  list.getFirst.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLast
@@ -620,6 +893,14 @@ getLast(): T
 | -------- | -------- |
 | T | 返回实例的最后一个元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -629,6 +910,11 @@ list.add(4);
 list.add(5);
 list.add(4);
 let result = list.getLast();
+try {
+  list.getLast.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -644,6 +930,14 @@ let result = list.getLast();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -665,5 +959,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value: " + temp);
   temp = iter.next().value;
+}
+try {
+  list[Symbol.iterator].bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```

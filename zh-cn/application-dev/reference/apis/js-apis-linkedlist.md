@@ -42,11 +42,24 @@ LinkedList的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200012 | The LinkedList's constructor cannot be directly invoked. |
+
 
 **示例：**
 
 ```ts
 let linkedList = new LinkedList();
+try {
+  let linkedList2 = LinkedList();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 
@@ -70,6 +83,14 @@ add(element: T): boolean
 | -------- | -------- |
 | boolean | 插入成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The add method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -80,6 +101,11 @@ let b = [1, 2, 3];
 linkedList.add(b);
 let c = {name : "Dylon", age : "13"};
 let result3 = linkedList.add(false);
+try {
+  linkedList.add.bind({}, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### addFirst
@@ -96,6 +122,14 @@ addFirst(element: T): void
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 待插入的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The addFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -106,6 +140,11 @@ let b = [1, 2, 3];
 linkedList.addFirst(b);
 let c = {name : "Dylon", age : "13"};
 linkedList.addFirst(false);
+try {
+  linkedList.addFirst.bind({}, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### insert
@@ -123,6 +162,15 @@ insert(index: number, element: T): void
 | element | T | 是 | 插入元素。 |
 | index | number | 是 | 插入位置索引。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The insert method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -130,6 +178,16 @@ let linkedList = new LinkedList();
 linkedList.insert(0, "A");
 linkedList.insert(1, 0);
 linkedList.insert(2, true);
+try {
+  linkedList.insert.bind({}, 3, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  linkedList.insert(6, "b");
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### has
@@ -152,6 +210,14 @@ has(element: T): boolean
 | -------- | -------- |
 | boolean | 包含指定元素返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The has method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -159,6 +225,11 @@ let linkedList = new LinkedList();
 let result1 = linkedList.has("squirrel");
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
+try {
+  linkedList.has.bind({}, "squirrel")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### get
@@ -181,6 +252,14 @@ get(index: number): T
 | -------- | -------- |
 | T | 根据下标查找到的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The get method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -193,6 +272,11 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.get(2);
+try {
+  linkedList.get.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLastIndexOf
@@ -215,6 +299,14 @@ getLastIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回指定元素最后一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLastIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -227,6 +319,11 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getLastIndexOf(2);
+try {
+  linkedList.getLastIndexOf.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getIndexOf
@@ -249,6 +346,14 @@ getIndexOf(element: T): number
 | -------- | -------- |
 | number | 返回指定元素第一次出现时的下标值，查找失败返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getIndexOf method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -261,6 +366,11 @@ linkedList.add(1);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.getIndexOf(2);
+try {
+  linkedList.getIndexOf.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeByIndex
@@ -283,6 +393,15 @@ removeByIndex(index: number): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeByIndex method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -293,6 +412,16 @@ linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeByIndex(2);
+try {
+  linkedList.removeByIndex.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  linkedList.removeByIndex(8);
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeFirst
@@ -309,16 +438,35 @@ removeFirst(): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeFirst method cannot be bound. |
+| 10200010 | Container is empty. |
+
 **示例：**
 
 ```ts
 let linkedList = new LinkedList();
+try {
+  linkedList.removeFirst();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeFirst();
+try {
+  linkedList.removeFirst.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeLast
@@ -335,16 +483,35 @@ removeLast(): T
 | -------- | -------- |
 | T | 返回删除的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeLast method cannot be bound. |
+| 10200010 | Container is empty. |
+
 **示例：**
 
 ```ts
 let linkedList = new LinkedList();
+try {
+  linkedList.removeLast();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(2);
 linkedList.add(4);
 let result = linkedList.removeLast();
+try {
+  linkedList.removeLast.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### remove
@@ -367,6 +534,14 @@ remove(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The remove method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -376,6 +551,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.remove(2);
+try {
+  linkedList.remove.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeFirstFound
@@ -398,15 +578,34 @@ removeFirstFound(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeFirstFound method cannot be bound. |
+| 10200010 | Container is empty. |
+
 **示例：**
 
 ```ts
 let linkedList = new LinkedList();
+try {
+  linkedList.removeFirstFound();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeFirstFound(4);
+try {
+  linkedList.removeFirstFound.bind({}, 2)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### removeLastFound
@@ -429,15 +628,34 @@ removeLastFound(element: T): boolean
 | -------- | -------- |
 | boolean | 删除成功返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The removeLastFound method cannot be bound. |
+| 10200010 | Container is empty. |
+
 **示例：**
 
 ```ts
 let linkedList = new LinkedList();
+try {
+  linkedList.removeLastFound();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.removeLastFound(4);
+try {
+  linkedList.removeLastFound.bind({}, 4)();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### clone
@@ -454,6 +672,14 @@ clone(): LinkedList&lt;T&gt;
 | -------- | -------- |
 | LinkedList&lt;T&gt; | 返回LinkedList对象实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clone method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -463,6 +689,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.clone();
+try {
+  linkedList.clone.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### forEach
@@ -489,6 +720,14 @@ callbackfn的参数说明：
 | index | number | 否 | 当前遍历到的下标值。 |
 | LinkedList | LinkedList&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The forEach method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -500,6 +739,13 @@ linkedList.add(4);
 linkedList.forEach((value, index) => {
   console.log("value:" + value, index);
 });
+try {
+  linkedList.forEach.bind({}, (value, index) => {
+    console.log("value:" + value, index);
+  })();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### clear
@@ -510,6 +756,14 @@ clear(): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The clear method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -519,6 +773,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.clear();
+try {
+  linkedList.clear.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### set
@@ -542,6 +801,15 @@ set(index: number, element: T): T
 | -------- | -------- |
 | T | 返回替换后的元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The set method cannot be bound. |
+| 10200001 | The value of parameters are out of range. |
+
 **示例：**
 
 ```ts
@@ -551,6 +819,16 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.set(2, "b");
+try {
+  linkedList.set.bind({}, 2, "b")();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
+try {
+  linkedList.set(8, "b");
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### convertToArray
@@ -567,6 +845,14 @@ convertToArray(): Array&lt;T&gt;
 | -------- | -------- |
 | Array&lt;T&gt; | 返回转换后的数组。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The convertToArray method cannot be bound. |
+
 **示例：**
 ```ts
 let linkedList = new LinkedList();
@@ -575,6 +861,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.convertToArray();
+try {
+  linkedList.convertToArray.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getFirst
@@ -591,6 +882,14 @@ getFirst(): T
 | -------- | -------- |
 | T | 返回对应元素，如果为空返回undefined。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getFirst method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -600,6 +899,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 let result = linkedList.getFirst();
+try {
+  linkedList.getFirst.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### getLast
@@ -616,6 +920,14 @@ getLast(): T
 | -------- | -------- |
 | T | 返回对应元素，如果为空返回undefined。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The getLast method cannot be bound. |
+
 **示例：**
 
 ```ts
@@ -625,6 +937,11 @@ linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
 linkedList.getLast();
+try {
+  linkedList.getLast.bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
+}
 ```
 
 ### [Symbol.iterator]
@@ -640,6 +957,14 @@ linkedList.getLast();
 | 类型 | 说明 |
 | -------- | -------- |
 | IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[containers错误码](../errorcodes/errorcode-containers.md)。
+
+| 错误码ID | 错误码信息 |
+| -------- | -------- |
+| 10200011 | The Symbol.iterator method cannot be bound. |
 
 **示例：**
 
@@ -661,5 +986,10 @@ let temp = iter.next().value;
 while(temp != undefined) {
   console.log("value:" + temp);
   temp = iter.next().value;
+}
+try {
+  linkedList[Symbol.iterator].bind({})();
+} catch(err) {
+  console.log(`${err.code} - ${err.name} - ${err.message}`);
 }
 ```
