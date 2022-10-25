@@ -6,7 +6,7 @@ HDF驱动框架提供把和配置的设备列表匹配成功的驱动程序加�
 
 ## 驱动加载策略
 
-支持按需加载和按序加载两种策略，具体设备的加载策略由配置文件(参考[驱动开发](../driver/driver-hdf-development.md))中的preload字段来控制，配置值参考如下：
+支持按需加载和按序加载两种策略，具体设备的加载策略由配置文件（参考[驱动开发](../driver/driver-hdf-development.md)）中的preload字段来控制，配置值参考如下：
 
 ```c
 typedef enum {
