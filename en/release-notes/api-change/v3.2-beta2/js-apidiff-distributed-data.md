@@ -9,7 +9,7 @@ The table below lists the APIs changes of the distributed data management subsys
 | ohos.data.dataShare | DataShareHelper | notifyChange(uri: string, callback: AsyncCallback\<void>): void;<br>notifyChange(uri: string): Promise\<void>; | Added|
 | ohos.data.dataShare | DataShareHelper | denormalizeUri(uri: string, callback: AsyncCallback\<string>): void;<br>denormalizeUri(uri: string): Promise\<string>; | Added|
 | ohos.data.dataShare | DataShareHelper | normalizeUri(uri: string, callback: AsyncCallback\<string>): void;<br>normalizeUri(uri: string): Promise\<string>; | Added|
-| ohos.data.dataShare | DataShareHelper | getFileTypes(uri: string,  mimeTypeFilter:string, callback: AsyncCallback\<Array\<string>>): void;<br>getFileTypes(uri: string,  mimeTypeFilter: string): Promise\<Array\<string>>; | Added|
+| ohos.data.dataShare | DataShareHelper | getFileTypes(uri: string,  mimeTypeFilter: string, callback: AsyncCallback\<Array\<string>>): void;<br>getFileTypes(uri: string,  mimeTypeFilter: string): Promise\<Array\<string>>; | Added|
 | ohos.data.dataShare | DataShareHelper | getType(uri: string, callback: AsyncCallback\<string>): void;<br>getType(uri: string): Promise\<string>; | Added|
 | ohos.data.dataShare | DataShareHelper | batchInsert(uri: string, values: Array\<ValuesBucket>, callback: AsyncCallback\<number>): void;<br>batchInsert(uri: string, values: Array\<ValuesBucket>): Promise\<number>; | Added|
 | ohos.data.dataShare | DataShareHelper | update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback\<number>): void;<br>update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket): Promise\<number>; | Added|
@@ -73,9 +73,9 @@ The table below lists the APIs changes of the distributed data management subsys
 | ohos.data.DataShareResultSet | DataType | TYPE_DOUBLE = 2 | Added|
 | ohos.data.DataShareResultSet | DataType | TYPE_LONG = 1 | Added|
 | ohos.data.DataShareResultSet | DataType | TYPE_NULL = 0 | Added|
-| ohos.data.distributedData | DeviceKVStore | off(event:'dataChange', listener?: Callback\<ChangeNotification>): void; | Added|
+| ohos.data.distributedData | DeviceKVStore | off(event:' dataChange', listener?: Callback\<ChangeNotification>): void; | Added|
 | ohos.data.distributedData | DeviceKVStore | on(event: 'dataChange', type: SubscribeType, listener: Callback\<ChangeNotification>): void; | Added|
-| ohos.data.distributedData | SingleKVStore | off(event:'dataChange', listener?: Callback\<ChangeNotification>): void; | Added|
+| ohos.data.distributedData | SingleKVStore | off(event: 'dataChange', listener?: Callback\<ChangeNotification>): void; | Added|
 | ohos.data.distributedData | SingleKVStore | on(event: 'dataChange', type: SubscribeType, listener: Callback\<ChangeNotification>): void; | Added|
 | ohos.data.distributedData | KVStore | off(event: 'syncComplete', syncCallback?: Callback\<Array\<[string, number]>>): void; | Added|
 | ohos.data.distributedData | KVManagerConfig | context: Context; | Added|
@@ -85,5 +85,5 @@ The table below lists the APIs changes of the distributed data management subsys
 | ohos.data.distributedDataObject | SaveSuccessResponse | deviceId: string; | Added|
 | ohos.data.distributedDataObject | SaveSuccessResponse | version: number; | Added|
 | ohos.data.distributedDataObject | SaveSuccessResponse | sessionId: string; | Added|
-| ohos.data.rdb | RdbStore | restore(srcName:string, callback: AsyncCallback\<void>):void;<br>restore(srcName:string): Promise\<void>; | Added|
-| ohos.data.rdb | RdbStore | backup(destName:string, callback: AsyncCallback\<void>):void;<br>backup(destName:string): Promise\<void>; | Added|
+| ohos.data.rdb | RdbStore | restore(srcName: string, callback: AsyncCallback\<void>):void;<br>restore(srcName:string): Promise\<void>; | Added|
+| ohos.data.rdb | RdbStore | backup(destName: string, callback: AsyncCallback\<void>):void;<br>backup(destName:string): Promise\<void>; | Added|

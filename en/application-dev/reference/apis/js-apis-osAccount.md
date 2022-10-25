@@ -21,13 +21,14 @@ Obtains an **AccountManager** instance.
 **System capability**: SystemCapability.Account.OsAccount
 
 **Return value**
+
 | Type                             | Description                    |
 | --------------------------------- | ------------------------ |
 | [AccountManager](#accountmanager) | Obtains an **AccountManager** instance.|
 
 **Example**
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   ```
 
 ## OsAccountType
@@ -67,10 +68,10 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Activate OS account 100.
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.activateOsAccount(localId, (err)=>{
-    console.log("activateOsAccount err:" + JSON.stringify(err));
+    console.log('activateOsAccount err:' + JSON.stringify(err));
   });
   ```
 
@@ -100,12 +101,12 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**: Activate OS account 100.
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.activateOsAccount(localId).then(() => {
-    console.log("activateOsAccount success");
+    console.log('activateOsAccount success');
   }).catch((err) => {
-    console.log("activateOsAccount err:" + JSON.stringify(err));
+    console.log('activateOsAccount err:' + JSON.stringify(err));
   });
   ```
 
@@ -126,9 +127,9 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
-    console.log("isMultiOsAccountEnable err: " + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable err: ' + JSON.stringify(err));
     console.log('isMultiOsAccountEnable isEnabled: ' + isEnabled);
   });
   ```
@@ -150,11 +151,11 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log("isMultiOsAccountEnable err: "  + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable err: '  + JSON.stringify(err));
   });
   ```
 
@@ -178,11 +179,11 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
 **Example**: Check whether OS account 100 is activated.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var osLocalId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId, (err, isActive)=>{
-    console.log("isOsAccountActived err:" + JSON.stringify(err));
-    console.log("isOsAccountActived isActive:" + isActive);
+    console.log('isOsAccountActived err:' + JSON.stringify(err));
+    console.log('isOsAccountActived isActive:' + isActive);
   });
   ```
 
@@ -211,12 +212,12 @@ Checks whether an OS account is activated. This API uses a promise to return the
 **Example**: Check whether OS account 100 is activated.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var osLocalId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let osLocalId = 100;
   accountManager.isOsAccountActived(osLocalId).then((isActive) => {
     console.log('isOsAccountActived, isActive: ' + isActive);
   }).catch((err) => {
-    console.log("isOsAccountActived err: "  + JSON.stringify(err));
+    console.log('isOsAccountActived err: '  + JSON.stringify(err));
   });
   ```
 
@@ -241,11 +242,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi", (err, isConstraintEnabled)=>{
-    console.log("isOsAccountConstraintEnable err:" + JSON.stringify(err));
-    console.log("isOsAccountConstraintEnable isConstraintEnabled:" + isConstraintEnabled);
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.isOsAccountConstraintEnable(localId, 'constraint.wifi', (err, isConstraintEnabled)=>{
+    console.log('isOsAccountConstraintEnable err:' + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable isConstraintEnabled:' + isConstraintEnabled);
   });
   ```
 
@@ -275,12 +276,12 @@ Checks whether the specified constraint is enabled for an OS account. This API u
 **Example**: Check whether OS account 100 is forbidden to use Wi-Fi.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.isOsAccountConstraintEnable(localId, "constraint.wifi").then((isConstraintEnabled) => {
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.isOsAccountConstraintEnable(localId, 'constraint.wifi').then((isConstraintEnabled) => {
     console.log('isOsAccountConstraintEnable, isConstraintEnabled: ' + isConstraintEnabled);
   }).catch((err) => {
-    console.log("isOsAccountConstraintEnable err: "  + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable err: '  + JSON.stringify(err));
   });
   ```
 
@@ -301,9 +302,9 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTest) => {
-    console.log("isTestOsAccount err: " + JSON.stringify(err));
+    console.log('isTestOsAccount err: ' + JSON.stringify(err));
     console.log('isTestOsAccount isTest: ' + isTest);
   });
   ```
@@ -325,11 +326,11 @@ Checks whether this OS account is a test account. This API uses a promise to ret
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTest) => {
     console.log('isTestOsAccount, isTest: ' + isTest);
   }).catch((err) => {
-    console.log("isTestOsAccount err: "  + JSON.stringify(err));
+    console.log('isTestOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -350,9 +351,9 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
-    console.log("isOsAccountVerified err: " + JSON.stringify(err));
+    console.log('isOsAccountVerified err: ' + JSON.stringify(err));
     console.log('isOsAccountVerified isVerified: ' + isVerified);
   });
   ```
@@ -377,9 +378,9 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
-    console.log("isOsAccountVerified err: " + JSON.stringify(err));
+    console.log('isOsAccountVerified err: ' + JSON.stringify(err));
     console.log('isOsAccountVerified isVerified: ' + isVerified);
   });
   ```
@@ -409,11 +410,11 @@ Checks whether an OS account has been verified. This API uses a promise to retur
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified().then((isVerified) => {
     console.log('isOsAccountVerified, isVerified: ' + isVerified);
   }).catch((err) => {
-    console.log("isOsAccountVerified err: "  + JSON.stringify(err));
+    console.log('isOsAccountVerified err: '  + JSON.stringify(err));
   });
   ```
 
@@ -439,10 +440,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
     accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
-      console.log("removeOsAccount err:" + JSON.stringify(err));
+      console.log('removeOsAccount err:' + JSON.stringify(err));
     });
   });
   ```
@@ -474,12 +475,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
     accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
       console.log('removeOsAccount Success');
     }).catch(() => {
-      console.log("removeOsAccount err: "  + JSON.stringify(err));
+      console.log('removeOsAccount err: '  + JSON.stringify(err));
     });
   });
   ```
@@ -508,10 +509,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Disable Wi-Fi for OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.setOsAccountConstraints(localId, ["constraint.wifi"], true, (err)=>{
-    console.log("setOsAccountConstraints err:" + JSON.stringify(err));
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.setOsAccountConstraints(localId, ['constraint.wifi'], true, (err)=>{
+    console.log('setOsAccountConstraints err:' + JSON.stringify(err));
   });
   ```
 
@@ -541,15 +542,15 @@ This is a system API and cannot be called by third-party applications.
 | :------------------ | :---------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
-**Example**: Remote the constraint on the use of Wi-Fi for OS account 100.
+**Example**: Remove the constraint on the use of Wi-Fi for OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  accountManager.setOsAccountConstraints(localId, ["constraint.location.set"], false).then(() => {
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
     console.log('setOsAccountConstraints Success');
   }).catch((err) => {
-    console.log("setOsAccountConstraints err: "  + JSON.stringify(err));
+    console.log('setOsAccountConstraints err: '  + JSON.stringify(err));
   });
   ```
 
@@ -576,11 +577,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Set the name of OS account 100 to **demoName**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var newName = "demoName";
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let newName = 'demoName';
   accountManager.setOsAccountName(localId, newName, (err)=>{
-    console.debug("setOsAccountName err:" + JSON.stringify(err));
+    console.debug('setOsAccountName err:' + JSON.stringify(err));
   });
   ```
 
@@ -612,13 +613,13 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Set the name of OS account 100 to **demoName**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var nameLimit = "demoName";
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let nameLimit = 'demoName';
   accountManager.setOsAccountName(localId, nameLimit).then(() => {
     console.log('setOsAccountName Success');
   }).catch((err) => {
-    console.log("setOsAccountName err: "  + JSON.stringify(err));
+    console.log('setOsAccountName err: '  + JSON.stringify(err));
   });
   ```
 
@@ -641,10 +642,10 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, accountCnt)=>{
-    console.log("obtains the number of all os accounts created err:" + JSON.stringify(err));
-    console.log("obtains the number of all os accounts created accountCnt:" + accountCnt);
+    console.log('obtains the number of all os accounts created err:' + JSON.stringify(err));
+    console.log('obtains the number of all os accounts created accountCnt:' + accountCnt);
   });
   ```
 
@@ -667,11 +668,11 @@ Obtains the number of OS accounts created. This API uses a promise to return the
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((accountCnt) => {
     console.log('getCreatedOsAccountsCount, accountCnt: ' + accountCnt);
   }).catch((err) => {
-    console.log("getCreatedOsAccountsCount err: "  + JSON.stringify(err));
+    console.log('getCreatedOsAccountsCount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -692,9 +693,9 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, accountID) => {
-    console.log("getOsAccountLocalIdFromProcess err: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromProcess accountID: ' + accountID);
   });
   ```
@@ -716,11 +717,11 @@ Obtains the ID of the OS account to which the current process belongs. This API 
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess().then((accountID) => {
     console.log('getOsAccountLocalIdFromProcess, accountID: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromProcess err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess err: '  + JSON.stringify(err));
   });
   ```
 
@@ -742,10 +743,10 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, accountID) => {
-    console.log("getOsAccountLocalIdFromUid err: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid err: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromUid: ' + accountID);
   });
   ```
@@ -773,12 +774,12 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
 **Example**: Obtain the ID of the OS account whose process UID is **12345678**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((accountID) => {
     console.log('getOsAccountLocalIdFromUid: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromUid err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid err: '  + JSON.stringify(err));
   });
   ```
 
@@ -802,10 +803,10 @@ Obtains the OS account ID based on domain account information. This API uses an 
 **Example**
 
   ```js
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
-  const accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, accountID) => {
-    console.log("getOsAccountLocalIdFromDomain: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain: ' + JSON.stringify(err));
     console.log('getOsAccountLocalIdFromDomain: ' + accountID);
   });
   ```
@@ -835,12 +836,12 @@ Obtains the OS account ID based on domain account information. This API uses a p
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((accountID) => {
     console.log('getOsAccountLocalIdFromDomain: ' + accountID);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromDomain err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain err: '  + JSON.stringify(err));
   });
   ```
 
@@ -863,10 +864,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber((err, maxCnt)=>{
-    console.log("queryMaxOsAccountNumber err:" + JSON.stringify(err));
-    console.log("queryMaxOsAccountNumber maxCnt:" + maxCnt);
+    console.log('queryMaxOsAccountNumber err:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber maxCnt:' + maxCnt);
   });
   ```
 
@@ -889,11 +890,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
     console.log('queryMaxOsAccountNumber, maxCnt: ' + maxCnt);
   }).catch((err) => {
-    console.log("queryMaxOsAccountNumber err: "  + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber err: '  + JSON.stringify(err));
   });
   ```
 
@@ -917,11 +918,11 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
 **Example**: Obtain all constraints of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountAllConstraints(localId, (err, constraints)=>{
-    console.log("getOsAccountAllConstraints err:" + JSON.stringify(err));
-    console.log("getOsAccountAllConstraints:" + JSON.stringify(constraints));
+    console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
   });
   ```
 
@@ -950,12 +951,12 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
 **Example**: Obtain all constraints of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
-    console.log("getOsAccountAllConstraints, constraints: " + constraints);
+    console.log('getOsAccountAllConstraints, constraints: ' + constraints);
   }).catch((err) => {
-    console.log("getOsAccountAllConstraints err: "  + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints err: '  + JSON.stringify(err));
   });
   ```
 
@@ -980,10 +981,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts((err, accountArr)=>{
-    console.log("queryAllCreatedOsAccounts err:" + JSON.stringify(err));
-    console.log("queryAllCreatedOsAccounts accountArr:" + JSON.stringify(accountArr));
+    console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
+    console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
   });
   ```
 
@@ -1008,11 +1009,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
     console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
   }).catch((err) => {
-    console.log("queryAllCreatedOsAccounts err: "  + JSON.stringify(err));
+    console.log('queryAllCreatedOsAccounts err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1033,12 +1034,12 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err, idArray)=>{
-    console.log("queryActivatedOsAccountIds err:" + JSON.stringify(err));
-    console.log("queryActivatedOsAccountIds idArray length:" + idArray.length);
-    for(var i=0;i<idArray.length;i++) {
-      console.info("activated os account id: " + idArray[i]);
+    console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
+    for(let i=0;i<idArray.length;i++) {
+      console.info('activated os account id: ' + idArray[i]);
     }
   });
   ```
@@ -1060,11 +1061,11 @@ Obtains information about all activated OS accounts. This API uses a promise to 
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err) => {
-    console.log("queryActivatedOsAccountIds err: "  + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1091,10 +1092,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testName", account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
-    console.log("createOsAccount err:" + JSON.stringify(err));
-    console.log("createOsAccount osAccountInfo:" + JSON.stringify(osAccountInfo));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testName', account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
+    console.log('createOsAccount err:' + JSON.stringify(err));
+    console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
   });
   ```
 
@@ -1126,11 +1127,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.createOsAccount("testAccountName", account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
-    console.log("createOsAccount, accountInfo: " + JSON.stringify(accountInfo));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
+    console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("createOsAccount err: "  + JSON.stringify(err));
+    console.log('createOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1157,11 +1158,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo, (err, osAccountInfo)=>{
-    console.log("createOsAccountForDomain err:" + JSON.stringify(err));
-    console.log("createOsAccountForDomain osAccountInfo:" + JSON.stringify(osAccountInfo));
+    console.log('createOsAccountForDomain err:' + JSON.stringify(err));
+    console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
   });
   ```
 
@@ -1193,12 +1194,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var domainInfo = {domain: "testDomain", accountName: "testAccountName"};
+  let accountManager = account_osAccount.getAccountManager();
+  let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
-    console.log("createOsAccountForDomain, account info: " + JSON.stringify(accountInfo));
+    console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("createOsAccountForDomain err: "  + JSON.stringify(err));
+    console.log('createOsAccountForDomain err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1221,10 +1222,10 @@ Obtains information about the OS account to which the current process belongs. T
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err, curAccountInfo)=>{
-    console.log("queryCurrentOsAccount err:" + JSON.stringify(err));
-    console.log("queryCurrentOsAccount curAccountInfo:" + JSON.stringify(curAccountInfo));
+    console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
+    console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
   });
   ```
 
@@ -1247,11 +1248,11 @@ Obtains information about the OS account to which the current process belongs. T
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
-    console.log("queryCurrentOsAccount, accountInfo: " + JSON.stringify(accountInfo));
+    console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("queryCurrentOsAccount err: "  + JSON.stringify(err));
+    console.log('queryCurrentOsAccount err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1277,11 +1278,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Query information about OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.queryOsAccountById(localId, (err, accountInfo)=>{
-    console.log("queryOsAccountById err:" + JSON.stringify(err));
-    console.log("queryOsAccountById accountInfo:" + JSON.stringify(accountInfo));
+    console.log('queryOsAccountById err:' + JSON.stringify(err));
+    console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
   });
   ```
 
@@ -1312,12 +1313,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Query information about OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.queryOsAccountById(localId).then((accountInfo) => {
-    console.log("queryOsAccountById, accountInfo: " + JSON.stringify(accountInfo));
+    console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log("queryOsAccountById err: "  + JSON.stringify(err));
+    console.log('queryOsAccountById err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1338,9 +1339,9 @@ Obtains the type of the OS account to which the current process belongs. This AP
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err, accountType) => {
-    console.log("getOsAccountTypeFromProcess err: " + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
     console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
   });
   ```
@@ -1362,11 +1363,11 @@ Obtains the type of the OS account to which the current process belongs. This AP
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err) => {
-    console.log("getOsAccountTypeFromProcess err: "  + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1389,9 +1390,9 @@ Obtains the ID of this distributed virtual device. This API uses an asynchronous
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err, virtualID) => {
-    console.log("getDistributedVirtualDeviceId err: " + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
   });
   ```
@@ -1415,11 +1416,11 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err) => {
-    console.log("getDistributedVirtualDeviceId err: "  + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1445,11 +1446,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Obtain the profile photo of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountProfilePhoto(localId, (err, photo)=>{
-    console.log("getOsAccountProfilePhoto err:" + JSON.stringify(err));
-    console.log("get photo:" + photo + " by localId: " + localId);
+    console.log('getOsAccountProfilePhoto err:' + JSON.stringify(err));
+    console.log('get photo:' + photo + ' by localId: ' + localId);
   });
   ```
 
@@ -1480,12 +1481,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Obtain the profile photo of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
-    console.log("getOsAccountProfilePhoto: " + photo);
+    console.log('getOsAccountProfilePhoto: ' + photo);
   }).catch((err) => {
-    console.log("getOsAccountProfilePhoto err: "  + JSON.stringify(err));
+    console.log('getOsAccountProfilePhoto err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1512,14 +1513,14 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Set a profile photo for OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
-  "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
-  "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
-  "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
+  'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
+  'q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo'+
+  '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   accountManager.setOsAccountProfilePhoto(localId, photo, (err)=>{
-    console.log("setOsAccountProfilePhoto err:" + JSON.stringify(err));
+    console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
   });
   ```
 
@@ -1551,16 +1552,16 @@ This is a system API and cannot be called by third-party applications.
 **Example**: Set a profile photo for OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
-  var photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA"+
-  "Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y"+
-  "q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo"+
-  "+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=="
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
+  let photo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
+  'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
+  'q/4ljARW62X+LHS8uIzjm4dXUYF+utzBikB52Jo5e5iEPKqpACk7R9NM2RvWm5tIkD2czLCUFNKLD6IjdMHFHDzws285MgGrT0xCtp3WOKHo'+
+  '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
-    console.log("setOsAccountProfilePhoto success");
+    console.log('setOsAccountProfilePhoto success');
   }).catch((err) => {
-    console.log("setOsAccountProfilePhoto err: "  + JSON.stringify(err));
+    console.log('setOsAccountProfilePhoto err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1582,11 +1583,11 @@ Obtains the OS account ID based on the SN. This API uses an asynchronous callbac
 **Example**: Obtain the ID of the OS account whose SN is **12345**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var serialNumber = 12345;
+  let accountManager = account_osAccount.getAccountManager();
+  let serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err, localId)=>{
-    console.log("ger localId err:" + JSON.stringify(err));
-    console.log("get localId:" + localId + " by serialNumber: " + serialNumber);
+    console.log('ger localId err:' + JSON.stringify(err));
+    console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
   });
   ```
 
@@ -1613,12 +1614,12 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
 **Example**: Obtain the ID of the OS account whose SN is **12345**.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var serialNumber = 12345;
+  let accountManager = account_osAccount.getAccountManager();
+  let serialNumber = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
-    console.log("getOsAccountLocalIdBySerialNumber localId: " + localId);
+    console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdBySerialNumber err: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1640,11 +1641,11 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
 **Example**: Obtain the SN of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err, serialNumber)=>{
-    console.log("ger serialNumber err:" + JSON.stringify(err));
-    console.log("get serialNumber:" + serialNumber + " by localId: " + localId);
+    console.log('ger serialNumber err:' + JSON.stringify(err));
+    console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
   });
   ```
 
@@ -1671,12 +1672,12 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
 **Example**: Obtain the SN of OS account 100.
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var localId = 100;
+  let accountManager = account_osAccount.getAccountManager();
+  let localId = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
-    console.log("getSerialNumberByOsAccountLocalId serialNumber: " + serialNumber);
+    console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
   }).catch((err) => {
-    console.log("getSerialNumberByOsAccountLocalId err: "  + JSON.stringify(err));
+    console.log('getSerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
   });
   ```
 
@@ -1703,11 +1704,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   function onCallback(receiveLocalId){
-    console.log("receive localId:" + receiveLocalId);
+    console.log('receive localId:' + receiveLocalId);
   }
-  accountManager.on("activating", "osAccountOnOffNameA", onCallback);
+  accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   ```
 
 ### off
@@ -1733,11 +1734,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   function offCallback(){
-    console.log("off enter")
+    console.log('off enter')
   }
-  accountManager.off("activating", "osAccountOnOffNameA", offCallback);
+  accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   ```
 
 ### getBundleIdFromUid<sup>9+</sup>
@@ -1760,11 +1761,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var testUid = 1000000;
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid = 1000000;
   accountManager.getBundleIdFromUid(testUid, (err, bundleId) => {
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
-    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(bundleId));
+    console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
+    console.info('getBundleIdFromUid bundleId:' + JSON.stringify(bundleId));
   });
   ```
 ### getBundleIdFromUid<sup>9+</sup>
@@ -1792,12 +1793,12 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  var testUid = 1000000;
+  let accountManager = account_osAccount.getAccountManager();
+  let testUid = 1000000;
   accountManager.getBundleIdFromUid(testUid).then((result) => {
-    console.info("getBundleIdFromUid bundleId:" + JSON.stringify(result));
+    console.info('getBundleIdFromUid bundleId:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("getBundleIdFromUid errInfo:" + JSON.stringify(err));
+    console.info('getBundleIdFromUid errInfo:' + JSON.stringify(err));
   });
   ```
 
@@ -1822,10 +1823,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMainOsAccount((err,result)=>{
-    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
-    console.info("isMainOsAccount result:" + JSON.stringify(result));
+    console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
+    console.info('isMainOsAccount result:' + JSON.stringify(result));
   });
   ```
 ### isMainOsAccount<sup>9+</sup>
@@ -1849,11 +1850,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
+  let accountManager = account_osAccount.getAccountManager();
   accountManager.isMainOsAccount().then((result) => {
-    console.info("isMainOsAccount result:" + JSON.stringify(result));
+    console.info('isMainOsAccount result:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("isMainOsAccount errInfo:" + JSON.stringify(err));
+    console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
   });
   ```
 ### queryOsAccountConstraintSourceTypes<sup>9+</sup>
@@ -1879,10 +1880,10 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi",(err,sourceTypeInfos)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
-    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(sourceTypeInfos));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi',(err,sourceTypeInfos)=>{
+    console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
+    console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
   });
   ```
 
@@ -1914,11 +1915,11 @@ This is a system API and cannot be called by third-party applications.
 **Example**
 
   ```js
-  const accountManager = account_osAccount.getAccountManager();
-  accountManager.queryOsAccountConstraintSourceTypes(100, "constraint.wifi").then((result) => {
-    console.info("queryOsAccountConstraintSourceType sourceTypeInfos:" + JSON.stringify(result));
+  let accountManager = account_osAccount.getAccountManager();
+  accountManager.queryOsAccountConstraintSourceTypes(100, 'constraint.wifi').then((result) => {
+    console.info('queryOsAccountConstraintSourceType sourceTypeInfos:' + JSON.stringify(result));
   }).catch((err)=>{
-    console.info("queryOsAccountConstraintSourceType errInfo:" + JSON.stringify(err));
+    console.info('queryOsAccountConstraintSourceType errInfo:' + JSON.stringify(err));
   });
   ```
 
@@ -1960,11 +1961,11 @@ This is a system API and cannot be called by third-party applications.
 | :----- | :----------- |
 | number | Version information obtained.|
 
-**Example**
+**Example** 
   ```js
   let userAuth = new account_osAccount.UserAuth();
   let version = userAuth.getVersion();
-  console.log("getVersion version = " + version);
+  console.log('getVersion version = ' + version);
   ```
 
 ### getAvailableStatus<sup>8+</sup>
@@ -1998,7 +1999,7 @@ This is a system API and cannot be called by third-party applications.
   let authType = account_osAccount.AuthType.PIN;
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   let status = userAuth.getAvailableStatus(authType, authTrustLevel);
-  console.log("getAvailableStatus status = " + status);
+  console.log('getAvailableStatus status = ' + status);
   ```
 
 ### getProperty<sup>8+</sup>
@@ -2033,8 +2034,8 @@ This is a system API and cannot be called by third-party applications.
     keys: keys
   };
   userAuth.getProperty(request, (err, result) => {
-    console.log("getProperty err = " + JSON.stringify(err));
-    console.log("getProperty result = " + JSON.stringify(result));
+    console.log('getProperty err = ' + JSON.stringify(err));
+    console.log('getProperty result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2075,9 +2076,9 @@ This is a system API and cannot be called by third-party applications.
     keys: keys
   };
   userAuth.getProperty(request).then((result) => {
-    console.log("getProperty result = " + JSON.stringify(result));
+    console.log('getProperty result = ' + JSON.stringify(result));
   }).catch((err) => {
-    console.log("getProperty error = " + JSON.stringify(err));
+    console.log('getProperty error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2109,8 +2110,8 @@ This is a system API and cannot be called by third-party applications.
     setInfo: new Uint8Array([0])
   };
   userAuth.setProperty(request, (err, result) => {
-      console.log("setProperty error = " + JSON.stringify(err));
-      console.log("setProperty result = " + JSON.stringify(result));
+      console.log('setProperty error = ' + JSON.stringify(err));
+      console.log('setProperty result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2147,9 +2148,9 @@ This is a system API and cannot be called by third-party applications.
     setInfo: new Uint8Array([0])
   };
   userAuth.setProperty(request).then((result) => {
-    console.log("setProperty result = " + JSON.stringify(result));
+    console.log('setProperty result = ' + JSON.stringify(result));
   }).catch((err) => {
-    console.log("setProperty error = " + JSON.stringify(err));
+    console.log('setProperty error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2189,8 +2190,8 @@ This is a system API and cannot be called by third-party applications.
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.auth(challenge, authType, authTrustLevel, {
     onResult: function(result,extraInfo){
-        console.log("auth result = " + result);
-        console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+        console.log('auth result = ' + result);
+        console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2233,8 +2234,8 @@ This is a system API and cannot be called by third-party applications.
   let authTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
   userAuth.authUser(userID, challenge, authType, authTrustLevel, {
     onResult: function(result,extraInfo){
-        console.log("authUser result = " + result);
-        console.log("authUser extraInfo = " + JSON.stringify(extraInfo));
+        console.log('authUser result = ' + result);
+        console.log('authUser extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2270,12 +2271,12 @@ This is a system API and cannot be called by third-party applications.
   let challenge = new Uint8Array([0]);
   let contextID = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result);
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result);
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   let result = userAuth.cancelAuth(contextID);
-  console.log("cancelAuth result = " + result);
+  console.log('cancelAuth result = ' + result);
   ```
 
 ## PINAuth<sup>8+</sup>
@@ -2332,7 +2333,7 @@ This is a system API and cannot be called by third-party applications.
         callback.onSetData(pinSubType, password);
       }
   });
-  console.log("registerInputer result = " + result);
+  console.log('registerInputer result = ' + result);
   ```
 
 ### unregisterInputer
@@ -2396,8 +2397,8 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession((err, challenge) => {
-      console.log("openSession error = " + JSON.stringify(err));
-      console.log("openSession challenge = " + JSON.stringify(challenge));
+      console.log('openSession error = ' + JSON.stringify(err));
+      console.log('openSession challenge = ' + JSON.stringify(challenge));
   });
   ```
 
@@ -2423,9 +2424,9 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.openSession().then((challenge) => {
-      console.info("openSession challenge = " + JSON.stringify(challenge));
+      console.info('openSession challenge = ' + JSON.stringify(challenge));
   }).catch((err) => {
-      console.info("openSession error = " + JSON.stringify(err));
+      console.info('openSession error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2466,8 +2467,8 @@ This is a system API and cannot be called by third-party applications.
   userIDM.openSession((err, challenge) => {
     userIDM.addCredential(credentialInfo, {
       onResult: (result, extraInfo) => {
-        console.log("updateCredential result = " + result);
-        console.log("updateCredential extraInfo = " + extraInfo);
+        console.log('updateCredential result = ' + result);
+        console.log('updateCredential extraInfo = ' + extraInfo);
       }
     });
   });
@@ -2517,8 +2518,8 @@ This is a system API and cannot be called by third-party applications.
         credentialInfo.token = extraInfo.token;
         userIDM.updateCredential(credentialInfo, {
           onResult: (result, extraInfo) => {
-              console.log("updateCredential result = " + result);
-              console.log("updateCredential extraInfo = " + extraInfo);
+              console.log('updateCredential result = ' + result);
+              console.log('updateCredential extraInfo = ' + extraInfo);
           }
         });
       }
@@ -2566,14 +2567,14 @@ This is a system API and cannot be called by third-party applications.
 
 | Type  | Description                                                      |
 | :----- | :-------------------------------------------------------- |
-| number | [Result code](#resultcode8) indicating whether the operation is successful.|
+| number | [Result code](#resultcode8).|
 
 **Example**
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   let challenge = new Uint8Array([0]);
   let result = userIDM.cancel(challenge);
-  console.log("cancel result: " + result);
+  console.log('cancel result: ' + result);
   ```
 
 ### delUser<sup>8+</sup>
@@ -2601,8 +2602,8 @@ This is a system API and cannot be called by third-party applications.
   let token = new Uint8Array([0]);
   userIDM.delUser(token, {
     onResult: (result, extraInfo) => {
-      console.log("delUser result = " + result);
-      console.log("delUser extraInfo = " + JSON.stringify(extraInfo));
+      console.log('delUser result = ' + result);
+      console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2634,8 +2635,8 @@ This is a system API and cannot be called by third-party applications.
   let token = new Uint8Array([0]);
   userIDM.delCred(credentialId, token, {
     onResult: (result, extraInfo) => {
-        console.log("delCred result = " + result);
-        console.log("delCred extraInfo = " + JSON.stringify(extraInfo));
+        console.log('delCred result = ' + result);
+        console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
     }
   });
   ```
@@ -2656,15 +2657,15 @@ This is a system API and cannot be called by third-party applications.
 
 | Name   | Type                                              | Mandatory| Description                                               |
 | -------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return information about all enrolled credentials of the specified type.|
+| callback | AsyncCallback&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Yes  | Callback invoked to return information about all the user's enrolled credentials of the specified type.|
 
 
 **Example**
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo((err, result) => {
-    console.log("getAuthInfo err = " + JSON.stringify(err));
-    console.log("getAuthInfo result = " + JSON.stringify(result));
+    console.log('getAuthInfo err = ' + JSON.stringify(err));
+    console.log('getAuthInfo result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2691,8 +2692,8 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN, (err, result) => {
-    console.log("getAuthInfo err = " + JSON.stringify(err));
-    console.log("getAuthInfo result = " + JSON.stringify(result));
+    console.log('getAuthInfo err = ' + JSON.stringify(err));
+    console.log('getAuthInfo result = ' + JSON.stringify(result));
   });
   ```
 
@@ -2724,9 +2725,9 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let userIDM = new account_osAccount.UserIdentityManager();
   userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result) => {
-    console.log("getAuthInfo result = " + JSON.stringify(result))
+    console.log('getAuthInfo result = ' + JSON.stringify(result))
   }).catch((err) => {
-    console.log("getAuthInfo error = " + JSON.stringify(err));
+    console.log('getAuthInfo error = ' + JSON.stringify(err));
   });
   ```
 
@@ -2805,7 +2806,7 @@ This is a system API and cannot be called by third-party applications.
   };
   let pinAuth = new account_osAccount.PINAuth();
   let result = pinAuth.registerInputer(inputer);
-  console.log("registerInputer result: " + result);
+  console.log('registerInputer result: ' + result);
   ```
 
 ## IUserAuthCallback<sup>8+</sup>
@@ -2835,8 +2836,8 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result);
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result);
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
   ```
@@ -2863,12 +2864,12 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let authCallback = {
     onResult: (result, extraInfo) => {
-      console.log("auth result = " + result)
-      console.log("auth extraInfo = " + JSON.stringify(extraInfo));
+      console.log('auth result = ' + result)
+      console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module, acquire, extraInfo) => {
-      console.log("auth module = " + module);
-      console.log("auth acquire = " + acquire);
+      console.log('auth module = ' + module);
+      console.log('auth acquire = ' + acquire);
       console.info('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -2899,9 +2900,9 @@ This is a system API and cannot be called by third-party applications.
 
 **Example**
   ```js
-  var idmCallback = {
+  let idmCallback = {
     onResult: (result, extraInfo) => {
-      console.log("callback result = " + result)
+      console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -2929,12 +2930,12 @@ This is a system API and cannot be called by third-party applications.
   ```js
   let idmCallback = {
     onResult: (result, extraInfo) => {
-      console.log("callback result = " + result)
-      console.log("callback onResult = " + JSON.stringify(extraInfo));
+      console.log('callback result = ' + result)
+      console.log('callback onResult = ' + JSON.stringify(extraInfo));
     },
     onAcquireInfo: (module, acquire, extraInfo) => {
-      console.log("callback module = " + module);
-      console.log("callback acquire = " + acquire);
+      console.log('callback module = ' + module);
+      console.log('callback acquire = ' + acquire);
       console.log('callback onacquireinfo = ' + JSON.stringify(extraInfo));
     }
   };
@@ -3217,8 +3218,8 @@ Domain account information.
 
 | Constraint                                 | Description                          |
 | ------------------------------------- | ------------------------------ |
-| constraint.wifi                       | A user is not allowed to use Wi-Fi.                  |
-| constraint.wifi.set                   | A user is not allowed to change Wi-Fi settings.                  |
+| constraint.wifi                       | A user is not allowed to use Wi-Fi.                 |
+| constraint.wifi.set                   | A user is not allowed to set Wi-Fi.                 |
 | constraint.locale.set                 | A user is not allowed to change the device language.              |
 | constraint.app.accounts               | A user is not allowed to add or delete app accounts.        |
 | constraint.apps.install               | A user is not allowed to install apps.                  |
