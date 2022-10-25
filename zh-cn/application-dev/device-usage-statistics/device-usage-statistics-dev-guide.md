@@ -1,4 +1,4 @@
-# 设备使用信息统计
+# 设备使用信息统计(API7)
 
 ## 场景介绍
 
@@ -24,36 +24,14 @@ import stats from '@ohos.bundleState';
 | function queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void | 查询当前应用的使用优先级群组。callback形式。 |
 | function queryAppUsagePriorityGroup(): Promise&lt;number&gt;; | 查询当前应用的使用优先级群组。promise形式。 |
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
-| function getRecentlyUsedModules(callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
-| function getRecentlyUsedModules(maxNum: number, callback: AsyncCallback&lt;BundleActiveModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
-| function queryAppNotificationNumber(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
-| function queryBundleActiveEventStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveEventState&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-| function queryAppUsagePriorityGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | 查询指定应用的使用优先级群组。callback形式。 |
-| function queryAppUsagePriorityGroup(bundleName? : string): Promise&lt;number&gt;; | 查询当前调用者应用或者指定应用的使用优先级群组。promise形式。 |
-| function setBundleGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&gt;boolean&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
-| function setBundleGroup(bundleName : string, newGroup : GroupType): Promise&gt;boolean&gt;; | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以promise形式返回。 |
-| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;, callback: AsyncCallback&gt;boolean&gt;): void | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以callback形式返回。 |
-| function registerGroupCallBack(groupCallback: Callback&gt;BundleActiveGroupCallbackInfo&gt;): Promise&gt;boolean&gt;; | 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息，以promise形式返回。 |
-| function unRegisterGroupCallBack(callback: AsyncCallback&gt;boolean&gt;): void | 解除应用分组监听回调，以callback形式返回。 |
-| function unRegisterGroupCallBack(): Promise&gt;boolean&gt;; | 解除应用分组监听回调，以promise形式返回。 |
 
 ## 开发步骤
 
-1. 在config.json文件中配置设备使用信息统计权限。
+1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
+    系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
+    具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)
 
-    ```json
-    "module": {
-        "package": "com.example.deviceUsageStatistics",
-        ...,
-        "reqPermissions": [
-            {
-                "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
-            }
-        ]
-    }
-    ```
-
-2. 通过指定起始和结束时间查询所有应用的事件集合，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -69,7 +47,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-3. 通过指定起始和结束时间查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+3. 通过指定起始和结束时间查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -87,7 +65,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-4. 通过指定起始和结束时间查询当前应用的事件集合，config.json中不需要配置权限。
+4. 通过指定起始和结束时间查询当前应用的事件集合，不需要配置权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -103,7 +81,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -120,7 +98,7 @@ import stats from '@ohos.bundleState';
 
     ```
 
-6. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。
+6. 查询（无参）当前调用者应用的使用优先级群组，不需要配置权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -132,7 +110,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO，三方应用只能查询自身的空闲状态。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限，三方应用只能查询自身的空闲状态。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -144,129 +122,6 @@ import stats from '@ohos.bundleState';
     });
 
     ```
-
-8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000。config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
-
-    ```js
-    import stats from '@ohos.bundleState'
-
-    // 异步方法promise方式
-    stats.getRecentlyUsedModules(1000).then(res => {
-        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
-        for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
-        }
-    }).catch(err=> {
-        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
-    });
-
-    // 无maNum参数异步方法promise方式
-    stats.getRecentlyUsedModules().then(res => {
-        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise succeeded');
-        for (let i = 0; i < res.length; i++) {
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise number : ' + (i + 1));
-            console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise result ' + JSON.stringify(res[i]));
-        }
-    }).catch( err=> {
-        console.log('BUNDLE_ACTIVE getRecentlyUsedModules promise failed, because: ' + err.code);
-    });
-    ```
-
-9. 通过指定起始和结束时间查询所有应用的通知次数，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
-
-    ```js
-    import stats from '@ohos.bundleState'
-
-    stats.queryAppNotificationNumber(0, 20000000000000).then(res => {
-        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise success.');
-        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise result ' + JSON.stringify(res));
-    }).catch(err => {
-        console.log('BUNDLE_ACTIVE queryAppNotificationNumber promise failed, because: ' + err.code);
-    });
-    ```
-
-10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
-
-    ```js
-    import stats from '@ohos.bundleState'
-
-    // 异步方法promise方式
-    stats.queryBundleActiveEventStates(0, 20000000000000).then(res => {
-        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise success.');
-        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise result ' + JSON.stringify(res));
-    }).catch(err => {
-        console.log('BUNDLE_ACTIVE queryBundleActiveEventStates promise failed, because: ' + err.code);
-    });
-    ```
-
-11. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。查询（有参）指定应用的使用优先级群组，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
-
-     ```js
-     import stats from '@ohos.bundleState'
-
-     // 无bundleName异步方法promise方式
-     stats.queryAppUsagePriorityGroup().then(res => {
-         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise succeeded. result: ' + JSON.stringify(res));
-     }).catch(err => {
-         console.log('BUNDLE_ACTIVE queryAppUsagePriorityGroup promise failed. because: ' + err.code);
-     });
-
-    let bundleName = "com.ohos.camera";
-     // 有bundleName异步promise方式
-     stats.queryAppUsagePriorityGroup(bundleName).then(res => {
-         console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
-     }).catch(err => {
-         console.log('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
-     });
-     ```
-
-11. 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功
-
-    ```javascript
-    import stats from '@ohos.bundleState'
-
-    stats.setBundleGroup(this.bundleName, this.newGroup).then(() => {
-        console.log('BUNDLE_ACTIVE SetBundleGroup promise succeeded.');
-    }).catch( err => {
-        console.log('BUNDLE_ACTIVE SetBundleGroup promise failed. because: ' + err.code);
-    });
-    ```
-
-12. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息
-
-    ```javascript
-    import stats from '@ohos.bundleState'
-
-    // 异步方法promise形式
-    let onBundleGroupChanged = (err,res) => {
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result oldGroup is : ' + res.oldGroup);
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result newGroup is : ' + res.newGroup);
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result changeReason is : ' + res.newGroup);
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result userId is : ' + res.userId);
-        console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack result bundleName is : ' + res.bundleName);
-    };
-    stats.registerGroupCallBack(onBundleGroupChanged).then(() => {
-        console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise succeeded.');
-    }).catch(err => {
-        console.log('BUNDLE_ACTIVE RegisterGroupCallBack promise failed. because: ' + err.code);
-    });
-    ```
-
-13. 解除应用分组监听回调
-
-    ```javascript
-    import stats from '@ohos.bundleState'
-
-    // promise
-    stats.unRegisterGroupCallBack().then(() => {
-        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise succeeded.');
-    }).catch(err => {
-        console.log('BUNDLE_ACTIVE UnRegisterGroupCallBack promise failed. because: ' + err.code);
-    });
-    ```
-
 ## 相关实例
 针对设备使用信息统计，有以下相关实例可供参考：
 - [`DeviceUsageStatistics`：设备使用信息统计（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/device/DeviceUsageStatistics)
