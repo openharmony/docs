@@ -10,7 +10,7 @@ When adding a module, you must declare its dependencies in **BUILD.gn**. **deps*
 
 The dependency between modules can be classified into **deps** (left in the figure above) and **external_deps** (right in the figure above).
 
-- **deps**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and both modules 1 and 2 belong to the same component. 
+- **deps**: The dependent module to be added belongs to the same part with the current module. For example, module 2 depends on module 1, and both modules 1 and 2 belong to the same component.
 
 - **external_deps**: The dependent module to be added belongs to another component. For example, module 2 depends on module 1, and modules 1 and 2 belong to different components.
 
@@ -32,8 +32,8 @@ The dependency between modules can be classified into **deps** (left in the figu
     deps = [
       "GN target of module 1",
     ...
-   ]                      # Intra-component dependency
-  part_name = "part1"     # (Mandatory) Name of the component to which the module belongs.
+   ]                        # Intra-component dependency
+  part_name = "part1"       # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
@@ -55,12 +55,61 @@ The dependency between modules can be classified into **deps** (left in the figu
     external_deps = [
       "part1:module1",
     ...
-    ]                      # Inter-component dependency. The dependent module must be declared in inner_kits by the dependent component.
-    part_name = "part2"   # (Mandatory) Name of the component to which the module belongs.
+    ]                      # Inter-component dependency. The dependent module must be declared in **inner_kits** by the dependent component.
+    part_name = "part2"    # (Mandatory) Name of the component to which the module belongs.
   }
   ```
 
-  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The dependency between components must be written in the format of **Component_name:Module_name** in **external_deps**. The dependent module must be declared in **inner_kits**.
+  ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**<br>The dependency between components must be written in the format of **Component name:Module name** in **external_deps**. The dependent module must be declared in **inner_kits**.
+
+## Using Sanitizer
+
+When adding a module, you can enable Sanitizer features, such as the integer overflow detection and control-flow integrity (CFI) check, provided by the compiler as required. Each configuration item is optional. It is **false** by default, and can also be left empty. 
+
+The following is an example of Sanitizer configuration:
+
+``` shell
+  ohos_shared_library("example") {
+    sanitize = {
+      cfi = true
+      integer_overflow = true                
+      debug = true                       # Optional. The default mode is disabled by default.
+      blocklist = "./blocklist.txt"      # Optional. Enter the path of the blocklist.
+    }
+    ...
+  }
+```
+
+
+
+**Supported Sanitizer Features**
+
+- Integer overflow detection: includes detection of  unsigned intergers (unsigned_integer_overflow), signed integers (signed_integer_overflow detection), and both (integer_overflow).  
+- CFI: prevents malware attacks from redirecting the control flow of a program.
+
+**Other Sanitizer Settings**
+
+- Debug: specifies whether the debug mode or the release mode is used. The default value **false** indicates that the release mode is used. The value **true** explicitly declares the debug mode. This option is not provided in the build of the release version.
+
+  Sanitizer is used to locate problems during development, which is irrelevant to the debug version built. In debug mode, abundant error-related information is provided to help locate errors. When an error occurs, the program will be restored instead of being interrupted to further identify subsequent errors.
+
+  In release mode,  the program will be directly interrupted when an error occurs to protect the system against errors or maliciously attacks.
+
+- Blocklist: specifies the functions or source programs that are not affected by Sanitizer in the module. It prevents benign behavior from being identified as errors or hotspot functions from generating unreasonable and unacceptable overheads. Exercise caution when using this function. 
+
+  Blocklist example:
+
+  ```
+  [cfi]
+  fun:*([Tt]est|TEST)*
+  fun: main
+  
+  [integer]
+  src:example/*.cpp
+  ```
+
+  
+
 
 ## Information Collected by the Open Source Software Notice
 
