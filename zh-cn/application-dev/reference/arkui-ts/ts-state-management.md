@@ -1,4 +1,4 @@
-# 状态管理
+# 应用级变量的状态管理
 
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、Ability数据存储能力和应用程序需要的环境状态，其中Ability数据存储从API version9开始支持。
 
@@ -701,8 +701,8 @@ EnvProp\<S>(key: string, value: S): boolean
 | ------------ | ------------- | ------------------- | 
 | accessibilityEnabled | boolean | 无障碍屏幕朗读是否启用。            | 
 | colorMode | ColorMode | 深浅色模式，可选值为：<br>- ColorMode.LIGHT：浅色模式；<br>- ColorMode.DARK：深色模式。   | 
-| fontScale | number | 字体大小比例，取值范围为[0.85, 1.45]。            | 
-| fontWeightScale | number | 字重比例，取值范围为[0.6, 1.6]。            | 
+| fontScale | number | 字体大小比例。            | 
+| fontWeightScale | number | 字重比例。            | 
 | layoutDirection | LayoutDirection | 布局方向类型，可选值为：<br>- LayoutDirection.LTR：从左到右；<br>- LayoutDirection.RTL：从右到左。   | 
 | languageCode | string |     当前系统语言，小写字母，例如zh。            | 
 
