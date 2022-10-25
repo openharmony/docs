@@ -1,4 +1,4 @@
-# 设备使用信息统计
+# 设备使用信息统计(API7)
 
 ## 场景介绍
 
@@ -27,21 +27,11 @@ import stats from '@ohos.bundleState';
 
 ## 开发步骤
 
-1. 在config.json文件中配置设备使用信息统计权限。
+1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
+    系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
+    具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)
 
-    ```json
-    "module": {
-        "package": "com.example.deviceUsageStatistics",
-        ...,
-        "reqPermissions": [
-            {
-                "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
-            }
-        ]
-    }
-    ```
-
-2. 通过指定起始和结束时间查询所有应用的事件集合，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -57,7 +47,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-3. 通过指定起始和结束时间查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+3. 通过指定起始和结束时间查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -75,7 +65,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-4. 通过指定起始和结束时间查询当前应用的事件集合，config.json中不需要配置权限。
+4. 通过指定起始和结束时间查询当前应用的事件集合，不需要配置权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -91,7 +81,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -108,7 +98,7 @@ import stats from '@ohos.bundleState';
 
     ```
 
-6. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。
+6. 查询（无参）当前调用者应用的使用优先级群组，不需要配置权限。
 
     ```js
     import stats from '@ohos.bundleState'
@@ -120,7 +110,7 @@ import stats from '@ohos.bundleState';
     });
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO，三方应用只能查询自身的空闲状态。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限，三方应用只能查询自身的空闲状态。
 
     ```js
     import stats from '@ohos.bundleState'

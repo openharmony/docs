@@ -88,7 +88,7 @@ The application is not installed.
 
 **处理步骤**
 
-操作应用信息时请先检查应用是否已安装且并未卸载。
+操作应用信息时请先检查应用是否存在。
 
 ## 10000006 获取应用信息失败
 
@@ -108,7 +108,7 @@ Get application info failed.
 
 **处理步骤**
 
-请检查入参合法性以及应用是否安装且并未卸载。
+请检查入参合法性以及应用是否存在。
 
 ## 10000007 时间操作失败
 
@@ -163,5 +163,5 @@ Get application group info failed. The application group infomation cannot be fo
 
 **处理步骤**
 
-请检查入参bundleName的正确性。
+请检查入参bundleName的合法性和应用是否存在。
 

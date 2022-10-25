@@ -17,8 +17,10 @@
 - 查询应用分组信息（仅限自身应用）。
 - 查询应用事件（仅限自身应用）。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 
 
 ## 导入模块
@@ -1537,13 +1539,13 @@ FA卡片的使用信息的属性集合。
 | bundleName               | string | 是    | 应用包名。                                    |
 | abilityPrevAccessTime    | number | 是    | 应用最后一次使用的时间。                             |
 | abilityInFgTotalTime     | number | 是    | 应用在前台使用的总时间。                             |
-| id                       | number | 否    | 用户id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| abilityPrevSeenTime      | number | 否    | 应用最后一次在前台可见的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| abilitySeenTotalTime     | number | 否    | 应用在前台可见的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| fgAbilityAccessTotalTime | number | 否    | 应用访问前台的总时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| id                       | number | 否    | 用户id。 |
+| abilityPrevSeenTime      | number | 否    | 应用最后一次在前台可见的时间。 |
+| abilitySeenTotalTime     | number | 否    | 应用在前台可见的总时间。 |
+| fgAbilityAccessTotalTime | number | 否    | 应用访问前台的总时间。 |
+| fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。|
+| infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。 |
+| infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。 |
 
 ## BundleEvents
 
@@ -1556,9 +1558,9 @@ FA卡片的使用信息的属性集合。
 | bundleName            | string | 是    | 应用包名。                                    |
 | eventId             | number | 是    | 应用事件类型。                                  |
 | eventOccurredTime     | number | 是    | 应用事件发生的时间戳。                              |
-| appGroup | number | 否    | 应用程序的使用优先级组。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| indexOfLink           | string | 否    | 快捷方式id。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
-| nameOfClass           | string | 否    | 类名。<br>本接口在OpenHarmony 3.1 Release版本仅为接口定义，暂不支持使用。接口将在OpenHarmony 3.1 MR版本中提供使用支持。 |
+| appGroup | number | 否    | 应用程序的使用优先级组。|
+| indexOfLink           | string | 否    | 快捷方式id。|
+| nameOfClass           | string | 否    | 类名。|
 
 ## BundleStatsMap
 

@@ -1,4 +1,4 @@
-# 设备使用信息统计
+# 设备使用信息统计(API9)
 
 ## 场景介绍
 
@@ -37,21 +37,11 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 ## 开发步骤
 
-1. 在config.json文件中配置设备使用信息统计权限。
+1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
+    系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
+    具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)
 
-    ```json
-    "module": {
-        "package": "com.example.deviceUsageStatistics",
-        ...,
-        "reqPermissions": [
-            {
-                "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
-            }
-        ]
-    }
-    ```
-
-2. 通过指定起始和结束时间查询所有应用的事件集合，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -89,7 +79,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-3. 通过指定起始和结束时间查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+3. 通过指定起始和结束时间查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -131,7 +121,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-4. 通过指定起始和结束时间查询当前应用的事件集合，config.json中不需要配置权限。
+4. 通过指定起始和结束时间查询当前应用的事件集合，不需要配置权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -169,7 +159,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -207,7 +197,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-6. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。
+6. 查询（无参）当前调用者应用的使用优先级群组，不需要配置权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -237,7 +227,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-7. 判断指定Bundle Name的应用当前是否是空闲状态，config.json中不需要配置权限，三方应用只能查询自身的空闲状态。
+7. 判断指定Bundle Name的应用当前是否是空闲状态，不需要配置权限，三方应用只能查询自身的空闲状态。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -267,7 +257,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000。config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000, 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -337,7 +327,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-9. 通过指定起始和结束时间查询所有应用的通知次数，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+9. 通过指定起始和结束时间查询所有应用的通知次数，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -369,7 +359,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```js
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -401,7 +391,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-11. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。查询（有参）指定应用的使用优先级群组，config.json中需要配置权限：ohos.permission.BUNDLE_ACTIVE_INFO。
+11. 查询（无参）当前调用者应用的使用优先级群组，config.json中不需要配置权限。查询（有参）指定应用的使用优先级群组，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
      ```js
      import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -433,7 +423,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
      ```
 
-11. 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功
+11. 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功, 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```javascript
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -469,7 +459,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-12. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息
+12. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限
 
     ```javascript
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
@@ -515,7 +505,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     }
     ```
 
-13. 解除应用分组监听回调
+13. 解除应用分组监听回调， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限
 
     ```javascript
     import usageStatistics from '@ohos.resourceschedule.usageStatistics'
