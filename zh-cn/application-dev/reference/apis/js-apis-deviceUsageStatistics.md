@@ -85,7 +85,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 queryAppUsagePriorityGroup(): Promise&lt;number&gt;
 
-查询当前应用的优先级分组。使用Promise形式返回其应用分组，分组信息参考[GroupType](#grouptype)。
+查询当前应用的优先级分组。使用Promise形式返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -109,7 +109,7 @@ bundleState.queryAppUsagePriorityGroup().then( res => {
 
 queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
 
-查询当前应用的优先级分组。使用callback形式返回其应用分组，分组信息参考[GroupType](#grouptype)。
+查询当前应用的优先级分组。使用callback形式返回其应用分组。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
