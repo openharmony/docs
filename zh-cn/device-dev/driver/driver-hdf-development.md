@@ -12,7 +12,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
 
 ## 驱动开发步骤
 
-基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译脚本和驱动配置。详细开发流程如下所示：
+基于HDF框架的驱动开发主要分为三个部分：驱动实现、驱动编译脚本编写和驱动配置。详细开发流程如下所示：
 
 1. 驱动实现
 
@@ -63,7 +63,7 @@ HDF（Hardware Driver Foundation）框架以组件化的驱动模型作为核心
       HDF_INIT(g_sampleDriverEntry);
       ```
 
-2. 驱动编译脚本
+2. 驱动编译脚本编写
 
    - LiteOS
 
