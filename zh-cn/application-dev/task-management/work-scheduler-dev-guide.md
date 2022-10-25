@@ -5,21 +5,8 @@
 应用要执行对实时性要求不高的任务或持久性任务的时候，比如设备空闲时候做一次数据学习等场景，可以使用延迟调度任务，该机制在满足应用设定条件的时候，会根据系统当前状态，如内存、功耗、温度等统一决策调度时间。延迟任务调度约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)。
 
 ## 接口说明
-注册相关接口包导入：
-```js
-import workScheduler from '@ohos.resourceschedule.workScheduler';
-```
-
-回调相关接口包导入：
-```js
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-```
-
-### 延迟任务调度
 
 **表1** workScheduler主要接口
-
-> **说明：** 延迟任务调度错误码见[workScheduler错误码](../../api/errorcodes/errorcode-workScheduler.md)。
 
 接口名                                                    |     接口描述                            
 ---------------------------------------------------------|-----------------------------------------
@@ -35,7 +22,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>;| 获取上次任务是否�
 
 **表2** WorkInfo包含参数
 
-> **说明：** WorkInfo设置参数约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)
+WorkInfo设置参数约束见[延迟任务调度约束](./background-task-overview.md#延迟任务调度约束)
 
 参数名| 类型 |描述                       
 ---------------------------------------------------------|-----------------------------------------|---------------------------------------------------------
@@ -62,7 +49,19 @@ onWorkStop(work: WorkInfo): void | 延迟调度任务结束回调
 
 ### 开发步骤
 
-1、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../ability/stage-brief.md#extensionability机制)。
+1、导入模块。
+
+注册相关接口包导入：
+```js
+import workScheduler from '@ohos.resourceschedule.workScheduler';
+```
+
+回调相关接口包导入：
+```js
+import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+```
+
+2、开发对应的ExtensionAbility，用于回调执行具体的延迟任务。关于ExtensionAbility的介绍，参考[ExtensionAbility机制](../ability/stage-brief.md#extensionability机制)。
 
 ```ts
 import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
@@ -78,7 +77,7 @@ export default class MyExtension extends WorkSchedulerExtensionAbility {
 ```
 
 
-2、注册延迟任务
+3、注册延迟任务
 
 ```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler';
@@ -106,7 +105,7 @@ try{
 ```
 
 
-3、取消延迟任务
+4、取消延迟任务
 
 ```ts
 import workScheduler from '@ohos.resourceschedule.workScheduler';
@@ -134,7 +133,7 @@ try{
 ```
 
 
-4、获取指定延迟任务
+5、获取指定延迟任务
 
 ```ts
 try{
@@ -153,7 +152,7 @@ try{
 ```
 
 
-5、获取所有延迟任务
+6、获取所有延迟任务
 
 ```ts
 try{
@@ -169,7 +168,7 @@ try{
 }
 ```
 
-6、停止并清除任务
+7、停止并清除任务
 
 ```ts
 try{
@@ -180,7 +179,7 @@ try{
 }
 ```
 
-7、判断上次执行是否超时
+8、判断上次执行是否超时
 
 ```ts
 try{
