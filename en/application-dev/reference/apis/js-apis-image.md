@@ -40,9 +40,11 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 const color = new ArrayBuffer(96);
 let bufferArr = new Uint8Array(color);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts)
-    .then((pixelmap) => {
-        })
+image.createPixelMap(color, opts).then((pixelmap) => {
+    console.log('Succeeded in creating pixelmap.');
+}).catch(error => {
+    console.log('Failed to create pixelmap.');
+})
 ```
 
 ## image.createPixelMap<sup>8+</sup>
@@ -115,7 +117,7 @@ const readBuffer = new ArrayBuffer(96);
 pixelmap.readPixelsToBuffer(readBuffer).then(() => {
     console.log('Succeeded in reading image pixel data.'); // Called if the condition is met.
 }).catch(error => {
-    console.log('Failed to read image pixel data.'); // Called if no condition is met.
+    console.log('Failed to read image pixel data.');  // Called if no condition is met.
 })
 ```
 
@@ -392,7 +394,6 @@ Obtains pixel map information of this image. This API uses a promise to return t
 const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
 image.createPixelMap(color, opts).then(pixelmap => {
-    globalpixelmap = pixelmap;
     if (pixelmap == undefined) {
         console.error("Failed to obtain the image pixel map information.");
     }
@@ -428,7 +429,6 @@ const color = new ArrayBuffer(96);
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err, pixelmap) => {
     if (pixelmap == undefined) {
-        globalpixelmap = pixelmap;
         console.error("Failed to obtain the image pixel map information.");
     }
     pixelmap.getImageInfo((err, imageInfo) => {
@@ -559,9 +559,8 @@ Sets an opacity rate for this image pixel map. This API uses a promise to return
 **Example**
 
 ```js
-async function () {
-    var rate = 0.5;
-	await pixelmap.opacity(rate);
+async function Demo() {
+    await pixelmap.opacity(0.5);
 }
 ```
 
@@ -582,9 +581,9 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 **Example**
 
 ```js
-async function () {
-    await pixelmap.createAlphaPixelmap();    
-})
+async function Demo() {
+    await pixelmap.createAlphaPixelmap();
+}   
 ```
 
 ### createAlphaPixelmap<sup>9+</sup>
@@ -632,7 +631,7 @@ Scales this image based on the input width and height. This API uses an asynchro
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.scale(2.0, 1.0);
 }
 ```
@@ -661,7 +660,7 @@ Scales this image based on the input width and height. This API uses a promise t
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.scale(2.0, 1.0);
 }
 ```
@@ -685,7 +684,7 @@ Translates this image based on the input coordinates. This API uses an asynchron
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.translate(3.0, 1.0);
 }
 ```
@@ -714,7 +713,7 @@ Translates this image based on the input coordinates. This API uses a promise to
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.translate(3.0, 1.0);
 }
 ```
@@ -737,7 +736,7 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.rotate(90.0);
 }
 ```
@@ -765,7 +764,7 @@ Rotates this image based on the input angle. This API uses a promise to return t
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.rotate(90.0);
 }
 ```
@@ -789,7 +788,7 @@ Flips this image horizontally or vertically, or both. This API uses an asynchron
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.flip(false, true);
 }
 ```
@@ -818,7 +817,7 @@ Flips this image horizontally or vertically, or both. This API uses a promise to
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.flip(false, true);
 }
 ```
@@ -841,7 +840,7 @@ Crops this image based on the input size. This API uses an asynchronous callback
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
@@ -869,7 +868,7 @@ Crops this image based on the input size. This API uses a promise to return the 
 **Example**
 
 ```js
-async function () {
+async function Demo() {
 	await pixelmap.crop({ x: 0, y: 0, size: { height: 100, width: 100 } });
 }
 ```
@@ -891,15 +890,10 @@ Releases this **PixelMap** object. This API uses a promise to return the result.
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-    pixelmap.release().then(() => {
-	    console.log('Succeeded in releasing pixelmap object.');
-    }).catch(error => {
-	    console.log('Failed to release pixelmap object.');
-    })
+pixelmap.release().then(() => {
+	console.log('Succeeded in releasing pixelmap object.');
+}).catch(error => {
+	console.log('Failed to release pixelmap object.');
 })
 ```
 
@@ -920,13 +914,8 @@ Releases this **PixelMap** object. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-const color = new ArrayBuffer(96);
-let bufferArr = new Uint8Array(color);
-let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts, (pixelmap) => {
-    pixelmap.release().then(() => {
-	    console.log('Succeeded in releasing pixelmap object.');
-    })
+pixelmap.release(() => {
+    console.log('Succeeded in releasing pixelmap object.');
 })
 ```
 
@@ -1345,11 +1334,10 @@ Modifies the value of a property in this image. This API uses a promise to retur
 **Example**
 
 ```js
-imageSourceApi.modifyImageProperty("ImageWidth", "120")
-            .then(() => {
-                const w = imageSourceApi.getImageProperty("ImageWidth")
-                console.info('w', w);
-            })
+imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
+    const w = imageSourceApi.getImageProperty("ImageWidth")
+    console.info('w', w);
+})
 ```
 
 ### modifyImageProperty<sup>9+</sup>
@@ -1401,9 +1389,9 @@ Updates incremental data. This API uses a promise to return the result.
 
 ```js
 const array = new ArrayBuffer(100);
-imageSourceIncrementalSApi.updateData(array, false, 0, 10).then(data => {
-            console.info('Succeeded in updating data.');
-        })
+imageSourceApi.updateData(array, false, 0, 10).then(data => {
+    console.info('Succeeded in updating data.');
+})
 ```
 
 
@@ -1429,11 +1417,11 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 
 ```js
 const array = new ArrayBuffer(100);
-imageSourceIncrementalSApi.updateData(array, false, 0, 10,(error,data )=> {
-            if(data !== undefined){
-                console.info('Succeeded in updating data.');     
-            }
-		})
+imageSourceApi.updateData(array, false, 0, 10,(error,data )=> {
+    if(data !== undefined){
+        console.info('Succeeded in updating data.');     
+    }
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1617,6 +1605,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
+const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 };
 imagePackerApi.packing(imageSourceApi, packOpts, data => {})
 ```
@@ -1645,6 +1634,7 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
+const imageSourceApi = image.createImageSource(0);
 let packOpts = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( data => {
@@ -1673,10 +1663,14 @@ Packs an image. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```js
-let packOpts = { format:"image/jpeg", quality:98 }
-const pixelMapApi = new ArrayBuffer(400);
-imagePackerApi.packing(pixelMapApi, packOpts, data => { 
-    console.log('Succeeded in packing the image.');
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap) => {
+    let packOpts = { format:"image/jpeg", quality:98 }
+    imagePackerApi.packing(pixelmap, packOpts, data => { 
+        console.log('Succeeded in packing the image.');
+    })
 })
 ```
 
@@ -1704,14 +1698,18 @@ Packs an image. This API uses a promise to return the result.
 **Example**
 
 ```js
-let packOpts = { format:"image/jpeg", quality:98 }
-const pixelMapApi = new ArrayBuffer(400);
-imagePackerApi.packing(pixelMapApi, packOpts)
-    .then( data => {
-	    console.log('Succeeded in packing the image.');
-	}).catch(error => {
-	    console.log('Failed to pack the image..');
-	})
+const color = new ArrayBuffer(96);
+let bufferArr = new Uint8Array(color);
+let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+image.createPixelMap(color, opts).then((pixelmap) => {
+    let packOpts = { format:"image/jpeg", quality:98 }
+    imagePackerApi.packing(pixelmap, packOpts)
+        .then( data => {
+            console.log('Succeeded in packing the image.');
+        }).catch(error => {
+            console.log('Failed to pack the image..');
+        })
+})
 ```
 
 ### release
@@ -1764,7 +1762,7 @@ imagePackerApi.release().then(()=>{
 
 createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
 
-Create an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+Creates an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -1774,7 +1772,7 @@ Create an **ImageReceiver** instance by specifying the image width, height, form
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
-| format   | number | Yes  | Image format.            |
+| format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -1955,7 +1953,7 @@ receiver.readNextImage().then(img => {
 })
 ```
 
-### on('imageArrival')<sup>9+</sup>
+### on<sup>9+</sup>
 
 on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 
@@ -2017,6 +2015,228 @@ receiver.release().then(() => {
     console.log('release succeeded.');
 }).catch(error => {
     console.log('release failed.');
+})
+```
+
+## image.createImageCreator<sup>9+</sup>
+
+createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
+
+Creates an **ImageCreator** instance by specifying the image width, height, format, and capacity.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| width    | number | Yes  | Default image width.      |
+| height   | number | Yes  | Default image height.      |
+| format   | number | Yes  | Image format, for example, YCBCR_422_SP or JPEG.            |
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+
+**Return value**
+
+| Type                          | Description                                   |
+| ------------------------------ | --------------------------------------- |
+| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+
+**Example**
+
+```js
+var creator = image.createImageCreator(8192, 8, 4, 8);
+```
+
+## ImageCreator<sup>9+</sup>
+
+Requests an image native data area, and provides APIs for applications to compile native image data.
+Before calling any APIs in **ImageCreator**, you must create an **ImageCreator** instance.
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+| Name    | Type                        | Readable| Writable| Description              |
+| -------- | ---------------------------- | ---- | ---- | ------------------ |
+| capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
+| format   | [ImageFormat](#imageformat9) | Yes  | No  | Image format.        |
+
+### dequeueImage<sup>9+</sup>
+
+dequeueImage(callback: AsyncCallback\<Image>): void
+
+Obtains an image buffer from the idle queue and writes image data into it. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name         | Type                                   | Mandatory| Description                |
+| ------------- | ---------------------------------------| ---- | -------------------- |
+| callback      | AsyncCallback\<Image>                   | Yes  | Callback used to return the drawn image.|
+
+**Example**
+
+```js
+creator.dequeueImage((err, img) => {
+    if (err) {
+        console.info('dequeueImage succeeded.');
+    }
+    console.info('dequeueImage failed.'));
+});
+```
+
+### dequeueImage<sup>9+</sup>
+
+dequeueImage(): Promise\<Image>
+
+Obtains an image buffer from the idle queue and writes image data into it. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Return value**
+
+| Type            | Description          |
+| --------------- | ------------- |
+| Promise\<Image> | Promise used to return the drawn image.|
+
+**Example**
+
+```js
+creator.dequeueImage().then(img => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.log('dequeueImage failed: ' + error);
+})
+```
+
+### queueImage<sup>9+</sup>
+
+queueImage(interface: Image, callback: AsyncCallback\<void>): void
+
+Places the drawn image in the dirty queue. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name         | Type                    | Mandatory| Description                |
+| ------------- | -------------------------| ---- | -------------------- |
+| interface     | Image                    | Yes  | Drawn image.|
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Example**
+
+```js
+creator.queueImage(img, (err) => {
+    if (err) {
+        console.info('dequeueImage failed: ' + err);
+    }
+    console.info('dequeueImage succeeded');
+})
+```
+
+### queueImage<sup>9+</sup>
+
+queueImage(interface: Image): Promise\<void>
+
+Places the drawn image in the dirty queue. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description               |
+| ------------- | --------| ---- | ------------------- |
+| interface     | Image   | Yes  | Drawn image.|
+
+**Return value**
+
+| Type           | Description          |
+| -------------- | ------------- |
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Example**
+
+```js
+creator.queueImage(img).then(() => {
+    console.info('dequeueImage succeeded.');
+}).catch(error => {
+    console.info('dequeueImage failed: ' + error);
+})
+```
+
+### on<sup>9+</sup>
+
+on(type: 'imageRelease', callback: AsyncCallback\<void>): void
+
+Listens for image release events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name         | Type                    | Mandatory| Description                |
+| ------------- | -------------------------| ---- | -------------------- |
+| type          | string                   | Yes  | Type of event, which is **'imageRelease'**.|
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Example**
+
+```js
+creator.on('imageRelease', (err) => {
+    if (err) {
+        console.info('on faild' + err);
+    }
+    console.info('on succeeded');
+})
+```
+
+### release<sup>9+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+Releases this **ImageCreator** instance. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name          | Type                    | Mandatory| Description                |
+| ------------- | -------------------------| ---- | -------------------- |
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+
+**Example**
+
+```js
+creator.release((err) => {
+    if (err) {
+        console.info('release failed: ' + err);
+    }
+    console.info('release succeeded');
+});
+```
+### release<sup>9+</sup>
+
+release(): Promise\<void>
+
+Releases this **ImageCreator** instance. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Return value**
+
+| Type           | Description          |
+| -------------- | ------------- |
+| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+
+**Example**
+
+```js
+creator.release().then(() => {
+    console.info('release succeeded');
+}).catch(error => {
+    console.info('release failed');
 })
 ```
 
@@ -2147,7 +2367,7 @@ Describes area information in an image.
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
 | pixels | ArrayBuffer        | Yes  | No  | Pixels of the image.                                                      |
 | offset | number             | Yes  | No  | Offset for data reading.                                                    |
-| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                     |
+| stride | number             | Yes  | No  | Number of bytes from one row of pixels in memory to the next row of pixels in memory. The value of **stride** must be greater than or equal to the value of **region.size.width** multiplied by 4.                  |
 | region | [Region](#region7) | Yes  | No  | Region to read or write. The width of the region to write plus the X coordinate cannot be greater than the width of the original image. The height of the region to write plus the Y coordinate cannot be greater than the height of the original image.|
 
 ## ImageInfo
@@ -2159,6 +2379,7 @@ Describes image information.
 | Name| Type         | Readable| Writable| Description      |
 | ---- | ------------- | ---- | ---- | ---------- |
 | size | [Size](#size) | Yes  | Yes  | Image size.|
+| density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.|
 
 ## Size
 
@@ -2181,8 +2402,13 @@ Enumerates the pixel formats of images.
 | ---------------------- | ------ | ----------------- |
 | UNKNOWN                | 0      | Unknown format.       |
 | RGB_565                | 2      | RGB_565.    |
-| RGBA_8888              | 3      | RGBA_8888.  |
-| BGRA_8888<sup>9+</sup> | 4      | BGRA_8888.  |
+| RGBA_8888              | 3      | RGBA_8888.|
+| BGRA_8888<sup>9+</sup> | 4      | BGRA_8888.|
+| RGB_888<sup>9+</sup>   | 5      | RGB_888.  |
+| ALPHA_8<sup>9+</sup>   | 6      | ALPHA_8.  |
+| RGBA_F16<sup>9+</sup>  | 7      | RGBA_F16. |
+| NV21<sup>9+</sup>      | 8      | NV21.     |
+| NV12<sup>9+</sup>      | 9      | NV12.     |
 
 ## AlphaType<sup>9+</sup>
 
@@ -2194,8 +2420,8 @@ Enumerates the alpha types of images.
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | Unknown alpha type.           |
 | OPAQUE   | 1      | There is no alpha or the image is opaque.|
-| PREMUL   | 2      | Premultiplied alpha.          |
-| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.        |
+| PREMUL   | 2      | Premultiplied alpha.        |
+| UNPREMUL | 3      | Unpremultiplied alpha, that is, straight alpha.      |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -2250,6 +2476,7 @@ Defines image decoding options.
 | desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding.|
 | index              | number                             | Yes  | Yes  | Index of the image to decode.  |
+| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
 
 ## Region<sup>7+</sup>
 
@@ -2260,7 +2487,7 @@ Describes region information.
 | Name| Type         | Readable| Writable| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | Yes  | Yes  | Region size.  |
-| x    | number        | Yes  | Yes  | X coordinate of the region.|
+| x    | number        | Yes  | Yes  | X coordinate to translate.|
 | y    | number        | Yes  | Yes  | Y coordinate of the region.|
 
 ## PackingOption
@@ -2271,8 +2498,9 @@ Defines the option for image packing.
 
 | Name   | Type  | Readable| Writable| Description                                               |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the JPEG and WebP formats are supported. |
+| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, the following raw formats are supported: .jpg, .png, .gif, .bmp, and .webp.|
 | quality | number | Yes  | Yes  | Quality of the output image during JPEG encoding. The value ranges from 1 to 100.|
+| bufferSize<sup>9+</sup> | number | Yes  | Yes  | Buffer size, which is used to set the image size. The default value is 10 MB.|
 
 ## GetImagePropertyOptions<sup>7+</sup>
 
@@ -2299,8 +2527,14 @@ Describes the exchangeable image file format (EXIF) information of an image.
 | IMAGE_WIDTH       | "ImageWidth"            | Image width.              |
 | GPS_LATITUDE      | "GPSLatitude"           | Image latitude.              |
 | GPS_LONGITUDE     | "GPSLongitude"          | Image longitude.              |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.    |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.    |
+| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | Latitude reference, for example, N or S.   |
+| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | Longitude reference, for example, W or E.   |
+| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | Shooting time, for example, 2022:09:06 15:48:00.    |
+| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | Exposure time, for example, 1/33 sec.|
+| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | Shooting scene mode, for example, portrait, scenery, motion, and night sight.    |
+| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO sensitivity or ISO speed, for example, 400.    |
+| F_NUMBER<sup>9+</sup>           | "FNumber"          | Aperture, for example, f/1.8.    |
+
 
 ## ImageFormat<sup>9+</sup>
 
