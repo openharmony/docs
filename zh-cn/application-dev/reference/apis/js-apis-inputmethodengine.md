@@ -801,6 +801,14 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ---------------------- | ---- | -------- |
 | callback | AsyncCallback&lt;void> | 否   | 回调函数。当输入法隐藏成功，err为undefined，否则为错误对象 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -826,6 +834,14 @@ hide(): Promise&lt;void&gt;
 | 类型             | 说明                      |
 | ---------------- | ------------------------- |
 | Promise&lt;void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
 
 **示例：**
 
@@ -916,7 +932,15 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 | action | number | 是 | 编辑框属性。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
-  **示例：**
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
+ **示例：**
 
 ```js
 try {
@@ -956,6 +980,14 @@ sendKeyFunction(action:number): Promise&lt;boolean&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; |  Promise对象。返回true表示功能键发送成功；返回false表示功能键发送失败。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -988,6 +1020,15 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标前固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                     |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
 
 **示例：**
 
@@ -1026,6 +1067,15 @@ getForward(length:number): Promise&lt;string&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt;           |  Promise对象，返回光标前固定长度的文本。                     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                     |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
 **示例：**
 
 ```js
@@ -1057,6 +1107,15 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。当光标后固定长度的文本获取成功，err为undefined，data为获取到的文本；否则为错误对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                     |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
 
 **示例：**
 
@@ -1095,6 +1154,15 @@ getBackward(length:number): Promise&lt;string&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;string&gt;           |  Promise对象，返回光标后固定长度的文本。                     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                     |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
 **示例：**
 
 ```js
@@ -1126,6 +1194,15 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | length | number | 是 | 文本长度。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当光标前固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
 
 **示例：**
 
@@ -1168,6 +1245,15 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 | ---------------------- | -------------- |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示删除光标前固定长度的文本成功；返回false表示删除光标前固定长度的文本失败。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -1204,7 +1290,16 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 | length   | number                       | 是   | 文本长度。     |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。 |
 
-  **示例：**
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
+
+**示例：**
 
 ```js
 let length = 1;
@@ -1245,6 +1340,15 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; |  Promise对象。返回true表示删除光标后固定长度的文本成功；返回false表示删除光标后固定长度的文本失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -1276,6 +1380,15 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | text | string | 是 | 文本。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当文本插入成功，err为undefined，data为true；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
 
 **示例：**
 
@@ -1313,6 +1426,15 @@ insertText(text:string): Promise&lt;boolean&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt;  |  Promise对象。返回true表示插入文本成功；返回false表示插入文本失败。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800002 | Input method engine error. |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -1347,6 +1469,14 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 | ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;[EditorAttribute](#EditorAttribute)&gt; | 是 |  回调函数。当编辑框属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -1374,6 +1504,14 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 | ------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;[EditorAttribute](#editorattribute)&gt; |  Promise对象，返回编辑框属性值。           |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
 ```js
@@ -1393,8 +1531,6 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 移动光标。使用callback异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1404,9 +1540,17 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 | direction | number                    | 是   | 光标移动方向。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当光标移动成功，err为undefined，否则为错误对象    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
-```ts
+```js
 try {
     InputClient.moveCursor(inputMethodAbility.CURSOR_xxx, (err) => {
         if (err) {
@@ -1426,8 +1570,6 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 移动光标。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -1442,9 +1584,17 @@ moveCursor(direction: number): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                 |
+| -------- | -------------------------- |
+| 12800003 | Input method client error. |
+
 **示例：**
 
-```ts
+```js
 async function InputMethodAbility() {
     try {
         await InputClient.moveCursor(inputMethodEngine.CURSOR_xxx).then((err) => {

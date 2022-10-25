@@ -22,7 +22,7 @@ import inputMethod from '@ohos.inputmethod';
 | 名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | MAX_TYPE_NUM | number | 是 | 否 | 可支持的最大输入法个数。 |
-| EXCEPTION_PERMISSION<sup>9+</sup> | number | 是 | 否 | 错误码。详见../errorcodes/errcode-inputmethod-framework.md，下同 |
+| EXCEPTION_PERMISSION<sup>9+</sup> | number | 是 | 否 | 错误码。详见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)，下同 |
 | EXCEPTION_PARAMCHECK<sup>9+</sup> | number | 是 | 否 | 错误码。 |
 | EXCEPTION_UNSUPPORTED<sup>9+</sup> | number | 是 | 否 | 错误码。 |
 | EXCEPTION_PACKAGEMANAGER<sup>9+</sup> | number | 是 | 否 | 错误码。 |
@@ -45,20 +45,18 @@ import inputMethod from '@ohos.inputmethod';
 | -------- | -------- | -------- | -------- | -------- |
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 包名。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | Ability名。 |
-| name<sup>9+</sup>  | string | 是 | 否 | 包名，非必填项。 |
-| id<sup>9+</sup>    | string | 是 | 否 | Ability名，非必填项。 |
-| label<sup>9+</sup>    | string | 是 | 否 | 输入法标签，非必填项。| 
+| name<sup>9+</sup>  | string | 是 | 否 | 包名。 |
+| id<sup>9+</sup>    | string | 是 | 否 | Ability名。 |
+| label<sup>9+</sup>    | string | 是 | 否 | 输入法标签，非必填项。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 输入法图标，非必填项。 |
 | iconId<sup>9+</sup>    | number | 是 | 否 | 输入法图标id，非必填项。 |
-| extra<sup>9+</sup>    | object | 是 | 否 | 输入法其他信息，非必填项。 |
+| extra<sup>9+</sup>    | object | 是 | 否 | 输入法其他信息。 |
 
 ## inputMethod.getController<sup>9+</sup>
 
 getController(): InputMethodController
 
 获取客户端实例[InputMethodController](#inputmethodcontroller)。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.MiscServices.InputMethodFramework
 
@@ -68,9 +66,17 @@ getController(): InputMethodController
 | ----------------------------------------------- | ------------------------ |
 | [InputMethodController](#inputmethodcontroller) | 回调返回当前客户端实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                     |
+| -------- | ------------------------------ |
+| 12800006 | Input method controller error. |
+
 **示例：**
 
-```ts
+```js
 let InputMethodController = inputMethod.getController();
 ```
 
@@ -80,8 +86,6 @@ getSetting(): InputMethodSetting
 
 获取客户端设置实例[InputMethodSetting](#inputmethodsetting8)。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -90,9 +94,17 @@ getSetting(): InputMethodSetting
 | ----------------------------------------- | ---------------------------- |
 | [InputMethodSetting](#inputmethodsetting8) | 回调返回当前客户端设置实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800007 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let InputMethodSetting = inputMethod.getSetting();
 ```
 
@@ -101,8 +113,6 @@ let InputMethodSetting = inputMethod.getSetting();
 switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolean&gt;): void
 
 切换输入法。使用callback异步回调。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -115,9 +125,18 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 | target | [InputMethodProperty](#inputmethodproperty8) | 是 | 传入要切换的目标输入法。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法切换成功，err为undefined，data为true；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try{
     inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}, (err, result) => {
         if (err) {
@@ -139,8 +158,6 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 切换输入法。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -157,9 +174,18 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
   | ----------------------------------------- | ---------------------------- |
   | Promise\<boolean> | Promise对象。返回true表示切换输入法成功；返回false表示切换输入法失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try {
     inputMethod.switchInputMethod({packageName:'com.example.kikakeyboard', methodId:'com.example.kikakeyboard'}).then((result) => {
         if (result) {
@@ -181,8 +207,6 @@ getCurrentInputMethod(): InputMethodProperty
 
 获取当前输入法扩展应用，提供同步接口，返回当前输入法属性。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -193,7 +217,7 @@ getCurrentInputMethod(): InputMethodProperty
 
 **示例：**
 
-```ts
+```js
 let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
@@ -202,8 +226,6 @@ let currentIme = inputMethod.getCurrentInputMethod();
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 在当前输入法应用内切换子类型。使用callback异步回调。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -216,9 +238,18 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 | target |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法子类型切换成功，err为undefined，data为true；否则为错误对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodSubtype = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
@@ -246,8 +277,6 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -264,9 +293,18 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 | ----------------------------------------- | ---------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示在当前输入法应用内切换子类型成功；返回false表示在当前输入法应用内切换子类型失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodSubtype = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
@@ -292,8 +330,6 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 获取当前输入法子类型。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -304,7 +340,7 @@ getCurrentInputMethodSubtype(): InputMethodSubtype
 
 **示例：**
 
-```ts
+```js
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 ```
 
@@ -313,8 +349,6 @@ let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inputMethodSubtype: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用callback异步回调。
-
-**模型约束**： 此接口仅可在Stage模型下使用。
 
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
@@ -328,9 +362,18 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 |inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)| 是 | 传入要切换的目标输入法子类型。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法和子类型切换成功，err为undefined，data为获取到的切换子类型结果true；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodProperty = {
     packageName:"com.example.kikakeyboard",
     methodId:"ServiceExtAbility"
@@ -362,8 +405,6 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 切换至指定输入法应用的指定子类型，用于跨输入法应用切换子类型。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -381,9 +422,18 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 | ----------------------------------------- | ---------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示切换至指定输入法应用的指定子类型成功；返回false表示切换至指定输入法应用的指定子类型失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800005 | Configuration persisting error.        |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodProperty = {
     name: "com.example.kikakeyboard",
     id: "ServiceExtAbility"
@@ -475,6 +525,15 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法隐藏成功，err为undefined，data为true；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
 ```js
@@ -508,6 +567,15 @@ stopInputSession(): Promise&lt;boolean&gt;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示输入法隐藏成功；返回false表示输入法隐藏失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
 
 **示例：**
 
@@ -543,6 +611,15 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘显示成功。err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
 ```js
@@ -571,6 +648,15 @@ showSoftKeyboard(): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
 ```js
@@ -596,6 +682,15 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 参数类型                  | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当软键盘隐藏成功。err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
 
 **示例：**
 
@@ -624,6 +719,15 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800003 | Input method client error.             |
+| 12800008 | Input method settings extension error. |
 
 **示例：**
 
@@ -756,8 +860,6 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 获取指定输入法应用的所有子类型。使用callback异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -767,9 +869,18 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 | inputMethodProperty | InputMethodProperty| 是 | 指定获取子类型所属的输入法应用
 | callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是 | 回调函数，返回指定输入法应用的所有子类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodProperty = {
     packageName:'com.example.kikakeyboard',
     methodId:'com.example.kikakeyboard'
@@ -793,8 +904,6 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 获取指定输入法应用的所有子类型。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -809,9 +918,18 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 | ----------------------------------------------------------- | ---------------------- |
 | Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | Promise对象，返回已安装输入法子类型列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 let inputMethodSubProperty = {
     id: "com.example.kikainput",
     label: "ServiceExtAbility"
@@ -833,8 +951,6 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 查询当前输入法应用的所有子类型。使用callback异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -843,9 +959,18 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | callback | Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)> | 是   | 回调函数，返回当前输入法应用的所有子类型。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try {
     InputMethodSetting.listCurrentInputMethodSubtype((err, data) => {
         if (err) {
@@ -865,8 +990,6 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 查询当前输入法的子类型列表。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **返回值：**
@@ -875,9 +998,18 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 | ----------------------------------------------------------- | ---------------------- |
 | Promise<Array<[InputMethodSubtype](./js-apis-inputmethodsubtype.md#inputmethodsubtype)>> | Promise对象，返回当前输入法的子类型列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try {
     InputMethodSetting.listCurrentInputMethodSubtype().then((data) => {
         console.info('listCurrentInputMethodSubtype success');
@@ -895,8 +1027,6 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 获取已激活/未激活输入法列表。参数enable取true，返回已激活输入法列表，取false返回未激活输入法列表。使用callback异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -906,9 +1036,18 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | enable   | boolean                                             | 是   | 指定返回已激活/未激活。       |
 | callback | Array<[InputMethodProperty](#inputmethodproperty8)> | 是   | 回调函数，返回已激活/未激活输入法列表。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try {
     InputMethodSetting.getInputMethods(true, (err,data) => {
         if (err) {
@@ -928,8 +1067,6 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 获取已激活/未激活输入法列表。参数enable取true返回已激活输入法列表，取false返回未激活输入法列表。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
@@ -937,6 +1074,15 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 参数名 | 类型    | 必填 | 说明                    |
 | ------ | ------- | ---- | ----------------------- |
 | enable | boolean | 是   | 指定返回已激活/未激活。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800001 | Package manager error.                 |
+| 12800008 | Input method settings extension error. |
 
 **返回值：**
 
@@ -946,7 +1092,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 **示例：**
 
-```ts
+```js
 try {
     InputMethodSetting.getInputMethods(true).then((data) => {
         console.info('getInputMethods success');
@@ -964,8 +1110,6 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 显示输入法选择对话框。使用callback异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -976,9 +1120,17 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当输入法选择对话框显示成功，err为undefined，data为true；否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 try {
     InputMethodSetting.showOptionalInputMethods((err) => {
         if (err) {
@@ -998,8 +1150,6 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 显示输入法选择对话框。使用promise异步回调。
 
-**模型约束**： 此接口仅可在Stage模型下使用。
-
 **需要权限**： ohos.permission.CONNECT_IME_ABILITY
 
 **系统能力**： SystemCapability.MiscServices.InputMethodFramework
@@ -1010,9 +1160,17 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 | -------- | -------- |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示输入法选择对话框显示成功；返回false表示输入法选择对话框显示失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误码信息                             |
+| -------- | -------------------------------------- |
+| 12800008 | Input method settings extension error. |
+
 **示例：**
 
-```ts
+```js
 InputMethodSetting.showOptionalInputMethods().then(() => {
     console.info('displayOptionalInputMethod success.');
 }).catch((err) => {
